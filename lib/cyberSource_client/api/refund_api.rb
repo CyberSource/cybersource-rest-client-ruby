@@ -26,7 +26,7 @@ module CyberSource
     # @return [InlineResponse2005]
     def get_refund(id, opts = {})
       data, _status_code, _headers = get_refund_with_http_info(id, opts)
-      data
+      return data, _status_code, _headers
     end
 
     # Retrieve a Refund
@@ -79,7 +79,7 @@ module CyberSource
     # @return [InlineResponse2013]
     def refund_capture(refund_capture_request, id, opts = {})
       data, _status_code, _headers = refund_capture_with_http_info(refund_capture_request, id, opts)
-      data
+      return data, _status_code, _headers
     end
 
     # Refund a Capture
@@ -137,7 +137,7 @@ module CyberSource
     # @return [InlineResponse2013]
     def refund_payment(refund_payment_request, id, opts = {})
       data, _status_code, _headers = refund_payment_with_http_info(refund_payment_request, id, opts)
-      data
+      return data, _status_code, _headers
     end
 
     # Refund a Payment

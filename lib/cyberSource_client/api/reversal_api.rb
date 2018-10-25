@@ -27,7 +27,7 @@ module CyberSource
     # @return [InlineResponse2011]
     def auth_reversal(id, auth_reversal_request, opts = {})
       data, _status_code, _headers = auth_reversal_with_http_info(id, auth_reversal_request, opts)
-      data
+      return data, _status_code, _headers
     end
 
     # Process an Authorization Reversal
@@ -84,7 +84,7 @@ module CyberSource
     # @return [InlineResponse2003]
     def get_auth_reversal(id, opts = {})
       data, _status_code, _headers = get_auth_reversal_with_http_info(id, opts)
-      data
+      return data, _status_code, _headers
     end
 
     # Retrieve an Authorization Reversal

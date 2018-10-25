@@ -26,7 +26,7 @@ module CyberSource
     # @return [InlineResponse2016]
     def paymentinstruments_post(profile_id, body, opts = {})
       data, _status_code, _headers = paymentinstruments_post_with_http_info(profile_id, body, opts)
-      data
+      return data, _status_code, _headers
     end
 
     # Create a Payment Instrument
@@ -90,8 +90,8 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [nil]
     def paymentinstruments_token_id_delete(profile_id, token_id, opts = {})
-      paymentinstruments_token_id_delete_with_http_info(profile_id, token_id, opts)
-      nil
+      data, _status_code, _headers = paymentinstruments_token_id_delete_with_http_info(profile_id, token_id, opts)
+      return data, _status_code, _headers
     end
 
     # Delete a Payment Instrument
@@ -163,7 +163,7 @@ module CyberSource
     # @return [InlineResponse2016]
     def paymentinstruments_token_id_get(profile_id, token_id, opts = {})
       data, _status_code, _headers = paymentinstruments_token_id_get_with_http_info(profile_id, token_id, opts)
-      data
+      return data, _status_code, _headers
     end
 
     # Retrieve a Payment Instrument
@@ -237,7 +237,7 @@ module CyberSource
     # @return [InlineResponse2016]
     def paymentinstruments_token_id_patch(profile_id, token_id, body, opts = {})
       data, _status_code, _headers = paymentinstruments_token_id_patch_with_http_info(profile_id, token_id, body, opts)
-      data
+      return data, _status_code, _headers
     end
 
     # Update a Payment Instrument

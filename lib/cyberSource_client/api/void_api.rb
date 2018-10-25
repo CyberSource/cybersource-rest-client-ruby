@@ -26,7 +26,7 @@ module CyberSource
     # @return [InlineResponse2015]
     def get_void(id, opts = {})
       data, _status_code, _headers = get_void_with_http_info(id, opts)
-      data
+      return data, _status_code, _headers
     end
 
     # Retrieve A Void
@@ -79,7 +79,7 @@ module CyberSource
     # @return [InlineResponse2015]
     def void_capture(void_capture_request, id, opts = {})
       data, _status_code, _headers = void_capture_with_http_info(void_capture_request, id, opts)
-      data
+      return data, _status_code, _headers
     end
 
     # Void a Capture
@@ -137,7 +137,7 @@ module CyberSource
     # @return [InlineResponse2015]
     def void_credit(void_credit_request, id, opts = {})
       data, _status_code, _headers = void_credit_with_http_info(void_credit_request, id, opts)
-      data
+      return data, _status_code, _headers
     end
 
     # Void a Credit
@@ -195,7 +195,7 @@ module CyberSource
     # @return [InlineResponse2015]
     def void_payment(void_payment_request, id, opts = {})
       data, _status_code, _headers = void_payment_with_http_info(void_payment_request, id, opts)
-      data
+      return data, _status_code, _headers
     end
 
     # Void a Payment
@@ -253,7 +253,7 @@ module CyberSource
     # @return [InlineResponse2015]
     def void_refund(void_refund_request, id, opts = {})
       data, _status_code, _headers = void_refund_with_http_info(void_refund_request, id, opts)
-      data
+      return data, _status_code, _headers
     end
 
     # Void a Refund
