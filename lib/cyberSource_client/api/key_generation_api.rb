@@ -26,7 +26,7 @@ module CyberSource
     # @return [InlineResponse200]
     def generate_public_key(generate_public_key_request, opts = {})
       data, _status_code, _headers = generate_public_key_with_http_info(generate_public_key_request, opts)
-      data
+      return data, _status_code, _headers
     end
 
     # Generate Key

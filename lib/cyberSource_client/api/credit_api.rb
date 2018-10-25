@@ -26,7 +26,7 @@ module CyberSource
     # @return [InlineResponse2014]
     def create_credit(create_credit_request, opts = {})
       data, _status_code, _headers = create_credit_with_http_info(create_credit_request, opts)
-      data
+      return data, _status_code, _headers
     end
 
     # Process a Credit
@@ -78,7 +78,7 @@ module CyberSource
     # @return [InlineResponse2006]
     def get_credit(id, opts = {})
       data, _status_code, _headers = get_credit_with_http_info(id, opts)
-      data
+      return data, _status_code, _headers
     end
 
     # Retrieve a Credit

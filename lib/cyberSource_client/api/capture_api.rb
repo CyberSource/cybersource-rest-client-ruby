@@ -27,7 +27,7 @@ module CyberSource
     # @return [InlineResponse2012]
     def capture_payment(capture_payment_request, id, opts = {})
       data, _status_code, _headers = capture_payment_with_http_info(capture_payment_request, id, opts)
-      data
+      return data, _status_code, _headers
     end
 
     # Capture a Payment

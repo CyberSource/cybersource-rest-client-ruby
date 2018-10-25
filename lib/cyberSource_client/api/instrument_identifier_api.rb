@@ -26,7 +26,7 @@ module CyberSource
     # @return [InlineResponse2007]
     def instrumentidentifiers_post(profile_id, opts = {})
       data, _status_code, _headers = instrumentidentifiers_post_with_http_info(profile_id, opts)
-      data
+      return data, _status_code, _headers
     end
 
     # Create an Instrument Identifier
@@ -86,8 +86,8 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [nil]
     def instrumentidentifiers_token_id_delete(profile_id, token_id, opts = {})
-      instrumentidentifiers_token_id_delete_with_http_info(profile_id, token_id, opts)
-      nil
+      data, _status_code, _headers = instrumentidentifiers_token_id_delete_with_http_info(profile_id, token_id, opts)
+      return data, _status_code, _headers
     end
 
     # Delete an Instrument Identifier
@@ -153,7 +153,7 @@ module CyberSource
     # @return [InlineResponse2007]
     def instrumentidentifiers_token_id_get(profile_id, token_id, opts = {})
       data, _status_code, _headers = instrumentidentifiers_token_id_get_with_http_info(profile_id, token_id, opts)
-      data
+      return data, _status_code, _headers
     end
 
     # Retrieve an Instrument Identifier
@@ -227,7 +227,7 @@ module CyberSource
     # @return [InlineResponse2007]
     def instrumentidentifiers_token_id_patch(profile_id, token_id, body, opts = {})
       data, _status_code, _headers = instrumentidentifiers_token_id_patch_with_http_info(profile_id, token_id, body, opts)
-      data
+      return data, _status_code, _headers
     end
 
     # Update a Instrument Identifier
@@ -307,7 +307,7 @@ module CyberSource
     # @return [InlineResponse2008]
     def instrumentidentifiers_token_id_paymentinstruments_get(profile_id, token_id, opts = {})
       data, _status_code, _headers = instrumentidentifiers_token_id_paymentinstruments_get_with_http_info(profile_id, token_id, opts)
-      data
+      return data, _status_code, _headers
     end
 
     # Retrieve all Payment Instruments associated with an Instrument Identifier

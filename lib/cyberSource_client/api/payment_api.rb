@@ -26,7 +26,7 @@ module CyberSource
     # @return [InlineResponse201]
     def create_payment(create_payment_request, opts = {})
       data, _status_code, _headers = create_payment_with_http_info(create_payment_request, opts)
-      data
+      return data, _status_code, _headers
     end
 
     # Process a Payment
@@ -78,7 +78,7 @@ module CyberSource
     # @return [InlineResponse2002]
     def get_payment(id, opts = {})
       data, _status_code, _headers = get_payment_with_http_info(id, opts)
-      data
+      return data, _status_code, _headers
     end
 
     # Retrieve a Payment

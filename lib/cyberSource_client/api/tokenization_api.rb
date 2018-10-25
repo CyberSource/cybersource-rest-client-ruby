@@ -26,7 +26,7 @@ module CyberSource
     # @return [InlineResponse2001]
     def tokenize(opts = {})
       data, _status_code, _headers = tokenize_with_http_info(opts)
-      data
+      return data, _status_code, _headers
     end
 
     # Tokenize card
