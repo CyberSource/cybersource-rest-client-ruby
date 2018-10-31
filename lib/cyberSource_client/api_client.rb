@@ -129,7 +129,7 @@ module CyberSource
     end
 	# Calling Authentication
     def CallAuthenticationHeader(http_method, path, body_params, header_params)
-      require_relative '../../../cybersource-rest-samples-ruby/data/Configuration.rb'
+      require Dir.getwd + '/data/Configuration.rb'
       require_relative '../../AuthenticationSDK/core/Merchantconfig.rb'
       require_relative '../../AuthenticationSDK/core/Authorization.rb'
       require_relative '../../AuthenticationSDK/authentication/payloadDigest/Digest.rb'

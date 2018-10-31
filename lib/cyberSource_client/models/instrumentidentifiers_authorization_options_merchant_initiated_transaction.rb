@@ -13,7 +13,7 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  class InstrumentidentifiersProcessingInformationAuthorizationOptionsInitiatorMerchantInitiatedTransaction
+  class InstrumentidentifiersAuthorizationOptionsMerchantInitiatedTransaction
     # Previous Consumer Initiated Transaction Id.
     attr_accessor :previous_transaction_id
 

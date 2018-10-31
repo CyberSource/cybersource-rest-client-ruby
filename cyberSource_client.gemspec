@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
   s.summary     = "CyberSource Flex API Ruby Gem"
   s.description = "Simple PAN tokenization service"
   s.license     = "Unlicense"
+  s.files       = Dir.glob("{lib,AuthenticationSDK}/**/*")
   s.required_ruby_version = ">= 1.9"
 
   s.add_runtime_dependency 'typhoeus', '~> 1.0', '>= 1.0.1'
@@ -38,8 +39,12 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'autotest-growl', '~> 0.2', '>= 0.2.16'
   s.add_development_dependency 'autotest-fsevent', '~> 0.2', '>= 0.2.12'
 
-  s.files         = `find *`.split("\n").uniq.sort.select { |f| !f.empty? }
-  s.test_files    = `find spec/*`.split("\n")
-  s.executables   = []
+  s.add_runtime_dependency 'activesupport', '~> 5.2', '>= 5.2.0'
+  s.add_runtime_dependency 'interface','~> 1.0', '>= 1.0.4'
+  s.add_runtime_dependency 'jwt', '~> 2.1.0'
+  
+  s.add_development_dependency 'simplecov'
+  s.add_development_dependency 'rubocop', '~> 0.57.2'
+  
   s.require_paths = ["lib"]
 end
