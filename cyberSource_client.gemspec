@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.version     = "0.0.1"
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Swagger-Codegen"]
-  s.email       = [""]
+  s.email       = ["cybersourcedev@gmail.com"]
   s.homepage    = "https://github.com/swagger-api/swagger-codegen"
   s.summary     = "CyberSource Flex API Ruby Gem"
   s.description = "Simple PAN tokenization service"
