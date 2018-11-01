@@ -5,7 +5,7 @@ $:.push File.expand_path("../lib", __FILE__)
 require "cyberSource_client/version"
 
 Gem::Specification.new do |s|
-  s.name        = "cyberSource_client"
+  s.name        = "cybersource_rest_client"
   s.version     = "0.0.4"
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["CyuberSource"]
