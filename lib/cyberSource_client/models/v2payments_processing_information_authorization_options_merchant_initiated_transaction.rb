@@ -13,7 +13,7 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  class V2paymentsProcessingInformationAuthorizationOptionsInitiatorMerchantInitiatedTransaction
+  class V2paymentsProcessingInformationAuthorizationOptionsMerchantInitiatedTransaction
     # Reason for the merchant-initiated transaction. Possible values:   - **1**: Resubmission  - **2**: Delayed charge  - **3**: Reauthorization for split shipment  - **4**: No show  - **5**: Account top up  This field is not required for installment payments or recurring payments or when _reAuth.first_ is true. It is required for all other merchant-initiated transactions. This field is supported only for Visa transactions on CyberSource through VisaNet. 
     attr_accessor :reason
 

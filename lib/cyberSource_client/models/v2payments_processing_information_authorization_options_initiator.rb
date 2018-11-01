@@ -63,7 +63,7 @@ module CyberSource
         :'type' => :'String',
         :'credential_stored_on_file' => :'BOOLEAN',
         :'stored_credential_used' => :'BOOLEAN',
-        :'merchant_initiated_transaction' => :'V2paymentsProcessingInformationAuthorizationOptionsInitiatorMerchantInitiatedTransaction'
+        :'merchant_initiated_transaction' => :'V2paymentsProcessingInformationAuthorizationOptionsMerchantInitiatedTransaction'
       }
     end
 
