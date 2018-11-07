@@ -32,47 +32,97 @@ describe 'InlineResponse2008' do
       expect(@instance).to be_instance_of(CyberSource::InlineResponse2008)
     end
   end
-  describe 'test attribute "_links"' do
+  describe 'test attribute "organization_id"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "object"' do
+  describe 'test attribute "report_id"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["collection"])
+    end
+  end
+
+  describe 'test attribute "report_definition_id"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "report_name"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "report_mime_type"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["application/xml", "text/csv"])
       # validator.allowable_values.each do |value|
-      #   expect { @instance.object = value }.not_to raise_error
+      #   expect { @instance.report_mime_type = value }.not_to raise_error
       # end
     end
   end
 
-  describe 'test attribute "offset"' do
+  describe 'test attribute "report_frequency"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["DAILY", "WEEKLY", "MONTHLY"])
+      # validator.allowable_values.each do |value|
+      #   expect { @instance.report_frequency = value }.not_to raise_error
+      # end
+    end
+  end
+
+  describe 'test attribute "report_fields"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "limit"' do
+  describe 'test attribute "report_status"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["COMPLETED", "PENDING", "QUEUED", "RUNNING", "ERROR", "NO_DATA", "RERUN"])
+      # validator.allowable_values.each do |value|
+      #   expect { @instance.report_status = value }.not_to raise_error
+      # end
+    end
+  end
+
+  describe 'test attribute "report_start_time"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "count"' do
+  describe 'test attribute "report_end_time"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "total"' do
+  describe 'test attribute "timezone"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "_embedded"' do
+  describe 'test attribute "report_filters"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "report_preferences"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "selected_merchant_group_name"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

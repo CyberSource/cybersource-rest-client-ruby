@@ -16,7 +16,7 @@ class GenerateJwtToken
     request_type = merchantconfig_obj.requestType.upcase
     filePath = merchantconfig_obj.keysDirectory + '/' + merchantconfig_obj.keyFilename + '.p12'
     if (!File.exist?(filePath))
-      raise Constants::ERROR_PREFIX + Constants::FILE_NOT_FOUND + filePath
+      raise Constants::ERROR_PREFIX + Constants::FILE_NOT_FOUND + File.expand_path(filePath)
     end
     p12File = File.binread(filePath)
     jwtBody=getJwtBody(request_type, gmtDatetime, merchantconfig_obj, log_obj)
@@ -47,7 +47,7 @@ class GenerateJwtToken
     end
   end
   def getJwtBody(request_type, gmtDatetime, merchantconfig_obj,log_obj)
-    if request_type == Constants::POST_REQUEST_TYPE || request_type == Constants::PUT_REQUEST_TYPE
+    if request_type == Constants::POST_REQUEST_TYPE || request_type == Constants::PUT_REQUEST_TYPE || request_type == Constants::PATCH_REQUEST_TYPE
       payload = merchantconfig_obj.requestJsonData
       # Note: Digest is not passed for GET calls
       digest = DigestGeneration.new.generateDigest(payload, log_obj)

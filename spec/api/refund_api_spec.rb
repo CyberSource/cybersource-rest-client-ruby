@@ -32,18 +32,6 @@ describe 'RefundApi' do
     end
   end
 
-  # unit tests for get_refund
-  # Retrieve a Refund
-  # Include the refund ID in the GET request to to retrieve the refund details.
-  # @param id The refund ID. This ID is returned from a previous refund request.
-  # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2005]
-  describe 'get_refund test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   # unit tests for refund_capture
   # Refund a Capture
   # Include the capture ID in the POST request to refund the captured amount. 

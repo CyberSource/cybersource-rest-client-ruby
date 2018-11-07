@@ -32,64 +32,38 @@ describe 'InstrumentIdentifierApi' do
     end
   end
 
-  # unit tests for instrumentidentifiers_post
-  # Create an Instrument Identifier
-  # @param profile_id The id of a profile containing user specific TMS configuration.
-  # @param [Hash] opts the optional parameters
-  # @option opts [Body] :body Please specify either a Card or Bank Account.
-  # @return [InlineResponse2007]
-  describe 'instrumentidentifiers_post test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for instrumentidentifiers_token_id_delete
+  # unit tests for tms_v1_instrumentidentifiers_token_id_delete
   # Delete an Instrument Identifier
   # @param profile_id The id of a profile containing user specific TMS configuration.
   # @param token_id The TokenId of an Instrument Identifier.
   # @param [Hash] opts the optional parameters
   # @return [nil]
-  describe 'instrumentidentifiers_token_id_delete test' do
+  describe 'tms_v1_instrumentidentifiers_token_id_delete test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  # unit tests for instrumentidentifiers_token_id_get
+  # unit tests for tms_v1_instrumentidentifiers_token_id_get
   # Retrieve an Instrument Identifier
   # @param profile_id The id of a profile containing user specific TMS configuration.
   # @param token_id The TokenId of an Instrument Identifier.
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2007]
-  describe 'instrumentidentifiers_token_id_get test' do
+  # @return [InlineResponse20010]
+  describe 'tms_v1_instrumentidentifiers_token_id_get test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  # unit tests for instrumentidentifiers_token_id_patch
+  # unit tests for tms_v1_instrumentidentifiers_token_id_patch
   # Update a Instrument Identifier
   # @param profile_id The id of a profile containing user specific TMS configuration.
-  # @param token_id The TokenId of an Instrument Identifier
+  # @param token_id The TokenId of an Instrument Identifier.
   # @param body Please specify the previous transaction Id to update.
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2007]
-  describe 'instrumentidentifiers_token_id_patch test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for instrumentidentifiers_token_id_paymentinstruments_get
-  # Retrieve all Payment Instruments associated with an Instrument Identifier
-  # @param profile_id The id of a profile containing user specific TMS configuration.
-  # @param token_id The TokenId of an Instrument Identifier.
-  # @param [Hash] opts the optional parameters
-  # @option opts [String] :offset Starting Payment Instrument record in zero-based dataset that should be returned as the first object in the array. Default is 0.
-  # @option opts [String] :limit The maximum number of Payment Instruments that can be returned in the array starting from the offset record in zero-based dataset. Default is 20, maximum is 100.
-  # @return [InlineResponse2008]
-  describe 'instrumentidentifiers_token_id_paymentinstruments_get test' do
+  # @return [InlineResponse20010]
+  describe 'tms_v1_instrumentidentifiers_token_id_patch test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

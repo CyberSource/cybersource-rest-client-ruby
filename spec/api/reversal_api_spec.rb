@@ -45,16 +45,4 @@ describe 'ReversalApi' do
     end
   end
 
-  # unit tests for get_auth_reversal
-  # Retrieve an Authorization Reversal
-  # Include the authorization reversal ID in the GET request to retrieve the authorization reversal details. 
-  # @param id The authorization reversal ID returned from a previous authorization reversal request.
-  # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2003]
-  describe 'get_auth_reversal test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
 end

@@ -1,61 +1,13 @@
 # CyberSource::VoidApi
 
-All URIs are relative to *https://api.cybersource.com*
+All URIs are relative to *https://apitest.cybersource.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_void**](VoidApi.md#get_void) | **GET** /v2/voids/{id} | Retrieve A Void
-[**void_capture**](VoidApi.md#void_capture) | **POST** /v2/captures/{id}/voids | Void a Capture
-[**void_credit**](VoidApi.md#void_credit) | **POST** /v2/credits/{id}/voids | Void a Credit
-[**void_payment**](VoidApi.md#void_payment) | **POST** /v2/payments/{id}/voids | Void a Payment
-[**void_refund**](VoidApi.md#void_refund) | **POST** /v2/refunds/{id}/voids | Void a Refund
-
-
-# **get_void**
-> InlineResponse2015 get_void(id)
-
-Retrieve A Void
-
-Include the void ID in the GET request to retrieve the void details.
-
-### Example
-```ruby
-# load the gem
-require 'cyberSource_client'
-
-api_instance = CyberSource::VoidApi.new
-
-id = "id_example" # String | The void ID returned from a previous void request.
-
-
-begin
-  #Retrieve A Void
-  result = api_instance.get_void(id)
-  p result
-rescue CyberSource::ApiError => e
-  puts "Exception when calling VoidApi->get_void: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The void ID returned from a previous void request. | 
-
-### Return type
-
-[**InlineResponse2015**](InlineResponse2015.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
+[**void_capture**](VoidApi.md#void_capture) | **POST** /pts/v2/captures/{id}/voids | Void a Capture
+[**void_credit**](VoidApi.md#void_credit) | **POST** /pts/v2/credits/{id}/voids | Void a Credit
+[**void_payment**](VoidApi.md#void_payment) | **POST** /pts/v2/payments/{id}/voids | Void a Payment
+[**void_refund**](VoidApi.md#void_refund) | **POST** /pts/v2/refunds/{id}/voids | Void a Refund
 
 
 # **void_capture**
@@ -68,7 +20,7 @@ Include the capture ID in the POST request to cancel the capture.
 ### Example
 ```ruby
 # load the gem
-require 'cyberSource_client'
+require 'cybersource_rest_client'
 
 api_instance = CyberSource::VoidApi.new
 
@@ -103,8 +55,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
 
 
 
@@ -118,7 +70,7 @@ Include the credit ID in the POST request to cancel the credit.
 ### Example
 ```ruby
 # load the gem
-require 'cyberSource_client'
+require 'cybersource_rest_client'
 
 api_instance = CyberSource::VoidApi.new
 
@@ -153,8 +105,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
 
 
 
@@ -168,7 +120,7 @@ Include the payment ID in the POST request to cancel the payment.
 ### Example
 ```ruby
 # load the gem
-require 'cyberSource_client'
+require 'cybersource_rest_client'
 
 api_instance = CyberSource::VoidApi.new
 
@@ -203,8 +155,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
 
 
 
@@ -218,7 +170,7 @@ Include the refund ID in the POST request to cancel the refund.
 ### Example
 ```ruby
 # load the gem
-require 'cyberSource_client'
+require 'cybersource_rest_client'
 
 api_instance = CyberSource::VoidApi.new
 
@@ -253,8 +205,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
 
 
 

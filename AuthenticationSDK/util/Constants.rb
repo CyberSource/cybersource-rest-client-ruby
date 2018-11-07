@@ -5,6 +5,8 @@ class Constants
     POST_REQUEST_TYPE_LOWER = 'post' unless const_defined?(:POST_REQUEST_TYPE_LOWER)
     
     PUT_REQUEST_TYPE_LOWER = 'put' unless const_defined?(:PUT_REQUEST_TYPE_LOWER)
+
+    PATCH_REQUEST_TYPE_LOWER = 'patch' unless const_defined?(:PATCH_REQUEST_TYPE_LOWER)
     
     DELETE_REQUEST_TYPE_LOWER = 'delete' unless const_defined?(:DELETE_REQUEST_TYPE_LOWER)
 
@@ -13,6 +15,8 @@ class Constants
     POST_REQUEST_TYPE = 'POST' unless const_defined?(:POST_REQUEST_TYPE)
     
     PUT_REQUEST_TYPE = 'PUT' unless const_defined?(:PUT_REQUEST_TYPE)
+
+    PATCH_REQUEST_TYPE = 'PATCH' unless const_defined?(:PATCH_REQUEST_TYPE)
     
     DELETE_REQUEST_TYPE = 'DELETE' unless const_defined?(:DELETE_REQUEST_TYPE)
 
