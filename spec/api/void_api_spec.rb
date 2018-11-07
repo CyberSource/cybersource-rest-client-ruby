@@ -32,18 +32,6 @@ describe 'VoidApi' do
     end
   end
 
-  # unit tests for get_void
-  # Retrieve A Void
-  # Include the void ID in the GET request to retrieve the void details.
-  # @param id The void ID returned from a previous void request.
-  # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2015]
-  describe 'get_void test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   # unit tests for void_capture
   # Void a Capture
   # Include the capture ID in the POST request to cancel the capture.

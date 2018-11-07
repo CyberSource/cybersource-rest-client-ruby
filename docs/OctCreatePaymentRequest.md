@@ -4,11 +4,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **client_reference_information** | [**InlineResponse201ClientReferenceInformation**](InlineResponse201ClientReferenceInformation.md) |  | [optional] 
-**order_information** | [**V2payoutsOrderInformation**](V2payoutsOrderInformation.md) |  | [optional] 
-**merchant_information** | [**V2payoutsMerchantInformation**](V2payoutsMerchantInformation.md) |  | [optional] 
-**recipient_information** | [**V2payoutsRecipientInformation**](V2payoutsRecipientInformation.md) |  | [optional] 
-**sender_information** | [**V2payoutsSenderInformation**](V2payoutsSenderInformation.md) |  | [optional] 
-**processing_information** | [**V2payoutsProcessingInformation**](V2payoutsProcessingInformation.md) |  | [optional] 
-**payment_information** | [**V2payoutsPaymentInformation**](V2payoutsPaymentInformation.md) |  | [optional] 
+**order_information** | [**Ptsv2payoutsOrderInformation**](Ptsv2payoutsOrderInformation.md) |  | [optional] 
+**merchant_information** | [**Ptsv2payoutsMerchantInformation**](Ptsv2payoutsMerchantInformation.md) |  | [optional] 
+**recipient_information** | [**Ptsv2payoutsRecipientInformation**](Ptsv2payoutsRecipientInformation.md) |  | [optional] 
+**sender_information** | [**Ptsv2payoutsSenderInformation**](Ptsv2payoutsSenderInformation.md) |  | [optional] 
+**processing_information** | [**Ptsv2payoutsProcessingInformation**](Ptsv2payoutsProcessingInformation.md) |  | [optional] 
+**payment_information** | [**Ptsv2payoutsPaymentInformation**](Ptsv2payoutsPaymentInformation.md) |  | [optional] 
 
 

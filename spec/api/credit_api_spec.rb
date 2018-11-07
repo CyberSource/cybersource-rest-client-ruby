@@ -44,16 +44,4 @@ describe 'CreditApi' do
     end
   end
 
-  # unit tests for get_credit
-  # Retrieve a Credit
-  # Include the credit ID in the GET request to return details of the credit.
-  # @param id The credit ID returned from a previous stand-alone credit request. 
-  # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2006]
-  describe 'get_credit test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
 end

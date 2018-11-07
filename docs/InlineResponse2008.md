@@ -3,12 +3,19 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**_links** | [**InlineResponse2008Links**](InlineResponse2008Links.md) |  | [optional] 
-**object** | **String** | Shows the response is a collection of objects. | [optional] 
-**offset** | **String** | The offset parameter supplied in the request. | [optional] 
-**limit** | **String** | The limit parameter supplied in the request. | [optional] 
-**count** | **String** | The number of Payment Instruments returned in the array. | [optional] 
-**total** | **String** | The total number of Payment Instruments associated with the Instrument Identifier in the zero-based dataset. | [optional] 
-**_embedded** | **Object** | Array of Payment Instruments returned for the supplied Instrument Identifier. | [optional] 
+**organization_id** | **String** | CyberSource merchant id | [optional] 
+**report_id** | **String** | Report ID Value | [optional] 
+**report_definition_id** | **String** | Report definition Id | [optional] 
+**report_name** | **String** | Report Name | [optional] 
+**report_mime_type** | **String** | Report Format | [optional] 
+**report_frequency** | **String** | Report Frequency Value | [optional] 
+**report_fields** | **Array&lt;String&gt;** | List of Integer Values | [optional] 
+**report_status** | **String** | Report Status Value | [optional] 
+**report_start_time** | **DateTime** | Report Start Time Value | [optional] 
+**report_end_time** | **DateTime** | Report End Time Value | [optional] 
+**timezone** | **String** | Time Zone Value | [optional] 
+**report_filters** | **Hash&lt;String, Array&lt;String&gt;&gt;** | Report Filters | [optional] 
+**report_preferences** | [**InlineResponse2006ReportPreferences**](InlineResponse2006ReportPreferences.md) |  | [optional] 
+**selected_merchant_group_name** | **String** | Selected Merchant Group name | [optional] 
 
 

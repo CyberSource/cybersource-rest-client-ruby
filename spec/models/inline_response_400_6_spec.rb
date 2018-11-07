@@ -32,9 +32,25 @@ describe 'InlineResponse4006' do
       expect(@instance).to be_instance_of(CyberSource::InlineResponse4006)
     end
   end
-  describe 'test attribute "type"' do
+  describe 'test attribute "submit_time_utc"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "status"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "reason"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["MISSING_FIELD", "INVALID_DATA", "DUPLICATE_REQUEST", "INVALID_MERCHANT_CONFIGURATION", "INVALID_AMOUNT", "DEBIT_CARD_USEAGE_EXCEEDD_LIMIT"])
+      # validator.allowable_values.each do |value|
+      #   expect { @instance.reason = value }.not_to raise_error
+      # end
     end
   end
 

@@ -3,6 +3,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**processing_information** | [**InstrumentidentifiersProcessingInformation**](InstrumentidentifiersProcessingInformation.md) |  | [optional] 
+**processing_information** | [**Tmsv1instrumentidentifiersProcessingInformation**](Tmsv1instrumentidentifiersProcessingInformation.md) |  | [optional] 
 
 

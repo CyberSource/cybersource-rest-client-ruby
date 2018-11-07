@@ -22,7 +22,7 @@ class SignatureParameter
     if request_type == Constants::GET_REQUEST_TYPE || request_type == Constants::DELETE_REQUEST_TYPE
       targetUrl=gettargetUrlForGetDelete(request_type,merchantconfig_obj)
       signatureString << targetUrl + "\n"
-    elsif request_type == Constants::POST_REQUEST_TYPE || request_type == Constants::PUT_REQUEST_TYPE
+    elsif request_type == Constants::POST_REQUEST_TYPE || request_type == Constants::PUT_REQUEST_TYPE || request_type == Constants::PATCH_REQUEST_TYPE
       targetUrl=gettargetUrlForPutPost(request_type,merchantconfig_obj)
       signatureString << targetUrl + "\n"
       payload = merchantconfig_obj.requestJsonData
@@ -56,6 +56,8 @@ class SignatureParameter
       targetUrlForPutPost = Constants::POST_REQUEST_TYPE_LOWER + ' ' + merchantconfig_obj.requestTarget
     elsif request_type == Constants::PUT_REQUEST_TYPE
       targetUrlForPutPost = Constants::PUT_REQUEST_TYPE_LOWER + ' ' + merchantconfig_obj.requestTarget
+    elsif request_type == Constants::PATCH_REQUEST_TYPE
+      targetUrlForPutPost = Constants::PATCH_REQUEST_TYPE_LOWER + ' ' + merchantconfig_obj.requestTarget
     end
     return targetUrlForPutPost
   end

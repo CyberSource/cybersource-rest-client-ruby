@@ -1,11 +1,10 @@
 # CyberSource::CaptureApi
 
-All URIs are relative to *https://api.cybersource.com*
+All URIs are relative to *https://apitest.cybersource.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**capture_payment**](CaptureApi.md#capture_payment) | **POST** /v2/payments/{id}/captures | Capture a Payment
-[**get_capture**](CaptureApi.md#get_capture) | **GET** /v2/captures/{id} | Retrieve a Capture
+[**capture_payment**](CaptureApi.md#capture_payment) | **POST** /pts/v2/payments/{id}/captures | Capture a Payment
 
 
 # **capture_payment**
@@ -18,7 +17,7 @@ Include the payment ID in the POST request to capture the payment amount.
 ### Example
 ```ruby
 # load the gem
-require 'cyberSource_client'
+require 'cybersource_rest_client'
 
 api_instance = CyberSource::CaptureApi.new
 
@@ -53,55 +52,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-
-# **get_capture**
-> InlineResponse2004 get_capture(id)
-
-Retrieve a Capture
-
-Include the capture ID in the GET request to retrieve the capture details. 
-
-### Example
-```ruby
-# load the gem
-require 'cyberSource_client'
-
-api_instance = CyberSource::CaptureApi.new
-
-id = "id_example" # String | The capture ID returned from a previous capture request. 
-
-
-begin
-  #Retrieve a Capture
-  result = api_instance.get_capture(id)
-  p result
-rescue CyberSource::ApiError => e
-  puts "Exception when calling CaptureApi->get_capture: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| The capture ID returned from a previous capture request.  | 
-
-### Return type
-
-[**InlineResponse2004**](InlineResponse2004.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
 
 
 

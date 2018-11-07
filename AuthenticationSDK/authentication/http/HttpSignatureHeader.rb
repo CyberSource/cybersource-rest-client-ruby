@@ -41,7 +41,9 @@ class GenerateHttpSignature
       headers = 'host date (request-target)' + ' ' + Constants::V_C_MERCHANT_ID
     elsif request_type == Constants::PUT_REQUEST_TYPE
       headers = 'host date (request-target) digest ' + Constants::V_C_MERCHANT_ID
-     else
+    elsif request_type == Constants::PATCH_REQUEST_TYPE
+      headers = 'host date (request-target) digest ' + Constants::V_C_MERCHANT_ID
+    else
       raise StandardError.new(Constants::ERROR_PREFIX + Constants::INVALID_REQUEST_TYPE_METHOD)
     end
     return headers

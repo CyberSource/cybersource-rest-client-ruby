@@ -1,14 +1,14 @@
 # CyberSource::KeyGenerationApi
 
-All URIs are relative to *https://api.cybersource.com*
+All URIs are relative to *https://apitest.cybersource.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**generate_public_key**](KeyGenerationApi.md#generate_public_key) | **POST** /payments/flex/v1/keys/ | Generate Key
+[**generate_public_key**](KeyGenerationApi.md#generate_public_key) | **POST** /flex/v1/keys/ | Generate Key
 
 
 # **generate_public_key**
-> InlineResponse200 generate_public_key(generate_public_key_request)
+> InlineResponse200 generate_public_key(opts)
 
 Generate Key
 
@@ -17,16 +17,17 @@ Generate a one-time use public key and key ID to encrypt the card number in the 
 ### Example
 ```ruby
 # load the gem
-require 'cyberSource_client'
+require 'cybersource_rest_client'
 
 api_instance = CyberSource::KeyGenerationApi.new
 
-generate_public_key_request = CyberSource::GeneratePublicKeyRequest.new # GeneratePublicKeyRequest | 
-
+opts = { 
+  generate_public_key_request: CyberSource::GeneratePublicKeyRequest.new # GeneratePublicKeyRequest | 
+}
 
 begin
   #Generate Key
-  result = api_instance.generate_public_key(generate_public_key_request)
+  result = api_instance.generate_public_key(opts)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling KeyGenerationApi->generate_public_key: #{e}"
@@ -37,7 +38,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **generate_public_key_request** | [**GeneratePublicKeyRequest**](GeneratePublicKeyRequest.md)|  | 
+ **generate_public_key_request** | [**GeneratePublicKeyRequest**](GeneratePublicKeyRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -49,7 +50,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json;charset=utf-8
  - **Accept**: application/json
 
 
