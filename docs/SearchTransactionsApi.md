@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **create_search**
-> InlineResponse2017 create_search(create_search_request)
+> TssV2TransactionsPost201Response create_search(create_search_request)
 
 Create a search request
 
@@ -22,7 +22,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::SearchTransactionsApi.new
 
-create_search_request = CyberSource::CreateSearchRequest.new # CreateSearchRequest | 
+create_search_request = CyberSource::TssV2TransactionsPostResponse.new # TssV2TransactionsPostResponse | 
 
 
 begin
@@ -38,11 +38,11 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_search_request** | [**CreateSearchRequest**](CreateSearchRequest.md)|  | 
+ **create_search_request** | [**TssV2TransactionsPostResponse**](TssV2TransactionsPostResponse.md)|  | 
 
 ### Return type
 
-[**InlineResponse2017**](InlineResponse2017.md)
+[**TssV2TransactionsPost201Response**](TssV2TransactionsPost201Response.md)
 
 ### Authorization
 
@@ -56,7 +56,7 @@ No authorization required
 
 
 # **get_search**
-> InlineResponse2017 get_search(id)
+> TssV2TransactionsPost201Response get_search(id)
 
 Get Search results
 
@@ -89,7 +89,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2017**](InlineResponse2017.md)
+[**TssV2TransactionsPost201Response**](TssV2TransactionsPost201Response.md)
 
 ### Authorization
 

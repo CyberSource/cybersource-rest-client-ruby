@@ -24,7 +24,7 @@ module CyberSource
     # POST to the credit resource to credit funds to a specified credit card.
     # @param create_credit_request 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2014]
+    # @return [PtsV2CreditsPost201Response]
     def create_credit(create_credit_request, opts = {})
       data, _status_code, _headers = create_credit_with_http_info(create_credit_request, opts)
       return data, _status_code, _headers
@@ -34,7 +34,7 @@ module CyberSource
     # POST to the credit resource to credit funds to a specified credit card.
     # @param create_credit_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2014, Fixnum, Hash)>] InlineResponse2014 data, response status code and response headers
+    # @return [Array<(PtsV2CreditsPost201Response, Fixnum, Hash)>] PtsV2CreditsPost201Response data, response status code and response headers
     def create_credit_with_http_info(create_credit_request, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: CreditApi.create_credit ...'
@@ -68,7 +68,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2014')
+        :return_type => 'PtsV2CreditsPost201Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: CreditApi#create_credit\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

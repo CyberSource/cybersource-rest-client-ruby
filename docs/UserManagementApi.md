@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **get_users**
-> InlineResponse20013 get_users(opts)
+> UmsV1UsersGet200Response get_users(opts)
 
 Get user based on organization Id, username, permission and role
 
@@ -48,7 +48,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20013**](InlineResponse20013.md)
+[**UmsV1UsersGet200Response**](UmsV1UsersGet200Response.md)
 
 ### Authorization
 

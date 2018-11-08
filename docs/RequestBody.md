@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **start_time** | **DateTime** |  | [optional] 
 **start_day** | **Integer** |  | [optional] 
 **report_filters** | **Hash&lt;String, Array&lt;String&gt;&gt;** |  | [optional] 
-**report_preferences** | [**InlineResponse2006ReportPreferences**](InlineResponse2006ReportPreferences.md) |  | [optional] 
+**report_preferences** | [**ReportingV3ReportSubscriptionsGet200ResponseReportPreferences**](ReportingV3ReportSubscriptionsGet200ResponseReportPreferences.md) |  | [optional] 
 **selected_merchant_group_name** | **String** |  | [optional] 
 
 

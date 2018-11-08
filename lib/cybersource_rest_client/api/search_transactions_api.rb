@@ -24,7 +24,7 @@ module CyberSource
     # Create a search request. 
     # @param create_search_request 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2017]
+    # @return [TssV2TransactionsPost201Response]
     def create_search(create_search_request, opts = {})
       data, _status_code, _headers = create_search_with_http_info(create_search_request, opts)
       return data, _status_code, _headers
@@ -34,7 +34,7 @@ module CyberSource
     # Create a search request. 
     # @param create_search_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2017, Fixnum, Hash)>] InlineResponse2017 data, response status code and response headers
+    # @return [Array<(TssV2TransactionsPost201Response, Fixnum, Hash)>] TssV2TransactionsPost201Response data, response status code and response headers
     def create_search_with_http_info(create_search_request, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: SearchTransactionsApi.create_search ...'
@@ -68,7 +68,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2017')
+        :return_type => 'TssV2TransactionsPost201Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: SearchTransactionsApi#create_search\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -78,7 +78,7 @@ module CyberSource
     # Include the Search ID in the GET request to retrieve the search results.
     # @param id Search ID.
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2017]
+    # @return [TssV2TransactionsPost201Response]
     def get_search(id, opts = {})
       data, _status_code, _headers = get_search_with_http_info(id, opts)
       return data, _status_code, _headers
@@ -88,7 +88,7 @@ module CyberSource
     # Include the Search ID in the GET request to retrieve the search results.
     # @param id Search ID.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2017, Fixnum, Hash)>] InlineResponse2017 data, response status code and response headers
+    # @return [Array<(TssV2TransactionsPost201Response, Fixnum, Hash)>] TssV2TransactionsPost201Response data, response status code and response headers
     def get_search_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: SearchTransactionsApi.get_search ...'
@@ -122,7 +122,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2017')
+        :return_type => 'TssV2TransactionsPost201Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: SearchTransactionsApi#get_search\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

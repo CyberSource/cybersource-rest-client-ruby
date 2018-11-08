@@ -61,7 +61,7 @@ describe 'ReportSubscriptionsApi' do
   # Retrieve all subscriptions by organization
   # 
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2006]
+  # @return [ReportingV3ReportSubscriptionsGet200Response]
   describe 'get_all_subscriptions test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -73,7 +73,7 @@ describe 'ReportSubscriptionsApi' do
   # 
   # @param report_name Name of the Report to Retrieve
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2006Subscriptions]
+  # @return [ReportingV3ReportSubscriptionsGet200ResponseSubscriptions]
   describe 'get_subscription test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

@@ -56,8 +56,6 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      # ansuguma
-
       # if !@reason.nil? && @reason.to_s.length > 3
       #   invalid_properties.push('invalid value for "reason", the character length must be smaller than or equal to 3.')
       # end
@@ -68,8 +66,6 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      # ansuguma
-
       # return false if !@reason.nil? && @reason.to_s.length > 3
       true
     end
@@ -77,8 +73,6 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] reason Value to be assigned
     def reason=(reason)
-      # ansuguma 
-      
       # if !reason.nil? && reason.to_s.length > 3
       #   fail ArgumentError, 'invalid value for "reason", the character length must be smaller than or equal to 3.'
       # end

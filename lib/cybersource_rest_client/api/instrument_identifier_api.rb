@@ -51,10 +51,10 @@ module CyberSource
       #   fail ArgumentError, 'invalid value for "profile_id" when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_delete, must be greater than or equal to 36.'
       # end
 
-      # # verify the required parameter 'token_id' is set
-      # if @api_client.config.client_side_validation && token_id.nil?
-      #   fail ArgumentError, "Missing the required parameter 'token_id' when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_delete"
-      # end
+      # verify the required parameter 'token_id' is set
+      if @api_client.config.client_side_validation && token_id.nil?
+        fail ArgumentError, "Missing the required parameter 'token_id' when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_delete"
+      end
       # if @api_client.config.client_side_validation && token_id > 32
       #   fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_delete, must be smaller than or equal to 32.'
       # end
@@ -98,7 +98,7 @@ module CyberSource
     # @param profile_id The id of a profile containing user specific TMS configuration.
     # @param token_id The TokenId of an Instrument Identifier.
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse20010]
+    # @return [TmsV1InstrumentidentifiersPost200Response]
     def tms_v1_instrumentidentifiers_token_id_get(profile_id, token_id, opts = {})
       data, _status_code, _headers = tms_v1_instrumentidentifiers_token_id_get_with_http_info(profile_id, token_id, opts)
       return data, _status_code, _headers
@@ -108,7 +108,7 @@ module CyberSource
     # @param profile_id The id of a profile containing user specific TMS configuration.
     # @param token_id The TokenId of an Instrument Identifier.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse20010, Fixnum, Hash)>] InlineResponse20010 data, response status code and response headers
+    # @return [Array<(TmsV1InstrumentidentifiersPost200Response, Fixnum, Hash)>] TmsV1InstrumentidentifiersPost200Response data, response status code and response headers
     def tms_v1_instrumentidentifiers_token_id_get_with_http_info(profile_id, token_id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_get ...'
@@ -125,7 +125,7 @@ module CyberSource
       #   fail ArgumentError, 'invalid value for "profile_id" when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_get, must be greater than or equal to 36.'
       # end
 
-      # # verify the required parameter 'token_id' is set
+      # verify the required parameter 'token_id' is set
       if @api_client.config.client_side_validation && token_id.nil?
         fail ArgumentError, "Missing the required parameter 'token_id' when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_get"
       end
@@ -163,7 +163,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20010')
+        :return_type => 'TmsV1InstrumentidentifiersPost200Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: InstrumentIdentifierApi#tms_v1_instrumentidentifiers_token_id_get\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -174,7 +174,7 @@ module CyberSource
     # @param token_id The TokenId of an Instrument Identifier.
     # @param body Please specify the previous transaction Id to update.
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse20010]
+    # @return [TmsV1InstrumentidentifiersPost200Response]
     def tms_v1_instrumentidentifiers_token_id_patch(profile_id, token_id, body, opts = {})
       data, _status_code, _headers = tms_v1_instrumentidentifiers_token_id_patch_with_http_info(profile_id, token_id, body, opts)
       return data, _status_code, _headers
@@ -185,7 +185,7 @@ module CyberSource
     # @param token_id The TokenId of an Instrument Identifier.
     # @param body Please specify the previous transaction Id to update.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse20010, Fixnum, Hash)>] InlineResponse20010 data, response status code and response headers
+    # @return [Array<(TmsV1InstrumentidentifiersPost200Response, Fixnum, Hash)>] TmsV1InstrumentidentifiersPost200Response data, response status code and response headers
     def tms_v1_instrumentidentifiers_token_id_patch_with_http_info(profile_id, token_id, body, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_patch ...'
@@ -202,7 +202,7 @@ module CyberSource
       #   fail ArgumentError, 'invalid value for "profile_id" when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_patch, must be greater than or equal to 36.'
       # end
 
-      # # verify the required parameter 'token_id' is set
+      # verify the required parameter 'token_id' is set
       if @api_client.config.client_side_validation && token_id.nil?
         fail ArgumentError, "Missing the required parameter 'token_id' when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_patch"
       end
@@ -244,7 +244,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20010')
+        :return_type => 'TmsV1InstrumentidentifiersPost200Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: InstrumentIdentifierApi#tms_v1_instrumentidentifiers_token_id_patch\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

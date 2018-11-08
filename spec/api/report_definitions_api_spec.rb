@@ -38,7 +38,7 @@ describe 'ReportDefinitionsApi' do
   # @param report_definition_name Name of the Report definition to retrieve
   # @param [Hash] opts the optional parameters
   # @option opts [String] :organization_id Valid Cybersource Organization Id
-  # @return [InlineResponse2005]
+  # @return [ReportingV3ReportDefinitionsNameGet200Response]
   describe 'get_resource_info_by_report_definition test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -50,7 +50,7 @@ describe 'ReportDefinitionsApi' do
   # 
   # @param [Hash] opts the optional parameters
   # @option opts [String] :organization_id Valid Cybersource Organization Id
-  # @return [InlineResponse2004]
+  # @return [ReportingV3ReportDefinitionsGet200Response]
   describe 'get_resource_v2_info test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

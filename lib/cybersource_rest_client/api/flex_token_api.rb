@@ -24,7 +24,7 @@ module CyberSource
     # Returns a token representing the supplied card details. The token replaces card data and can be used as the Subscription ID in the CyberSource Simple Order API or SCMP API. This is an unauthenticated call that you should initiate from your customer’s device or browser.
     # @param [Hash] opts the optional parameters
     # @option opts [TokenizeRequest] :tokenize_request 
-    # @return [InlineResponse2001]
+    # @return [FlexV1TokensPost200Response]
     def tokenize(opts = {})
       data, _status_code, _headers = tokenize_with_http_info(opts)
       return data, _status_code, _headers
@@ -34,7 +34,7 @@ module CyberSource
     # Returns a token representing the supplied card details. The token replaces card data and can be used as the Subscription ID in the CyberSource Simple Order API or SCMP API. This is an unauthenticated call that you should initiate from your customer’s device or browser.
     # @param [Hash] opts the optional parameters
     # @option opts [TokenizeRequest] :tokenize_request 
-    # @return [Array<(InlineResponse2001, Fixnum, Hash)>] InlineResponse2001 data, response status code and response headers
+    # @return [Array<(FlexV1TokensPost200Response, Fixnum, Hash)>] FlexV1TokensPost200Response data, response status code and response headers
     def tokenize_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: FlexTokenApi.tokenize ...'
@@ -64,7 +64,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2001')
+        :return_type => 'FlexV1TokensPost200Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: FlexTokenApi#tokenize\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

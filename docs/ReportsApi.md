@@ -56,7 +56,7 @@ No authorization required
 
 
 # **get_report_by_report_id**
-> InlineResponse2008 get_report_by_report_id(report_id, opts)
+> ReportingV3ReportsIdGet200Response get_report_by_report_id(report_id, opts)
 
 Get Report based on reportId
 
@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2008**](InlineResponse2008.md)
+[**ReportingV3ReportsIdGet200Response**](ReportingV3ReportsIdGet200Response.md)
 
 ### Authorization
 
@@ -107,7 +107,7 @@ No authorization required
 
 
 # **search_reports**
-> InlineResponse2007 search_reports(start_time, end_time, time_query_type, opts)
+> ReportingV3ReportsGet200Response search_reports(start_time, end_time, time_query_type, opts)
 
 Retrieve available reports
 
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2007**](InlineResponse2007.md)
+[**ReportingV3ReportsGet200Response**](ReportingV3ReportsGet200Response.md)
 
 ### Authorization
 

@@ -91,7 +91,7 @@ module CyberSource
         :'start_time' => :'DateTime',
         :'start_day' => :'Integer',
         :'report_filters' => :'Hash<String, Array<String>>',
-        :'report_preferences' => :'InlineResponse2006ReportPreferences',
+        :'report_preferences' => :'ReportingV3ReportSubscriptionsGet200ResponseReportPreferences',
         :'selected_merchant_group_name' => :'String'
       }
     end

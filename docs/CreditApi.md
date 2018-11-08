@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **create_credit**
-> InlineResponse2014 create_credit(create_credit_request)
+> PtsV2CreditsPost201Response create_credit(create_credit_request)
 
 Process a Credit
 
@@ -41,7 +41,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2014**](InlineResponse2014.md)
+[**PtsV2CreditsPost201Response**](PtsV2CreditsPost201Response.md)
 
 ### Authorization
 

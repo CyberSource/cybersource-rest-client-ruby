@@ -34,8 +34,8 @@ module CyberSource
     def self.swagger_types
       {
         :'key_id' => :'String',
-        :'der' => :'InlineResponse200Der',
-        :'jwk' => :'InlineResponse200Jwk'
+        :'der' => :'FlexV1KeysPost200ResponseDer',
+        :'jwk' => :'FlexV1KeysPost200ResponseJwk'
       }
     end
 

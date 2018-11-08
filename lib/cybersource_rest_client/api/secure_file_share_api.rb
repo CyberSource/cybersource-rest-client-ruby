@@ -94,7 +94,7 @@ module CyberSource
     # @param end_date Valid end date in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
-    # @return [InlineResponse2009]
+    # @return [V1FileDetailsGet200Response]
     def get_file_details(start_date, end_date, opts = {})
       data, _status_code, _headers = get_file_details_with_http_info(start_date, end_date, opts)
       return data, _status_code, _headers
@@ -106,7 +106,7 @@ module CyberSource
     # @param end_date Valid end date in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
-    # @return [Array<(InlineResponse2009, Fixnum, Hash)>] InlineResponse2009 data, response status code and response headers
+    # @return [Array<(V1FileDetailsGet200Response, Fixnum, Hash)>] V1FileDetailsGet200Response data, response status code and response headers
     def get_file_details_with_http_info(start_date, end_date, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: SecureFileShareApi.get_file_details ...'
@@ -159,7 +159,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2009')
+        :return_type => 'V1FileDetailsGet200Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: SecureFileShareApi#get_file_details\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

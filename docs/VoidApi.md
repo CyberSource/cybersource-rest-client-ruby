@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **void_capture**
-> InlineResponse2015 void_capture(void_capture_request, id)
+> PtsV2PaymentsVoidsPost201Response void_capture(void_capture_request, id)
 
 Void a Capture
 
@@ -47,7 +47,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2015**](InlineResponse2015.md)
+[**PtsV2PaymentsVoidsPost201Response**](PtsV2PaymentsVoidsPost201Response.md)
 
 ### Authorization
 
@@ -61,7 +61,7 @@ No authorization required
 
 
 # **void_credit**
-> InlineResponse2015 void_credit(void_credit_request, id)
+> PtsV2PaymentsVoidsPost201Response void_credit(void_credit_request, id)
 
 Void a Credit
 
@@ -97,7 +97,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2015**](InlineResponse2015.md)
+[**PtsV2PaymentsVoidsPost201Response**](PtsV2PaymentsVoidsPost201Response.md)
 
 ### Authorization
 
@@ -111,7 +111,7 @@ No authorization required
 
 
 # **void_payment**
-> InlineResponse2015 void_payment(void_payment_request, id)
+> PtsV2PaymentsVoidsPost201Response void_payment(void_payment_request, id)
 
 Void a Payment
 
@@ -147,7 +147,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2015**](InlineResponse2015.md)
+[**PtsV2PaymentsVoidsPost201Response**](PtsV2PaymentsVoidsPost201Response.md)
 
 ### Authorization
 
@@ -161,7 +161,7 @@ No authorization required
 
 
 # **void_refund**
-> InlineResponse2015 void_refund(void_refund_request, id)
+> PtsV2PaymentsVoidsPost201Response void_refund(void_refund_request, id)
 
 Void a Refund
 
@@ -197,7 +197,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2015**](InlineResponse2015.md)
+[**PtsV2PaymentsVoidsPost201Response**](PtsV2PaymentsVoidsPost201Response.md)
 
 ### Authorization
 

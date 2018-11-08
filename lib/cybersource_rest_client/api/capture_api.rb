@@ -25,7 +25,7 @@ module CyberSource
     # @param capture_payment_request 
     # @param id The payment ID returned from a previous payment request. This ID links the capture to the payment. 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2012]
+    # @return [PtsV2PaymentsCapturesPost201Response]
     def capture_payment(capture_payment_request, id, opts = {})
       data, _status_code, _headers = capture_payment_with_http_info(capture_payment_request, id, opts)
       return data, _status_code, _headers
@@ -36,7 +36,7 @@ module CyberSource
     # @param capture_payment_request 
     # @param id The payment ID returned from a previous payment request. This ID links the capture to the payment. 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2012, Fixnum, Hash)>] InlineResponse2012 data, response status code and response headers
+    # @return [Array<(PtsV2PaymentsCapturesPost201Response, Fixnum, Hash)>] PtsV2PaymentsCapturesPost201Response data, response status code and response headers
     def capture_payment_with_http_info(capture_payment_request, id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: CaptureApi.capture_payment ...'
@@ -74,7 +74,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2012')
+        :return_type => 'PtsV2PaymentsCapturesPost201Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: CaptureApi#capture_payment\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

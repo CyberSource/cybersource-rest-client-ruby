@@ -25,7 +25,7 @@ module CyberSource
     # @param void_capture_request 
     # @param id The capture ID returned from a previous capture request.
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2015]
+    # @return [PtsV2PaymentsVoidsPost201Response]
     def void_capture(void_capture_request, id, opts = {})
       data, _status_code, _headers = void_capture_with_http_info(void_capture_request, id, opts)
       return data, _status_code, _headers
@@ -36,7 +36,7 @@ module CyberSource
     # @param void_capture_request 
     # @param id The capture ID returned from a previous capture request.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2015, Fixnum, Hash)>] InlineResponse2015 data, response status code and response headers
+    # @return [Array<(PtsV2PaymentsVoidsPost201Response, Fixnum, Hash)>] PtsV2PaymentsVoidsPost201Response data, response status code and response headers
     def void_capture_with_http_info(void_capture_request, id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: VoidApi.void_capture ...'
@@ -74,7 +74,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2015')
+        :return_type => 'PtsV2PaymentsVoidsPost201Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: VoidApi#void_capture\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -85,7 +85,7 @@ module CyberSource
     # @param void_credit_request 
     # @param id The credit ID returned from a previous credit request.
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2015]
+    # @return [PtsV2PaymentsVoidsPost201Response]
     def void_credit(void_credit_request, id, opts = {})
       data, _status_code, _headers = void_credit_with_http_info(void_credit_request, id, opts)
       return data, _status_code, _headers
@@ -96,7 +96,7 @@ module CyberSource
     # @param void_credit_request 
     # @param id The credit ID returned from a previous credit request.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2015, Fixnum, Hash)>] InlineResponse2015 data, response status code and response headers
+    # @return [Array<(PtsV2PaymentsVoidsPost201Response, Fixnum, Hash)>] PtsV2PaymentsVoidsPost201Response data, response status code and response headers
     def void_credit_with_http_info(void_credit_request, id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: VoidApi.void_credit ...'
@@ -134,7 +134,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2015')
+        :return_type => 'PtsV2PaymentsVoidsPost201Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: VoidApi#void_credit\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -145,7 +145,7 @@ module CyberSource
     # @param void_payment_request 
     # @param id The payment ID returned from a previous payment request.
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2015]
+    # @return [PtsV2PaymentsVoidsPost201Response]
     def void_payment(void_payment_request, id, opts = {})
       data, _status_code, _headers = void_payment_with_http_info(void_payment_request, id, opts)
       return data, _status_code, _headers
@@ -156,7 +156,7 @@ module CyberSource
     # @param void_payment_request 
     # @param id The payment ID returned from a previous payment request.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2015, Fixnum, Hash)>] InlineResponse2015 data, response status code and response headers
+    # @return [Array<(PtsV2PaymentsVoidsPost201Response, Fixnum, Hash)>] PtsV2PaymentsVoidsPost201Response data, response status code and response headers
     def void_payment_with_http_info(void_payment_request, id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: VoidApi.void_payment ...'
@@ -194,7 +194,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2015')
+        :return_type => 'PtsV2PaymentsVoidsPost201Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: VoidApi#void_payment\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -205,7 +205,7 @@ module CyberSource
     # @param void_refund_request 
     # @param id The refund ID returned from a previous refund request.
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2015]
+    # @return [PtsV2PaymentsVoidsPost201Response]
     def void_refund(void_refund_request, id, opts = {})
       data, _status_code, _headers = void_refund_with_http_info(void_refund_request, id, opts)
       return data, _status_code, _headers
@@ -216,7 +216,7 @@ module CyberSource
     # @param void_refund_request 
     # @param id The refund ID returned from a previous refund request.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2015, Fixnum, Hash)>] InlineResponse2015 data, response status code and response headers
+    # @return [Array<(PtsV2PaymentsVoidsPost201Response, Fixnum, Hash)>] PtsV2PaymentsVoidsPost201Response data, response status code and response headers
     def void_refund_with_http_info(void_refund_request, id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: VoidApi.void_refund ...'
@@ -254,7 +254,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2015')
+        :return_type => 'PtsV2PaymentsVoidsPost201Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: VoidApi#void_refund\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

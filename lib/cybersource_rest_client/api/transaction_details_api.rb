@@ -24,7 +24,7 @@ module CyberSource
     # Include the Request ID in the GET request to retrieve the transaction details.
     # @param id Request ID. 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse20012]
+    # @return [TssV2TransactionsGet200Response]
     def get_transaction(id, opts = {})
       data, _status_code, _headers = get_transaction_with_http_info(id, opts)
       return data, _status_code, _headers
@@ -34,7 +34,7 @@ module CyberSource
     # Include the Request ID in the GET request to retrieve the transaction details.
     # @param id Request ID. 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse20012, Fixnum, Hash)>] InlineResponse20012 data, response status code and response headers
+    # @return [Array<(TssV2TransactionsGet200Response, Fixnum, Hash)>] TssV2TransactionsGet200Response data, response status code and response headers
     def get_transaction_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: TransactionDetailsApi.get_transaction ...'
@@ -68,7 +68,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20012')
+        :return_type => 'TssV2TransactionsGet200Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: TransactionDetailsApi#get_transaction\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

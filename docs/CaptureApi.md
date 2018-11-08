@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **capture_payment**
-> InlineResponse2012 capture_payment(capture_payment_request, id)
+> PtsV2PaymentsCapturesPost201Response capture_payment(capture_payment_request, id)
 
 Capture a Payment
 
@@ -44,7 +44,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2012**](InlineResponse2012.md)
+[**PtsV2PaymentsCapturesPost201Response**](PtsV2PaymentsCapturesPost201Response.md)
 
 ### Authorization
 

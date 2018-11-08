@@ -38,7 +38,7 @@ describe 'VoidApi' do
   # @param void_capture_request 
   # @param id The capture ID returned from a previous capture request.
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2015]
+  # @return [PtsV2PaymentsVoidsPost201Response]
   describe 'void_capture test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -51,7 +51,7 @@ describe 'VoidApi' do
   # @param void_credit_request 
   # @param id The credit ID returned from a previous credit request.
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2015]
+  # @return [PtsV2PaymentsVoidsPost201Response]
   describe 'void_credit test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -64,7 +64,7 @@ describe 'VoidApi' do
   # @param void_payment_request 
   # @param id The payment ID returned from a previous payment request.
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2015]
+  # @return [PtsV2PaymentsVoidsPost201Response]
   describe 'void_payment test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -77,7 +77,7 @@ describe 'VoidApi' do
   # @param void_refund_request 
   # @param id The refund ID returned from a previous refund request.
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2015]
+  # @return [PtsV2PaymentsVoidsPost201Response]
   describe 'void_refund test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

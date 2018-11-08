@@ -37,7 +37,7 @@ describe 'FlexTokenApi' do
   # Returns a token representing the supplied card details. The token replaces card data and can be used as the Subscription ID in the CyberSource Simple Order API or SCMP API. This is an unauthenticated call that you should initiate from your customer’s device or browser.
   # @param [Hash] opts the optional parameters
   # @option opts [TokenizeRequest] :tokenize_request 
-  # @return [InlineResponse2001]
+  # @return [FlexV1TokensPost200Response]
   describe 'tokenize test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

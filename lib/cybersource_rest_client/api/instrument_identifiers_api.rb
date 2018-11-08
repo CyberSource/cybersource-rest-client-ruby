@@ -24,7 +24,7 @@ module CyberSource
     # @param profile_id The id of a profile containing user specific TMS configuration.
     # @param body Please specify either a Card or Bank Account.
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse20010]
+    # @return [TmsV1InstrumentidentifiersPost200Response]
     def tms_v1_instrumentidentifiers_post(profile_id, body, opts = {})
       data, _status_code, _headers = tms_v1_instrumentidentifiers_post_with_http_info(profile_id, body, opts)
       return data, _status_code, _headers
@@ -34,7 +34,7 @@ module CyberSource
     # @param profile_id The id of a profile containing user specific TMS configuration.
     # @param body Please specify either a Card or Bank Account.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse20010, Fixnum, Hash)>] InlineResponse20010 data, response status code and response headers
+    # @return [Array<(TmsV1InstrumentidentifiersPost200Response, Fixnum, Hash)>] TmsV1InstrumentidentifiersPost200Response data, response status code and response headers
     def tms_v1_instrumentidentifiers_post_with_http_info(profile_id, body, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: InstrumentIdentifiersApi.tms_v1_instrumentidentifiers_post ...'
@@ -81,7 +81,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20010')
+        :return_type => 'TmsV1InstrumentidentifiersPost200Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: InstrumentIdentifiersApi#tms_v1_instrumentidentifiers_post\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

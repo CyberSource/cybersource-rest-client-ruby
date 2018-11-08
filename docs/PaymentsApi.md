@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **create_payment**
-> InlineResponse201 create_payment(create_payment_request)
+> PtsV2PaymentsPost201Response create_payment(create_payment_request)
 
 Process a Payment
 
@@ -41,7 +41,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse201**](InlineResponse201.md)
+[**PtsV2PaymentsPost201Response**](PtsV2PaymentsPost201Response.md)
 
 ### Authorization
 

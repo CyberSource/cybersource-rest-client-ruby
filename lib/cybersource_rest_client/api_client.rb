@@ -127,7 +127,7 @@ module CyberSource
       download_file(request) if opts[:return_type] == 'File'
       request
     end
-  # set merchantConfig 
+	# set merchantConfig 
   def set_configuration(config)
     require_relative '../../AuthenticationSDK/core/Merchantconfig.rb'
     $merchantconfig_obj = Merchantconfig.new(config)

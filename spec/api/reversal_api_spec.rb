@@ -38,7 +38,7 @@ describe 'ReversalApi' do
   # @param id The payment ID returned from a previous payment request.
   # @param auth_reversal_request 
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2011]
+  # @return [PtsV2PaymentsReversalsPost201Response]
   describe 'auth_reversal test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

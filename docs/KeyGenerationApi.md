@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **generate_public_key**
-> InlineResponse200 generate_public_key(opts)
+> FlexV1KeysPost200Response generate_public_key(opts)
 
 Generate Key
 
@@ -42,7 +42,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**FlexV1KeysPost200Response**](FlexV1KeysPost200Response.md)
 
 ### Authorization
 

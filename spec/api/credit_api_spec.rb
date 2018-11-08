@@ -37,7 +37,7 @@ describe 'CreditApi' do
   # POST to the credit resource to credit funds to a specified credit card.
   # @param create_credit_request 
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2014]
+  # @return [PtsV2CreditsPost201Response]
   describe 'create_credit test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

@@ -59,7 +59,7 @@ No authorization required
 
 
 # **get_file_details**
-> InlineResponse2009 get_file_details(start_date, end_date, opts)
+> V1FileDetailsGet200Response get_file_details(start_date, end_date, opts)
 
 Get list of files
 
@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2009**](InlineResponse2009.md)
+[**V1FileDetailsGet200Response**](V1FileDetailsGet200Response.md)
 
 ### Authorization
 

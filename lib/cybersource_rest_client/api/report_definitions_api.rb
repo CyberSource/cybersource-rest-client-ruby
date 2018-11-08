@@ -25,7 +25,7 @@ module CyberSource
     # @param report_definition_name Name of the Report definition to retrieve
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
-    # @return [InlineResponse2005]
+    # @return [ReportingV3ReportDefinitionsNameGet200Response]
     def get_resource_info_by_report_definition(report_definition_name, opts = {})
       data, _status_code, _headers = get_resource_info_by_report_definition_with_http_info(report_definition_name, opts)
       return data, _status_code, _headers
@@ -36,7 +36,7 @@ module CyberSource
     # @param report_definition_name Name of the Report definition to retrieve
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
-    # @return [Array<(InlineResponse2005, Fixnum, Hash)>] InlineResponse2005 data, response status code and response headers
+    # @return [Array<(ReportingV3ReportDefinitionsNameGet200Response, Fixnum, Hash)>] ReportingV3ReportDefinitionsNameGet200Response data, response status code and response headers
     def get_resource_info_by_report_definition_with_http_info(report_definition_name, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: ReportDefinitionsApi.get_resource_info_by_report_definition ...'
@@ -83,7 +83,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2005')
+        :return_type => 'ReportingV3ReportDefinitionsNameGet200Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: ReportDefinitionsApi#get_resource_info_by_report_definition\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -93,7 +93,7 @@ module CyberSource
     # 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
-    # @return [InlineResponse2004]
+    # @return [ReportingV3ReportDefinitionsGet200Response]
     def get_resource_v2_info(opts = {})
       data, _status_code, _headers = get_resource_v2_info_with_http_info(opts)
       return data, _status_code, _headers
@@ -103,7 +103,7 @@ module CyberSource
     # 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
-    # @return [Array<(InlineResponse2004, Fixnum, Hash)>] InlineResponse2004 data, response status code and response headers
+    # @return [Array<(ReportingV3ReportDefinitionsGet200Response, Fixnum, Hash)>] ReportingV3ReportDefinitionsGet200Response data, response status code and response headers
     def get_resource_v2_info_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: ReportDefinitionsApi.get_resource_v2_info ...'
@@ -146,7 +146,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2004')
+        :return_type => 'ReportingV3ReportDefinitionsGet200Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: ReportDefinitionsApi#get_resource_v2_info\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
