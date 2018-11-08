@@ -18,13 +18,13 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-      api_client.set_configuration(config)
+      @api_client.set_configuration(config)
     end
     # Process a Payment
     # Authorize the payment for the transaction. 
     # @param create_payment_request 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse201]
+    # @return [PtsV2PaymentsPost201Response]
     def create_payment(create_payment_request, opts = {})
       data, _status_code, _headers = create_payment_with_http_info(create_payment_request, opts)
       return data, _status_code, _headers
@@ -34,7 +34,7 @@ module CyberSource
     # Authorize the payment for the transaction. 
     # @param create_payment_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse201, Fixnum, Hash)>] InlineResponse201 data, response status code and response headers
+    # @return [Array<(PtsV2PaymentsPost201Response, Fixnum, Hash)>] PtsV2PaymentsPost201Response data, response status code and response headers
     def create_payment_with_http_info(create_payment_request, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: PaymentsApi.create_payment ...'
@@ -68,7 +68,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse201')
+        :return_type => 'PtsV2PaymentsPost201Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: PaymentsApi#create_payment\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

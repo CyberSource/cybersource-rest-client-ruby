@@ -106,7 +106,7 @@ No authorization required
 
 
 # **get_all_subscriptions**
-> InlineResponse2006 get_all_subscriptions
+> ReportingV3ReportSubscriptionsGet200Response get_all_subscriptions
 
 Retrieve all subscriptions by organization
 
@@ -133,7 +133,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse2006**](InlineResponse2006.md)
+[**ReportingV3ReportSubscriptionsGet200Response**](ReportingV3ReportSubscriptionsGet200Response.md)
 
 ### Authorization
 
@@ -147,7 +147,7 @@ No authorization required
 
 
 # **get_subscription**
-> InlineResponse2006Subscriptions get_subscription(report_name)
+> ReportingV3ReportSubscriptionsGet200ResponseSubscriptions get_subscription(report_name)
 
 Retrieve subscription for a report name by organization
 
@@ -180,7 +180,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2006Subscriptions**](InlineResponse2006Subscriptions.md)
+[**ReportingV3ReportSubscriptionsGet200ResponseSubscriptions**](ReportingV3ReportSubscriptionsGet200ResponseSubscriptions.md)
 
 ### Authorization
 

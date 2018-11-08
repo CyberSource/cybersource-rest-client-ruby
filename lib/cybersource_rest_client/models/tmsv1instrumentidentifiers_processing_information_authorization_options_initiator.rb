@@ -26,7 +26,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'merchant_initiated_transaction' => :'Tmsv1instrumentidentifiersAuthorizationOptionsMerchantInitiatedTransaction'
+        :'merchant_initiated_transaction' => :'Tmsv1instrumentidentifiersProcessingInformationAuthorizationOptionsInitiator'
       }
     end
 

@@ -38,7 +38,7 @@ describe 'CaptureApi' do
   # @param capture_payment_request 
   # @param id The payment ID returned from a previous payment request. This ID links the capture to the payment. 
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2012]
+  # @return [PtsV2PaymentsCapturesPost201Response]
   describe 'capture_payment test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

@@ -21,7 +21,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::ProcessAPayoutApi.new
 
-oct_create_payment_request = CyberSource::OctCreatePaymentRequest.new # OctCreatePaymentRequest | 
+oct_create_payment_request = CyberSource::PtsV2PayoutsPostResponse.new # PtsV2PayoutsPostResponse | 
 
 
 begin
@@ -36,7 +36,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **oct_create_payment_request** | [**OctCreatePaymentRequest**](OctCreatePaymentRequest.md)|  | 
+ **oct_create_payment_request** | [**PtsV2PayoutsPostResponse**](PtsV2PayoutsPostResponse.md)|  | 
 
 ### Return type
 

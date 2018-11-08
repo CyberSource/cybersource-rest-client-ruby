@@ -60,7 +60,7 @@ module CyberSource
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
 
       # form parameters
       form_params = {}
@@ -147,7 +147,7 @@ module CyberSource
     # Retrieve all subscriptions by organization
     # 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2006]
+    # @return [ReportingV3ReportSubscriptionsGet200Response]
     def get_all_subscriptions(opts = {})
       data, _status_code, _headers = get_all_subscriptions_with_http_info(opts)
       return data, _status_code, _headers
@@ -156,7 +156,7 @@ module CyberSource
     # Retrieve all subscriptions by organization
     # 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2006, Fixnum, Hash)>] InlineResponse2006 data, response status code and response headers
+    # @return [Array<(ReportingV3ReportSubscriptionsGet200Response, Fixnum, Hash)>] ReportingV3ReportSubscriptionsGet200Response data, response status code and response headers
     def get_all_subscriptions_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: ReportSubscriptionsApi.get_all_subscriptions ...'
@@ -186,7 +186,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2006')
+        :return_type => 'ReportingV3ReportSubscriptionsGet200Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: ReportSubscriptionsApi#get_all_subscriptions\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -196,7 +196,7 @@ module CyberSource
     # 
     # @param report_name Name of the Report to Retrieve
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2006Subscriptions]
+    # @return [ReportingV3ReportSubscriptionsGet200ResponseSubscriptions]
     def get_subscription(report_name, opts = {})
       data, _status_code, _headers = get_subscription_with_http_info(report_name, opts)
       return data, _status_code, _headers
@@ -206,7 +206,7 @@ module CyberSource
     # 
     # @param report_name Name of the Report to Retrieve
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2006Subscriptions, Fixnum, Hash)>] InlineResponse2006Subscriptions data, response status code and response headers
+    # @return [Array<(ReportingV3ReportSubscriptionsGet200ResponseSubscriptions, Fixnum, Hash)>] ReportingV3ReportSubscriptionsGet200ResponseSubscriptions data, response status code and response headers
     def get_subscription_with_http_info(report_name, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: ReportSubscriptionsApi.get_subscription ...'
@@ -252,7 +252,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2006Subscriptions')
+        :return_type => 'ReportingV3ReportSubscriptionsGet200ResponseSubscriptions')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: ReportSubscriptionsApi#get_subscription\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

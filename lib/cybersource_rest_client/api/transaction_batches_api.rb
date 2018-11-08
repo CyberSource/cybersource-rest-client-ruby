@@ -25,7 +25,7 @@ module CyberSource
     # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZZ 
     # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZZ 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2002]
+    # @return [PtsV1TransactionBatchesGet200Response]
     def pts_v1_transaction_batches_get(start_time, end_time, opts = {})
       data, _status_code, _headers = pts_v1_transaction_batches_get_with_http_info(start_time, end_time, opts)
       return data, _status_code, _headers
@@ -36,7 +36,7 @@ module CyberSource
     # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZZ 
     # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZZ 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2002, Fixnum, Hash)>] InlineResponse2002 data, response status code and response headers
+    # @return [Array<(PtsV1TransactionBatchesGet200Response, Fixnum, Hash)>] PtsV1TransactionBatchesGet200Response data, response status code and response headers
     def pts_v1_transaction_batches_get_with_http_info(start_time, end_time, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: TransactionBatchesApi.pts_v1_transaction_batches_get ...'
@@ -50,7 +50,7 @@ module CyberSource
         fail ArgumentError, "Missing the required parameter 'end_time' when calling TransactionBatchesApi.pts_v1_transaction_batches_get"
       end
       # resource path
-      local_var_path = 'pts/v1/transaction-batches/'
+      local_var_path = 'pts/v1/transaction-batches'
 
       # query parameters
       query_params = {}
@@ -76,7 +76,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2002')
+        :return_type => 'PtsV1TransactionBatchesGet200Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: TransactionBatchesApi#pts_v1_transaction_batches_get\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

@@ -1,4 +1,4 @@
-# CyberSource::Tmsv1instrumentidentifiersAuthorizationOptionsMerchantInitiatedTransaction
+# CyberSource::Tmsv1instrumentidentifiersProcessingInformationAuthorizationOptionsInitiator
 
 ## Properties
 Name | Type | Description | Notes

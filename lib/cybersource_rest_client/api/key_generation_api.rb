@@ -24,7 +24,7 @@ module CyberSource
     # Generate a one-time use public key and key ID to encrypt the card number in the follow-on Tokenize Card request. The key used to encrypt the card number on the cardholder’s device or browser is valid for 15 minutes and must be used to verify the signature in the response message. CyberSource recommends creating a new key for each order. Generating a key is an authenticated request initiated from your servers, prior to requesting to tokenize the card data from your customer’s device or browser.
     # @param [Hash] opts the optional parameters
     # @option opts [GeneratePublicKeyRequest] :generate_public_key_request 
-    # @return [InlineResponse200]
+    # @return [FlexV1KeysPost200Response]
     def generate_public_key(opts = {})
       data, _status_code, _headers = generate_public_key_with_http_info(opts)
       return data, _status_code, _headers
@@ -34,7 +34,7 @@ module CyberSource
     # Generate a one-time use public key and key ID to encrypt the card number in the follow-on Tokenize Card request. The key used to encrypt the card number on the cardholder’s device or browser is valid for 15 minutes and must be used to verify the signature in the response message. CyberSource recommends creating a new key for each order. Generating a key is an authenticated request initiated from your servers, prior to requesting to tokenize the card data from your customer’s device or browser.
     # @param [Hash] opts the optional parameters
     # @option opts [GeneratePublicKeyRequest] :generate_public_key_request 
-    # @return [Array<(InlineResponse200, Fixnum, Hash)>] InlineResponse200 data, response status code and response headers
+    # @return [Array<(FlexV1KeysPost200Response, Fixnum, Hash)>] FlexV1KeysPost200Response data, response status code and response headers
     def generate_public_key_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: KeyGenerationApi.generate_public_key ...'
@@ -64,7 +64,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse200')
+        :return_type => 'FlexV1KeysPost200Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: KeyGenerationApi#generate_public_key\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

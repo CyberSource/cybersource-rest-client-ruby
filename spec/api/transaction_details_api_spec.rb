@@ -37,7 +37,7 @@ describe 'TransactionDetailsApi' do
   # Include the Request ID in the GET request to retrieve the transaction details.
   # @param id Request ID. 
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse20012]
+  # @return [TssV2TransactionsGet200Response]
   describe 'get_transaction test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

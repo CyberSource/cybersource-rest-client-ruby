@@ -37,7 +37,7 @@ describe 'InstrumentIdentifiersApi' do
   # @param profile_id The id of a profile containing user specific TMS configuration.
   # @param body Please specify either a Card or Bank Account.
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse20010]
+  # @return [TmsV1InstrumentidentifiersPost200Response]
   describe 'tms_v1_instrumentidentifiers_post test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

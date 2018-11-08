@@ -37,7 +37,7 @@ describe 'PaymentsApi' do
   # Authorize the payment for the transaction. 
   # @param create_payment_request 
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse201]
+  # @return [PtsV2PaymentsPost201Response]
   describe 'create_payment test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

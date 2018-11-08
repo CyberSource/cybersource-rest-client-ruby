@@ -14,48 +14,17 @@ require 'date'
 
 module CyberSource
   class InlineResponse400
-    # Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the time. The Z indicates UTC. 
-    attr_accessor :submit_time_utc
+    attr_accessor :type
 
-    # The status of the submitted transaction.
-    attr_accessor :status
-
-    # The reason of the status. 
-    attr_accessor :reason
-
-    # The detail message related to the status and reason listed above.
+    # The detailed message related to the type stated above.
     attr_accessor :message
 
     attr_accessor :details
 
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'submit_time_utc' => :'submitTimeUtc',
-        :'status' => :'status',
-        :'reason' => :'reason',
+        :'type' => :'type',
         :'message' => :'message',
         :'details' => :'details'
       }
@@ -64,11 +33,9 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'submit_time_utc' => :'String',
-        :'status' => :'String',
-        :'reason' => :'String',
+        :'type' => :'String',
         :'message' => :'String',
-        :'details' => :'Array<InlineResponse201ErrorInformationDetails>'
+        :'details' => :'Tmsv1instrumentidentifiersDetails'
       }
     end
 
@@ -80,16 +47,8 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'submitTimeUtc')
-        self.submit_time_utc = attributes[:'submitTimeUtc']
-      end
-
-      if attributes.has_key?(:'status')
-        self.status = attributes[:'status']
-      end
-
-      if attributes.has_key?(:'reason')
-        self.reason = attributes[:'reason']
+      if attributes.has_key?(:'type')
+        self.type = attributes[:'type']
       end
 
       if attributes.has_key?(:'message')
@@ -97,9 +56,7 @@ module CyberSource
       end
 
       if attributes.has_key?(:'details')
-        if (value = attributes[:'details']).is_a?(Array)
-          self.details = value
-        end
+        self.details = attributes[:'details']
       end
     end
 
@@ -113,31 +70,7 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      status_validator = EnumAttributeValidator.new('String', ['INVALID_REQUEST'])
-      return false unless status_validator.valid?(@status)
-      reason_validator = EnumAttributeValidator.new('String', ['MISSING_FIELD', 'INVALID_DATA', 'DUPLICATE_REQUEST', 'INVALID_CARD', 'CARD_TYPE_NOT_ACCEPTED', 'INVALID_MERCHANT_CONFIGURATION', 'PROCESSOR_UNAVAILABLE', 'INVALID_AMOUNT', 'INVALID_CARD_TYPE', 'DEBIT_CARD_USEAGE_EXCEEDD_LIMIT'])
-      return false unless reason_validator.valid?(@reason)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] status Object to be assigned
-    def status=(status)
-      validator = EnumAttributeValidator.new('String', ['INVALID_REQUEST'])
-      unless validator.valid?(status)
-        fail ArgumentError, 'invalid value for "status", must be one of #{validator.allowable_values}.'
-      end
-      @status = status
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] reason Object to be assigned
-    def reason=(reason)
-      validator = EnumAttributeValidator.new('String', ['MISSING_FIELD', 'INVALID_DATA', 'DUPLICATE_REQUEST', 'INVALID_CARD', 'CARD_TYPE_NOT_ACCEPTED', 'INVALID_MERCHANT_CONFIGURATION', 'PROCESSOR_UNAVAILABLE', 'INVALID_AMOUNT', 'INVALID_CARD_TYPE', 'DEBIT_CARD_USEAGE_EXCEEDD_LIMIT'])
-      unless validator.valid?(reason)
-        fail ArgumentError, 'invalid value for "reason", must be one of #{validator.allowable_values}.'
-      end
-      @reason = reason
     end
 
     # Checks equality by comparing each attribute.
@@ -145,9 +78,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          submit_time_utc == o.submit_time_utc &&
-          status == o.status &&
-          reason == o.reason &&
+          type == o.type &&
           message == o.message &&
           details == o.details
     end
@@ -161,7 +92,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [submit_time_utc, status, reason, message, details].hash
+      [type, message, details].hash
     end
 
     # Builds the object from hash

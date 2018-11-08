@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **report_start_time** | **DateTime** | Start time of the report | [optional] 
 **report_end_time** | **DateTime** | End time of the report | [optional] 
 **report_filters** | **Hash&lt;String, Array&lt;String&gt;&gt;** |  | [optional] 
-**report_preferences** | [**InlineResponse2006ReportPreferences**](InlineResponse2006ReportPreferences.md) |  | [optional] 
+**report_preferences** | [**ReportingV3ReportSubscriptionsGet200ResponseReportPreferences**](ReportingV3ReportSubscriptionsGet200ResponseReportPreferences.md) |  | [optional] 
 **selected_merchant_group_name** | **String** | Specifies the group name | [optional] 
 
 

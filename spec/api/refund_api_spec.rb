@@ -38,7 +38,7 @@ describe 'RefundApi' do
   # @param refund_capture_request 
   # @param id The capture ID. This ID is returned from a previous capture request.
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2013]
+  # @return [PtsV2PaymentsRefundPost201Response]
   describe 'refund_capture test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -51,7 +51,7 @@ describe 'RefundApi' do
   # @param refund_payment_request 
   # @param id The payment ID. This ID is returned from a previous payment request.
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2013]
+  # @return [PtsV2PaymentsRefundPost201Response]
   describe 'refund_payment test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

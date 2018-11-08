@@ -3,6 +3,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**emv** | [**InlineResponse201PointOfSaleInformationEmv**](InlineResponse201PointOfSaleInformationEmv.md) |  | [optional] 
+**emv** | [**PtsV2PaymentsPost201ResponsePointOfSaleInformationEmv**](PtsV2PaymentsPost201ResponsePointOfSaleInformationEmv.md) |  | [optional] 
 
 

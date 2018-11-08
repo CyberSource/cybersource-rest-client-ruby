@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **get_notification_of_change_report**
-> InlineResponse2003 get_notification_of_change_report(start_time, end_time)
+> ReportingV3NotificationofChangesGet200Response get_notification_of_change_report(start_time, end_time)
 
 Get Notification Of Changes
 
@@ -44,7 +44,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2003**](InlineResponse2003.md)
+[**ReportingV3NotificationofChangesGet200Response**](ReportingV3NotificationofChangesGet200Response.md)
 
 ### Authorization
 

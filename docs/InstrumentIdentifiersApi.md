@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **tms_v1_instrumentidentifiers_post**
-> InlineResponse20010 tms_v1_instrumentidentifiers_post(profile_id, body)
+> TmsV1InstrumentidentifiersPost200Response tms_v1_instrumentidentifiers_post(profile_id, body)
 
 Create an Instrument Identifier
 
@@ -42,7 +42,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20010**](InlineResponse20010.md)
+[**TmsV1InstrumentidentifiersPost200Response**](TmsV1InstrumentidentifiersPost200Response.md)
 
 ### Authorization
 

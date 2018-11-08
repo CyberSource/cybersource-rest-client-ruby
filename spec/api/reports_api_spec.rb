@@ -50,7 +50,7 @@ describe 'ReportsApi' do
   # @param report_id Valid Report Id
   # @param [Hash] opts the optional parameters
   # @option opts [String] :organization_id Valid Cybersource Organization Id
-  # @return [InlineResponse2008]
+  # @return [ReportingV3ReportsIdGet200Response]
   describe 'get_report_by_report_id test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -70,7 +70,7 @@ describe 'ReportsApi' do
   # @option opts [String] :report_name Valid Report Name
   # @option opts [Integer] :report_definition_id Valid Report Definition Id
   # @option opts [String] :report_status Valid Report Status
-  # @return [InlineResponse2007]
+  # @return [ReportingV3ReportsGet200Response]
   describe 'search_reports test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

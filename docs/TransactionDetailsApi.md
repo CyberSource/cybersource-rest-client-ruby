@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **get_transaction**
-> InlineResponse20012 get_transaction(id)
+> TssV2TransactionsGet200Response get_transaction(id)
 
 Retrieve a Transaction
 
@@ -41,7 +41,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20012**](InlineResponse20012.md)
+[**TssV2TransactionsGet200Response**](TssV2TransactionsGet200Response.md)
 
 ### Authorization
 

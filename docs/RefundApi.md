@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **refund_capture**
-> InlineResponse2013 refund_capture(refund_capture_request, id)
+> PtsV2PaymentsRefundPost201Response refund_capture(refund_capture_request, id)
 
 Refund a Capture
 
@@ -45,7 +45,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2013**](InlineResponse2013.md)
+[**PtsV2PaymentsRefundPost201Response**](PtsV2PaymentsRefundPost201Response.md)
 
 ### Authorization
 
@@ -59,7 +59,7 @@ No authorization required
 
 
 # **refund_payment**
-> InlineResponse2013 refund_payment(refund_payment_request, id)
+> PtsV2PaymentsRefundPost201Response refund_payment(refund_payment_request, id)
 
 Refund a Payment
 
@@ -95,7 +95,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2013**](InlineResponse2013.md)
+[**PtsV2PaymentsRefundPost201Response**](PtsV2PaymentsRefundPost201Response.md)
 
 ### Authorization
 

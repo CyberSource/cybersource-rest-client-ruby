@@ -26,7 +26,7 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @option opts [String] :offset Starting Payment Instrument record in zero-based dataset that should be returned as the first object in the array. Default is 0.
     # @option opts [String] :limit The maximum number of Payment Instruments that can be returned in the array starting from the offset record in zero-based dataset. Default is 20, maximum is 100. (default to 20)
-    # @return [InlineResponse20011]
+    # @return [TmsV1InstrumentidentifiersPaymentinstrumentsGet200Response]
     def tms_v1_instrumentidentifiers_token_id_paymentinstruments_get(profile_id, token_id, opts = {})
       data, _status_code, _headers = tms_v1_instrumentidentifiers_token_id_paymentinstruments_get_with_http_info(profile_id, token_id, opts)
       return data, _status_code, _headers
@@ -38,7 +38,7 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @option opts [String] :offset Starting Payment Instrument record in zero-based dataset that should be returned as the first object in the array. Default is 0.
     # @option opts [String] :limit The maximum number of Payment Instruments that can be returned in the array starting from the offset record in zero-based dataset. Default is 20, maximum is 100.
-    # @return [Array<(InlineResponse20011, Fixnum, Hash)>] InlineResponse20011 data, response status code and response headers
+    # @return [Array<(TmsV1InstrumentidentifiersPaymentinstrumentsGet200Response, Fixnum, Hash)>] TmsV1InstrumentidentifiersPaymentinstrumentsGet200Response data, response status code and response headers
     def tms_v1_instrumentidentifiers_token_id_paymentinstruments_get_with_http_info(profile_id, token_id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: PaymentInstrumentsApi.tms_v1_instrumentidentifiers_token_id_paymentinstruments_get ...'
@@ -55,10 +55,10 @@ module CyberSource
       #   fail ArgumentError, 'invalid value for "profile_id" when calling PaymentInstrumentsApi.tms_v1_instrumentidentifiers_token_id_paymentinstruments_get, must be greater than or equal to 36.'
       # end
 
-      # # verify the required parameter 'token_id' is set
-      # if @api_client.config.client_side_validation && token_id.nil?
-      #   fail ArgumentError, "Missing the required parameter 'token_id' when calling PaymentInstrumentsApi.tms_v1_instrumentidentifiers_token_id_paymentinstruments_get"
-      # end
+      # verify the required parameter 'token_id' is set
+      if @api_client.config.client_side_validation && token_id.nil?
+        fail ArgumentError, "Missing the required parameter 'token_id' when calling PaymentInstrumentsApi.tms_v1_instrumentidentifiers_token_id_paymentinstruments_get"
+      end
       # if @api_client.config.client_side_validation && token_id > 32
       #   fail ArgumentError, 'invalid value for "token_id" when calling PaymentInstrumentsApi.tms_v1_instrumentidentifiers_token_id_paymentinstruments_get, must be smaller than or equal to 32.'
       # end
@@ -107,7 +107,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20011')
+        :return_type => 'TmsV1InstrumentidentifiersPaymentinstrumentsGet200Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: PaymentInstrumentsApi#tms_v1_instrumentidentifiers_token_id_paymentinstruments_get\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -117,7 +117,7 @@ module CyberSource
     # @param profile_id The id of a profile containing user specific TMS configuration.
     # @param body Please specify the customers payment details for card or bank account.
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2016]
+    # @return [TmsV1PaymentinstrumentsPost201Response]
     def tms_v1_paymentinstruments_post(profile_id, body, opts = {})
       data, _status_code, _headers = tms_v1_paymentinstruments_post_with_http_info(profile_id, body, opts)
       return data, _status_code, _headers
@@ -127,7 +127,7 @@ module CyberSource
     # @param profile_id The id of a profile containing user specific TMS configuration.
     # @param body Please specify the customers payment details for card or bank account.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2016, Fixnum, Hash)>] InlineResponse2016 data, response status code and response headers
+    # @return [Array<(TmsV1PaymentinstrumentsPost201Response, Fixnum, Hash)>] TmsV1PaymentinstrumentsPost201Response data, response status code and response headers
     def tms_v1_paymentinstruments_post_with_http_info(profile_id, body, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: PaymentInstrumentsApi.tms_v1_paymentinstruments_post ...'
@@ -174,7 +174,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2016')
+        :return_type => 'TmsV1PaymentinstrumentsPost201Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: PaymentInstrumentsApi#tms_v1_paymentinstruments_post\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -186,8 +186,8 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [nil]
     def tms_v1_paymentinstruments_token_id_delete(profile_id, token_id, opts = {})
-      data, _status_code, _headers = tms_v1_paymentinstruments_token_id_delete_with_http_info(profile_id, token_id, opts)
-      return data, _status_code, _headers
+      data, status_code, headers = tms_v1_paymentinstruments_token_id_delete_with_http_info(profile_id, token_id, opts)
+      return data, status_code, headers
     end
 
     # Delete a Payment Instrument
@@ -258,7 +258,7 @@ module CyberSource
     # @param profile_id The id of a profile containing user specific TMS configuration.
     # @param token_id The TokenId of a Payment Instrument.
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2016]
+    # @return [TmsV1PaymentinstrumentsPost201Response]
     def tms_v1_paymentinstruments_token_id_get(profile_id, token_id, opts = {})
       data, _status_code, _headers = tms_v1_paymentinstruments_token_id_get_with_http_info(profile_id, token_id, opts)
       return data, _status_code, _headers
@@ -268,7 +268,7 @@ module CyberSource
     # @param profile_id The id of a profile containing user specific TMS configuration.
     # @param token_id The TokenId of a Payment Instrument.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2016, Fixnum, Hash)>] InlineResponse2016 data, response status code and response headers
+    # @return [Array<(TmsV1PaymentinstrumentsPost201Response, Fixnum, Hash)>] TmsV1PaymentinstrumentsPost201Response data, response status code and response headers
     def tms_v1_paymentinstruments_token_id_get_with_http_info(profile_id, token_id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: PaymentInstrumentsApi.tms_v1_paymentinstruments_token_id_get ...'
@@ -323,7 +323,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2016')
+        :return_type => 'TmsV1PaymentinstrumentsPost201Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: PaymentInstrumentsApi#tms_v1_paymentinstruments_token_id_get\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -334,7 +334,7 @@ module CyberSource
     # @param token_id The TokenId of a Payment Instrument.
     # @param body Please specify the customers payment details.
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2016]
+    # @return [TmsV1PaymentinstrumentsPost201Response]
     def tms_v1_paymentinstruments_token_id_patch(profile_id, token_id, body, opts = {})
       data, _status_code, _headers = tms_v1_paymentinstruments_token_id_patch_with_http_info(profile_id, token_id, body, opts)
       return data, _status_code, _headers
@@ -345,7 +345,7 @@ module CyberSource
     # @param token_id The TokenId of a Payment Instrument.
     # @param body Please specify the customers payment details.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2016, Fixnum, Hash)>] InlineResponse2016 data, response status code and response headers
+    # @return [Array<(TmsV1PaymentinstrumentsPost201Response, Fixnum, Hash)>] TmsV1PaymentinstrumentsPost201Response data, response status code and response headers
     def tms_v1_paymentinstruments_token_id_patch_with_http_info(profile_id, token_id, body, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: PaymentInstrumentsApi.tms_v1_paymentinstruments_token_id_patch ...'
@@ -404,7 +404,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2016')
+        :return_type => 'TmsV1PaymentinstrumentsPost201Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: PaymentInstrumentsApi#tms_v1_paymentinstruments_token_id_patch\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

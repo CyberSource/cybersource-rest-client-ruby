@@ -25,7 +25,7 @@ module CyberSource
     # @param id The payment ID returned from a previous payment request.
     # @param auth_reversal_request 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2011]
+    # @return [PtsV2PaymentsReversalsPost201Response]
     def auth_reversal(id, auth_reversal_request, opts = {})
       data, _status_code, _headers = auth_reversal_with_http_info(id, auth_reversal_request, opts)
       return data, _status_code, _headers
@@ -36,7 +36,7 @@ module CyberSource
     # @param id The payment ID returned from a previous payment request.
     # @param auth_reversal_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2011, Fixnum, Hash)>] InlineResponse2011 data, response status code and response headers
+    # @return [Array<(PtsV2PaymentsReversalsPost201Response, Fixnum, Hash)>] PtsV2PaymentsReversalsPost201Response data, response status code and response headers
     def auth_reversal_with_http_info(id, auth_reversal_request, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: ReversalApi.auth_reversal ...'
@@ -60,7 +60,7 @@ module CyberSource
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json'])
       # HTTP header 'Content-Type'
-      # header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
 
       # form parameters
       form_params = {}
@@ -74,7 +74,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2011')
+        :return_type => 'PtsV2PaymentsReversalsPost201Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: ReversalApi#auth_reversal\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

@@ -40,7 +40,7 @@ describe 'UserManagementApi' do
   # @option opts [String] :user_name User ID of the user you want to get details on.
   # @option opts [String] :permission_id permission that you are trying to search user on.
   # @option opts [String] :role_id role of the user you are trying to search on.
-  # @return [InlineResponse20013]
+  # @return [UmsV1UsersGet200Response]
   describe 'get_users test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

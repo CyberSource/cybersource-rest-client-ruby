@@ -33,8 +33,8 @@ module CyberSource
     # @option opts [Integer] :limit Results count per page. Range(1-2000) (default to 2000)
     # @return [nil]
     def get_purchase_and_refund_details(start_time, end_time, opts = {})
-      data, _status_code, _headers = get_purchase_and_refund_details_with_http_info(start_time, end_time, opts)
-      return data, _status_code, _headers
+      data, status_code, headers = get_purchase_and_refund_details_with_http_info(start_time, end_time, opts)
+      return data, status_code, headers
     end
 
     # Get Purchase and Refund details

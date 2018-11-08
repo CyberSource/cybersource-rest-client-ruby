@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **tms_v1_instrumentidentifiers_token_id_paymentinstruments_get**
-> InlineResponse20011 tms_v1_instrumentidentifiers_token_id_paymentinstruments_get(profile_id, token_id, opts)
+> TmsV1InstrumentidentifiersPaymentinstrumentsGet200Response tms_v1_instrumentidentifiers_token_id_paymentinstruments_get(profile_id, token_id, opts)
 
 Retrieve all Payment Instruments associated with an Instrument Identifier
 
@@ -52,7 +52,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20011**](InlineResponse20011.md)
+[**TmsV1InstrumentidentifiersPaymentinstrumentsGet200Response**](TmsV1InstrumentidentifiersPaymentinstrumentsGet200Response.md)
 
 ### Authorization
 
@@ -66,7 +66,7 @@ No authorization required
 
 
 # **tms_v1_paymentinstruments_post**
-> InlineResponse2016 tms_v1_paymentinstruments_post(profile_id, body)
+> TmsV1PaymentinstrumentsPost201Response tms_v1_paymentinstruments_post(profile_id, body)
 
 Create a Payment Instrument
 
@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2016**](InlineResponse2016.md)
+[**TmsV1PaymentinstrumentsPost201Response**](TmsV1PaymentinstrumentsPost201Response.md)
 
 ### Authorization
 
@@ -161,7 +161,7 @@ No authorization required
 
 
 # **tms_v1_paymentinstruments_token_id_get**
-> InlineResponse2016 tms_v1_paymentinstruments_token_id_get(profile_id, token_id)
+> TmsV1PaymentinstrumentsPost201Response tms_v1_paymentinstruments_token_id_get(profile_id, token_id)
 
 Retrieve a Payment Instrument
 
@@ -195,7 +195,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2016**](InlineResponse2016.md)
+[**TmsV1PaymentinstrumentsPost201Response**](TmsV1PaymentinstrumentsPost201Response.md)
 
 ### Authorization
 
@@ -209,7 +209,7 @@ No authorization required
 
 
 # **tms_v1_paymentinstruments_token_id_patch**
-> InlineResponse2016 tms_v1_paymentinstruments_token_id_patch(profile_id, token_id, body)
+> TmsV1PaymentinstrumentsPost201Response tms_v1_paymentinstruments_token_id_patch(profile_id, token_id, body)
 
 Update a Payment Instrument
 
@@ -246,7 +246,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2016**](InlineResponse2016.md)
+[**TmsV1PaymentinstrumentsPost201Response**](TmsV1PaymentinstrumentsPost201Response.md)
 
 ### Authorization
 

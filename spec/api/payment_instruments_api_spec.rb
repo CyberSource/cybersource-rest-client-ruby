@@ -39,7 +39,7 @@ describe 'PaymentInstrumentsApi' do
   # @param [Hash] opts the optional parameters
   # @option opts [String] :offset Starting Payment Instrument record in zero-based dataset that should be returned as the first object in the array. Default is 0.
   # @option opts [String] :limit The maximum number of Payment Instruments that can be returned in the array starting from the offset record in zero-based dataset. Default is 20, maximum is 100.
-  # @return [InlineResponse20011]
+  # @return [TmsV1InstrumentidentifiersPaymentinstrumentsGet200Response]
   describe 'tms_v1_instrumentidentifiers_token_id_paymentinstruments_get test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -51,7 +51,7 @@ describe 'PaymentInstrumentsApi' do
   # @param profile_id The id of a profile containing user specific TMS configuration.
   # @param body Please specify the customers payment details for card or bank account.
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2016]
+  # @return [TmsV1PaymentinstrumentsPost201Response]
   describe 'tms_v1_paymentinstruments_post test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -75,7 +75,7 @@ describe 'PaymentInstrumentsApi' do
   # @param profile_id The id of a profile containing user specific TMS configuration.
   # @param token_id The TokenId of a Payment Instrument.
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2016]
+  # @return [TmsV1PaymentinstrumentsPost201Response]
   describe 'tms_v1_paymentinstruments_token_id_get test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -88,7 +88,7 @@ describe 'PaymentInstrumentsApi' do
   # @param token_id The TokenId of a Payment Instrument.
   # @param body Please specify the customers payment details.
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2016]
+  # @return [TmsV1PaymentinstrumentsPost201Response]
   describe 'tms_v1_paymentinstruments_token_id_patch test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

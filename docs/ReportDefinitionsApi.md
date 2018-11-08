@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **get_resource_info_by_report_definition**
-> InlineResponse2005 get_resource_info_by_report_definition(report_definition_name, opts)
+> ReportingV3ReportDefinitionsNameGet200Response get_resource_info_by_report_definition(report_definition_name, opts)
 
 Get a single report definition information
 
@@ -46,7 +46,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2005**](InlineResponse2005.md)
+[**ReportingV3ReportDefinitionsNameGet200Response**](ReportingV3ReportDefinitionsNameGet200Response.md)
 
 ### Authorization
 
@@ -60,7 +60,7 @@ No authorization required
 
 
 # **get_resource_v2_info**
-> InlineResponse2004 get_resource_v2_info(opts)
+> ReportingV3ReportDefinitionsGet200Response get_resource_v2_info(opts)
 
 Get reporting resource information
 
@@ -94,7 +94,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2004**](InlineResponse2004.md)
+[**ReportingV3ReportDefinitionsGet200Response**](ReportingV3ReportDefinitionsGet200Response.md)
 
 ### Authorization
 

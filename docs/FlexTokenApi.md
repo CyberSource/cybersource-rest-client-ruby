@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **tokenize**
-> InlineResponse2001 tokenize(opts)
+> FlexV1TokensPost200Response tokenize(opts)
 
 Flex Tokenize card
 
@@ -42,7 +42,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2001**](InlineResponse2001.md)
+[**FlexV1TokensPost200Response**](FlexV1TokensPost200Response.md)
 
 ### Authorization
 

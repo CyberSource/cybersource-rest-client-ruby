@@ -25,7 +25,7 @@ module CyberSource
     # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ssXXX 
     # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ssXXX 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2003]
+    # @return [ReportingV3NotificationofChangesGet200Response]
     def get_notification_of_change_report(start_time, end_time, opts = {})
       data, _status_code, _headers = get_notification_of_change_report_with_http_info(start_time, end_time, opts)
       return data, _status_code, _headers
@@ -36,7 +36,7 @@ module CyberSource
     # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ssXXX 
     # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ssXXX 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2003, Fixnum, Hash)>] InlineResponse2003 data, response status code and response headers
+    # @return [Array<(ReportingV3NotificationofChangesGet200Response, Fixnum, Hash)>] ReportingV3NotificationofChangesGet200Response data, response status code and response headers
     def get_notification_of_change_report_with_http_info(start_time, end_time, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: NotificationOfChangesApi.get_notification_of_change_report ...'
@@ -76,7 +76,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2003')
+        :return_type => 'ReportingV3NotificationofChangesGet200Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: NotificationOfChangesApi#get_notification_of_change_report\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

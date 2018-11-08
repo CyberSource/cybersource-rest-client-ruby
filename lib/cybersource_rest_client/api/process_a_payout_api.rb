@@ -26,8 +26,8 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [nil]
     def oct_create_payment(oct_create_payment_request, opts = {})
-      data, _status_code, _headers = oct_create_payment_with_http_info(oct_create_payment_request, opts)
-      return data, _status_code, _headers
+      data, status_code, headers = oct_create_payment_with_http_info(oct_create_payment_request, opts)
+      return data, status_code, headers
     end
 
     # Process a Payout

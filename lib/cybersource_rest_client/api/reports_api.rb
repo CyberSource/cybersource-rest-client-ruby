@@ -48,6 +48,7 @@ module CyberSource
 
       # query parameters
       query_params = {}
+
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
@@ -77,7 +78,7 @@ module CyberSource
     # @param report_id Valid Report Id
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
-    # @return [InlineResponse2008]
+    # @return [ReportingV3ReportsIdGet200Response]
     def get_report_by_report_id(report_id, opts = {})
       data, _status_code, _headers = get_report_by_report_id_with_http_info(report_id, opts)
       return data, _status_code, _headers
@@ -88,7 +89,7 @@ module CyberSource
     # @param report_id Valid Report Id
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
-    # @return [Array<(InlineResponse2008, Fixnum, Hash)>] InlineResponse2008 data, response status code and response headers
+    # @return [Array<(ReportingV3ReportsIdGet200Response, Fixnum, Hash)>] ReportingV3ReportsIdGet200Response data, response status code and response headers
     def get_report_by_report_id_with_http_info(report_id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: ReportsApi.get_report_by_report_id ...'
@@ -135,7 +136,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2008')
+        :return_type => 'ReportingV3ReportsIdGet200Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: ReportsApi#get_report_by_report_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -153,7 +154,7 @@ module CyberSource
     # @option opts [String] :report_name Valid Report Name
     # @option opts [Integer] :report_definition_id Valid Report Definition Id
     # @option opts [String] :report_status Valid Report Status
-    # @return [InlineResponse2007]
+    # @return [ReportingV3ReportsGet200Response]
     def search_reports(start_time, end_time, time_query_type, opts = {})
       data, _status_code, _headers = search_reports_with_http_info(start_time, end_time, time_query_type, opts)
       return data, _status_code, _headers
@@ -171,7 +172,7 @@ module CyberSource
     # @option opts [String] :report_name Valid Report Name
     # @option opts [Integer] :report_definition_id Valid Report Definition Id
     # @option opts [String] :report_status Valid Report Status
-    # @return [Array<(InlineResponse2007, Fixnum, Hash)>] InlineResponse2007 data, response status code and response headers
+    # @return [Array<(ReportingV3ReportsGet200Response, Fixnum, Hash)>] ReportingV3ReportsGet200Response data, response status code and response headers
     def search_reports_with_http_info(start_time, end_time, time_query_type, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: ReportsApi.search_reports ...'
@@ -247,7 +248,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2007')
+        :return_type => 'ReportingV3ReportsGet200Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: ReportsApi#search_reports\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

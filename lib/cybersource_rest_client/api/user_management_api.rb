@@ -16,7 +16,7 @@ module CyberSource
   class UserManagementApi
     attr_accessor :api_client
 
-    def initialize(api_client = ApiClient.default,config)
+    def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
       @api_client.set_configuration(config)
     end
@@ -27,7 +27,7 @@ module CyberSource
     # @option opts [String] :user_name User ID of the user you want to get details on.
     # @option opts [String] :permission_id permission that you are trying to search user on.
     # @option opts [String] :role_id role of the user you are trying to search on.
-    # @return [InlineResponse20013]
+    # @return [UmsV1UsersGet200Response]
     def get_users(opts = {})
       data, _status_code, _headers = get_users_with_http_info(opts)
       return data, _status_code, _headers
@@ -40,7 +40,7 @@ module CyberSource
     # @option opts [String] :user_name User ID of the user you want to get details on.
     # @option opts [String] :permission_id permission that you are trying to search user on.
     # @option opts [String] :role_id role of the user you are trying to search on.
-    # @return [Array<(InlineResponse20013, Fixnum, Hash)>] InlineResponse20013 data, response status code and response headers
+    # @return [Array<(UmsV1UsersGet200Response, Fixnum, Hash)>] UmsV1UsersGet200Response data, response status code and response headers
     def get_users_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: UserManagementApi.get_users ...'
@@ -74,7 +74,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20013')
+        :return_type => 'UmsV1UsersGet200Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: UserManagementApi#get_users\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

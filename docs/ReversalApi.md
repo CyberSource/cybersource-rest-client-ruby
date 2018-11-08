@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **auth_reversal**
-> InlineResponse2011 auth_reversal(id, auth_reversal_request)
+> PtsV2PaymentsReversalsPost201Response auth_reversal(id, auth_reversal_request)
 
 Process an Authorization Reversal
 
@@ -44,7 +44,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2011**](InlineResponse2011.md)
+[**PtsV2PaymentsReversalsPost201Response**](PtsV2PaymentsReversalsPost201Response.md)
 
 ### Authorization
 

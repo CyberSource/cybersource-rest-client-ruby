@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **pts_v1_transaction_batches_get**
-> InlineResponse2002 pts_v1_transaction_batches_get(start_time, end_time)
+> PtsV1TransactionBatchesGet200Response pts_v1_transaction_batches_get(start_time, end_time)
 
 Get a list of batch files processed through the Offline Transaction Submission Services
 
@@ -44,7 +44,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2002**](InlineResponse2002.md)
+[**PtsV1TransactionBatchesGet200Response**](PtsV1TransactionBatchesGet200Response.md)
 
 ### Authorization
 

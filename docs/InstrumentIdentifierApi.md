@@ -57,7 +57,7 @@ No authorization required
 
 
 # **tms_v1_instrumentidentifiers_token_id_get**
-> InlineResponse20010 tms_v1_instrumentidentifiers_token_id_get(profile_id, token_id)
+> TmsV1InstrumentidentifiersPost200Response tms_v1_instrumentidentifiers_token_id_get(profile_id, token_id)
 
 Retrieve an Instrument Identifier
 
@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20010**](InlineResponse20010.md)
+[**TmsV1InstrumentidentifiersPost200Response**](TmsV1InstrumentidentifiersPost200Response.md)
 
 ### Authorization
 
@@ -105,7 +105,7 @@ No authorization required
 
 
 # **tms_v1_instrumentidentifiers_token_id_patch**
-> InlineResponse20010 tms_v1_instrumentidentifiers_token_id_patch(profile_id, token_id, body)
+> TmsV1InstrumentidentifiersPost200Response tms_v1_instrumentidentifiers_token_id_patch(profile_id, token_id, body)
 
 Update a Instrument Identifier
 
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20010**](InlineResponse20010.md)
+[**TmsV1InstrumentidentifiersPost200Response**](TmsV1InstrumentidentifiersPost200Response.md)
 
 ### Authorization
 

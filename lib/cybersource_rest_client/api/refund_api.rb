@@ -25,7 +25,7 @@ module CyberSource
     # @param refund_capture_request 
     # @param id The capture ID. This ID is returned from a previous capture request.
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2013]
+    # @return [PtsV2PaymentsRefundPost201Response]
     def refund_capture(refund_capture_request, id, opts = {})
       data, _status_code, _headers = refund_capture_with_http_info(refund_capture_request, id, opts)
       return data, _status_code, _headers
@@ -36,7 +36,7 @@ module CyberSource
     # @param refund_capture_request 
     # @param id The capture ID. This ID is returned from a previous capture request.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2013, Fixnum, Hash)>] InlineResponse2013 data, response status code and response headers
+    # @return [Array<(PtsV2PaymentsRefundPost201Response, Fixnum, Hash)>] PtsV2PaymentsRefundPost201Response data, response status code and response headers
     def refund_capture_with_http_info(refund_capture_request, id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: RefundApi.refund_capture ...'
@@ -74,7 +74,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2013')
+        :return_type => 'PtsV2PaymentsRefundPost201Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: RefundApi#refund_capture\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -85,7 +85,7 @@ module CyberSource
     # @param refund_payment_request 
     # @param id The payment ID. This ID is returned from a previous payment request.
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2013]
+    # @return [PtsV2PaymentsRefundPost201Response]
     def refund_payment(refund_payment_request, id, opts = {})
       data, _status_code, _headers = refund_payment_with_http_info(refund_payment_request, id, opts)
       return data, _status_code, _headers
@@ -96,7 +96,7 @@ module CyberSource
     # @param refund_payment_request 
     # @param id The payment ID. This ID is returned from a previous payment request.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2013, Fixnum, Hash)>] InlineResponse2013 data, response status code and response headers
+    # @return [Array<(PtsV2PaymentsRefundPost201Response, Fixnum, Hash)>] PtsV2PaymentsRefundPost201Response data, response status code and response headers
     def refund_payment_with_http_info(refund_payment_request, id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: RefundApi.refund_payment ...'
@@ -134,7 +134,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2013')
+        :return_type => 'PtsV2PaymentsRefundPost201Response')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: RefundApi#refund_payment\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
