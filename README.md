@@ -13,18 +13,18 @@ The CyberSource Ruby client provides convenient access to the [CyberSource REST 
 * [CyberSource API Keys](https://prod.developer.cybersource.com/api/developer-guides/dita-gettingstarted/registration/createCertSharedKey.html)
  
 ## Dependencies
-concurrent-ruby 1.1.3
-i18n 1.1.1
-minitest 5.11.3
-thread_safe 0.3.6
-tzinfo 1.2.5
-activesupport 5.2.1
-interface 1.0.4
-json 2.1.0
-jwt 2.1.0
-ffi 1.9.25
-ethon 0.11.0
-typhoeus 1.3.1
+* concurrent-ruby 1.1.3
+* i18n 1.1.1
+* minitest 5.11.3
+* thread_safe 0.3.6
+* tzinfo 1.2.5
+* activesupport 5.2.1
+* interface 1.0.4
+* json 2.1.0
+* jwt 2.1.0
+* ffi 1.9.25
+* ethon 0.11.0
+* typhoeus 1.3.1
 
 ## Installation
 ### Bundler
