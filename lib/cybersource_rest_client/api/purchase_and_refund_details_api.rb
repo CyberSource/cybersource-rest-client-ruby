@@ -69,9 +69,9 @@ module CyberSource
         fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling PurchaseAndRefundDetailsApi.get_purchase_and_refund_details, the character length must be great than or equal to 1.'
       end
 
-      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
-        fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling PurchaseAndRefundDetailsApi.get_purchase_and_refund_details, must conform to the pattern /[a-zA-Z0-9-_]+/."
-      end
+      # if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
+      #   fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling PurchaseAndRefundDetailsApi.get_purchase_and_refund_details, must conform to the pattern /[a-zA-Z0-9-_]+/."
+      # end
 
       if @api_client.config.client_side_validation && opts[:'payment_subtype'] && !['ALL', 'VI', 'MC', 'AX', 'DI', 'DP'].include?(opts[:'payment_subtype'])
         fail ArgumentError, 'invalid value for "payment_subtype", must be one of ALL, VI, MC, AX, DI, DP'

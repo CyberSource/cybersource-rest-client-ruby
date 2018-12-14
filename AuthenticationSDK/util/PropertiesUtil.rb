@@ -1,6 +1,5 @@
 require 'yaml'
-require_relative '../../../Cybersource-rest-samples-ruby/data/Configuration.rb'
-require_relative 'Constants.rb'
+require_relative './Constants.rb'
 public
 # Method for reading Cybs.yml file
 class PropertiesUtil
