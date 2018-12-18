@@ -80,7 +80,7 @@ class Constants
     
     DEFAULT_LOG_DIRECTORY = '../log' unless const_defined?(:DEFAULT_LOG_DIRECTORY)
     
-    DEFAULT_KEY_DIRECTORY = '.././resource' unless const_defined?(:DEFAULT_KEY_DIRECTORY)
+    DEFAULT_KEY_DIRECTORY = 'resource' unless const_defined?(:DEFAULT_KEY_DIRECTORY)
     
     DEFAULT_LOGFILE_NAME = 'cybs' unless const_defined?(:DEFAULT_LOGFILE_NAME)
 

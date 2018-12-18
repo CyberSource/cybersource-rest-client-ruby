@@ -1,6 +1,6 @@
 require_relative './Logger.rb'
 require_relative '../util/Constants.rb'
-require_relative '../Util/ApiException.rb'
+require_relative '../util/ApiException.rb'
 public
 # This fuction has all the merchantConfig properties getters and setters methods
 class Merchantconfig

@@ -111,10 +111,6 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@name.nil? && @name.to_s.length > 23
-        invalid_properties.push('invalid value for "name", the character length must be smaller than or equal to 23.')
-      end
-
       if !@alternate_name.nil? && @alternate_name.to_s.length > 13
         invalid_properties.push('invalid value for "alternate_name", the character length must be smaller than or equal to 13.')
       end
@@ -149,7 +145,6 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@name.nil? && @name.to_s.length > 23
       return false if !@alternate_name.nil? && @alternate_name.to_s.length > 13
       return false if !@contact.nil? && @contact.to_s.length > 14
       return false if !@address1.nil? && @address1.to_s.length > 60
@@ -163,10 +158,6 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] name Value to be assigned
     def name=(name)
-      if !name.nil? && name.to_s.length > 23
-        fail ArgumentError, 'invalid value for "name", the character length must be smaller than or equal to 23.'
-      end
-
       @name = name
     end
 

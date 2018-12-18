@@ -16,6 +16,7 @@ require 'logger'
 require 'tempfile'
 require 'typhoeus'
 require 'uri'
+require 'addressable/uri'
 
 module CyberSource
   class ApiClient
@@ -49,7 +50,6 @@ module CyberSource
     def call_api(http_method, path, opts = {})
       request = build_request(http_method, path, opts)
       response = request.run
-
       if @config.debugging
         @config.logger.debug "HTTP response body ~BEGIN~\n#{response.body}\n~END~\n"
       end
@@ -65,7 +65,7 @@ module CyberSource
           fail ApiError.new(:code => response.code,
                             :response_headers => response.headers,
                             :response_body => response.body),
-               response.status_message
+                response.status_message
         end
       end
 
@@ -90,6 +90,9 @@ module CyberSource
       url = build_request_url(path)
       body_params = opts[:body] || {}
       query_params = opts[:query_params] || {}
+      if !query_params.empty?
+        query_params = URI.encode_www_form(query_params)
+      end
       headers = CallAuthenticationHeader(http_method, path, body_params, opts[:header_params], query_params)
       http_method = http_method.to_sym.downcase
       header_params = @default_headers.merge(headers || {})
@@ -131,17 +134,15 @@ module CyberSource
   def set_configuration(config)
     require_relative '../../AuthenticationSDK/core/Merchantconfig.rb'
     $merchantconfig_obj = Merchantconfig.new(config)
+    @config.host = $merchantconfig_obj.requestHost
   end
 	# Calling Authentication
     def CallAuthenticationHeader(http_method, path, body_params, header_params, query_params)
-      # require Dir.getwd + '/data/Configuration.rb'
       require_relative '../../AuthenticationSDK/core/Authorization.rb'
       require_relative '../../AuthenticationSDK/authentication/payloadDigest/Digest.rb'
       request_target = get_query_param(path, query_params)
       # Request Type. [Non-Editable]
       request_type = http_method.to_s
-      # cybsproperty_obj = MerchantConfiguration.new.merchantConfigProp
-      # $merchantconfig_obj = Merchantconfig.new(cybsproperty_obj)
       log_obj = Log.new $merchantconfig_obj.logDirectory, $merchantconfig_obj.logFilename, $merchantconfig_obj.logSize, $merchantconfig_obj.enableLog
       # Set Request Type into the merchant config object.
       $merchantconfig_obj.requestType = request_type
@@ -179,8 +180,9 @@ module CyberSource
       return header_params
     end
     def get_query_param(path, query_params)
+      request_target = ''
       if !query_params.empty?
-        request_target = @config.base_path + path + '?' + URI.encode_www_form(query_params)
+        request_target = @config.base_path + path + '?' + query_params
       else
         request_target = @config.base_path + path
       end

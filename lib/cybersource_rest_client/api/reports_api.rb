@@ -106,10 +106,6 @@ module CyberSource
         fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportsApi.get_report_by_report_id, the character length must be great than or equal to 1.'
       end
 
-      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
-        fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling ReportsApi.get_report_by_report_id, must conform to the pattern /[a-zA-Z0-9-_]+/."
-      end
-
       # resource path
       local_var_path = 'reporting/v3/reports/{reportId}'.sub('{' + 'reportId' + '}', report_id.to_s)
 
@@ -199,10 +195,6 @@ module CyberSource
 
       if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length < 1
         fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportsApi.search_reports, the character length must be great than or equal to 1.'
-      end
-
-      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
-        fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling ReportsApi.search_reports, must conform to the pattern /[a-zA-Z0-9-_]+/."
       end
 
       if @api_client.config.client_side_validation && opts[:'report_mime_type'] && !['application/xml', 'text/csv'].include?(opts[:'report_mime_type'])
