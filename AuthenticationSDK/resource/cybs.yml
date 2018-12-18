@@ -21,11 +21,11 @@
     #Logging to be enabled or not [true/false].
     enableLog : true
     #Log directory Path
-    logDirectory : ../log
+    logDirectory : "../log"
     #Enter only file name, do not enter the extension type like .log, .txt etc.
     logFilename : "Cybs"
     #Log file size in KB "5K" or MB as "5M".
     logSize : 10485760
     #Proxy Setup
-    proxyAddress : "userproxy.visa.com"
-    proxyPort : 
+    # proxyAddress : "userproxy.com"
+    # proxyPort : 

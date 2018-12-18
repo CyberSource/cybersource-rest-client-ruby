@@ -161,10 +161,6 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      # if !@organization_id.nil? && @organization_id !~ Regexp.new(/[a-zA-Z0-9-_]+/)
-      #   invalid_properties.push('invalid value for "organization_id", must conform to the pattern /[a-zA-Z0-9-_]+/.')
-      # end
-
       if @report_definition_name.nil?
         invalid_properties.push('invalid value for "report_definition_name", report_definition_name cannot be nil.')
       end
@@ -197,10 +193,6 @@ module CyberSource
         invalid_properties.push('invalid value for "report_name", the character length must be great than or equal to 1.')
       end
 
-      # if @report_name !~ Regexp.new(/[a-zA-Z0-9-_ ]+/)
-      #   invalid_properties.push('invalid value for "report_name", must conform to the pattern /[a-zA-Z0-9-_ ]+/.')
-      # end
-
       if !@start_day.nil? && @start_day > 7
         invalid_properties.push('invalid value for "start_day", must be smaller than or equal to 7.')
       end
@@ -230,7 +222,6 @@ module CyberSource
       return false if @report_name.nil?
       return false if @report_name.to_s.length > 128
       return false if @report_name.to_s.length < 1
-      # return false if @report_name !~ Regexp.new(/[a-zA-Z0-9-_ ]+/)
       return false if !@start_day.nil? && @start_day > 7
       return false if !@start_day.nil? && @start_day < 1
       return false if !@selected_merchant_group_name.nil? && @selected_merchant_group_name !~ Regexp.new(/[0-9]*/)
@@ -240,10 +231,6 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] organization_id Value to be assigned
     def organization_id=(organization_id)
-      # if !organization_id.nil? && organization_id !~ Regexp.new(/[a-zA-Z0-9-_]+/)
-      #   fail ArgumentError, 'invalid value for "organization_id", must conform to the pattern /[a-zA-Z0-9-_]+/.'
-      # end
-
       @organization_id = organization_id
     end
 
@@ -293,10 +280,6 @@ module CyberSource
       if report_name.to_s.length < 1
         fail ArgumentError, 'invalid value for "report_name", the character length must be great than or equal to 1.'
       end
-
-      # if report_name !~ Regexp.new(/[a-zA-Z0-9-_ ]+/)
-      #   fail ArgumentError, 'invalid value for "report_name", must conform to the pattern /[a-zA-Z0-9-_ ]+/.'
-      # end
 
       @report_name = report_name
     end

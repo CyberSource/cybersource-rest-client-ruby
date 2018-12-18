@@ -52,11 +52,6 @@ module CyberSource
       if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length < 1
         fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportDefinitionsApi.get_resource_info_by_report_definition, the character length must be great than or equal to 1.'
       end
-
-      # if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
-      #   fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling ReportDefinitionsApi.get_resource_info_by_report_definition, must conform to the pattern /[a-zA-Z0-9-_]+/."
-      # end
-
       # resource path
       local_var_path = 'reporting/v3/report-definitions/{reportDefinitionName}'.sub('{' + 'reportDefinitionName' + '}', report_definition_name.to_s)
 
@@ -115,10 +110,6 @@ module CyberSource
       if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length < 1
         fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportDefinitionsApi.get_resource_v2_info, the character length must be great than or equal to 1.'
       end
-
-      # if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
-      #   fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling ReportDefinitionsApi.get_resource_v2_info, must conform to the pattern /[a-zA-Z0-9-_]+/."
-      # end
 
       # resource path
       local_var_path = 'reporting/v3/report-definitions'

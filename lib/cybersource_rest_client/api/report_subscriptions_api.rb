@@ -110,10 +110,6 @@ module CyberSource
         fail ArgumentError, 'invalid value for "report_name" when calling ReportSubscriptionsApi.delete_subscription, the character length must be great than or equal to 1.'
       end
 
-      # if @api_client.config.client_side_validation && report_name !~ Regexp.new(/[a-zA-Z0-9-_+]+/)
-      #   fail ArgumentError, "invalid value for 'report_name' when calling ReportSubscriptionsApi.delete_subscription, must conform to the pattern /[a-zA-Z0-9-_+]+/."
-      # end
-
       # resource path
       local_var_path = 'reporting/v3/report-subscriptions/{reportName}'.sub('{' + 'reportName' + '}', report_name.to_s)
 
@@ -222,10 +218,6 @@ module CyberSource
       if @api_client.config.client_side_validation && report_name.to_s.length < 1
         fail ArgumentError, 'invalid value for "report_name" when calling ReportSubscriptionsApi.get_subscription, the character length must be great than or equal to 1.'
       end
-
-      # if @api_client.config.client_side_validation && report_name !~ Regexp.new(/[a-zA-Z0-9-_+]+/)
-      #   fail ArgumentError, "invalid value for 'report_name' when calling ReportSubscriptionsApi.get_subscription, must conform to the pattern /[a-zA-Z0-9-_+]+/."
-      # end
 
       # resource path
       local_var_path = 'reporting/v3/report-subscriptions/{reportName}'.sub('{' + 'reportName' + '}', report_name.to_s)

@@ -53,11 +53,6 @@ describe Merchantconfig do
         cybsPropertyobj['authenticationType']=123
         expect { Merchantconfig.new cybsPropertyobj }.to raise_error(StandardError)
     end
-    # it 'Validating RunEnvironment as empty MerchantConfig File' do
-    #     cybsPropertyobj=MerchantConfigData.new.merchantConfigProp
-    #     cybsPropertyobj['runEnvironment']=''
-    #     expect { Merchantconfig.new cybsPropertyobj }.to raise_error(StandardError)
-    # end
     it 'Validating keyAlias as Fixnum MerchantConfig File' do
         cybsPropertyobj=MerchantConfigData.new.merchantConfigProp
         cybsPropertyobj['keyAlias']=123

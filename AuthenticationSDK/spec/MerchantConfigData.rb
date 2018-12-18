@@ -10,8 +10,8 @@ class MerchantConfigData
         jsonFilePath='./PostRequestData.json'
         logSize=10485760
         enableLog=true
-        proxyAddress='userproxy.visa.com'
-        proxyPort=443
+        # proxyAddress='userproxy.com'
+        # proxyPort=''
         # HTTP Parameters
         merchantSecretKey='yBJxy6LjM2TmcPGu+GaJrHtkke25fPpUX+UY6/L/1tE='
         merchantKeyId='08c94330-f618-42a3-b09d-e1e43be5efda'
@@ -31,7 +31,7 @@ class MerchantConfigData
         configurationDictionary['jsonFilePath']=jsonFilePath
         configurationDictionary['logSize']=logSize
         configurationDictionary['enableLog']=enableLog
-        configurationDictionary['proxyPort']=proxyPort
+        # configurationDictionary['proxyPort']=proxyPort
         configurationDictionary['merchantsecretKey']=merchantSecretKey
         configurationDictionary['merchantKeyId']=merchantKeyId
         configurationDictionary['keysDirectory']=keysDirectory
