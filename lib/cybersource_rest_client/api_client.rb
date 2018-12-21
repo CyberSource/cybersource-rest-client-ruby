@@ -16,7 +16,6 @@ require 'logger'
 require 'tempfile'
 require 'typhoeus'
 require 'uri'
-require 'addressable/uri'
 
 module CyberSource
   class ApiClient
