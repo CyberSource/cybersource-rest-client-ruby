@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   {{^gemLicense}}
   s.license     = "Unlicense"
   {{/gemLicense}}
+  s.files       = Dir.glob("{lib,AuthenticationSDK}/**/*")
   s.required_ruby_version = "{{{gemRequiredRubyVersion}}}{{^gemRequiredRubyVersion}}>= 1.9{{/gemRequiredRubyVersion}}"
 
   s.add_runtime_dependency 'typhoeus', '~> 1.0', '>= 1.0.1'
