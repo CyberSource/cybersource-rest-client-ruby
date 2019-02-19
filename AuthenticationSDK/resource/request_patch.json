@@ -1,0 +1,25 @@
+{  
+    "card":{  
+       "expirationMonth":"09",
+       "expirationYear":"2022",
+       "type":"visa"
+    },
+    "billTo":{  
+       "firstName":"John",
+       "lastName":"Deo",
+       "company":"CyberSource",
+       "address1":"12 Main Street",
+       "address2":"20 My Street",
+       "locality":"Foster City",
+       "administrativeArea":"CA",
+       "postalCode":"90200",
+       "country":"US",
+       "email":"john.smith@example.com",
+       "phoneNumber":"555123456"
+    },
+    "instrumentIdentifier":{  
+       "card":{  
+          "number":"4111111111111111"
+       }
+    }
+ }

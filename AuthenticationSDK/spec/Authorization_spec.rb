@@ -30,7 +30,7 @@ describe Authorization do
         merchantconfig_obj=Merchantconfig.new cybsPropertyobj
         merchantconfig_obj.authenticationType='Http_signature'
         requestTarget='/pts/v2/payments'
-        requestJsonPath='../PostRequestData.json'
+        requestJsonPath='../.././resource/request.json'
         merchantconfig_obj.requestTarget=requestTarget
         url= Constants::HTTPS_URI_PREFIX + merchantconfig_obj.requestHost + merchantconfig_obj.requestTarget
         merchantconfig_obj.requestUrl=url 
@@ -46,7 +46,7 @@ describe Authorization do
         merchantconfig_obj=Merchantconfig.new cybsPropertyobj
         merchantconfig_obj.authenticationType='Http_signature'
         requestTarget='/reporting/v2/reportSubscriptions/TRRReport?organizationId=testrest'
-        requestJsonPath='../PutRequestData.json'
+        requestJsonPath='../.././resource/TRRReports.json'
         merchantconfig_obj.requestTarget=requestTarget
         url= Constants::HTTPS_URI_PREFIX + merchantconfig_obj.requestHost + merchantconfig_obj.requestTarget
         merchantconfig_obj.requestUrl=url 
@@ -67,6 +67,22 @@ describe Authorization do
         url= Constants::HTTPS_URI_PREFIX + merchantconfig_obj.requestHost + merchantconfig_obj.requestTarget
         merchantconfig_obj.requestUrl=url 
         merchantconfig_obj.requestType='DELETE'
+        log_obj = MerchantConfigData.new.setLog merchantconfig_obj.logDirectory, merchantconfig_obj.logFilename, merchantconfig_obj.logSize, merchantconfig_obj.enableLog
+        gmtdatetime=DateTime.now.httpdate
+        token = Authorization.new.getToken(merchantconfig_obj, gmtdatetime, log_obj)
+        expect(token).not_to be_empty
+    end
+    it 'validating HTTP patch Authorization' do
+        cybsPropertyobj=MerchantConfigData.new.merchantConfigProp         
+        merchantconfig_obj=Merchantconfig.new cybsPropertyobj
+        merchantconfig_obj.authenticationType='Http_signature'
+        requestTarget='/reporting/v2/reportSubscriptions/TRRReport?organizationId=testrest'
+        requestJsonPath='../.././resource/request_patch.json'
+        merchantconfig_obj.requestTarget=requestTarget
+        url= Constants::HTTPS_URI_PREFIX + merchantconfig_obj.requestHost + merchantconfig_obj.requestTarget
+        merchantconfig_obj.requestUrl=url 
+        merchantconfig_obj.requestType='PATCH'
+        merchantconfig_obj.requestJsonData=File.read(File.expand_path(requestJsonPath,__FILE__))
         log_obj = MerchantConfigData.new.setLog merchantconfig_obj.logDirectory, merchantconfig_obj.logFilename, merchantconfig_obj.logSize, merchantconfig_obj.enableLog
         gmtdatetime=DateTime.now.httpdate
         token = Authorization.new.getToken(merchantconfig_obj, gmtdatetime, log_obj)
@@ -94,7 +110,7 @@ describe Authorization do
         merchantconfig_obj.authenticationType='JWT'
         requestTarget='/pts/v2/payments'
         merchantconfig_obj.keysDirectory=File.expand_path(merchantconfig_obj.keysDirectory,__FILE__)
-        requestJsonPath='../PostRequestData.json'
+        requestJsonPath='../.././resource/request.json'
         merchantconfig_obj.requestTarget=requestTarget
         url= Constants::HTTPS_URI_PREFIX + merchantconfig_obj.requestHost + merchantconfig_obj.requestTarget
         merchantconfig_obj.requestUrl=url 
@@ -110,7 +126,7 @@ describe Authorization do
         merchantconfig_obj=Merchantconfig.new cybsPropertyobj
         merchantconfig_obj.authenticationType='JWT'
         requestTarget='/reporting/v2/reportSubscriptions/TRRReport?organizationId=testrest'
-        requestJsonPath='../PutRequestData.json'
+        requestJsonPath='../.././resource/TRRReports.json'
         merchantconfig_obj.keysDirectory=File.expand_path(merchantconfig_obj.keysDirectory,__FILE__)
         merchantconfig_obj.requestTarget=requestTarget
         url= Constants::HTTPS_URI_PREFIX + merchantconfig_obj.requestHost + merchantconfig_obj.requestTarget
@@ -137,12 +153,29 @@ describe Authorization do
         token = Authorization.new.getToken(merchantconfig_obj, gmtdatetime, log_obj)
         expect(token).not_to be_empty
     end
+    it 'validating JWT patch Authorization' do
+        cybsPropertyobj=MerchantConfigData.new.merchantConfigProp         
+        merchantconfig_obj=Merchantconfig.new cybsPropertyobj
+        merchantconfig_obj.authenticationType='JWT'
+        requestTarget='/reporting/v2/reportSubscriptions/TRRReport?organizationId=testrest'
+        requestJsonPath='../.././resource/request_patch.json'
+        merchantconfig_obj.keysDirectory=File.expand_path(merchantconfig_obj.keysDirectory,__FILE__)
+        merchantconfig_obj.requestTarget=requestTarget
+        url= Constants::HTTPS_URI_PREFIX + merchantconfig_obj.requestHost + merchantconfig_obj.requestTarget
+        merchantconfig_obj.requestUrl=url 
+        merchantconfig_obj.requestType='PATCH'
+        merchantconfig_obj.requestJsonData=File.read(File.expand_path(requestJsonPath,__FILE__))
+        log_obj = MerchantConfigData.new.setLog merchantconfig_obj.logDirectory, merchantconfig_obj.logFilename, merchantconfig_obj.logSize, merchantconfig_obj.enableLog
+        gmtdatetime=DateTime.now.httpdate
+        token = Authorization.new.getToken(merchantconfig_obj, gmtdatetime, log_obj)
+        expect(token).not_to be_empty
+    end
     it 'validating Auth type exception in Authorization' do
         cybsPropertyobj=MerchantConfigData.new.merchantConfigProp         
         merchantconfig_obj=Merchantconfig.new cybsPropertyobj
         merchantconfig_obj.authenticationType='Signature'
         requestTarget='/reporting/v2/reportSubscriptions/TRRReport?organizationId=testrest'
-        requestJsonPath='../PutRequestData.json'
+        requestJsonPath='../.././resource/TRRReports.json'
         merchantconfig_obj.requestTarget=requestTarget
         url= Constants::HTTPS_URI_PREFIX + merchantconfig_obj.requestHost + merchantconfig_obj.requestTarget
         merchantconfig_obj.requestUrl=url 
@@ -156,7 +189,7 @@ describe Authorization do
         merchantconfig_obj=Merchantconfig.new cybsPropertyobj
         merchantconfig_obj.authenticationType='Http_Signature'
         requestTarget='/reporting/v2/reportSubscriptions/TRRReport?organizationId=testrest'
-        requestJsonPath='../PutRequestData.json'
+        requestJsonPath='../.././resource/TRRReports.json'
         merchantconfig_obj.requestTarget=requestTarget
         url= Constants::HTTPS_URI_PREFIX + merchantconfig_obj.requestHost + merchantconfig_obj.requestTarget
         merchantconfig_obj.requestUrl=url 
@@ -189,7 +222,7 @@ describe Authorization do
         requestTarget='/pts/v2/payments'
         merchantconfig_obj.keysDirectory='../../../AuthenticationSDK/res'
         merchantconfig_obj.keysDirectory=File.expand_path(merchantconfig_obj.keysDirectory,__FILE__)
-        requestJsonPath='../PostRequestData.json'
+        requestJsonPath='../.././resource/request.json'
         merchantconfig_obj.requestTarget=requestTarget
         url= Constants::HTTPS_URI_PREFIX + merchantconfig_obj.requestHost + merchantconfig_obj.requestTarget
         merchantconfig_obj.requestUrl=url 
@@ -204,7 +237,7 @@ describe Authorization do
         merchantconfig_obj=Merchantconfig.new cybsPropertyobj
         merchantconfig_obj.authenticationType='JWT'
         requestTarget='/reporting/v2/reportSubscriptions/TRRReport?organizationId=testrest'
-        requestJsonPath='../PutRequestData.json'
+        requestJsonPath='../.././resource/TRRReports.json'
         merchantconfig_obj.keysDirectory='../../../AuthenticationSDK/res'
         merchantconfig_obj.keysDirectory=File.expand_path(merchantconfig_obj.keysDirectory,__FILE__)
         merchantconfig_obj.requestTarget=requestTarget
@@ -222,7 +255,7 @@ describe Authorization do
             merchantconfig_obj=Merchantconfig.new cybsPropertyobj
             merchantconfig_obj.authenticationType='http_signature'
             requestTarget='/reporting/v2/reportSubscriptions/TRRReport?organizationId=testrest'
-            requestJsonPath='../PutRequestData.json'
+            requestJsonPath='../.././resource/TRRReports.json'
             merchantconfig_obj.keysDirectory='../../../AuthenticationSDK/res'
             merchantconfig_obj.keysDirectory=File.expand_path(merchantconfig_obj.keysDirectory,__FILE__)
             merchantconfig_obj.requestTarget=requestTarget
@@ -241,7 +274,7 @@ describe Authorization do
             merchantconfig_obj=Merchantconfig.new cybsPropertyobj
             merchantconfig_obj.authenticationType='JWT'
             requestTarget='/reporting/v2/reportSubscriptions/TRRReport?organizationId=testrest'
-            requestJsonPath='../PutRequestData.json'
+            requestJsonPath='../.././resource/TRRReports.json'
             merchantconfig_obj.keysDirectory='../../../AuthenticationSDK/res'
             merchantconfig_obj.keysDirectory=File.expand_path(merchantconfig_obj.keysDirectory,__FILE__)
             merchantconfig_obj.requestTarget=requestTarget

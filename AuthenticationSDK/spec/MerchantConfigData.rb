@@ -5,9 +5,9 @@ class MerchantConfigData
         runEnvironment='cybersource.environment.sandbox'
         timeout=1000 #In Milliseconds
         authenticationType='JWT' #'HTTP_Signature'
-        logDirectory='../../../AuthenticationSDK/src/log'
+        logDirectory='../log'
         logDirectory=File.expand_path(logDirectory,__FILE__)
-        jsonFilePath='./PostRequestData.json'
+        jsonFilePath='../.././resource'
         logSize=10485760
         enableLog=true
         # proxyAddress='userproxy.com'
@@ -16,7 +16,7 @@ class MerchantConfigData
         merchantSecretKey='yBJxy6LjM2TmcPGu+GaJrHtkke25fPpUX+UY6/L/1tE='
         merchantKeyId='08c94330-f618-42a3-b09d-e1e43be5efda'
         # JWT Parameters
-        keysDirectory='../../../AuthenticationSDK/resource'
+        keysDirectory='../.././resource'
         keysDirectory=File.expand_path(keysDirectory,__FILE__)
         keyAlias='testrest'
         keyPass='testrest'

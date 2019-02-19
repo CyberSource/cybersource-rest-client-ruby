@@ -27,6 +27,11 @@ module CyberSource
     # @return [Hash]
     attr_accessor :default_headers
 
+    # Defines the headers to be used in HTTP requests of all API calls by default.
+    #
+    # @return [Hash]
+    attr_accessor :request_headers
+
     # Initializes the ApiClient
     # @option config [Configuration] Configuration for initializing the object, default to Configuration.default
     def initialize(config = Configuration.default)
@@ -36,6 +41,7 @@ module CyberSource
         'Content-Type' => 'application/json',
         'User-Agent' => @user_agent
       }
+      @request_headers = {}
     end
 
     def self.default
@@ -49,10 +55,11 @@ module CyberSource
     def call_api(http_method, path, opts = {})
       request = build_request(http_method, path, opts)
       response = request.run
+      masked_response_body = maskPayload(response.body)
       if @config.debugging
-        @config.logger.debug "HTTP response body ~BEGIN~\n#{response.body}\n~END~\n"
+        @config.logger.debug "HTTP response body ~BEGIN~\n#{masked_response_body}\n~END~\n"
       end
-
+      
       unless response.success?
         if response.timed_out?
           fail ApiError.new('Connection timed out')
@@ -61,10 +68,14 @@ module CyberSource
           fail ApiError.new(:code => 0,
                             :message => response.return_message)
         else
+          $log_obj.logger.info ("Response Code: #{response.code}")
+          $log_obj.logger.info ("Response Body: #{masked_response_body}")
+          $log_obj.logger.info ("Response Headers: #{response.headers}")
+          $log_obj.logger.info "END> ======================================"
           fail ApiError.new(:code => response.code,
                             :response_headers => response.headers,
                             :response_body => response.body),
-                response.status_message
+                response
         end
       end
 
@@ -73,7 +84,11 @@ module CyberSource
       else
         data = nil
       end
-      return response.body, response.code, response.headers
+      $log_obj.logger.info ("Response Code: #{response.code}")
+      $log_obj.logger.info ("Response Body: #{masked_response_body}")
+      $log_obj.logger.info ("Response Headers: #{response.headers}")
+      $log_obj.logger.info "END> ======================================"
+      return masked_response_body, response.code, response.headers
     end
 
     # Builds the HTTP request
@@ -95,6 +110,7 @@ module CyberSource
       headers = CallAuthenticationHeader(http_method, path, body_params, opts[:header_params], query_params)
       http_method = http_method.to_sym.downcase
       header_params = @default_headers.merge(headers || {})
+      @request_headers = header_params
       form_params = opts[:form_params] || {}
 
 
@@ -119,6 +135,8 @@ module CyberSource
 
       if [:post, :patch, :put, :delete].include?(http_method)
         req_body = build_request_body(header_params, form_params, opts[:body])
+        masked_request_body = maskPayload(req_body)
+        $log_obj.logger.info ("Request Body: #{masked_request_body}")
         req_opts.update :body => req_body
         if @config.debugging
           @config.logger.debug "HTTP request body param ~BEGIN~\n#{req_body}\n~END~\n"
@@ -134,6 +152,7 @@ module CyberSource
     require_relative '../../AuthenticationSDK/core/Merchantconfig.rb'
     $merchantconfig_obj = Merchantconfig.new(config)
     @config.host = $merchantconfig_obj.requestHost
+    $log_obj = Log.new $merchantconfig_obj.logDirectory, $merchantconfig_obj.logFilename, $merchantconfig_obj.logSize, $merchantconfig_obj.enableLog
   end
 	# Calling Authentication
     def CallAuthenticationHeader(http_method, path, body_params, header_params, query_params)
@@ -142,7 +161,7 @@ module CyberSource
       request_target = get_query_param(path, query_params)
       # Request Type. [Non-Editable]
       request_type = http_method.to_s
-      log_obj = Log.new $merchantconfig_obj.logDirectory, $merchantconfig_obj.logFilename, $merchantconfig_obj.logSize, $merchantconfig_obj.enableLog
+      # log_obj = Log.new $merchantconfig_obj.logDirectory, $merchantconfig_obj.logFilename, $merchantconfig_obj.logSize, $merchantconfig_obj.enableLog
       # Set Request Type into the merchant config object.
       $merchantconfig_obj.requestType = request_type
       # Set Request Target into the merchant config object.
@@ -155,8 +174,11 @@ module CyberSource
       $merchantconfig_obj.requestUrl = url
       # Calling APISDK, Apisdk.controller.
       gmtDateTime = DateTime.now.httpdate
-      token = Authorization.new.getToken($merchantconfig_obj, gmtDateTime, log_obj)
+      token = Authorization.new.getToken($merchantconfig_obj, gmtDateTime, $log_obj)
       # HTTP header 'Accept' (if needed)
+      $log_obj.logger.info("Authentication Type: #{$merchantconfig_obj.authenticationType.downcase}")
+      $log_obj.logger.info("Request Type: #{http_method}")
+      $log_obj.logger.info("Request URL: #{url}")
       if $merchantconfig_obj.authenticationType.upcase == Constants::AUTH_TYPE_HTTP
         # Appending headers for Get Connection
         header_params['v-c-merchant-id'] = $merchantconfig_obj.merchantId
@@ -164,7 +186,7 @@ module CyberSource
         header_params['Host'] = $merchantconfig_obj.requestHost
         header_params['Signature'] = token
         if request_type == Constants::POST_REQUEST_TYPE || request_type == Constants::PUT_REQUEST_TYPE || request_type == Constants::PATCH_REQUEST_TYPE
-          digest = DigestGeneration.new.generateDigest(body_params, log_obj)
+          digest = DigestGeneration.new.generateDigest(body_params, $log_obj)
           digest_payload = Constants::SHA256 + digest
           header_params['Digest'] = digest_payload
         end
@@ -174,7 +196,7 @@ module CyberSource
         header_params['Authorization'] = token
       end
       header_params.each do |key, value|
-        log_obj.logger.info("#{key} : #{value}")
+        $log_obj.logger.info("#{key} : #{value}")
       end
       return header_params
     end
@@ -186,6 +208,36 @@ module CyberSource
         request_target = @config.base_path + path
       end
       request_target
+    end
+    # Masking
+    def maskPayload(reqJson)
+      if !reqJson.to_s.empty?
+        res=""
+        jsonStr = JSON.parse(reqJson)
+        filter_parameters = ["country", "email", "cardNumber", "expirationDate", "cardCode"]
+        filter_parameters.each do |param|
+          res = iterate(jsonStr,param)
+        end
+        maskedData = JSON.generate(res)
+        return maskedData
+      end
+    rescue StandardError => err
+      return reqJson
+    end
+    
+    def iterate(reqJson,param)
+      reqJson.each do |key,value|
+        if key == param && value.is_a?(String)
+          value.replace "XXXXXXXX"
+        elsif value.is_a?(Hash)
+          iterate(value,param)
+        elsif value.is_a?(Array)
+          value.flatten.each {|x| iterate(x,param) if x.is_a?(Hash)}
+        end
+      end
+      return reqJson
+    rescue StandardError => err
+      return reqJson
     end
     # Check if the given MIME is a JSON MIME.
     # JSON MIME examples:

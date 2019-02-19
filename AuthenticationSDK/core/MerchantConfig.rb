@@ -56,23 +56,26 @@ class Merchantconfig
       @logFilename=@logFilename.to_s
     end
     @log_obj = Log.new @logDirectory,@logFilename,@logSize,@enableLog
-    @log_obj.logger.info('START> =======================================')
+    @log_obj.logger.info('START> ======================================')
     if !logmessage.to_s.empty?
       ApiException.new.apiwarning(logmessage,log_obj)
     end
     if @merchantId.to_s.empty?
-      err = raise StandardError.new(Constants::ERROR_PREFIX + Constants::MERCHANT_ID_NULL)
-      ApiException.new.apiexception(err,log_obj)
+      str = Constants::ERROR_PREFIX + Constants::MERCHANT_ID_NULL
+      ApiException.new.customerror(str,log_obj)
+      err = raise StandardError.new(str)
     elsif !@merchantId.instance_of? String
       @merchantId=@merchantId.to_s
     end
     if @authenticationType.to_s.empty?
-      err = raise StandardError.new(Constants::ERROR_PREFIX + Constants::AUTH_TYPE_MANDATORY)
-      ApiException.new.apiexception(err,log_obj) 
+      str = Constants::ERROR_PREFIX + Constants::AUTH_TYPE_MANDATORY
+      ApiException.new.customerror(str,log_obj)
+      err = raise StandardError.new(str)
     end
     if !@authenticationType.instance_of? String 
-      err = raise StandardError.new(Constants::ERROR_PREFIX+ Constants::AUTH_ERROR)
-      ApiException.new.apiexception(err,log_obj)
+      str = Constants::ERROR_PREFIX+ Constants::AUTH_ERROR
+      ApiException.new.customerror(str,log_obj)
+      err = raise StandardError.new(str)
     end
     if !@runEnvironment.to_s.empty?
       if !@runEnvironment.instance_of? String
@@ -85,8 +88,9 @@ class Merchantconfig
         @requestHost = @runEnvironment
       end
     elsif @runEnvironment.to_s.empty?
-      err = raise StandardError.new(Constants::ERROR_PREFIX + Constants::RUN_ENVIRONMENT)
-      ApiException.new.apiexception(err,log_obj)
+      str = Constants::ERROR_PREFIX + Constants::RUN_ENVIRONMENT
+      ApiException.new.customerror(str,log_obj)
+      err = raise StandardError.new(str)
     end
     if @authenticationType.upcase == Constants::AUTH_TYPE_JWT
       if @keyAlias.to_s.empty?
@@ -119,14 +123,16 @@ class Merchantconfig
     end
     if @authenticationType.upcase == Constants::AUTH_TYPE_HTTP
       if @merchantKeyId.to_s.empty?
-        err = raise StandardError.new(Constants::ERROR_PREFIX+ Constants::MERCHANT_KEY_ID_MANDATORY)
-        ApiException.new.apiexception(err,log_obj)
+        str = Constants::ERROR_PREFIX+ Constants::MERCHANT_KEY_ID_MANDATORY
+        ApiException.new.customerror(str,log_obj)
+        err = raise StandardError.new(str)
       elsif !@merchantKeyId.instance_of? String
         @merchantKeyId=@merchantKeyId.to_s
       end
       if @merchantSecretKey.to_s.empty?
-        err = raise StandardError.new(Constants::ERROR_PREFIX+ Constants::MERCHANT_SECRET_KEY_MANDATORY) 
-        ApiException.new.apiexception(err,log_obj)
+        str = Constants::ERROR_PREFIX+ Constants::MERCHANT_SECRET_KEY_MANDATORY 
+        ApiException.new.customerror(str,log_obj)
+        err = raise StandardError.new(str)
       elsif !@merchantSecretKey.instance_of? String
         @merchantSecretKey=@merchantSecretKey.to_s
       end

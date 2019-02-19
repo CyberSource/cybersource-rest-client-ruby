@@ -40,6 +40,7 @@ class GenerateJwtToken
   rescue StandardError => err
     if err.message.include? 'PKCS12_parse: mac verify failure'
       ApiException.new.customerror(Constants::ERROR_PREFIX + Constants::INCORRECT_KEY_PASS,log_obj)
+      puts 'Check log for more details.'
       exit!
     else
       ApiException.new.apiexception(err,log_obj)
