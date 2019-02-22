@@ -25,8 +25,8 @@ module {{moduleName}}
 {{#allParams}}{{^required}}    # @option opts [{{{dataType}}}] :{{paramName}} {{description}}{{#defaultValue}} (default to {{{.}}}){{/defaultValue}}
 {{/required}}{{/allParams}}    # @return [{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}nil{{/returnType}}]
     def {{operationId}}({{#allParams}}{{#required}}{{paramName}}, {{/required}}{{/allParams}}opts = {})
-      {{#returnType}}data, _status_code, _headers = {{/returnType}}{{operationId}}_with_http_info({{#allParams}}{{#required}}{{paramName}}, {{/required}}{{/allParams}}opts)
-      {{#returnType}}data{{/returnType}}{{^returnType}}nil{{/returnType}}
+      data, status_code, headers = {{operationId}}_with_http_info({{#allParams}}{{#required}}{{paramName}}, {{/required}}{{/allParams}}opts)
+      return data, status_code, headers
     end
 
     {{#summary}}
@@ -98,9 +98,9 @@ module {{moduleName}}
 
       {{/minimum}}
       {{#pattern}}
-      if @api_client.config.client_side_validation && {{^required}}!opts[:'{{{paramName}}}'].nil? && {{/required}}{{#required}}{{{paramName}}}{{/required}}{{^required}}opts[:'{{{paramName}}}']{{/required}} !~ Regexp.new({{{pattern}}})
-        fail ArgumentError, "invalid value for '{{#required}}{{{paramName}}}{{/required}}{{^required}}opts[:\"{{{paramName}}}\"]{{/required}}' when calling {{classname}}.{{operationId}}, must conform to the pattern {{{pattern}}}."
-      end
+      #if @api_client.config.client_side_validation && {{^required}}!opts[:'{{{paramName}}}'].nil? && {{/required}}{{#required}}{{{paramName}}}{{/required}}{{^required}}opts[:'{{{paramName}}}']{{/required}} !~ Regexp.new({{{pattern}}})
+        #fail ArgumentError, "invalid value for '{{#required}}{{{paramName}}}{{/required}}{{^required}}opts[:\"{{{paramName}}}\"]{{/required}}' when calling {{classname}}.{{operationId}}, must conform to the pattern {{{pattern}}}."
+      #end
 
       {{/pattern}}
       {{#maxItems}}
