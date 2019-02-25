@@ -29,9 +29,17 @@ powershell -Command "(Get-Content ..\lib\cybersource_rest_client\api\search_tran
  REM to change accept type header
 powershell -Command "(Get-Content ..\lib\cybersource_rest_client\api\secure_file_share_api.rb) | ForEach-Object { $_ -replace 'select_header_content_type\(\[''application/json;charset=utf-8', 'select_header_content_type([''*/*' } | Set-Content ..\lib\cybersource_rest_client\api\secure_file_share_api.rb"
 
+REM to rename long file name
+
+del ..\lib\cybersource_rest_client\models\ptsv2payments_merchant_initiated_transaction.rb
+del ..\lib\cybersource_rest_client\models\tmsv1instrumentidentifiers_merchant_initiated_transaction.rb
+del ..\docs\Ptsv2paymentsMerchantInitiatedTransaction.md
+del ..\docs\Tmsv1instrumentidentifiersMerchantInitiatedTransaction.md
+del ..\spec\models\ptsv2payments_merchant_initiated_transaction_spec.rb
+del ..\spec\models\tmsv1instrumentidentifiers_merchant_initiated_transaction_spec.rb
+
 powershell -Command " rename-item -Path ..\lib\cybersource_rest_client\models\ptsv2payments_processing_information_authorization_options_initiator_merchant_initiated_transaction.rb  -newname ptsv2payments_merchant_initiated_transaction.rb"
 
- REM to rename long file name
 powershell -Command " rename-item -Path ..\lib\cybersource_rest_client\models\tmsv1instrumentidentifiers_processing_information_authorization_options_initiator_merchant_initiated_transaction.rb  -newname tmsv1instrumentidentifiers_merchant_initiated_transaction.rb"
 
 powershell -Command " rename-item -Path ..\docs\Ptsv2paymentsProcessingInformationAuthorizationOptionsInitiatorMerchantInitiatedTransaction.md  -newname Ptsv2paymentsMerchantInitiatedTransaction.md"
@@ -50,5 +58,9 @@ powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-O
 cd ..\lib\cybersource_rest_client\api
 powershell -Command "&{$configFiles = Get-ChildItem . *.rb -rec;  foreach ($file in $configFiles){ (Get-Content $file.PSPath) | Foreach-Object { $_ -replace 'local_var_path = ''/', 'local_var_path = '''} | Set-Content $file.PSPath }}"
 
+cd %~dp0\..
+
+git checkout README.md
+git checkout cybersource_rest_client.gemspec
 
 pause
