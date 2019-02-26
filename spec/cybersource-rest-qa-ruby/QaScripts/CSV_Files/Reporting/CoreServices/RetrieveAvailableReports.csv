@@ -1,0 +1,4 @@
+testCaseId,sTime,eTime,tQueryType,message
+RAR_01,2018-10-02T00:00:00.0Z,2018-10-30T23:59:59.0Z,executedTime,Success
+RAR_02,2018-09-01T00:00:00.TZ,2018-09-05T23:59:59.0Z,executedTime,Fails due to invalid startTime
+RAR_03,2018-09-01T00:00:00.0Z,2018-09-05T23:59:59.TZ,executedTime,Fails due to invalid endTime

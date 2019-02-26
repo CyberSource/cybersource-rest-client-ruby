@@ -1,0 +1,4 @@
+testCaseId,paymentId,amount,message
+CARev_01,5507422897256771003004,102.21,Success
+CARev_02,5507423875116982403003,102,Fails due to mismatch amount
+CARev_03,1234567899874561231790,102.21,Fails due to invalid paymentId
