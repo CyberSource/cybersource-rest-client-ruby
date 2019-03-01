@@ -60,12 +60,6 @@ describe 'RequestBody' do
     end
   end
 
-  describe 'test attribute "report_frequency"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   describe 'test attribute "report_name"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -78,13 +72,13 @@ describe 'RequestBody' do
     end
   end
 
-  describe 'test attribute "start_time"' do
+  describe 'test attribute "report_start_time"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "start_day"' do
+  describe 'test attribute "report_end_time"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -102,7 +96,7 @@ describe 'RequestBody' do
     end
   end
 
-  describe 'test attribute "selected_merchant_group_name"' do
+  describe 'test attribute "group_name"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

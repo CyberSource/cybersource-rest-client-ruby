@@ -34,7 +34,7 @@ describe 'PurchaseAndRefundDetailsApi' do
 
   # unit tests for get_purchase_and_refund_details
   # Get Purchase and Refund details
-  # Purchase And Refund Details Description
+  # Download the Purchase and Refund Details report. This report report includes all purchases and refund transactions, as well as all activities related to transactions resulting in an adjustment to the net proceeds. 
   # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ssXXX 
   # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ssXXX 
   # @param [Hash] opts the optional parameters
@@ -44,7 +44,7 @@ describe 'PurchaseAndRefundDetailsApi' do
   # @option opts [String] :group_name Valid CyberSource Group Name.User can define groups using CBAPI and Group Management Module in EBC2. Groups are collection of organizationIds
   # @option opts [Integer] :offset Offset of the Purchase and Refund Results.
   # @option opts [Integer] :limit Results count per page. Range(1-2000)
-  # @return [nil]
+  # @return [ReportingV3PurchaseRefundDetailsGet200Response]
   describe 'get_purchase_and_refund_details test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

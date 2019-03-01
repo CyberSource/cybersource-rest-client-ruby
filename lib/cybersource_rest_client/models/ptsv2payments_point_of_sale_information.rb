@@ -17,14 +17,11 @@ module CyberSource
     # Identifier for the terminal at your retail location. You can define this value yourself, but consult the processor for requirements.  For Payouts: This field is applicable for CtV. 
     attr_accessor :terminal_id
 
-    # Description of this field is not available.
+    # Terminal serial number assigned by the hardware manufacturer. This value is provided by the client software that is installed on the POS terminal.  CyberSource does not forward this value to the processor. Instead, the value is forwarded to the CyberSource reporting functionality.  This field is supported only on American Express Direct, FDC Nashville Global, and SIX. 
     attr_accessor :terminal_serial_number
 
     # Identifier for an alternate terminal at your retail location. You define the value for this field.  This field is supported only for MasterCard transactions on FDC Nashville Global. Use the _terminalID_ field to identify the main terminal at your retail location. If your retail location has multiple terminals, use this _alternateTerminalID_ field to identify the terminal used for the transaction.  This field is a pass-through, which means that CyberSource does not check the value or modify the value in any way before sending it to the processor. 
     attr_accessor :lane_number
-
-    # Indicates whether the card is present at the time of the transaction. Possible values:   - **true**: Card is present.  - **false**: Card is not present. 
-    attr_accessor :card_present
 
     # Type of cardholder-activated terminal. Possible values:   - 1: Automated dispensing machine  - 2: Self-service terminal  - 3: Limited amount terminal  - 4: In-flight commerce (IFC) terminal  - 5: Radio frequency device  - 6: Mobile acceptance terminal  - 7: Electronic cash register  - 8: E-commerce device at your location  - 9: Terminal or cash register that uses a dialup connection to connect to the transaction processing network  * Applicable only for CTV for Payouts. 
     attr_accessor :cat_level
@@ -38,7 +35,7 @@ module CyberSource
     # A one-digit code that identifies the capability of terminal to capture PINs.  This code does not necessarily mean that a PIN was entered or is included in this message.  For Payouts: This field is applicable for CtV. 
     attr_accessor :pin_entry_capability
 
-    # Operating environment. Possible values:   - 0: No terminal used or unknown environment.  - 1: On merchant premises, attended.  - 2: On merchant premises, unattended, or cardholder terminal. Examples: oil, kiosks, self-checkout, home       computer, mobile telephone, personal digital assistant (PDA). Cardholder terminal is supported only for       MasterCard transactions on **CyberSource through VisaNet**.  - 3: Off merchant premises, attended. Examples: portable POS devices at trade shows, at service calls, or in       taxis.  - 4: Off merchant premises, unattended, or cardholder terminal. Examples: vending machines, home computer,       mobile telephone, PDA. Cardholder terminal is supported only for MasterCard transactions on **CyberSource       through VisaNet**.  - 5: On premises of cardholder, unattended.  - 9: Unknown delivery mode.  - S: Electronic delivery of product. Examples: music, software, or eTickets that are downloaded over the       internet.  - T: Physical delivery of product. Examples: music or software that is delivered by mail or by a courier.  This field is supported only for **American Express Direct** and **CyberSource through VisaNet**.  **CyberSource through VisaNet**  For MasterCard transactions, the only valid values are 2 and 4. 
+    # Operating environment. Possible values:   - 0: No terminal used or unknown environment.  - 1: On merchant premises, attended.  - 2: On merchant premises, unattended, or cardholder terminal. Examples: oil, kiosks, self-checkout, home       computer, mobile telephone, personal digital assistant (PDA). Cardholder terminal is supported only for       MasterCard transactions on **CyberSource through VisaNet**.  - 3: Off merchant premises, attended. Examples: portable POS devices at trade shows, at service calls, or in       taxis.  - 4: Off merchant premises, unattended, or cardholder terminal. Examples: vending machines, home computer,       mobile telephone, PDA. Cardholder terminal is supported only for MasterCard transactions on **CyberSource       through VisaNet**.  - 5: On premises of cardholder, unattended.  - 9: Unknown delivery mode.  - S: Electronic delivery of product. Examples: music, software, or eTickets that are downloaded over the       internet.  - T: Physical delivery of product. Examples: music or software that is delivered by mail or by a courier.  This field is supported only for **American Express Direct** and **CyberSource through VisaNet**.  **CyberSource through VisaNet**\\ For MasterCard transactions, the only valid values are 2 and 4. 
     attr_accessor :operating_environment
 
     attr_accessor :emv
@@ -49,13 +46,43 @@ module CyberSource
     # Card’s track 1 and 2 data. For all processors except FDMS Nashville, this value consists of one of the following:   - Track 1 data  - Track 2 data  - Data for both tracks 1 and 2  For FDMS Nashville, this value consists of one of the following:  - Track 1 data  - Data for both tracks 1 and 2  Example: %B4111111111111111^SMITH/JOHN ^1612101976110000868000000?;4111111111111111=16121019761186800000? 
     attr_accessor :track_data
 
+    # When connectivity is unavailable, the client software that is installed on the POS terminal can store a transaction in its memory and send it for authorization when connectivity is restored. This value is provided by the client software that is installed on the POS terminal.  CyberSource does not forward this value to the processor. Instead, the value is forwarded to the CyberSource reporting functionality.  Possible values: - Y: Transaction was stored and then forwarded. - N (default): Transaction was not stored and then forwarded.  This field is supported only on American Express Direct, FDC Nashville Global, and SIX. 
+    attr_accessor :store_and_forward_indicator
+
+    attr_accessor :cardholder_verification_method
+
+    attr_accessor :terminal_input_capability
+
+    # Indicates whether the terminal can capture the card.  Possible values: - 1: Terminal can capture card. - 0: Terminal cannot capture card.  This field is supported only on American Express Direct. 
+    attr_accessor :terminal_card_capture_capability
+
+    # Indicates whether the terminal can print or display messages.  Possible values: - 1: Neither - 2: Print only - 3: Display only - 4: Print and display  This field is supported only on American Express Direct. 
+    attr_accessor :terminal_output_capability
+
+    # Maximum PIN length that the terminal can capture.  Possible values: -  0: No PIN capture capability -  1: PIN capture capability unknown -  4: Four characters -  5: Five characters -  6: Six characters -  7: Seven characters -  8: Eight characters -  9: Nine characters - 10: Ten characters - 11: Eleven characters - 12: Twelve characters  This field is supported only on American Express Direct and SIX. 
+    attr_accessor :terminal_pin_capability
+
+    # Value created by the client software that uniquely identifies the POS device. This value is provided by the client software that is installed on the POS terminal.  CyberSource does not forward this value to the processor. Instead, the value is forwarded to the CyberSource reporting functionality.  This field is supported only on American Express Direct, FDC Nashville Global, and SIX. 
+    attr_accessor :device_id
+
+    # Format that is used to encode the PIN block. This value is provided by the client software that is installed on the POS terminal.  Possible values: - 0: ISO 9564 format 0 - 1: ISO 9564 format 1 - 2: ISO 9564 format 2 - 3: ISO 9564 format 3  In the Credit Card Guide for the auth service: This field is supported only on American Express Direct, FDC Nashville Global, and SIX. 
+    attr_accessor :pin_block_encoding_format
+
+    # Encrypted PIN.  This value is provided by the client software that is installed on the POS terminal.  In the Credit Card Guide for the auth service: This field is supported only on American Express Direct, FDC Nashville Global, and SIX. 
+    attr_accessor :encrypted_pin
+
+    # This is a combination of the device's unique identifier and a transaction counter that is used in the process of decrypting the encrypted PIN.  For all terminals that are using derived unique key per transaction (DUKPT) encryption, this is generated as a single number within the terminal. 
+    attr_accessor :encrypted_key_serial_number
+
+    # Version of the software installed on the POS terminal. This value is provided by the client software that is installed on the POS terminal.  CyberSource does not forward this value to the processor. Instead, the value is forwarded to the CyberSource reporting functionality.  This field is supported only on American Express Direct, FDC Nashville Global, and SIX. 
+    attr_accessor :partner_sdk_version
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'terminal_id' => :'terminalId',
         :'terminal_serial_number' => :'terminalSerialNumber',
         :'lane_number' => :'laneNumber',
-        :'card_present' => :'cardPresent',
         :'cat_level' => :'catLevel',
         :'entry_mode' => :'entryMode',
         :'terminal_capability' => :'terminalCapability',
@@ -63,7 +90,18 @@ module CyberSource
         :'operating_environment' => :'operatingEnvironment',
         :'emv' => :'emv',
         :'amex_capn_data' => :'amexCapnData',
-        :'track_data' => :'trackData'
+        :'track_data' => :'trackData',
+        :'store_and_forward_indicator' => :'storeAndForwardIndicator',
+        :'cardholder_verification_method' => :'cardholderVerificationMethod',
+        :'terminal_input_capability' => :'terminalInputCapability',
+        :'terminal_card_capture_capability' => :'terminalCardCaptureCapability',
+        :'terminal_output_capability' => :'terminalOutputCapability',
+        :'terminal_pin_capability' => :'terminalPinCapability',
+        :'device_id' => :'deviceId',
+        :'pin_block_encoding_format' => :'pinBlockEncodingFormat',
+        :'encrypted_pin' => :'encryptedPin',
+        :'encrypted_key_serial_number' => :'encryptedKeySerialNumber',
+        :'partner_sdk_version' => :'partnerSdkVersion'
       }
     end
 
@@ -73,7 +111,6 @@ module CyberSource
         :'terminal_id' => :'String',
         :'terminal_serial_number' => :'String',
         :'lane_number' => :'String',
-        :'card_present' => :'BOOLEAN',
         :'cat_level' => :'Integer',
         :'entry_mode' => :'String',
         :'terminal_capability' => :'Integer',
@@ -81,7 +118,18 @@ module CyberSource
         :'operating_environment' => :'String',
         :'emv' => :'Ptsv2paymentsPointOfSaleInformationEmv',
         :'amex_capn_data' => :'String',
-        :'track_data' => :'String'
+        :'track_data' => :'String',
+        :'store_and_forward_indicator' => :'String',
+        :'cardholder_verification_method' => :'Array<String>',
+        :'terminal_input_capability' => :'Array<String>',
+        :'terminal_card_capture_capability' => :'String',
+        :'terminal_output_capability' => :'String',
+        :'terminal_pin_capability' => :'Integer',
+        :'device_id' => :'String',
+        :'pin_block_encoding_format' => :'Integer',
+        :'encrypted_pin' => :'String',
+        :'encrypted_key_serial_number' => :'String',
+        :'partner_sdk_version' => :'String'
       }
     end
 
@@ -103,10 +151,6 @@ module CyberSource
 
       if attributes.has_key?(:'laneNumber')
         self.lane_number = attributes[:'laneNumber']
-      end
-
-      if attributes.has_key?(:'cardPresent')
-        self.card_present = attributes[:'cardPresent']
       end
 
       if attributes.has_key?(:'catLevel')
@@ -140,6 +184,54 @@ module CyberSource
       if attributes.has_key?(:'trackData')
         self.track_data = attributes[:'trackData']
       end
+
+      if attributes.has_key?(:'storeAndForwardIndicator')
+        self.store_and_forward_indicator = attributes[:'storeAndForwardIndicator']
+      end
+
+      if attributes.has_key?(:'cardholderVerificationMethod')
+        if (value = attributes[:'cardholderVerificationMethod']).is_a?(Array)
+          self.cardholder_verification_method = value
+        end
+      end
+
+      if attributes.has_key?(:'terminalInputCapability')
+        if (value = attributes[:'terminalInputCapability']).is_a?(Array)
+          self.terminal_input_capability = value
+        end
+      end
+
+      if attributes.has_key?(:'terminalCardCaptureCapability')
+        self.terminal_card_capture_capability = attributes[:'terminalCardCaptureCapability']
+      end
+
+      if attributes.has_key?(:'terminalOutputCapability')
+        self.terminal_output_capability = attributes[:'terminalOutputCapability']
+      end
+
+      if attributes.has_key?(:'terminalPinCapability')
+        self.terminal_pin_capability = attributes[:'terminalPinCapability']
+      end
+
+      if attributes.has_key?(:'deviceId')
+        self.device_id = attributes[:'deviceId']
+      end
+
+      if attributes.has_key?(:'pinBlockEncodingFormat')
+        self.pin_block_encoding_format = attributes[:'pinBlockEncodingFormat']
+      end
+
+      if attributes.has_key?(:'encryptedPin')
+        self.encrypted_pin = attributes[:'encryptedPin']
+      end
+
+      if attributes.has_key?(:'encryptedKeySerialNumber')
+        self.encrypted_key_serial_number = attributes[:'encryptedKeySerialNumber']
+      end
+
+      if attributes.has_key?(:'partnerSdkVersion')
+        self.partner_sdk_version = attributes[:'partnerSdkVersion']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -148,6 +240,10 @@ module CyberSource
       invalid_properties = Array.new
       if !@terminal_id.nil? && @terminal_id.to_s.length > 8
         invalid_properties.push('invalid value for "terminal_id", the character length must be smaller than or equal to 8.')
+      end
+
+      if !@terminal_serial_number.nil? && @terminal_serial_number.to_s.length > 32
+        invalid_properties.push('invalid value for "terminal_serial_number", the character length must be smaller than or equal to 32.')
       end
 
       if !@lane_number.nil? && @lane_number.to_s.length > 8
@@ -190,6 +286,38 @@ module CyberSource
         invalid_properties.push('invalid value for "amex_capn_data", the character length must be smaller than or equal to 12.')
       end
 
+      if !@store_and_forward_indicator.nil? && @store_and_forward_indicator.to_s.length > 1
+        invalid_properties.push('invalid value for "store_and_forward_indicator", the character length must be smaller than or equal to 1.')
+      end
+
+      if !@terminal_card_capture_capability.nil? && @terminal_card_capture_capability.to_s.length > 1
+        invalid_properties.push('invalid value for "terminal_card_capture_capability", the character length must be smaller than or equal to 1.')
+      end
+
+      if !@terminal_output_capability.nil? && @terminal_output_capability.to_s.length > 1
+        invalid_properties.push('invalid value for "terminal_output_capability", the character length must be smaller than or equal to 1.')
+      end
+
+      if !@device_id.nil? && @device_id.to_s.length > 32
+        invalid_properties.push('invalid value for "device_id", the character length must be smaller than or equal to 32.')
+      end
+
+      if !@pin_block_encoding_format.nil? && @pin_block_encoding_format > 9
+        invalid_properties.push('invalid value for "pin_block_encoding_format", must be smaller than or equal to 9.')
+      end
+
+      if !@encrypted_pin.nil? && @encrypted_pin.to_s.length > 16
+        invalid_properties.push('invalid value for "encrypted_pin", the character length must be smaller than or equal to 16.')
+      end
+
+      if !@encrypted_key_serial_number.nil? && @encrypted_key_serial_number.to_s.length > 20
+        invalid_properties.push('invalid value for "encrypted_key_serial_number", the character length must be smaller than or equal to 20.')
+      end
+
+      if !@partner_sdk_version.nil? && @partner_sdk_version.to_s.length > 32
+        invalid_properties.push('invalid value for "partner_sdk_version", the character length must be smaller than or equal to 32.')
+      end
+
       invalid_properties
     end
 
@@ -197,6 +325,7 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if !@terminal_id.nil? && @terminal_id.to_s.length > 8
+      return false if !@terminal_serial_number.nil? && @terminal_serial_number.to_s.length > 32
       return false if !@lane_number.nil? && @lane_number.to_s.length > 8
       return false if !@cat_level.nil? && @cat_level > 9
       return false if !@cat_level.nil? && @cat_level < 1
@@ -207,6 +336,14 @@ module CyberSource
       return false if !@pin_entry_capability.nil? && @pin_entry_capability < 1
       return false if !@operating_environment.nil? && @operating_environment.to_s.length > 1
       return false if !@amex_capn_data.nil? && @amex_capn_data.to_s.length > 12
+      return false if !@store_and_forward_indicator.nil? && @store_and_forward_indicator.to_s.length > 1
+      return false if !@terminal_card_capture_capability.nil? && @terminal_card_capture_capability.to_s.length > 1
+      return false if !@terminal_output_capability.nil? && @terminal_output_capability.to_s.length > 1
+      return false if !@device_id.nil? && @device_id.to_s.length > 32
+      return false if !@pin_block_encoding_format.nil? && @pin_block_encoding_format > 9
+      return false if !@encrypted_pin.nil? && @encrypted_pin.to_s.length > 16
+      return false if !@encrypted_key_serial_number.nil? && @encrypted_key_serial_number.to_s.length > 20
+      return false if !@partner_sdk_version.nil? && @partner_sdk_version.to_s.length > 32
       true
     end
 
@@ -218,6 +355,16 @@ module CyberSource
       end
 
       @terminal_id = terminal_id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] terminal_serial_number Value to be assigned
+    def terminal_serial_number=(terminal_serial_number)
+      if !terminal_serial_number.nil? && terminal_serial_number.to_s.length > 32
+        fail ArgumentError, 'invalid value for "terminal_serial_number", the character length must be smaller than or equal to 32.'
+      end
+
+      @terminal_serial_number = terminal_serial_number
     end
 
     # Custom attribute writer method with validation
@@ -302,6 +449,86 @@ module CyberSource
       @amex_capn_data = amex_capn_data
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] store_and_forward_indicator Value to be assigned
+    def store_and_forward_indicator=(store_and_forward_indicator)
+      if !store_and_forward_indicator.nil? && store_and_forward_indicator.to_s.length > 1
+        fail ArgumentError, 'invalid value for "store_and_forward_indicator", the character length must be smaller than or equal to 1.'
+      end
+
+      @store_and_forward_indicator = store_and_forward_indicator
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] terminal_card_capture_capability Value to be assigned
+    def terminal_card_capture_capability=(terminal_card_capture_capability)
+      if !terminal_card_capture_capability.nil? && terminal_card_capture_capability.to_s.length > 1
+        fail ArgumentError, 'invalid value for "terminal_card_capture_capability", the character length must be smaller than or equal to 1.'
+      end
+
+      @terminal_card_capture_capability = terminal_card_capture_capability
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] terminal_output_capability Value to be assigned
+    def terminal_output_capability=(terminal_output_capability)
+      if !terminal_output_capability.nil? && terminal_output_capability.to_s.length > 1
+        fail ArgumentError, 'invalid value for "terminal_output_capability", the character length must be smaller than or equal to 1.'
+      end
+
+      @terminal_output_capability = terminal_output_capability
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] device_id Value to be assigned
+    def device_id=(device_id)
+      if !device_id.nil? && device_id.to_s.length > 32
+        fail ArgumentError, 'invalid value for "device_id", the character length must be smaller than or equal to 32.'
+      end
+
+      @device_id = device_id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] pin_block_encoding_format Value to be assigned
+    def pin_block_encoding_format=(pin_block_encoding_format)
+      if !pin_block_encoding_format.nil? && pin_block_encoding_format > 9
+        fail ArgumentError, 'invalid value for "pin_block_encoding_format", must be smaller than or equal to 9.'
+      end
+
+      @pin_block_encoding_format = pin_block_encoding_format
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] encrypted_pin Value to be assigned
+    def encrypted_pin=(encrypted_pin)
+      if !encrypted_pin.nil? && encrypted_pin.to_s.length > 16
+        fail ArgumentError, 'invalid value for "encrypted_pin", the character length must be smaller than or equal to 16.'
+      end
+
+      @encrypted_pin = encrypted_pin
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] encrypted_key_serial_number Value to be assigned
+    def encrypted_key_serial_number=(encrypted_key_serial_number)
+      if !encrypted_key_serial_number.nil? && encrypted_key_serial_number.to_s.length > 20
+        fail ArgumentError, 'invalid value for "encrypted_key_serial_number", the character length must be smaller than or equal to 20.'
+      end
+
+      @encrypted_key_serial_number = encrypted_key_serial_number
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] partner_sdk_version Value to be assigned
+    def partner_sdk_version=(partner_sdk_version)
+      if !partner_sdk_version.nil? && partner_sdk_version.to_s.length > 32
+        fail ArgumentError, 'invalid value for "partner_sdk_version", the character length must be smaller than or equal to 32.'
+      end
+
+      @partner_sdk_version = partner_sdk_version
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -310,7 +537,6 @@ module CyberSource
           terminal_id == o.terminal_id &&
           terminal_serial_number == o.terminal_serial_number &&
           lane_number == o.lane_number &&
-          card_present == o.card_present &&
           cat_level == o.cat_level &&
           entry_mode == o.entry_mode &&
           terminal_capability == o.terminal_capability &&
@@ -318,7 +544,18 @@ module CyberSource
           operating_environment == o.operating_environment &&
           emv == o.emv &&
           amex_capn_data == o.amex_capn_data &&
-          track_data == o.track_data
+          track_data == o.track_data &&
+          store_and_forward_indicator == o.store_and_forward_indicator &&
+          cardholder_verification_method == o.cardholder_verification_method &&
+          terminal_input_capability == o.terminal_input_capability &&
+          terminal_card_capture_capability == o.terminal_card_capture_capability &&
+          terminal_output_capability == o.terminal_output_capability &&
+          terminal_pin_capability == o.terminal_pin_capability &&
+          device_id == o.device_id &&
+          pin_block_encoding_format == o.pin_block_encoding_format &&
+          encrypted_pin == o.encrypted_pin &&
+          encrypted_key_serial_number == o.encrypted_key_serial_number &&
+          partner_sdk_version == o.partner_sdk_version
     end
 
     # @see the `==` method
@@ -330,7 +567,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [terminal_id, terminal_serial_number, lane_number, card_present, cat_level, entry_mode, terminal_capability, pin_entry_capability, operating_environment, emv, amex_capn_data, track_data].hash
+      [terminal_id, terminal_serial_number, lane_number, cat_level, entry_mode, terminal_capability, pin_entry_capability, operating_environment, emv, amex_capn_data, track_data, store_and_forward_indicator, cardholder_verification_method, terminal_input_capability, terminal_card_capture_capability, terminal_output_capability, terminal_pin_capability, device_id, pin_block_encoding_format, encrypted_pin, encrypted_key_serial_number, partner_sdk_version].hash
     end
 
     # Builds the object from hash

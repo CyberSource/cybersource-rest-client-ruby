@@ -14,29 +14,36 @@ require 'date'
 
 module CyberSource
   class RequestBody
+    # Valid CyberSource Organization Id
     attr_accessor :organization_id
 
     attr_accessor :report_definition_name
 
+    # List of fields which needs to get included in a report
     attr_accessor :report_fields
 
+    #  Format of the report
     attr_accessor :report_mime_type
 
-    attr_accessor :report_frequency
-
+    # Name of the report
     attr_accessor :report_name
 
+    # Timezone of the report
     attr_accessor :timezone
 
-    attr_accessor :start_time
+    # Start time of the report
+    attr_accessor :report_start_time
 
-    attr_accessor :start_day
+    # End time of the report
+    attr_accessor :report_end_time
 
+    # List of filters to apply
     attr_accessor :report_filters
 
     attr_accessor :report_preferences
 
-    attr_accessor :selected_merchant_group_name
+    # Specifies the group name
+    attr_accessor :group_name
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -67,14 +74,13 @@ module CyberSource
         :'report_definition_name' => :'reportDefinitionName',
         :'report_fields' => :'reportFields',
         :'report_mime_type' => :'reportMimeType',
-        :'report_frequency' => :'reportFrequency',
         :'report_name' => :'reportName',
         :'timezone' => :'timezone',
-        :'start_time' => :'startTime',
-        :'start_day' => :'startDay',
+        :'report_start_time' => :'reportStartTime',
+        :'report_end_time' => :'reportEndTime',
         :'report_filters' => :'reportFilters',
         :'report_preferences' => :'reportPreferences',
-        :'selected_merchant_group_name' => :'selectedMerchantGroupName'
+        :'group_name' => :'groupName'
       }
     end
 
@@ -85,14 +91,13 @@ module CyberSource
         :'report_definition_name' => :'String',
         :'report_fields' => :'Array<String>',
         :'report_mime_type' => :'String',
-        :'report_frequency' => :'String',
         :'report_name' => :'String',
         :'timezone' => :'String',
-        :'start_time' => :'DateTime',
-        :'start_day' => :'Integer',
+        :'report_start_time' => :'DateTime',
+        :'report_end_time' => :'DateTime',
         :'report_filters' => :'Hash<String, Array<String>>',
-        :'report_preferences' => :'ReportingV3ReportSubscriptionsGet200ResponseReportPreferences',
-        :'selected_merchant_group_name' => :'String'
+        :'report_preferences' => :'Reportingv3reportsReportPreferences',
+        :'group_name' => :'String'
       }
     end
 
@@ -122,10 +127,6 @@ module CyberSource
         self.report_mime_type = attributes[:'reportMimeType']
       end
 
-      if attributes.has_key?(:'reportFrequency')
-        self.report_frequency = attributes[:'reportFrequency']
-      end
-
       if attributes.has_key?(:'reportName')
         self.report_name = attributes[:'reportName']
       end
@@ -134,12 +135,12 @@ module CyberSource
         self.timezone = attributes[:'timezone']
       end
 
-      if attributes.has_key?(:'startTime')
-        self.start_time = attributes[:'startTime']
+      if attributes.has_key?(:'reportStartTime')
+        self.report_start_time = attributes[:'reportStartTime']
       end
 
-      if attributes.has_key?(:'startDay')
-        self.start_day = attributes[:'startDay']
+      if attributes.has_key?(:'reportEndTime')
+        self.report_end_time = attributes[:'reportEndTime']
       end
 
       if attributes.has_key?(:'reportFilters')
@@ -152,8 +153,8 @@ module CyberSource
         self.report_preferences = attributes[:'reportPreferences']
       end
 
-      if attributes.has_key?(:'selectedMerchantGroupName')
-        self.selected_merchant_group_name = attributes[:'selectedMerchantGroupName']
+      if attributes.has_key?(:'groupName')
+        self.group_name = attributes[:'groupName']
       end
     end
 
@@ -161,49 +162,37 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @report_definition_name.nil?
-        invalid_properties.push('invalid value for "report_definition_name", report_definition_name cannot be nil.')
-      end
+      #if !@organization_id.nil? && @organization_id !~ Regexp.new(/[a-zA-Z0-9-_]+/)
+        #invalid_properties.push('invalid value for "organization_id", must conform to the pattern /[a-zA-Z0-9-_]+/.')
+      #end
 
-      if @report_definition_name.to_s.length > 80
+      if !@report_definition_name.nil? && @report_definition_name.to_s.length > 80
         invalid_properties.push('invalid value for "report_definition_name", the character length must be smaller than or equal to 80.')
       end
 
-      if @report_definition_name.to_s.length < 1
+      if !@report_definition_name.nil? && @report_definition_name.to_s.length < 1
         invalid_properties.push('invalid value for "report_definition_name", the character length must be great than or equal to 1.')
       end
 
-      if @report_definition_name !~ Regexp.new(/[a-zA-Z0-9-]+/)
-        invalid_properties.push('invalid value for "report_definition_name", must conform to the pattern /[a-zA-Z0-9-]+/.')
-      end
+      #if !@report_definition_name.nil? && @report_definition_name !~ Regexp.new(/[a-zA-Z0-9-]+/)
+        #invalid_properties.push('invalid value for "report_definition_name", must conform to the pattern /[a-zA-Z0-9-]+/.')
+      #end
 
-      if @report_fields.nil?
-        invalid_properties.push('invalid value for "report_fields", report_fields cannot be nil.')
-      end
-
-      if @report_name.nil?
-        invalid_properties.push('invalid value for "report_name", report_name cannot be nil.')
-      end
-
-      if @report_name.to_s.length > 128
+      if !@report_name.nil? && @report_name.to_s.length > 128
         invalid_properties.push('invalid value for "report_name", the character length must be smaller than or equal to 128.')
       end
 
-      if @report_name.to_s.length < 1
+      if !@report_name.nil? && @report_name.to_s.length < 1
         invalid_properties.push('invalid value for "report_name", the character length must be great than or equal to 1.')
       end
 
-      if !@start_day.nil? && @start_day > 7
-        invalid_properties.push('invalid value for "start_day", must be smaller than or equal to 7.')
-      end
+      #if !@report_name.nil? && @report_name !~ Regexp.new(/[a-zA-Z0-9-_ ]+/)
+        #invalid_properties.push('invalid value for "report_name", must conform to the pattern /[a-zA-Z0-9-_ ]+/.')
+      #end
 
-      if !@start_day.nil? && @start_day < 1
-        invalid_properties.push('invalid value for "start_day", must be greater than or equal to 1.')
-      end
-
-      if !@selected_merchant_group_name.nil? && @selected_merchant_group_name !~ Regexp.new(/[0-9]*/)
-        invalid_properties.push('invalid value for "selected_merchant_group_name", must conform to the pattern /[0-9]*/.')
-      end
+      #if !@group_name.nil? && @group_name !~ Regexp.new(/[0-9]*/)
+        #invalid_properties.push('invalid value for "group_name", must conform to the pattern /[0-9]*/.')
+      #end
 
       invalid_properties
     end
@@ -211,47 +200,43 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      # return false if !@organization_id.nil? && @organization_id !~ Regexp.new(/[a-zA-Z0-9-_]+/)
-      return false if @report_definition_name.nil?
-      return false if @report_definition_name.to_s.length > 80
-      return false if @report_definition_name.to_s.length < 1
-      return false if @report_definition_name !~ Regexp.new(/[a-zA-Z0-9-]+/)
-      return false if @report_fields.nil?
+      #return false if !@organization_id.nil? && @organization_id !~ Regexp.new(/[a-zA-Z0-9-_]+/)
+      return false if !@report_definition_name.nil? && @report_definition_name.to_s.length > 80
+      return false if !@report_definition_name.nil? && @report_definition_name.to_s.length < 1
+      #return false if !@report_definition_name.nil? && @report_definition_name !~ Regexp.new(/[a-zA-Z0-9-]+/)
       report_mime_type_validator = EnumAttributeValidator.new('String', ['application/xml', 'text/csv'])
       return false unless report_mime_type_validator.valid?(@report_mime_type)
-      return false if @report_name.nil?
-      return false if @report_name.to_s.length > 128
-      return false if @report_name.to_s.length < 1
-      return false if !@start_day.nil? && @start_day > 7
-      return false if !@start_day.nil? && @start_day < 1
-      return false if !@selected_merchant_group_name.nil? && @selected_merchant_group_name !~ Regexp.new(/[0-9]*/)
+      return false if !@report_name.nil? && @report_name.to_s.length > 128
+      return false if !@report_name.nil? && @report_name.to_s.length < 1
+      #return false if !@report_name.nil? && @report_name !~ Regexp.new(/[a-zA-Z0-9-_ ]+/)
+      #return false if !@group_name.nil? && @group_name !~ Regexp.new(/[0-9]*/)
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] organization_id Value to be assigned
     def organization_id=(organization_id)
+      #if !organization_id.nil? && organization_id !~ Regexp.new(/[a-zA-Z0-9-_]+/)
+        #fail ArgumentError, 'invalid value for "organization_id", must conform to the pattern /[a-zA-Z0-9-_]+/.'
+      #end
+
       @organization_id = organization_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] report_definition_name Value to be assigned
     def report_definition_name=(report_definition_name)
-      if report_definition_name.nil?
-        fail ArgumentError, 'report_definition_name cannot be nil'
-      end
-
-      if report_definition_name.to_s.length > 80
+      if !report_definition_name.nil? && report_definition_name.to_s.length > 80
         fail ArgumentError, 'invalid value for "report_definition_name", the character length must be smaller than or equal to 80.'
       end
 
-      if report_definition_name.to_s.length < 1
+      if !report_definition_name.nil? && report_definition_name.to_s.length < 1
         fail ArgumentError, 'invalid value for "report_definition_name", the character length must be great than or equal to 1.'
       end
 
-      if report_definition_name !~ Regexp.new(/[a-zA-Z0-9-]+/)
-        fail ArgumentError, 'invalid value for "report_definition_name", must conform to the pattern /[a-zA-Z0-9-]+/.'
-      end
+      #if !report_definition_name.nil? && report_definition_name !~ Regexp.new(/[a-zA-Z0-9-]+/)
+        #fail ArgumentError, 'invalid value for "report_definition_name", must conform to the pattern /[a-zA-Z0-9-]+/.'
+      #end
 
       @report_definition_name = report_definition_name
     end
@@ -269,43 +254,29 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] report_name Value to be assigned
     def report_name=(report_name)
-      if report_name.nil?
-        fail ArgumentError, 'report_name cannot be nil'
-      end
-
-      if report_name.to_s.length > 128
+      if !report_name.nil? && report_name.to_s.length > 128
         fail ArgumentError, 'invalid value for "report_name", the character length must be smaller than or equal to 128.'
       end
 
-      if report_name.to_s.length < 1
+      if !report_name.nil? && report_name.to_s.length < 1
         fail ArgumentError, 'invalid value for "report_name", the character length must be great than or equal to 1.'
       end
+
+      #if !report_name.nil? && report_name !~ Regexp.new(/[a-zA-Z0-9-_ ]+/)
+        #fail ArgumentError, 'invalid value for "report_name", must conform to the pattern /[a-zA-Z0-9-_ ]+/.'
+      #end
 
       @report_name = report_name
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] start_day Value to be assigned
-    def start_day=(start_day)
-      if !start_day.nil? && start_day > 7
-        fail ArgumentError, 'invalid value for "start_day", must be smaller than or equal to 7.'
-      end
+    # @param [Object] group_name Value to be assigned
+    def group_name=(group_name)
+      #if !group_name.nil? && group_name !~ Regexp.new(/[0-9]*/)
+        #fail ArgumentError, 'invalid value for "group_name", must conform to the pattern /[0-9]*/.'
+      #end
 
-      if !start_day.nil? && start_day < 1
-        fail ArgumentError, 'invalid value for "start_day", must be greater than or equal to 1.'
-      end
-
-      @start_day = start_day
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] selected_merchant_group_name Value to be assigned
-    def selected_merchant_group_name=(selected_merchant_group_name)
-      if !selected_merchant_group_name.nil? && selected_merchant_group_name !~ Regexp.new(/[0-9]*/)
-        fail ArgumentError, 'invalid value for "selected_merchant_group_name", must conform to the pattern /[0-9]*/.'
-      end
-
-      @selected_merchant_group_name = selected_merchant_group_name
+      @group_name = group_name
     end
 
     # Checks equality by comparing each attribute.
@@ -317,14 +288,13 @@ module CyberSource
           report_definition_name == o.report_definition_name &&
           report_fields == o.report_fields &&
           report_mime_type == o.report_mime_type &&
-          report_frequency == o.report_frequency &&
           report_name == o.report_name &&
           timezone == o.timezone &&
-          start_time == o.start_time &&
-          start_day == o.start_day &&
+          report_start_time == o.report_start_time &&
+          report_end_time == o.report_end_time &&
           report_filters == o.report_filters &&
           report_preferences == o.report_preferences &&
-          selected_merchant_group_name == o.selected_merchant_group_name
+          group_name == o.group_name
     end
 
     # @see the `==` method
@@ -336,7 +306,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [organization_id, report_definition_name, report_fields, report_mime_type, report_frequency, report_name, timezone, start_time, start_day, report_filters, report_preferences, selected_merchant_group_name].hash
+      [organization_id, report_definition_name, report_fields, report_mime_type, report_name, timezone, report_start_time, report_end_time, report_filters, report_preferences, group_name].hash
     end
 
     # Builds the object from hash

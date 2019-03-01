@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 Download a report
 
-Download a report for the given report name on the specified date
+Download a report using the unique report name and date. 
 
 ### Example
 ```ruby
@@ -56,7 +56,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/xml, test/csv
+ - **Accept**: application/xml, text/csv
 
 
 

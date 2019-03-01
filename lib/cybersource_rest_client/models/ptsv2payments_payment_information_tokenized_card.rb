@@ -17,10 +17,10 @@ module CyberSource
     # Customer’s payment network token value. 
     attr_accessor :number
 
-    # Two-digit month in which the payment network token expires. `Format: MM`. Possible values: 01 through 12. 
+    # Two-digit month in which the payment network token expires. `Format: MM`. Possible values: 01 through 12.  **Barclays and Streamline**\\ For Maestro (UK Domestic) and Maestro (International) cards on Barclays and Streamline, this must be a valid value (01 through 12) but is not required to be a valid expiration date. In other words, an expiration date that is in the past does not cause CyberSource to reject your request. However, an invalid expiration date might cause the issuer to reject your request.  **Encoded Account Numbers**\\ For encoded account numbers (_type_=039), if there is no expiration date on the card, use 12.  For processor-specific information, see the customer_cc_expmo field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
     attr_accessor :expiration_month
 
-    # Four-digit year in which the payment network token expires. `Format: YYYY`. 
+    # Four-digit year in which the payment network token expires. `Format: YYYY`.  **Barclays and Streamline**\\ For Maestro (UK Domestic) and Maestro (International) cards on Barclays and Streamline, this must be a valid value (1900 through 3000) but is not required to be a valid expiration date. In other words, an expiration date that is in the past does not cause CyberSource to reject your request. However, an invalid expiration date might cause the issuer to reject your request.  **FDC Nashville Global and FDMS South**\\ You can send in 2 digits or 4 digits. If you send in 2 digits, they must be the last 2 digits of the year.  **Encoded Account Numbers**\\ For encoded account numbers (card_type=039), if there is no expiration date on the card, use 2021.  For processor-specific information, see the customer_cc_expyr field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
     attr_accessor :expiration_year
 
     # Type of card to authorize. - 001 Visa - 002 Mastercard - 003 Amex - 004 Discover 
@@ -41,7 +41,7 @@ module CyberSource
     # Type of technology used in the device to store token data. Possible values:   - 001: Secure Element (SE)  Smart card or memory with restricted access and encryption to prevent data tampering. For storing payment credentials, a SE is tested against a set of requirements defined by the payment networks.  `Note` This field is supported only for **FDC Compass**.  - 002: Host Card Emulation (HCE)  Emulation of a smart card by using software to create a virtual and exact representation of the card. Sensitive data is stored in a database that is hosted in the cloud. For storing payment credentials, a database must meet very stringent security requirements that exceed PCI DSS.  `Note` This field is supported only for **FDC Compass**. 
     attr_accessor :storage_method
 
-    # CVN.
+    # Card Verification Number.  **Ingenico ePayments** Do not include this field when _commerceIndicator=recurring_. **Note** Ingenico ePayments was previously called Global Collect. CVN. 
     attr_accessor :security_code
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -141,10 +141,6 @@ module CyberSource
         invalid_properties.push('invalid value for "expiration_year", the character length must be smaller than or equal to 4.')
       end
 
-      if !@type.nil? && @type.to_s.length > 3
-        invalid_properties.push('invalid value for "type", the character length must be smaller than or equal to 3.')
-      end
-
       if !@cryptogram.nil? && @cryptogram.to_s.length > 40
         invalid_properties.push('invalid value for "cryptogram", the character length must be smaller than or equal to 40.')
       end
@@ -178,7 +174,6 @@ module CyberSource
       return false if !@number.nil? && @number.to_s.length > 20
       return false if !@expiration_month.nil? && @expiration_month.to_s.length > 2
       return false if !@expiration_year.nil? && @expiration_year.to_s.length > 4
-      return false if !@type.nil? && @type.to_s.length > 3
       return false if !@cryptogram.nil? && @cryptogram.to_s.length > 40
       return false if !@requestor_id.nil? && @requestor_id.to_s.length > 11
       return false if !@transaction_type.nil? && @transaction_type.to_s.length > 1
@@ -216,16 +211,6 @@ module CyberSource
       end
 
       @expiration_year = expiration_year
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] type Value to be assigned
-    def type=(type)
-      if !type.nil? && type.to_s.length > 3
-        fail ArgumentError, 'invalid value for "type", the character length must be smaller than or equal to 3.'
-      end
-
-      @type = type
     end
 
     # Custom attribute writer method with validation

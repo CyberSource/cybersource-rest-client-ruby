@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-      @api_client.set_configuration(config)
+	  @api_client.set_configuration(config)
     end
     # Download a file with file identifier
     # Download a file for the given file identifier
@@ -27,8 +27,8 @@ module CyberSource
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [nil]
     def get_file(file_id, opts = {})
-      data, _status_code, _headers = get_file_with_http_info(file_id, opts)
-      return data, _status_code, _headers
+      data, status_code, headers = get_file_with_http_info(file_id, opts)
+      return data, status_code, headers
     end
 
     # Download a file with file identifier
@@ -38,8 +38,14 @@ module CyberSource
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def get_file_with_http_info(file_id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: SecureFileShareApi.get_file ...'
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: SecureFileShareApi.get_file ...'
+			rescue
+				puts 'Cannot write to log'
+			end
       end
       # verify the required parameter 'file_id' is set
       if @api_client.config.client_side_validation && file_id.nil?
@@ -53,6 +59,10 @@ module CyberSource
         fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling SecureFileShareApi.get_file, the character length must be great than or equal to 1.'
       end
 
+      #if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
+        #fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling SecureFileShareApi.get_file, must conform to the pattern /[a-zA-Z0-9-_]+/."
+      #end
+
       # resource path
       local_var_path = 'sfs/v1/files/{fileId}'.sub('{' + 'fileId' + '}', file_id.to_s)
 
@@ -65,7 +75,7 @@ module CyberSource
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/xml', 'text/csv', 'application/pdf'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/hal+json'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['*/*'])
 
       # form parameters
       form_params = {}
@@ -80,8 +90,13 @@ module CyberSource
         :body => post_body,
         :auth_names => auth_names)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: SecureFileShareApi#get_file\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
+		begin
+		raise
+			@api_client.config.logger.debug "API called: SecureFileShareApi#get_file\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
       return data, status_code, headers
     end
     # Get list of files
@@ -92,8 +107,8 @@ module CyberSource
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [V1FileDetailsGet200Response]
     def get_file_details(start_date, end_date, opts = {})
-      data, _status_code, _headers = get_file_details_with_http_info(start_date, end_date, opts)
-      return data, _status_code, _headers
+      data, status_code, headers = get_file_details_with_http_info(start_date, end_date, opts)
+      return data, status_code, headers
     end
 
     # Get list of files
@@ -104,8 +119,14 @@ module CyberSource
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [Array<(V1FileDetailsGet200Response, Fixnum, Hash)>] V1FileDetailsGet200Response data, response status code and response headers
     def get_file_details_with_http_info(start_date, end_date, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: SecureFileShareApi.get_file_details ...'
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: SecureFileShareApi.get_file_details ...'
+			rescue
+				puts 'Cannot write to log'
+			end
       end
       # verify the required parameter 'start_date' is set
       if @api_client.config.client_side_validation && start_date.nil?
@@ -123,6 +144,10 @@ module CyberSource
         fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling SecureFileShareApi.get_file_details, the character length must be great than or equal to 1.'
       end
 
+      #if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
+        #fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling SecureFileShareApi.get_file_details, must conform to the pattern /[a-zA-Z0-9-_]+/."
+      #end
+
       # resource path
       local_var_path = 'sfs/v1/file-details'
 
@@ -137,7 +162,7 @@ module CyberSource
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['*/*'])
 
       # form parameters
       form_params = {}
@@ -153,8 +178,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'V1FileDetailsGet200Response')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: SecureFileShareApi#get_file_details\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
+		begin
+		raise
+			@api_client.config.logger.debug "API called: SecureFileShareApi#get_file_details\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
       return data, status_code, headers
     end
   end

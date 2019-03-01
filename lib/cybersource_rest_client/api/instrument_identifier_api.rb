@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-      @api_client.set_configuration(config)
+	  @api_client.set_configuration(config)
     end
     # Delete an Instrument Identifier
     # @param profile_id The id of a profile containing user specific TMS configuration.
@@ -26,8 +26,8 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [nil]
     def tms_v1_instrumentidentifiers_token_id_delete(profile_id, token_id, opts = {})
-      data, _status_code, _headers = tms_v1_instrumentidentifiers_token_id_delete_with_http_info(profile_id, token_id, opts)
-      return data, _status_code, _headers
+      data, status_code, headers = tms_v1_instrumentidentifiers_token_id_delete_with_http_info(profile_id, token_id, opts)
+      return data, status_code, headers
     end
 
     # Delete an Instrument Identifier
@@ -36,32 +36,38 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def tms_v1_instrumentidentifiers_token_id_delete_with_http_info(profile_id, token_id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_delete ...'
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_delete ...'
+			rescue
+				puts 'Cannot write to log'
+			end
       end
       # verify the required parameter 'profile_id' is set
       if @api_client.config.client_side_validation && profile_id.nil?
         fail ArgumentError, "Missing the required parameter 'profile_id' when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_delete"
       end
-      # if @api_client.config.client_side_validation && profile_id > 36
-      #   fail ArgumentError, 'invalid value for "profile_id" when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_delete, must be smaller than or equal to 36.'
-      # end
+      if @api_client.config.client_side_validation && profile_id.to_s.length > 36
+        fail ArgumentError, 'invalid value for "profile_id" when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_delete, the character length must be smaller than or equal to 36.'
+      end
 
-      # if @api_client.config.client_side_validation && profile_id < 36
-      #   fail ArgumentError, 'invalid value for "profile_id" when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_delete, must be greater than or equal to 36.'
-      # end
+      if @api_client.config.client_side_validation && profile_id.to_s.length < 36
+        fail ArgumentError, 'invalid value for "profile_id" when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_delete, the character length must be great than or equal to 36.'
+      end
 
       # verify the required parameter 'token_id' is set
       if @api_client.config.client_side_validation && token_id.nil?
         fail ArgumentError, "Missing the required parameter 'token_id' when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_delete"
       end
-      # if @api_client.config.client_side_validation && token_id > 32
-      #   fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_delete, must be smaller than or equal to 32.'
-      # end
+      if @api_client.config.client_side_validation && token_id.to_s.length > 32
+        fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_delete, the character length must be smaller than or equal to 32.'
+      end
 
-      # if @api_client.config.client_side_validation && token_id < 16
-      #   fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_delete, must be greater than or equal to 16.'
-      # end
+      if @api_client.config.client_side_validation && token_id.to_s.length < 16
+        fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_delete, the character length must be great than or equal to 16.'
+      end
 
       # resource path
       local_var_path = 'tms/v1/instrumentidentifiers/{tokenId}'.sub('{' + 'tokenId' + '}', token_id.to_s)
@@ -90,8 +96,13 @@ module CyberSource
         :body => post_body,
         :auth_names => auth_names)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: InstrumentIdentifierApi#tms_v1_instrumentidentifiers_token_id_delete\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
+		begin
+		raise
+			@api_client.config.logger.debug "API called: InstrumentIdentifierApi#tms_v1_instrumentidentifiers_token_id_delete\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
       return data, status_code, headers
     end
     # Retrieve an Instrument Identifier
@@ -100,8 +111,8 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [TmsV1InstrumentidentifiersPost200Response]
     def tms_v1_instrumentidentifiers_token_id_get(profile_id, token_id, opts = {})
-      data, _status_code, _headers = tms_v1_instrumentidentifiers_token_id_get_with_http_info(profile_id, token_id, opts)
-      return data, _status_code, _headers
+      data, status_code, headers = tms_v1_instrumentidentifiers_token_id_get_with_http_info(profile_id, token_id, opts)
+      return data, status_code, headers
     end
 
     # Retrieve an Instrument Identifier
@@ -110,32 +121,38 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(TmsV1InstrumentidentifiersPost200Response, Fixnum, Hash)>] TmsV1InstrumentidentifiersPost200Response data, response status code and response headers
     def tms_v1_instrumentidentifiers_token_id_get_with_http_info(profile_id, token_id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_get ...'
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_get ...'
+			rescue
+				puts 'Cannot write to log'
+			end
       end
       # verify the required parameter 'profile_id' is set
       if @api_client.config.client_side_validation && profile_id.nil?
         fail ArgumentError, "Missing the required parameter 'profile_id' when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_get"
       end
-      # if @api_client.config.client_side_validation && profile_id > 36
-      #   fail ArgumentError, 'invalid value for "profile_id" when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_get, must be smaller than or equal to 36.'
-      # end
+      if @api_client.config.client_side_validation && profile_id.to_s.length > 36
+        fail ArgumentError, 'invalid value for "profile_id" when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_get, the character length must be smaller than or equal to 36.'
+      end
 
-      # if @api_client.config.client_side_validation && profile_id < 36
-      #   fail ArgumentError, 'invalid value for "profile_id" when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_get, must be greater than or equal to 36.'
-      # end
+      if @api_client.config.client_side_validation && profile_id.to_s.length < 36
+        fail ArgumentError, 'invalid value for "profile_id" when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_get, the character length must be great than or equal to 36.'
+      end
 
       # verify the required parameter 'token_id' is set
       if @api_client.config.client_side_validation && token_id.nil?
         fail ArgumentError, "Missing the required parameter 'token_id' when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_get"
       end
-      # if @api_client.config.client_side_validation && token_id > 32
-      #   fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_get, must be smaller than or equal to 32.'
-      # end
+      if @api_client.config.client_side_validation && token_id.to_s.length > 32
+        fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_get, the character length must be smaller than or equal to 32.'
+      end
 
-      # if @api_client.config.client_side_validation && token_id < 16
-      #   fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_get, must be greater than or equal to 16.'
-      # end
+      if @api_client.config.client_side_validation && token_id.to_s.length < 16
+        fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_get, the character length must be great than or equal to 16.'
+      end
 
       # resource path
       local_var_path = 'tms/v1/instrumentidentifiers/{tokenId}'.sub('{' + 'tokenId' + '}', token_id.to_s)
@@ -165,8 +182,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'TmsV1InstrumentidentifiersPost200Response')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: InstrumentIdentifierApi#tms_v1_instrumentidentifiers_token_id_get\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
+		begin
+		raise
+			@api_client.config.logger.debug "API called: InstrumentIdentifierApi#tms_v1_instrumentidentifiers_token_id_get\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
       return data, status_code, headers
     end
     # Update a Instrument Identifier
@@ -176,8 +198,8 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [TmsV1InstrumentidentifiersPost200Response]
     def tms_v1_instrumentidentifiers_token_id_patch(profile_id, token_id, body, opts = {})
-      data, _status_code, _headers = tms_v1_instrumentidentifiers_token_id_patch_with_http_info(profile_id, token_id, body, opts)
-      return data, _status_code, _headers
+      data, status_code, headers = tms_v1_instrumentidentifiers_token_id_patch_with_http_info(profile_id, token_id, body, opts)
+      return data, status_code, headers
     end
 
     # Update a Instrument Identifier
@@ -187,32 +209,38 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(TmsV1InstrumentidentifiersPost200Response, Fixnum, Hash)>] TmsV1InstrumentidentifiersPost200Response data, response status code and response headers
     def tms_v1_instrumentidentifiers_token_id_patch_with_http_info(profile_id, token_id, body, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_patch ...'
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_patch ...'
+			rescue
+				puts 'Cannot write to log'
+			end
       end
       # verify the required parameter 'profile_id' is set
       if @api_client.config.client_side_validation && profile_id.nil?
         fail ArgumentError, "Missing the required parameter 'profile_id' when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_patch"
       end
-      # if @api_client.config.client_side_validation && profile_id > 36
-      #   fail ArgumentError, 'invalid value for "profile_id" when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_patch, must be smaller than or equal to 36.'
-      # end
+      if @api_client.config.client_side_validation && profile_id.to_s.length > 36
+        fail ArgumentError, 'invalid value for "profile_id" when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_patch, the character length must be smaller than or equal to 36.'
+      end
 
-      # if @api_client.config.client_side_validation && profile_id < 36
-      #   fail ArgumentError, 'invalid value for "profile_id" when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_patch, must be greater than or equal to 36.'
-      # end
+      if @api_client.config.client_side_validation && profile_id.to_s.length < 36
+        fail ArgumentError, 'invalid value for "profile_id" when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_patch, the character length must be great than or equal to 36.'
+      end
 
       # verify the required parameter 'token_id' is set
       if @api_client.config.client_side_validation && token_id.nil?
         fail ArgumentError, "Missing the required parameter 'token_id' when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_patch"
       end
-      # if @api_client.config.client_side_validation && token_id > 32
-      #   fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_patch, must be smaller than or equal to 32.'
-      # end
+      if @api_client.config.client_side_validation && token_id.to_s.length > 32
+        fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_patch, the character length must be smaller than or equal to 32.'
+      end
 
-      # if @api_client.config.client_side_validation && token_id < 16
-      #   fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_patch, must be greater than or equal to 16.'
-      # end
+      if @api_client.config.client_side_validation && token_id.to_s.length < 16
+        fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.tms_v1_instrumentidentifiers_token_id_patch, the character length must be great than or equal to 16.'
+      end
 
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
@@ -246,8 +274,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'TmsV1InstrumentidentifiersPost200Response')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: InstrumentIdentifierApi#tms_v1_instrumentidentifiers_token_id_patch\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
+		begin
+		raise
+			@api_client.config.logger.debug "API called: InstrumentIdentifierApi#tms_v1_instrumentidentifiers_token_id_patch\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
       return data, status_code, headers
     end
   end

@@ -14,34 +14,40 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsProcessingInformationAuthorizationOptions
-    # Authorization type. Possible values:   - **AUTOCAPTURE**: automatic capture.  - **STANDARDCAPTURE**: standard capture.  - **VERBAL**: forced capture. Include it in the payment request for a forced capture. Include it in the capture  request for a verbal payment.  For processor-specific information, see the auth_type field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
+    # Authorization type.  Possible values:   - **AUTOCAPTURE**: automatic capture.  - **STANDARDCAPTURE**: standard capture.  - **VERBAL**: forced capture. Include it in the payment request for a forced capture. Include it in the capture request for a verbal payment.  **Asia, Middle East, and Africa Gateway; Cielo; Comercio Latino; and CyberSource Latin American Processing**\\ Set this field to _AUTOCAPTURE_ and include it in a bundled request to indicate that you are requesting an automatic capture. If your account is configured to enable automatic captures, set this field to STANDARDCAPTURE and include it in a standard authorization or bundled request to indicate that you are overriding an automatic capture. For more information, see \"Automatic Captures,\" page 33.  **Forced Capture**\\ Set this field to _VERBAL_ and include it in the authorization request to indicate that you are performing a forced capture; therefore, you receive the authorization code outside the CyberSource system. For more information, see \"Forced Captures,\" page 123.  **Verbal Authorization**\\ Set this field to _VERBAL_ and include it in the capture request to indicate that the request is for a verbal authorization. For more information, see \"Verbal Authorizations,\" page 84.  For processor-specific information, see the auth_type field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
     attr_accessor :auth_type
 
-    # Authorization code.  **Forced Capture**  Use this field to send the authorization code you received from a payment that you authorized outside the CyberSource system.  **Verbal Authorization**  Use this field in CAPTURE API to send the verbally received authorization code.  For processor-specific information, see the auth_code field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
+    # Authorization code.  **Forced Capture**\\ Use this field to send the authorization code you received from a payment that you authorized outside the CyberSource system.  **Verbal Authorization**\\ Use this field in CAPTURE API to send the verbally received authorization code.  For processor-specific information, see the _auth_code_ field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
     attr_accessor :verbal_auth_code
 
     # Transaction ID (TID).
     attr_accessor :verbal_auth_transaction_id
 
-    # Flag that specifies the purpose of the authorization.  Possible values:  - **0**: Preauthorization  - **1**: Final authorization  For processor-specific information, see the auth_indicator field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
+    # Flag that specifies the purpose of the authorization.  Possible values:  - **0**: Preauthorization  - **1**: Final authorization  To set the default for this field, contact CyberSource Customer Support. See \"Final Authorization Indicator,\" page 119.  Barclays and Elavon The default for Barclays and Elavon is 1 (final authorization). To change the default for this field, contact CyberSource Customer Support.  CyberSource through VisaNet When the value for this field is 0, it corresponds to the following data in the TC 33 capture file5:  - Record: CP01 TCR0  - Position: 164  - Field: Additional Authorization Indicators When the value for this field is 1, it does not correspond to any data in the TC 33 capture file.  For processor-specific information, see the auth_indicator field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
     attr_accessor :auth_indicator
 
-    # Flag that indicates whether the transaction is enabled for partial authorization or not. When your request includes this field, this value overrides the information in your CyberSource account.  For processor-specific information, see the auth_partial_auth_indicator field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
+    # Flag that indicates whether the transaction is enabled for partial authorization or not. When your request includes this field, this value overrides the information in your CyberSource account.  For processor-specific information, see the _auth_partial_auth_indicator_ field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html)  **CyberSource through VisaNet**\\ To set the default for this field, contact CyberSource Customer Support. The value for this field corresponds to the following data in the TC 33 capture file5: - Record: CP01 TCR0 - Position: 164 - Field: Additional Authorization Indicators  Possible values: - **true** Enable the transaction for partial authorization. - **false** Do not enable the transaction for partial authorization. 
     attr_accessor :partial_auth_indicator
 
-    # Flag that indicates whether to return balance information.
+    # Flag that indicates whether to return balance information.  Possible values: - **true** - **false** 
     attr_accessor :balance_inquiry
 
-    # Flag that indicates whether to allow the capture service to run even when the payment receives an AVS decline. 
+    # Flag that indicates whether to allow the capture service to run, even when the payment receives an AVS decline.  Possible values: - **true**  Ignore the results of AVS checking and run the capture service. - **false**  (default): If the authorization receives an AVS decline, do not run the capture service. 
     attr_accessor :ignore_avs_result
 
-    # An array of AVS flags that cause the reply flag to be returned.  `Important` To receive declines for the AVS code N, include the value N in the array. 
+    # An array of AVS flags that cause the reply flag to be returned.  `Important` To receive declines for the AVS code N, include the value N in the array.  Possible values: - D - A - V - S - N - O 
     attr_accessor :decline_avs_flags
 
-    # Flag that indicates whether to allow the capture service to run even when the payment receives a CVN decline. 
+    # Flag that indicates whether to allow the capture service to run even when the payment receives a CVN decline.  Possible values: - **true**  Ignore the results of CVN checking and run the capture service. - **false**  (default) If the authorization receives a CVN decline, do not run the capture service. 
     attr_accessor :ignore_cv_result
 
     attr_accessor :initiator
+
+    # Flag that indicates that this is a payment for a bill or for an existing contractual loan. See \"Visa Bill Payments,\" page 220, and \"Visa Debt Repayments,\" page 221, for lists of processors that support these features.  Possible values: - true: Bill payment or loan payment. - false (default): Not a bill payment or loan payment. 
+    attr_accessor :bill_payment
+
+    # Reason for the payment.  Possible values: - 001: Utility payment - 002: Government services - 003: Mobile phone top-up - 004: Coupon payment  The value for this field corresponds to the following data in the TC 33 capture file5: - Record: CP07 TCR0 - Position: 48-50 - Field: Bill Payment Transaction Type Identifier  This field is supported only for bill payments in Brazil with Mastercard on CyberSource through VisaNet. See Mastercard Bill Payments.  Note For information about bill payments with Visa, see Visa Bill Payments. 
+    attr_accessor :bill_payment_type
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -77,7 +83,9 @@ module CyberSource
         :'ignore_avs_result' => :'ignoreAvsResult',
         :'decline_avs_flags' => :'declineAvsFlags',
         :'ignore_cv_result' => :'ignoreCvResult',
-        :'initiator' => :'initiator'
+        :'initiator' => :'initiator',
+        :'bill_payment' => :'billPayment',
+        :'bill_payment_type' => :'billPaymentType'
       }
     end
 
@@ -93,7 +101,9 @@ module CyberSource
         :'ignore_avs_result' => :'BOOLEAN',
         :'decline_avs_flags' => :'Array<String>',
         :'ignore_cv_result' => :'BOOLEAN',
-        :'initiator' => :'Ptsv2paymentsProcessingInformationAuthorizationOptionsInitiator'
+        :'initiator' => :'Ptsv2paymentsProcessingInformationAuthorizationOptionsInitiator',
+        :'bill_payment' => :'BOOLEAN',
+        :'bill_payment_type' => :'String'
       }
     end
 
@@ -149,6 +159,14 @@ module CyberSource
 
       if attributes.has_key?(:'initiator')
         self.initiator = attributes[:'initiator']
+      end
+
+      if attributes.has_key?(:'billPayment')
+        self.bill_payment = attributes[:'billPayment']
+      end
+
+      if attributes.has_key?(:'billPaymentType')
+        self.bill_payment_type = attributes[:'billPaymentType']
       end
     end
 
@@ -239,7 +257,9 @@ module CyberSource
           ignore_avs_result == o.ignore_avs_result &&
           decline_avs_flags == o.decline_avs_flags &&
           ignore_cv_result == o.ignore_cv_result &&
-          initiator == o.initiator
+          initiator == o.initiator &&
+          bill_payment == o.bill_payment &&
+          bill_payment_type == o.bill_payment_type
     end
 
     # @see the `==` method
@@ -251,7 +271,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [auth_type, verbal_auth_code, verbal_auth_transaction_id, auth_indicator, partial_auth_indicator, balance_inquiry, ignore_avs_result, decline_avs_flags, ignore_cv_result, initiator].hash
+      [auth_type, verbal_auth_code, verbal_auth_transaction_id, auth_indicator, partial_auth_indicator, balance_inquiry, ignore_avs_result, decline_avs_flags, ignore_cv_result, initiator, bill_payment, bill_payment_type].hash
     end
 
     # Builds the object from hash

@@ -119,9 +119,9 @@
 
       {{/minimum}}
       {{#pattern}}
-      if {{^required}}!@{{{name}}}.nil? && {{/required}}@{{{name}}} !~ Regexp.new({{{pattern}}})
-        invalid_properties.push('invalid value for "{{{name}}}", must conform to the pattern {{{pattern}}}.')
-      end
+      #if {{^required}}!@{{{name}}}.nil? && {{/required}}@{{{name}}} !~ Regexp.new({{{pattern}}})
+        #invalid_properties.push('invalid value for "{{{name}}}", must conform to the pattern {{{pattern}}}.')
+      #end
 
       {{/pattern}}
       {{#maxItems}}
@@ -168,7 +168,7 @@
       return false if {{^required}}!@{{{name}}}.nil? && {{/required}}@{{{name}}} <{{#exclusiveMinimum}}={{/exclusiveMinimum}} {{{minimum}}}
       {{/minimum}}
       {{#pattern}}
-      return false if {{^required}}!@{{{name}}}.nil? && {{/required}}@{{{name}}} !~ Regexp.new({{{pattern}}})
+      #return false if {{^required}}!@{{{name}}}.nil? && {{/required}}@{{{name}}} !~ Regexp.new({{{pattern}}})
       {{/pattern}}
       {{#maxItems}}
       return false if {{^required}}!@{{{name}}}.nil? && {{/required}}@{{{name}}}.length > {{{maxItems}}}
@@ -232,9 +232,9 @@
 
       {{/minimum}}
       {{#pattern}}
-      if {{^required}}!{{{name}}}.nil? && {{/required}}{{{name}}} !~ Regexp.new({{{pattern}}})
-        fail ArgumentError, 'invalid value for "{{{name}}}", must conform to the pattern {{{pattern}}}.'
-      end
+      #if {{^required}}!{{{name}}}.nil? && {{/required}}{{{name}}} !~ Regexp.new({{{pattern}}})
+        #fail ArgumentError, 'invalid value for "{{{name}}}", must conform to the pattern {{{pattern}}}.'
+      #end
 
       {{/pattern}}
       {{#maxItems}}

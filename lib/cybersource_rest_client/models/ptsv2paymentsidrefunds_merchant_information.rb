@@ -16,7 +16,7 @@ module CyberSource
   class Ptsv2paymentsidrefundsMerchantInformation
     attr_accessor :merchant_descriptor
 
-    # Four-digit number that the payment card industry uses to classify merchants into market segments. Visa assigned one or more of these values to your business when you started accepting Visa cards.  If you do not include this field in your request, CyberSource uses the value in your CyberSource account.  For processor-specific information, see the merchant_category_code field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
+    # Four-digit number that the payment card industry uses to classify merchants into market segments. Visa assigned one or more of these values to your business when you started accepting Visa cards.  If you do not include this field in your request, CyberSource uses the value in your CyberSource account.  For processor-specific information, see the merchant_category_code field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html)  See \"Aggregator Support,\" page 100.  **CyberSource through VisaNet**\\ The value for this field corresponds to the following data in the TC 33 capture file5: - Record: CP01 TCR4 - Position: 150-153 - Field: Merchant Category Code 
     attr_accessor :category_code
 
     # Your government-assigned tax identification number.  For CtV processors, the maximum length is 20.  For other processor-specific information, see the merchant_vat_registration_number field in [Level II and Level III Processing Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/Level_2_3_SCMP_API/html) 
@@ -25,13 +25,17 @@ module CyberSource
     # Reference number that facilitates card acceptor/corporation communication and record keeping.  For processor-specific information, see the card_acceptor_ref_number field in [Level II and Level III Processing Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/Level_2_3_SCMP_API/html) 
     attr_accessor :card_acceptor_reference_number
 
+    # Your Cadastro Nacional da Pessoa Jurídica (CNPJ) number.  This field is supported only for BNDES transactions on CyberSource through VisaNet. See BNDES.  The value for this field corresponds to the following data in the TC 33 capture file5: - Record: CP07 TCR6 - Position: 40-59 - Field: BNDES Reference Field 1 
+    attr_accessor :tax_id
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'merchant_descriptor' => :'merchantDescriptor',
         :'category_code' => :'categoryCode',
         :'vat_registration_number' => :'vatRegistrationNumber',
-        :'card_acceptor_reference_number' => :'cardAcceptorReferenceNumber'
+        :'card_acceptor_reference_number' => :'cardAcceptorReferenceNumber',
+        :'tax_id' => :'taxId'
       }
     end
 
@@ -41,7 +45,8 @@ module CyberSource
         :'merchant_descriptor' => :'Ptsv2paymentsMerchantInformationMerchantDescriptor',
         :'category_code' => :'Integer',
         :'vat_registration_number' => :'String',
-        :'card_acceptor_reference_number' => :'String'
+        :'card_acceptor_reference_number' => :'String',
+        :'tax_id' => :'String'
       }
     end
 
@@ -68,6 +73,10 @@ module CyberSource
       if attributes.has_key?(:'cardAcceptorReferenceNumber')
         self.card_acceptor_reference_number = attributes[:'cardAcceptorReferenceNumber']
       end
+
+      if attributes.has_key?(:'taxId')
+        self.tax_id = attributes[:'taxId']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -86,6 +95,10 @@ module CyberSource
         invalid_properties.push('invalid value for "card_acceptor_reference_number", the character length must be smaller than or equal to 25.')
       end
 
+      if !@tax_id.nil? && @tax_id.to_s.length > 15
+        invalid_properties.push('invalid value for "tax_id", the character length must be smaller than or equal to 15.')
+      end
+
       invalid_properties
     end
 
@@ -95,6 +108,7 @@ module CyberSource
       return false if !@category_code.nil? && @category_code > 9999
       return false if !@vat_registration_number.nil? && @vat_registration_number.to_s.length > 21
       return false if !@card_acceptor_reference_number.nil? && @card_acceptor_reference_number.to_s.length > 25
+      return false if !@tax_id.nil? && @tax_id.to_s.length > 15
       true
     end
 
@@ -128,6 +142,16 @@ module CyberSource
       @card_acceptor_reference_number = card_acceptor_reference_number
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] tax_id Value to be assigned
+    def tax_id=(tax_id)
+      if !tax_id.nil? && tax_id.to_s.length > 15
+        fail ArgumentError, 'invalid value for "tax_id", the character length must be smaller than or equal to 15.'
+      end
+
+      @tax_id = tax_id
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -136,7 +160,8 @@ module CyberSource
           merchant_descriptor == o.merchant_descriptor &&
           category_code == o.category_code &&
           vat_registration_number == o.vat_registration_number &&
-          card_acceptor_reference_number == o.card_acceptor_reference_number
+          card_acceptor_reference_number == o.card_acceptor_reference_number &&
+          tax_id == o.tax_id
     end
 
     # @see the `==` method
@@ -148,7 +173,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [merchant_descriptor, category_code, vat_registration_number, card_acceptor_reference_number].hash
+      [merchant_descriptor, category_code, vat_registration_number, card_acceptor_reference_number, tax_id].hash
     end
 
     # Builds the object from hash

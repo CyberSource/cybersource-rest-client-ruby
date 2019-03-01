@@ -20,11 +20,22 @@ module CyberSource
     # Name of the Japanese acquirer that processed the transaction. Returned only for CCS (CAFIS) and JCN Gateway. Please contact the CyberSource Japan Support Group for more information. 
     attr_accessor :forwarded_acquirer_code
 
+    # Identifier that was assigned to you by your acquirer.  This value must be printed on the receipt.  This field is supported only on **American Express Direct**, **FDC Nashville Global**, and **SIX**. 
+    attr_accessor :merchant_number
+
+    # For most processors, this is the error message sent directly from the bank. Returned only when the processor returns this value.  Important Do not use this field to evaluate the result of the authorization. 
+    attr_accessor :response_code
+
+    attr_accessor :ach_verification
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'transaction_id' => :'transactionId',
-        :'forwarded_acquirer_code' => :'forwardedAcquirerCode'
+        :'forwarded_acquirer_code' => :'forwardedAcquirerCode',
+        :'merchant_number' => :'merchantNumber',
+        :'response_code' => :'responseCode',
+        :'ach_verification' => :'achVerification'
       }
     end
 
@@ -32,7 +43,10 @@ module CyberSource
     def self.swagger_types
       {
         :'transaction_id' => :'String',
-        :'forwarded_acquirer_code' => :'String'
+        :'forwarded_acquirer_code' => :'String',
+        :'merchant_number' => :'String',
+        :'response_code' => :'String',
+        :'ach_verification' => :'PtsV2PaymentsPost201ResponseProcessorInformationAchVerification'
       }
     end
 
@@ -51,6 +65,18 @@ module CyberSource
       if attributes.has_key?(:'forwardedAcquirerCode')
         self.forwarded_acquirer_code = attributes[:'forwardedAcquirerCode']
       end
+
+      if attributes.has_key?(:'merchantNumber')
+        self.merchant_number = attributes[:'merchantNumber']
+      end
+
+      if attributes.has_key?(:'responseCode')
+        self.response_code = attributes[:'responseCode']
+      end
+
+      if attributes.has_key?(:'achVerification')
+        self.ach_verification = attributes[:'achVerification']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -65,6 +91,14 @@ module CyberSource
         invalid_properties.push('invalid value for "forwarded_acquirer_code", the character length must be smaller than or equal to 32.')
       end
 
+      if !@merchant_number.nil? && @merchant_number.to_s.length > 15
+        invalid_properties.push('invalid value for "merchant_number", the character length must be smaller than or equal to 15.')
+      end
+
+      if !@response_code.nil? && @response_code.to_s.length > 10
+        invalid_properties.push('invalid value for "response_code", the character length must be smaller than or equal to 10.')
+      end
+
       invalid_properties
     end
 
@@ -73,6 +107,8 @@ module CyberSource
     def valid?
       return false if !@transaction_id.nil? && @transaction_id.to_s.length > 18
       return false if !@forwarded_acquirer_code.nil? && @forwarded_acquirer_code.to_s.length > 32
+      return false if !@merchant_number.nil? && @merchant_number.to_s.length > 15
+      return false if !@response_code.nil? && @response_code.to_s.length > 10
       true
     end
 
@@ -96,13 +132,36 @@ module CyberSource
       @forwarded_acquirer_code = forwarded_acquirer_code
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] merchant_number Value to be assigned
+    def merchant_number=(merchant_number)
+      if !merchant_number.nil? && merchant_number.to_s.length > 15
+        fail ArgumentError, 'invalid value for "merchant_number", the character length must be smaller than or equal to 15.'
+      end
+
+      @merchant_number = merchant_number
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] response_code Value to be assigned
+    def response_code=(response_code)
+      if !response_code.nil? && response_code.to_s.length > 10
+        fail ArgumentError, 'invalid value for "response_code", the character length must be smaller than or equal to 10.'
+      end
+
+      @response_code = response_code
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           transaction_id == o.transaction_id &&
-          forwarded_acquirer_code == o.forwarded_acquirer_code
+          forwarded_acquirer_code == o.forwarded_acquirer_code &&
+          merchant_number == o.merchant_number &&
+          response_code == o.response_code &&
+          ach_verification == o.ach_verification
     end
 
     # @see the `==` method
@@ -114,7 +173,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [transaction_id, forwarded_acquirer_code].hash
+      [transaction_id, forwarded_acquirer_code, merchant_number, response_code, ach_verification].hash
     end
 
     # Builds the object from hash

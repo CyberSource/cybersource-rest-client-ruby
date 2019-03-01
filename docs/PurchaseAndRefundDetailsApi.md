@@ -8,11 +8,11 @@ Method | HTTP request | Description
 
 
 # **get_purchase_and_refund_details**
-> get_purchase_and_refund_details(start_time, end_time, opts)
+> ReportingV3PurchaseRefundDetailsGet200Response get_purchase_and_refund_details(start_time, end_time, opts)
 
 Get Purchase and Refund details
 
-Purchase And Refund Details Description
+Download the Purchase and Refund Details report. This report report includes all purchases and refund transactions, as well as all activities related to transactions resulting in an adjustment to the net proceeds. 
 
 ### Example
 ```ruby
@@ -36,7 +36,8 @@ opts = {
 
 begin
   #Get Purchase and Refund details
-  api_instance.get_purchase_and_refund_details(start_time, end_time, opts)
+  result = api_instance.get_purchase_and_refund_details(start_time, end_time, opts)
+  p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling PurchaseAndRefundDetailsApi->get_purchase_and_refund_details: #{e}"
 end
@@ -57,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-nil (empty response body)
+[**ReportingV3PurchaseRefundDetailsGet200Response**](ReportingV3PurchaseRefundDetailsGet200Response.md)
 
 ### Authorization
 

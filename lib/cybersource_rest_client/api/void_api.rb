@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-      @api_client.set_configuration(config)
+	  @api_client.set_configuration(config)
     end
     # Void a Capture
     # Include the capture ID in the POST request to cancel the capture.
@@ -27,8 +27,8 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [PtsV2PaymentsVoidsPost201Response]
     def void_capture(void_capture_request, id, opts = {})
-      data, _status_code, _headers = void_capture_with_http_info(void_capture_request, id, opts)
-      return data, _status_code, _headers
+      data, status_code, headers = void_capture_with_http_info(void_capture_request, id, opts)
+      return data, status_code, headers
     end
 
     # Void a Capture
@@ -38,8 +38,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(PtsV2PaymentsVoidsPost201Response, Fixnum, Hash)>] PtsV2PaymentsVoidsPost201Response data, response status code and response headers
     def void_capture_with_http_info(void_capture_request, id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: VoidApi.void_capture ...'
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: VoidApi.void_capture ...'
+			rescue
+				puts 'Cannot write to log'
+			end
       end
       # verify the required parameter 'void_capture_request' is set
       if @api_client.config.client_side_validation && void_capture_request.nil?
@@ -58,7 +64,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
 
@@ -76,8 +82,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'PtsV2PaymentsVoidsPost201Response')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: VoidApi#void_capture\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
+		begin
+		raise
+			@api_client.config.logger.debug "API called: VoidApi#void_capture\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
       return data, status_code, headers
     end
     # Void a Credit
@@ -87,8 +98,8 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [PtsV2PaymentsVoidsPost201Response]
     def void_credit(void_credit_request, id, opts = {})
-      data, _status_code, _headers = void_credit_with_http_info(void_credit_request, id, opts)
-      return data, _status_code, _headers
+      data, status_code, headers = void_credit_with_http_info(void_credit_request, id, opts)
+      return data, status_code, headers
     end
 
     # Void a Credit
@@ -98,8 +109,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(PtsV2PaymentsVoidsPost201Response, Fixnum, Hash)>] PtsV2PaymentsVoidsPost201Response data, response status code and response headers
     def void_credit_with_http_info(void_credit_request, id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: VoidApi.void_credit ...'
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: VoidApi.void_credit ...'
+			rescue
+				puts 'Cannot write to log'
+			end
       end
       # verify the required parameter 'void_credit_request' is set
       if @api_client.config.client_side_validation && void_credit_request.nil?
@@ -118,7 +135,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
 
@@ -136,8 +153,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'PtsV2PaymentsVoidsPost201Response')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: VoidApi#void_credit\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
+		begin
+		raise
+			@api_client.config.logger.debug "API called: VoidApi#void_credit\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
       return data, status_code, headers
     end
     # Void a Payment
@@ -147,8 +169,8 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [PtsV2PaymentsVoidsPost201Response]
     def void_payment(void_payment_request, id, opts = {})
-      data, _status_code, _headers = void_payment_with_http_info(void_payment_request, id, opts)
-      return data, _status_code, _headers
+      data, status_code, headers = void_payment_with_http_info(void_payment_request, id, opts)
+      return data, status_code, headers
     end
 
     # Void a Payment
@@ -158,8 +180,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(PtsV2PaymentsVoidsPost201Response, Fixnum, Hash)>] PtsV2PaymentsVoidsPost201Response data, response status code and response headers
     def void_payment_with_http_info(void_payment_request, id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: VoidApi.void_payment ...'
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: VoidApi.void_payment ...'
+			rescue
+				puts 'Cannot write to log'
+			end
       end
       # verify the required parameter 'void_payment_request' is set
       if @api_client.config.client_side_validation && void_payment_request.nil?
@@ -178,7 +206,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
 
@@ -196,8 +224,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'PtsV2PaymentsVoidsPost201Response')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: VoidApi#void_payment\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
+		begin
+		raise
+			@api_client.config.logger.debug "API called: VoidApi#void_payment\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
       return data, status_code, headers
     end
     # Void a Refund
@@ -207,8 +240,8 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [PtsV2PaymentsVoidsPost201Response]
     def void_refund(void_refund_request, id, opts = {})
-      data, _status_code, _headers = void_refund_with_http_info(void_refund_request, id, opts)
-      return data, _status_code, _headers
+      data, status_code, headers = void_refund_with_http_info(void_refund_request, id, opts)
+      return data, status_code, headers
     end
 
     # Void a Refund
@@ -218,8 +251,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(PtsV2PaymentsVoidsPost201Response, Fixnum, Hash)>] PtsV2PaymentsVoidsPost201Response data, response status code and response headers
     def void_refund_with_http_info(void_refund_request, id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: VoidApi.void_refund ...'
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: VoidApi.void_refund ...'
+			rescue
+				puts 'Cannot write to log'
+			end
       end
       # verify the required parameter 'void_refund_request' is set
       if @api_client.config.client_side_validation && void_refund_request.nil?
@@ -238,7 +277,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
 
@@ -256,8 +295,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'PtsV2PaymentsVoidsPost201Response')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: VoidApi#void_refund\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
+		begin
+		raise
+			@api_client.config.logger.debug "API called: VoidApi#void_refund\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
       return data, status_code, headers
     end
   end

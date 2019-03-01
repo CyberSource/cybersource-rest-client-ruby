@@ -14,16 +14,19 @@ require 'date'
 
 module CyberSource
   class PtsV2PaymentsPost201ResponseProcessorInformation
+    # Flag that specifies the purpose of the authorization.  Possible values:  - **0**: Preauthorization  - **1**: Final authorization  For processor-specific information, see the auth_indicator field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
+    attr_accessor :auth_indicator
+
     # Authorization code. Returned only when the processor returns this value. 
     attr_accessor :approval_code
 
-    # Network transaction identifier (TID). You can use this value to identify a specific transaction when you are discussing the transaction with your processor. Not all processors provide this  value. 
+    # Network transaction identifier (TID). You can use this value to identify a specific transaction when you are discussing the transaction with your processor. Not all processors provide this value. 
     attr_accessor :transaction_id
 
-    # Description of this field is not available.
+    # The description for this field is not available.
     attr_accessor :network_transaction_id
 
-    # Description of this field is not available.
+    # The description for this field is not available.
     attr_accessor :provider_transaction_id
 
     # For most processors, this is the error message sent directly from the bank. Returned only when the processor returns this value.  Important Do not use this field to evaluate the result of the authorization. 
@@ -49,11 +52,11 @@ module CyberSource
 
     attr_accessor :electronic_verification_results
 
+    attr_accessor :ach_verification
+
     attr_accessor :customer
 
     attr_accessor :consumer_authentication_response
-
-    attr_accessor :issuer
 
     # This field is returned only for **American Express Direct** and **CyberSource through VisaNet**.  **American Express Direct**  System trace audit number (STAN). This value identifies the transaction and is useful when investigating a chargeback dispute.  **CyberSource through VisaNet**  System trace number that must be printed on the customer’s receipt. 
     attr_accessor :system_trace_audit_number
@@ -82,9 +85,15 @@ module CyberSource
     # Name of the Processor. 
     attr_accessor :name
 
+    attr_accessor :routing
+
+    # Identifier that was assigned to you by your acquirer.  This value must be printed on the receipt.  This field is supported only on **American Express Direct**, **FDC Nashville Global**, and **SIX**. 
+    attr_accessor :merchant_number
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'auth_indicator' => :'authIndicator',
         :'approval_code' => :'approvalCode',
         :'transaction_id' => :'transactionId',
         :'network_transaction_id' => :'networkTransactionId',
@@ -98,9 +107,9 @@ module CyberSource
         :'card_verification' => :'cardVerification',
         :'merchant_advice' => :'merchantAdvice',
         :'electronic_verification_results' => :'electronicVerificationResults',
+        :'ach_verification' => :'achVerification',
         :'customer' => :'customer',
         :'consumer_authentication_response' => :'consumerAuthenticationResponse',
-        :'issuer' => :'issuer',
         :'system_trace_audit_number' => :'systemTraceAuditNumber',
         :'payment_account_reference_number' => :'paymentAccountReferenceNumber',
         :'transaction_integrity_code' => :'transactionIntegrityCode',
@@ -109,13 +118,16 @@ module CyberSource
         :'master_card_service_code' => :'masterCardServiceCode',
         :'master_card_service_reply_code' => :'masterCardServiceReplyCode',
         :'master_card_authentication_type' => :'masterCardAuthenticationType',
-        :'name' => :'name'
+        :'name' => :'name',
+        :'routing' => :'routing',
+        :'merchant_number' => :'merchantNumber'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'auth_indicator' => :'String',
         :'approval_code' => :'String',
         :'transaction_id' => :'String',
         :'network_transaction_id' => :'String',
@@ -129,9 +141,9 @@ module CyberSource
         :'card_verification' => :'PtsV2PaymentsPost201ResponseProcessorInformationCardVerification',
         :'merchant_advice' => :'PtsV2PaymentsPost201ResponseProcessorInformationMerchantAdvice',
         :'electronic_verification_results' => :'PtsV2PaymentsPost201ResponseProcessorInformationElectronicVerificationResults',
+        :'ach_verification' => :'PtsV2PaymentsPost201ResponseProcessorInformationAchVerification',
         :'customer' => :'PtsV2PaymentsPost201ResponseProcessorInformationCustomer',
         :'consumer_authentication_response' => :'PtsV2PaymentsPost201ResponseProcessorInformationConsumerAuthenticationResponse',
-        :'issuer' => :'PtsV2PaymentsPost201ResponseProcessorInformationIssuer',
         :'system_trace_audit_number' => :'String',
         :'payment_account_reference_number' => :'String',
         :'transaction_integrity_code' => :'String',
@@ -140,7 +152,9 @@ module CyberSource
         :'master_card_service_code' => :'String',
         :'master_card_service_reply_code' => :'String',
         :'master_card_authentication_type' => :'String',
-        :'name' => :'String'
+        :'name' => :'String',
+        :'routing' => :'PtsV2PaymentsPost201ResponseProcessorInformationRouting',
+        :'merchant_number' => :'String'
       }
     end
 
@@ -151,6 +165,10 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'authIndicator')
+        self.auth_indicator = attributes[:'authIndicator']
+      end
 
       if attributes.has_key?(:'approvalCode')
         self.approval_code = attributes[:'approvalCode']
@@ -204,16 +222,16 @@ module CyberSource
         self.electronic_verification_results = attributes[:'electronicVerificationResults']
       end
 
+      if attributes.has_key?(:'achVerification')
+        self.ach_verification = attributes[:'achVerification']
+      end
+
       if attributes.has_key?(:'customer')
         self.customer = attributes[:'customer']
       end
 
       if attributes.has_key?(:'consumerAuthenticationResponse')
         self.consumer_authentication_response = attributes[:'consumerAuthenticationResponse']
-      end
-
-      if attributes.has_key?(:'issuer')
-        self.issuer = attributes[:'issuer']
       end
 
       if attributes.has_key?(:'systemTraceAuditNumber')
@@ -251,12 +269,24 @@ module CyberSource
       if attributes.has_key?(:'name')
         self.name = attributes[:'name']
       end
+
+      if attributes.has_key?(:'routing')
+        self.routing = attributes[:'routing']
+      end
+
+      if attributes.has_key?(:'merchantNumber')
+        self.merchant_number = attributes[:'merchantNumber']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if !@auth_indicator.nil? && @auth_indicator.to_s.length > 1
+        invalid_properties.push('invalid value for "auth_indicator", the character length must be smaller than or equal to 1.')
+      end
+
       if !@transaction_id.nil? && @transaction_id.to_s.length > 50
         invalid_properties.push('invalid value for "transaction_id", the character length must be smaller than or equal to 50.')
       end
@@ -317,12 +347,17 @@ module CyberSource
         invalid_properties.push('invalid value for "name", the character length must be smaller than or equal to 30.')
       end
 
+      if !@merchant_number.nil? && @merchant_number.to_s.length > 15
+        invalid_properties.push('invalid value for "merchant_number", the character length must be smaller than or equal to 15.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if !@auth_indicator.nil? && @auth_indicator.to_s.length > 1
       return false if !@transaction_id.nil? && @transaction_id.to_s.length > 50
       return false if !@response_code.nil? && @response_code.to_s.length > 10
       return false if !@response_code_source.nil? && @response_code_source.to_s.length > 1
@@ -338,7 +373,18 @@ module CyberSource
       return false if !@master_card_service_reply_code.nil? && @master_card_service_reply_code.to_s.length > 1
       return false if !@master_card_authentication_type.nil? && @master_card_authentication_type.to_s.length > 1
       return false if !@name.nil? && @name.to_s.length > 30
+      return false if !@merchant_number.nil? && @merchant_number.to_s.length > 15
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] auth_indicator Value to be assigned
+    def auth_indicator=(auth_indicator)
+      if !auth_indicator.nil? && auth_indicator.to_s.length > 1
+        fail ArgumentError, 'invalid value for "auth_indicator", the character length must be smaller than or equal to 1.'
+      end
+
+      @auth_indicator = auth_indicator
     end
 
     # Custom attribute writer method with validation
@@ -491,11 +537,22 @@ module CyberSource
       @name = name
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] merchant_number Value to be assigned
+    def merchant_number=(merchant_number)
+      if !merchant_number.nil? && merchant_number.to_s.length > 15
+        fail ArgumentError, 'invalid value for "merchant_number", the character length must be smaller than or equal to 15.'
+      end
+
+      @merchant_number = merchant_number
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          auth_indicator == o.auth_indicator &&
           approval_code == o.approval_code &&
           transaction_id == o.transaction_id &&
           network_transaction_id == o.network_transaction_id &&
@@ -509,9 +566,9 @@ module CyberSource
           card_verification == o.card_verification &&
           merchant_advice == o.merchant_advice &&
           electronic_verification_results == o.electronic_verification_results &&
+          ach_verification == o.ach_verification &&
           customer == o.customer &&
           consumer_authentication_response == o.consumer_authentication_response &&
-          issuer == o.issuer &&
           system_trace_audit_number == o.system_trace_audit_number &&
           payment_account_reference_number == o.payment_account_reference_number &&
           transaction_integrity_code == o.transaction_integrity_code &&
@@ -520,7 +577,9 @@ module CyberSource
           master_card_service_code == o.master_card_service_code &&
           master_card_service_reply_code == o.master_card_service_reply_code &&
           master_card_authentication_type == o.master_card_authentication_type &&
-          name == o.name
+          name == o.name &&
+          routing == o.routing &&
+          merchant_number == o.merchant_number
     end
 
     # @see the `==` method
@@ -532,7 +591,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [approval_code, transaction_id, network_transaction_id, provider_transaction_id, response_code, response_code_source, response_details, response_category_code, forwarded_acquirer_code, avs, card_verification, merchant_advice, electronic_verification_results, customer, consumer_authentication_response, issuer, system_trace_audit_number, payment_account_reference_number, transaction_integrity_code, amex_verbal_auth_reference_number, sales_slip_number, master_card_service_code, master_card_service_reply_code, master_card_authentication_type, name].hash
+      [auth_indicator, approval_code, transaction_id, network_transaction_id, provider_transaction_id, response_code, response_code_source, response_details, response_category_code, forwarded_acquirer_code, avs, card_verification, merchant_advice, electronic_verification_results, ach_verification, customer, consumer_authentication_response, system_trace_audit_number, payment_account_reference_number, transaction_integrity_code, amex_verbal_auth_reference_number, sales_slip_number, master_card_service_code, master_card_service_reply_code, master_card_authentication_type, name, routing, merchant_number].hash
     end
 
     # Builds the object from hash

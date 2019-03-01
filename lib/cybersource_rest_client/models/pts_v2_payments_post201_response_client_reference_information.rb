@@ -14,20 +14,30 @@ require 'date'
 
 module CyberSource
   class PtsV2PaymentsPost201ResponseClientReferenceInformation
-    # Client-generated order reference or tracking number. CyberSource recommends that you send a unique value for each transaction so that you can perform meaningful searches for the transaction. 
+    # Client-generated order reference or tracking number. CyberSource recommends that you send a unique value for each transaction so that you can perform meaningful searches for the transaction.  For information about tracking orders, see Getting Started with CyberSource Advanced for the SCMP API.  **FDC Nashville Global**\\ Certain circumstances can cause the processor to truncate this value to 15 or 17 characters for Level II and Level III processing, which can cause a discrepancy between the value you submit and the value included in some processor reports. 
     attr_accessor :code
+
+    # Date and time at your physical location.  Format: `YYYYMMDDhhmmss`, where YYYY = year, MM = month, DD = day, hh = hour, mm = minutes ss = seconds 
+    attr_accessor :submit_local_date_time
+
+    # Merchant ID that was used to create the subscription or customer profile for which the service was requested.  If your CyberSource account is enabled for Recurring Billing, this field is returned only if you are using subscription sharing and if your merchant ID is in the same merchant ID pool as the owner merchant ID.  See the subscription sharing information in Recurring Billing Using the Simple Order API.  If your CyberSource account is enabled for Payment Tokenization, this field is returned only if you are using profile sharing and if your merchant ID is in the same merchant ID pool as the owner merchant ID.  See the profile sharing information in Payment Tokenization Using the Simple Order API. 
+    attr_accessor :owner_merchant_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'code' => :'code'
+        :'code' => :'code',
+        :'submit_local_date_time' => :'submitLocalDateTime',
+        :'owner_merchant_id' => :'ownerMerchantId'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'code' => :'String'
+        :'code' => :'String',
+        :'submit_local_date_time' => :'String',
+        :'owner_merchant_id' => :'String'
       }
     end
 
@@ -42,6 +52,14 @@ module CyberSource
       if attributes.has_key?(:'code')
         self.code = attributes[:'code']
       end
+
+      if attributes.has_key?(:'submitLocalDateTime')
+        self.submit_local_date_time = attributes[:'submitLocalDateTime']
+      end
+
+      if attributes.has_key?(:'ownerMerchantId')
+        self.owner_merchant_id = attributes[:'ownerMerchantId']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -52,6 +70,10 @@ module CyberSource
         invalid_properties.push('invalid value for "code", the character length must be smaller than or equal to 50.')
       end
 
+      if !@submit_local_date_time.nil? && @submit_local_date_time.to_s.length > 14
+        invalid_properties.push('invalid value for "submit_local_date_time", the character length must be smaller than or equal to 14.')
+      end
+
       invalid_properties
     end
 
@@ -59,6 +81,7 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if !@code.nil? && @code.to_s.length > 50
+      return false if !@submit_local_date_time.nil? && @submit_local_date_time.to_s.length > 14
       true
     end
 
@@ -72,12 +95,24 @@ module CyberSource
       @code = code
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] submit_local_date_time Value to be assigned
+    def submit_local_date_time=(submit_local_date_time)
+      if !submit_local_date_time.nil? && submit_local_date_time.to_s.length > 14
+        fail ArgumentError, 'invalid value for "submit_local_date_time", the character length must be smaller than or equal to 14.'
+      end
+
+      @submit_local_date_time = submit_local_date_time
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          code == o.code
+          code == o.code &&
+          submit_local_date_time == o.submit_local_date_time &&
+          owner_merchant_id == o.owner_merchant_id
     end
 
     # @see the `==` method
@@ -89,7 +124,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [code].hash
+      [code, submit_local_date_time, owner_merchant_id].hash
     end
 
     # Builds the object from hash

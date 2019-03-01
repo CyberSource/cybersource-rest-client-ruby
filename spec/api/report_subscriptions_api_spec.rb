@@ -34,10 +34,10 @@ describe 'ReportSubscriptionsApi' do
 
   # unit tests for create_subscription
   # Create Report Subscription for a report name by organization
-  # 
-  # @param report_name Name of the Report to Create
+  # Create a report subscription for your organization. The report name must be unique. 
   # @param request_body Report subscription request payload
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :organization_id Valid Cybersource Organization Id
   # @return [nil]
   describe 'create_subscription test' do
     it 'should work' do
@@ -47,7 +47,7 @@ describe 'ReportSubscriptionsApi' do
 
   # unit tests for delete_subscription
   # Delete subscription of a report name by organization
-  # 
+  # Delete a report subscription for your organization. You must know the unique name of the report you want to delete. 
   # @param report_name Name of the Report to Delete
   # @param [Hash] opts the optional parameters
   # @return [nil]
@@ -58,8 +58,8 @@ describe 'ReportSubscriptionsApi' do
   end
 
   # unit tests for get_all_subscriptions
-  # Retrieve all subscriptions by organization
-  # 
+  # Get all subscriptions
+  # View a summary of all report subscriptions. 
   # @param [Hash] opts the optional parameters
   # @return [ReportingV3ReportSubscriptionsGet200Response]
   describe 'get_all_subscriptions test' do
@@ -69,8 +69,8 @@ describe 'ReportSubscriptionsApi' do
   end
 
   # unit tests for get_subscription
-  # Retrieve subscription for a report name by organization
-  # 
+  # Get subscription for report name
+  # View the details of a report subscription, such as the report format or report frequency, using the report’s unique name. 
   # @param report_name Name of the Report to Retrieve
   # @param [Hash] opts the optional parameters
   # @return [ReportingV3ReportSubscriptionsGet200ResponseSubscriptions]

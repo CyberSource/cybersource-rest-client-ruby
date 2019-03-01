@@ -4,16 +4,16 @@ All URIs are relative to *https://apitest.cybersource.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_resource_info_by_report_definition**](ReportDefinitionsApi.md#get_resource_info_by_report_definition) | **GET** /reporting/v3/report-definitions/{reportDefinitionName} | Get a single report definition information
+[**get_resource_info_by_report_definition**](ReportDefinitionsApi.md#get_resource_info_by_report_definition) | **GET** /reporting/v3/report-definitions/{reportDefinitionName} | Get report definition
 [**get_resource_v2_info**](ReportDefinitionsApi.md#get_resource_v2_info) | **GET** /reporting/v3/report-definitions | Get reporting resource information
 
 
 # **get_resource_info_by_report_definition**
 > ReportingV3ReportDefinitionsNameGet200Response get_resource_info_by_report_definition(report_definition_name, opts)
 
-Get a single report definition information
+Get report definition
 
-The report definition name must be used as path parameter exclusive of each other
+View the attributes of an individual report type. For a list of values for reportDefinitionName, see the [Reporting Developer Guide](https://www.cybersource.com/developers/documentation/reporting_and_reconciliation/) 
 
 ### Example
 ```ruby
@@ -29,7 +29,7 @@ opts = {
 }
 
 begin
-  #Get a single report definition information
+  #Get report definition
   result = api_instance.get_resource_info_by_report_definition(report_definition_name, opts)
   p result
 rescue CyberSource::ApiError => e
@@ -64,7 +64,7 @@ No authorization required
 
 Get reporting resource information
 
-
+View a list of supported reports and their attributes before subscribing to them. 
 
 ### Example
 ```ruby

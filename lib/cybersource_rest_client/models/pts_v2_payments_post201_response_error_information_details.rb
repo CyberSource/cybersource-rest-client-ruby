@@ -17,7 +17,7 @@ module CyberSource
     # This is the flattened JSON object field name/path that is either missing or invalid.
     attr_accessor :field
 
-    # Possible reasons for the error. 
+    # Possible reasons for the error.  Possible values:  - MISSING_FIELD  - INVALID_DATA 
     attr_accessor :reason
 
     class EnumAttributeValidator

@@ -74,10 +74,6 @@ module CyberSource
         invalid_properties.push('invalid value for "prefix", the character length must be smaller than or equal to 6.')
       end
 
-      if !@type.nil? && @type.to_s.length > 3
-        invalid_properties.push('invalid value for "type", the character length must be smaller than or equal to 3.')
-      end
-
       invalid_properties
     end
 
@@ -86,7 +82,6 @@ module CyberSource
     def valid?
       return false if !@suffix.nil? && @suffix.to_s.length > 4
       return false if !@prefix.nil? && @prefix.to_s.length > 6
-      return false if !@type.nil? && @type.to_s.length > 3
       true
     end
 
@@ -108,16 +103,6 @@ module CyberSource
       end
 
       @prefix = prefix
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] type Value to be assigned
-    def type=(type)
-      if !type.nil? && type.to_s.length > 3
-        fail ArgumentError, 'invalid value for "type", the character length must be smaller than or equal to 3.'
-      end
-
-      @type = type
     end
 
     # Checks equality by comparing each attribute.

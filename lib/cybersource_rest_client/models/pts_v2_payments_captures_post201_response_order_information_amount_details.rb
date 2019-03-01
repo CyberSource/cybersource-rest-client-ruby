@@ -17,7 +17,7 @@ module CyberSource
     # Amount you requested for the capture. 
     attr_accessor :total_amount
 
-    # Currency used for the order. Use the three-character ISO Standard Currency Codes.  For an authorization reversal or a capture, you must use the same currency that you used in your request for Payment API. 
+    # Currency used for the order. Use the three-character ISO Standard Currency Codes.  For an authorization reversal (`reversalInformation`) or a capture (`processingOptions.capture` is set to `true`), you must use the same currency that you used in your request for Payment API.  **DCC for First Data**\\ Your local currency. For details, see \"Dynamic Currency Conversion for First Data,\" page 113. 
     attr_accessor :currency
 
     # Attribute mapping from ruby-style variable name to JSON key.

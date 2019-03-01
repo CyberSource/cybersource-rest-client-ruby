@@ -156,12 +156,6 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] name Value to be assigned
-    def name=(name)
-      @name = name
-    end
-
-    # Custom attribute writer method with validation
     # @param [Object] alternate_name Value to be assigned
     def alternate_name=(alternate_name)
       if !alternate_name.nil? && alternate_name.to_s.length > 13

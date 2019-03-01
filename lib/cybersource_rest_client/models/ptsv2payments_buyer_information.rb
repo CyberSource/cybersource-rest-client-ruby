@@ -14,18 +14,21 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsBuyerInformation
-    # Your identifier for the customer.  For processor-specific information, see the customer_account_id field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
+    # Your identifier for the customer.  When a subscription or customer profile is being created, the maximum length for this field for most processors is 30. Otherwise, the maximum length is 100.  **Comercio Latino**\\ For recurring payments in Mexico, the value is the customer’s contract number. Note Before you request the authorization, you must inform the issuer of the customer contract numbers that will be used for recurring transactions.  **Litle**\\ For a follow-on credit with Litle, CyberSource checks the following locations, in the order given, for a customer account ID value and uses the first value it finds: 1. `customer_account_id` value in the follow-on credit request 2. Customer account ID value that was used for the capture that is being credited 3. Customer account ID value that was used for the original authorization If a customer account ID value cannot be found in any of these locations, then no value is used.  For processor-specific information, see the customer_account_id field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
     attr_accessor :merchant_customer_id
 
-    # Recipient’s date of birth. **Format**: `YYYYMMDD`.  This field is a pass-through, which means that CyberSource ensures that the value is eight numeric characters but otherwise does not verify the value or modify it in any way before sending it to the processor. If the field is not required for the transaction, CyberSource does not forward it to the processor. 
+    # Recipient’s date of birth. **Format**: `YYYYMMDD`.  This field is a pass-through, which means that CyberSource ensures that the value is eight numeric characters but otherwise does not verify the value or modify it in any way before sending it to the processor. If the field is not required for the transaction, CyberSource does not forward it to the processor.  For more details, see \"Recipients,\" page 224. 
     attr_accessor :date_of_birth
 
     # Customer’s government-assigned tax identification number.  For processor-specific information, see the purchaser_vat_registration_number field in [Level II and Level III Processing Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/Level_2_3_SCMP_API/html) 
     attr_accessor :vat_registration_number
 
+    # Company’s tax identifier. This is only used for eCheck service.  ** TeleCheck ** Contact your TeleCheck representative to find out whether this field is required or optional.  ** All Other Processors ** Not used 
+    attr_accessor :company_tax_id
+
     attr_accessor :personal_identification
 
-    # TODO 
+    # The description for this field is not available. 
     attr_accessor :hashed_password
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -34,6 +37,7 @@ module CyberSource
         :'merchant_customer_id' => :'merchantCustomerId',
         :'date_of_birth' => :'dateOfBirth',
         :'vat_registration_number' => :'vatRegistrationNumber',
+        :'company_tax_id' => :'companyTaxId',
         :'personal_identification' => :'personalIdentification',
         :'hashed_password' => :'hashedPassword'
       }
@@ -45,6 +49,7 @@ module CyberSource
         :'merchant_customer_id' => :'String',
         :'date_of_birth' => :'String',
         :'vat_registration_number' => :'String',
+        :'company_tax_id' => :'String',
         :'personal_identification' => :'Array<Ptsv2paymentsBuyerInformationPersonalIdentification>',
         :'hashed_password' => :'String'
       }
@@ -68,6 +73,10 @@ module CyberSource
 
       if attributes.has_key?(:'vatRegistrationNumber')
         self.vat_registration_number = attributes[:'vatRegistrationNumber']
+      end
+
+      if attributes.has_key?(:'companyTaxId')
+        self.company_tax_id = attributes[:'companyTaxId']
       end
 
       if attributes.has_key?(:'personalIdentification')
@@ -97,6 +106,10 @@ module CyberSource
         invalid_properties.push('invalid value for "vat_registration_number", the character length must be smaller than or equal to 20.')
       end
 
+      if !@company_tax_id.nil? && @company_tax_id.to_s.length > 9
+        invalid_properties.push('invalid value for "company_tax_id", the character length must be smaller than or equal to 9.')
+      end
+
       if !@hashed_password.nil? && @hashed_password.to_s.length > 100
         invalid_properties.push('invalid value for "hashed_password", the character length must be smaller than or equal to 100.')
       end
@@ -110,6 +123,7 @@ module CyberSource
       return false if !@merchant_customer_id.nil? && @merchant_customer_id.to_s.length > 100
       return false if !@date_of_birth.nil? && @date_of_birth.to_s.length > 8
       return false if !@vat_registration_number.nil? && @vat_registration_number.to_s.length > 20
+      return false if !@company_tax_id.nil? && @company_tax_id.to_s.length > 9
       return false if !@hashed_password.nil? && @hashed_password.to_s.length > 100
       true
     end
@@ -145,6 +159,16 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] company_tax_id Value to be assigned
+    def company_tax_id=(company_tax_id)
+      if !company_tax_id.nil? && company_tax_id.to_s.length > 9
+        fail ArgumentError, 'invalid value for "company_tax_id", the character length must be smaller than or equal to 9.'
+      end
+
+      @company_tax_id = company_tax_id
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] hashed_password Value to be assigned
     def hashed_password=(hashed_password)
       if !hashed_password.nil? && hashed_password.to_s.length > 100
@@ -162,6 +186,7 @@ module CyberSource
           merchant_customer_id == o.merchant_customer_id &&
           date_of_birth == o.date_of_birth &&
           vat_registration_number == o.vat_registration_number &&
+          company_tax_id == o.company_tax_id &&
           personal_identification == o.personal_identification &&
           hashed_password == o.hashed_password
     end
@@ -175,7 +200,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [merchant_customer_id, date_of_birth, vat_registration_number, personal_identification, hashed_password].hash
+      [merchant_customer_id, date_of_birth, vat_registration_number, company_tax_id, personal_identification, hashed_password].hash
     end
 
     # Builds the object from hash

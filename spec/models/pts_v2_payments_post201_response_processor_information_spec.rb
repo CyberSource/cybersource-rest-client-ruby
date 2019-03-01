@@ -32,6 +32,12 @@ describe 'PtsV2PaymentsPost201ResponseProcessorInformation' do
       expect(@instance).to be_instance_of(CyberSource::PtsV2PaymentsPost201ResponseProcessorInformation)
     end
   end
+  describe 'test attribute "auth_indicator"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "approval_code"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -110,6 +116,12 @@ describe 'PtsV2PaymentsPost201ResponseProcessorInformation' do
     end
   end
 
+  describe 'test attribute "ach_verification"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "customer"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -117,12 +129,6 @@ describe 'PtsV2PaymentsPost201ResponseProcessorInformation' do
   end
 
   describe 'test attribute "consumer_authentication_response"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe 'test attribute "issuer"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -177,6 +183,18 @@ describe 'PtsV2PaymentsPost201ResponseProcessorInformation' do
   end
 
   describe 'test attribute "name"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "routing"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "merchant_number"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

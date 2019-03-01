@@ -112,7 +112,7 @@ describe 'ReportingV3ReportSubscriptionsGet200ResponseSubscriptions' do
     end
   end
 
-  describe 'test attribute "selected_merchant_group_name"' do
+  describe 'test attribute "group_id"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

@@ -110,9 +110,9 @@ module CyberSource
         invalid_properties.push('invalid value for "id", the character length must be great than or equal to 1.')
       end
 
-      if !@id.nil? && @id !~ Regexp.new(/^[a-zA-Z0-9_+-]*$/)
-        invalid_properties.push('invalid value for "id", must conform to the pattern /^[a-zA-Z0-9_+-]*$/.')
-      end
+      #if !@id.nil? && @id !~ Regexp.new(/^[a-zA-Z0-9_+-]*$/)
+        #invalid_properties.push('invalid value for "id", must conform to the pattern /^[a-zA-Z0-9_+-]*$/.')
+      #end
 
       invalid_properties
     end
@@ -122,7 +122,7 @@ module CyberSource
     def valid?
       return false if !@id.nil? && @id.to_s.length > 8
       return false if !@id.nil? && @id.to_s.length < 1
-      return false if !@id.nil? && @id !~ Regexp.new(/^[a-zA-Z0-9_+-]*$/)
+      #return false if !@id.nil? && @id !~ Regexp.new(/^[a-zA-Z0-9_+-]*$/)
       true
     end
 
@@ -137,9 +137,9 @@ module CyberSource
         fail ArgumentError, 'invalid value for "id", the character length must be great than or equal to 1.'
       end
 
-      if !id.nil? && id !~ Regexp.new(/^[a-zA-Z0-9_+-]*$/)
-        fail ArgumentError, 'invalid value for "id", must conform to the pattern /^[a-zA-Z0-9_+-]*$/.'
-      end
+      #if !id.nil? && id !~ Regexp.new(/^[a-zA-Z0-9_+-]*$/)
+        #fail ArgumentError, 'invalid value for "id", must conform to the pattern /^[a-zA-Z0-9_+-]*$/.'
+      #end
 
       @id = id
     end

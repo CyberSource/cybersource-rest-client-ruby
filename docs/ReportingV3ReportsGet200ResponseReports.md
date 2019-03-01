@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **queued_time** | **DateTime** | Specifies the time of the report in queued  in ISO 8601 format | [optional] 
 **report_generating_time** | **DateTime** | Specifies the time of the report started to generate  in ISO 8601 format | [optional] 
 **report_completed_time** | **DateTime** | Specifies the time of the report completed the generation  in ISO 8601 format | [optional] 
-**selected_merchant_group_name** | **String** | Selected name of the group | [optional] 
+**subscription_type** | **String** | Specifies whether the subscription created is either Custom, Standard or Classic  | [optional] 
+**group_id** | **String** | Id for selected group. | [optional] 
 
 

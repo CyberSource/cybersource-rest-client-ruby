@@ -135,12 +135,12 @@ module CyberSource
       @api_key_prefix = {}
       @timeout = 0
       @client_side_validation = true
-      @verify_ssl = false
-      @verify_ssl_host = false
+      @verify_ssl = true
+      @verify_ssl_host = true
       @params_encoding = nil
       @cert_file = nil
       @key_file = nil
-      @debugging = true
+      @debugging = false
       @inject_format = false
       @force_ending_format = false
       @logger = defined?(Rails) ? Rails.logger : Logger.new(STDOUT)

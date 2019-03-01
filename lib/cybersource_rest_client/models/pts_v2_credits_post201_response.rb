@@ -22,7 +22,7 @@ module CyberSource
     # Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the time. The Z indicates UTC. 
     attr_accessor :submit_time_utc
 
-    # The status of the submitted transaction.
+    # The status of the submitted transaction.  Possible values:  - PENDING 
     attr_accessor :status
 
     # The reconciliation id for the submitted transaction. This value is not returned for all processors. 
@@ -32,7 +32,11 @@ module CyberSource
 
     attr_accessor :credit_amount_details
 
+    attr_accessor :processing_information
+
     attr_accessor :processor_information
+
+    attr_accessor :payment_information
 
     attr_accessor :order_information
 
@@ -68,7 +72,9 @@ module CyberSource
         :'reconciliation_id' => :'reconciliationId',
         :'client_reference_information' => :'clientReferenceInformation',
         :'credit_amount_details' => :'creditAmountDetails',
+        :'processing_information' => :'processingInformation',
         :'processor_information' => :'processorInformation',
+        :'payment_information' => :'paymentInformation',
         :'order_information' => :'orderInformation'
       }
     end
@@ -83,7 +89,9 @@ module CyberSource
         :'reconciliation_id' => :'String',
         :'client_reference_information' => :'PtsV2PaymentsPost201ResponseClientReferenceInformation',
         :'credit_amount_details' => :'PtsV2CreditsPost201ResponseCreditAmountDetails',
+        :'processing_information' => :'PtsV2CreditsPost201ResponseProcessingInformation',
         :'processor_information' => :'PtsV2PaymentsRefundPost201ResponseProcessorInformation',
+        :'payment_information' => :'PtsV2CreditsPost201ResponsePaymentInformation',
         :'order_information' => :'PtsV2PaymentsRefundPost201ResponseOrderInformation'
       }
     end
@@ -124,8 +132,16 @@ module CyberSource
         self.credit_amount_details = attributes[:'creditAmountDetails']
       end
 
+      if attributes.has_key?(:'processingInformation')
+        self.processing_information = attributes[:'processingInformation']
+      end
+
       if attributes.has_key?(:'processorInformation')
         self.processor_information = attributes[:'processorInformation']
+      end
+
+      if attributes.has_key?(:'paymentInformation')
+        self.payment_information = attributes[:'paymentInformation']
       end
 
       if attributes.has_key?(:'orderInformation')
@@ -200,7 +216,9 @@ module CyberSource
           reconciliation_id == o.reconciliation_id &&
           client_reference_information == o.client_reference_information &&
           credit_amount_details == o.credit_amount_details &&
+          processing_information == o.processing_information &&
           processor_information == o.processor_information &&
+          payment_information == o.payment_information &&
           order_information == o.order_information
     end
 
@@ -213,7 +231,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, submit_time_utc, status, reconciliation_id, client_reference_information, credit_amount_details, processor_information, order_information].hash
+      [_links, id, submit_time_utc, status, reconciliation_id, client_reference_information, credit_amount_details, processing_information, processor_information, payment_information, order_information].hash
     end
 
     # Builds the object from hash

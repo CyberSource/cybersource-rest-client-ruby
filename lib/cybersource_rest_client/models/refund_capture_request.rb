@@ -32,7 +32,7 @@ module CyberSource
 
     attr_accessor :point_of_sale_information
 
-    # Description of this field is not available.
+    # The description for this field is not available.
     attr_accessor :merchant_defined_information
 
     # Attribute mapping from ruby-style variable name to JSON key.

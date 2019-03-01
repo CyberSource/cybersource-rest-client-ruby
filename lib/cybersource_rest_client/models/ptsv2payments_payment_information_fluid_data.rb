@@ -14,16 +14,16 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsPaymentInformationFluidData
-    # Description of this field is not available.
+    # The name of the merchant-defined data field. The range of this field starts at 1 and terminiates at 100.
     attr_accessor :key
 
-    # Format of the encrypted payment data.
+    # The specific string for identifying the payment solution that is sending the encrypted payment data to CyberSource. Valid values: - `Apple Pay` - `Samsung Pay` **NOTE**: For other payment solutions, the value may be specific to the customer's mobile device. For example, the descriptor for a Bluefin payment encryption would be a device-generated descriptor. Merchant needs to pass in this value. 
     attr_accessor :descriptor
 
-    # The encrypted payment data value. If using Apple Pay or Samsung Pay, the values are:   - Apple Pay: RklEPUNPTU1PTi5BUFBMRS5JTkFQUC5QQVlNRU5U   - Samsung Pay: RklEPUNPTU1PTi5TQU1TVU5HLklOQVBQLlBBWU1FTlQ= 
+    # Represents the encrypted payment data BLOB. The entry for this field is dependent on the payment solution a merchant uses.  Valid values: - Apple Pay: `RklEPUNPTU1PTi5BUFBMRS5JTkFQUC5QQVlNRU5U` - Samsung Pay: `RklEPUNPTU1PTi5TQU1TVU5HLklOQVBQLlBBWU1FTlQ=` **NOTE**: For other payment solutions, the value of the descriptor may be specific to the customer's mobile device. For example, the descriptor for a Bluefin payment encryption would be a device-generated descriptor. Merchant needs to pass in this value. 
     attr_accessor :value
 
-    # Encoding method used to encrypt the payment data.  Possible value: Base64 
+    # Encoding method used to encrypt the payment data.  Valid value: Base64 
     attr_accessor :encoding
 
     # Attribute mapping from ruby-style variable name to JSON key.

@@ -69,7 +69,7 @@ describe 'ReportingV3ReportsIdGet200Response' do
   describe 'test attribute "report_frequency"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["DAILY", "WEEKLY", "MONTHLY"])
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["DAILY", "WEEKLY", "MONTHLY", "ADHOC"])
       # validator.allowable_values.each do |value|
       #   expect { @instance.report_frequency = value }.not_to raise_error
       # end
@@ -122,7 +122,7 @@ describe 'ReportingV3ReportsIdGet200Response' do
     end
   end
 
-  describe 'test attribute "selected_merchant_group_name"' do
+  describe 'test attribute "group_id"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

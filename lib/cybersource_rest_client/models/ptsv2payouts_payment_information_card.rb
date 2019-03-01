@@ -84,10 +84,6 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@type.nil? && @type.to_s.length > 3
-        invalid_properties.push('invalid value for "type", the character length must be smaller than or equal to 3.')
-      end
-
       if !@number.nil? && @number.to_s.length > 20
         invalid_properties.push('invalid value for "number", the character length must be smaller than or equal to 20.')
       end
@@ -110,22 +106,11 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@type.nil? && @type.to_s.length > 3
       return false if !@number.nil? && @number.to_s.length > 20
       return false if !@expiration_month.nil? && @expiration_month.to_s.length > 2
       return false if !@expiration_year.nil? && @expiration_year.to_s.length > 4
       return false if !@source_account_type.nil? && @source_account_type.to_s.length > 2
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] type Value to be assigned
-    def type=(type)
-      if !type.nil? && type.to_s.length > 3
-        fail ArgumentError, 'invalid value for "type", the character length must be smaller than or equal to 3.'
-      end
-
-      @type = type
     end
 
     # Custom attribute writer method with validation

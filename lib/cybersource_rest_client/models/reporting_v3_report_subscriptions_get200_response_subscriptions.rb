@@ -15,13 +15,13 @@ require 'date'
 module CyberSource
   # Subscription Details
   class ReportingV3ReportSubscriptionsGet200ResponseSubscriptions
-    # Organization Id
+    # Selected Organization Id
     attr_accessor :organization_id
 
     # Report Definition Id
     attr_accessor :report_definition_id
 
-    # Report Definition
+    # Report Definition Class
     attr_accessor :report_definition_name
 
     # Report Format
@@ -50,8 +50,8 @@ module CyberSource
 
     attr_accessor :report_preferences
 
-    # Selected name of the group.
-    attr_accessor :selected_merchant_group_name
+    # Id for the selected group.
+    attr_accessor :group_id
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -90,7 +90,7 @@ module CyberSource
         :'report_fields' => :'reportFields',
         :'report_filters' => :'reportFilters',
         :'report_preferences' => :'reportPreferences',
-        :'selected_merchant_group_name' => :'selectedMerchantGroupName'
+        :'group_id' => :'groupId'
       }
     end
 
@@ -107,9 +107,9 @@ module CyberSource
         :'start_time' => :'DateTime',
         :'start_day' => :'Integer',
         :'report_fields' => :'Array<String>',
-        :'report_filters' => :'Array<String>',
-        :'report_preferences' => :'ReportingV3ReportSubscriptionsGet200ResponseReportPreferences',
-        :'selected_merchant_group_name' => :'String'
+        :'report_filters' => :'Hash<String, Array<String>>',
+        :'report_preferences' => :'ReportingV3ReportsIdGet200ResponseReportPreferences',
+        :'group_id' => :'String'
       }
     end
 
@@ -164,7 +164,7 @@ module CyberSource
       end
 
       if attributes.has_key?(:'reportFilters')
-        if (value = attributes[:'reportFilters']).is_a?(Array)
+        if (value = attributes[:'reportFilters']).is_a?(Hash)
           self.report_filters = value
         end
       end
@@ -173,8 +173,8 @@ module CyberSource
         self.report_preferences = attributes[:'reportPreferences']
       end
 
-      if attributes.has_key?(:'selectedMerchantGroupName')
-        self.selected_merchant_group_name = attributes[:'selectedMerchantGroupName']
+      if attributes.has_key?(:'groupId')
+        self.group_id = attributes[:'groupId']
       end
     end
 
@@ -232,7 +232,7 @@ module CyberSource
           report_fields == o.report_fields &&
           report_filters == o.report_filters &&
           report_preferences == o.report_preferences &&
-          selected_merchant_group_name == o.selected_merchant_group_name
+          group_id == o.group_id
     end
 
     # @see the `==` method
@@ -244,7 +244,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [organization_id, report_definition_id, report_definition_name, report_mime_type, report_frequency, report_name, timezone, start_time, start_day, report_fields, report_filters, report_preferences, selected_merchant_group_name].hash
+      [organization_id, report_definition_id, report_definition_name, report_mime_type, report_frequency, report_name, timezone, start_time, start_day, report_fields, report_filters, report_preferences, group_id].hash
     end
 
     # Builds the object from hash

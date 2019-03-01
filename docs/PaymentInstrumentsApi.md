@@ -161,7 +161,7 @@ No authorization required
 
 
 # **tms_v1_paymentinstruments_token_id_get**
-> TmsV1PaymentinstrumentsPost201Response tms_v1_paymentinstruments_token_id_get(profile_id, token_id)
+> TmsV1PaymentinstrumentsGet200Response tms_v1_paymentinstruments_token_id_get(profile_id, token_id)
 
 Retrieve a Payment Instrument
 
@@ -195,7 +195,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TmsV1PaymentinstrumentsPost201Response**](TmsV1PaymentinstrumentsPost201Response.md)
+[**TmsV1PaymentinstrumentsGet200Response**](TmsV1PaymentinstrumentsGet200Response.md)
 
 ### Authorization
 
@@ -209,7 +209,7 @@ No authorization required
 
 
 # **tms_v1_paymentinstruments_token_id_patch**
-> TmsV1PaymentinstrumentsPost201Response tms_v1_paymentinstruments_token_id_patch(profile_id, token_id, body)
+> TmsV1PaymentinstrumentsGet200Response tms_v1_paymentinstruments_token_id_patch(profile_id, token_id, body)
 
 Update a Payment Instrument
 
@@ -246,7 +246,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TmsV1PaymentinstrumentsPost201Response**](TmsV1PaymentinstrumentsPost201Response.md)
+[**TmsV1PaymentinstrumentsGet200Response**](TmsV1PaymentinstrumentsGet200Response.md)
 
 ### Authorization
 

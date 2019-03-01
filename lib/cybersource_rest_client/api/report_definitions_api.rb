@@ -18,28 +18,34 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-      @api_client.set_configuration(config)
+	  @api_client.set_configuration(config)
     end
-    # Get a single report definition information
-    # The report definition name must be used as path parameter exclusive of each other
+    # Get report definition
+    # View the attributes of an individual report type. For a list of values for reportDefinitionName, see the [Reporting Developer Guide](https://www.cybersource.com/developers/documentation/reporting_and_reconciliation/) 
     # @param report_definition_name Name of the Report definition to retrieve
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [ReportingV3ReportDefinitionsNameGet200Response]
     def get_resource_info_by_report_definition(report_definition_name, opts = {})
-      data, _status_code, _headers = get_resource_info_by_report_definition_with_http_info(report_definition_name, opts)
-      return data, _status_code, _headers
+      data, status_code, headers = get_resource_info_by_report_definition_with_http_info(report_definition_name, opts)
+      return data, status_code, headers
     end
 
-    # Get a single report definition information
-    # The report definition name must be used as path parameter exclusive of each other
+    # Get report definition
+    # View the attributes of an individual report type. For a list of values for reportDefinitionName, see the [Reporting Developer Guide](https://www.cybersource.com/developers/documentation/reporting_and_reconciliation/) 
     # @param report_definition_name Name of the Report definition to retrieve
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [Array<(ReportingV3ReportDefinitionsNameGet200Response, Fixnum, Hash)>] ReportingV3ReportDefinitionsNameGet200Response data, response status code and response headers
     def get_resource_info_by_report_definition_with_http_info(report_definition_name, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: ReportDefinitionsApi.get_resource_info_by_report_definition ...'
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: ReportDefinitionsApi.get_resource_info_by_report_definition ...'
+			rescue
+				puts 'Cannot write to log'
+			end
       end
       # verify the required parameter 'report_definition_name' is set
       if @api_client.config.client_side_validation && report_definition_name.nil?
@@ -52,6 +58,11 @@ module CyberSource
       if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length < 1
         fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportDefinitionsApi.get_resource_info_by_report_definition, the character length must be great than or equal to 1.'
       end
+
+      #if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
+        #fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling ReportDefinitionsApi.get_resource_info_by_report_definition, must conform to the pattern /[a-zA-Z0-9-_]+/."
+      #end
+
       # resource path
       local_var_path = 'reporting/v3/report-definitions/{reportDefinitionName}'.sub('{' + 'reportDefinitionName' + '}', report_definition_name.to_s)
 
@@ -80,28 +91,39 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'ReportingV3ReportDefinitionsNameGet200Response')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ReportDefinitionsApi#get_resource_info_by_report_definition\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
+		begin
+		raise
+			@api_client.config.logger.debug "API called: ReportDefinitionsApi#get_resource_info_by_report_definition\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
       return data, status_code, headers
     end
     # Get reporting resource information
-    # 
+    # View a list of supported reports and their attributes before subscribing to them. 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [ReportingV3ReportDefinitionsGet200Response]
     def get_resource_v2_info(opts = {})
-      data, _status_code, _headers = get_resource_v2_info_with_http_info(opts)
-      return data, _status_code, _headers
+      data, status_code, headers = get_resource_v2_info_with_http_info(opts)
+      return data, status_code, headers
     end
 
     # Get reporting resource information
-    # 
+    # View a list of supported reports and their attributes before subscribing to them. 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [Array<(ReportingV3ReportDefinitionsGet200Response, Fixnum, Hash)>] ReportingV3ReportDefinitionsGet200Response data, response status code and response headers
     def get_resource_v2_info_with_http_info(opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: ReportDefinitionsApi.get_resource_v2_info ...'
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: ReportDefinitionsApi.get_resource_v2_info ...'
+			rescue
+				puts 'Cannot write to log'
+			end
       end
       if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length > 32
         fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportDefinitionsApi.get_resource_v2_info, the character length must be smaller than or equal to 32.'
@@ -110,6 +132,10 @@ module CyberSource
       if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length < 1
         fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportDefinitionsApi.get_resource_v2_info, the character length must be great than or equal to 1.'
       end
+
+      #if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
+        #fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling ReportDefinitionsApi.get_resource_v2_info, must conform to the pattern /[a-zA-Z0-9-_]+/."
+      #end
 
       # resource path
       local_var_path = 'reporting/v3/report-definitions'
@@ -139,8 +165,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'ReportingV3ReportDefinitionsGet200Response')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ReportDefinitionsApi#get_resource_v2_info\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
+		begin
+		raise
+			@api_client.config.logger.debug "API called: ReportDefinitionsApi#get_resource_v2_info\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
       return data, status_code, headers
     end
   end

@@ -3,9 +3,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**organization_id** | **String** | Organization Id | [optional] 
+**organization_id** | **String** | Selected Organization Id | [optional] 
 **report_definition_id** | **String** | Report Definition Id | [optional] 
-**report_definition_name** | **String** | Report Definition | [optional] 
+**report_definition_name** | **String** | Report Definition Class | [optional] 
 **report_mime_type** | **String** | Report Format | [optional] 
 **report_frequency** | **String** | Report Frequency | [optional] 
 **report_name** | **String** | Report Name | [optional] 
@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 **start_time** | **DateTime** | Start Time | [optional] 
 **start_day** | **Integer** | Start Day | [optional] 
 **report_fields** | **Array&lt;String&gt;** | List of all fields String values | [optional] 
-**report_filters** | **Array&lt;String&gt;** | List of filters to apply | [optional] 
-**report_preferences** | [**ReportingV3ReportSubscriptionsGet200ResponseReportPreferences**](ReportingV3ReportSubscriptionsGet200ResponseReportPreferences.md) |  | [optional] 
-**selected_merchant_group_name** | **String** | Selected name of the group. | [optional] 
+**report_filters** | **Hash&lt;String, Array&lt;String&gt;&gt;** | List of filters to apply | [optional] 
+**report_preferences** | [**ReportingV3ReportsIdGet200ResponseReportPreferences**](ReportingV3ReportsIdGet200ResponseReportPreferences.md) |  | [optional] 
+**group_id** | **String** | Id for the selected group. | [optional] 
 
 

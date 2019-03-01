@@ -20,11 +20,15 @@ module CyberSource
     # Reply flag for the original transaction.
     attr_accessor :reason_code
 
+    # Flag indicating whether a full authorization reversal was successfully submitted.  Possible values: - Y: The authorization reversal was successfully submitted. - N: The authorization reversal was not successfully submitted. You must send a credit request for a refund.  This field is supported only for **FDC Nashville Global**. 
+    attr_accessor :reversal_submitted
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'approval_code' => :'approvalCode',
-        :'reason_code' => :'reasonCode'
+        :'reason_code' => :'reasonCode',
+        :'reversal_submitted' => :'reversalSubmitted'
       }
     end
 
@@ -32,7 +36,8 @@ module CyberSource
     def self.swagger_types
       {
         :'approval_code' => :'String',
-        :'reason_code' => :'String'
+        :'reason_code' => :'String',
+        :'reversal_submitted' => :'String'
       }
     end
 
@@ -51,6 +56,10 @@ module CyberSource
       if attributes.has_key?(:'reasonCode')
         self.reason_code = attributes[:'reasonCode']
       end
+
+      if attributes.has_key?(:'reversalSubmitted')
+        self.reversal_submitted = attributes[:'reversalSubmitted']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -65,6 +74,10 @@ module CyberSource
         invalid_properties.push('invalid value for "reason_code", the character length must be smaller than or equal to 50.')
       end
 
+      if !@reversal_submitted.nil? && @reversal_submitted.to_s.length > 1
+        invalid_properties.push('invalid value for "reversal_submitted", the character length must be smaller than or equal to 1.')
+      end
+
       invalid_properties
     end
 
@@ -73,6 +86,7 @@ module CyberSource
     def valid?
       return false if !@approval_code.nil? && @approval_code.to_s.length > 6
       return false if !@reason_code.nil? && @reason_code.to_s.length > 50
+      return false if !@reversal_submitted.nil? && @reversal_submitted.to_s.length > 1
       true
     end
 
@@ -96,13 +110,24 @@ module CyberSource
       @reason_code = reason_code
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] reversal_submitted Value to be assigned
+    def reversal_submitted=(reversal_submitted)
+      if !reversal_submitted.nil? && reversal_submitted.to_s.length > 1
+        fail ArgumentError, 'invalid value for "reversal_submitted", the character length must be smaller than or equal to 1.'
+      end
+
+      @reversal_submitted = reversal_submitted
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           approval_code == o.approval_code &&
-          reason_code == o.reason_code
+          reason_code == o.reason_code &&
+          reversal_submitted == o.reversal_submitted
     end
 
     # @see the `==` method
@@ -114,7 +139,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [approval_code, reason_code].hash
+      [approval_code, reason_code, reversal_submitted].hash
     end
 
     # Builds the object from hash

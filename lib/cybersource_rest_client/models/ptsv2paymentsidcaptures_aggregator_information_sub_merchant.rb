@@ -14,28 +14,28 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsidcapturesAggregatorInformationSubMerchant
-    # Sub-merchant’s business name.
+    # Sub-merchant’s business name.  **American Express Direct**\\ The maximum length of the sub-merchant name depends on the length of the aggregator name. The combined length for both values must not exceed 36 characters.  **CyberSource through VisaNet**\\ With American Express, the maximum length of the sub-merchant name depends on the length of the aggregator name. The combined length for both values must not exceed 36 characters. The value for this field does not map to the TC 33 capture file5.  **FDC Compass**\\ This value must consist of uppercase characters.  **FDC Nashville Global**\\ With Mastercard, the maximum length of the sub-merchant name depends on the length of the aggregator name: - If aggregator name length is 1 through 3, maximum sub-merchant name length is 21. - If aggregator name length is 4 through 7, maximum sub-merchant name length is 17. - If aggregator name length is 8 through 12, maximum sub-merchant name length is 12. 
     attr_accessor :name
 
-    # First line of the sub-merchant’s street address.
+    # First line of the sub-merchant’s street address.  See \"Aggregator Support,\" page 100.  **CyberSource through VisaNet**\\ The value for this field does not map to the TC 33 capture file5.  **FDC Compass**\\ This value must consist of uppercase characters. 
     attr_accessor :address1
 
-    # Sub-merchant’s city.
+    # Sub-merchant’s city.  **CyberSource through VisaNet**\\ The value for this field does not map to the TC 33 capture file.  **FDC Compass**\\ This value must consist of uppercase characters.  For details, see \"Aggregator Support,\" page 100. 
     attr_accessor :locality
 
-    # Sub-merchant’s state or province. Use the State, Province, and Territory Codes for the United States and Canada. 
+    # Sub-merchant’s state or province. Use the State, Province, and Territory Codes for the United States and Canada.  See \"Aggregator Support,\" page 100.  **CyberSource through VisaNet**\\ The value for this field does not map to the TC 33 capture file5.  **FDC Compass**\\ This value must consist of uppercase characters. 
     attr_accessor :administrative_area
 
-    # Partial postal code for the sub-merchant’s address.
+    # Partial postal code for the sub-merchant’s address.  See \"Aggregator Support,\" page 100 for details.  **CyberSource through VisaNet**\\ The value for this field does not map to the TC 33 capture file5.  **FDC Compass**\\ This value must consist of uppercase characters. 
     attr_accessor :postal_code
 
-    # Sub-merchant’s country. Use the two-character ISO Standard Country Codes.
+    # Sub-merchant’s country. Use the two-character ISO Standard Country Codes.  **CyberSource through VisaNet**\\ The value for this field does not map to the TC 33 capture file.  **FDC Compass**\\ This value must consist of uppercase characters.  See \"Aggregator Support,\" page 101. 
     attr_accessor :country
 
-    # Sub-merchant’s email address.  **Maximum length for processors**   - American Express Direct: 40  - CyberSource through VisaNet: 40  - FDC Compass: 40  - FDC Nashville Global: 19 
+    # Sub-merchant’s email address.  **Maximum length for processors**   - American Express Direct: 40  - CyberSource through VisaNet: 40  - FDC Compass: 40  - FDC Nashville Global: 19  **CyberSource through VisaNet**\\ With American Express, the value for this field corresponds to the following data in the TC 33 capture file: - Record: CP01 TCRB - Position: 25-64 - Field: American Express Seller E-mail Address  **Note** The TC 33 Capture file contains information about the purchases and refunds that a merchant submits to CyberSource. CyberSource through VisaNet creates the TC 33 Capture file at the end of the day and sends it to the merchant’s acquirer, who uses this information to facilitate end-of-day clearing processing with payment card companies. 
     attr_accessor :email
 
-    # Sub-merchant’s telephone number.  **Maximum length for procesors**   - American Express Direct: 20  - CyberSource through VisaNet: 20  - FDC Compass: 13  - FDC Nashville Global: 10 
+    # Sub-merchant’s telephone number.  **Maximum length for procesors**   - American Express Direct: 20  - CyberSource through VisaNet: 20  - FDC Compass: 13  - FDC Nashville Global: 10  **CyberSource through VisaNet**\\ With American Express, the value for this field corresponds to the following data in the TC 33 capture file5: - Record: CP01 TCRB - Position: 5-24 - Field: American Express Seller Telephone Number  **FDC Compass**\\ This value must consist of uppercase characters. Use one of these recommended formats:\\ `NNN-NNN-NNNN`\\ `NNN-AAAAAAA` 
     attr_accessor :phone_number
 
     # Attribute mapping from ruby-style variable name to JSON key.

@@ -76,13 +76,52 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if !@company_tax_id.nil? && @company_tax_id.to_s.length > 9
+        invalid_properties.push('invalid value for "company_tax_id", the character length must be smaller than or equal to 9.')
+      end
+
+      if !@currency.nil? && @currency.to_s.length > 3
+        invalid_properties.push('invalid value for "currency", the character length must be smaller than or equal to 3.')
+      end
+
+      if !@currency.nil? && @currency.to_s.length < 3
+        invalid_properties.push('invalid value for "currency", the character length must be great than or equal to 3.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if !@company_tax_id.nil? && @company_tax_id.to_s.length > 9
+      return false if !@currency.nil? && @currency.to_s.length > 3
+      return false if !@currency.nil? && @currency.to_s.length < 3
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] company_tax_id Value to be assigned
+    def company_tax_id=(company_tax_id)
+      if !company_tax_id.nil? && company_tax_id.to_s.length > 9
+        fail ArgumentError, 'invalid value for "company_tax_id", the character length must be smaller than or equal to 9.'
+      end
+
+      @company_tax_id = company_tax_id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] currency Value to be assigned
+    def currency=(currency)
+      if !currency.nil? && currency.to_s.length > 3
+        fail ArgumentError, 'invalid value for "currency", the character length must be smaller than or equal to 3.'
+      end
+
+      if !currency.nil? && currency.to_s.length < 3
+        fail ArgumentError, 'invalid value for "currency", the character length must be great than or equal to 3.'
+      end
+
+      @currency = currency
     end
 
     # Checks equality by comparing each attribute.

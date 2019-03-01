@@ -3,6 +3,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**merchant_initiated_transaction** | [**Tmsv1instrumentidentifiersProcessingInformationAuthorizationOptionsInitiator**](Tmsv1instrumentidentifiersProcessingInformationAuthorizationOptionsInitiator.md) |  | [optional] 
+**merchant_initiated_transaction** | [**Tmsv1instrumentidentifiersProcessingInformationAuthorizationOptionsInitiatorMerchantInitiatedTransaction**](Tmsv1instrumentidentifiersProcessingInformationAuthorizationOptionsInitiatorMerchantInitiatedTransaction.md) |  | [optional] 
 
 

@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-      @api_client.set_configuration(config)
+	  @api_client.set_configuration(config)
     end
     # Flex Tokenize card
     # Returns a token representing the supplied card details. The token replaces card data and can be used as the Subscription ID in the CyberSource Simple Order API or SCMP API. This is an unauthenticated call that you should initiate from your customer’s device or browser.
@@ -26,8 +26,8 @@ module CyberSource
     # @option opts [TokenizeRequest] :tokenize_request 
     # @return [FlexV1TokensPost200Response]
     def tokenize(opts = {})
-      data, _status_code, _headers = tokenize_with_http_info(opts)
-      return data, _status_code, _headers
+      data, status_code, headers = tokenize_with_http_info(opts)
+      return data, status_code, headers
     end
 
     # Flex Tokenize card
@@ -36,8 +36,14 @@ module CyberSource
     # @option opts [TokenizeRequest] :tokenize_request 
     # @return [Array<(FlexV1TokensPost200Response, Fixnum, Hash)>] FlexV1TokensPost200Response data, response status code and response headers
     def tokenize_with_http_info(opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: FlexTokenApi.tokenize ...'
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: FlexTokenApi.tokenize ...'
+			rescue
+				puts 'Cannot write to log'
+			end
       end
       # resource path
       local_var_path = 'flex/v1/tokens/'
@@ -66,8 +72,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'FlexV1TokensPost200Response')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: FlexTokenApi#tokenize\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
+		begin
+		raise
+			@api_client.config.logger.debug "API called: FlexTokenApi#tokenize\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
       return data, status_code, headers
     end
   end

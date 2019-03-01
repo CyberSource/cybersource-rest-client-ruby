@@ -33,7 +33,7 @@ module CyberSource
     def self.swagger_types
       {
         :'payment_method' => :'TssV2TransactionsPost201ResponseEmbeddedPaymentInformationPaymentMethod',
-        :'customer' => :'Ptsv2paymentsPaymentInformationCustomer',
+        :'customer' => :'TssV2TransactionsGet200ResponsePaymentInformationCustomer',
         :'card' => :'TssV2TransactionsPost201ResponseEmbeddedPaymentInformationCard'
       }
     end

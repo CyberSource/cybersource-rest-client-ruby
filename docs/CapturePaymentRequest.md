@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **merchant_information** | [**Ptsv2paymentsidcapturesMerchantInformation**](Ptsv2paymentsidcapturesMerchantInformation.md) |  | [optional] 
 **aggregator_information** | [**Ptsv2paymentsidcapturesAggregatorInformation**](Ptsv2paymentsidcapturesAggregatorInformation.md) |  | [optional] 
 **point_of_sale_information** | [**Ptsv2paymentsidcapturesPointOfSaleInformation**](Ptsv2paymentsidcapturesPointOfSaleInformation.md) |  | [optional] 
-**merchant_defined_information** | [**Array&lt;Ptsv2paymentsMerchantDefinedInformation&gt;**](Ptsv2paymentsMerchantDefinedInformation.md) | Description of this field is not available. | [optional] 
+**merchant_defined_information** | [**Array&lt;Ptsv2paymentsMerchantDefinedInformation&gt;**](Ptsv2paymentsMerchantDefinedInformation.md) | The description for this field is not available. | [optional] 
+**installment_information** | [**Ptsv2paymentsidcapturesInstallmentInformation**](Ptsv2paymentsidcapturesInstallmentInformation.md) |  | [optional] 
 
 
