@@ -1,4 +1,4 @@
-# CyberSource::Ptsv2paymentsProcessingInformationAuthorizationOptionsInitiatorMerchantInitiatedTransaction
+# CyberSource::Ptsv2paymentsMerchantInitiatedTransaction
 
 ## Properties
 Name | Type | Description | Notes
