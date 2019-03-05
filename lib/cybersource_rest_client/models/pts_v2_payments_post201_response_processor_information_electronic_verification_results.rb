@@ -44,10 +44,10 @@ module CyberSource
     # Raw Electronic Verification response code from the processor for the customer’s street address.
     attr_accessor :street_raw
 
-    # TODO 
+    # The description for this field is not available. 
     attr_accessor :name
 
-    # TODO
+    # The description for this field is not available.
     attr_accessor :name_raw
 
     # Attribute mapping from ruby-style variable name to JSON key.

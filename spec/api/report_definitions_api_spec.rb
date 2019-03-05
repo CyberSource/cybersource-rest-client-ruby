@@ -33,8 +33,8 @@ describe 'ReportDefinitionsApi' do
   end
 
   # unit tests for get_resource_info_by_report_definition
-  # Get a single report definition information
-  # The report definition name must be used as path parameter exclusive of each other
+  # Get report definition
+  # View the attributes of an individual report type. For a list of values for reportDefinitionName, see the [Reporting Developer Guide](https://www.cybersource.com/developers/documentation/reporting_and_reconciliation/) 
   # @param report_definition_name Name of the Report definition to retrieve
   # @param [Hash] opts the optional parameters
   # @option opts [String] :organization_id Valid Cybersource Organization Id
@@ -47,7 +47,7 @@ describe 'ReportDefinitionsApi' do
 
   # unit tests for get_resource_v2_info
   # Get reporting resource information
-  # 
+  # View a list of supported reports and their attributes before subscribing to them. 
   # @param [Hash] opts the optional parameters
   # @option opts [String] :organization_id Valid Cybersource Organization Id
   # @return [ReportingV3ReportDefinitionsGet200Response]

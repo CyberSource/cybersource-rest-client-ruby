@@ -18,28 +18,34 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-      @api_client.set_configuration(config)
+	  @api_client.set_configuration(config)
     end
     # Get Notification Of Changes
-    # Notification of Change Report
+    # Download the Notification of Change report. This report shows eCheck-related fields updated as a result of a response to an eCheck settlement transaction. 
     # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ssXXX 
     # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ssXXX 
     # @param [Hash] opts the optional parameters
     # @return [ReportingV3NotificationofChangesGet200Response]
     def get_notification_of_change_report(start_time, end_time, opts = {})
-      data, _status_code, _headers = get_notification_of_change_report_with_http_info(start_time, end_time, opts)
-      return data, _status_code, _headers
+      data, status_code, headers = get_notification_of_change_report_with_http_info(start_time, end_time, opts)
+      return data, status_code, headers
     end
 
     # Get Notification Of Changes
-    # Notification of Change Report
+    # Download the Notification of Change report. This report shows eCheck-related fields updated as a result of a response to an eCheck settlement transaction. 
     # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ssXXX 
     # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ssXXX 
     # @param [Hash] opts the optional parameters
     # @return [Array<(ReportingV3NotificationofChangesGet200Response, Fixnum, Hash)>] ReportingV3NotificationofChangesGet200Response data, response status code and response headers
     def get_notification_of_change_report_with_http_info(start_time, end_time, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: NotificationOfChangesApi.get_notification_of_change_report ...'
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: NotificationOfChangesApi.get_notification_of_change_report ...'
+			rescue
+				puts 'Cannot write to log'
+			end
       end
       # verify the required parameter 'start_time' is set
       if @api_client.config.client_side_validation && start_time.nil?
@@ -78,8 +84,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'ReportingV3NotificationofChangesGet200Response')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: NotificationOfChangesApi#get_notification_of_change_report\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
+		begin
+		raise
+			@api_client.config.logger.debug "API called: NotificationOfChangesApi#get_notification_of_change_report\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
       return data, status_code, headers
     end
   end

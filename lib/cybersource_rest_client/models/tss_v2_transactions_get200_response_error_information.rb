@@ -36,7 +36,7 @@ module CyberSource
       {
         :'reason' => :'String',
         :'message' => :'String',
-        :'details' => :'Array<PtsV2PaymentsPost201ResponseErrorInformationDetails>'
+        :'details' => :'Array<PtsV2PayoutsPost201ResponseErrorInformationDetails>'
       }
     end
 

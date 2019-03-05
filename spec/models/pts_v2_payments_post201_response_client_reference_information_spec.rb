@@ -38,4 +38,16 @@ describe 'PtsV2PaymentsPost201ResponseClientReferenceInformation' do
     end
   end
 
+  describe 'test attribute "submit_local_date_time"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "owner_merchant_id"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

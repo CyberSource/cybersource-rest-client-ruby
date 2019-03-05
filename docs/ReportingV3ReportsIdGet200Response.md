@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 **report_start_time** | **DateTime** | Report Start Time Value | [optional] 
 **report_end_time** | **DateTime** | Report End Time Value | [optional] 
 **timezone** | **String** | Time Zone Value | [optional] 
-**report_filters** | **Hash&lt;String, Array&lt;String&gt;&gt;** | Report Filters | [optional] 
-**report_preferences** | [**ReportingV3ReportSubscriptionsGet200ResponseReportPreferences**](ReportingV3ReportSubscriptionsGet200ResponseReportPreferences.md) |  | [optional] 
-**selected_merchant_group_name** | **String** | Selected Merchant Group name | [optional] 
+**report_filters** | **Hash&lt;String, Array&lt;String&gt;&gt;** | List of filters to apply | [optional] 
+**report_preferences** | [**ReportingV3ReportsIdGet200ResponseReportPreferences**](ReportingV3ReportsIdGet200ResponseReportPreferences.md) |  | [optional] 
+**group_id** | **String** | Id for selected group. | [optional] 
 
 

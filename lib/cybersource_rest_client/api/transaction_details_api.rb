@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-      @api_client.set_configuration(config)
+	  @api_client.set_configuration(config)
     end
     # Retrieve a Transaction
     # Include the Request ID in the GET request to retrieve the transaction details.
@@ -26,8 +26,8 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [TssV2TransactionsGet200Response]
     def get_transaction(id, opts = {})
-      data, _status_code, _headers = get_transaction_with_http_info(id, opts)
-      return data, _status_code, _headers
+      data, status_code, headers = get_transaction_with_http_info(id, opts)
+      return data, status_code, headers
     end
 
     # Retrieve a Transaction
@@ -36,8 +36,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(TssV2TransactionsGet200Response, Fixnum, Hash)>] TssV2TransactionsGet200Response data, response status code and response headers
     def get_transaction_with_http_info(id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: TransactionDetailsApi.get_transaction ...'
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: TransactionDetailsApi.get_transaction ...'
+			rescue
+				puts 'Cannot write to log'
+			end
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
@@ -52,7 +58,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
 
@@ -70,8 +76,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'TssV2TransactionsGet200Response')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: TransactionDetailsApi#get_transaction\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
+		begin
+		raise
+			@api_client.config.logger.debug "API called: TransactionDetailsApi#get_transaction\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
       return data, status_code, headers
     end
   end

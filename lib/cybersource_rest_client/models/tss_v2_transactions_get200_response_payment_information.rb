@@ -42,7 +42,7 @@ module CyberSource
     def self.swagger_types
       {
         :'payment_type' => :'TssV2TransactionsGet200ResponsePaymentInformationPaymentType',
-        :'customer' => :'Ptsv2paymentsPaymentInformationCustomer',
+        :'customer' => :'TssV2TransactionsGet200ResponsePaymentInformationCustomer',
         :'card' => :'TssV2TransactionsGet200ResponsePaymentInformationCard',
         :'invoice' => :'TssV2TransactionsGet200ResponsePaymentInformationInvoice',
         :'bank' => :'TssV2TransactionsGet200ResponsePaymentInformationBank',

@@ -34,9 +34,10 @@ describe 'ReportsApi' do
 
   # unit tests for create_report
   # Create Adhoc Report
-  # Create one time report
+  # Create a one-time report. You must specify the type of report in reportDefinitionName. For a list of values for reportDefinitionName, see the [Reporting Developer Guide](https://www.cybersource.com/developers/documentation/reporting_and_reconciliation) 
   # @param request_body Report subscription request payload
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :organization_id Valid Cybersource Organization Id
   # @return [nil]
   describe 'create_report test' do
     it 'should work' do
@@ -46,7 +47,7 @@ describe 'ReportsApi' do
 
   # unit tests for get_report_by_report_id
   # Get Report based on reportId
-  # ReportId is mandatory input
+  # Download a report using the reportId value. If you don’t already know this value, you can obtain it using the Retrieve available reports call. 
   # @param report_id Valid Report Id
   # @param [Hash] opts the optional parameters
   # @option opts [String] :organization_id Valid Cybersource Organization Id
@@ -59,10 +60,10 @@ describe 'ReportsApi' do
 
   # unit tests for search_reports
   # Retrieve available reports
-  # Retrieve list of available reports
+  # Retrieve a list of the available reports to which you are subscribed. This will also give you the reportId value, which you can also use to download a report. 
   # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ssXXX 
   # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ssXXX 
-  # @param time_query_type Specify time you woud like to search
+  # @param time_query_type Specify time you would like to search
   # @param [Hash] opts the optional parameters
   # @option opts [String] :organization_id Valid Cybersource Organization Id
   # @option opts [String] :report_mime_type Valid Report Format

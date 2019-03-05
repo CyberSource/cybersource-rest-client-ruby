@@ -38,7 +38,7 @@ describe 'Ptsv2paymentsPointOfSaleInformationEmv' do
     end
   end
 
-  describe 'test attribute "cardholder_verification_method"' do
+  describe 'test attribute "cardholder_verification_method_used"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

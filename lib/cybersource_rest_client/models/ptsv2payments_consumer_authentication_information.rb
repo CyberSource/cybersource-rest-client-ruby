@@ -17,25 +17,25 @@ module CyberSource
     # Cardholder authentication verification value (CAVV).
     attr_accessor :cavv
 
-    # Algorithm used to generate the CAVV for Verified by Visa or the UCAF authentication data for Mastercard SecureCode. 
+    # Algorithm used to generate the CAVV for Verified by Visa or the UCAF authentication data for Mastercard Identity Check. 
     attr_accessor :cavv_algorithm
 
-    # Raw electronic commerce indicator (ECI).
+    # Raw electronic commerce indicator (ECI). For the description and requirements, see \"Payer Authentication,\" page 180.
     attr_accessor :eci_raw
 
-    # Payer authentication response status.
+    # Payer authentication response status. For the description and requirements, see \"Payer Authentication,\" page 180. 
     attr_accessor :pares_status
 
-    # Verification response enrollment status.
+    # Verification response enrollment status. For the description and requirements, see \"Payer Authentication,\" page 180.
     attr_accessor :veres_enrolled
 
-    # Transaction identifier.
+    # Transaction identifier. For the description and requirements, see \"Payer Authentication,\" page 180.
     attr_accessor :xid
 
-    # Universal cardholder authentication field (UCAF) data.
+    # Universal cardholder authentication field (UCAF) data.  For the description and requirements, see \"Payer Authentication,\" page 180. 
     attr_accessor :ucaf_authentication_data
 
-    # Universal cardholder authentication field (UCAF) collection indicator.
+    # Universal cardholder authentication field (UCAF) collection indicator.  For the description and requirements, see \"Payer Authentication,\" page 180.  **CyberSource through VisaNet**\\ The value for this field corresponds to the following data in the TC 33 capture file5: - Record: CP01 TCR7 - Position: 5 - Field: Mastercard Electronic Commerce Indicators—-UCAF Collection Indicator 
     attr_accessor :ucaf_collection_indicator
 
     # Attribute mapping from ruby-style variable name to JSON key.

@@ -18,36 +18,57 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-      @api_client.set_configuration(config)
+	  @api_client.set_configuration(config)
     end
     # Create Adhoc Report
-    # Create one time report
+    # Create a one-time report. You must specify the type of report in reportDefinitionName. For a list of values for reportDefinitionName, see the [Reporting Developer Guide](https://www.cybersource.com/developers/documentation/reporting_and_reconciliation) 
     # @param request_body Report subscription request payload
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [nil]
     def create_report(request_body, opts = {})
-      data, _status_code, _headers = create_report_with_http_info(request_body, opts)
-      return data, _status_code, _headers
+      data, status_code, headers = create_report_with_http_info(request_body, opts)
+      return data, status_code, headers
     end
 
     # Create Adhoc Report
-    # Create one time report
+    # Create a one-time report. You must specify the type of report in reportDefinitionName. For a list of values for reportDefinitionName, see the [Reporting Developer Guide](https://www.cybersource.com/developers/documentation/reporting_and_reconciliation) 
     # @param request_body Report subscription request payload
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def create_report_with_http_info(request_body, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: ReportsApi.create_report ...'
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: ReportsApi.create_report ...'
+			rescue
+				puts 'Cannot write to log'
+			end
       end
       # verify the required parameter 'request_body' is set
       if @api_client.config.client_side_validation && request_body.nil?
         fail ArgumentError, "Missing the required parameter 'request_body' when calling ReportsApi.create_report"
       end
+      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length > 32
+        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportsApi.create_report, the character length must be smaller than or equal to 32.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length < 1
+        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportsApi.create_report, the character length must be great than or equal to 1.'
+      end
+
+      #if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
+        #fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling ReportsApi.create_report, must conform to the pattern /[a-zA-Z0-9-_]+/."
+      #end
+
       # resource path
       local_var_path = 'reporting/v3/reports'
 
       # query parameters
       query_params = {}
+      query_params[:'organizationId'] = opts[:'organization_id'] if !opts[:'organization_id'].nil?
 
       # header parameters
       header_params = {}
@@ -69,30 +90,41 @@ module CyberSource
         :body => post_body,
         :auth_names => auth_names)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ReportsApi#create_report\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
+		begin
+		raise
+			@api_client.config.logger.debug "API called: ReportsApi#create_report\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
       return data, status_code, headers
     end
     # Get Report based on reportId
-    # ReportId is mandatory input
+    # Download a report using the reportId value. If you don’t already know this value, you can obtain it using the Retrieve available reports call. 
     # @param report_id Valid Report Id
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [ReportingV3ReportsIdGet200Response]
     def get_report_by_report_id(report_id, opts = {})
-      data, _status_code, _headers = get_report_by_report_id_with_http_info(report_id, opts)
-      return data, _status_code, _headers
+      data, status_code, headers = get_report_by_report_id_with_http_info(report_id, opts)
+      return data, status_code, headers
     end
 
     # Get Report based on reportId
-    # ReportId is mandatory input
+    # Download a report using the reportId value. If you don’t already know this value, you can obtain it using the Retrieve available reports call. 
     # @param report_id Valid Report Id
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [Array<(ReportingV3ReportsIdGet200Response, Fixnum, Hash)>] ReportingV3ReportsIdGet200Response data, response status code and response headers
     def get_report_by_report_id_with_http_info(report_id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: ReportsApi.get_report_by_report_id ...'
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: ReportsApi.get_report_by_report_id ...'
+			rescue
+				puts 'Cannot write to log'
+			end
       end
       # verify the required parameter 'report_id' is set
       if @api_client.config.client_side_validation && report_id.nil?
@@ -105,6 +137,10 @@ module CyberSource
       if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length < 1
         fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportsApi.get_report_by_report_id, the character length must be great than or equal to 1.'
       end
+
+      #if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
+        #fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling ReportsApi.get_report_by_report_id, must conform to the pattern /[a-zA-Z0-9-_]+/."
+      #end
 
       # resource path
       local_var_path = 'reporting/v3/reports/{reportId}'.sub('{' + 'reportId' + '}', report_id.to_s)
@@ -134,15 +170,20 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'ReportingV3ReportsIdGet200Response')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ReportsApi#get_report_by_report_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
+		begin
+		raise
+			@api_client.config.logger.debug "API called: ReportsApi#get_report_by_report_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
       return data, status_code, headers
     end
     # Retrieve available reports
-    # Retrieve list of available reports
+    # Retrieve a list of the available reports to which you are subscribed. This will also give you the reportId value, which you can also use to download a report. 
     # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ssXXX 
     # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ssXXX 
-    # @param time_query_type Specify time you woud like to search
+    # @param time_query_type Specify time you would like to search
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @option opts [String] :report_mime_type Valid Report Format
@@ -152,15 +193,15 @@ module CyberSource
     # @option opts [String] :report_status Valid Report Status
     # @return [ReportingV3ReportsGet200Response]
     def search_reports(start_time, end_time, time_query_type, opts = {})
-      data, _status_code, _headers = search_reports_with_http_info(start_time, end_time, time_query_type, opts)
-      return data, _status_code, _headers
+      data, status_code, headers = search_reports_with_http_info(start_time, end_time, time_query_type, opts)
+      return data, status_code, headers
     end
 
     # Retrieve available reports
-    # Retrieve list of available reports
+    # Retrieve a list of the available reports to which you are subscribed. This will also give you the reportId value, which you can also use to download a report. 
     # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ssXXX 
     # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ssXXX 
-    # @param time_query_type Specify time you woud like to search
+    # @param time_query_type Specify time you would like to search
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @option opts [String] :report_mime_type Valid Report Format
@@ -170,8 +211,14 @@ module CyberSource
     # @option opts [String] :report_status Valid Report Status
     # @return [Array<(ReportingV3ReportsGet200Response, Fixnum, Hash)>] ReportingV3ReportsGet200Response data, response status code and response headers
     def search_reports_with_http_info(start_time, end_time, time_query_type, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: ReportsApi.search_reports ...'
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: ReportsApi.search_reports ...'
+			rescue
+				puts 'Cannot write to log'
+			end
       end
       # verify the required parameter 'start_time' is set
       if @api_client.config.client_side_validation && start_time.nil?
@@ -196,6 +243,10 @@ module CyberSource
       if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length < 1
         fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportsApi.search_reports, the character length must be great than or equal to 1.'
       end
+
+      #if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
+        #fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling ReportsApi.search_reports, must conform to the pattern /[a-zA-Z0-9-_]+/."
+      #end
 
       if @api_client.config.client_side_validation && opts[:'report_mime_type'] && !['application/xml', 'text/csv'].include?(opts[:'report_mime_type'])
         fail ArgumentError, 'invalid value for "report_mime_type", must be one of application/xml, text/csv'
@@ -242,8 +293,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'ReportingV3ReportsGet200Response')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ReportsApi#search_reports\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
+		begin
+		raise
+			@api_client.config.logger.debug "API called: ReportsApi#search_reports\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
       return data, status_code, headers
     end
   end

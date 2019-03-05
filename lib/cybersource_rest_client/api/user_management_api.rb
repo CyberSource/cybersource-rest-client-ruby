@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-      @api_client.set_configuration(config)
+	  @api_client.set_configuration(config)
     end
     # Get user based on organization Id, username, permission and role
     # This endpoint is to get all the user information depending on the filter criteria passed in the query.
@@ -29,8 +29,8 @@ module CyberSource
     # @option opts [String] :role_id role of the user you are trying to search on.
     # @return [UmsV1UsersGet200Response]
     def get_users(opts = {})
-      data, _status_code, _headers = get_users_with_http_info(opts)
-      return data, _status_code, _headers
+      data, status_code, headers = get_users_with_http_info(opts)
+      return data, status_code, headers
     end
 
     # Get user based on organization Id, username, permission and role
@@ -42,8 +42,14 @@ module CyberSource
     # @option opts [String] :role_id role of the user you are trying to search on.
     # @return [Array<(UmsV1UsersGet200Response, Fixnum, Hash)>] UmsV1UsersGet200Response data, response status code and response headers
     def get_users_with_http_info(opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserManagementApi.get_users ...'
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: UserManagementApi.get_users ...'
+			rescue
+				puts 'Cannot write to log'
+			end
       end
       # resource path
       local_var_path = 'ums/v1/users'
@@ -58,7 +64,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
 
@@ -76,8 +82,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'UmsV1UsersGet200Response')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserManagementApi#get_users\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
+		begin
+		raise
+			@api_client.config.logger.debug "API called: UserManagementApi#get_users\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
       return data, status_code, headers
     end
   end

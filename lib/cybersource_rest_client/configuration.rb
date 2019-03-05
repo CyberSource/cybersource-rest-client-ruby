@@ -140,7 +140,7 @@ module CyberSource
       @params_encoding = nil
       @cert_file = nil
       @key_file = nil
-      @debugging = true
+      @debugging = false
       @inject_format = false
       @force_ending_format = false
       @logger = defined?(Rails) ? Rails.logger : Logger.new(STDOUT)

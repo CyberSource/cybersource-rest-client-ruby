@@ -53,7 +53,7 @@ describe 'PtsV2PaymentsPost201Response' do
   describe 'test attribute "status"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["AUTHORIZED", "PARTIAL_AUTHORIZED", "AUTHORIZED_PENDING_REVIEW", "DECLINED"])
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["AUTHORIZED", "PARTIAL_AUTHORIZED", "AUTHORIZED_PENDING_REVIEW", "DECLINED", "INVALID_REQUEST", "PENDING"])
       # validator.allowable_values.each do |value|
       #   expect { @instance.status = value }.not_to raise_error
       # end
@@ -78,7 +78,19 @@ describe 'PtsV2PaymentsPost201Response' do
     end
   end
 
+  describe 'test attribute "processing_information"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "processor_information"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "issuer_information"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -97,6 +109,12 @@ describe 'PtsV2PaymentsPost201Response' do
   end
 
   describe 'test attribute "point_of_sale_information"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "installment_information"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

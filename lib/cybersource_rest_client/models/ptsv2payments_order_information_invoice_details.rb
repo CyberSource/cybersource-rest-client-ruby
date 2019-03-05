@@ -32,7 +32,7 @@ module CyberSource
     # The name of the individual or the company contacted for company authorized purchases.  For processor-specific information, see the authorized_contact_name field in [Level II and Level III Processing Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/Level_2_3_SCMP_API/html) 
     attr_accessor :purchase_contact_name
 
-    # Flag that indicates whether an order is taxable. This value must be true if the sum of all _lineItems[].taxAmount_ values > 0.  If you do not include any _lineItems[].taxAmount_ values in your request, CyberSource does not include _invoiceDetails.taxable_ in the data it sends to the processor.  For processor-specific information, see the tax_indicator field in [Level II and Level III Processing Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/Level_2_3_SCMP_API/html) 
+    # Flag that indicates whether an order is taxable. This value must be true if the sum of all _lineItems[].taxAmount_ values > 0.  If you do not include any _lineItems[].taxAmount_ values in your request, CyberSource does not include _invoiceDetails.taxable_ in the data it sends to the processor.  For processor-specific information, see the tax_indicator field in [Level II and Level III Processing Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/Level_2_3_SCMP_API/html)  Possible values:  - **true**  - **false** 
     attr_accessor :taxable
 
     # VAT invoice number associated with the transaction.  For processor-specific information, see the vat_invoice_ref_number field in [Level II and Level III Processing Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/Level_2_3_SCMP_API/html) 
@@ -45,6 +45,12 @@ module CyberSource
     attr_accessor :merchandise_code
 
     attr_accessor :transaction_advice_addendum
+
+    # Code that identifies the value of the reference_data_number field. For the possible values, see Reference Data Codes.  This field is a pass-through, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. 
+    attr_accessor :reference_data_code
+
+    # Reference number. The meaning of this value is identified by the value of the referenceDataCode field.  This field is a pass-through, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. 
+    attr_accessor :reference_data_number
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -59,7 +65,9 @@ module CyberSource
         :'vat_invoice_reference_number' => :'vatInvoiceReferenceNumber',
         :'commodity_code' => :'commodityCode',
         :'merchandise_code' => :'merchandiseCode',
-        :'transaction_advice_addendum' => :'transactionAdviceAddendum'
+        :'transaction_advice_addendum' => :'transactionAdviceAddendum',
+        :'reference_data_code' => :'referenceDataCode',
+        :'reference_data_number' => :'referenceDataNumber'
       }
     end
 
@@ -76,7 +84,9 @@ module CyberSource
         :'vat_invoice_reference_number' => :'String',
         :'commodity_code' => :'String',
         :'merchandise_code' => :'Float',
-        :'transaction_advice_addendum' => :'Array<Ptsv2paymentsOrderInformationInvoiceDetailsTransactionAdviceAddendum>'
+        :'transaction_advice_addendum' => :'Array<Ptsv2paymentsOrderInformationInvoiceDetailsTransactionAdviceAddendum>',
+        :'reference_data_code' => :'String',
+        :'reference_data_number' => :'String'
       }
     end
 
@@ -133,6 +143,14 @@ module CyberSource
           self.transaction_advice_addendum = value
         end
       end
+
+      if attributes.has_key?(:'referenceDataCode')
+        self.reference_data_code = attributes[:'referenceDataCode']
+      end
+
+      if attributes.has_key?(:'referenceDataNumber')
+        self.reference_data_number = attributes[:'referenceDataNumber']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -159,6 +177,14 @@ module CyberSource
         invalid_properties.push('invalid value for "commodity_code", the character length must be smaller than or equal to 4.')
       end
 
+      if !@reference_data_code.nil? && @reference_data_code.to_s.length > 3
+        invalid_properties.push('invalid value for "reference_data_code", the character length must be smaller than or equal to 3.')
+      end
+
+      if !@reference_data_number.nil? && @reference_data_number.to_s.length > 30
+        invalid_properties.push('invalid value for "reference_data_number", the character length must be smaller than or equal to 30.')
+      end
+
       invalid_properties
     end
 
@@ -170,6 +196,8 @@ module CyberSource
       return false if !@purchase_contact_name.nil? && @purchase_contact_name.to_s.length > 36
       return false if !@vat_invoice_reference_number.nil? && @vat_invoice_reference_number.to_s.length > 15
       return false if !@commodity_code.nil? && @commodity_code.to_s.length > 4
+      return false if !@reference_data_code.nil? && @reference_data_code.to_s.length > 3
+      return false if !@reference_data_number.nil? && @reference_data_number.to_s.length > 30
       true
     end
 
@@ -223,6 +251,26 @@ module CyberSource
       @commodity_code = commodity_code
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] reference_data_code Value to be assigned
+    def reference_data_code=(reference_data_code)
+      if !reference_data_code.nil? && reference_data_code.to_s.length > 3
+        fail ArgumentError, 'invalid value for "reference_data_code", the character length must be smaller than or equal to 3.'
+      end
+
+      @reference_data_code = reference_data_code
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] reference_data_number Value to be assigned
+    def reference_data_number=(reference_data_number)
+      if !reference_data_number.nil? && reference_data_number.to_s.length > 30
+        fail ArgumentError, 'invalid value for "reference_data_number", the character length must be smaller than or equal to 30.'
+      end
+
+      @reference_data_number = reference_data_number
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -238,7 +286,9 @@ module CyberSource
           vat_invoice_reference_number == o.vat_invoice_reference_number &&
           commodity_code == o.commodity_code &&
           merchandise_code == o.merchandise_code &&
-          transaction_advice_addendum == o.transaction_advice_addendum
+          transaction_advice_addendum == o.transaction_advice_addendum &&
+          reference_data_code == o.reference_data_code &&
+          reference_data_number == o.reference_data_number
     end
 
     # @see the `==` method
@@ -250,7 +300,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [invoice_number, barcode_number, expiration_date, purchase_order_number, purchase_order_date, purchase_contact_name, taxable, vat_invoice_reference_number, commodity_code, merchandise_code, transaction_advice_addendum].hash
+      [invoice_number, barcode_number, expiration_date, purchase_order_number, purchase_order_date, purchase_contact_name, taxable, vat_invoice_reference_number, commodity_code, merchandise_code, transaction_advice_addendum, reference_data_code, reference_data_number].hash
     end
 
     # Builds the object from hash

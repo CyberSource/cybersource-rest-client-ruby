@@ -128,6 +128,14 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if !@id.nil? && @id.to_s.length > 32
+        invalid_properties.push('invalid value for "id", the character length must be smaller than or equal to 32.')
+      end
+
+      if !@id.nil? && @id.to_s.length < 16
+        invalid_properties.push('invalid value for "id", the character length must be great than or equal to 16.')
+      end
+
       invalid_properties
     end
 
@@ -138,6 +146,8 @@ module CyberSource
       return false unless object_validator.valid?(@object)
       state_validator = EnumAttributeValidator.new('String', ['ACTIVE', 'CLOSED'])
       return false unless state_validator.valid?(@state)
+      return false if !@id.nil? && @id.to_s.length > 32
+      return false if !@id.nil? && @id.to_s.length < 16
       true
     end
 
@@ -159,6 +169,20 @@ module CyberSource
         fail ArgumentError, 'invalid value for "state", must be one of #{validator.allowable_values}.'
       end
       @state = state
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] id Value to be assigned
+    def id=(id)
+      if !id.nil? && id.to_s.length > 32
+        fail ArgumentError, 'invalid value for "id", the character length must be smaller than or equal to 32.'
+      end
+
+      if !id.nil? && id.to_s.length < 16
+        fail ArgumentError, 'invalid value for "id", the character length must be great than or equal to 16.'
+      end
+
+      @id = id
     end
 
     # Checks equality by comparing each attribute.

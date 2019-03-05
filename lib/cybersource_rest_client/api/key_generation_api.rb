@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-      @api_client.set_configuration(config)
+	  @api_client.set_configuration(config)
     end
     # Generate Key
     # Generate a one-time use public key and key ID to encrypt the card number in the follow-on Tokenize Card request. The key used to encrypt the card number on the cardholder’s device or browser is valid for 15 minutes and must be used to verify the signature in the response message. CyberSource recommends creating a new key for each order. Generating a key is an authenticated request initiated from your servers, prior to requesting to tokenize the card data from your customer’s device or browser.
@@ -26,8 +26,8 @@ module CyberSource
     # @option opts [GeneratePublicKeyRequest] :generate_public_key_request 
     # @return [FlexV1KeysPost200Response]
     def generate_public_key(opts = {})
-      data, _status_code, _headers = generate_public_key_with_http_info(opts)
-      return data, _status_code, _headers
+      data, status_code, headers = generate_public_key_with_http_info(opts)
+      return data, status_code, headers
     end
 
     # Generate Key
@@ -36,8 +36,14 @@ module CyberSource
     # @option opts [GeneratePublicKeyRequest] :generate_public_key_request 
     # @return [Array<(FlexV1KeysPost200Response, Fixnum, Hash)>] FlexV1KeysPost200Response data, response status code and response headers
     def generate_public_key_with_http_info(opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: KeyGenerationApi.generate_public_key ...'
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: KeyGenerationApi.generate_public_key ...'
+			rescue
+				puts 'Cannot write to log'
+			end
       end
       # resource path
       local_var_path = 'flex/v1/keys/'
@@ -66,8 +72,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'FlexV1KeysPost200Response')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: KeyGenerationApi#generate_public_key\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
+		begin
+		raise
+			@api_client.config.logger.debug "API called: KeyGenerationApi#generate_public_key\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
       return data, status_code, headers
     end
   end

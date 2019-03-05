@@ -14,16 +14,16 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsOrderInformationAmountDetailsTaxDetails
-    # This is used to determine what type of tax related data should be inclued under _taxDetails_ object. 
+    # This is used to determine what type of tax related data should be inclued under _taxDetails_ object.  Possible values:  - alternate  - local  - national  - vat 
     attr_accessor :type
 
-    # Please see below table for related decription based on above _type_ field.  | type      | amount description | |-----------|--------------------| | alternate | Total amount of alternate tax for the order. | | local     | Sales tax for the order. | | national  | National tax for the order. | | vat       | Total amount of VAT or other tax included in the order. | 
+    # Please see below table for related decription based on above _type_ field.  | type      | type description | |-----------|--------------------| | alternate | Total amount of alternate tax for the order. | | local     | Sales tax for the order. | | national  | National tax for the order. | | vat       | Total amount of VAT or other tax included in the order. | | other     | Other tax. | 
     attr_accessor :amount
 
     # Rate of VAT or other tax for the order.  Example 0.040 (=4%)  Valid range: 0.01 to 0.99 (1% to 99%, with only whole percentage values accepted; values with additional decimal places will be truncated) 
     attr_accessor :rate
 
-    # Type of tax being applied to the item. Possible values:  Below values are used by **RBS WorldPay Atlanta**, **FDC Nashville Global**, **Litle**   - 0000: unknown tax type  - 0001: federal/national sales tax  - 0002: state sales tax  - 0003: city sales tax  - 0004: local sales tax  - 0005: municipal sales tax  - 0006: other tax  - 0010: value-added tax  - 0011: goods and services tax  - 0012: provincial sales tax  - 0013: harmonized sales tax  - 0014: Quebec sales tax (QST)  - 0020: room tax  - 0021: occupancy tax  - 0022: energy tax  - Blank: Tax not supported on line item. 
+    # Type of tax being applied to the item. Possible values:  Below values are used by **RBS WorldPay Atlanta**, **FDC Nashville Global**, **Litle**   - 0000: unknown tax type  - 0001: federal/national sales tax  - 0002: state sales tax  - 0003: city sales tax  - 0004: local sales tax  - 0005: municipal sales tax  - 0006: other tax  - 0010: value-added tax (VAT)  - 0011: goods and services tax (GST)  - 0012: provincial sales tax  - 0013: harmonized sales tax  - 0014: Quebec sales tax (QST)  - 0020: room tax  - 0021: occupancy tax  - 0022: energy tax  - 0023: city tax  - 0024: county or parish sales tax  - 0025: county tax  - 0026: environment tax  - 0027: state and local sales tax (combined)  - Blank: Tax not supported on line item. 
     attr_accessor :code
 
     # Your tax ID number to use for the alternate tax amount. Required if you set alternate tax amount to any value, including zero. You may send this field without sending alternate tax amount. 
@@ -31,6 +31,9 @@ module CyberSource
 
     # The tax is applied. Valid value is `true` or `false`.
     attr_accessor :applied
+
+    # Code for exemption from sales and use tax. This field is a pass-through, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor.  For possible values, see Exemption Status Values. See Numbered Elements.  Important For information about using this field, see Item-Level Tax Fields. 
+    attr_accessor :exemption_code
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -62,7 +65,8 @@ module CyberSource
         :'rate' => :'rate',
         :'code' => :'code',
         :'tax_id' => :'taxId',
-        :'applied' => :'applied'
+        :'applied' => :'applied',
+        :'exemption_code' => :'exemptionCode'
       }
     end
 
@@ -74,7 +78,8 @@ module CyberSource
         :'rate' => :'String',
         :'code' => :'String',
         :'tax_id' => :'String',
-        :'applied' => :'BOOLEAN'
+        :'applied' => :'BOOLEAN',
+        :'exemption_code' => :'String'
       }
     end
 
@@ -109,6 +114,10 @@ module CyberSource
       if attributes.has_key?(:'applied')
         self.applied = attributes[:'applied']
       end
+
+      if attributes.has_key?(:'exemptionCode')
+        self.exemption_code = attributes[:'exemptionCode']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -131,6 +140,10 @@ module CyberSource
         invalid_properties.push('invalid value for "tax_id", the character length must be smaller than or equal to 15.')
       end
 
+      if !@exemption_code.nil? && @exemption_code.to_s.length > 1
+        invalid_properties.push('invalid value for "exemption_code", the character length must be smaller than or equal to 1.')
+      end
+
       invalid_properties
     end
 
@@ -143,6 +156,7 @@ module CyberSource
       return false if !@rate.nil? && @rate.to_s.length > 6
       return false if !@code.nil? && @code.to_s.length > 4
       return false if !@tax_id.nil? && @tax_id.to_s.length > 15
+      return false if !@exemption_code.nil? && @exemption_code.to_s.length > 1
       true
     end
 
@@ -196,6 +210,16 @@ module CyberSource
       @tax_id = tax_id
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] exemption_code Value to be assigned
+    def exemption_code=(exemption_code)
+      if !exemption_code.nil? && exemption_code.to_s.length > 1
+        fail ArgumentError, 'invalid value for "exemption_code", the character length must be smaller than or equal to 1.'
+      end
+
+      @exemption_code = exemption_code
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -206,7 +230,8 @@ module CyberSource
           rate == o.rate &&
           code == o.code &&
           tax_id == o.tax_id &&
-          applied == o.applied
+          applied == o.applied &&
+          exemption_code == o.exemption_code
     end
 
     # @see the `==` method
@@ -218,7 +243,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [type, amount, rate, code, tax_id, applied].hash
+      [type, amount, rate, code, tax_id, applied, exemption_code].hash
     end
 
     # Builds the object from hash

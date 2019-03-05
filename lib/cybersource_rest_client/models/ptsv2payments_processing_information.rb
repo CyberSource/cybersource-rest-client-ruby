@@ -14,43 +14,43 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsProcessingInformation
-    # Flag that specifies whether to also include capture service in the submitted request or not.
+    # Flag that specifies whether to also include capture service in the submitted request or not.  Possible values: - **true** - **false** (default). 
     attr_accessor :capture
 
-    # Value that identifies the processor/acquirer to use for the transaction. This value is supported only for **CyberSource through VisaNet**. 
+    # Value that identifies the processor/acquirer to use for the transaction. This value is supported only for **CyberSource through VisaNet**.  Contact CyberSource Customer Support to get the value for this field. 
     attr_accessor :processor_id
 
-    # Description of this field is not available.
+    # The description for this field is not available.
     attr_accessor :business_application_id
 
     # Type of transaction. Some payment card companies use this information when determining discount rates. When you omit this field for **Ingenico ePayments**, the processor uses the default transaction type they have on file for you instead of the default value listed here. 
     attr_accessor :commerce_indicator
 
-    # Type of digital payment solution that is being used for the transaction. Possible Values:   - **visacheckout**: Visa Checkout.  - **001**: Apple Pay.  - **005**: Masterpass. Required for Masterpass transactions on OmniPay Direct.  - **006**: Android Pay.  - **008**: Samsung Pay. 
+    # Type of digital payment solution for the transaction. Possible Values:   - **visacheckout**: Visa Checkout. This value is required for Visa Checkout transactions. See Visa Checkout Using the SCMP API.  - **005**: Masterpass. This value is required for Masterpass transactions on OmniPay Direct. See \"Masterpass,\" page 153. 
     attr_accessor :payment_solution
 
     # Please check with Cybersource customer support to see if your merchant account is configured correctly so you can include this field in your request. * For Payouts: max length for FDCCompass is String (22). 
     attr_accessor :reconciliation_id
 
-    # Value that links the current payment request to the original request. Set this value to the ID that was returned in the reply message from the original payment request.  This value is used for:   - Partial authorizations.  - Split shipments. 
+    # Value that links the current authorization request to the original authorization request. Set this value to the ID that was returned in the reply message from the original authorization request.  This value is used for:   - Partial authorizations: See \"Partial Authorizations,\" page 88.  - Split shipments: See \"Split Shipments,\" page 210. 
     attr_accessor :link_id
 
     # Set this field to 3 to indicate that the request includes Level III data.
     attr_accessor :purchase_level
 
-    # Attribute that lets you define custom grouping for your processor reports. This field is supported only for **Litle**. 
+    # Attribute that lets you define custom grouping for your processor reports. This field is supported only for **Worldpay VAP**.  See \"Report Groups,\" page 234. 
     attr_accessor :report_group
 
-    # Identifier for the **Visa Checkout** order. Visa Checkout provides a unique order ID for every transaction in the Visa Checkout **callID** field. 
+    # Identifier for the **Visa Checkout** order. Visa Checkout provides a unique order ID for every transaction in the Visa Checkout **callID** field.  For more details, see Visa Checkout Using the SCMP API. 
     attr_accessor :visa_checkout_id
-
-    attr_accessor :issuer
 
     attr_accessor :authorization_options
 
     attr_accessor :capture_options
 
     attr_accessor :recurring_options
+
+    attr_accessor :bank_transfer_options
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -65,10 +65,10 @@ module CyberSource
         :'purchase_level' => :'purchaseLevel',
         :'report_group' => :'reportGroup',
         :'visa_checkout_id' => :'visaCheckoutId',
-        :'issuer' => :'issuer',
         :'authorization_options' => :'authorizationOptions',
         :'capture_options' => :'captureOptions',
-        :'recurring_options' => :'recurringOptions'
+        :'recurring_options' => :'recurringOptions',
+        :'bank_transfer_options' => :'bankTransferOptions'
       }
     end
 
@@ -85,10 +85,10 @@ module CyberSource
         :'purchase_level' => :'String',
         :'report_group' => :'String',
         :'visa_checkout_id' => :'String',
-        :'issuer' => :'Ptsv2paymentsProcessingInformationIssuer',
         :'authorization_options' => :'Ptsv2paymentsProcessingInformationAuthorizationOptions',
         :'capture_options' => :'Ptsv2paymentsProcessingInformationCaptureOptions',
-        :'recurring_options' => :'Ptsv2paymentsProcessingInformationRecurringOptions'
+        :'recurring_options' => :'Ptsv2paymentsProcessingInformationRecurringOptions',
+        :'bank_transfer_options' => :'Ptsv2paymentsProcessingInformationBankTransferOptions'
       }
     end
 
@@ -142,10 +142,6 @@ module CyberSource
         self.visa_checkout_id = attributes[:'visaCheckoutId']
       end
 
-      if attributes.has_key?(:'issuer')
-        self.issuer = attributes[:'issuer']
-      end
-
       if attributes.has_key?(:'authorizationOptions')
         self.authorization_options = attributes[:'authorizationOptions']
       end
@@ -156,6 +152,10 @@ module CyberSource
 
       if attributes.has_key?(:'recurringOptions')
         self.recurring_options = attributes[:'recurringOptions']
+      end
+
+      if attributes.has_key?(:'bankTransferOptions')
+        self.bank_transfer_options = attributes[:'bankTransferOptions']
       end
     end
 
@@ -307,10 +307,10 @@ module CyberSource
           purchase_level == o.purchase_level &&
           report_group == o.report_group &&
           visa_checkout_id == o.visa_checkout_id &&
-          issuer == o.issuer &&
           authorization_options == o.authorization_options &&
           capture_options == o.capture_options &&
-          recurring_options == o.recurring_options
+          recurring_options == o.recurring_options &&
+          bank_transfer_options == o.bank_transfer_options
     end
 
     # @see the `==` method
@@ -322,7 +322,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [capture, processor_id, business_application_id, commerce_indicator, payment_solution, reconciliation_id, link_id, purchase_level, report_group, visa_checkout_id, issuer, authorization_options, capture_options, recurring_options].hash
+      [capture, processor_id, business_application_id, commerce_indicator, payment_solution, reconciliation_id, link_id, purchase_level, report_group, visa_checkout_id, authorization_options, capture_options, recurring_options, bank_transfer_options].hash
     end
 
     # Builds the object from hash

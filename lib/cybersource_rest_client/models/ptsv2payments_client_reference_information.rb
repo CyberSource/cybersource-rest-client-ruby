@@ -14,21 +14,24 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsClientReferenceInformation
-    # Client-generated order reference or tracking number. CyberSource recommends that you send a unique value for each transaction so that you can perform meaningful searches for the transaction. 
+    # Client-generated order reference or tracking number. CyberSource recommends that you send a unique value for each transaction so that you can perform meaningful searches for the transaction.  For information about tracking orders, see Getting Started with CyberSource Advanced for the SCMP API.  **FDC Nashville Global**\\ Certain circumstances can cause the processor to truncate this value to 15 or 17 characters for Level II and Level III processing, which can cause a discrepancy between the value you submit and the value included in some processor reports. 
     attr_accessor :code
 
-    # Identifier that you assign to the transaction. See \"Merchant-Initiated Reversals and Voids,\" page 176 
+    # Identifier that you assign to the transaction.  **Note** Use this field only if you want to support merchant-initiated reversal and void operations . See \"Merchant-Initiated Reversals and Voids,\" page 176. 
     attr_accessor :transaction_id
 
     # Comments
     attr_accessor :comments
+
+    attr_accessor :partner
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'code' => :'code',
         :'transaction_id' => :'transactionId',
-        :'comments' => :'comments'
+        :'comments' => :'comments',
+        :'partner' => :'partner'
       }
     end
 
@@ -37,7 +40,8 @@ module CyberSource
       {
         :'code' => :'String',
         :'transaction_id' => :'String',
-        :'comments' => :'String'
+        :'comments' => :'String',
+        :'partner' => :'Ptsv2paymentsClientReferenceInformationPartner'
       }
     end
 
@@ -59,6 +63,10 @@ module CyberSource
 
       if attributes.has_key?(:'comments')
         self.comments = attributes[:'comments']
+      end
+
+      if attributes.has_key?(:'partner')
+        self.partner = attributes[:'partner']
       end
     end
 
@@ -97,7 +105,8 @@ module CyberSource
       self.class == o.class &&
           code == o.code &&
           transaction_id == o.transaction_id &&
-          comments == o.comments
+          comments == o.comments &&
+          partner == o.partner
     end
 
     # @see the `==` method
@@ -109,7 +118,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [code, transaction_id, comments].hash
+      [code, transaction_id, comments, partner].hash
     end
 
     # Builds the object from hash

@@ -14,11 +14,14 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsidreversalsOrderInformation
+    attr_accessor :amount_details
+
     attr_accessor :line_items
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'amount_details' => :'amountDetails',
         :'line_items' => :'lineItems'
       }
     end
@@ -26,6 +29,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'amount_details' => :'Ptsv2paymentsidreversalsOrderInformationAmountDetails',
         :'line_items' => :'Array<Ptsv2paymentsidreversalsOrderInformationLineItems>'
       }
     end
@@ -37,6 +41,10 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'amountDetails')
+        self.amount_details = attributes[:'amountDetails']
+      end
 
       if attributes.has_key?(:'lineItems')
         if (value = attributes[:'lineItems']).is_a?(Array)
@@ -63,6 +71,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          amount_details == o.amount_details &&
           line_items == o.line_items
     end
 
@@ -75,7 +84,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [line_items].hash
+      [amount_details, line_items].hash
     end
 
     # Builds the object from hash

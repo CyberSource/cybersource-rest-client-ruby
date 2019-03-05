@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-      @api_client.set_configuration(config)
+	  @api_client.set_configuration(config)
     end
     # Process a Payment
     # Authorize the payment for the transaction. 
@@ -26,8 +26,8 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [PtsV2PaymentsPost201Response]
     def create_payment(create_payment_request, opts = {})
-      data, _status_code, _headers = create_payment_with_http_info(create_payment_request, opts)
-      return data, _status_code, _headers
+      data, status_code, headers = create_payment_with_http_info(create_payment_request, opts)
+      return data, status_code, headers
     end
 
     # Process a Payment
@@ -36,8 +36,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(PtsV2PaymentsPost201Response, Fixnum, Hash)>] PtsV2PaymentsPost201Response data, response status code and response headers
     def create_payment_with_http_info(create_payment_request, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: PaymentsApi.create_payment ...'
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: PaymentsApi.create_payment ...'
+			rescue
+				puts 'Cannot write to log'
+			end
       end
       # verify the required parameter 'create_payment_request' is set
       if @api_client.config.client_side_validation && create_payment_request.nil?
@@ -52,7 +58,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
 
@@ -70,8 +76,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'PtsV2PaymentsPost201Response')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: PaymentsApi#create_payment\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
+		begin
+		raise
+			@api_client.config.logger.debug "API called: PaymentsApi#create_payment\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
       return data, status_code, headers
     end
   end

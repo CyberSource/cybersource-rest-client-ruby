@@ -54,8 +54,11 @@ module CyberSource
     # Specifies the time of the report completed the generation  in ISO 8601 format
     attr_accessor :report_completed_time
 
-    # Selected name of the group
-    attr_accessor :selected_merchant_group_name
+    # Specifies whether the subscription created is either Custom, Standard or Classic 
+    attr_accessor :subscription_type
+
+    # Id for selected group.
+    attr_accessor :group_id
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -95,7 +98,8 @@ module CyberSource
         :'queued_time' => :'queuedTime',
         :'report_generating_time' => :'reportGeneratingTime',
         :'report_completed_time' => :'reportCompletedTime',
-        :'selected_merchant_group_name' => :'selectedMerchantGroupName'
+        :'subscription_type' => :'subscriptionType',
+        :'group_id' => :'groupId'
       }
     end
 
@@ -115,7 +119,8 @@ module CyberSource
         :'queued_time' => :'DateTime',
         :'report_generating_time' => :'DateTime',
         :'report_completed_time' => :'DateTime',
-        :'selected_merchant_group_name' => :'String'
+        :'subscription_type' => :'String',
+        :'group_id' => :'String'
       }
     end
 
@@ -179,8 +184,12 @@ module CyberSource
         self.report_completed_time = attributes[:'reportCompletedTime']
       end
 
-      if attributes.has_key?(:'selectedMerchantGroupName')
-        self.selected_merchant_group_name = attributes[:'selectedMerchantGroupName']
+      if attributes.has_key?(:'subscriptionType')
+        self.subscription_type = attributes[:'subscriptionType']
+      end
+
+      if attributes.has_key?(:'groupId')
+        self.group_id = attributes[:'groupId']
       end
     end
 
@@ -251,7 +260,8 @@ module CyberSource
           queued_time == o.queued_time &&
           report_generating_time == o.report_generating_time &&
           report_completed_time == o.report_completed_time &&
-          selected_merchant_group_name == o.selected_merchant_group_name
+          subscription_type == o.subscription_type &&
+          group_id == o.group_id
     end
 
     # @see the `==` method
@@ -263,7 +273,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [report_definition_id, report_name, report_mime_type, report_frequency, status, report_start_time, report_end_time, timezone, report_id, organization_id, queued_time, report_generating_time, report_completed_time, selected_merchant_group_name].hash
+      [report_definition_id, report_name, report_mime_type, report_frequency, status, report_start_time, report_end_time, timezone, report_id, organization_id, queued_time, report_generating_time, report_completed_time, subscription_type, group_id].hash
     end
 
     # Builds the object from hash

@@ -20,12 +20,14 @@ module CyberSource
 
     attr_accessor :description
 
+    # Attribute Filter Type.
     attr_accessor :filter_type
 
     attr_accessor :default
 
     attr_accessor :required
 
+    # Valid values for the filter.
     attr_accessor :supported_type
 
     # Attribute mapping from ruby-style variable name to JSON key.

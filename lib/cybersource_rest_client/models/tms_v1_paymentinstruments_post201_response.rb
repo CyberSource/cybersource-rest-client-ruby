@@ -89,7 +89,7 @@ module CyberSource
         :'object' => :'String',
         :'state' => :'String',
         :'bank_account' => :'Tmsv1paymentinstrumentsBankAccount',
-        :'card' => :'Tmsv1paymentinstrumentsCard',
+        :'card' => :'TmsV1PaymentinstrumentsPost201ResponseCard',
         :'buyer_information' => :'Tmsv1paymentinstrumentsBuyerInformation',
         :'bill_to' => :'Tmsv1paymentinstrumentsBillTo',
         :'processing_information' => :'Tmsv1paymentinstrumentsProcessingInformation',

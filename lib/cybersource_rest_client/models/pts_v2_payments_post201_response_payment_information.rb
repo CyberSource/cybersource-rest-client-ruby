@@ -20,12 +20,15 @@ module CyberSource
 
     attr_accessor :account_features
 
+    attr_accessor :bank
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'card' => :'card',
         :'tokenized_card' => :'tokenizedCard',
-        :'account_features' => :'accountFeatures'
+        :'account_features' => :'accountFeatures',
+        :'bank' => :'bank'
       }
     end
 
@@ -34,7 +37,8 @@ module CyberSource
       {
         :'card' => :'PtsV2PaymentsPost201ResponsePaymentInformationCard',
         :'tokenized_card' => :'PtsV2PaymentsPost201ResponsePaymentInformationTokenizedCard',
-        :'account_features' => :'PtsV2PaymentsPost201ResponsePaymentInformationAccountFeatures'
+        :'account_features' => :'PtsV2PaymentsPost201ResponsePaymentInformationAccountFeatures',
+        :'bank' => :'PtsV2PaymentsPost201ResponsePaymentInformationBank'
       }
     end
 
@@ -56,6 +60,10 @@ module CyberSource
 
       if attributes.has_key?(:'accountFeatures')
         self.account_features = attributes[:'accountFeatures']
+      end
+
+      if attributes.has_key?(:'bank')
+        self.bank = attributes[:'bank']
       end
     end
 
@@ -79,7 +87,8 @@ module CyberSource
       self.class == o.class &&
           card == o.card &&
           tokenized_card == o.tokenized_card &&
-          account_features == o.account_features
+          account_features == o.account_features &&
+          bank == o.bank
     end
 
     # @see the `==` method
@@ -91,7 +100,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card, tokenized_card, account_features].hash
+      [card, tokenized_card, account_features, bank].hash
     end
 
     # Builds the object from hash

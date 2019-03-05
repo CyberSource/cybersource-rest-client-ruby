@@ -32,8 +32,10 @@ module CyberSource
 
     attr_accessor :point_of_sale_information
 
-    # Description of this field is not available.
+    # The description for this field is not available.
     attr_accessor :merchant_defined_information
+
+    attr_accessor :installment_information
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -47,7 +49,8 @@ module CyberSource
         :'merchant_information' => :'merchantInformation',
         :'aggregator_information' => :'aggregatorInformation',
         :'point_of_sale_information' => :'pointOfSaleInformation',
-        :'merchant_defined_information' => :'merchantDefinedInformation'
+        :'merchant_defined_information' => :'merchantDefinedInformation',
+        :'installment_information' => :'installmentInformation'
       }
     end
 
@@ -63,7 +66,8 @@ module CyberSource
         :'merchant_information' => :'Ptsv2paymentsidcapturesMerchantInformation',
         :'aggregator_information' => :'Ptsv2paymentsidcapturesAggregatorInformation',
         :'point_of_sale_information' => :'Ptsv2paymentsidcapturesPointOfSaleInformation',
-        :'merchant_defined_information' => :'Array<Ptsv2paymentsMerchantDefinedInformation>'
+        :'merchant_defined_information' => :'Array<Ptsv2paymentsMerchantDefinedInformation>',
+        :'installment_information' => :'Ptsv2paymentsidcapturesInstallmentInformation'
       }
     end
 
@@ -116,6 +120,10 @@ module CyberSource
           self.merchant_defined_information = value
         end
       end
+
+      if attributes.has_key?(:'installmentInformation')
+        self.installment_information = attributes[:'installmentInformation']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -145,7 +153,8 @@ module CyberSource
           merchant_information == o.merchant_information &&
           aggregator_information == o.aggregator_information &&
           point_of_sale_information == o.point_of_sale_information &&
-          merchant_defined_information == o.merchant_defined_information
+          merchant_defined_information == o.merchant_defined_information &&
+          installment_information == o.installment_information
     end
 
     # @see the `==` method
@@ -157,7 +166,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_reference_information, processing_information, payment_information, order_information, buyer_information, device_information, merchant_information, aggregator_information, point_of_sale_information, merchant_defined_information].hash
+      [client_reference_information, processing_information, payment_information, order_information, buyer_information, device_information, merchant_information, aggregator_information, point_of_sale_information, merchant_defined_information, installment_information].hash
     end
 
     # Builds the object from hash

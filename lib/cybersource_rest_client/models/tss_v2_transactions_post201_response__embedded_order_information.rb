@@ -34,7 +34,7 @@ module CyberSource
       {
         :'bill_to' => :'TssV2TransactionsPost201ResponseEmbeddedOrderInformationBillTo',
         :'ship_to' => :'TssV2TransactionsPost201ResponseEmbeddedOrderInformationShipTo',
-        :'amount_details' => :'Ptsv2paymentsidreversalsReversalInformationAmountDetails'
+        :'amount_details' => :'TssV2TransactionsPost201ResponseEmbeddedOrderInformationAmountDetails'
       }
     end
 

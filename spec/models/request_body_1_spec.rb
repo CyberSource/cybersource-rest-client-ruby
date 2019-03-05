@@ -60,6 +60,16 @@ describe 'RequestBody1' do
     end
   end
 
+  describe 'test attribute "report_frequency"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["DAILY", "WEEKLY", "MONTHLY"])
+      # validator.allowable_values.each do |value|
+      #   expect { @instance.report_frequency = value }.not_to raise_error
+      # end
+    end
+  end
+
   describe 'test attribute "report_name"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -72,13 +82,13 @@ describe 'RequestBody1' do
     end
   end
 
-  describe 'test attribute "report_start_time"' do
+  describe 'test attribute "start_time"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "report_end_time"' do
+  describe 'test attribute "start_day"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -96,7 +106,7 @@ describe 'RequestBody1' do
     end
   end
 
-  describe 'test attribute "selected_merchant_group_name"' do
+  describe 'test attribute "group_name"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

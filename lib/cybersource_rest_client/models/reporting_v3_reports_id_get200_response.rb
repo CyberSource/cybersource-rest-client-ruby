@@ -48,13 +48,13 @@ module CyberSource
     # Time Zone Value
     attr_accessor :timezone
 
-    # Report Filters
+    # List of filters to apply
     attr_accessor :report_filters
 
     attr_accessor :report_preferences
 
-    # Selected Merchant Group name
-    attr_accessor :selected_merchant_group_name
+    # Id for selected group.
+    attr_accessor :group_id
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -94,7 +94,7 @@ module CyberSource
         :'timezone' => :'timezone',
         :'report_filters' => :'reportFilters',
         :'report_preferences' => :'reportPreferences',
-        :'selected_merchant_group_name' => :'selectedMerchantGroupName'
+        :'group_id' => :'groupId'
       }
     end
 
@@ -113,8 +113,8 @@ module CyberSource
         :'report_end_time' => :'DateTime',
         :'timezone' => :'String',
         :'report_filters' => :'Hash<String, Array<String>>',
-        :'report_preferences' => :'ReportingV3ReportSubscriptionsGet200ResponseReportPreferences',
-        :'selected_merchant_group_name' => :'String'
+        :'report_preferences' => :'ReportingV3ReportsIdGet200ResponseReportPreferences',
+        :'group_id' => :'String'
       }
     end
 
@@ -182,8 +182,8 @@ module CyberSource
         self.report_preferences = attributes[:'reportPreferences']
       end
 
-      if attributes.has_key?(:'selectedMerchantGroupName')
-        self.selected_merchant_group_name = attributes[:'selectedMerchantGroupName']
+      if attributes.has_key?(:'groupId')
+        self.group_id = attributes[:'groupId']
       end
     end
 
@@ -199,7 +199,7 @@ module CyberSource
     def valid?
       report_mime_type_validator = EnumAttributeValidator.new('String', ['application/xml', 'text/csv'])
       return false unless report_mime_type_validator.valid?(@report_mime_type)
-      report_frequency_validator = EnumAttributeValidator.new('String', ['DAILY', 'WEEKLY', 'MONTHLY'])
+      report_frequency_validator = EnumAttributeValidator.new('String', ['DAILY', 'WEEKLY', 'MONTHLY', 'ADHOC'])
       return false unless report_frequency_validator.valid?(@report_frequency)
       report_status_validator = EnumAttributeValidator.new('String', ['COMPLETED', 'PENDING', 'QUEUED', 'RUNNING', 'ERROR', 'NO_DATA', 'RERUN'])
       return false unless report_status_validator.valid?(@report_status)
@@ -219,10 +219,10 @@ module CyberSource
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] report_frequency Object to be assigned
     def report_frequency=(report_frequency)
-      validator = EnumAttributeValidator.new('String', ['DAILY', 'WEEKLY', 'MONTHLY'])
-      # unless validator.valid?(report_frequency)
-      #   fail ArgumentError, 'invalid value for "report_frequency", must be one of #{validator.allowable_values}.'
-      # end
+      validator = EnumAttributeValidator.new('String', ['DAILY', 'WEEKLY', 'MONTHLY', 'ADHOC'])
+      unless validator.valid?(report_frequency)
+        fail ArgumentError, 'invalid value for "report_frequency", must be one of #{validator.allowable_values}.'
+      end
       @report_frequency = report_frequency
     end
 
@@ -254,7 +254,7 @@ module CyberSource
           timezone == o.timezone &&
           report_filters == o.report_filters &&
           report_preferences == o.report_preferences &&
-          selected_merchant_group_name == o.selected_merchant_group_name
+          group_id == o.group_id
     end
 
     # @see the `==` method
@@ -266,7 +266,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [organization_id, report_id, report_definition_id, report_name, report_mime_type, report_frequency, report_fields, report_status, report_start_time, report_end_time, timezone, report_filters, report_preferences, selected_merchant_group_name].hash
+      [organization_id, report_id, report_definition_id, report_name, report_mime_type, report_frequency, report_fields, report_status, report_start_time, report_end_time, timezone, report_filters, report_preferences, group_id].hash
     end
 
     # Builds the object from hash

@@ -129,10 +129,6 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@suffix.nil? && @suffix.to_s.length > 4
-        invalid_properties.push('invalid value for "suffix", the character length must be smaller than or equal to 4.')
-      end
-
       if !@prefix.nil? && @prefix.to_s.length > 6
         invalid_properties.push('invalid value for "prefix", the character length must be smaller than or equal to 6.')
       end
@@ -157,10 +153,6 @@ module CyberSource
         invalid_properties.push('invalid value for "issue_number", the character length must be smaller than or equal to 5.')
       end
 
-      # if !@type.nil? && @type.to_s.length > 3
-      #   invalid_properties.push('invalid value for "type", the character length must be smaller than or equal to 3.')
-      # end
-
       if !@account_encoder_id.nil? && @account_encoder_id.to_s.length > 3
         invalid_properties.push('invalid value for "account_encoder_id", the character length must be smaller than or equal to 3.')
       end
@@ -175,27 +167,15 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@suffix.nil? && @suffix.to_s.length > 4
       return false if !@prefix.nil? && @prefix.to_s.length > 6
       return false if !@expiration_month.nil? && @expiration_month.to_s.length > 2
       return false if !@expiration_year.nil? && @expiration_year.to_s.length > 4
       return false if !@start_month.nil? && @start_month.to_s.length > 2
       return false if !@start_year.nil? && @start_year.to_s.length > 4
       return false if !@issue_number.nil? && @issue_number.to_s.length > 5
-      # return false if !@type.nil? && @type.to_s.length > 3
       return false if !@account_encoder_id.nil? && @account_encoder_id.to_s.length > 3
       return false if !@use_as.nil? && @use_as.to_s.length > 2
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] suffix Value to be assigned
-    def suffix=(suffix)
-      if !suffix.nil? && suffix.to_s.length > 4
-        fail ArgumentError, 'invalid value for "suffix", the character length must be smaller than or equal to 4.'
-      end
-
-      @suffix = suffix
     end
 
     # Custom attribute writer method with validation
@@ -256,16 +236,6 @@ module CyberSource
       end
 
       @issue_number = issue_number
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] type Value to be assigned
-    def type=(type)
-      # if !type.nil? && type.to_s.length > 3
-      #   fail ArgumentError, 'invalid value for "type", the character length must be smaller than or equal to 3.'
-      # end
-
-      @type = type
     end
 
     # Custom attribute writer method with validation

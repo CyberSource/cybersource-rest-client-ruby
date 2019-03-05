@@ -14,10 +14,10 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsOrderInformationAmountDetails
-    # Grand total for the order. You can include a decimal point (.), but no other special characters. CyberSource truncates the amount to the correct number of decimal places.  * CTV, FDCCompass, Paymentech (<= 12)  For processor-specific information, see the grand_total_amount field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
+    # Grand total for the order. This value cannot be negative. You can include a decimal point (.), but no other special characters. CyberSource truncates the amount to the correct number of decimal places.  **Note** For CTV, FDCCompass, Paymentech processors, the maximum length for this field is 12.  **Important** Some processors have specific requirements and limitations, such as maximum amounts and maximum field lengths. This information is covered in:  Table 15, \"Authorization Information for Specific Processors,\" on page 43  Table 19, \"Capture Information for Specific Processors,\" on page 58  Table 23, \"Credit Information for Specific Processors,\" on page 75 If your processor supports zero amount authorizations, you can set this field to 0 for the authorization to check if the card is lost or stolen. See \"Zero Amount Authorizations,\" page 247.  **DCC with a Third-Party Provider**\\ Set this field to the converted amount that was returned by the DCC provider. You must include either this field or offer0 and the offerlevel field amount in your request. For details, see \"Dynamic Currency Conversion with a Third Party Provider,\" page 125.  **FDMS South**\\ If you accept IDR or CLP currencies, see the entry for FDMS South in Table 15, \"Authorization Information for Specific Processors,\" on page 43.  **DCC for First Data**\\ Not used. 
     attr_accessor :total_amount
 
-    # Currency used for the order. Use the three-character ISO Standard Currency Codes.  For an authorization reversal or a capture, you must use the same currency that you used in your request for Payment API. 
+    # Currency used for the order. Use the three-character ISO Standard Currency Codes.  For an authorization reversal (`reversalInformation`) or a capture (`processingOptions.capture` is set to `true`), you must use the same currency that you used in your request for Payment API.  **DCC for First Data**\\ Your local currency. For details, see \"Dynamic Currency Conversion for First Data,\" page 113. 
     attr_accessor :currency
 
     # Total discount amount applied to the order.  For processor-specific information, see the order_discount_amount field in [Level II and Level III Processing Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/Level_2_3_SCMP_API/html) 
@@ -44,13 +44,13 @@ module CyberSource
     # Total freight or shipping and handling charges for the order. When you include this field in your request, you must also include the **totalAmount** field.  For processor-specific information, see the freight_amount field in [Level II and Level III Processing Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/Level_2_3_SCMP_API/html) 
     attr_accessor :freight_amount
 
-    # Converted amount returned by the DCC service.  For processor-specific information, see the foreign_amount field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
+    # Set this field to the converted amount that was returned by the DCC provider. See \"Dynamic Currency Conversion with a Third Party Provider,\" page 125.  For processor-specific information, see the foreign_amount field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
     attr_accessor :foreign_amount
 
-    # Billing currency returned by the DCC service.  For processor-specific information, see the foreign_currency field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
+    # Your customer’s billing currency. See \"Dynamic Currency Conversion with a Third Party Provider,\" page 125.  For processor-specific information, see the foreign_currency field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
     attr_accessor :foreign_currency
 
-    # Exchange rate returned by the DCC service. Includes a decimal point and a maximum of 4 decimal places.  For processor-specific information, see the exchange_rate field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
+    # Exchange rate returned by the DCC service. Includes a decimal point and a maximum of 4 decimal places.  For details, see \"Dynamic Currency Conversion for First Data,\" page 113.  For processor-specific information, see the exchange_rate field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
     attr_accessor :exchange_rate
 
     # Time stamp for the exchange rate. This value is returned by the DCC service.  Format: `YYYYMMDD~HH:MM`  where ~ denotes a space.  For processor-specific information, see the exchange_rate_timestamp field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
@@ -67,6 +67,15 @@ module CyberSource
     attr_accessor :amex_additional_amounts
 
     attr_accessor :tax_details
+
+    # Service fee. Required for service fee transactions. 
+    attr_accessor :service_fee_amount
+
+    # Amount in your original local pricing currency.  This value cannot be negative. You can include a decimal point (.) in this field to denote the currency exponent, but you cannot include any other special characters.  If needed, CyberSource truncates the amount to the correct number of decimal places.  For details, see Dynamic Currency Conversion with a Third Party Provider. 
+    attr_accessor :original_amount
+
+    # Your local pricing currency code.  For the possible values, see the ISO Standard Currency Codes.  For details, see Dynamic Currency Conversion with a Third Party Provider. 
+    attr_accessor :original_currency
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -89,7 +98,10 @@ module CyberSource
         :'settlement_amount' => :'settlementAmount',
         :'settlement_currency' => :'settlementCurrency',
         :'amex_additional_amounts' => :'amexAdditionalAmounts',
-        :'tax_details' => :'taxDetails'
+        :'tax_details' => :'taxDetails',
+        :'service_fee_amount' => :'serviceFeeAmount',
+        :'original_amount' => :'originalAmount',
+        :'original_currency' => :'originalCurrency'
       }
     end
 
@@ -114,7 +126,10 @@ module CyberSource
         :'settlement_amount' => :'String',
         :'settlement_currency' => :'String',
         :'amex_additional_amounts' => :'Array<Ptsv2paymentsOrderInformationAmountDetailsAmexAdditionalAmounts>',
-        :'tax_details' => :'Array<Ptsv2paymentsOrderInformationAmountDetailsTaxDetails>'
+        :'tax_details' => :'Array<Ptsv2paymentsOrderInformationAmountDetailsTaxDetails>',
+        :'service_fee_amount' => :'String',
+        :'original_amount' => :'String',
+        :'original_currency' => :'String'
       }
     end
 
@@ -205,6 +220,18 @@ module CyberSource
           self.tax_details = value
         end
       end
+
+      if attributes.has_key?(:'serviceFeeAmount')
+        self.service_fee_amount = attributes[:'serviceFeeAmount']
+      end
+
+      if attributes.has_key?(:'originalAmount')
+        self.original_amount = attributes[:'originalAmount']
+      end
+
+      if attributes.has_key?(:'originalCurrency')
+        self.original_currency = attributes[:'originalCurrency']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -275,6 +302,18 @@ module CyberSource
         invalid_properties.push('invalid value for "settlement_currency", the character length must be smaller than or equal to 3.')
       end
 
+      if !@service_fee_amount.nil? && @service_fee_amount.to_s.length > 15
+        invalid_properties.push('invalid value for "service_fee_amount", the character length must be smaller than or equal to 15.')
+      end
+
+      if !@original_amount.nil? && @original_amount.to_s.length > 15
+        invalid_properties.push('invalid value for "original_amount", the character length must be smaller than or equal to 15.')
+      end
+
+      if !@original_currency.nil? && @original_currency.to_s.length > 15
+        invalid_properties.push('invalid value for "original_currency", the character length must be smaller than or equal to 15.')
+      end
+
       invalid_properties
     end
 
@@ -297,6 +336,9 @@ module CyberSource
       return false if !@exchange_rate_time_stamp.nil? && @exchange_rate_time_stamp.to_s.length > 14
       return false if !@settlement_amount.nil? && @settlement_amount.to_s.length > 12
       return false if !@settlement_currency.nil? && @settlement_currency.to_s.length > 3
+      return false if !@service_fee_amount.nil? && @service_fee_amount.to_s.length > 15
+      return false if !@original_amount.nil? && @original_amount.to_s.length > 15
+      return false if !@original_currency.nil? && @original_currency.to_s.length > 15
       true
     end
 
@@ -460,6 +502,36 @@ module CyberSource
       @settlement_currency = settlement_currency
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] service_fee_amount Value to be assigned
+    def service_fee_amount=(service_fee_amount)
+      if !service_fee_amount.nil? && service_fee_amount.to_s.length > 15
+        fail ArgumentError, 'invalid value for "service_fee_amount", the character length must be smaller than or equal to 15.'
+      end
+
+      @service_fee_amount = service_fee_amount
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] original_amount Value to be assigned
+    def original_amount=(original_amount)
+      if !original_amount.nil? && original_amount.to_s.length > 15
+        fail ArgumentError, 'invalid value for "original_amount", the character length must be smaller than or equal to 15.'
+      end
+
+      @original_amount = original_amount
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] original_currency Value to be assigned
+    def original_currency=(original_currency)
+      if !original_currency.nil? && original_currency.to_s.length > 15
+        fail ArgumentError, 'invalid value for "original_currency", the character length must be smaller than or equal to 15.'
+      end
+
+      @original_currency = original_currency
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -483,7 +555,10 @@ module CyberSource
           settlement_amount == o.settlement_amount &&
           settlement_currency == o.settlement_currency &&
           amex_additional_amounts == o.amex_additional_amounts &&
-          tax_details == o.tax_details
+          tax_details == o.tax_details &&
+          service_fee_amount == o.service_fee_amount &&
+          original_amount == o.original_amount &&
+          original_currency == o.original_currency
     end
 
     # @see the `==` method
@@ -495,7 +570,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [total_amount, currency, discount_amount, duty_amount, tax_amount, national_tax_included, tax_applied_after_discount, tax_applied_level, tax_type_code, freight_amount, foreign_amount, foreign_currency, exchange_rate, exchange_rate_time_stamp, surcharge, settlement_amount, settlement_currency, amex_additional_amounts, tax_details].hash
+      [total_amount, currency, discount_amount, duty_amount, tax_amount, national_tax_included, tax_applied_after_discount, tax_applied_level, tax_type_code, freight_amount, foreign_amount, foreign_currency, exchange_rate, exchange_rate_time_stamp, surcharge, settlement_amount, settlement_currency, amex_additional_amounts, tax_details, service_fee_amount, original_amount, original_currency].hash
     end
 
     # Builds the object from hash

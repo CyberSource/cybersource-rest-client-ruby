@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsidrefundsProcessingInformationRecurringOptions
-    # Flag that indicates whether this is a payment towards an existing contractual loan. 
+    # Flag that indicates whether this is a payment towards an existing contractual loan.  Possible values: - **true** Loan payment - **false** (default) Not a loan payment  See \"Visa Debt Repayments,\" page 218, for a list of processors that support this feature. 
     attr_accessor :loan_payment
 
     # Attribute mapping from ruby-style variable name to JSON key.

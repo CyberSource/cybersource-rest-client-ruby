@@ -14,26 +14,26 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsPointOfSaleInformationEmv
-    # EMV data that is transmitted from the chip card to the issuer, and from the issuer to the chip card. The EMV data is in the tag-length-value format and includes chip card tags, terminal tags, and transaction detail tags.  `Important` The following tags contain sensitive information and **must not** be included in this field:   - **56**: Track 1 equivalent data  - **57**: Track 2 equivalent data  - **5A**: Application PAN  - **5F20**: Cardholder name  - **5F24**: Application expiration date (This sensitivity has been relaxed for cmcic, amexdirect, fdiglobal, opdfde, six)  - **99**: Transaction PIN  - **9F0B**: Cardholder name (extended)  - **9F1F**: Track 1 discretionary data  - **9F20**: Track 2 discretionary data  For captures, this field is required for contact EMV transactions. Otherwise, it is optional.  For credits, this field is required for contact EMV stand-alone credits and contactless EMV stand-alone credits. Otherwise, it is optional.  `Important` For contact EMV captures, contact EMV stand-alone credits, and contactless EMV stand-alone credits, you must include the following tags in this field. For all other types of EMV transactions, the following tags are optional.   - **95**: Terminal verification results  - **9F10**: Issuer application data  - **9F26**: Application cryptogram 
+    # EMV data that is transmitted from the chip card to the issuer, and from the issuer to the chip card. The EMV data is in the tag-length-value format and includes chip card tags, terminal tags, and transaction detail tags.  See \"Europay, MasterCard, Visa (EMV),\" page 10. For information about the individual tags, see the “Application Specification” section in the EMV 4.3 Specifications: http://emvco.com  **Important** The following tags contain sensitive information and **must not** be included in this field:   - **56**: Track 1 equivalent data  - **57**: Track 2 equivalent data  - **5A**: Application PAN  - **5F20**: Cardholder name  - **5F24**: Application expiration date (This sensitivity has been relaxed for cmcic, amexdirect, fdiglobal, opdfde, and six)  - **99**: Transaction PIN  - **9F0B**: Cardholder name (extended)  - **9F1F**: Track 1 discretionary data  - **9F20**: Track 2 discretionary data  For captures, this field is required for contact EMV transactions. Otherwise, it is optional.  For credits, this field is required for contact EMV stand-alone credits and contactless EMV stand-alone credits. Otherwise, it is optional.  **Important** For contact EMV captures, contact EMV stand-alone credits, and contactless EMV stand-alone credits, you must include the following tags in this field. For all other types of EMV transactions, the following tags are optional.   - **95**: Terminal verification results  - **9F10**: Issuer application data  - **9F26**: Application cryptogram 
     attr_accessor :tags
 
-    # Method that was used to verify the cardholder's identity. Possible values:   - **0**: No verification  - **1**: Signature  This field is supported only on **American Express Direct**. 
-    attr_accessor :cardholder_verification_method
+    # Method that was used to verify the cardholder's identity.  Possible values:  - **0**: No verification  - **1**: Signature  This field is supported only on **American Express Direct**. 
+    attr_accessor :cardholder_verification_method_used
 
-    # Number assigned to a specific card when two or more cards are associated with the same primary account number. This value enables issuers to distinguish among multiple cards that are linked to the same account. This value can also act as a tracking tool when reissuing cards. When this value is available, it is provided by the chip reader. When the chip reader does not provide this value, do not include this field in your request. 
+    # Number assigned to a specific card when two or more cards are associated with the same primary account number. This value enables issuers to distinguish among multiple cards that are linked to the same account. This value can also act as a tracking tool when reissuing cards. When this value is available, it is provided by the chip reader. When the chip reader does not provide this value, do not include this field in your request.  See \"Europay, MasterCard, Visa (EMV),\" page 10. 
     attr_accessor :card_sequence_number
 
-    # Indicates whether a fallback method was used to enter credit card information into the POS terminal. When a technical problem prevents a successful exchange of information between a chip card and a chip-capable terminal:   1. Swipe the card or key the credit card information into the POS terminal.  2. Use the pos_entry_mode field to indicate whether the information was swiped or keyed.  This field is supported only on **Chase Paymentech Solutions** and **GPN**. 
+    # Indicates whether a fallback method was used to enter credit card information into the POS terminal. When a technical problem prevents a successful exchange of information between a chip card and a chip-capable terminal:   1. Swipe the card or key the credit card information into the POS terminal.  2. Use the pointOfSaleInformation.entryMode field to indicate whether the information was swiped or keyed.  Possible values:  - **true**  - **false** (default)  This field is supported only on **Chase Paymentech Solutions** and **GPN**. 
     attr_accessor :fallback
 
-    # Reason for the EMV fallback transaction. An EMV fallback transaction occurs when an EMV transaction fails for one of these reasons:   - Technical failure: the EMV terminal or EMV card cannot read and process chip data.  - Empty candidate list failure: the EMV terminal does not have any applications in common with the EMV card.    EMV terminals are coded to determine whether the terminal and EMV card have any applications in common.    EMV terminals provide this information to you.  Possible values:   - **1**: Transaction was initiated with information from a magnetic stripe, and the previous transaction at the       EMV terminal either used information from a successful chip read or it was not a chip transaction.  - **2**: Transaction was initiated with information from a magnetic stripe, and the previous transaction at the       EMV terminal was an EMV fallback transaction because the attempted chip read was unsuccessful.  This field is supported only on **GPN**. 
+    # Reason for the EMV fallback transaction. An EMV fallback transaction occurs when an EMV transaction fails for one of these reasons:   - Technical failure: the EMV terminal or EMV card cannot read and process chip data.  - Empty candidate list failure: the EMV terminal does not have any applications in common with the EMV card.    EMV terminals are coded to determine whether the terminal and EMV card have any applications in common.    EMV terminals provide this information to you.  Possible values:   - **1**: Transaction was initiated with information from a magnetic stripe, and the previous transaction at the       EMV terminal either used information from a successful chip read or it was not a chip transaction.  - **2**: Transaction was initiated with information from a magnetic stripe, and the previous transaction at the       EMV terminal was an EMV fallback transaction because the attempted chip read was unsuccessful.  This field is supported only on **GPN**.  **NOTE**: Merchants must include this field in a request whenever a transaction must fall back to swiped mode. 
     attr_accessor :fallback_condition
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'tags' => :'tags',
-        :'cardholder_verification_method' => :'cardholderVerificationMethod',
+        :'cardholder_verification_method_used' => :'cardholderVerificationMethodUsed',
         :'card_sequence_number' => :'cardSequenceNumber',
         :'fallback' => :'fallback',
         :'fallback_condition' => :'fallbackCondition'
@@ -44,7 +44,7 @@ module CyberSource
     def self.swagger_types
       {
         :'tags' => :'String',
-        :'cardholder_verification_method' => :'Float',
+        :'cardholder_verification_method_used' => :'Float',
         :'card_sequence_number' => :'String',
         :'fallback' => :'BOOLEAN',
         :'fallback_condition' => :'Float'
@@ -63,8 +63,8 @@ module CyberSource
         self.tags = attributes[:'tags']
       end
 
-      if attributes.has_key?(:'cardholderVerificationMethod')
-        self.cardholder_verification_method = attributes[:'cardholderVerificationMethod']
+      if attributes.has_key?(:'cardholderVerificationMethodUsed')
+        self.cardholder_verification_method_used = attributes[:'cardholderVerificationMethodUsed']
       end
 
       if attributes.has_key?(:'cardSequenceNumber')
@@ -131,7 +131,7 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           tags == o.tags &&
-          cardholder_verification_method == o.cardholder_verification_method &&
+          cardholder_verification_method_used == o.cardholder_verification_method_used &&
           card_sequence_number == o.card_sequence_number &&
           fallback == o.fallback &&
           fallback_condition == o.fallback_condition
@@ -146,7 +146,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [tags, cardholder_verification_method, card_sequence_number, fallback, fallback_condition].hash
+      [tags, cardholder_verification_method_used, card_sequence_number, fallback, fallback_condition].hash
     end
 
     # Builds the object from hash

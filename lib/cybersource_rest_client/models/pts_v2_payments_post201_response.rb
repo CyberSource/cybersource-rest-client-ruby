@@ -22,7 +22,7 @@ module CyberSource
     # Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the time. The Z indicates UTC. 
     attr_accessor :submit_time_utc
 
-    # The status of the submitted transaction.
+    # The status of the submitted transaction.  Possible values:  - AUTHORIZED  - PARTIAL_AUTHORIZED  - AUTHORIZED_PENDING_REVIEW  - DECLINED  - INVALID_REQUEST 
     attr_accessor :status
 
     # The reconciliation id for the submitted transaction. This value is not returned for all processors. 
@@ -32,13 +32,19 @@ module CyberSource
 
     attr_accessor :client_reference_information
 
+    attr_accessor :processing_information
+
     attr_accessor :processor_information
+
+    attr_accessor :issuer_information
 
     attr_accessor :payment_information
 
     attr_accessor :order_information
 
     attr_accessor :point_of_sale_information
+
+    attr_accessor :installment_information
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -72,10 +78,13 @@ module CyberSource
         :'reconciliation_id' => :'reconciliationId',
         :'error_information' => :'errorInformation',
         :'client_reference_information' => :'clientReferenceInformation',
+        :'processing_information' => :'processingInformation',
         :'processor_information' => :'processorInformation',
+        :'issuer_information' => :'issuerInformation',
         :'payment_information' => :'paymentInformation',
         :'order_information' => :'orderInformation',
-        :'point_of_sale_information' => :'pointOfSaleInformation'
+        :'point_of_sale_information' => :'pointOfSaleInformation',
+        :'installment_information' => :'installmentInformation'
       }
     end
 
@@ -89,10 +98,13 @@ module CyberSource
         :'reconciliation_id' => :'String',
         :'error_information' => :'PtsV2PaymentsPost201ResponseErrorInformation',
         :'client_reference_information' => :'PtsV2PaymentsPost201ResponseClientReferenceInformation',
+        :'processing_information' => :'PtsV2PaymentsPost201ResponseProcessingInformation',
         :'processor_information' => :'PtsV2PaymentsPost201ResponseProcessorInformation',
+        :'issuer_information' => :'PtsV2PaymentsPost201ResponseIssuerInformation',
         :'payment_information' => :'PtsV2PaymentsPost201ResponsePaymentInformation',
         :'order_information' => :'PtsV2PaymentsPost201ResponseOrderInformation',
-        :'point_of_sale_information' => :'PtsV2PaymentsPost201ResponsePointOfSaleInformation'
+        :'point_of_sale_information' => :'PtsV2PaymentsPost201ResponsePointOfSaleInformation',
+        :'installment_information' => :'PtsV2PaymentsPost201ResponseInstallmentInformation'
       }
     end
 
@@ -132,8 +144,16 @@ module CyberSource
         self.client_reference_information = attributes[:'clientReferenceInformation']
       end
 
+      if attributes.has_key?(:'processingInformation')
+        self.processing_information = attributes[:'processingInformation']
+      end
+
       if attributes.has_key?(:'processorInformation')
         self.processor_information = attributes[:'processorInformation']
+      end
+
+      if attributes.has_key?(:'issuerInformation')
+        self.issuer_information = attributes[:'issuerInformation']
       end
 
       if attributes.has_key?(:'paymentInformation')
@@ -146,6 +166,10 @@ module CyberSource
 
       if attributes.has_key?(:'pointOfSaleInformation')
         self.point_of_sale_information = attributes[:'pointOfSaleInformation']
+      end
+
+      if attributes.has_key?(:'installmentInformation')
+        self.installment_information = attributes[:'installmentInformation']
       end
     end
 
@@ -168,7 +192,7 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if !@id.nil? && @id.to_s.length > 26
-      status_validator = EnumAttributeValidator.new('String', ['AUTHORIZED', 'PARTIAL_AUTHORIZED', 'AUTHORIZED_PENDING_REVIEW', 'DECLINED'])
+      status_validator = EnumAttributeValidator.new('String', ['AUTHORIZED', 'PARTIAL_AUTHORIZED', 'AUTHORIZED_PENDING_REVIEW', 'DECLINED', 'INVALID_REQUEST', 'PENDING'])
       return false unless status_validator.valid?(@status)
       return false if !@reconciliation_id.nil? && @reconciliation_id.to_s.length > 60
       true
@@ -187,7 +211,7 @@ module CyberSource
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] status Object to be assigned
     def status=(status)
-      validator = EnumAttributeValidator.new('String', ['AUTHORIZED', 'PARTIAL_AUTHORIZED', 'AUTHORIZED_PENDING_REVIEW', 'DECLINED'])
+      validator = EnumAttributeValidator.new('String', ['AUTHORIZED', 'PARTIAL_AUTHORIZED', 'AUTHORIZED_PENDING_REVIEW', 'DECLINED', 'INVALID_REQUEST', 'PENDING'])
       unless validator.valid?(status)
         fail ArgumentError, 'invalid value for "status", must be one of #{validator.allowable_values}.'
       end
@@ -216,10 +240,13 @@ module CyberSource
           reconciliation_id == o.reconciliation_id &&
           error_information == o.error_information &&
           client_reference_information == o.client_reference_information &&
+          processing_information == o.processing_information &&
           processor_information == o.processor_information &&
+          issuer_information == o.issuer_information &&
           payment_information == o.payment_information &&
           order_information == o.order_information &&
-          point_of_sale_information == o.point_of_sale_information
+          point_of_sale_information == o.point_of_sale_information &&
+          installment_information == o.installment_information
     end
 
     # @see the `==` method
@@ -231,7 +258,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, submit_time_utc, status, reconciliation_id, error_information, client_reference_information, processor_information, payment_information, order_information, point_of_sale_information].hash
+      [_links, id, submit_time_utc, status, reconciliation_id, error_information, client_reference_information, processing_information, processor_information, issuer_information, payment_information, order_information, point_of_sale_information, installment_information].hash
     end
 
     # Builds the object from hash

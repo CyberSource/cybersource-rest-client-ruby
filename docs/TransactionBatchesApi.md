@@ -4,13 +4,61 @@ All URIs are relative to *https://apitest.cybersource.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**pts_v1_transaction_batches_get**](TransactionBatchesApi.md#pts_v1_transaction_batches_get) | **GET** /pts/v1/transaction-batches | Get a list of batch files processed through the Offline Transaction Submission Services
+[**get_transaction_batch_id**](TransactionBatchesApi.md#get_transaction_batch_id) | **GET** /pts/v1/transaction-batches/{id} | Get individual batch file
+[**get_transaction_batches**](TransactionBatchesApi.md#get_transaction_batches) | **GET** /pts/v1/transaction-batches | Get a list of batch files
 
 
-# **pts_v1_transaction_batches_get**
-> PtsV1TransactionBatchesGet200Response pts_v1_transaction_batches_get(start_time, end_time)
+# **get_transaction_batch_id**
+> PtsV1TransactionBatchesIdGet200Response get_transaction_batch_id(id)
 
-Get a list of batch files processed through the Offline Transaction Submission Services
+Get individual batch file
+
+Provide the search range
+
+### Example
+```ruby
+# load the gem
+require 'cybersource_rest_client'
+
+api_instance = CyberSource::TransactionBatchesApi.new
+
+id = "id_example" # String | The batch id assigned for the template.
+
+
+begin
+  #Get individual batch file
+  result = api_instance.get_transaction_batch_id(id)
+  p result
+rescue CyberSource::ApiError => e
+  puts "Exception when calling TransactionBatchesApi->get_transaction_batch_id: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| The batch id assigned for the template. | 
+
+### Return type
+
+[**PtsV1TransactionBatchesIdGet200Response**](PtsV1TransactionBatchesIdGet200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/hal+json
+
+
+
+# **get_transaction_batches**
+> PtsV1TransactionBatchesGet200Response get_transaction_batches(start_time, end_time)
+
+Get a list of batch files
 
 Provide the search range
 
@@ -27,11 +75,11 @@ end_time = DateTime.parse("2013-10-20T19:20:30+01:00") # DateTime | Valid report
 
 
 begin
-  #Get a list of batch files processed through the Offline Transaction Submission Services
-  result = api_instance.pts_v1_transaction_batches_get(start_time, end_time)
+  #Get a list of batch files
+  result = api_instance.get_transaction_batches(start_time, end_time)
   p result
 rescue CyberSource::ApiError => e
-  puts "Exception when calling TransactionBatchesApi->pts_v1_transaction_batches_get: #{e}"
+  puts "Exception when calling TransactionBatchesApi->get_transaction_batches: #{e}"
 end
 ```
 

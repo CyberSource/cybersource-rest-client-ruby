@@ -18,42 +18,57 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-      @api_client.set_configuration(config)
+	  @api_client.set_configuration(config)
     end
     # Create Report Subscription for a report name by organization
-    # 
-    # @param report_name Name of the Report to Create
+    # Create a report subscription for your organization. The report name must be unique. 
     # @param request_body Report subscription request payload
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [nil]
     def create_subscription(request_body, opts = {})
-      data, _status_code, _headers = create_subscription_with_http_info(request_body, opts)
-      return data, _status_code, _headers
+      data, status_code, headers = create_subscription_with_http_info(request_body, opts)
+      return data, status_code, headers
     end
 
     # Create Report Subscription for a report name by organization
-    # 
-    # @param report_name Name of the Report to Create
+    # Create a report subscription for your organization. The report name must be unique. 
     # @param request_body Report subscription request payload
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def create_subscription_with_http_info(request_body, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: ReportSubscriptionsApi.create_subscription ...'
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: ReportSubscriptionsApi.create_subscription ...'
+			rescue
+				puts 'Cannot write to log'
+			end
       end
-      # verify the required parameter 'report_name' is set
-      # if @api_client.config.client_side_validation && report_name.nil?
-      #   fail ArgumentError, "Missing the required parameter 'report_name' when calling ReportSubscriptionsApi.create_subscription"
-      # end
       # verify the required parameter 'request_body' is set
       if @api_client.config.client_side_validation && request_body.nil?
         fail ArgumentError, "Missing the required parameter 'request_body' when calling ReportSubscriptionsApi.create_subscription"
       end
+      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length > 32
+        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportSubscriptionsApi.create_subscription, the character length must be smaller than or equal to 32.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length < 1
+        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportSubscriptionsApi.create_subscription, the character length must be great than or equal to 1.'
+      end
+
+      #if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
+        #fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling ReportSubscriptionsApi.create_subscription, must conform to the pattern /[a-zA-Z0-9-_]+/."
+      #end
+
       # resource path
       local_var_path = 'reporting/v3/report-subscriptions'
 
       # query parameters
       query_params = {}
+      query_params[:'organizationId'] = opts[:'organization_id'] if !opts[:'organization_id'].nil?
 
       # header parameters
       header_params = {}
@@ -75,28 +90,39 @@ module CyberSource
         :body => post_body,
         :auth_names => auth_names)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ReportSubscriptionsApi#create_subscription\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
+		begin
+		raise
+			@api_client.config.logger.debug "API called: ReportSubscriptionsApi#create_subscription\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
       return data, status_code, headers
     end
     # Delete subscription of a report name by organization
-    # 
+    # Delete a report subscription for your organization. You must know the unique name of the report you want to delete. 
     # @param report_name Name of the Report to Delete
     # @param [Hash] opts the optional parameters
     # @return [nil]
     def delete_subscription(report_name, opts = {})
-      data, _status_code, _headers = delete_subscription_with_http_info(report_name, opts)
-      return data, _status_code, _headers
+      data, status_code, headers = delete_subscription_with_http_info(report_name, opts)
+      return data, status_code, headers
     end
 
     # Delete subscription of a report name by organization
-    # 
+    # Delete a report subscription for your organization. You must know the unique name of the report you want to delete. 
     # @param report_name Name of the Report to Delete
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def delete_subscription_with_http_info(report_name, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: ReportSubscriptionsApi.delete_subscription ...'
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: ReportSubscriptionsApi.delete_subscription ...'
+			rescue
+				puts 'Cannot write to log'
+			end
       end
       # verify the required parameter 'report_name' is set
       if @api_client.config.client_side_validation && report_name.nil?
@@ -109,6 +135,10 @@ module CyberSource
       if @api_client.config.client_side_validation && report_name.to_s.length < 1
         fail ArgumentError, 'invalid value for "report_name" when calling ReportSubscriptionsApi.delete_subscription, the character length must be great than or equal to 1.'
       end
+
+      #if @api_client.config.client_side_validation && report_name !~ Regexp.new(/[a-zA-Z0-9-_+]+/)
+        #fail ArgumentError, "invalid value for 'report_name' when calling ReportSubscriptionsApi.delete_subscription, must conform to the pattern /[a-zA-Z0-9-_+]+/."
+      #end
 
       # resource path
       local_var_path = 'reporting/v3/report-subscriptions/{reportName}'.sub('{' + 'reportName' + '}', report_name.to_s)
@@ -136,26 +166,37 @@ module CyberSource
         :body => post_body,
         :auth_names => auth_names)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ReportSubscriptionsApi#delete_subscription\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
+		begin
+		raise
+			@api_client.config.logger.debug "API called: ReportSubscriptionsApi#delete_subscription\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
       return data, status_code, headers
     end
-    # Retrieve all subscriptions by organization
-    # 
+    # Get all subscriptions
+    # View a summary of all report subscriptions. 
     # @param [Hash] opts the optional parameters
     # @return [ReportingV3ReportSubscriptionsGet200Response]
     def get_all_subscriptions(opts = {})
-      data, _status_code, _headers = get_all_subscriptions_with_http_info(opts)
-      return data, _status_code, _headers
+      data, status_code, headers = get_all_subscriptions_with_http_info(opts)
+      return data, status_code, headers
     end
 
-    # Retrieve all subscriptions by organization
-    # 
+    # Get all subscriptions
+    # View a summary of all report subscriptions. 
     # @param [Hash] opts the optional parameters
     # @return [Array<(ReportingV3ReportSubscriptionsGet200Response, Fixnum, Hash)>] ReportingV3ReportSubscriptionsGet200Response data, response status code and response headers
     def get_all_subscriptions_with_http_info(opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: ReportSubscriptionsApi.get_all_subscriptions ...'
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: ReportSubscriptionsApi.get_all_subscriptions ...'
+			rescue
+				puts 'Cannot write to log'
+			end
       end
       # resource path
       local_var_path = 'reporting/v3/report-subscriptions'
@@ -184,28 +225,39 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'ReportingV3ReportSubscriptionsGet200Response')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ReportSubscriptionsApi#get_all_subscriptions\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
+		begin
+		raise
+			@api_client.config.logger.debug "API called: ReportSubscriptionsApi#get_all_subscriptions\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
       return data, status_code, headers
     end
-    # Retrieve subscription for a report name by organization
-    # 
+    # Get subscription for report name
+    # View the details of a report subscription, such as the report format or report frequency, using the report’s unique name. 
     # @param report_name Name of the Report to Retrieve
     # @param [Hash] opts the optional parameters
     # @return [ReportingV3ReportSubscriptionsGet200ResponseSubscriptions]
     def get_subscription(report_name, opts = {})
-      data, _status_code, _headers = get_subscription_with_http_info(report_name, opts)
-      return data, _status_code, _headers
+      data, status_code, headers = get_subscription_with_http_info(report_name, opts)
+      return data, status_code, headers
     end
 
-    # Retrieve subscription for a report name by organization
-    # 
+    # Get subscription for report name
+    # View the details of a report subscription, such as the report format or report frequency, using the report’s unique name. 
     # @param report_name Name of the Report to Retrieve
     # @param [Hash] opts the optional parameters
     # @return [Array<(ReportingV3ReportSubscriptionsGet200ResponseSubscriptions, Fixnum, Hash)>] ReportingV3ReportSubscriptionsGet200ResponseSubscriptions data, response status code and response headers
     def get_subscription_with_http_info(report_name, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: ReportSubscriptionsApi.get_subscription ...'
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: ReportSubscriptionsApi.get_subscription ...'
+			rescue
+				puts 'Cannot write to log'
+			end
       end
       # verify the required parameter 'report_name' is set
       if @api_client.config.client_side_validation && report_name.nil?
@@ -218,6 +270,10 @@ module CyberSource
       if @api_client.config.client_side_validation && report_name.to_s.length < 1
         fail ArgumentError, 'invalid value for "report_name" when calling ReportSubscriptionsApi.get_subscription, the character length must be great than or equal to 1.'
       end
+
+      #if @api_client.config.client_side_validation && report_name !~ Regexp.new(/[a-zA-Z0-9-_+]+/)
+        #fail ArgumentError, "invalid value for 'report_name' when calling ReportSubscriptionsApi.get_subscription, must conform to the pattern /[a-zA-Z0-9-_+]+/."
+      #end
 
       # resource path
       local_var_path = 'reporting/v3/report-subscriptions/{reportName}'.sub('{' + 'reportName' + '}', report_name.to_s)
@@ -246,8 +302,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'ReportingV3ReportSubscriptionsGet200ResponseSubscriptions')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ReportSubscriptionsApi#get_subscription\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
+		begin
+		raise
+			@api_client.config.logger.debug "API called: ReportSubscriptionsApi#get_subscription\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
       return data, status_code, headers
     end
   end

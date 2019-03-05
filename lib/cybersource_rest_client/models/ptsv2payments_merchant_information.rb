@@ -16,11 +16,17 @@ module CyberSource
   class Ptsv2paymentsMerchantInformation
     attr_accessor :merchant_descriptor
 
-    # Company ID assigned to an independent sales organization. Get this value from Mastercard.  For processor-specific information, see the sales_organization_ID field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
+    # Company ID assigned to an independent sales organization. Get this value from Mastercard.  **CyberSource through VisaNet**\\ The value for this field corresponds to the following data in the TC 33 capture file: - Record: CP01 TCR6 - Position: 106-116 - Field: Mastercard Independent Sales Organization ID  **Note** The TC 33 Capture file contains information about the purchases and refunds that a merchant submits to CyberSource. CyberSource through VisaNet creates the TC 33 Capture file at the end of the day and sends it to the merchant’s acquirer, who uses this information to facilitate end-of-day clearing processing with payment card companies.  For processor-specific information, see the sales_organization_ID field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
     attr_accessor :sales_organization_id
 
-    # Four-digit number that the payment card industry uses to classify merchants into market segments. Visa assigned one or more of these values to your business when you started accepting Visa cards.  If you do not include this field in your request, CyberSource uses the value in your CyberSource account.  For processor-specific information, see the merchant_category_code field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
+    # Four-digit number that the payment card industry uses to classify merchants into market segments. Visa assigned one or more of these values to your business when you started accepting Visa cards.  If you do not include this field in your request, CyberSource uses the value in your CyberSource account.  For processor-specific information, see the merchant_category_code field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html)  See \"Aggregator Support,\" page 100.  **CyberSource through VisaNet**\\ The value for this field corresponds to the following data in the TC 33 capture file5: - Record: CP01 TCR4 - Position: 150-153 - Field: Merchant Category Code 
     attr_accessor :category_code
+
+    # Merchant category code for domestic transactions. The value for this field is a four-digit number that the payment card industry uses to classify merchants into market segments. A payment card company assigned one or more of these values to your business when you started accepting the payment card company’s cards. Including this field in a request for a domestic transaction might reduce interchange fees.  When you include this field in a request: - Do not include the merchantCategoryCode field. - The value for this field overrides the value in your CyberSource account.  This field is supported only for: - Domestic transactions with Mastercard in Spain. Domestic means that you and the cardholder are in the same country. - Merchants enrolled in the OmniPay Direct interchange program. - First Data Merchant Solutions (Europe) on OmniPay Direct. 
+    attr_accessor :category_code_domestic
+
+    # Your Cadastro Nacional da Pessoa Jurídica (CNPJ) number.  This field is supported only for BNDES transactions on CyberSource through VisaNet. See BNDES.  The value for this field corresponds to the following data in the TC 33 capture file5: - Record: CP07 TCR6 - Position: 40-59 - Field: BNDES Reference Field 1 
+    attr_accessor :tax_id
 
     # Your government-assigned tax identification number.  For CtV processors, the maximum length is 20.  For other processor-specific information, see the merchant_vat_registration_number field in [Level II and Level III Processing Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/Level_2_3_SCMP_API/html) 
     attr_accessor :vat_registration_number
@@ -28,8 +34,10 @@ module CyberSource
     # Reference number that facilitates card acceptor/corporation communication and record keeping.  For processor-specific information, see the card_acceptor_ref_number field in [Level II and Level III Processing Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/Level_2_3_SCMP_API/html) 
     attr_accessor :card_acceptor_reference_number
 
-    # Local date and time at your physical location. Include both the date and time in this field or leave it blank. This field is supported only for **CyberSource through VisaNet**.  For processor-specific information, see the transaction_local_date_time field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html)  `Format: YYYYMMDDhhmmss`, where:   - YYYY = year  - MM = month  - DD = day  - hh = hour  - mm = minutes  - ss = seconds 
+    # Local date and time at your physical location. Include both the date and time in this field or leave it blank. This field is supported only for **CyberSource through VisaNet**.  For processor-specific information, see the transaction_local_date_time field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html)  `Format: YYYYMMDDhhmmss`, where:   - YYYY = year  - MM = month  - DD = day  - hh = hour  - mm = minutes  - ss = seconds   For processor-specific information, see the _transaction_local_date_time_ field in Credit Card Services Using the SCMP API. 
     attr_accessor :transaction_local_date_time
+
+    attr_accessor :service_fee_descriptor
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -37,9 +45,12 @@ module CyberSource
         :'merchant_descriptor' => :'merchantDescriptor',
         :'sales_organization_id' => :'salesOrganizationId',
         :'category_code' => :'categoryCode',
+        :'category_code_domestic' => :'categoryCodeDomestic',
+        :'tax_id' => :'taxId',
         :'vat_registration_number' => :'vatRegistrationNumber',
         :'card_acceptor_reference_number' => :'cardAcceptorReferenceNumber',
-        :'transaction_local_date_time' => :'transactionLocalDateTime'
+        :'transaction_local_date_time' => :'transactionLocalDateTime',
+        :'service_fee_descriptor' => :'serviceFeeDescriptor'
       }
     end
 
@@ -49,9 +60,12 @@ module CyberSource
         :'merchant_descriptor' => :'Ptsv2paymentsMerchantInformationMerchantDescriptor',
         :'sales_organization_id' => :'String',
         :'category_code' => :'Integer',
+        :'category_code_domestic' => :'Integer',
+        :'tax_id' => :'String',
         :'vat_registration_number' => :'String',
         :'card_acceptor_reference_number' => :'String',
-        :'transaction_local_date_time' => :'String'
+        :'transaction_local_date_time' => :'String',
+        :'service_fee_descriptor' => :'Ptsv2paymentsMerchantInformationServiceFeeDescriptor'
       }
     end
 
@@ -75,6 +89,14 @@ module CyberSource
         self.category_code = attributes[:'categoryCode']
       end
 
+      if attributes.has_key?(:'categoryCodeDomestic')
+        self.category_code_domestic = attributes[:'categoryCodeDomestic']
+      end
+
+      if attributes.has_key?(:'taxId')
+        self.tax_id = attributes[:'taxId']
+      end
+
       if attributes.has_key?(:'vatRegistrationNumber')
         self.vat_registration_number = attributes[:'vatRegistrationNumber']
       end
@@ -85,6 +107,10 @@ module CyberSource
 
       if attributes.has_key?(:'transactionLocalDateTime')
         self.transaction_local_date_time = attributes[:'transactionLocalDateTime']
+      end
+
+      if attributes.has_key?(:'serviceFeeDescriptor')
+        self.service_fee_descriptor = attributes[:'serviceFeeDescriptor']
       end
     end
 
@@ -98,6 +124,14 @@ module CyberSource
 
       if !@category_code.nil? && @category_code > 9999
         invalid_properties.push('invalid value for "category_code", must be smaller than or equal to 9999.')
+      end
+
+      if !@category_code_domestic.nil? && @category_code_domestic > 9999
+        invalid_properties.push('invalid value for "category_code_domestic", must be smaller than or equal to 9999.')
+      end
+
+      if !@tax_id.nil? && @tax_id.to_s.length > 15
+        invalid_properties.push('invalid value for "tax_id", the character length must be smaller than or equal to 15.')
       end
 
       if !@vat_registration_number.nil? && @vat_registration_number.to_s.length > 21
@@ -120,6 +154,8 @@ module CyberSource
     def valid?
       return false if !@sales_organization_id.nil? && @sales_organization_id.to_s.length > 11
       return false if !@category_code.nil? && @category_code > 9999
+      return false if !@category_code_domestic.nil? && @category_code_domestic > 9999
+      return false if !@tax_id.nil? && @tax_id.to_s.length > 15
       return false if !@vat_registration_number.nil? && @vat_registration_number.to_s.length > 21
       return false if !@card_acceptor_reference_number.nil? && @card_acceptor_reference_number.to_s.length > 25
       return false if !@transaction_local_date_time.nil? && @transaction_local_date_time.to_s.length > 14
@@ -144,6 +180,26 @@ module CyberSource
       end
 
       @category_code = category_code
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] category_code_domestic Value to be assigned
+    def category_code_domestic=(category_code_domestic)
+      if !category_code_domestic.nil? && category_code_domestic > 9999
+        fail ArgumentError, 'invalid value for "category_code_domestic", must be smaller than or equal to 9999.'
+      end
+
+      @category_code_domestic = category_code_domestic
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] tax_id Value to be assigned
+    def tax_id=(tax_id)
+      if !tax_id.nil? && tax_id.to_s.length > 15
+        fail ArgumentError, 'invalid value for "tax_id", the character length must be smaller than or equal to 15.'
+      end
+
+      @tax_id = tax_id
     end
 
     # Custom attribute writer method with validation
@@ -184,9 +240,12 @@ module CyberSource
           merchant_descriptor == o.merchant_descriptor &&
           sales_organization_id == o.sales_organization_id &&
           category_code == o.category_code &&
+          category_code_domestic == o.category_code_domestic &&
+          tax_id == o.tax_id &&
           vat_registration_number == o.vat_registration_number &&
           card_acceptor_reference_number == o.card_acceptor_reference_number &&
-          transaction_local_date_time == o.transaction_local_date_time
+          transaction_local_date_time == o.transaction_local_date_time &&
+          service_fee_descriptor == o.service_fee_descriptor
     end
 
     # @see the `==` method
@@ -198,7 +257,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [merchant_descriptor, sales_organization_id, category_code, vat_registration_number, card_acceptor_reference_number, transaction_local_date_time].hash
+      [merchant_descriptor, sales_organization_id, category_code, category_code_domestic, tax_id, vat_registration_number, card_acceptor_reference_number, transaction_local_date_time, service_fee_descriptor].hash
     end
 
     # Builds the object from hash

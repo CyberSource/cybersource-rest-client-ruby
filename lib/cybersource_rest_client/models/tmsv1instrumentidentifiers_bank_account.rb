@@ -57,13 +57,61 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if !@number.nil? && @number.to_s.length > 19
+        invalid_properties.push('invalid value for "number", the character length must be smaller than or equal to 19.')
+      end
+
+      if !@number.nil? && @number.to_s.length < 1
+        invalid_properties.push('invalid value for "number", the character length must be great than or equal to 1.')
+      end
+
+      if !@routing_number.nil? && @routing_number.to_s.length > 9
+        invalid_properties.push('invalid value for "routing_number", the character length must be smaller than or equal to 9.')
+      end
+
+      if !@routing_number.nil? && @routing_number.to_s.length < 1
+        invalid_properties.push('invalid value for "routing_number", the character length must be great than or equal to 1.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if !@number.nil? && @number.to_s.length > 19
+      return false if !@number.nil? && @number.to_s.length < 1
+      return false if !@routing_number.nil? && @routing_number.to_s.length > 9
+      return false if !@routing_number.nil? && @routing_number.to_s.length < 1
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] number Value to be assigned
+    def number=(number)
+      if !number.nil? && number.to_s.length > 19
+        fail ArgumentError, 'invalid value for "number", the character length must be smaller than or equal to 19.'
+      end
+
+      if !number.nil? && number.to_s.length < 1
+        fail ArgumentError, 'invalid value for "number", the character length must be great than or equal to 1.'
+      end
+
+      @number = number
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] routing_number Value to be assigned
+    def routing_number=(routing_number)
+      if !routing_number.nil? && routing_number.to_s.length > 9
+        fail ArgumentError, 'invalid value for "routing_number", the character length must be smaller than or equal to 9.'
+      end
+
+      if !routing_number.nil? && routing_number.to_s.length < 1
+        fail ArgumentError, 'invalid value for "routing_number", the character length must be great than or equal to 1.'
+      end
+
+      @routing_number = routing_number
     end
 
     # Checks equality by comparing each attribute.

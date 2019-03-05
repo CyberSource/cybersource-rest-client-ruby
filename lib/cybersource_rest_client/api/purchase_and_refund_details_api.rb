@@ -18,10 +18,10 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-      @api_client.set_configuration(config)
+	  @api_client.set_configuration(config)
     end
     # Get Purchase and Refund details
-    # Purchase And Refund Details Description
+    # Download the Purchase and Refund Details report. This report report includes all purchases and refund transactions, as well as all activities related to transactions resulting in an adjustment to the net proceeds. 
     # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ssXXX 
     # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ssXXX 
     # @param [Hash] opts the optional parameters
@@ -31,14 +31,14 @@ module CyberSource
     # @option opts [String] :group_name Valid CyberSource Group Name.User can define groups using CBAPI and Group Management Module in EBC2. Groups are collection of organizationIds
     # @option opts [Integer] :offset Offset of the Purchase and Refund Results.
     # @option opts [Integer] :limit Results count per page. Range(1-2000) (default to 2000)
-    # @return [nil]
+    # @return [ReportingV3PurchaseRefundDetailsGet200Response]
     def get_purchase_and_refund_details(start_time, end_time, opts = {})
       data, status_code, headers = get_purchase_and_refund_details_with_http_info(start_time, end_time, opts)
       return data, status_code, headers
     end
 
     # Get Purchase and Refund details
-    # Purchase And Refund Details Description
+    # Download the Purchase and Refund Details report. This report report includes all purchases and refund transactions, as well as all activities related to transactions resulting in an adjustment to the net proceeds. 
     # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ssXXX 
     # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ssXXX 
     # @param [Hash] opts the optional parameters
@@ -48,10 +48,16 @@ module CyberSource
     # @option opts [String] :group_name Valid CyberSource Group Name.User can define groups using CBAPI and Group Management Module in EBC2. Groups are collection of organizationIds
     # @option opts [Integer] :offset Offset of the Purchase and Refund Results.
     # @option opts [Integer] :limit Results count per page. Range(1-2000)
-    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
+    # @return [Array<(ReportingV3PurchaseRefundDetailsGet200Response, Fixnum, Hash)>] ReportingV3PurchaseRefundDetailsGet200Response data, response status code and response headers
     def get_purchase_and_refund_details_with_http_info(start_time, end_time, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: PurchaseAndRefundDetailsApi.get_purchase_and_refund_details ...'
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: PurchaseAndRefundDetailsApi.get_purchase_and_refund_details ...'
+			rescue
+				puts 'Cannot write to log'
+			end
       end
       # verify the required parameter 'start_time' is set
       if @api_client.config.client_side_validation && start_time.nil?
@@ -68,6 +74,11 @@ module CyberSource
       if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length < 1
         fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling PurchaseAndRefundDetailsApi.get_purchase_and_refund_details, the character length must be great than or equal to 1.'
       end
+
+      #if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
+        #fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling PurchaseAndRefundDetailsApi.get_purchase_and_refund_details, must conform to the pattern /[a-zA-Z0-9-_]+/."
+      #end
+
       if @api_client.config.client_side_validation && opts[:'payment_subtype'] && !['ALL', 'VI', 'MC', 'AX', 'DI', 'DP'].include?(opts[:'payment_subtype'])
         fail ArgumentError, 'invalid value for "payment_subtype", must be one of ALL, VI, MC, AX, DI, DP'
       end
@@ -114,10 +125,16 @@ module CyberSource
         :query_params => query_params,
         :form_params => form_params,
         :body => post_body,
-        :auth_names => auth_names)
+        :auth_names => auth_names,
+        :return_type => 'ReportingV3PurchaseRefundDetailsGet200Response')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: PurchaseAndRefundDetailsApi#get_purchase_and_refund_details\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
+		begin
+		raise
+			@api_client.config.logger.debug "API called: PurchaseAndRefundDetailsApi#get_purchase_and_refund_details\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
       return data, status_code, headers
     end
   end

@@ -18,13 +18,13 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-      @api_client.set_configuration(config)
+	  @api_client.set_configuration(config)
     end
     # Process a Payout
     # Send funds from a selected funding source to a designated credit/debit card account or a prepaid card using an Original Credit Transaction (OCT). 
     # @param oct_create_payment_request 
     # @param [Hash] opts the optional parameters
-    # @return [nil]
+    # @return [PtsV2PayoutsPost201Response]
     def oct_create_payment(oct_create_payment_request, opts = {})
       data, status_code, headers = oct_create_payment_with_http_info(oct_create_payment_request, opts)
       return data, status_code, headers
@@ -34,10 +34,16 @@ module CyberSource
     # Send funds from a selected funding source to a designated credit/debit card account or a prepaid card using an Original Credit Transaction (OCT). 
     # @param oct_create_payment_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
+    # @return [Array<(PtsV2PayoutsPost201Response, Fixnum, Hash)>] PtsV2PayoutsPost201Response data, response status code and response headers
     def oct_create_payment_with_http_info(oct_create_payment_request, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: ProcessAPayoutApi.oct_create_payment ...'
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: ProcessAPayoutApi.oct_create_payment ...'
+			rescue
+				puts 'Cannot write to log'
+			end
       end
       # verify the required parameter 'oct_create_payment_request' is set
       if @api_client.config.client_side_validation && oct_create_payment_request.nil?
@@ -52,7 +58,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
 
@@ -67,10 +73,16 @@ module CyberSource
         :query_params => query_params,
         :form_params => form_params,
         :body => post_body,
-        :auth_names => auth_names)
+        :auth_names => auth_names,
+        :return_type => 'PtsV2PayoutsPost201Response')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ProcessAPayoutApi#oct_create_payment\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
+		begin
+		raise
+			@api_client.config.logger.debug "API called: ProcessAPayoutApi#oct_create_payment\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
       return data, status_code, headers
     end
   end

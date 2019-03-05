@@ -38,4 +38,16 @@ describe 'Ptsv2paymentsidrefundsPaymentInformation' do
     end
   end
 
+  describe 'test attribute "bank"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "customer"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

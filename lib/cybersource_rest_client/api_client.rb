@@ -31,7 +31,7 @@ module CyberSource
     # @option config [Configuration] Configuration for initializing the object, default to Configuration.default
     def initialize(config = Configuration.default)
       @config = config
-      @user_agent = "Mozilla/5.0"
+      @user_agent = "Swagger-Codegen/#{VERSION}/ruby"
       @default_headers = {
         'Content-Type' => 'application/json',
         'User-Agent' => @user_agent
@@ -49,9 +49,15 @@ module CyberSource
     def call_api(http_method, path, opts = {})
       request = build_request(http_method, path, opts)
       response = request.run
+
       if @config.debugging
-        @config.logger.debug "HTTP response body ~BEGIN~\n#{response.body}\n~END~\n"
-      end
+		begin
+		raise
+			@config.logger.debug "HTTP response body ~BEGIN~\n#{response.body}\n~END~\n"
+		rescue
+			puts 'Cannot write to log'			
+		end
+	  end
 
       unless response.success?
         if response.timed_out?
@@ -64,7 +70,7 @@ module CyberSource
           fail ApiError.new(:code => response.code,
                             :response_headers => response.headers,
                             :response_body => response.body),
-                response.status_message
+               response.status_message
         end
       end
 
@@ -89,7 +95,7 @@ module CyberSource
       url = build_request_url(path)
       body_params = opts[:body] || {}
       query_params = opts[:query_params] || {}
-      if !query_params.empty?
+	  if !query_params.empty?
         query_params = URI.encode_www_form(query_params)
       end
       headers = CallAuthenticationHeader(http_method, path, body_params, opts[:header_params], query_params)
@@ -121,8 +127,13 @@ module CyberSource
         req_body = build_request_body(header_params, form_params, opts[:body])
         req_opts.update :body => req_body
         if @config.debugging
-          @config.logger.debug "HTTP request body param ~BEGIN~\n#{req_body}\n~END~\n"
-        end
+			begin
+			raise
+				@config.logger.debug "HTTP request body param ~BEGIN~\n#{req_body}\n~END~\n"
+			rescue
+				puts 'Cannot write to log'
+			end
+		end
       end
 
       request = Typhoeus::Request.new(url, req_opts)
@@ -130,11 +141,11 @@ module CyberSource
       request
     end
 	# set merchantConfig 
-  def set_configuration(config)
-    require_relative '../../AuthenticationSDK/core/Merchantconfig.rb'
-    $merchantconfig_obj = Merchantconfig.new(config)
-    @config.host = $merchantconfig_obj.requestHost
-  end
+	def set_configuration(config)
+	   require_relative '../../AuthenticationSDK/core/Merchantconfig.rb'
+	   $merchantconfig_obj = Merchantconfig.new(config)
+	   @config.host = $merchantconfig_obj.requestHost
+	end
 	# Calling Authentication
     def CallAuthenticationHeader(http_method, path, body_params, header_params, query_params)
       require_relative '../../AuthenticationSDK/core/Authorization.rb'
@@ -187,6 +198,7 @@ module CyberSource
       end
       request_target
     end
+	
     # Check if the given MIME is a JSON MIME.
     # JSON MIME examples:
     #   application/json

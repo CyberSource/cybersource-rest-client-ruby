@@ -22,7 +22,7 @@ module CyberSource
     # Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the time. The Z indicates UTC. 
     attr_accessor :submit_time_utc
 
-    # The status of the submitted transaction.
+    # The status of the submitted transaction.  Possible values:  - REVERSED 
     attr_accessor :status
 
     # The reconciliation id for the submitted transaction. This value is not returned for all processors. 
@@ -33,6 +33,8 @@ module CyberSource
     attr_accessor :reversal_amount_details
 
     attr_accessor :processor_information
+
+    attr_accessor :issuer_information
 
     attr_accessor :authorization_information
 
@@ -71,6 +73,7 @@ module CyberSource
         :'client_reference_information' => :'clientReferenceInformation',
         :'reversal_amount_details' => :'reversalAmountDetails',
         :'processor_information' => :'processorInformation',
+        :'issuer_information' => :'issuerInformation',
         :'authorization_information' => :'authorizationInformation',
         :'point_of_sale_information' => :'pointOfSaleInformation'
       }
@@ -87,6 +90,7 @@ module CyberSource
         :'client_reference_information' => :'PtsV2PaymentsPost201ResponseClientReferenceInformation',
         :'reversal_amount_details' => :'PtsV2PaymentsReversalsPost201ResponseReversalAmountDetails',
         :'processor_information' => :'PtsV2PaymentsReversalsPost201ResponseProcessorInformation',
+        :'issuer_information' => :'PtsV2PaymentsReversalsPost201ResponseIssuerInformation',
         :'authorization_information' => :'PtsV2PaymentsReversalsPost201ResponseAuthorizationInformation',
         :'point_of_sale_information' => :'Ptsv2paymentsidreversalsPointOfSaleInformation'
       }
@@ -130,6 +134,10 @@ module CyberSource
 
       if attributes.has_key?(:'processorInformation')
         self.processor_information = attributes[:'processorInformation']
+      end
+
+      if attributes.has_key?(:'issuerInformation')
+        self.issuer_information = attributes[:'issuerInformation']
       end
 
       if attributes.has_key?(:'authorizationInformation')
@@ -209,6 +217,7 @@ module CyberSource
           client_reference_information == o.client_reference_information &&
           reversal_amount_details == o.reversal_amount_details &&
           processor_information == o.processor_information &&
+          issuer_information == o.issuer_information &&
           authorization_information == o.authorization_information &&
           point_of_sale_information == o.point_of_sale_information
     end
@@ -222,7 +231,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, submit_time_utc, status, reconciliation_id, client_reference_information, reversal_amount_details, processor_information, authorization_information, point_of_sale_information].hash
+      [_links, id, submit_time_utc, status, reconciliation_id, client_reference_information, reversal_amount_details, processor_information, issuer_information, authorization_information, point_of_sale_information].hash
     end
 
     # Builds the object from hash

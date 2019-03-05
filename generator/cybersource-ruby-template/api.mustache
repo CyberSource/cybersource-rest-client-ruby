@@ -40,8 +40,14 @@ module {{moduleName}}
 {{#allParams}}{{^required}}    # @option opts [{{{dataType}}}] :{{paramName}} {{description}}
 {{/required}}{{/allParams}}    # @return [Array<({{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}nil{{/returnType}}, Fixnum, Hash)>] {{#returnType}}{{{returnType}}} data{{/returnType}}{{^returnType}}nil{{/returnType}}, response status code and response headers
     def {{operationId}}_with_http_info({{#allParams}}{{#required}}{{paramName}}, {{/required}}{{/allParams}}opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: {{classname}}.{{operationId}} ...'
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: {{classname}}.{{operationId}} ...'
+			rescue
+				puts 'Cannot write to log'
+			end
       end
       {{#allParams}}
       {{#required}}
@@ -183,8 +189,13 @@ module {{moduleName}}
         :auth_names => auth_names{{#returnType}},
         :return_type => '{{{returnType}}}'{{/returnType}})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: {{classname}}#{{operationId}}\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
+		begin
+		raise
+			@api_client.config.logger.debug "API called: {{classname}}#{{operationId}}\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
       return data, status_code, headers
     end
 {{/operation}}

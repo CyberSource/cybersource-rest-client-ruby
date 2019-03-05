@@ -20,7 +20,7 @@ module CyberSource
     # Total number of captures when requesting multiple partial captures for one payment. Used along with _captureSequenceNumber_ which capture is being processed.  For example, the second of five captures would be passed to CyberSource as:   - _captureSequenceNumber_ = 2, and   - _totalCaptureCount_ = 5 
     attr_accessor :total_capture_count
 
-    # Date on which you want the capture to occur. This field is supported only for **CyberSource through VisaNet**. `Format: MMDD` 
+    # Date on which you want the capture to occur. This field is supported only for CyberSource through VisaNet.\\ `Format: MMDD` 
     attr_accessor :date_to_capture
 
     # Attribute mapping from ruby-style variable name to JSON key.
