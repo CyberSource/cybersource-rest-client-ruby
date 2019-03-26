@@ -56,7 +56,22 @@ powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-O
 
 powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-Object { $_ -replace 'cybersource_rest_client/models/tmsv1instrumentidentifiers_processing_information_authorization_options_initiator_merchant_initiated_transaction', 'cybersource_rest_client/models/tmsv1instrumentidentifiers_merchant_initiated_transaction' } | Set-Content ..\lib\cybersource_rest_client.rb"
 
- REM to remove beginning / from loc_var_path in all the api files
+REM @echo off
+@setlocal enableextensions enabledelayedexpansion
+
+for /f "tokens=1* delims=\" %%A in (
+  'forfiles /s /m *.rb /p ..\lib\AuthenticationSDK /c "cmd /c echo @relpath"'
+) do for %%F in (^"%%B) do (
+  set original=%%~F
+  call set removed=%%original:spec=%%
+  if not !removed!==%%~F (
+	REM echo NOT PROCESSED
+  ) else (
+	powershell -Command "$testVar = \"!original!\" ; $fileContents = (get-content ..\lib\cybersource_rest_client.rb) ; $fileContents[11] = $fileContents[11]+\"`r`nrequire 'AuthenticationSDK/\"+$testVar.replace(\"\\\",\"/\")+\"'\"; $fileContents|Set-Content ..\lib\cybersource_rest_client.rb"
+  )
+)
+
+REM to remove beginning / from loc_var_path in all the api files
 cd ..\lib\cybersource_rest_client\api
 powershell -Command "&{$configFiles = Get-ChildItem . *.rb -rec;  foreach ($file in $configFiles){ (Get-Content $file.PSPath) | Foreach-Object { $_ -replace 'local_var_path = ''/', 'local_var_path = '''} | Set-Content $file.PSPath }}"
 

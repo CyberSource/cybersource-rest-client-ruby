@@ -10,6 +10,19 @@ Swagger Codegen version: 2.2.3
 
 =end
 
+require 'AuthenticationSDK/util/Utility'
+require 'AuthenticationSDK/util/PropertiesUtil'
+require 'AuthenticationSDK/util/Constants'
+require 'AuthenticationSDK/util/Cache'
+require 'AuthenticationSDK/util/ApiException'
+require 'AuthenticationSDK/core/MerchantConfig'
+require 'AuthenticationSDK/core/Logger'
+require 'AuthenticationSDK/core/ITokenGeneration'
+require 'AuthenticationSDK/core/Authorization'
+require 'AuthenticationSDK/authentication/payloadDigest/digest'
+require 'AuthenticationSDK/authentication/jwt/JwtToken'
+require 'AuthenticationSDK/authentication/http/HttpSignatureHeader'
+require 'AuthenticationSDK/authentication/http/GetSignatureParameter'
 # Common files
 require 'cybersource_rest_client/api_client'
 require 'cybersource_rest_client/api_error'

@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.summary     = "CyberSource Ruby SDK Gem"
   s.description = "Simple REST API for the CyberSource Global Payments Platform"
   s.license     = "CyberSource"
-  s.files       = Dir.glob("{lib,AuthenticationSDK}/**/*")
+  s.files       = Dir.glob("{lib}/**/*")
   s.required_ruby_version = ">= 1.9"
 
   s.add_runtime_dependency 'typhoeus', '~> 1.0', '>= 1.0.1'
