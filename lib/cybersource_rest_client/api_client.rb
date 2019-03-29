@@ -142,14 +142,14 @@ module CyberSource
     end
 	# set merchantConfig 
 	def set_configuration(config)
-	   require_relative '../../AuthenticationSDK/core/Merchantconfig.rb'
+	   require_relative '../../AuthenticationSDK/core/MerchantConfig.rb'
 	   $merchantconfig_obj = Merchantconfig.new(config)
 	   @config.host = $merchantconfig_obj.requestHost
 	end
 	# Calling Authentication
     def CallAuthenticationHeader(http_method, path, body_params, header_params, query_params)
       require_relative '../../AuthenticationSDK/core/Authorization.rb'
-      require_relative '../../AuthenticationSDK/authentication/payloadDigest/Digest.rb'
+      require_relative '../../AuthenticationSDK/authentication/payloadDigest/digest.rb'
       request_target = get_query_param(path, query_params)
       # Request Type. [Non-Editable]
       request_type = http_method.to_s
