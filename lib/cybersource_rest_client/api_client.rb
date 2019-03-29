@@ -69,8 +69,7 @@ module CyberSource
         else
           fail ApiError.new(:code => response.code,
                             :response_headers => response.headers,
-                            :response_body => response.body),
-               response.status_message
+                            :response_body => response.body)
         end
       end
 
