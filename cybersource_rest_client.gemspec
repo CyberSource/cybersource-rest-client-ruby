@@ -17,7 +17,7 @@ require "cybersource_rest_client/version"
 
 Gem::Specification.new do |s|
   s.name        = "cybersource_rest_client"
-  s.version     = "0.0.10"
+  s.version     = "0.0.11"
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["CyberSource"]
   s.email       = ["cybersourcedev@gmail.com"]
@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.summary     = "CyberSource Ruby SDK Gem"
   s.description = "Simple REST API for the CyberSource Global Payments Platform"
   s.license     = "CyberSource"
-  s.files       = Dir.glob("{lib,AuthenticationSDK}/**/*")
+  s.files       = Dir.glob("{lib}/**/*")
   s.required_ruby_version = ">= 1.9"
 
   s.add_runtime_dependency 'typhoeus', '~> 1.0', '>= 1.0.1'
