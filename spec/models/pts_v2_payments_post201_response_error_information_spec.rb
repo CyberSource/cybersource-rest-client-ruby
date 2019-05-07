@@ -35,7 +35,7 @@ describe 'PtsV2PaymentsPost201ResponseErrorInformation' do
   describe 'test attribute "reason"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["AVS_FAILED", "CONTACT_PROCESSOR", "CV_FAILED", "EXPIRED_CARD", "PROCESSOR_DECLINED", "INSUFFICIENT_FUND", "STOLEN_LOST_CARD", "ISSUER_UNAVAILABLE", "UNAUTHORIZED_CARD", "CVN_NOT_MATCH", "EXCEEDS_CREDIT_LIMIT", "INVALID_CVN", "PAYMENT_REFUSED", "INVALID_ACCOUNT", "GENERAL_DECLINE"])
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["AVS_FAILED", "CONTACT_PROCESSOR", "CV_FAILED", "EXPIRED_CARD", "PROCESSOR_DECLINED", "INSUFFICIENT_FUND", "STOLEN_LOST_CARD", "ISSUER_UNAVAILABLE", "UNAUTHORIZED_CARD", "CVN_NOT_MATCH", "EXCEEDS_CREDIT_LIMIT", "INVALID_CVN", "PAYMENT_REFUSED", "INVALID_ACCOUNT", "GENERAL_DECLINE", "DECISION_PROFILE_REJECT", "SCORE_EXCEEDS_THRESHOLD"])
       # validator.allowable_values.each do |value|
       #   expect { @instance.reason = value }.not_to raise_error
       # end
