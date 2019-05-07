@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -140,16 +140,16 @@ module CyberSource
       download_file(request) if opts[:return_type] == 'File'
       request
     end
-  # set merchantConfig 
-  def set_configuration(config)
-     require_relative '../AuthenticationSDK/core/MerchantConfig.rb'
-     $merchantconfig_obj = Merchantconfig.new(config)
-     @config.host = $merchantconfig_obj.requestHost
-  end
-  # Calling Authentication
+	# set merchantConfig 
+	def set_configuration(config)
+	   require_relative '../../AuthenticationSDK/core/MerchantConfig.rb'
+	   $merchantconfig_obj = Merchantconfig.new(config)
+	   @config.host = $merchantconfig_obj.requestHost
+	end
+	# Calling Authentication
     def CallAuthenticationHeader(http_method, path, body_params, header_params, query_params)
-      require_relative '../AuthenticationSDK/core/Authorization.rb'
-      require_relative '../AuthenticationSDK/authentication/payloadDigest/digest.rb'
+      require_relative '../../AuthenticationSDK/core/Authorization.rb'
+      require_relative '../../AuthenticationSDK/authentication/payloadDigest/digest.rb'
       request_target = get_query_param(path, query_params)
       # Request Type. [Non-Editable]
       request_type = http_method.to_s
@@ -198,7 +198,7 @@ module CyberSource
       end
       request_target
     end
-  
+	
     # Check if the given MIME is a JSON MIME.
     # JSON MIME examples:
     #   application/json

@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -35,8 +35,8 @@ describe 'KeyGenerationApi' do
   # unit tests for generate_public_key
   # Generate Key
   # Generate a one-time use public key and key ID to encrypt the card number in the follow-on Tokenize Card request. The key used to encrypt the card number on the cardholder’s device or browser is valid for 15 minutes and must be used to verify the signature in the response message. CyberSource recommends creating a new key for each order. Generating a key is an authenticated request initiated from your servers, prior to requesting to tokenize the card data from your customer’s device or browser.
+  # @param generate_public_key_request 
   # @param [Hash] opts the optional parameters
-  # @option opts [GeneratePublicKeyRequest] :generate_public_key_request 
   # @return [FlexV1KeysPost200Response]
   describe 'generate_public_key test' do
     it 'should work' do

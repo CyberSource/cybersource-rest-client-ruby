@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **report_end_time** | **DateTime** | Report End Time Value | [optional] 
 **timezone** | **String** | Time Zone Value | [optional] 
 **report_filters** | **Hash&lt;String, Array&lt;String&gt;&gt;** | List of filters to apply | [optional] 
-**report_preferences** | [**ReportingV3ReportsIdGet200ResponseReportPreferences**](ReportingV3ReportsIdGet200ResponseReportPreferences.md) |  | [optional] 
+**report_preferences** | [**Reportingv3reportsReportPreferences**](Reportingv3reportsReportPreferences.md) |  | [optional] 
 **group_id** | **String** | Id for selected group. | [optional] 
 
 

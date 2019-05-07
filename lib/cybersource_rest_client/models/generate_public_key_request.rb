@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -17,47 +17,17 @@ module CyberSource
     # How the card number should be encrypted in the subsequent Tokenize Card request. Possible values are RsaOaep256 or None (if using this value the card number must be in plain text when included in the Tokenize Card request). The Tokenize Card request uses a secure connection (TLS 1.2+) regardless of what encryption type is specified.
     attr_accessor :encryption_type
 
-    # This should only be used if using the Microform implementation. This is the protocol, URL, and if used, port number of the page that will host the Microform. Unless using http://localhost, the protocol must be https://. For example, if serving Microform on example.com, the targetOrigin is https://example.com The value is used to restrict the frame ancestor of the Microform. If there is a mismatch between this value and the frame ancestor, the Microfrom will not load.
-    attr_accessor :target_origin
-
-    # Specifies the number of card number digits to be returned un-masked from the left. For example, setting this value to 6 will return: 411111XXXXXXXXXX Default value: 6 Maximum value: 6
-    attr_accessor :unmasked_left
-
-    # Specifies the number of card number digits to be returned un-masked from the right. For example, setting this value to 4 will return: 411111XXXXXX1111 Default value: 4 Maximum value: 4
-    attr_accessor :unmasked_right
-
-    # Specifies whether or not 'dummy' address data should be specified in the create token request. If you have 'Relaxed AVS' enabled for your MID, this value can be set to False.Default value: true
-    attr_accessor :enable_billing_address
-
-    # Three character ISO currency code to be associated with the token. Required for legacy integrations. Default value: USD.
-    attr_accessor :currency
-
-    # Specifies whether or not an account verification authorization ($0 Authorization) is carried out on token creation. Default is false, as it is assumed a full or zero amount authorization will be carried out in a separate call from your server.
-    attr_accessor :enable_auto_auth
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'encryption_type' => :'encryptionType',
-        :'target_origin' => :'targetOrigin',
-        :'unmasked_left' => :'unmaskedLeft',
-        :'unmasked_right' => :'unmaskedRight',
-        :'enable_billing_address' => :'enableBillingAddress',
-        :'currency' => :'currency',
-        :'enable_auto_auth' => :'enableAutoAuth'
+        :'encryption_type' => :'encryptionType'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'encryption_type' => :'String',
-        :'target_origin' => :'String',
-        :'unmasked_left' => :'Integer',
-        :'unmasked_right' => :'Integer',
-        :'enable_billing_address' => :'BOOLEAN',
-        :'currency' => :'String',
-        :'enable_auto_auth' => :'BOOLEAN'
+        :'encryption_type' => :'String'
       }
     end
 
@@ -71,30 +41,6 @@ module CyberSource
 
       if attributes.has_key?(:'encryptionType')
         self.encryption_type = attributes[:'encryptionType']
-      end
-
-      if attributes.has_key?(:'targetOrigin')
-        self.target_origin = attributes[:'targetOrigin']
-      end
-
-      if attributes.has_key?(:'unmaskedLeft')
-        self.unmasked_left = attributes[:'unmaskedLeft']
-      end
-
-      if attributes.has_key?(:'unmaskedRight')
-        self.unmasked_right = attributes[:'unmaskedRight']
-      end
-
-      if attributes.has_key?(:'enableBillingAddress')
-        self.enable_billing_address = attributes[:'enableBillingAddress']
-      end
-
-      if attributes.has_key?(:'currency')
-        self.currency = attributes[:'currency']
-      end
-
-      if attributes.has_key?(:'enableAutoAuth')
-        self.enable_auto_auth = attributes[:'enableAutoAuth']
       end
     end
 
@@ -121,13 +67,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          encryption_type == o.encryption_type &&
-          target_origin == o.target_origin &&
-          unmasked_left == o.unmasked_left &&
-          unmasked_right == o.unmasked_right &&
-          enable_billing_address == o.enable_billing_address &&
-          currency == o.currency &&
-          enable_auto_auth == o.enable_auto_auth
+          encryption_type == o.encryption_type
     end
 
     # @see the `==` method
@@ -139,7 +79,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [encryption_type, target_origin, unmasked_left, unmasked_right, enable_billing_address, currency, enable_auto_auth].hash
+      [encryption_type].hash
     end
 
     # Builds the object from hash

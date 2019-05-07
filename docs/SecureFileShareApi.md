@@ -5,7 +5,7 @@ All URIs are relative to *https://apitest.cybersource.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_file**](SecureFileShareApi.md#get_file) | **GET** /sfs/v1/files/{fileId} | Download a file with file identifier
-[**get_file_details**](SecureFileShareApi.md#get_file_details) | **GET** /sfs/v1/file-details | Get list of files
+[**get_file_detail**](SecureFileShareApi.md#get_file_detail) | **GET** /sfs/v1/file-details | Get list of files
 
 
 # **get_file**
@@ -58,8 +58,8 @@ No authorization required
 
 
 
-# **get_file_details**
-> V1FileDetailsGet200Response get_file_details(start_date, end_date, opts)
+# **get_file_detail**
+> V1FileDetailsGet200Response get_file_detail(start_date, end_date, opts)
 
 Get list of files
 
@@ -82,10 +82,10 @@ opts = {
 
 begin
   #Get list of files
-  result = api_instance.get_file_details(start_date, end_date, opts)
+  result = api_instance.get_file_detail(start_date, end_date, opts)
   p result
 rescue CyberSource::ApiError => e
-  puts "Exception when calling SecureFileShareApi->get_file_details: #{e}"
+  puts "Exception when calling SecureFileShareApi->get_file_detail: #{e}"
 end
 ```
 

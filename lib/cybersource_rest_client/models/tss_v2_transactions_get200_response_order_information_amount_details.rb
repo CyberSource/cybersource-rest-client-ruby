@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -14,10 +14,10 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsGet200ResponseOrderInformationAmountDetails
-    # Grand total for the order. You can include a decimal point (.), but no other special characters. CyberSource truncates the amount to the correct number of decimal places.  * CTV, FDCCompass, Paymentech (<= 12)  For processor-specific information, see the grand_total_amount field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
+    # Grand total for the order. This value cannot be negative. You can include a decimal point (.), but no other special characters. CyberSource truncates the amount to the correct number of decimal places.  **Note** For CTV, FDCCompass, Paymentech processors, the maximum length for this field is 12.  **Important** Some processors have specific requirements and limitations, such as maximum amounts and maximum field lengths. This information is covered in:  Table 15, \"Authorization Information for Specific Processors,\" on page 43  Table 19, \"Capture Information for Specific Processors,\" on page 58  Table 23, \"Credit Information for Specific Processors,\" on page 75 If your processor supports zero amount authorizations, you can set this field to 0 for the authorization to check if the card is lost or stolen. See \"Zero Amount Authorizations,\" page 247.  **DCC with a Third-Party Provider**\\ Set this field to the converted amount that was returned by the DCC provider. You must include either this field or offer0 and the offerlevel field amount in your request. For details, see \"Dynamic Currency Conversion with a Third Party Provider,\" page 125.  **FDMS South**\\ If you accept IDR or CLP currencies, see the entry for FDMS South in Table 15, \"Authorization Information for Specific Processors,\" on page 43.  **DCC for First Data**\\ Not used. 
     attr_accessor :total_amount
 
-    # Currency used for the order. Use the three-character ISO Standard Currency Codes.  For an authorization reversal or a capture, you must use the same currency that you used in your request for Payment API. 
+    # Currency used for the order. Use the three-character ISO Standard Currency Codes.  For an authorization reversal (`reversalInformation`) or a capture (`processingOptions.capture` is set to `true`), you must use the same currency that you used in your request for Payment API.  **DCC for First Data**\\ Your local currency. For details, see \"Dynamic Currency Conversion for First Data,\" page 113. 
     attr_accessor :currency
 
     # Total tax amount for all the items in the order.  For processor-specific information, see the total_tax_amount field in [Level II and Level III Processing Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/Level_2_3_SCMP_API/html) 
@@ -26,13 +26,21 @@ module CyberSource
     # Amount that was authorized. 
     attr_accessor :authorized_amount
 
+    # This is a multicurrency field. It contains the transaction amount (field 4), converted to the Currency used to bill the cardholder’s account. 
+    attr_accessor :settlement_amount
+
+    # This is a multicurrency-only field. It contains a 3-digit numeric code that identifies the currency used by the issuer to bill the cardholder's account. 
+    attr_accessor :settlement_currency
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'total_amount' => :'totalAmount',
         :'currency' => :'currency',
         :'tax_amount' => :'taxAmount',
-        :'authorized_amount' => :'authorizedAmount'
+        :'authorized_amount' => :'authorizedAmount',
+        :'settlement_amount' => :'settlementAmount',
+        :'settlement_currency' => :'settlementCurrency'
       }
     end
 
@@ -42,7 +50,9 @@ module CyberSource
         :'total_amount' => :'String',
         :'currency' => :'String',
         :'tax_amount' => :'String',
-        :'authorized_amount' => :'String'
+        :'authorized_amount' => :'String',
+        :'settlement_amount' => :'String',
+        :'settlement_currency' => :'String'
       }
     end
 
@@ -69,6 +79,14 @@ module CyberSource
       if attributes.has_key?(:'authorizedAmount')
         self.authorized_amount = attributes[:'authorizedAmount']
       end
+
+      if attributes.has_key?(:'settlementAmount')
+        self.settlement_amount = attributes[:'settlementAmount']
+      end
+
+      if attributes.has_key?(:'settlementCurrency')
+        self.settlement_currency = attributes[:'settlementCurrency']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -91,6 +109,14 @@ module CyberSource
         invalid_properties.push('invalid value for "authorized_amount", the character length must be smaller than or equal to 15.')
       end
 
+      if !@settlement_amount.nil? && @settlement_amount.to_s.length > 12
+        invalid_properties.push('invalid value for "settlement_amount", the character length must be smaller than or equal to 12.')
+      end
+
+      if !@settlement_currency.nil? && @settlement_currency.to_s.length > 3
+        invalid_properties.push('invalid value for "settlement_currency", the character length must be smaller than or equal to 3.')
+      end
+
       invalid_properties
     end
 
@@ -101,6 +127,8 @@ module CyberSource
       return false if !@currency.nil? && @currency.to_s.length > 3
       return false if !@tax_amount.nil? && @tax_amount.to_s.length > 12
       return false if !@authorized_amount.nil? && @authorized_amount.to_s.length > 15
+      return false if !@settlement_amount.nil? && @settlement_amount.to_s.length > 12
+      return false if !@settlement_currency.nil? && @settlement_currency.to_s.length > 3
       true
     end
 
@@ -144,6 +172,26 @@ module CyberSource
       @authorized_amount = authorized_amount
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] settlement_amount Value to be assigned
+    def settlement_amount=(settlement_amount)
+      if !settlement_amount.nil? && settlement_amount.to_s.length > 12
+        fail ArgumentError, 'invalid value for "settlement_amount", the character length must be smaller than or equal to 12.'
+      end
+
+      @settlement_amount = settlement_amount
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] settlement_currency Value to be assigned
+    def settlement_currency=(settlement_currency)
+      if !settlement_currency.nil? && settlement_currency.to_s.length > 3
+        fail ArgumentError, 'invalid value for "settlement_currency", the character length must be smaller than or equal to 3.'
+      end
+
+      @settlement_currency = settlement_currency
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -152,7 +200,9 @@ module CyberSource
           total_amount == o.total_amount &&
           currency == o.currency &&
           tax_amount == o.tax_amount &&
-          authorized_amount == o.authorized_amount
+          authorized_amount == o.authorized_amount &&
+          settlement_amount == o.settlement_amount &&
+          settlement_currency == o.settlement_currency
     end
 
     # @see the `==` method
@@ -164,7 +214,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [total_amount, currency, tax_amount, authorized_amount].hash
+      [total_amount, currency, tax_amount, authorized_amount, settlement_amount, settlement_currency].hash
     end
 
     # Builds the object from hash

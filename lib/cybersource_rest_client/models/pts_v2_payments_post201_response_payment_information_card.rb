@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -48,28 +48,13 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@suffix.nil? && @suffix.to_s.length > 4
-        invalid_properties.push('invalid value for "suffix", the character length must be smaller than or equal to 4.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@suffix.nil? && @suffix.to_s.length > 4
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] suffix Value to be assigned
-    def suffix=(suffix)
-      if !suffix.nil? && suffix.to_s.length > 4
-        fail ArgumentError, 'invalid value for "suffix", the character length must be smaller than or equal to 4.'
-      end
-
-      @suffix = suffix
     end
 
     # Checks equality by comparing each attribute.

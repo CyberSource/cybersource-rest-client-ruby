@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -113,7 +113,7 @@ module CyberSource
         :'report_end_time' => :'DateTime',
         :'timezone' => :'String',
         :'report_filters' => :'Hash<String, Array<String>>',
-        :'report_preferences' => :'ReportingV3ReportsIdGet200ResponseReportPreferences',
+        :'report_preferences' => :'Reportingv3reportsReportPreferences',
         :'group_id' => :'String'
       }
     end

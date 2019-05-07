@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -14,10 +14,10 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsGet200ResponseOrderInformationShippingDetails
-    # The description for this field is not available.
+    # Boolean that indicates whether the customer requested gift wrapping for this purchase. This field can contain one of the following values:  - `yes`: The customer requested gift wrapping. - `no`: The customer did not request gift wrapping. 
     attr_accessor :gift_wrap
 
-    # Shipping method for the product. Possible values:   - lowcost: Lowest-cost service  - sameday: Courier or same-day service  - oneday: Next-day or overnight service  - twoday: Two-day service  - threeday: Three-day service  - pickup: Store pick-up  - other: Other shipping method  - none: No shipping method because product is a service or subscription 
+    # Shipping method for the product. Possible values:   - `lowcost`: Lowest-cost service  - `sameday`: Courier or same-day service  - `oneday`: Next-day or overnight service  - `twoday`: Two-day service  - `threeday`: Three-day service  - `pickup`: Store pick-up  - `other`: Other shipping method  - `none`: No shipping method because product is a service or subscription 
     attr_accessor :shipping_method
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -31,7 +31,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'gift_wrap' => :'BOOLEAN',
+        :'gift_wrap' => :'String',
         :'shipping_method' => :'String'
       }
     end
@@ -57,6 +57,10 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if !@gift_wrap.nil? && @gift_wrap.to_s.length > 3
+        invalid_properties.push('invalid value for "gift_wrap", the character length must be smaller than or equal to 3.')
+      end
+
       if !@shipping_method.nil? && @shipping_method.to_s.length > 10
         invalid_properties.push('invalid value for "shipping_method", the character length must be smaller than or equal to 10.')
       end
@@ -67,8 +71,19 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if !@gift_wrap.nil? && @gift_wrap.to_s.length > 3
       return false if !@shipping_method.nil? && @shipping_method.to_s.length > 10
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] gift_wrap Value to be assigned
+    def gift_wrap=(gift_wrap)
+      if !gift_wrap.nil? && gift_wrap.to_s.length > 3
+        fail ArgumentError, 'invalid value for "gift_wrap", the character length must be smaller than or equal to 3.'
+      end
+
+      @gift_wrap = gift_wrap
     end
 
     # Custom attribute writer method with validation

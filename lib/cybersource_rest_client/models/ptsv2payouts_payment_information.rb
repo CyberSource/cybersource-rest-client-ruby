@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -16,17 +16,21 @@ module CyberSource
   class Ptsv2payoutsPaymentInformation
     attr_accessor :card
 
+    attr_accessor :customer
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'card' => :'card'
+        :'card' => :'card',
+        :'customer' => :'customer'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'card' => :'Ptsv2payoutsPaymentInformationCard'
+        :'card' => :'Ptsv2payoutsPaymentInformationCard',
+        :'customer' => :'Ptsv2paymentsPaymentInformationCustomer'
       }
     end
 
@@ -40,6 +44,10 @@ module CyberSource
 
       if attributes.has_key?(:'card')
         self.card = attributes[:'card']
+      end
+
+      if attributes.has_key?(:'customer')
+        self.customer = attributes[:'customer']
       end
     end
 
@@ -61,7 +69,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          card == o.card
+          card == o.card &&
+          customer == o.customer
     end
 
     # @see the `==` method
@@ -73,7 +82,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card].hash
+      [card, customer].hash
     end
 
     # Builds the object from hash

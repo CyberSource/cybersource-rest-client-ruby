@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -20,7 +20,7 @@ module CyberSource
     # The description for this field is not available.
     attr_accessor :prefix
 
-    # Type of card to authorize. - 001 Visa - 002 Mastercard - 003 Amex - 004 Discover 
+    # Type of card to authorize. - 001 Visa - 002 Mastercard - 003 Amex - 004 Discover - 005: Diners Club - 007: JCB - 024: Maestro (UK Domestic) - 039 Encoded account number - 042: Maestro (International) 
     attr_accessor :type
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -66,10 +66,6 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@suffix.nil? && @suffix.to_s.length > 4
-        invalid_properties.push('invalid value for "suffix", the character length must be smaller than or equal to 4.')
-      end
-
       if !@prefix.nil? && @prefix.to_s.length > 6
         invalid_properties.push('invalid value for "prefix", the character length must be smaller than or equal to 6.')
       end
@@ -80,19 +76,8 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@suffix.nil? && @suffix.to_s.length > 4
       return false if !@prefix.nil? && @prefix.to_s.length > 6
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] suffix Value to be assigned
-    def suffix=(suffix)
-      if !suffix.nil? && suffix.to_s.length > 4
-        fail ArgumentError, 'invalid value for "suffix", the character length must be smaller than or equal to 4.'
-      end
-
-      @suffix = suffix
     end
 
     # Custom attribute writer method with validation

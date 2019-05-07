@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -14,13 +14,13 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsBuyerInformationPersonalIdentification
-    # The type of the indentification.  Possible values:  - **NATIONAL**  - **CPF**  - **CURP**  - **SSN**  - **DRIVER_LICENSE**  This field is supported only on the processors listed in this description.  **ComercioLatino**\\ Set this field to the Cadastro de Pessoas Fisicas (CPF).  **CyberSource Latin American Processing**\\ Supported for Redecard in Brazil. Set this field to the Cadastro de Pessoas Fisicas (CPF), which is required for AVS for Redecard in Brazil. **Note** CyberSource Latin American Processing is the name of a specific processing connection that CyberSource supports. In the CyberSource API documentation, CyberSource Latin American Processing does not refer to the general topic of processing in Latin America. The information in this field description is for the specific processing connection called CyberSource Latin American Processing. It is not for any other Latin American processors that CyberSource supports.  ccAuthService (Required when the billing country is the U.S. or Canada; otherwise, optional.) This field is optional if your CyberSource account is configured for relaxed requirements for address data and expiration date. See \"Relaxed Requirements for Address Data and Expiration Date,\" page 75. Important It is your responsibility to determine whether a field is required for the transaction you are requesting. 
+    # The type of the identification.  Possible values:   - `NATIONAL`   - `CPF`   - `CPNJ`   - `CURP`   - `SSN`   - `DRIVER_LICENSE`  This field is supported only on the following processors.  **ComercioLatino**\\ Set this field to the Cadastro de Pessoas Fisicas (CPF).  **CyberSource Latin American Processing**\\ Supported for Redecard in Brazil. Set this field to the Cadastro de Pessoas Fisicas (CPF), which is required for AVS for Redecard in Brazil. **Note** CyberSource Latin American Processing is the name of a specific processing connection that CyberSource supports. In the CyberSource API documentation, CyberSource Latin American Processing does not refer to the general topic of processing in Latin America. The information in this field description is for the specific processing connection called CyberSource Latin American Processing. It is not for any other Latin American processors that CyberSource supports.  ccAuthService (Required when the billing country is the U.S. or Canada; otherwise, optional.) This field is optional if your CyberSource account is configured for relaxed requirements for address data and expiration date. See \"Relaxed Requirements for Address Data and Expiration Date,\" page 75. Important It is your responsibility to determine whether a field is required for the transaction you are requesting. 
     attr_accessor :type
 
-    # Personal Identifier for the customer based on various type. This field is supported only on the processors listed in this description.  **ComercioLatino** Set this field to the Cadastro de Pessoas Fisicas (CPF).  **CyberSource Latin American Processing** Supported for Redecard in Brazil. Set this field to the Cadastro de Pessoas Fisicas (CPF), which is required for AVS for Redecard in Brazil. **Note** CyberSource Latin American Processing is the name of a specific processing connection that CyberSource supports. In the CyberSource API documentation, CyberSource Latin American Processing does not refer to the general topic of processing in Latin America. The information in this field description is for the specific processing connection called CyberSource Latin American Processing. It is not for any other Latin American processors that CyberSource supports.  For processor-specific information, see the personal_id field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
+    # The value of the identification type. This field is supported only on the following processors.  **ComercioLatino** Set this field to the Cadastro de Pessoas Fisicas (CPF).  **CyberSource Latin American Processing** Supported for Redecard in Brazil. Set this field to the Cadastro de Pessoas Fisicas (CPF), which is required for AVS for Redecard in Brazil. **Note** CyberSource Latin American Processing is the name of a specific processing connection that CyberSource supports. In the CyberSource API documentation, CyberSource Latin American Processing does not refer to the general topic of processing in Latin America. The information in this field description is for the specific processing connection called CyberSource Latin American Processing. It is not for any other Latin American processors that CyberSource supports.  For processor-specific information, see the personal_id field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html)    If type = PASSPORT, this is the cardholder's passport number. Recommended for Discover ProtectBuy. 
     attr_accessor :id
 
-    # If type = DRIVER_LICENSE, this is the State or province where the customer’s driver’s license was issued. Use the twocharacter State, Province, and Territory Codes for the United States and Canada.  ** TeleCheck ** Contact your TeleCheck representative to find out whether this field is required or optional.  ** All Other Processors ** Not used. 
+    # If type = DRIVER_LICENSE, this is the State or province where the customer’s driver’s license was issued. Use the two-character State, Province, and Territory Codes for the United States and Canada.  ** TeleCheck ** Contact your TeleCheck representative to find out whether this field is required or optional.  ** All Other Processors ** Not used.  If type = PASSPORT, this is the Issuing country for the cardholder’s passport. Recommended for Discover ProtectBuy. 
     attr_accessor :issued_by
 
     class EnumAttributeValidator
@@ -98,7 +98,7 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      type_validator = EnumAttributeValidator.new('String', ['ssn', 'driverlicense'])
+      type_validator = EnumAttributeValidator.new('String', ['NATIONAL', 'CPF', 'CPNJ', 'CURP', 'SSN', 'DRIVER_LICENSE'])
       return false unless type_validator.valid?(@type)
       return false if !@id.nil? && @id.to_s.length > 26
       true
@@ -107,7 +107,7 @@ module CyberSource
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] type Object to be assigned
     def type=(type)
-      validator = EnumAttributeValidator.new('String', ['ssn', 'driverlicense'])
+      validator = EnumAttributeValidator.new('String', ['NATIONAL', 'CPF', 'CPNJ', 'CURP', 'SSN', 'DRIVER_LICENSE'])
       unless validator.valid?(type)
         fail ArgumentError, 'invalid value for "type", must be one of #{validator.allowable_values}.'
       end

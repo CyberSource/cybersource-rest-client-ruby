@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -86,21 +86,21 @@ module CyberSource
       return data, status_code, headers
     end
     # Get Search results
-    # Include the Search ID in the GET request to retrieve the search results.
-    # @param id Search ID.
+    # Include the Search ID in the GET request to retrieve the search results. 
+    # @param search_id Search ID.
     # @param [Hash] opts the optional parameters
     # @return [TssV2TransactionsPost201Response]
-    def get_search(id, opts = {})
-      data, status_code, headers = get_search_with_http_info(id, opts)
+    def get_search(search_id, opts = {})
+      data, status_code, headers = get_search_with_http_info(search_id, opts)
       return data, status_code, headers
     end
 
     # Get Search results
-    # Include the Search ID in the GET request to retrieve the search results.
-    # @param id Search ID.
+    # Include the Search ID in the GET request to retrieve the search results. 
+    # @param search_id Search ID.
     # @param [Hash] opts the optional parameters
     # @return [Array<(TssV2TransactionsPost201Response, Fixnum, Hash)>] TssV2TransactionsPost201Response data, response status code and response headers
-    def get_search_with_http_info(id, opts = {})
+    def get_search_with_http_info(search_id, opts = {})
       
 	  if @api_client.config.debugging
 	  	begin
@@ -110,12 +110,12 @@ module CyberSource
 				puts 'Cannot write to log'
 			end
       end
-      # verify the required parameter 'id' is set
-      if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling SearchTransactionsApi.get_search"
+      # verify the required parameter 'search_id' is set
+      if @api_client.config.client_side_validation && search_id.nil?
+        fail ArgumentError, "Missing the required parameter 'search_id' when calling SearchTransactionsApi.get_search"
       end
       # resource path
-      local_var_path = 'tss/v2/searches/{id}'.sub('{' + 'id' + '}', id.to_s)
+      local_var_path = 'tss/v2/searches/{searchId}'.sub('{' + 'searchId' + '}', search_id.to_s)
 
       # query parameters
       query_params = {}

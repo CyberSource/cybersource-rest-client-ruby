@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -14,16 +14,13 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsGet200ResponsePaymentInformationPaymentType
-    # The description for this field is not available.
+    # The name of a payment method. This is required for non-credit card payment.  Examples: `SEARS`, `JCREW`, `PAYPAL`, `IDEAL`, `EPS` ...etc.  Please contact CyberSource Customer Support to enable the payment method of your choice and the value you should send in your payment request for this field. 
     attr_accessor :name
 
-    # The description for this field is not available.
+    # The type of payment method. This is required for non-credit card payment.  Possible values:  - BANK_TRANSFER  - CARD (Default)  - EWALLET  - DIGITAL  - DIRECT_DEBIT  - INVOICE  - PUSH_PAYMENT  - CARRIER_BILLING  - CASH  - CHECK  - CRYPTOGRAPHIC  Please contact CyberSource Customer Support to enable the payment method of your choice and the value you should send in your payment request for this field. 
     attr_accessor :type
 
-    # The description for this field is not available.
-    attr_accessor :sub_type
-
-    # The description for this field is not available.
+    # This is an optional field.  Please contact CyberSource Customer Support to enable the payment method of your choice and the value you should send in your payment request for this field. 
     attr_accessor :method
 
     # The description for this field is not available.
@@ -40,7 +37,6 @@ module CyberSource
       {
         :'name' => :'name',
         :'type' => :'type',
-        :'sub_type' => :'subType',
         :'method' => :'method',
         :'funding_source' => :'fundingSource',
         :'funding_source_affiliation' => :'fundingSourceAffiliation',
@@ -53,7 +49,6 @@ module CyberSource
       {
         :'name' => :'String',
         :'type' => :'String',
-        :'sub_type' => :'String',
         :'method' => :'String',
         :'funding_source' => :'String',
         :'funding_source_affiliation' => :'String',
@@ -75,10 +70,6 @@ module CyberSource
 
       if attributes.has_key?(:'type')
         self.type = attributes[:'type']
-      end
-
-      if attributes.has_key?(:'subType')
-        self.sub_type = attributes[:'subType']
       end
 
       if attributes.has_key?(:'method')
@@ -118,7 +109,6 @@ module CyberSource
       self.class == o.class &&
           name == o.name &&
           type == o.type &&
-          sub_type == o.sub_type &&
           method == o.method &&
           funding_source == o.funding_source &&
           funding_source_affiliation == o.funding_source_affiliation &&
@@ -134,7 +124,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name, type, sub_type, method, funding_source, funding_source_affiliation, credential].hash
+      [name, type, method, funding_source, funding_source_affiliation, credential].hash
     end
 
     # Builds the object from hash

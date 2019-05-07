@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -17,17 +17,32 @@ module CyberSource
     # Credit card number (PAN).
     attr_accessor :number
 
+    # Card expiration month.  Format: `MM`. Possible values: `01` through `12`. 
+    attr_accessor :expiration_month
+
+    # Card expiration year.  Format: `YYYY`. Possible values: `1900` through `2099`. 
+    attr_accessor :expiration_year
+
+    # Card security code.
+    attr_accessor :security_code
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'number' => :'number'
+        :'number' => :'number',
+        :'expiration_month' => :'expirationMonth',
+        :'expiration_year' => :'expirationYear',
+        :'security_code' => :'securityCode'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'number' => :'String'
+        :'number' => :'String',
+        :'expiration_month' => :'String',
+        :'expiration_year' => :'String',
+        :'security_code' => :'String'
       }
     end
 
@@ -41,6 +56,18 @@ module CyberSource
 
       if attributes.has_key?(:'number')
         self.number = attributes[:'number']
+      end
+
+      if attributes.has_key?(:'expirationMonth')
+        self.expiration_month = attributes[:'expirationMonth']
+      end
+
+      if attributes.has_key?(:'expirationYear')
+        self.expiration_year = attributes[:'expirationYear']
+      end
+
+      if attributes.has_key?(:'securityCode')
+        self.security_code = attributes[:'securityCode']
       end
     end
 
@@ -56,6 +83,30 @@ module CyberSource
         invalid_properties.push('invalid value for "number", the character length must be great than or equal to 12.')
       end
 
+      if !@expiration_month.nil? && @expiration_month.to_s.length > 2
+        invalid_properties.push('invalid value for "expiration_month", the character length must be smaller than or equal to 2.')
+      end
+
+      if !@expiration_month.nil? && @expiration_month.to_s.length < 2
+        invalid_properties.push('invalid value for "expiration_month", the character length must be great than or equal to 2.')
+      end
+
+      if !@expiration_year.nil? && @expiration_year.to_s.length > 4
+        invalid_properties.push('invalid value for "expiration_year", the character length must be smaller than or equal to 4.')
+      end
+
+      if !@expiration_year.nil? && @expiration_year.to_s.length < 4
+        invalid_properties.push('invalid value for "expiration_year", the character length must be great than or equal to 4.')
+      end
+
+      if !@security_code.nil? && @security_code.to_s.length > 4
+        invalid_properties.push('invalid value for "security_code", the character length must be smaller than or equal to 4.')
+      end
+
+      if !@security_code.nil? && @security_code.to_s.length < 3
+        invalid_properties.push('invalid value for "security_code", the character length must be great than or equal to 3.')
+      end
+
       invalid_properties
     end
 
@@ -64,6 +115,12 @@ module CyberSource
     def valid?
       return false if !@number.nil? && @number.to_s.length > 19
       return false if !@number.nil? && @number.to_s.length < 12
+      return false if !@expiration_month.nil? && @expiration_month.to_s.length > 2
+      return false if !@expiration_month.nil? && @expiration_month.to_s.length < 2
+      return false if !@expiration_year.nil? && @expiration_year.to_s.length > 4
+      return false if !@expiration_year.nil? && @expiration_year.to_s.length < 4
+      return false if !@security_code.nil? && @security_code.to_s.length > 4
+      return false if !@security_code.nil? && @security_code.to_s.length < 3
       true
     end
 
@@ -81,12 +138,57 @@ module CyberSource
       @number = number
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] expiration_month Value to be assigned
+    def expiration_month=(expiration_month)
+      if !expiration_month.nil? && expiration_month.to_s.length > 2
+        fail ArgumentError, 'invalid value for "expiration_month", the character length must be smaller than or equal to 2.'
+      end
+
+      if !expiration_month.nil? && expiration_month.to_s.length < 2
+        fail ArgumentError, 'invalid value for "expiration_month", the character length must be great than or equal to 2.'
+      end
+
+      @expiration_month = expiration_month
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] expiration_year Value to be assigned
+    def expiration_year=(expiration_year)
+      if !expiration_year.nil? && expiration_year.to_s.length > 4
+        fail ArgumentError, 'invalid value for "expiration_year", the character length must be smaller than or equal to 4.'
+      end
+
+      if !expiration_year.nil? && expiration_year.to_s.length < 4
+        fail ArgumentError, 'invalid value for "expiration_year", the character length must be great than or equal to 4.'
+      end
+
+      @expiration_year = expiration_year
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] security_code Value to be assigned
+    def security_code=(security_code)
+      if !security_code.nil? && security_code.to_s.length > 4
+        fail ArgumentError, 'invalid value for "security_code", the character length must be smaller than or equal to 4.'
+      end
+
+      if !security_code.nil? && security_code.to_s.length < 3
+        fail ArgumentError, 'invalid value for "security_code", the character length must be great than or equal to 3.'
+      end
+
+      @security_code = security_code
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          number == o.number
+          number == o.number &&
+          expiration_month == o.expiration_month &&
+          expiration_year == o.expiration_year &&
+          security_code == o.security_code
     end
 
     # @see the `==` method
@@ -98,7 +200,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [number].hash
+      [number, expiration_month, expiration_year, security_code].hash
     end
 
     # Builds the object from hash

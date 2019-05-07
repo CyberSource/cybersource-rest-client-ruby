@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -14,13 +14,13 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsGet200ResponseConsumerAuthenticationInformation
-    # Raw electronic commerce indicator (ECI).
+    # Raw electronic commerce indicator (ECI). For the description and requirements, see \"Payer Authentication,\" page 180.
     attr_accessor :eci_raw
 
     # Cardholder authentication verification value (CAVV).
     attr_accessor :cavv
 
-    # Transaction identifier.
+    # Transaction identifier. For the description and requirements, see \"Payer Authentication,\" page 180.
     attr_accessor :xid
 
     # Payer auth Transaction identifier.

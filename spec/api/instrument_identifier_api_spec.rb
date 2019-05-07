@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -32,38 +32,79 @@ describe 'InstrumentIdentifierApi' do
     end
   end
 
-  # unit tests for tms_v1_instrumentidentifiers_token_id_delete
+  # unit tests for create_instrument_identifier
+  # Create an Instrument Identifier
+  # @param profile_id The id of a profile containing user specific TMS configuration.
+  # @param v_c_merchant_id CyberSource merchant id.
+  # @param v_c_correlation_id The mandatory correlation id passed by upstream (calling) system.
+  # @param create_instrument_identifier_request Please specify either a Card, Bank Account or Enrollable Card
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :client_application Client application name
+  # @return [TmsV1InstrumentIdentifiersPost200Response]
+  describe 'create_instrument_identifier test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for delete_instrument_identifier
   # Delete an Instrument Identifier
   # @param profile_id The id of a profile containing user specific TMS configuration.
+  # @param v_c_merchant_id CyberSource merchant id.
+  # @param v_c_correlation_id The mandatory correlation id passed by upstream (calling) system.
   # @param token_id The TokenId of an Instrument Identifier.
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :client_application Client application name
   # @return [nil]
-  describe 'tms_v1_instrumentidentifiers_token_id_delete test' do
+  describe 'delete_instrument_identifier test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  # unit tests for tms_v1_instrumentidentifiers_token_id_get
+  # unit tests for get_all_payment_instruments
+  # Retrieve all Payment Instruments associated with an Instrument Identifier
+  # @param profile_id The id of a profile containing user specific TMS configuration.
+  # @param v_c_merchant_id CyberSource merchant id.
+  # @param v_c_correlation_id The mandatory correlation id passed by upstream (calling) system.
+  # @param token_id The TokenId of an Instrument Identifier.
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :client_application Client application name
+  # @option opts [Integer] :offset Starting Payment Instrument record in zero-based dataset that should be returned as the first object in the array. Default is 0.
+  # @option opts [Integer] :limit The maximum number of Payment Instruments that can be returned in the array starting from the offset record in zero-based dataset. Default is 20, maximum is 100.
+  # @return [TmsV1InstrumentIdentifiersPaymentInstrumentsGet200Response]
+  describe 'get_all_payment_instruments test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for get_instrument_identifier
   # Retrieve an Instrument Identifier
   # @param profile_id The id of a profile containing user specific TMS configuration.
+  # @param v_c_merchant_id CyberSource merchant id.
+  # @param v_c_correlation_id The mandatory correlation id passed by upstream (calling) system.
   # @param token_id The TokenId of an Instrument Identifier.
   # @param [Hash] opts the optional parameters
-  # @return [TmsV1InstrumentidentifiersPost200Response]
-  describe 'tms_v1_instrumentidentifiers_token_id_get test' do
+  # @option opts [String] :client_application Client application name
+  # @return [TmsV1InstrumentIdentifiersPost200Response]
+  describe 'get_instrument_identifier test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  # unit tests for tms_v1_instrumentidentifiers_token_id_patch
+  # unit tests for update_instrument_identifier
   # Update a Instrument Identifier
   # @param profile_id The id of a profile containing user specific TMS configuration.
+  # @param v_c_merchant_id CyberSource merchant id.
+  # @param v_c_correlation_id The mandatory correlation id passed by upstream (calling) system.
   # @param token_id The TokenId of an Instrument Identifier.
-  # @param body Please specify the previous transaction Id to update.
+  # @param update_instrument_identifier_request Specify the previous transaction ID to update.
   # @param [Hash] opts the optional parameters
-  # @return [TmsV1InstrumentidentifiersPost200Response]
-  describe 'tms_v1_instrumentidentifiers_token_id_patch test' do
+  # @option opts [String] :client_application Client application name
+  # @return [TmsV1InstrumentIdentifiersPost200Response]
+  describe 'update_instrument_identifier test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

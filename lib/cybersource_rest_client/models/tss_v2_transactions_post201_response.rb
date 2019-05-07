@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -14,8 +14,8 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsPost201Response
-    # An unique identification number assigned by CyberSource to identify the submitted request.
-    attr_accessor :id
+    # An unique identification number assigned by CyberSource to identify each Search request.
+    attr_accessor :search_id
 
     # save or not save.
     attr_accessor :save
@@ -44,7 +44,7 @@ module CyberSource
     # total number of results.
     attr_accessor :total_count
 
-    # Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the time. The Z indicates UTC. 
+    # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` Example `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC. 
     attr_accessor :submit_time_utc
 
     attr_accessor :_embedded
@@ -54,7 +54,7 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id',
+        :'search_id' => :'searchId',
         :'save' => :'save',
         :'name' => :'name',
         :'timezone' => :'timezone',
@@ -73,7 +73,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'id' => :'String',
+        :'search_id' => :'String',
         :'save' => :'BOOLEAN',
         :'name' => :'String',
         :'timezone' => :'String',
@@ -97,8 +97,8 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'id')
-        self.id = attributes[:'id']
+      if attributes.has_key?(:'searchId')
+        self.search_id = attributes[:'searchId']
       end
 
       if attributes.has_key?(:'save')
@@ -154,8 +154,8 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@id.nil? && @id.to_s.length > 26
-        invalid_properties.push('invalid value for "id", the character length must be smaller than or equal to 26.')
+      if !@search_id.nil? && @search_id.to_s.length > 60
+        invalid_properties.push('invalid value for "search_id", the character length must be smaller than or equal to 60.')
       end
 
       invalid_properties
@@ -164,18 +164,18 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@id.nil? && @id.to_s.length > 26
+      return false if !@search_id.nil? && @search_id.to_s.length > 60
       true
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] id Value to be assigned
-    def id=(id)
-      if !id.nil? && id.to_s.length > 26
-        fail ArgumentError, 'invalid value for "id", the character length must be smaller than or equal to 26.'
+    # @param [Object] search_id Value to be assigned
+    def search_id=(search_id)
+      if !search_id.nil? && search_id.to_s.length > 60
+        fail ArgumentError, 'invalid value for "search_id", the character length must be smaller than or equal to 60.'
       end
 
-      @id = id
+      @search_id = search_id
     end
 
     # Checks equality by comparing each attribute.
@@ -183,7 +183,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id == o.id &&
+          search_id == o.search_id &&
           save == o.save &&
           name == o.name &&
           timezone == o.timezone &&
@@ -207,7 +207,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, save, name, timezone, query, offset, limit, sort, count, total_count, submit_time_utc, _embedded, _links].hash
+      [search_id, save, name, timezone, query, offset, limit, sort, count, total_count, submit_time_utc, _embedded, _links].hash
     end
 
     # Builds the object from hash

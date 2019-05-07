@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -174,208 +174,13 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@additional_costs.nil? && @additional_costs.to_s.length > 12
-        invalid_properties.push('invalid value for "additional_costs", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@additional_costs_percentage.nil? && @additional_costs_percentage.to_s.length > 4
-        invalid_properties.push('invalid value for "additional_costs_percentage", the character length must be smaller than or equal to 4.')
-      end
-
-      if !@amount_funded.nil? && @amount_funded.to_s.length > 12
-        invalid_properties.push('invalid value for "amount_funded", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@amount_requested_percentage.nil? && @amount_requested_percentage.to_s.length > 4
-        invalid_properties.push('invalid value for "amount_requested_percentage", the character length must be smaller than or equal to 4.')
-      end
-
-      if !@annual_financing_cost.nil? && @annual_financing_cost.to_s.length > 7
-        invalid_properties.push('invalid value for "annual_financing_cost", the character length must be smaller than or equal to 7.')
-      end
-
-      if !@expenses.nil? && @expenses.to_s.length > 12
-        invalid_properties.push('invalid value for "expenses", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@expenses_percentage.nil? && @expenses_percentage.to_s.length > 4
-        invalid_properties.push('invalid value for "expenses_percentage", the character length must be smaller than or equal to 4.')
-      end
-
-      if !@fees.nil? && @fees.to_s.length > 12
-        invalid_properties.push('invalid value for "fees", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@fees_percentage.nil? && @fees_percentage.to_s.length > 4
-        invalid_properties.push('invalid value for "fees_percentage", the character length must be smaller than or equal to 4.')
-      end
-
-      if !@insurance.nil? && @insurance.to_s.length > 12
-        invalid_properties.push('invalid value for "insurance", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@insurance_percentage.nil? && @insurance_percentage.to_s.length > 4
-        invalid_properties.push('invalid value for "insurance_percentage", the character length must be smaller than or equal to 4.')
-      end
-
-      if !@taxes.nil? && @taxes.to_s.length > 12
-        invalid_properties.push('invalid value for "taxes", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@taxes_percentage.nil? && @taxes_percentage.to_s.length > 4
-        invalid_properties.push('invalid value for "taxes_percentage", the character length must be smaller than or equal to 4.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@additional_costs.nil? && @additional_costs.to_s.length > 12
-      return false if !@additional_costs_percentage.nil? && @additional_costs_percentage.to_s.length > 4
-      return false if !@amount_funded.nil? && @amount_funded.to_s.length > 12
-      return false if !@amount_requested_percentage.nil? && @amount_requested_percentage.to_s.length > 4
-      return false if !@annual_financing_cost.nil? && @annual_financing_cost.to_s.length > 7
-      return false if !@expenses.nil? && @expenses.to_s.length > 12
-      return false if !@expenses_percentage.nil? && @expenses_percentage.to_s.length > 4
-      return false if !@fees.nil? && @fees.to_s.length > 12
-      return false if !@fees_percentage.nil? && @fees_percentage.to_s.length > 4
-      return false if !@insurance.nil? && @insurance.to_s.length > 12
-      return false if !@insurance_percentage.nil? && @insurance_percentage.to_s.length > 4
-      return false if !@taxes.nil? && @taxes.to_s.length > 12
-      return false if !@taxes_percentage.nil? && @taxes_percentage.to_s.length > 4
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] additional_costs Value to be assigned
-    def additional_costs=(additional_costs)
-      if !additional_costs.nil? && additional_costs.to_s.length > 12
-        fail ArgumentError, 'invalid value for "additional_costs", the character length must be smaller than or equal to 12.'
-      end
-
-      @additional_costs = additional_costs
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] additional_costs_percentage Value to be assigned
-    def additional_costs_percentage=(additional_costs_percentage)
-      if !additional_costs_percentage.nil? && additional_costs_percentage.to_s.length > 4
-        fail ArgumentError, 'invalid value for "additional_costs_percentage", the character length must be smaller than or equal to 4.'
-      end
-
-      @additional_costs_percentage = additional_costs_percentage
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] amount_funded Value to be assigned
-    def amount_funded=(amount_funded)
-      if !amount_funded.nil? && amount_funded.to_s.length > 12
-        fail ArgumentError, 'invalid value for "amount_funded", the character length must be smaller than or equal to 12.'
-      end
-
-      @amount_funded = amount_funded
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] amount_requested_percentage Value to be assigned
-    def amount_requested_percentage=(amount_requested_percentage)
-      if !amount_requested_percentage.nil? && amount_requested_percentage.to_s.length > 4
-        fail ArgumentError, 'invalid value for "amount_requested_percentage", the character length must be smaller than or equal to 4.'
-      end
-
-      @amount_requested_percentage = amount_requested_percentage
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] annual_financing_cost Value to be assigned
-    def annual_financing_cost=(annual_financing_cost)
-      if !annual_financing_cost.nil? && annual_financing_cost.to_s.length > 7
-        fail ArgumentError, 'invalid value for "annual_financing_cost", the character length must be smaller than or equal to 7.'
-      end
-
-      @annual_financing_cost = annual_financing_cost
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] expenses Value to be assigned
-    def expenses=(expenses)
-      if !expenses.nil? && expenses.to_s.length > 12
-        fail ArgumentError, 'invalid value for "expenses", the character length must be smaller than or equal to 12.'
-      end
-
-      @expenses = expenses
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] expenses_percentage Value to be assigned
-    def expenses_percentage=(expenses_percentage)
-      if !expenses_percentage.nil? && expenses_percentage.to_s.length > 4
-        fail ArgumentError, 'invalid value for "expenses_percentage", the character length must be smaller than or equal to 4.'
-      end
-
-      @expenses_percentage = expenses_percentage
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] fees Value to be assigned
-    def fees=(fees)
-      if !fees.nil? && fees.to_s.length > 12
-        fail ArgumentError, 'invalid value for "fees", the character length must be smaller than or equal to 12.'
-      end
-
-      @fees = fees
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] fees_percentage Value to be assigned
-    def fees_percentage=(fees_percentage)
-      if !fees_percentage.nil? && fees_percentage.to_s.length > 4
-        fail ArgumentError, 'invalid value for "fees_percentage", the character length must be smaller than or equal to 4.'
-      end
-
-      @fees_percentage = fees_percentage
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] insurance Value to be assigned
-    def insurance=(insurance)
-      if !insurance.nil? && insurance.to_s.length > 12
-        fail ArgumentError, 'invalid value for "insurance", the character length must be smaller than or equal to 12.'
-      end
-
-      @insurance = insurance
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] insurance_percentage Value to be assigned
-    def insurance_percentage=(insurance_percentage)
-      if !insurance_percentage.nil? && insurance_percentage.to_s.length > 4
-        fail ArgumentError, 'invalid value for "insurance_percentage", the character length must be smaller than or equal to 4.'
-      end
-
-      @insurance_percentage = insurance_percentage
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] taxes Value to be assigned
-    def taxes=(taxes)
-      if !taxes.nil? && taxes.to_s.length > 12
-        fail ArgumentError, 'invalid value for "taxes", the character length must be smaller than or equal to 12.'
-      end
-
-      @taxes = taxes
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] taxes_percentage Value to be assigned
-    def taxes_percentage=(taxes_percentage)
-      if !taxes_percentage.nil? && taxes_percentage.to_s.length > 4
-        fail ArgumentError, 'invalid value for "taxes_percentage", the character length must be smaller than or equal to 4.'
-      end
-
-      @taxes_percentage = taxes_percentage
     end
 
     # Checks equality by comparing each attribute.

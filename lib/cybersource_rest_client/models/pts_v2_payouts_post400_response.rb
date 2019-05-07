@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -20,10 +20,10 @@ module CyberSource
     # The status of the submitted transaction.
     attr_accessor :status
 
-    # The reason of the status. 
+    # The reason of the status.  Possible values:  - MISSING_FIELD  - INVALID_DATA  - DUPLICATE_REQUEST  - INVALID_CARD  - INVALID_MERCHANT_CONFIGURATION  - INVALID_AMOUNT  - DEBIT_CARD_USEAGE_EXCEEDD_LIMIT 
     attr_accessor :reason
 
-    # The detail message related to the status and reason listed above. Possible value is:    - Your aggregator or acquirer is not accepting transactions from you at this time.   - Your aggregator or acquirer is not accepting this transaction.   - CyberSource declined the request because the credit card has expired. You might also receive this value if     the expiration date you provided does not match the date the issuing bank has on file.   - The bank declined the transaction.   - The merchant reference number for this authorization request matches the merchant reference number of     another authorization request that you sent within the past 15 minutes. Resend the request with a unique     merchant reference number.   - The credit card number did not pass CyberSource basic checks.   - Data provided is not consistent with the request. For example, you requested a product with negative cost.   - The request is missing a required field. 
+    # The detail message related to the status and reason listed above.
     attr_accessor :message
 
     attr_accessor :details
@@ -68,7 +68,7 @@ module CyberSource
         :'status' => :'String',
         :'reason' => :'String',
         :'message' => :'String',
-        :'details' => :'Array<PtsV2PayoutsPost201ResponseErrorInformationDetails>'
+        :'details' => :'Array<PtsV2PaymentsPost201ResponseErrorInformationDetails>'
       }
     end
 
@@ -107,21 +107,45 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if !@submit_time_utc.nil? && @submit_time_utc.to_s.length > 6
+        invalid_properties.push('invalid value for "submit_time_utc", the character length must be smaller than or equal to 6.')
+      end
+
+      if !@submit_time_utc.nil? && @submit_time_utc.to_s.length < 6
+        invalid_properties.push('invalid value for "submit_time_utc", the character length must be great than or equal to 6.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      reason_validator = EnumAttributeValidator.new('String', ['MISSING_FIELD', 'INVALID_DATA', 'DUPLICATE_REQUEST', 'INVALID_MERCHANT_CONFIGURATION', 'INVALID_AMOUNT', 'DEBIT_CARD_USEAGE_EXCEEDD_LIMIT'])
+      return false if !@submit_time_utc.nil? && @submit_time_utc.to_s.length > 6
+      return false if !@submit_time_utc.nil? && @submit_time_utc.to_s.length < 6
+      reason_validator = EnumAttributeValidator.new('String', ['MISSING_FIELD', 'INVALID_DATA', 'DUPLICATE_REQUEST', 'INVALID_CARD', 'INVALID_MERCHANT_CONFIGURATION', 'INVALID_AMOUNT', 'DEBIT_CARD_USEAGE_EXCEEDD_LIMIT'])
       return false unless reason_validator.valid?(@reason)
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] submit_time_utc Value to be assigned
+    def submit_time_utc=(submit_time_utc)
+      if !submit_time_utc.nil? && submit_time_utc.to_s.length > 6
+        fail ArgumentError, 'invalid value for "submit_time_utc", the character length must be smaller than or equal to 6.'
+      end
+
+      if !submit_time_utc.nil? && submit_time_utc.to_s.length < 6
+        fail ArgumentError, 'invalid value for "submit_time_utc", the character length must be great than or equal to 6.'
+      end
+
+      @submit_time_utc = submit_time_utc
     end
 
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] reason Object to be assigned
     def reason=(reason)
-      validator = EnumAttributeValidator.new('String', ['MISSING_FIELD', 'INVALID_DATA', 'DUPLICATE_REQUEST', 'INVALID_MERCHANT_CONFIGURATION', 'INVALID_AMOUNT', 'DEBIT_CARD_USEAGE_EXCEEDD_LIMIT'])
+      validator = EnumAttributeValidator.new('String', ['MISSING_FIELD', 'INVALID_DATA', 'DUPLICATE_REQUEST', 'INVALID_CARD', 'INVALID_MERCHANT_CONFIGURATION', 'INVALID_AMOUNT', 'DEBIT_CARD_USEAGE_EXCEEDD_LIMIT'])
       unless validator.valid?(reason)
         fail ArgumentError, 'invalid value for "reason", must be one of #{validator.allowable_values}.'
       end

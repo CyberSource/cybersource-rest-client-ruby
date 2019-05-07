@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -14,10 +14,10 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsPost201ResponseEmbeddedTransactionSummaries
-    # An unique identification number assigned by CyberSource to identify the submitted request.
+    # An unique identification number assigned by CyberSource to identify the submitted request. It is also appended to the endpoint of the resource.
     attr_accessor :id
 
-    # Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the time. The Z indicates UTC. 
+    # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` Example `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC. 
     attr_accessor :submit_time_utc
 
     # The description for this field is not available.
@@ -90,7 +90,7 @@ module CyberSource
         :'consumer_authentication_information' => :'TssV2TransactionsPost201ResponseEmbeddedConsumerAuthenticationInformation',
         :'device_information' => :'TssV2TransactionsPost201ResponseEmbeddedDeviceInformation',
         :'fraud_marking_information' => :'TssV2TransactionsGet200ResponseFraudMarkingInformation',
-        :'merchant_defined_information' => :'Array<TssV2TransactionsGet200ResponseMerchantDefinedInformation>',
+        :'merchant_defined_information' => :'Array<Ptsv2paymentsMerchantDefinedInformation>',
         :'merchant_information' => :'TssV2TransactionsPost201ResponseEmbeddedMerchantInformation',
         :'order_information' => :'TssV2TransactionsPost201ResponseEmbeddedOrderInformation',
         :'payment_information' => :'TssV2TransactionsPost201ResponseEmbeddedPaymentInformation',

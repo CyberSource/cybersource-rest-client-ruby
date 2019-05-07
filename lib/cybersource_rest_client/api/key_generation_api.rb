@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -22,20 +22,20 @@ module CyberSource
     end
     # Generate Key
     # Generate a one-time use public key and key ID to encrypt the card number in the follow-on Tokenize Card request. The key used to encrypt the card number on the cardholder’s device or browser is valid for 15 minutes and must be used to verify the signature in the response message. CyberSource recommends creating a new key for each order. Generating a key is an authenticated request initiated from your servers, prior to requesting to tokenize the card data from your customer’s device or browser.
+    # @param generate_public_key_request 
     # @param [Hash] opts the optional parameters
-    # @option opts [GeneratePublicKeyRequest] :generate_public_key_request 
     # @return [FlexV1KeysPost200Response]
-    def generate_public_key(opts = {})
-      data, status_code, headers = generate_public_key_with_http_info(opts)
+    def generate_public_key(generate_public_key_request, opts = {})
+      data, status_code, headers = generate_public_key_with_http_info(generate_public_key_request, opts)
       return data, status_code, headers
     end
 
     # Generate Key
     # Generate a one-time use public key and key ID to encrypt the card number in the follow-on Tokenize Card request. The key used to encrypt the card number on the cardholder’s device or browser is valid for 15 minutes and must be used to verify the signature in the response message. CyberSource recommends creating a new key for each order. Generating a key is an authenticated request initiated from your servers, prior to requesting to tokenize the card data from your customer’s device or browser.
+    # @param generate_public_key_request 
     # @param [Hash] opts the optional parameters
-    # @option opts [GeneratePublicKeyRequest] :generate_public_key_request 
     # @return [Array<(FlexV1KeysPost200Response, Fixnum, Hash)>] FlexV1KeysPost200Response data, response status code and response headers
-    def generate_public_key_with_http_info(opts = {})
+    def generate_public_key_with_http_info(generate_public_key_request, opts = {})
       
 	  if @api_client.config.debugging
 	  	begin
@@ -45,8 +45,12 @@ module CyberSource
 				puts 'Cannot write to log'
 			end
       end
+      # verify the required parameter 'generate_public_key_request' is set
+      if @api_client.config.client_side_validation && generate_public_key_request.nil?
+        fail ArgumentError, "Missing the required parameter 'generate_public_key_request' when calling KeyGenerationApi.generate_public_key"
+      end
       # resource path
-      local_var_path = 'flex/v1/keys/'
+      local_var_path = 'flex/v1/keys'
 
       # query parameters
       query_params = {}
@@ -62,7 +66,7 @@ module CyberSource
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(opts[:'generate_public_key_request'])
+      post_body = @api_client.object_to_http_body(generate_public_key_request)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,

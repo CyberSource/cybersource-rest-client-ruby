@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -51,7 +51,7 @@ describe 'PtsV2PaymentsPost502Response' do
   describe 'test attribute "reason"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["SYSTEM_ERROR", "SERVER_TIMEOUT", "SERVICE_TIMEOUT", "PROCESSOR_TIMEOUT"])
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["SYSTEM_ERROR", "SERVER_TIMEOUT", "SERVICE_TIMEOUT", "INVALID_OR_MISSING_CONFIG", "PROCESSOR_TIMEOUT"])
       # validator.allowable_values.each do |value|
       #   expect { @instance.reason = value }.not_to raise_error
       # end

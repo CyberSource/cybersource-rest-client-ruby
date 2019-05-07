@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsGet200ResponseClientReferenceInformation
-    # Client-generated order reference or tracking number. CyberSource recommends that you send a unique value for each transaction so that you can perform meaningful searches for the transaction. 
+    # Client-generated order reference or tracking number. CyberSource recommends that you send a unique value for each transaction so that you can perform meaningful searches for the transaction.  For information about tracking orders, see [Getting Started with CyberSource Advanced for the SCMP API](http://apps.cybersource.com/library/documentation/dev_guides/Getting_Started_SCMP/html/wwhelp/wwhimpl/js/html/wwhelp.htm).  **FDC Nashville Global**\\ Certain circumstances can cause the processor to truncate this value to 15 or 17 characters for Level II and Level III processing, which can cause a discrepancy between the value you submit and the value included in some processor reports. 
     attr_accessor :code
 
     # The description for this field is not available.
@@ -26,7 +26,7 @@ module CyberSource
     # The description for this field is not available.
     attr_accessor :application_user
 
-    # The description for this field is not available.
+    # Brief description of the order or any comment you wish to add to the order.
     attr_accessor :comments
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -88,6 +88,10 @@ module CyberSource
         invalid_properties.push('invalid value for "code", the character length must be smaller than or equal to 50.')
       end
 
+      if !@comments.nil? && @comments.to_s.length > 255
+        invalid_properties.push('invalid value for "comments", the character length must be smaller than or equal to 255.')
+      end
+
       invalid_properties
     end
 
@@ -95,6 +99,7 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if !@code.nil? && @code.to_s.length > 50
+      return false if !@comments.nil? && @comments.to_s.length > 255
       true
     end
 
@@ -106,6 +111,16 @@ module CyberSource
       end
 
       @code = code
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] comments Value to be assigned
+    def comments=(comments)
+      if !comments.nil? && comments.to_s.length > 255
+        fail ArgumentError, 'invalid value for "comments", the character length must be smaller than or equal to 255.'
+      end
+
+      @comments = comments
     end
 
     # Checks equality by comparing each attribute.

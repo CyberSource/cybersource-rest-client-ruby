@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -40,6 +40,18 @@ describe 'ReversalApi' do
   # @param [Hash] opts the optional parameters
   # @return [PtsV2PaymentsReversalsPost201Response]
   describe 'auth_reversal test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for mit_reversal
+  # Merchant Initiated Reversal
+  # This is to reverse a previous payment that merchant does not receive a reply.
+  # @param mit_reversal_request 
+  # @param [Hash] opts the optional parameters
+  # @return [PtsV2PaymentsReversalsPost201Response]
+  describe 'mit_reversal test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
