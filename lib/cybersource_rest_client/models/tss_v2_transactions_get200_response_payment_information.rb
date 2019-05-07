@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -42,7 +42,7 @@ module CyberSource
     def self.swagger_types
       {
         :'payment_type' => :'TssV2TransactionsGet200ResponsePaymentInformationPaymentType',
-        :'customer' => :'TssV2TransactionsGet200ResponsePaymentInformationCustomer',
+        :'customer' => :'Ptsv2paymentsPaymentInformationCustomer',
         :'card' => :'TssV2TransactionsGet200ResponsePaymentInformationCard',
         :'invoice' => :'TssV2TransactionsGet200ResponsePaymentInformationInvoice',
         :'bank' => :'TssV2TransactionsGet200ResponsePaymentInformationBank',

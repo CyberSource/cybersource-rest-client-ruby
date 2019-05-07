@@ -1,8 +1,8 @@
-# CyberSource::TmsV1InstrumentidentifiersDelete409Response
+# CyberSource::TmsV1InstrumentIdentifiersDelete409Response
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**_links** | [**TmsV1InstrumentidentifiersDelete409ResponseLinks**](TmsV1InstrumentidentifiersDelete409ResponseLinks.md) |  | [optional] 
+**_links** | [**TmsV1InstrumentIdentifiersDelete409ResponseLinks**](TmsV1InstrumentIdentifiersDelete409ResponseLinks.md) |  | [optional] 
 
 

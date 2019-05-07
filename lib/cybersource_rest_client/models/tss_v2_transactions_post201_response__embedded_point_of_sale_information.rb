@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -17,7 +17,7 @@ module CyberSource
     # Identifier for the terminal at your retail location. You can define this value yourself, but consult the processor for requirements.  For Payouts: This field is applicable for CtV. 
     attr_accessor :terminal_id
 
-    # The description for this field is not available.
+    # Terminal serial number assigned by the hardware manufacturer. This value is provided by the client software that is installed on the POS terminal.  CyberSource does not forward this value to the processor. Instead, the value is forwarded to the CyberSource reporting functionality.  This field is supported only on American Express Direct, FDC Nashville Global, and SIX. 
     attr_accessor :terminal_serial_number
 
     # The description for this field is not available.
@@ -41,7 +41,7 @@ module CyberSource
         :'terminal_id' => :'String',
         :'terminal_serial_number' => :'String',
         :'device_id' => :'String',
-        :'partner' => :'TssV2TransactionsPost201ResponseEmbeddedPointOfSaleInformationPartner'
+        :'partner' => :'Ptsv2paymentsClientReferenceInformationPartner'
       }
     end
 
@@ -78,6 +78,10 @@ module CyberSource
         invalid_properties.push('invalid value for "terminal_id", the character length must be smaller than or equal to 8.')
       end
 
+      if !@terminal_serial_number.nil? && @terminal_serial_number.to_s.length > 32
+        invalid_properties.push('invalid value for "terminal_serial_number", the character length must be smaller than or equal to 32.')
+      end
+
       invalid_properties
     end
 
@@ -85,6 +89,7 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if !@terminal_id.nil? && @terminal_id.to_s.length > 8
+      return false if !@terminal_serial_number.nil? && @terminal_serial_number.to_s.length > 32
       true
     end
 
@@ -96,6 +101,16 @@ module CyberSource
       end
 
       @terminal_id = terminal_id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] terminal_serial_number Value to be assigned
+    def terminal_serial_number=(terminal_serial_number)
+      if !terminal_serial_number.nil? && terminal_serial_number.to_s.length > 32
+        fail ArgumentError, 'invalid value for "terminal_serial_number", the character length must be smaller than or equal to 32.'
+      end
+
+      @terminal_serial_number = terminal_serial_number
     end
 
     # Checks equality by comparing each attribute.

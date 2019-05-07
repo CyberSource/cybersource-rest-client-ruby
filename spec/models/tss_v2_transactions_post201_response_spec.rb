@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -32,7 +32,7 @@ describe 'TssV2TransactionsPost201Response' do
       expect(@instance).to be_instance_of(CyberSource::TssV2TransactionsPost201Response)
     end
   end
-  describe 'test attribute "id"' do
+  describe 'test attribute "search_id"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

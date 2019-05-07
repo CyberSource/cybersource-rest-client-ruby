@@ -5,7 +5,7 @@ All URIs are relative to *https://apitest.cybersource.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_search**](SearchTransactionsApi.md#create_search) | **POST** /tss/v2/searches | Create a search request
-[**get_search**](SearchTransactionsApi.md#get_search) | **GET** /tss/v2/searches/{id} | Get Search results
+[**get_search**](SearchTransactionsApi.md#get_search) | **GET** /tss/v2/searches/{searchId} | Get Search results
 
 
 # **create_search**
@@ -22,7 +22,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::SearchTransactionsApi.new
 
-create_search_request = CyberSource::TssV2TransactionsPostResponse.new # TssV2TransactionsPostResponse | 
+create_search_request = CyberSource::CreateSearchRequest.new # CreateSearchRequest | 
 
 
 begin
@@ -38,7 +38,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_search_request** | [**TssV2TransactionsPostResponse**](TssV2TransactionsPostResponse.md)|  | 
+ **create_search_request** | [**CreateSearchRequest**](CreateSearchRequest.md)|  | 
 
 ### Return type
 
@@ -56,11 +56,11 @@ No authorization required
 
 
 # **get_search**
-> TssV2TransactionsPost201Response get_search(id)
+> TssV2TransactionsPost201Response get_search(search_id)
 
 Get Search results
 
-Include the Search ID in the GET request to retrieve the search results.
+Include the Search ID in the GET request to retrieve the search results. 
 
 ### Example
 ```ruby
@@ -69,12 +69,12 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::SearchTransactionsApi.new
 
-id = "id_example" # String | Search ID.
+search_id = "search_id_example" # String | Search ID.
 
 
 begin
   #Get Search results
-  result = api_instance.get_search(id)
+  result = api_instance.get_search(search_id)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling SearchTransactionsApi->get_search: #{e}"
@@ -85,7 +85,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String**| Search ID. | 
+ **search_id** | **String**| Search ID. | 
 
 ### Return type
 

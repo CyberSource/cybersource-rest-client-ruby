@@ -1,0 +1,31 @@
+    #
+    # WARNING #
+    # Do not alter the values on the left hand side. "LEFTHANDSIDE" = "EDITABLE".
+    #
+
+    #HTTP_Signature / JWT
+    authenticationType : "jwt"
+    #UNQUIE MERCHANT ID
+    merchantID : "testrest"
+    # CyberSource.Environment.SANDBOX or CyberSource.Environment. or (api.) working domain
+    runEnvironment : "Cybersource.Environment.SANDBOX"
+    # JWT Parameters
+    keyAlias : "testrest"
+    keyPass : "testrest"
+    keyFilename : "testrest"
+    #P12 key path. Enter the folder path where the .p12 file is located.
+    keysDirectory : ".././resource"
+    #EBC portal Values
+    merchantKeyId : "08c94330-f618-42a3-b09d-e1e43be5efda"
+    merchantsecretKey : "yBJxy6LjM2TmcPGu+GaJrHtkke25fPpUX+UY6/L/1tE="
+    #Logging to be enabled or not [true/false].
+    enableLog : true
+    #Log directory Path
+    logDirectory : "../log"
+    #Enter only file name, do not enter the extension type like .log, .txt etc.
+    logFilename : "Cybs"
+    #Log file size in KB "5K" or MB as "5M".
+    logSize : 10485760
+    #Proxy Setup
+    # proxyAddress : "userproxy.com"
+    # proxyPort : 

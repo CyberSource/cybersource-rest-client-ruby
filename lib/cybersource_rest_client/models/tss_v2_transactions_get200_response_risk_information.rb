@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -24,7 +24,7 @@ module CyberSource
 
     attr_accessor :score
 
-    # Time that the transaction was submitted in local time..
+    # Time that the transaction was submitted in local time.
     attr_accessor :local_time
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -43,9 +43,9 @@ module CyberSource
     def self.swagger_types
       {
         :'profile' => :'TssV2TransactionsGet200ResponseRiskInformationProfile',
-        :'rules' => :'Array<TssV2TransactionsGet200ResponseRiskInformationProfile>',
+        :'rules' => :'Array<TssV2TransactionsGet200ResponseRiskInformationRules>',
         :'passive_profile' => :'TssV2TransactionsGet200ResponseRiskInformationProfile',
-        :'passive_rules' => :'Array<TssV2TransactionsGet200ResponseRiskInformationProfile>',
+        :'passive_rules' => :'Array<TssV2TransactionsGet200ResponseRiskInformationRules>',
         :'score' => :'TssV2TransactionsGet200ResponseRiskInformationScore',
         :'local_time' => :'String'
       }

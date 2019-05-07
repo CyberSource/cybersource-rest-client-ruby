@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -75,12 +75,22 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @card_number.nil?
+        invalid_properties.push('invalid value for "card_number", card_number cannot be nil.')
+      end
+
+      if @card_type.nil?
+        invalid_properties.push('invalid value for "card_type", card_type cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @card_number.nil?
+      return false if @card_type.nil?
       true
     end
 

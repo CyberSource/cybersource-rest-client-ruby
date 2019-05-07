@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -14,10 +14,10 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsDeviceInformation
-    # DNS resolved hostname from above _ipAddress_.
+    # Host name reported by the customer’s browser to your Web server identified via the HTTP header.
     attr_accessor :host_name
 
-    # IP address of the customer.
+    # Customer’s IP address, such as 10.1.27.63, reported by your Web server via socket information. 
     attr_accessor :ip_address
 
     # Customer’s browser as identified from the HTTP header data. For example, Mozilla is the value that identifies the Netscape browser. 

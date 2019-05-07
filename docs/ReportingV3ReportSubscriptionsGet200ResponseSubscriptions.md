@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **start_day** | **Integer** | Start Day | [optional] 
 **report_fields** | **Array&lt;String&gt;** | List of all fields String values | [optional] 
 **report_filters** | **Hash&lt;String, Array&lt;String&gt;&gt;** | List of filters to apply | [optional] 
-**report_preferences** | [**ReportingV3ReportsIdGet200ResponseReportPreferences**](ReportingV3ReportsIdGet200ResponseReportPreferences.md) |  | [optional] 
+**report_preferences** | [**Reportingv3reportsReportPreferences**](Reportingv3reportsReportPreferences.md) |  | [optional] 
 **group_id** | **String** | Id for the selected group. | [optional] 
 
 

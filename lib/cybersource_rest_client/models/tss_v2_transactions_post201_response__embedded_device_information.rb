@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsPost201ResponseEmbeddedDeviceInformation
-    # IP address of the customer.
+    # Customer’s IP address, such as 10.1.27.63, reported by your Web server via socket information. 
     attr_accessor :ip_address
 
     # Attribute mapping from ruby-style variable name to JSON key.

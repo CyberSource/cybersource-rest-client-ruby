@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -106,8 +106,8 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [V1FileDetailsGet200Response]
-    def get_file_details(start_date, end_date, opts = {})
-      data, status_code, headers = get_file_details_with_http_info(start_date, end_date, opts)
+    def get_file_detail(start_date, end_date, opts = {})
+      data, status_code, headers = get_file_detail_with_http_info(start_date, end_date, opts)
       return data, status_code, headers
     end
 
@@ -118,34 +118,34 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [Array<(V1FileDetailsGet200Response, Fixnum, Hash)>] V1FileDetailsGet200Response data, response status code and response headers
-    def get_file_details_with_http_info(start_date, end_date, opts = {})
+    def get_file_detail_with_http_info(start_date, end_date, opts = {})
       
 	  if @api_client.config.debugging
 	  	begin
 			raise
-				@api_client.config.logger.debug 'Calling API: SecureFileShareApi.get_file_details ...'
+				@api_client.config.logger.debug 'Calling API: SecureFileShareApi.get_file_detail ...'
 			rescue
 				puts 'Cannot write to log'
 			end
       end
       # verify the required parameter 'start_date' is set
       if @api_client.config.client_side_validation && start_date.nil?
-        fail ArgumentError, "Missing the required parameter 'start_date' when calling SecureFileShareApi.get_file_details"
+        fail ArgumentError, "Missing the required parameter 'start_date' when calling SecureFileShareApi.get_file_detail"
       end
       # verify the required parameter 'end_date' is set
       if @api_client.config.client_side_validation && end_date.nil?
-        fail ArgumentError, "Missing the required parameter 'end_date' when calling SecureFileShareApi.get_file_details"
+        fail ArgumentError, "Missing the required parameter 'end_date' when calling SecureFileShareApi.get_file_detail"
       end
       if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length > 32
-        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling SecureFileShareApi.get_file_details, the character length must be smaller than or equal to 32.'
+        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling SecureFileShareApi.get_file_detail, the character length must be smaller than or equal to 32.'
       end
 
       if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length < 1
-        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling SecureFileShareApi.get_file_details, the character length must be great than or equal to 1.'
+        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling SecureFileShareApi.get_file_detail, the character length must be great than or equal to 1.'
       end
 
       #if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
-        #fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling SecureFileShareApi.get_file_details, must conform to the pattern /[a-zA-Z0-9-_]+/."
+        #fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling SecureFileShareApi.get_file_detail, must conform to the pattern /[a-zA-Z0-9-_]+/."
       #end
 
       # resource path
@@ -180,7 +180,7 @@ module CyberSource
       if @api_client.config.debugging
 		begin
 		raise
-			@api_client.config.logger.debug "API called: SecureFileShareApi#get_file_details\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+			@api_client.config.logger.debug "API called: SecureFileShareApi#get_file_detail\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
 		rescue
 			puts 'Cannot write to log'
 		end

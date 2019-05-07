@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -15,7 +15,7 @@ require 'date'
 module CyberSource
   # HTTP status code for client application
   class Reportingv3ReportDownloadsGet400Response
-    # Time of request in UTC 
+    # Time of request in UTC.  
     attr_accessor :submit_time_utc
 
     # Documented reason code 
@@ -40,7 +40,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'submit_time_utc' => :'String',
+        :'submit_time_utc' => :'DateTime',
         :'reason' => :'String',
         :'message' => :'String',
         :'details' => :'Array<Reportingv3ReportDownloadsGet400ResponseDetails>'
