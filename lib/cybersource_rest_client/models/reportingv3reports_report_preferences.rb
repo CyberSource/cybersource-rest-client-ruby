@@ -96,7 +96,7 @@ module CyberSource
     def field_name_convention=(field_name_convention)
       validator = EnumAttributeValidator.new('String', ['SOAPI', 'SCMP'])
       unless validator.valid?(field_name_convention)
-        fail ArgumentError, 'invalid value for "field_name_convention", must be one of #{validator.allowable_values}.'
+        fail ArgumentError, "invalid value for 'field_name_convention', must be one of #{validator.allowable_values}."
       end
       @field_name_convention = field_name_convention
     end

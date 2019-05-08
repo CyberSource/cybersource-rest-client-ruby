@@ -115,7 +115,7 @@ module CyberSource
     def status=(status)
       validator = EnumAttributeValidator.new('String', ['SERVER_ERROR'])
       unless validator.valid?(status)
-        fail ArgumentError, 'invalid value for "status", must be one of #{validator.allowable_values}.'
+        fail ArgumentError, "invalid value for 'status', must be one of #{validator.allowable_values}."
       end
       @status = status
     end
@@ -125,7 +125,7 @@ module CyberSource
     def reason=(reason)
       validator = EnumAttributeValidator.new('String', ['SYSTEM_ERROR', 'SERVER_TIMEOUT', 'SERVICE_TIMEOUT', 'PROCESSOR_TIMEOUT'])
       unless validator.valid?(reason)
-        fail ArgumentError, 'invalid value for "reason", must be one of #{validator.allowable_values}.'
+        fail ArgumentError, "invalid value for 'reason', must be one of #{validator.allowable_values}."
       end
       @reason = reason
     end

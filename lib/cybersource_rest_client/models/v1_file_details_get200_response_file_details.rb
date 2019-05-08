@@ -140,7 +140,7 @@ module CyberSource
     def mime_type=(mime_type)
       validator = EnumAttributeValidator.new('String', ['application/xml', 'text/csv', 'application/pdf', 'application/octet-stream'])
       unless validator.valid?(mime_type)
-        fail ArgumentError, 'invalid value for "mime_type", must be one of #{validator.allowable_values}.'
+        fail ArgumentError, "invalid value for 'mime_type', must be one of #{validator.allowable_values}."
       end
       @mime_type = mime_type
     end

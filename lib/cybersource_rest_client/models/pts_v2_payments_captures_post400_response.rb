@@ -125,7 +125,7 @@ module CyberSource
     def status=(status)
       validator = EnumAttributeValidator.new('String', ['INVALID_REQUEST'])
       unless validator.valid?(status)
-        fail ArgumentError, 'invalid value for "status", must be one of #{validator.allowable_values}.'
+        fail ArgumentError, "invalid value for 'status', must be one of #{validator.allowable_values}."
       end
       @status = status
     end
@@ -135,7 +135,7 @@ module CyberSource
     def reason=(reason)
       validator = EnumAttributeValidator.new('String', ['MISSING_FIELD', 'INVALID_DATA', 'DUPLICATE_REQUEST', 'INVALID_MERCHANT_CONFIGURATION', 'EXCEEDS_AUTH_AMOUNT', 'AUTH_ALREADY_REVERSED', 'TRANSACTION_ALREADY_SETTLED', 'MISSING_AUTH', 'TRANSACTION_ALREADY_REVERSED_OR_SETTLED'])
       unless validator.valid?(reason)
-        fail ArgumentError, 'invalid value for "reason", must be one of #{validator.allowable_values}.'
+        fail ArgumentError, "invalid value for 'reason', must be one of #{validator.allowable_values}."
       end
       @reason = reason
     end

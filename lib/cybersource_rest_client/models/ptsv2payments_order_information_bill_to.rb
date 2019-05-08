@@ -454,7 +454,7 @@ module CyberSource
     def phone_type=(phone_type)
       validator = EnumAttributeValidator.new('String', ['day', 'home', 'night', 'work'])
       unless validator.valid?(phone_type)
-        fail ArgumentError, 'invalid value for "phone_type", must be one of #{validator.allowable_values}.'
+        fail ArgumentError, "invalid value for 'phone_type', must be one of #{validator.allowable_values}."
       end
       @phone_type = phone_type
     end

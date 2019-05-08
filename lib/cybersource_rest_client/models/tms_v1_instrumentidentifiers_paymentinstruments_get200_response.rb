@@ -139,7 +139,7 @@ module CyberSource
     def object=(object)
       validator = EnumAttributeValidator.new('String', ['collection'])
       unless validator.valid?(object)
-        fail ArgumentError, 'invalid value for "object", must be one of #{validator.allowable_values}.'
+        fail ArgumentError, "invalid value for 'object', must be one of #{validator.allowable_values}."
       end
       @object = object
     end

@@ -200,7 +200,7 @@ module CyberSource
     def report_mime_type=(report_mime_type)
       validator = EnumAttributeValidator.new('String', ['application/xml', 'text/csv'])
       unless validator.valid?(report_mime_type)
-        fail ArgumentError, 'invalid value for "report_mime_type", must be one of #{validator.allowable_values}.'
+        fail ArgumentError, "invalid value for 'report_mime_type', must be one of #{validator.allowable_values}."
       end
       @report_mime_type = report_mime_type
     end
@@ -210,7 +210,7 @@ module CyberSource
     def report_frequency=(report_frequency)
       validator = EnumAttributeValidator.new('String', ['DAILY', 'WEEKLY', 'MONTHLY'])
       unless validator.valid?(report_frequency)
-        fail ArgumentError, 'invalid value for "report_frequency", must be one of #{validator.allowable_values}.'
+        fail ArgumentError, "invalid value for 'report_frequency', must be one of #{validator.allowable_values}."
       end
       @report_frequency = report_frequency
     end

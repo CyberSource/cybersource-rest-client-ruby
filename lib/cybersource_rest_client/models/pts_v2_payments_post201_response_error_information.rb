@@ -105,7 +105,7 @@ module CyberSource
     def reason=(reason)
       validator = EnumAttributeValidator.new('String', ['AVS_FAILED', 'CONTACT_PROCESSOR', 'CV_FAILED', 'EXPIRED_CARD', 'PROCESSOR_DECLINED', 'INSUFFICIENT_FUND', 'STOLEN_LOST_CARD', 'ISSUER_UNAVAILABLE', 'UNAUTHORIZED_CARD', 'CVN_NOT_MATCH', 'EXCEEDS_CREDIT_LIMIT', 'INVALID_CVN', 'PAYMENT_REFUSED', 'INVALID_ACCOUNT', 'GENERAL_DECLINE'])
       unless validator.valid?(reason)
-        fail ArgumentError, 'invalid value for "reason", must be one of #{validator.allowable_values}.'
+        fail ArgumentError, "invalid value for 'reason', must be one of #{validator.allowable_values}."
       end
       @reason = reason
     end
