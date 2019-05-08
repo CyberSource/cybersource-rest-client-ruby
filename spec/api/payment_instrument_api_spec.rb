@@ -35,11 +35,8 @@ describe 'PaymentInstrumentApi' do
   # unit tests for create_payment_instrument
   # Create a Payment Instrument
   # @param profile_id The id of a profile containing user specific TMS configuration.
-  # @param v_c_merchant_id CyberSource merchant id.
-  # @param v_c_correlation_id The mandatory correlation id passed by upstream (calling) system.
   # @param create_payment_instrument_request Specify the customer&#39;s payment details for card or bank account.
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :client_application Client application name
   # @return [TmsV1PaymentinstrumentsPatch200Response]
   describe 'create_payment_instrument test' do
     it 'should work' do
@@ -50,11 +47,8 @@ describe 'PaymentInstrumentApi' do
   # unit tests for delete_payment_instrument
   # Delete a Payment Instrument
   # @param profile_id The id of a profile containing user specific TMS configuration.
-  # @param v_c_merchant_id CyberSource merchant id.
-  # @param v_c_correlation_id The mandatory correlation id passed by upstream (calling) system.
   # @param token_id The TokenId of a Payment Instrument.
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :client_application Client application name
   # @return [nil]
   describe 'delete_payment_instrument test' do
     it 'should work' do
@@ -65,11 +59,8 @@ describe 'PaymentInstrumentApi' do
   # unit tests for get_payment_instrument
   # Retrieve a Payment Instrument
   # @param profile_id The id of a profile containing user specific TMS configuration.
-  # @param v_c_merchant_id CyberSource merchant id.
-  # @param v_c_correlation_id The mandatory correlation id passed by upstream (calling) system.
   # @param token_id The TokenId of a Payment Instrument.
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :client_application Client application name
   # @return [TmsV1PaymentinstrumentsPatch200Response]
   describe 'get_payment_instrument test' do
     it 'should work' do
@@ -80,12 +71,9 @@ describe 'PaymentInstrumentApi' do
   # unit tests for update_payment_instrument
   # Update a Payment Instrument
   # @param profile_id The id of a profile containing user specific TMS configuration.
-  # @param v_c_merchant_id CyberSource merchant id.
-  # @param v_c_correlation_id The mandatory correlation id passed by upstream (calling) system.
   # @param token_id The TokenId of a Payment Instrument.
   # @param update_payment_instrument_request Specify the customer&#39;s payment details.
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :client_application Client application name
   # @return [TmsV1PaymentinstrumentsPatch200Response]
   describe 'update_payment_instrument test' do
     it 'should work' do

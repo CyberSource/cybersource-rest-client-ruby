@@ -192,7 +192,7 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if !@id.nil? && @id.to_s.length > 26
-      status_validator = EnumAttributeValidator.new('String', ['AUTHORIZED', 'PARTIAL_AUTHORIZED', 'AUTHORIZED_PENDING_REVIEW', 'DECLINED'])
+      status_validator = EnumAttributeValidator.new('String', ['AUTHORIZED', 'PARTIAL_AUTHORIZED', 'AUTHORIZED_PENDING_REVIEW', 'DECLINED', 'INVALID_REQUEST', 'PENDING'])
       return false unless status_validator.valid?(@status)
       return false if !@reconciliation_id.nil? && @reconciliation_id.to_s.length > 60
       true
@@ -211,7 +211,7 @@ module CyberSource
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] status Object to be assigned
     def status=(status)
-      validator = EnumAttributeValidator.new('String', ['AUTHORIZED', 'PARTIAL_AUTHORIZED', 'AUTHORIZED_PENDING_REVIEW', 'DECLINED'])
+      validator = EnumAttributeValidator.new('String', ['AUTHORIZED', 'PARTIAL_AUTHORIZED', 'AUTHORIZED_PENDING_REVIEW', 'DECLINED', 'INVALID_REQUEST', 'PENDING'])
       unless validator.valid?(status)
         fail ArgumentError, 'invalid value for "status", must be one of #{validator.allowable_values}.'
       end

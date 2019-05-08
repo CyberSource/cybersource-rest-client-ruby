@@ -35,11 +35,8 @@ describe 'InstrumentIdentifierApi' do
   # unit tests for create_instrument_identifier
   # Create an Instrument Identifier
   # @param profile_id The id of a profile containing user specific TMS configuration.
-  # @param v_c_merchant_id CyberSource merchant id.
-  # @param v_c_correlation_id The mandatory correlation id passed by upstream (calling) system.
   # @param create_instrument_identifier_request Please specify either a Card, Bank Account or Enrollable Card
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :client_application Client application name
   # @return [TmsV1InstrumentIdentifiersPost200Response]
   describe 'create_instrument_identifier test' do
     it 'should work' do
@@ -50,11 +47,8 @@ describe 'InstrumentIdentifierApi' do
   # unit tests for delete_instrument_identifier
   # Delete an Instrument Identifier
   # @param profile_id The id of a profile containing user specific TMS configuration.
-  # @param v_c_merchant_id CyberSource merchant id.
-  # @param v_c_correlation_id The mandatory correlation id passed by upstream (calling) system.
   # @param token_id The TokenId of an Instrument Identifier.
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :client_application Client application name
   # @return [nil]
   describe 'delete_instrument_identifier test' do
     it 'should work' do
@@ -65,11 +59,8 @@ describe 'InstrumentIdentifierApi' do
   # unit tests for get_all_payment_instruments
   # Retrieve all Payment Instruments associated with an Instrument Identifier
   # @param profile_id The id of a profile containing user specific TMS configuration.
-  # @param v_c_merchant_id CyberSource merchant id.
-  # @param v_c_correlation_id The mandatory correlation id passed by upstream (calling) system.
   # @param token_id The TokenId of an Instrument Identifier.
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :client_application Client application name
   # @option opts [Integer] :offset Starting Payment Instrument record in zero-based dataset that should be returned as the first object in the array. Default is 0.
   # @option opts [Integer] :limit The maximum number of Payment Instruments that can be returned in the array starting from the offset record in zero-based dataset. Default is 20, maximum is 100.
   # @return [TmsV1InstrumentIdentifiersPaymentInstrumentsGet200Response]
@@ -82,11 +73,8 @@ describe 'InstrumentIdentifierApi' do
   # unit tests for get_instrument_identifier
   # Retrieve an Instrument Identifier
   # @param profile_id The id of a profile containing user specific TMS configuration.
-  # @param v_c_merchant_id CyberSource merchant id.
-  # @param v_c_correlation_id The mandatory correlation id passed by upstream (calling) system.
   # @param token_id The TokenId of an Instrument Identifier.
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :client_application Client application name
   # @return [TmsV1InstrumentIdentifiersPost200Response]
   describe 'get_instrument_identifier test' do
     it 'should work' do
@@ -97,12 +85,9 @@ describe 'InstrumentIdentifierApi' do
   # unit tests for update_instrument_identifier
   # Update a Instrument Identifier
   # @param profile_id The id of a profile containing user specific TMS configuration.
-  # @param v_c_merchant_id CyberSource merchant id.
-  # @param v_c_correlation_id The mandatory correlation id passed by upstream (calling) system.
   # @param token_id The TokenId of an Instrument Identifier.
   # @param update_instrument_identifier_request Specify the previous transaction ID to update.
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :client_application Client application name
   # @return [TmsV1InstrumentIdentifiersPost200Response]
   describe 'update_instrument_identifier test' do
     it 'should work' do
