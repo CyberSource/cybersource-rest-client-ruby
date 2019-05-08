@@ -398,8 +398,8 @@ require 'cybersource_rest_client/api/capture_api'
 require 'cybersource_rest_client/api/conversion_details_api'
 require 'cybersource_rest_client/api/credit_api'
 require 'cybersource_rest_client/api/decision_manager_api'
-require 'cybersource_rest_client/api/download_dtd_api'
-require 'cybersource_rest_client/api/download_xsd_api'
+
+
 require 'cybersource_rest_client/api/instrument_identifier_api'
 require 'cybersource_rest_client/api/key_generation_api'
 require 'cybersource_rest_client/api/net_fundings_api'
