@@ -178,7 +178,7 @@ module CyberSource
     def object=(object)
       validator = EnumAttributeValidator.new('String', ['paymentInstrument'])
       unless validator.valid?(object)
-        fail ArgumentError, 'invalid value for "object", must be one of #{validator.allowable_values}.'
+        fail ArgumentError, "invalid value for 'object', must be one of #{validator.allowable_values}."
       end
       @object = object
     end
@@ -188,7 +188,7 @@ module CyberSource
     def state=(state)
       validator = EnumAttributeValidator.new('String', ['ACTIVE', 'CLOSED'])
       unless validator.valid?(state)
-        fail ArgumentError, 'invalid value for "state", must be one of #{validator.allowable_values}.'
+        fail ArgumentError, "invalid value for 'state', must be one of #{validator.allowable_values}."
       end
       @state = state
     end

@@ -365,7 +365,7 @@ module CyberSource
     def balance_sign=(balance_sign)
       validator = EnumAttributeValidator.new('String', ['+', '-'])
       unless validator.valid?(balance_sign)
-        fail ArgumentError, 'invalid value for "balance_sign", must be one of #{validator.allowable_values}.'
+        fail ArgumentError, "invalid value for 'balance_sign', must be one of #{validator.allowable_values}."
       end
       @balance_sign = balance_sign
     end

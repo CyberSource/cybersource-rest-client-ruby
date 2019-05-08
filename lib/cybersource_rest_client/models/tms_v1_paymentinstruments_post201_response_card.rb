@@ -164,7 +164,7 @@ module CyberSource
     def type=(type)
       validator = EnumAttributeValidator.new('String', ['visa', 'mastercard', 'american express', 'discover', 'diners club', 'carte blanche', 'jcb', 'optima', 'twinpay credit', 'twinpay debit', 'walmart', 'enroute', 'lowes consumer', 'home depot consumer', 'mbna', 'dicks sportswear', 'casual corner', 'sears', 'jal', 'disney', 'maestro uk domestic', 'sams club consumer', 'sams club business', 'nicos', 'bill me later', 'bebe', 'restoration hardware', 'delta online', 'solo', 'visa electron', 'dankort', 'laser', 'carte bleue', 'carta si', 'pinless debit', 'encoded account', 'uatp', 'household', 'maestro international', 'ge money uk', 'korean cards', 'style', 'jcrew', 'payease china processing ewallet', 'payease china processing bank transfer', 'meijer private label', 'hipercard', 'aura', 'redecard', 'orico', 'elo', 'capital one private label', 'synchrony private label', 'china union pay'])
       unless validator.valid?(type)
-        fail ArgumentError, 'invalid value for "type", must be one of #{validator.allowable_values}.'
+        fail ArgumentError, "invalid value for 'type', must be one of #{validator.allowable_values}."
       end
       @type = type
     end
