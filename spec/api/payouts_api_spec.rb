@@ -37,7 +37,7 @@ describe 'PayoutsApi' do
   # Send funds from a selected funding source to a designated credit/debit card account or a prepaid card using an Original Credit Transaction (OCT). 
   # @param oct_create_payment_request 
   # @param [Hash] opts the optional parameters
-  # @return [nil]
+  # @return [PtsV2PayoutsPost201Response]
   describe 'oct_create_payment test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

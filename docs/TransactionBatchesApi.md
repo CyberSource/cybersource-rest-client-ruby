@@ -62,7 +62,7 @@ No authorization required
 
 
 # **get_transaction_batch_id**
-> get_transaction_batch_id(id)
+> PtsV1TransactionBatchesIdGet200Response get_transaction_batch_id(id)
 
 Get individual batch file
 
@@ -80,7 +80,8 @@ id = "id_example" # String | The batch id assigned for the template.
 
 begin
   #Get individual batch file
-  api_instance.get_transaction_batch_id(id)
+  result = api_instance.get_transaction_batch_id(id)
+  p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling TransactionBatchesApi->get_transaction_batch_id: #{e}"
 end
@@ -94,7 +95,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-nil (empty response body)
+[**PtsV1TransactionBatchesIdGet200Response**](PtsV1TransactionBatchesIdGet200Response.md)
 
 ### Authorization
 

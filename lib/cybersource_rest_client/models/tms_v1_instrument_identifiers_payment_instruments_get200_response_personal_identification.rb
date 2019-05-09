@@ -13,7 +13,7 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  class TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseBuyerInformationPersonalIdentification
+  class TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedBuyerInformationPersonalIdentification
     # Customer's identification number.  **Important**: Contact your TeleCheck representative to learn whether this field is required or optional. 
     attr_accessor :id
 
@@ -58,7 +58,7 @@ module CyberSource
       {
         :'id' => :'String',
         :'type' => :'String',
-        :'issued_by' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseBuyerInformationIssuedBy'
+        :'issued_by' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedBuyerInformationIssuedBy'
       }
     end
 

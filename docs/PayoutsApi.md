@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **oct_create_payment**
-> oct_create_payment(oct_create_payment_request)
+> PtsV2PayoutsPost201Response oct_create_payment(oct_create_payment_request)
 
 Process a Payout
 
@@ -26,7 +26,8 @@ oct_create_payment_request = CyberSource::OctCreatePaymentRequest.new # OctCreat
 
 begin
   #Process a Payout
-  api_instance.oct_create_payment(oct_create_payment_request)
+  result = api_instance.oct_create_payment(oct_create_payment_request)
+  p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling PayoutsApi->oct_create_payment: #{e}"
 end
@@ -40,7 +41,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-nil (empty response body)
+[**PtsV2PayoutsPost201Response**](PtsV2PayoutsPost201Response.md)
 
 ### Authorization
 

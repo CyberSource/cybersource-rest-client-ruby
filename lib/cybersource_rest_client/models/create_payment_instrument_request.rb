@@ -88,14 +88,14 @@ module CyberSource
         :'id' => :'String',
         :'object' => :'String',
         :'state' => :'String',
-        :'bank_account' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseBankAccount',
-        :'card' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseCard',
-        :'buyer_information' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseBuyerInformation',
-        :'bill_to' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseBillTo',
-        :'processing_information' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseProcessingInformation',
-        :'merchant_information' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseMerchantInformation',
+        :'bank_account' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedBankAccount',
+        :'card' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedCard',
+        :'buyer_information' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedBuyerInformation',
+        :'bill_to' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedBillTo',
+        :'processing_information' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedProcessingInformation',
+        :'merchant_information' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedMerchantInformation',
         :'meta_data' => :'TmsV1InstrumentIdentifiersPost200ResponseMetadata',
-        :'instrument_identifier' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseInstrumentIdentifier'
+        :'instrument_identifier' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedInstrumentIdentifier'
       }
     end
 

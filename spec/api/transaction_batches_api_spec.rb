@@ -51,7 +51,7 @@ describe 'TransactionBatchesApi' do
   # Provide the search range
   # @param id The batch id assigned for the template.
   # @param [Hash] opts the optional parameters
-  # @return [nil]
+  # @return [PtsV1TransactionBatchesIdGet200Response]
   describe 'get_transaction_batch_id test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

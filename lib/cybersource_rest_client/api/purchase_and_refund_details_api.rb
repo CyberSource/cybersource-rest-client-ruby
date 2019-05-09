@@ -31,7 +31,7 @@ module CyberSource
     # @option opts [String] :group_name Valid CyberSource Group Name.User can define groups using CBAPI and Group Management Module in EBC2. Groups are collection of organizationIds
     # @option opts [Integer] :offset Offset of the Purchase and Refund Results.
     # @option opts [Integer] :limit Results count per page. Range(1-2000) (default to 2000)
-    # @return [nil]
+    # @return [ReportingV3PurchaseRefundDetailsGet200Response]
     def get_purchase_and_refund_details(start_time, end_time, opts = {})
       data, status_code, headers = get_purchase_and_refund_details_with_http_info(start_time, end_time, opts)
       return data, status_code, headers
@@ -48,7 +48,7 @@ module CyberSource
     # @option opts [String] :group_name Valid CyberSource Group Name.User can define groups using CBAPI and Group Management Module in EBC2. Groups are collection of organizationIds
     # @option opts [Integer] :offset Offset of the Purchase and Refund Results.
     # @option opts [Integer] :limit Results count per page. Range(1-2000)
-    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
+    # @return [Array<(ReportingV3PurchaseRefundDetailsGet200Response, Fixnum, Hash)>] ReportingV3PurchaseRefundDetailsGet200Response data, response status code and response headers
     def get_purchase_and_refund_details_with_http_info(start_time, end_time, opts = {})
       
 	  if @api_client.config.debugging
@@ -125,7 +125,8 @@ module CyberSource
         :query_params => query_params,
         :form_params => form_params,
         :body => post_body,
-        :auth_names => auth_names)
+        :auth_names => auth_names,
+        :return_type => 'ReportingV3PurchaseRefundDetailsGet200Response')
       if @api_client.config.debugging
 		begin
 		raise

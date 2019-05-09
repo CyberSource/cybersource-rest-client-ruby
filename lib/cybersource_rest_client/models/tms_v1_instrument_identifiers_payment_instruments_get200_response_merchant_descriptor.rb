@@ -13,7 +13,7 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  class TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseMerchantInformationMerchantDescriptor
+  class TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedMerchantInformationMerchantDescriptor
     # Alternate information for your business. This API field overrides the company entry description value in your CyberSource account.
     attr_accessor :alternate_name
 

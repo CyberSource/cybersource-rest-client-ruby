@@ -24,7 +24,7 @@ module CyberSource
     # @param profile_id The id of a profile containing user specific TMS configuration.
     # @param create_payment_instrument_request Specify the customer&#39;s payment details for card or bank account.
     # @param [Hash] opts the optional parameters
-    # @return [TmsV1PaymentinstrumentsPatch200Response]
+    # @return [TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments]
     def create_payment_instrument(profile_id, create_payment_instrument_request, opts = {})
       data, status_code, headers = create_payment_instrument_with_http_info(profile_id, create_payment_instrument_request, opts)
       return data, status_code, headers
@@ -34,7 +34,7 @@ module CyberSource
     # @param profile_id The id of a profile containing user specific TMS configuration.
     # @param create_payment_instrument_request Specify the customer&#39;s payment details for card or bank account.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(TmsV1PaymentinstrumentsPatch200Response, Fixnum, Hash)>] TmsV1PaymentinstrumentsPatch200Response data, response status code and response headers
+    # @return [Array<(TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments, Fixnum, Hash)>] TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments data, response status code and response headers
     def create_payment_instrument_with_http_info(profile_id, create_payment_instrument_request, opts = {})
       
 	  if @api_client.config.debugging
@@ -70,9 +70,9 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['*/*'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['*/*'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
       header_params[:'profile-id'] = profile_id
 
       # form parameters
@@ -87,7 +87,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'TmsV1PaymentinstrumentsPatch200Response')
+        :return_type => 'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments')
       if @api_client.config.debugging
 		begin
 		raise
@@ -156,9 +156,9 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['*/*'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['*/*'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
       header_params[:'profile-id'] = profile_id
 
       # form parameters
@@ -187,7 +187,7 @@ module CyberSource
     # @param profile_id The id of a profile containing user specific TMS configuration.
     # @param token_id The TokenId of a Payment Instrument.
     # @param [Hash] opts the optional parameters
-    # @return [TmsV1PaymentinstrumentsPatch200Response]
+    # @return [TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments]
     def get_payment_instrument(profile_id, token_id, opts = {})
       data, status_code, headers = get_payment_instrument_with_http_info(profile_id, token_id, opts)
       return data, status_code, headers
@@ -197,7 +197,7 @@ module CyberSource
     # @param profile_id The id of a profile containing user specific TMS configuration.
     # @param token_id The TokenId of a Payment Instrument.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(TmsV1PaymentinstrumentsPatch200Response, Fixnum, Hash)>] TmsV1PaymentinstrumentsPatch200Response data, response status code and response headers
+    # @return [Array<(TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments, Fixnum, Hash)>] TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments data, response status code and response headers
     def get_payment_instrument_with_http_info(profile_id, token_id, opts = {})
       
 	  if @api_client.config.debugging
@@ -241,9 +241,9 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['*/*'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['*/*'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
       header_params[:'profile-id'] = profile_id
 
       # form parameters
@@ -258,7 +258,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'TmsV1PaymentinstrumentsPatch200Response')
+        :return_type => 'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments')
       if @api_client.config.debugging
 		begin
 		raise
@@ -274,7 +274,7 @@ module CyberSource
     # @param token_id The TokenId of a Payment Instrument.
     # @param update_payment_instrument_request Specify the customer&#39;s payment details.
     # @param [Hash] opts the optional parameters
-    # @return [TmsV1PaymentinstrumentsPatch200Response]
+    # @return [TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments]
     def update_payment_instrument(profile_id, token_id, update_payment_instrument_request, opts = {})
       data, status_code, headers = update_payment_instrument_with_http_info(profile_id, token_id, update_payment_instrument_request, opts)
       return data, status_code, headers
@@ -285,7 +285,7 @@ module CyberSource
     # @param token_id The TokenId of a Payment Instrument.
     # @param update_payment_instrument_request Specify the customer&#39;s payment details.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(TmsV1PaymentinstrumentsPatch200Response, Fixnum, Hash)>] TmsV1PaymentinstrumentsPatch200Response data, response status code and response headers
+    # @return [Array<(TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments, Fixnum, Hash)>] TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments data, response status code and response headers
     def update_payment_instrument_with_http_info(profile_id, token_id, update_payment_instrument_request, opts = {})
       
 	  if @api_client.config.debugging
@@ -333,9 +333,9 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['*/*'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['*/*'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
       header_params[:'profile-id'] = profile_id
 
       # form parameters
@@ -350,7 +350,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'TmsV1PaymentinstrumentsPatch200Response')
+        :return_type => 'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments')
       if @api_client.config.debugging
 		begin
 		raise

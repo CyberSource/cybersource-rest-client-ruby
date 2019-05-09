@@ -24,7 +24,7 @@ module CyberSource
     # Send funds from a selected funding source to a designated credit/debit card account or a prepaid card using an Original Credit Transaction (OCT). 
     # @param oct_create_payment_request 
     # @param [Hash] opts the optional parameters
-    # @return [nil]
+    # @return [PtsV2PayoutsPost201Response]
     def oct_create_payment(oct_create_payment_request, opts = {})
       data, status_code, headers = oct_create_payment_with_http_info(oct_create_payment_request, opts)
       return data, status_code, headers
@@ -34,7 +34,7 @@ module CyberSource
     # Send funds from a selected funding source to a designated credit/debit card account or a prepaid card using an Original Credit Transaction (OCT). 
     # @param oct_create_payment_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
+    # @return [Array<(PtsV2PayoutsPost201Response, Fixnum, Hash)>] PtsV2PayoutsPost201Response data, response status code and response headers
     def oct_create_payment_with_http_info(oct_create_payment_request, opts = {})
       
 	  if @api_client.config.debugging
@@ -73,7 +73,8 @@ module CyberSource
         :query_params => query_params,
         :form_params => form_params,
         :body => post_body,
-        :auth_names => auth_names)
+        :auth_names => auth_names,
+        :return_type => 'PtsV2PayoutsPost201Response')
       if @api_client.config.debugging
 		begin
 		raise

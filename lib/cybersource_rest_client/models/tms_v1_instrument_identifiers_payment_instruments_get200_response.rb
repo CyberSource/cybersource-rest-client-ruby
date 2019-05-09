@@ -31,7 +31,6 @@ module CyberSource
     # The total number of Payment Instruments associated with the Instrument Identifier in the zero-based dataset.
     attr_accessor :total
 
-    # Array of Payment Instruments returned for the supplied Instrument Identifier.
     attr_accessor :_embedded
 
     class EnumAttributeValidator
@@ -78,7 +77,7 @@ module CyberSource
         :'limit' => :'String',
         :'count' => :'String',
         :'total' => :'String',
-        :'_embedded' => :'Array<TmsV1PaymentinstrumentsPatch200Response>'
+        :'_embedded' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbedded'
       }
     end
 
@@ -115,9 +114,7 @@ module CyberSource
       end
 
       if attributes.has_key?(:'_embedded')
-        if (value = attributes[:'_embedded']).is_a?(Array)
-          self._embedded = value
-        end
+        self._embedded = attributes[:'_embedded']
       end
     end
 

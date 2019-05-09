@@ -37,7 +37,7 @@ describe 'PaymentInstrumentApi' do
   # @param profile_id The id of a profile containing user specific TMS configuration.
   # @param create_payment_instrument_request Specify the customer&#39;s payment details for card or bank account.
   # @param [Hash] opts the optional parameters
-  # @return [TmsV1PaymentinstrumentsPatch200Response]
+  # @return [TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments]
   describe 'create_payment_instrument test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -61,7 +61,7 @@ describe 'PaymentInstrumentApi' do
   # @param profile_id The id of a profile containing user specific TMS configuration.
   # @param token_id The TokenId of a Payment Instrument.
   # @param [Hash] opts the optional parameters
-  # @return [TmsV1PaymentinstrumentsPatch200Response]
+  # @return [TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments]
   describe 'get_payment_instrument test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -74,7 +74,7 @@ describe 'PaymentInstrumentApi' do
   # @param token_id The TokenId of a Payment Instrument.
   # @param update_payment_instrument_request Specify the customer&#39;s payment details.
   # @param [Hash] opts the optional parameters
-  # @return [TmsV1PaymentinstrumentsPatch200Response]
+  # @return [TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments]
   describe 'update_payment_instrument test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

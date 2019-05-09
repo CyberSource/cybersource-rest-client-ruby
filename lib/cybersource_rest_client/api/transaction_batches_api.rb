@@ -98,7 +98,7 @@ module CyberSource
     # Provide the search range
     # @param id The batch id assigned for the template.
     # @param [Hash] opts the optional parameters
-    # @return [nil]
+    # @return [PtsV1TransactionBatchesIdGet200Response]
     def get_transaction_batch_id(id, opts = {})
       data, status_code, headers = get_transaction_batch_id_with_http_info(id, opts)
       return data, status_code, headers
@@ -108,7 +108,7 @@ module CyberSource
     # Provide the search range
     # @param id The batch id assigned for the template.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
+    # @return [Array<(PtsV1TransactionBatchesIdGet200Response, Fixnum, Hash)>] PtsV1TransactionBatchesIdGet200Response data, response status code and response headers
     def get_transaction_batch_id_with_http_info(id, opts = {})
       
 	  if @api_client.config.debugging
@@ -147,7 +147,8 @@ module CyberSource
         :query_params => query_params,
         :form_params => form_params,
         :body => post_body,
-        :auth_names => auth_names)
+        :auth_names => auth_names,
+        :return_type => 'PtsV1TransactionBatchesIdGet200Response')
       if @api_client.config.debugging
 		begin
 		raise
