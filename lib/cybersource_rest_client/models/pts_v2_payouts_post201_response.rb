@@ -157,14 +157,6 @@ module CyberSource
         invalid_properties.push('invalid value for "id", the character length must be smaller than or equal to 26.')
       end
 
-      if !@submit_time_utc.nil? && @submit_time_utc.to_s.length > 6
-        invalid_properties.push('invalid value for "submit_time_utc", the character length must be smaller than or equal to 6.')
-      end
-
-      if !@submit_time_utc.nil? && @submit_time_utc.to_s.length < 6
-        invalid_properties.push('invalid value for "submit_time_utc", the character length must be great than or equal to 6.')
-      end
-
       if !@reconciliation_id.nil? && @reconciliation_id.to_s.length > 25
         invalid_properties.push('invalid value for "reconciliation_id", the character length must be smaller than or equal to 25.')
       end
@@ -176,8 +168,6 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if !@id.nil? && @id.to_s.length > 26
-      return false if !@submit_time_utc.nil? && @submit_time_utc.to_s.length > 6
-      return false if !@submit_time_utc.nil? && @submit_time_utc.to_s.length < 6
       status_validator = EnumAttributeValidator.new('String', ['ACCEPTED', 'DECLINED', 'INVALID_REQUEST'])
       return false unless status_validator.valid?(@status)
       return false if !@reconciliation_id.nil? && @reconciliation_id.to_s.length > 25
@@ -197,14 +187,6 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] submit_time_utc Value to be assigned
     def submit_time_utc=(submit_time_utc)
-      if !submit_time_utc.nil? && submit_time_utc.to_s.length > 6
-        fail ArgumentError, 'invalid value for "submit_time_utc", the character length must be smaller than or equal to 6.'
-      end
-
-      if !submit_time_utc.nil? && submit_time_utc.to_s.length < 6
-        fail ArgumentError, 'invalid value for "submit_time_utc", the character length must be great than or equal to 6.'
-      end
-
       @submit_time_utc = submit_time_utc
     end
 
