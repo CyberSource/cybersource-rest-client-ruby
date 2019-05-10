@@ -36,14 +36,19 @@ REM to rename long file name
 del ..\lib\cybersource_rest_client\models\ptsv2payments_merchant_initiated_transaction.rb
 del ..\lib\cybersource_rest_client\models\tmsv1instrumentidentifiers_merchant_initiated_transaction.rb
 del ..\docs\Ptsv2paymentsMerchantInitiatedTransaction.md
-del ..\docs\Tmsv1instrumentidentifiersMerchantInitiatedTransaction.md
+del ..\docs\TmsV1InstrumentIdentifiersPost200ResponseMerchantInitiatedTransaction.md
 del ..\spec\models\ptsv2payments_merchant_initiated_transaction_spec.rb
 del ..\spec\models\tmsv1instrumentidentifiers_merchant_initiated_transaction_spec.rb
 del ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_payment_instruments_get200_response_personal_identification.rb
 del ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_payment_instruments_get200_response_merchant_descriptor.rb
 del ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_payment_instruments_get200_response_buyer_information_issued_by.rb
+del ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_payment_instruments_get200_response_instrument_identifier.rb
+del ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_payment_instruments_get200_response_merchant_information.rb
+del ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_payment_instruments_get200_response_payment_instruments.rb
+del ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_payment_instruments_get200_response_processing_information.rb
 del ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_payment_instruments_get200_response_bank_transfer_options.rb
 del ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_post200_response_authorization_options_initiator.rb
+del ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_post200_response_merchant_initiated_transaction.rb
 
 powershell -Command " rename-item -Path ..\lib\cybersource_rest_client\models\ptsv2payments_processing_information_authorization_options_initiator_merchant_initiated_transaction.rb  -newname ptsv2payments_merchant_initiated_transaction.rb"
 
@@ -58,6 +63,14 @@ powershell -Command " rename-item -Path ..\lib\cybersource_rest_client\models\tm
 powershell -Command " rename-item -Path ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_payment_instruments_get200_response__embedded_merchant_information_merchant_descriptor.rb  -newname tms_v1_instrument_identifiers_payment_instruments_get200_response_merchant_descriptor.rb"
 
 powershell -Command " rename-item -Path ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_payment_instruments_get200_response__embedded_buyer_information_issued_by.rb  -newname tms_v1_instrument_identifiers_payment_instruments_get200_response_buyer_information_issued_by.rb"
+
+powershell -Command " rename-item -Path ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_payment_instruments_get200_response__embedded_instrument_identifier.rb  -newname tms_v1_instrument_identifiers_payment_instruments_get200_response_instrument_identifier.rb"
+
+powershell -Command " rename-item -Path ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_payment_instruments_get200_response__embedded_merchant_information.rb  -newname tms_v1_instrument_identifiers_payment_instruments_get200_response_merchant_information.rb"
+
+powershell -Command " rename-item -Path ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_payment_instruments_get200_response__embedded_payment_instruments.rb  -newname tms_v1_instrument_identifiers_payment_instruments_get200_response_payment_instruments.rb"
+
+powershell -Command " rename-item -Path ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_payment_instruments_get200_response__embedded_processing_information.rb  -newname tms_v1_instrument_identifiers_payment_instruments_get200_response_processing_information.rb"
 
 powershell -Command " rename-item -Path ..\docs\Ptsv2paymentsProcessingInformationAuthorizationOptionsInitiatorMerchantInitiatedTransaction.md  -newname Ptsv2paymentsMerchantInitiatedTransaction.md"
 
@@ -80,6 +93,14 @@ powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-O
 powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-Object { $_ -replace 'cybersource_rest_client/models/tms_v1_instrument_identifiers_payment_instruments_get200_response__embedded_merchant_information_merchant_descriptor', 'cybersource_rest_client/models/tms_v1_instrument_identifiers_payment_instruments_get200_response_merchant_descriptor' } | Set-Content ..\lib\cybersource_rest_client.rb"
 
 powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-Object { $_ -replace 'cybersource_rest_client/models/tms_v1_instrument_identifiers_payment_instruments_get200_response__embedded_buyer_information_issued_by', 'cybersource_rest_client/models/tms_v1_instrument_identifiers_payment_instruments_get200_response_buyer_information_issued_by' } | Set-Content ..\lib\cybersource_rest_client.rb"
+
+powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-Object { $_ -replace 'cybersource_rest_client/models/tms_v1_instrument_identifiers_payment_instruments_get200_response__embedded_instrument_identifier', 'cybersource_rest_client/models/tms_v1_instrument_identifiers_payment_instruments_get200_response_instrument_identifier' } | Set-Content ..\lib\cybersource_rest_client.rb"
+
+powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-Object { $_ -replace 'cybersource_rest_client/models/tms_v1_instrument_identifiers_payment_instruments_get200_response__embedded_merchant_information', 'cybersource_rest_client/models/tms_v1_instrument_identifiers_payment_instruments_get200_response_merchant_information' } | Set-Content ..\lib\cybersource_rest_client.rb"
+
+powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-Object { $_ -replace 'cybersource_rest_client/models/tms_v1_instrument_identifiers_payment_instruments_get200_response__embedded_payment_instruments', 'cybersource_rest_client/models/tms_v1_instrument_identifiers_payment_instruments_get200_response_payment_instruments' } | Set-Content ..\lib\cybersource_rest_client.rb"
+
+powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-Object { $_ -replace 'cybersource_rest_client/models/tms_v1_instrument_identifiers_payment_instruments_get200_response__embedded_processing_information', 'cybersource_rest_client/models/tms_v1_instrument_identifiers_payment_instruments_get200_response_processing_information' } | Set-Content ..\lib\cybersource_rest_client.rb"
 
 REM @echo off
 @setlocal enableextensions enabledelayedexpansion
