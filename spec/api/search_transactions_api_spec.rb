@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -46,8 +46,8 @@ describe 'SearchTransactionsApi' do
 
   # unit tests for get_search
   # Get Search results
-  # Include the Search ID in the GET request to retrieve the search results.
-  # @param id Search ID.
+  # Include the Search ID in the GET request to retrieve the search results. 
+  # @param search_id Search ID.
   # @param [Hash] opts the optional parameters
   # @return [TssV2TransactionsPost201Response]
   describe 'get_search test' do

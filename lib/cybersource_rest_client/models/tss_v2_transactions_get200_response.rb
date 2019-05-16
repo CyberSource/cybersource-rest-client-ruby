@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsGet200Response
-    # An unique identification number assigned by CyberSource to identify the submitted request.
+    # An unique identification number assigned by CyberSource to identify the submitted request. It is also appended to the endpoint of the resource.
     attr_accessor :id
 
     # Payment Request Id
@@ -29,7 +29,7 @@ module CyberSource
     # The status of the submitted transaction.
     attr_accessor :status
 
-    # Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the time. The Z indicates UTC. 
+    # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` Example `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC. 
     attr_accessor :submit_time_utc
 
     attr_accessor :application_information
@@ -77,7 +77,7 @@ module CyberSource
         :'reconciliation_id' => :'reconciliationId',
         :'merchant_id' => :'merchantId',
         :'status' => :'status',
-        :'submit_time_utc' => :'submitTimeUtc',
+        :'submit_time_utc' => :'submitTimeUTC',
         :'application_information' => :'applicationInformation',
         :'buyer_information' => :'buyerInformation',
         :'client_reference_information' => :'clientReferenceInformation',
@@ -116,7 +116,7 @@ module CyberSource
         :'error_information' => :'TssV2TransactionsGet200ResponseErrorInformation',
         :'installment_information' => :'TssV2TransactionsGet200ResponseInstallmentInformation',
         :'fraud_marking_information' => :'TssV2TransactionsGet200ResponseFraudMarkingInformation',
-        :'merchant_defined_information' => :'Array<TssV2TransactionsGet200ResponseMerchantDefinedInformation>',
+        :'merchant_defined_information' => :'Array<Ptsv2paymentsMerchantDefinedInformation>',
         :'merchant_information' => :'TssV2TransactionsGet200ResponseMerchantInformation',
         :'order_information' => :'TssV2TransactionsGet200ResponseOrderInformation',
         :'payment_information' => :'TssV2TransactionsGet200ResponsePaymentInformation',
@@ -125,7 +125,7 @@ module CyberSource
         :'point_of_sale_information' => :'TssV2TransactionsGet200ResponsePointOfSaleInformation',
         :'risk_information' => :'TssV2TransactionsGet200ResponseRiskInformation',
         :'sender_information' => :'TssV2TransactionsGet200ResponseSenderInformation',
-        :'_links' => :'PtsV2PaymentsReversalsPost201ResponseLinks'
+        :'_links' => :'TssV2TransactionsGet200ResponseLinks'
       }
     end
 
@@ -157,8 +157,8 @@ module CyberSource
         self.status = attributes[:'status']
       end
 
-      if attributes.has_key?(:'submitTimeUtc')
-        self.submit_time_utc = attributes[:'submitTimeUtc']
+      if attributes.has_key?(:'submitTimeUTC')
+        self.submit_time_utc = attributes[:'submitTimeUTC']
       end
 
       if attributes.has_key?(:'applicationInformation')

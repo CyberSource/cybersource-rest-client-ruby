@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -29,6 +29,18 @@ describe 'VoidApi' do
   describe 'test an instance of VoidApi' do
     it 'should create an instance of VoidApi' do
       expect(@instance).to be_instance_of(CyberSource::VoidApi)
+    end
+  end
+
+  # unit tests for mit_void
+  # Merchant Initiated Void
+  # This is to void a previous payment, capture, refund, or credit that merchant does not receive a reply.
+  # @param mit_void_request 
+  # @param [Hash] opts the optional parameters
+  # @return [PtsV2PaymentsVoidsPost201Response]
+  describe 'mit_void test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 

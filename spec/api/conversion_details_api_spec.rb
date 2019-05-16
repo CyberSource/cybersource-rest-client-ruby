@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -35,8 +35,8 @@ describe 'ConversionDetailsApi' do
   # unit tests for get_conversion_detail
   # Get conversion detail transactions
   # Get conversion detail of transactions for a merchant.
-  # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ssXXX 
-  # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ssXXX 
+  # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
+  # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
   # @param [Hash] opts the optional parameters
   # @option opts [String] :organization_id Valid Cybersource Organization Id
   # @return [ReportingV3ConversionDetailsGet200Response]

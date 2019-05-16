@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -34,7 +34,7 @@ module CyberSource
       {
         :'bill_to' => :'TssV2TransactionsPost201ResponseEmbeddedOrderInformationBillTo',
         :'ship_to' => :'TssV2TransactionsPost201ResponseEmbeddedOrderInformationShipTo',
-        :'amount_details' => :'TssV2TransactionsPost201ResponseEmbeddedOrderInformationAmountDetails'
+        :'amount_details' => :'Ptsv2paymentsidreversalsReversalInformationAmountDetails'
       }
     end
 

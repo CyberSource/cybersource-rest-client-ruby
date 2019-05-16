@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -22,53 +22,53 @@ module CyberSource
     end
     # Get Netfunding information for an account or a merchant
     # Get Netfunding information for an account or a merchant.
-    # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ssXXX 
-    # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ssXXX 
+    # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
+    # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @option opts [String] :group_name Valid CyberSource Group Name.
     # @return [ReportingV3NetFundingsGet200Response]
-    def get_net_funding_info(start_time, end_time, opts = {})
-      data, status_code, headers = get_net_funding_info_with_http_info(start_time, end_time, opts)
+    def get_net_funding_details(start_time, end_time, opts = {})
+      data, status_code, headers = get_net_funding_details_with_http_info(start_time, end_time, opts)
       return data, status_code, headers
     end
 
     # Get Netfunding information for an account or a merchant
     # Get Netfunding information for an account or a merchant.
-    # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ssXXX 
-    # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ssXXX 
+    # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
+    # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @option opts [String] :group_name Valid CyberSource Group Name.
     # @return [Array<(ReportingV3NetFundingsGet200Response, Fixnum, Hash)>] ReportingV3NetFundingsGet200Response data, response status code and response headers
-    def get_net_funding_info_with_http_info(start_time, end_time, opts = {})
+    def get_net_funding_details_with_http_info(start_time, end_time, opts = {})
       
 	  if @api_client.config.debugging
 	  	begin
 			raise
-				@api_client.config.logger.debug 'Calling API: NetFundingsApi.get_net_funding_info ...'
+				@api_client.config.logger.debug 'Calling API: NetFundingsApi.get_net_funding_details ...'
 			rescue
 				puts 'Cannot write to log'
 			end
       end
       # verify the required parameter 'start_time' is set
       if @api_client.config.client_side_validation && start_time.nil?
-        fail ArgumentError, "Missing the required parameter 'start_time' when calling NetFundingsApi.get_net_funding_info"
+        fail ArgumentError, "Missing the required parameter 'start_time' when calling NetFundingsApi.get_net_funding_details"
       end
       # verify the required parameter 'end_time' is set
       if @api_client.config.client_side_validation && end_time.nil?
-        fail ArgumentError, "Missing the required parameter 'end_time' when calling NetFundingsApi.get_net_funding_info"
+        fail ArgumentError, "Missing the required parameter 'end_time' when calling NetFundingsApi.get_net_funding_details"
       end
       if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length > 32
-        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling NetFundingsApi.get_net_funding_info, the character length must be smaller than or equal to 32.'
+        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling NetFundingsApi.get_net_funding_details, the character length must be smaller than or equal to 32.'
       end
 
       if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length < 1
-        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling NetFundingsApi.get_net_funding_info, the character length must be great than or equal to 1.'
+        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling NetFundingsApi.get_net_funding_details, the character length must be great than or equal to 1.'
       end
 
       #if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
-        #fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling NetFundingsApi.get_net_funding_info, must conform to the pattern /[a-zA-Z0-9-_]+/."
+        #fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling NetFundingsApi.get_net_funding_details, must conform to the pattern /[a-zA-Z0-9-_]+/."
       #end
 
       # resource path
@@ -104,7 +104,7 @@ module CyberSource
       if @api_client.config.debugging
 		begin
 		raise
-			@api_client.config.logger.debug "API called: NetFundingsApi#get_net_funding_info\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+			@api_client.config.logger.debug "API called: NetFundingsApi#get_net_funding_details\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
 		rescue
 			puts 'Cannot write to log'
 		end

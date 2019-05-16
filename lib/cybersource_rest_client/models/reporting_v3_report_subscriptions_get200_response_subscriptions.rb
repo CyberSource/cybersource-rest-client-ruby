@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -108,7 +108,7 @@ module CyberSource
         :'start_day' => :'Integer',
         :'report_fields' => :'Array<String>',
         :'report_filters' => :'Hash<String, Array<String>>',
-        :'report_preferences' => :'ReportingV3ReportsIdGet200ResponseReportPreferences',
+        :'report_preferences' => :'Reportingv3reportsReportPreferences',
         :'group_id' => :'String'
       }
     end
@@ -190,7 +190,7 @@ module CyberSource
     def valid?
       report_mime_type_validator = EnumAttributeValidator.new('String', ['application/xml', 'text/csv'])
       return false unless report_mime_type_validator.valid?(@report_mime_type)
-      report_frequency_validator = EnumAttributeValidator.new('String', ['DAILY', 'WEEKLY', 'MONTHLY'])
+      report_frequency_validator = EnumAttributeValidator.new('String', ['DAILY', 'WEEKLY', 'MONTHLY', 'ADHOC'])
       return false unless report_frequency_validator.valid?(@report_frequency)
       true
     end
@@ -208,7 +208,7 @@ module CyberSource
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] report_frequency Object to be assigned
     def report_frequency=(report_frequency)
-      validator = EnumAttributeValidator.new('String', ['DAILY', 'WEEKLY', 'MONTHLY'])
+      validator = EnumAttributeValidator.new('String', ['DAILY', 'WEEKLY', 'MONTHLY', 'ADHOC'])
       unless validator.valid?(report_frequency)
         fail ArgumentError, 'invalid value for "report_frequency", must be one of #{validator.allowable_values}.'
       end

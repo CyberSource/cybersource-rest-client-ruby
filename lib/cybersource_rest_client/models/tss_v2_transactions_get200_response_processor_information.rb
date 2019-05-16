@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -16,7 +16,7 @@ module CyberSource
   class TssV2TransactionsGet200ResponseProcessorInformation
     attr_accessor :processor
 
-    # Network transaction identifier (TID). You can use this value to identify a specific transaction when you are discussing the transaction with your processor. Not all processors provide this  value. 
+    # Network transaction identifier (TID). You can use this value to identify a specific transaction when you are discussing the transaction with your processor. Not all processors provide this value. 
     attr_accessor :transaction_id
 
     # The description for this field is not available.
@@ -42,6 +42,12 @@ module CyberSource
 
     attr_accessor :electronic_verification_results
 
+    # This field is returned only for **American Express Direct** and **CyberSource through VisaNet**.  **American Express Direct**  System trace audit number (STAN). This value identifies the transaction and is useful when investigating a chargeback dispute.  **CyberSource through VisaNet**  System trace number that must be printed on the customer’s receipt. 
+    attr_accessor :system_trace_audit_number
+
+    # Used by Visa only and contains the response source/reason code that identifies the source of the response decision. 
+    attr_accessor :response_code_source
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -55,7 +61,9 @@ module CyberSource
         :'avs' => :'avs',
         :'card_verification' => :'cardVerification',
         :'ach_verification' => :'achVerification',
-        :'electronic_verification_results' => :'electronicVerificationResults'
+        :'electronic_verification_results' => :'electronicVerificationResults',
+        :'system_trace_audit_number' => :'systemTraceAuditNumber',
+        :'response_code_source' => :'responseCodeSource'
       }
     end
 
@@ -70,9 +78,11 @@ module CyberSource
         :'approval_code' => :'String',
         :'response_code' => :'String',
         :'avs' => :'PtsV2PaymentsPost201ResponseProcessorInformationAvs',
-        :'card_verification' => :'TssV2TransactionsGet200ResponseProcessorInformationCardVerification',
-        :'ach_verification' => :'TssV2TransactionsGet200ResponseProcessorInformationAchVerification',
-        :'electronic_verification_results' => :'TssV2TransactionsGet200ResponseProcessorInformationElectronicVerificationResults'
+        :'card_verification' => :'Riskv1decisionsCardVerification',
+        :'ach_verification' => :'PtsV2PaymentsPost201ResponseProcessorInformationAchVerification',
+        :'electronic_verification_results' => :'TssV2TransactionsGet200ResponseProcessorInformationElectronicVerificationResults',
+        :'system_trace_audit_number' => :'String',
+        :'response_code_source' => :'String'
       }
     end
 
@@ -127,6 +137,14 @@ module CyberSource
       if attributes.has_key?(:'electronicVerificationResults')
         self.electronic_verification_results = attributes[:'electronicVerificationResults']
       end
+
+      if attributes.has_key?(:'systemTraceAuditNumber')
+        self.system_trace_audit_number = attributes[:'systemTraceAuditNumber']
+      end
+
+      if attributes.has_key?(:'responseCodeSource')
+        self.response_code_source = attributes[:'responseCodeSource']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -141,6 +159,14 @@ module CyberSource
         invalid_properties.push('invalid value for "response_code", the character length must be smaller than or equal to 10.')
       end
 
+      if !@system_trace_audit_number.nil? && @system_trace_audit_number.to_s.length > 6
+        invalid_properties.push('invalid value for "system_trace_audit_number", the character length must be smaller than or equal to 6.')
+      end
+
+      if !@response_code_source.nil? && @response_code_source.to_s.length > 1
+        invalid_properties.push('invalid value for "response_code_source", the character length must be smaller than or equal to 1.')
+      end
+
       invalid_properties
     end
 
@@ -149,6 +175,8 @@ module CyberSource
     def valid?
       return false if !@transaction_id.nil? && @transaction_id.to_s.length > 50
       return false if !@response_code.nil? && @response_code.to_s.length > 10
+      return false if !@system_trace_audit_number.nil? && @system_trace_audit_number.to_s.length > 6
+      return false if !@response_code_source.nil? && @response_code_source.to_s.length > 1
       true
     end
 
@@ -172,6 +200,26 @@ module CyberSource
       @response_code = response_code
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] system_trace_audit_number Value to be assigned
+    def system_trace_audit_number=(system_trace_audit_number)
+      if !system_trace_audit_number.nil? && system_trace_audit_number.to_s.length > 6
+        fail ArgumentError, 'invalid value for "system_trace_audit_number", the character length must be smaller than or equal to 6.'
+      end
+
+      @system_trace_audit_number = system_trace_audit_number
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] response_code_source Value to be assigned
+    def response_code_source=(response_code_source)
+      if !response_code_source.nil? && response_code_source.to_s.length > 1
+        fail ArgumentError, 'invalid value for "response_code_source", the character length must be smaller than or equal to 1.'
+      end
+
+      @response_code_source = response_code_source
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -187,7 +235,9 @@ module CyberSource
           avs == o.avs &&
           card_verification == o.card_verification &&
           ach_verification == o.ach_verification &&
-          electronic_verification_results == o.electronic_verification_results
+          electronic_verification_results == o.electronic_verification_results &&
+          system_trace_audit_number == o.system_trace_audit_number &&
+          response_code_source == o.response_code_source
     end
 
     # @see the `==` method
@@ -199,7 +249,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [processor, transaction_id, network_transaction_id, response_id, provider_transaction_id, approval_code, response_code, avs, card_verification, ach_verification, electronic_verification_results].hash
+      [processor, transaction_id, network_transaction_id, response_id, provider_transaction_id, approval_code, response_code, avs, card_verification, ach_verification, electronic_verification_results, system_trace_audit_number, response_code_source].hash
     end
 
     # Builds the object from hash

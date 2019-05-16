@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -35,7 +35,7 @@ describe 'PtsV2PaymentsPost201ResponseErrorInformation' do
   describe 'test attribute "reason"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["AVS_FAILED", "CONTACT_PROCESSOR", "CV_FAILED", "EXPIRED_CARD", "PROCESSOR_DECLINED", "INSUFFICIENT_FUND", "STOLEN_LOST_CARD", "ISSUER_UNAVAILABLE", "UNAUTHORIZED_CARD", "CVN_NOT_MATCH", "EXCEEDS_CREDIT_LIMIT", "INVALID_CVN", "PAYMENT_REFUSED", "INVALID_ACCOUNT", "GENERAL_DECLINE"])
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["AVS_FAILED", "CONTACT_PROCESSOR", "CV_FAILED", "EXPIRED_CARD", "PROCESSOR_DECLINED", "INSUFFICIENT_FUND", "STOLEN_LOST_CARD", "ISSUER_UNAVAILABLE", "UNAUTHORIZED_CARD", "CVN_NOT_MATCH", "EXCEEDS_CREDIT_LIMIT", "INVALID_CVN", "PAYMENT_REFUSED", "INVALID_ACCOUNT", "GENERAL_DECLINE", "DECISION_PROFILE_REJECT", "SCORE_EXCEEDS_THRESHOLD"])
       # validator.allowable_values.each do |value|
       #   expect { @instance.reason = value }.not_to raise_error
       # end

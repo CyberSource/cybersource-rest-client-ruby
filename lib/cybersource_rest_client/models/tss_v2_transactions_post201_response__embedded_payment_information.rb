@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsPost201ResponseEmbeddedPaymentInformation
-    attr_accessor :payment_method
+    attr_accessor :payment_type
 
     attr_accessor :customer
 
@@ -23,7 +23,7 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'payment_method' => :'paymentMethod',
+        :'payment_type' => :'paymentType',
         :'customer' => :'customer',
         :'card' => :'card'
       }
@@ -32,8 +32,8 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'payment_method' => :'TssV2TransactionsPost201ResponseEmbeddedPaymentInformationPaymentMethod',
-        :'customer' => :'TssV2TransactionsGet200ResponsePaymentInformationCustomer',
+        :'payment_type' => :'TssV2TransactionsPost201ResponseEmbeddedPaymentInformationPaymentType',
+        :'customer' => :'Ptsv2paymentsPaymentInformationCustomer',
         :'card' => :'TssV2TransactionsPost201ResponseEmbeddedPaymentInformationCard'
       }
     end
@@ -46,8 +46,8 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'paymentMethod')
-        self.payment_method = attributes[:'paymentMethod']
+      if attributes.has_key?(:'paymentType')
+        self.payment_type = attributes[:'paymentType']
       end
 
       if attributes.has_key?(:'customer')
@@ -77,7 +77,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          payment_method == o.payment_method &&
+          payment_type == o.payment_type &&
           customer == o.customer &&
           card == o.card
     end
@@ -91,7 +91,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [payment_method, customer, card].hash
+      [payment_type, customer, card].hash
     end
 
     # Builds the object from hash

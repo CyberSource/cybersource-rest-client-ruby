@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -17,16 +17,16 @@ module CyberSource
     # First name of the recipient.  **Processor specific maximum length**  - Litle: 25 - All other processors: 60 
     attr_accessor :first_name
 
-    # Last name of the recipient.  **Processor specific maximum length**  - Litle: 25 - All other processors: 60 
+    # Last name of the recipient.  **Processor-specific maximum length**  - Litle: 25 - All other processors: 60 
     attr_accessor :last_name
 
     # First line of the shipping address.
     attr_accessor :address1
 
-    # Country of the shipping address. Use the two character ISO Standard Country Codes.
+    # Country of the shipping address. Use the two-character ISO Standard Country Codes.
     attr_accessor :country
 
-    # Phone number for the shipping address.
+    # Phone number associated with the shipping address.
     attr_accessor :phone_number
 
     # Attribute mapping from ruby-style variable name to JSON key.

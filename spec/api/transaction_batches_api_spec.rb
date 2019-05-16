@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -29,6 +29,20 @@ describe 'TransactionBatchesApi' do
   describe 'test an instance of TransactionBatchesApi' do
     it 'should create an instance of TransactionBatchesApi' do
       expect(@instance).to be_instance_of(CyberSource::TransactionBatchesApi)
+    end
+  end
+
+  # unit tests for get_transaction_batch_details
+  # Filters batch response. 
+  # Filters batch response. 
+  # @param transaction_batch_id Transaction Batch Id, this is unique.
+  # @param [Hash] opts the optional parameters
+  # @option opts [Date] :upload_date Date in which the original batch file was uploaded. Date must be in ISO-8601 format.
+  # @option opts [String] :status Allows you to filter by rejected response. 
+  # @return [nil]
+  describe 'get_transaction_batch_details test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 

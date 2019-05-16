@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -14,13 +14,13 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsGet200ResponseDeviceInformation
-    # IP address of the customer.
+    # Customer’s IP address, such as 10.1.27.63, reported by your Web server via socket information. 
     attr_accessor :ip_address
 
-    # DNS resolved hostname from above _ipAddress_.
+    # Host name reported by the customer’s browser to your Web server identified via the HTTP header.
     attr_accessor :host_name
 
-    # The description for this field is not available.
+    # Boolean that indicates whether the customer’s browser accepts cookies. This field can contain one of the following values:   - `yes`: The customer’s browser accepts cookies.   - `no`: The customer’s browser does not accept cookies. 
     attr_accessor :cookies_accepted
 
     # Attribute mapping from ruby-style variable name to JSON key.

@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -14,10 +14,10 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsPost400Response
-    # Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the time. The Z indicates UTC. 
+    # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` Example `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC. 
     attr_accessor :submit_time_utc
 
-    # The status of the submitted transaction.
+    # The status of the submitted transaction.  Possible values:  - INVALID_REQUEST 
     attr_accessor :status
 
     # The detail message related to the status and reason listed above.
@@ -63,7 +63,7 @@ module CyberSource
         :'submit_time_utc' => :'String',
         :'status' => :'String',
         :'message' => :'String',
-        :'details' => :'Array<PtsV2PayoutsPost201ResponseErrorInformationDetails>'
+        :'details' => :'Array<PtsV2PaymentsPost201ResponseErrorInformationDetails>'
       }
     end
 

@@ -1,7 +1,7 @@
 =begin
-#CyberSource Flex API
+#CyberSource Merged Spec
 
-#Simple PAN tokenization service
+#All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
 
 OpenAPI spec version: 0.0.1
 
@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class PtsV2PaymentsPost502Response
-    # Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the time. The Z indicates UTC. 
+    # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` Example `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC. 
     attr_accessor :submit_time_utc
 
     # The status of the submitted transaction.  Possible values:  - SERVER_ERROR 
@@ -105,7 +105,7 @@ module CyberSource
     def valid?
       status_validator = EnumAttributeValidator.new('String', ['SERVER_ERROR'])
       return false unless status_validator.valid?(@status)
-      reason_validator = EnumAttributeValidator.new('String', ['SYSTEM_ERROR', 'SERVER_TIMEOUT', 'SERVICE_TIMEOUT', 'PROCESSOR_TIMEOUT'])
+      reason_validator = EnumAttributeValidator.new('String', ['SYSTEM_ERROR', 'SERVER_TIMEOUT', 'SERVICE_TIMEOUT', 'INVALID_OR_MISSING_CONFIG', 'PROCESSOR_TIMEOUT'])
       return false unless reason_validator.valid?(@reason)
       true
     end
@@ -123,7 +123,7 @@ module CyberSource
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] reason Object to be assigned
     def reason=(reason)
-      validator = EnumAttributeValidator.new('String', ['SYSTEM_ERROR', 'SERVER_TIMEOUT', 'SERVICE_TIMEOUT', 'PROCESSOR_TIMEOUT'])
+      validator = EnumAttributeValidator.new('String', ['SYSTEM_ERROR', 'SERVER_TIMEOUT', 'SERVICE_TIMEOUT', 'INVALID_OR_MISSING_CONFIG', 'PROCESSOR_TIMEOUT'])
       unless validator.valid?(reason)
         fail ArgumentError, 'invalid value for "reason", must be one of #{validator.allowable_values}.'
       end
