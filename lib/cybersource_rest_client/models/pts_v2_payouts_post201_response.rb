@@ -184,12 +184,6 @@ module CyberSource
       @id = id
     end
 
-    # Custom attribute writer method with validation
-    # @param [Object] submit_time_utc Value to be assigned
-    def submit_time_utc=(submit_time_utc)
-      @submit_time_utc = submit_time_utc
-    end
-
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] status Object to be assigned
     def status=(status)

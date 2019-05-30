@@ -95,7 +95,7 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      reason_validator = EnumAttributeValidator.new('String', ['AVS_FAILED', 'CONTACT_PROCESSOR', 'CV_FAILED', 'EXPIRED_CARD', 'PROCESSOR_DECLINED', 'INSUFFICIENT_FUND', 'STOLEN_LOST_CARD', 'ISSUER_UNAVAILABLE', 'UNAUTHORIZED_CARD', 'CVN_NOT_MATCH', 'EXCEEDS_CREDIT_LIMIT', 'INVALID_CVN', 'PAYMENT_REFUSED', 'INVALID_ACCOUNT', 'GENERAL_DECLINE', 'DECISION_PROFILE_REJECT', 'SCORE_EXCEEDS_THRESHOLD'])
+      reason_validator = EnumAttributeValidator.new('String', ['AVS_FAILED', 'CONTACT_PROCESSOR', 'EXPIRED_CARD', 'PROCESSOR_DECLINED', 'INSUFFICIENT_FUND', 'STOLEN_LOST_CARD', 'ISSUER_UNAVAILABLE', 'UNAUTHORIZED_CARD', 'CVN_NOT_MATCH', 'EXCEEDS_CREDIT_LIMIT', 'INVALID_CVN', 'DECLINED_CHECK', 'BLACKLISTED_CUSTOMER', 'SUSPENDED_ACCOUNT', 'PAYMENT_REFUSED', 'CV_FAILED', 'INVALID_ACCOUNT', 'GENERAL_DECLINE', 'INVALID_MERCHANT_CONFIGURATION', 'DECISION_PROFILE_REJECT', 'SCORE_EXCEEDS_THRESHOLD'])
       return false unless reason_validator.valid?(@reason)
       true
     end
@@ -103,7 +103,7 @@ module CyberSource
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] reason Object to be assigned
     def reason=(reason)
-      validator = EnumAttributeValidator.new('String', ['AVS_FAILED', 'CONTACT_PROCESSOR', 'CV_FAILED', 'EXPIRED_CARD', 'PROCESSOR_DECLINED', 'INSUFFICIENT_FUND', 'STOLEN_LOST_CARD', 'ISSUER_UNAVAILABLE', 'UNAUTHORIZED_CARD', 'CVN_NOT_MATCH', 'EXCEEDS_CREDIT_LIMIT', 'INVALID_CVN', 'PAYMENT_REFUSED', 'INVALID_ACCOUNT', 'GENERAL_DECLINE', 'DECISION_PROFILE_REJECT', 'SCORE_EXCEEDS_THRESHOLD'])
+      validator = EnumAttributeValidator.new('String', ['AVS_FAILED', 'CONTACT_PROCESSOR', 'EXPIRED_CARD', 'PROCESSOR_DECLINED', 'INSUFFICIENT_FUND', 'STOLEN_LOST_CARD', 'ISSUER_UNAVAILABLE', 'UNAUTHORIZED_CARD', 'CVN_NOT_MATCH', 'EXCEEDS_CREDIT_LIMIT', 'INVALID_CVN', 'DECLINED_CHECK', 'BLACKLISTED_CUSTOMER', 'SUSPENDED_ACCOUNT', 'PAYMENT_REFUSED', 'CV_FAILED', 'INVALID_ACCOUNT', 'GENERAL_DECLINE', 'INVALID_MERCHANT_CONFIGURATION', 'DECISION_PROFILE_REJECT', 'SCORE_EXCEEDS_THRESHOLD'])
       unless validator.valid?(reason)
         fail ArgumentError, 'invalid value for "reason", must be one of #{validator.allowable_values}.'
       end

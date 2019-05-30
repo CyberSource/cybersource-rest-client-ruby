@@ -115,7 +115,7 @@ module CyberSource
     def valid?
       status_validator = EnumAttributeValidator.new('String', ['INVALID_REQUEST'])
       return false unless status_validator.valid?(@status)
-      reason_validator = EnumAttributeValidator.new('String', ['MISSING_FIELD', 'INVALID_DATA', 'DUPLICATE_REQUEST', 'INVALID_CARD', 'INVALID_MERCHANT_CONFIGURATION', 'CAPTURE_ALREADY_VOIDED', 'ACCOUNT_NOT_ALLOWED_CREDIT'])
+      reason_validator = EnumAttributeValidator.new('String', ['MISSING_FIELD', 'INVALID_DATA', 'DUPLICATE_REQUEST', 'INVALID_CARD', 'INVALID_MERCHANT_CONFIGURATION', 'INVALID_AMOUNT', 'CAPTURE_ALREADY_VOIDED', 'ACCOUNT_NOT_ALLOWED_CREDIT'])
       return false unless reason_validator.valid?(@reason)
       true
     end
@@ -133,7 +133,7 @@ module CyberSource
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] reason Object to be assigned
     def reason=(reason)
-      validator = EnumAttributeValidator.new('String', ['MISSING_FIELD', 'INVALID_DATA', 'DUPLICATE_REQUEST', 'INVALID_CARD', 'INVALID_MERCHANT_CONFIGURATION', 'CAPTURE_ALREADY_VOIDED', 'ACCOUNT_NOT_ALLOWED_CREDIT'])
+      validator = EnumAttributeValidator.new('String', ['MISSING_FIELD', 'INVALID_DATA', 'DUPLICATE_REQUEST', 'INVALID_CARD', 'INVALID_MERCHANT_CONFIGURATION', 'INVALID_AMOUNT', 'CAPTURE_ALREADY_VOIDED', 'ACCOUNT_NOT_ALLOWED_CREDIT'])
       unless validator.valid?(reason)
         fail ArgumentError, 'invalid value for "reason", must be one of #{validator.allowable_values}.'
       end

@@ -21,7 +21,7 @@ module CyberSource
 
     attr_accessor :ship_to
 
-    # Boolean that indicates whether returns are accepted for this order. This field can contain one of the following values: - `yes`: Returns are accepted for this order. - `no`: Returns are not accepted for this order. 
+    # Boolean that indicates whether returns are accepted for this order. This field can contain one of the following values: - true: Returns are accepted for this order. - false: Returns are not accepted for this order. 
     attr_accessor :returns_accepted
 
     # This array contains detailed information about individual products in the order.
@@ -47,7 +47,7 @@ module CyberSource
         :'amount_details' => :'Riskv1decisionsOrderInformationAmountDetails',
         :'shipping_details' => :'Riskv1decisionsOrderInformationShippingDetails',
         :'ship_to' => :'Riskv1decisionsOrderInformationShipTo',
-        :'returns_accepted' => :'String',
+        :'returns_accepted' => :'BOOLEAN',
         :'line_items' => :'Array<Riskv1decisionsOrderInformationLineItems>',
         :'bill_to' => :'Riskv1decisionsOrderInformationBillTo'
       }
@@ -92,28 +92,13 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@returns_accepted.nil? && @returns_accepted.to_s.length > 3
-        invalid_properties.push('invalid value for "returns_accepted", the character length must be smaller than or equal to 3.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@returns_accepted.nil? && @returns_accepted.to_s.length > 3
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] returns_accepted Value to be assigned
-    def returns_accepted=(returns_accepted)
-      if !returns_accepted.nil? && returns_accepted.to_s.length > 3
-        fail ArgumentError, 'invalid value for "returns_accepted", the character length must be smaller than or equal to 3.'
-      end
-
-      @returns_accepted = returns_accepted
     end
 
     # Checks equality by comparing each attribute.

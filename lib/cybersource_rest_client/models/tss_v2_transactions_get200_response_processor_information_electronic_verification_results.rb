@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsGet200ResponseProcessorInformationElectronicVerificationResults
-    # Mapped Electronic Verification response code for the customer’s email address. 
+    # Mapped Electronic Verification response code for the customer’s email address.  For details, see `auth_ev_email` field description in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
     attr_accessor :email
 
     # Raw Electronic Verification response code from the processor for the customer’s email address.
@@ -26,19 +26,19 @@ module CyberSource
     # The description for this field is not available.
     attr_accessor :name_raw
 
-    # Mapped Electronic Verification response code for the customer’s phone number. 
+    # Mapped Electronic Verification response code for the customer’s phone number.  For details, see `auth_ev_phone_number` field description in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
     attr_accessor :phone_number
 
     # Raw Electronic Verification response code from the processor for the customer’s phone number.
     attr_accessor :phone_number_raw
 
-    # Mapped Electronic Verification response code for the customer’s street address. 
+    # Mapped Electronic Verification response code for the customer’s street address.  For details, see `auth_ev_street` field description in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
     attr_accessor :street
 
     # Raw Electronic Verification response code from the processor for the customer’s street address.
     attr_accessor :street_raw
 
-    # Mapped Electronic Verification response code for the customer’s postal code. 
+    # Mapped Electronic Verification response code for the customer’s postal code.  For details, see `auth_ev_postal_code` field description in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
     attr_accessor :postal_code
 
     # Raw Electronic Verification response code from the processor for the customer’s postal code.

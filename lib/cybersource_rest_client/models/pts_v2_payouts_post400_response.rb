@@ -107,39 +107,15 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@submit_time_utc.nil? && @submit_time_utc.to_s.length > 6
-        invalid_properties.push('invalid value for "submit_time_utc", the character length must be smaller than or equal to 6.')
-      end
-
-      if !@submit_time_utc.nil? && @submit_time_utc.to_s.length < 6
-        invalid_properties.push('invalid value for "submit_time_utc", the character length must be great than or equal to 6.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@submit_time_utc.nil? && @submit_time_utc.to_s.length > 6
-      return false if !@submit_time_utc.nil? && @submit_time_utc.to_s.length < 6
       reason_validator = EnumAttributeValidator.new('String', ['MISSING_FIELD', 'INVALID_DATA', 'DUPLICATE_REQUEST', 'INVALID_CARD', 'INVALID_MERCHANT_CONFIGURATION', 'INVALID_AMOUNT', 'DEBIT_CARD_USEAGE_EXCEEDD_LIMIT'])
       return false unless reason_validator.valid?(@reason)
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] submit_time_utc Value to be assigned
-    def submit_time_utc=(submit_time_utc)
-      if !submit_time_utc.nil? && submit_time_utc.to_s.length > 6
-        fail ArgumentError, 'invalid value for "submit_time_utc", the character length must be smaller than or equal to 6.'
-      end
-
-      if !submit_time_utc.nil? && submit_time_utc.to_s.length < 6
-        fail ArgumentError, 'invalid value for "submit_time_utc", the character length must be great than or equal to 6.'
-      end
-
-      @submit_time_utc = submit_time_utc
     end
 
     # Custom attribute writer method checking allowed values (enum).

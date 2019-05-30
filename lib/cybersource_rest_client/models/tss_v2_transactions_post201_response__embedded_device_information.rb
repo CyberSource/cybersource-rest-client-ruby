@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsPost201ResponseEmbeddedDeviceInformation
-    # Customer’s IP address, such as 10.1.27.63, reported by your Web server via socket information. 
+    # IP address of the customer. 
     attr_accessor :ip_address
 
     # Attribute mapping from ruby-style variable name to JSON key.

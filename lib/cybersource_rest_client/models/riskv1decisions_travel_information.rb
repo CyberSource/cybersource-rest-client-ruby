@@ -14,6 +14,9 @@ require 'date'
 
 module CyberSource
   class Riskv1decisionsTravelInformation
+    # IATA Code for the actual final destination that the customer intends to travel to. It should be a destination on the completeRoute. 
+    attr_accessor :actual_final_destination
+
     # Concatenation of individual travel legs in the format ORIG1-DEST1[:ORIG2-DEST2...:ORIGn-DESTn], for example, SFO-JFK:JFK-LHR:LHR-CDG. For airport codes, see the IATA Airline and Airport Code Search. Note In your request, send either the complete route or the individual legs (_leg#_orig and _leg#_dest). If you send all the fields, the value of _complete_route takes precedence over that of the _leg# fields. 
     attr_accessor :complete_route
 
@@ -28,6 +31,7 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'actual_final_destination' => :'actualFinalDestination',
         :'complete_route' => :'completeRoute',
         :'departure_time' => :'departureTime',
         :'journey_type' => :'journeyType',
@@ -38,6 +42,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'actual_final_destination' => :'String',
         :'complete_route' => :'String',
         :'departure_time' => :'String',
         :'journey_type' => :'String',
@@ -52,6 +57,10 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'actualFinalDestination')
+        self.actual_final_destination = attributes[:'actualFinalDestination']
+      end
 
       if attributes.has_key?(:'completeRoute')
         self.complete_route = attributes[:'completeRoute']
@@ -76,6 +85,10 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if !@actual_final_destination.nil? && @actual_final_destination.to_s.length > 3
+        invalid_properties.push('invalid value for "actual_final_destination", the character length must be smaller than or equal to 3.')
+      end
+
       if !@complete_route.nil? && @complete_route.to_s.length > 255
         invalid_properties.push('invalid value for "complete_route", the character length must be smaller than or equal to 255.')
       end
@@ -94,10 +107,21 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if !@actual_final_destination.nil? && @actual_final_destination.to_s.length > 3
       return false if !@complete_route.nil? && @complete_route.to_s.length > 255
       return false if !@departure_time.nil? && @departure_time.to_s.length > 25
       return false if !@journey_type.nil? && @journey_type.to_s.length > 32
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] actual_final_destination Value to be assigned
+    def actual_final_destination=(actual_final_destination)
+      if !actual_final_destination.nil? && actual_final_destination.to_s.length > 3
+        fail ArgumentError, 'invalid value for "actual_final_destination", the character length must be smaller than or equal to 3.'
+      end
+
+      @actual_final_destination = actual_final_destination
     end
 
     # Custom attribute writer method with validation
@@ -135,6 +159,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          actual_final_destination == o.actual_final_destination &&
           complete_route == o.complete_route &&
           departure_time == o.departure_time &&
           journey_type == o.journey_type &&
@@ -150,7 +175,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [complete_route, departure_time, journey_type, legs].hash
+      [actual_final_destination, complete_route, departure_time, journey_type, legs].hash
     end
 
     # Builds the object from hash

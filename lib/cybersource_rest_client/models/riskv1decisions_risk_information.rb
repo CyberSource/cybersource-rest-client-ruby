@@ -16,17 +16,22 @@ module CyberSource
   class Riskv1decisionsRiskInformation
     attr_accessor :profile
 
+    # Specifies one of the following types of events: - login - account_creation - account_update For regular payment transactions, do not send this field. 
+    attr_accessor :event_type
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'profile' => :'profile'
+        :'profile' => :'profile',
+        :'event_type' => :'eventType'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'profile' => :'Riskv1decisionsRiskInformationProfile'
+        :'profile' => :'Riskv1decisionsRiskInformationProfile',
+        :'event_type' => :'String'
       }
     end
 
@@ -41,19 +46,38 @@ module CyberSource
       if attributes.has_key?(:'profile')
         self.profile = attributes[:'profile']
       end
+
+      if attributes.has_key?(:'eventType')
+        self.event_type = attributes[:'eventType']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if !@event_type.nil? && @event_type.to_s.length > 255
+        invalid_properties.push('invalid value for "event_type", the character length must be smaller than or equal to 255.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if !@event_type.nil? && @event_type.to_s.length > 255
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] event_type Value to be assigned
+    def event_type=(event_type)
+      if !event_type.nil? && event_type.to_s.length > 255
+        fail ArgumentError, 'invalid value for "event_type", the character length must be smaller than or equal to 255.'
+      end
+
+      @event_type = event_type
     end
 
     # Checks equality by comparing each attribute.
@@ -61,7 +85,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          profile == o.profile
+          profile == o.profile &&
+          event_type == o.event_type
     end
 
     # @see the `==` method
@@ -73,7 +98,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [profile].hash
+      [profile, event_type].hash
     end
 
     # Builds the object from hash
