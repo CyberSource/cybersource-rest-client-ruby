@@ -2547,7 +2547,7 @@
                                     "properties": {
                                         "reason": {
                                             "type": "string",
-                                            "description": "The reason of the status.\n\nPossible values:\n - AVS_FAILED\n - CONTACT_PROCESSOR\n - EXPIRED_CARD\n - PROCESSOR_DECLINED\n - INSUFFICIENT_FUND\n - STOLEN_LOST_CARD\n - ISSUER_UNAVAILABLE\n - UNAUTHORIZED_CARD\n - CVN_NOT_MATCH\n - EXCEEDS_CREDIT_LIMIT\n - INVALID_CVN\n - DECLINED_CHECK\n - BLACKLISTED_CUSTOMER\n - SUSPENDED_ACCOUNT\n - PAYMENT_REFUSED\n - CV_FAILED\n - INVALID_ACCOUNT\n - GENERAL_DECLINE\n - INVALID_MERCHANT_CONFIGURATION\n - DECISION_PROFILE_REJECT\n - SCORE_EXCEEDS_THRESHOLD\n",
+                                            "description": "The reason of the status.\n\nPossible values:\n - AVS_FAILED\n - CONTACT_PROCESSOR\n - EXPIRED_CARD\n - PROCESSOR_DECLINED\n - INSUFFICIENT_FUND\n - STOLEN_LOST_CARD\n - ISSUER_UNAVAILABLE\n - UNAUTHORIZED_CARD\n - CVN_NOT_MATCH\n - EXCEEDS_CREDIT_LIMIT\n - INVALID_CVN\n - DECLINED_CHECK\n - BLACKLISTED_CUSTOMER\n - SUSPENDED_ACCOUNT\n - PAYMENT_REFUSED\n - CV_FAILED\n - INVALID_ACCOUNT\n - GENERAL_DECLINE\n - INVALID_MERCHANT_CONFIGURATION\n - DECISION_PROFILE_REJECT\n - SCORE_EXCEEDS_THRESHOLD\n - PENDING_AUTHENTICATION\n",
                                             "enum": [
                                                 "AVS_FAILED",
                                                 "CONTACT_PROCESSOR",
@@ -2569,7 +2569,8 @@
                                                 "GENERAL_DECLINE",
                                                 "INVALID_MERCHANT_CONFIGURATION",
                                                 "DECISION_PROFILE_REJECT",
-                                                "SCORE_EXCEEDS_THRESHOLD"
+                                                "SCORE_EXCEEDS_THRESHOLD",
+                                                "PENDING_AUTHENTICATION"
                                             ]
                                         },
                                         "message": {
@@ -4419,489 +4420,6 @@
                                 "amountDetails": {
                                     "totalAmount": "2325.00",
                                     "serviceFeeAmount": "30.0"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/pts/v2/reversals/": {
-            "post": {
-                "summary": "Merchant Initiated Reversal",
-                "description": "This is to reverse a previous payment that merchant does not receive a reply.",
-                "tags": [
-                    "reversal"
-                ],
-                "operationId": "mitReversal",
-                "x-devcenter-metaData": {
-                    "categoryTag": "Payments"
-                },
-                "parameters": [
-                    {
-                        "name": "mitReversalRequest",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "clientReferenceInformation": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "string",
-                                            "maxLength": 50,
-                                            "description": "Client-generated order reference or tracking number. CyberSource recommends that you send a unique value for each\ntransaction so that you can perform meaningful searches for the transaction.\n\nFor information about tracking orders, see \"Tracking and Reconciling Your Orders\" in [Getting Started with CyberSource Advanced for the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Getting_Started_SCMP/html/wwhelp/wwhimpl/js/html/wwhelp.htm)\n\n#### FDC Nashville Global\nCertain circumstances can cause the processor to truncate this value to 15 or 17 characters for Level II and Level III processing, which can cause a discrepancy between the value you submit and the value included in some processor reports.\n"
-                                        },
-                                        "transactionId": {
-                                            "type": "string",
-                                            "description": "Identifier that you assign to the transaction.\n\n**Note** Use this field only if you want to support merchant-initiated reversal and void operations.\n\nFor details, see \"Merchant-Initiated Reversals and Voids\" in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)\n"
-                                        },
-                                        "comments": {
-                                            "type": "string",
-                                            "description": "Comments"
-                                        },
-                                        "partner": {
-                                            "type": "object",
-                                            "properties": {
-                                                "originalTransactionId": {
-                                                    "type": "string",
-                                                    "maxLength": 32,
-                                                    "description": "Value that links the previous transaction to the current follow-on request. This value is assigned by the client\nsoftware that is installed on the POS terminal, which makes it available to the terminal\u2019s software and to\nCyberSource. Therefore, you can use this value to reconcile transactions between CyberSource and the terminal\u2019s\nsoftware.\n\nCyberSource does not forward this value to the processor. Instead, the value is forwarded to the CyberSource\nreporting functionality.\n\nThis field is supported only on American Express Direct, FDC Nashville Global, and SIX.\n"
-                                                },
-                                                "developerId": {
-                                                    "type": "string",
-                                                    "maxLength": 8,
-                                                    "description": "Identifier for the developer that helped integrate a partner solution to CyberSource.\n\nSend this value in all requests that are sent through the partner solutions built by that developer.\nCyberSource assigns the ID to the developer.\n\n**Note** When you see a developer ID of 999 in reports, the developer ID that was submitted is incorrect.\n"
-                                                },
-                                                "solutionId": {
-                                                    "type": "string",
-                                                    "maxLength": 8,
-                                                    "description": "Identifier for the partner that is integrated to CyberSource.\n\nSend this value in all requests that are sent through the partner solution. CyberSource assigns the ID to the partner.\n\n**Note** When you see a partner ID of 999 in reports, the partner ID that was submitted is incorrect.\n"
-                                                }
-                                            }
-                                        }
-                                    }
-                                },
-                                "reversalInformation": {
-                                    "type": "object",
-                                    "properties": {
-                                        "amountDetails": {
-                                            "type": "object",
-                                            "properties": {
-                                                "totalAmount": {
-                                                    "type": "string",
-                                                    "maxLength": 19,
-                                                    "description": "Grand total for the order. This value cannot be negative. You can include a decimal point (.), but no other special characters. CyberSource truncates the amount to the correct number of decimal places.\n\n**Note** For CTV, FDCCompass, Paymentech processors, the maximum length for this field is 12.\n\n**Important** Some processors have specific requirements and limitations, such as maximum amounts and maximum field lengths. For details, see:\n- \"Authorization Information for Specific Processors\" in the [Credit Card Services Using the SCMP API Guide](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm).\n- \"Capture Information for Specific Processors\" in the [Credit Card Services Using the SCMP API Guide](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm).\n- \"Credit Information for Specific Processors\" in the [Credit Card Services Using the SCMP API Guide](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm).\n\nIf your processor supports zero amount authorizations, you can set this field to 0 for the authorization to check if the card is lost or stolen. For details, see \"Zero Amount Authorizations,\" \"Credit Information for Specific Processors\" in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)\n\n#### DCC with a Third-Party Provider\nSet this field to the converted amount that was returned by the DCC provider. You must include either this field or the 1st line item in the order and the specific line-order amount in your request. For details, see `grand_total_amount` field description in [Dynamic Currency Conversion For First Data Using the SCMP API](http://apps.cybersource.com/library/documentation/dev_guides/DCC_FirstData_SCMP/DCC_FirstData_SCMP_API.pdf).\n\n#### FDMS South\nIf you accept IDR or CLP currencies, see the entry for FDMS South in \"Authorization Information for Specific Processors\" of the [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) <!--Table 15, \"Authorization Information for Specific Processors,\" on page 43.-->\n\n#### DCC for First Data\nNot used.\n"
-                                                },
-                                                "currency": {
-                                                    "type": "string",
-                                                    "maxLength": 3,
-                                                    "description": "Currency used for the order. Use the three-character I[ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)\n\nFor details about currency as used in partial authorizations, see \"Features for Debit Cards and Prepaid Cards\" in the [Credit Card Services Using the SCMP API Guide](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)\n\nFor an authorization reversal (`reversalInformation`) or a capture (`processingOptions.capture` is set to `true`), you must use the same currency that you used in your payment authorization request.\n\n#### DCC for First Data\nYour local currency. For details, see the `currency` field description in [Dynamic Currency Conversion For First Data Using the SCMP API](http://apps.cybersource.com/library/documentation/dev_guides/DCC_FirstData_SCMP/DCC_FirstData_SCMP_API.pdf).\n"
-                                                }
-                                            }
-                                        },
-                                        "reason": {
-                                            "type": "string",
-                                            "description": "Reason for the authorization reversal. Possible value:\n\n - `34`: Suspected fraud\n\nCyberSource ignores this field for processors that do not support this value.\n\nFor details, see `auth_reversal_reason` field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)\n"
-                                        }
-                                    }
-                                },
-                                "processingInformation": {
-                                    "type": "object",
-                                    "properties": {
-                                        "paymentSolution": {
-                                            "type": "string",
-                                            "maxLength": 12,
-                                            "description": "Type of digital payment solution for the transaction. Possible Values:\n\n - `visacheckout`: Visa Checkout. This value is required for Visa Checkout transactions. For details, see `payment_solution` field description in [Visa Checkout Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/VCO_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)\n - `001`: Apple Pay.\n - `004`: Cybersource In-App Solution.\n - `005`: Masterpass. This value is required for Masterpass transactions on OmniPay Direct. For details, see \"Masterpass\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)\n - `006`: Android Pay.\n - `007`: Chase Pay.\n - `008`: Samsung Pay.\n - `012`: Google Pay.\n"
-                                        },
-                                        "reconciliationId": {
-                                            "type": "string",
-                                            "maxLength": 60,
-                                            "description": "Please check with Cybersource customer support to see if your merchant account is configured correctly so you\ncan include this field in your request.\n* For Payouts: max length for FDCCompass is String (22).\n"
-                                        },
-                                        "linkId": {
-                                            "type": "string",
-                                            "maxLength": 26,
-                                            "description": "Value that links the current authorization request to the original authorization request. Set this value\nto the ID that was returned in the reply message from the original authorization request.\n\nThis value is used for:\n\n- Partial authorizations\n- Split shipments\n\nFor details, see `link_to_request` field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)\n"
-                                        },
-                                        "reportGroup": {
-                                            "type": "string",
-                                            "maxLength": 25,
-                                            "description": "Attribute that lets you define custom grouping for your processor reports. This field is supported only for **Worldpay VAP**.\n\nFor details, see `report_group` field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)\n"
-                                        },
-                                        "visaCheckoutId": {
-                                            "type": "string",
-                                            "maxLength": 48,
-                                            "description": "Identifier for the **Visa Checkout** order. Visa Checkout provides a unique order ID for every transaction in\nthe Visa Checkout **callID** field.\n\nFor details, see the `vc_order_id` field description in [Visa Checkout Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/VCO_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)\n"
-                                        },
-                                        "issuer": {
-                                            "type": "object",
-                                            "properties": {
-                                                "discretionaryData": {
-                                                    "type": "string",
-                                                    "maxLength": 255,
-                                                    "description": "Data defined by the issuer.\n\nThe value for this reply field will probably be the same as the value that you submitted in the authorization request, but it is possible for the processor, issuer, or acquirer to modify the value.\n\nThis field is supported only for Visa transactions on **CyberSource through VisaNet**.\n\nFor details, see `issuer_additional_data` field description in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)\n"
-                                                }
-                                            }
-                                        }
-                                    }
-                                },
-                                "orderInformation": {
-                                    "type": "object",
-                                    "properties": {
-                                        "amountDetails": {
-                                            "type": "object",
-                                            "properties": {
-                                                "serviceFeeAmount": {
-                                                    "type": "string",
-                                                    "maxLength": 15,
-                                                    "description": "Service fee. Required for service fee transactions.\n"
-                                                }
-                                            }
-                                        },
-                                        "lineItems": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "quantity": {
-                                                        "type": "number",
-                                                        "minimum": 1,
-                                                        "maximum": 9999999999,
-                                                        "description": "Number of units for this order.\n\nThe default is `1`. For an authorization or capture transaction (`processingOptions.capture` is set to `true` or `false`), this field is required when _orderInformation.lineItems[].productCode_ is not set to **default** or one of the other values that are related to shipping and/or handling.\n\nWhen orderInformation.lineItems[].productCode is \"gift_card\",\nthis is the total count of individual prepaid gift cards purchased.\n",
-                                                        "default": 1
-                                                    },
-                                                    "unitPrice": {
-                                                        "type": "string",
-                                                        "maxLength": 15,
-                                                        "description": "Per-item price of the product. This value cannot be negative. You can include a decimal point (.), but you\ncannot include any other special characters. CyberSource truncates the amount to the correct number of decimal\nplaces.\n\nFor processor-specific information, see the `amount` field description in\n[Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html)\n\n**Important** Some processors have specific requirements and limitations, such as maximum\namounts and maximum field lengths. See these guides for details:\n- [Merchant Descriptors Using the SCMP API Guide]\n(https://apps.cybersource.com/library/documentation/dev_guides/Merchant_Descriptors_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)\n- \"Capture Information for Specific Processors\" section in the [Credit Card Services Using the SCMP API Guide](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)\n\n#### DCC with a Third-Party Provider\nSet this field to the converted amount that was returned by the DCC provider. You must include either\nthe 1st line item in the order and this field, or the request-level field `orderInformation.amountDetails.totalAmount` in your request. For details, see \"Dynamic Currency Conversion with a Third Party\nProvider\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)\n\n#### FDMS South\nIf you accept IDR or CLP currencies, see the entry for FDMS South in the [Merchant Descriptors Using the SCMP API Guide.]\n(https://apps.cybersource.com/library/documentation/dev_guides/Merchant_Descriptors_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)\n\n#### Zero Amount Authorizations\nIf your processor supports zero amount authorizations, you can set this field to 0 for the\nauthorization to check if the card is lost or stolen. See \"Zero Amount Authorizations\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)\n"
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                },
-                                "pointOfSaleInformation": {
-                                    "type": "object",
-                                    "properties": {
-                                        "emv": {
-                                            "type": "object",
-                                            "properties": {
-                                                "tags": {
-                                                    "type": "string",
-                                                    "maxLength": 1998,
-                                                    "description": "EMV data that is transmitted from the chip card to the issuer, and from the issuer to the chip card. The EMV\ndata is in the tag-length-value format and includes chip card tags, terminal tags, and transaction detail tags.\n\nFor details, see the `emv_request_combined_tags` field description in [Card-Present Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Retail_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)\n\n**Note** The information about EMV applies to credit card processing and PIN debit\nprocessing. All other information in this guide applies only to credit card processing. PIN debit\nprocessing is available only on FDC Nashville Global.\n\n**Note** For information about the individual tags, see the \u201cApplication Specification\u201d section in the EMV 4.3 Specifications: http://emvco.com\n\n**Important** The following tags contain sensitive information and **must not** be included in this field:\n\n - **56**: Track 1 equivalent data\n - **57**: Track 2 equivalent data\n - **5A**: Application PAN\n - **5F20**: Cardholder name\n - **5F24**: Application expiration date (This sensitivity has been relaxed for cmcic, amexdirect, fdiglobal, opdfde, and six)\n - **99**: Transaction PIN\n - **9F0B**: Cardholder name (extended)\n - **9F1F**: Track 1 discretionary data\n - **9F20**: Track 2 discretionary data\n\nFor captures, this field is required for contact EMV transactions. Otherwise, it is optional.\n\nFor credits, this field is required for contact EMV stand-alone credits and contactless EMV stand-alone credits.\nOtherwise, it is optional.\n\n**Important** For contact EMV captures, contact EMV stand-alone credits, and contactless EMV stand-alone credits,\nyou must include the following tags in this field. For all other types of EMV transactions, the following tags\nare optional.\n\n - **95**: Terminal verification results\n - **9F10**: Issuer application data\n - **9F26**: Application cryptogram\n"
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            },
-                            "example": {
-                                "clientReferenceInformation": {
-                                    "code": "TC50171_3",
-                                    "transactionId": "496301552302618"
-                                },
-                                "reversalInformation": {
-                                    "reason": "testing",
-                                    "amountDetails": {
-                                        "totalAmount": "102.21"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Successful response.",
-                        "schema": {
-                            "title": "ptsV2ReversalsPost201Response",
-                            "type": "object",
-                            "properties": {
-                                "_links": {
-                                    "type": "object",
-                                    "properties": {
-                                        "self": {
-                                            "type": "object",
-                                            "properties": {
-                                                "href": {
-                                                    "type": "string",
-                                                    "description": "This is the endpoint of the resource that was created by the successful request."
-                                                },
-                                                "method": {
-                                                    "type": "string",
-                                                    "description": "`method` refers to the HTTP method that you can send to the `self` endpoint to retrieve details of the resource."
-                                                }
-                                            }
-                                        }
-                                    }
-                                },
-                                "id": {
-                                    "type": "string",
-                                    "maxLength": 26,
-                                    "description": "An unique identification number assigned by CyberSource to identify the submitted request. It is also appended to the endpoint of the resource."
-                                },
-                                "submitTimeUtc": {
-                                    "type": "string",
-                                    "description": "Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`\nExample `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the\ntime. The `Z` indicates UTC.\n"
-                                },
-                                "status": {
-                                    "type": "string",
-                                    "description": "The status of the submitted transaction.\n\nPossible values:\n - REVERSED\n",
-                                    "enum": [
-                                        "REVERSED"
-                                    ]
-                                },
-                                "reconciliationId": {
-                                    "type": "string",
-                                    "maxLength": 60,
-                                    "description": "The reconciliation id for the submitted transaction. This value is not returned for all processors.\n"
-                                },
-                                "clientReferenceInformation": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "string",
-                                            "maxLength": 50,
-                                            "description": "Client-generated order reference or tracking number. CyberSource recommends that you send a unique value for each\ntransaction so that you can perform meaningful searches for the transaction.\n\nFor information about tracking orders, see \"Tracking and Reconciling Your Orders\" in [Getting Started with CyberSource Advanced for the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Getting_Started_SCMP/html/wwhelp/wwhimpl/js/html/wwhelp.htm)\n\n#### FDC Nashville Global\nCertain circumstances can cause the processor to truncate this value to 15 or 17 characters for Level II and Level III processing, which can cause a discrepancy between the value you submit and the value included in some processor reports.\n"
-                                        },
-                                        "submitLocalDateTime": {
-                                            "type": "string",
-                                            "maxLength": 14,
-                                            "description": "Date and time at your physical location.\n\nFormat: `YYYYMMDDhhmmss`, where YYYY = year, MM = month, DD = day, hh = hour, mm = minutes ss = seconds\n"
-                                        },
-                                        "ownerMerchantId": {
-                                            "type": "string",
-                                            "description": "Merchant ID that was used to create the subscription or customer profile for which the service was requested.\n\nIf your CyberSource account is enabled for Recurring Billing, this field is returned only if you are using\nsubscription sharing and if your merchant ID is in the same merchant ID pool as the owner merchant ID.\n\nIf your CyberSource account is enabled for Payment Tokenization, this field is returned only if you are using\nprofile sharing and if your merchant ID is in the same merchant ID pool as the owner merchant ID.\n\nFor details about how this field is used for Recurring Billing or Payment Tokenization, see the `ecp_debit_owner_merchant_id` field description in the [Electronic Check Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/EChecks_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)\n"
-                                        }
-                                    }
-                                },
-                                "reversalAmountDetails": {
-                                    "type": "object",
-                                    "properties": {
-                                        "reversedAmount": {
-                                            "type": "string",
-                                            "maxLength": 15,
-                                            "description": "Total reversed amount.\n\nFor details, see `auth_reversal_amount` field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)\n"
-                                        },
-                                        "originalTransactionAmount": {
-                                            "type": "string",
-                                            "maxLength": 15,
-                                            "description": "Amount of the original transaction.\n\nFor details, see `original_transaction_amount` field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)\n"
-                                        },
-                                        "currency": {
-                                            "type": "string",
-                                            "maxLength": 3,
-                                            "description": "Currency used for the order. Use the three-character I[ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)\n\nFor details about currency as used in partial authorizations, see \"Features for Debit Cards and Prepaid Cards\" in the [Credit Card Services Using the SCMP API Guide](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)\n\nFor an authorization reversal (`reversalInformation`) or a capture (`processingOptions.capture` is set to `true`), you must use the same currency that you used in your payment authorization request.\n\n#### DCC for First Data\nYour local currency. For details, see the `currency` field description in [Dynamic Currency Conversion For First Data Using the SCMP API](http://apps.cybersource.com/library/documentation/dev_guides/DCC_FirstData_SCMP/DCC_FirstData_SCMP_API.pdf).\n"
-                                        }
-                                    }
-                                },
-                                "processorInformation": {
-                                    "type": "object",
-                                    "properties": {
-                                        "transactionId": {
-                                            "type": "string",
-                                            "maxLength": 18,
-                                            "description": "Processor transaction ID.\n\nThis value identifies the transaction on a host system. This value is supported only for Moneris. It contains\nthis information:\n\n - Terminal used to process the transaction\n - Shift during which the transaction took place\n - Batch number\n - Transaction number within the batch\n\nYou must store this value. If you give the customer a receipt, display this value on the receipt.\n\nExample For the value 66012345001069003:\n\n - Terminal ID = 66012345\n - Shift number = 001\n - Batch number = 069\n - Transaction number = 003\n"
-                                        },
-                                        "responseCode": {
-                                            "type": "string",
-                                            "maxLength": 10,
-                                            "description": "For most processors, this is the error message sent directly from the bank. Returned only when the processor\nreturns this value.\n\n**Important** Do not use this field to evaluate the result of the authorization.\n\n#### AIBMS\nIf this value is `08`, you can accept the transaction if the customer provides you with identification.\n\n#### Atos\nThis value is the response code sent from Atos and it might also include the response code from the bank.\nFormat: `aa,bb` with the two values separated by a comma and where:\n- `aa` is the two-digit error message from Atos.\n- `bb` is the optional two-digit error message from the bank.\n\n#### Comercio Latino\nThis value is the status code and the error or\nresponse code received from the processor\nseparated by a colon.\nFormat: [status code]:E[error code] or\n[status code]:R[response code]\nExample `2:R06`\n\n#### JCN Gateway\nProcessor-defined detail error code. The associated response category code is in the `responseCategoryCode` field.\n"
-                                        },
-                                        "responseCategoryCode": {
-                                            "type": "string",
-                                            "maxLength": 32,
-                                            "description": "Processor-defined response category code. The associated detail error code is in the `responseCode`\nfield of the service you requested.\n\nThis field is supported only for:\n\n - Japanese issuers\n - Domestic transactions in Japan\n - Comercio Latino\u2014processor transaction ID required for troubleshooting\n\n**Maximum length for processors**:\n\n - Comercio Latino: 32\n - All other processors: 3\n"
-                                        },
-                                        "forwardedAcquirerCode": {
-                                            "type": "string",
-                                            "maxLength": 32,
-                                            "description": "Name of the Japanese acquirer that processed the transaction. Returned only for CCS (CAFIS) and JCN Gateway.\nPlease contact the CyberSource Japan Support Group for more information.\n"
-                                        },
-                                        "masterCardServiceCode": {
-                                            "type": "string",
-                                            "maxLength": 2,
-                                            "description": "Mastercard service that was used for the transaction. Mastercard provides this value to CyberSource.\n\nPossible value:\n - 53: Mastercard card-on-file token service\n\n#### CyberSource through VisaNet\nThe value for this field corresponds to the following data in the TC 33 capture file:\n- Record: CP01 TCR6\n- Position: 133-134\n- Field: Mastercard Merchant on-behalf service.\n**Note** This field is returned only for CyberSource through VisaNet.\n"
-                                        },
-                                        "masterCardServiceReplyCode": {
-                                            "type": "string",
-                                            "maxLength": 1,
-                                            "description": "Result of the Mastercard card-on-file token service. Mastercard provides this value to CyberSource.\n\nPossible values:\n\n - `C`: Service completed successfully.\n - `F`: One of the following:\n   - Incorrect Mastercard POS entry mode. The Mastercard POS entry mode should be 81 for an authorization or\n     authorization reversal.\n   - Incorrect Mastercard POS entry mode. The Mastercard POS entry mode should be 01 for a tokenized request.\n   - Token requestor ID is missing or formatted incorrectly.\n - `I`: One of the following:\n   - Invalid token requestor ID.\n   - Suspended or deactivated token.\n   - Invalid token (not in mapping table).\n - `T`: Invalid combination of token requestor ID and token.\n - `U`: Expired token.\n - `W`: Primary account number (PAN) listed in electronic warning bulletin.\n\n**Note** This field is returned only for **CyberSource through VisaNet**.\n"
-                                        }
-                                    }
-                                },
-                                "issuerInformation": {
-                                    "type": "object",
-                                    "properties": {
-                                        "responseCode": {
-                                            "type": "string",
-                                            "maxLength": 6,
-                                            "description": "Additional authorization code that must be printed on the receipt when returned by the processor.\n\nThis value is generated by the processor and is returned only for a successful transaction.\n\nThis field is supported only on FDC Nashville Global and SIX.\n"
-                                        }
-                                    }
-                                },
-                                "authorizationInformation": {
-                                    "type": "object",
-                                    "properties": {
-                                        "approvalCode": {
-                                            "type": "string",
-                                            "maxLength": 6,
-                                            "description": "The authorization code returned by the processor."
-                                        },
-                                        "reasonCode": {
-                                            "type": "string",
-                                            "maxLength": 50,
-                                            "description": "Reply flag for the original transaction."
-                                        },
-                                        "reversalSubmitted": {
-                                            "type": "string",
-                                            "maxLength": 1,
-                                            "description": "Flag indicating whether a full authorization reversal was successfully submitted.\n\nPossible values:\n- Y: The authorization reversal was successfully submitted.\n- N: The authorization reversal was not successfully submitted. You must send a credit request for a refund.\n\nThis field is supported only for **FDC Nashville Global**.\n"
-                                        }
-                                    }
-                                },
-                                "pointOfSaleInformation": {
-                                    "type": "object",
-                                    "properties": {
-                                        "emv": {
-                                            "type": "object",
-                                            "properties": {
-                                                "tags": {
-                                                    "type": "string",
-                                                    "maxLength": 1998,
-                                                    "description": "EMV data that is transmitted from the chip card to the issuer, and from the issuer to the chip card. The EMV\ndata is in the tag-length-value format and includes chip card tags, terminal tags, and transaction detail tags.\n\nFor details, see the `emv_request_combined_tags` field description in [Card-Present Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Retail_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)\n\n**Note** The information about EMV applies to credit card processing and PIN debit\nprocessing. All other information in this guide applies only to credit card processing. PIN debit\nprocessing is available only on FDC Nashville Global.\n\n**Note** For information about the individual tags, see the \u201cApplication Specification\u201d section in the EMV 4.3 Specifications: http://emvco.com\n\n**Important** The following tags contain sensitive information and **must not** be included in this field:\n\n - **56**: Track 1 equivalent data\n - **57**: Track 2 equivalent data\n - **5A**: Application PAN\n - **5F20**: Cardholder name\n - **5F24**: Application expiration date (This sensitivity has been relaxed for cmcic, amexdirect, fdiglobal, opdfde, and six)\n - **99**: Transaction PIN\n - **9F0B**: Cardholder name (extended)\n - **9F1F**: Track 1 discretionary data\n - **9F20**: Track 2 discretionary data\n\nFor captures, this field is required for contact EMV transactions. Otherwise, it is optional.\n\nFor credits, this field is required for contact EMV stand-alone credits and contactless EMV stand-alone credits.\nOtherwise, it is optional.\n\n**Important** For contact EMV captures, contact EMV stand-alone credits, and contactless EMV stand-alone credits,\nyou must include the following tags in this field. For all other types of EMV transactions, the following tags\nare optional.\n\n - **95**: Terminal verification results\n - **9F10**: Issuer application data\n - **9F26**: Application cryptogram\n"
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            },
-                            "example": {
-                                "_links": {
-                                    "self": {
-                                        "href": "/pts/v2/reversals/4963015523026180001545",
-                                        "method": "GET"
-                                    }
-                                },
-                                "id": "4963015523026180001545",
-                                "submitTimeUtc": "2017-06-01T071912Z",
-                                "status": "200",
-                                "statusInformation": {
-                                    "reason": "SUCCESS",
-                                    "message": "Successful transaction."
-                                },
-                                "clientReferenceInformation": {
-                                    "code": "TC50171_3"
-                                },
-                                "orderInformation": {
-                                    "amountDetails": {
-                                        "currency": "USD"
-                                    }
-                                },
-                                "processorInformation": {
-                                    "responseCode": "100"
-                                },
-                                "reversalAmountDetails": {
-                                    "reversedAmount": "102.21",
-                                    "currency": "USD"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Invalid request.",
-                        "schema": {
-                            "title": "ptsV2ReversalsPost400Response",
-                            "type": "object",
-                            "properties": {
-                                "submitTimeUtc": {
-                                    "type": "string",
-                                    "description": "Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`\nExample `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the\ntime. The `Z` indicates UTC.\n"
-                                },
-                                "status": {
-                                    "type": "string",
-                                    "description": "The status of the submitted transaction.\n\nPossible values:\n - INVALID_REQUEST\n",
-                                    "enum": [
-                                        "INVALID_REQUEST"
-                                    ]
-                                },
-                                "reason": {
-                                    "type": "string",
-                                    "description": "The reason of the status.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n - DUPLICATE_REQUEST\n - INVALID_MERCHANT_CONFIGURATION\n - PROCESSOR_UNAVAILABLE\n - AUTH_ALREADY_REVERSED\n - TRANSACTION_ALREADY_SETTLED\n - INVALID_AMOUNT\n - MISSING_AUTH\n - TRANSACTION_ALREADY_REVERSED_OR_SETTLED\n",
-                                    "enum": [
-                                        "MISSING_FIELD",
-                                        "INVALID_DATA",
-                                        "DUPLICATE_REQUEST",
-                                        "INVALID_MERCHANT_CONFIGURATION",
-                                        "PROCESSOR_UNAVAILABLE",
-                                        "AUTH_ALREADY_REVERSED",
-                                        "TRANSACTION_ALREADY_SETTLED",
-                                        "INVALID_AMOUNT",
-                                        "MISSING_AUTH",
-                                        "TRANSACTION_ALREADY_REVERSED_OR_SETTLED"
-                                    ]
-                                },
-                                "message": {
-                                    "type": "string",
-                                    "description": "The detail message related to the status and reason listed above."
-                                },
-                                "details": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "field": {
-                                                "type": "string",
-                                                "description": "This is the flattened JSON object field name/path that is either missing or invalid."
-                                            },
-                                            "reason": {
-                                                "type": "string",
-                                                "description": "Possible reasons for the error.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n",
-                                                "enum": [
-                                                    "MISSING_FIELD",
-                                                    "INVALID_DATA"
-                                                ]
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "502": {
-                        "description": "Unexpected system error or system timeout.",
-                        "schema": {
-                            "title": "ptsV2ReversalsPost502Response",
-                            "type": "object",
-                            "properties": {
-                                "submitTimeUtc": {
-                                    "type": "string",
-                                    "description": "Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`\nExample `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the\ntime. The `Z` indicates UTC.\n"
-                                },
-                                "status": {
-                                    "type": "string",
-                                    "description": "The status of the submitted transaction.\n\nPossible values:\n - SERVER_ERROR\n",
-                                    "enum": [
-                                        "SERVER_ERROR"
-                                    ]
-                                },
-                                "reason": {
-                                    "type": "string",
-                                    "description": "The reason of the status.\n\nPossible values:\n - SYSTEM_ERROR\n - SERVER_TIMEOUT\n - SERVICE_TIMEOUT\n - INVALID_OR_MISSING_CONFIG\n - PROCESSOR_TIMEOUT\n",
-                                    "enum": [
-                                        "SYSTEM_ERROR",
-                                        "SERVER_TIMEOUT",
-                                        "SERVICE_TIMEOUT",
-                                        "INVALID_OR_MISSING_CONFIG",
-                                        "PROCESSOR_TIMEOUT"
-                                    ]
-                                },
-                                "message": {
-                                    "type": "string",
-                                    "description": "The detail message related to the status and reason listed above."
                                 }
                             }
                         }
@@ -11276,269 +10794,6 @@
                         "value": {
                             "clientReferenceInformation": {
                                 "code": "test_void"
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/pts/v2/voids/": {
-            "post": {
-                "summary": "Merchant Initiated Void",
-                "description": "This is to void a previous payment, capture, refund, or credit that merchant does not receive a reply.",
-                "tags": [
-                    "void"
-                ],
-                "operationId": "mitVoid",
-                "x-devcenter-metaData": {
-                    "categoryTag": "Payments"
-                },
-                "parameters": [
-                    {
-                        "name": "mitVoidRequest",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "clientReferenceInformation": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "string",
-                                            "maxLength": 50,
-                                            "description": "Client-generated order reference or tracking number. CyberSource recommends that you send a unique value for each\ntransaction so that you can perform meaningful searches for the transaction.\n\nFor information about tracking orders, see \"Tracking and Reconciling Your Orders\" in [Getting Started with CyberSource Advanced for the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Getting_Started_SCMP/html/wwhelp/wwhimpl/js/html/wwhelp.htm)\n\n#### FDC Nashville Global\nCertain circumstances can cause the processor to truncate this value to 15 or 17 characters for Level II and Level III processing, which can cause a discrepancy between the value you submit and the value included in some processor reports.\n"
-                                        },
-                                        "transactionId": {
-                                            "type": "string",
-                                            "description": "Identifier that you assign to the transaction.\n\n**Note** Use this field only if you want to support merchant-initiated reversal and void operations.\n\nFor details, see \"Merchant-Initiated Reversals and Voids\" in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)\n"
-                                        },
-                                        "comments": {
-                                            "type": "string",
-                                            "description": "Comments"
-                                        },
-                                        "partner": {
-                                            "type": "object",
-                                            "properties": {
-                                                "originalTransactionId": {
-                                                    "type": "string",
-                                                    "maxLength": 32,
-                                                    "description": "Value that links the previous transaction to the current follow-on request. This value is assigned by the client\nsoftware that is installed on the POS terminal, which makes it available to the terminal\u2019s software and to\nCyberSource. Therefore, you can use this value to reconcile transactions between CyberSource and the terminal\u2019s\nsoftware.\n\nCyberSource does not forward this value to the processor. Instead, the value is forwarded to the CyberSource\nreporting functionality.\n\nThis field is supported only on American Express Direct, FDC Nashville Global, and SIX.\n"
-                                                },
-                                                "developerId": {
-                                                    "type": "string",
-                                                    "maxLength": 8,
-                                                    "description": "Identifier for the developer that helped integrate a partner solution to CyberSource.\n\nSend this value in all requests that are sent through the partner solutions built by that developer.\nCyberSource assigns the ID to the developer.\n\n**Note** When you see a developer ID of 999 in reports, the developer ID that was submitted is incorrect.\n"
-                                                },
-                                                "solutionId": {
-                                                    "type": "string",
-                                                    "maxLength": 8,
-                                                    "description": "Identifier for the partner that is integrated to CyberSource.\n\nSend this value in all requests that are sent through the partner solution. CyberSource assigns the ID to the partner.\n\n**Note** When you see a partner ID of 999 in reports, the partner ID that was submitted is incorrect.\n"
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            },
-                            "example": {
-                                "clientReferenceInformation": {
-                                    "code": "test_void"
-                                }
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Successful response.",
-                        "schema": {
-                            "title": "ptsV2VoidsPost200Response",
-                            "type": "object",
-                            "properties": {
-                                "_links": {
-                                    "type": "object",
-                                    "properties": {
-                                        "self": {
-                                            "type": "object",
-                                            "properties": {
-                                                "href": {
-                                                    "type": "string",
-                                                    "description": "This is the endpoint of the resource that was created by the successful request."
-                                                },
-                                                "method": {
-                                                    "type": "string",
-                                                    "description": "`method` refers to the HTTP method that you can send to the `self` endpoint to retrieve details of the resource."
-                                                }
-                                            }
-                                        }
-                                    }
-                                },
-                                "id": {
-                                    "type": "string",
-                                    "maxLength": 26,
-                                    "description": "An unique identification number assigned by CyberSource to identify the submitted request. It is also appended to the endpoint of the resource."
-                                },
-                                "submitTimeUtc": {
-                                    "type": "string",
-                                    "description": "Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`\nExample `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the\ntime. The `Z` indicates UTC.\n"
-                                },
-                                "status": {
-                                    "type": "string",
-                                    "description": "The status of the submitted transaction.\n\nPossible values:\n - VOIDED\n",
-                                    "enum": [
-                                        "VOIDED"
-                                    ]
-                                },
-                                "clientReferenceInformation": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "string",
-                                            "maxLength": 50,
-                                            "description": "Client-generated order reference or tracking number. CyberSource recommends that you send a unique value for each\ntransaction so that you can perform meaningful searches for the transaction.\n\nFor information about tracking orders, see \"Tracking and Reconciling Your Orders\" in [Getting Started with CyberSource Advanced for the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Getting_Started_SCMP/html/wwhelp/wwhimpl/js/html/wwhelp.htm)\n\n#### FDC Nashville Global\nCertain circumstances can cause the processor to truncate this value to 15 or 17 characters for Level II and Level III processing, which can cause a discrepancy between the value you submit and the value included in some processor reports.\n"
-                                        },
-                                        "submitLocalDateTime": {
-                                            "type": "string",
-                                            "maxLength": 14,
-                                            "description": "Date and time at your physical location.\n\nFormat: `YYYYMMDDhhmmss`, where YYYY = year, MM = month, DD = day, hh = hour, mm = minutes ss = seconds\n"
-                                        },
-                                        "ownerMerchantId": {
-                                            "type": "string",
-                                            "description": "Merchant ID that was used to create the subscription or customer profile for which the service was requested.\n\nIf your CyberSource account is enabled for Recurring Billing, this field is returned only if you are using\nsubscription sharing and if your merchant ID is in the same merchant ID pool as the owner merchant ID.\n\nIf your CyberSource account is enabled for Payment Tokenization, this field is returned only if you are using\nprofile sharing and if your merchant ID is in the same merchant ID pool as the owner merchant ID.\n\nFor details about how this field is used for Recurring Billing or Payment Tokenization, see the `ecp_debit_owner_merchant_id` field description in the [Electronic Check Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/EChecks_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)\n"
-                                        }
-                                    }
-                                },
-                                "voidAmountDetails": {
-                                    "type": "object",
-                                    "properties": {
-                                        "voidAmount": {
-                                            "type": "string",
-                                            "description": "Total amount of the void."
-                                        },
-                                        "originalTransactionAmount": {
-                                            "type": "string",
-                                            "description": "Amount of the original transaction."
-                                        },
-                                        "currency": {
-                                            "type": "string",
-                                            "maxLength": 3,
-                                            "description": "Currency used for the order. Use the three-character I[ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)\n\nFor details about currency as used in partial authorizations, see \"Features for Debit Cards and Prepaid Cards\" in the [Credit Card Services Using the SCMP API Guide](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)\n\nFor an authorization reversal (`reversalInformation`) or a capture (`processingOptions.capture` is set to `true`), you must use the same currency that you used in your payment authorization request.\n\n#### DCC for First Data\nYour local currency. For details, see the `currency` field description in [Dynamic Currency Conversion For First Data Using the SCMP API](http://apps.cybersource.com/library/documentation/dev_guides/DCC_FirstData_SCMP/DCC_FirstData_SCMP_API.pdf).\n"
-                                        }
-                                    }
-                                }
-                            },
-                            "example": {
-                                "_links": {
-                                    "self": {
-                                        "href": "/pts/v2/voids/4963015122056179201545",
-                                        "method": "GET"
-                                    }
-                                },
-                                "id": "4963015122056179201545",
-                                "submitTimeUtc": "2017-06-01T071832Z",
-                                "status": "VOIDED",
-                                "clientReferenceInformation": {
-                                    "code": "test_void"
-                                },
-                                "orderInformation": {
-                                    "amountDetails": {
-                                        "currency": "USD"
-                                    }
-                                },
-                                "voidAmountDetails": {
-                                    "currency": "usd",
-                                    "voidAmount": "102.21"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Invalid request.",
-                        "schema": {
-                            "title": "ptsV2VoidsPost400Response",
-                            "type": "object",
-                            "properties": {
-                                "submitTimeUtc": {
-                                    "type": "string",
-                                    "description": "Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`\nExample `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the\ntime. The `Z` indicates UTC.\n"
-                                },
-                                "status": {
-                                    "type": "string",
-                                    "description": "The status of the submitted transaction.\n\nPossible values:\n - INVALID_REQUEST\n",
-                                    "enum": [
-                                        "INVALID_REQUEST"
-                                    ]
-                                },
-                                "reason": {
-                                    "type": "string",
-                                    "description": "The reason of the status.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n - DUPLICATE_REQUEST\n - INVALID_MERCHANT_CONFIGURATION\n - NOT_VOIDABLE\n",
-                                    "enum": [
-                                        "MISSING_FIELD",
-                                        "INVALID_DATA",
-                                        "DUPLICATE_REQUEST",
-                                        "INVALID_MERCHANT_CONFIGURATION",
-                                        "NOT_VOIDABLE"
-                                    ]
-                                },
-                                "message": {
-                                    "type": "string",
-                                    "description": "The detail message related to the status and reason listed above."
-                                },
-                                "details": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "field": {
-                                                "type": "string",
-                                                "description": "This is the flattened JSON object field name/path that is either missing or invalid."
-                                            },
-                                            "reason": {
-                                                "type": "string",
-                                                "description": "Possible reasons for the error.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n",
-                                                "enum": [
-                                                    "MISSING_FIELD",
-                                                    "INVALID_DATA"
-                                                ]
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "502": {
-                        "description": "Unexpected system error or system timeout.",
-                        "schema": {
-                            "title": "ptsV2VoidsPost502Response",
-                            "type": "object",
-                            "properties": {
-                                "submitTimeUtc": {
-                                    "type": "string",
-                                    "description": "Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`\nExample `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the\ntime. The `Z` indicates UTC.\n"
-                                },
-                                "status": {
-                                    "type": "string",
-                                    "description": "The status of the submitted transaction.\n\nPossible values:\n - SERVER_ERROR\n",
-                                    "enum": [
-                                        "SERVER_ERROR"
-                                    ]
-                                },
-                                "reason": {
-                                    "type": "string",
-                                    "description": "The reason of the status.\n\nPossible values:\n - SYSTEM_ERROR\n - SERVER_TIMEOUT\n - SERVICE_TIMEOUT\n - INVALID_OR_MISSING_CONFIG\n - PROCESSOR_TIMEOUT\n",
-                                    "enum": [
-                                        "SYSTEM_ERROR",
-                                        "SERVER_TIMEOUT",
-                                        "SERVICE_TIMEOUT",
-                                        "INVALID_OR_MISSING_CONFIG",
-                                        "PROCESSOR_TIMEOUT"
-                                    ]
-                                },
-                                "message": {
-                                    "type": "string",
-                                    "description": "The detail message related to the status and reason listed above."
-                                }
                             }
                         }
                     }
@@ -18570,7 +17825,7 @@
                                     "properties": {
                                         "reason": {
                                             "type": "string",
-                                            "description": "The reason of the status.\n\nPossible values:\n - AVS_FAILED\n - CONTACT_PROCESSOR\n - EXPIRED_CARD\n - PROCESSOR_DECLINED\n - INSUFFICIENT_FUND\n - STOLEN_LOST_CARD\n - ISSUER_UNAVAILABLE\n - UNAUTHORIZED_CARD\n - CVN_NOT_MATCH\n - EXCEEDS_CREDIT_LIMIT\n - INVALID_CVN\n - DECLINED_CHECK\n - BLACKLISTED_CUSTOMER\n - SUSPENDED_ACCOUNT\n - PAYMENT_REFUSED\n - CV_FAILED\n - INVALID_ACCOUNT\n - GENERAL_DECLINE\n - INVALID_MERCHANT_CONFIGURATION\n - DECISION_PROFILE_REJECT\n - SCORE_EXCEEDS_THRESHOLD\n",
+                                            "description": "The reason of the status.\n\nPossible values:\n - AVS_FAILED\n - CONTACT_PROCESSOR\n - EXPIRED_CARD\n - PROCESSOR_DECLINED\n - INSUFFICIENT_FUND\n - STOLEN_LOST_CARD\n - ISSUER_UNAVAILABLE\n - UNAUTHORIZED_CARD\n - CVN_NOT_MATCH\n - EXCEEDS_CREDIT_LIMIT\n - INVALID_CVN\n - DECLINED_CHECK\n - BLACKLISTED_CUSTOMER\n - SUSPENDED_ACCOUNT\n - PAYMENT_REFUSED\n - CV_FAILED\n - INVALID_ACCOUNT\n - GENERAL_DECLINE\n - INVALID_MERCHANT_CONFIGURATION\n - DECISION_PROFILE_REJECT\n - SCORE_EXCEEDS_THRESHOLD\n - PENDING_AUTHENTICATION\n",
                                             "enum": [
                                                 "AVS_FAILED",
                                                 "CONTACT_PROCESSOR",
@@ -18592,7 +17847,8 @@
                                                 "GENERAL_DECLINE",
                                                 "INVALID_MERCHANT_CONFIGURATION",
                                                 "DECISION_PROFILE_REJECT",
-                                                "SCORE_EXCEEDS_THRESHOLD"
+                                                "SCORE_EXCEEDS_THRESHOLD",
+                                                "PENDING_AUTHENTICATION"
                                             ]
                                         },
                                         "message": {
@@ -20237,7 +19493,7 @@
                                     "properties": {
                                         "reason": {
                                             "type": "string",
-                                            "description": "The reason of the status.\n\nPossible values:\n - AVS_FAILED\n - CONTACT_PROCESSOR\n - EXPIRED_CARD\n - PROCESSOR_DECLINED\n - INSUFFICIENT_FUND\n - STOLEN_LOST_CARD\n - ISSUER_UNAVAILABLE\n - UNAUTHORIZED_CARD\n - CVN_NOT_MATCH\n - EXCEEDS_CREDIT_LIMIT\n - INVALID_CVN\n - DECLINED_CHECK\n - BLACKLISTED_CUSTOMER\n - SUSPENDED_ACCOUNT\n - PAYMENT_REFUSED\n - CV_FAILED\n - INVALID_ACCOUNT\n - GENERAL_DECLINE\n - INVALID_MERCHANT_CONFIGURATION\n - DECISION_PROFILE_REJECT\n - SCORE_EXCEEDS_THRESHOLD\n",
+                                            "description": "The reason of the status.\n\nPossible values:\n - AVS_FAILED\n - CONTACT_PROCESSOR\n - EXPIRED_CARD\n - PROCESSOR_DECLINED\n - INSUFFICIENT_FUND\n - STOLEN_LOST_CARD\n - ISSUER_UNAVAILABLE\n - UNAUTHORIZED_CARD\n - CVN_NOT_MATCH\n - EXCEEDS_CREDIT_LIMIT\n - INVALID_CVN\n - DECLINED_CHECK\n - BLACKLISTED_CUSTOMER\n - SUSPENDED_ACCOUNT\n - PAYMENT_REFUSED\n - CV_FAILED\n - INVALID_ACCOUNT\n - GENERAL_DECLINE\n - INVALID_MERCHANT_CONFIGURATION\n - DECISION_PROFILE_REJECT\n - SCORE_EXCEEDS_THRESHOLD\n - PENDING_AUTHENTICATION\n",
                                             "enum": [
                                                 "AVS_FAILED",
                                                 "CONTACT_PROCESSOR",
@@ -20259,7 +19515,8 @@
                                                 "GENERAL_DECLINE",
                                                 "INVALID_MERCHANT_CONFIGURATION",
                                                 "DECISION_PROFILE_REJECT",
-                                                "SCORE_EXCEEDS_THRESHOLD"
+                                                "SCORE_EXCEEDS_THRESHOLD",
+                                                "PENDING_AUTHENTICATION"
                                             ]
                                         },
                                         "message": {
@@ -20443,49 +19700,90 @@
                             "clientReferenceInformation": {
                                 "code": "cybs_test"
                             },
+                            "travelInformation": {
+                                "legs": [
+                                    {
+                                        "carrierCode": "UA",
+                                        "departureDate": "2019-01-01",
+                                        "destination": "DEFGH",
+                                        "origin": "LAX"
+                                    },
+                                    {
+                                        "carrierCode": "AS",
+                                        "departureDate": "2019-02-21",
+                                        "destination": "RESD",
+                                        "origin": "ECF"
+                                    }
+                                ],
+                                "numberOfPassengers": "2",
+                                "passengers": [
+                                    {
+                                        "firstName": "Raj",
+                                        "lastName": "Charles"
+                                    },
+                                    {
+                                        "firstName": "Potter",
+                                        "lastName": "Suhember"
+                                    }
+                                ]
+                            },
+                            "orderInformation": {
+                                "billTo": {
+                                    "firstName": "John",
+                                    "lastName": "Doe",
+                                    "address2": "Address 2",
+                                    "address1": "1 Market St",
+                                    "postalCode": "94105",
+                                    "locality": "san francisco",
+                                    "administrativeArea": "CA",
+                                    "country": "US",
+                                    "phoneNumber": "4158880000",
+                                    "company": "Visa",
+                                    "email": "test@cybs.com"
+                                },
+                                "amountDetails": {
+                                    "totalAmount": "10.99",
+                                    "currency": "USD"
+                                }
+                            },
+                            "buyerInformation": {
+                                "mobilePhone": "1245789632"
+                            },
+                            "paymentInformation": {
+                                "card": {
+                                    "type": "002",
+                                    "expirationMonth": "12",
+                                    "expirationYear": "2025",
+                                    "number": "5200340000000015"
+                                }
+                            },
                             "consumerAuthenticationInformation": {
-                                "acsUrl": "https://merchantacsstag.cardinalcommerce.com/MerchantACSWeb/pareq.jsp?visaattempts=true&gold=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                                "xid": "Z05OVjdRNWUycnIyTk9pazVJMzA=",
-                                "authenticationTransactionId": "gNNV7Q5e2rr2NOik5I30",
-                                "pareq": "eNpVkU1vwjAMhu/5FWjauUlbMlZkIrFxWCdRGGNM2q1LLehYP0jTifLrl7QUtpsfO479vob1TiHOXlHWCgXMsariLQ7SZHKzjaLN6IWjp5QXLdI9D312I2A5XeFBwA+qKi1y4TrM8YD2SMwXSu7iXAuI5eEhjEQQMOb7QM9IIEMVzi7pjgjkcYZCY6UHNgLaMgFZ1LlWjbgfMqA9EKjVt9hpXVZjSmXzaaYXtZLoyCIDaosE6HWTZW2jygg8pon4YHyx+UpW0ftbI/OwWe+DMj5tnuen6QSofUEgiTUKj7kB414wYP7Y5ePhCGibJxBndhNx6zInCIy0DgmUdtC0I5fZ0t+MUVMrhbns5fREAI9lkaN5Y7y8xEbDdfPHJ+uo1MYsj90x3+XW0pbb9tT44nG3609bk6jtoeeD0fNtTfTv5r/AFaad",
-                                "veresEnrolled": "Y",
-                                "proxyPan": "2060315",
-                                "authenticationPath": "ATTEMPTS",
-                                "proofXml": "<AuthProof><Time>2019 May 29 03:15:47</Time><DSUrl>https://merchantacsstag.cardinalcommerce.com/MerchantACSWeb/vereq.jsp?acqid=CYBS</DSUrl><VEReqProof><Message id=\"gNNV7Q5e2rr2NOik5I30\"><VEReq><version>1.0.2</version><pan>XXXXXXXXXXXX0015</pan><Merchant><acqBIN>990033</acqBIN><merID>990033</merID></Merchant><Browser><deviceCategory>0</deviceCategory></Browser></VEReq></Message></VEReqProof><VEResProof><Message id=\"gNNV7Q5e2rr2NOik5I30\"><VERes><version>1.0.2</version><CH><enrolled>Y</enrolled><acctID>2060315</acctID></CH><url>https://merchantacsstag.cardinalcommerce.com/MerchantACSWeb/pareq.jsp?visaattempts=true&amp;gold=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</url><protocol>ThreeDSecure</protocol></VERes></Message></VEResProof></AuthProof>",
-                                "specificationVersion": "1.0.2",
-                                "token": "AhjzbwSTLxatM8oJIxg6EQJReVAhdAWkC4lx3i7ekmXoxXMwpgKAVw1N"
-                            },
-                            "errorInformation": {
-                                "reason": "PENDING_AUTHENTICATION",
-                                "message": "The cardholder is enrolled in Payer Authentication. Please authenticate the cardholder before continuing with the transaction."
-                            },
-                            "id": "5590997473516629203002",
-                            "status": "PENDING_AUTHENTICATION",
-                            "submitTimeUtc": "2019-05-29T03:15:47Z"
+                                "transactionMode": "MOTO"
+                            }
                         },
                         "responseValue": {
                             "clientReferenceInformation": {
-                                "code": "consumerAuthentication"
+                                "code": "cybs_test"
                             },
                             "consumerAuthenticationInformation": {
-                                "acsUrl": "https://0eafstag.cardinalcommerce.com/EAFService/jsp/v1/redirect",
-                                "xid": "ZTVPcjkySG9aVG5HNjVYQzBFejA=",
-                                "authenticationTransactionId": "e5Or92HoZTnG65XC0Ez0",
-                                "challengeRequired": "true",
-                                "pareq": "<Present>(Large Value)",
+                                "acsUrl": "https://merchantacsstag.cardinalcommerce.com/MerchantACSWeb/pareq.jsp?visaattempts=true&gold=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                                "xid": "QTY3d0lEcnVmWFN0cGxYRXo4ZTA=",
+                                "authenticationTransactionId": "A67wIDrufXStplXEz8e0",
+                                "pareq": "eNpVkU1TwjAQhu/5FQzjuUlbvtpZMlMFlYMMAqPgraardIZ+kCYK/nqTloLe9tnNZvd9F9Y7iThZodASOTxhVcWf2EmTcTcaDL9nE6k/NitV7jfTnxGyLodFtMQDhy+UVVrk3HWY4wFtkZgvpNjFueIQi8PtbM6DgDHfB3pGAhnK2eSSbohAHmfIFVaqYyOgNRMQhc6VPPFRjwFtgYCWe75TqqxCSsXp3UwvtBToiCIDaosE6HWThbZRZQQe04Q/r7d+wvZTkb9kr/dzJh6O2+Wm6L2tozFQ+4JAEivkHnMDNmB+h41CtxeyIdA6TyDO7Cb8xmVOEBhpDRIo7aCoIZfZ0t+MUaOlxFy0cloigMeyyNG8MV5eYqPhuvndo3VUKGOWZ5dy+9bSmuv21Pji9d2mP61NoraHng9Gz7c10b+b/wKX0qbG",
                                 "veresEnrolled": "Y",
-                                "proxyPan": "1184110",
-                                "authenticationPath": "ENROLLED",
+                                "proxyPan": "2060315",
+                                "authenticationPath": "ATTEMPTS",
+                                "proofXml": "<AuthProof><Time>2019 Jun 03 08:14:07</Time><DSUrl>https://merchantacsstag.cardinalcommerce.com/MerchantACSWeb/vereq.jsp?acqid=CYBS</DSUrl><VEReqProof><Message id=\"A67wIDrufXStplXEz8e0\"><VEReq><version>1.0.2</version><pan>XXXXXXXXXXXX0015</pan><Merchant><acqBIN>990033</acqBIN><merID>990033</merID></Merchant><Browser><deviceCategory>0</deviceCategory></Browser></VEReq></Message></VEReqProof><VEResProof><Message id=\"A67wIDrufXStplXEz8e0\"><VERes><version>1.0.2</version><CH><enrolled>Y</enrolled><acctID>2060315</acctID></CH><url>https://merchantacsstag.cardinalcommerce.com/MerchantACSWeb/pareq.jsp?visaattempts=true&amp;gold=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</url><protocol>ThreeDSecure</protocol></VERes></Message></VEResProof></AuthProof>",
                                 "specificationVersion": "1.0.2",
-                                "token": "AhjzbwSTK5ZTXDTl9gk8RARNKhE0YLaQO4To3JdvbHFHHyo1IUAw4jc2"
+                                "token": "AhjzbwSTL1Uc1sb6um2eEQJRp+oFO0ekC4lx4S7ekmXoxXMwpgKAYAxH"
                             },
                             "errorInformation": {
                                 "reason": "PENDING_AUTHENTICATION",
                                 "message": "The cardholder is enrolled in Payer Authentication. Please authenticate the cardholder before continuing with the transaction."
                             },
-                            "id": "5526408580950178269500",
+                            "id": "5595496467276664303006",
                             "status": "PENDING_AUTHENTICATION",
-                            "submitTimeUtc": "2019-03-15T09:07:38Z"
+                            "submitTimeUtc": "2019-06-03T08:14:07Z"
                         }
                     },
                     "example2": {
@@ -20952,7 +20250,7 @@
                                     "properties": {
                                         "reason": {
                                             "type": "string",
-                                            "description": "The reason of the status.\n\nPossible values:\n - AVS_FAILED\n - CONTACT_PROCESSOR\n - EXPIRED_CARD\n - PROCESSOR_DECLINED\n - INSUFFICIENT_FUND\n - STOLEN_LOST_CARD\n - ISSUER_UNAVAILABLE\n - UNAUTHORIZED_CARD\n - CVN_NOT_MATCH\n - EXCEEDS_CREDIT_LIMIT\n - INVALID_CVN\n - DECLINED_CHECK\n - BLACKLISTED_CUSTOMER\n - SUSPENDED_ACCOUNT\n - PAYMENT_REFUSED\n - CV_FAILED\n - INVALID_ACCOUNT\n - GENERAL_DECLINE\n - INVALID_MERCHANT_CONFIGURATION\n - DECISION_PROFILE_REJECT\n - SCORE_EXCEEDS_THRESHOLD\n",
+                                            "description": "The reason of the status.\n\nPossible values:\n - AVS_FAILED\n - CONTACT_PROCESSOR\n - EXPIRED_CARD\n - PROCESSOR_DECLINED\n - INSUFFICIENT_FUND\n - STOLEN_LOST_CARD\n - ISSUER_UNAVAILABLE\n - UNAUTHORIZED_CARD\n - CVN_NOT_MATCH\n - EXCEEDS_CREDIT_LIMIT\n - INVALID_CVN\n - DECLINED_CHECK\n - BLACKLISTED_CUSTOMER\n - SUSPENDED_ACCOUNT\n - PAYMENT_REFUSED\n - CV_FAILED\n - INVALID_ACCOUNT\n - GENERAL_DECLINE\n - INVALID_MERCHANT_CONFIGURATION\n - DECISION_PROFILE_REJECT\n - SCORE_EXCEEDS_THRESHOLD\n - PENDING_AUTHENTICATION\n",
                                             "enum": [
                                                 "AVS_FAILED",
                                                 "CONTACT_PROCESSOR",
@@ -20974,7 +20272,8 @@
                                                 "GENERAL_DECLINE",
                                                 "INVALID_MERCHANT_CONFIGURATION",
                                                 "DECISION_PROFILE_REJECT",
-                                                "SCORE_EXCEEDS_THRESHOLD"
+                                                "SCORE_EXCEEDS_THRESHOLD",
+                                                "PENDING_AUTHENTICATION"
                                             ]
                                         },
                                         "message": {
@@ -21105,8 +20404,8 @@
                                         "quantity": "2",
                                         "taxAmount": "32.40",
                                         "passenger": {
-                                            "firstname": "ABCD",
-                                            "lastname": "DEF"
+                                            "firstName": "John",
+                                            "lastName": "Doe"
                                         }
                                     }
                                 ]
