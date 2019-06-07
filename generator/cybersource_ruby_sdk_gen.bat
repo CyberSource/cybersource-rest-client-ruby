@@ -6,8 +6,8 @@ REM Delete the previously generated SDK code
 
 rm -r -f ..\docs
 rm -r -f ..\lib\cybersource_rest_client
-del ..\lib\cybersource_rest_client.rb
 rm -r -f ..\spec
+del ..\lib\cybersource_rest_client.rb
 
 REM Command to generate SDK
  
