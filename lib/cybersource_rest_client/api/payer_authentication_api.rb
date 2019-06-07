@@ -90,8 +90,8 @@ module CyberSource
     # @param request 
     # @param [Hash] opts the optional parameters
     # @return [RiskV1AuthenticationResultsPost201Response]
-    def risk_v1_authentication_results_post(request, opts = {})
-      data, status_code, headers = risk_v1_authentication_results_post_with_http_info(request, opts)
+    def validate_authentication_results(request, opts = {})
+      data, status_code, headers = validate_authentication_results_with_http_info(request, opts)
       return data, status_code, headers
     end
 
@@ -100,19 +100,19 @@ module CyberSource
     # @param request 
     # @param [Hash] opts the optional parameters
     # @return [Array<(RiskV1AuthenticationResultsPost201Response, Fixnum, Hash)>] RiskV1AuthenticationResultsPost201Response data, response status code and response headers
-    def risk_v1_authentication_results_post_with_http_info(request, opts = {})
+    def validate_authentication_results_with_http_info(request, opts = {})
       
 	  if @api_client.config.debugging
 	  	begin
 			raise
-				@api_client.config.logger.debug 'Calling API: PayerAuthenticationApi.risk_v1_authentication_results_post ...'
+				@api_client.config.logger.debug 'Calling API: PayerAuthenticationApi.validate_authentication_results ...'
 			rescue
 				puts 'Cannot write to log'
 			end
       end
       # verify the required parameter 'request' is set
       if @api_client.config.client_side_validation && request.nil?
-        fail ArgumentError, "Missing the required parameter 'request' when calling PayerAuthenticationApi.risk_v1_authentication_results_post"
+        fail ArgumentError, "Missing the required parameter 'request' when calling PayerAuthenticationApi.validate_authentication_results"
       end
       # resource path
       local_var_path = 'risk/v1/authentication-results'
@@ -143,7 +143,7 @@ module CyberSource
       if @api_client.config.debugging
 		begin
 		raise
-			@api_client.config.logger.debug "API called: PayerAuthenticationApi#risk_v1_authentication_results_post\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+			@api_client.config.logger.debug "API called: PayerAuthenticationApi#validate_authentication_results\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
 		rescue
 			puts 'Cannot write to log'
 		end

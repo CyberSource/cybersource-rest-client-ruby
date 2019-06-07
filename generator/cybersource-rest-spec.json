@@ -10807,6 +10807,7 @@
                 "tags": [
                     "TransactionBatches"
                 ],
+                "operationId": "getTransactionBatches",
                 "x-devcenter-metaData": {
                     "categoryTag": "Transaction_Batches"
                 },
@@ -11109,6 +11110,7 @@
                 "tags": [
                     "TransactionBatches"
                 ],
+                "operationId": "getTransactionBatchId",
                 "x-devcenter-metaData": {
                     "categoryTag": "Transaction_Batches"
                 },
@@ -19973,6 +19975,7 @@
                 "tags": [
                     "payer authentication"
                 ],
+                "operationId": "validateAuthenticationResults",
                 "x-devcenter-metaData": {
                     "categoryTag": "Payer_Authentication"
                 },

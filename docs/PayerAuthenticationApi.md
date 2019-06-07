@@ -5,7 +5,7 @@ All URIs are relative to *https://apitest.cybersource.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**check_payer_auth_enrollment**](PayerAuthenticationApi.md#check_payer_auth_enrollment) | **POST** /risk/v1/authentications | Check payer auth enrollment
-[**risk_v1_authentication_results_post**](PayerAuthenticationApi.md#risk_v1_authentication_results_post) | **POST** /risk/v1/authentication-results | Validate authentication results
+[**validate_authentication_results**](PayerAuthenticationApi.md#validate_authentication_results) | **POST** /risk/v1/authentication-results | Validate authentication results
 
 
 # **check_payer_auth_enrollment**
@@ -55,8 +55,8 @@ No authorization required
 
 
 
-# **risk_v1_authentication_results_post**
-> RiskV1AuthenticationResultsPost201Response risk_v1_authentication_results_post(request)
+# **validate_authentication_results**
+> RiskV1AuthenticationResultsPost201Response validate_authentication_results(request)
 
 Validate authentication results
 
@@ -74,10 +74,10 @@ request = CyberSource::Request.new # Request |
 
 begin
   #Validate authentication results
-  result = api_instance.risk_v1_authentication_results_post(request)
+  result = api_instance.validate_authentication_results(request)
   p result
 rescue CyberSource::ApiError => e
-  puts "Exception when calling PayerAuthenticationApi->risk_v1_authentication_results_post: #{e}"
+  puts "Exception when calling PayerAuthenticationApi->validate_authentication_results: #{e}"
 end
 ```
 

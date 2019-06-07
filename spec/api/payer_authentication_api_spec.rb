@@ -44,13 +44,13 @@ describe 'PayerAuthenticationApi' do
     end
   end
 
-  # unit tests for risk_v1_authentication_results_post
+  # unit tests for validate_authentication_results
   # Validate authentication results
   # This call retrieves and validates the authentication results from issuer and allows the merchant to proceed with processing the payment. 
   # @param request 
   # @param [Hash] opts the optional parameters
   # @return [RiskV1AuthenticationResultsPost201Response]
-  describe 'risk_v1_authentication_results_post test' do
+  describe 'validate_authentication_results test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
