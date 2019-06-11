@@ -33,7 +33,7 @@ describe 'UserManagementApi' do
   end
 
   # unit tests for get_users
-  # Get user based on organization Id, username, permission and role
+  # Get user information
   # This endpoint is to get all the user information depending on the filter criteria passed in the query.
   # @param [Hash] opts the optional parameters
   # @option opts [String] :organization_id This is the orgId of the organization which the user belongs to.

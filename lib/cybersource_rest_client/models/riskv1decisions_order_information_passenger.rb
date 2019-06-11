@@ -21,7 +21,7 @@ module CyberSource
     # Your company's passenger classification, such as with a frequent flyer program. In this case, you might use values such as `standard`, `gold`, or `platinum`. 
     attr_accessor :status
 
-    # Passenger's phone number. If the order is from outside the U.S., CyberSource recommends that you include the country code. 
+    # Passenger's phone number. If the order is from outside the U.S., CyberSource recommends that you include the [ISO Standard Country Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf) 
     attr_accessor :phone
 
     # Passenger's first name.
@@ -36,6 +36,9 @@ module CyberSource
     # Passenger's email address, including the full domain name, such as jdoe@example.com.
     attr_accessor :email
 
+    # Passenger's nationality country. Use the two character ISO Standard Country Codes.
+    attr_accessor :nationality
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -45,7 +48,8 @@ module CyberSource
         :'first_name' => :'firstName',
         :'last_name' => :'lastName',
         :'id' => :'id',
-        :'email' => :'email'
+        :'email' => :'email',
+        :'nationality' => :'nationality'
       }
     end
 
@@ -58,7 +62,8 @@ module CyberSource
         :'first_name' => :'String',
         :'last_name' => :'String',
         :'id' => :'String',
-        :'email' => :'String'
+        :'email' => :'String',
+        :'nationality' => :'String'
       }
     end
 
@@ -97,6 +102,10 @@ module CyberSource
       if attributes.has_key?(:'email')
         self.email = attributes[:'email']
       end
+
+      if attributes.has_key?(:'nationality')
+        self.nationality = attributes[:'nationality']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -131,6 +140,10 @@ module CyberSource
         invalid_properties.push('invalid value for "email", the character length must be smaller than or equal to 255.')
       end
 
+      if !@nationality.nil? && @nationality.to_s.length > 2
+        invalid_properties.push('invalid value for "nationality", the character length must be smaller than or equal to 2.')
+      end
+
       invalid_properties
     end
 
@@ -144,6 +157,7 @@ module CyberSource
       return false if !@last_name.nil? && @last_name.to_s.length > 60
       return false if !@id.nil? && @id.to_s.length > 40
       return false if !@email.nil? && @email.to_s.length > 255
+      return false if !@nationality.nil? && @nationality.to_s.length > 2
       true
     end
 
@@ -217,6 +231,16 @@ module CyberSource
       @email = email
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] nationality Value to be assigned
+    def nationality=(nationality)
+      if !nationality.nil? && nationality.to_s.length > 2
+        fail ArgumentError, 'invalid value for "nationality", the character length must be smaller than or equal to 2.'
+      end
+
+      @nationality = nationality
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -228,7 +252,8 @@ module CyberSource
           first_name == o.first_name &&
           last_name == o.last_name &&
           id == o.id &&
-          email == o.email
+          email == o.email &&
+          nationality == o.nationality
     end
 
     # @see the `==` method
@@ -240,7 +265,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [type, status, phone, first_name, last_name, id, email].hash
+      [type, status, phone, first_name, last_name, id, email, nationality].hash
     end
 
     # Builds the object from hash

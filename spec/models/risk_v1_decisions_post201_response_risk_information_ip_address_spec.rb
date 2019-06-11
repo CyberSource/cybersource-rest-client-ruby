@@ -38,7 +38,7 @@ describe 'RiskV1DecisionsPost201ResponseRiskInformationIpAddress' do
     end
   end
 
-  describe 'test attribute "city"' do
+  describe 'test attribute "locality"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -50,7 +50,7 @@ describe 'RiskV1DecisionsPost201ResponseRiskInformationIpAddress' do
     end
   end
 
-  describe 'test attribute "state"' do
+  describe 'test attribute "administrative_area"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

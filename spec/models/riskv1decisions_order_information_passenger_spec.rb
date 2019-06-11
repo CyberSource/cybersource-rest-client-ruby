@@ -74,4 +74,10 @@ describe 'Riskv1decisionsOrderInformationPassenger' do
     end
   end
 
+  describe 'test attribute "nationality"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

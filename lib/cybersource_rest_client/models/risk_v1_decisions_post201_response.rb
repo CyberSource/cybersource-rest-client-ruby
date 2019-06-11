@@ -30,6 +30,8 @@ module CyberSource
 
     attr_accessor :risk_information
 
+    attr_accessor :payment_information
+
     attr_accessor :error_information
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -41,6 +43,7 @@ module CyberSource
         :'submit_time_local' => :'submitTimeLocal',
         :'status' => :'status',
         :'risk_information' => :'riskInformation',
+        :'payment_information' => :'paymentInformation',
         :'error_information' => :'errorInformation'
       }
     end
@@ -54,6 +57,7 @@ module CyberSource
         :'submit_time_local' => :'String',
         :'status' => :'String',
         :'risk_information' => :'RiskV1DecisionsPost201ResponseRiskInformation',
+        :'payment_information' => :'RiskV1DecisionsPost201ResponsePaymentInformation',
         :'error_information' => :'PtsV2PaymentsPost201ResponseErrorInformation'
       }
     end
@@ -88,6 +92,10 @@ module CyberSource
 
       if attributes.has_key?(:'riskInformation')
         self.risk_information = attributes[:'riskInformation']
+      end
+
+      if attributes.has_key?(:'paymentInformation')
+        self.payment_information = attributes[:'paymentInformation']
       end
 
       if attributes.has_key?(:'errorInformation')
@@ -134,6 +142,7 @@ module CyberSource
           submit_time_local == o.submit_time_local &&
           status == o.status &&
           risk_information == o.risk_information &&
+          payment_information == o.payment_information &&
           error_information == o.error_information
     end
 
@@ -146,7 +155,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, submit_time_utc, submit_time_local, status, risk_information, error_information].hash
+      [_links, id, submit_time_utc, submit_time_local, status, risk_information, payment_information, error_information].hash
     end
 
     # Builds the object from hash

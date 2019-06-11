@@ -51,7 +51,7 @@ describe 'PtsV2PaymentsReversalsPost400Response' do
   describe 'test attribute "reason"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["MISSING_FIELD", "INVALID_DATA", "DUPLICATE_REQUEST", "INVALID_MERCHANT_CONFIGURATION", "AUTH_ALREADY_REVERSED", "MISSING_AUTH", "TRANSACTION_ALREADY_REVERSED_OR_SETTLED"])
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["MISSING_FIELD", "INVALID_DATA", "DUPLICATE_REQUEST", "INVALID_MERCHANT_CONFIGURATION", "PROCESSOR_UNAVAILABLE", "AUTH_ALREADY_REVERSED", "TRANSACTION_ALREADY_SETTLED", "INVALID_AMOUNT", "MISSING_AUTH", "TRANSACTION_ALREADY_REVERSED_OR_SETTLED"])
       # validator.allowable_values.each do |value|
       #   expect { @instance.reason = value }.not_to raise_error
       # end

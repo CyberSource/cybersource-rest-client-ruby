@@ -1,6 +1,15 @@
 @echo off 
 
 cd %~dp0
+
+REM Delete the previously generated SDK code
+
+rm -r -f ..\docs
+rm -r -f ..\lib\cybersource_rest_client
+rm -r -f ..\spec
+del ..\lib\cybersource_rest_client.rb
+
+REM Command to generate SDK
  
 java -jar swagger-codegen-cli-2.2.3.jar generate -t cybersource-ruby-template -i cybersource-rest-spec.json -l ruby -o ../ -c %~dp0cybersource-ruby-config.json 
 
@@ -28,27 +37,12 @@ powershell -Command "(Get-Content ..\lib\cybersource_rest_client\api\void_api.rb
 
 powershell -Command "(Get-Content ..\lib\cybersource_rest_client\api\search_transactions_api.rb) | ForEach-Object { $_ -replace 'select_header_accept\(\[''application/json;charset=utf-8', 'select_header_accept([''*/*'} | Set-Content ..\lib\cybersource_rest_client\api\search_transactions_api.rb"
 
+powershell -Command "(Get-Content ..\lib\cybersource_rest_client\api\payer_authentication_api.rb) | ForEach-Object { $_ -replace 'select_header_accept\(\[''application/json;charset=utf-8', 'select_header_accept([''application/hal+json;charset=utf-8'} | Set-Content ..\lib\cybersource_rest_client\api\payer_authentication_api.rb"
+
  REM to change accept type header
 powershell -Command "(Get-Content ..\lib\cybersource_rest_client\api\secure_file_share_api.rb) | ForEach-Object { $_ -replace 'select_header_content_type\(\[''application/json;charset=utf-8', 'select_header_content_type([''*/*' } | Set-Content ..\lib\cybersource_rest_client\api\secure_file_share_api.rb"
 
 REM to rename long file name
-
-del ..\lib\cybersource_rest_client\models\ptsv2payments_merchant_initiated_transaction.rb
-del ..\lib\cybersource_rest_client\models\tmsv1instrumentidentifiers_merchant_initiated_transaction.rb
-del ..\docs\Ptsv2paymentsMerchantInitiatedTransaction.md
-del ..\docs\TmsV1InstrumentIdentifiersPost200ResponseMerchantInitiatedTransaction.md
-del ..\spec\models\ptsv2payments_merchant_initiated_transaction_spec.rb
-del ..\spec\models\tmsv1instrumentidentifiers_merchant_initiated_transaction_spec.rb
-del ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_payment_instruments_get200_response_personal_identification.rb
-del ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_payment_instruments_get200_response_merchant_descriptor.rb
-del ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_payment_instruments_get200_response_buyer_information_issued_by.rb
-del ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_payment_instruments_get200_response_instrument_identifier.rb
-del ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_payment_instruments_get200_response_merchant_information.rb
-del ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_payment_instruments_get200_response_payment_instruments.rb
-del ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_payment_instruments_get200_response_processing_information.rb
-del ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_payment_instruments_get200_response_bank_transfer_options.rb
-del ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_post200_response_authorization_options_initiator.rb
-del ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_post200_response_merchant_initiated_transaction.rb
 
 powershell -Command " rename-item -Path ..\lib\cybersource_rest_client\models\ptsv2payments_processing_information_authorization_options_initiator_merchant_initiated_transaction.rb  -newname ptsv2payments_merchant_initiated_transaction.rb"
 

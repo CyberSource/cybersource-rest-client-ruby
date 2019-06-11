@@ -32,18 +32,6 @@ describe 'VoidApi' do
     end
   end
 
-  # unit tests for mit_void
-  # Merchant Initiated Void
-  # This is to void a previous payment, capture, refund, or credit that merchant does not receive a reply.
-  # @param mit_void_request 
-  # @param [Hash] opts the optional parameters
-  # @return [PtsV2PaymentsVoidsPost201Response]
-  describe 'mit_void test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   # unit tests for void_capture
   # Void a Capture
   # Include the capture ID in the POST request to cancel the capture.

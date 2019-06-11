@@ -14,13 +14,13 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsGet200ResponseDeviceInformation
-    # Customer’s IP address, such as 10.1.27.63, reported by your Web server via socket information. 
+    # IP address of the customer. 
     attr_accessor :ip_address
 
-    # Host name reported by the customer’s browser to your Web server identified via the HTTP header.
+    # DNS resolved hostname from `ipAddress`.
     attr_accessor :host_name
 
-    # Boolean that indicates whether the customer’s browser accepts cookies. This field can contain one of the following values:   - `yes`: The customer’s browser accepts cookies.   - `no`: The customer’s browser does not accept cookies. 
+    # Whether the customer’s browser accepts cookies. This field can contain one of the following values: - `yes`: The customer’s browser accepts cookies. - `no`: The customer’s browser does not accept cookies. 
     attr_accessor :cookies_accepted
 
     # Attribute mapping from ruby-style variable name to JSON key.
