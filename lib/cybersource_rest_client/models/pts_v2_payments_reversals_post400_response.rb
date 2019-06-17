@@ -115,7 +115,7 @@ module CyberSource
     def valid?
       status_validator = EnumAttributeValidator.new('String', ['INVALID_REQUEST'])
       return false unless status_validator.valid?(@status)
-      reason_validator = EnumAttributeValidator.new('String', ['MISSING_FIELD', 'INVALID_DATA', 'DUPLICATE_REQUEST', 'INVALID_MERCHANT_CONFIGURATION', 'AUTH_ALREADY_REVERSED', 'MISSING_AUTH', 'TRANSACTION_ALREADY_REVERSED_OR_SETTLED'])
+      reason_validator = EnumAttributeValidator.new('String', ['MISSING_FIELD', 'INVALID_DATA', 'DUPLICATE_REQUEST', 'INVALID_MERCHANT_CONFIGURATION', 'PROCESSOR_UNAVAILABLE', 'AUTH_ALREADY_REVERSED', 'TRANSACTION_ALREADY_SETTLED', 'INVALID_AMOUNT', 'MISSING_AUTH', 'TRANSACTION_ALREADY_REVERSED_OR_SETTLED'])
       return false unless reason_validator.valid?(@reason)
       true
     end
@@ -133,7 +133,7 @@ module CyberSource
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] reason Object to be assigned
     def reason=(reason)
-      validator = EnumAttributeValidator.new('String', ['MISSING_FIELD', 'INVALID_DATA', 'DUPLICATE_REQUEST', 'INVALID_MERCHANT_CONFIGURATION', 'AUTH_ALREADY_REVERSED', 'MISSING_AUTH', 'TRANSACTION_ALREADY_REVERSED_OR_SETTLED'])
+      validator = EnumAttributeValidator.new('String', ['MISSING_FIELD', 'INVALID_DATA', 'DUPLICATE_REQUEST', 'INVALID_MERCHANT_CONFIGURATION', 'PROCESSOR_UNAVAILABLE', 'AUTH_ALREADY_REVERSED', 'TRANSACTION_ALREADY_SETTLED', 'INVALID_AMOUNT', 'MISSING_AUTH', 'TRANSACTION_ALREADY_REVERSED_OR_SETTLED'])
       unless validator.valid?(reason)
         fail ArgumentError, 'invalid value for "reason", must be one of #{validator.allowable_values}.'
       end

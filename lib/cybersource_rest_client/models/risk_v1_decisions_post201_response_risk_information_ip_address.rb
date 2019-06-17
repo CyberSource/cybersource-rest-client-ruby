@@ -15,28 +15,28 @@ require 'date'
 module CyberSource
   # Contains detailed response information about the customer's IP address.
   class RiskV1DecisionsPost201ResponseRiskInformationIpAddress
-    # Indicates whether the transaction IP address is associated with a known anonymous proxy. For all possible values, Please refer to Simple Order API Developer Guide on [CyberSource Business Center](https://ebc2.cybersource.com/ebc2/)- Look for 'Reply Fields': \"afsReply_ipAnonymizerStatus\". 
+    # Indicates whether the transaction IP address is associated with a known anonymous proxy.  For all possible values, see the `score_ip_anonymizer_status` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
     attr_accessor :anonymizer_status
 
-    # Name of the city decoded from the IP address used directly or indirectly by the customer to send the order. 
-    attr_accessor :city
+    # Name of the city decoded from the IP address used directly or indirectly by the customer to send the order.  For all possible values, see the `score_ip_city` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
+    attr_accessor :locality
 
-    # Name of the country decoded from the IP address used directly or indirectly by the customer to send the order. 
+    # Name of the country decoded from the IP address used directly or indirectly by the customer to send the order.  For all possible values, see the `score_ip_country` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
     attr_accessor :country
 
-    # Name of the state decoded from the IP address used directly or indirectly by the customer to send the order. 
-    attr_accessor :state
+    # Name of the country decoded from the IP address used directly or indirectly by the customer to send the order.  For all possible values, see the `score_ip_country` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
+    attr_accessor :administrative_area
 
-    # Routing method decoded from the IP address used directly or indirectly by the customer to send the order. For all possible values, Please refer to Simple Order API Developer Guide on [CyberSource Business Center](https://ebc2.cybersource.com/ebc2/)- Look for 'Reply Fields': \"afsService_ipRoutingMethod \". 
+    # Routing method decoded from the IP address used directly or indirectly by the customer to send the order.  For all possible values, see the `score_ip_routing_method` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
     attr_accessor :routing_method
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'anonymizer_status' => :'anonymizerStatus',
-        :'city' => :'city',
+        :'locality' => :'locality',
         :'country' => :'country',
-        :'state' => :'state',
+        :'administrative_area' => :'administrativeArea',
         :'routing_method' => :'routingMethod'
       }
     end
@@ -45,9 +45,9 @@ module CyberSource
     def self.swagger_types
       {
         :'anonymizer_status' => :'String',
-        :'city' => :'String',
+        :'locality' => :'String',
         :'country' => :'String',
-        :'state' => :'String',
+        :'administrative_area' => :'String',
         :'routing_method' => :'String'
       }
     end
@@ -64,16 +64,16 @@ module CyberSource
         self.anonymizer_status = attributes[:'anonymizerStatus']
       end
 
-      if attributes.has_key?(:'city')
-        self.city = attributes[:'city']
+      if attributes.has_key?(:'locality')
+        self.locality = attributes[:'locality']
       end
 
       if attributes.has_key?(:'country')
         self.country = attributes[:'country']
       end
 
-      if attributes.has_key?(:'state')
-        self.state = attributes[:'state']
+      if attributes.has_key?(:'administrativeArea')
+        self.administrative_area = attributes[:'administrativeArea']
       end
 
       if attributes.has_key?(:'routingMethod')
@@ -89,16 +89,16 @@ module CyberSource
         invalid_properties.push('invalid value for "anonymizer_status", the character length must be smaller than or equal to 255.')
       end
 
-      if !@city.nil? && @city.to_s.length > 255
-        invalid_properties.push('invalid value for "city", the character length must be smaller than or equal to 255.')
+      if !@locality.nil? && @locality.to_s.length > 255
+        invalid_properties.push('invalid value for "locality", the character length must be smaller than or equal to 255.')
       end
 
       if !@country.nil? && @country.to_s.length > 255
         invalid_properties.push('invalid value for "country", the character length must be smaller than or equal to 255.')
       end
 
-      if !@state.nil? && @state.to_s.length > 255
-        invalid_properties.push('invalid value for "state", the character length must be smaller than or equal to 255.')
+      if !@administrative_area.nil? && @administrative_area.to_s.length > 255
+        invalid_properties.push('invalid value for "administrative_area", the character length must be smaller than or equal to 255.')
       end
 
       if !@routing_method.nil? && @routing_method.to_s.length > 255
@@ -112,9 +112,9 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if !@anonymizer_status.nil? && @anonymizer_status.to_s.length > 255
-      return false if !@city.nil? && @city.to_s.length > 255
+      return false if !@locality.nil? && @locality.to_s.length > 255
       return false if !@country.nil? && @country.to_s.length > 255
-      return false if !@state.nil? && @state.to_s.length > 255
+      return false if !@administrative_area.nil? && @administrative_area.to_s.length > 255
       return false if !@routing_method.nil? && @routing_method.to_s.length > 255
       true
     end
@@ -130,13 +130,13 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] city Value to be assigned
-    def city=(city)
-      if !city.nil? && city.to_s.length > 255
-        fail ArgumentError, 'invalid value for "city", the character length must be smaller than or equal to 255.'
+    # @param [Object] locality Value to be assigned
+    def locality=(locality)
+      if !locality.nil? && locality.to_s.length > 255
+        fail ArgumentError, 'invalid value for "locality", the character length must be smaller than or equal to 255.'
       end
 
-      @city = city
+      @locality = locality
     end
 
     # Custom attribute writer method with validation
@@ -150,13 +150,13 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] state Value to be assigned
-    def state=(state)
-      if !state.nil? && state.to_s.length > 255
-        fail ArgumentError, 'invalid value for "state", the character length must be smaller than or equal to 255.'
+    # @param [Object] administrative_area Value to be assigned
+    def administrative_area=(administrative_area)
+      if !administrative_area.nil? && administrative_area.to_s.length > 255
+        fail ArgumentError, 'invalid value for "administrative_area", the character length must be smaller than or equal to 255.'
       end
 
-      @state = state
+      @administrative_area = administrative_area
     end
 
     # Custom attribute writer method with validation
@@ -175,9 +175,9 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           anonymizer_status == o.anonymizer_status &&
-          city == o.city &&
+          locality == o.locality &&
           country == o.country &&
-          state == o.state &&
+          administrative_area == o.administrative_area &&
           routing_method == o.routing_method
     end
 
@@ -190,7 +190,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [anonymizer_status, city, country, state, routing_method].hash
+      [anonymizer_status, locality, country, administrative_area, routing_method].hash
     end
 
     # Builds the object from hash

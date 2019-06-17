@@ -183,7 +183,7 @@ module CyberSource
 	  end
       return data, status_code, headers
     end
-    # Retrieve all Payment Instruments associated with an Instrument Identifier
+    # Retrieve all Payment Instruments
     # @param profile_id The id of a profile containing user specific TMS configuration.
     # @param token_id The TokenId of an Instrument Identifier.
     # @param [Hash] opts the optional parameters
@@ -195,7 +195,7 @@ module CyberSource
       return data, status_code, headers
     end
 
-    # Retrieve all Payment Instruments associated with an Instrument Identifier
+    # Retrieve all Payment Instruments
     # @param profile_id The id of a profile containing user specific TMS configuration.
     # @param token_id The TokenId of an Instrument Identifier.
     # @param [Hash] opts the optional parameters

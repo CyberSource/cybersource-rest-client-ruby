@@ -46,7 +46,7 @@ describe 'SearchTransactionsApi' do
 
   # unit tests for get_search
   # Get Search results
-  # Include the Search ID in the GET request to retrieve the search results. 
+  # Include the Search ID in the GET request to retrieve the search results.
   # @param search_id Search ID.
   # @param [Hash] opts the optional parameters
   # @return [TssV2TransactionsPost201Response]

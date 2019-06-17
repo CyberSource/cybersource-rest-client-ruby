@@ -68,12 +68,6 @@ describe 'RiskV1DecisionsPost201ResponseRiskInformation' do
     end
   end
 
-  describe 'test attribute "payment_information"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   describe 'test attribute "score"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -87,6 +81,12 @@ describe 'RiskV1DecisionsPost201ResponseRiskInformation' do
   end
 
   describe 'test attribute "providers"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "travel"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

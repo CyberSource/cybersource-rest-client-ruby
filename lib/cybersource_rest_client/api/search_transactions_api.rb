@@ -86,7 +86,7 @@ module CyberSource
       return data, status_code, headers
     end
     # Get Search results
-    # Include the Search ID in the GET request to retrieve the search results. 
+    # Include the Search ID in the GET request to retrieve the search results.
     # @param search_id Search ID.
     # @param [Hash] opts the optional parameters
     # @return [TssV2TransactionsPost201Response]
@@ -96,7 +96,7 @@ module CyberSource
     end
 
     # Get Search results
-    # Include the Search ID in the GET request to retrieve the search results. 
+    # Include the Search ID in the GET request to retrieve the search results.
     # @param search_id Search ID.
     # @param [Hash] opts the optional parameters
     # @return [Array<(TssV2TransactionsPost201Response, Fixnum, Hash)>] TssV2TransactionsPost201Response data, response status code and response headers

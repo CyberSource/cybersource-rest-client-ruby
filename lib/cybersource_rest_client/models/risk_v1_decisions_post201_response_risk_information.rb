@@ -23,19 +23,19 @@ module CyberSource
 
     attr_accessor :velocity
 
-    # You receive this field only if you subscribe to the Enhanced Case Management service. For all possible values, Please refer to Simple Order API Developer Guide on [CyberSource Business Center](https://ebc2.cybersource.com/ebc2/) - Look for 'Reply Fields': \"decisionReply_casePriority\". 
+    # You receive this field only if you subscribe to the Enhanced Case Management service. The priority level ranges from 1 (highest) to 5 (lowest); the default value is 3. If you do not assign a priority to your rules or to your profiles, the default value is given to the order.  For all possible values, see the `decision_case_priority` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
     attr_accessor :case_priority
 
-    # The customer's local time (hh:mm:ss), which is calculated from the transaction request time and the customer's billing address. 
+    # The customer's local time (`hh:mm:ss`), which is calculated from the transaction request time and the customer's billing address.  For details, see the `score_time_local` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) 
     attr_accessor :local_time
-
-    attr_accessor :payment_information
 
     attr_accessor :score
 
     attr_accessor :ip_address
 
     attr_accessor :providers
+
+    attr_accessor :travel
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -46,10 +46,10 @@ module CyberSource
         :'velocity' => :'velocity',
         :'case_priority' => :'casePriority',
         :'local_time' => :'localTime',
-        :'payment_information' => :'paymentInformation',
         :'score' => :'score',
         :'ip_address' => :'ipAddress',
-        :'providers' => :'providers'
+        :'providers' => :'providers',
+        :'travel' => :'travel'
       }
     end
 
@@ -62,10 +62,10 @@ module CyberSource
         :'velocity' => :'RiskV1DecisionsPost201ResponseRiskInformationVelocity',
         :'case_priority' => :'Integer',
         :'local_time' => :'String',
-        :'payment_information' => :'RiskV1DecisionsPost201ResponseRiskInformationPaymentInformation',
         :'score' => :'RiskV1DecisionsPost201ResponseRiskInformationScore',
         :'ip_address' => :'RiskV1DecisionsPost201ResponseRiskInformationIpAddress',
-        :'providers' => :'RiskV1DecisionsPost201ResponseRiskInformationProviders'
+        :'providers' => :'RiskV1DecisionsPost201ResponseRiskInformationProviders',
+        :'travel' => :'RiskV1DecisionsPost201ResponseRiskInformationTravel'
       }
     end
 
@@ -103,10 +103,6 @@ module CyberSource
         self.local_time = attributes[:'localTime']
       end
 
-      if attributes.has_key?(:'paymentInformation')
-        self.payment_information = attributes[:'paymentInformation']
-      end
-
       if attributes.has_key?(:'score')
         self.score = attributes[:'score']
       end
@@ -117,6 +113,10 @@ module CyberSource
 
       if attributes.has_key?(:'providers')
         self.providers = attributes[:'providers']
+      end
+
+      if attributes.has_key?(:'travel')
+        self.travel = attributes[:'travel']
       end
     end
 
@@ -159,10 +159,10 @@ module CyberSource
           velocity == o.velocity &&
           case_priority == o.case_priority &&
           local_time == o.local_time &&
-          payment_information == o.payment_information &&
           score == o.score &&
           ip_address == o.ip_address &&
-          providers == o.providers
+          providers == o.providers &&
+          travel == o.travel
     end
 
     # @see the `==` method
@@ -174,7 +174,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [profile, rules, info_codes, velocity, case_priority, local_time, payment_information, score, ip_address, providers].hash
+      [profile, rules, info_codes, velocity, case_priority, local_time, score, ip_address, providers, travel].hash
     end
 
     # Builds the object from hash

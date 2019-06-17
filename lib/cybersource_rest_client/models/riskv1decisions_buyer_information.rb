@@ -15,10 +15,13 @@ require 'date'
 module CyberSource
   # Contains information about the buyer.
   class Riskv1decisionsBuyerInformation
-    # The description for this field is not available. 
+    # Specifies the customer account user name.
+    attr_accessor :username
+
+    # The merchant's password that CyberSource hashes and stores as a hashed password.  For details about this field, see the `customer_password` field description in [Decision Manager Developer Guide Using the SCMP API.](https://www.cybersource.com/developers/documentation/fraud_management/) 
     attr_accessor :hashed_password
 
-    # Recipient’s date of birth. **Format**: `YYYYMMDD`.  This field is a pass-through, which means that CyberSource ensures that the value is eight numeric characters but otherwise does not verify the value or modify it in any way before sending it to the processor. If the field is not required for the transaction, CyberSource does not forward it to the processor.  For more details, see \"Recipients,\" page 224. 
+    # Recipient’s date of birth. **Format**: `YYYYMMDD`.  This field is a `pass-through`, which means that CyberSource ensures that the value is eight numeric characters but otherwise does not verify the value or modify it in any way before sending it to the processor. If the field is not required for the transaction, CyberSource does not forward it to the processor.  For more details, see `recipient_date_of_birth` field description in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
     attr_accessor :date_of_birth
 
     attr_accessor :personal_identification
@@ -26,6 +29,7 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'username' => :'username',
         :'hashed_password' => :'hashedPassword',
         :'date_of_birth' => :'dateOfBirth',
         :'personal_identification' => :'personalIdentification'
@@ -35,6 +39,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'username' => :'String',
         :'hashed_password' => :'String',
         :'date_of_birth' => :'String',
         :'personal_identification' => :'Array<Ptsv2paymentsBuyerInformationPersonalIdentification>'
@@ -48,6 +53,10 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'username')
+        self.username = attributes[:'username']
+      end
 
       if attributes.has_key?(:'hashedPassword')
         self.hashed_password = attributes[:'hashedPassword']
@@ -68,6 +77,10 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if !@username.nil? && @username.to_s.length > 255
+        invalid_properties.push('invalid value for "username", the character length must be smaller than or equal to 255.')
+      end
+
       if !@hashed_password.nil? && @hashed_password.to_s.length > 100
         invalid_properties.push('invalid value for "hashed_password", the character length must be smaller than or equal to 100.')
       end
@@ -82,9 +95,20 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if !@username.nil? && @username.to_s.length > 255
       return false if !@hashed_password.nil? && @hashed_password.to_s.length > 100
       return false if !@date_of_birth.nil? && @date_of_birth.to_s.length > 8
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] username Value to be assigned
+    def username=(username)
+      if !username.nil? && username.to_s.length > 255
+        fail ArgumentError, 'invalid value for "username", the character length must be smaller than or equal to 255.'
+      end
+
+      @username = username
     end
 
     # Custom attribute writer method with validation
@@ -112,6 +136,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          username == o.username &&
           hashed_password == o.hashed_password &&
           date_of_birth == o.date_of_birth &&
           personal_identification == o.personal_identification
@@ -126,7 +151,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [hashed_password, date_of_birth, personal_identification].hash
+      [username, hashed_password, date_of_birth, personal_identification].hash
     end
 
     # Builds the object from hash

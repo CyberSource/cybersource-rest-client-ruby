@@ -14,13 +14,13 @@ require 'date'
 
 module CyberSource
   class RiskV1DecisionsPost201ResponseRiskInformationVelocityMorphing
-    # Morphing count. Note The count is not returned for the initial transaction.
+    # Morphing count specified by the number #.  **Note** The count is not returned for the initial transaction.  For all possible values, see the `decision_velocity_morphing_#_count` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
     attr_accessor :count
 
-    # Field name of the morphing element. specified by the setting that you chose in the Velocity Editor. For all possible values, Please refer to Simple Order API Developer Guide  on [CyberSource Business Center](https://ebc2.cybersource.com/ebc2/) - Look for 'Reply Fields': \"decisionReply_morphingElement_#_fieldName\". 
+    # Field name of the morphing element. specified by the setting that you chose in the Velocity Editor.  For all possible values, see the `decisionReply_morphingElement_#_fieldName` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
     attr_accessor :field_name
 
-    # Identifier that CYBS assigned to the velocity rule specified by the number.
+    # Identifier that CyberSource assigned to the velocity rule specified by the number #.  For all possible values, see the `decision_velocity_morphing_#_info_code` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
     attr_accessor :information_code
 
     # Attribute mapping from ruby-style variable name to JSON key.

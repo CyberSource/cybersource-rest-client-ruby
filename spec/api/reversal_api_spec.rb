@@ -45,16 +45,4 @@ describe 'ReversalApi' do
     end
   end
 
-  # unit tests for mit_reversal
-  # Merchant Initiated Reversal
-  # This is to reverse a previous payment that merchant does not receive a reply.
-  # @param mit_reversal_request 
-  # @param [Hash] opts the optional parameters
-  # @return [PtsV2PaymentsReversalsPost201Response]
-  describe 'mit_reversal test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
 end

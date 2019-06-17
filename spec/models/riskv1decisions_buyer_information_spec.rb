@@ -32,6 +32,12 @@ describe 'Riskv1decisionsBuyerInformation' do
       expect(@instance).to be_instance_of(CyberSource::Riskv1decisionsBuyerInformation)
     end
   end
+  describe 'test attribute "username"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "hashed_password"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

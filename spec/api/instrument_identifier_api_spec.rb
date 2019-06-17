@@ -57,7 +57,7 @@ describe 'InstrumentIdentifierApi' do
   end
 
   # unit tests for get_all_payment_instruments
-  # Retrieve all Payment Instruments associated with an Instrument Identifier
+  # Retrieve all Payment Instruments
   # @param profile_id The id of a profile containing user specific TMS configuration.
   # @param token_id The TokenId of an Instrument Identifier.
   # @param [Hash] opts the optional parameters

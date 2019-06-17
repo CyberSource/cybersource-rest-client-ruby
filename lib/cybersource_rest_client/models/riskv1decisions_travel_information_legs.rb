@@ -14,17 +14,21 @@ require 'date'
 
 module CyberSource
   class Riskv1decisionsTravelInformationLegs
-    # Use to specify the airport code for the origin of the leg of the trip, which is designated by the pound (#) symbol in the field name. This code is usually three digits long, for example: SFO = San Francisco. Do not use the colon (:) or the dash (-). For airport codes, see the IATA Airline and Airport Code Search. The leg number can be a positive integer from 0 to N. For example: decision_manager_travel_leg0_orig=SFO decision_manager_travel_leg1_orig=SFO Note In your request, send either the complete route or the individual legs (_leg#_orig and _leg#_dest). If you send all the fields, the complete route takes precedence over the individual legs. 
+    # Use to specify the airport code for the origin of the leg of the trip, which is designated by the pound (#) symbol in the field name. This code is usually three digits long, for example: SFO = San Francisco. Do not use the colon (:) or the dash (-). For airport codes, see the IATA Airline and Airport Code Search. The leg number can be a positive integer from 0 to N. For example: `travelInformation.legs.0.origination=SFO` `travelInformation.legs.1.origination=SFO`  **Note** In your request, send either the complete route or the individual legs (`legs.0.origination` and `legs.n.destination`). If you send all the fields, the complete route takes precedence over the individual legs.  For details, see the `decision_manager_travel_leg#_orig` field description in [Decision Manager Using the SCMP API Developer Guide.](https://www.cybersource.com/developers/documentation/fraud_management/) 
     attr_accessor :origination
 
-    # Use to specify the airport code for the destination of the leg of the trip, which is designated by the pound (#) symbol in the field name. This code is usually three digits long, for example: SFO = San Francisco. Do not use the colon (:) or the dash (-). For airport codes, see the IATA Airline and Airport Code Search. The leg number can be a positive integer from 0 to N. For example: decision_manager_travel_leg0_dest=SFO decision_manager_travel_leg1_dest=SFO Note In your request, send either the complete route or the individual legs (_leg#_orig and _leg#_dest). If you send all the fields, the complete route takes precedence over the individual legs. 
+    # Use to specify the airport code for the destination of the leg of the trip, which is designated by the pound (#) symbol in the field name. This code is usually three digits long, for example: SFO = San Francisco. Do not use the colon (:) or the dash (-). For airport codes, see [IATA Airline and Airport Code Search](https://www.iata.org/publications/Pages/code-search.aspx). The leg number can be a positive integer from 0 to N. For example:  `travelInformation.legs.0.destination=SFO` `travelInformation.legs.1.destination=SFO`  **Note** In your request, send either the complete route or the individual legs (`legs.0.origination` and `legs.n.destination`). If you send all the fields, the complete route takes precedence over the individual legs.  For details, see the `decision_manager_travel_leg#_dest` field description in [Decision Manager Using the SCMP API Developer Guide.](https://www.cybersource.com/developers/documentation/fraud_management/) 
     attr_accessor :destination
+
+    # Departure date and time for the nth leg of the trip. Use one of the following formats:   - yyyy-MM-dd HH:mm z   - yyyy-MM-dd hh:mm a z   - yyyy-MM-dd hh:mma z   `HH` = hour in 24-hour format   `hh` = hour in 12-hour format   `a` = am or pm (case insensitive)   `z` = time zone of the departing flight, for example: If the   airline is based in city A, but the flight departs from city   B, z is the time zone of city B at the time of departure. **Important** For travel information, use GMT instead of UTC, or use the local time zone. #### Examples 2011-03-20 11:30 PM PDT 2011-03-20 11:30pm GMT 2011-03-20 11:30pm GMT-05:00 Eastern Standard Time: GMT-05:00 or EST **Note** When specifying an offset from GMT, the format must be exactly as specified in the example. Insert no spaces between the time zone and the offset. 
+    attr_accessor :departure_date_time
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'origination' => :'origination',
-        :'destination' => :'destination'
+        :'destination' => :'destination',
+        :'departure_date_time' => :'departureDateTime'
       }
     end
 
@@ -32,7 +36,8 @@ module CyberSource
     def self.swagger_types
       {
         :'origination' => :'String',
-        :'destination' => :'String'
+        :'destination' => :'String',
+        :'departure_date_time' => :'String'
       }
     end
 
@@ -51,6 +56,10 @@ module CyberSource
       if attributes.has_key?(:'destination')
         self.destination = attributes[:'destination']
       end
+
+      if attributes.has_key?(:'departureDateTime')
+        self.departure_date_time = attributes[:'departureDateTime']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -65,6 +74,10 @@ module CyberSource
         invalid_properties.push('invalid value for "destination", the character length must be smaller than or equal to 3.')
       end
 
+      if !@departure_date_time.nil? && @departure_date_time.to_s.length > 25
+        invalid_properties.push('invalid value for "departure_date_time", the character length must be smaller than or equal to 25.')
+      end
+
       invalid_properties
     end
 
@@ -73,6 +86,7 @@ module CyberSource
     def valid?
       return false if !@origination.nil? && @origination.to_s.length > 3
       return false if !@destination.nil? && @destination.to_s.length > 3
+      return false if !@departure_date_time.nil? && @departure_date_time.to_s.length > 25
       true
     end
 
@@ -96,13 +110,24 @@ module CyberSource
       @destination = destination
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] departure_date_time Value to be assigned
+    def departure_date_time=(departure_date_time)
+      if !departure_date_time.nil? && departure_date_time.to_s.length > 25
+        fail ArgumentError, 'invalid value for "departure_date_time", the character length must be smaller than or equal to 25.'
+      end
+
+      @departure_date_time = departure_date_time
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           origination == o.origination &&
-          destination == o.destination
+          destination == o.destination &&
+          departure_date_time == o.departure_date_time
     end
 
     # @see the `==` method
@@ -114,7 +139,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [origination, destination].hash
+      [origination, destination, departure_date_time].hash
     end
 
     # Builds the object from hash

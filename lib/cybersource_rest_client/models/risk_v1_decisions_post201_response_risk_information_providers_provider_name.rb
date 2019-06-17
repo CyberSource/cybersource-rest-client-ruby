@@ -13,7 +13,7 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  # Name of the 3rd party provider, for example, Emailage.
+  # Name of the 3rd party provider, for example, Emailage.  For all possible values, see the `decision_provider_#_name` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
   class RiskV1DecisionsPost201ResponseRiskInformationProvidersProviderName
     attr_accessor :field_name
 

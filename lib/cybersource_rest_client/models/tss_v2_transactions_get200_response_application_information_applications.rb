@@ -14,25 +14,25 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsGet200ResponseApplicationInformationApplications
-    # The description for this field is not available.
+    # The CyberSource payment application processed for the transaction. 
     attr_accessor :name
 
     # The description for this field is not available.
     attr_accessor :status
 
-    # The description for this field is not available.
+    # 3-digit reason code that indicates why the customer profile payment succeeded or failed.
     attr_accessor :reason_code
 
-    # The description for this field is not available.
+    # Indicates whether the service request was successful. Possible values:  - `-1`: An error occurred. - `0`: The request was declined. - `1`: The request was successful. 
     attr_accessor :r_code
 
-    # The description for this field is not available.
+    # One-word description of the result of the application. 
     attr_accessor :r_flag
 
-    # The description for this field is not available.
+    # Reference number that you use to reconcile your CyberSource reports with your processor reports. 
     attr_accessor :reconciliation_id
 
-    # The description for this field is not available.
+    # Message that explains the reply flag for the application. 
     attr_accessor :r_message
 
     # The description for this field is not available.

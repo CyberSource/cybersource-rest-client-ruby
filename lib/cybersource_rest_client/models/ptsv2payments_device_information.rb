@@ -14,13 +14,13 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsDeviceInformation
-    # Host name reported by the customer’s browser to your Web server identified via the HTTP header.
+    # DNS resolved hostname from `ipAddress`.
     attr_accessor :host_name
 
-    # Customer’s IP address, such as 10.1.27.63, reported by your Web server via socket information. 
+    # IP address of the customer. 
     attr_accessor :ip_address
 
-    # Customer’s browser as identified from the HTTP header data. For example, Mozilla is the value that identifies the Netscape browser. 
+    # Customer’s browser as identified from the HTTP header data. For example, `Mozilla` is the value that identifies the Netscape browser. 
     attr_accessor :user_agent
 
     # Attribute mapping from ruby-style variable name to JSON key.

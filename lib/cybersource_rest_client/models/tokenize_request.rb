@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class TokenizeRequest
-    # Unique identifier for the generated token. This is obtained from the Generate Key request. See the [Java Script and Java examples] (http://apps.cybersource.com/library/documentation/dev_guides/Secure_Acceptance_Flex/Key/html) on how to import the key and encrypt using the imported key.
+    # Unique identifier for the generated token. This is obtained from the Generate Key request. See the [Java Script and Java examples](http://apps.cybersource.com/library/documentation/dev_guides/Secure_Acceptance_Flex/Key/html) on how to import the key and encrypt using the imported key.
     attr_accessor :key_id
 
     attr_accessor :card_info

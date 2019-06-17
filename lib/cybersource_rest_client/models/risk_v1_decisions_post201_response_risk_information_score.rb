@@ -16,10 +16,10 @@ module CyberSource
   class RiskV1DecisionsPost201ResponseRiskInformationScore
     attr_accessor :factor_codes
 
-    # Name of the score model used for the transaction. If you did not include a custom model in your request, this field contains the name of CyberSource’s default model. 
+    # Name of the score model used for the transaction. If you did not include a custom model in your request, this field contains the name of CyberSource’s default model.  For all possible values, see the `score_model_used` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
     attr_accessor :model_used
 
-    # Total score calculated for this order. The value cannot be negative. 
+    # Total score calculated for this order. The value cannot be negative.  For all possible values, see the `score_score_result` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
     attr_accessor :result
 
     # Attribute mapping from ruby-style variable name to JSON key.

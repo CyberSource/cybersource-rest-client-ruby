@@ -32,6 +32,12 @@ describe 'Riskv1decisionsTravelInformation' do
       expect(@instance).to be_instance_of(CyberSource::Riskv1decisionsTravelInformation)
     end
   end
+  describe 'test attribute "actual_final_destination"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "complete_route"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

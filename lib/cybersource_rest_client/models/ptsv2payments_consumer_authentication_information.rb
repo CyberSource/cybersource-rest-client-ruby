@@ -17,7 +17,7 @@ module CyberSource
     # Cardholder authentication verification value (CAVV).
     attr_accessor :cavv
 
-    # Algorithm used to generate the CAVV for Verified by Visa or the UCAF authentication data for Mastercard Identity Check. 
+    # Algorithm used to generate the CAVV for Visa Secure or the UCAF authentication data for Mastercard Identity Check. 
     attr_accessor :cavv_algorithm
 
     # Raw electronic commerce indicator (ECI). For the description and requirements, see \"Payer Authentication,\" page 180.
