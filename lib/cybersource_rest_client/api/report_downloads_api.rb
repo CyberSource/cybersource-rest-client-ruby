@@ -21,8 +21,8 @@ module CyberSource
 	  @api_client.set_configuration(config)
     end
     # Download a report
-    # Download a report using the unique report name and date. 
-    # @param report_date Valid date on which to download the report in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd 
+    # Download a report using the unique report name and date.
+    # @param report_date Valid date on which to download the report in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd
     # @param report_name Name of the report to download
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
@@ -33,14 +33,14 @@ module CyberSource
     end
 
     # Download a report
-    # Download a report using the unique report name and date. 
-    # @param report_date Valid date on which to download the report in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd 
+    # Download a report using the unique report name and date.
+    # @param report_date Valid date on which to download the report in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd
     # @param report_name Name of the report to download
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def download_report_with_http_info(report_date, report_name, opts = {})
-      
+
 	  if @api_client.config.debugging
 	  	begin
 			raise
@@ -96,7 +96,8 @@ module CyberSource
         :query_params => query_params,
         :form_params => form_params,
         :body => post_body,
-        :auth_names => auth_names)
+        :auth_names => auth_names,
+        :return_type => opts[:return_type])
       if @api_client.config.debugging
 		begin
 		raise

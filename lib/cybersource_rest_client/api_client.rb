@@ -55,7 +55,7 @@ module CyberSource
 		raise
 			@config.logger.debug "HTTP response body ~BEGIN~\n#{response.body}\n~END~\n"
 		rescue
-			puts 'Cannot write to log'			
+			puts 'Cannot write to log'
 		end
 	  end
 
@@ -78,7 +78,7 @@ module CyberSource
       else
         data = nil
       end
-      return response.body, response.code, response.headers
+      return data || response.body, response.code, response.headers
     end
 
     # Builds the HTTP request
@@ -139,7 +139,7 @@ module CyberSource
       download_file(request) if opts[:return_type] == 'File'
       request
     end
-	# set merchantConfig 
+	# set merchantConfig
 	def set_configuration(config)
 	   require_relative '../AuthenticationSDK/core/MerchantConfig.rb'
 	   $merchantconfig_obj = Merchantconfig.new(config)
@@ -197,7 +197,7 @@ module CyberSource
       end
       request_target
     end
-	
+
     # Check if the given MIME is a JSON MIME.
     # JSON MIME examples:
     #   application/json
