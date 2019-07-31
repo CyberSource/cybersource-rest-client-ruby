@@ -124,19 +124,19 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::ReportsApi.new
 
-start_time = DateTime.parse("2013-10-20T19:20:30+01:00") # DateTime | Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd'T'HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
+start_time = DateTime.parse("2013-10-20T19:20:30+01:00") # DateTime | Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example date format:**   - yyyy-MM-dd'T'HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
 
-end_time = DateTime.parse("2013-10-20T19:20:30+01:00") # DateTime | Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd'T'HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
+end_time = DateTime.parse("2013-10-20T19:20:30+01:00") # DateTime | Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example date format:**   - yyyy-MM-dd'T'HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
 
-time_query_type = "time_query_type_example" # String | Specify time you would like to search
+time_query_type = "time_query_type_example" # String | Specify time you would like to search  Valid values: - reportTimeFrame - executedTime 
 
 opts = { 
   organization_id: "organization_id_example", # String | Valid Cybersource Organization Id
-  report_mime_type: "report_mime_type_example", # String | Valid Report Format
-  report_frequency: "report_frequency_example", # String | Valid Report Frequency
+  report_mime_type: "report_mime_type_example", # String | Valid Report Format  Valid values: - application/xml - text/csv 
+  report_frequency: "report_frequency_example", # String | Valid Report Frequency  Valid values: - DAILY - WEEKLY - MONTHLY - ADHOC 
   report_name: "report_name_example", # String | Valid Report Name
   report_definition_id: 56, # Integer | Valid Report Definition Id
-  report_status: "report_status_example" # String | Valid Report Status
+  report_status: "report_status_example" # String | Valid Report Status  Valid values: - COMPLETED - PENDING - QUEUED - RUNNING - ERROR - NO_DATA 
 }
 
 begin
@@ -152,15 +152,15 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **start_time** | **DateTime**| Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z)  | 
- **end_time** | **DateTime**| Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z)  | 
- **time_query_type** | **String**| Specify time you would like to search | 
+ **start_time** | **DateTime**| Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z)  | 
+ **end_time** | **DateTime**| Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z)  | 
+ **time_query_type** | **String**| Specify time you would like to search  Valid values: - reportTimeFrame - executedTime  | 
  **organization_id** | **String**| Valid Cybersource Organization Id | [optional] 
- **report_mime_type** | **String**| Valid Report Format | [optional] 
- **report_frequency** | **String**| Valid Report Frequency | [optional] 
+ **report_mime_type** | **String**| Valid Report Format  Valid values: - application/xml - text/csv  | [optional] 
+ **report_frequency** | **String**| Valid Report Frequency  Valid values: - DAILY - WEEKLY - MONTHLY - ADHOC  | [optional] 
  **report_name** | **String**| Valid Report Name | [optional] 
  **report_definition_id** | **Integer**| Valid Report Definition Id | [optional] 
- **report_status** | **String**| Valid Report Status | [optional] 
+ **report_status** | **String**| Valid Report Status  Valid values: - COMPLETED - PENDING - QUEUED - RUNNING - ERROR - NO_DATA  | [optional] 
 
 ### Return type
 

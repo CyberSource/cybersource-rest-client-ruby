@@ -32,7 +32,7 @@ describe 'TssV2TransactionsPost201ResponseEmbeddedPaymentInformationPaymentType'
       expect(@instance).to be_instance_of(CyberSource::TssV2TransactionsPost201ResponseEmbeddedPaymentInformationPaymentType)
     end
   end
-  describe 'test attribute "type"' do
+  describe 'test attribute "name"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

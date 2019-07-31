@@ -56,7 +56,7 @@ No authorization required
 
 
 # **get_search**
-> TssV2TransactionsPost201Response get_search(search_id)
+> TssV2TransactionsPost201Response1 get_search(search_id)
 
 Get Search results
 
@@ -89,7 +89,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TssV2TransactionsPost201Response**](TssV2TransactionsPost201Response.md)
+[**TssV2TransactionsPost201Response1**](TssV2TransactionsPost201Response1.md)
 
 ### Authorization
 

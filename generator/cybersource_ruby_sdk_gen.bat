@@ -4,9 +4,9 @@ cd %~dp0
 
 REM Delete the previously generated SDK code
 
-rm -r -f ..\docs
-rm -r -f ..\lib\cybersource_rest_client
-rm -r -f ..\spec
+rd /s /q ..\docs
+rd /s /q ..\lib\cybersource_rest_client
+rd /s /q ..\spec
 del ..\lib\cybersource_rest_client.rb
 
 REM Command to generate SDK
@@ -37,7 +37,7 @@ powershell -Command "(Get-Content ..\lib\cybersource_rest_client\api\void_api.rb
 
 powershell -Command "(Get-Content ..\lib\cybersource_rest_client\api\search_transactions_api.rb) | ForEach-Object { $_ -replace 'select_header_accept\(\[''application/json;charset=utf-8', 'select_header_accept([''*/*'} | Set-Content ..\lib\cybersource_rest_client\api\search_transactions_api.rb"
 
-powershell -Command "(Get-Content ..\lib\cybersource_rest_client\api\payer_authentication_api.rb) | ForEach-Object { $_ -replace 'select_header_accept\(\[''application/json;charset=utf-8', 'select_header_accept([''application/hal+json;charset=utf-8'} | Set-Content ..\lib\cybersource_rest_client\api\payer_authentication_api.rb"
+REM powershell -Command "(Get-Content ..\lib\cybersource_rest_client\api\payer_authentication_api.rb) | ForEach-Object { $_ -replace 'select_header_accept\(\[''application/json;charset=utf-8', 'select_header_accept([''application/hal+json;charset=utf-8'} | Set-Content ..\lib\cybersource_rest_client\api\payer_authentication_api.rb"
 
  REM to change accept type header
 powershell -Command "(Get-Content ..\lib\cybersource_rest_client\api\secure_file_share_api.rb) | ForEach-Object { $_ -replace 'select_header_content_type\(\[''application/json;charset=utf-8', 'select_header_content_type([''*/*' } | Set-Content ..\lib\cybersource_rest_client\api\secure_file_share_api.rb"

@@ -23,7 +23,7 @@ module CyberSource
     # The reconciliation id for the submitted transaction. This value is not returned for all processors. 
     attr_accessor :reconciliation_id
 
-    # The description for this field is not available.
+    # Your CyberSource merchant ID.
     attr_accessor :merchant_id
 
     # The status of the submitted transaction.
@@ -48,7 +48,7 @@ module CyberSource
 
     attr_accessor :fraud_marking_information
 
-    # The description for this field is not available.
+    # The object containing the custom data that the merchant defines. 
     attr_accessor :merchant_defined_information
 
     attr_accessor :merchant_information

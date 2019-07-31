@@ -14,13 +14,13 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsGet200ResponseConsumerAuthenticationInformation
-    # Raw electronic commerce indicator (ECI). For the description and requirements, see \"Payer Authentication,\" page 180.
+    # Raw electronic commerce indicator (ECI).  For details, see `eci_raw` request field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
     attr_accessor :eci_raw
 
     # Cardholder authentication verification value (CAVV).
     attr_accessor :cavv
 
-    # Transaction identifier. For the description and requirements, see \"Payer Authentication,\" page 180.
+    # Transaction identifier.  For details, see `xid` request field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
     attr_accessor :xid
 
     # Payer auth Transaction identifier.

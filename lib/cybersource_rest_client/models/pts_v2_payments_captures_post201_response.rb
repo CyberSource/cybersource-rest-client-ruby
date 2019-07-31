@@ -34,28 +34,6 @@ module CyberSource
 
     attr_accessor :order_information
 
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -144,8 +122,6 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if !@id.nil? && @id.to_s.length > 26
-      status_validator = EnumAttributeValidator.new('String', ['PENDING'])
-      return false unless status_validator.valid?(@status)
       return false if !@reconciliation_id.nil? && @reconciliation_id.to_s.length > 60
       true
     end
@@ -158,16 +134,6 @@ module CyberSource
       end
 
       @id = id
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] status Object to be assigned
-    def status=(status)
-      validator = EnumAttributeValidator.new('String', ['PENDING'])
-      unless validator.valid?(status)
-        fail ArgumentError, 'invalid value for "status", must be one of #{validator.allowable_values}.'
-      end
-      @status = status
     end
 
     # Custom attribute writer method with validation

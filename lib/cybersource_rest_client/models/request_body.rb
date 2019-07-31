@@ -22,7 +22,7 @@ module CyberSource
     # List of fields which needs to get included in a report
     attr_accessor :report_fields
 
-    #  Format of the report
+    # 'Format of the report'                  Valid values: - application/xml - text/csv 
     attr_accessor :report_mime_type
 
     # Name of the report
@@ -44,28 +44,6 @@ module CyberSource
 
     # Specifies the group name
     attr_accessor :group_name
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -204,8 +182,6 @@ module CyberSource
       return false if !@report_definition_name.nil? && @report_definition_name.to_s.length > 80
       return false if !@report_definition_name.nil? && @report_definition_name.to_s.length < 1
       #return false if !@report_definition_name.nil? && @report_definition_name !~ Regexp.new(/[a-zA-Z0-9-]+/)
-      report_mime_type_validator = EnumAttributeValidator.new('String', ['application/xml', 'text/csv'])
-      return false unless report_mime_type_validator.valid?(@report_mime_type)
       return false if !@report_name.nil? && @report_name.to_s.length > 128
       return false if !@report_name.nil? && @report_name.to_s.length < 1
       #return false if !@report_name.nil? && @report_name !~ Regexp.new(/[a-zA-Z0-9-_ ]+/)
@@ -239,16 +215,6 @@ module CyberSource
       #end
 
       @report_definition_name = report_definition_name
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] report_mime_type Object to be assigned
-    def report_mime_type=(report_mime_type)
-      validator = EnumAttributeValidator.new('String', ['application/xml', 'text/csv'])
-      unless validator.valid?(report_mime_type)
-        fail ArgumentError, 'invalid value for "report_mime_type", must be one of #{validator.allowable_values}.'
-      end
-      @report_mime_type = report_mime_type
     end
 
     # Custom attribute writer method with validation

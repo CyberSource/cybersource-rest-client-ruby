@@ -33,7 +33,7 @@ describe 'DecisionManagerApi' do
   end
 
   # unit tests for create_decision_manager_case
-  # Create Decision Manager case
+  # Create Decision Manager Case
   # This is the combined request to the Decision Manager Service for a transaction sent to Cybersource. Decision Manager will return a decision based on the request values. 
   # @param create_decision_manager_case_request 
   # @param [Hash] opts the optional parameters

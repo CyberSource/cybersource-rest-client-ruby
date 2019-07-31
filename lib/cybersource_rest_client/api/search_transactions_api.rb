@@ -89,7 +89,7 @@ module CyberSource
     # Include the Search ID in the GET request to retrieve the search results.
     # @param search_id Search ID.
     # @param [Hash] opts the optional parameters
-    # @return [TssV2TransactionsPost201Response]
+    # @return [TssV2TransactionsPost201Response1]
     def get_search(search_id, opts = {})
       data, status_code, headers = get_search_with_http_info(search_id, opts)
       return data, status_code, headers
@@ -99,7 +99,7 @@ module CyberSource
     # Include the Search ID in the GET request to retrieve the search results.
     # @param search_id Search ID.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(TssV2TransactionsPost201Response, Fixnum, Hash)>] TssV2TransactionsPost201Response data, response status code and response headers
+    # @return [Array<(TssV2TransactionsPost201Response1, Fixnum, Hash)>] TssV2TransactionsPost201Response1 data, response status code and response headers
     def get_search_with_http_info(search_id, opts = {})
       
 	  if @api_client.config.debugging
@@ -139,7 +139,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'TssV2TransactionsPost201Response')
+        :return_type => 'TssV2TransactionsPost201Response1')
       if @api_client.config.debugging
 		begin
 		raise

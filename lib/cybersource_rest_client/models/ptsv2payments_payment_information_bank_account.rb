@@ -20,7 +20,7 @@ module CyberSource
     # Account number.  When processing encoded account numbers, use this field for the encoded account number. 
     attr_accessor :number
 
-    # Identifier for the bank that provided the customer’s encoded account number.  To obtain the bank identifier, contact your processor. See \"Encoded Account Numbers,\" page 39. 
+    # Identifier for the bank that provided the customer’s encoded account number.  To obtain the bank identifier, contact your processor.  For details, see `account_encoder_id` request-level field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
     attr_accessor :encoder_id
 
     # Check number.  Chase Paymentech Solutions - Optional. CyberSource ACH Service - Not used. RBS WorldPay Atlanta - Optional on debits. Required on credits. TeleCheck - Strongly recommended on debit requests. Optional on credits. 

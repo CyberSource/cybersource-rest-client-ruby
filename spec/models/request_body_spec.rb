@@ -53,10 +53,6 @@ describe 'RequestBody' do
   describe 'test attribute "report_mime_type"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["application/xml", "text/csv"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.report_mime_type = value }.not_to raise_error
-      # end
     end
   end
 

@@ -20,7 +20,7 @@ module CyberSource
       @api_client = api_client
 	  @api_client.set_configuration(config)
     end
-    # Create Decision Manager case
+    # Create Decision Manager Case
     # This is the combined request to the Decision Manager Service for a transaction sent to Cybersource. Decision Manager will return a decision based on the request values. 
     # @param create_decision_manager_case_request 
     # @param [Hash] opts the optional parameters
@@ -30,7 +30,7 @@ module CyberSource
       return data, status_code, headers
     end
 
-    # Create Decision Manager case
+    # Create Decision Manager Case
     # This is the combined request to the Decision Manager Service for a transaction sent to Cybersource. Decision Manager will return a decision based on the request values. 
     # @param create_decision_manager_case_request 
     # @param [Hash] opts the optional parameters

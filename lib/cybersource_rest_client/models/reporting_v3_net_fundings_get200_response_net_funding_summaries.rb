@@ -14,6 +14,7 @@ require 'date'
 
 module CyberSource
   class ReportingV3NetFundingsGet200ResponseNetFundingSummaries
+    # Valid values: - PURCHASES - REFUNDS - FEES - CHARGEBACKS 
     attr_accessor :type
 
     attr_accessor :payment_sub_type
@@ -30,28 +31,6 @@ module CyberSource
 
     # Valid ISO 4217 ALPHA-3 currency code
     attr_accessor :currency_code
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -132,19 +111,7 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      type_validator = EnumAttributeValidator.new('String', ['PURCHASES', 'REFUNDS', 'FEES', 'CHARGEBACKS'])
-      return false unless type_validator.valid?(@type)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] type Object to be assigned
-    def type=(type)
-      validator = EnumAttributeValidator.new('String', ['PURCHASES', 'REFUNDS', 'FEES', 'CHARGEBACKS'])
-      unless validator.valid?(type)
-        fail ArgumentError, 'invalid value for "type", must be one of #{validator.allowable_values}.'
-      end
-      @type = type
     end
 
     # Checks equality by comparing each attribute.

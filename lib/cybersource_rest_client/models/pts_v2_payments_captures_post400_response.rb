@@ -28,28 +28,6 @@ module CyberSource
 
     attr_accessor :details
 
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -113,31 +91,7 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      status_validator = EnumAttributeValidator.new('String', ['INVALID_REQUEST'])
-      return false unless status_validator.valid?(@status)
-      reason_validator = EnumAttributeValidator.new('String', ['MISSING_FIELD', 'INVALID_DATA', 'DUPLICATE_REQUEST', 'INVALID_MERCHANT_CONFIGURATION', 'EXCEEDS_AUTH_AMOUNT', 'AUTH_ALREADY_REVERSED', 'TRANSACTION_ALREADY_SETTLED', 'MISSING_AUTH', 'TRANSACTION_ALREADY_REVERSED_OR_SETTLED'])
-      return false unless reason_validator.valid?(@reason)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] status Object to be assigned
-    def status=(status)
-      validator = EnumAttributeValidator.new('String', ['INVALID_REQUEST'])
-      unless validator.valid?(status)
-        fail ArgumentError, 'invalid value for "status", must be one of #{validator.allowable_values}.'
-      end
-      @status = status
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] reason Object to be assigned
-    def reason=(reason)
-      validator = EnumAttributeValidator.new('String', ['MISSING_FIELD', 'INVALID_DATA', 'DUPLICATE_REQUEST', 'INVALID_MERCHANT_CONFIGURATION', 'EXCEEDS_AUTH_AMOUNT', 'AUTH_ALREADY_REVERSED', 'TRANSACTION_ALREADY_SETTLED', 'MISSING_AUTH', 'TRANSACTION_ALREADY_REVERSED_OR_SETTLED'])
-      unless validator.valid?(reason)
-        fail ArgumentError, 'invalid value for "reason", must be one of #{validator.allowable_values}.'
-      end
-      @reason = reason
     end
 
     # Checks equality by comparing each attribute.
