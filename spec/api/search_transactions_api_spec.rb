@@ -49,7 +49,7 @@ describe 'SearchTransactionsApi' do
   # Include the Search ID in the GET request to retrieve the search results.
   # @param search_id Search ID.
   # @param [Hash] opts the optional parameters
-  # @return [TssV2TransactionsPost201Response1]
+  # @return [TssV2TransactionsPost201Response]
   describe 'get_search test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
