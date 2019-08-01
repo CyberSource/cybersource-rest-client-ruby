@@ -38,7 +38,7 @@ module CyberSource
 
     attr_accessor :point_of_sale_information
 
-    # The description for this field is not available.
+    # The object containing the custom data that the merchant defines. 
     attr_accessor :merchant_defined_information
 
     attr_accessor :installment_information

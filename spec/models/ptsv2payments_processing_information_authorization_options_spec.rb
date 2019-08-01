@@ -77,10 +77,6 @@ describe 'Ptsv2paymentsProcessingInformationAuthorizationOptions' do
   describe 'test attribute "decline_avs_flags"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('Array<String>', ["D", "A", "V", "S", "N", "O"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.decline_avs_flags = value }.not_to raise_error
-      # end
     end
   end
 

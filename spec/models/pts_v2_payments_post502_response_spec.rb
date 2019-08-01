@@ -41,20 +41,12 @@ describe 'PtsV2PaymentsPost502Response' do
   describe 'test attribute "status"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["SERVER_ERROR"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.status = value }.not_to raise_error
-      # end
     end
   end
 
   describe 'test attribute "reason"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["SYSTEM_ERROR", "SERVER_TIMEOUT", "SERVICE_TIMEOUT", "INVALID_OR_MISSING_CONFIG", "PROCESSOR_TIMEOUT"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.reason = value }.not_to raise_error
-      # end
     end
   end
 

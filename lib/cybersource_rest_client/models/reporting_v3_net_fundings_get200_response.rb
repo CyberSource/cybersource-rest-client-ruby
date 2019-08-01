@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class ReportingV3NetFundingsGet200Response
-    # Valid report Start Date in **ISO 8601 format**. Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14  **Example:** - yyyy-MM-dd'T'HH:mm:ss.SSSZZ 
+    # Valid report Start Date in **ISO 8601 format**. Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example:** - yyyy-MM-dd'T'HH:mm:ss.SSSZZ 
     attr_accessor :start_time
 
     # Valid report End Date in **ISO 8601 format** **Example date format:** - yyyy-MM-dd'T'HH:mm:ss.SSSZZ 

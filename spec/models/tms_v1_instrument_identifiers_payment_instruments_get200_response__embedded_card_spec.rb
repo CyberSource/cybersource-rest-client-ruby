@@ -47,10 +47,6 @@ describe 'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedCard
   describe 'test attribute "type"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["visa", "mastercard", "american express", "discover", "diners club", "carte blanche", "jcb", "optima", "twinpay credit", "twinpay debit", "walmart", "enroute", "lowes consumer", "home depot consumer", "mbna", "dicks sportswear", "casual corner", "sears", "jal", "disney", "maestro uk domestic", "sams club consumer", "sams club business", "nicos", "bill me later", "bebe", "restoration hardware", "delta online", "solo", "visa electron", "dankort", "laser", "carte bleue", "carta si", "pinless debit", "encoded account", "uatp", "household", "maestro international", "ge money uk", "korean cards", "style", "jcrew", "payease china processing ewallet", "payease china processing bank transfer", "meijer private label", "hipercard", "aura", "redecard", "orico", "elo", "capital one private label", "synchrony private label", "china union pay", "costco private label", "mada", "falabella private label"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.type = value }.not_to raise_error
-      # end
     end
   end
 

@@ -38,13 +38,7 @@ describe 'TssV2TransactionsGet200ResponsePaymentInformationPaymentType' do
     end
   end
 
-  describe 'test attribute "type"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe 'test attribute "method"' do
+  describe 'test attribute "sub_type_name"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -56,13 +50,13 @@ describe 'TssV2TransactionsGet200ResponsePaymentInformationPaymentType' do
     end
   end
 
-  describe 'test attribute "funding_source_affiliation"' do
+  describe 'test attribute "method"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "credential"' do
+  describe 'test attribute "authentication_method"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

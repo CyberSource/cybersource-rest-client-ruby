@@ -35,10 +35,6 @@ describe 'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedProc
   describe 'test attribute "sec_code"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["CCD", "PPD", "TEL", "WEB"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.sec_code = value }.not_to raise_error
-      # end
     end
   end
 

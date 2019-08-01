@@ -53,10 +53,6 @@ describe 'ReportingV3ReportDefinitionsGet200ResponseReportDefinitions' do
   describe 'test attribute "supported_formats"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('Array<String>', ["application/xml", "text/csv"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.supported_formats = value }.not_to raise_error
-      # end
     end
   end
 

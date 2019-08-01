@@ -19,10 +19,10 @@ module CyberSource
     # Unique identification number assigned by CyberSource to the submitted request.
     attr_accessor :id
 
-    # Describes type of token.
+    # 'Describes type of token.'  Valid values: - paymentInstrument 
     attr_accessor :object
 
-    # Current state of the token.
+    # 'Current state of the token.'  Valid values: - ACTIVE - CLOSED 
     attr_accessor :state
 
     attr_accessor :bank_account
@@ -40,28 +40,6 @@ module CyberSource
     attr_accessor :meta_data
 
     attr_accessor :instrument_identifier
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -166,31 +144,7 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      object_validator = EnumAttributeValidator.new('String', ['paymentInstrument'])
-      return false unless object_validator.valid?(@object)
-      state_validator = EnumAttributeValidator.new('String', ['ACTIVE', 'CLOSED'])
-      return false unless state_validator.valid?(@state)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] object Object to be assigned
-    def object=(object)
-      validator = EnumAttributeValidator.new('String', ['paymentInstrument'])
-      unless validator.valid?(object)
-        fail ArgumentError, 'invalid value for "object", must be one of #{validator.allowable_values}.'
-      end
-      @object = object
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] state Object to be assigned
-    def state=(state)
-      validator = EnumAttributeValidator.new('String', ['ACTIVE', 'CLOSED'])
-      unless validator.valid?(state)
-        fail ArgumentError, 'invalid value for "state", must be one of #{validator.allowable_values}.'
-      end
-      @state = state
     end
 
     # Checks equality by comparing each attribute.

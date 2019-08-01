@@ -18,30 +18,8 @@ module CyberSource
     # Indicator to determine whether negative sign infront of amount for all refunded transaction
     attr_accessor :signed_amounts
 
-    # Specify the field naming convention to be followed in reports (applicable to only csv report formats
+    # Specify the field naming convention to be followed in reports (applicable to only csv report formats)  Valid values: - SOAPI - SCMP 
     attr_accessor :field_name_convention
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -86,19 +64,7 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      field_name_convention_validator = EnumAttributeValidator.new('String', ['SOAPI', 'SCMP'])
-      return false unless field_name_convention_validator.valid?(@field_name_convention)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] field_name_convention Object to be assigned
-    def field_name_convention=(field_name_convention)
-      validator = EnumAttributeValidator.new('String', ['SOAPI', 'SCMP'])
-      unless validator.valid?(field_name_convention)
-        fail ArgumentError, 'invalid value for "field_name_convention", must be one of #{validator.allowable_values}.'
-      end
-      @field_name_convention = field_name_convention
     end
 
     # Checks equality by comparing each attribute.

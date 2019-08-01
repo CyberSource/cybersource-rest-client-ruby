@@ -20,7 +20,7 @@ module CyberSource
     # Terminal serial number assigned by the hardware manufacturer. This value is provided by the client software that is installed on the POS terminal.  CyberSource does not forward this value to the processor. Instead, the value is forwarded to the CyberSource reporting functionality.  This field is supported only on American Express Direct, FDC Nashville Global, and SIX.  For details, see the `terminal_serial_number` field description in [Card-Present Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Retail_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
     attr_accessor :terminal_serial_number
 
-    # The description for this field is not available.
+    # Value created by the client software that uniquely identifies the POS device. CyberSource does not forward this value to the processor. Instead, the value is forwarded to the CyberSource reporting functionality.  This field is supported only for specific CyberSource integrations. For details, see the `pos_device_id` field description in the [Card-Present Processing Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/Retail_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
     attr_accessor :device_id
 
     attr_accessor :partner
@@ -41,7 +41,7 @@ module CyberSource
         :'terminal_id' => :'String',
         :'terminal_serial_number' => :'String',
         :'device_id' => :'String',
-        :'partner' => :'Ptsv2paymentsClientReferenceInformationPartner'
+        :'partner' => :'TssV2TransactionsPost201ResponseEmbeddedPointOfSaleInformationPartner'
       }
     end
 

@@ -14,16 +14,16 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsPost201ResponseEmbeddedPaymentInformationPaymentType
-    # The type of payment method. This is required for non-credit card payment.  Possible values:  - BANK_TRANSFER  - CARD (Default)  - EWALLET  - DIGITAL  - DIRECT_DEBIT  - INVOICE  - PUSH_PAYMENT  - CARRIER_BILLING  - CASH  - CHECK  - CRYPTOGRAPHIC  Please contact CyberSource Customer Support to enable the payment method of your choice and the value you should send in your payment request for this field. 
-    attr_accessor :type
+    # A Payment Type is an agreed means for a payee to receive legal tender from a payer. The way one pays for a commercial financial transaction. Examples: Card, Bank Transfer, Digital, Direct Debit. 
+    attr_accessor :name
 
-    # This is an optional field.  Please contact CyberSource Customer Support to enable the payment method of your choice and the value you should send in your payment request for this field. 
+    # A Payment Type is enabled through a Method. Examples: Visa, Master Card, ApplePay, iDeal
     attr_accessor :method
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'type' => :'type',
+        :'name' => :'name',
         :'method' => :'method'
       }
     end
@@ -31,7 +31,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'type' => :'String',
+        :'name' => :'String',
         :'method' => :'String'
       }
     end
@@ -44,8 +44,8 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'type')
-        self.type = attributes[:'type']
+      if attributes.has_key?(:'name')
+        self.name = attributes[:'name']
       end
 
       if attributes.has_key?(:'method')
@@ -71,7 +71,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          type == o.type &&
+          name == o.name &&
           method == o.method
     end
 
@@ -84,7 +84,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [type, method].hash
+      [name, method].hash
     end
 
     # Builds the object from hash

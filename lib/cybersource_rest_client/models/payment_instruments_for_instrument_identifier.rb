@@ -16,7 +16,7 @@ module CyberSource
   class PaymentInstrumentsForInstrumentIdentifier
     attr_accessor :_links
 
-    # Shows the response is a collection of objects.
+    # 'Shows the response is a collection of objects.'  Valid values: - collection 
     attr_accessor :object
 
     # The offset parameter supplied in the request.
@@ -32,28 +32,6 @@ module CyberSource
     attr_accessor :total
 
     attr_accessor :_embedded
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -128,19 +106,7 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      object_validator = EnumAttributeValidator.new('String', ['collection'])
-      return false unless object_validator.valid?(@object)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] object Object to be assigned
-    def object=(object)
-      validator = EnumAttributeValidator.new('String', ['collection'])
-      unless validator.valid?(object)
-        fail ArgumentError, 'invalid value for "object", must be one of #{validator.allowable_values}.'
-      end
-      @object = object
     end
 
     # Checks equality by comparing each attribute.

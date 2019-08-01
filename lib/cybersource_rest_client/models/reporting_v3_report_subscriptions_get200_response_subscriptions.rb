@@ -24,10 +24,10 @@ module CyberSource
     # Report Definition Class
     attr_accessor :report_definition_name
 
-    # Report Format
+    # Report Format                          Valid values: - application/xml - text/csv 
     attr_accessor :report_mime_type
 
-    # Report Frequency
+    # 'Report Frequency'  Valid values: - DAILY - WEEKLY - MONTHLY - ADHOC 
     attr_accessor :report_frequency
 
     # Report Name
@@ -52,28 +52,6 @@ module CyberSource
 
     # Id for the selected group.
     attr_accessor :group_id
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -188,31 +166,7 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      report_mime_type_validator = EnumAttributeValidator.new('String', ['application/xml', 'text/csv'])
-      return false unless report_mime_type_validator.valid?(@report_mime_type)
-      report_frequency_validator = EnumAttributeValidator.new('String', ['DAILY', 'WEEKLY', 'MONTHLY', 'ADHOC'])
-      return false unless report_frequency_validator.valid?(@report_frequency)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] report_mime_type Object to be assigned
-    def report_mime_type=(report_mime_type)
-      validator = EnumAttributeValidator.new('String', ['application/xml', 'text/csv'])
-      unless validator.valid?(report_mime_type)
-        fail ArgumentError, 'invalid value for "report_mime_type", must be one of #{validator.allowable_values}.'
-      end
-      @report_mime_type = report_mime_type
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] report_frequency Object to be assigned
-    def report_frequency=(report_frequency)
-      validator = EnumAttributeValidator.new('String', ['DAILY', 'WEEKLY', 'MONTHLY', 'ADHOC'])
-      unless validator.valid?(report_frequency)
-        fail ArgumentError, 'invalid value for "report_frequency", must be one of #{validator.allowable_values}.'
-      end
-      @report_frequency = report_frequency
     end
 
     # Checks equality by comparing each attribute.

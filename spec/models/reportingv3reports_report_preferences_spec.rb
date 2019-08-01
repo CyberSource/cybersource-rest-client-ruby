@@ -41,10 +41,6 @@ describe 'Reportingv3reportsReportPreferences' do
   describe 'test attribute "field_name_convention"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["SOAPI", "SCMP"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.field_name_convention = value }.not_to raise_error
-      # end
     end
   end
 

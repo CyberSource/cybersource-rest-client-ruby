@@ -35,10 +35,6 @@ describe 'Ptsv2paymentsOrderInformationAmountDetailsTaxDetails' do
   describe 'test attribute "type"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["alternate", "local", "national", "vat", "other"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.type = value }.not_to raise_error
-      # end
     end
   end
 

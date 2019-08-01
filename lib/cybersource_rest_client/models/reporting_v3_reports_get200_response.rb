@@ -14,19 +14,19 @@ require 'date'
 
 module CyberSource
   class ReportingV3ReportsGet200Response
-    attr_accessor :reports
+    attr_accessor :report_search_results
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'reports' => :'reports'
+        :'report_search_results' => :'reportSearchResults'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'reports' => :'Array<ReportingV3ReportsGet200ResponseReports>'
+        :'report_search_results' => :'Array<ReportingV3ReportsGet200ResponseReportSearchResults>'
       }
     end
 
@@ -38,9 +38,9 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'reports')
-        if (value = attributes[:'reports']).is_a?(Array)
-          self.reports = value
+      if attributes.has_key?(:'reportSearchResults')
+        if (value = attributes[:'reportSearchResults']).is_a?(Array)
+          self.report_search_results = value
         end
       end
     end
@@ -63,7 +63,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          reports == o.reports
+          report_search_results == o.report_search_results
     end
 
     # @see the `==` method
@@ -75,7 +75,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [reports].hash
+      [report_search_results].hash
     end
 
     # Builds the object from hash

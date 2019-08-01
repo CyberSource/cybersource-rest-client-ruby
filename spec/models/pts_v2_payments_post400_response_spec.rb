@@ -41,20 +41,12 @@ describe 'PtsV2PaymentsPost400Response' do
   describe 'test attribute "status"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["INVALID_REQUEST"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.status = value }.not_to raise_error
-      # end
     end
   end
 
   describe 'test attribute "reason"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["MISSING_FIELD", "INVALID_DATA", "DUPLICATE_REQUEST", "INVALID_CARD", "CARD_TYPE_NOT_ACCEPTED", "INVALID_MERCHANT_CONFIGURATION", "PROCESSOR_UNAVAILABLE", "INVALID_AMOUNT", "INVALID_CARD_TYPE", "DEBIT_CARD_USEAGE_EXCEEDD_LIMIT"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.reason = value }.not_to raise_error
-      # end
     end
   end
 
