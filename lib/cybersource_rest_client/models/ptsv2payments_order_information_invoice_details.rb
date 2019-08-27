@@ -83,7 +83,7 @@ module CyberSource
         :'taxable' => :'BOOLEAN',
         :'vat_invoice_reference_number' => :'String',
         :'commodity_code' => :'String',
-        :'merchandise_code' => :'Float',
+        :'merchandise_code' => :'Integer',
         :'transaction_advice_addendum' => :'Array<Ptsv2paymentsOrderInformationInvoiceDetailsTransactionAdviceAddendum>',
         :'reference_data_code' => :'String',
         :'reference_data_number' => :'String'

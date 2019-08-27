@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsidcapturesOrderInformationAmountDetails
-    # Grand total for the order. This value cannot be negative. You can include a decimal point (.), but no other special characters. CyberSource truncates the amount to the correct number of decimal places.  **Note** For CTV, FDCCompass, Paymentech processors, the maximum length for this field is 12.  **Important** Some processors have specific requirements and limitations, such as maximum amounts and maximum field lengths. For details, see: - \"Authorization Information for Specific Processors\" in the [Credit Card Services Using the SCMP API Guide](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm). - \"Capture Information for Specific Processors\" in the [Credit Card Services Using the SCMP API Guide](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm). - \"Credit Information for Specific Processors\" in the [Credit Card Services Using the SCMP API Guide](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm).  If your processor supports zero amount authorizations, you can set this field to 0 for the authorization to check if the card is lost or stolen. For details, see \"Zero Amount Authorizations,\" \"Credit Information for Specific Processors\" in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  #### DCC with a Third-Party Provider Set this field to the converted amount that was returned by the DCC provider. You must include either this field or the 1st line item in the order and the specific line-order amount in your request. For details, see `grand_total_amount` field description in [Dynamic Currency Conversion For First Data Using the SCMP API](http://apps.cybersource.com/library/documentation/dev_guides/DCC_FirstData_SCMP/DCC_FirstData_SCMP_API.pdf).  #### FDMS South If you accept IDR or CLP currencies, see the entry for FDMS South in \"Authorization Information for Specific Processors\" of the [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  #### DCC for First Data Not used. 
+    # Grand total for the order. This value cannot be negative. You can include a decimal point (.), but no other special characters. CyberSource truncates the amount to the correct number of decimal places.  **Note** For CTV, FDCCompass, Paymentech processors, the maximum length for this field is 12.  **Important** Some processors have specific requirements and limitations, such as maximum amounts and maximum field lengths. For details, see: - \"Authorization Information for Specific Processors\" in the [Credit Card Services Using the SCMP API Guide](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm). - \"Capture Information for Specific Processors\" in the [Credit Card Services Using the SCMP API Guide](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm). - \"Credit Information for Specific Processors\" in the [Credit Card Services Using the SCMP API Guide](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm).  If your processor supports zero amount authorizations, you can set this field to 0 for the authorization to check if the card is lost or stolen. For details, see \"Zero Amount Authorizations,\" \"Credit Information for Specific Processors\" in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  #### DCC with a Third-Party Provider Set this field to the converted amount that was returned by the DCC provider. You must include either this field or the 1st line item in the order and the specific line-order amount in your request. For details, see `grand_total_amount` field description in [Dynamic Currency Conversion For First Data Using the SCMP API](http://apps.cybersource.com/library/documentation/dev_guides/DCC_FirstData_SCMP/DCC_FirstData_SCMP_API.pdf).  #### FDMS South If you accept IDR or CLP currencies, see the entry for FDMS South in \"Authorization Information for Specific Processors\" of the [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  #### DCC for First Data Not used.  #### Invoicing Grand total for the order, this is required for creating a new invoice. 
     attr_accessor :total_amount
 
     # Currency used for the order. Use the three-character I[ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)  For details about currency as used in partial authorizations, see \"Features for Debit Cards and Prepaid Cards\" in the [Credit Card Services Using the SCMP API Guide](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  For an authorization reversal (`reversalInformation`) or a capture (`processingOptions.capture` is set to `true`), you must use the same currency that you used in your payment authorization request.  #### DCC for First Data Your local currency. For details, see the `currency` field description in [Dynamic Currency Conversion For First Data Using the SCMP API](http://apps.cybersource.com/library/documentation/dev_guides/DCC_FirstData_SCMP/DCC_FirstData_SCMP_API.pdf). 
@@ -25,6 +25,9 @@ module CyberSource
 
     # Total charges for any import or export duties included in the order.  For processor-specific information, see the duty_amount field in [Level II and Level III Processing Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/Level_2_3_SCMP_API/html) 
     attr_accessor :duty_amount
+
+    # Gratuity or tip amount for restaurants when the card is present. Allowed only when `industryDatatype=restaurant`. When your customer uses a debit card or prepaid card, and you receive a partial authorization, the payment networks recommend that you do not submit a capture amount that is higher than the authorized amount. When the capture amount exceeds the partial amount that was approved, the issuer has chargeback rights for the excess amount.  For information about partial authorizations, see Credit Card Services Using the SCMP API.  Restaurant data is supported only on CyberSource through VisaNet. 
+    attr_accessor :gratuity_amount
 
     # Total tax amount for all the items in the order.  For processor-specific information, see the total_tax_amount field in [Level II and Level III Processing Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/Level_2_3_SCMP_API/html) 
     attr_accessor :tax_amount
@@ -73,6 +76,7 @@ module CyberSource
         :'currency' => :'currency',
         :'discount_amount' => :'discountAmount',
         :'duty_amount' => :'dutyAmount',
+        :'gratuity_amount' => :'gratuityAmount',
         :'tax_amount' => :'taxAmount',
         :'national_tax_included' => :'nationalTaxIncluded',
         :'tax_applied_after_discount' => :'taxAppliedAfterDiscount',
@@ -97,6 +101,7 @@ module CyberSource
         :'currency' => :'String',
         :'discount_amount' => :'String',
         :'duty_amount' => :'String',
+        :'gratuity_amount' => :'String',
         :'tax_amount' => :'String',
         :'national_tax_included' => :'String',
         :'tax_applied_after_discount' => :'String',
@@ -136,6 +141,10 @@ module CyberSource
 
       if attributes.has_key?(:'dutyAmount')
         self.duty_amount = attributes[:'dutyAmount']
+      end
+
+      if attributes.has_key?(:'gratuityAmount')
+        self.gratuity_amount = attributes[:'gratuityAmount']
       end
 
       if attributes.has_key?(:'taxAmount')
@@ -219,6 +228,10 @@ module CyberSource
         invalid_properties.push('invalid value for "duty_amount", the character length must be smaller than or equal to 15.')
       end
 
+      if !@gratuity_amount.nil? && @gratuity_amount.to_s.length > 13
+        invalid_properties.push('invalid value for "gratuity_amount", the character length must be smaller than or equal to 13.')
+      end
+
       if !@tax_amount.nil? && @tax_amount.to_s.length > 12
         invalid_properties.push('invalid value for "tax_amount", the character length must be smaller than or equal to 12.')
       end
@@ -277,6 +290,7 @@ module CyberSource
       return false if !@currency.nil? && @currency.to_s.length > 3
       return false if !@discount_amount.nil? && @discount_amount.to_s.length > 15
       return false if !@duty_amount.nil? && @duty_amount.to_s.length > 15
+      return false if !@gratuity_amount.nil? && @gratuity_amount.to_s.length > 13
       return false if !@tax_amount.nil? && @tax_amount.to_s.length > 12
       return false if !@national_tax_included.nil? && @national_tax_included.to_s.length > 1
       return false if !@tax_applied_after_discount.nil? && @tax_applied_after_discount.to_s.length > 1
@@ -330,6 +344,16 @@ module CyberSource
       end
 
       @duty_amount = duty_amount
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] gratuity_amount Value to be assigned
+    def gratuity_amount=(gratuity_amount)
+      if !gratuity_amount.nil? && gratuity_amount.to_s.length > 13
+        fail ArgumentError, 'invalid value for "gratuity_amount", the character length must be smaller than or equal to 13.'
+      end
+
+      @gratuity_amount = gratuity_amount
     end
 
     # Custom attribute writer method with validation
@@ -461,6 +485,7 @@ module CyberSource
           currency == o.currency &&
           discount_amount == o.discount_amount &&
           duty_amount == o.duty_amount &&
+          gratuity_amount == o.gratuity_amount &&
           tax_amount == o.tax_amount &&
           national_tax_included == o.national_tax_included &&
           tax_applied_after_discount == o.tax_applied_after_discount &&
@@ -486,7 +511,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [total_amount, currency, discount_amount, duty_amount, tax_amount, national_tax_included, tax_applied_after_discount, tax_applied_level, tax_type_code, freight_amount, foreign_amount, foreign_currency, exchange_rate, exchange_rate_time_stamp, amex_additional_amounts, tax_details, service_fee_amount, original_currency].hash
+      [total_amount, currency, discount_amount, duty_amount, gratuity_amount, tax_amount, national_tax_included, tax_applied_after_discount, tax_applied_level, tax_type_code, freight_amount, foreign_amount, foreign_currency, exchange_rate, exchange_rate_time_stamp, amex_additional_amounts, tax_details, service_fee_amount, original_currency].hash
     end
 
     # Builds the object from hash

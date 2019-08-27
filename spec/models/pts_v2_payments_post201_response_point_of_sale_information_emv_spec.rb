@@ -38,4 +38,16 @@ describe 'PtsV2PaymentsPost201ResponsePointOfSaleInformationEmv' do
     end
   end
 
+  describe 'test attribute "chip_validation_type"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "chip_validation_result"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

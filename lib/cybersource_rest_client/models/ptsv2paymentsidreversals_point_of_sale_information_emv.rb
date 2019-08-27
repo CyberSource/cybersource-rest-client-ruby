@@ -13,32 +13,21 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  # Provide validation failed input field details
-  class InlineResponse400Fields
-    # Path of the failed property
-    attr_accessor :path
-
-    # Error description about validation failed field
-    attr_accessor :message
-
-    # Localized Key Name
-    attr_accessor :localization_key
+  class Ptsv2paymentsidreversalsPointOfSaleInformationEmv
+    # EMV data that is transmitted from the chip card to the issuer, and from the issuer to the chip card. The EMV data is in the tag-length-value format and includes chip card tags, terminal tags, and transaction detail tags.  For details, see the `emv_request_combined_tags` field description in [Card-Present Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Retail_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  **Note** The information about EMV applies to credit card processing and PIN debit processing. All other information in this guide applies only to credit card processing. PIN debit processing is available only on FDC Nashville Global.  **Note** For information about the individual tags, see the “Application Specification” section in the EMV 4.3 Specifications: http://emvco.com  **Important** The following tags contain sensitive information and **must not** be included in this field:   - **56**: Track 1 equivalent data  - **57**: Track 2 equivalent data  - **5A**: Application PAN  - **5F20**: Cardholder name  - **5F24**: Application expiration date (This sensitivity has been relaxed for cmcic, amexdirect, fdiglobal, opdfde, and six)  - **99**: Transaction PIN  - **9F0B**: Cardholder name (extended)  - **9F1F**: Track 1 discretionary data  - **9F20**: Track 2 discretionary data  For captures, this field is required for contact EMV transactions. Otherwise, it is optional.  For credits, this field is required for contact EMV stand-alone credits and contactless EMV stand-alone credits. Otherwise, it is optional.  **Important** For contact EMV captures, contact EMV stand-alone credits, and contactless EMV stand-alone credits, you must include the following tags in this field. For all other types of EMV transactions, the following tags are optional.   - **95**: Terminal verification results  - **9F10**: Issuer application data  - **9F26**: Application cryptogram 
+    attr_accessor :tags
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'path' => :'path',
-        :'message' => :'message',
-        :'localization_key' => :'localizationKey'
+        :'tags' => :'tags'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'path' => :'String',
-        :'message' => :'String',
-        :'localization_key' => :'String'
+        :'tags' => :'String'
       }
     end
 
@@ -50,16 +39,8 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'path')
-        self.path = attributes[:'path']
-      end
-
-      if attributes.has_key?(:'message')
-        self.message = attributes[:'message']
-      end
-
-      if attributes.has_key?(:'localizationKey')
-        self.localization_key = attributes[:'localizationKey']
+      if attributes.has_key?(:'tags')
+        self.tags = attributes[:'tags']
       end
     end
 
@@ -67,13 +48,28 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if !@tags.nil? && @tags.to_s.length > 1998
+        invalid_properties.push('invalid value for "tags", the character length must be smaller than or equal to 1998.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if !@tags.nil? && @tags.to_s.length > 1998
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] tags Value to be assigned
+    def tags=(tags)
+      if !tags.nil? && tags.to_s.length > 1998
+        fail ArgumentError, 'invalid value for "tags", the character length must be smaller than or equal to 1998.'
+      end
+
+      @tags = tags
     end
 
     # Checks equality by comparing each attribute.
@@ -81,9 +77,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          path == o.path &&
-          message == o.message &&
-          localization_key == o.localization_key
+          tags == o.tags
     end
 
     # @see the `==` method
@@ -95,7 +89,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [path, message, localization_key].hash
+      [tags].hash
     end
 
     # Builds the object from hash

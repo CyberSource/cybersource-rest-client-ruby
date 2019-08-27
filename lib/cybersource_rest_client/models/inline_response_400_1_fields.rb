@@ -13,26 +13,32 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  class TmsV1InstrumentIdentifiersPost200ResponseBankAccount
-    # Checking account number.
-    attr_accessor :number
+  # Provide validation failed input field details
+  class InlineResponse4001Fields
+    # Path of the failed property
+    attr_accessor :path
 
-    # Routing number.
-    attr_accessor :routing_number
+    # Error description about validation failed field
+    attr_accessor :message
+
+    # Localized Key Name
+    attr_accessor :localization_key
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'number' => :'number',
-        :'routing_number' => :'routingNumber'
+        :'path' => :'path',
+        :'message' => :'message',
+        :'localization_key' => :'localizationKey'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'number' => :'String',
-        :'routing_number' => :'String'
+        :'path' => :'String',
+        :'message' => :'String',
+        :'localization_key' => :'String'
       }
     end
 
@@ -44,12 +50,16 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'number')
-        self.number = attributes[:'number']
+      if attributes.has_key?(:'path')
+        self.path = attributes[:'path']
       end
 
-      if attributes.has_key?(:'routingNumber')
-        self.routing_number = attributes[:'routingNumber']
+      if attributes.has_key?(:'message')
+        self.message = attributes[:'message']
+      end
+
+      if attributes.has_key?(:'localizationKey')
+        self.localization_key = attributes[:'localizationKey']
       end
     end
 
@@ -57,61 +67,13 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@number.nil? && @number.to_s.length > 19
-        invalid_properties.push('invalid value for "number", the character length must be smaller than or equal to 19.')
-      end
-
-      if !@number.nil? && @number.to_s.length < 1
-        invalid_properties.push('invalid value for "number", the character length must be great than or equal to 1.')
-      end
-
-      if !@routing_number.nil? && @routing_number.to_s.length > 9
-        invalid_properties.push('invalid value for "routing_number", the character length must be smaller than or equal to 9.')
-      end
-
-      if !@routing_number.nil? && @routing_number.to_s.length < 1
-        invalid_properties.push('invalid value for "routing_number", the character length must be great than or equal to 1.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@number.nil? && @number.to_s.length > 19
-      return false if !@number.nil? && @number.to_s.length < 1
-      return false if !@routing_number.nil? && @routing_number.to_s.length > 9
-      return false if !@routing_number.nil? && @routing_number.to_s.length < 1
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] number Value to be assigned
-    def number=(number)
-      if !number.nil? && number.to_s.length > 19
-        fail ArgumentError, 'invalid value for "number", the character length must be smaller than or equal to 19.'
-      end
-
-      if !number.nil? && number.to_s.length < 1
-        fail ArgumentError, 'invalid value for "number", the character length must be great than or equal to 1.'
-      end
-
-      @number = number
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] routing_number Value to be assigned
-    def routing_number=(routing_number)
-      if !routing_number.nil? && routing_number.to_s.length > 9
-        fail ArgumentError, 'invalid value for "routing_number", the character length must be smaller than or equal to 9.'
-      end
-
-      if !routing_number.nil? && routing_number.to_s.length < 1
-        fail ArgumentError, 'invalid value for "routing_number", the character length must be great than or equal to 1.'
-      end
-
-      @routing_number = routing_number
     end
 
     # Checks equality by comparing each attribute.
@@ -119,8 +81,9 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          number == o.number &&
-          routing_number == o.routing_number
+          path == o.path &&
+          message == o.message &&
+          localization_key == o.localization_key
     end
 
     # @see the `==` method
@@ -132,7 +95,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [number, routing_number].hash
+      [path, message, localization_key].hash
     end
 
     # Builds the object from hash

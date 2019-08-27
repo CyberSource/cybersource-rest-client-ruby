@@ -14,19 +14,30 @@ require 'date'
 
 module CyberSource
   class Link
+    # URI of the linked resource.
     attr_accessor :href
+
+    # Label of the linked resource.
+    attr_accessor :title
+
+    # HTTP method of the linked resource.
+    attr_accessor :method
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'href' => :'href'
+        :'href' => :'href',
+        :'title' => :'title',
+        :'method' => :'method'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'href' => :'String'
+        :'href' => :'String',
+        :'title' => :'String',
+        :'method' => :'String'
       }
     end
 
@@ -40,6 +51,14 @@ module CyberSource
 
       if attributes.has_key?(:'href')
         self.href = attributes[:'href']
+      end
+
+      if attributes.has_key?(:'title')
+        self.title = attributes[:'title']
+      end
+
+      if attributes.has_key?(:'method')
+        self.method = attributes[:'method']
       end
     end
 
@@ -61,7 +80,9 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          href == o.href
+          href == o.href &&
+          title == o.title &&
+          method == o.method
     end
 
     # @see the `==` method
@@ -73,7 +94,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [href].hash
+      [href, title, method].hash
     end
 
     # Builds the object from hash

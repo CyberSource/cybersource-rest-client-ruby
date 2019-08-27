@@ -20,7 +20,7 @@ module CyberSource
     # Total number of captures when requesting multiple partial captures for one payment. Used along with `captureSequenceNumber` field to track which capture is being processed.  For example, the second of five captures would be passed to CyberSource as:   - `captureSequenceNumber = 2`, and   - `totalCaptureCount = 5` 
     attr_accessor :total_capture_count
 
-    # Date on which you want the capture to occur. This field is supported only for Visa Platform Connect.\\ `Format: MMDD` 
+    # Date on which you want the capture to occur. This field is supported only for CyberSource through VisaNet.\\ `Format: MMDD` 
     attr_accessor :date_to_capture
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -35,8 +35,8 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'capture_sequence_number' => :'Float',
-        :'total_capture_count' => :'Float',
+        :'capture_sequence_number' => :'Integer',
+        :'total_capture_count' => :'Integer',
         :'date_to_capture' => :'String'
       }
     end

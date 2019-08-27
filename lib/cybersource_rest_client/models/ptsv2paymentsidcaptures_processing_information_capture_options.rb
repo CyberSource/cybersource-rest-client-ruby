@@ -31,8 +31,8 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'capture_sequence_number' => :'Float',
-        :'total_capture_count' => :'Float'
+        :'capture_sequence_number' => :'Integer',
+        :'total_capture_count' => :'Integer'
       }
     end
 
