@@ -20,10 +20,10 @@ module CyberSource
     # Raw Electronic Verification response code from the processor for the customer’s email address.
     attr_accessor :email_raw
 
-    # The description for this field is not available. 
+    # Mapped Electronic Verification response code for the customer’s name. 
     attr_accessor :name
 
-    # The description for this field is not available.
+    # Raw Electronic Verification response code from the processor for the customer’s name. 
     attr_accessor :name_raw
 
     # Mapped Electronic Verification response code for the customer’s phone number.  For details, see `auth_ev_phone_number` field description in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 

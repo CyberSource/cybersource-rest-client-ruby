@@ -17,7 +17,7 @@ module CyberSource
     # Type of account. This value is returned only if you requested a balance inquiry. Possible values:   - `00`: Not applicable or not specified  - `10`: Savings account  - `20`: Checking account  - `30`: Credit card account  - `40`: Universal account 
     attr_accessor :account_type
 
-    # Possible values:   - `N`: Nonregulated  - `R`: Regulated  **Note** This field is returned only for Visa Platform Connect. 
+    # Possible values:   - `N`: Nonregulated  - `R`: Regulated  **Note** This field is returned only for CyberSource through VisaNet. 
     attr_accessor :account_status
 
     # Remaining balance on the account. 
@@ -41,7 +41,7 @@ module CyberSource
     # Indicates whether the card is a commercial card, which enables you to include Level II data in your transaction requests. This field is supported for Visa and Mastercard on **Chase Paymentech Solutions**. Possible values:   - **Y**: Yes  - **N**: No  - **X**: Not applicable / Unknown  For details, see `auth_card_commercial` reply field description in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
     attr_accessor :commercial
 
-    # Type of commercial card. This field is supported only for Visa Platform Connect. Possible values:   - **B**: Business card  - **R**: Corporate card  - **S**: Purchasing card  - **0**: Noncommercial card 
+    # Type of commercial card. This field is supported only for CyberSource through VisaNet. Possible values:   - **B**: Business card  - **R**: Corporate card  - **S**: Purchasing card  - **0**: Noncommercial card 
     attr_accessor :group
 
     # Indicates whether the card is a healthcare card. This field is supported for Visa and Mastercard on **Chase Paymentech Solutions**. Possible values:   - `Y`: Yes  - `N`: No  - `X`: Not applicable / Unknown  For details, see `auth_card_healthcare` reply field description in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 

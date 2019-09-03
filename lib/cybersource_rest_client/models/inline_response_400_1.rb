@@ -13,29 +13,47 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
+  # Error Bean
   class InlineResponse4001
-    attr_accessor :type
+    # Error code
+    attr_accessor :code
 
-    # The detailed message related to the type stated above.
+    # Error message
     attr_accessor :message
 
-    attr_accessor :details
+    # Localization Key Name
+    attr_accessor :localization_key
+
+    # Correlation Id
+    attr_accessor :correlation_id
+
+    # Error Detail
+    attr_accessor :detail
+
+    # Error fields List
+    attr_accessor :fields
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'type' => :'type',
+        :'code' => :'code',
         :'message' => :'message',
-        :'details' => :'details'
+        :'localization_key' => :'localizationKey',
+        :'correlation_id' => :'correlationId',
+        :'detail' => :'detail',
+        :'fields' => :'fields'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'type' => :'String',
+        :'code' => :'String',
         :'message' => :'String',
-        :'details' => :'Tmsv1instrumentidentifiersDetails'
+        :'localization_key' => :'String',
+        :'correlation_id' => :'String',
+        :'detail' => :'String',
+        :'fields' => :'Array<InlineResponse4001Fields>'
       }
     end
 
@@ -47,16 +65,30 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'type')
-        self.type = attributes[:'type']
+      if attributes.has_key?(:'code')
+        self.code = attributes[:'code']
       end
 
       if attributes.has_key?(:'message')
         self.message = attributes[:'message']
       end
 
-      if attributes.has_key?(:'details')
-        self.details = attributes[:'details']
+      if attributes.has_key?(:'localizationKey')
+        self.localization_key = attributes[:'localizationKey']
+      end
+
+      if attributes.has_key?(:'correlationId')
+        self.correlation_id = attributes[:'correlationId']
+      end
+
+      if attributes.has_key?(:'detail')
+        self.detail = attributes[:'detail']
+      end
+
+      if attributes.has_key?(:'fields')
+        if (value = attributes[:'fields']).is_a?(Array)
+          self.fields = value
+        end
       end
     end
 
@@ -64,12 +96,22 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @code.nil?
+        invalid_properties.push('invalid value for "code", code cannot be nil.')
+      end
+
+      if @message.nil?
+        invalid_properties.push('invalid value for "message", message cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @code.nil?
+      return false if @message.nil?
       true
     end
 
@@ -78,9 +120,12 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          type == o.type &&
+          code == o.code &&
           message == o.message &&
-          details == o.details
+          localization_key == o.localization_key &&
+          correlation_id == o.correlation_id &&
+          detail == o.detail &&
+          fields == o.fields
     end
 
     # @see the `==` method
@@ -92,7 +137,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [type, message, details].hash
+      [code, message, localization_key, correlation_id, detail, fields].hash
     end
 
     # Builds the object from hash

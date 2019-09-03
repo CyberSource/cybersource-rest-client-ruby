@@ -55,7 +55,7 @@ module CyberSource
         :'object' => :'String',
         :'state' => :'String',
         :'card' => :'TmsV1InstrumentIdentifiersPost200ResponseCard',
-        :'bank_account' => :'TmsV1InstrumentIdentifiersPost200ResponseBankAccount',
+        :'bank_account' => :'Tmsv1instrumentidentifiersBankAccount',
         :'processing_information' => :'TmsV1InstrumentIdentifiersPost200ResponseProcessingInformation',
         :'metadata' => :'TmsV1InstrumentIdentifiersPost200ResponseMetadata'
       }

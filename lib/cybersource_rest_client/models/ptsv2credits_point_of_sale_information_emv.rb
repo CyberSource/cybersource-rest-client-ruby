@@ -37,7 +37,7 @@ module CyberSource
       {
         :'tags' => :'String',
         :'fallback' => :'BOOLEAN',
-        :'fallback_condition' => :'Float'
+        :'fallback_condition' => :'Integer'
       }
     end
 

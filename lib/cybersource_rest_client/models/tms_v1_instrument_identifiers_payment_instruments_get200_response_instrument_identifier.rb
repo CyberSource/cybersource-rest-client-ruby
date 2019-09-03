@@ -19,7 +19,7 @@ module CyberSource
     # 'Describes type of token.'  Valid values: - instrumentIdentifier 
     attr_accessor :object
 
-    # 'Current state of the token.'              Valid values: - ACTIVE - CLOSED 
+    # 'Current state of the token.'  Valid values: - ACTIVE - CLOSED 
     attr_accessor :state
 
     # The ID of the existing instrument identifier to be linked to the newly created payment instrument.
@@ -55,7 +55,7 @@ module CyberSource
         :'state' => :'String',
         :'id' => :'String',
         :'card' => :'TmsV1InstrumentIdentifiersPost200ResponseCard',
-        :'bank_account' => :'TmsV1InstrumentIdentifiersPost200ResponseBankAccount',
+        :'bank_account' => :'Tmsv1instrumentidentifiersBankAccount',
         :'processing_information' => :'TmsV1InstrumentIdentifiersPost200ResponseProcessingInformation',
         :'metadata' => :'TmsV1InstrumentIdentifiersPost200ResponseMetadata'
       }

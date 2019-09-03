@@ -14,17 +14,21 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsProcessingInformationAuthorizationOptionsInitiatorMerchantInitiatedTransaction
-    # Reason for the merchant-initiated transaction or incremental authorization. Possible values: - `1`: Resubmission - `2`: Delayed charge - `3`: Reauthorization for split shipment - `4`: No show - `5`: Account top up This field is required only for the five kinds of transactions in the preceding list. This field is supported only for merchant-initiated transactions and incremental authorizations.  #### Visa Platform Connect The value for this field corresponds to the following data in the TC 33 capture file5: - Record: CP01 TCR0 - Position: 160-163 - Field: Message Reason Code  #### All Processors For details, see `subsequent_auth_reason` field description in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
+    # Reason for the merchant-initiated transaction or incremental authorization. Possible values: - `1`: Resubmission - `2`: Delayed charge - `3`: Reauthorization for split shipment - `4`: No show - `5`: Account top up This field is required only for the five kinds of transactions in the preceding list. This field is supported only for merchant-initiated transactions and incremental authorizations.  #### CyberSource through VisaNet The value for this field corresponds to the following data in the TC 33 capture file5: - Record: CP01 TCR0 - Position: 160-163 - Field: Message Reason Code  #### All Processors For details, see `subsequent_auth_reason` field description in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
     attr_accessor :reason
 
-    # Network transaction identifier that was returned in the payment response field _processorInformation.transactionID_ in the reply message for either the original merchant-initiated payment in the series or the previous merchant-initiated payment in the series.  If the current payment request includes a token instead of an account number, the following time limits apply for the value of this field: - For a **resubmission**, the transaction ID must be less than 14 days old. - For a **delayed charge** or **reauthorization**, the transaction ID must be less than 30 days old.  **NOTE**: The value for this field does not correspond to any data in the TC 33 capture file5. This field is supported only for Visa transactions on Visa Platform Connect. 
+    # Network transaction identifier that was returned in the payment response field _processorInformation.transactionID_ in the reply message for either the original merchant-initiated payment in the series or the previous merchant-initiated payment in the series.  If the current payment request includes a token instead of an account number, the following time limits apply for the value of this field: - For a **resubmission**, the transaction ID must be less than 14 days old. - For a **delayed charge** or **reauthorization**, the transaction ID must be less than 30 days old.  **NOTE**: The value for this field does not correspond to any data in the TC 33 capture file5. This field is supported only for Visa transactions on CyberSource through VisaNet. 
     attr_accessor :previous_transaction_id
+
+    # Amount of the original authorization.  This field is supported only for Apple Pay, Google Pay, and Samsung Pay transactions with Discover on FDC Nashville Global and Chase Paymentech.  See \"Recurring Payments,\" and \"Subsequent Authorizations,\" field description in the [Payment Network Tokenization Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/tokenization_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
+    attr_accessor :original_authorized_amount
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'reason' => :'reason',
-        :'previous_transaction_id' => :'previousTransactionId'
+        :'previous_transaction_id' => :'previousTransactionId',
+        :'original_authorized_amount' => :'originalAuthorizedAmount'
       }
     end
 
@@ -32,7 +36,8 @@ module CyberSource
     def self.swagger_types
       {
         :'reason' => :'String',
-        :'previous_transaction_id' => :'String'
+        :'previous_transaction_id' => :'String',
+        :'original_authorized_amount' => :'String'
       }
     end
 
@@ -51,6 +56,10 @@ module CyberSource
       if attributes.has_key?(:'previousTransactionId')
         self.previous_transaction_id = attributes[:'previousTransactionId']
       end
+
+      if attributes.has_key?(:'originalAuthorizedAmount')
+        self.original_authorized_amount = attributes[:'originalAuthorizedAmount']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -65,6 +74,10 @@ module CyberSource
         invalid_properties.push('invalid value for "previous_transaction_id", the character length must be smaller than or equal to 15.')
       end
 
+      if !@original_authorized_amount.nil? && @original_authorized_amount.to_s.length > 61
+        invalid_properties.push('invalid value for "original_authorized_amount", the character length must be smaller than or equal to 61.')
+      end
+
       invalid_properties
     end
 
@@ -73,6 +86,7 @@ module CyberSource
     def valid?
       return false if !@reason.nil? && @reason.to_s.length > 1
       return false if !@previous_transaction_id.nil? && @previous_transaction_id.to_s.length > 15
+      return false if !@original_authorized_amount.nil? && @original_authorized_amount.to_s.length > 61
       true
     end
 
@@ -96,13 +110,24 @@ module CyberSource
       @previous_transaction_id = previous_transaction_id
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] original_authorized_amount Value to be assigned
+    def original_authorized_amount=(original_authorized_amount)
+      if !original_authorized_amount.nil? && original_authorized_amount.to_s.length > 61
+        fail ArgumentError, 'invalid value for "original_authorized_amount", the character length must be smaller than or equal to 61.'
+      end
+
+      @original_authorized_amount = original_authorized_amount
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           reason == o.reason &&
-          previous_transaction_id == o.previous_transaction_id
+          previous_transaction_id == o.previous_transaction_id &&
+          original_authorized_amount == o.original_authorized_amount
     end
 
     # @see the `==` method
@@ -114,7 +139,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [reason, previous_transaction_id].hash
+      [reason, previous_transaction_id, original_authorized_amount].hash
     end
 
     # Builds the object from hash

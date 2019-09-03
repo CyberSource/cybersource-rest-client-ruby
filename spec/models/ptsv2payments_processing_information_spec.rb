@@ -92,6 +92,12 @@ describe 'Ptsv2paymentsProcessingInformation' do
     end
   end
 
+  describe 'test attribute "industry_data_type"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "authorization_options"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

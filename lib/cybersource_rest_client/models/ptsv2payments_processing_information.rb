@@ -44,6 +44,9 @@ module CyberSource
     # Identifier for the **Visa Checkout** order. Visa Checkout provides a unique order ID for every transaction in the Visa Checkout **callID** field.  For details, see the `vc_order_id` field description in [Visa Checkout Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/VCO_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
     attr_accessor :visa_checkout_id
 
+    # Flag that indicates that the transaction includes airline data or restaurant data.  This field must be set to `airline` in order for airline data to be sent to the processor.  For example, if this field is not set to airline or is not included in the request, CyberSource does not send airline data to the processor.  You must set this field to `restaurant` in order for restaurant data to be sent to the processor.  When this field is not set to restaurant or is not included in the request, CyberSource does not send restaurant data to the processor.  Possible Values:  - **airline** - **restaurant** 
+    attr_accessor :industry_data_type
+
     attr_accessor :authorization_options
 
     attr_accessor :capture_options
@@ -65,6 +68,7 @@ module CyberSource
         :'purchase_level' => :'purchaseLevel',
         :'report_group' => :'reportGroup',
         :'visa_checkout_id' => :'visaCheckoutId',
+        :'industry_data_type' => :'industryDataType',
         :'authorization_options' => :'authorizationOptions',
         :'capture_options' => :'captureOptions',
         :'recurring_options' => :'recurringOptions',
@@ -85,6 +89,7 @@ module CyberSource
         :'purchase_level' => :'String',
         :'report_group' => :'String',
         :'visa_checkout_id' => :'String',
+        :'industry_data_type' => :'String',
         :'authorization_options' => :'Ptsv2paymentsProcessingInformationAuthorizationOptions',
         :'capture_options' => :'Ptsv2paymentsProcessingInformationCaptureOptions',
         :'recurring_options' => :'Ptsv2paymentsProcessingInformationRecurringOptions',
@@ -142,6 +147,10 @@ module CyberSource
         self.visa_checkout_id = attributes[:'visaCheckoutId']
       end
 
+      if attributes.has_key?(:'industryDataType')
+        self.industry_data_type = attributes[:'industryDataType']
+      end
+
       if attributes.has_key?(:'authorizationOptions')
         self.authorization_options = attributes[:'authorizationOptions']
       end
@@ -195,6 +204,10 @@ module CyberSource
         invalid_properties.push('invalid value for "visa_checkout_id", the character length must be smaller than or equal to 48.')
       end
 
+      if !@industry_data_type.nil? && @industry_data_type.to_s.length > 10
+        invalid_properties.push('invalid value for "industry_data_type", the character length must be smaller than or equal to 10.')
+      end
+
       invalid_properties
     end
 
@@ -209,6 +222,7 @@ module CyberSource
       return false if !@purchase_level.nil? && @purchase_level.to_s.length > 1
       return false if !@report_group.nil? && @report_group.to_s.length > 25
       return false if !@visa_checkout_id.nil? && @visa_checkout_id.to_s.length > 48
+      return false if !@industry_data_type.nil? && @industry_data_type.to_s.length > 10
       true
     end
 
@@ -292,6 +306,16 @@ module CyberSource
       @visa_checkout_id = visa_checkout_id
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] industry_data_type Value to be assigned
+    def industry_data_type=(industry_data_type)
+      if !industry_data_type.nil? && industry_data_type.to_s.length > 10
+        fail ArgumentError, 'invalid value for "industry_data_type", the character length must be smaller than or equal to 10.'
+      end
+
+      @industry_data_type = industry_data_type
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -307,6 +331,7 @@ module CyberSource
           purchase_level == o.purchase_level &&
           report_group == o.report_group &&
           visa_checkout_id == o.visa_checkout_id &&
+          industry_data_type == o.industry_data_type &&
           authorization_options == o.authorization_options &&
           capture_options == o.capture_options &&
           recurring_options == o.recurring_options &&
@@ -322,7 +347,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [capture, processor_id, business_application_id, commerce_indicator, payment_solution, reconciliation_id, link_id, purchase_level, report_group, visa_checkout_id, authorization_options, capture_options, recurring_options, bank_transfer_options].hash
+      [capture, processor_id, business_application_id, commerce_indicator, payment_solution, reconciliation_id, link_id, purchase_level, report_group, visa_checkout_id, industry_data_type, authorization_options, capture_options, recurring_options, bank_transfer_options].hash
     end
 
     # Builds the object from hash

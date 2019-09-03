@@ -44,10 +44,10 @@ module CyberSource
     def self.swagger_types
       {
         :'tags' => :'String',
-        :'cardholder_verification_method_used' => :'Float',
+        :'cardholder_verification_method_used' => :'Integer',
         :'card_sequence_number' => :'String',
         :'fallback' => :'BOOLEAN',
-        :'fallback_condition' => :'Float'
+        :'fallback_condition' => :'Integer'
       }
     end
 

@@ -38,6 +38,9 @@ module CyberSource
     # Set this field to 3 to indicate that the request includes Level III data.
     attr_accessor :purchase_level
 
+    # Flag that indicates that the transaction includes airline data or restaurant data.  This field must be set to `airline` in order for airline data to be sent to the processor.  For example, if this field is not set to airline or is not included in the request, CyberSource does not send airline data to the processor.  You must set this field to `restaurant` in order for restaurant data to be sent to the processor.  When this field is not set to restaurant or is not included in the request, CyberSource does not send restaurant data to the processor.  Possible Values:  - **airline** - **restaurant** 
+    attr_accessor :industry_data_type
+
     attr_accessor :recurring_options
 
     attr_accessor :bank_transfer_options
@@ -53,6 +56,7 @@ module CyberSource
         :'report_group' => :'reportGroup',
         :'visa_checkout_id' => :'visaCheckoutId',
         :'purchase_level' => :'purchaseLevel',
+        :'industry_data_type' => :'industryDataType',
         :'recurring_options' => :'recurringOptions',
         :'bank_transfer_options' => :'bankTransferOptions'
       }
@@ -69,6 +73,7 @@ module CyberSource
         :'report_group' => :'String',
         :'visa_checkout_id' => :'String',
         :'purchase_level' => :'String',
+        :'industry_data_type' => :'String',
         :'recurring_options' => :'Ptsv2paymentsidrefundsProcessingInformationRecurringOptions',
         :'bank_transfer_options' => :'Ptsv2creditsProcessingInformationBankTransferOptions'
       }
@@ -112,6 +117,10 @@ module CyberSource
 
       if attributes.has_key?(:'purchaseLevel')
         self.purchase_level = attributes[:'purchaseLevel']
+      end
+
+      if attributes.has_key?(:'industryDataType')
+        self.industry_data_type = attributes[:'industryDataType']
       end
 
       if attributes.has_key?(:'recurringOptions')
@@ -159,6 +168,10 @@ module CyberSource
         invalid_properties.push('invalid value for "purchase_level", the character length must be smaller than or equal to 1.')
       end
 
+      if !@industry_data_type.nil? && @industry_data_type.to_s.length > 10
+        invalid_properties.push('invalid value for "industry_data_type", the character length must be smaller than or equal to 10.')
+      end
+
       invalid_properties
     end
 
@@ -173,6 +186,7 @@ module CyberSource
       return false if !@report_group.nil? && @report_group.to_s.length > 25
       return false if !@visa_checkout_id.nil? && @visa_checkout_id.to_s.length > 48
       return false if !@purchase_level.nil? && @purchase_level.to_s.length > 1
+      return false if !@industry_data_type.nil? && @industry_data_type.to_s.length > 10
       true
     end
 
@@ -256,6 +270,16 @@ module CyberSource
       @purchase_level = purchase_level
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] industry_data_type Value to be assigned
+    def industry_data_type=(industry_data_type)
+      if !industry_data_type.nil? && industry_data_type.to_s.length > 10
+        fail ArgumentError, 'invalid value for "industry_data_type", the character length must be smaller than or equal to 10.'
+      end
+
+      @industry_data_type = industry_data_type
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -269,6 +293,7 @@ module CyberSource
           report_group == o.report_group &&
           visa_checkout_id == o.visa_checkout_id &&
           purchase_level == o.purchase_level &&
+          industry_data_type == o.industry_data_type &&
           recurring_options == o.recurring_options &&
           bank_transfer_options == o.bank_transfer_options
     end
@@ -282,7 +307,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [commerce_indicator, processor_id, payment_solution, reconciliation_id, link_id, report_group, visa_checkout_id, purchase_level, recurring_options, bank_transfer_options].hash
+      [commerce_indicator, processor_id, payment_solution, reconciliation_id, link_id, report_group, visa_checkout_id, purchase_level, industry_data_type, recurring_options, bank_transfer_options].hash
     end
 
     # Builds the object from hash
