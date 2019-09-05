@@ -16,31 +16,8 @@ java -jar swagger-codegen-cli-2.2.3.jar generate -t cybersource-ruby-template -i
 REM to rename error__links to error_links
 powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-Object { $_ -replace 'cybersource_rest_client/models/error__links', 'cybersource_rest_client/models/error_links' } | Set-Content ..\lib\cybersource_rest_client.rb"
 
- REM accept type header modifications
-powershell -Command "(Get-Content ..\lib\cybersource_rest_client\api\capture_api.rb) | ForEach-Object { $_ -replace 'select_header_accept\(\[''application/json', 'select_header_accept([''application/hal+json' } | Set-Content ..\lib\cybersource_rest_client\api\capture_api.rb"
-
-powershell -Command "(Get-Content ..\lib\cybersource_rest_client\api\credit_api.rb) | ForEach-Object { $_ -replace 'select_header_accept\(\[''application/json', 'select_header_accept([''application/hal+json' } | Set-Content ..\lib\cybersource_rest_client\api\credit_api.rb"
-
-powershell -Command "(Get-Content ..\lib\cybersource_rest_client\api\payments_api.rb) | ForEach-Object { $_ -replace 'select_header_accept\(\[''application/json', 'select_header_accept([''application/hal+json' } | Set-Content ..\lib\cybersource_rest_client\api\payments_api.rb"
-
-powershell -Command "(Get-Content ..\lib\cybersource_rest_client\api\payouts_api.rb) | ForEach-Object { $_ -replace 'select_header_accept\(\[''application/json', 'select_header_accept([''application/hal+json' } | Set-Content ..\lib\cybersource_rest_client\api\payouts_api.rb"
-
-powershell -Command "(Get-Content ..\lib\cybersource_rest_client\api\refund_api.rb) | ForEach-Object { $_ -replace 'select_header_accept\(\[''application/json', 'select_header_accept([''application/hal+json' } | Set-Content ..\lib\cybersource_rest_client\api\refund_api.rb"
-
-powershell -Command "(Get-Content ..\lib\cybersource_rest_client\api\reversal_api.rb) | ForEach-Object { $_ -replace 'select_header_accept\(\[''application/json', 'select_header_accept([''application/hal+json' } | Set-Content ..\lib\cybersource_rest_client\api\reversal_api.rb"
-
-powershell -Command "(Get-Content ..\lib\cybersource_rest_client\api\transaction_details_api.rb) | ForEach-Object { $_ -replace 'select_header_accept\(\[''application/json', 'select_header_accept([''application/hal+json' } | Set-Content ..\lib\cybersource_rest_client\api\transaction_details_api.rb"
-
-powershell -Command "(Get-Content ..\lib\cybersource_rest_client\api\user_management_api.rb) | ForEach-Object { $_ -replace 'select_header_accept\(\[''application/json', 'select_header_accept([''application/hal+json' } | Set-Content ..\lib\cybersource_rest_client\api\user_management_api.rb"
-
-powershell -Command "(Get-Content ..\lib\cybersource_rest_client\api\void_api.rb) | ForEach-Object { $_ -replace 'select_header_accept\(\[''application/json', 'select_header_accept([''application/hal+json' } | Set-Content ..\lib\cybersource_rest_client\api\void_api.rb"
-
+REM accept type header modifications
 powershell -Command "(Get-Content ..\lib\cybersource_rest_client\api\search_transactions_api.rb) | ForEach-Object { $_ -replace 'select_header_accept\(\[''application/json;charset=utf-8', 'select_header_accept([''*/*'} | Set-Content ..\lib\cybersource_rest_client\api\search_transactions_api.rb"
-
-REM powershell -Command "(Get-Content ..\lib\cybersource_rest_client\api\payer_authentication_api.rb) | ForEach-Object { $_ -replace 'select_header_accept\(\[''application/json;charset=utf-8', 'select_header_accept([''application/hal+json;charset=utf-8'} | Set-Content ..\lib\cybersource_rest_client\api\payer_authentication_api.rb"
-
- REM to change accept type header
-powershell -Command "(Get-Content ..\lib\cybersource_rest_client\api\secure_file_share_api.rb) | ForEach-Object { $_ -replace 'select_header_content_type\(\[''application/json;charset=utf-8', 'select_header_content_type([''*/*' } | Set-Content ..\lib\cybersource_rest_client\api\secure_file_share_api.rb"
 
 REM to rename long file name
 
@@ -111,7 +88,7 @@ for /f "tokens=1* delims=\" %%A in (
   )
 )
 
-powershell -Command "(get-content ..\lib\cybersource_rest_client.rb) | ForEach-Object { $_ -replace 'require ''cybersource_rest_client/api/download_dtd_api''', '' } | ForEach-Object { $_ -replace 'require ''cybersource_rest_client/api/download_xsd_api''', '' } | Set-Content ..\lib\cybersource_rest_client.rb"
+REM powershell -Command "(get-content ..\lib\cybersource_rest_client.rb) | ForEach-Object { $_ -replace 'require ''cybersource_rest_client/api/download_dtd_api''', '' } | ForEach-Object { $_ -replace 'require ''cybersource_rest_client/api/download_xsd_api''', '' } | Set-Content ..\lib\cybersource_rest_client.rb"
 
 REM to remove beginning / from loc_var_path in all the api files
 cd ..\lib\cybersource_rest_client\api
