@@ -24,6 +24,8 @@ module CyberSource
 
     attr_accessor :bank
 
+    attr_accessor :payment_type
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -31,7 +33,8 @@ module CyberSource
         :'tokenized_card' => :'tokenizedCard',
         :'fluid_data' => :'fluidData',
         :'customer' => :'customer',
-        :'bank' => :'bank'
+        :'bank' => :'bank',
+        :'payment_type' => :'paymentType'
       }
     end
 
@@ -42,7 +45,8 @@ module CyberSource
         :'tokenized_card' => :'Ptsv2paymentsPaymentInformationTokenizedCard',
         :'fluid_data' => :'Ptsv2paymentsPaymentInformationFluidData',
         :'customer' => :'Ptsv2paymentsPaymentInformationCustomer',
-        :'bank' => :'Ptsv2paymentsPaymentInformationBank'
+        :'bank' => :'Ptsv2paymentsPaymentInformationBank',
+        :'payment_type' => :'Ptsv2paymentsPaymentInformationPaymentType'
       }
     end
 
@@ -73,6 +77,10 @@ module CyberSource
       if attributes.has_key?(:'bank')
         self.bank = attributes[:'bank']
       end
+
+      if attributes.has_key?(:'paymentType')
+        self.payment_type = attributes[:'paymentType']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -97,7 +105,8 @@ module CyberSource
           tokenized_card == o.tokenized_card &&
           fluid_data == o.fluid_data &&
           customer == o.customer &&
-          bank == o.bank
+          bank == o.bank &&
+          payment_type == o.payment_type
     end
 
     # @see the `==` method
@@ -109,7 +118,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card, tokenized_card, fluid_data, customer, bank].hash
+      [card, tokenized_card, fluid_data, customer, bank, payment_type].hash
     end
 
     # Builds the object from hash

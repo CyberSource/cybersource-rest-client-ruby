@@ -22,5 +22,6 @@ Name | Type | Description | Notes
 **tax_details** | [**Array&lt;Ptsv2paymentsOrderInformationAmountDetailsTaxDetails&gt;**](Ptsv2paymentsOrderInformationAmountDetailsTaxDetails.md) |  | [optional] 
 **service_fee_amount** | **String** | Service fee. Required for service fee transactions.  | [optional] 
 **original_currency** | **String** | Your local pricing currency code.  For the possible values, see the [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)  For details, see &#x60;original_currency&#x60; field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  For details about converting a foreign cardholder’s purchase from your local pricing currency to the cardholder’s billing currency, see the [Dynamic Currency Conversion with a Third Party Provider Guide.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm).  | [optional] 
+**cashback_amount** | **String** | Cashback amount requested by the customer. If a cashback amount is included in the request, it must be included in the orderInformation.amountDetails.totalAmount value.  | [optional] 
 
 

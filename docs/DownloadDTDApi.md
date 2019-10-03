@@ -4,15 +4,15 @@ All URIs are relative to *https://apitest.cybersource.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_dtdv2**](DownloadDTDApi.md#get_dtdv2) | **GET** /dtds/{reportDefinitionNameVersion} | Used to download DTDs for reports
+[**get_dtdv2**](DownloadDTDApi.md#get_dtdv2) | **GET** /dtds/{reportDefinitionNameVersion} | Download DTD for report
 
 
 # **get_dtdv2**
 > get_dtdv2(report_definition_name_version)
 
-Used to download DTDs for reports
+Download DTD for report
 
-Downloads DTDs for reports on no-auth.
+Used to download DTDs for reports on no-auth.
 
 ### Example
 ```ruby
@@ -25,7 +25,7 @@ report_definition_name_version = "report_definition_name_version_example" # Stri
 
 
 begin
-  #Used to download DTDs for reports
+  #Download DTD for report
   api_instance.get_dtdv2(report_definition_name_version)
 rescue CyberSource::ApiError => e
   puts "Exception when calling DownloadDTDApi->get_dtdv2: #{e}"

@@ -38,13 +38,13 @@ describe 'Links' do
     end
   end
 
-  describe 'test attribute "documentation"' do
+  describe 'test attribute "ancestor"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "_next"' do
+  describe 'test attribute "successor"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

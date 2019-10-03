@@ -22,22 +22,22 @@ module CyberSource
     end
     # Create Adhoc Report
     # Create a one-time report. You must specify the type of report in reportDefinitionName. For a list of values for reportDefinitionName, see the [Reporting Developer Guide](https://www.cybersource.com/developers/documentation/reporting_and_reconciliation) 
-    # @param request_body Report subscription request payload
+    # @param create_adhoc_report_request Report subscription request payload
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [nil]
-    def create_report(request_body, opts = {})
-      data, status_code, headers = create_report_with_http_info(request_body, opts)
+    def create_report(create_adhoc_report_request, opts = {})
+      data, status_code, headers = create_report_with_http_info(create_adhoc_report_request, opts)
       return data, status_code, headers
     end
 
     # Create Adhoc Report
     # Create a one-time report. You must specify the type of report in reportDefinitionName. For a list of values for reportDefinitionName, see the [Reporting Developer Guide](https://www.cybersource.com/developers/documentation/reporting_and_reconciliation) 
-    # @param request_body Report subscription request payload
+    # @param create_adhoc_report_request Report subscription request payload
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
-    def create_report_with_http_info(request_body, opts = {})
+    def create_report_with_http_info(create_adhoc_report_request, opts = {})
       
 	  if @api_client.config.debugging
 	  	begin
@@ -47,9 +47,9 @@ module CyberSource
 				puts 'Cannot write to log'
 			end
       end
-      # verify the required parameter 'request_body' is set
-      if @api_client.config.client_side_validation && request_body.nil?
-        fail ArgumentError, "Missing the required parameter 'request_body' when calling ReportsApi.create_report"
+      # verify the required parameter 'create_adhoc_report_request' is set
+      if @api_client.config.client_side_validation && create_adhoc_report_request.nil?
+        fail ArgumentError, "Missing the required parameter 'create_adhoc_report_request' when calling ReportsApi.create_report"
       end
       if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length > 32
         fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportsApi.create_report, the character length must be smaller than or equal to 32.'
@@ -81,7 +81,7 @@ module CyberSource
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(request_body)
+      post_body = @api_client.object_to_http_body(create_adhoc_report_request)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,

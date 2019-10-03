@@ -35,7 +35,7 @@ describe 'ReportsApi' do
   # unit tests for create_report
   # Create Adhoc Report
   # Create a one-time report. You must specify the type of report in reportDefinitionName. For a list of values for reportDefinitionName, see the [Reporting Developer Guide](https://www.cybersource.com/developers/documentation/reporting_and_reconciliation) 
-  # @param request_body Report subscription request payload
+  # @param create_adhoc_report_request Report subscription request payload
   # @param [Hash] opts the optional parameters
   # @option opts [String] :organization_id Valid Cybersource Organization Id
   # @return [nil]

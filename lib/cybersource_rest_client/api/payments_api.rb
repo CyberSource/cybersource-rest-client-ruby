@@ -50,7 +50,7 @@ module CyberSource
         fail ArgumentError, "Missing the required parameter 'create_payment_request' when calling PaymentsApi.create_payment"
       end
       # resource path
-      local_var_path = 'pts/v2/payments/'
+      local_var_path = 'pts/v2/payments'
 
       # query parameters
       query_params = {}

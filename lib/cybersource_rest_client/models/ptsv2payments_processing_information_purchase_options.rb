@@ -13,32 +13,26 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  # Provide validation failed input field details
-  class InlineResponse4001Fields
-    # Path of the failed property
-    attr_accessor :path
+  class Ptsv2paymentsProcessingInformationPurchaseOptions
+    # Flag that indicates that this transaction is an EBT transaction.Possible values: - **true** - **false** 
+    attr_accessor :is_electronic_benefits_transfer
 
-    # Error description about validation failed field
-    attr_accessor :message
-
-    # Localized Key Name
-    attr_accessor :localization_key
+    # This field is used in PIN Debit EBT transaction as a flag to identify EBT vouchers.Possible values: - `EBT_VOUCHER`: Indicates EBT voucher 
+    attr_accessor :type
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'path' => :'path',
-        :'message' => :'message',
-        :'localization_key' => :'localizationKey'
+        :'is_electronic_benefits_transfer' => :'isElectronicBenefitsTransfer',
+        :'type' => :'type'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'path' => :'String',
-        :'message' => :'String',
-        :'localization_key' => :'String'
+        :'is_electronic_benefits_transfer' => :'BOOLEAN',
+        :'type' => :'String'
       }
     end
 
@@ -50,16 +44,12 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'path')
-        self.path = attributes[:'path']
+      if attributes.has_key?(:'isElectronicBenefitsTransfer')
+        self.is_electronic_benefits_transfer = attributes[:'isElectronicBenefitsTransfer']
       end
 
-      if attributes.has_key?(:'message')
-        self.message = attributes[:'message']
-      end
-
-      if attributes.has_key?(:'localizationKey')
-        self.localization_key = attributes[:'localizationKey']
+      if attributes.has_key?(:'type')
+        self.type = attributes[:'type']
       end
     end
 
@@ -67,13 +57,28 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if !@type.nil? && @type.to_s.length > 6
+        invalid_properties.push('invalid value for "type", the character length must be smaller than or equal to 6.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if !@type.nil? && @type.to_s.length > 6
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] type Value to be assigned
+    def type=(type)
+      if !type.nil? && type.to_s.length > 6
+        fail ArgumentError, 'invalid value for "type", the character length must be smaller than or equal to 6.'
+      end
+
+      @type = type
     end
 
     # Checks equality by comparing each attribute.
@@ -81,9 +86,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          path == o.path &&
-          message == o.message &&
-          localization_key == o.localization_key
+          is_electronic_benefits_transfer == o.is_electronic_benefits_transfer &&
+          type == o.type
     end
 
     # @see the `==` method
@@ -95,7 +99,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [path, message, localization_key].hash
+      [is_electronic_benefits_transfer, type].hash
     end
 
     # Builds the object from hash

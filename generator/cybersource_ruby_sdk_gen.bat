@@ -13,11 +13,10 @@ REM Command to generate SDK
  
 java -jar swagger-codegen-cli-2.2.3.jar generate -t cybersource-ruby-template -i cybersource-rest-spec.json -l ruby -o ../ -c %~dp0cybersource-ruby-config.json 
 
+REM powershell -Command "(Get-Content ..\lib\cybersource_rest_client\api\secure_file_share_api.rb) | ForEach-Object { $_ -replace 'select_header_content_type\(\[''application/json;charset=utf-8', 'select_header_content_type([''*/*' } | Set-Content ..\lib\cybersource_rest_client\api\secure_file_share_api.rb"
+
 REM to rename error__links to error_links
 powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-Object { $_ -replace 'cybersource_rest_client/models/error__links', 'cybersource_rest_client/models/error_links' } | Set-Content ..\lib\cybersource_rest_client.rb"
-
-REM accept type header modifications
-powershell -Command "(Get-Content ..\lib\cybersource_rest_client\api\search_transactions_api.rb) | ForEach-Object { $_ -replace 'select_header_accept\(\[''application/json;charset=utf-8', 'select_header_accept([''*/*'} | Set-Content ..\lib\cybersource_rest_client\api\search_transactions_api.rb"
 
 REM to rename long file name
 

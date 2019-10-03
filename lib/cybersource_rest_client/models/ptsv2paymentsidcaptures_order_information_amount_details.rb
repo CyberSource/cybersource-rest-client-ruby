@@ -69,6 +69,9 @@ module CyberSource
     # Your local pricing currency code.  For the possible values, see the [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)  For details, see `original_currency` field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  For details about converting a foreign cardholder’s purchase from your local pricing currency to the cardholder’s billing currency, see the [Dynamic Currency Conversion with a Third Party Provider Guide.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm). 
     attr_accessor :original_currency
 
+    # Cashback amount requested by the customer. If a cashback amount is included in the request, it must be included in the orderInformation.amountDetails.totalAmount value. 
+    attr_accessor :cashback_amount
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -90,7 +93,8 @@ module CyberSource
         :'amex_additional_amounts' => :'amexAdditionalAmounts',
         :'tax_details' => :'taxDetails',
         :'service_fee_amount' => :'serviceFeeAmount',
-        :'original_currency' => :'originalCurrency'
+        :'original_currency' => :'originalCurrency',
+        :'cashback_amount' => :'cashbackAmount'
       }
     end
 
@@ -115,7 +119,8 @@ module CyberSource
         :'amex_additional_amounts' => :'Array<Ptsv2paymentsOrderInformationAmountDetailsAmexAdditionalAmounts>',
         :'tax_details' => :'Array<Ptsv2paymentsOrderInformationAmountDetailsTaxDetails>',
         :'service_fee_amount' => :'String',
-        :'original_currency' => :'String'
+        :'original_currency' => :'String',
+        :'cashback_amount' => :'String'
       }
     end
 
@@ -206,6 +211,10 @@ module CyberSource
       if attributes.has_key?(:'originalCurrency')
         self.original_currency = attributes[:'originalCurrency']
       end
+
+      if attributes.has_key?(:'cashbackAmount')
+        self.cashback_amount = attributes[:'cashbackAmount']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -280,6 +289,10 @@ module CyberSource
         invalid_properties.push('invalid value for "original_currency", the character length must be smaller than or equal to 15.')
       end
 
+      if !@cashback_amount.nil? && @cashback_amount.to_s.length > 13
+        invalid_properties.push('invalid value for "cashback_amount", the character length must be smaller than or equal to 13.')
+      end
+
       invalid_properties
     end
 
@@ -303,6 +316,7 @@ module CyberSource
       return false if !@exchange_rate_time_stamp.nil? && @exchange_rate_time_stamp.to_s.length > 14
       return false if !@service_fee_amount.nil? && @service_fee_amount.to_s.length > 15
       return false if !@original_currency.nil? && @original_currency.to_s.length > 15
+      return false if !@cashback_amount.nil? && @cashback_amount.to_s.length > 13
       true
     end
 
@@ -476,6 +490,16 @@ module CyberSource
       @original_currency = original_currency
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] cashback_amount Value to be assigned
+    def cashback_amount=(cashback_amount)
+      if !cashback_amount.nil? && cashback_amount.to_s.length > 13
+        fail ArgumentError, 'invalid value for "cashback_amount", the character length must be smaller than or equal to 13.'
+      end
+
+      @cashback_amount = cashback_amount
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -499,7 +523,8 @@ module CyberSource
           amex_additional_amounts == o.amex_additional_amounts &&
           tax_details == o.tax_details &&
           service_fee_amount == o.service_fee_amount &&
-          original_currency == o.original_currency
+          original_currency == o.original_currency &&
+          cashback_amount == o.cashback_amount
     end
 
     # @see the `==` method
@@ -511,7 +536,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [total_amount, currency, discount_amount, duty_amount, gratuity_amount, tax_amount, national_tax_included, tax_applied_after_discount, tax_applied_level, tax_type_code, freight_amount, foreign_amount, foreign_currency, exchange_rate, exchange_rate_time_stamp, amex_additional_amounts, tax_details, service_fee_amount, original_currency].hash
+      [total_amount, currency, discount_amount, duty_amount, gratuity_amount, tax_amount, national_tax_included, tax_applied_after_discount, tax_applied_level, tax_type_code, freight_amount, foreign_amount, foreign_currency, exchange_rate, exchange_rate_time_stamp, amex_additional_amounts, tax_details, service_fee_amount, original_currency, cashback_amount].hash
     end
 
     # Builds the object from hash

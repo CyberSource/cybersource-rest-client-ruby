@@ -32,13 +32,19 @@ describe 'Error' do
       expect(@instance).to be_instance_of(CyberSource::Error)
     end
   end
-  describe 'test attribute "response_status"' do
+  describe 'test attribute "type"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "_links"' do
+  describe 'test attribute "message"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "details"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
