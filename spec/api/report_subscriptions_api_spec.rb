@@ -35,7 +35,7 @@ describe 'ReportSubscriptionsApi' do
   # unit tests for create_subscription
   # Create Report Subscription for a report name by organization
   # Create a report subscription for your organization. The report name must be unique. 
-  # @param request_body Report subscription request payload
+  # @param create_report_subscription_request Report subscription request payload
   # @param [Hash] opts the optional parameters
   # @option opts [String] :organization_id Valid Cybersource Organization Id
   # @return [nil]

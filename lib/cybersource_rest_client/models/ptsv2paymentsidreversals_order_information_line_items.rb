@@ -31,7 +31,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'quantity' => :'Float',
+        :'quantity' => :'Integer',
         :'unit_price' => :'String'
       }
     end
@@ -57,8 +57,8 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@quantity.nil? && @quantity > 9999999999
-        invalid_properties.push('invalid value for "quantity", must be smaller than or equal to 9999999999.')
+      if !@quantity.nil? && @quantity > 999999999
+        invalid_properties.push('invalid value for "quantity", must be smaller than or equal to 999999999.')
       end
 
       if !@quantity.nil? && @quantity < 1
@@ -75,7 +75,7 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@quantity.nil? && @quantity > 9999999999
+      return false if !@quantity.nil? && @quantity > 999999999
       return false if !@quantity.nil? && @quantity < 1
       return false if !@unit_price.nil? && @unit_price.to_s.length > 15
       true
@@ -84,8 +84,8 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] quantity Value to be assigned
     def quantity=(quantity)
-      if !quantity.nil? && quantity > 9999999999
-        fail ArgumentError, 'invalid value for "quantity", must be smaller than or equal to 9999999999.'
+      if !quantity.nil? && quantity > 999999999
+        fail ArgumentError, 'invalid value for "quantity", must be smaller than or equal to 999999999.'
       end
 
       if !quantity.nil? && quantity < 1

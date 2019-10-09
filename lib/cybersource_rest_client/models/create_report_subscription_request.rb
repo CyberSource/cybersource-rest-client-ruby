@@ -13,36 +13,37 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  class RequestBody
-    # Valid CyberSource Organization Id
+  class CreateReportSubscriptionRequest
+    # Valid CyberSource organizationId
     attr_accessor :organization_id
 
+    # Valid Report Definition Name
     attr_accessor :report_definition_name
 
-    # List of fields which needs to get included in a report
     attr_accessor :report_fields
 
-    # 'Format of the report'                  Valid values: - application/xml - text/csv 
+    # Valid values: - application/xml - text/csv 
     attr_accessor :report_mime_type
 
-    # Name of the report
+    # 'The frequency for which subscription is created.'  Valid values: - 'DAILY' - 'WEEKLY' - 'MONTHLY' - 'ADHOC' 
+    attr_accessor :report_frequency
+
     attr_accessor :report_name
 
-    # Timezone of the report
     attr_accessor :timezone
 
-    # Start time of the report
-    attr_accessor :report_start_time
+    # The hour at which the report generation should start. It should be in hhmm format.
+    attr_accessor :start_time
 
-    # End time of the report
-    attr_accessor :report_end_time
+    # This is the start day if the frequency is WEEKLY or MONTHLY. The value varies from 1-7 for WEEKLY and 1-31 for MONTHLY. For WEEKLY 1 means Sunday and 7 means Saturday. By default the value is 1.
+    attr_accessor :start_day
 
     # List of filters to apply
     attr_accessor :report_filters
 
     attr_accessor :report_preferences
 
-    # Specifies the group name
+    # Valid GroupName
     attr_accessor :group_name
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -52,10 +53,11 @@ module CyberSource
         :'report_definition_name' => :'reportDefinitionName',
         :'report_fields' => :'reportFields',
         :'report_mime_type' => :'reportMimeType',
+        :'report_frequency' => :'reportFrequency',
         :'report_name' => :'reportName',
         :'timezone' => :'timezone',
-        :'report_start_time' => :'reportStartTime',
-        :'report_end_time' => :'reportEndTime',
+        :'start_time' => :'startTime',
+        :'start_day' => :'startDay',
         :'report_filters' => :'reportFilters',
         :'report_preferences' => :'reportPreferences',
         :'group_name' => :'groupName'
@@ -69,10 +71,11 @@ module CyberSource
         :'report_definition_name' => :'String',
         :'report_fields' => :'Array<String>',
         :'report_mime_type' => :'String',
+        :'report_frequency' => :'String',
         :'report_name' => :'String',
         :'timezone' => :'String',
-        :'report_start_time' => :'DateTime',
-        :'report_end_time' => :'DateTime',
+        :'start_time' => :'String',
+        :'start_day' => :'Integer',
         :'report_filters' => :'Hash<String, Array<String>>',
         :'report_preferences' => :'Reportingv3reportsReportPreferences',
         :'group_name' => :'String'
@@ -105,6 +108,10 @@ module CyberSource
         self.report_mime_type = attributes[:'reportMimeType']
       end
 
+      if attributes.has_key?(:'reportFrequency')
+        self.report_frequency = attributes[:'reportFrequency']
+      end
+
       if attributes.has_key?(:'reportName')
         self.report_name = attributes[:'reportName']
       end
@@ -113,12 +120,12 @@ module CyberSource
         self.timezone = attributes[:'timezone']
       end
 
-      if attributes.has_key?(:'reportStartTime')
-        self.report_start_time = attributes[:'reportStartTime']
+      if attributes.has_key?(:'startTime')
+        self.start_time = attributes[:'startTime']
       end
 
-      if attributes.has_key?(:'reportEndTime')
-        self.report_end_time = attributes[:'reportEndTime']
+      if attributes.has_key?(:'startDay')
+        self.start_day = attributes[:'startDay']
       end
 
       if attributes.has_key?(:'reportFilters')
@@ -144,32 +151,68 @@ module CyberSource
         #invalid_properties.push('invalid value for "organization_id", must conform to the pattern /[a-zA-Z0-9-_]+/.')
       #end
 
-      if !@report_definition_name.nil? && @report_definition_name.to_s.length > 80
+      if @report_definition_name.nil?
+        invalid_properties.push('invalid value for "report_definition_name", report_definition_name cannot be nil.')
+      end
+
+      if @report_definition_name.to_s.length > 80
         invalid_properties.push('invalid value for "report_definition_name", the character length must be smaller than or equal to 80.')
       end
 
-      if !@report_definition_name.nil? && @report_definition_name.to_s.length < 1
+      if @report_definition_name.to_s.length < 1
         invalid_properties.push('invalid value for "report_definition_name", the character length must be great than or equal to 1.')
       end
 
-      #if !@report_definition_name.nil? && @report_definition_name !~ Regexp.new(/[a-zA-Z0-9-]+/)
+      #if @report_definition_name !~ Regexp.new(/[a-zA-Z0-9-]+/)
         #invalid_properties.push('invalid value for "report_definition_name", must conform to the pattern /[a-zA-Z0-9-]+/.')
       #end
 
-      if !@report_name.nil? && @report_name.to_s.length > 128
+      if @report_fields.nil?
+        invalid_properties.push('invalid value for "report_fields", report_fields cannot be nil.')
+      end
+
+      if @report_mime_type.nil?
+        invalid_properties.push('invalid value for "report_mime_type", report_mime_type cannot be nil.')
+      end
+
+      if @report_frequency.nil?
+        invalid_properties.push('invalid value for "report_frequency", report_frequency cannot be nil.')
+      end
+
+      if @report_name.nil?
+        invalid_properties.push('invalid value for "report_name", report_name cannot be nil.')
+      end
+
+      if @report_name.to_s.length > 128
         invalid_properties.push('invalid value for "report_name", the character length must be smaller than or equal to 128.')
       end
 
-      if !@report_name.nil? && @report_name.to_s.length < 1
+      if @report_name.to_s.length < 1
         invalid_properties.push('invalid value for "report_name", the character length must be great than or equal to 1.')
       end
 
-      #if !@report_name.nil? && @report_name !~ Regexp.new(/[a-zA-Z0-9-_ ]+/)
+      #if @report_name !~ Regexp.new(/[a-zA-Z0-9-_ ]+/)
         #invalid_properties.push('invalid value for "report_name", must conform to the pattern /[a-zA-Z0-9-_ ]+/.')
       #end
 
-      #if !@group_name.nil? && @group_name !~ Regexp.new(/[0-9]*/)
-        #invalid_properties.push('invalid value for "group_name", must conform to the pattern /[0-9]*/.')
+      if @timezone.nil?
+        invalid_properties.push('invalid value for "timezone", timezone cannot be nil.')
+      end
+
+      if @start_time.nil?
+        invalid_properties.push('invalid value for "start_time", start_time cannot be nil.')
+      end
+
+      if !@start_day.nil? && @start_day > 31
+        invalid_properties.push('invalid value for "start_day", must be smaller than or equal to 31.')
+      end
+
+      if !@start_day.nil? && @start_day < 1
+        invalid_properties.push('invalid value for "start_day", must be greater than or equal to 1.')
+      end
+
+      #if !@group_name.nil? && @group_name !~ Regexp.new(/[a-zA-Z0-9-_ ]+/)
+        #invalid_properties.push('invalid value for "group_name", must conform to the pattern /[a-zA-Z0-9-_ ]+/.')
       #end
 
       invalid_properties
@@ -179,13 +222,22 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       #return false if !@organization_id.nil? && @organization_id !~ Regexp.new(/[a-zA-Z0-9-_]+/)
-      return false if !@report_definition_name.nil? && @report_definition_name.to_s.length > 80
-      return false if !@report_definition_name.nil? && @report_definition_name.to_s.length < 1
-      #return false if !@report_definition_name.nil? && @report_definition_name !~ Regexp.new(/[a-zA-Z0-9-]+/)
-      return false if !@report_name.nil? && @report_name.to_s.length > 128
-      return false if !@report_name.nil? && @report_name.to_s.length < 1
-      #return false if !@report_name.nil? && @report_name !~ Regexp.new(/[a-zA-Z0-9-_ ]+/)
-      #return false if !@group_name.nil? && @group_name !~ Regexp.new(/[0-9]*/)
+      return false if @report_definition_name.nil?
+      return false if @report_definition_name.to_s.length > 80
+      return false if @report_definition_name.to_s.length < 1
+      #return false if @report_definition_name !~ Regexp.new(/[a-zA-Z0-9-]+/)
+      return false if @report_fields.nil?
+      return false if @report_mime_type.nil?
+      return false if @report_frequency.nil?
+      return false if @report_name.nil?
+      return false if @report_name.to_s.length > 128
+      return false if @report_name.to_s.length < 1
+      #return false if @report_name !~ Regexp.new(/[a-zA-Z0-9-_ ]+/)
+      return false if @timezone.nil?
+      return false if @start_time.nil?
+      return false if !@start_day.nil? && @start_day > 31
+      return false if !@start_day.nil? && @start_day < 1
+      #return false if !@group_name.nil? && @group_name !~ Regexp.new(/[a-zA-Z0-9-_ ]+/)
       true
     end
 
@@ -202,15 +254,19 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] report_definition_name Value to be assigned
     def report_definition_name=(report_definition_name)
-      if !report_definition_name.nil? && report_definition_name.to_s.length > 80
+      if report_definition_name.nil?
+        fail ArgumentError, 'report_definition_name cannot be nil'
+      end
+
+      if report_definition_name.to_s.length > 80
         fail ArgumentError, 'invalid value for "report_definition_name", the character length must be smaller than or equal to 80.'
       end
 
-      if !report_definition_name.nil? && report_definition_name.to_s.length < 1
+      if report_definition_name.to_s.length < 1
         fail ArgumentError, 'invalid value for "report_definition_name", the character length must be great than or equal to 1.'
       end
 
-      #if !report_definition_name.nil? && report_definition_name !~ Regexp.new(/[a-zA-Z0-9-]+/)
+      #if report_definition_name !~ Regexp.new(/[a-zA-Z0-9-]+/)
         #fail ArgumentError, 'invalid value for "report_definition_name", must conform to the pattern /[a-zA-Z0-9-]+/.'
       #end
 
@@ -220,15 +276,19 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] report_name Value to be assigned
     def report_name=(report_name)
-      if !report_name.nil? && report_name.to_s.length > 128
+      if report_name.nil?
+        fail ArgumentError, 'report_name cannot be nil'
+      end
+
+      if report_name.to_s.length > 128
         fail ArgumentError, 'invalid value for "report_name", the character length must be smaller than or equal to 128.'
       end
 
-      if !report_name.nil? && report_name.to_s.length < 1
+      if report_name.to_s.length < 1
         fail ArgumentError, 'invalid value for "report_name", the character length must be great than or equal to 1.'
       end
 
-      #if !report_name.nil? && report_name !~ Regexp.new(/[a-zA-Z0-9-_ ]+/)
+      #if report_name !~ Regexp.new(/[a-zA-Z0-9-_ ]+/)
         #fail ArgumentError, 'invalid value for "report_name", must conform to the pattern /[a-zA-Z0-9-_ ]+/.'
       #end
 
@@ -236,10 +296,24 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] start_day Value to be assigned
+    def start_day=(start_day)
+      if !start_day.nil? && start_day > 31
+        fail ArgumentError, 'invalid value for "start_day", must be smaller than or equal to 31.'
+      end
+
+      if !start_day.nil? && start_day < 1
+        fail ArgumentError, 'invalid value for "start_day", must be greater than or equal to 1.'
+      end
+
+      @start_day = start_day
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] group_name Value to be assigned
     def group_name=(group_name)
-      #if !group_name.nil? && group_name !~ Regexp.new(/[0-9]*/)
-        #fail ArgumentError, 'invalid value for "group_name", must conform to the pattern /[0-9]*/.'
+      #if !group_name.nil? && group_name !~ Regexp.new(/[a-zA-Z0-9-_ ]+/)
+        #fail ArgumentError, 'invalid value for "group_name", must conform to the pattern /[a-zA-Z0-9-_ ]+/.'
       #end
 
       @group_name = group_name
@@ -254,10 +328,11 @@ module CyberSource
           report_definition_name == o.report_definition_name &&
           report_fields == o.report_fields &&
           report_mime_type == o.report_mime_type &&
+          report_frequency == o.report_frequency &&
           report_name == o.report_name &&
           timezone == o.timezone &&
-          report_start_time == o.report_start_time &&
-          report_end_time == o.report_end_time &&
+          start_time == o.start_time &&
+          start_day == o.start_day &&
           report_filters == o.report_filters &&
           report_preferences == o.report_preferences &&
           group_name == o.group_name
@@ -272,7 +347,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [organization_id, report_definition_name, report_fields, report_mime_type, report_name, timezone, report_start_time, report_end_time, report_filters, report_preferences, group_name].hash
+      [organization_id, report_definition_name, report_fields, report_mime_type, report_frequency, report_name, timezone, start_time, start_day, report_filters, report_preferences, group_name].hash
     end
 
     # Builds the object from hash

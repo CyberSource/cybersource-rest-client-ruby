@@ -105,7 +105,7 @@ module CyberSource
         :'product_code' => :'String',
         :'product_name' => :'String',
         :'product_sku' => :'String',
-        :'quantity' => :'Float',
+        :'quantity' => :'Integer',
         :'unit_price' => :'String',
         :'unit_of_measure' => :'String',
         :'total_amount' => :'String',
@@ -232,8 +232,8 @@ module CyberSource
         invalid_properties.push('invalid value for "product_sku", the character length must be smaller than or equal to 255.')
       end
 
-      if !@quantity.nil? && @quantity > 9999999999
-        invalid_properties.push('invalid value for "quantity", must be smaller than or equal to 9999999999.')
+      if !@quantity.nil? && @quantity > 999999999
+        invalid_properties.push('invalid value for "quantity", must be smaller than or equal to 999999999.')
       end
 
       if !@quantity.nil? && @quantity < 1
@@ -301,7 +301,7 @@ module CyberSource
       return false if !@product_code.nil? && @product_code.to_s.length > 255
       return false if !@product_name.nil? && @product_name.to_s.length > 255
       return false if !@product_sku.nil? && @product_sku.to_s.length > 255
-      return false if !@quantity.nil? && @quantity > 9999999999
+      return false if !@quantity.nil? && @quantity > 999999999
       return false if !@quantity.nil? && @quantity < 1
       return false if !@unit_price.nil? && @unit_price.to_s.length > 15
       return false if !@unit_of_measure.nil? && @unit_of_measure.to_s.length > 12
@@ -352,8 +352,8 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] quantity Value to be assigned
     def quantity=(quantity)
-      if !quantity.nil? && quantity > 9999999999
-        fail ArgumentError, 'invalid value for "quantity", must be smaller than or equal to 9999999999.'
+      if !quantity.nil? && quantity > 999999999
+        fail ArgumentError, 'invalid value for "quantity", must be smaller than or equal to 999999999.'
       end
 
       if !quantity.nil? && quantity < 1

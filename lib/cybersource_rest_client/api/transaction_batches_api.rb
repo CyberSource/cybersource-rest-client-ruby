@@ -20,24 +20,20 @@ module CyberSource
       @api_client = api_client
 	  @api_client.set_configuration(config)
     end
-    # Get transaction details for a given batch id 
+    # Get transaction details for a given batch id
     # Provides real-time detailed status information about the transactions  that you previously uploaded in the Business Center or processed with  the Offline Transaction File Submission service. 
     # @param id The batch id assigned for the template.
     # @param [Hash] opts the optional parameters
-    # @option opts [Date] :upload_date Date in which the original batch file was uploaded. Date must be in ISO-8601 format. Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) **Example date format:**  - yyyy-MM-dd 
-    # @option opts [String] :status Allows you to filter by rejected response.  Valid values: - Rejected 
     # @return [nil]
     def get_transaction_batch_details(id, opts = {})
       data, status_code, headers = get_transaction_batch_details_with_http_info(id, opts)
       return data, status_code, headers
     end
 
-    # Get transaction details for a given batch id 
+    # Get transaction details for a given batch id
     # Provides real-time detailed status information about the transactions  that you previously uploaded in the Business Center or processed with  the Offline Transaction File Submission service. 
     # @param id The batch id assigned for the template.
     # @param [Hash] opts the optional parameters
-    # @option opts [Date] :upload_date Date in which the original batch file was uploaded. Date must be in ISO-8601 format. Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) **Example date format:**  - yyyy-MM-dd 
-    # @option opts [String] :status Allows you to filter by rejected response.  Valid values: - Rejected 
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def get_transaction_batch_details_with_http_info(id, opts = {})
       
@@ -58,8 +54,6 @@ module CyberSource
 
       # query parameters
       query_params = {}
-      query_params[:'uploadDate'] = opts[:'upload_date'] if !opts[:'upload_date'].nil?
-      query_params[:'status'] = opts[:'status'] if !opts[:'status'].nil?
 
       # header parameters
       header_params = {}

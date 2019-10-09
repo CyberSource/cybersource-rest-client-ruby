@@ -50,7 +50,7 @@ module CyberSource
         fail ArgumentError, "Missing the required parameter 'create_credit_request' when calling CreditApi.create_credit"
       end
       # resource path
-      local_var_path = 'pts/v2/credits/'
+      local_var_path = 'pts/v2/credits'
 
       # query parameters
       query_params = {}

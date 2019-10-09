@@ -22,22 +22,22 @@ module CyberSource
     end
     # Create Report Subscription for a report name by organization
     # Create a report subscription for your organization. The report name must be unique. 
-    # @param request_body Report subscription request payload
+    # @param create_report_subscription_request Report subscription request payload
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [nil]
-    def create_subscription(request_body, opts = {})
-      data, status_code, headers = create_subscription_with_http_info(request_body, opts)
+    def create_subscription(create_report_subscription_request, opts = {})
+      data, status_code, headers = create_subscription_with_http_info(create_report_subscription_request, opts)
       return data, status_code, headers
     end
 
     # Create Report Subscription for a report name by organization
     # Create a report subscription for your organization. The report name must be unique. 
-    # @param request_body Report subscription request payload
+    # @param create_report_subscription_request Report subscription request payload
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
-    def create_subscription_with_http_info(request_body, opts = {})
+    def create_subscription_with_http_info(create_report_subscription_request, opts = {})
       
 	  if @api_client.config.debugging
 	  	begin
@@ -47,9 +47,9 @@ module CyberSource
 				puts 'Cannot write to log'
 			end
       end
-      # verify the required parameter 'request_body' is set
-      if @api_client.config.client_side_validation && request_body.nil?
-        fail ArgumentError, "Missing the required parameter 'request_body' when calling ReportSubscriptionsApi.create_subscription"
+      # verify the required parameter 'create_report_subscription_request' is set
+      if @api_client.config.client_side_validation && create_report_subscription_request.nil?
+        fail ArgumentError, "Missing the required parameter 'create_report_subscription_request' when calling ReportSubscriptionsApi.create_subscription"
       end
       if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length > 32
         fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportSubscriptionsApi.create_subscription, the character length must be smaller than or equal to 32.'
@@ -81,7 +81,7 @@ module CyberSource
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(request_body)
+      post_body = @api_client.object_to_http_body(create_report_subscription_request)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:PUT, local_var_path,
         :header_params => header_params,

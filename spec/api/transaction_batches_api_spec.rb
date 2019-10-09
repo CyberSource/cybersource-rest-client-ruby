@@ -33,12 +33,10 @@ describe 'TransactionBatchesApi' do
   end
 
   # unit tests for get_transaction_batch_details
-  # Get transaction details for a given batch id 
+  # Get transaction details for a given batch id
   # Provides real-time detailed status information about the transactions  that you previously uploaded in the Business Center or processed with  the Offline Transaction File Submission service. 
   # @param id The batch id assigned for the template.
   # @param [Hash] opts the optional parameters
-  # @option opts [Date] :upload_date Date in which the original batch file was uploaded. Date must be in ISO-8601 format. Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) **Example date format:**  - yyyy-MM-dd 
-  # @option opts [String] :status Allows you to filter by rejected response.  Valid values: - Rejected 
   # @return [nil]
   describe 'get_transaction_batch_details test' do
     it 'should work' do

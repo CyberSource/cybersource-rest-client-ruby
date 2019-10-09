@@ -16,25 +16,25 @@ module CyberSource
   class Links
     attr_accessor :_self
 
-    attr_accessor :documentation
+    attr_accessor :ancestor
 
-    attr_accessor :_next
+    attr_accessor :successor
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'_self' => :'self',
-        :'documentation' => :'documentation',
-        :'_next' => :'next'
+        :'ancestor' => :'ancestor',
+        :'successor' => :'successor'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'_self' => :'InlineResponseDefaultLinksNext',
-        :'documentation' => :'Array<InlineResponseDefaultLinksNext>',
-        :'_next' => :'Array<InlineResponseDefaultLinksNext>'
+        :'_self' => :'TmsV1InstrumentIdentifiersPost200ResponseLinksSelf',
+        :'ancestor' => :'TmsV1InstrumentIdentifiersPost200ResponseLinksSelf',
+        :'successor' => :'TmsV1InstrumentIdentifiersPost200ResponseLinksSelf'
       }
     end
 
@@ -50,16 +50,12 @@ module CyberSource
         self._self = attributes[:'self']
       end
 
-      if attributes.has_key?(:'documentation')
-        if (value = attributes[:'documentation']).is_a?(Array)
-          self.documentation = value
-        end
+      if attributes.has_key?(:'ancestor')
+        self.ancestor = attributes[:'ancestor']
       end
 
-      if attributes.has_key?(:'next')
-        if (value = attributes[:'next']).is_a?(Array)
-          self._next = value
-        end
+      if attributes.has_key?(:'successor')
+        self.successor = attributes[:'successor']
       end
     end
 
@@ -82,8 +78,8 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           _self == o._self &&
-          documentation == o.documentation &&
-          _next == o._next
+          ancestor == o.ancestor &&
+          successor == o.successor
     end
 
     # @see the `==` method
@@ -95,7 +91,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_self, documentation, _next].hash
+      [_self, ancestor, successor].hash
     end
 
     # Builds the object from hash

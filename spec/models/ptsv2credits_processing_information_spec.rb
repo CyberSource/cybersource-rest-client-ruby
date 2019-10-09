@@ -98,4 +98,16 @@ describe 'Ptsv2creditsProcessingInformation' do
     end
   end
 
+  describe 'test attribute "purchase_options"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "electronic_benefits_transfer"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

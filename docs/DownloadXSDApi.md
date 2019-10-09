@@ -4,15 +4,15 @@ All URIs are relative to *https://apitest.cybersource.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_xsdv2**](DownloadXSDApi.md#get_xsdv2) | **GET** /xsds/{reportDefinitionNameVersion} | Used to download XSDs for reports
+[**get_xsdv2**](DownloadXSDApi.md#get_xsdv2) | **GET** /xsds/{reportDefinitionNameVersion} | Download XSD for report
 
 
 # **get_xsdv2**
 > get_xsdv2(report_definition_name_version)
 
-Used to download XSDs for reports
+Download XSD for report
 
-Downloads XSDs for reports on no-auth.
+Used to download XSDs for reports on no-auth.
 
 ### Example
 ```ruby
@@ -25,7 +25,7 @@ report_definition_name_version = "report_definition_name_version_example" # Stri
 
 
 begin
-  #Used to download XSDs for reports
+  #Download XSD for report
   api_instance.get_xsdv2(report_definition_name_version)
 rescue CyberSource::ApiError => e
   puts "Exception when calling DownloadXSDApi->get_xsdv2: #{e}"

@@ -20,8 +20,8 @@ module CyberSource
       @api_client = api_client
 	  @api_client.set_configuration(config)
     end
-    # Used to download DTDs for reports
-    # Downloads DTDs for reports on no-auth.
+    # Download DTD for report
+    # Used to download DTDs for reports on no-auth.
     # @param report_definition_name_version Name and version of DTD file to download. Some DTDs only have one version. In that case version name is not needed. Some example values are ctdr-1.0, tdr, pbdr-1.1
     # @param [Hash] opts the optional parameters
     # @return [nil]
@@ -30,8 +30,8 @@ module CyberSource
       return data, status_code, headers
     end
 
-    # Used to download DTDs for reports
-    # Downloads DTDs for reports on no-auth.
+    # Download DTD for report
+    # Used to download DTDs for reports on no-auth.
     # @param report_definition_name_version Name and version of DTD file to download. Some DTDs only have one version. In that case version name is not needed. Some example values are ctdr-1.0, tdr, pbdr-1.1
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers

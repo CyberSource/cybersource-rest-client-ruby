@@ -14,23 +14,15 @@ require 'date'
 
 module CyberSource
   class ErrorResponse
-    attr_accessor :response_status
-
-    attr_accessor :_links
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'response_status' => :'responseStatus',
-        :'_links' => :'_links'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'response_status' => :'InlineResponseDefaultResponseStatus',
-        :'_links' => :'InlineResponseDefaultLinks'
       }
     end
 
@@ -41,14 +33,6 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
-
-      if attributes.has_key?(:'responseStatus')
-        self.response_status = attributes[:'responseStatus']
-      end
-
-      if attributes.has_key?(:'_links')
-        self._links = attributes[:'_links']
-      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -68,9 +52,7 @@ module CyberSource
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
-      self.class == o.class &&
-          response_status == o.response_status &&
-          _links == o._links
+      self.class == o.class
     end
 
     # @see the `==` method
@@ -82,7 +64,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [response_status, _links].hash
+      [].hash
     end
 
     # Builds the object from hash

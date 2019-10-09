@@ -45,6 +45,10 @@ module CyberSource
 
     attr_accessor :bank_transfer_options
 
+    attr_accessor :purchase_options
+
+    attr_accessor :electronic_benefits_transfer
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -58,7 +62,9 @@ module CyberSource
         :'purchase_level' => :'purchaseLevel',
         :'industry_data_type' => :'industryDataType',
         :'recurring_options' => :'recurringOptions',
-        :'bank_transfer_options' => :'bankTransferOptions'
+        :'bank_transfer_options' => :'bankTransferOptions',
+        :'purchase_options' => :'purchaseOptions',
+        :'electronic_benefits_transfer' => :'electronicBenefitsTransfer'
       }
     end
 
@@ -75,7 +81,9 @@ module CyberSource
         :'purchase_level' => :'String',
         :'industry_data_type' => :'String',
         :'recurring_options' => :'Ptsv2paymentsidrefundsProcessingInformationRecurringOptions',
-        :'bank_transfer_options' => :'Ptsv2creditsProcessingInformationBankTransferOptions'
+        :'bank_transfer_options' => :'Ptsv2creditsProcessingInformationBankTransferOptions',
+        :'purchase_options' => :'Ptsv2creditsProcessingInformationPurchaseOptions',
+        :'electronic_benefits_transfer' => :'Ptsv2creditsProcessingInformationElectronicBenefitsTransfer'
       }
     end
 
@@ -129,6 +137,14 @@ module CyberSource
 
       if attributes.has_key?(:'bankTransferOptions')
         self.bank_transfer_options = attributes[:'bankTransferOptions']
+      end
+
+      if attributes.has_key?(:'purchaseOptions')
+        self.purchase_options = attributes[:'purchaseOptions']
+      end
+
+      if attributes.has_key?(:'electronicBenefitsTransfer')
+        self.electronic_benefits_transfer = attributes[:'electronicBenefitsTransfer']
       end
     end
 
@@ -295,7 +311,9 @@ module CyberSource
           purchase_level == o.purchase_level &&
           industry_data_type == o.industry_data_type &&
           recurring_options == o.recurring_options &&
-          bank_transfer_options == o.bank_transfer_options
+          bank_transfer_options == o.bank_transfer_options &&
+          purchase_options == o.purchase_options &&
+          electronic_benefits_transfer == o.electronic_benefits_transfer
     end
 
     # @see the `==` method
@@ -307,7 +325,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [commerce_indicator, processor_id, payment_solution, reconciliation_id, link_id, report_group, visa_checkout_id, purchase_level, industry_data_type, recurring_options, bank_transfer_options].hash
+      [commerce_indicator, processor_id, payment_solution, reconciliation_id, link_id, report_group, visa_checkout_id, purchase_level, industry_data_type, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer].hash
     end
 
     # Builds the object from hash

@@ -59,7 +59,7 @@ module CyberSource
     def self.swagger_types
       {
         :'unit_price' => :'String',
-        :'quantity' => :'Float',
+        :'quantity' => :'Integer',
         :'product_sku' => :'String',
         :'product_risk' => :'String',
         :'product_name' => :'String',
@@ -123,8 +123,8 @@ module CyberSource
         invalid_properties.push('invalid value for "unit_price", the character length must be smaller than or equal to 15.')
       end
 
-      if !@quantity.nil? && @quantity > 9999999999
-        invalid_properties.push('invalid value for "quantity", must be smaller than or equal to 9999999999.')
+      if !@quantity.nil? && @quantity > 999999999
+        invalid_properties.push('invalid value for "quantity", must be smaller than or equal to 999999999.')
       end
 
       if !@quantity.nil? && @quantity < 1
@@ -158,7 +158,7 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if !@unit_price.nil? && @unit_price.to_s.length > 15
-      return false if !@quantity.nil? && @quantity > 9999999999
+      return false if !@quantity.nil? && @quantity > 999999999
       return false if !@quantity.nil? && @quantity < 1
       return false if !@product_sku.nil? && @product_sku.to_s.length > 255
       return false if !@product_risk.nil? && @product_risk.to_s.length > 6
@@ -181,8 +181,8 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] quantity Value to be assigned
     def quantity=(quantity)
-      if !quantity.nil? && quantity > 9999999999
-        fail ArgumentError, 'invalid value for "quantity", must be smaller than or equal to 9999999999.'
+      if !quantity.nil? && quantity > 999999999
+        fail ArgumentError, 'invalid value for "quantity", must be smaller than or equal to 999999999.'
       end
 
       if !quantity.nil? && quantity < 1

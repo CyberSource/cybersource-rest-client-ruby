@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **create_subscription**
-> create_subscription(request_body, opts)
+> create_subscription(create_report_subscription_request, opts)
 
 Create Report Subscription for a report name by organization
 
@@ -24,7 +24,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::ReportSubscriptionsApi.new
 
-request_body = CyberSource::RequestBody1.new # RequestBody1 | Report subscription request payload
+create_report_subscription_request = CyberSource::CreateReportSubscriptionRequest.new # CreateReportSubscriptionRequest | Report subscription request payload
 
 opts = { 
   organization_id: "organization_id_example" # String | Valid Cybersource Organization Id
@@ -32,7 +32,7 @@ opts = {
 
 begin
   #Create Report Subscription for a report name by organization
-  api_instance.create_subscription(request_body, opts)
+  api_instance.create_subscription(create_report_subscription_request, opts)
 rescue CyberSource::ApiError => e
   puts "Exception when calling ReportSubscriptionsApi->create_subscription: #{e}"
 end
@@ -42,7 +42,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request_body** | [**RequestBody1**](RequestBody1.md)| Report subscription request payload | 
+ **create_report_subscription_request** | [**CreateReportSubscriptionRequest**](CreateReportSubscriptionRequest.md)| Report subscription request payload | 
  **organization_id** | **String**| Valid Cybersource Organization Id | [optional] 
 
 ### Return type

@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsPost201ResponseEmbeddedPaymentInformationPaymentType
-    # A Payment Type is an agreed means for a payee to receive legal tender from a payer. The way one pays for a commercial financial transaction. Examples: Card, Bank Transfer, Digital, Direct Debit. 
+    # A Payment Type is an agreed means for a payee to receive legal tender from a payer. The way one pays for a commercial financial transaction. Examples: Card, Bank Transfer, Digital, Direct Debit. Possible values: - `CARD` (use this for a PIN debit transaction) 
     attr_accessor :name
 
     # A Payment Type is enabled through a Method. Examples: Visa, Master Card, ApplePay, iDeal

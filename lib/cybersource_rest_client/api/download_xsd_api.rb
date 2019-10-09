@@ -20,8 +20,8 @@ module CyberSource
       @api_client = api_client
 	  @api_client.set_configuration(config)
     end
-    # Used to download XSDs for reports
-    # Downloads XSDs for reports on no-auth.
+    # Download XSD for report
+    # Used to download XSDs for reports on no-auth.
     # @param report_definition_name_version Name and version of XSD file to download. Some XSDs only have one version. In that case version name is not needed. Some example values are DecisionManagerDetailReport, DecisionManagerTypes
     # @param [Hash] opts the optional parameters
     # @return [nil]
@@ -30,8 +30,8 @@ module CyberSource
       return data, status_code, headers
     end
 
-    # Used to download XSDs for reports
-    # Downloads XSDs for reports on no-auth.
+    # Download XSD for report
+    # Used to download XSDs for reports on no-auth.
     # @param report_definition_name_version Name and version of XSD file to download. Some XSDs only have one version. In that case version name is not needed. Some example values are DecisionManagerDetailReport, DecisionManagerTypes
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers

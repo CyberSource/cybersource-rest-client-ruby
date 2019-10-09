@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **create_report**
-> create_report(request_body, opts)
+> create_report(create_adhoc_report_request, opts)
 
 Create Adhoc Report
 
@@ -23,7 +23,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::ReportsApi.new
 
-request_body = CyberSource::RequestBody.new # RequestBody | Report subscription request payload
+create_adhoc_report_request = CyberSource::CreateAdhocReportRequest.new # CreateAdhocReportRequest | Report subscription request payload
 
 opts = { 
   organization_id: "organization_id_example" # String | Valid Cybersource Organization Id
@@ -31,7 +31,7 @@ opts = {
 
 begin
   #Create Adhoc Report
-  api_instance.create_report(request_body, opts)
+  api_instance.create_report(create_adhoc_report_request, opts)
 rescue CyberSource::ApiError => e
   puts "Exception when calling ReportsApi->create_report: #{e}"
 end
@@ -41,7 +41,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request_body** | [**RequestBody**](RequestBody.md)| Report subscription request payload | 
+ **create_adhoc_report_request** | [**CreateAdhocReportRequest**](CreateAdhocReportRequest.md)| Report subscription request payload | 
  **organization_id** | **String**| Valid Cybersource Organization Id | [optional] 
 
 ### Return type
