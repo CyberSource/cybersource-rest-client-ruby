@@ -27,6 +27,7 @@ public
     @keyPass = cybsPropertyObj['keyPass']
     @keyFilename = cybsPropertyObj['keyFilename']
     @logFilename = cybsPropertyObj['logFilename']
+    @solutionId = cybsPropertyObj['solutionId']
     validateMerchantDetails()
     logAllProperties(cybsPropertyObj)
     end
@@ -178,4 +179,5 @@ public
     attr_accessor :proxyPort
     attr_accessor :requestTarget
     attr_accessor :log_obj
+    attr_accessor :solutionId
   end
