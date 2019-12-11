@@ -5,7 +5,8 @@ cd %~dp0
 REM Delete the previously generated SDK code
 
 rd /s /q ..\docs
-rd /s /q ..\lib\cybersource_rest_client
+rd /s /q ..\lib\cybersource_rest_client\api
+rd /s /q ..\lib\cybersource_rest_client\models
 rd /s /q ..\spec
 del ..\lib\cybersource_rest_client.rb
 
@@ -75,17 +76,17 @@ powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-O
 REM @echo off
 @setlocal enableextensions enabledelayedexpansion
 
-for /f "tokens=1* delims=\" %%A in (
-  'forfiles /s /m *.rb /p ..\lib\AuthenticationSDK /c "cmd /c echo @relpath"'
-) do for %%F in (^"%%B) do (
-  set original=%%~F
-  call set removed=%%original:spec=%%
-  if not !removed!==%%~F (
-	REM echo NOT PROCESSED
-  ) else (
-	powershell -Command "$testVar = \"!original!\" ; $fileContents = (get-content ..\lib\cybersource_rest_client.rb) ; $fileContents[11] = $fileContents[11]+\"`r`nrequire 'AuthenticationSDK/\"+$testVar.replace(\"\\\",\"/\")+\"'\"; $fileContents|Set-Content ..\lib\cybersource_rest_client.rb"
-  )
-)
+REM for /f "tokens=1* delims=\" %%A in (
+REM   'forfiles /s /m *.rb /p ..\lib\AuthenticationSDK /c "cmd /c echo @relpath"'
+REM ) do for %%F in (^"%%B) do (
+REM   set original=%%~F
+REM   call set removed=%%original:spec=%%
+REM   if not !removed!==%%~F (
+REM 	REM echo NOT PROCESSED
+REM   ) else (
+REM 	powershell -Command "$testVar = \"!original!\" ; $fileContents = (get-content ..\lib\cybersource_rest_client.rb) ; $fileContents[11] = $fileContents[11]+\"`r`nrequire 'AuthenticationSDK/\"+$testVar.replace(\"\\\",\"/\")+\"'\"; $fileContents|Set-Content ..\lib\cybersource_rest_client.rb"
+REM   )
+REM )
 
 REM powershell -Command "(get-content ..\lib\cybersource_rest_client.rb) | ForEach-Object { $_ -replace 'require ''cybersource_rest_client/api/download_dtd_api''', '' } | ForEach-Object { $_ -replace 'require ''cybersource_rest_client/api/download_xsd_api''', '' } | Set-Content ..\lib\cybersource_rest_client.rb"
 
