@@ -508,6 +508,9 @@ require 'cybersource_rest_client/api/transaction_details_api'
 require 'cybersource_rest_client/api/user_management_api'
 require 'cybersource_rest_client/api/void_api'
 
+# Utilities
+require 'cybersource_rest_client/utilities/flex/token_verification'
+
 module CyberSource
   class << self
     # Customize default settings for the SDK using block.
