@@ -171,7 +171,7 @@ module {{moduleName}}
       header_params['v-c-client-id'] = @client_id
 
       # Adding solution ID header
-      header_params['v-c-solution-id'] = $merchantconfig_obj.solutionId if !$merchantconfig_obj.solutionId.nil? && !$merchantconfig_obj.solutionId.empty?
+      # header_params['v-c-solution-id'] = $merchantconfig_obj.solutionId if !$merchantconfig_obj.solutionId.nil? && !$merchantconfig_obj.solutionId.empty?
       
       # HTTP header 'Accept' (if needed)
       if $merchantconfig_obj.authenticationType.upcase == Constants::AUTH_TYPE_HTTP
