@@ -17,7 +17,7 @@ module CyberSource
     # Customer's identification number.  **Important**: Contact your TeleCheck representative to learn whether this field is required or optional. 
     attr_accessor :id
 
-    # Type of personal identification. **Important**: Contact your TeleCheck representative to learn whether this field is required or optional.  Valid values: - driver license 
+    # Type of personal identification.  **Important**: Contact your TeleCheck representative to learn whether this field is required or optional.  Valid values: - driver license 
     attr_accessor :type
 
     attr_accessor :issued_by

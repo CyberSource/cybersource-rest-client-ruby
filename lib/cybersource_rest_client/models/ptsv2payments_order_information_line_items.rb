@@ -76,16 +76,16 @@ module CyberSource
     # Information about the product code used for the line item. Possible values: - `E`: The product code is `electronic_software`. - `P`: The product code is not `electronic_software`.  For details, see the `fulfillmentType` field description in [Business Center Reporting User Guide.] (https://apps.cybersource.com/library/documentation/dev_guides/reporting_and_reconciliation/Reporting_User/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
     attr_accessor :fulfillment_type
 
-    # Weight of the item. See Numbered Elements.
+    # Weight of the item.  For details, see `weight_amount` field description in [Level II and Level III Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Level_2_3_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
     attr_accessor :weight
 
-    # Type of weight. See Numbered Elements.  Possible values: - B: Billed weight - N: Actual net weight 
+    # Type of weight.  Possible values: - B: Billed weight - N: Actual net weight  For details, see `weight_identifier` offer-level field description in [Level II and Level III Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Level_2_3_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
     attr_accessor :weight_identifier
 
-    # Code that specifies the unit of measurement for the weight amount. For example, OZ specifies ounce and LB specifies pound. The possible values are defined by the ANSI Accredited Standards Committee (ASC).  See Numbered Elements. 
+    # Code that specifies the unit of measurement for the weight amount. For example, `OZ` specifies ounce and `LB` specifies pound. The possible values are defined by the ANSI Accredited Standards Committee (ASC).  For details, see `weight_unit_measurement` offer-level field description in [Level II and Level III Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Level_2_3_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
     attr_accessor :weight_unit
 
-    # Code that identifies the value of the corresponding item_#_referenceData_#_number field. See Numbered Elements.  Possible values: - AN: Client-defined asset code - MG: Manufacturer's part number - PO: Purchase order number - SK: Supplier stock keeping unit number - UP: Universal product code - VC: Supplier catalog number - VP: Vendor part number  This field is a pass-through, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. 
+    # Code that identifies the value of the corresponding `orderInformation.lineItems[].referenceDataNumber` field.  Possible values: - AN: Client-defined asset code - MG: Manufacturer's part number - PO: Purchase order number - SK: Supplier stock keeping unit number - UP: Universal product code - VC: Supplier catalog number - VP: Vendor part number  This field is a pass-through, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor.  For details, see `reference_data_#_code` field description in [Level II and Level III Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Level_2_3_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
     attr_accessor :reference_data_code
 
     # Reference number.  The meaning of this value is identified by the value of the corresponding `referenceDataCode` field. See Numbered Elements.  The maximum length for this field depends on the value of the corresponding `referenceDataCode` field: - When the code is `PO`, the maximum length for the reference number is 22. - When the code is `VC`, the maximum length for the reference number is 20. - For all other codes, the maximum length for the reference number is 30.  This field is a pass-through, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. 

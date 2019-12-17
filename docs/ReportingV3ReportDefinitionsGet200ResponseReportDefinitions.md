@@ -8,5 +8,7 @@ Name | Type | Description | Notes
 **report_defintion_name** | **String** |  | [optional] 
 **supported_formats** | **Array&lt;String&gt;** |  | [optional] 
 **description** | **String** |  | [optional] 
+**default_settings** | [**ReportingV3ReportDefinitionsNameGet200ResponseDefaultSettings**](ReportingV3ReportDefinitionsNameGet200ResponseDefaultSettings.md) |  | [optional] 
+**subscription_type** | **String** | &#39;The subscription type for which report definition is required. By default the type will be CUSTOM.&#39; Valid Values: - CLASSIC - CUSTOM - STANDARD  | [optional] 
 
 

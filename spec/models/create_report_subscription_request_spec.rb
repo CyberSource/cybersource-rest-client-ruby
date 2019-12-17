@@ -62,6 +62,12 @@ describe 'CreateReportSubscriptionRequest' do
     end
   end
 
+  describe 'test attribute "report_interval"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "report_name"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

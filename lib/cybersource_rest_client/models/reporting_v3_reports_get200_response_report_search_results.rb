@@ -15,19 +15,21 @@ require 'date'
 module CyberSource
   # Report Search Result Bean
   class ReportingV3ReportsGet200ResponseReportSearchResults
+    attr_accessor :_link
+
     # Unique Report Identifier of each report type
     attr_accessor :report_definition_id
 
     # Name of the report specified by merchant while creating the report
     attr_accessor :report_name
 
-    # Format of the report to get generated  Valid values: - application/xml - text/csv 
+    # Format of the report to get generated Valid Values: - application/xml - text/csv 
     attr_accessor :report_mime_type
 
-    # Frequency of the report to get generated  Valid values: - DAILY - WEEKLY - MONTHLY - ADHOC 
+    # Frequency of the report to get generated Valid Values: - DAILY - WEEKLY - MONTHLY - ADHOC 
     attr_accessor :report_frequency
 
-    # Status of the report  Valid values: - COMPLETED - PENDING - QUEUED - RUNNING - ERROR - NO_DATA 
+    # Status of the report Valid Values: - COMPLETED - PENDING - QUEUED - RUNNING - ERROR - NO_DATA 
     attr_accessor :status
 
     # Specifies the report start time in ISO 8601 format
@@ -63,6 +65,7 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'_link' => :'_link',
         :'report_definition_id' => :'reportDefinitionId',
         :'report_name' => :'reportName',
         :'report_mime_type' => :'reportMimeType',
@@ -84,6 +87,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'_link' => :'ReportingV3ReportsGet200ResponseLink',
         :'report_definition_id' => :'String',
         :'report_name' => :'String',
         :'report_mime_type' => :'String',
@@ -109,6 +113,10 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'_link')
+        self._link = attributes[:'_link']
+      end
 
       if attributes.has_key?(:'reportDefinitionId')
         self.report_definition_id = attributes[:'reportDefinitionId']
@@ -189,6 +197,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          _link == o._link &&
           report_definition_id == o.report_definition_id &&
           report_name == o.report_name &&
           report_mime_type == o.report_mime_type &&
@@ -215,7 +224,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [report_definition_id, report_name, report_mime_type, report_frequency, status, report_start_time, report_end_time, timezone, report_id, organization_id, queued_time, report_generating_time, report_completed_time, subscription_type, group_id].hash
+      [_link, report_definition_id, report_name, report_mime_type, report_frequency, status, report_start_time, report_end_time, timezone, report_id, organization_id, queued_time, report_generating_time, report_completed_time, subscription_type, group_id].hash
     end
 
     # Builds the object from hash

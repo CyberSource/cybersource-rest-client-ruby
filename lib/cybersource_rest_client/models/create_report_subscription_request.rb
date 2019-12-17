@@ -25,8 +25,11 @@ module CyberSource
     # Valid values: - application/xml - text/csv 
     attr_accessor :report_mime_type
 
-    # 'The frequency for which subscription is created.'  Valid values: - 'DAILY' - 'WEEKLY' - 'MONTHLY' - 'ADHOC' 
+    # 'The frequency for which subscription is created.'  Valid Values:   - 'DAILY'   - 'WEEKLY'   - 'MONTHLY'   - 'USER_DEFINED' 
     attr_accessor :report_frequency
+
+    # If the reportFrequency is User-defined, reportInterval should be in **ISO 8601 time format** Please refer the following link to know more about ISO 8601 format.[Rfc Time Format](https://en.wikipedia.org/wiki/ISO_8601#Durations)  **Example time format for 2 hours and 30 Mins:**   - PT2H30M **NOTE: Do not document reportInterval field in developer center** 
+    attr_accessor :report_interval
 
     attr_accessor :report_name
 
@@ -54,6 +57,7 @@ module CyberSource
         :'report_fields' => :'reportFields',
         :'report_mime_type' => :'reportMimeType',
         :'report_frequency' => :'reportFrequency',
+        :'report_interval' => :'reportInterval',
         :'report_name' => :'reportName',
         :'timezone' => :'timezone',
         :'start_time' => :'startTime',
@@ -72,6 +76,7 @@ module CyberSource
         :'report_fields' => :'Array<String>',
         :'report_mime_type' => :'String',
         :'report_frequency' => :'String',
+        :'report_interval' => :'String',
         :'report_name' => :'String',
         :'timezone' => :'String',
         :'start_time' => :'String',
@@ -110,6 +115,10 @@ module CyberSource
 
       if attributes.has_key?(:'reportFrequency')
         self.report_frequency = attributes[:'reportFrequency']
+      end
+
+      if attributes.has_key?(:'reportInterval')
+        self.report_interval = attributes[:'reportInterval']
       end
 
       if attributes.has_key?(:'reportName')
@@ -179,6 +188,10 @@ module CyberSource
         invalid_properties.push('invalid value for "report_frequency", report_frequency cannot be nil.')
       end
 
+      #if !@report_interval.nil? && @report_interval !~ Regexp.new(/^PT((([1-9]|1[0-9]|2[0-3])H(([1-9]|[1-4][0-9]|5[0-9])M)?)|((([1-9]|1[0-9]|2[0-3])H)?([1-9]|[1-4][0-9]|5[0-9])M))$/)
+        #invalid_properties.push('invalid value for "report_interval", must conform to the pattern /^PT((([1-9]|1[0-9]|2[0-3])H(([1-9]|[1-4][0-9]|5[0-9])M)?)|((([1-9]|1[0-9]|2[0-3])H)?([1-9]|[1-4][0-9]|5[0-9])M))$/.')
+      #end
+
       if @report_name.nil?
         invalid_properties.push('invalid value for "report_name", report_name cannot be nil.')
       end
@@ -229,6 +242,7 @@ module CyberSource
       return false if @report_fields.nil?
       return false if @report_mime_type.nil?
       return false if @report_frequency.nil?
+      #return false if !@report_interval.nil? && @report_interval !~ Regexp.new(/^PT((([1-9]|1[0-9]|2[0-3])H(([1-9]|[1-4][0-9]|5[0-9])M)?)|((([1-9]|1[0-9]|2[0-3])H)?([1-9]|[1-4][0-9]|5[0-9])M))$/)
       return false if @report_name.nil?
       return false if @report_name.to_s.length > 128
       return false if @report_name.to_s.length < 1
@@ -271,6 +285,16 @@ module CyberSource
       #end
 
       @report_definition_name = report_definition_name
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] report_interval Value to be assigned
+    def report_interval=(report_interval)
+      #if !report_interval.nil? && report_interval !~ Regexp.new(/^PT((([1-9]|1[0-9]|2[0-3])H(([1-9]|[1-4][0-9]|5[0-9])M)?)|((([1-9]|1[0-9]|2[0-3])H)?([1-9]|[1-4][0-9]|5[0-9])M))$/)
+        #fail ArgumentError, 'invalid value for "report_interval", must conform to the pattern /^PT((([1-9]|1[0-9]|2[0-3])H(([1-9]|[1-4][0-9]|5[0-9])M)?)|((([1-9]|1[0-9]|2[0-3])H)?([1-9]|[1-4][0-9]|5[0-9])M))$/.'
+      #end
+
+      @report_interval = report_interval
     end
 
     # Custom attribute writer method with validation
@@ -329,6 +353,7 @@ module CyberSource
           report_fields == o.report_fields &&
           report_mime_type == o.report_mime_type &&
           report_frequency == o.report_frequency &&
+          report_interval == o.report_interval &&
           report_name == o.report_name &&
           timezone == o.timezone &&
           start_time == o.start_time &&
@@ -347,7 +372,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [organization_id, report_definition_name, report_fields, report_mime_type, report_frequency, report_name, timezone, start_time, start_day, report_filters, report_preferences, group_name].hash
+      [organization_id, report_definition_name, report_fields, report_mime_type, report_frequency, report_interval, report_name, timezone, start_time, start_day, report_filters, report_preferences, group_name].hash
     end
 
     # Builds the object from hash

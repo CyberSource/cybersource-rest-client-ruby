@@ -24,6 +24,8 @@ module CyberSource
     # View the attributes of an individual report type. For a list of values for reportDefinitionName, see the [Reporting Developer Guide](https://www.cybersource.com/developers/documentation/reporting_and_reconciliation/) 
     # @param report_definition_name Name of the Report definition to retrieve
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :subscription_type The subscription type for which report definition is required. By default the type will be CUSTOM. Valid Values: - CLASSIC - CUSTOM - STANDARD 
+    # @option opts [String] :report_mime_type The format for which the report definition is required. By default the value will be CSV. Valid Values: - application/xml - text/csv 
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [ReportingV3ReportDefinitionsNameGet200Response]
     def get_resource_info_by_report_definition(report_definition_name, opts = {})
@@ -35,6 +37,8 @@ module CyberSource
     # View the attributes of an individual report type. For a list of values for reportDefinitionName, see the [Reporting Developer Guide](https://www.cybersource.com/developers/documentation/reporting_and_reconciliation/) 
     # @param report_definition_name Name of the Report definition to retrieve
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :subscription_type The subscription type for which report definition is required. By default the type will be CUSTOM. Valid Values: - CLASSIC - CUSTOM - STANDARD 
+    # @option opts [String] :report_mime_type The format for which the report definition is required. By default the value will be CSV. Valid Values: - application/xml - text/csv 
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [Array<(ReportingV3ReportDefinitionsNameGet200Response, Fixnum, Hash)>] ReportingV3ReportDefinitionsNameGet200Response data, response status code and response headers
     def get_resource_info_by_report_definition_with_http_info(report_definition_name, opts = {})
@@ -68,6 +72,8 @@ module CyberSource
 
       # query parameters
       query_params = {}
+      query_params[:'subscriptionType'] = opts[:'subscription_type'] if !opts[:'subscription_type'].nil?
+      query_params[:'reportMimeType'] = opts[:'report_mime_type'] if !opts[:'report_mime_type'].nil?
       query_params[:'organizationId'] = opts[:'organization_id'] if !opts[:'organization_id'].nil?
 
       # header parameters
@@ -103,6 +109,7 @@ module CyberSource
     # Get reporting resource information
     # View a list of supported reports and their attributes before subscribing to them. 
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :subscription_type Valid Values: - CLASSIC - CUSTOM - STANDARD 
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [ReportingV3ReportDefinitionsGet200Response]
     def get_resource_v2_info(opts = {})
@@ -113,6 +120,7 @@ module CyberSource
     # Get reporting resource information
     # View a list of supported reports and their attributes before subscribing to them. 
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :subscription_type Valid Values: - CLASSIC - CUSTOM - STANDARD 
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [Array<(ReportingV3ReportDefinitionsGet200Response, Fixnum, Hash)>] ReportingV3ReportDefinitionsGet200Response data, response status code and response headers
     def get_resource_v2_info_with_http_info(opts = {})
@@ -142,6 +150,7 @@ module CyberSource
 
       # query parameters
       query_params = {}
+      query_params[:'subscriptionType'] = opts[:'subscription_type'] if !opts[:'subscription_type'].nil?
       query_params[:'organizationId'] = opts[:'organization_id'] if !opts[:'organization_id'].nil?
 
       # header parameters

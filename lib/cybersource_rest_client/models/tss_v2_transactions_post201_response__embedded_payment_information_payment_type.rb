@@ -14,16 +14,16 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsPost201ResponseEmbeddedPaymentInformationPaymentType
-    # A Payment Type is an agreed means for a payee to receive legal tender from a payer. The way one pays for a commercial financial transaction. Examples: Card, Bank Transfer, Digital, Direct Debit. Possible values: - `CARD` (use this for a PIN debit transaction) 
-    attr_accessor :name
+    # Indicates the payment type used in this payment transaction. Example: credit card, check
+    attr_accessor :type
 
-    # A Payment Type is enabled through a Method. Examples: Visa, Master Card, ApplePay, iDeal
+    # Indicates the payment method used in this payment transaction.
     attr_accessor :method
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'name' => :'name',
+        :'type' => :'type',
         :'method' => :'method'
       }
     end
@@ -31,7 +31,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'name' => :'String',
+        :'type' => :'String',
         :'method' => :'String'
       }
     end
@@ -44,8 +44,8 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'name')
-        self.name = attributes[:'name']
+      if attributes.has_key?(:'type')
+        self.type = attributes[:'type']
       end
 
       if attributes.has_key?(:'method')
@@ -71,7 +71,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          name == o.name &&
+          type == o.type &&
           method == o.method
     end
 
@@ -84,7 +84,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name, method].hash
+      [type, method].hash
     end
 
     # Builds the object from hash

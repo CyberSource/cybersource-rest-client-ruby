@@ -27,6 +27,9 @@ module CyberSource
     # @return [Hash]
     attr_accessor :default_headers
 
+    # Defines the client ID for the SDK
+    attr_accessor :client_id
+
     # Initializes the ApiClient
     # @option config [Configuration] Configuration for initializing the object, default to Configuration.default
     def initialize(config = Configuration.default)
@@ -36,6 +39,8 @@ module CyberSource
         'Content-Type' => 'application/json',
         'User-Agent' => @user_agent
       }
+
+      @client_id = 'cybs-rest-sdk-ruby-' + Gem.loaded_specs["cybersource_rest_client"].version.to_s
     end
 
     def self.default
@@ -166,6 +171,13 @@ module CyberSource
       # Calling APISDK, Apisdk.controller.
       gmtDateTime = DateTime.now.httpdate
       token = Authorization.new.getToken($merchantconfig_obj, gmtDateTime, log_obj)
+
+      # Adding client ID header
+      header_params['v-c-client-id'] = @client_id
+
+      # Adding solution ID header
+      # header_params['v-c-solution-id'] = $merchantconfig_obj.solutionId if !$merchantconfig_obj.solutionId.nil? && !$merchantconfig_obj.solutionId.empty?
+      
       # HTTP header 'Accept' (if needed)
       if $merchantconfig_obj.authenticationType.upcase == Constants::AUTH_TYPE_HTTP
         # Appending headers for Get Connection

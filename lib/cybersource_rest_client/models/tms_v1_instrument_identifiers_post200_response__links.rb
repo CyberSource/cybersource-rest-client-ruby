@@ -16,6 +16,8 @@ module CyberSource
   class TmsV1InstrumentIdentifiersPost200ResponseLinks
     attr_accessor :_self
 
+    attr_accessor :payment_instruments
+
     attr_accessor :ancestor
 
     attr_accessor :successor
@@ -24,6 +26,7 @@ module CyberSource
     def self.attribute_map
       {
         :'_self' => :'self',
+        :'payment_instruments' => :'paymentInstruments',
         :'ancestor' => :'ancestor',
         :'successor' => :'successor'
       }
@@ -33,6 +36,7 @@ module CyberSource
     def self.swagger_types
       {
         :'_self' => :'TmsV1InstrumentIdentifiersPost200ResponseLinksSelf',
+        :'payment_instruments' => :'TmsV1InstrumentIdentifiersPost200ResponseLinksPaymentInstruments',
         :'ancestor' => :'TmsV1InstrumentIdentifiersPost200ResponseLinksSelf',
         :'successor' => :'TmsV1InstrumentIdentifiersPost200ResponseLinksSelf'
       }
@@ -48,6 +52,10 @@ module CyberSource
 
       if attributes.has_key?(:'self')
         self._self = attributes[:'self']
+      end
+
+      if attributes.has_key?(:'paymentInstruments')
+        self.payment_instruments = attributes[:'paymentInstruments']
       end
 
       if attributes.has_key?(:'ancestor')
@@ -78,6 +86,7 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           _self == o._self &&
+          payment_instruments == o.payment_instruments &&
           ancestor == o.ancestor &&
           successor == o.successor
     end
@@ -91,7 +100,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_self, ancestor, successor].hash
+      [_self, payment_instruments, ancestor, successor].hash
     end
 
     # Builds the object from hash

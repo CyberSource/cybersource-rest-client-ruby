@@ -80,4 +80,17 @@ describe 'ReportSubscriptionsApi' do
     end
   end
 
+  # unit tests for reporting_v3_predefined_report_subscriptions_put
+  # Create a Standard or Classic subscription
+  # Create or update an already existing classic or standard subscription. 
+  # @param predefined_subscription_request_bean Report subscription request payload
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :organization_id Valid Cybersource Organization Id
+  # @return [nil]
+  describe 'reporting_v3_predefined_report_subscriptions_put test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

@@ -14,7 +14,7 @@ REM Command to generate SDK
  
 java -jar swagger-codegen-cli-2.2.3.jar generate -t cybersource-ruby-template -i cybersource-rest-spec.json -l ruby -o ../ -c %~dp0cybersource-ruby-config.json 
 
-REM powershell -Command "(Get-Content ..\lib\cybersource_rest_client\api\secure_file_share_api.rb) | ForEach-Object { $_ -replace 'select_header_content_type\(\[''application/json;charset=utf-8', 'select_header_content_type([''*/*' } | Set-Content ..\lib\cybersource_rest_client\api\secure_file_share_api.rb"
+powershell -Command "(Get-Content ..\lib\cybersource_rest_client\api\secure_file_share_api.rb) | ForEach-Object { $_ -replace 'select_header_content_type\(\[''application/json;charset=utf-8', 'select_header_content_type([''*/*' } | Set-Content ..\lib\cybersource_rest_client\api\secure_file_share_api.rb"
 
 REM to rename error__links to error_links
 powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-Object { $_ -replace 'cybersource_rest_client/models/error__links', 'cybersource_rest_client/models/error_links' } | Set-Content ..\lib\cybersource_rest_client.rb"
@@ -35,7 +35,7 @@ powershell -Command " rename-item -Path ..\lib\cybersource_rest_client\models\tm
 
 powershell -Command " rename-item -Path ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_payment_instruments_get200_response__embedded_buyer_information_issued_by.rb  -newname tms_v1_instrument_identifiers_payment_instruments_get200_response_buyer_information_issued_by.rb"
 
-powershell -Command " rename-item -Path ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_payment_instruments_get200_response__embedded_instrument_identifier.rb  -newname tms_v1_instrument_identifiers_payment_instruments_get200_response_instrument_identifier.rb"
+REM powershell -Command " rename-item -Path ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_payment_instruments_get200_response__embedded_instrument_identifier.rb  -newname tms_v1_instrument_identifiers_payment_instruments_get200_response_instrument_identifier.rb"
 
 powershell -Command " rename-item -Path ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_payment_instruments_get200_response__embedded_merchant_information.rb  -newname tms_v1_instrument_identifiers_payment_instruments_get200_response_merchant_information.rb"
 

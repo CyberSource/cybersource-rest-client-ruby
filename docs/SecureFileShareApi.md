@@ -53,7 +53,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: */*
+ - **Content-Type**: application/json;charset=utf-8
  - **Accept**: application/xml, text/csv, application/pdf
 
 
@@ -107,7 +107,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: */*
+ - **Content-Type**: application/json;charset=utf-8
  - **Accept**: application/hal+json
 
 

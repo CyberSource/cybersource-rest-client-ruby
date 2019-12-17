@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsGet200ResponseApplicationInformationApplications
-    # The CyberSource payment application processed for the transaction. 
+    # The name of the CyberSource transaction type (such as CC settlement or CC authorization) that the merchant wants to process in a transaction request. More than one transaction type can included in a transaction request. Each transaction type separately returns their own status, reasonCode, rCode, and rFlag messages. 
     attr_accessor :name
 
     # The description for this field is not available.

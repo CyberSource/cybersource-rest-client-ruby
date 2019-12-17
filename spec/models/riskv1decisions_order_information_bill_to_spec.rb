@@ -86,6 +86,12 @@ describe 'Riskv1decisionsOrderInformationBillTo' do
     end
   end
 
+  describe 'test attribute "email_domain"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "postal_code"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
