@@ -20,7 +20,7 @@ module CyberSource
     # Issuers need to be aware of the Acquirer's Country Code when the Acquirer country differs from the Merchant country and the Acquirer is in the EEA (European Economic Area). 
     attr_accessor :country
 
-    # Registered password for the Visa directory server. For Mastercard, this value is always 12345678. 
+    # Registered password for the Visa directory server. 
     attr_accessor :password
 
     # Username for the visa directory server that is created when your acquirer sets up your account. This ID might be the same as your merchant ID. the username can be 15 or 23 characters. 
