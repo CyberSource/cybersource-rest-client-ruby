@@ -187,7 +187,7 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @option opts [String] :report_mime_type Valid Report Format  Valid values: - application/xml - text/csv 
-    # @option opts [String] :report_frequency Valid Report Frequency  Valid values: - DAILY - WEEKLY - MONTHLY - ADHOC 
+    # @option opts [String] :report_frequency Valid Report Frequency  Valid values: - DAILY - WEEKLY - MONTHLY - USER_DEFINED - ADHOC 
     # @option opts [String] :report_name Valid Report Name
     # @option opts [Integer] :report_definition_id Valid Report Definition Id
     # @option opts [String] :report_status Valid Report Status  Valid values: - COMPLETED - PENDING - QUEUED - RUNNING - ERROR - NO_DATA 
@@ -205,7 +205,7 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @option opts [String] :report_mime_type Valid Report Format  Valid values: - application/xml - text/csv 
-    # @option opts [String] :report_frequency Valid Report Frequency  Valid values: - DAILY - WEEKLY - MONTHLY - ADHOC 
+    # @option opts [String] :report_frequency Valid Report Frequency  Valid values: - DAILY - WEEKLY - MONTHLY - USER_DEFINED - ADHOC 
     # @option opts [String] :report_name Valid Report Name
     # @option opts [Integer] :report_definition_id Valid Report Definition Id
     # @option opts [String] :report_status Valid Report Status  Valid values: - COMPLETED - PENDING - QUEUED - RUNNING - ERROR - NO_DATA 

@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**delete_subscription**](ReportSubscriptionsApi.md#delete_subscription) | **DELETE** /reporting/v3/report-subscriptions/{reportName} | Delete subscription of a report name by organization
 [**get_all_subscriptions**](ReportSubscriptionsApi.md#get_all_subscriptions) | **GET** /reporting/v3/report-subscriptions | Get all subscriptions
 [**get_subscription**](ReportSubscriptionsApi.md#get_subscription) | **GET** /reporting/v3/report-subscriptions/{reportName} | Get subscription for report name
+[**reporting_v3_predefined_report_subscriptions_put**](ReportSubscriptionsApi.md#reporting_v3_predefined_report_subscriptions_put) | **PUT** /reporting/v3/predefined-report-subscriptions | Create a Standard or Classic subscription
 
 
 # **create_subscription**
@@ -182,6 +183,56 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ReportingV3ReportSubscriptionsGet200ResponseSubscriptions**](ReportingV3ReportSubscriptionsGet200ResponseSubscriptions.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/hal+json
+
+
+
+# **reporting_v3_predefined_report_subscriptions_put**
+> reporting_v3_predefined_report_subscriptions_put(predefined_subscription_request_bean, opts)
+
+Create a Standard or Classic subscription
+
+Create or update an already existing classic or standard subscription. 
+
+### Example
+```ruby
+# load the gem
+require 'cybersource_rest_client'
+
+api_instance = CyberSource::ReportSubscriptionsApi.new
+
+predefined_subscription_request_bean = CyberSource::PredefinedSubscriptionRequestBean.new # PredefinedSubscriptionRequestBean | Report subscription request payload
+
+opts = { 
+  organization_id: "organization_id_example" # String | Valid Cybersource Organization Id
+}
+
+begin
+  #Create a Standard or Classic subscription
+  api_instance.reporting_v3_predefined_report_subscriptions_put(predefined_subscription_request_bean, opts)
+rescue CyberSource::ApiError => e
+  puts "Exception when calling ReportSubscriptionsApi->reporting_v3_predefined_report_subscriptions_put: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **predefined_subscription_request_bean** | [**PredefinedSubscriptionRequestBean**](PredefinedSubscriptionRequestBean.md)| Report subscription request payload | 
+ **organization_id** | **String**| Valid Cybersource Organization Id | [optional] 
+
+### Return type
+
+nil (empty response body)
 
 ### Authorization
 

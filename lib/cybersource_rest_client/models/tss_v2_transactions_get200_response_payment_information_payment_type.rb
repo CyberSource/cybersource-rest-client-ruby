@@ -17,25 +17,18 @@ module CyberSource
     # A Payment Type is an agreed means for a payee to receive legal tender from a payer. The way one pays for a commercial financial transaction. Examples: Card, Bank Transfer, Digital, Direct Debit. Possible values: - `CARD` (use this for a PIN debit transaction) 
     attr_accessor :name
 
-    # SubType Name is detail information about Payment Type. Examples: For Card, if Credit or Debit or PrePaid. For Bank Transfer, if Online Bank Transfer or Wire Transfers. - `DEBIT` (use this for a PIN debit transaction) 
-    attr_accessor :sub_type_name
+    # Indicates the payment type used in this payment transaction. Example: credit card, check
+    attr_accessor :type
 
-    attr_accessor :funding_source
-
-    # A Payment Type is enabled through a Method. Examples: Visa, Master Card, ApplePay, iDeal
+    # Indicates the payment method used in this payment transaction.
     attr_accessor :method
-
-    # A Payment Type Authentication Method is the means used to verify that the presenter of the Payment Type credential is an authorized user of the Payment Instrument. Examples: 3DSecure – Verified by Visa, 3DSecure – MasteCard Secure Code 
-    attr_accessor :authentication_method
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'name' => :'name',
-        :'sub_type_name' => :'subTypeName',
-        :'funding_source' => :'fundingSource',
-        :'method' => :'method',
-        :'authentication_method' => :'authenticationMethod'
+        :'type' => :'type',
+        :'method' => :'method'
       }
     end
 
@@ -43,10 +36,8 @@ module CyberSource
     def self.swagger_types
       {
         :'name' => :'String',
-        :'sub_type_name' => :'String',
-        :'funding_source' => :'TssV2TransactionsGet200ResponsePaymentInformationPaymentTypeFundingSource',
-        :'method' => :'String',
-        :'authentication_method' => :'String'
+        :'type' => :'String',
+        :'method' => :'String'
       }
     end
 
@@ -62,20 +53,12 @@ module CyberSource
         self.name = attributes[:'name']
       end
 
-      if attributes.has_key?(:'subTypeName')
-        self.sub_type_name = attributes[:'subTypeName']
-      end
-
-      if attributes.has_key?(:'fundingSource')
-        self.funding_source = attributes[:'fundingSource']
+      if attributes.has_key?(:'type')
+        self.type = attributes[:'type']
       end
 
       if attributes.has_key?(:'method')
         self.method = attributes[:'method']
-      end
-
-      if attributes.has_key?(:'authenticationMethod')
-        self.authentication_method = attributes[:'authenticationMethod']
       end
     end
 
@@ -98,10 +81,8 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           name == o.name &&
-          sub_type_name == o.sub_type_name &&
-          funding_source == o.funding_source &&
-          method == o.method &&
-          authentication_method == o.authentication_method
+          type == o.type &&
+          method == o.method
     end
 
     # @see the `==` method
@@ -113,7 +94,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name, sub_type_name, funding_source, method, authentication_method].hash
+      [name, type, method].hash
     end
 
     # Builds the object from hash

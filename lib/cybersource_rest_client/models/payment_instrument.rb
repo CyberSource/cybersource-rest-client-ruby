@@ -19,7 +19,7 @@ module CyberSource
     # Unique identification number assigned by CyberSource to the submitted request.
     attr_accessor :id
 
-    # 'Describes type of token.'  Valid values: - paymentInstrument 
+    # 'Describes type of token.'  Valid values: - instrumentIdentifier 
     attr_accessor :object
 
     # 'Current state of the token.'  Valid values: - ACTIVE - CLOSED 
@@ -39,7 +39,7 @@ module CyberSource
 
     attr_accessor :meta_data
 
-    attr_accessor :instrument_identifier
+    attr_accessor :_embedded
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -55,14 +55,14 @@ module CyberSource
         :'processing_information' => :'processingInformation',
         :'merchant_information' => :'merchantInformation',
         :'meta_data' => :'metaData',
-        :'instrument_identifier' => :'instrumentIdentifier'
+        :'_embedded' => :'_embedded'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'_links' => :'TmsV1InstrumentIdentifiersPost200ResponseLinks',
+        :'_links' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedLinks',
         :'id' => :'String',
         :'object' => :'String',
         :'state' => :'String',
@@ -73,7 +73,7 @@ module CyberSource
         :'processing_information' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedProcessingInformation',
         :'merchant_information' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedMerchantInformation',
         :'meta_data' => :'TmsV1InstrumentIdentifiersPost200ResponseMetadata',
-        :'instrument_identifier' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedInstrumentIdentifier'
+        :'_embedded' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedEmbedded'
       }
     end
 
@@ -129,8 +129,8 @@ module CyberSource
         self.meta_data = attributes[:'metaData']
       end
 
-      if attributes.has_key?(:'instrumentIdentifier')
-        self.instrument_identifier = attributes[:'instrumentIdentifier']
+      if attributes.has_key?(:'_embedded')
+        self._embedded = attributes[:'_embedded']
       end
     end
 
@@ -163,7 +163,7 @@ module CyberSource
           processing_information == o.processing_information &&
           merchant_information == o.merchant_information &&
           meta_data == o.meta_data &&
-          instrument_identifier == o.instrument_identifier
+          _embedded == o._embedded
     end
 
     # @see the `==` method
@@ -175,7 +175,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, object, state, bank_account, card, buyer_information, bill_to, processing_information, merchant_information, meta_data, instrument_identifier].hash
+      [_links, id, object, state, bank_account, card, buyer_information, bill_to, processing_information, merchant_information, meta_data, _embedded].hash
     end
 
     # Builds the object from hash

@@ -20,7 +20,7 @@ module CyberSource
     # Card expiration month.  Format: `MM`. Possible values: `01` through `12`. 
     attr_accessor :expiration_month
 
-    # Card expiration year.  Format: `YYYY`. Possible values: `1900` through `2099`. 
+    # Card expiration year. Format: `YYYY`. Possible values: `1900` through `2099`. 
     attr_accessor :expiration_year
 
     # Card security code.

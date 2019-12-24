@@ -21,7 +21,7 @@ module CyberSource
     attr_accessor :currency
 
     # Date of birth of the customer.  Format: `YYYY-MM-DD` or `YYYYMMDD` 
-    attr_accessor :date_o_birth
+    attr_accessor :date_of_birth
 
     attr_accessor :personal_identification
 
@@ -30,7 +30,7 @@ module CyberSource
       {
         :'company_tax_id' => :'companyTaxID',
         :'currency' => :'currency',
-        :'date_o_birth' => :'dateOBirth',
+        :'date_of_birth' => :'dateOfBirth',
         :'personal_identification' => :'personalIdentification'
       }
     end
@@ -40,7 +40,7 @@ module CyberSource
       {
         :'company_tax_id' => :'String',
         :'currency' => :'String',
-        :'date_o_birth' => :'String',
+        :'date_of_birth' => :'String',
         :'personal_identification' => :'Array<TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedBuyerInformationPersonalIdentification>'
       }
     end
@@ -61,8 +61,8 @@ module CyberSource
         self.currency = attributes[:'currency']
       end
 
-      if attributes.has_key?(:'dateOBirth')
-        self.date_o_birth = attributes[:'dateOBirth']
+      if attributes.has_key?(:'dateOfBirth')
+        self.date_of_birth = attributes[:'dateOfBirth']
       end
 
       if attributes.has_key?(:'personalIdentification')
@@ -88,12 +88,12 @@ module CyberSource
         invalid_properties.push('invalid value for "currency", the character length must be great than or equal to 3.')
       end
 
-      if !@date_o_birth.nil? && @date_o_birth.to_s.length > 10
-        invalid_properties.push('invalid value for "date_o_birth", the character length must be smaller than or equal to 10.')
+      if !@date_of_birth.nil? && @date_of_birth.to_s.length > 10
+        invalid_properties.push('invalid value for "date_of_birth", the character length must be smaller than or equal to 10.')
       end
 
-      if !@date_o_birth.nil? && @date_o_birth.to_s.length < 8
-        invalid_properties.push('invalid value for "date_o_birth", the character length must be great than or equal to 8.')
+      if !@date_of_birth.nil? && @date_of_birth.to_s.length < 8
+        invalid_properties.push('invalid value for "date_of_birth", the character length must be great than or equal to 8.')
       end
 
       invalid_properties
@@ -105,8 +105,8 @@ module CyberSource
       return false if !@company_tax_id.nil? && @company_tax_id.to_s.length > 9
       return false if !@currency.nil? && @currency.to_s.length > 3
       return false if !@currency.nil? && @currency.to_s.length < 3
-      return false if !@date_o_birth.nil? && @date_o_birth.to_s.length > 10
-      return false if !@date_o_birth.nil? && @date_o_birth.to_s.length < 8
+      return false if !@date_of_birth.nil? && @date_of_birth.to_s.length > 10
+      return false if !@date_of_birth.nil? && @date_of_birth.to_s.length < 8
       true
     end
 
@@ -135,17 +135,17 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] date_o_birth Value to be assigned
-    def date_o_birth=(date_o_birth)
-      if !date_o_birth.nil? && date_o_birth.to_s.length > 10
-        fail ArgumentError, 'invalid value for "date_o_birth", the character length must be smaller than or equal to 10.'
+    # @param [Object] date_of_birth Value to be assigned
+    def date_of_birth=(date_of_birth)
+      if !date_of_birth.nil? && date_of_birth.to_s.length > 10
+        fail ArgumentError, 'invalid value for "date_of_birth", the character length must be smaller than or equal to 10.'
       end
 
-      if !date_o_birth.nil? && date_o_birth.to_s.length < 8
-        fail ArgumentError, 'invalid value for "date_o_birth", the character length must be great than or equal to 8.'
+      if !date_of_birth.nil? && date_of_birth.to_s.length < 8
+        fail ArgumentError, 'invalid value for "date_of_birth", the character length must be great than or equal to 8.'
       end
 
-      @date_o_birth = date_o_birth
+      @date_of_birth = date_of_birth
     end
 
     # Checks equality by comparing each attribute.
@@ -155,7 +155,7 @@ module CyberSource
       self.class == o.class &&
           company_tax_id == o.company_tax_id &&
           currency == o.currency &&
-          date_o_birth == o.date_o_birth &&
+          date_of_birth == o.date_of_birth &&
           personal_identification == o.personal_identification
     end
 
@@ -168,7 +168,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [company_tax_id, currency, date_o_birth, personal_identification].hash
+      [company_tax_id, currency, date_of_birth, personal_identification].hash
     end
 
     # Builds the object from hash

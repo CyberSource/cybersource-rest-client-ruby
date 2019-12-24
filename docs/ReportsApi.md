@@ -133,7 +133,7 @@ time_query_type = "time_query_type_example" # String | Specify time you would li
 opts = { 
   organization_id: "organization_id_example", # String | Valid Cybersource Organization Id
   report_mime_type: "report_mime_type_example", # String | Valid Report Format  Valid values: - application/xml - text/csv 
-  report_frequency: "report_frequency_example", # String | Valid Report Frequency  Valid values: - DAILY - WEEKLY - MONTHLY - ADHOC 
+  report_frequency: "report_frequency_example", # String | Valid Report Frequency  Valid values: - DAILY - WEEKLY - MONTHLY - USER_DEFINED - ADHOC 
   report_name: "report_name_example", # String | Valid Report Name
   report_definition_id: 56, # Integer | Valid Report Definition Id
   report_status: "report_status_example" # String | Valid Report Status  Valid values: - COMPLETED - PENDING - QUEUED - RUNNING - ERROR - NO_DATA 
@@ -157,7 +157,7 @@ Name | Type | Description  | Notes
  **time_query_type** | **String**| Specify time you would like to search  Valid values: - reportTimeFrame - executedTime  | 
  **organization_id** | **String**| Valid Cybersource Organization Id | [optional] 
  **report_mime_type** | **String**| Valid Report Format  Valid values: - application/xml - text/csv  | [optional] 
- **report_frequency** | **String**| Valid Report Frequency  Valid values: - DAILY - WEEKLY - MONTHLY - ADHOC  | [optional] 
+ **report_frequency** | **String**| Valid Report Frequency  Valid values: - DAILY - WEEKLY - MONTHLY - USER_DEFINED - ADHOC  | [optional] 
  **report_name** | **String**| Valid Report Name | [optional] 
  **report_definition_id** | **Integer**| Valid Report Definition Id | [optional] 
  **report_status** | **String**| Valid Report Status  Valid values: - COMPLETED - PENDING - QUEUED - RUNNING - ERROR - NO_DATA  | [optional] 

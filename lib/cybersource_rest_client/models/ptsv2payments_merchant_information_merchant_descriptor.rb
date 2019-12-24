@@ -38,6 +38,9 @@ module CyberSource
     # The state where the merchant is located.  For the descriptions, used-by information, data types, and lengths for these fields, see the `merchant_descriptor_state` field description in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html)  Merchant State. For the descriptions, used-by information, data types, and lengths for these fields, see Merchant Descriptors in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
     attr_accessor :administrative_area
 
+    # Address of company's website provided by merchant 
+    attr_accessor :url
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -48,7 +51,8 @@ module CyberSource
         :'locality' => :'locality',
         :'country' => :'country',
         :'postal_code' => :'postalCode',
-        :'administrative_area' => :'administrativeArea'
+        :'administrative_area' => :'administrativeArea',
+        :'url' => :'url'
       }
     end
 
@@ -62,7 +66,8 @@ module CyberSource
         :'locality' => :'String',
         :'country' => :'String',
         :'postal_code' => :'String',
-        :'administrative_area' => :'String'
+        :'administrative_area' => :'String',
+        :'url' => :'String'
       }
     end
 
@@ -105,6 +110,10 @@ module CyberSource
       if attributes.has_key?(:'administrativeArea')
         self.administrative_area = attributes[:'administrativeArea']
       end
+
+      if attributes.has_key?(:'url')
+        self.url = attributes[:'url']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -127,16 +136,12 @@ module CyberSource
         invalid_properties.push('invalid value for "locality", the character length must be smaller than or equal to 13.')
       end
 
-      if !@country.nil? && @country.to_s.length > 2
-        invalid_properties.push('invalid value for "country", the character length must be smaller than or equal to 2.')
-      end
-
       if !@postal_code.nil? && @postal_code.to_s.length > 14
         invalid_properties.push('invalid value for "postal_code", the character length must be smaller than or equal to 14.')
       end
 
-      if !@administrative_area.nil? && @administrative_area.to_s.length > 3
-        invalid_properties.push('invalid value for "administrative_area", the character length must be smaller than or equal to 3.')
+      if !@url.nil? && @url.to_s.length > 255
+        invalid_properties.push('invalid value for "url", the character length must be smaller than or equal to 255.')
       end
 
       invalid_properties
@@ -149,9 +154,8 @@ module CyberSource
       return false if !@contact.nil? && @contact.to_s.length > 14
       return false if !@address1.nil? && @address1.to_s.length > 60
       return false if !@locality.nil? && @locality.to_s.length > 13
-      return false if !@country.nil? && @country.to_s.length > 2
       return false if !@postal_code.nil? && @postal_code.to_s.length > 14
-      return false if !@administrative_area.nil? && @administrative_area.to_s.length > 3
+      return false if !@url.nil? && @url.to_s.length > 255
       true
     end
 
@@ -196,16 +200,6 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] country Value to be assigned
-    def country=(country)
-      if !country.nil? && country.to_s.length > 2
-        fail ArgumentError, 'invalid value for "country", the character length must be smaller than or equal to 2.'
-      end
-
-      @country = country
-    end
-
-    # Custom attribute writer method with validation
     # @param [Object] postal_code Value to be assigned
     def postal_code=(postal_code)
       if !postal_code.nil? && postal_code.to_s.length > 14
@@ -216,13 +210,13 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] administrative_area Value to be assigned
-    def administrative_area=(administrative_area)
-      if !administrative_area.nil? && administrative_area.to_s.length > 3
-        fail ArgumentError, 'invalid value for "administrative_area", the character length must be smaller than or equal to 3.'
+    # @param [Object] url Value to be assigned
+    def url=(url)
+      if !url.nil? && url.to_s.length > 255
+        fail ArgumentError, 'invalid value for "url", the character length must be smaller than or equal to 255.'
       end
 
-      @administrative_area = administrative_area
+      @url = url
     end
 
     # Checks equality by comparing each attribute.
@@ -237,7 +231,8 @@ module CyberSource
           locality == o.locality &&
           country == o.country &&
           postal_code == o.postal_code &&
-          administrative_area == o.administrative_area
+          administrative_area == o.administrative_area &&
+          url == o.url
     end
 
     # @see the `==` method
@@ -249,7 +244,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name, alternate_name, contact, address1, locality, country, postal_code, administrative_area].hash
+      [name, alternate_name, contact, address1, locality, country, postal_code, administrative_area, url].hash
     end
 
     # Builds the object from hash

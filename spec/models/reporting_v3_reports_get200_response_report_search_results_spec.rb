@@ -32,6 +32,12 @@ describe 'ReportingV3ReportsGet200ResponseReportSearchResults' do
       expect(@instance).to be_instance_of(CyberSource::ReportingV3ReportsGet200ResponseReportSearchResults)
     end
   end
+  describe 'test attribute "_link"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "report_definition_id"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

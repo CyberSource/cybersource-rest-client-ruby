@@ -311,5 +311,84 @@ module CyberSource
 	  end
       return data, status_code, headers
     end
+    # Create a Standard or Classic subscription
+    # Create or update an already existing classic or standard subscription. 
+    # @param predefined_subscription_request_bean Report subscription request payload
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :organization_id Valid Cybersource Organization Id
+    # @return [nil]
+    def reporting_v3_predefined_report_subscriptions_put(predefined_subscription_request_bean, opts = {})
+      data, status_code, headers = reporting_v3_predefined_report_subscriptions_put_with_http_info(predefined_subscription_request_bean, opts)
+      return data, status_code, headers
+    end
+
+    # Create a Standard or Classic subscription
+    # Create or update an already existing classic or standard subscription. 
+    # @param predefined_subscription_request_bean Report subscription request payload
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :organization_id Valid Cybersource Organization Id
+    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
+    def reporting_v3_predefined_report_subscriptions_put_with_http_info(predefined_subscription_request_bean, opts = {})
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: ReportSubscriptionsApi.reporting_v3_predefined_report_subscriptions_put ...'
+			rescue
+				puts 'Cannot write to log'
+			end
+      end
+      # verify the required parameter 'predefined_subscription_request_bean' is set
+      if @api_client.config.client_side_validation && predefined_subscription_request_bean.nil?
+        fail ArgumentError, "Missing the required parameter 'predefined_subscription_request_bean' when calling ReportSubscriptionsApi.reporting_v3_predefined_report_subscriptions_put"
+      end
+      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length > 32
+        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportSubscriptionsApi.reporting_v3_predefined_report_subscriptions_put, the character length must be smaller than or equal to 32.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length < 1
+        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportSubscriptionsApi.reporting_v3_predefined_report_subscriptions_put, the character length must be great than or equal to 1.'
+      end
+
+      #if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
+        #fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling ReportSubscriptionsApi.reporting_v3_predefined_report_subscriptions_put, must conform to the pattern /[a-zA-Z0-9-_]+/."
+      #end
+
+      # resource path
+      local_var_path = 'reporting/v3/predefined-report-subscriptions'
+
+      # query parameters
+      query_params = {}
+      query_params[:'organizationId'] = opts[:'organization_id'] if !opts[:'organization_id'].nil?
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(predefined_subscription_request_bean)
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:PUT, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names)
+      if @api_client.config.debugging
+		begin
+		raise
+			@api_client.config.logger.debug "API called: ReportSubscriptionsApi#reporting_v3_predefined_report_subscriptions_put\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
+      return data, status_code, headers
+    end
   end
 end

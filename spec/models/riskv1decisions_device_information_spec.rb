@@ -44,6 +44,12 @@ describe 'Riskv1decisionsDeviceInformation' do
     end
   end
 
+  describe 'test attribute "network_ip_address"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "host_name"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
