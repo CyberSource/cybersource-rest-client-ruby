@@ -23,7 +23,7 @@ REM to rename long file name
 
 powershell -Command " rename-item -Path ..\lib\cybersource_rest_client\models\ptsv2payments_processing_information_authorization_options_initiator_merchant_initiated_transaction.rb  -newname ptsv2payments_merchant_initiated_transaction.rb"
 
-powershell -Command " rename-item -Path ..\lib\cybersource_rest_client\models\risk_v1_authentication_exemptions_post201_response_consumer_authentication_information_strong_authentication.rb  -newname risk_v1_authentication_exemptions_consumer_authentication_information_strong_authentication"
+powershell -Command " rename-item -Path ..\lib\cybersource_rest_client\models\risk_v1_authentication_exemptions_post201_response_consumer_authentication_information_strong_authentication.rb  -newname risk_v1_authentication_exemptions_consumer_authentication_information_strong_authentication.rb"
 
 powershell -Command " rename-item -Path ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_payment_instruments_get200_response__embedded__embedded_instrument_identifier.rb  -newname tms_v1_instrument_identifiers_payment_instruments_embedded_instrument_identifier.rb"
 
