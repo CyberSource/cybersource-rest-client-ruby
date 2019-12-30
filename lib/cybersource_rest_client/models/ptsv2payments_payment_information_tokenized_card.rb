@@ -32,7 +32,7 @@ module CyberSource
     # Value that identifies your business and indicates that the cardholder’s account number is tokenized. This value is assigned by the token service provider and is unique within the token service provider’s database.  **Note** This field is supported only for **CyberSource through VisaNet** and **FDC Nashville Global**. 
     attr_accessor :requestor_id
 
-    # Type of transaction that provided the token data. This value does not specify the token service provider; it specifies the entity that provided you with information about the token.  Set the value for this field to 1. An application on the customer’s mobile device provided the token data. 
+    # Type of transaction that provided the token data. This value does not specify the token service provider; it specifies the entity that provided you with information about the token.  Set the value for this field to 1. An application on the customer’s mobile device provided the token data.
     attr_accessor :transaction_type
 
     # Confidence level of the tokenization. This value is assigned by the token service provider.  **Note** This field is supported only for **CyberSource through VisaNet** and **FDC Nashville Global**. 
@@ -129,7 +129,7 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@number.nil? && @number.to_s.length > 20
+      if !@number.nil? && @number.to_s.length > 32
         invalid_properties.push('invalid value for "number", the character length must be smaller than or equal to 20.')
       end
 
@@ -186,8 +186,8 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] number Value to be assigned
     def number=(number)
-      if !number.nil? && number.to_s.length > 20
-        fail ArgumentError, 'invalid value for "number", the character length must be smaller than or equal to 20.'
+      if !number.nil? && number.to_s.length > 32
+        fail ArgumentError, 'invalid value for "number", the character length must be smaller than or equal to 32.'
       end
 
       @number = number
