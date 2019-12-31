@@ -16,18 +16,20 @@ module CyberSource
   class GeneratePublicKeyRequest
     # How the card number should be encrypted in the subsequent Tokenize Card request. Possible values are RsaOaep256 or None (if using this value the card number must be in plain text when included in the Tokenize Card request). The Tokenize Card request uses a secure connection (TLS 1.2+) regardless of what encryption type is specified.
     attr_accessor :encryption_type
-
+    attr_accessor :target_origin
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'encryption_type' => :'encryptionType'
+        :'encryption_type' => :'encryptionType',
+        :'target_origin' => :'targetOrigin'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'encryption_type' => :'String'
+        :'encryption_type' => :'String',
+        :'target_origin' => :'String'
       }
     end
 
@@ -41,6 +43,10 @@ module CyberSource
 
       if attributes.has_key?(:'encryptionType')
         self.encryption_type = attributes[:'encryptionType']
+      end
+
+      if attributes.has_key?(:'targetOrigin')
+        self.encryption_type = attributes[:'targetOrigin']
       end
     end
 
@@ -67,7 +73,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          encryption_type == o.encryption_type
+        encryption_type == o.encryption_type
     end
 
     # @see the `==` method
