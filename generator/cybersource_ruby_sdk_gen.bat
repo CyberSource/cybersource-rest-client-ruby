@@ -55,6 +55,10 @@ powershell -Command " rename-item -Path ..\spec\models\ptsv2payments_processing_
 
 powershell -Command " rename-item -Path ..\spec\models\tms_v1_instrument_identifiers_post200_response_processing_information_authorization_options_initiator_merchant_initiated_transaction_spec.rb  -newname tmsv1instrumentidentifiers_merchant_initiated_transaction_spec.rb"
 
+powershell -Command " rename-item -Path ..\lib\cybersource_rest_client\models\risk_v1_address_verifications_post201_response_address_verification_information_standard_address_address1.rb  -newname risk_v1_address_verifications_post201_response_address1.rb"
+
+powershell -Command " rename-item -Path ..\lib\cybersource_rest_client\models\risk_v1_export_compliance_inquiries_post201_response_export_compliance_information_watch_list_matches.rb  -newname risk_v1_export_compliance_inquiries_post201_response_watch_list_matches.rb"
+
 powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-Object { $_ -replace 'cybersource_rest_client/models/ptsv2payments_processing_information_authorization_options_initiator_merchant_initiated_transaction', 'cybersource_rest_client/models/ptsv2payments_merchant_initiated_transaction' } | Set-Content ..\lib\cybersource_rest_client.rb"
 
 powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-Object { $_ -replace 'cybersource_rest_client/models/tms_v1_instrument_identifiers_post200_response_processing_information_authorization_options_initiator', 'cybersource_rest_client/models/tms_v1_instrument_identifiers_post200_response_authorization_options_initiator' } | Set-Content ..\lib\cybersource_rest_client.rb"
@@ -76,6 +80,10 @@ powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-O
 powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-Object { $_ -replace 'cybersource_rest_client/models/tms_v1_instrument_identifiers_payment_instruments_get200_response__embedded_payment_instruments', 'cybersource_rest_client/models/tms_v1_instrument_identifiers_payment_instruments_get200_response_payment_instruments' } | Set-Content ..\lib\cybersource_rest_client.rb"
 
 powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-Object { $_ -replace 'cybersource_rest_client/models/tms_v1_instrument_identifiers_payment_instruments_get200_response__embedded_processing_information', 'cybersource_rest_client/models/tms_v1_instrument_identifiers_payment_instruments_get200_response_processing_information' } | Set-Content ..\lib\cybersource_rest_client.rb"
+
+powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-Object { $_ -replace 'cybersource_rest_client/models/risk_v1_address_verifications_post201_response_address_verification_information_standard_address_address1', 'cybersource_rest_client/models/risk_v1_address_verifications_post201_response_address1' } | Set-Content ..\lib\cybersource_rest_client.rb"
+
+powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-Object { $_ -replace 'cybersource_rest_client/models/risk_v1_export_compliance_inquiries_post201_response_export_compliance_information_watch_list_matches', 'cybersource_rest_client/models/risk_v1_export_compliance_inquiries_post201_response_watch_list_matches' } | Set-Content ..\lib\cybersource_rest_client.rb"
 
 REM @echo off
 @setlocal enableextensions enabledelayedexpansion
