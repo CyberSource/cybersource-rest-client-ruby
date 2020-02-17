@@ -53,7 +53,7 @@ module CyberSource
         :'localization_key' => :'String',
         :'correlation_id' => :'String',
         :'detail' => :'String',
-        :'fields' => :'Array<InlineResponse400Fields>'
+        :'fields' => :'Array<InlineResponse4001Fields>'
       }
     end
 

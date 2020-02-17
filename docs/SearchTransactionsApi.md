@@ -4,14 +4,14 @@ All URIs are relative to *https://apitest.cybersource.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_search**](SearchTransactionsApi.md#create_search) | **POST** /tss/v2/searches | Create a search request
-[**get_search**](SearchTransactionsApi.md#get_search) | **GET** /tss/v2/searches/{searchId} | Get Search results
+[**create_search**](SearchTransactionsApi.md#create_search) | **POST** /tss/v2/searches | Create a Search Request
+[**get_search**](SearchTransactionsApi.md#get_search) | **GET** /tss/v2/searches/{searchId} | Get Search Results
 
 
 # **create_search**
 > TssV2TransactionsPost201Response create_search(create_search_request)
 
-Create a search request
+Create a Search Request
 
 Create a search request. 
 
@@ -26,7 +26,7 @@ create_search_request = CyberSource::CreateSearchRequest.new # CreateSearchReque
 
 
 begin
-  #Create a search request
+  #Create a Search Request
   result = api_instance.create_search(create_search_request)
   p result
 rescue CyberSource::ApiError => e
@@ -58,7 +58,7 @@ No authorization required
 # **get_search**
 > TssV2TransactionsPost201Response get_search(search_id)
 
-Get Search results
+Get Search Results
 
 Include the Search ID in the GET request to retrieve the search results.
 
@@ -73,7 +73,7 @@ search_id = "search_id_example" # String | Search ID.
 
 
 begin
-  #Get Search results
+  #Get Search Results
   result = api_instance.get_search(search_id)
   p result
 rescue CyberSource::ApiError => e

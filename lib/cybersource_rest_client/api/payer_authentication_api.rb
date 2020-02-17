@@ -20,7 +20,7 @@ module CyberSource
       @api_client = api_client
 	  @api_client.set_configuration(config)
     end
-    # Check payer auth enrollment
+    # Check Payer Auth Enrollment
     # This call verifies that the card is enrolled in a card authentication program.
     # @param check_payer_auth_enrollment_request 
     # @param [Hash] opts the optional parameters
@@ -30,7 +30,7 @@ module CyberSource
       return data, status_code, headers
     end
 
-    # Check payer auth enrollment
+    # Check Payer Auth Enrollment
     # This call verifies that the card is enrolled in a card authentication program.
     # @param check_payer_auth_enrollment_request 
     # @param [Hash] opts the optional parameters
@@ -85,22 +85,87 @@ module CyberSource
 	  end
       return data, status_code, headers
     end
-    # Validate authentication results
-    # This call retrieves and validates the authentication results from issuer and allows the merchant to proceed with processing the payment. 
-    # @param request 
+    # Setup Payer Auth
+    # A new service for Merchants to get reference_id for Digital Wallets to use in place of BIN number in Cardinal. Set up file while authenticating with Cardinal. This service should be called by Merchant when payment instrument chosen or changes. This service has to be called before enrollment check.
+    # @param payer_auth_setup_request 
     # @param [Hash] opts the optional parameters
-    # @return [RiskV1AuthenticationResultsPost201Response]
-    def validate_authentication_results(request, opts = {})
-      data, status_code, headers = validate_authentication_results_with_http_info(request, opts)
+    # @return [RiskV1AuthenticationSetupsPost201Response]
+    def payer_auth_setup(payer_auth_setup_request, opts = {})
+      data, status_code, headers = payer_auth_setup_with_http_info(payer_auth_setup_request, opts)
       return data, status_code, headers
     end
 
-    # Validate authentication results
+    # Setup Payer Auth
+    # A new service for Merchants to get reference_id for Digital Wallets to use in place of BIN number in Cardinal. Set up file while authenticating with Cardinal. This service should be called by Merchant when payment instrument chosen or changes. This service has to be called before enrollment check.
+    # @param payer_auth_setup_request 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(RiskV1AuthenticationSetupsPost201Response, Fixnum, Hash)>] RiskV1AuthenticationSetupsPost201Response data, response status code and response headers
+    def payer_auth_setup_with_http_info(payer_auth_setup_request, opts = {})
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: PayerAuthenticationApi.payer_auth_setup ...'
+			rescue
+				puts 'Cannot write to log'
+			end
+      end
+      # verify the required parameter 'payer_auth_setup_request' is set
+      if @api_client.config.client_side_validation && payer_auth_setup_request.nil?
+        fail ArgumentError, "Missing the required parameter 'payer_auth_setup_request' when calling PayerAuthenticationApi.payer_auth_setup"
+      end
+      # resource path
+      local_var_path = 'risk/v1/authentication-setups'
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(payer_auth_setup_request)
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'RiskV1AuthenticationSetupsPost201Response')
+      if @api_client.config.debugging
+		begin
+		raise
+			@api_client.config.logger.debug "API called: PayerAuthenticationApi#payer_auth_setup\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
+      return data, status_code, headers
+    end
+    # Validate Authentication Results
     # This call retrieves and validates the authentication results from issuer and allows the merchant to proceed with processing the payment. 
-    # @param request 
+    # @param validate_request 
+    # @param [Hash] opts the optional parameters
+    # @return [RiskV1AuthenticationResultsPost201Response]
+    def validate_authentication_results(validate_request, opts = {})
+      data, status_code, headers = validate_authentication_results_with_http_info(validate_request, opts)
+      return data, status_code, headers
+    end
+
+    # Validate Authentication Results
+    # This call retrieves and validates the authentication results from issuer and allows the merchant to proceed with processing the payment. 
+    # @param validate_request 
     # @param [Hash] opts the optional parameters
     # @return [Array<(RiskV1AuthenticationResultsPost201Response, Fixnum, Hash)>] RiskV1AuthenticationResultsPost201Response data, response status code and response headers
-    def validate_authentication_results_with_http_info(request, opts = {})
+    def validate_authentication_results_with_http_info(validate_request, opts = {})
       
 	  if @api_client.config.debugging
 	  	begin
@@ -110,9 +175,9 @@ module CyberSource
 				puts 'Cannot write to log'
 			end
       end
-      # verify the required parameter 'request' is set
-      if @api_client.config.client_side_validation && request.nil?
-        fail ArgumentError, "Missing the required parameter 'request' when calling PayerAuthenticationApi.validate_authentication_results"
+      # verify the required parameter 'validate_request' is set
+      if @api_client.config.client_side_validation && validate_request.nil?
+        fail ArgumentError, "Missing the required parameter 'validate_request' when calling PayerAuthenticationApi.validate_authentication_results"
       end
       # resource path
       local_var_path = 'risk/v1/authentication-results'
@@ -131,7 +196,7 @@ module CyberSource
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(request)
+      post_body = @api_client.object_to_http_body(validate_request)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,

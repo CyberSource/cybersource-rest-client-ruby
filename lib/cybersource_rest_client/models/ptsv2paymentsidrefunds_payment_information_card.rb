@@ -38,6 +38,12 @@ module CyberSource
     # Year of the start of the Maestro (UK Domestic) card validity period. Do not include the field, even with a blank value, if the card is not a Maestro (UK Domestic) card. `Format: YYYY`.  **Note** The start date is not required for Maestro (UK Domestic) transactions. 
     attr_accessor :start_year
 
+    # Flag that specifies the type of account associated with the card. The cardholder provides this information during the payment process.  This field is required in the following cases:   - Debit transactions on Cielo and Comercio Latino.   - Transactions with Brazilian-issued cards on CyberSource through VisaNet.   - Applicable only for CyberSource through VisaNet (CtV).      **Note** Combo cards in Brazil contain credit and debit functionality in a single card. Visa systems use a credit bank identification number (BIN) for this type of card. Using the BIN to determine whether a card is debit or credit can cause transactions with these cards to be processed incorrectly. CyberSource strongly recommends that you include this field for combo card transactions.  Possible values include the following.   - `CHECKING`: Checking account  - `CREDIT`: Credit card account  - `SAVING`: Saving account  - `LINE_OF_CREDIT`: Line of credit or credit portion of combo card  - `PREPAID`: Prepaid card account or prepaid portion of combo card  - `UNIVERSAL`: Universal account 
+    attr_accessor :source_account_type
+
+    # Type of account that is being used when the value for the override_payment_method field is line of credit (LI) or prepaid card (PP). Possible values for line of credit: - `AGRC`: Visa Agro Custeio - `AGRE`: Visa Agro Electron - `AGRI`: Visa Agro Investimento - `AGRO`: Visa Agro Possible values for prepaid card: - `VVA`: Visa Vale Alimentacao - `VVF`: Visa Vale Flex - `VVR`: Visa Vale Refeicao This field is supported only for combo card transactions in Brazil on CyberSource through VisaNet. The value for this field corresponds to the following data in the TC 33 capture file5: Record: CP07 TCR0, Position: 44-47, Field: Account Accessed 
+    attr_accessor :source_account_type_details
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -48,7 +54,9 @@ module CyberSource
         :'account_encoder_id' => :'accountEncoderId',
         :'issue_number' => :'issueNumber',
         :'start_month' => :'startMonth',
-        :'start_year' => :'startYear'
+        :'start_year' => :'startYear',
+        :'source_account_type' => :'sourceAccountType',
+        :'source_account_type_details' => :'sourceAccountTypeDetails'
       }
     end
 
@@ -62,7 +70,9 @@ module CyberSource
         :'account_encoder_id' => :'String',
         :'issue_number' => :'String',
         :'start_month' => :'String',
-        :'start_year' => :'String'
+        :'start_year' => :'String',
+        :'source_account_type' => :'String',
+        :'source_account_type_details' => :'String'
       }
     end
 
@@ -105,6 +115,14 @@ module CyberSource
       if attributes.has_key?(:'startYear')
         self.start_year = attributes[:'startYear']
       end
+
+      if attributes.has_key?(:'sourceAccountType')
+        self.source_account_type = attributes[:'sourceAccountType']
+      end
+
+      if attributes.has_key?(:'sourceAccountTypeDetails')
+        self.source_account_type_details = attributes[:'sourceAccountTypeDetails']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -139,6 +157,14 @@ module CyberSource
         invalid_properties.push('invalid value for "start_year", the character length must be smaller than or equal to 4.')
       end
 
+      if !@source_account_type.nil? && @source_account_type.to_s.length > 20
+        invalid_properties.push('invalid value for "source_account_type", the character length must be smaller than or equal to 20.')
+      end
+
+      if !@source_account_type_details.nil? && @source_account_type_details.to_s.length > 4
+        invalid_properties.push('invalid value for "source_account_type_details", the character length must be smaller than or equal to 4.')
+      end
+
       invalid_properties
     end
 
@@ -152,6 +178,8 @@ module CyberSource
       return false if !@issue_number.nil? && @issue_number.to_s.length > 5
       return false if !@start_month.nil? && @start_month.to_s.length > 2
       return false if !@start_year.nil? && @start_year.to_s.length > 4
+      return false if !@source_account_type.nil? && @source_account_type.to_s.length > 20
+      return false if !@source_account_type_details.nil? && @source_account_type_details.to_s.length > 4
       true
     end
 
@@ -225,6 +253,26 @@ module CyberSource
       @start_year = start_year
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] source_account_type Value to be assigned
+    def source_account_type=(source_account_type)
+      if !source_account_type.nil? && source_account_type.to_s.length > 20
+        fail ArgumentError, 'invalid value for "source_account_type", the character length must be smaller than or equal to 20.'
+      end
+
+      @source_account_type = source_account_type
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] source_account_type_details Value to be assigned
+    def source_account_type_details=(source_account_type_details)
+      if !source_account_type_details.nil? && source_account_type_details.to_s.length > 4
+        fail ArgumentError, 'invalid value for "source_account_type_details", the character length must be smaller than or equal to 4.'
+      end
+
+      @source_account_type_details = source_account_type_details
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -237,7 +285,9 @@ module CyberSource
           account_encoder_id == o.account_encoder_id &&
           issue_number == o.issue_number &&
           start_month == o.start_month &&
-          start_year == o.start_year
+          start_year == o.start_year &&
+          source_account_type == o.source_account_type &&
+          source_account_type_details == o.source_account_type_details
     end
 
     # @see the `==` method
@@ -249,7 +299,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [number, expiration_month, expiration_year, type, account_encoder_id, issue_number, start_month, start_year].hash
+      [number, expiration_month, expiration_year, type, account_encoder_id, issue_number, start_month, start_year, source_account_type, source_account_type_details].hash
     end
 
     # Builds the object from hash

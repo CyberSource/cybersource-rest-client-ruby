@@ -46,11 +46,14 @@ module CyberSource
 
     attr_accessor :transaction_advice_addendum
 
-    # Code that identifies the value of the `referenceDataNumber` field.  For the possible values, see \"Reference Data Codes\" in [Level II and Level III Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Level_2_3_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm).  This field is a pass-through, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. 
+    # Code that identifies the value of the `referenceDataNumber` field.  For the possible values, see \"Reference Data Codes\" in [Level II and Level III Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Level_2_3_SCMP_API/html/).  This field is a pass-through, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. 
     attr_accessor :reference_data_code
 
     # Reference number. The meaning of this value is identified by the value of the `referenceDataCode` field.  This field is a pass-through, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. 
     attr_accessor :reference_data_number
+
+    # Transaction identifier that CyberSource generates. You have the option of printing the sales slip number on the receipt. This field is supported only on Cybersource through Visanet and JCN gateway. 
+    attr_accessor :sales_slip_number
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -67,7 +70,8 @@ module CyberSource
         :'merchandise_code' => :'merchandiseCode',
         :'transaction_advice_addendum' => :'transactionAdviceAddendum',
         :'reference_data_code' => :'referenceDataCode',
-        :'reference_data_number' => :'referenceDataNumber'
+        :'reference_data_number' => :'referenceDataNumber',
+        :'sales_slip_number' => :'salesSlipNumber'
       }
     end
 
@@ -86,7 +90,8 @@ module CyberSource
         :'merchandise_code' => :'Integer',
         :'transaction_advice_addendum' => :'Array<Ptsv2paymentsOrderInformationInvoiceDetailsTransactionAdviceAddendum>',
         :'reference_data_code' => :'String',
-        :'reference_data_number' => :'String'
+        :'reference_data_number' => :'String',
+        :'sales_slip_number' => :'Integer'
       }
     end
 
@@ -151,6 +156,10 @@ module CyberSource
       if attributes.has_key?(:'referenceDataNumber')
         self.reference_data_number = attributes[:'referenceDataNumber']
       end
+
+      if attributes.has_key?(:'salesSlipNumber')
+        self.sales_slip_number = attributes[:'salesSlipNumber']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -185,6 +194,10 @@ module CyberSource
         invalid_properties.push('invalid value for "reference_data_number", the character length must be smaller than or equal to 30.')
       end
 
+      if !@sales_slip_number.nil? && @sales_slip_number > 99999
+        invalid_properties.push('invalid value for "sales_slip_number", must be smaller than or equal to 99999.')
+      end
+
       invalid_properties
     end
 
@@ -198,6 +211,7 @@ module CyberSource
       return false if !@commodity_code.nil? && @commodity_code.to_s.length > 4
       return false if !@reference_data_code.nil? && @reference_data_code.to_s.length > 3
       return false if !@reference_data_number.nil? && @reference_data_number.to_s.length > 30
+      return false if !@sales_slip_number.nil? && @sales_slip_number > 99999
       true
     end
 
@@ -271,6 +285,16 @@ module CyberSource
       @reference_data_number = reference_data_number
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] sales_slip_number Value to be assigned
+    def sales_slip_number=(sales_slip_number)
+      if !sales_slip_number.nil? && sales_slip_number > 99999
+        fail ArgumentError, 'invalid value for "sales_slip_number", must be smaller than or equal to 99999.'
+      end
+
+      @sales_slip_number = sales_slip_number
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -288,7 +312,8 @@ module CyberSource
           merchandise_code == o.merchandise_code &&
           transaction_advice_addendum == o.transaction_advice_addendum &&
           reference_data_code == o.reference_data_code &&
-          reference_data_number == o.reference_data_number
+          reference_data_number == o.reference_data_number &&
+          sales_slip_number == o.sales_slip_number
     end
 
     # @see the `==` method
@@ -300,7 +325,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [invoice_number, barcode_number, expiration_date, purchase_order_number, purchase_order_date, purchase_contact_name, taxable, vat_invoice_reference_number, commodity_code, merchandise_code, transaction_advice_addendum, reference_data_code, reference_data_number].hash
+      [invoice_number, barcode_number, expiration_date, purchase_order_number, purchase_order_date, purchase_contact_name, taxable, vat_invoice_reference_number, commodity_code, merchandise_code, transaction_advice_addendum, reference_data_code, reference_data_number, sales_slip_number].hash
     end
 
     # Builds the object from hash

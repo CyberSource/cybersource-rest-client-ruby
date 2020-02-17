@@ -20,7 +20,7 @@ module CyberSource
       @api_client = api_client
 	  @api_client.set_configuration(config)
     end
-    # Create a search request
+    # Create a Search Request
     # Create a search request. 
     # @param create_search_request 
     # @param [Hash] opts the optional parameters
@@ -30,7 +30,7 @@ module CyberSource
       return data, status_code, headers
     end
 
-    # Create a search request
+    # Create a Search Request
     # Create a search request. 
     # @param create_search_request 
     # @param [Hash] opts the optional parameters
@@ -85,7 +85,7 @@ module CyberSource
 	  end
       return data, status_code, headers
     end
-    # Get Search results
+    # Get Search Results
     # Include the Search ID in the GET request to retrieve the search results.
     # @param search_id Search ID.
     # @param [Hash] opts the optional parameters
@@ -95,7 +95,7 @@ module CyberSource
       return data, status_code, headers
     end
 
-    # Get Search results
+    # Get Search Results
     # Include the Search ID in the GET request to retrieve the search results.
     # @param search_id Search ID.
     # @param [Hash] opts the optional parameters

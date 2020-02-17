@@ -19,14 +19,11 @@ module CyberSource
     # Specifies one of the following types of events: - login - account_creation - account_update For regular payment transactions, do not send this field. 
     attr_accessor :event_type
 
-    attr_accessor :marking_details
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'profile' => :'profile',
-        :'event_type' => :'eventType',
-        :'marking_details' => :'markingDetails'
+        :'event_type' => :'eventType'
       }
     end
 
@@ -34,8 +31,7 @@ module CyberSource
     def self.swagger_types
       {
         :'profile' => :'Riskv1decisionsRiskInformationProfile',
-        :'event_type' => :'String',
-        :'marking_details' => :'Riskv1decisionsRiskInformationMarkingDetails'
+        :'event_type' => :'String'
       }
     end
 
@@ -53,10 +49,6 @@ module CyberSource
 
       if attributes.has_key?(:'eventType')
         self.event_type = attributes[:'eventType']
-      end
-
-      if attributes.has_key?(:'markingDetails')
-        self.marking_details = attributes[:'markingDetails']
       end
     end
 
@@ -94,8 +86,7 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           profile == o.profile &&
-          event_type == o.event_type &&
-          marking_details == o.marking_details
+          event_type == o.event_type
     end
 
     # @see the `==` method
@@ -107,7 +98,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [profile, event_type, marking_details].hash
+      [profile, event_type].hash
     end
 
     # Builds the object from hash

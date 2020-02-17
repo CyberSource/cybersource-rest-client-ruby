@@ -3,9 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**_self** | [**TmsV1InstrumentIdentifiersPost200ResponseLinksSelf**](TmsV1InstrumentIdentifiersPost200ResponseLinksSelf.md) |  | [optional] 
-**payment_instruments** | [**TmsV1InstrumentIdentifiersPost200ResponseLinksPaymentInstruments**](TmsV1InstrumentIdentifiersPost200ResponseLinksPaymentInstruments.md) |  | [optional] 
-**ancestor** | [**TmsV1InstrumentIdentifiersPost200ResponseLinksSelf**](TmsV1InstrumentIdentifiersPost200ResponseLinksSelf.md) |  | [optional] 
-**successor** | [**TmsV1InstrumentIdentifiersPost200ResponseLinksSelf**](TmsV1InstrumentIdentifiersPost200ResponseLinksSelf.md) |  | [optional] 
+**_self** | [**InlineResponseDefaultLinksNext**](InlineResponseDefaultLinksNext.md) |  | [optional] 
+**documentation** | [**Array&lt;InlineResponseDefaultLinksNext&gt;**](InlineResponseDefaultLinksNext.md) |  | [optional] 
+**_next** | [**Array&lt;InlineResponseDefaultLinksNext&gt;**](InlineResponseDefaultLinksNext.md) |  | [optional] 
 
 

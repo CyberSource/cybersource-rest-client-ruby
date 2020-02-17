@@ -44,4 +44,17 @@ describe 'PaymentsApi' do
     end
   end
 
+  # unit tests for increment_auth
+  # Increment an Authorization
+  # Use this service to authorize additional charges in a lodging or autorental transaction. Include the ID returned from the original authorization in the PATCH request to add additional charges to that authorization. 
+  # @param id The ID returned from the original authorization request.
+  # @param increment_auth_request 
+  # @param [Hash] opts the optional parameters
+  # @return [PtsV2IncrementalAuthorizationPatch201Response]
+  describe 'increment_auth test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

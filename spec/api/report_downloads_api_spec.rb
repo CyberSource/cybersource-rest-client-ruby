@@ -33,7 +33,7 @@ describe 'ReportDownloadsApi' do
   end
 
   # unit tests for download_report
-  # Download a report
+  # Download a Report
   # Download a report using the unique report name and date. 
   # @param report_date Valid date on which to download the report in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example date format:**   - yyyy-MM-dd 
   # @param report_name Name of the report to download

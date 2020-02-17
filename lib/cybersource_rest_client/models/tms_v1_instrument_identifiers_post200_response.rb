@@ -27,6 +27,8 @@ module CyberSource
 
     attr_accessor :card
 
+    attr_accessor :tokenized_card
+
     attr_accessor :issuer
 
     attr_accessor :bank_account
@@ -43,6 +45,7 @@ module CyberSource
         :'object' => :'object',
         :'state' => :'state',
         :'card' => :'card',
+        :'tokenized_card' => :'tokenizedCard',
         :'issuer' => :'issuer',
         :'bank_account' => :'bankAccount',
         :'processing_information' => :'processingInformation',
@@ -58,6 +61,7 @@ module CyberSource
         :'object' => :'String',
         :'state' => :'String',
         :'card' => :'TmsV1InstrumentIdentifiersPost200ResponseCard',
+        :'tokenized_card' => :'TmsV1InstrumentIdentifiersPost200ResponseTokenizedCard',
         :'issuer' => :'TmsV1InstrumentIdentifiersPost200ResponseIssuer',
         :'bank_account' => :'Tmsv1instrumentidentifiersBankAccount',
         :'processing_information' => :'TmsV1InstrumentIdentifiersPost200ResponseProcessingInformation',
@@ -91,6 +95,10 @@ module CyberSource
 
       if attributes.has_key?(:'card')
         self.card = attributes[:'card']
+      end
+
+      if attributes.has_key?(:'tokenizedCard')
+        self.tokenized_card = attributes[:'tokenizedCard']
       end
 
       if attributes.has_key?(:'issuer')
@@ -133,6 +141,7 @@ module CyberSource
           object == o.object &&
           state == o.state &&
           card == o.card &&
+          tokenized_card == o.tokenized_card &&
           issuer == o.issuer &&
           bank_account == o.bank_account &&
           processing_information == o.processing_information &&
@@ -148,7 +157,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, object, state, card, issuer, bank_account, processing_information, metadata].hash
+      [_links, id, object, state, card, tokenized_card, issuer, bank_account, processing_information, metadata].hash
     end
 
     # Builds the object from hash

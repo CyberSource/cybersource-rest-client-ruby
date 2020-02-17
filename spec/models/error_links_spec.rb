@@ -32,7 +32,7 @@ describe 'ErrorLinks' do
       expect(@instance).to be_instance_of(CyberSource::ErrorLinks)
     end
   end
-  describe 'test attribute "_next"' do
+  describe 'test attribute "_self"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -44,7 +44,7 @@ describe 'ErrorLinks' do
     end
   end
 
-  describe 'test attribute "_self"' do
+  describe 'test attribute "_next"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

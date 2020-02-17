@@ -14,10 +14,10 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsClientReferenceInformation
-    # Client-generated order reference or tracking number. CyberSource recommends that you send a unique value for each transaction so that you can perform meaningful searches for the transaction.  For information about tracking orders, see \"Tracking and Reconciling Your Orders\" in [Getting Started with CyberSource Advanced for the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Getting_Started_SCMP/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  #### FDC Nashville Global Certain circumstances can cause the processor to truncate this value to 15 or 17 characters for Level II and Level III processing, which can cause a discrepancy between the value you submit and the value included in some processor reports. 
+    # Client-generated order reference or tracking number. CyberSource recommends that you send a unique value for each transaction so that you can perform meaningful searches for the transaction.  For information about tracking orders, see \"Tracking and Reconciling Your Orders\" in [Getting Started with CyberSource Advanced for the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Getting_Started_SCMP/html/)  #### FDC Nashville Global Certain circumstances can cause the processor to truncate this value to 15 or 17 characters for Level II and Level III processing, which can cause a discrepancy between the value you submit and the value included in some processor reports. 
     attr_accessor :code
 
-    # Identifier that you assign to the transaction.  **Note** Use this field only if you want to support merchant-initiated reversal and void operations.  For details, see \"Merchant-Initiated Reversals and Voids\" in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
+    # Identifier that you assign to the transaction.  **Note** Use this field only if you want to support merchant-initiated reversal and void operations.  For details, see \"Merchant-Initiated Reversals and Voids\" in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
     attr_accessor :transaction_id
 
     # Comments
@@ -78,6 +78,10 @@ module CyberSource
         invalid_properties.push('invalid value for "code", the character length must be smaller than or equal to 50.')
       end
 
+      if !@transaction_id.nil? && @transaction_id.to_s.length > 30
+        invalid_properties.push('invalid value for "transaction_id", the character length must be smaller than or equal to 30.')
+      end
+
       invalid_properties
     end
 
@@ -85,6 +89,7 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if !@code.nil? && @code.to_s.length > 50
+      return false if !@transaction_id.nil? && @transaction_id.to_s.length > 30
       true
     end
 
@@ -96,6 +101,16 @@ module CyberSource
       end
 
       @code = code
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] transaction_id Value to be assigned
+    def transaction_id=(transaction_id)
+      if !transaction_id.nil? && transaction_id.to_s.length > 30
+        fail ArgumentError, 'invalid value for "transaction_id", the character length must be smaller than or equal to 30.'
+      end
+
+      @transaction_id = transaction_id
     end
 
     # Checks equality by comparing each attribute.

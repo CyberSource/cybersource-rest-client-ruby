@@ -17,17 +17,22 @@ module CyberSource
     # Indicates whether CyberSource sent the Level III information to the processor. The possible values are:  If your account is not enabled for Level III data or if you did not include the purchasing level field in your request, CyberSource does not include the Level III data in the request sent to the processor.  For processor-specific information, see the `bill_purchasing_level3_enabled` field description in [Level II and Level III Processing Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/Level_2_3_SCMP_API/html)  Possible values: - **true** - **false** 
     attr_accessor :level3_transmission_status
 
+    # Transaction identifier that CyberSource generates. You have the option of printing the sales slip number on the receipt. This field is supported only on Cybersource through Visanet and JCN gateway. 
+    attr_accessor :sales_slip_number
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'level3_transmission_status' => :'level3TransmissionStatus'
+        :'level3_transmission_status' => :'level3TransmissionStatus',
+        :'sales_slip_number' => :'salesSlipNumber'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'level3_transmission_status' => :'BOOLEAN'
+        :'level3_transmission_status' => :'BOOLEAN',
+        :'sales_slip_number' => :'Integer'
       }
     end
 
@@ -42,19 +47,38 @@ module CyberSource
       if attributes.has_key?(:'level3TransmissionStatus')
         self.level3_transmission_status = attributes[:'level3TransmissionStatus']
       end
+
+      if attributes.has_key?(:'salesSlipNumber')
+        self.sales_slip_number = attributes[:'salesSlipNumber']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if !@sales_slip_number.nil? && @sales_slip_number > 99999
+        invalid_properties.push('invalid value for "sales_slip_number", must be smaller than or equal to 99999.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if !@sales_slip_number.nil? && @sales_slip_number > 99999
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] sales_slip_number Value to be assigned
+    def sales_slip_number=(sales_slip_number)
+      if !sales_slip_number.nil? && sales_slip_number > 99999
+        fail ArgumentError, 'invalid value for "sales_slip_number", must be smaller than or equal to 99999.'
+      end
+
+      @sales_slip_number = sales_slip_number
     end
 
     # Checks equality by comparing each attribute.
@@ -62,7 +86,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          level3_transmission_status == o.level3_transmission_status
+          level3_transmission_status == o.level3_transmission_status &&
+          sales_slip_number == o.sales_slip_number
     end
 
     # @see the `==` method
@@ -74,7 +99,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [level3_transmission_status].hash
+      [level3_transmission_status, sales_slip_number].hash
     end
 
     # Builds the object from hash

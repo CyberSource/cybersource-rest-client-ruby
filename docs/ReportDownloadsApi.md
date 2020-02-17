@@ -4,13 +4,13 @@ All URIs are relative to *https://apitest.cybersource.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**download_report**](ReportDownloadsApi.md#download_report) | **GET** /reporting/v3/report-downloads | Download a report
+[**download_report**](ReportDownloadsApi.md#download_report) | **GET** /reporting/v3/report-downloads | Download a Report
 
 
 # **download_report**
 > download_report(report_date, report_name, opts)
 
-Download a report
+Download a Report
 
 Download a report using the unique report name and date. 
 
@@ -31,7 +31,7 @@ opts = {
 }
 
 begin
-  #Download a report
+  #Download a Report
   api_instance.download_report(report_date, report_name, opts)
 rescue CyberSource::ApiError => e
   puts "Exception when calling ReportDownloadsApi->download_report: #{e}"

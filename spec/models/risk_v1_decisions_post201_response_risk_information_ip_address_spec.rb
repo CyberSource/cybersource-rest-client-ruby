@@ -62,4 +62,16 @@ describe 'RiskV1DecisionsPost201ResponseRiskInformationIpAddress' do
     end
   end
 
+  describe 'test attribute "carrier"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "organization"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

@@ -16,13 +16,13 @@ module CyberSource
   class PtsV2CreditsPost201Response
     attr_accessor :_links
 
-    # An unique identification number assigned by CyberSource to identify the submitted request. It is also appended to the endpoint of the resource.
+    # An unique identification number assigned by CyberSource to identify the submitted request. It is also appended to the endpoint of the resource.  On incremental authorizations, this value with be the same as the identification number returned in the original authorization response. 
     attr_accessor :id
 
     # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` Example `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC. 
     attr_accessor :submit_time_utc
 
-    # The status of the submitted transaction.  Possible values:  - PENDING 
+    # The status of the submitted transaction.  Possible values:  - PENDING  - COMPLETED (as in the case of PIN Debit Full Financial Credit) 
     attr_accessor :status
 
     # The reconciliation id for the submitted transaction. This value is not returned for all processors. 
@@ -40,6 +40,8 @@ module CyberSource
 
     attr_accessor :order_information
 
+    attr_accessor :point_of_sale_information
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -53,7 +55,8 @@ module CyberSource
         :'processing_information' => :'processingInformation',
         :'processor_information' => :'processorInformation',
         :'payment_information' => :'paymentInformation',
-        :'order_information' => :'orderInformation'
+        :'order_information' => :'orderInformation',
+        :'point_of_sale_information' => :'pointOfSaleInformation'
       }
     end
 
@@ -70,7 +73,8 @@ module CyberSource
         :'processing_information' => :'PtsV2CreditsPost201ResponseProcessingInformation',
         :'processor_information' => :'PtsV2PaymentsRefundPost201ResponseProcessorInformation',
         :'payment_information' => :'PtsV2CreditsPost201ResponsePaymentInformation',
-        :'order_information' => :'PtsV2PaymentsRefundPost201ResponseOrderInformation'
+        :'order_information' => :'PtsV2PaymentsRefundPost201ResponseOrderInformation',
+        :'point_of_sale_information' => :'PtsV2PaymentsCapturesPost201ResponsePointOfSaleInformation'
       }
     end
 
@@ -124,6 +128,10 @@ module CyberSource
 
       if attributes.has_key?(:'orderInformation')
         self.order_information = attributes[:'orderInformation']
+      end
+
+      if attributes.has_key?(:'pointOfSaleInformation')
+        self.point_of_sale_information = attributes[:'pointOfSaleInformation']
       end
     end
 
@@ -185,7 +193,8 @@ module CyberSource
           processing_information == o.processing_information &&
           processor_information == o.processor_information &&
           payment_information == o.payment_information &&
-          order_information == o.order_information
+          order_information == o.order_information &&
+          point_of_sale_information == o.point_of_sale_information
     end
 
     # @see the `==` method
@@ -197,7 +206,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, submit_time_utc, status, reconciliation_id, client_reference_information, credit_amount_details, processing_information, processor_information, payment_information, order_information].hash
+      [_links, id, submit_time_utc, status, reconciliation_id, client_reference_information, credit_amount_details, processing_information, processor_information, payment_information, order_information, point_of_sale_information].hash
     end
 
     # Builds the object from hash

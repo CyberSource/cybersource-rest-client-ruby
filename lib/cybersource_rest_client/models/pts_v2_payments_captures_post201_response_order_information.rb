@@ -30,7 +30,7 @@ module CyberSource
     def self.swagger_types
       {
         :'amount_details' => :'PtsV2PaymentsCapturesPost201ResponseOrderInformationAmountDetails',
-        :'invoice_details' => :'PtsV2PaymentsPost201ResponseOrderInformationInvoiceDetails'
+        :'invoice_details' => :'PtsV2PaymentsCapturesPost201ResponseOrderInformationInvoiceDetails'
       }
     end
 

@@ -4,14 +4,14 @@ All URIs are relative to *https://apitest.cybersource.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_file**](SecureFileShareApi.md#get_file) | **GET** /sfs/v1/files/{fileId} | Download a file with file identifier
-[**get_file_detail**](SecureFileShareApi.md#get_file_detail) | **GET** /sfs/v1/file-details | Get list of files
+[**get_file**](SecureFileShareApi.md#get_file) | **GET** /sfs/v1/files/{fileId} | Download a File with File Identifier
+[**get_file_detail**](SecureFileShareApi.md#get_file_detail) | **GET** /sfs/v1/file-details | Get List of Files
 
 
 # **get_file**
 > get_file(file_id, opts)
 
-Download a file with file identifier
+Download a File with File Identifier
 
 Download a file for the given file identifier
 
@@ -29,7 +29,7 @@ opts = {
 }
 
 begin
-  #Download a file with file identifier
+  #Download a File with File Identifier
   api_instance.get_file(file_id, opts)
 rescue CyberSource::ApiError => e
   puts "Exception when calling SecureFileShareApi->get_file: #{e}"
@@ -61,7 +61,7 @@ No authorization required
 # **get_file_detail**
 > V1FileDetailsGet200Response get_file_detail(start_date, end_date, opts)
 
-Get list of files
+Get List of Files
 
 Get list of files and it's information of them available inside the report directory
 
@@ -81,7 +81,7 @@ opts = {
 }
 
 begin
-  #Get list of files
+  #Get List of Files
   result = api_instance.get_file_detail(start_date, end_date, opts)
   p result
 rescue CyberSource::ApiError => e

@@ -14,27 +14,27 @@ require 'date'
 
 module CyberSource
   class ErrorLinks
-    attr_accessor :_next
+    attr_accessor :_self
 
     attr_accessor :documentation
 
-    attr_accessor :_self
+    attr_accessor :_next
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'_next' => :'next',
+        :'_self' => :'self',
         :'documentation' => :'documentation',
-        :'_self' => :'self'
+        :'_next' => :'next'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'_next' => :'Array<InlineResponseDefaultLinksNext>',
+        :'_self' => :'InlineResponseDefaultLinksNext',
         :'documentation' => :'Array<InlineResponseDefaultLinksNext>',
-        :'_self' => :'InlineResponseDefaultLinksNext'
+        :'_next' => :'Array<InlineResponseDefaultLinksNext>'
       }
     end
 
@@ -46,10 +46,8 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'next')
-        if (value = attributes[:'next']).is_a?(Array)
-          self._next = value
-        end
+      if attributes.has_key?(:'self')
+        self._self = attributes[:'self']
       end
 
       if attributes.has_key?(:'documentation')
@@ -58,8 +56,10 @@ module CyberSource
         end
       end
 
-      if attributes.has_key?(:'self')
-        self._self = attributes[:'self']
+      if attributes.has_key?(:'next')
+        if (value = attributes[:'next']).is_a?(Array)
+          self._next = value
+        end
       end
     end
 
@@ -81,9 +81,9 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          _next == o._next &&
+          _self == o._self &&
           documentation == o.documentation &&
-          _self == o._self
+          _next == o._next
     end
 
     # @see the `==` method
@@ -95,7 +95,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_next, documentation, _self].hash
+      [_self, documentation, _next].hash
     end
 
     # Builds the object from hash

@@ -14,56 +14,90 @@ require 'date'
 
 module CyberSource
   class PtsV2PaymentsPost201ResponseInstallmentInformation
-    # Additional costs charged by the issuer to fund the installment payments.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  This field is supported only for Crediario installment payments in Brazil on **CyberSource through VisaNet**.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 128-139 - Field: Total Other Costs 
+    # Additional costs charged by the issuer to fund the installment payments.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  This field is supported only for Crediario installment payments in Brazil on **CyberSource through VisaNet**.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 128-139 - Field: Total Other Costs 
     attr_accessor :additional_costs
 
-    # Additional costs divided by the amount funded.  For example: - A value of 1.0 specifies 1%. - A value of 4.0 specifies 4%.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  This field is supported only for Crediario installment payments in Brazil on **CyberSource through VisaNet**.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 140-143 - Field: Percent of Total Other Costs 
+    # Additional costs divided by the amount funded.  For example: - A value of 1.0 specifies 1%. - A value of 4.0 specifies 4%.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  This field is supported only for Crediario installment payments in Brazil on **CyberSource through VisaNet**.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 140-143 - Field: Percent of Total Other Costs 
     attr_accessor :additional_costs_percentage
 
-    # Amount funded.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  This field is supported only for Crediario installment payments in Brazil on **CyberSource through VisaNet**.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 48-59 - Field: Total Amount Funded 
+    # Amount for the current installment payment.  This field is supported only for CyberSource through VisaNet.  For details, see `installment_amount` field description in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
+    attr_accessor :amount
+
+    # Amount funded.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  This field is supported only for Crediario installment payments in Brazil on **CyberSource through VisaNet**.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 48-59 - Field: Total Amount Funded 
     attr_accessor :amount_funded
 
-    # Amount requested divided by the amount funded.  For example: - A value of 90.0 specifies 90%. - A value of 93.7 specifies 93.7%.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  This field is supported only for Crediario installment payments in Brazil on **CyberSource through VisaNet**.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 60-63 - Field: Percent of Amount Requested 
+    # Amount requested divided by the amount funded.  For example: - A value of 90.0 specifies 90%. - A value of 93.7 specifies 93.7%.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  This field is supported only for Crediario installment payments in Brazil on **CyberSource through VisaNet**.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 60-63 - Field: Percent of Amount Requested 
     attr_accessor :amount_requested_percentage
 
-    # Annual cost of financing the installment payments.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  This field is supported only for Crediario installment payments in Brazil on **CyberSource through VisaNet**.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 158-164 - Field: Annual Total Cost of Financing 
+    # Annual cost of financing the installment payments.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  This field is supported only for Crediario installment payments in Brazil on **CyberSource through VisaNet**.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 158-164 - Field: Annual Total Cost of Financing 
     attr_accessor :annual_financing_cost
 
-    # Annual interest rate.  For example: - A value of 1.0 specifies 1%. - A value of 4.0 specifies 4%.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  This field is supported only for Crediario installment payments in Brazil on **CyberSource through VisaNet**.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 151-157 - Field: Annual Interest Rate 
+    # Annual interest rate.  For example: - A value of 1.0 specifies 1%. - A value of 4.0 specifies 4%.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  This field is supported only for Crediario installment payments in Brazil on **CyberSource through VisaNet**.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 151-157 - Field: Annual Interest Rate 
     attr_accessor :annual_interest_rate
 
-    # Expenses charged by the issuer to fund the installment payments.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  This field is supported only for Crediario installment payments in Brazil on **CyberSource through VisaNet**.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 64-75 - Field: Total Expenses 
+    # Expenses charged by the issuer to fund the installment payments.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  This field is supported only for Crediario installment payments in Brazil on **CyberSource through VisaNet**.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 64-75 - Field: Total Expenses 
     attr_accessor :expenses
 
-    # Expenses divided by the amount funded.  For example: - A value of 1.0 specifies 1%. - A value of 4.0 specifies 4%.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  This field is supported only for Crediario installment payments in Brazil on **CyberSource through VisaNet**.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 76-79 - Field: Percent of Total Expenses 
+    # Expenses divided by the amount funded.  For example: - A value of 1.0 specifies 1%. - A value of 4.0 specifies 4%.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  This field is supported only for Crediario installment payments in Brazil on **CyberSource through VisaNet**.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 76-79 - Field: Percent of Total Expenses 
     attr_accessor :expenses_percentage
 
-    # Fees charged by the issuer to fund the installment payments.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  This field is supported only for Crediario installment payments in Brazil on **CyberSource through VisaNet**.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 80-91 - Field: Total Fees 
+    # Fees charged by the issuer to fund the installment payments.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  This field is supported only for Crediario installment payments in Brazil on **CyberSource through VisaNet**.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 80-91 - Field: Total Fees 
     attr_accessor :fees
 
-    # Fees divided by the amount funded.  For example: - A value of 1.0 specifies 1%. - A value of 4.0 specifies 4%.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  This field is supported only for Crediario installment payments in Brazil on CyberSource through VisaNet.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 92-95 - Field: Percent of Total Fees 
+    # Fees divided by the amount funded.  For example: - A value of 1.0 specifies 1%. - A value of 4.0 specifies 4%.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  This field is supported only for Crediario installment payments in Brazil on CyberSource through VisaNet.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 92-95 - Field: Percent of Total Fees 
     attr_accessor :fees_percentage
 
-    # Insurance charged by the issuer to fund the installment payments.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  This field is supported only for Crediario installment payments in Brazil on **CyberSource through VisaNet**.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 112-123 - Field: Total Insurance 
+    # Frequency of the installment payments. When you do not include this field in a request for a Crediario installment payment, CyberSource sends a space character to the processor.  For details, see `installment_frequency` field description in the [Credit Card Services Using the SCMP API Guide](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  This field is supported only for CyberSource through VisaNet. Possible values: - `B`: Biweekly - `M`: Monthly - `W`: Weekly  For Crediario installment payments, the value for this field corresponds to the following data in the TC 33 capture file5: - Record: CP01 TCR9 - Position: 41 - Field: Installment Frequency  For details, see \"Installment Payments\" in the [Credit Card Services Using the SCMP API Guide](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
+    attr_accessor :frequency
+
+    # Insurance charged by the issuer to fund the installment payments.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  This field is supported only for Crediario installment payments in Brazil on **CyberSource through VisaNet**.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 112-123 - Field: Total Insurance 
     attr_accessor :insurance
 
-    # Insurance costs divided by the amount funded.  For example: - A value of 1.0 specifies 1%. - A value of 4.0 specifies 4%.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  This field is supported only for Crediario installment payments in Brazil on **CyberSource through VisaNet**.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 124-127 - Field: Percent Of Total Insurance 
+    # Insurance costs divided by the amount funded.  For example: - A value of 1.0 specifies 1%. - A value of 4.0 specifies 4%.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  This field is supported only for Crediario installment payments in Brazil on **CyberSource through VisaNet**.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 124-127 - Field: Percent Of Total Insurance 
     attr_accessor :insurance_percentage
 
-    # Monthly interest rate.  For example: - A value of 1.0 specifies 1%. - A value of 4.0 specifies 4%.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  This field is supported only for Crediario installment payments in Brazil on **CyberSource through VisaNet**.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 144-150 - Field: Monthly Interest Rate 
+    # Invoice information that you want to provide to the issuer. This value is similar to a tracking number and is the same for all installment payments for one purchase.  This field is supported only for installment payments with Mastercard on CyberSource through VisaNet in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  The value for this field corresponds to the following data in the TC 33 capture file5: - Record: CP07 TCR4 - Position: 51-70 - Field: Purchase Identification 
+    attr_accessor :invoice_data
+
+    # Monthly interest rate.  For example: - A value of 1.0 specifies 1%. - A value of 4.0 specifies 4%.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  This field is supported only for Crediario installment payments in Brazil on **CyberSource through VisaNet**.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 144-150 - Field: Monthly Interest Rate 
     attr_accessor :monthly_interest_rate
 
-    # Taxes collected by the issuer to fund the installment payments.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  This field is supported only for Crediario installment payments in Brazil on **CyberSource through VisaNet**.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 96-107 - Field: Total Taxes 
+    # #### American Express Direct, Cielo, and CyberSource Latin American Processing Flag that indicates the type of funding for the installment plan associated with the payment.  Possible values: - `1`: Merchant-funded installment plan - `2`: Issuer-funded installment plan If you do not include this field in the request, CyberSource uses the value in your CyberSource account.  To change the value in your CyberSource account, contact CyberSource Customer Service. For details, see `installment_plan_type` field description in the [Credit Card Services Using the SCMP API Guide](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  #### CyberSource through VisaNet and American Express Defined code that indicates the type of installment plan for this transaction.  Contact American Express for: - Information about the kinds of installment plans that American Express provides - Values for this field  For installment payments with American Express in Brazil, the value for this field corresponds to the following data in the TC 33 capture file*: - Record: CP07 TCR3 - Position: 5-6 - Field: Plan Type  * The TC 33 Capture file contains information about the purchases and refunds that a merchant submits to CyberSource. CyberSource through VisaNet creates the TC 33 Capture file at the end of the day and sends it to the merchant’s acquirer, who uses this information to facilitate end-of-day clearing processing with payment card companies.  #### CyberSource through VisaNet with Visa or Mastercard Flag indicating the type of funding for the installment plan associated with the payment. Possible values: - 1 or 01: Merchant-funded installment plan - 2 or 02: Issuer-funded installment plan - 43: Crediario installment plan—only with Visa in Brazil For details, see \"Installment Payments on CyberSource through VisaNet\" in the [Credit Card Services Using the SCMP API Guide](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  For installment payments with Visa in Brazil, the value for this field corresponds to the following data in the TC 33 capture file5: - Record: CP07 TCR1 - Position: 5-6 - Field: Installment Type  For all other kinds of installment payments, the value for this field corresponds to the following data in the TC 33 capture file5: - Record: CP01 TCR5 - Position: 39-40 - Field: Installment Plan Type (Issuer or Merchant) 
+    attr_accessor :plan_type
+
+    # Installment number when making payments in installments. Used along with `totalCount` to track which payment is being processed.  For example, the second of 5 payments would be passed to CyberSource as `sequence` = 2 and `totalCount` = 5.  For details, see \"Installment Payments\" in the [Credit Card Services Using the SCMP API Guide](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  #### Chase Paymentech Solutions and FDC Compass This field is optional because this value is required in the merchant descriptors. For details, see \"Chase Paymentech Solutions Merchant Descriptors\" and \"FDC Compass Merchant Descriptors\" in the [Merchant Descriptors Using the SCMP API] (https://apps.cybersource.com/library/documentation/dev_guides/Merchant_Descriptors_SCMP_API/html/)  #### CyberSource through VisaNet When you do not include this field in a request for a Crediario installment payment, CyberSource sends a value of 0 to the processor.  For Crediario installment payments, the value for this field corresponds to the following data in the TC 33 capture file*: - Record: CP01 TCR9 - Position: 38-40 - Field: Installment Payment Number  * The TC 33 Capture file contains information about the purchases and refunds that a merchant submits to CyberSource. CyberSource through VisaNet creates the TC 33 Capture file at the end of the day and sends it to the merchant’s acquirer, who uses this information to facilitate end-of-day clearing processing with payment card companies. 
+    attr_accessor :sequence
+
+    # Taxes collected by the issuer to fund the installment payments.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  This field is supported only for Crediario installment payments in Brazil on **CyberSource through VisaNet**.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 96-107 - Field: Total Taxes 
     attr_accessor :taxes
 
-    # Taxes divided by the amount funded.  For example: - A value of 1.0 specifies 1%. - A value of 4.0 specifies 4%.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  This field is supported only for Crediario installment payments in Brazil on **CyberSource through VisaNet**.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 108-111 - Field: Percent of Total Taxes 
+    # Taxes divided by the amount funded.  For example: - A value of 1.0 specifies 1%. - A value of 4.0 specifies 4%.  This field is included in the authorization reply for the Crediario eligibility request when the issuer approves the cardholder's request for Crediario installment payments in Brazil.  For details, see \"Installment Payments on CyberSource through VisaNet\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  This field is supported only for Crediario installment payments in Brazil on **CyberSource through VisaNet**.  The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR9 - Position: 108-111 - Field: Percent of Total Taxes 
     attr_accessor :taxes_percentage
+
+    # Total amount of the loan that is being paid in installments. This field is supported only for CyberSource through VisaNet.  For details, see \"Installment Payments\" in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
+    attr_accessor :total_amount
+
+    # Total number of installments when making payments in installments.  For details, see \"Installment Payments\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  #### Chase Paymentech Solutions and FDC Compass This field is optional because this value is required in the merchant descriptors.  For details, see \"Chase Paymentech Solutions Merchant Descriptors\" and \"FDC Compass Merchant Descriptors\" in the [Merchant Descriptors Using the SCMP API.] (https://apps.cybersource.com/library/documentation/dev_guides/Merchant_Descriptors_SCMP_API/html/)  #### American Express Direct, Cielo, and Comercio Latino This value is the total number of installments you approved.  #### CyberSource Latin American Processing in Brazil This value is the total number of installments that you approved. The default is 1.  #### All Other Processors This value is used along with _sequence_ to track which payment is being processed.  For example, the second of 5 payments would be passed to CyberSource as _sequence_ = 2 and _totalCount_ = 5.  #### CyberSource through VisaNet For Crediario installment payments, the value for this field corresponds to the following data in the TC 33 capture file*: - Record: CP01 TCR9 - Position: 23-25 - Field: Number of Installments  For installment payments with American Express in Brazil, the value for this field corresponds to the following data in the TC 33 capture file*: - Record: CP07 TCR3 - Position: 7-8 - Field: Number of Installments  For installment payments with Visa in Brazil, the value for this field corresponds to the following data in the TC 33 capture file*: - Record: CP07 TCR1 - Position: 7-8 - Field: Number of Installments  For all other kinds of installment payments, the value for this field corresponds to the following data in the TC 33 capture file*: - Record: CP01 TCR5 - Position: 20-22 - Field: Installment Total Count  **Note** The TC 33 Capture file contains information about the purchases and refunds that a merchant submits to CyberSource. CyberSource through VisaNet creates the TC 33 Capture file at the end of the day and sends it to the merchant’s acquirer, who uses this information to facilitate end-of-day clearing processing with payment card companies. 
+    attr_accessor :total_count
+
+    # \"Minimum number of installments offered by the issuer for this purchase. The issuer provides this value when the first installment payment is successful. This field is supported for installment payments with Mastercard on CyberSource through VisaNet in all countries except Brazil, Croatia, Georgia, and Greece. The value for this field corresponds to the following data in the TC 33 capture file: - Record: CP01 TCR5 - Position: 75-76 - Field: Mastercard Minimum Number Of Installments 
+    attr_accessor :minimum_total_count
+
+    # Maximum number of installments offered by the issuer for this purchase. The issuer provides this value when the first installment payment is successful. This field is supported for installment payments with Mastercard on CyberSource through VisaNet in all countries except Brazil, Croatia, Georgia, and Greece. The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR5 - Position: 77-78 - Field: Mastercard Maximum Number Of Installments 
+    attr_accessor :maximum_total_count
+
+    # Amount of the first installment payment. The issuer provides this value when the first installment payment is successful. This field is supported for Mastercard installment payments on CyberSource through VisaNet in all countries except Brazil,Croatia, Georgia, and Greece. The value for this field corresponds to the following data in the TC 33 capture file: - Record: CP01 TCR5 - Position: 23-34 - Field: Amount of Each Installment 
+    attr_accessor :first_installment_amount
+
+    # Date of the first installment payment. Format: YYMMDD. When you do not include this field, CyberSource sends a string of six zeros (000000) to the processor. For details, see \"Installment Payments on CyberSource through VisaNet\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  This field is supported only for Crediario installment payments in Brazil on CyberSource through VisaNet.  The value for this field corresponds to the following data in the TC 33 capture file: - Record: CP01 TCR9 - Position: 42-47 - Field: Date of First Installment 
+    attr_accessor :first_installment_date
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'additional_costs' => :'additionalCosts',
         :'additional_costs_percentage' => :'additionalCostsPercentage',
+        :'amount' => :'amount',
         :'amount_funded' => :'amountFunded',
         :'amount_requested_percentage' => :'amountRequestedPercentage',
         :'annual_financing_cost' => :'annualFinancingCost',
@@ -72,11 +106,21 @@ module CyberSource
         :'expenses_percentage' => :'expensesPercentage',
         :'fees' => :'fees',
         :'fees_percentage' => :'feesPercentage',
+        :'frequency' => :'frequency',
         :'insurance' => :'insurance',
         :'insurance_percentage' => :'insurancePercentage',
+        :'invoice_data' => :'invoiceData',
         :'monthly_interest_rate' => :'monthlyInterestRate',
+        :'plan_type' => :'planType',
+        :'sequence' => :'sequence',
         :'taxes' => :'taxes',
-        :'taxes_percentage' => :'taxesPercentage'
+        :'taxes_percentage' => :'taxesPercentage',
+        :'total_amount' => :'totalAmount',
+        :'total_count' => :'totalCount',
+        :'minimum_total_count' => :'minimumTotalCount',
+        :'maximum_total_count' => :'maximumTotalCount',
+        :'first_installment_amount' => :'firstInstallmentAmount',
+        :'first_installment_date' => :'firstInstallmentDate'
       }
     end
 
@@ -85,6 +129,7 @@ module CyberSource
       {
         :'additional_costs' => :'String',
         :'additional_costs_percentage' => :'String',
+        :'amount' => :'String',
         :'amount_funded' => :'String',
         :'amount_requested_percentage' => :'String',
         :'annual_financing_cost' => :'String',
@@ -93,11 +138,21 @@ module CyberSource
         :'expenses_percentage' => :'String',
         :'fees' => :'String',
         :'fees_percentage' => :'String',
+        :'frequency' => :'String',
         :'insurance' => :'String',
         :'insurance_percentage' => :'String',
+        :'invoice_data' => :'String',
         :'monthly_interest_rate' => :'String',
+        :'plan_type' => :'String',
+        :'sequence' => :'Integer',
         :'taxes' => :'String',
-        :'taxes_percentage' => :'String'
+        :'taxes_percentage' => :'String',
+        :'total_amount' => :'String',
+        :'total_count' => :'Integer',
+        :'minimum_total_count' => :'String',
+        :'maximum_total_count' => :'String',
+        :'first_installment_amount' => :'String',
+        :'first_installment_date' => :'String'
       }
     end
 
@@ -115,6 +170,10 @@ module CyberSource
 
       if attributes.has_key?(:'additionalCostsPercentage')
         self.additional_costs_percentage = attributes[:'additionalCostsPercentage']
+      end
+
+      if attributes.has_key?(:'amount')
+        self.amount = attributes[:'amount']
       end
 
       if attributes.has_key?(:'amountFunded')
@@ -149,6 +208,10 @@ module CyberSource
         self.fees_percentage = attributes[:'feesPercentage']
       end
 
+      if attributes.has_key?(:'frequency')
+        self.frequency = attributes[:'frequency']
+      end
+
       if attributes.has_key?(:'insurance')
         self.insurance = attributes[:'insurance']
       end
@@ -157,8 +220,20 @@ module CyberSource
         self.insurance_percentage = attributes[:'insurancePercentage']
       end
 
+      if attributes.has_key?(:'invoiceData')
+        self.invoice_data = attributes[:'invoiceData']
+      end
+
       if attributes.has_key?(:'monthlyInterestRate')
         self.monthly_interest_rate = attributes[:'monthlyInterestRate']
+      end
+
+      if attributes.has_key?(:'planType')
+        self.plan_type = attributes[:'planType']
+      end
+
+      if attributes.has_key?(:'sequence')
+        self.sequence = attributes[:'sequence']
       end
 
       if attributes.has_key?(:'taxes')
@@ -167,6 +242,30 @@ module CyberSource
 
       if attributes.has_key?(:'taxesPercentage')
         self.taxes_percentage = attributes[:'taxesPercentage']
+      end
+
+      if attributes.has_key?(:'totalAmount')
+        self.total_amount = attributes[:'totalAmount']
+      end
+
+      if attributes.has_key?(:'totalCount')
+        self.total_count = attributes[:'totalCount']
+      end
+
+      if attributes.has_key?(:'minimumTotalCount')
+        self.minimum_total_count = attributes[:'minimumTotalCount']
+      end
+
+      if attributes.has_key?(:'maximumTotalCount')
+        self.maximum_total_count = attributes[:'maximumTotalCount']
+      end
+
+      if attributes.has_key?(:'firstInstallmentAmount')
+        self.first_installment_amount = attributes[:'firstInstallmentAmount']
+      end
+
+      if attributes.has_key?(:'firstInstallmentDate')
+        self.first_installment_date = attributes[:'firstInstallmentDate']
       end
     end
 
@@ -180,6 +279,10 @@ module CyberSource
 
       if !@additional_costs_percentage.nil? && @additional_costs_percentage.to_s.length > 4
         invalid_properties.push('invalid value for "additional_costs_percentage", the character length must be smaller than or equal to 4.')
+      end
+
+      if !@amount.nil? && @amount.to_s.length > 12
+        invalid_properties.push('invalid value for "amount", the character length must be smaller than or equal to 12.')
       end
 
       if !@amount_funded.nil? && @amount_funded.to_s.length > 12
@@ -214,6 +317,10 @@ module CyberSource
         invalid_properties.push('invalid value for "fees_percentage", the character length must be smaller than or equal to 4.')
       end
 
+      if !@frequency.nil? && @frequency.to_s.length > 1
+        invalid_properties.push('invalid value for "frequency", the character length must be smaller than or equal to 1.')
+      end
+
       if !@insurance.nil? && @insurance.to_s.length > 12
         invalid_properties.push('invalid value for "insurance", the character length must be smaller than or equal to 12.')
       end
@@ -222,8 +329,20 @@ module CyberSource
         invalid_properties.push('invalid value for "insurance_percentage", the character length must be smaller than or equal to 4.')
       end
 
+      if !@invoice_data.nil? && @invoice_data.to_s.length > 20
+        invalid_properties.push('invalid value for "invoice_data", the character length must be smaller than or equal to 20.')
+      end
+
       if !@monthly_interest_rate.nil? && @monthly_interest_rate.to_s.length > 7
         invalid_properties.push('invalid value for "monthly_interest_rate", the character length must be smaller than or equal to 7.')
+      end
+
+      if !@plan_type.nil? && @plan_type.to_s.length > 1
+        invalid_properties.push('invalid value for "plan_type", the character length must be smaller than or equal to 1.')
+      end
+
+      if !@sequence.nil? && @sequence > 99
+        invalid_properties.push('invalid value for "sequence", must be smaller than or equal to 99.')
       end
 
       if !@taxes.nil? && @taxes.to_s.length > 12
@@ -234,6 +353,22 @@ module CyberSource
         invalid_properties.push('invalid value for "taxes_percentage", the character length must be smaller than or equal to 4.')
       end
 
+      if !@total_amount.nil? && @total_amount.to_s.length > 12
+        invalid_properties.push('invalid value for "total_amount", the character length must be smaller than or equal to 12.')
+      end
+
+      if !@total_count.nil? && @total_count > 99
+        invalid_properties.push('invalid value for "total_count", must be smaller than or equal to 99.')
+      end
+
+      if !@first_installment_amount.nil? && @first_installment_amount.to_s.length > 13
+        invalid_properties.push('invalid value for "first_installment_amount", the character length must be smaller than or equal to 13.')
+      end
+
+      if !@first_installment_date.nil? && @first_installment_date.to_s.length > 6
+        invalid_properties.push('invalid value for "first_installment_date", the character length must be smaller than or equal to 6.')
+      end
+
       invalid_properties
     end
 
@@ -242,6 +377,7 @@ module CyberSource
     def valid?
       return false if !@additional_costs.nil? && @additional_costs.to_s.length > 12
       return false if !@additional_costs_percentage.nil? && @additional_costs_percentage.to_s.length > 4
+      return false if !@amount.nil? && @amount.to_s.length > 12
       return false if !@amount_funded.nil? && @amount_funded.to_s.length > 12
       return false if !@amount_requested_percentage.nil? && @amount_requested_percentage.to_s.length > 4
       return false if !@annual_financing_cost.nil? && @annual_financing_cost.to_s.length > 7
@@ -250,11 +386,19 @@ module CyberSource
       return false if !@expenses_percentage.nil? && @expenses_percentage.to_s.length > 4
       return false if !@fees.nil? && @fees.to_s.length > 12
       return false if !@fees_percentage.nil? && @fees_percentage.to_s.length > 4
+      return false if !@frequency.nil? && @frequency.to_s.length > 1
       return false if !@insurance.nil? && @insurance.to_s.length > 12
       return false if !@insurance_percentage.nil? && @insurance_percentage.to_s.length > 4
+      return false if !@invoice_data.nil? && @invoice_data.to_s.length > 20
       return false if !@monthly_interest_rate.nil? && @monthly_interest_rate.to_s.length > 7
+      return false if !@plan_type.nil? && @plan_type.to_s.length > 1
+      return false if !@sequence.nil? && @sequence > 99
       return false if !@taxes.nil? && @taxes.to_s.length > 12
       return false if !@taxes_percentage.nil? && @taxes_percentage.to_s.length > 4
+      return false if !@total_amount.nil? && @total_amount.to_s.length > 12
+      return false if !@total_count.nil? && @total_count > 99
+      return false if !@first_installment_amount.nil? && @first_installment_amount.to_s.length > 13
+      return false if !@first_installment_date.nil? && @first_installment_date.to_s.length > 6
       true
     end
 
@@ -276,6 +420,16 @@ module CyberSource
       end
 
       @additional_costs_percentage = additional_costs_percentage
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] amount Value to be assigned
+    def amount=(amount)
+      if !amount.nil? && amount.to_s.length > 12
+        fail ArgumentError, 'invalid value for "amount", the character length must be smaller than or equal to 12.'
+      end
+
+      @amount = amount
     end
 
     # Custom attribute writer method with validation
@@ -359,6 +513,16 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] frequency Value to be assigned
+    def frequency=(frequency)
+      if !frequency.nil? && frequency.to_s.length > 1
+        fail ArgumentError, 'invalid value for "frequency", the character length must be smaller than or equal to 1.'
+      end
+
+      @frequency = frequency
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] insurance Value to be assigned
     def insurance=(insurance)
       if !insurance.nil? && insurance.to_s.length > 12
@@ -379,6 +543,16 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] invoice_data Value to be assigned
+    def invoice_data=(invoice_data)
+      if !invoice_data.nil? && invoice_data.to_s.length > 20
+        fail ArgumentError, 'invalid value for "invoice_data", the character length must be smaller than or equal to 20.'
+      end
+
+      @invoice_data = invoice_data
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] monthly_interest_rate Value to be assigned
     def monthly_interest_rate=(monthly_interest_rate)
       if !monthly_interest_rate.nil? && monthly_interest_rate.to_s.length > 7
@@ -386,6 +560,26 @@ module CyberSource
       end
 
       @monthly_interest_rate = monthly_interest_rate
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] plan_type Value to be assigned
+    def plan_type=(plan_type)
+      if !plan_type.nil? && plan_type.to_s.length > 1
+        fail ArgumentError, 'invalid value for "plan_type", the character length must be smaller than or equal to 1.'
+      end
+
+      @plan_type = plan_type
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] sequence Value to be assigned
+    def sequence=(sequence)
+      if !sequence.nil? && sequence > 99
+        fail ArgumentError, 'invalid value for "sequence", must be smaller than or equal to 99.'
+      end
+
+      @sequence = sequence
     end
 
     # Custom attribute writer method with validation
@@ -408,6 +602,46 @@ module CyberSource
       @taxes_percentage = taxes_percentage
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] total_amount Value to be assigned
+    def total_amount=(total_amount)
+      if !total_amount.nil? && total_amount.to_s.length > 12
+        fail ArgumentError, 'invalid value for "total_amount", the character length must be smaller than or equal to 12.'
+      end
+
+      @total_amount = total_amount
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] total_count Value to be assigned
+    def total_count=(total_count)
+      if !total_count.nil? && total_count > 99
+        fail ArgumentError, 'invalid value for "total_count", must be smaller than or equal to 99.'
+      end
+
+      @total_count = total_count
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] first_installment_amount Value to be assigned
+    def first_installment_amount=(first_installment_amount)
+      if !first_installment_amount.nil? && first_installment_amount.to_s.length > 13
+        fail ArgumentError, 'invalid value for "first_installment_amount", the character length must be smaller than or equal to 13.'
+      end
+
+      @first_installment_amount = first_installment_amount
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] first_installment_date Value to be assigned
+    def first_installment_date=(first_installment_date)
+      if !first_installment_date.nil? && first_installment_date.to_s.length > 6
+        fail ArgumentError, 'invalid value for "first_installment_date", the character length must be smaller than or equal to 6.'
+      end
+
+      @first_installment_date = first_installment_date
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -415,6 +649,7 @@ module CyberSource
       self.class == o.class &&
           additional_costs == o.additional_costs &&
           additional_costs_percentage == o.additional_costs_percentage &&
+          amount == o.amount &&
           amount_funded == o.amount_funded &&
           amount_requested_percentage == o.amount_requested_percentage &&
           annual_financing_cost == o.annual_financing_cost &&
@@ -423,11 +658,21 @@ module CyberSource
           expenses_percentage == o.expenses_percentage &&
           fees == o.fees &&
           fees_percentage == o.fees_percentage &&
+          frequency == o.frequency &&
           insurance == o.insurance &&
           insurance_percentage == o.insurance_percentage &&
+          invoice_data == o.invoice_data &&
           monthly_interest_rate == o.monthly_interest_rate &&
+          plan_type == o.plan_type &&
+          sequence == o.sequence &&
           taxes == o.taxes &&
-          taxes_percentage == o.taxes_percentage
+          taxes_percentage == o.taxes_percentage &&
+          total_amount == o.total_amount &&
+          total_count == o.total_count &&
+          minimum_total_count == o.minimum_total_count &&
+          maximum_total_count == o.maximum_total_count &&
+          first_installment_amount == o.first_installment_amount &&
+          first_installment_date == o.first_installment_date
     end
 
     # @see the `==` method
@@ -439,7 +684,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [additional_costs, additional_costs_percentage, amount_funded, amount_requested_percentage, annual_financing_cost, annual_interest_rate, expenses, expenses_percentage, fees, fees_percentage, insurance, insurance_percentage, monthly_interest_rate, taxes, taxes_percentage].hash
+      [additional_costs, additional_costs_percentage, amount, amount_funded, amount_requested_percentage, annual_financing_cost, annual_interest_rate, expenses, expenses_percentage, fees, fees_percentage, frequency, insurance, insurance_percentage, invoice_data, monthly_interest_rate, plan_type, sequence, taxes, taxes_percentage, total_amount, total_count, minimum_total_count, maximum_total_count, first_installment_amount, first_installment_date].hash
     end
 
     # Builds the object from hash

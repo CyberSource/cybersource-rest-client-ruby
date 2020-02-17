@@ -80,4 +80,16 @@ describe 'Ptsv2paymentsidrefundsPaymentInformationCard' do
     end
   end
 
+  describe 'test attribute "source_account_type"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "source_account_type_details"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

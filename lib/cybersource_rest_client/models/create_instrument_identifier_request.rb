@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class CreateInstrumentIdentifierRequest
-    # Type of Card
+    # Enrol card for a Network Token
     attr_accessor :type
 
     attr_accessor :card

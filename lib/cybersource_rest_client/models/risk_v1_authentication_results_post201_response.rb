@@ -16,7 +16,7 @@ module CyberSource
   class RiskV1AuthenticationResultsPost201Response
     attr_accessor :_links
 
-    # An unique identification number assigned by CyberSource to identify the submitted request. It is also appended to the endpoint of the resource.
+    # An unique identification number assigned by CyberSource to identify the submitted request. It is also appended to the endpoint of the resource.  On incremental authorizations, this value with be the same as the identification number returned in the original authorization response. 
     attr_accessor :id
 
     # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` Example `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC. 
@@ -59,14 +59,14 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'_links' => :'PtsV2PaymentsReversalsPost201ResponseLinks',
+        :'_links' => :'PtsV2IncrementalAuthorizationPatch201ResponseLinks',
         :'id' => :'String',
         :'submit_time_utc' => :'String',
         :'submit_time_local' => :'String',
         :'status' => :'String',
         :'reason' => :'String',
         :'message' => :'String',
-        :'client_reference_information' => :'Ptsv2payoutsClientReferenceInformation',
+        :'client_reference_information' => :'PtsV2IncrementalAuthorizationPatch201ResponseClientReferenceInformation',
         :'consumer_authentication_information' => :'RiskV1AuthenticationResultsPost201ResponseConsumerAuthenticationInformation',
         :'error_information' => :'PtsV2PaymentsPost201ResponseErrorInformation'
       }

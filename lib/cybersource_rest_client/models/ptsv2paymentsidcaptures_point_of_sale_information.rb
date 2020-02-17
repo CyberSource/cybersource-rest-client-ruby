@@ -16,7 +16,7 @@ module CyberSource
   class Ptsv2paymentsidcapturesPointOfSaleInformation
     attr_accessor :emv
 
-    # Point-of-sale details for the transaction. This value is returned only for **American Express Direct**. CyberSource generates this value, which consists of a series of codes that identify terminal capability, security data, and specific conditions present at the time the transaction occurred. To comply with the CAPN requirements, this value must be included in all subsequent follow-on requests, such as captures and follow-on credits.  When you perform authorizations, captures, and credits through CyberSource, CyberSource passes this value from the authorization service to the subsequent services for you. However, when you perform authorizations through CyberSource and perform subsequent services through other financial institutions, you must ensure that your requests for captures and credits include this value.  For details, see `auth_pos_data` field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
+    # Point-of-sale details for the transaction. This value is returned only for **American Express Direct**. CyberSource generates this value, which consists of a series of codes that identify terminal capability, security data, and specific conditions present at the time the transaction occurred. To comply with the CAPN requirements, this value must be included in all subsequent follow-on requests, such as captures and follow-on credits.  When you perform authorizations, captures, and credits through CyberSource, CyberSource passes this value from the authorization service to the subsequent services for you. However, when you perform authorizations through CyberSource and perform subsequent services through other financial institutions, you must ensure that your requests for captures and credits include this value.  For details, see `auth_pos_data` field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
     attr_accessor :amex_capn_data
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -56,8 +56,8 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@amex_capn_data.nil? && @amex_capn_data.to_s.length > 12
-        invalid_properties.push('invalid value for "amex_capn_data", the character length must be smaller than or equal to 12.')
+      if !@amex_capn_data.nil? && @amex_capn_data.to_s.length > 15
+        invalid_properties.push('invalid value for "amex_capn_data", the character length must be smaller than or equal to 15.')
       end
 
       invalid_properties
@@ -66,15 +66,15 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@amex_capn_data.nil? && @amex_capn_data.to_s.length > 12
+      return false if !@amex_capn_data.nil? && @amex_capn_data.to_s.length > 15
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] amex_capn_data Value to be assigned
     def amex_capn_data=(amex_capn_data)
-      if !amex_capn_data.nil? && amex_capn_data.to_s.length > 12
-        fail ArgumentError, 'invalid value for "amex_capn_data", the character length must be smaller than or equal to 12.'
+      if !amex_capn_data.nil? && amex_capn_data.to_s.length > 15
+        fail ArgumentError, 'invalid value for "amex_capn_data", the character length must be smaller than or equal to 15.'
       end
 
       @amex_capn_data = amex_capn_data

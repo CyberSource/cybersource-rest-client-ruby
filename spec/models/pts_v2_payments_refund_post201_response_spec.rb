@@ -86,4 +86,10 @@ describe 'PtsV2PaymentsRefundPost201Response' do
     end
   end
 
+  describe 'test attribute "point_of_sale_information"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

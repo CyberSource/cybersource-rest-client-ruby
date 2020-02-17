@@ -26,6 +26,9 @@ module CyberSource
 
     attr_accessor :payment_type
 
+    # \"This tag contains a MesterCard defined code that provides information about the type of device used to initiate a non-card transaction. Valid values for this tag are: - 00 Card (default) - 01 Mobile network operator (MNO) controlled removal secure element (SIM or UICC) personalized for use with a mobile phone or smartphone> - 02 Key fob - 03  Watch - 04  Mobile tag - 05  Wristband - 06  Mobile phone case or sleeve - 07  Mobile phone or smartphone with a fixed, (non-removable), secure element controlled by the MNO, for example, code division multiple access (CDMA) - 08  Removable secure element not controlled by the MNO, for example, memory card personalized for use with a mobile phone or smartphone - 09 Mobile phonen or smartphone with a fixed, (non-removable), secure element not controlled by the MNO - 10 MNO controlled removable secure element (SIM or UICC) personalized for use with a tablet or e-book - 11 Tablet or e-book with a fixed, (non-removable), secure element controlled by the MNO - 12 Removable secure element not controlled by the MNO, for example, memory card personalized for use with a tablet or e-book - 13 Table or e-book with fixed, (non-removable) secure element not controlled by the MNO - 14 - 99 = (Reserved for future use) 
+    attr_accessor :initiation_channel
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -34,7 +37,8 @@ module CyberSource
         :'fluid_data' => :'fluidData',
         :'customer' => :'customer',
         :'bank' => :'bank',
-        :'payment_type' => :'paymentType'
+        :'payment_type' => :'paymentType',
+        :'initiation_channel' => :'initiationChannel'
       }
     end
 
@@ -46,7 +50,8 @@ module CyberSource
         :'fluid_data' => :'Ptsv2paymentsPaymentInformationFluidData',
         :'customer' => :'Ptsv2paymentsPaymentInformationCustomer',
         :'bank' => :'Ptsv2paymentsPaymentInformationBank',
-        :'payment_type' => :'Ptsv2paymentsPaymentInformationPaymentType'
+        :'payment_type' => :'Ptsv2paymentsPaymentInformationPaymentType',
+        :'initiation_channel' => :'String'
       }
     end
 
@@ -81,19 +86,38 @@ module CyberSource
       if attributes.has_key?(:'paymentType')
         self.payment_type = attributes[:'paymentType']
       end
+
+      if attributes.has_key?(:'initiationChannel')
+        self.initiation_channel = attributes[:'initiationChannel']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if !@initiation_channel.nil? && @initiation_channel.to_s.length > 2
+        invalid_properties.push('invalid value for "initiation_channel", the character length must be smaller than or equal to 2.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if !@initiation_channel.nil? && @initiation_channel.to_s.length > 2
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] initiation_channel Value to be assigned
+    def initiation_channel=(initiation_channel)
+      if !initiation_channel.nil? && initiation_channel.to_s.length > 2
+        fail ArgumentError, 'invalid value for "initiation_channel", the character length must be smaller than or equal to 2.'
+      end
+
+      @initiation_channel = initiation_channel
     end
 
     # Checks equality by comparing each attribute.
@@ -106,7 +130,8 @@ module CyberSource
           fluid_data == o.fluid_data &&
           customer == o.customer &&
           bank == o.bank &&
-          payment_type == o.payment_type
+          payment_type == o.payment_type &&
+          initiation_channel == o.initiation_channel
     end
 
     # @see the `==` method
@@ -118,7 +143,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card, tokenized_card, fluid_data, customer, bank, payment_type].hash
+      [card, tokenized_card, fluid_data, customer, bank, payment_type, initiation_channel].hash
     end
 
     # Builds the object from hash

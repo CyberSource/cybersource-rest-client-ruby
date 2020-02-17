@@ -33,7 +33,7 @@ describe 'PayerAuthenticationApi' do
   end
 
   # unit tests for check_payer_auth_enrollment
-  # Check payer auth enrollment
+  # Check Payer Auth Enrollment
   # This call verifies that the card is enrolled in a card authentication program.
   # @param check_payer_auth_enrollment_request 
   # @param [Hash] opts the optional parameters
@@ -44,10 +44,22 @@ describe 'PayerAuthenticationApi' do
     end
   end
 
+  # unit tests for payer_auth_setup
+  # Setup Payer Auth
+  # A new service for Merchants to get reference_id for Digital Wallets to use in place of BIN number in Cardinal. Set up file while authenticating with Cardinal. This service should be called by Merchant when payment instrument chosen or changes. This service has to be called before enrollment check.
+  # @param payer_auth_setup_request 
+  # @param [Hash] opts the optional parameters
+  # @return [RiskV1AuthenticationSetupsPost201Response]
+  describe 'payer_auth_setup test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for validate_authentication_results
-  # Validate authentication results
+  # Validate Authentication Results
   # This call retrieves and validates the authentication results from issuer and allows the merchant to proceed with processing the payment. 
-  # @param request 
+  # @param validate_request 
   # @param [Hash] opts the optional parameters
   # @return [RiskV1AuthenticationResultsPost201Response]
   describe 'validate_authentication_results test' do

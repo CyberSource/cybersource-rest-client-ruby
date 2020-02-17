@@ -16,14 +16,18 @@ module CyberSource
   class PtsV2PaymentsPost201ResponsePointOfSaleInformation
     attr_accessor :emv
 
-    # Point-of-sale details for the transaction. This value is returned only for **American Express Direct**. CyberSource generates this value, which consists of a series of codes that identify terminal capability, security data, and specific conditions present at the time the transaction occurred. To comply with the CAPN requirements, this value must be included in all subsequent follow-on requests, such as captures and follow-on credits.  When you perform authorizations, captures, and credits through CyberSource, CyberSource passes this value from the authorization service to the subsequent services for you. However, when you perform authorizations through CyberSource and perform subsequent services through other financial institutions, you must ensure that your requests for captures and credits include this value.  For details, see `auth_pos_data` field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
+    # Point-of-sale details for the transaction. This value is returned only for **American Express Direct**. CyberSource generates this value, which consists of a series of codes that identify terminal capability, security data, and specific conditions present at the time the transaction occurred. To comply with the CAPN requirements, this value must be included in all subsequent follow-on requests, such as captures and follow-on credits.  When you perform authorizations, captures, and credits through CyberSource, CyberSource passes this value from the authorization service to the subsequent services for you. However, when you perform authorizations through CyberSource and perform subsequent services through other financial institutions, you must ensure that your requests for captures and credits include this value.  For details, see `auth_pos_data` field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
     attr_accessor :amex_capn_data
+
+    # Identifier for the terminal at your retail location. You can define this value yourself, but consult the processor for requirements.  #### FDC Nashville Global To have your account configured to support this field, contact CyberSource Customer Support. This value must be a value that FDC Nashville Global issued to you.  For details, see the `terminal_id` field description in [Card-Present Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Retail_SCMP_API/html/)  **For Payouts**: This field is applicable for CtV. 
+    attr_accessor :terminal_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'emv' => :'emv',
-        :'amex_capn_data' => :'amexCapnData'
+        :'amex_capn_data' => :'amexCapnData',
+        :'terminal_id' => :'terminalId'
       }
     end
 
@@ -31,7 +35,8 @@ module CyberSource
     def self.swagger_types
       {
         :'emv' => :'PtsV2PaymentsPost201ResponsePointOfSaleInformationEmv',
-        :'amex_capn_data' => :'String'
+        :'amex_capn_data' => :'String',
+        :'terminal_id' => :'String'
       }
     end
 
@@ -50,14 +55,22 @@ module CyberSource
       if attributes.has_key?(:'amexCapnData')
         self.amex_capn_data = attributes[:'amexCapnData']
       end
+
+      if attributes.has_key?(:'terminalId')
+        self.terminal_id = attributes[:'terminalId']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@amex_capn_data.nil? && @amex_capn_data.to_s.length > 12
-        invalid_properties.push('invalid value for "amex_capn_data", the character length must be smaller than or equal to 12.')
+      if !@amex_capn_data.nil? && @amex_capn_data.to_s.length > 15
+        invalid_properties.push('invalid value for "amex_capn_data", the character length must be smaller than or equal to 15.')
+      end
+
+      if !@terminal_id.nil? && @terminal_id.to_s.length > 8
+        invalid_properties.push('invalid value for "terminal_id", the character length must be smaller than or equal to 8.')
       end
 
       invalid_properties
@@ -66,18 +79,29 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@amex_capn_data.nil? && @amex_capn_data.to_s.length > 12
+      return false if !@amex_capn_data.nil? && @amex_capn_data.to_s.length > 15
+      return false if !@terminal_id.nil? && @terminal_id.to_s.length > 8
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] amex_capn_data Value to be assigned
     def amex_capn_data=(amex_capn_data)
-      if !amex_capn_data.nil? && amex_capn_data.to_s.length > 12
-        fail ArgumentError, 'invalid value for "amex_capn_data", the character length must be smaller than or equal to 12.'
+      if !amex_capn_data.nil? && amex_capn_data.to_s.length > 15
+        fail ArgumentError, 'invalid value for "amex_capn_data", the character length must be smaller than or equal to 15.'
       end
 
       @amex_capn_data = amex_capn_data
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] terminal_id Value to be assigned
+    def terminal_id=(terminal_id)
+      if !terminal_id.nil? && terminal_id.to_s.length > 8
+        fail ArgumentError, 'invalid value for "terminal_id", the character length must be smaller than or equal to 8.'
+      end
+
+      @terminal_id = terminal_id
     end
 
     # Checks equality by comparing each attribute.
@@ -86,7 +110,8 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           emv == o.emv &&
-          amex_capn_data == o.amex_capn_data
+          amex_capn_data == o.amex_capn_data &&
+          terminal_id == o.terminal_id
     end
 
     # @see the `==` method
@@ -98,7 +123,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [emv, amex_capn_data].hash
+      [emv, amex_capn_data, terminal_id].hash
     end
 
     # Builds the object from hash
