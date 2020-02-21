@@ -29,8 +29,6 @@ module CyberSource
 
     attr_accessor :bill_to
 
-    attr_accessor :address
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -39,8 +37,7 @@ module CyberSource
         :'ship_to' => :'shipTo',
         :'returns_accepted' => :'returnsAccepted',
         :'line_items' => :'lineItems',
-        :'bill_to' => :'billTo',
-        :'address' => :'address'
+        :'bill_to' => :'billTo'
       }
     end
 
@@ -52,8 +49,7 @@ module CyberSource
         :'ship_to' => :'Riskv1decisionsOrderInformationShipTo',
         :'returns_accepted' => :'BOOLEAN',
         :'line_items' => :'Array<Riskv1decisionsOrderInformationLineItems>',
-        :'bill_to' => :'Riskv1decisionsOrderInformationBillTo',
-        :'address' => :'Riskv1decisionsOrderInformationAddress'
+        :'bill_to' => :'Riskv1decisionsOrderInformationBillTo'
       }
     end
 
@@ -90,10 +86,6 @@ module CyberSource
       if attributes.has_key?(:'billTo')
         self.bill_to = attributes[:'billTo']
       end
-
-      if attributes.has_key?(:'address')
-        self.address = attributes[:'address']
-      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -119,8 +111,7 @@ module CyberSource
           ship_to == o.ship_to &&
           returns_accepted == o.returns_accepted &&
           line_items == o.line_items &&
-          bill_to == o.bill_to &&
-          address == o.address
+          bill_to == o.bill_to
     end
 
     # @see the `==` method
@@ -132,7 +123,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [amount_details, shipping_details, ship_to, returns_accepted, line_items, bill_to, address].hash
+      [amount_details, shipping_details, ship_to, returns_accepted, line_items, bill_to].hash
     end
 
     # Builds the object from hash

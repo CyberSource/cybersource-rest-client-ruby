@@ -20,9 +20,6 @@ module CyberSource
     # IP address of the customer. 
     attr_accessor :ip_address
 
-    # Network IP address of the customer (for example, 10.1.27). A network IP address includes up to 256 IP addresses. 
-    attr_accessor :network_ip_address
-
     # DNS resolved hostname from `ipAddress`.
     attr_accessor :host_name
 
@@ -40,7 +37,6 @@ module CyberSource
       {
         :'cookies_accepted' => :'cookiesAccepted',
         :'ip_address' => :'ipAddress',
-        :'network_ip_address' => :'networkIpAddress',
         :'host_name' => :'hostName',
         :'fingerprint_session_id' => :'fingerprintSessionId',
         :'http_browser_email' => :'httpBrowserEmail',
@@ -53,7 +49,6 @@ module CyberSource
       {
         :'cookies_accepted' => :'String',
         :'ip_address' => :'String',
-        :'network_ip_address' => :'String',
         :'host_name' => :'String',
         :'fingerprint_session_id' => :'String',
         :'http_browser_email' => :'String',
@@ -75,10 +70,6 @@ module CyberSource
 
       if attributes.has_key?(:'ipAddress')
         self.ip_address = attributes[:'ipAddress']
-      end
-
-      if attributes.has_key?(:'networkIpAddress')
-        self.network_ip_address = attributes[:'networkIpAddress']
       end
 
       if attributes.has_key?(:'hostName')
@@ -106,10 +97,6 @@ module CyberSource
         invalid_properties.push('invalid value for "ip_address", the character length must be smaller than or equal to 48.')
       end
 
-      if !@network_ip_address.nil? && @network_ip_address.to_s.length > 11
-        invalid_properties.push('invalid value for "network_ip_address", the character length must be smaller than or equal to 11.')
-      end
-
       if !@host_name.nil? && @host_name.to_s.length > 60
         invalid_properties.push('invalid value for "host_name", the character length must be smaller than or equal to 60.')
       end
@@ -125,7 +112,6 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if !@ip_address.nil? && @ip_address.to_s.length > 48
-      return false if !@network_ip_address.nil? && @network_ip_address.to_s.length > 11
       return false if !@host_name.nil? && @host_name.to_s.length > 60
       return false if !@user_agent.nil? && @user_agent.to_s.length > 40
       true
@@ -139,16 +125,6 @@ module CyberSource
       end
 
       @ip_address = ip_address
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] network_ip_address Value to be assigned
-    def network_ip_address=(network_ip_address)
-      if !network_ip_address.nil? && network_ip_address.to_s.length > 11
-        fail ArgumentError, 'invalid value for "network_ip_address", the character length must be smaller than or equal to 11.'
-      end
-
-      @network_ip_address = network_ip_address
     end
 
     # Custom attribute writer method with validation
@@ -178,7 +154,6 @@ module CyberSource
       self.class == o.class &&
           cookies_accepted == o.cookies_accepted &&
           ip_address == o.ip_address &&
-          network_ip_address == o.network_ip_address &&
           host_name == o.host_name &&
           fingerprint_session_id == o.fingerprint_session_id &&
           http_browser_email == o.http_browser_email &&
@@ -194,7 +169,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [cookies_accepted, ip_address, network_ip_address, host_name, fingerprint_session_id, http_browser_email, user_agent].hash
+      [cookies_accepted, ip_address, host_name, fingerprint_session_id, http_browser_email, user_agent].hash
     end
 
     # Builds the object from hash

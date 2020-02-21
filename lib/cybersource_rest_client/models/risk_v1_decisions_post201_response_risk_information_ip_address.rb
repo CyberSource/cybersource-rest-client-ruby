@@ -30,6 +30,12 @@ module CyberSource
     # Routing method decoded from the IP address used directly or indirectly by the customer to send the order.  For all possible values, see the `score_ip_routing_method` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
     attr_accessor :routing_method
 
+    # Provides the name of the organization that owns the ASN. The carrier is responsible for the traffic carried on the network or set of networks designated as an Autonomous System (AS) and identified by the ASN. While there are more than 27,000 active ASNs, there are fewer carriers, because a single carrier often manages several ASNs. 
+    attr_accessor :carrier
+
+    # The Registering Organization is the entity responsible for the actions and content associated with a given block of IP addresses. This is in contrast to the carrier, which is responsible for the routing of traffic for network blocks. Registering Organizations include many types of entities, including corporate, government, or educational entities, and ISPs managing the allocation and use of network blocks. 
+    attr_accessor :organization
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -37,7 +43,9 @@ module CyberSource
         :'locality' => :'locality',
         :'country' => :'country',
         :'administrative_area' => :'administrativeArea',
-        :'routing_method' => :'routingMethod'
+        :'routing_method' => :'routingMethod',
+        :'carrier' => :'carrier',
+        :'organization' => :'organization'
       }
     end
 
@@ -48,7 +56,9 @@ module CyberSource
         :'locality' => :'String',
         :'country' => :'String',
         :'administrative_area' => :'String',
-        :'routing_method' => :'String'
+        :'routing_method' => :'String',
+        :'carrier' => :'String',
+        :'organization' => :'String'
       }
     end
 
@@ -79,6 +89,14 @@ module CyberSource
       if attributes.has_key?(:'routingMethod')
         self.routing_method = attributes[:'routingMethod']
       end
+
+      if attributes.has_key?(:'carrier')
+        self.carrier = attributes[:'carrier']
+      end
+
+      if attributes.has_key?(:'organization')
+        self.organization = attributes[:'organization']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -105,6 +123,14 @@ module CyberSource
         invalid_properties.push('invalid value for "routing_method", the character length must be smaller than or equal to 255.')
       end
 
+      if !@carrier.nil? && @carrier.to_s.length > 255
+        invalid_properties.push('invalid value for "carrier", the character length must be smaller than or equal to 255.')
+      end
+
+      if !@organization.nil? && @organization.to_s.length > 255
+        invalid_properties.push('invalid value for "organization", the character length must be smaller than or equal to 255.')
+      end
+
       invalid_properties
     end
 
@@ -116,6 +142,8 @@ module CyberSource
       return false if !@country.nil? && @country.to_s.length > 255
       return false if !@administrative_area.nil? && @administrative_area.to_s.length > 255
       return false if !@routing_method.nil? && @routing_method.to_s.length > 255
+      return false if !@carrier.nil? && @carrier.to_s.length > 255
+      return false if !@organization.nil? && @organization.to_s.length > 255
       true
     end
 
@@ -169,6 +197,26 @@ module CyberSource
       @routing_method = routing_method
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] carrier Value to be assigned
+    def carrier=(carrier)
+      if !carrier.nil? && carrier.to_s.length > 255
+        fail ArgumentError, 'invalid value for "carrier", the character length must be smaller than or equal to 255.'
+      end
+
+      @carrier = carrier
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] organization Value to be assigned
+    def organization=(organization)
+      if !organization.nil? && organization.to_s.length > 255
+        fail ArgumentError, 'invalid value for "organization", the character length must be smaller than or equal to 255.'
+      end
+
+      @organization = organization
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -178,7 +226,9 @@ module CyberSource
           locality == o.locality &&
           country == o.country &&
           administrative_area == o.administrative_area &&
-          routing_method == o.routing_method
+          routing_method == o.routing_method &&
+          carrier == o.carrier &&
+          organization == o.organization
     end
 
     # @see the `==` method
@@ -190,7 +240,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [anonymizer_status, locality, country, administrative_area, routing_method].hash
+      [anonymizer_status, locality, country, administrative_area, routing_method, carrier, organization].hash
     end
 
     # Builds the object from hash

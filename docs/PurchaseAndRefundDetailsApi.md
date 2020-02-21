@@ -4,13 +4,13 @@ All URIs are relative to *https://apitest.cybersource.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_purchase_and_refund_details**](PurchaseAndRefundDetailsApi.md#get_purchase_and_refund_details) | **GET** /reporting/v3/purchase-refund-details | Get Purchase and Refund details
+[**get_purchase_and_refund_details**](PurchaseAndRefundDetailsApi.md#get_purchase_and_refund_details) | **GET** /reporting/v3/purchase-refund-details | Get Purchase and Refund Details
 
 
 # **get_purchase_and_refund_details**
 > ReportingV3PurchaseRefundDetailsGet200Response get_purchase_and_refund_details(start_time, end_time, opts)
 
-Get Purchase and Refund details
+Get Purchase and Refund Details
 
 Download the Purchase and Refund Details report. This report report includes all purchases and refund transactions, as well as all activities related to transactions resulting in an adjustment to the net proceeds. 
 
@@ -35,7 +35,7 @@ opts = {
 }
 
 begin
-  #Get Purchase and Refund details
+  #Get Purchase and Refund Details
   result = api_instance.get_purchase_and_refund_details(start_time, end_time, opts)
   p result
 rescue CyberSource::ApiError => e

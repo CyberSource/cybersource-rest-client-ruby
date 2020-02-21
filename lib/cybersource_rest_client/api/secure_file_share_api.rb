@@ -20,7 +20,7 @@ module CyberSource
       @api_client = api_client
 	  @api_client.set_configuration(config)
     end
-    # Download a file with file identifier
+    # Download a File with File Identifier
     # Download a file for the given file identifier
     # @param file_id Unique identifier for each file
     # @param [Hash] opts the optional parameters
@@ -31,7 +31,7 @@ module CyberSource
       return data, status_code, headers
     end
 
-    # Download a file with file identifier
+    # Download a File with File Identifier
     # Download a file for the given file identifier
     # @param file_id Unique identifier for each file
     # @param [Hash] opts the optional parameters
@@ -99,7 +99,7 @@ module CyberSource
 	  end
       return data, status_code, headers
     end
-    # Get list of files
+    # Get List of Files
     # Get list of files and it's information of them available inside the report directory
     # @param start_date Valid start date in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)   **Example date format:**   - yyyy-MM-dd 
     # @param end_date Valid end date in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)   **Example date format:**   - yyyy-MM-dd 
@@ -111,7 +111,7 @@ module CyberSource
       return data, status_code, headers
     end
 
-    # Get list of files
+    # Get List of Files
     # Get list of files and it&#39;s information of them available inside the report directory
     # @param start_date Valid start date in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)   **Example date format:**   - yyyy-MM-dd 
     # @param end_date Valid end date in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)   **Example date format:**   - yyyy-MM-dd 

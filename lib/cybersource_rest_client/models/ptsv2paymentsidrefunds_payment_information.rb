@@ -18,6 +18,10 @@ module CyberSource
 
     attr_accessor :bank
 
+    attr_accessor :tokenized_card
+
+    attr_accessor :fluid_data
+
     attr_accessor :customer
 
     attr_accessor :payment_type
@@ -27,6 +31,8 @@ module CyberSource
       {
         :'card' => :'card',
         :'bank' => :'bank',
+        :'tokenized_card' => :'tokenizedCard',
+        :'fluid_data' => :'fluidData',
         :'customer' => :'customer',
         :'payment_type' => :'paymentType'
       }
@@ -37,6 +43,8 @@ module CyberSource
       {
         :'card' => :'Ptsv2paymentsidrefundsPaymentInformationCard',
         :'bank' => :'Ptsv2paymentsPaymentInformationBank',
+        :'tokenized_card' => :'Ptsv2paymentsPaymentInformationTokenizedCard',
+        :'fluid_data' => :'Ptsv2paymentsPaymentInformationFluidData',
         :'customer' => :'Ptsv2paymentsPaymentInformationCustomer',
         :'payment_type' => :'Ptsv2paymentsPaymentInformationPaymentType'
       }
@@ -56,6 +64,14 @@ module CyberSource
 
       if attributes.has_key?(:'bank')
         self.bank = attributes[:'bank']
+      end
+
+      if attributes.has_key?(:'tokenizedCard')
+        self.tokenized_card = attributes[:'tokenizedCard']
+      end
+
+      if attributes.has_key?(:'fluidData')
+        self.fluid_data = attributes[:'fluidData']
       end
 
       if attributes.has_key?(:'customer')
@@ -87,6 +103,8 @@ module CyberSource
       self.class == o.class &&
           card == o.card &&
           bank == o.bank &&
+          tokenized_card == o.tokenized_card &&
+          fluid_data == o.fluid_data &&
           customer == o.customer &&
           payment_type == o.payment_type
     end
@@ -100,7 +118,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card, bank, customer, payment_type].hash
+      [card, bank, tokenized_card, fluid_data, customer, payment_type].hash
     end
 
     # Builds the object from hash

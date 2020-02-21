@@ -16,7 +16,7 @@ module CyberSource
   class Ptsv2paymentsPaymentInformationBank
     attr_accessor :account
 
-    # Bank routing number. This is also called the _transit number_.  For details, see `ecp_rdfi` request field description in the [Electronic Check Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/EChecks_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
+    # Bank routing number. This is also called the _transit number_.  For details, see `ecp_rdfi` request field description in the [Electronic Check Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/EChecks_SCMP_API/html/) 
     attr_accessor :routing_number
 
     # Attribute mapping from ruby-style variable name to JSON key.

@@ -4,13 +4,13 @@ All URIs are relative to *https://apitest.cybersource.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_users**](UserManagementApi.md#get_users) | **GET** /ums/v1/users | Get user information
+[**get_users**](UserManagementApi.md#get_users) | **GET** /ums/v1/users | Get User Information
 
 
 # **get_users**
 > UmsV1UsersGet200Response get_users(opts)
 
-Get user information
+Get User Information
 
 This endpoint is to get all the user information depending on the filter criteria passed in the query.
 
@@ -29,7 +29,7 @@ opts = {
 }
 
 begin
-  #Get user information
+  #Get User Information
   result = api_instance.get_users(opts)
   p result
 rescue CyberSource::ApiError => e

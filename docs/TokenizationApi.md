@@ -4,13 +4,13 @@ All URIs are relative to *https://apitest.cybersource.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**tokenize**](TokenizationApi.md#tokenize) | **POST** /flex/v1/tokens | Tokenize card
+[**tokenize**](TokenizationApi.md#tokenize) | **POST** /flex/v1/tokens | Tokenize Card
 
 
 # **tokenize**
 > FlexV1TokensPost200Response tokenize(tokenize_request)
 
-Tokenize card
+Tokenize Card
 
 Returns a token representing the supplied card details. The token replaces card data and can be used as the Subscription ID in the CyberSource Simple Order API or SCMP API. This is an unauthenticated call that you should initiate from your customer’s device or browser.
 
@@ -25,7 +25,7 @@ tokenize_request = CyberSource::TokenizeRequest.new # TokenizeRequest |
 
 
 begin
-  #Tokenize card
+  #Tokenize Card
   result = api_instance.tokenize(tokenize_request)
   p result
 rescue CyberSource::ApiError => e

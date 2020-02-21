@@ -90,7 +90,7 @@ module CyberSource
         :'status' => :'String',
         :'submit_time_utc' => :'String',
         :'_embedded' => :'TssV2TransactionsPost201ResponseEmbedded',
-        :'_links' => :'PtsV2PaymentsReversalsPost201ResponseLinks'
+        :'_links' => :'PtsV2IncrementalAuthorizationPatch201ResponseLinks'
       }
     end
 

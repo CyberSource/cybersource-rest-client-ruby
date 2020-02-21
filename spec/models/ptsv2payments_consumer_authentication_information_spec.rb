@@ -74,7 +74,19 @@ describe 'Ptsv2paymentsConsumerAuthenticationInformation' do
     end
   end
 
-  describe 'test attribute "ucaf_collection_indicator"' do
+  describe 'test attribute "strong_authentication"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "directory_server_transaction_id"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "pa_specification_version"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

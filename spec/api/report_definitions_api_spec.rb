@@ -33,7 +33,7 @@ describe 'ReportDefinitionsApi' do
   end
 
   # unit tests for get_resource_info_by_report_definition
-  # Get report definition
+  # Get Report Definition
   # View the attributes of an individual report type. For a list of values for reportDefinitionName, see the [Reporting Developer Guide](https://www.cybersource.com/developers/documentation/reporting_and_reconciliation/) 
   # @param report_definition_name Name of the Report definition to retrieve
   # @param [Hash] opts the optional parameters
@@ -48,7 +48,7 @@ describe 'ReportDefinitionsApi' do
   end
 
   # unit tests for get_resource_v2_info
-  # Get reporting resource information
+  # Get Reporting Resource Information
   # View a list of supported reports and their attributes before subscribing to them. 
   # @param [Hash] opts the optional parameters
   # @option opts [String] :subscription_type Valid Values: - CLASSIC - CUSTOM - STANDARD 

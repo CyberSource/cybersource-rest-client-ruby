@@ -4,14 +4,14 @@ All URIs are relative to *https://apitest.cybersource.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_resource_info_by_report_definition**](ReportDefinitionsApi.md#get_resource_info_by_report_definition) | **GET** /reporting/v3/report-definitions/{reportDefinitionName} | Get report definition
-[**get_resource_v2_info**](ReportDefinitionsApi.md#get_resource_v2_info) | **GET** /reporting/v3/report-definitions | Get reporting resource information
+[**get_resource_info_by_report_definition**](ReportDefinitionsApi.md#get_resource_info_by_report_definition) | **GET** /reporting/v3/report-definitions/{reportDefinitionName} | Get Report Definition
+[**get_resource_v2_info**](ReportDefinitionsApi.md#get_resource_v2_info) | **GET** /reporting/v3/report-definitions | Get Reporting Resource Information
 
 
 # **get_resource_info_by_report_definition**
 > ReportingV3ReportDefinitionsNameGet200Response get_resource_info_by_report_definition(report_definition_name, opts)
 
-Get report definition
+Get Report Definition
 
 View the attributes of an individual report type. For a list of values for reportDefinitionName, see the [Reporting Developer Guide](https://www.cybersource.com/developers/documentation/reporting_and_reconciliation/) 
 
@@ -31,7 +31,7 @@ opts = {
 }
 
 begin
-  #Get report definition
+  #Get Report Definition
   result = api_instance.get_resource_info_by_report_definition(report_definition_name, opts)
   p result
 rescue CyberSource::ApiError => e
@@ -66,7 +66,7 @@ No authorization required
 # **get_resource_v2_info**
 > ReportingV3ReportDefinitionsGet200Response get_resource_v2_info(opts)
 
-Get reporting resource information
+Get Reporting Resource Information
 
 View a list of supported reports and their attributes before subscribing to them. 
 
@@ -83,7 +83,7 @@ opts = {
 }
 
 begin
-  #Get reporting resource information
+  #Get Reporting Resource Information
   result = api_instance.get_resource_v2_info(opts)
   p result
 rescue CyberSource::ApiError => e

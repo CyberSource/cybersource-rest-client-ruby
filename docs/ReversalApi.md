@@ -5,6 +5,7 @@ All URIs are relative to *https://apitest.cybersource.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**auth_reversal**](ReversalApi.md#auth_reversal) | **POST** /pts/v2/payments/{id}/reversals | Process an Authorization Reversal
+[**mit_reversal**](ReversalApi.md#mit_reversal) | **POST** /pts/v2/reversals/ | Merchant Initiated Reversal
 
 
 # **auth_reversal**
@@ -41,6 +42,53 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| The payment ID returned from a previous payment request. | 
  **auth_reversal_request** | [**AuthReversalRequest**](AuthReversalRequest.md)|  | 
+
+### Return type
+
+[**PtsV2PaymentsReversalsPost201Response**](PtsV2PaymentsReversalsPost201Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/hal+json;charset=utf-8
+
+
+
+# **mit_reversal**
+> PtsV2PaymentsReversalsPost201Response mit_reversal(mit_reversal_request)
+
+Merchant Initiated Reversal
+
+This is to reverse a previous payment that merchant does not receive a reply.
+
+### Example
+```ruby
+# load the gem
+require 'cybersource_rest_client'
+
+api_instance = CyberSource::ReversalApi.new
+
+mit_reversal_request = CyberSource::MitReversalRequest.new # MitReversalRequest | 
+
+
+begin
+  #Merchant Initiated Reversal
+  result = api_instance.mit_reversal(mit_reversal_request)
+  p result
+rescue CyberSource::ApiError => e
+  puts "Exception when calling ReversalApi->mit_reversal: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **mit_reversal_request** | [**MitReversalRequest**](MitReversalRequest.md)|  | 
 
 ### Return type
 

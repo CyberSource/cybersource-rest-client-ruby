@@ -44,6 +44,12 @@ describe 'PtsV2PaymentsPost201ResponseIssuerInformation' do
     end
   end
 
+  describe 'test attribute "country_specific_discretionary_data"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "response_code"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

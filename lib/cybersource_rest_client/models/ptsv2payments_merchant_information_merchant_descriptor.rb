@@ -38,6 +38,9 @@ module CyberSource
     # The state where the merchant is located.  For the descriptions, used-by information, data types, and lengths for these fields, see the `merchant_descriptor_state` field description in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html)  Merchant State. For the descriptions, used-by information, data types, and lengths for these fields, see Merchant Descriptors in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
     attr_accessor :administrative_area
 
+    # Merchnat phone as contact information for CNP transactions 
+    attr_accessor :phone
+
     # Address of company's website provided by merchant 
     attr_accessor :url
 
@@ -52,6 +55,7 @@ module CyberSource
         :'country' => :'country',
         :'postal_code' => :'postalCode',
         :'administrative_area' => :'administrativeArea',
+        :'phone' => :'phone',
         :'url' => :'url'
       }
     end
@@ -67,6 +71,7 @@ module CyberSource
         :'country' => :'String',
         :'postal_code' => :'String',
         :'administrative_area' => :'String',
+        :'phone' => :'String',
         :'url' => :'String'
       }
     end
@@ -111,6 +116,10 @@ module CyberSource
         self.administrative_area = attributes[:'administrativeArea']
       end
 
+      if attributes.has_key?(:'phone')
+        self.phone = attributes[:'phone']
+      end
+
       if attributes.has_key?(:'url')
         self.url = attributes[:'url']
       end
@@ -140,6 +149,10 @@ module CyberSource
         invalid_properties.push('invalid value for "postal_code", the character length must be smaller than or equal to 14.')
       end
 
+      if !@phone.nil? && @phone.to_s.length > 13
+        invalid_properties.push('invalid value for "phone", the character length must be smaller than or equal to 13.')
+      end
+
       if !@url.nil? && @url.to_s.length > 255
         invalid_properties.push('invalid value for "url", the character length must be smaller than or equal to 255.')
       end
@@ -155,6 +168,7 @@ module CyberSource
       return false if !@address1.nil? && @address1.to_s.length > 60
       return false if !@locality.nil? && @locality.to_s.length > 13
       return false if !@postal_code.nil? && @postal_code.to_s.length > 14
+      return false if !@phone.nil? && @phone.to_s.length > 13
       return false if !@url.nil? && @url.to_s.length > 255
       true
     end
@@ -210,6 +224,16 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] phone Value to be assigned
+    def phone=(phone)
+      if !phone.nil? && phone.to_s.length > 13
+        fail ArgumentError, 'invalid value for "phone", the character length must be smaller than or equal to 13.'
+      end
+
+      @phone = phone
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] url Value to be assigned
     def url=(url)
       if !url.nil? && url.to_s.length > 255
@@ -232,6 +256,7 @@ module CyberSource
           country == o.country &&
           postal_code == o.postal_code &&
           administrative_area == o.administrative_area &&
+          phone == o.phone &&
           url == o.url
     end
 
@@ -244,7 +269,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name, alternate_name, contact, address1, locality, country, postal_code, administrative_area, url].hash
+      [name, alternate_name, contact, address1, locality, country, postal_code, administrative_area, phone, url].hash
     end
 
     # Builds the object from hash

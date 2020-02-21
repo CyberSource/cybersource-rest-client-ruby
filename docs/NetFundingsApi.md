@@ -4,13 +4,13 @@ All URIs are relative to *https://apitest.cybersource.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_net_funding_details**](NetFundingsApi.md#get_net_funding_details) | **GET** /reporting/v3/net-fundings | Get Netfunding information for an account or a merchant
+[**get_net_funding_details**](NetFundingsApi.md#get_net_funding_details) | **GET** /reporting/v3/net-fundings | Get Netfunding Information for an Account or a Merchant
 
 
 # **get_net_funding_details**
 > ReportingV3NetFundingsGet200Response get_net_funding_details(start_time, end_time, opts)
 
-Get Netfunding information for an account or a merchant
+Get Netfunding Information for an Account or a Merchant
 
 Get Netfunding information for an account or a merchant.
 
@@ -31,7 +31,7 @@ opts = {
 }
 
 begin
-  #Get Netfunding information for an account or a merchant
+  #Get Netfunding Information for an Account or a Merchant
   result = api_instance.get_net_funding_details(start_time, end_time, opts)
   p result
 rescue CyberSource::ApiError => e

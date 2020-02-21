@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class Riskv1authenticationsAcquirerInformation
-    # Acquirer bank ID number that corresponds to a certificate that Cybersource already has.This ID has this format. 4XXXXX for Visa and 5XXXXX for Mastercard. 
+    # Acquirer bank ID number that  corresponds to a certificate that Cybersource already has.This ID has this format. 4XXXXX for Visa and 5XXXXX for Mastercard. 
     attr_accessor :acquirer_bin
 
     # Issuers need to be aware of the Acquirer's Country Code when the Acquirer country differs from the Merchant country and the Acquirer is in the EEA (European Economic Area). 

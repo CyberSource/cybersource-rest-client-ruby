@@ -62,6 +62,12 @@ describe 'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedEmbe
     end
   end
 
+  describe 'test attribute "tokenized_card"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "bank_account"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

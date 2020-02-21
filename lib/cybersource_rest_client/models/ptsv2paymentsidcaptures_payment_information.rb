@@ -16,17 +16,21 @@ module CyberSource
   class Ptsv2paymentsidcapturesPaymentInformation
     attr_accessor :customer
 
+    attr_accessor :card
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'customer' => :'customer'
+        :'customer' => :'customer',
+        :'card' => :'card'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'customer' => :'Ptsv2paymentsPaymentInformationCustomer'
+        :'customer' => :'Ptsv2paymentsPaymentInformationCustomer',
+        :'card' => :'Ptsv2paymentsidcapturesPaymentInformationCard'
       }
     end
 
@@ -40,6 +44,10 @@ module CyberSource
 
       if attributes.has_key?(:'customer')
         self.customer = attributes[:'customer']
+      end
+
+      if attributes.has_key?(:'card')
+        self.card = attributes[:'card']
       end
     end
 
@@ -61,7 +69,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          customer == o.customer
+          customer == o.customer &&
+          card == o.card
     end
 
     # @see the `==` method
@@ -73,7 +82,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [customer].hash
+      [customer, card].hash
     end
 
     # Builds the object from hash

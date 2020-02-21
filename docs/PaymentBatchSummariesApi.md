@@ -4,13 +4,13 @@ All URIs are relative to *https://apitest.cybersource.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_payment_batch_summary**](PaymentBatchSummariesApi.md#get_payment_batch_summary) | **GET** /reporting/v3/payment-batch-summaries | Get payment batch summary data
+[**get_payment_batch_summary**](PaymentBatchSummariesApi.md#get_payment_batch_summary) | **GET** /reporting/v3/payment-batch-summaries | Get Payment Batch Summary Data
 
 
 # **get_payment_batch_summary**
 > ReportingV3PaymentBatchSummariesGet200Response get_payment_batch_summary(start_time, end_time, opts)
 
-Get payment batch summary data
+Get Payment Batch Summary Data
 
 Scope can be either account/merchant or reseller.
 
@@ -33,7 +33,7 @@ opts = {
 }
 
 begin
-  #Get payment batch summary data
+  #Get Payment Batch Summary Data
   result = api_instance.get_payment_batch_summary(start_time, end_time, opts)
   p result
 rescue CyberSource::ApiError => e

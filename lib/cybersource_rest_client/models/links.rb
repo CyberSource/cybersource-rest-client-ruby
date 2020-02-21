@@ -16,29 +16,25 @@ module CyberSource
   class Links
     attr_accessor :_self
 
-    attr_accessor :payment_instruments
+    attr_accessor :documentation
 
-    attr_accessor :ancestor
-
-    attr_accessor :successor
+    attr_accessor :_next
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'_self' => :'self',
-        :'payment_instruments' => :'paymentInstruments',
-        :'ancestor' => :'ancestor',
-        :'successor' => :'successor'
+        :'documentation' => :'documentation',
+        :'_next' => :'next'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'_self' => :'TmsV1InstrumentIdentifiersPost200ResponseLinksSelf',
-        :'payment_instruments' => :'TmsV1InstrumentIdentifiersPost200ResponseLinksPaymentInstruments',
-        :'ancestor' => :'TmsV1InstrumentIdentifiersPost200ResponseLinksSelf',
-        :'successor' => :'TmsV1InstrumentIdentifiersPost200ResponseLinksSelf'
+        :'_self' => :'InlineResponseDefaultLinksNext',
+        :'documentation' => :'Array<InlineResponseDefaultLinksNext>',
+        :'_next' => :'Array<InlineResponseDefaultLinksNext>'
       }
     end
 
@@ -54,16 +50,16 @@ module CyberSource
         self._self = attributes[:'self']
       end
 
-      if attributes.has_key?(:'paymentInstruments')
-        self.payment_instruments = attributes[:'paymentInstruments']
+      if attributes.has_key?(:'documentation')
+        if (value = attributes[:'documentation']).is_a?(Array)
+          self.documentation = value
+        end
       end
 
-      if attributes.has_key?(:'ancestor')
-        self.ancestor = attributes[:'ancestor']
-      end
-
-      if attributes.has_key?(:'successor')
-        self.successor = attributes[:'successor']
+      if attributes.has_key?(:'next')
+        if (value = attributes[:'next']).is_a?(Array)
+          self._next = value
+        end
       end
     end
 
@@ -86,9 +82,8 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           _self == o._self &&
-          payment_instruments == o.payment_instruments &&
-          ancestor == o.ancestor &&
-          successor == o.successor
+          documentation == o.documentation &&
+          _next == o._next
     end
 
     # @see the `==` method
@@ -100,7 +95,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_self, payment_instruments, ancestor, successor].hash
+      [_self, documentation, _next].hash
     end
 
     # Builds the object from hash

@@ -32,8 +32,21 @@ describe 'ReportSubscriptionsApi' do
     end
   end
 
+  # unit tests for create_standard_or_classic_subscription
+  # Create a Standard or Classic Subscription
+  # Create or update an already existing classic or standard subscription. 
+  # @param predefined_subscription_request_bean Report subscription request payload
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :organization_id Valid Cybersource Organization Id
+  # @return [nil]
+  describe 'create_standard_or_classic_subscription test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for create_subscription
-  # Create Report Subscription for a report name by organization
+  # Create Report Subscription for a Report Name by Organization
   # Create a report subscription for your organization. The report name must be unique. 
   # @param create_report_subscription_request Report subscription request payload
   # @param [Hash] opts the optional parameters
@@ -46,7 +59,7 @@ describe 'ReportSubscriptionsApi' do
   end
 
   # unit tests for delete_subscription
-  # Delete subscription of a report name by organization
+  # Delete Subscription of a Report Name by Organization
   # Delete a report subscription for your organization. You must know the unique name of the report you want to delete. 
   # @param report_name Name of the Report to Delete
   # @param [Hash] opts the optional parameters
@@ -58,7 +71,7 @@ describe 'ReportSubscriptionsApi' do
   end
 
   # unit tests for get_all_subscriptions
-  # Get all subscriptions
+  # Get All Subscriptions
   # View a summary of all report subscriptions. 
   # @param [Hash] opts the optional parameters
   # @return [ReportingV3ReportSubscriptionsGet200Response]
@@ -69,25 +82,12 @@ describe 'ReportSubscriptionsApi' do
   end
 
   # unit tests for get_subscription
-  # Get subscription for report name
+  # Get Subscription for Report Name
   # View the details of a report subscription, such as the report format or report frequency, using the report’s unique name. 
   # @param report_name Name of the Report to Retrieve
   # @param [Hash] opts the optional parameters
   # @return [ReportingV3ReportSubscriptionsGet200ResponseSubscriptions]
   describe 'get_subscription test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for reporting_v3_predefined_report_subscriptions_put
-  # Create a Standard or Classic subscription
-  # Create or update an already existing classic or standard subscription. 
-  # @param predefined_subscription_request_bean Report subscription request payload
-  # @param [Hash] opts the optional parameters
-  # @option opts [String] :organization_id Valid Cybersource Organization Id
-  # @return [nil]
-  describe 'reporting_v3_predefined_report_subscriptions_put test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

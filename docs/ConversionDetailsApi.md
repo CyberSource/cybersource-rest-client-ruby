@@ -4,13 +4,13 @@ All URIs are relative to *https://apitest.cybersource.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_conversion_detail**](ConversionDetailsApi.md#get_conversion_detail) | **GET** /reporting/v3/conversion-details | Get conversion detail transactions
+[**get_conversion_detail**](ConversionDetailsApi.md#get_conversion_detail) | **GET** /reporting/v3/conversion-details | Get Conversion Detail Transactions
 
 
 # **get_conversion_detail**
 > ReportingV3ConversionDetailsGet200Response get_conversion_detail(start_time, end_time, opts)
 
-Get conversion detail transactions
+Get Conversion Detail Transactions
 
 Get conversion detail of transactions for a merchant.
 
@@ -30,7 +30,7 @@ opts = {
 }
 
 begin
-  #Get conversion detail transactions
+  #Get Conversion Detail Transactions
   result = api_instance.get_conversion_detail(start_time, end_time, opts)
   p result
 rescue CyberSource::ApiError => e

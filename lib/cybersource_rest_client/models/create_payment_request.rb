@@ -43,6 +43,10 @@ module CyberSource
 
     attr_accessor :installment_information
 
+    attr_accessor :travel_information
+
+    attr_accessor :promotion_information
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -59,7 +63,9 @@ module CyberSource
         :'consumer_authentication_information' => :'consumerAuthenticationInformation',
         :'point_of_sale_information' => :'pointOfSaleInformation',
         :'merchant_defined_information' => :'merchantDefinedInformation',
-        :'installment_information' => :'installmentInformation'
+        :'installment_information' => :'installmentInformation',
+        :'travel_information' => :'travelInformation',
+        :'promotion_information' => :'promotionInformation'
       }
     end
 
@@ -79,7 +85,9 @@ module CyberSource
         :'consumer_authentication_information' => :'Ptsv2paymentsConsumerAuthenticationInformation',
         :'point_of_sale_information' => :'Ptsv2paymentsPointOfSaleInformation',
         :'merchant_defined_information' => :'Array<Ptsv2paymentsMerchantDefinedInformation>',
-        :'installment_information' => :'Ptsv2paymentsInstallmentInformation'
+        :'installment_information' => :'Ptsv2paymentsInstallmentInformation',
+        :'travel_information' => :'Ptsv2paymentsTravelInformation',
+        :'promotion_information' => :'Ptsv2paymentsPromotionInformation'
       }
     end
 
@@ -148,6 +156,14 @@ module CyberSource
       if attributes.has_key?(:'installmentInformation')
         self.installment_information = attributes[:'installmentInformation']
       end
+
+      if attributes.has_key?(:'travelInformation')
+        self.travel_information = attributes[:'travelInformation']
+      end
+
+      if attributes.has_key?(:'promotionInformation')
+        self.promotion_information = attributes[:'promotionInformation']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -181,7 +197,9 @@ module CyberSource
           consumer_authentication_information == o.consumer_authentication_information &&
           point_of_sale_information == o.point_of_sale_information &&
           merchant_defined_information == o.merchant_defined_information &&
-          installment_information == o.installment_information
+          installment_information == o.installment_information &&
+          travel_information == o.travel_information &&
+          promotion_information == o.promotion_information
     end
 
     # @see the `==` method
@@ -193,7 +211,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_reference_information, processing_information, issuer_information, payment_information, order_information, buyer_information, recipient_information, device_information, merchant_information, aggregator_information, consumer_authentication_information, point_of_sale_information, merchant_defined_information, installment_information].hash
+      [client_reference_information, processing_information, issuer_information, payment_information, order_information, buyer_information, recipient_information, device_information, merchant_information, aggregator_information, consumer_authentication_information, point_of_sale_information, merchant_defined_information, installment_information, travel_information, promotion_information].hash
     end
 
     # Builds the object from hash

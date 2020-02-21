@@ -4,10 +4,58 @@ All URIs are relative to *https://apitest.cybersource.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**mit_void**](VoidApi.md#mit_void) | **POST** /pts/v2/voids/ | Merchant Initiated Void
 [**void_capture**](VoidApi.md#void_capture) | **POST** /pts/v2/captures/{id}/voids | Void a Capture
 [**void_credit**](VoidApi.md#void_credit) | **POST** /pts/v2/credits/{id}/voids | Void a Credit
 [**void_payment**](VoidApi.md#void_payment) | **POST** /pts/v2/payments/{id}/voids | Void a Payment
 [**void_refund**](VoidApi.md#void_refund) | **POST** /pts/v2/refunds/{id}/voids | Void a Refund
+
+
+# **mit_void**
+> PtsV2PaymentsVoidsPost201Response mit_void(mit_void_request)
+
+Merchant Initiated Void
+
+This is to void a previous payment, capture, refund, or credit that merchant does not receive a reply.
+
+### Example
+```ruby
+# load the gem
+require 'cybersource_rest_client'
+
+api_instance = CyberSource::VoidApi.new
+
+mit_void_request = CyberSource::MitVoidRequest.new # MitVoidRequest | 
+
+
+begin
+  #Merchant Initiated Void
+  result = api_instance.mit_void(mit_void_request)
+  p result
+rescue CyberSource::ApiError => e
+  puts "Exception when calling VoidApi->mit_void: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **mit_void_request** | [**MitVoidRequest**](MitVoidRequest.md)|  | 
+
+### Return type
+
+[**PtsV2PaymentsVoidsPost201Response**](PtsV2PaymentsVoidsPost201Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/hal+json;charset=utf-8
+
 
 
 # **void_capture**

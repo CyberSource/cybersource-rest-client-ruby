@@ -14,25 +14,25 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsPointOfSaleInformation
-    # Identifier for the terminal at your retail location. You can define this value yourself, but consult the processor for requirements.  #### FDC Nashville Global To have your account configured to support this field, contact CyberSource Customer Support. This value must be a value that FDC Nashville Global issued to you.  For details, see the `terminal_id` field description in [Card-Present Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Retail_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  **For Payouts**: This field is applicable for CtV. 
+    # Identifier for the terminal at your retail location. You can define this value yourself, but consult the processor for requirements.  #### FDC Nashville Global To have your account configured to support this field, contact CyberSource Customer Support. This value must be a value that FDC Nashville Global issued to you.  For details, see the `terminal_id` field description in [Card-Present Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Retail_SCMP_API/html/)  **For Payouts**: This field is applicable for CtV. 
     attr_accessor :terminal_id
 
-    # Terminal serial number assigned by the hardware manufacturer. This value is provided by the client software that is installed on the POS terminal.  CyberSource does not forward this value to the processor. Instead, the value is forwarded to the CyberSource reporting functionality.  This field is supported only on American Express Direct, FDC Nashville Global, and SIX.  For details, see the `terminal_serial_number` field description in [Card-Present Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Retail_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
+    # Terminal serial number assigned by the hardware manufacturer. This value is provided by the client software that is installed on the POS terminal.  CyberSource does not forward this value to the processor. Instead, the value is forwarded to the CyberSource reporting functionality.  This field is supported only on American Express Direct, FDC Nashville Global, and SIX.  For details, see the `terminal_serial_number` field description in [Card-Present Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Retail_SCMP_API/html/) 
     attr_accessor :terminal_serial_number
 
     # Identifier for an alternate terminal at your retail location. You define the value for this field.  This field is supported only for MasterCard transactions on FDC Nashville Global. Use the `terminalId` field to identify the main terminal at your retail location. If your retail location has multiple terminals, use this `laneNumber` field to identify the terminal used for the transaction.  This field is a pass-through, which means that CyberSource does not check the value or modify the value in any way before sending it to the processor. 
     attr_accessor :lane_number
 
-    # Type of cardholder-activated terminal. Possible values:   - 1: Automated dispensing machine  - 2: Self-service terminal  - 3: Limited amount terminal  - 4: In-flight commerce (IFC) terminal  - 5: Radio frequency device  - 6: Mobile acceptance terminal  - 7: Electronic cash register  - 8: E-commerce device at your location  - 9: Terminal or cash register that uses a dialup connection to connect to the transaction processing network  #### Chase Paymentech Solutions Only values 1, 2, and 3 are supported.  #### FDC Nashville Global Only values 7, 8, and 9 are supported.  #### GPN Only values 6, 7, 8, and 9 are supported.  #### TSYS Acquiring Solutions Only value 6 is supported. For details, see the `cat_level` field description in [Card-Present Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Retail_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
+    # Type of cardholder-activated terminal. Possible values:   - 1: Automated dispensing machine  - 2: Self-service terminal  - 3: Limited amount terminal  - 4: In-flight commerce (IFC) terminal  - 5: Radio frequency device  - 6: Mobile acceptance terminal  - 7: Electronic cash register  - 8: E-commerce device at your location  - 9: Terminal or cash register that uses a dialup connection to connect to the transaction processing network  #### Chase Paymentech Solutions Only values 1, 2, and 3 are supported.  #### FDC Nashville Global Only values 7, 8, and 9 are supported.  #### GPN Only values 6, 7, 8, and 9 are supported.  #### TSYS Acquiring Solutions Only value 6 is supported. For details, see the `cat_level` field description in [Card-Present Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Retail_SCMP_API/html/) 
     attr_accessor :cat_level
 
-    # Method of entering credit card information into the POS terminal. Possible values:   - `contact`: Read from direct contact with chip card.  - `contactless`: Read from a contactless interface using chip data.  - `keyed`: Manually keyed into POS terminal.  - `msd`: Read from a contactless interface using magnetic stripe data (MSD).  - `swiped`: Read from credit card magnetic stripe.  The contact, contactless, and msd values are supported only for EMV transactions.  For details, see the `pos_entry_mode` field description in [Card-Present Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Retail_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
+    # Method of entering credit card information into the POS terminal. Possible values:   - `contact`: Read from direct contact with chip card.  - `contactless`: Read from a contactless interface using chip data.  - `keyed`: Manually keyed into POS terminal.  - `msd`: Read from a contactless interface using magnetic stripe data (MSD).  - `swiped`: Read from credit card magnetic stripe.  The contact, contactless, and msd values are supported only for EMV transactions.  For details, see the `pos_entry_mode` field description in [Card-Present Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Retail_SCMP_API/html/) 
     attr_accessor :entry_mode
 
-    # POS terminal’s capability. Possible values:   - `1`: Terminal has a magnetic stripe reader only.  - `2`: Terminal has a magnetic stripe reader and manual entry capability.  - `3`: Terminal has manual entry capability only.  - `4`: Terminal can read chip cards.  - `5`: Terminal can read contactless chip cards.  The values of 4 and 5 are supported only for EMV transactions. * Applicable only for CTV for Payouts.  For processor-specific details, see the `terminal_capability` field description in [Card-Present Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Retail_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
+    # POS terminal’s capability. Possible values:   - `1`: Terminal has a magnetic stripe reader only.  - `2`: Terminal has a magnetic stripe reader and manual entry capability.  - `3`: Terminal has manual entry capability only.  - `4`: Terminal can read chip cards.  - `5`: Terminal can read contactless chip cards.  The values of 4 and 5 are supported only for EMV transactions. * Applicable only for CTV for Payouts.  For processor-specific details, see the `terminal_capability` field description in [Card-Present Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Retail_SCMP_API/html/) 
     attr_accessor :terminal_capability
 
-    # A one-digit code that identifies the capability of terminal to capture PINs.  This code does not necessarily mean that a PIN was entered or is included in this message.  POS terminal’s capability. Possible values: - `1`: Terminal has a magnetic stripe reader only. - `2`: Terminal has a magnetic stripe reader and manual entry capability. - `3`: Terminal has manual entry capability only. - `4`: Terminal can read chip cards.* - `5`: Terminal can read contactless chip cards.* * The values of 4 and 5 are supported only for EMV transactions.  For Payouts: This field is applicable for CtV.  For details, see the `terminal_capability` field description in [Card-Present Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Retail_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
+    # A one-digit code that identifies the capability of terminal to capture PINs.  This code does not necessarily mean that a PIN was entered or is included in this message.  POS terminal’s capability. Possible values: - `1`: Terminal has a magnetic stripe reader only. - `2`: Terminal has a magnetic stripe reader and manual entry capability. - `3`: Terminal has manual entry capability only. - `4`: Terminal can read chip cards.* - `5`: Terminal can read contactless chip cards.* * The values of 4 and 5 are supported only for EMV transactions.  For Payouts: This field is applicable for CtV.  For details, see the `terminal_capability` field description in [Card-Present Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Retail_SCMP_API/html/) 
     attr_accessor :pin_entry_capability
 
     # Operating environment.  Possible values for all card types except Mastercard: - `0`: No terminal used or unknown environment. - `1`: On merchant premises, attended. - `2`: On merchant premises, unattended. Examples: oil, kiosks, self-checkout, mobile telephone, personal digital assistant (PDA). - `3`: Off merchant premises, attended. Examples: portable POS devices at trade shows, at service calls, or in taxis. - `4`: Off merchant premises, unattended. Examples: vending machines, home computer, mobile telephone, PDA. - `5`: On premises of cardholder, unattended. - `9`: Unknown delivery mode. - `S`: Electronic delivery of product. Examples: music, software, or eTickets that are downloaded over the internet. - `T`: Physical delivery of product. Examples: music or software that is delivered by mail or by a courier.  #### Possible values for Mastercard: - `2`: On merchant premises, unattended, or cardholder terminal. Examples: oil, kiosks, self-checkout, home computer, mobile telephone, personal digital assistant (PDA). Cardholder terminal is supported only for Mastercard transactions on CyberSource through VisaNet. - `4`: Off merchant premises, unattended, or cardholder terminal. Examples: vending machines, home computer, mobile telephone, PDA. Cardholder terminal is supported only for Mastercard transactions on CyberSource through VisaNet.  This field is supported only for American Express Direct and CyberSource through VisaNet. 
@@ -40,7 +40,7 @@ module CyberSource
 
     attr_accessor :emv
 
-    # Point-of-sale details for the transaction. This value is returned only for **American Express Direct**. CyberSource generates this value, which consists of a series of codes that identify terminal capability, security data, and specific conditions present at the time the transaction occurred. To comply with the CAPN requirements, this value must be included in all subsequent follow-on requests, such as captures and follow-on credits.  When you perform authorizations, captures, and credits through CyberSource, CyberSource passes this value from the authorization service to the subsequent services for you. However, when you perform authorizations through CyberSource and perform subsequent services through other financial institutions, you must ensure that your requests for captures and credits include this value.  For details, see `auth_pos_data` field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
+    # Point-of-sale details for the transaction. This value is returned only for **American Express Direct**. CyberSource generates this value, which consists of a series of codes that identify terminal capability, security data, and specific conditions present at the time the transaction occurred. To comply with the CAPN requirements, this value must be included in all subsequent follow-on requests, such as captures and follow-on credits.  When you perform authorizations, captures, and credits through CyberSource, CyberSource passes this value from the authorization service to the subsequent services for you. However, when you perform authorizations through CyberSource and perform subsequent services through other financial institutions, you must ensure that your requests for captures and credits include this value.  For details, see `auth_pos_data` field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
     attr_accessor :amex_capn_data
 
     # Card’s track 1 and 2 data. For all processors except FDMS Nashville, this value consists of one of the following:   - Track 1 data  - Track 2 data  - Data for both tracks 1 and 2  For FDMS Nashville, this value consists of one of the following:  - Track 1 data  - Data for both tracks 1 and 2  Example: %B4111111111111111^SMITH/JOHN ^1612101976110000868000000?;4111111111111111=16121019761186800000? 
@@ -77,6 +77,15 @@ module CyberSource
     # Version of the software installed on the POS terminal. This value is provided by the client software that is installed on the POS terminal.  CyberSource does not forward this value to the processor. Instead, the value is forwarded to the CyberSource reporting functionality.  This field is supported only on American Express Direct, FDC Nashville Global, and SIX. 
     attr_accessor :partner_sdk_version
 
+    # This 32 byte length-maximum EBCDIC-K value is used to identify which chip application was performed between the terminal and the chip product. The included values are the Application Identifier (AID) and the Dedicated File (DF) name. It is available to early- or full-option VSDC issuers. Only single byte Katakana characters that can map to the EBCDIC-K table expected in the name. 
+    attr_accessor :emv_application_identifier_and_dedicated_file_name
+
+    # This tag contains indicators to determine if the terminal used for the transaction is compliant with new standards mandated by the Reserve Bank of India. The new standards are applicable to card-present domestic transactions for the country of India. This tag contains one of the following data values:  First byte (Position 1) : Terminal supports TLE - `1` (Not certified) - `2` (Certified)  Second byte (Position 2) : Terminal supports UKPT/DUKPT - `1` (Not certified) - `2` (Certified) 
+    attr_accessor :terminal_compliance
+
+    # This API will indicate mPOS device capability with one  of the following values. - 0: Dongle - 1: Phone or tablet 
+    attr_accessor :is_dedicated_hardware_terminal
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -101,7 +110,10 @@ module CyberSource
         :'pin_block_encoding_format' => :'pinBlockEncodingFormat',
         :'encrypted_pin' => :'encryptedPin',
         :'encrypted_key_serial_number' => :'encryptedKeySerialNumber',
-        :'partner_sdk_version' => :'partnerSdkVersion'
+        :'partner_sdk_version' => :'partnerSdkVersion',
+        :'emv_application_identifier_and_dedicated_file_name' => :'emvApplicationIdentifierAndDedicatedFileName',
+        :'terminal_compliance' => :'terminalCompliance',
+        :'is_dedicated_hardware_terminal' => :'isDedicatedHardwareTerminal'
       }
     end
 
@@ -129,7 +141,10 @@ module CyberSource
         :'pin_block_encoding_format' => :'Integer',
         :'encrypted_pin' => :'String',
         :'encrypted_key_serial_number' => :'String',
-        :'partner_sdk_version' => :'String'
+        :'partner_sdk_version' => :'String',
+        :'emv_application_identifier_and_dedicated_file_name' => :'String',
+        :'terminal_compliance' => :'String',
+        :'is_dedicated_hardware_terminal' => :'String'
       }
     end
 
@@ -232,6 +247,18 @@ module CyberSource
       if attributes.has_key?(:'partnerSdkVersion')
         self.partner_sdk_version = attributes[:'partnerSdkVersion']
       end
+
+      if attributes.has_key?(:'emvApplicationIdentifierAndDedicatedFileName')
+        self.emv_application_identifier_and_dedicated_file_name = attributes[:'emvApplicationIdentifierAndDedicatedFileName']
+      end
+
+      if attributes.has_key?(:'terminalCompliance')
+        self.terminal_compliance = attributes[:'terminalCompliance']
+      end
+
+      if attributes.has_key?(:'isDedicatedHardwareTerminal')
+        self.is_dedicated_hardware_terminal = attributes[:'isDedicatedHardwareTerminal']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -282,8 +309,8 @@ module CyberSource
         invalid_properties.push('invalid value for "operating_environment", the character length must be smaller than or equal to 1.')
       end
 
-      if !@amex_capn_data.nil? && @amex_capn_data.to_s.length > 12
-        invalid_properties.push('invalid value for "amex_capn_data", the character length must be smaller than or equal to 12.')
+      if !@amex_capn_data.nil? && @amex_capn_data.to_s.length > 15
+        invalid_properties.push('invalid value for "amex_capn_data", the character length must be smaller than or equal to 15.')
       end
 
       if !@store_and_forward_indicator.nil? && @store_and_forward_indicator.to_s.length > 1
@@ -318,6 +345,18 @@ module CyberSource
         invalid_properties.push('invalid value for "partner_sdk_version", the character length must be smaller than or equal to 32.')
       end
 
+      if !@emv_application_identifier_and_dedicated_file_name.nil? && @emv_application_identifier_and_dedicated_file_name.to_s.length > 32
+        invalid_properties.push('invalid value for "emv_application_identifier_and_dedicated_file_name", the character length must be smaller than or equal to 32.')
+      end
+
+      if !@terminal_compliance.nil? && @terminal_compliance.to_s.length > 2
+        invalid_properties.push('invalid value for "terminal_compliance", the character length must be smaller than or equal to 2.')
+      end
+
+      if !@is_dedicated_hardware_terminal.nil? && @is_dedicated_hardware_terminal.to_s.length > 1
+        invalid_properties.push('invalid value for "is_dedicated_hardware_terminal", the character length must be smaller than or equal to 1.')
+      end
+
       invalid_properties
     end
 
@@ -335,7 +374,7 @@ module CyberSource
       return false if !@pin_entry_capability.nil? && @pin_entry_capability > 1
       return false if !@pin_entry_capability.nil? && @pin_entry_capability < 1
       return false if !@operating_environment.nil? && @operating_environment.to_s.length > 1
-      return false if !@amex_capn_data.nil? && @amex_capn_data.to_s.length > 12
+      return false if !@amex_capn_data.nil? && @amex_capn_data.to_s.length > 15
       return false if !@store_and_forward_indicator.nil? && @store_and_forward_indicator.to_s.length > 1
       return false if !@terminal_card_capture_capability.nil? && @terminal_card_capture_capability.to_s.length > 1
       return false if !@terminal_output_capability.nil? && @terminal_output_capability.to_s.length > 1
@@ -344,6 +383,9 @@ module CyberSource
       return false if !@encrypted_pin.nil? && @encrypted_pin.to_s.length > 16
       return false if !@encrypted_key_serial_number.nil? && @encrypted_key_serial_number.to_s.length > 20
       return false if !@partner_sdk_version.nil? && @partner_sdk_version.to_s.length > 32
+      return false if !@emv_application_identifier_and_dedicated_file_name.nil? && @emv_application_identifier_and_dedicated_file_name.to_s.length > 32
+      return false if !@terminal_compliance.nil? && @terminal_compliance.to_s.length > 2
+      return false if !@is_dedicated_hardware_terminal.nil? && @is_dedicated_hardware_terminal.to_s.length > 1
       true
     end
 
@@ -442,8 +484,8 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] amex_capn_data Value to be assigned
     def amex_capn_data=(amex_capn_data)
-      if !amex_capn_data.nil? && amex_capn_data.to_s.length > 12
-        fail ArgumentError, 'invalid value for "amex_capn_data", the character length must be smaller than or equal to 12.'
+      if !amex_capn_data.nil? && amex_capn_data.to_s.length > 15
+        fail ArgumentError, 'invalid value for "amex_capn_data", the character length must be smaller than or equal to 15.'
       end
 
       @amex_capn_data = amex_capn_data
@@ -529,6 +571,36 @@ module CyberSource
       @partner_sdk_version = partner_sdk_version
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] emv_application_identifier_and_dedicated_file_name Value to be assigned
+    def emv_application_identifier_and_dedicated_file_name=(emv_application_identifier_and_dedicated_file_name)
+      if !emv_application_identifier_and_dedicated_file_name.nil? && emv_application_identifier_and_dedicated_file_name.to_s.length > 32
+        fail ArgumentError, 'invalid value for "emv_application_identifier_and_dedicated_file_name", the character length must be smaller than or equal to 32.'
+      end
+
+      @emv_application_identifier_and_dedicated_file_name = emv_application_identifier_and_dedicated_file_name
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] terminal_compliance Value to be assigned
+    def terminal_compliance=(terminal_compliance)
+      if !terminal_compliance.nil? && terminal_compliance.to_s.length > 2
+        fail ArgumentError, 'invalid value for "terminal_compliance", the character length must be smaller than or equal to 2.'
+      end
+
+      @terminal_compliance = terminal_compliance
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] is_dedicated_hardware_terminal Value to be assigned
+    def is_dedicated_hardware_terminal=(is_dedicated_hardware_terminal)
+      if !is_dedicated_hardware_terminal.nil? && is_dedicated_hardware_terminal.to_s.length > 1
+        fail ArgumentError, 'invalid value for "is_dedicated_hardware_terminal", the character length must be smaller than or equal to 1.'
+      end
+
+      @is_dedicated_hardware_terminal = is_dedicated_hardware_terminal
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -555,7 +627,10 @@ module CyberSource
           pin_block_encoding_format == o.pin_block_encoding_format &&
           encrypted_pin == o.encrypted_pin &&
           encrypted_key_serial_number == o.encrypted_key_serial_number &&
-          partner_sdk_version == o.partner_sdk_version
+          partner_sdk_version == o.partner_sdk_version &&
+          emv_application_identifier_and_dedicated_file_name == o.emv_application_identifier_and_dedicated_file_name &&
+          terminal_compliance == o.terminal_compliance &&
+          is_dedicated_hardware_terminal == o.is_dedicated_hardware_terminal
     end
 
     # @see the `==` method
@@ -567,7 +642,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [terminal_id, terminal_serial_number, lane_number, cat_level, entry_mode, terminal_capability, pin_entry_capability, operating_environment, emv, amex_capn_data, track_data, store_and_forward_indicator, cardholder_verification_method, terminal_input_capability, terminal_card_capture_capability, terminal_output_capability, terminal_pin_capability, device_id, pin_block_encoding_format, encrypted_pin, encrypted_key_serial_number, partner_sdk_version].hash
+      [terminal_id, terminal_serial_number, lane_number, cat_level, entry_mode, terminal_capability, pin_entry_capability, operating_environment, emv, amex_capn_data, track_data, store_and_forward_indicator, cardholder_verification_method, terminal_input_capability, terminal_card_capture_capability, terminal_output_capability, terminal_pin_capability, device_id, pin_block_encoding_format, encrypted_pin, encrypted_key_serial_number, partner_sdk_version, emv_application_identifier_and_dedicated_file_name, terminal_compliance, is_dedicated_hardware_terminal].hash
     end
 
     # Builds the object from hash

@@ -33,7 +33,7 @@ describe 'DownloadXSDApi' do
   end
 
   # unit tests for get_xsdv2
-  # Download XSD for report
+  # Download XSD for Report
   # Used to download XSDs for reports on no-auth.
   # @param report_definition_name_version Name and version of XSD file to download. Some XSDs only have one version. In that case version name is not needed. Some example values are DecisionManagerDetailReport, DecisionManagerTypes
   # @param [Hash] opts the optional parameters

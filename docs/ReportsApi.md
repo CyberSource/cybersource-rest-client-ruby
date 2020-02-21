@@ -5,8 +5,8 @@ All URIs are relative to *https://apitest.cybersource.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_report**](ReportsApi.md#create_report) | **POST** /reporting/v3/reports | Create Adhoc Report
-[**get_report_by_report_id**](ReportsApi.md#get_report_by_report_id) | **GET** /reporting/v3/reports/{reportId} | Get Report based on reportId
-[**search_reports**](ReportsApi.md#search_reports) | **GET** /reporting/v3/reports | Retrieve available reports
+[**get_report_by_report_id**](ReportsApi.md#get_report_by_report_id) | **GET** /reporting/v3/reports/{reportId} | Get Report Based on Report Id
+[**search_reports**](ReportsApi.md#search_reports) | **GET** /reporting/v3/reports | Retrieve Available Reports
 
 
 # **create_report**
@@ -62,7 +62,7 @@ No authorization required
 # **get_report_by_report_id**
 > ReportingV3ReportsIdGet200Response get_report_by_report_id(report_id, opts)
 
-Get Report based on reportId
+Get Report Based on Report Id
 
 Download a report using the reportId value. If you don’t already know this value, you can obtain it using the Retrieve available reports call. 
 
@@ -80,7 +80,7 @@ opts = {
 }
 
 begin
-  #Get Report based on reportId
+  #Get Report Based on Report Id
   result = api_instance.get_report_by_report_id(report_id, opts)
   p result
 rescue CyberSource::ApiError => e
@@ -113,7 +113,7 @@ No authorization required
 # **search_reports**
 > ReportingV3ReportsGet200Response search_reports(start_time, end_time, time_query_type, opts)
 
-Retrieve available reports
+Retrieve Available Reports
 
 Retrieve a list of the available reports to which you are subscribed. This will also give you the reportId value, which you can also use to download a report. 
 
@@ -140,7 +140,7 @@ opts = {
 }
 
 begin
-  #Retrieve available reports
+  #Retrieve Available Reports
   result = api_instance.search_reports(start_time, end_time, time_query_type, opts)
   p result
 rescue CyberSource::ApiError => e
