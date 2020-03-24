@@ -23,7 +23,7 @@ module CyberSource
     # The description for this field is not available. 
     attr_accessor :name
 
-    # Time Zone.
+    # Time Zone in ISO format.
     attr_accessor :timezone
 
     # transaction search query string.
@@ -32,7 +32,7 @@ module CyberSource
     # offset.
     attr_accessor :offset
 
-    # limit on number of results.
+    # Limit on number of results.
     attr_accessor :limit
 
     # A comma separated list of the following form - fieldName1 asc or desc, fieldName2 asc or desc, etc.
@@ -41,8 +41,11 @@ module CyberSource
     # Results for this page, this could be below the limit.
     attr_accessor :count
 
-    # total number of results.
+    # Total number of results.
     attr_accessor :total_count
+
+    # The status of the submitted transaction.
+    attr_accessor :status
 
     # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` Example `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC. 
     attr_accessor :submit_time_utc
@@ -64,6 +67,7 @@ module CyberSource
         :'sort' => :'sort',
         :'count' => :'count',
         :'total_count' => :'totalCount',
+        :'status' => :'status',
         :'submit_time_utc' => :'submitTimeUtc',
         :'_embedded' => :'_embedded',
         :'_links' => :'_links'
@@ -83,9 +87,10 @@ module CyberSource
         :'sort' => :'String',
         :'count' => :'Integer',
         :'total_count' => :'Integer',
+        :'status' => :'String',
         :'submit_time_utc' => :'String',
         :'_embedded' => :'TssV2TransactionsPost201ResponseEmbedded',
-        :'_links' => :'PtsV2PaymentsReversalsPost201ResponseLinks'
+        :'_links' => :'PtsV2IncrementalAuthorizationPatch201ResponseLinks'
       }
     end
 
@@ -135,6 +140,10 @@ module CyberSource
 
       if attributes.has_key?(:'totalCount')
         self.total_count = attributes[:'totalCount']
+      end
+
+      if attributes.has_key?(:'status')
+        self.status = attributes[:'status']
       end
 
       if attributes.has_key?(:'submitTimeUtc')
@@ -193,6 +202,7 @@ module CyberSource
           sort == o.sort &&
           count == o.count &&
           total_count == o.total_count &&
+          status == o.status &&
           submit_time_utc == o.submit_time_utc &&
           _embedded == o._embedded &&
           _links == o._links
@@ -207,7 +217,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [search_id, save, name, timezone, query, offset, limit, sort, count, total_count, submit_time_utc, _embedded, _links].hash
+      [search_id, save, name, timezone, query, offset, limit, sort, count, total_count, status, submit_time_utc, _embedded, _links].hash
     end
 
     # Builds the object from hash

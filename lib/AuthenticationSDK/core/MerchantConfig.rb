@@ -27,6 +27,7 @@ public
     @keyPass = cybsPropertyObj['keyPass']
     @keyFilename = cybsPropertyObj['keyFilename']
     @logFilename = cybsPropertyObj['logFilename']
+    @solutionId = cybsPropertyObj['solutionId']
     validateMerchantDetails()
     logAllProperties(cybsPropertyObj)
     end
@@ -81,6 +82,10 @@ public
           @requestHost = Constants::PRODUCTION_URL
         elsif @runEnvironment.upcase == Constants::RUN_ENV_SANDBOX
           @requestHost = Constants::SANDBOX_URL
+        elsif @runEnvironment.upcase == Constants::BOA_RUN_ENV_PROD
+          @requestHost = Constants::BOA_PRODUCTION_URL
+        elsif @runEnvironment.upcase == Constants.BOA_RUN_ENV_SANDBOX
+          @requestHost = Constants::BOA_SANDBOX_URL
         else
           @requestHost = @runEnvironment
         end
@@ -178,4 +183,5 @@ public
     attr_accessor :proxyPort
     attr_accessor :requestTarget
     attr_accessor :log_obj
+    attr_accessor :solutionId
   end

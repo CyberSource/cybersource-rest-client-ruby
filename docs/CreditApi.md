@@ -4,7 +4,7 @@ All URIs are relative to *https://apitest.cybersource.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_credit**](CreditApi.md#create_credit) | **POST** /pts/v2/credits/ | Process a Credit
+[**create_credit**](CreditApi.md#create_credit) | **POST** /pts/v2/credits | Process a Credit
 
 
 # **create_credit**
@@ -50,7 +50,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/json;charset=utf-8
+ - **Accept**: application/hal+json;charset=utf-8
 
 
 

@@ -16,7 +16,7 @@ module CyberSource
   class PtsV2PaymentsRefundPost201Response
     attr_accessor :_links
 
-    # An unique identification number assigned by CyberSource to identify the submitted request. It is also appended to the endpoint of the resource.
+    # An unique identification number assigned by CyberSource to identify the submitted request. It is also appended to the endpoint of the resource.  On incremental authorizations, this value with be the same as the identification number returned in the original authorization response. 
     attr_accessor :id
 
     # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` Example `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC. 
@@ -36,27 +36,7 @@ module CyberSource
 
     attr_accessor :order_information
 
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
+    attr_accessor :point_of_sale_information
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -69,7 +49,8 @@ module CyberSource
         :'client_reference_information' => :'clientReferenceInformation',
         :'refund_amount_details' => :'refundAmountDetails',
         :'processor_information' => :'processorInformation',
-        :'order_information' => :'orderInformation'
+        :'order_information' => :'orderInformation',
+        :'point_of_sale_information' => :'pointOfSaleInformation'
       }
     end
 
@@ -84,7 +65,8 @@ module CyberSource
         :'client_reference_information' => :'PtsV2PaymentsPost201ResponseClientReferenceInformation',
         :'refund_amount_details' => :'PtsV2PaymentsRefundPost201ResponseRefundAmountDetails',
         :'processor_information' => :'PtsV2PaymentsRefundPost201ResponseProcessorInformation',
-        :'order_information' => :'PtsV2PaymentsRefundPost201ResponseOrderInformation'
+        :'order_information' => :'PtsV2PaymentsRefundPost201ResponseOrderInformation',
+        :'point_of_sale_information' => :'PtsV2PaymentsCapturesPost201ResponsePointOfSaleInformation'
       }
     end
 
@@ -131,6 +113,10 @@ module CyberSource
       if attributes.has_key?(:'orderInformation')
         self.order_information = attributes[:'orderInformation']
       end
+
+      if attributes.has_key?(:'pointOfSaleInformation')
+        self.point_of_sale_information = attributes[:'pointOfSaleInformation']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -152,8 +138,6 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if !@id.nil? && @id.to_s.length > 26
-      status_validator = EnumAttributeValidator.new('String', ['PENDING'])
-      return false unless status_validator.valid?(@status)
       return false if !@reconciliation_id.nil? && @reconciliation_id.to_s.length > 60
       true
     end
@@ -166,16 +150,6 @@ module CyberSource
       end
 
       @id = id
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] status Object to be assigned
-    def status=(status)
-      validator = EnumAttributeValidator.new('String', ['PENDING'])
-      unless validator.valid?(status)
-        fail ArgumentError, 'invalid value for "status", must be one of #{validator.allowable_values}.'
-      end
-      @status = status
     end
 
     # Custom attribute writer method with validation
@@ -201,7 +175,8 @@ module CyberSource
           client_reference_information == o.client_reference_information &&
           refund_amount_details == o.refund_amount_details &&
           processor_information == o.processor_information &&
-          order_information == o.order_information
+          order_information == o.order_information &&
+          point_of_sale_information == o.point_of_sale_information
     end
 
     # @see the `==` method
@@ -213,7 +188,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, submit_time_utc, status, reconciliation_id, client_reference_information, refund_amount_details, processor_information, order_information].hash
+      [_links, id, submit_time_utc, status, reconciliation_id, client_reference_information, refund_amount_details, processor_information, order_information, point_of_sale_information].hash
     end
 
     # Builds the object from hash

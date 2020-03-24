@@ -80,6 +80,12 @@ describe 'Riskv1authenticationsOrderInformationLineItems' do
     end
   end
 
+  describe 'test attribute "shipping_destination_types"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "tax_amount"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

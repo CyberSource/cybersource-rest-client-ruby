@@ -32,7 +32,7 @@ describe 'Ptsv2paymentsPaymentInformationFluidData' do
       expect(@instance).to be_instance_of(CyberSource::Ptsv2paymentsPaymentInformationFluidData)
     end
   end
-  describe 'test attribute "key"' do
+  describe 'test attribute "key_serial_number"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

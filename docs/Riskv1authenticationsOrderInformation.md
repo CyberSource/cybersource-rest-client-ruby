@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **reordered** | **BOOLEAN** | Indicates whether the cardholder is reordering previously purchased merchandise. This field can contain one of these values: - false: First time ordered - true: Reordered  | [optional] 
 **ship_to** | [**Riskv1authenticationsOrderInformationShipTo**](Riskv1authenticationsOrderInformationShipTo.md) |  | [optional] 
 **line_items** | [**Array&lt;Riskv1authenticationsOrderInformationLineItems&gt;**](Riskv1authenticationsOrderInformationLineItems.md) | This array contains detailed information about individual products in the order. | [optional] 
-**bill_to** | [**Riskv1authenticationsOrderInformationBillTo**](Riskv1authenticationsOrderInformationBillTo.md) |  | [optional] 
+**bill_to** | [**Riskv1authenticationexemptionsOrderInformationBillTo**](Riskv1authenticationexemptionsOrderInformationBillTo.md) |  | [optional] 
+**total_offers_count** | **String** | Total number of articles/items in the order as a numeric decimal count. Possible values: 00 - 99  | [optional] 
 
 

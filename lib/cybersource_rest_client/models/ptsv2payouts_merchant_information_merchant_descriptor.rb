@@ -97,14 +97,6 @@ module CyberSource
         invalid_properties.push('invalid value for "locality", the character length must be smaller than or equal to 13.')
       end
 
-      if !@country.nil? && @country.to_s.length > 2
-        invalid_properties.push('invalid value for "country", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@administrative_area.nil? && @administrative_area.to_s.length > 3
-        invalid_properties.push('invalid value for "administrative_area", the character length must be smaller than or equal to 3.')
-      end
-
       if !@postal_code.nil? && @postal_code.to_s.length > 14
         invalid_properties.push('invalid value for "postal_code", the character length must be smaller than or equal to 14.')
       end
@@ -120,8 +112,6 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if !@locality.nil? && @locality.to_s.length > 13
-      return false if !@country.nil? && @country.to_s.length > 2
-      return false if !@administrative_area.nil? && @administrative_area.to_s.length > 3
       return false if !@postal_code.nil? && @postal_code.to_s.length > 14
       return false if !@contact.nil? && @contact.to_s.length > 14
       true
@@ -135,26 +125,6 @@ module CyberSource
       end
 
       @locality = locality
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] country Value to be assigned
-    def country=(country)
-      if !country.nil? && country.to_s.length > 2
-        fail ArgumentError, 'invalid value for "country", the character length must be smaller than or equal to 2.'
-      end
-
-      @country = country
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] administrative_area Value to be assigned
-    def administrative_area=(administrative_area)
-      if !administrative_area.nil? && administrative_area.to_s.length > 3
-        fail ArgumentError, 'invalid value for "administrative_area", the character length must be smaller than or equal to 3.'
-      end
-
-      @administrative_area = administrative_area
     end
 
     # Custom attribute writer method with validation

@@ -5,6 +5,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **request_id** | **String** | An unique identification number assigned by CyberSource to identify the submitted request. | [optional] 
 **interchange_per_item_fee** | **String** | interchange Per Item Fee | [optional] 
+**interchange_description** | **String** | interchange Description | [optional] 
+**interchange_percentage** | **String** | interchange Percentage | [optional] 
+**interchange_percentage_amount** | **String** | interchange Percentage Amount | [optional] 
 **discount_percentage** | **String** | Discount Percentage | [optional] 
 **discount_amount** | **String** | Discount Amount | [optional] 
 **discount_per_item_fee** | **String** | Discount Per Item Fee | [optional] 

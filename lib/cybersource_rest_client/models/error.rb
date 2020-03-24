@@ -14,28 +14,23 @@ require 'date'
 
 module CyberSource
   class Error
-    attr_accessor :type
+    attr_accessor :response_status
 
-    # The detailed message related to the type stated above.
-    attr_accessor :message
-
-    attr_accessor :details
+    attr_accessor :_links
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'type' => :'type',
-        :'message' => :'message',
-        :'details' => :'details'
+        :'response_status' => :'responseStatus',
+        :'_links' => :'_links'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'type' => :'String',
-        :'message' => :'String',
-        :'details' => :'Tmsv1instrumentidentifiersDetails'
+        :'response_status' => :'InlineResponseDefaultResponseStatus',
+        :'_links' => :'ErrorLinks'
       }
     end
 
@@ -47,16 +42,12 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'type')
-        self.type = attributes[:'type']
+      if attributes.has_key?(:'responseStatus')
+        self.response_status = attributes[:'responseStatus']
       end
 
-      if attributes.has_key?(:'message')
-        self.message = attributes[:'message']
-      end
-
-      if attributes.has_key?(:'details')
-        self.details = attributes[:'details']
+      if attributes.has_key?(:'_links')
+        self._links = attributes[:'_links']
       end
     end
 
@@ -78,9 +69,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          type == o.type &&
-          message == o.message &&
-          details == o.details
+          response_status == o.response_status &&
+          _links == o._links
     end
 
     # @see the `==` method
@@ -92,7 +82,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [type, message, details].hash
+      [response_status, _links].hash
     end
 
     # Builds the object from hash

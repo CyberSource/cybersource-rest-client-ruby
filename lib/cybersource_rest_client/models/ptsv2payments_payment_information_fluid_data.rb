@@ -15,9 +15,9 @@ require 'date'
 module CyberSource
   class Ptsv2paymentsPaymentInformationFluidData
     # The encoded or encrypted value that a payment solution returns for an authorization request. For details about the valid values for a key, see [Creating an Online Authorization](https://developer.cybersource.com/api/developer-guides/dita-payments/CreatingOnlineAuth.html) 
-    attr_accessor :key
+    attr_accessor :key_serial_number
 
-    # The identifier for a payment solution, which is sending the encrypted payment data to CyberSource for decryption. Valid values: - Samsung Pay: `RklEPUNPTU1PTi5TQU1TVU5HLklOQVBQLlBBWU1FTlQ=` **NOTE**: For other payment solutions, the value may be specific to the customer's mobile device. For example, the descriptor for a Bluefin payment encryption would be a device-generated descriptor.  For details about the list of payment solution identifiers, see [Creating an Online Authorization](https://developer.cybersource.com/api/developer-guides/dita-payments/CreatingOnlineAuth.html).  For details about the encrypted payment data, see the `encrypted_payment_descriptor` field description in the [Card-Present Processing Using the SCMP API Guide](https://apps.cybersource.com/library/documentation/dev_guides/Retail_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm). 
+    # The identifier for a payment solution, which is sending the encrypted payment data to CyberSource for decryption. Valid values: - Samsung Pay: `RklEPUNPTU1PTi5TQU1TVU5HLklOQVBQLlBBWU1FTlQ=` **NOTE**: For other payment solutions, the value may be specific to the customer's mobile device. For example, the descriptor for a Bluefin payment encryption would be a device-generated descriptor.  For details about the list of payment solution identifiers, see [Creating an Online Authorization](https://developer.cybersource.com/api/developer-guides/dita-payments/CreatingOnlineAuth.html).  For details about the encrypted payment data, see the `encrypted_payment_descriptor` field description in the [Card-Present Processing Using the SCMP API Guide](https://apps.cybersource.com/library/documentation/dev_guides/Retail_SCMP_API/html/). 
     attr_accessor :descriptor
 
     # Represents the encrypted payment data BLOB. The entry for this field is dependent on the payment solution a merchant uses.  For details, see [Creating an Online Authorization](https://developer.cybersource.com/api/developer-guides/dita-payments/CreatingOnlineAuth.html) for the specific payment- solution entry. 
@@ -29,7 +29,7 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'key' => :'key',
+        :'key_serial_number' => :'keySerialNumber',
         :'descriptor' => :'descriptor',
         :'value' => :'value',
         :'encoding' => :'encoding'
@@ -39,7 +39,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'key' => :'String',
+        :'key_serial_number' => :'String',
         :'descriptor' => :'String',
         :'value' => :'String',
         :'encoding' => :'String'
@@ -54,8 +54,8 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'key')
-        self.key = attributes[:'key']
+      if attributes.has_key?(:'keySerialNumber')
+        self.key_serial_number = attributes[:'keySerialNumber']
       end
 
       if attributes.has_key?(:'descriptor')
@@ -134,7 +134,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          key == o.key &&
+          key_serial_number == o.key_serial_number &&
           descriptor == o.descriptor &&
           value == o.value &&
           encoding == o.encoding
@@ -149,7 +149,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [key, descriptor, value, encoding].hash
+      [key_serial_number, descriptor, value, encoding].hash
     end
 
     # Builds the object from hash

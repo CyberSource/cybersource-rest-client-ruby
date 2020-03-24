@@ -14,10 +14,12 @@ require 'date'
 
 module CyberSource
   class CreateInstrumentIdentifierRequest
-    # Type of Card
+    # Enrol card for a Network Token
     attr_accessor :type
 
     attr_accessor :card
+
+    attr_accessor :bank_account
 
     attr_accessor :bill_to
 
@@ -26,6 +28,7 @@ module CyberSource
       {
         :'type' => :'type',
         :'card' => :'card',
+        :'bank_account' => :'BankAccount',
         :'bill_to' => :'billTo'
       }
     end
@@ -35,6 +38,7 @@ module CyberSource
       {
         :'type' => :'String',
         :'card' => :'Tmsv1instrumentidentifiersCard',
+        :'bank_account' => :'Tmsv1instrumentidentifiersBankAccount',
         :'bill_to' => :'Tmsv1instrumentidentifiersBillTo'
       }
     end
@@ -53,6 +57,10 @@ module CyberSource
 
       if attributes.has_key?(:'card')
         self.card = attributes[:'card']
+      end
+
+      if attributes.has_key?(:'BankAccount')
+        self.bank_account = attributes[:'BankAccount']
       end
 
       if attributes.has_key?(:'billTo')
@@ -80,6 +88,7 @@ module CyberSource
       self.class == o.class &&
           type == o.type &&
           card == o.card &&
+          bank_account == o.bank_account &&
           bill_to == o.bill_to
     end
 
@@ -92,7 +101,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [type, card, bill_to].hash
+      [type, card, bank_account, bill_to].hash
     end
 
     # Builds the object from hash

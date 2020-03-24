@@ -32,8 +32,22 @@ describe 'TransactionBatchesApi' do
     end
   end
 
+  # unit tests for get_transaction_batch_details
+  # Get Transaction Details for a given Batch Id
+  # Provides real-time detailed status information about the transactions that you previously uploaded in the Business Center or processed with the Offline Transaction File Submission service. 
+  # @param id The batch id assigned for the template.
+  # @param [Hash] opts the optional parameters
+  # @option opts [Date] :upload_date Date in which the original batch file was uploaded. Date must be in ISO-8601 format. Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) **Example date format:**  - yyyy-MM-dd 
+  # @option opts [String] :status Allows you to filter by rejected response.  Valid values: - Rejected 
+  # @return [nil]
+  describe 'get_transaction_batch_details test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for get_transaction_batch_id
-  # Get individual batch file
+  # Get Individual Batch File
   # Provide the search range
   # @param id The batch id assigned for the template.
   # @param [Hash] opts the optional parameters
@@ -45,10 +59,10 @@ describe 'TransactionBatchesApi' do
   end
 
   # unit tests for get_transaction_batches
-  # Gets a list of batch files
+  # Get a List of Batch Files
   # Provide the search range
-  # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZZ 
-  # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZZ 
+  # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZZ 
+  # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZZ 
   # @param [Hash] opts the optional parameters
   # @return [PtsV1TransactionBatchesGet200Response]
   describe 'get_transaction_batches test' do

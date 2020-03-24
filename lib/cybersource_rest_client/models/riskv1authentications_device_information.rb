@@ -25,6 +25,27 @@ module CyberSource
     # The exact content of the HTTP accept header. 
     attr_accessor :http_accept_content
 
+    # Value represents the browser language as defined in IETF BCP47. Example:en-US, refer  https://en.wikipedia.org/wiki/IETF_language_tag for more details. 
+    attr_accessor :http_browser_language
+
+    # A Boolean value that represents the ability of the cardholder browser to execute Java. Value is returned from the navigator.javaEnabled property. Possible Values:True/False 
+    attr_accessor :http_browser_java_enabled
+
+    # A Boolean value that represents the ability of the cardholder browser to execute JavaScript. Possible Values:True/False. **Note**: Merchants should be able to know the values from fingerprint details of cardholder's browser. 
+    attr_accessor :http_browser_java_script_enabled
+
+    # Value represents the bit depth of the color palette for displaying images, in bits per pixel. Example : 24, refer https://en.wikipedia.org/wiki/Color_depth for more details 
+    attr_accessor :http_browser_color_depth
+
+    # Total height of the Cardholder's scree in pixels, example: 864. 
+    attr_accessor :http_browser_screen_height
+
+    # Total width of the cardholder's screen in pixels. Example: 1536. 
+    attr_accessor :http_browser_screen_width
+
+    # Time difference between UTC time and the cardholder browser local time, in minutes, Example:300 
+    attr_accessor :http_browser_time_difference
+
     # Value of the User-Agent header sent by the customer’s web browser. Note If the customer’s browser provides a value, you must include it in your request. 
     attr_accessor :user_agent_browser_value
 
@@ -35,6 +56,13 @@ module CyberSource
         :'raw_data' => :'rawData',
         :'http_accept_browser_value' => :'httpAcceptBrowserValue',
         :'http_accept_content' => :'httpAcceptContent',
+        :'http_browser_language' => :'httpBrowserLanguage',
+        :'http_browser_java_enabled' => :'httpBrowserJavaEnabled',
+        :'http_browser_java_script_enabled' => :'httpBrowserJavaScriptEnabled',
+        :'http_browser_color_depth' => :'httpBrowserColorDepth',
+        :'http_browser_screen_height' => :'httpBrowserScreenHeight',
+        :'http_browser_screen_width' => :'httpBrowserScreenWidth',
+        :'http_browser_time_difference' => :'httpBrowserTimeDifference',
         :'user_agent_browser_value' => :'userAgentBrowserValue'
       }
     end
@@ -46,6 +74,13 @@ module CyberSource
         :'raw_data' => :'Array<Riskv1authenticationsDeviceInformationRawData>',
         :'http_accept_browser_value' => :'String',
         :'http_accept_content' => :'String',
+        :'http_browser_language' => :'String',
+        :'http_browser_java_enabled' => :'BOOLEAN',
+        :'http_browser_java_script_enabled' => :'BOOLEAN',
+        :'http_browser_color_depth' => :'String',
+        :'http_browser_screen_height' => :'String',
+        :'http_browser_screen_width' => :'String',
+        :'http_browser_time_difference' => :'String',
         :'user_agent_browser_value' => :'String'
       }
     end
@@ -76,6 +111,34 @@ module CyberSource
         self.http_accept_content = attributes[:'httpAcceptContent']
       end
 
+      if attributes.has_key?(:'httpBrowserLanguage')
+        self.http_browser_language = attributes[:'httpBrowserLanguage']
+      end
+
+      if attributes.has_key?(:'httpBrowserJavaEnabled')
+        self.http_browser_java_enabled = attributes[:'httpBrowserJavaEnabled']
+      end
+
+      if attributes.has_key?(:'httpBrowserJavaScriptEnabled')
+        self.http_browser_java_script_enabled = attributes[:'httpBrowserJavaScriptEnabled']
+      end
+
+      if attributes.has_key?(:'httpBrowserColorDepth')
+        self.http_browser_color_depth = attributes[:'httpBrowserColorDepth']
+      end
+
+      if attributes.has_key?(:'httpBrowserScreenHeight')
+        self.http_browser_screen_height = attributes[:'httpBrowserScreenHeight']
+      end
+
+      if attributes.has_key?(:'httpBrowserScreenWidth')
+        self.http_browser_screen_width = attributes[:'httpBrowserScreenWidth']
+      end
+
+      if attributes.has_key?(:'httpBrowserTimeDifference')
+        self.http_browser_time_difference = attributes[:'httpBrowserTimeDifference']
+      end
+
       if attributes.has_key?(:'userAgentBrowserValue')
         self.user_agent_browser_value = attributes[:'userAgentBrowserValue']
       end
@@ -85,8 +148,8 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@ip_address.nil? && @ip_address.to_s.length > 15
-        invalid_properties.push('invalid value for "ip_address", the character length must be smaller than or equal to 15.')
+      if !@ip_address.nil? && @ip_address.to_s.length > 48
+        invalid_properties.push('invalid value for "ip_address", the character length must be smaller than or equal to 48.')
       end
 
       if !@http_accept_browser_value.nil? && @http_accept_browser_value.to_s.length > 255
@@ -95,6 +158,26 @@ module CyberSource
 
       if !@http_accept_content.nil? && @http_accept_content.to_s.length > 256
         invalid_properties.push('invalid value for "http_accept_content", the character length must be smaller than or equal to 256.')
+      end
+
+      if !@http_browser_language.nil? && @http_browser_language.to_s.length > 8
+        invalid_properties.push('invalid value for "http_browser_language", the character length must be smaller than or equal to 8.')
+      end
+
+      if !@http_browser_color_depth.nil? && @http_browser_color_depth.to_s.length > 2
+        invalid_properties.push('invalid value for "http_browser_color_depth", the character length must be smaller than or equal to 2.')
+      end
+
+      if !@http_browser_screen_height.nil? && @http_browser_screen_height.to_s.length > 6
+        invalid_properties.push('invalid value for "http_browser_screen_height", the character length must be smaller than or equal to 6.')
+      end
+
+      if !@http_browser_screen_width.nil? && @http_browser_screen_width.to_s.length > 6
+        invalid_properties.push('invalid value for "http_browser_screen_width", the character length must be smaller than or equal to 6.')
+      end
+
+      if !@http_browser_time_difference.nil? && @http_browser_time_difference.to_s.length > 5
+        invalid_properties.push('invalid value for "http_browser_time_difference", the character length must be smaller than or equal to 5.')
       end
 
       if !@user_agent_browser_value.nil? && @user_agent_browser_value.to_s.length > 255
@@ -107,9 +190,14 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@ip_address.nil? && @ip_address.to_s.length > 15
+      return false if !@ip_address.nil? && @ip_address.to_s.length > 48
       return false if !@http_accept_browser_value.nil? && @http_accept_browser_value.to_s.length > 255
       return false if !@http_accept_content.nil? && @http_accept_content.to_s.length > 256
+      return false if !@http_browser_language.nil? && @http_browser_language.to_s.length > 8
+      return false if !@http_browser_color_depth.nil? && @http_browser_color_depth.to_s.length > 2
+      return false if !@http_browser_screen_height.nil? && @http_browser_screen_height.to_s.length > 6
+      return false if !@http_browser_screen_width.nil? && @http_browser_screen_width.to_s.length > 6
+      return false if !@http_browser_time_difference.nil? && @http_browser_time_difference.to_s.length > 5
       return false if !@user_agent_browser_value.nil? && @user_agent_browser_value.to_s.length > 255
       true
     end
@@ -117,8 +205,8 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] ip_address Value to be assigned
     def ip_address=(ip_address)
-      if !ip_address.nil? && ip_address.to_s.length > 15
-        fail ArgumentError, 'invalid value for "ip_address", the character length must be smaller than or equal to 15.'
+      if !ip_address.nil? && ip_address.to_s.length > 48
+        fail ArgumentError, 'invalid value for "ip_address", the character length must be smaller than or equal to 48.'
       end
 
       @ip_address = ip_address
@@ -145,6 +233,56 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] http_browser_language Value to be assigned
+    def http_browser_language=(http_browser_language)
+      if !http_browser_language.nil? && http_browser_language.to_s.length > 8
+        fail ArgumentError, 'invalid value for "http_browser_language", the character length must be smaller than or equal to 8.'
+      end
+
+      @http_browser_language = http_browser_language
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] http_browser_color_depth Value to be assigned
+    def http_browser_color_depth=(http_browser_color_depth)
+      if !http_browser_color_depth.nil? && http_browser_color_depth.to_s.length > 2
+        fail ArgumentError, 'invalid value for "http_browser_color_depth", the character length must be smaller than or equal to 2.'
+      end
+
+      @http_browser_color_depth = http_browser_color_depth
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] http_browser_screen_height Value to be assigned
+    def http_browser_screen_height=(http_browser_screen_height)
+      if !http_browser_screen_height.nil? && http_browser_screen_height.to_s.length > 6
+        fail ArgumentError, 'invalid value for "http_browser_screen_height", the character length must be smaller than or equal to 6.'
+      end
+
+      @http_browser_screen_height = http_browser_screen_height
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] http_browser_screen_width Value to be assigned
+    def http_browser_screen_width=(http_browser_screen_width)
+      if !http_browser_screen_width.nil? && http_browser_screen_width.to_s.length > 6
+        fail ArgumentError, 'invalid value for "http_browser_screen_width", the character length must be smaller than or equal to 6.'
+      end
+
+      @http_browser_screen_width = http_browser_screen_width
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] http_browser_time_difference Value to be assigned
+    def http_browser_time_difference=(http_browser_time_difference)
+      if !http_browser_time_difference.nil? && http_browser_time_difference.to_s.length > 5
+        fail ArgumentError, 'invalid value for "http_browser_time_difference", the character length must be smaller than or equal to 5.'
+      end
+
+      @http_browser_time_difference = http_browser_time_difference
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] user_agent_browser_value Value to be assigned
     def user_agent_browser_value=(user_agent_browser_value)
       if !user_agent_browser_value.nil? && user_agent_browser_value.to_s.length > 255
@@ -163,6 +301,13 @@ module CyberSource
           raw_data == o.raw_data &&
           http_accept_browser_value == o.http_accept_browser_value &&
           http_accept_content == o.http_accept_content &&
+          http_browser_language == o.http_browser_language &&
+          http_browser_java_enabled == o.http_browser_java_enabled &&
+          http_browser_java_script_enabled == o.http_browser_java_script_enabled &&
+          http_browser_color_depth == o.http_browser_color_depth &&
+          http_browser_screen_height == o.http_browser_screen_height &&
+          http_browser_screen_width == o.http_browser_screen_width &&
+          http_browser_time_difference == o.http_browser_time_difference &&
           user_agent_browser_value == o.user_agent_browser_value
     end
 
@@ -175,7 +320,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [ip_address, raw_data, http_accept_browser_value, http_accept_content, user_agent_browser_value].hash
+      [ip_address, raw_data, http_accept_browser_value, http_accept_content, http_browser_language, http_browser_java_enabled, http_browser_java_script_enabled, http_browser_color_depth, http_browser_screen_height, http_browser_screen_width, http_browser_time_difference, user_agent_browser_value].hash
     end
 
     # Builds the object from hash

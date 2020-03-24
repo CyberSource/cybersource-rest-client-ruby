@@ -5,5 +5,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **card** | [**Riskv1authenticationresultsPaymentInformationCard**](Riskv1authenticationresultsPaymentInformationCard.md) |  | [optional] 
 **tokenized_card** | [**Riskv1authenticationresultsPaymentInformationTokenizedCard**](Riskv1authenticationresultsPaymentInformationTokenizedCard.md) |  | [optional] 
+**fluid_data** | [**Riskv1authenticationexemptionsPaymentInformationFluidData**](Riskv1authenticationexemptionsPaymentInformationFluidData.md) |  | [optional] 
 
 

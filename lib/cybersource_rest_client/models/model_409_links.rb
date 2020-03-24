@@ -26,7 +26,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'payment_instruments' => :'TmsV1InstrumentIdentifiersDelete409ResponseLinksPaymentInstruments'
+        :'payment_instruments' => :'TmsV1InstrumentIdentifiersPost200ResponseLinksPaymentInstruments'
       }
     end
 

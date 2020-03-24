@@ -29,33 +29,11 @@ module CyberSource
     # Date and time for the file in PST
     attr_accessor :date
 
-    # File extension
+    # 'File extension'  Valid values: - 'application/xml' - 'text/csv' - 'application/pdf' - 'application/octet-stream' 
     attr_accessor :mime_type
 
     # Size of the file in bytes
     attr_accessor :size
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -130,19 +108,7 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      mime_type_validator = EnumAttributeValidator.new('String', ['application/xml', 'text/csv', 'application/pdf', 'application/octet-stream'])
-      return false unless mime_type_validator.valid?(@mime_type)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] mime_type Object to be assigned
-    def mime_type=(mime_type)
-      validator = EnumAttributeValidator.new('String', ['application/xml', 'text/csv', 'application/pdf', 'application/octet-stream'])
-      unless validator.valid?(mime_type)
-        fail ArgumentError, 'invalid value for "mime_type", must be one of #{validator.allowable_values}.'
-      end
-      @mime_type = mime_type
     end
 
     # Checks equality by comparing each attribute.

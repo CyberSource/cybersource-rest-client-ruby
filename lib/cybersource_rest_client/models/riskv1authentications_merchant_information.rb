@@ -14,12 +14,15 @@ require 'date'
 
 module CyberSource
   class Riskv1authenticationsMerchantInformation
+    attr_accessor :merchant_descriptor
+
     # Your company’s name as you want it to appear to the customer in the issuing bank’s authentication form. This value overrides the value specified by your merchant bank. 
     attr_accessor :merchant_name
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'merchant_descriptor' => :'merchantDescriptor',
         :'merchant_name' => :'merchantName'
       }
     end
@@ -27,6 +30,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'merchant_descriptor' => :'Riskv1authenticationsMerchantInformationMerchantDescriptor',
         :'merchant_name' => :'String'
       }
     end
@@ -38,6 +42,10 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'merchantDescriptor')
+        self.merchant_descriptor = attributes[:'merchantDescriptor']
+      end
 
       if attributes.has_key?(:'merchantName')
         self.merchant_name = attributes[:'merchantName']
@@ -77,6 +85,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          merchant_descriptor == o.merchant_descriptor &&
           merchant_name == o.merchant_name
     end
 
@@ -89,7 +98,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [merchant_name].hash
+      [merchant_descriptor, merchant_name].hash
     end
 
     # Builds the object from hash

@@ -15,7 +15,9 @@ Name | Type | Description | Notes
 **aggregator_information** | [**Ptsv2paymentsAggregatorInformation**](Ptsv2paymentsAggregatorInformation.md) |  | [optional] 
 **consumer_authentication_information** | [**Ptsv2paymentsConsumerAuthenticationInformation**](Ptsv2paymentsConsumerAuthenticationInformation.md) |  | [optional] 
 **point_of_sale_information** | [**Ptsv2paymentsPointOfSaleInformation**](Ptsv2paymentsPointOfSaleInformation.md) |  | [optional] 
-**merchant_defined_information** | [**Array&lt;Ptsv2paymentsMerchantDefinedInformation&gt;**](Ptsv2paymentsMerchantDefinedInformation.md) | The description for this field is not available. | [optional] 
+**merchant_defined_information** | [**Array&lt;Ptsv2paymentsMerchantDefinedInformation&gt;**](Ptsv2paymentsMerchantDefinedInformation.md) | The object containing the custom data that the merchant defines.  | [optional] 
 **installment_information** | [**Ptsv2paymentsInstallmentInformation**](Ptsv2paymentsInstallmentInformation.md) |  | [optional] 
+**travel_information** | [**Ptsv2paymentsTravelInformation**](Ptsv2paymentsTravelInformation.md) |  | [optional] 
+**promotion_information** | [**Ptsv2paymentsPromotionInformation**](Ptsv2paymentsPromotionInformation.md) |  | [optional] 
 
 

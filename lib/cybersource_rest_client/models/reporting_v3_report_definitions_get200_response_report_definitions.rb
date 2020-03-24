@@ -25,27 +25,10 @@ module CyberSource
 
     attr_accessor :description
 
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
+    attr_accessor :default_settings
 
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
+    # 'The subscription type for which report definition is required. By default the type will be CUSTOM.' Valid Values: - CLASSIC - CUSTOM - STANDARD 
+    attr_accessor :subscription_type
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -54,7 +37,9 @@ module CyberSource
         :'report_definition_id' => :'reportDefinitionId',
         :'report_defintion_name' => :'reportDefintionName',
         :'supported_formats' => :'supportedFormats',
-        :'description' => :'description'
+        :'description' => :'description',
+        :'default_settings' => :'defaultSettings',
+        :'subscription_type' => :'subscriptionType'
       }
     end
 
@@ -65,7 +50,9 @@ module CyberSource
         :'report_definition_id' => :'Integer',
         :'report_defintion_name' => :'String',
         :'supported_formats' => :'Array<String>',
-        :'description' => :'String'
+        :'description' => :'String',
+        :'default_settings' => :'ReportingV3ReportDefinitionsNameGet200ResponseDefaultSettings',
+        :'subscription_type' => :'String'
       }
     end
 
@@ -98,6 +85,14 @@ module CyberSource
       if attributes.has_key?(:'description')
         self.description = attributes[:'description']
       end
+
+      if attributes.has_key?(:'defaultSettings')
+        self.default_settings = attributes[:'defaultSettings']
+      end
+
+      if attributes.has_key?(:'subscriptionType')
+        self.subscription_type = attributes[:'subscriptionType']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -122,7 +117,9 @@ module CyberSource
           report_definition_id == o.report_definition_id &&
           report_defintion_name == o.report_defintion_name &&
           supported_formats == o.supported_formats &&
-          description == o.description
+          description == o.description &&
+          default_settings == o.default_settings &&
+          subscription_type == o.subscription_type
     end
 
     # @see the `==` method
@@ -134,7 +131,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [type, report_definition_id, report_defintion_name, supported_formats, description].hash
+      [type, report_definition_id, report_defintion_name, supported_formats, description, default_settings, subscription_type].hash
     end
 
     # Builds the object from hash

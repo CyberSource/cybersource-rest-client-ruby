@@ -65,10 +65,6 @@ describe 'V1FileDetailsGet200ResponseFileDetails' do
   describe 'test attribute "mime_type"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["application/xml", "text/csv", "application/pdf", "application/octet-stream"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.mime_type = value }.not_to raise_error
-      # end
     end
   end
 

@@ -35,7 +35,7 @@ describe 'ReportsApi' do
   # unit tests for create_report
   # Create Adhoc Report
   # Create a one-time report. You must specify the type of report in reportDefinitionName. For a list of values for reportDefinitionName, see the [Reporting Developer Guide](https://www.cybersource.com/developers/documentation/reporting_and_reconciliation) 
-  # @param request_body Report subscription request payload
+  # @param create_adhoc_report_request Report subscription request payload
   # @param [Hash] opts the optional parameters
   # @option opts [String] :organization_id Valid Cybersource Organization Id
   # @return [nil]
@@ -46,7 +46,7 @@ describe 'ReportsApi' do
   end
 
   # unit tests for get_report_by_report_id
-  # Get Report based on reportId
+  # Get Report Based on Report Id
   # Download a report using the reportId value. If you don’t already know this value, you can obtain it using the Retrieve available reports call. 
   # @param report_id Valid Report Id
   # @param [Hash] opts the optional parameters
@@ -59,18 +59,18 @@ describe 'ReportsApi' do
   end
 
   # unit tests for search_reports
-  # Retrieve available reports
+  # Retrieve Available Reports
   # Retrieve a list of the available reports to which you are subscribed. This will also give you the reportId value, which you can also use to download a report. 
-  # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
-  # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
-  # @param time_query_type Specify time you would like to search
+  # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
+  # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
+  # @param time_query_type Specify time you would like to search  Valid values: - reportTimeFrame - executedTime 
   # @param [Hash] opts the optional parameters
   # @option opts [String] :organization_id Valid Cybersource Organization Id
-  # @option opts [String] :report_mime_type Valid Report Format
-  # @option opts [String] :report_frequency Valid Report Frequency
+  # @option opts [String] :report_mime_type Valid Report Format  Valid values: - application/xml - text/csv 
+  # @option opts [String] :report_frequency Valid Report Frequency  Valid values: - DAILY - WEEKLY - MONTHLY - USER_DEFINED - ADHOC 
   # @option opts [String] :report_name Valid Report Name
   # @option opts [Integer] :report_definition_id Valid Report Definition Id
-  # @option opts [String] :report_status Valid Report Status
+  # @option opts [String] :report_status Valid Report Status  Valid values: - COMPLETED - PENDING - QUEUED - RUNNING - ERROR - NO_DATA 
   # @return [ReportingV3ReportsGet200Response]
   describe 'search_reports test' do
     it 'should work' do

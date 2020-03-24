@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **address2** | **String** | Second line of the shipping address. | [optional] 
 **administrative_area** | **String** | State or province of the shipping address. Use the State, Province, and Territory Codes for the United States and Canada.  | [optional] 
 **country** | **String** | Country of the shipping address. Use the two-character ISO Standard Country Codes. | [optional] 
+**destination_types** | **String** | Shipping destination of item. Example: Commercial, Residential, Store  | [optional] 
 **locality** | **String** | City of the shipping address. | [optional] 
 **first_name** | **String** | First name of the recipient.  **Processor specific maximum length**  - Litle: 25 - All other processors: 60  | [optional] 
 **last_name** | **String** | Last name of the recipient.  **Processor-specific maximum length**  - Litle: 25 - All other processors: 60  | [optional] 

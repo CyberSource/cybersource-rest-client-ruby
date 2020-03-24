@@ -14,10 +14,10 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsPost201ResponseEmbeddedPaymentInformationPaymentType
-    # The type of payment method. This is required for non-credit card payment.  Possible values:  - BANK_TRANSFER  - CARD (Default)  - EWALLET  - DIGITAL  - DIRECT_DEBIT  - INVOICE  - PUSH_PAYMENT  - CARRIER_BILLING  - CASH  - CHECK  - CRYPTOGRAPHIC  Please contact CyberSource Customer Support to enable the payment method of your choice and the value you should send in your payment request for this field. 
+    # Indicates the payment type used in this payment transaction. Example: credit card, check
     attr_accessor :type
 
-    # This is an optional field.  Please contact CyberSource Customer Support to enable the payment method of your choice and the value you should send in your payment request for this field. 
+    # Indicates the payment method used in this payment transaction.
     attr_accessor :method
 
     # Attribute mapping from ruby-style variable name to JSON key.

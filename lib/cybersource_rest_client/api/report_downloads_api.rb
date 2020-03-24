@@ -20,24 +20,26 @@ module CyberSource
       @api_client = api_client
 	  @api_client.set_configuration(config)
     end
-    # Download a report
-    # Download a report using the unique report name and date.
-    # @param report_date Valid date on which to download the report in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd
+    # Download a Report
+    # Download a report using the unique report name and date. 
+    # @param report_date Valid date on which to download the report in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example date format:**   - yyyy-MM-dd 
     # @param report_name Name of the report to download
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
+    # @option opts [String] :report_time Valid time on which to download the report in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Time Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example time format:**   - hh:mm:ss±hh:mm 
     # @return [nil]
     def download_report(report_date, report_name, opts = {})
       data, status_code, headers = download_report_with_http_info(report_date, report_name, opts)
       return data, status_code, headers
     end
 
-    # Download a report
-    # Download a report using the unique report name and date.
-    # @param report_date Valid date on which to download the report in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd
+    # Download a Report
+    # Download a report using the unique report name and date. 
+    # @param report_date Valid date on which to download the report in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example date format:**   - yyyy-MM-dd 
     # @param report_name Name of the report to download
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
+    # @option opts [String] :report_time Valid time on which to download the report in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Time Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example time format:**   - hh:mm:ss±hh:mm 
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def download_report_with_http_info(report_date, report_name, opts = {})
 
@@ -77,6 +79,7 @@ module CyberSource
       query_params[:'reportDate'] = report_date
       query_params[:'reportName'] = report_name
       query_params[:'organizationId'] = opts[:'organization_id'] if !opts[:'organization_id'].nil?
+      query_params[:'reportTime'] = opts[:'report_time'] if !opts[:'report_time'].nil?
 
       # header parameters
       header_params = {}

@@ -14,20 +14,30 @@ require 'date'
 
 module CyberSource
   class PtsV2PaymentsPost201ResponsePointOfSaleInformationEmv
-    # EMV data that is transmitted from the chip card to the issuer, and from the issuer to the chip card. The EMV data is in the tag-length-value format and includes chip card tags, terminal tags, and transaction detail tags.  For details, see the `emv_request_combined_tags` field description in [Card-Present Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Retail_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  **Note** The information about EMV applies to credit card processing and PIN debit processing. All other information in this guide applies only to credit card processing. PIN debit processing is available only on FDC Nashville Global.  **Note** For information about the individual tags, see the “Application Specification” section in the EMV 4.3 Specifications: http://emvco.com  **Important** The following tags contain sensitive information and **must not** be included in this field:   - **56**: Track 1 equivalent data  - **57**: Track 2 equivalent data  - **5A**: Application PAN  - **5F20**: Cardholder name  - **5F24**: Application expiration date (This sensitivity has been relaxed for cmcic, amexdirect, fdiglobal, opdfde, and six)  - **99**: Transaction PIN  - **9F0B**: Cardholder name (extended)  - **9F1F**: Track 1 discretionary data  - **9F20**: Track 2 discretionary data  For captures, this field is required for contact EMV transactions. Otherwise, it is optional.  For credits, this field is required for contact EMV stand-alone credits and contactless EMV stand-alone credits. Otherwise, it is optional.  **Important** For contact EMV captures, contact EMV stand-alone credits, and contactless EMV stand-alone credits, you must include the following tags in this field. For all other types of EMV transactions, the following tags are optional.   - **95**: Terminal verification results  - **9F10**: Issuer application data  - **9F26**: Application cryptogram 
+    # EMV data that is transmitted from the chip card to the issuer, and from the issuer to the chip card. The EMV data is in the tag-length-value format and includes chip card tags, terminal tags, and transaction detail tags.  For details, see the `emv_request_combined_tags` field description in [Card-Present Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Retail_SCMP_API/html/)  **Note** The information about EMV applies to credit card processing and PIN debit processing. All other information in this guide applies only to credit card processing. PIN debit processing is available only on FDC Nashville Global.  **Note** For information about the individual tags, see the “Application Specification” section in the EMV 4.3 Specifications: http://emvco.com  **Important** The following tags contain sensitive information and **must not** be included in this field:   - **56**: Track 1 equivalent data  - **57**: Track 2 equivalent data  - **5A**: Application PAN  - **5F20**: Cardholder name  - **5F24**: Application expiration date (This sensitivity has been relaxed for cmcic, amexdirect, fdiglobal, opdfde, and six)  - **99**: Transaction PIN  - **9F0B**: Cardholder name (extended)  - **9F1F**: Track 1 discretionary data  - **9F20**: Track 2 discretionary data  For captures, this field is required for contact EMV transactions. Otherwise, it is optional.  For credits, this field is required for contact EMV stand-alone credits and contactless EMV stand-alone credits. Otherwise, it is optional.  **Important** For contact EMV captures, contact EMV stand-alone credits, and contactless EMV stand-alone credits, you must include the following tags in this field. For all other types of EMV transactions, the following tags are optional.   - **95**: Terminal verification results  - **9F10**: Issuer application data  - **9F26**: Application cryptogram 
     attr_accessor :tags
+
+    # Entity or service that provided the validation results returned in `chipValidationResult`.  Possible values:  - `02`: MasterCard on-behalf pre-validation service (The MasterCard authorization platform validated the M/Chip cryptogram before the authorization request reached the issuer.)  - `03`: MasterCard on-behalf stand-in service (The MasterCard authorization platform validated the M/Chip cryptogram because the issuer was not available.)  - `50`: Issuer  - `90`: Chip fall-back transaction downgrade process (The chip could not be read.)  This field is returned only for NFC payment network tokenization transactions with MasterCard.  **Note** No CyberSource through VisaNet acquirers support EMV at this time. 
+    attr_accessor :chip_validation_type
+
+    # Cryptogram validation results returned by the entity or service specified in `chipValidationType`.  Possible values: - `A`: Application cryptogram is valid, but the application transaction counter (ATC) is outside allowed range. (A large jump in ATC values may indicate data copying or other fraud.) - `C`: Chip validation was completed successfully. - `E`: Application cryptogram is valid but the ATC indicates possible replay fraud. - `F`: Format error in the chip data. - `G`: Application cryptogram is valid but is not a valid authorization request cryptogram (ARQC). - `I`: Application cryptogram is invalid. - `T`: Application cryptogram is valid but terminal verification results (TVR) or card verification results (CVR) are invalid. - `U`: Application cryptogram could not be validated because of a technical error.  This field is returned only for NFC payment network tokenization transactions with MasterCard.  **Note** No CyberSource through VisaNet acquirers support EMV at this time. 
+    attr_accessor :chip_validation_result
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'tags' => :'tags'
+        :'tags' => :'tags',
+        :'chip_validation_type' => :'chipValidationType',
+        :'chip_validation_result' => :'chipValidationResult'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'tags' => :'String'
+        :'tags' => :'String',
+        :'chip_validation_type' => :'String',
+        :'chip_validation_result' => :'String'
       }
     end
 
@@ -42,6 +52,14 @@ module CyberSource
       if attributes.has_key?(:'tags')
         self.tags = attributes[:'tags']
       end
+
+      if attributes.has_key?(:'chipValidationType')
+        self.chip_validation_type = attributes[:'chipValidationType']
+      end
+
+      if attributes.has_key?(:'chipValidationResult')
+        self.chip_validation_result = attributes[:'chipValidationResult']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -52,6 +70,14 @@ module CyberSource
         invalid_properties.push('invalid value for "tags", the character length must be smaller than or equal to 1998.')
       end
 
+      if !@chip_validation_type.nil? && @chip_validation_type.to_s.length > 2
+        invalid_properties.push('invalid value for "chip_validation_type", the character length must be smaller than or equal to 2.')
+      end
+
+      if !@chip_validation_result.nil? && @chip_validation_result.to_s.length > 1
+        invalid_properties.push('invalid value for "chip_validation_result", the character length must be smaller than or equal to 1.')
+      end
+
       invalid_properties
     end
 
@@ -59,6 +85,8 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if !@tags.nil? && @tags.to_s.length > 1998
+      return false if !@chip_validation_type.nil? && @chip_validation_type.to_s.length > 2
+      return false if !@chip_validation_result.nil? && @chip_validation_result.to_s.length > 1
       true
     end
 
@@ -72,12 +100,34 @@ module CyberSource
       @tags = tags
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] chip_validation_type Value to be assigned
+    def chip_validation_type=(chip_validation_type)
+      if !chip_validation_type.nil? && chip_validation_type.to_s.length > 2
+        fail ArgumentError, 'invalid value for "chip_validation_type", the character length must be smaller than or equal to 2.'
+      end
+
+      @chip_validation_type = chip_validation_type
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] chip_validation_result Value to be assigned
+    def chip_validation_result=(chip_validation_result)
+      if !chip_validation_result.nil? && chip_validation_result.to_s.length > 1
+        fail ArgumentError, 'invalid value for "chip_validation_result", the character length must be smaller than or equal to 1.'
+      end
+
+      @chip_validation_result = chip_validation_result
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          tags == o.tags
+          tags == o.tags &&
+          chip_validation_type == o.chip_validation_type &&
+          chip_validation_result == o.chip_validation_result
     end
 
     # @see the `==` method
@@ -89,7 +139,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [tags].hash
+      [tags, chip_validation_type, chip_validation_result].hash
     end
 
     # Builds the object from hash

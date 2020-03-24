@@ -20,7 +20,7 @@ module CyberSource
     # The description for this field is not available. 
     attr_accessor :name
 
-    # Time Zone.
+    # Time Zone in ISO format.
     attr_accessor :timezone
 
     # transaction search query string.
@@ -29,7 +29,7 @@ module CyberSource
     # offset.
     attr_accessor :offset
 
-    # limit on number of results.
+    # Limit on number of results.
     attr_accessor :limit
 
     # A comma separated list of the following form - fieldName1 asc or desc, fieldName2 asc or desc, etc.

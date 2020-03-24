@@ -14,7 +14,10 @@ require 'date'
 
 module CyberSource
   class Riskv1authenticationresultsPaymentInformationCard
-    # Three-digit value that indicates the card type.  Type of card to authorize. - 001 Visa - 002 Mastercard - 003 Amex - 004 Discover - 005: Diners Club - 007: JCB - 024: Maestro (UK Domestic) - 039 Encoded account number - 042: Maestro (International)  For the complete list of possible values, see `card_type` field description in the [Credit Card Services Using the SCMP API Guide.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
+    # description: The BIN is the first six digits of the card's Primary Account Number (PAN). 
+    attr_accessor :bin
+
+    # Three-digit value that indicates the card type.  Type of card to authorize. - 001 Visa - 002 Mastercard - 003 Amex - 004 Discover - 005: Diners Club - 007: JCB - 024: Maestro (UK Domestic) - 036: Cartes Bancaires - 039 Encoded account number - 042: Maestro (International)  For the complete list of possible values, see `card_type` field description in the [Credit Card Services Using the SCMP API Guide.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
     attr_accessor :type
 
     # Two-digit month in which the payment card expires.  Format: `MM`.  Valid values: `01` through `12`.  #### Barclays and Streamline For Maestro (UK Domestic) and Maestro (International) cards on Barclays and Streamline, this must be a valid value (`01` through `12`) but is not required to be a valid expiration date. In other words, an expiration date that is in the past does not cause CyberSource to reject your request. However, an invalid expiration date might cause the issuer to reject your request.  #### Encoded Account Numbers For encoded account numbers (_type_=039), if there is no expiration date on the card, use `12`.  **Important** It is your responsibility to determine whether a field is required for the transaction you are requesting.  For processor-specific information, see the `customer_cc_expmo` field description in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
@@ -23,12 +26,13 @@ module CyberSource
     # Four-digit year in which the credit card expires.  Format: `YYYY`.  #### Barclays and Streamline For Maestro (UK Domestic) and Maestro (International) cards on Barclays and Streamline, this must be a valid value (`1900` through `3000`) but is not required to be a valid expiration date. In other words, an expiration date that is in the past does not cause CyberSource to reject your request. However, an invalid expiration date might cause the issuer to reject your request.  #### Encoded Account Numbers For encoded account numbers (**_type_**`=039`), if there is no expiration date on the card, use `2021`.  #### FDC Nashville Global and FDMS South You can send in 2 digits or 4 digits. If you send in 2 digits, they must be the last 2 digits of the year.  **Important** It is your responsibility to determine whether a field is required for the transaction you are requesting.  For processor-specific information, see the `customer_cc_expyr` field description in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
     attr_accessor :expiration_year
 
-    # The customer’s payment card number, also knows as the Primary Account Nunmber (PAN). You can also use this field for encoded account numbers.  For processor-specific information, see the `customer_cc_number` field description in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
+    # The customer’s payment card number, also known as the Primary Account Number (PAN). You can also use this field for encoded account numbers.  For processor-specific information, see the `customer_cc_number` field description in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
     attr_accessor :number
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'bin' => :'bin',
         :'type' => :'type',
         :'expiration_month' => :'expirationMonth',
         :'expiration_year' => :'expirationYear',
@@ -39,6 +43,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'bin' => :'String',
         :'type' => :'String',
         :'expiration_month' => :'String',
         :'expiration_year' => :'String',
@@ -53,6 +58,10 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'bin')
+        self.bin = attributes[:'bin']
+      end
 
       if attributes.has_key?(:'type')
         self.type = attributes[:'type']
@@ -75,6 +84,14 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @bin.nil?
+        invalid_properties.push('invalid value for "bin", bin cannot be nil.')
+      end
+
+      if @bin.to_s.length > 6
+        invalid_properties.push('invalid value for "bin", the character length must be smaller than or equal to 6.')
+      end
+
       if @type.nil?
         invalid_properties.push('invalid value for "type", type cannot be nil.')
       end
@@ -97,11 +114,27 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @bin.nil?
+      return false if @bin.to_s.length > 6
       return false if @type.nil?
       return false if !@expiration_month.nil? && @expiration_month.to_s.length > 2
       return false if !@expiration_year.nil? && @expiration_year.to_s.length > 4
       return false if !@number.nil? && @number.to_s.length > 20
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] bin Value to be assigned
+    def bin=(bin)
+      if bin.nil?
+        fail ArgumentError, 'bin cannot be nil'
+      end
+
+      if bin.to_s.length > 6
+        fail ArgumentError, 'invalid value for "bin", the character length must be smaller than or equal to 6.'
+      end
+
+      @bin = bin
     end
 
     # Custom attribute writer method with validation
@@ -139,6 +172,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          bin == o.bin &&
           type == o.type &&
           expiration_month == o.expiration_month &&
           expiration_year == o.expiration_year &&
@@ -154,7 +188,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [type, expiration_month, expiration_year, number].hash
+      [bin, type, expiration_month, expiration_year, number].hash
     end
 
     # Builds the object from hash

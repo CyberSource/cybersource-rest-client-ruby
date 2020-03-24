@@ -16,17 +16,22 @@ module CyberSource
   class PtsV2PaymentsPost201ResponseProcessingInformation
     attr_accessor :bank_transfer_options
 
+    # - true : the airline data was included in the request to the processor. - false : the airline data was not included in the request to the processor. 
+    attr_accessor :enhanced_data_enabled
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'bank_transfer_options' => :'bankTransferOptions'
+        :'bank_transfer_options' => :'bankTransferOptions',
+        :'enhanced_data_enabled' => :'enhancedDataEnabled'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'bank_transfer_options' => :'PtsV2PaymentsPost201ResponseProcessingInformationBankTransferOptions'
+        :'bank_transfer_options' => :'PtsV2PaymentsPost201ResponseProcessingInformationBankTransferOptions',
+        :'enhanced_data_enabled' => :'BOOLEAN'
       }
     end
 
@@ -40,6 +45,10 @@ module CyberSource
 
       if attributes.has_key?(:'bankTransferOptions')
         self.bank_transfer_options = attributes[:'bankTransferOptions']
+      end
+
+      if attributes.has_key?(:'enhancedDataEnabled')
+        self.enhanced_data_enabled = attributes[:'enhancedDataEnabled']
       end
     end
 
@@ -61,7 +70,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          bank_transfer_options == o.bank_transfer_options
+          bank_transfer_options == o.bank_transfer_options &&
+          enhanced_data_enabled == o.enhanced_data_enabled
     end
 
     # @see the `==` method
@@ -73,7 +83,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [bank_transfer_options].hash
+      [bank_transfer_options, enhanced_data_enabled].hash
     end
 
     # Builds the object from hash

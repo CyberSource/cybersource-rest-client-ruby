@@ -33,7 +33,7 @@ describe 'SearchTransactionsApi' do
   end
 
   # unit tests for create_search
-  # Create a search request
+  # Create a Search Request
   # Create a search request. 
   # @param create_search_request 
   # @param [Hash] opts the optional parameters
@@ -45,7 +45,7 @@ describe 'SearchTransactionsApi' do
   end
 
   # unit tests for get_search
-  # Get Search results
+  # Get Search Results
   # Include the Search ID in the GET request to retrieve the search results.
   # @param search_id Search ID.
   # @param [Hash] opts the optional parameters

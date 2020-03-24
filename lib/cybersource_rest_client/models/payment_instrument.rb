@@ -19,10 +19,10 @@ module CyberSource
     # Unique identification number assigned by CyberSource to the submitted request.
     attr_accessor :id
 
-    # Describes type of token.
+    # 'Describes type of token.'  Valid values: - instrumentIdentifier 
     attr_accessor :object
 
-    # Current state of the token.
+    # 'Current state of the token.'  Valid values: - ACTIVE - CLOSED 
     attr_accessor :state
 
     attr_accessor :bank_account
@@ -39,29 +39,7 @@ module CyberSource
 
     attr_accessor :meta_data
 
-    attr_accessor :instrument_identifier
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
+    attr_accessor :_embedded
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -77,14 +55,14 @@ module CyberSource
         :'processing_information' => :'processingInformation',
         :'merchant_information' => :'merchantInformation',
         :'meta_data' => :'metaData',
-        :'instrument_identifier' => :'instrumentIdentifier'
+        :'_embedded' => :'_embedded'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'_links' => :'TmsV1InstrumentIdentifiersPost200ResponseLinks',
+        :'_links' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedLinks',
         :'id' => :'String',
         :'object' => :'String',
         :'state' => :'String',
@@ -95,7 +73,7 @@ module CyberSource
         :'processing_information' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedProcessingInformation',
         :'merchant_information' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedMerchantInformation',
         :'meta_data' => :'TmsV1InstrumentIdentifiersPost200ResponseMetadata',
-        :'instrument_identifier' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedInstrumentIdentifier'
+        :'_embedded' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedEmbedded'
       }
     end
 
@@ -151,8 +129,8 @@ module CyberSource
         self.meta_data = attributes[:'metaData']
       end
 
-      if attributes.has_key?(:'instrumentIdentifier')
-        self.instrument_identifier = attributes[:'instrumentIdentifier']
+      if attributes.has_key?(:'_embedded')
+        self._embedded = attributes[:'_embedded']
       end
     end
 
@@ -166,31 +144,7 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      object_validator = EnumAttributeValidator.new('String', ['paymentInstrument'])
-      return false unless object_validator.valid?(@object)
-      state_validator = EnumAttributeValidator.new('String', ['ACTIVE', 'CLOSED'])
-      return false unless state_validator.valid?(@state)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] object Object to be assigned
-    def object=(object)
-      validator = EnumAttributeValidator.new('String', ['paymentInstrument'])
-      unless validator.valid?(object)
-        fail ArgumentError, 'invalid value for "object", must be one of #{validator.allowable_values}.'
-      end
-      @object = object
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] state Object to be assigned
-    def state=(state)
-      validator = EnumAttributeValidator.new('String', ['ACTIVE', 'CLOSED'])
-      unless validator.valid?(state)
-        fail ArgumentError, 'invalid value for "state", must be one of #{validator.allowable_values}.'
-      end
-      @state = state
     end
 
     # Checks equality by comparing each attribute.
@@ -209,7 +163,7 @@ module CyberSource
           processing_information == o.processing_information &&
           merchant_information == o.merchant_information &&
           meta_data == o.meta_data &&
-          instrument_identifier == o.instrument_identifier
+          _embedded == o._embedded
     end
 
     # @see the `==` method
@@ -221,7 +175,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, object, state, bank_account, card, buyer_information, bill_to, processing_information, merchant_information, meta_data, instrument_identifier].hash
+      [_links, id, object, state, bank_account, card, buyer_information, bill_to, processing_information, merchant_information, meta_data, _embedded].hash
     end
 
     # Builds the object from hash

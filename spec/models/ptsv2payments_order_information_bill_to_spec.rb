@@ -134,6 +134,12 @@ describe 'Ptsv2paymentsOrderInformationBillTo' do
     end
   end
 
+  describe 'test attribute "email_domain"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "phone_number"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -143,10 +149,6 @@ describe 'Ptsv2paymentsOrderInformationBillTo' do
   describe 'test attribute "phone_type"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["day", "home", "night", "work"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.phone_type = value }.not_to raise_error
-      # end
     end
   end
 

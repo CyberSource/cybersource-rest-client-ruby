@@ -32,38 +32,6 @@ describe 'UpdatePaymentInstrumentRequest' do
       expect(@instance).to be_instance_of(CyberSource::UpdatePaymentInstrumentRequest)
     end
   end
-  describe 'test attribute "_links"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe 'test attribute "id"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe 'test attribute "object"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["paymentInstrument"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.object = value }.not_to raise_error
-      # end
-    end
-  end
-
-  describe 'test attribute "state"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["ACTIVE", "CLOSED"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.state = value }.not_to raise_error
-      # end
-    end
-  end
-
   describe 'test attribute "bank_account"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

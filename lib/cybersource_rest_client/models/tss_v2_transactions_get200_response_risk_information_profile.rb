@@ -14,10 +14,10 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsGet200ResponseRiskInformationProfile
-    # The description for this field is not available.
+    # The name of the profile. 
     attr_accessor :name
 
-    # The description for this field is not available.
+    # Decision returned by the profile; this field contains one of these values: - ACCEPT - REJECT - REVIEW 
     attr_accessor :decision
 
     # Attribute mapping from ruby-style variable name to JSON key.

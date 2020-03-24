@@ -32,8 +32,14 @@ module CyberSource
 
     attr_accessor :point_of_sale_information
 
-    # The description for this field is not available.
+    # The object containing the custom data that the merchant defines. 
     attr_accessor :merchant_defined_information
+
+    attr_accessor :installment_information
+
+    attr_accessor :travel_information
+
+    attr_accessor :promotion_information
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -47,7 +53,10 @@ module CyberSource
         :'merchant_information' => :'merchantInformation',
         :'aggregator_information' => :'aggregatorInformation',
         :'point_of_sale_information' => :'pointOfSaleInformation',
-        :'merchant_defined_information' => :'merchantDefinedInformation'
+        :'merchant_defined_information' => :'merchantDefinedInformation',
+        :'installment_information' => :'installmentInformation',
+        :'travel_information' => :'travelInformation',
+        :'promotion_information' => :'promotionInformation'
       }
     end
 
@@ -62,8 +71,11 @@ module CyberSource
         :'device_information' => :'Ptsv2paymentsDeviceInformation',
         :'merchant_information' => :'Ptsv2paymentsidrefundsMerchantInformation',
         :'aggregator_information' => :'Ptsv2paymentsidcapturesAggregatorInformation',
-        :'point_of_sale_information' => :'Ptsv2creditsPointOfSaleInformation',
-        :'merchant_defined_information' => :'Array<Ptsv2paymentsMerchantDefinedInformation>'
+        :'point_of_sale_information' => :'Ptsv2paymentsPointOfSaleInformation',
+        :'merchant_defined_information' => :'Array<Ptsv2paymentsMerchantDefinedInformation>',
+        :'installment_information' => :'Ptsv2creditsInstallmentInformation',
+        :'travel_information' => :'Ptsv2paymentsidcapturesTravelInformation',
+        :'promotion_information' => :'Ptsv2paymentsPromotionInformation'
       }
     end
 
@@ -116,6 +128,18 @@ module CyberSource
           self.merchant_defined_information = value
         end
       end
+
+      if attributes.has_key?(:'installmentInformation')
+        self.installment_information = attributes[:'installmentInformation']
+      end
+
+      if attributes.has_key?(:'travelInformation')
+        self.travel_information = attributes[:'travelInformation']
+      end
+
+      if attributes.has_key?(:'promotionInformation')
+        self.promotion_information = attributes[:'promotionInformation']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -145,7 +169,10 @@ module CyberSource
           merchant_information == o.merchant_information &&
           aggregator_information == o.aggregator_information &&
           point_of_sale_information == o.point_of_sale_information &&
-          merchant_defined_information == o.merchant_defined_information
+          merchant_defined_information == o.merchant_defined_information &&
+          installment_information == o.installment_information &&
+          travel_information == o.travel_information &&
+          promotion_information == o.promotion_information
     end
 
     # @see the `==` method
@@ -157,7 +184,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_reference_information, processing_information, payment_information, order_information, buyer_information, device_information, merchant_information, aggregator_information, point_of_sale_information, merchant_defined_information].hash
+      [client_reference_information, processing_information, payment_information, order_information, buyer_information, device_information, merchant_information, aggregator_information, point_of_sale_information, merchant_defined_information, installment_information, travel_information, promotion_information].hash
     end
 
     # Builds the object from hash

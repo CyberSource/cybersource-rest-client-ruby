@@ -2,6 +2,21 @@
 {{> api_info}}
 =end
 
+# Authentication SDK
+require 'AuthenticationSDK/util/Utility.rb'
+require 'AuthenticationSDK/util/PropertiesUtil.rb'
+require 'AuthenticationSDK/util/Constants.rb'
+require 'AuthenticationSDK/util/Cache.rb'
+require 'AuthenticationSDK/util/ApiException.rb'
+require 'AuthenticationSDK/core/MerchantConfig.rb'
+require 'AuthenticationSDK/core/Logger.rb'
+require 'AuthenticationSDK/core/ITokenGeneration.rb'
+require 'AuthenticationSDK/core/Authorization.rb'
+require 'AuthenticationSDK/authentication/payloadDigest/digest.rb'
+require 'AuthenticationSDK/authentication/jwt/JwtToken.rb'
+require 'AuthenticationSDK/authentication/http/HttpSignatureHeader.rb'
+require 'AuthenticationSDK/authentication/http/GetSignatureParameter.rb'
+
 # Common files
 require '{{gemName}}/api_client'
 require '{{gemName}}/api_error'
@@ -20,6 +35,9 @@ require '{{gemName}}/{{modelPackage}}/{{classFilename}}'{{/model}}
 require '{{importPath}}'
 {{/apis}}
 {{/apiInfo}}
+
+# Utilities
+require 'cybersource_rest_client/utilities/flex/token_verification'
 
 module {{moduleName}}
   class << self

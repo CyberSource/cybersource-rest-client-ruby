@@ -18,10 +18,10 @@ module CyberSource
     # The date after which no further recurring authorizations should be performed. Format: `YYYYMMDD` **Note** This field is required for recurring transactions. 
     attr_accessor :end_date
 
-    # Integer value indicating the minimum number of days between recurring authorizations. A frequency of monthly is indicated by the value 28. Multiple of 28 days will be used to indicate months. Example: 6 months = 168 **Note** This field is required for recurring transactions. 
+    # Integer value indicating the minimum number of days between recurring authorizations. A frequency of monthly is indicated by the value 28. Multiple of 28 days will be used to indicate months.  Example: 6 months = 168  Example values accepted (31 days): - 31 - 031 - 0031  **Note** This field is required for recurring transactions. 
     attr_accessor :frequency
 
-    # Date of original purchase. Required for recurring transactions. Format: `YYYYMMDD:HH:MM:SS` **Note**: If this field is empty, the current date is used. 
+    # Date of original purchase. Required for recurring transactions. Format: `YYYYMMDDHHMMSS` **Note**: If this field is empty, the current date is used. 
     attr_accessor :original_purchase_date
 
     # Attribute mapping from ruby-style variable name to JSON key.

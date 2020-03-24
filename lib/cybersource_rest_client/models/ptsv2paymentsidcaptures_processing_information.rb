@@ -14,29 +14,34 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsidcapturesProcessingInformation
-    # Type of digital payment solution for the transaction. Possible Values:   - `visacheckout`: Visa Checkout. This value is required for Visa Checkout transactions. For details, see `payment_solution` field description in [Visa Checkout Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/VCO_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  - `001`: Apple Pay.  - `004`: Cybersource In-App Solution.  - `005`: Masterpass. This value is required for Masterpass transactions on OmniPay Direct. For details, see \"Masterpass\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  - `006`: Android Pay.  - `007`: Chase Pay.  - `008`: Samsung Pay.  - `012`: Google Pay. 
+    # Type of digital payment solution for the transaction. Possible Values:   - `visacheckout`: Visa Checkout. This value is required for Visa Checkout transactions. For details, see `payment_solution` field description in [Visa Checkout Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/VCO_SCMP_API/html/)  - `001`: Apple Pay.  - `004`: Cybersource In-App Solution.  - `005`: Masterpass. This value is required for Masterpass transactions on OmniPay Direct. For details, see \"Masterpass\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  - `006`: Android Pay.  - `007`: Chase Pay.  - `008`: Samsung Pay.  - `012`: Google Pay. 
     attr_accessor :payment_solution
 
     # Please check with Cybersource customer support to see if your merchant account is configured correctly so you can include this field in your request. * For Payouts: max length for FDCCompass is String (22). 
     attr_accessor :reconciliation_id
 
-    # Value that links the current authorization request to the original authorization request. Set this value to the ID that was returned in the reply message from the original authorization request.  This value is used for:  - Partial authorizations - Split shipments  For details, see `link_to_request` field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
+    # Value that links the current authorization request to the original authorization request. Set this value to the ID that was returned in the reply message from the original authorization request.  This value is used for:  - Partial authorizations - Split shipments  For details, see `link_to_request` field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
     attr_accessor :link_id
 
-    # Attribute that lets you define custom grouping for your processor reports. This field is supported only for **Worldpay VAP**.  For details, see `report_group` field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
+    # Attribute that lets you define custom grouping for your processor reports. This field is supported only for **Worldpay VAP**.  For details, see `report_group` field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
     attr_accessor :report_group
 
-    # Identifier for the **Visa Checkout** order. Visa Checkout provides a unique order ID for every transaction in the Visa Checkout **callID** field.  For details, see the `vc_order_id` field description in [Visa Checkout Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/VCO_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
+    # Identifier for the **Visa Checkout** order. Visa Checkout provides a unique order ID for every transaction in the Visa Checkout **callID** field.  For details, see the `vc_order_id` field description in [Visa Checkout Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/VCO_SCMP_API/html/) 
     attr_accessor :visa_checkout_id
 
     # Set this field to 3 to indicate that the request includes Level III data.
     attr_accessor :purchase_level
+
+    # Flag that indicates that the transaction includes airline data or restaurant data.  This field must be set to `airline` in order for airline data to be sent to the processor.  For example, if this field is not set to airline or is not included in the request, CyberSource does not send airline data to the processor.  You must set this field to `restaurant` in order for restaurant data to be sent to the processor.  When this field is not set to restaurant or is not included in the request, CyberSource does not send restaurant data to the processor.  Possible Values:  - `airline` - `restaurant` - `lodging` - `auto_rental` - `transit` - `healthcare_medical` - `healthcare_transit` 
+    attr_accessor :industry_data_type
 
     attr_accessor :issuer
 
     attr_accessor :authorization_options
 
     attr_accessor :capture_options
+
+    attr_accessor :loan_options
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -47,9 +52,11 @@ module CyberSource
         :'report_group' => :'reportGroup',
         :'visa_checkout_id' => :'visaCheckoutId',
         :'purchase_level' => :'purchaseLevel',
+        :'industry_data_type' => :'industryDataType',
         :'issuer' => :'issuer',
         :'authorization_options' => :'authorizationOptions',
-        :'capture_options' => :'captureOptions'
+        :'capture_options' => :'captureOptions',
+        :'loan_options' => :'loanOptions'
       }
     end
 
@@ -62,9 +69,11 @@ module CyberSource
         :'report_group' => :'String',
         :'visa_checkout_id' => :'String',
         :'purchase_level' => :'String',
+        :'industry_data_type' => :'String',
         :'issuer' => :'Ptsv2paymentsIssuerInformation',
         :'authorization_options' => :'Ptsv2paymentsidcapturesProcessingInformationAuthorizationOptions',
-        :'capture_options' => :'Ptsv2paymentsidcapturesProcessingInformationCaptureOptions'
+        :'capture_options' => :'Ptsv2paymentsidcapturesProcessingInformationCaptureOptions',
+        :'loan_options' => :'Ptsv2paymentsProcessingInformationLoanOptions'
       }
     end
 
@@ -100,6 +109,10 @@ module CyberSource
         self.purchase_level = attributes[:'purchaseLevel']
       end
 
+      if attributes.has_key?(:'industryDataType')
+        self.industry_data_type = attributes[:'industryDataType']
+      end
+
       if attributes.has_key?(:'issuer')
         self.issuer = attributes[:'issuer']
       end
@@ -110,6 +123,10 @@ module CyberSource
 
       if attributes.has_key?(:'captureOptions')
         self.capture_options = attributes[:'captureOptions']
+      end
+
+      if attributes.has_key?(:'loanOptions')
+        self.loan_options = attributes[:'loanOptions']
       end
     end
 
@@ -141,6 +158,10 @@ module CyberSource
         invalid_properties.push('invalid value for "purchase_level", the character length must be smaller than or equal to 1.')
       end
 
+      if !@industry_data_type.nil? && @industry_data_type.to_s.length > 20
+        invalid_properties.push('invalid value for "industry_data_type", the character length must be smaller than or equal to 20.')
+      end
+
       invalid_properties
     end
 
@@ -153,6 +174,7 @@ module CyberSource
       return false if !@report_group.nil? && @report_group.to_s.length > 25
       return false if !@visa_checkout_id.nil? && @visa_checkout_id.to_s.length > 48
       return false if !@purchase_level.nil? && @purchase_level.to_s.length > 1
+      return false if !@industry_data_type.nil? && @industry_data_type.to_s.length > 20
       true
     end
 
@@ -216,6 +238,16 @@ module CyberSource
       @purchase_level = purchase_level
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] industry_data_type Value to be assigned
+    def industry_data_type=(industry_data_type)
+      if !industry_data_type.nil? && industry_data_type.to_s.length > 20
+        fail ArgumentError, 'invalid value for "industry_data_type", the character length must be smaller than or equal to 20.'
+      end
+
+      @industry_data_type = industry_data_type
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -227,9 +259,11 @@ module CyberSource
           report_group == o.report_group &&
           visa_checkout_id == o.visa_checkout_id &&
           purchase_level == o.purchase_level &&
+          industry_data_type == o.industry_data_type &&
           issuer == o.issuer &&
           authorization_options == o.authorization_options &&
-          capture_options == o.capture_options
+          capture_options == o.capture_options &&
+          loan_options == o.loan_options
     end
 
     # @see the `==` method
@@ -241,7 +275,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [payment_solution, reconciliation_id, link_id, report_group, visa_checkout_id, purchase_level, issuer, authorization_options, capture_options].hash
+      [payment_solution, reconciliation_id, link_id, report_group, visa_checkout_id, purchase_level, industry_data_type, issuer, authorization_options, capture_options, loan_options].hash
     end
 
     # Builds the object from hash

@@ -70,10 +70,6 @@ module CyberSource
         invalid_properties.push('invalid value for "locality", the character length must be smaller than or equal to 13.')
       end
 
-      if !@country.nil? && @country.to_s.length > 2
-        invalid_properties.push('invalid value for "country", the character length must be smaller than or equal to 2.')
-      end
-
       invalid_properties
     end
 
@@ -81,7 +77,6 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if !@locality.nil? && @locality.to_s.length > 13
-      return false if !@country.nil? && @country.to_s.length > 2
       true
     end
 
@@ -93,16 +88,6 @@ module CyberSource
       end
 
       @locality = locality
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] country Value to be assigned
-    def country=(country)
-      if !country.nil? && country.to_s.length > 2
-        fail ArgumentError, 'invalid value for "country", the character length must be smaller than or equal to 2.'
-      end
-
-      @country = country
     end
 
     # Checks equality by comparing each attribute.

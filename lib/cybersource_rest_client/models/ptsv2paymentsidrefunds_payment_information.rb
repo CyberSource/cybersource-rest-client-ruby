@@ -18,14 +18,23 @@ module CyberSource
 
     attr_accessor :bank
 
+    attr_accessor :tokenized_card
+
+    attr_accessor :fluid_data
+
     attr_accessor :customer
+
+    attr_accessor :payment_type
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'card' => :'card',
         :'bank' => :'bank',
-        :'customer' => :'customer'
+        :'tokenized_card' => :'tokenizedCard',
+        :'fluid_data' => :'fluidData',
+        :'customer' => :'customer',
+        :'payment_type' => :'paymentType'
       }
     end
 
@@ -34,7 +43,10 @@ module CyberSource
       {
         :'card' => :'Ptsv2paymentsidrefundsPaymentInformationCard',
         :'bank' => :'Ptsv2paymentsPaymentInformationBank',
-        :'customer' => :'Ptsv2paymentsPaymentInformationCustomer'
+        :'tokenized_card' => :'Ptsv2paymentsPaymentInformationTokenizedCard',
+        :'fluid_data' => :'Ptsv2paymentsPaymentInformationFluidData',
+        :'customer' => :'Ptsv2paymentsPaymentInformationCustomer',
+        :'payment_type' => :'Ptsv2paymentsPaymentInformationPaymentType'
       }
     end
 
@@ -54,8 +66,20 @@ module CyberSource
         self.bank = attributes[:'bank']
       end
 
+      if attributes.has_key?(:'tokenizedCard')
+        self.tokenized_card = attributes[:'tokenizedCard']
+      end
+
+      if attributes.has_key?(:'fluidData')
+        self.fluid_data = attributes[:'fluidData']
+      end
+
       if attributes.has_key?(:'customer')
         self.customer = attributes[:'customer']
+      end
+
+      if attributes.has_key?(:'paymentType')
+        self.payment_type = attributes[:'paymentType']
       end
     end
 
@@ -79,7 +103,10 @@ module CyberSource
       self.class == o.class &&
           card == o.card &&
           bank == o.bank &&
-          customer == o.customer
+          tokenized_card == o.tokenized_card &&
+          fluid_data == o.fluid_data &&
+          customer == o.customer &&
+          payment_type == o.payment_type
     end
 
     # @see the `==` method
@@ -91,7 +118,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card, bank, customer].hash
+      [card, bank, tokenized_card, fluid_data, customer, payment_type].hash
     end
 
     # Builds the object from hash

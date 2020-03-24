@@ -32,6 +32,9 @@ module CyberSource
 
     attr_accessor :bill_to
 
+    # Total number of articles/items in the order as a numeric decimal count. Possible values: 00 - 99 
+    attr_accessor :total_offers_count
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -41,7 +44,8 @@ module CyberSource
         :'reordered' => :'reordered',
         :'ship_to' => :'shipTo',
         :'line_items' => :'lineItems',
-        :'bill_to' => :'billTo'
+        :'bill_to' => :'billTo',
+        :'total_offers_count' => :'totalOffersCount'
       }
     end
 
@@ -54,7 +58,8 @@ module CyberSource
         :'reordered' => :'BOOLEAN',
         :'ship_to' => :'Riskv1authenticationsOrderInformationShipTo',
         :'line_items' => :'Array<Riskv1authenticationsOrderInformationLineItems>',
-        :'bill_to' => :'Riskv1authenticationsOrderInformationBillTo'
+        :'bill_to' => :'Riskv1authenticationexemptionsOrderInformationBillTo',
+        :'total_offers_count' => :'String'
       }
     end
 
@@ -95,6 +100,10 @@ module CyberSource
       if attributes.has_key?(:'billTo')
         self.bill_to = attributes[:'billTo']
       end
+
+      if attributes.has_key?(:'totalOffersCount')
+        self.total_offers_count = attributes[:'totalOffersCount']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -105,6 +114,10 @@ module CyberSource
         invalid_properties.push('invalid value for "pre_order_date", the character length must be smaller than or equal to 10.')
       end
 
+      if !@total_offers_count.nil? && @total_offers_count.to_s.length > 2
+        invalid_properties.push('invalid value for "total_offers_count", the character length must be smaller than or equal to 2.')
+      end
+
       invalid_properties
     end
 
@@ -112,6 +125,7 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if !@pre_order_date.nil? && @pre_order_date.to_s.length > 10
+      return false if !@total_offers_count.nil? && @total_offers_count.to_s.length > 2
       true
     end
 
@@ -125,6 +139,16 @@ module CyberSource
       @pre_order_date = pre_order_date
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] total_offers_count Value to be assigned
+    def total_offers_count=(total_offers_count)
+      if !total_offers_count.nil? && total_offers_count.to_s.length > 2
+        fail ArgumentError, 'invalid value for "total_offers_count", the character length must be smaller than or equal to 2.'
+      end
+
+      @total_offers_count = total_offers_count
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -136,7 +160,8 @@ module CyberSource
           reordered == o.reordered &&
           ship_to == o.ship_to &&
           line_items == o.line_items &&
-          bill_to == o.bill_to
+          bill_to == o.bill_to &&
+          total_offers_count == o.total_offers_count
     end
 
     # @see the `==` method
@@ -148,7 +173,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [amount_details, pre_order, pre_order_date, reordered, ship_to, line_items, bill_to].hash
+      [amount_details, pre_order, pre_order_date, reordered, ship_to, line_items, bill_to, total_offers_count].hash
     end
 
     # Builds the object from hash

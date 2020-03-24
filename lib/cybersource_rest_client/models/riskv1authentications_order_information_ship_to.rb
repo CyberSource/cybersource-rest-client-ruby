@@ -26,6 +26,9 @@ module CyberSource
     # Country of the shipping address. Use the two-character ISO Standard Country Codes.
     attr_accessor :country
 
+    # Shipping destination of item. Example: Commercial, Residential, Store 
+    attr_accessor :destination_types
+
     # City of the shipping address.
     attr_accessor :locality
 
@@ -54,6 +57,7 @@ module CyberSource
         :'address2' => :'address2',
         :'administrative_area' => :'administrativeArea',
         :'country' => :'country',
+        :'destination_types' => :'destinationTypes',
         :'locality' => :'locality',
         :'first_name' => :'firstName',
         :'last_name' => :'lastName',
@@ -71,6 +75,7 @@ module CyberSource
         :'address2' => :'String',
         :'administrative_area' => :'String',
         :'country' => :'String',
+        :'destination_types' => :'String',
         :'locality' => :'String',
         :'first_name' => :'String',
         :'last_name' => :'String',
@@ -103,6 +108,10 @@ module CyberSource
 
       if attributes.has_key?(:'country')
         self.country = attributes[:'country']
+      end
+
+      if attributes.has_key?(:'destinationTypes')
+        self.destination_types = attributes[:'destinationTypes']
       end
 
       if attributes.has_key?(:'locality')
@@ -154,6 +163,10 @@ module CyberSource
         invalid_properties.push('invalid value for "country", the character length must be smaller than or equal to 2.')
       end
 
+      if !@destination_types.nil? && @destination_types.to_s.length > 25
+        invalid_properties.push('invalid value for "destination_types", the character length must be smaller than or equal to 25.')
+      end
+
       if !@locality.nil? && @locality.to_s.length > 50
         invalid_properties.push('invalid value for "locality", the character length must be smaller than or equal to 50.')
       end
@@ -188,6 +201,7 @@ module CyberSource
       return false if !@address2.nil? && @address2.to_s.length > 60
       return false if !@administrative_area.nil? && @administrative_area.to_s.length > 2
       return false if !@country.nil? && @country.to_s.length > 2
+      return false if !@destination_types.nil? && @destination_types.to_s.length > 25
       return false if !@locality.nil? && @locality.to_s.length > 50
       return false if !@first_name.nil? && @first_name.to_s.length > 60
       return false if !@last_name.nil? && @last_name.to_s.length > 60
@@ -235,6 +249,16 @@ module CyberSource
       end
 
       @country = country
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] destination_types Value to be assigned
+    def destination_types=(destination_types)
+      if !destination_types.nil? && destination_types.to_s.length > 25
+        fail ArgumentError, 'invalid value for "destination_types", the character length must be smaller than or equal to 25.'
+      end
+
+      @destination_types = destination_types
     end
 
     # Custom attribute writer method with validation
@@ -306,6 +330,7 @@ module CyberSource
           address2 == o.address2 &&
           administrative_area == o.administrative_area &&
           country == o.country &&
+          destination_types == o.destination_types &&
           locality == o.locality &&
           first_name == o.first_name &&
           last_name == o.last_name &&
@@ -324,7 +349,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [address1, address2, administrative_area, country, locality, first_name, last_name, phone_number, postal_code, destination_code, method].hash
+      [address1, address2, administrative_area, country, destination_types, locality, first_name, last_name, phone_number, postal_code, destination_code, method].hash
     end
 
     # Builds the object from hash

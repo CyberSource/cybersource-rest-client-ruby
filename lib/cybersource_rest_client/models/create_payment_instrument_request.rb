@@ -14,17 +14,6 @@ require 'date'
 
 module CyberSource
   class CreatePaymentInstrumentRequest
-    attr_accessor :_links
-
-    # Unique identification number assigned by CyberSource to the submitted request.
-    attr_accessor :id
-
-    # Describes type of token.
-    attr_accessor :object
-
-    # Current state of the token.
-    attr_accessor :state
-
     attr_accessor :bank_account
 
     attr_accessor :card
@@ -41,35 +30,9 @@ module CyberSource
 
     attr_accessor :instrument_identifier
 
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'_links' => :'_links',
-        :'id' => :'id',
-        :'object' => :'object',
-        :'state' => :'state',
         :'bank_account' => :'bankAccount',
         :'card' => :'card',
         :'buyer_information' => :'buyerInformation',
@@ -84,10 +47,6 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'_links' => :'TmsV1InstrumentIdentifiersPost200ResponseLinks',
-        :'id' => :'String',
-        :'object' => :'String',
-        :'state' => :'String',
         :'bank_account' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedBankAccount',
         :'card' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedCard',
         :'buyer_information' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedBuyerInformation',
@@ -95,7 +54,7 @@ module CyberSource
         :'processing_information' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedProcessingInformation',
         :'merchant_information' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedMerchantInformation',
         :'meta_data' => :'TmsV1InstrumentIdentifiersPost200ResponseMetadata',
-        :'instrument_identifier' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedInstrumentIdentifier'
+        :'instrument_identifier' => :'Tmsv1paymentinstrumentsInstrumentIdentifier'
       }
     end
 
@@ -106,22 +65,6 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
-
-      if attributes.has_key?(:'_links')
-        self._links = attributes[:'_links']
-      end
-
-      if attributes.has_key?(:'id')
-        self.id = attributes[:'id']
-      end
-
-      if attributes.has_key?(:'object')
-        self.object = attributes[:'object']
-      end
-
-      if attributes.has_key?(:'state')
-        self.state = attributes[:'state']
-      end
 
       if attributes.has_key?(:'bankAccount')
         self.bank_account = attributes[:'bankAccount']
@@ -166,31 +109,7 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      object_validator = EnumAttributeValidator.new('String', ['paymentInstrument'])
-      return false unless object_validator.valid?(@object)
-      state_validator = EnumAttributeValidator.new('String', ['ACTIVE', 'CLOSED'])
-      return false unless state_validator.valid?(@state)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] object Object to be assigned
-    def object=(object)
-      validator = EnumAttributeValidator.new('String', ['paymentInstrument'])
-      unless validator.valid?(object)
-        fail ArgumentError, 'invalid value for "object", must be one of #{validator.allowable_values}.'
-      end
-      @object = object
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] state Object to be assigned
-    def state=(state)
-      validator = EnumAttributeValidator.new('String', ['ACTIVE', 'CLOSED'])
-      unless validator.valid?(state)
-        fail ArgumentError, 'invalid value for "state", must be one of #{validator.allowable_values}.'
-      end
-      @state = state
     end
 
     # Checks equality by comparing each attribute.
@@ -198,10 +117,6 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          _links == o._links &&
-          id == o.id &&
-          object == o.object &&
-          state == o.state &&
           bank_account == o.bank_account &&
           card == o.card &&
           buyer_information == o.buyer_information &&
@@ -221,7 +136,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, object, state, bank_account, card, buyer_information, bill_to, processing_information, merchant_information, meta_data, instrument_identifier].hash
+      [bank_account, card, buyer_information, bill_to, processing_information, merchant_information, meta_data, instrument_identifier].hash
     end
 
     # Builds the object from hash

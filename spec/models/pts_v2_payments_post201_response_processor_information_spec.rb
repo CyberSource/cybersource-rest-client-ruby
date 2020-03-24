@@ -158,12 +158,6 @@ describe 'PtsV2PaymentsPost201ResponseProcessorInformation' do
     end
   end
 
-  describe 'test attribute "sales_slip_number"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   describe 'test attribute "master_card_service_code"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

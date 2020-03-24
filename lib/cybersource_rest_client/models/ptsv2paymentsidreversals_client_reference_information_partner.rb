@@ -20,11 +20,15 @@ module CyberSource
     # Identifier for the partner that is integrated to CyberSource.  Send this value in all requests that are sent through the partner solution. CyberSource assigns the ID to the partner.  **Note** When you see a partner ID of 999 in reports, the partner ID that was submitted is incorrect. 
     attr_accessor :solution_id
 
+    # Value that identifies the application vendor and application version for a third party gateway. CyberSource provides you with this value during testing and validation. This field is supported only on CyberSource through VisaNet. 
+    attr_accessor :third_party_certification_number
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'developer_id' => :'developerId',
-        :'solution_id' => :'solutionId'
+        :'solution_id' => :'solutionId',
+        :'third_party_certification_number' => :'thirdPartyCertificationNumber'
       }
     end
 
@@ -32,7 +36,8 @@ module CyberSource
     def self.swagger_types
       {
         :'developer_id' => :'String',
-        :'solution_id' => :'String'
+        :'solution_id' => :'String',
+        :'third_party_certification_number' => :'String'
       }
     end
 
@@ -51,6 +56,10 @@ module CyberSource
       if attributes.has_key?(:'solutionId')
         self.solution_id = attributes[:'solutionId']
       end
+
+      if attributes.has_key?(:'thirdPartyCertificationNumber')
+        self.third_party_certification_number = attributes[:'thirdPartyCertificationNumber']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -65,6 +74,10 @@ module CyberSource
         invalid_properties.push('invalid value for "solution_id", the character length must be smaller than or equal to 8.')
       end
 
+      if !@third_party_certification_number.nil? && @third_party_certification_number.to_s.length > 12
+        invalid_properties.push('invalid value for "third_party_certification_number", the character length must be smaller than or equal to 12.')
+      end
+
       invalid_properties
     end
 
@@ -73,6 +86,7 @@ module CyberSource
     def valid?
       return false if !@developer_id.nil? && @developer_id.to_s.length > 8
       return false if !@solution_id.nil? && @solution_id.to_s.length > 8
+      return false if !@third_party_certification_number.nil? && @third_party_certification_number.to_s.length > 12
       true
     end
 
@@ -96,13 +110,24 @@ module CyberSource
       @solution_id = solution_id
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] third_party_certification_number Value to be assigned
+    def third_party_certification_number=(third_party_certification_number)
+      if !third_party_certification_number.nil? && third_party_certification_number.to_s.length > 12
+        fail ArgumentError, 'invalid value for "third_party_certification_number", the character length must be smaller than or equal to 12.'
+      end
+
+      @third_party_certification_number = third_party_certification_number
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           developer_id == o.developer_id &&
-          solution_id == o.solution_id
+          solution_id == o.solution_id &&
+          third_party_certification_number == o.third_party_certification_number
     end
 
     # @see the `==` method
@@ -114,7 +139,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [developer_id, solution_id].hash
+      [developer_id, solution_id, third_party_certification_number].hash
     end
 
     # Builds the object from hash

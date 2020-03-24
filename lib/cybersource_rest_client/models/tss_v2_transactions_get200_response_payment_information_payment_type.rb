@@ -14,33 +14,21 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsGet200ResponsePaymentInformationPaymentType
-    # The name of a payment method. This is required for non-credit card payment.  Examples: `SEARS`, `JCREW`, `PAYPAL`, `IDEAL`, `EPS` ...etc.  Please contact CyberSource Customer Support to enable the payment method of your choice and the value you should send in your payment request for this field. 
+    # A Payment Type is an agreed means for a payee to receive legal tender from a payer. The way one pays for a commercial financial transaction. Examples: Card, Bank Transfer, Digital, Direct Debit. Possible values: - `CARD` (use this for a PIN debit transaction) 
     attr_accessor :name
 
-    # The type of payment method. This is required for non-credit card payment.  Possible values:  - BANK_TRANSFER  - CARD (Default)  - EWALLET  - DIGITAL  - DIRECT_DEBIT  - INVOICE  - PUSH_PAYMENT  - CARRIER_BILLING  - CASH  - CHECK  - CRYPTOGRAPHIC  Please contact CyberSource Customer Support to enable the payment method of your choice and the value you should send in your payment request for this field. 
+    # Indicates the payment type used in this payment transaction. Example: credit card, check
     attr_accessor :type
 
-    # This is an optional field.  Please contact CyberSource Customer Support to enable the payment method of your choice and the value you should send in your payment request for this field. 
+    # Indicates the payment method used in this payment transaction.
     attr_accessor :method
-
-    # The description for this field is not available.
-    attr_accessor :funding_source
-
-    # The description for this field is not available.
-    attr_accessor :funding_source_affiliation
-
-    # The description for this field is not available.
-    attr_accessor :credential
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'name' => :'name',
         :'type' => :'type',
-        :'method' => :'method',
-        :'funding_source' => :'fundingSource',
-        :'funding_source_affiliation' => :'fundingSourceAffiliation',
-        :'credential' => :'credential'
+        :'method' => :'method'
       }
     end
 
@@ -49,10 +37,7 @@ module CyberSource
       {
         :'name' => :'String',
         :'type' => :'String',
-        :'method' => :'String',
-        :'funding_source' => :'String',
-        :'funding_source_affiliation' => :'String',
-        :'credential' => :'String'
+        :'method' => :'String'
       }
     end
 
@@ -74,18 +59,6 @@ module CyberSource
 
       if attributes.has_key?(:'method')
         self.method = attributes[:'method']
-      end
-
-      if attributes.has_key?(:'fundingSource')
-        self.funding_source = attributes[:'fundingSource']
-      end
-
-      if attributes.has_key?(:'fundingSourceAffiliation')
-        self.funding_source_affiliation = attributes[:'fundingSourceAffiliation']
-      end
-
-      if attributes.has_key?(:'credential')
-        self.credential = attributes[:'credential']
       end
     end
 
@@ -109,10 +82,7 @@ module CyberSource
       self.class == o.class &&
           name == o.name &&
           type == o.type &&
-          method == o.method &&
-          funding_source == o.funding_source &&
-          funding_source_affiliation == o.funding_source_affiliation &&
-          credential == o.credential
+          method == o.method
     end
 
     # @see the `==` method
@@ -124,7 +94,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name, type, method, funding_source, funding_source_affiliation, credential].hash
+      [name, type, method].hash
     end
 
     # Builds the object from hash

@@ -14,10 +14,10 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsGet200ResponseErrorInformation
-    # The description for this field is not available.
+    # 1-word description of why a request succeeded or failed. 
     attr_accessor :reason
 
-    # The description for this field is not available.
+    # The user-facing description for why a request succeeded or failed. 
     attr_accessor :message
 
     attr_accessor :details

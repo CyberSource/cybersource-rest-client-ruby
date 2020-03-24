@@ -53,20 +53,18 @@ describe 'ReportingV3ReportSubscriptionsGet200ResponseSubscriptions' do
   describe 'test attribute "report_mime_type"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["application/xml", "text/csv"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.report_mime_type = value }.not_to raise_error
-      # end
     end
   end
 
   describe 'test attribute "report_frequency"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["DAILY", "WEEKLY", "MONTHLY", "ADHOC"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.report_frequency = value }.not_to raise_error
-      # end
+    end
+  end
+
+  describe 'test attribute "report_interval"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 

@@ -17,7 +17,7 @@ module CyberSource
     # Total amount for the item. Normally calculated as the unit price times quantity.  When `orderInformation.lineItems[].productCode` is \"gift_card\", this is the purchase amount total for prepaid gift cards in major units.  Example: 123.45 USD = 123 
     attr_accessor :total_amount
 
-    # Per-item price of the product. This value cannot be negative. You can include a decimal point (.), but you cannot include any other special characters. CyberSource truncates the amount to the correct number of decimal places.  For processor-specific information, see the `amount` field description in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html)  **Important** Some processors have specific requirements and limitations, such as maximum amounts and maximum field lengths. See these guides for details: - [Merchant Descriptors Using the SCMP API Guide] (https://apps.cybersource.com/library/documentation/dev_guides/Merchant_Descriptors_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) - \"Capture Information for Specific Processors\" section in the [Credit Card Services Using the SCMP API Guide](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  #### DCC with a Third-Party Provider Set this field to the converted amount that was returned by the DCC provider. You must include either the 1st line item in the order and this field, or the request-level field `orderInformation.amountDetails.totalAmount` in your request. For details, see \"Dynamic Currency Conversion with a Third Party Provider\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  #### FDMS South If you accept IDR or CLP currencies, see the entry for FDMS South in the [Merchant Descriptors Using the SCMP API Guide.] (https://apps.cybersource.com/library/documentation/dev_guides/Merchant_Descriptors_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm)  #### Zero Amount Authorizations If your processor supports zero amount authorizations, you can set this field to 0 for the authorization to check if the card is lost or stolen. See \"Zero Amount Authorizations\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/wwhelp/wwhimpl/js/html/wwhelp.htm) 
+    # Per-item price of the product. This value cannot be negative. You can include a decimal point (.), but you cannot include any other special characters. CyberSource truncates the amount to the correct number of decimal places.  For processor-specific information, see the `amount` field description in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html)  **Important** Some processors have specific requirements and limitations, such as maximum amounts and maximum field lengths. See these guides for details: - [Merchant Descriptors Using the SCMP API Guide] (https://apps.cybersource.com/library/documentation/dev_guides/Merchant_Descriptors_SCMP_API/html/) - \"Capture Information for Specific Processors\" section in the [Credit Card Services Using the SCMP API Guide](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  #### DCC with a Third-Party Provider Set this field to the converted amount that was returned by the DCC provider. You must include either the 1st line item in the order and this field, or the request-level field `orderInformation.amountDetails.totalAmount` in your request. For details, see \"Dynamic Currency Conversion with a Third Party Provider\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  #### FDMS South If you accept IDR or CLP currencies, see the entry for FDMS South in the [Merchant Descriptors Using the SCMP API Guide.] (https://apps.cybersource.com/library/documentation/dev_guides/Merchant_Descriptors_SCMP_API/html/)  #### Zero Amount Authorizations If your processor supports zero amount authorizations, you can set this field to 0 for the authorization to check if the card is lost or stolen. See \"Zero Amount Authorizations\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
     attr_accessor :unit_price
 
     # Number of units for this order.  The default is `1`. For an authorization or capture transaction (`processingOptions.capture` is set to `true` or `false`), this field is required when _orderInformation.lineItems[].productCode_ is not set to **default** or one of the other values that are related to shipping and/or handling.  When orderInformation.lineItems[].productCode is \"gift_card\", this is the total count of individual prepaid gift cards purchased. 
@@ -37,7 +37,10 @@ module CyberSource
 
     attr_accessor :passenger
 
-    # Total tax to apply to the product. This value cannot be negative. The tax amount and the offer amount must be in the same currency. The tax amount field is additive.  The following example uses a two-exponent currency such as USD:   1. You include each line item in your request.  ..- 1st line item has amount=10.00, quantity=1, and taxAmount=0.80  ..- 2nd line item has amount=20.00, quantity=1, and taxAmount=1.60  2. The total amount authorized will be 32.40, not 30.00 with 2.40 of tax included.  If you want to include the tax amount and also request the ics_tax service, see Tax Calculation Service Using the SCMP API.  This field is frequently used for Level II and Level III transactions. See Level II and Level III Processing Using the SCMP API. 
+    # Destination to where the item will be shipped. Example: Commercial, Residential, Store 
+    attr_accessor :shipping_destination_types
+
+    # Total tax to apply to the product. This value cannot be negative. The tax amount and the offer amount must be in the same currency. The tax amount field is additive.  The following example uses a two-exponent currency such as USD:   1. You include each line item in your request.  ..- 1st line item has amount=10.00, quantity=1, and taxAmount=0.80  ..- 2nd line item has amount=20.00, quantity=1, and taxAmount=1.60  2. The total amount authorized will be 32.40, not 30.00 with 2.40 of tax included.  If you want to include the tax amount and also request the ics_tax service, see Tax Calculation Service Using the SCMP API.  This field is frequently used for Level II and Level III transactions. For details, see `tax_amount` field description in [Level II and Level III Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Level_2_3_SCMP_API/html/) 
     attr_accessor :tax_amount
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -51,6 +54,7 @@ module CyberSource
         :'product_description' => :'productDescription',
         :'product_name' => :'productName',
         :'passenger' => :'passenger',
+        :'shipping_destination_types' => :'shippingDestinationTypes',
         :'tax_amount' => :'taxAmount'
       }
     end
@@ -60,12 +64,13 @@ module CyberSource
       {
         :'total_amount' => :'String',
         :'unit_price' => :'String',
-        :'quantity' => :'Float',
+        :'quantity' => :'Integer',
         :'gift_card_currency' => :'Integer',
         :'product_sku' => :'String',
         :'product_description' => :'String',
         :'product_name' => :'String',
         :'passenger' => :'Riskv1decisionsOrderInformationPassenger',
+        :'shipping_destination_types' => :'String',
         :'tax_amount' => :'String'
       }
     end
@@ -110,6 +115,10 @@ module CyberSource
         self.passenger = attributes[:'passenger']
       end
 
+      if attributes.has_key?(:'shippingDestinationTypes')
+        self.shipping_destination_types = attributes[:'shippingDestinationTypes']
+      end
+
       if attributes.has_key?(:'taxAmount')
         self.tax_amount = attributes[:'taxAmount']
       end
@@ -131,8 +140,8 @@ module CyberSource
         invalid_properties.push('invalid value for "unit_price", the character length must be smaller than or equal to 15.')
       end
 
-      if !@quantity.nil? && @quantity > 9999999999
-        invalid_properties.push('invalid value for "quantity", must be smaller than or equal to 9999999999.')
+      if !@quantity.nil? && @quantity > 999999999
+        invalid_properties.push('invalid value for "quantity", must be smaller than or equal to 999999999.')
       end
 
       if !@quantity.nil? && @quantity < 1
@@ -145,6 +154,10 @@ module CyberSource
 
       if !@product_name.nil? && @product_name.to_s.length > 255
         invalid_properties.push('invalid value for "product_name", the character length must be smaller than or equal to 255.')
+      end
+
+      if !@shipping_destination_types.nil? && @shipping_destination_types.to_s.length > 50
+        invalid_properties.push('invalid value for "shipping_destination_types", the character length must be smaller than or equal to 50.')
       end
 
       if !@tax_amount.nil? && @tax_amount.to_s.length > 15
@@ -160,10 +173,11 @@ module CyberSource
       return false if !@total_amount.nil? && @total_amount.to_s.length > 13
       return false if @unit_price.nil?
       return false if @unit_price.to_s.length > 15
-      return false if !@quantity.nil? && @quantity > 9999999999
+      return false if !@quantity.nil? && @quantity > 999999999
       return false if !@quantity.nil? && @quantity < 1
       return false if !@product_sku.nil? && @product_sku.to_s.length > 255
       return false if !@product_name.nil? && @product_name.to_s.length > 255
+      return false if !@shipping_destination_types.nil? && @shipping_destination_types.to_s.length > 50
       return false if !@tax_amount.nil? && @tax_amount.to_s.length > 15
       true
     end
@@ -195,8 +209,8 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] quantity Value to be assigned
     def quantity=(quantity)
-      if !quantity.nil? && quantity > 9999999999
-        fail ArgumentError, 'invalid value for "quantity", must be smaller than or equal to 9999999999.'
+      if !quantity.nil? && quantity > 999999999
+        fail ArgumentError, 'invalid value for "quantity", must be smaller than or equal to 999999999.'
       end
 
       if !quantity.nil? && quantity < 1
@@ -227,6 +241,16 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] shipping_destination_types Value to be assigned
+    def shipping_destination_types=(shipping_destination_types)
+      if !shipping_destination_types.nil? && shipping_destination_types.to_s.length > 50
+        fail ArgumentError, 'invalid value for "shipping_destination_types", the character length must be smaller than or equal to 50.'
+      end
+
+      @shipping_destination_types = shipping_destination_types
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] tax_amount Value to be assigned
     def tax_amount=(tax_amount)
       if !tax_amount.nil? && tax_amount.to_s.length > 15
@@ -249,6 +273,7 @@ module CyberSource
           product_description == o.product_description &&
           product_name == o.product_name &&
           passenger == o.passenger &&
+          shipping_destination_types == o.shipping_destination_types &&
           tax_amount == o.tax_amount
     end
 
@@ -261,7 +286,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [total_amount, unit_price, quantity, gift_card_currency, product_sku, product_description, product_name, passenger, tax_amount].hash
+      [total_amount, unit_price, quantity, gift_card_currency, product_sku, product_description, product_name, passenger, shipping_destination_types, tax_amount].hash
     end
 
     # Builds the object from hash

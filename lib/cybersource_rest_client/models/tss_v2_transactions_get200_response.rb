@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsGet200Response
-    # An unique identification number assigned by CyberSource to identify the submitted request. It is also appended to the endpoint of the resource.
+    # An unique identification number assigned by CyberSource to identify the submitted request. It is also appended to the endpoint of the resource.  On incremental authorizations, this value with be the same as the identification number returned in the original authorization response. 
     attr_accessor :id
 
     # Payment Request Id
@@ -23,7 +23,7 @@ module CyberSource
     # The reconciliation id for the submitted transaction. This value is not returned for all processors. 
     attr_accessor :reconciliation_id
 
-    # The description for this field is not available.
+    # Your CyberSource merchant ID.
     attr_accessor :merchant_id
 
     # The status of the submitted transaction.
@@ -48,7 +48,7 @@ module CyberSource
 
     attr_accessor :fraud_marking_information
 
-    # The description for this field is not available.
+    # The object containing the custom data that the merchant defines. 
     attr_accessor :merchant_defined_information
 
     attr_accessor :merchant_information

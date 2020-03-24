@@ -22,22 +22,22 @@ module CyberSource
     end
     # Create Adhoc Report
     # Create a one-time report. You must specify the type of report in reportDefinitionName. For a list of values for reportDefinitionName, see the [Reporting Developer Guide](https://www.cybersource.com/developers/documentation/reporting_and_reconciliation) 
-    # @param request_body Report subscription request payload
+    # @param create_adhoc_report_request Report subscription request payload
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [nil]
-    def create_report(request_body, opts = {})
-      data, status_code, headers = create_report_with_http_info(request_body, opts)
+    def create_report(create_adhoc_report_request, opts = {})
+      data, status_code, headers = create_report_with_http_info(create_adhoc_report_request, opts)
       return data, status_code, headers
     end
 
     # Create Adhoc Report
     # Create a one-time report. You must specify the type of report in reportDefinitionName. For a list of values for reportDefinitionName, see the [Reporting Developer Guide](https://www.cybersource.com/developers/documentation/reporting_and_reconciliation) 
-    # @param request_body Report subscription request payload
+    # @param create_adhoc_report_request Report subscription request payload
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
-    def create_report_with_http_info(request_body, opts = {})
+    def create_report_with_http_info(create_adhoc_report_request, opts = {})
       
 	  if @api_client.config.debugging
 	  	begin
@@ -47,9 +47,9 @@ module CyberSource
 				puts 'Cannot write to log'
 			end
       end
-      # verify the required parameter 'request_body' is set
-      if @api_client.config.client_side_validation && request_body.nil?
-        fail ArgumentError, "Missing the required parameter 'request_body' when calling ReportsApi.create_report"
+      # verify the required parameter 'create_adhoc_report_request' is set
+      if @api_client.config.client_side_validation && create_adhoc_report_request.nil?
+        fail ArgumentError, "Missing the required parameter 'create_adhoc_report_request' when calling ReportsApi.create_report"
       end
       if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length > 32
         fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportsApi.create_report, the character length must be smaller than or equal to 32.'
@@ -81,7 +81,7 @@ module CyberSource
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(request_body)
+      post_body = @api_client.object_to_http_body(create_adhoc_report_request)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -99,7 +99,7 @@ module CyberSource
 	  end
       return data, status_code, headers
     end
-    # Get Report based on reportId
+    # Get Report Based on Report Id
     # Download a report using the reportId value. If you don’t already know this value, you can obtain it using the Retrieve available reports call. 
     # @param report_id Valid Report Id
     # @param [Hash] opts the optional parameters
@@ -110,7 +110,7 @@ module CyberSource
       return data, status_code, headers
     end
 
-    # Get Report based on reportId
+    # Get Report Based on Report Id
     # Download a report using the reportId value. If you don’t already know this value, you can obtain it using the Retrieve available reports call. 
     # @param report_id Valid Report Id
     # @param [Hash] opts the optional parameters
@@ -179,36 +179,36 @@ module CyberSource
 	  end
       return data, status_code, headers
     end
-    # Retrieve available reports
+    # Retrieve Available Reports
     # Retrieve a list of the available reports to which you are subscribed. This will also give you the reportId value, which you can also use to download a report. 
-    # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
-    # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
-    # @param time_query_type Specify time you would like to search
+    # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
+    # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
+    # @param time_query_type Specify time you would like to search  Valid values: - reportTimeFrame - executedTime 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
-    # @option opts [String] :report_mime_type Valid Report Format
-    # @option opts [String] :report_frequency Valid Report Frequency
+    # @option opts [String] :report_mime_type Valid Report Format  Valid values: - application/xml - text/csv 
+    # @option opts [String] :report_frequency Valid Report Frequency  Valid values: - DAILY - WEEKLY - MONTHLY - USER_DEFINED - ADHOC 
     # @option opts [String] :report_name Valid Report Name
     # @option opts [Integer] :report_definition_id Valid Report Definition Id
-    # @option opts [String] :report_status Valid Report Status
+    # @option opts [String] :report_status Valid Report Status  Valid values: - COMPLETED - PENDING - QUEUED - RUNNING - ERROR - NO_DATA 
     # @return [ReportingV3ReportsGet200Response]
     def search_reports(start_time, end_time, time_query_type, opts = {})
       data, status_code, headers = search_reports_with_http_info(start_time, end_time, time_query_type, opts)
       return data, status_code, headers
     end
 
-    # Retrieve available reports
+    # Retrieve Available Reports
     # Retrieve a list of the available reports to which you are subscribed. This will also give you the reportId value, which you can also use to download a report. 
-    # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
-    # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format. - https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
-    # @param time_query_type Specify time you would like to search
+    # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
+    # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
+    # @param time_query_type Specify time you would like to search  Valid values: - reportTimeFrame - executedTime 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
-    # @option opts [String] :report_mime_type Valid Report Format
-    # @option opts [String] :report_frequency Valid Report Frequency
+    # @option opts [String] :report_mime_type Valid Report Format  Valid values: - application/xml - text/csv 
+    # @option opts [String] :report_frequency Valid Report Frequency  Valid values: - DAILY - WEEKLY - MONTHLY - USER_DEFINED - ADHOC 
     # @option opts [String] :report_name Valid Report Name
     # @option opts [Integer] :report_definition_id Valid Report Definition Id
-    # @option opts [String] :report_status Valid Report Status
+    # @option opts [String] :report_status Valid Report Status  Valid values: - COMPLETED - PENDING - QUEUED - RUNNING - ERROR - NO_DATA 
     # @return [Array<(ReportingV3ReportsGet200Response, Fixnum, Hash)>] ReportingV3ReportsGet200Response data, response status code and response headers
     def search_reports_with_http_info(start_time, end_time, time_query_type, opts = {})
       
@@ -232,10 +232,6 @@ module CyberSource
       if @api_client.config.client_side_validation && time_query_type.nil?
         fail ArgumentError, "Missing the required parameter 'time_query_type' when calling ReportsApi.search_reports"
       end
-      # verify enum value
-      if @api_client.config.client_side_validation && !['reportTimeFrame', 'executedTime'].include?(time_query_type)
-        fail ArgumentError, "invalid value for 'time_query_type', must be one of reportTimeFrame, executedTime"
-      end
       if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length > 32
         fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportsApi.search_reports, the character length must be smaller than or equal to 32.'
       end
@@ -248,15 +244,6 @@ module CyberSource
         #fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling ReportsApi.search_reports, must conform to the pattern /[a-zA-Z0-9-_]+/."
       #end
 
-      if @api_client.config.client_side_validation && opts[:'report_mime_type'] && !['application/xml', 'text/csv'].include?(opts[:'report_mime_type'])
-        fail ArgumentError, 'invalid value for "report_mime_type", must be one of application/xml, text/csv'
-      end
-      if @api_client.config.client_side_validation && opts[:'report_frequency'] && !['DAILY', 'WEEKLY', 'MONTHLY', 'ADHOC'].include?(opts[:'report_frequency'])
-        fail ArgumentError, 'invalid value for "report_frequency", must be one of DAILY, WEEKLY, MONTHLY, ADHOC'
-      end
-      if @api_client.config.client_side_validation && opts[:'report_status'] && !['COMPLETED', 'PENDING', 'QUEUED', 'RUNNING', 'ERROR', 'NO_DATA'].include?(opts[:'report_status'])
-        fail ArgumentError, 'invalid value for "report_status", must be one of COMPLETED, PENDING, QUEUED, RUNNING, ERROR, NO_DATA'
-      end
       # resource path
       local_var_path = 'reporting/v3/reports'
 

@@ -20,11 +20,15 @@ module CyberSource
 
     attr_accessor :payment_information
 
+    attr_accessor :processing_information
+
     attr_accessor :buyer_information
 
     attr_accessor :device_information
 
     attr_accessor :merchant_information
+
+    attr_accessor :acquirer_information
 
     attr_accessor :recurring_payment_information
 
@@ -42,9 +46,11 @@ module CyberSource
         :'client_reference_information' => :'clientReferenceInformation',
         :'order_information' => :'orderInformation',
         :'payment_information' => :'paymentInformation',
+        :'processing_information' => :'processingInformation',
         :'buyer_information' => :'buyerInformation',
         :'device_information' => :'deviceInformation',
         :'merchant_information' => :'merchantInformation',
+        :'acquirer_information' => :'acquirerInformation',
         :'recurring_payment_information' => :'recurringPaymentInformation',
         :'consumer_authentication_information' => :'consumerAuthenticationInformation',
         :'risk_information' => :'riskInformation',
@@ -56,12 +62,14 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'client_reference_information' => :'Riskv1authenticationsClientReferenceInformation',
+        :'client_reference_information' => :'Riskv1authenticationsetupsClientReferenceInformation',
         :'order_information' => :'Riskv1authenticationsOrderInformation',
-        :'payment_information' => :'Riskv1authenticationsPaymentInformation',
+        :'payment_information' => :'Riskv1authenticationexemptionsPaymentInformation',
+        :'processing_information' => :'Riskv1authenticationsetupsProcessingInformation',
         :'buyer_information' => :'Riskv1authenticationsBuyerInformation',
         :'device_information' => :'Riskv1authenticationsDeviceInformation',
         :'merchant_information' => :'Riskv1authenticationsMerchantInformation',
+        :'acquirer_information' => :'Riskv1authenticationsAcquirerInformation',
         :'recurring_payment_information' => :'Riskv1authenticationsRecurringPaymentInformation',
         :'consumer_authentication_information' => :'Riskv1authenticationsConsumerAuthenticationInformation',
         :'risk_information' => :'Riskv1authenticationsRiskInformation',
@@ -90,6 +98,10 @@ module CyberSource
         self.payment_information = attributes[:'paymentInformation']
       end
 
+      if attributes.has_key?(:'processingInformation')
+        self.processing_information = attributes[:'processingInformation']
+      end
+
       if attributes.has_key?(:'buyerInformation')
         self.buyer_information = attributes[:'buyerInformation']
       end
@@ -100,6 +112,10 @@ module CyberSource
 
       if attributes.has_key?(:'merchantInformation')
         self.merchant_information = attributes[:'merchantInformation']
+      end
+
+      if attributes.has_key?(:'acquirerInformation')
+        self.acquirer_information = attributes[:'acquirerInformation']
       end
 
       if attributes.has_key?(:'recurringPaymentInformation')
@@ -146,9 +162,11 @@ module CyberSource
           client_reference_information == o.client_reference_information &&
           order_information == o.order_information &&
           payment_information == o.payment_information &&
+          processing_information == o.processing_information &&
           buyer_information == o.buyer_information &&
           device_information == o.device_information &&
           merchant_information == o.merchant_information &&
+          acquirer_information == o.acquirer_information &&
           recurring_payment_information == o.recurring_payment_information &&
           consumer_authentication_information == o.consumer_authentication_information &&
           risk_information == o.risk_information &&
@@ -165,7 +183,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_reference_information, order_information, payment_information, buyer_information, device_information, merchant_information, recurring_payment_information, consumer_authentication_information, risk_information, travel_information, merchant_defined_information].hash
+      [client_reference_information, order_information, payment_information, processing_information, buyer_information, device_information, merchant_information, acquirer_information, recurring_payment_information, consumer_authentication_information, risk_information, travel_information, merchant_defined_information].hash
     end
 
     # Builds the object from hash

@@ -21,6 +21,15 @@ module CyberSource
     # interchange Per Item Fee
     attr_accessor :interchange_per_item_fee
 
+    # interchange Description
+    attr_accessor :interchange_description
+
+    # interchange Percentage
+    attr_accessor :interchange_percentage
+
+    # interchange Percentage Amount
+    attr_accessor :interchange_percentage_amount
+
     # Discount Percentage
     attr_accessor :discount_percentage
 
@@ -50,6 +59,9 @@ module CyberSource
       {
         :'request_id' => :'requestId',
         :'interchange_per_item_fee' => :'interchangePerItemFee',
+        :'interchange_description' => :'interchangeDescription',
+        :'interchange_percentage' => :'interchangePercentage',
+        :'interchange_percentage_amount' => :'interchangePercentageAmount',
         :'discount_percentage' => :'discountPercentage',
         :'discount_amount' => :'discountAmount',
         :'discount_per_item_fee' => :'discountPerItemFee',
@@ -66,6 +78,9 @@ module CyberSource
       {
         :'request_id' => :'String',
         :'interchange_per_item_fee' => :'String',
+        :'interchange_description' => :'String',
+        :'interchange_percentage' => :'String',
+        :'interchange_percentage_amount' => :'String',
         :'discount_percentage' => :'String',
         :'discount_amount' => :'String',
         :'discount_per_item_fee' => :'String',
@@ -91,6 +106,18 @@ module CyberSource
 
       if attributes.has_key?(:'interchangePerItemFee')
         self.interchange_per_item_fee = attributes[:'interchangePerItemFee']
+      end
+
+      if attributes.has_key?(:'interchangeDescription')
+        self.interchange_description = attributes[:'interchangeDescription']
+      end
+
+      if attributes.has_key?(:'interchangePercentage')
+        self.interchange_percentage = attributes[:'interchangePercentage']
+      end
+
+      if attributes.has_key?(:'interchangePercentageAmount')
+        self.interchange_percentage_amount = attributes[:'interchangePercentageAmount']
       end
 
       if attributes.has_key?(:'discountPercentage')
@@ -161,6 +188,9 @@ module CyberSource
       self.class == o.class &&
           request_id == o.request_id &&
           interchange_per_item_fee == o.interchange_per_item_fee &&
+          interchange_description == o.interchange_description &&
+          interchange_percentage == o.interchange_percentage &&
+          interchange_percentage_amount == o.interchange_percentage_amount &&
           discount_percentage == o.discount_percentage &&
           discount_amount == o.discount_amount &&
           discount_per_item_fee == o.discount_per_item_fee &&
@@ -180,7 +210,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [request_id, interchange_per_item_fee, discount_percentage, discount_amount, discount_per_item_fee, total_fee, fee_currency, dues_assessments, funding_amount, funding_currency].hash
+      [request_id, interchange_per_item_fee, interchange_description, interchange_percentage, interchange_percentage_amount, discount_percentage, discount_amount, discount_per_item_fee, total_fee, fee_currency, dues_assessments, funding_amount, funding_currency].hash
     end
 
     # Builds the object from hash

@@ -17,16 +17,16 @@ module CyberSource
     # Two-digit month in which the credit card expires. Format: `MM` Possible values: `01` through `12`  This field is optional if your CyberSource account is configured for relaxed requirements for address data and expiration date. For more information about relaxed requirements, see the TMS REST API Developer Guide.  Important: It is your responsibility to determine whether a field is required for the transaction you are requesting. 
     attr_accessor :expiration_month
 
-    # Four-digit year in which the credit card expires. Format: `YYYY`. Possible values: `1900` through `2099`.  **FDC Nashville Global and FDMS South** You can send in 2 digits or 4 digits. When you send in 2 digits, they must be the last 2 digits of the year.  This field is optional if your CyberSource account is configured for relaxed requirements for address data and expiration date. See Relaxed Requirements for Address Data and Expiration Date page.  Important: It is your responsibility to determine whether a field is required for the transaction you are requesting.' 
+    # Four-digit year in which the credit card expires. Format: `YYYY`. Possible values: `1900` through `2099`.  **FDC Nashville Global and FDMS South** You can send in 2 digits or 4 digits. When you send in 2 digits, they must be the last 2 digits of the year.  This field is optional if your CyberSource account is configured for relaxed requirements for address data and expiration date. For details, see [Relaxed Requirements for Address Data and Expiration Date.](https://www.cybersource.com/developers/integration_methods/relax_avs/). **Important** It is your responsibility to determine whether a field is required for the transaction you are requesting.' 
     attr_accessor :expiration_year
 
-    # Type of credit card. Possible values:   * Visa (001)   * Mastercard (002) - Eurocard—European regional brand of Mastercard   * American Express (003)   * Discover (004)   * Diners Club (005)   * Carte Blanche (006)   * JCB (007)   * Optima (008)   * Twinpay Credit (011)   * Twinpay Debit (012)   * Walmart (013)   * EnRoute (014)   * Lowes consumer (015)   * Home Depot consumer (016)   * MBNA (017)   * Dicks Sportswear (018)   * Casual Corner (019)   * Sears (020)   * JAL (021)   * Disney (023)   * Maestro (024) - UK Domestic   * Sams Club consumer (025)   * Sams Club business (026)   * Nicos (027)   * Bill me later (028)   * Bebe (029)   * Restoration Hardware (030)   * Delta (031) — use this value only for Ingenico ePayments. For other processors, use 001 for all Visa card types.   * Solo (032)   * Visa Electron (033)   * Dankort (034)   * Laser (035)   * Carte Bleue (036) — formerly Cartes Bancaires   * Cartes Bancaires (036)   * Carta Si (037)   * pinless debit (038)   * encoded account (039)   * UATP (040)   * Household (041)   * Maestro (042) - International   * GE Money UK (043)   * Korean cards (044)   * Style (045)   * JCrew (046)   * PayEase China processing eWallet (047)   * PayEase China processing bank transfer (048)   * Meijer Private Label (049)   * Hipercard (050) — supported only by the Comercio Latino processor.   * Aura (051) — supported only by the Comercio Latino processor.   * Redecard (052)   * ORICO (053)   * Elo (054) — supported only by the Comercio Latino processor.   * Capital One Private Label (055)   * Synchrony Private Label (056)   * Costco Private Label (057)   * mada (060)   * China Union Pay (062)   * Falabella private label (063) 
+    # Type of credit card. Possible values:   * **visa** -- Visa (001)   * **mastercard** -- Mastercard (002) - Eurocard—European regional brand of Mastercard   * **american express** -- American Express (003)   * **discover** -- Discover (004)   * **diners club** -- Diners Club (005)   * **carte blanche** -- Carte Blanche (006)   * **jcb** -- JCB (007)   * **optima** -- Optima (008)   * **twinpay credit** -- Twinpay Credit (011)   * **twinpay debit** -- Twinpay Debit (012)   * **walmart** -- Walmart (013)   * **enroute** -- EnRoute (014)   * **lowes consumer** -- Lowes consumer (015)   * **home depot consumer** -- Home Depot consumer (016)   * **mbna** -- MBNA (017)   * **dicks sportswear** -- Dicks Sportswear (018)   * **casual corner** -- Casual Corner (019)   * **sears** -- Sears (020)   * **jal** -- JAL (021)   * **disney** -- Disney (023)   * **maestro uk domestic** -- Maestro (024) - UK Domestic   * **sams club consumer** -- Sams Club consumer (025)   * **sams club business** -- Sams Club business (026)   * **bill me later** -- Bill me later (028)   * **bebe** -- Bebe (029)   * **restoration hardware** -- Restoration Hardware (030)   * **delta online** -- Delta (031) — use this value only for Ingenico ePayments. For other processors, use 001 for all Visa card types.   * **solo** -- Solo (032)   * **visa electron** -- Visa Electron (033)   * **dankort** -- Dankort (034)   * **laser** -- Laser (035)   * **carte bleue** -- Carte Bleue (036) — formerly Cartes Bancaires   * **carta si** -- Carta Si (037)   * **pinless debit** -- pinless debit (038)   * **encoded account** -- encoded account (039)   * **uatp** -- UATP (040)   * **household** -- Household (041)   * **maestro international** -- Maestro (042) - International   * **ge money uk** -- GE Money UK (043)   * **korean cards** -- Korean cards (044)   * **style** -- Style (045)   * **jcrew** -- JCrew (046)   * **payease china processing ewallet** -- PayEase China processing eWallet (047)   * **payease china processing bank transfer** -- PayEase China processing bank transfer (048)   * **meijer private label** -- Meijer Private Label (049)   * **hipercard** -- Hipercard (050) — supported only by the Comercio Latino processor.   * **aura** -- Aura (051) — supported only by the Comercio Latino processor.   * **redecard** -- Redecard (052)   * **elo** -- Elo (054) — supported only by the Comercio Latino processor.   * **capital one private label** -- Capital One Private Label (055)   * **synchrony private label** -- Synchrony Private Label (056)   * **costco private label** -- Costco Private Label (057)   * **mada** -- mada (060)   * **china union pay** -- China Union Pay (062)   * **falabella private label** -- Falabella private label (063) 
     attr_accessor :type
 
     # Number of times a Maestro (UK Domestic) card has been issued to the account holder.
     attr_accessor :issue_number
 
-    # Month of the start of the Maestro (UK Domestic) card validity period.  Format: `MM`. Possible values: `01` through `12`. 
+    # Month of the start of the Maestro (UK Domestic) card validity period. Format: `MM`. Possible values: `01` through `12`. 
     attr_accessor :start_month
 
     # Year of the start of the Maestro (UK Domestic) card validity period.  Format: `YYYY`. Possible values: `1900` through `2099`. 
@@ -34,28 +34,6 @@ module CyberSource
 
     # Card Use As Field. Supported value of `pinless debit` only. Only for use with Pinless Debit tokens.
     attr_accessor :use_as
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -179,8 +157,6 @@ module CyberSource
       return false if !@expiration_year.nil? && @expiration_year.to_s.length > 4
       return false if !@expiration_year.nil? && @expiration_year.to_s.length < 4
       return false if @type.nil?
-      type_validator = EnumAttributeValidator.new('String', ['visa', 'mastercard', 'american express', 'discover', 'diners club', 'carte blanche', 'jcb', 'optima', 'twinpay credit', 'twinpay debit', 'walmart', 'enroute', 'lowes consumer', 'home depot consumer', 'mbna', 'dicks sportswear', 'casual corner', 'sears', 'jal', 'disney', 'maestro uk domestic', 'sams club consumer', 'sams club business', 'nicos', 'bill me later', 'bebe', 'restoration hardware', 'delta online', 'solo', 'visa electron', 'dankort', 'laser', 'carte bleue', 'carta si', 'pinless debit', 'encoded account', 'uatp', 'household', 'maestro international', 'ge money uk', 'korean cards', 'style', 'jcrew', 'payease china processing ewallet', 'payease china processing bank transfer', 'meijer private label', 'hipercard', 'aura', 'redecard', 'orico', 'elo', 'capital one private label', 'synchrony private label', 'china union pay', 'costco private label', 'mada', 'falabella private label'])
-      return false unless type_validator.valid?(@type)
       return false if !@issue_number.nil? && @issue_number.to_s.length > 2
       return false if !@issue_number.nil? && @issue_number.to_s.length < 1
       return false if !@start_month.nil? && @start_month.to_s.length > 2
@@ -216,16 +192,6 @@ module CyberSource
       end
 
       @expiration_year = expiration_year
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] type Object to be assigned
-    def type=(type)
-      validator = EnumAttributeValidator.new('String', ['visa', 'mastercard', 'american express', 'discover', 'diners club', 'carte blanche', 'jcb', 'optima', 'twinpay credit', 'twinpay debit', 'walmart', 'enroute', 'lowes consumer', 'home depot consumer', 'mbna', 'dicks sportswear', 'casual corner', 'sears', 'jal', 'disney', 'maestro uk domestic', 'sams club consumer', 'sams club business', 'nicos', 'bill me later', 'bebe', 'restoration hardware', 'delta online', 'solo', 'visa electron', 'dankort', 'laser', 'carte bleue', 'carta si', 'pinless debit', 'encoded account', 'uatp', 'household', 'maestro international', 'ge money uk', 'korean cards', 'style', 'jcrew', 'payease china processing ewallet', 'payease china processing bank transfer', 'meijer private label', 'hipercard', 'aura', 'redecard', 'orico', 'elo', 'capital one private label', 'synchrony private label', 'china union pay', 'costco private label', 'mada', 'falabella private label'])
-      unless validator.valid?(type)
-        fail ArgumentError, 'invalid value for "type", must be one of #{validator.allowable_values}.'
-      end
-      @type = type
     end
 
     # Custom attribute writer method with validation

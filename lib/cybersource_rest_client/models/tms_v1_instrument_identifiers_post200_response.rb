@@ -19,41 +19,23 @@ module CyberSource
     # Unique identification number assigned by CyberSource to the submitted request.
     attr_accessor :id
 
-    # Describes type of token.
+    # 'Describes type of token.'  Valid values: - instrumentIdentifier 
     attr_accessor :object
 
-    # Current state of the token.
+    # 'Current state of the token.'  Valid values: - ACTIVE - CLOSED 
     attr_accessor :state
 
     attr_accessor :card
+
+    attr_accessor :tokenized_card
+
+    attr_accessor :issuer
 
     attr_accessor :bank_account
 
     attr_accessor :processing_information
 
     attr_accessor :metadata
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -63,6 +45,8 @@ module CyberSource
         :'object' => :'object',
         :'state' => :'state',
         :'card' => :'card',
+        :'tokenized_card' => :'tokenizedCard',
+        :'issuer' => :'issuer',
         :'bank_account' => :'bankAccount',
         :'processing_information' => :'processingInformation',
         :'metadata' => :'metadata'
@@ -77,7 +61,9 @@ module CyberSource
         :'object' => :'String',
         :'state' => :'String',
         :'card' => :'TmsV1InstrumentIdentifiersPost200ResponseCard',
-        :'bank_account' => :'TmsV1InstrumentIdentifiersPost200ResponseBankAccount',
+        :'tokenized_card' => :'TmsV1InstrumentIdentifiersPost200ResponseTokenizedCard',
+        :'issuer' => :'TmsV1InstrumentIdentifiersPost200ResponseIssuer',
+        :'bank_account' => :'Tmsv1instrumentidentifiersBankAccount',
         :'processing_information' => :'TmsV1InstrumentIdentifiersPost200ResponseProcessingInformation',
         :'metadata' => :'TmsV1InstrumentIdentifiersPost200ResponseMetadata'
       }
@@ -111,6 +97,14 @@ module CyberSource
         self.card = attributes[:'card']
       end
 
+      if attributes.has_key?(:'tokenizedCard')
+        self.tokenized_card = attributes[:'tokenizedCard']
+      end
+
+      if attributes.has_key?(:'issuer')
+        self.issuer = attributes[:'issuer']
+      end
+
       if attributes.has_key?(:'bankAccount')
         self.bank_account = attributes[:'bankAccount']
       end
@@ -134,31 +128,7 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      object_validator = EnumAttributeValidator.new('String', ['instrumentIdentifier'])
-      return false unless object_validator.valid?(@object)
-      state_validator = EnumAttributeValidator.new('String', ['ACTIVE', 'CLOSED'])
-      return false unless state_validator.valid?(@state)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] object Object to be assigned
-    def object=(object)
-      validator = EnumAttributeValidator.new('String', ['instrumentIdentifier'])
-      unless validator.valid?(object)
-        fail ArgumentError, 'invalid value for "object", must be one of #{validator.allowable_values}.'
-      end
-      @object = object
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] state Object to be assigned
-    def state=(state)
-      validator = EnumAttributeValidator.new('String', ['ACTIVE', 'CLOSED'])
-      unless validator.valid?(state)
-        fail ArgumentError, 'invalid value for "state", must be one of #{validator.allowable_values}.'
-      end
-      @state = state
     end
 
     # Checks equality by comparing each attribute.
@@ -171,6 +141,8 @@ module CyberSource
           object == o.object &&
           state == o.state &&
           card == o.card &&
+          tokenized_card == o.tokenized_card &&
+          issuer == o.issuer &&
           bank_account == o.bank_account &&
           processing_information == o.processing_information &&
           metadata == o.metadata
@@ -185,7 +157,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, object, state, card, bank_account, processing_information, metadata].hash
+      [_links, id, object, state, card, tokenized_card, issuer, bank_account, processing_information, metadata].hash
     end
 
     # Builds the object from hash

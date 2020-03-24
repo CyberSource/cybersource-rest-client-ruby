@@ -33,10 +33,12 @@ describe 'ReportDefinitionsApi' do
   end
 
   # unit tests for get_resource_info_by_report_definition
-  # Get report definition
+  # Get Report Definition
   # View the attributes of an individual report type. For a list of values for reportDefinitionName, see the [Reporting Developer Guide](https://www.cybersource.com/developers/documentation/reporting_and_reconciliation/) 
   # @param report_definition_name Name of the Report definition to retrieve
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :subscription_type The subscription type for which report definition is required. By default the type will be CUSTOM. Valid Values: - CLASSIC - CUSTOM - STANDARD 
+  # @option opts [String] :report_mime_type The format for which the report definition is required. By default the value will be CSV. Valid Values: - application/xml - text/csv 
   # @option opts [String] :organization_id Valid Cybersource Organization Id
   # @return [ReportingV3ReportDefinitionsNameGet200Response]
   describe 'get_resource_info_by_report_definition test' do
@@ -46,9 +48,10 @@ describe 'ReportDefinitionsApi' do
   end
 
   # unit tests for get_resource_v2_info
-  # Get reporting resource information
+  # Get Reporting Resource Information
   # View a list of supported reports and their attributes before subscribing to them. 
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :subscription_type Valid Values: - CLASSIC - CUSTOM - STANDARD 
   # @option opts [String] :organization_id Valid Cybersource Organization Id
   # @return [ReportingV3ReportDefinitionsGet200Response]
   describe 'get_resource_v2_info test' do
