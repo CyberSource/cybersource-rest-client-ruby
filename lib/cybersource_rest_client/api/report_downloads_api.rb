@@ -70,7 +70,7 @@ module CyberSource
       #end
 
       # resource path
-      local_var_path = 'reporting/v3/report-downloads'
+      local_var_path = opts[:path] || 'reporting/v3/report-downloads'
 
       # query parameters
       query_params = {}
