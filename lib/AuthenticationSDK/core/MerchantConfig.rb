@@ -86,6 +86,10 @@ public
           @requestHost = Constants::BOA_PRODUCTION_URL
         elsif @runEnvironment.upcase == Constants.BOA_RUN_ENV_SANDBOX
           @requestHost = Constants::BOA_SANDBOX_URL
+        elsif @runEnvironment.upcase == Constants::IDC_RUN_ENV_PROD
+          @requestHost = Constants::IDC_PRODUCTION_URL
+        elsif @runEnvironment.upcase == Constants.IDC_RUN_ENV_SANDBOX
+          @requestHost = Constants::IDC_SANDBOX_URL
         else
           @requestHost = @runEnvironment
         end

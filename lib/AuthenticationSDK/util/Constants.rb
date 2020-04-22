@@ -76,6 +76,14 @@
       
       BOA_PRODUCTION_URL = 'api.merchant-services.bankofamerica.com' unless const_defined?(:PRODUCTION_URL)
 
+      IDC_RUN_ENV_SANDBOX = 'CYBERSOURCE.IN.ENVIRONMENT.SANDBOX' unless const_defined?(:RUN_ENV_SANDBOX)
+
+      IDC_RUN_ENV_PROD = 'CYEBRSOURCE.IN.ENVIRONMENT.PRODUCTION'unless const_defined?(:RUN_ENV_PROD)
+
+      IDC_SANDBOX_URL = 'apitest.cybersource.com' unless const_defined?(:SANDBOX_URL)
+
+      IDC_PRODUCTION_URL = 'api.in.cybersource.com' unless const_defined?(:PRODUCTION_URL)
+
       # constants for fall back logic
 
       DEFAULT_LOG_SIZE = '10485760' unless const_defined?(:DEFAULT_LOG_SIZE)
