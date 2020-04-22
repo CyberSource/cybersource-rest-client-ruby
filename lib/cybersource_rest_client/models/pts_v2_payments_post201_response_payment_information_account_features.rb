@@ -20,6 +20,9 @@ module CyberSource
     # Possible values:   - `N`: Nonregulated  - `R`: Regulated  **Note** This field is returned only for CyberSource through VisaNet. 
     attr_accessor :account_status
 
+    # This is an array of multiple balances information an issuer can return for a given card.
+    attr_accessor :balances
+
     # Remaining balance on the account. 
     attr_accessor :balance_amount
 
@@ -29,7 +32,7 @@ module CyberSource
     # Currency of the remaining balance on the account. For the possible values, see the [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)  For details, see `auth_account_balance_currency` field description in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
     attr_accessor :currency
 
-    # Sign for the remaining balance on the account. Returned only when the processor returns this value. Possible values:  Possible values:  - **+**  - **-** 
+    # Sign for the remaining balance on the account. Returned only when the processor returns this value. Possible values:  Possible values:  - **positive**  - **negative** 
     attr_accessor :balance_sign
 
     # **Chase Paymentech Solutions**  Indicates whether a customer has high credit limits. This information enables you to market high cost items to these customers and to understand the kinds of cards that high income customers are using.  This field is supported for Visa, Mastercard, Discover, and Diners Club. Possible values:   - **Y**: Yes  - **N**: No  - **X**: Not applicable / Unknown  **Litle**  Flag that indicates that a Visa cardholder or Mastercard cardholder is in one of the affluent categories. Possible values:   - **AFFLUENT**: High income customer with high spending pattern (>100k USD annual income and >40k USD annual    card usage).  - **MASS AFFLUENT**: High income customer (>100k USD annual income).  **Processor specific maximum length**:   - Chase Paymentech Solutions: 1  - Litle: 13 
@@ -70,6 +73,7 @@ module CyberSource
       {
         :'account_type' => :'accountType',
         :'account_status' => :'accountStatus',
+        :'balances' => :'balances',
         :'balance_amount' => :'balanceAmount',
         :'balance_amount_type' => :'balanceAmountType',
         :'currency' => :'currency',
@@ -93,6 +97,7 @@ module CyberSource
       {
         :'account_type' => :'String',
         :'account_status' => :'String',
+        :'balances' => :'Array<PtsV2PaymentsPost201ResponsePaymentInformationAccountFeaturesBalances>',
         :'balance_amount' => :'String',
         :'balance_amount_type' => :'String',
         :'currency' => :'String',
@@ -125,6 +130,12 @@ module CyberSource
 
       if attributes.has_key?(:'accountStatus')
         self.account_status = attributes[:'accountStatus']
+      end
+
+      if attributes.has_key?(:'balances')
+        if (value = attributes[:'balances']).is_a?(Array)
+          self.balances = value
+        end
       end
 
       if attributes.has_key?(:'balanceAmount')
@@ -212,8 +223,8 @@ module CyberSource
         invalid_properties.push('invalid value for "currency", the character length must be smaller than or equal to 5.')
       end
 
-      if !@balance_sign.nil? && @balance_sign.to_s.length > 1
-        invalid_properties.push('invalid value for "balance_sign", the character length must be smaller than or equal to 1.')
+      if !@balance_sign.nil? && @balance_sign.to_s.length > 8
+        invalid_properties.push('invalid value for "balance_sign", the character length must be smaller than or equal to 8.')
       end
 
       if !@affluence_indicator.nil? && @affluence_indicator.to_s.length > 13
@@ -271,7 +282,7 @@ module CyberSource
       return false if !@balance_amount.nil? && @balance_amount.to_s.length > 12
       return false if !@balance_amount_type.nil? && @balance_amount_type.to_s.length > 2
       return false if !@currency.nil? && @currency.to_s.length > 5
-      return false if !@balance_sign.nil? && @balance_sign.to_s.length > 1
+      return false if !@balance_sign.nil? && @balance_sign.to_s.length > 8
       return false if !@affluence_indicator.nil? && @affluence_indicator.to_s.length > 13
       return false if !@category.nil? && @category.to_s.length > 7
       return false if !@commercial.nil? && @commercial.to_s.length > 1
@@ -339,8 +350,8 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] balance_sign Value to be assigned
     def balance_sign=(balance_sign)
-      if !balance_sign.nil? && balance_sign.to_s.length > 1
-        fail ArgumentError, 'invalid value for "balance_sign", the character length must be smaller than or equal to 1.'
+      if !balance_sign.nil? && balance_sign.to_s.length > 8
+        fail ArgumentError, 'invalid value for "balance_sign", the character length must be smaller than or equal to 8.'
       end
 
       @balance_sign = balance_sign
@@ -463,6 +474,7 @@ module CyberSource
       self.class == o.class &&
           account_type == o.account_type &&
           account_status == o.account_status &&
+          balances == o.balances &&
           balance_amount == o.balance_amount &&
           balance_amount_type == o.balance_amount_type &&
           currency == o.currency &&
@@ -489,7 +501,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [account_type, account_status, balance_amount, balance_amount_type, currency, balance_sign, affluence_indicator, category, commercial, group, health_care, payroll, level3_eligible, pinless_debit, signature_debit, prepaid, regulated].hash
+      [account_type, account_status, balances, balance_amount, balance_amount_type, currency, balance_sign, affluence_indicator, category, commercial, group, health_care, payroll, level3_eligible, pinless_debit, signature_debit, prepaid, regulated].hash
     end
 
     # Builds the object from hash

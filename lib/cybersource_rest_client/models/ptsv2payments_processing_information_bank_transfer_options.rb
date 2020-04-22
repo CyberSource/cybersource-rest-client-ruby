@@ -44,6 +44,9 @@ module CyberSource
     # Level of fraud screening.  Possible values: - `1`: Validation — default if the field has not already been configured for your merchant ID - `2`: Verification  For a description of this feature and a list of supported processors, see \"Verification and Validation\" in the [Electronic Check Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/EChecks_SCMP_API/html/). 
     attr_accessor :fraud_screening_level
 
+    # Indicates whether a customer is physically present and whether the customer is enrolling in CyberSource Recurring Billing.  Possible values: - `1`: Customer is present and not enrolling. - `2`: Customer is not present and not enrolling. - `3`: Customer is present and enrolling. - `4`: Customer is not present and enrolling. 
+    attr_accessor :customer_present
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -56,7 +59,8 @@ module CyberSource
         :'customer_memo' => :'customerMemo',
         :'payment_category_code' => :'paymentCategoryCode',
         :'settlement_method' => :'settlementMethod',
-        :'fraud_screening_level' => :'fraudScreeningLevel'
+        :'fraud_screening_level' => :'fraudScreeningLevel',
+        :'customer_present' => :'customerPresent'
       }
     end
 
@@ -72,7 +76,8 @@ module CyberSource
         :'customer_memo' => :'String',
         :'payment_category_code' => :'String',
         :'settlement_method' => :'String',
-        :'fraud_screening_level' => :'String'
+        :'fraud_screening_level' => :'String',
+        :'customer_present' => :'String'
       }
     end
 
@@ -123,6 +128,10 @@ module CyberSource
       if attributes.has_key?(:'fraudScreeningLevel')
         self.fraud_screening_level = attributes[:'fraudScreeningLevel']
       end
+
+      if attributes.has_key?(:'customerPresent')
+        self.customer_present = attributes[:'customerPresent']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -169,6 +178,10 @@ module CyberSource
         invalid_properties.push('invalid value for "fraud_screening_level", the character length must be smaller than or equal to 1.')
       end
 
+      if !@customer_present.nil? && @customer_present.to_s.length > 1
+        invalid_properties.push('invalid value for "customer_present", the character length must be smaller than or equal to 1.')
+      end
+
       invalid_properties
     end
 
@@ -185,6 +198,7 @@ module CyberSource
       return false if !@payment_category_code.nil? && @payment_category_code.to_s.length > 1
       return false if !@settlement_method.nil? && @settlement_method.to_s.length > 1
       return false if !@fraud_screening_level.nil? && @fraud_screening_level.to_s.length > 1
+      return false if !@customer_present.nil? && @customer_present.to_s.length > 1
       true
     end
 
@@ -288,6 +302,16 @@ module CyberSource
       @fraud_screening_level = fraud_screening_level
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] customer_present Value to be assigned
+    def customer_present=(customer_present)
+      if !customer_present.nil? && customer_present.to_s.length > 1
+        fail ArgumentError, 'invalid value for "customer_present", the character length must be smaller than or equal to 1.'
+      end
+
+      @customer_present = customer_present
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -302,7 +326,8 @@ module CyberSource
           customer_memo == o.customer_memo &&
           payment_category_code == o.payment_category_code &&
           settlement_method == o.settlement_method &&
-          fraud_screening_level == o.fraud_screening_level
+          fraud_screening_level == o.fraud_screening_level &&
+          customer_present == o.customer_present
     end
 
     # @see the `==` method
@@ -314,7 +339,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [decline_avs_flags, sec_code, terminal_city, terminal_state, effective_date, partial_payment_id, customer_memo, payment_category_code, settlement_method, fraud_screening_level].hash
+      [decline_avs_flags, sec_code, terminal_city, terminal_state, effective_date, partial_payment_id, customer_memo, payment_category_code, settlement_method, fraud_screening_level, customer_present].hash
     end
 
     # Builds the object from hash

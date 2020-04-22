@@ -46,6 +46,10 @@ module CyberSource
 
     attr_accessor :installment_information
 
+    attr_accessor :risk_information
+
+    attr_accessor :consumer_authentication_information
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -62,7 +66,9 @@ module CyberSource
         :'payment_information' => :'paymentInformation',
         :'order_information' => :'orderInformation',
         :'point_of_sale_information' => :'pointOfSaleInformation',
-        :'installment_information' => :'installmentInformation'
+        :'installment_information' => :'installmentInformation',
+        :'risk_information' => :'riskInformation',
+        :'consumer_authentication_information' => :'consumerAuthenticationInformation'
       }
     end
 
@@ -82,7 +88,9 @@ module CyberSource
         :'payment_information' => :'PtsV2PaymentsPost201ResponsePaymentInformation',
         :'order_information' => :'PtsV2PaymentsPost201ResponseOrderInformation',
         :'point_of_sale_information' => :'PtsV2PaymentsPost201ResponsePointOfSaleInformation',
-        :'installment_information' => :'PtsV2PaymentsPost201ResponseInstallmentInformation'
+        :'installment_information' => :'PtsV2PaymentsPost201ResponseInstallmentInformation',
+        :'risk_information' => :'PtsV2PaymentsPost201ResponseRiskInformation',
+        :'consumer_authentication_information' => :'PtsV2PaymentsPost201ResponseConsumerAuthenticationInformation'
       }
     end
 
@@ -149,6 +157,14 @@ module CyberSource
       if attributes.has_key?(:'installmentInformation')
         self.installment_information = attributes[:'installmentInformation']
       end
+
+      if attributes.has_key?(:'riskInformation')
+        self.risk_information = attributes[:'riskInformation']
+      end
+
+      if attributes.has_key?(:'consumerAuthenticationInformation')
+        self.consumer_authentication_information = attributes[:'consumerAuthenticationInformation']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -212,7 +228,9 @@ module CyberSource
           payment_information == o.payment_information &&
           order_information == o.order_information &&
           point_of_sale_information == o.point_of_sale_information &&
-          installment_information == o.installment_information
+          installment_information == o.installment_information &&
+          risk_information == o.risk_information &&
+          consumer_authentication_information == o.consumer_authentication_information
     end
 
     # @see the `==` method
@@ -224,7 +242,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, submit_time_utc, status, reconciliation_id, error_information, client_reference_information, processing_information, processor_information, issuer_information, payment_information, order_information, point_of_sale_information, installment_information].hash
+      [_links, id, submit_time_utc, status, reconciliation_id, error_information, client_reference_information, processing_information, processor_information, issuer_information, payment_information, order_information, point_of_sale_information, installment_information, risk_information, consumer_authentication_information].hash
     end
 
     # Builds the object from hash

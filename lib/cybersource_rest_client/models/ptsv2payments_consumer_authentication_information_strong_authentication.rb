@@ -29,6 +29,9 @@ module CyberSource
     # This field will contain the delegated authentication exemption indicator with one of the following values: Possible values: - `0`  (delegated Authentication exemption does not apply to the transaction) - `1` (Transaction exempt from SCA as authentication has been delegated to other provider (PSP,Acquirer)) 
     attr_accessor :delegated_authentication_exemption_indicator
 
+    # Indicates the type of Authentication request  01 - Payment transaction  02 - Recurring transaction  03 - Installment transaction  04 - Add card  05 - Maintain card  06 - Cardholder verification as part of EMV token ID and V 
+    attr_accessor :authentication_indicator
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -36,7 +39,8 @@ module CyberSource
         :'risk_analysis_exemption_indicator' => :'riskAnalysisExemptionIndicator',
         :'trusted_merchant_exemption_indicator' => :'trustedMerchantExemptionIndicator',
         :'secure_corporate_payment_indicator' => :'secureCorporatePaymentIndicator',
-        :'delegated_authentication_exemption_indicator' => :'delegatedAuthenticationExemptionIndicator'
+        :'delegated_authentication_exemption_indicator' => :'delegatedAuthenticationExemptionIndicator',
+        :'authentication_indicator' => :'authenticationIndicator'
       }
     end
 
@@ -47,7 +51,8 @@ module CyberSource
         :'risk_analysis_exemption_indicator' => :'String',
         :'trusted_merchant_exemption_indicator' => :'String',
         :'secure_corporate_payment_indicator' => :'String',
-        :'delegated_authentication_exemption_indicator' => :'String'
+        :'delegated_authentication_exemption_indicator' => :'String',
+        :'authentication_indicator' => :'String'
       }
     end
 
@@ -78,6 +83,10 @@ module CyberSource
       if attributes.has_key?(:'delegatedAuthenticationExemptionIndicator')
         self.delegated_authentication_exemption_indicator = attributes[:'delegatedAuthenticationExemptionIndicator']
       end
+
+      if attributes.has_key?(:'authenticationIndicator')
+        self.authentication_indicator = attributes[:'authenticationIndicator']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -104,6 +113,10 @@ module CyberSource
         invalid_properties.push('invalid value for "delegated_authentication_exemption_indicator", the character length must be smaller than or equal to 1.')
       end
 
+      if !@authentication_indicator.nil? && @authentication_indicator.to_s.length > 2
+        invalid_properties.push('invalid value for "authentication_indicator", the character length must be smaller than or equal to 2.')
+      end
+
       invalid_properties
     end
 
@@ -115,6 +128,7 @@ module CyberSource
       return false if !@trusted_merchant_exemption_indicator.nil? && @trusted_merchant_exemption_indicator.to_s.length > 1
       return false if !@secure_corporate_payment_indicator.nil? && @secure_corporate_payment_indicator.to_s.length > 1
       return false if !@delegated_authentication_exemption_indicator.nil? && @delegated_authentication_exemption_indicator.to_s.length > 1
+      return false if !@authentication_indicator.nil? && @authentication_indicator.to_s.length > 2
       true
     end
 
@@ -168,6 +182,16 @@ module CyberSource
       @delegated_authentication_exemption_indicator = delegated_authentication_exemption_indicator
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] authentication_indicator Value to be assigned
+    def authentication_indicator=(authentication_indicator)
+      if !authentication_indicator.nil? && authentication_indicator.to_s.length > 2
+        fail ArgumentError, 'invalid value for "authentication_indicator", the character length must be smaller than or equal to 2.'
+      end
+
+      @authentication_indicator = authentication_indicator
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -177,7 +201,8 @@ module CyberSource
           risk_analysis_exemption_indicator == o.risk_analysis_exemption_indicator &&
           trusted_merchant_exemption_indicator == o.trusted_merchant_exemption_indicator &&
           secure_corporate_payment_indicator == o.secure_corporate_payment_indicator &&
-          delegated_authentication_exemption_indicator == o.delegated_authentication_exemption_indicator
+          delegated_authentication_exemption_indicator == o.delegated_authentication_exemption_indicator &&
+          authentication_indicator == o.authentication_indicator
     end
 
     # @see the `==` method
@@ -189,7 +214,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [low_value_exemption_indicator, risk_analysis_exemption_indicator, trusted_merchant_exemption_indicator, secure_corporate_payment_indicator, delegated_authentication_exemption_indicator].hash
+      [low_value_exemption_indicator, risk_analysis_exemption_indicator, trusted_merchant_exemption_indicator, secure_corporate_payment_indicator, delegated_authentication_exemption_indicator, authentication_indicator].hash
     end
 
     # Builds the object from hash

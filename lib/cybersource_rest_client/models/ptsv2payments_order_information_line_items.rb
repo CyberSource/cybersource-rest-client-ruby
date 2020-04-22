@@ -91,6 +91,20 @@ module CyberSource
     # Reference number.  The meaning of this value is identified by the value of the corresponding `referenceDataCode` field. See Numbered Elements.  The maximum length for this field depends on the value of the corresponding `referenceDataCode` field: - When the code is `PO`, the maximum length for the reference number is 22. - When the code is `VC`, the maximum length for the reference number is 20. - For all other codes, the maximum length for the reference number is 30.  This field is a pass-through, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. 
     attr_accessor :reference_data_number
 
+    # Brief description of item.
+    attr_accessor :product_description
+
+    # When `orderInformation.lineItems[].productCode` is \"gift_card\", this is the currency used for the gift card purchase.  For details, see `pa_gift_card_currency` field description in [CyberSource Payer Authentication Using the SCMP API.] (https://apps.cybersource.com/library/documentation/dev_guides/Payer_Authentication_SCMP_API/Payer_Authentication_SCMP_API.pdf)  For the possible values, see the [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf) 
+    attr_accessor :gift_card_currency
+
+    # Destination to where the item will be shipped. Example: Commercial, Residential, Store 
+    attr_accessor :shipping_destination_types
+
+    # This field is only used in DM service.  Determines whether to assign risk to the order if the billing and shipping addresses specify different cities, states, or countries. This field can contain one of the following values: - true: Orders are assigned only slight additional risk if billing and shipping addresses are different. - false: Orders are assigned higher additional risk if billing and shipping addresses are different. 
+    attr_accessor :gift
+
+    attr_accessor :passenger
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -119,7 +133,12 @@ module CyberSource
         :'weight_identifier' => :'weightIdentifier',
         :'weight_unit' => :'weightUnit',
         :'reference_data_code' => :'referenceDataCode',
-        :'reference_data_number' => :'referenceDataNumber'
+        :'reference_data_number' => :'referenceDataNumber',
+        :'product_description' => :'productDescription',
+        :'gift_card_currency' => :'giftCardCurrency',
+        :'shipping_destination_types' => :'shippingDestinationTypes',
+        :'gift' => :'gift',
+        :'passenger' => :'passenger'
       }
     end
 
@@ -151,7 +170,12 @@ module CyberSource
         :'weight_identifier' => :'String',
         :'weight_unit' => :'String',
         :'reference_data_code' => :'String',
-        :'reference_data_number' => :'String'
+        :'reference_data_number' => :'String',
+        :'product_description' => :'String',
+        :'gift_card_currency' => :'Integer',
+        :'shipping_destination_types' => :'String',
+        :'gift' => :'BOOLEAN',
+        :'passenger' => :'Ptsv2paymentsOrderInformationPassenger'
       }
     end
 
@@ -268,6 +292,26 @@ module CyberSource
       if attributes.has_key?(:'referenceDataNumber')
         self.reference_data_number = attributes[:'referenceDataNumber']
       end
+
+      if attributes.has_key?(:'productDescription')
+        self.product_description = attributes[:'productDescription']
+      end
+
+      if attributes.has_key?(:'giftCardCurrency')
+        self.gift_card_currency = attributes[:'giftCardCurrency']
+      end
+
+      if attributes.has_key?(:'shippingDestinationTypes')
+        self.shipping_destination_types = attributes[:'shippingDestinationTypes']
+      end
+
+      if attributes.has_key?(:'gift')
+        self.gift = attributes[:'gift']
+      end
+
+      if attributes.has_key?(:'passenger')
+        self.passenger = attributes[:'passenger']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -366,6 +410,10 @@ module CyberSource
         invalid_properties.push('invalid value for "reference_data_number", the character length must be smaller than or equal to 30.')
       end
 
+      if !@shipping_destination_types.nil? && @shipping_destination_types.to_s.length > 50
+        invalid_properties.push('invalid value for "shipping_destination_types", the character length must be smaller than or equal to 50.')
+      end
+
       invalid_properties
     end
 
@@ -395,6 +443,7 @@ module CyberSource
       return false if !@weight_unit.nil? && @weight_unit.to_s.length > 2
       return false if !@reference_data_code.nil? && @reference_data_code.to_s.length > 2
       return false if !@reference_data_number.nil? && @reference_data_number.to_s.length > 30
+      return false if !@shipping_destination_types.nil? && @shipping_destination_types.to_s.length > 50
       true
     end
 
@@ -622,6 +671,16 @@ module CyberSource
       @reference_data_number = reference_data_number
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] shipping_destination_types Value to be assigned
+    def shipping_destination_types=(shipping_destination_types)
+      if !shipping_destination_types.nil? && shipping_destination_types.to_s.length > 50
+        fail ArgumentError, 'invalid value for "shipping_destination_types", the character length must be smaller than or equal to 50.'
+      end
+
+      @shipping_destination_types = shipping_destination_types
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -652,7 +711,12 @@ module CyberSource
           weight_identifier == o.weight_identifier &&
           weight_unit == o.weight_unit &&
           reference_data_code == o.reference_data_code &&
-          reference_data_number == o.reference_data_number
+          reference_data_number == o.reference_data_number &&
+          product_description == o.product_description &&
+          gift_card_currency == o.gift_card_currency &&
+          shipping_destination_types == o.shipping_destination_types &&
+          gift == o.gift &&
+          passenger == o.passenger
     end
 
     # @see the `==` method
@@ -664,7 +728,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [product_code, product_name, product_sku, quantity, unit_price, unit_of_measure, total_amount, tax_amount, tax_rate, tax_applied_after_discount, tax_status_indicator, tax_type_code, amount_includes_tax, type_of_supply, commodity_code, discount_amount, discount_applied, discount_rate, invoice_number, tax_details, fulfillment_type, weight, weight_identifier, weight_unit, reference_data_code, reference_data_number].hash
+      [product_code, product_name, product_sku, quantity, unit_price, unit_of_measure, total_amount, tax_amount, tax_rate, tax_applied_after_discount, tax_status_indicator, tax_type_code, amount_includes_tax, type_of_supply, commodity_code, discount_amount, discount_applied, discount_rate, invoice_number, tax_details, fulfillment_type, weight, weight_identifier, weight_unit, reference_data_code, reference_data_number, product_description, gift_card_currency, shipping_destination_types, gift, passenger].hash
     end
 
     # Builds the object from hash

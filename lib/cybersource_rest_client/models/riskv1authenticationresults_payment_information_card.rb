@@ -84,11 +84,7 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @bin.nil?
-        invalid_properties.push('invalid value for "bin", bin cannot be nil.')
-      end
-
-      if @bin.to_s.length > 6
+      if !@bin.nil? && @bin.to_s.length > 6
         invalid_properties.push('invalid value for "bin", the character length must be smaller than or equal to 6.')
       end
 
@@ -114,8 +110,7 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @bin.nil?
-      return false if @bin.to_s.length > 6
+      return false if !@bin.nil? && @bin.to_s.length > 6
       return false if @type.nil?
       return false if !@expiration_month.nil? && @expiration_month.to_s.length > 2
       return false if !@expiration_year.nil? && @expiration_year.to_s.length > 4
@@ -126,11 +121,7 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] bin Value to be assigned
     def bin=(bin)
-      if bin.nil?
-        fail ArgumentError, 'bin cannot be nil'
-      end
-
-      if bin.to_s.length > 6
+      if !bin.nil? && bin.to_s.length > 6
         fail ArgumentError, 'invalid value for "bin", the character length must be smaller than or equal to 6.'
       end
 

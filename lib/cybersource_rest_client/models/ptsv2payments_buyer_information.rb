@@ -31,6 +31,9 @@ module CyberSource
     # The merchant's password that CyberSource hashes and stores as a hashed password.  For details about this field, see the `customer_password` field description in _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
     attr_accessor :hashed_password
 
+    # Cardholder’s mobile phone number. **Important** Required for Visa Secure transactions in Brazil. Do not use this request field for any other types of transactions. 
+    attr_accessor :mobile_phone
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -39,7 +42,8 @@ module CyberSource
         :'vat_registration_number' => :'vatRegistrationNumber',
         :'company_tax_id' => :'companyTaxId',
         :'personal_identification' => :'personalIdentification',
-        :'hashed_password' => :'hashedPassword'
+        :'hashed_password' => :'hashedPassword',
+        :'mobile_phone' => :'mobilePhone'
       }
     end
 
@@ -51,7 +55,8 @@ module CyberSource
         :'vat_registration_number' => :'String',
         :'company_tax_id' => :'String',
         :'personal_identification' => :'Array<Ptsv2paymentsBuyerInformationPersonalIdentification>',
-        :'hashed_password' => :'String'
+        :'hashed_password' => :'String',
+        :'mobile_phone' => :'Integer'
       }
     end
 
@@ -87,6 +92,10 @@ module CyberSource
 
       if attributes.has_key?(:'hashedPassword')
         self.hashed_password = attributes[:'hashedPassword']
+      end
+
+      if attributes.has_key?(:'mobilePhone')
+        self.mobile_phone = attributes[:'mobilePhone']
       end
     end
 
@@ -188,7 +197,8 @@ module CyberSource
           vat_registration_number == o.vat_registration_number &&
           company_tax_id == o.company_tax_id &&
           personal_identification == o.personal_identification &&
-          hashed_password == o.hashed_password
+          hashed_password == o.hashed_password &&
+          mobile_phone == o.mobile_phone
     end
 
     # @see the `==` method
@@ -200,7 +210,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [merchant_customer_id, date_of_birth, vat_registration_number, company_tax_id, personal_identification, hashed_password].hash
+      [merchant_customer_id, date_of_birth, vat_registration_number, company_tax_id, personal_identification, hashed_password, mobile_phone].hash
     end
 
     # Builds the object from hash

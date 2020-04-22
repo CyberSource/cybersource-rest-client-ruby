@@ -20,11 +20,15 @@ module CyberSource
     # Payer auth Transaction identifier.
     attr_accessor :transaction_id
 
+    # Raw electronic commerce indicator (ECI).  For details, see `eci_raw` request field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
+    attr_accessor :eci_raw
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'xid' => :'xid',
-        :'transaction_id' => :'transactionId'
+        :'transaction_id' => :'transactionId',
+        :'eci_raw' => :'eciRaw'
       }
     end
 
@@ -32,7 +36,8 @@ module CyberSource
     def self.swagger_types
       {
         :'xid' => :'String',
-        :'transaction_id' => :'String'
+        :'transaction_id' => :'String',
+        :'eci_raw' => :'String'
       }
     end
 
@@ -51,6 +56,10 @@ module CyberSource
       if attributes.has_key?(:'transactionId')
         self.transaction_id = attributes[:'transactionId']
       end
+
+      if attributes.has_key?(:'eciRaw')
+        self.eci_raw = attributes[:'eciRaw']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -61,6 +70,10 @@ module CyberSource
         invalid_properties.push('invalid value for "xid", the character length must be smaller than or equal to 40.')
       end
 
+      if !@eci_raw.nil? && @eci_raw.to_s.length > 2
+        invalid_properties.push('invalid value for "eci_raw", the character length must be smaller than or equal to 2.')
+      end
+
       invalid_properties
     end
 
@@ -68,6 +81,7 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if !@xid.nil? && @xid.to_s.length > 40
+      return false if !@eci_raw.nil? && @eci_raw.to_s.length > 2
       true
     end
 
@@ -81,13 +95,24 @@ module CyberSource
       @xid = xid
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] eci_raw Value to be assigned
+    def eci_raw=(eci_raw)
+      if !eci_raw.nil? && eci_raw.to_s.length > 2
+        fail ArgumentError, 'invalid value for "eci_raw", the character length must be smaller than or equal to 2.'
+      end
+
+      @eci_raw = eci_raw
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           xid == o.xid &&
-          transaction_id == o.transaction_id
+          transaction_id == o.transaction_id &&
+          eci_raw == o.eci_raw
     end
 
     # @see the `==` method
@@ -99,7 +124,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [xid, transaction_id].hash
+      [xid, transaction_id, eci_raw].hash
     end
 
     # Builds the object from hash

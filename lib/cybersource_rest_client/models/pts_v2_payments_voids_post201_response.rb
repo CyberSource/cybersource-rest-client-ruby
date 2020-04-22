@@ -29,6 +29,8 @@ module CyberSource
 
     attr_accessor :void_amount_details
 
+    attr_accessor :processor_information
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -37,7 +39,8 @@ module CyberSource
         :'submit_time_utc' => :'submitTimeUtc',
         :'status' => :'status',
         :'client_reference_information' => :'clientReferenceInformation',
-        :'void_amount_details' => :'voidAmountDetails'
+        :'void_amount_details' => :'voidAmountDetails',
+        :'processor_information' => :'processorInformation'
       }
     end
 
@@ -49,7 +52,8 @@ module CyberSource
         :'submit_time_utc' => :'String',
         :'status' => :'String',
         :'client_reference_information' => :'PtsV2PaymentsPost201ResponseClientReferenceInformation',
-        :'void_amount_details' => :'PtsV2PaymentsVoidsPost201ResponseVoidAmountDetails'
+        :'void_amount_details' => :'PtsV2PaymentsVoidsPost201ResponseVoidAmountDetails',
+        :'processor_information' => :'PtsV2PaymentsVoidsPost201ResponseProcessorInformation'
       }
     end
 
@@ -83,6 +87,10 @@ module CyberSource
 
       if attributes.has_key?(:'voidAmountDetails')
         self.void_amount_details = attributes[:'voidAmountDetails']
+      end
+
+      if attributes.has_key?(:'processorInformation')
+        self.processor_information = attributes[:'processorInformation']
       end
     end
 
@@ -124,7 +132,8 @@ module CyberSource
           submit_time_utc == o.submit_time_utc &&
           status == o.status &&
           client_reference_information == o.client_reference_information &&
-          void_amount_details == o.void_amount_details
+          void_amount_details == o.void_amount_details &&
+          processor_information == o.processor_information
     end
 
     # @see the `==` method
@@ -136,7 +145,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, submit_time_utc, status, client_reference_information, void_amount_details].hash
+      [_links, id, submit_time_utc, status, client_reference_information, void_amount_details, processor_information].hash
     end
 
     # Builds the object from hash

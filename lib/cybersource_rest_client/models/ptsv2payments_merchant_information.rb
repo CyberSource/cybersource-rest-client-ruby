@@ -39,6 +39,9 @@ module CyberSource
 
     attr_accessor :service_fee_descriptor
 
+    # Use this field only if you are requesting payment with Payer Authentication serice together.  Your company’s name as you want it to appear to the customer in the issuing bank’s authentication form. This value overrides the value specified by your merchant bank. 
+    attr_accessor :merchant_name
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -50,7 +53,8 @@ module CyberSource
         :'vat_registration_number' => :'vatRegistrationNumber',
         :'card_acceptor_reference_number' => :'cardAcceptorReferenceNumber',
         :'transaction_local_date_time' => :'transactionLocalDateTime',
-        :'service_fee_descriptor' => :'serviceFeeDescriptor'
+        :'service_fee_descriptor' => :'serviceFeeDescriptor',
+        :'merchant_name' => :'merchantName'
       }
     end
 
@@ -65,7 +69,8 @@ module CyberSource
         :'vat_registration_number' => :'String',
         :'card_acceptor_reference_number' => :'String',
         :'transaction_local_date_time' => :'String',
-        :'service_fee_descriptor' => :'Ptsv2paymentsMerchantInformationServiceFeeDescriptor'
+        :'service_fee_descriptor' => :'Ptsv2paymentsMerchantInformationServiceFeeDescriptor',
+        :'merchant_name' => :'String'
       }
     end
 
@@ -112,6 +117,10 @@ module CyberSource
       if attributes.has_key?(:'serviceFeeDescriptor')
         self.service_fee_descriptor = attributes[:'serviceFeeDescriptor']
       end
+
+      if attributes.has_key?(:'merchantName')
+        self.merchant_name = attributes[:'merchantName']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -146,6 +155,10 @@ module CyberSource
         invalid_properties.push('invalid value for "transaction_local_date_time", the character length must be smaller than or equal to 14.')
       end
 
+      if !@merchant_name.nil? && @merchant_name.to_s.length > 25
+        invalid_properties.push('invalid value for "merchant_name", the character length must be smaller than or equal to 25.')
+      end
+
       invalid_properties
     end
 
@@ -159,6 +172,7 @@ module CyberSource
       return false if !@vat_registration_number.nil? && @vat_registration_number.to_s.length > 21
       return false if !@card_acceptor_reference_number.nil? && @card_acceptor_reference_number.to_s.length > 25
       return false if !@transaction_local_date_time.nil? && @transaction_local_date_time.to_s.length > 14
+      return false if !@merchant_name.nil? && @merchant_name.to_s.length > 25
       true
     end
 
@@ -232,6 +246,16 @@ module CyberSource
       @transaction_local_date_time = transaction_local_date_time
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] merchant_name Value to be assigned
+    def merchant_name=(merchant_name)
+      if !merchant_name.nil? && merchant_name.to_s.length > 25
+        fail ArgumentError, 'invalid value for "merchant_name", the character length must be smaller than or equal to 25.'
+      end
+
+      @merchant_name = merchant_name
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -245,7 +269,8 @@ module CyberSource
           vat_registration_number == o.vat_registration_number &&
           card_acceptor_reference_number == o.card_acceptor_reference_number &&
           transaction_local_date_time == o.transaction_local_date_time &&
-          service_fee_descriptor == o.service_fee_descriptor
+          service_fee_descriptor == o.service_fee_descriptor &&
+          merchant_name == o.merchant_name
     end
 
     # @see the `==` method
@@ -257,7 +282,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [merchant_descriptor, sales_organization_id, category_code, category_code_domestic, tax_id, vat_registration_number, card_acceptor_reference_number, transaction_local_date_time, service_fee_descriptor].hash
+      [merchant_descriptor, sales_organization_id, category_code, category_code_domestic, tax_id, vat_registration_number, card_acceptor_reference_number, transaction_local_date_time, service_fee_descriptor, merchant_name].hash
     end
 
     # Builds the object from hash

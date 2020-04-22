@@ -26,6 +26,21 @@ module CyberSource
 
     attr_accessor :shipping_details
 
+    # This is only needed when you are requesting both payment and DM service at same time.  Boolean that indicates whether returns are accepted for this order. This field can contain one of the following values: - true: Returns are accepted for this order. - false: Returns are not accepted for this order. 
+    attr_accessor :returns_accepted
+
+    # Indicates whether cardholder is placing an order with a future availability or release date. This field can contain one of these values: - MERCHANDISE_AVAILABLE: Merchandise available - FUTURE_AVAILABILITY: Future availability 
+    attr_accessor :pre_order
+
+    # Expected date that a pre-ordered purchase will be available. Format: YYYYMMDD 
+    attr_accessor :pre_order_date
+
+    # Indicates whether the cardholder is reordering previously purchased merchandise. This field can contain one of these values: - false: First time ordered - true: Reordered 
+    attr_accessor :reordered
+
+    # Total number of articles/items in the order as a numeric decimal count. Possible values: 00 - 99 
+    attr_accessor :total_offers_count
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -34,7 +49,12 @@ module CyberSource
         :'ship_to' => :'shipTo',
         :'line_items' => :'lineItems',
         :'invoice_details' => :'invoiceDetails',
-        :'shipping_details' => :'shippingDetails'
+        :'shipping_details' => :'shippingDetails',
+        :'returns_accepted' => :'returnsAccepted',
+        :'pre_order' => :'preOrder',
+        :'pre_order_date' => :'preOrderDate',
+        :'reordered' => :'reordered',
+        :'total_offers_count' => :'totalOffersCount'
       }
     end
 
@@ -46,7 +66,12 @@ module CyberSource
         :'ship_to' => :'Ptsv2paymentsOrderInformationShipTo',
         :'line_items' => :'Array<Ptsv2paymentsOrderInformationLineItems>',
         :'invoice_details' => :'Ptsv2paymentsOrderInformationInvoiceDetails',
-        :'shipping_details' => :'Ptsv2paymentsOrderInformationShippingDetails'
+        :'shipping_details' => :'Ptsv2paymentsOrderInformationShippingDetails',
+        :'returns_accepted' => :'BOOLEAN',
+        :'pre_order' => :'String',
+        :'pre_order_date' => :'String',
+        :'reordered' => :'BOOLEAN',
+        :'total_offers_count' => :'String'
       }
     end
 
@@ -83,19 +108,69 @@ module CyberSource
       if attributes.has_key?(:'shippingDetails')
         self.shipping_details = attributes[:'shippingDetails']
       end
+
+      if attributes.has_key?(:'returnsAccepted')
+        self.returns_accepted = attributes[:'returnsAccepted']
+      end
+
+      if attributes.has_key?(:'preOrder')
+        self.pre_order = attributes[:'preOrder']
+      end
+
+      if attributes.has_key?(:'preOrderDate')
+        self.pre_order_date = attributes[:'preOrderDate']
+      end
+
+      if attributes.has_key?(:'reordered')
+        self.reordered = attributes[:'reordered']
+      end
+
+      if attributes.has_key?(:'totalOffersCount')
+        self.total_offers_count = attributes[:'totalOffersCount']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if !@pre_order_date.nil? && @pre_order_date.to_s.length > 10
+        invalid_properties.push('invalid value for "pre_order_date", the character length must be smaller than or equal to 10.')
+      end
+
+      if !@total_offers_count.nil? && @total_offers_count.to_s.length > 2
+        invalid_properties.push('invalid value for "total_offers_count", the character length must be smaller than or equal to 2.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if !@pre_order_date.nil? && @pre_order_date.to_s.length > 10
+      return false if !@total_offers_count.nil? && @total_offers_count.to_s.length > 2
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] pre_order_date Value to be assigned
+    def pre_order_date=(pre_order_date)
+      if !pre_order_date.nil? && pre_order_date.to_s.length > 10
+        fail ArgumentError, 'invalid value for "pre_order_date", the character length must be smaller than or equal to 10.'
+      end
+
+      @pre_order_date = pre_order_date
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] total_offers_count Value to be assigned
+    def total_offers_count=(total_offers_count)
+      if !total_offers_count.nil? && total_offers_count.to_s.length > 2
+        fail ArgumentError, 'invalid value for "total_offers_count", the character length must be smaller than or equal to 2.'
+      end
+
+      @total_offers_count = total_offers_count
     end
 
     # Checks equality by comparing each attribute.
@@ -108,7 +183,12 @@ module CyberSource
           ship_to == o.ship_to &&
           line_items == o.line_items &&
           invoice_details == o.invoice_details &&
-          shipping_details == o.shipping_details
+          shipping_details == o.shipping_details &&
+          returns_accepted == o.returns_accepted &&
+          pre_order == o.pre_order &&
+          pre_order_date == o.pre_order_date &&
+          reordered == o.reordered &&
+          total_offers_count == o.total_offers_count
     end
 
     # @see the `==` method
@@ -120,7 +200,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [amount_details, bill_to, ship_to, line_items, invoice_details, shipping_details].hash
+      [amount_details, bill_to, ship_to, line_items, invoice_details, shipping_details, returns_accepted, pre_order, pre_order_date, reordered, total_offers_count].hash
     end
 
     # Builds the object from hash

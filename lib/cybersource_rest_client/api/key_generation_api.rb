@@ -24,6 +24,7 @@ module CyberSource
     # Generate a one-time use public key and key ID to encrypt the card number in the follow-on Tokenize Card request. The key used to encrypt the card number on the cardholder’s device or browser is valid for 15 minutes and must be used to verify the signature in the response message. CyberSource recommends creating a new key for each order. Generating a key is an authenticated request initiated from your servers, prior to requesting to tokenize the card data from your customer’s device or browser.
     # @param generate_public_key_request 
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :format Indicator to enable the receipt of the Keys response in Flex 11+ format (JWT) or legacy (parameter not required) (default to legacy)
     # @return [FlexV1KeysPost200Response]
     def generate_public_key(generate_public_key_request, opts = {})
       data, status_code, headers = generate_public_key_with_http_info(generate_public_key_request, opts)
@@ -34,6 +35,7 @@ module CyberSource
     # Generate a one-time use public key and key ID to encrypt the card number in the follow-on Tokenize Card request. The key used to encrypt the card number on the cardholder’s device or browser is valid for 15 minutes and must be used to verify the signature in the response message. CyberSource recommends creating a new key for each order. Generating a key is an authenticated request initiated from your servers, prior to requesting to tokenize the card data from your customer’s device or browser.
     # @param generate_public_key_request 
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :format Indicator to enable the receipt of the Keys response in Flex 11+ format (JWT) or legacy (parameter not required)
     # @return [Array<(FlexV1KeysPost200Response, Fixnum, Hash)>] FlexV1KeysPost200Response data, response status code and response headers
     def generate_public_key_with_http_info(generate_public_key_request, opts = {})
       
@@ -54,6 +56,7 @@ module CyberSource
 
       # query parameters
       query_params = {}
+      query_params[:'format'] = opts[:'format'] if !opts[:'format'].nil?
 
       # header parameters
       header_params = {}

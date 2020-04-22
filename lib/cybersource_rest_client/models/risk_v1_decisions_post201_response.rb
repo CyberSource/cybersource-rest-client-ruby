@@ -25,7 +25,7 @@ module CyberSource
     # Time that the transaction was submitted in local time.
     attr_accessor :submit_time_local
 
-    # The status of the submitted transaction.  Possible values:   - `ACCEPTED`   - `REJECTED`   - `PENDING_REVIEW` 
+    # The status of the submitted transaction.  Possible values:   - `ACCEPTED`   - `REJECTED`   - `PENDING_REVIEW`   - `DECLINED`   - `CHALLENGE`   - `PENDING_AUTHENTICATION` 
     attr_accessor :status
 
     attr_accessor :risk_information
@@ -56,7 +56,7 @@ module CyberSource
         :'submit_time_utc' => :'String',
         :'submit_time_local' => :'String',
         :'status' => :'String',
-        :'risk_information' => :'RiskV1DecisionsPost201ResponseRiskInformation',
+        :'risk_information' => :'PtsV2PaymentsPost201ResponseRiskInformation',
         :'payment_information' => :'RiskV1DecisionsPost201ResponsePaymentInformation',
         :'error_information' => :'PtsV2PaymentsPost201ResponseErrorInformation'
       }

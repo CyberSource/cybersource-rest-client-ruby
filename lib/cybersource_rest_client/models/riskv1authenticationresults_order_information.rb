@@ -29,7 +29,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'amount_details' => :'Riskv1decisionsOrderInformationAmountDetails',
+        :'amount_details' => :'Riskv1authenticationsOrderInformationAmountDetails',
         :'line_items' => :'Array<Riskv1authenticationresultsOrderInformationLineItems>'
       }
     end

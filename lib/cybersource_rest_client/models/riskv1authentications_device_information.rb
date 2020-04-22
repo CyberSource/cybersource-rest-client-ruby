@@ -71,7 +71,7 @@ module CyberSource
     def self.swagger_types
       {
         :'ip_address' => :'String',
-        :'raw_data' => :'Array<Riskv1authenticationsDeviceInformationRawData>',
+        :'raw_data' => :'Array<Ptsv2paymentsDeviceInformationRawData>',
         :'http_accept_browser_value' => :'String',
         :'http_accept_content' => :'String',
         :'http_browser_language' => :'String',

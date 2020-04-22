@@ -68,7 +68,7 @@ module CyberSource
         :'payment_information' => :'Ptsv2paymentsidcapturesPaymentInformation',
         :'order_information' => :'Ptsv2paymentsidcapturesOrderInformation',
         :'buyer_information' => :'Ptsv2paymentsidcapturesBuyerInformation',
-        :'device_information' => :'Ptsv2paymentsDeviceInformation',
+        :'device_information' => :'Ptsv2paymentsidcapturesDeviceInformation',
         :'merchant_information' => :'Ptsv2paymentsidcapturesMerchantInformation',
         :'aggregator_information' => :'Ptsv2paymentsidcapturesAggregatorInformation',
         :'point_of_sale_information' => :'Ptsv2paymentsidcapturesPointOfSaleInformation',

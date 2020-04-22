@@ -50,6 +50,15 @@ module CyberSource
     # Name of the customer’s company.  For processor-specific information, see the company_name field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
     attr_accessor :company
 
+    # Shipping destination of item. Example: Commercial, Residential, Store 
+    attr_accessor :destination_types
+
+    # Indicates destination chosen for the transaction. Possible values: - 01- Ship to cardholder billing address - 02- Ship to another verified address on file with merchant - 03- Ship to address that is different than billing address - 04- Ship to store (store address should be populated on request) - 05- Digital goods - 06- Travel and event tickets, not shipped - 07- Other 
+    attr_accessor :destination_code
+
+    # Shipping method for the product. Possible values: - lowcost: Lowest-cost service - sameday: Courier or same-day service - oneday: Next-day or overnight service - twoday: Two-day service - threeday: Three-day service - pickup: Store pick-up - other: Other shipping method - none: No shipping method because product is a service or subscription Required for American Express SafeKey (U.S.). 
+    attr_accessor :method
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -64,7 +73,10 @@ module CyberSource
         :'district' => :'district',
         :'building_number' => :'buildingNumber',
         :'phone_number' => :'phoneNumber',
-        :'company' => :'company'
+        :'company' => :'company',
+        :'destination_types' => :'destinationTypes',
+        :'destination_code' => :'destinationCode',
+        :'method' => :'method'
       }
     end
 
@@ -82,7 +94,10 @@ module CyberSource
         :'district' => :'String',
         :'building_number' => :'String',
         :'phone_number' => :'String',
-        :'company' => :'String'
+        :'company' => :'String',
+        :'destination_types' => :'String',
+        :'destination_code' => :'Integer',
+        :'method' => :'String'
       }
     end
 
@@ -141,6 +156,18 @@ module CyberSource
       if attributes.has_key?(:'company')
         self.company = attributes[:'company']
       end
+
+      if attributes.has_key?(:'destinationTypes')
+        self.destination_types = attributes[:'destinationTypes']
+      end
+
+      if attributes.has_key?(:'destinationCode')
+        self.destination_code = attributes[:'destinationCode']
+      end
+
+      if attributes.has_key?(:'method')
+        self.method = attributes[:'method']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -195,6 +222,14 @@ module CyberSource
         invalid_properties.push('invalid value for "company", the character length must be smaller than or equal to 60.')
       end
 
+      if !@destination_types.nil? && @destination_types.to_s.length > 25
+        invalid_properties.push('invalid value for "destination_types", the character length must be smaller than or equal to 25.')
+      end
+
+      if !@method.nil? && @method.to_s.length > 10
+        invalid_properties.push('invalid value for "method", the character length must be smaller than or equal to 10.')
+      end
+
       invalid_properties
     end
 
@@ -213,6 +248,8 @@ module CyberSource
       return false if !@building_number.nil? && @building_number.to_s.length > 15
       return false if !@phone_number.nil? && @phone_number.to_s.length > 15
       return false if !@company.nil? && @company.to_s.length > 60
+      return false if !@destination_types.nil? && @destination_types.to_s.length > 25
+      return false if !@method.nil? && @method.to_s.length > 10
       true
     end
 
@@ -336,6 +373,26 @@ module CyberSource
       @company = company
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] destination_types Value to be assigned
+    def destination_types=(destination_types)
+      if !destination_types.nil? && destination_types.to_s.length > 25
+        fail ArgumentError, 'invalid value for "destination_types", the character length must be smaller than or equal to 25.'
+      end
+
+      @destination_types = destination_types
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] method Value to be assigned
+    def method=(method)
+      if !method.nil? && method.to_s.length > 10
+        fail ArgumentError, 'invalid value for "method", the character length must be smaller than or equal to 10.'
+      end
+
+      @method = method
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -352,7 +409,10 @@ module CyberSource
           district == o.district &&
           building_number == o.building_number &&
           phone_number == o.phone_number &&
-          company == o.company
+          company == o.company &&
+          destination_types == o.destination_types &&
+          destination_code == o.destination_code &&
+          method == o.method
     end
 
     # @see the `==` method
@@ -364,7 +424,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [first_name, last_name, address1, address2, locality, administrative_area, postal_code, country, district, building_number, phone_number, company].hash
+      [first_name, last_name, address1, address2, locality, administrative_area, postal_code, country, district, building_number, phone_number, company, destination_types, destination_code, method].hash
     end
 
     # Builds the object from hash

@@ -20,11 +20,14 @@ module CyberSource
     # POS terminal’s capability. Possible values:   - `1`: Terminal has a magnetic stripe reader only.  - `2`: Terminal has a magnetic stripe reader and manual entry capability.  - `3`: Terminal has manual entry capability only.  - `4`: Terminal can read chip cards.  - `5`: Terminal can read contactless chip cards.  The values of 4 and 5 are supported only for EMV transactions. * Applicable only for CTV for Payouts.  For processor-specific details, see the `terminal_capability` field description in [Card-Present Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Retail_SCMP_API/html/) 
     attr_accessor :terminal_capability
 
+    attr_accessor :emv
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'entry_mode' => :'entryMode',
-        :'terminal_capability' => :'terminalCapability'
+        :'terminal_capability' => :'terminalCapability',
+        :'emv' => :'emv'
       }
     end
 
@@ -32,7 +35,8 @@ module CyberSource
     def self.swagger_types
       {
         :'entry_mode' => :'String',
-        :'terminal_capability' => :'Integer'
+        :'terminal_capability' => :'Integer',
+        :'emv' => :'Ptsv2paymentsidreversalsPointOfSaleInformationEmv'
       }
     end
 
@@ -50,6 +54,10 @@ module CyberSource
 
       if attributes.has_key?(:'terminalCapability')
         self.terminal_capability = attributes[:'terminalCapability']
+      end
+
+      if attributes.has_key?(:'emv')
+        self.emv = attributes[:'emv']
       end
     end
 
@@ -111,7 +119,8 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           entry_mode == o.entry_mode &&
-          terminal_capability == o.terminal_capability
+          terminal_capability == o.terminal_capability &&
+          emv == o.emv
     end
 
     # @see the `==` method
@@ -123,7 +132,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [entry_mode, terminal_capability].hash
+      [entry_mode, terminal_capability, emv].hash
     end
 
     # Builds the object from hash

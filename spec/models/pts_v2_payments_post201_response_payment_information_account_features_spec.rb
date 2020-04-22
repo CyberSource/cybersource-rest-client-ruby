@@ -44,6 +44,12 @@ describe 'PtsV2PaymentsPost201ResponsePaymentInformationAccountFeatures' do
     end
   end
 
+  describe 'test attribute "balances"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "balance_amount"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

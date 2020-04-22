@@ -26,7 +26,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'buyer_history' => :'Riskv1authenticationsRiskInformationBuyerHistory'
+        :'buyer_history' => :'Ptsv2paymentsRiskInformationBuyerHistory'
       }
     end
 

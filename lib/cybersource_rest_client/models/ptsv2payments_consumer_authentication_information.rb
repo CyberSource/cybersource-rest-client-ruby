@@ -43,6 +43,129 @@ module CyberSource
     # This field contains 3DS version that was used for Secured Consumer Authentication (SCA). For example 3DS secure version 1.0.2 or 2.0.0 is used for Secured Consumer Authentication. For Cybersource Through Visanet Gateway: The value for this field corresponds to the following data in the TC 33 capture file3: Record: CP01 TCR7, Position: 113 , Field: MC AVV Verification—Program Protocol It will contain one of the following values: - `1` (3D Secure Version 1.0 (3DS 1.0)) - `2` (EMV 3-D Secure (3DS 2.0)) 
     attr_accessor :pa_specification_version
 
+    # Indicates the type of authentication that will be used to challenge the card holder.  Possible Values:  01 - Static  02 - Dynamic  03 - OOB (Out of Band)  04 - Decoupled **NOTE**:  EMV 3-D Secure version 2.1.0 supports values 01-03.  Version 2.2.0 supports values 01-04.  Decoupled authentication is not supported at this time. 
+    attr_accessor :authentication_type
+
+    # An override field that a merchant can pass in to set the challenge window size to display to the end cardholder.  The ACS (Active Control Server) will reply with content that is formatted appropriately to this window size to allow for the best user experience.  The sizes are width x height in pixels of the window displayed in the cardholder browser window.  01 - 250x400  02 - 390x400  03 - 500x600  04 - 600x400  05 - Full page 
+    attr_accessor :acs_window_size
+
+    # Data that documents and supports a specific authentication process. 
+    attr_accessor :alternate_authentication_data
+
+    # Date and time in UTC of the cardholder authentication. Format: YYYYMMDDHHMM 
+    attr_accessor :alternate_authentication_date
+
+    # Mechanism used by the cardholder to authenticate to the 3D Secure requestor. Possible values: - `01`: No authentication occurred - `02`: Login using merchant system credentials - `03`: Login using Federated ID - `04`: Login using issuer credentials - `05`: Login using third-party authenticator - `06`: Login using FIDO Authenticator 
+    attr_accessor :alternate_authentication_method
+
+    # The date/time of the authentication at the 3DS servers. RISK update authorization service in auth request payload with value returned in `consumerAuthenticationInformation.alternateAuthenticationData` if merchant calls via CYBS or field can be provided by merchant in authorization request if calling an external 3DS provider. 
+    attr_accessor :authentication_date
+
+    # Payer authentication transaction identifier passed to link the check enrollment and validate authentication messages. **Note**: Required for Standard integration for enroll service. Required for Hybrid integration for validate service. 
+    attr_accessor :authentication_transaction_id
+
+    # An indicator as to why the transaction was canceled. Possible Values:  - `01`: Cardholder selected Cancel. - `02`: Reserved for future EMVCo use (values invalid until defined by EMVCo). - `03`: Transaction Timed Out—Decoupled Authentication - `04`: Transaction timed out at ACS—other timeouts - `05`: Transaction Timed out at ACS - First CReq not received by ACS - `06`: Transaction Error - `07`: Unknown - `08`: Transaction Timed Out at SDK 
+    attr_accessor :challenge_cancel_code
+
+    # Possible values: - `01`: No preference - `02`: No challenge request - `03`: Challenge requested (3D Secure requestor preference) - `04`: Challenge requested (mandate) - `05`: No challenge requested (transactional risk analysis is already performed) - `06`: No challenge requested (Data share only) - `07`: No challenge requested (strong consumer authentication is already performed) - `08`: No challenge requested (utilize whitelist exemption if no challenge required) - `09`: Challenge requested (whitelist prompt requested if challenge required) **Note** This field will default to `01` on merchant configuration and can be overridden by the merchant. EMV 3D Secure version 2.1.0 supports values `01-04`. Version 2.2.0 supports values `01-09`.  For details, see `pa_challenge_code` field description in [CyberSource Payer Authentication Using the SCMP API.] (https://apps.cybersource.com/library/documentation/dev_guides/Payer_Authentication_SCMP_API/html) 
+    attr_accessor :challenge_code
+
+    # The `consumerAuthenticationInformation.challengeCode` indicates the authentication type/level, or challenge, that was presented to the cardholder at checkout by the merchant when calling the Carte Bancaire 3DS servers via CYBS RISK services. It conveys to the issuer the alternative authentication methods that the consumer used. 
+    attr_accessor :challenge_status
+
+    # An alias that uniquely identifies the customer's account and credit card on file. Note This field is required if Tokenization is enabled in the merchant profile settings. 
+    attr_accessor :customer_card_alias
+
+    # Indicates whether the 3DS Requestor requests the ACS to utilize Decoupled Authentication and agrees to utilize Decoupled Authentication if the ACS confirms its use.  Possible Values:  Y - Decoupled Authentication is supported and preferred if challenge is necessary  N - Do not use Decoupled Authentication  **Default Value**: N 
+    attr_accessor :decoupled_authentication_indicator
+
+    # Indicates the maximum amount of time that the 3DS Requestor will wait for an ACS (Active control server) to provide the results of a Decoupled Authentication transaction (in minutes). Possible Values: Numeric values between 1 and 10080 accepted. 
+    attr_accessor :decoupled_authentication_max_time
+
+    # Indicates that the card being used is the one designated as the primary payment card for purchase. Recommended for Discover ProtectBuy. 
+    attr_accessor :default_card
+
+    # Determines the channel that the transaction came through. Possible Values: SDK/Browser/3RI. 3RI - 3DS request initiated. 
+    attr_accessor :device_channel
+
+    # An integer value greater than 1 indicating the max number of permitted authorizations for installment payments. **Note** This is required if the merchant and cardholder have agreed to installment payments. 
+    attr_accessor :installment_total_count
+
+    # Calculated by merchants as per PSD2** RTS** (EEA** card fraud divided by all EEA card volumes). Possible Values: 1 = Represents fraud rate <=1  2 = Represents fraud rate >1 and <=6  3 = Represents fraud rate >6 and <=13  4 = Represents fraud rate >13 and <=25  5 = Represents fraud rate >25  EEA** = European Economic Area RTS** = Regulatory Technical Standards PSD2** = Payment Services Directive 
+    attr_accessor :merchant_fraud_rate
+
+    # Indicates whether the customer has opted in for marketing offers. Recommended for Discover ProtectBuy. 
+    attr_accessor :marketing_opt_in
+
+    # Indicates origin of the marketing offer. Recommended for Discover ProtectBuy. 
+    attr_accessor :marketing_source
+
+    # Merchant category code. **Important** Required only for Visa Secure transactions in Brazil. Do not use this request field for any other types of transactions. 
+    attr_accessor :mcc
+
+    # Risk Score provided by merchants. This is specific for CB transactions. 
+    attr_accessor :merchant_score
+
+    # Category of the message for a specific use case. Possible values:  - `01`: PA- payment authentication - `02`: NPA- non-payment authentication - `03-79`: Reserved for EMVCo future use (values invalid until defined by EMVCo) - `80-99`: Reserved for DS use 
+    attr_accessor :message_category
+
+    # Non-Payer Authentication Indicator. Possible values: - `01`: Add card - `02`: Maintain card information - `03`: Cardholder verification for EMV token - `04-80` Reserved for EMVCo - `80-90` Reserved DS 
+    attr_accessor :npa_code
+
+    # Specifies the Brazilian payment account type used for the transaction. This field overrides other payment types that might be specified in the request. Use one of the following values for this field: - `NA`: Not applicable. Do not override other payment types that are specified in the request. - `CR`: Credit card. - `DB`: Debit card. - `VSAVR`: Visa Vale Refeicao - `VSAVA`: Visa Vale Alimentacao **Important** Required only for Visa Secure transactions in Brazil. Do not use this request field for any other types of transactions. 
+    attr_accessor :override_payment_method
+
+    # Two-character ISO standard Country Codes. 
+    attr_accessor :override_country_code
+
+    # This field carry data that the ACS can use to verify the authentication process. 
+    attr_accessor :prior_authentication_data
+
+    # Mechanism used by the Cardholder to previously authenticate to the 3DS Requestor.  01 - Frictionless authentication occurred by ACS  02 - Cardholder challenge occurred by ACS  03 - AVS verified  04 - Other issuer methods  05-79 - Reserved for EMVCo future use (values invalid until defined by EMVCo)  80-99 - Reserved for DS use 
+    attr_accessor :prior_authentication_method
+
+    # This data element contains a ACS Transaction ID for a prior authenticated transaction. For example, the first recurring transaction that was authenticated with the cardholder 
+    attr_accessor :prior_authentication_reference_id
+
+    # Date and time in UTC of the prior cardholder authentication. Format – YYYYMMDDHHMM 
+    attr_accessor :prior_authentication_time
+
+    # Specifies the product code, which designates the type of transaction. Specify one of the following values for this field: - AIR: Airline purchase Important Required for American Express SafeKey (U.S.). - `ACC`: Accommodation Rental - `ACF`: Account funding - `CHA`: Check acceptance - `DIG`: Digital Goods - `DSP`: Cash Dispensing - `GAS`: Fuel - `GEN`: General Retail - `LUX`: Luxury Retail - `PAL`: Prepaid activation and load - `PHY`: Goods or services purchase - `QCT`: Quasi-cash transaction - `REN`: Car Rental - `RES`: Restaurant - `SVC`: Services - `TBD`: Other - `TRA`: Travel **Important** Required for Visa Secure transactions in Brazil. Do not use this request field for any other types of transactions. 
+    attr_accessor :product_code
+
+    # Cardinal's directory server assigned 3DS Requestor ID value
+    attr_accessor :requestor_id
+
+    # Indicates the type of 3RI request.  Possible Values:  01 - Recurring transaction  02 - Installment transaction  03 - Add card  04 - Maintain card  05 - Account verification  06 - Split/delayed shipment  07 - Top-up  08 - Mail Order  09 - Telephone Order  10 - Whitelist status check  11 - Other payment 
+    attr_accessor :requestor_initiated_authentication_indicator
+
+    # Cardinal's directory server assigned 3DS Requestor Name value
+    attr_accessor :requestor_name
+
+    # Reference ID that corresponds to the device fingerprinting data that was collected previously. Note Required for Hybrid integration. 
+    attr_accessor :reference_id
+
+    # This field indicates the maximum amount of time for all 3DS 2.0 messages to be communicated between all components (in minutes).  Possible Values:  Greater than or equal to 05 (05 is the minimum timeout to set)  Cardinal Default is set to 15  NOTE: This field is a required 3DS 2.0 field and Cardinal sends in a default of 15 if nothing is passed 
+    attr_accessor :sdk_max_timeout
+
+    # Indicates dedicated payment processes and procedures were used, potential secure corporate payment exemption applies. Possible Values : 0/1 
+    attr_accessor :secure_corporate_payment_indicator
+
+    # Transaction mode identifier. Identifies the channel from which the transaction originates. Possible values:  - `M`: MOTO (Mail Order Telephone Order) - `R`: Retail - `S`: eCommerce - `P`: Mobile Device - `T`: Tablet 
+    attr_accessor :transaction_mode
+
+    # Enables the communication of trusted beneficiary/whitelist status between the ACS, the DS and the 3DS Requestor.  Possible Values:  Y - 3DS Requestor is whitelisted by cardholder  N - 3DS Requestor is not whitelisted by cardholder 
+    attr_accessor :white_list_status
+
+    # This field describes the type of 3DS transaction flow that took place.  It can be one of three possible flows; CH - Challenge FR - Frictionless FD - Frictionless with delegation, (challenge not generated by the issuer but by the scheme on behalf of the issuer). 
+    attr_accessor :effective_authentication_type
+
+    # Provides additional information as to why the PAResStatus has a specific value. 
+    attr_accessor :signed_pares_status_reason
+
+    # Payer authentication result (PARes) message returned by the card-issuing bank. If you need to show proof of enrollment checking, you may need to decrypt and parse the string for the information required by the payment card company. For more information, see \"Storing Payer Authentication Data,\" page 160. Important The value is in base64. You must remove all carriage returns and line feeds before adding the PARes to the request. 
+    attr_accessor :signed_pares
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -55,7 +178,48 @@ module CyberSource
         :'ucaf_authentication_data' => :'ucafAuthenticationData',
         :'strong_authentication' => :'strongAuthentication',
         :'directory_server_transaction_id' => :'directoryServerTransactionId',
-        :'pa_specification_version' => :'paSpecificationVersion'
+        :'pa_specification_version' => :'paSpecificationVersion',
+        :'authentication_type' => :'authenticationType',
+        :'acs_window_size' => :'acsWindowSize',
+        :'alternate_authentication_data' => :'alternateAuthenticationData',
+        :'alternate_authentication_date' => :'alternateAuthenticationDate',
+        :'alternate_authentication_method' => :'alternateAuthenticationMethod',
+        :'authentication_date' => :'authenticationDate',
+        :'authentication_transaction_id' => :'authenticationTransactionId',
+        :'challenge_cancel_code' => :'challengeCancelCode',
+        :'challenge_code' => :'challengeCode',
+        :'challenge_status' => :'challengeStatus',
+        :'customer_card_alias' => :'customerCardAlias',
+        :'decoupled_authentication_indicator' => :'decoupledAuthenticationIndicator',
+        :'decoupled_authentication_max_time' => :'decoupledAuthenticationMaxTime',
+        :'default_card' => :'defaultCard',
+        :'device_channel' => :'deviceChannel',
+        :'installment_total_count' => :'installmentTotalCount',
+        :'merchant_fraud_rate' => :'merchantFraudRate',
+        :'marketing_opt_in' => :'marketingOptIn',
+        :'marketing_source' => :'marketingSource',
+        :'mcc' => :'mcc',
+        :'merchant_score' => :'merchantScore',
+        :'message_category' => :'messageCategory',
+        :'npa_code' => :'npaCode',
+        :'override_payment_method' => :'overridePaymentMethod',
+        :'override_country_code' => :'overrideCountryCode',
+        :'prior_authentication_data' => :'priorAuthenticationData',
+        :'prior_authentication_method' => :'priorAuthenticationMethod',
+        :'prior_authentication_reference_id' => :'priorAuthenticationReferenceId',
+        :'prior_authentication_time' => :'priorAuthenticationTime',
+        :'product_code' => :'productCode',
+        :'requestor_id' => :'requestorId',
+        :'requestor_initiated_authentication_indicator' => :'requestorInitiatedAuthenticationIndicator',
+        :'requestor_name' => :'requestorName',
+        :'reference_id' => :'referenceId',
+        :'sdk_max_timeout' => :'sdkMaxTimeout',
+        :'secure_corporate_payment_indicator' => :'secureCorporatePaymentIndicator',
+        :'transaction_mode' => :'transactionMode',
+        :'white_list_status' => :'whiteListStatus',
+        :'effective_authentication_type' => :'effectiveAuthenticationType',
+        :'signed_pares_status_reason' => :'signedParesStatusReason',
+        :'signed_pares' => :'signedPares'
       }
     end
 
@@ -71,7 +235,48 @@ module CyberSource
         :'ucaf_authentication_data' => :'String',
         :'strong_authentication' => :'Ptsv2paymentsConsumerAuthenticationInformationStrongAuthentication',
         :'directory_server_transaction_id' => :'String',
-        :'pa_specification_version' => :'String'
+        :'pa_specification_version' => :'String',
+        :'authentication_type' => :'String',
+        :'acs_window_size' => :'String',
+        :'alternate_authentication_data' => :'String',
+        :'alternate_authentication_date' => :'String',
+        :'alternate_authentication_method' => :'String',
+        :'authentication_date' => :'String',
+        :'authentication_transaction_id' => :'String',
+        :'challenge_cancel_code' => :'String',
+        :'challenge_code' => :'String',
+        :'challenge_status' => :'String',
+        :'customer_card_alias' => :'String',
+        :'decoupled_authentication_indicator' => :'String',
+        :'decoupled_authentication_max_time' => :'String',
+        :'default_card' => :'BOOLEAN',
+        :'device_channel' => :'String',
+        :'installment_total_count' => :'Integer',
+        :'merchant_fraud_rate' => :'String',
+        :'marketing_opt_in' => :'BOOLEAN',
+        :'marketing_source' => :'String',
+        :'mcc' => :'String',
+        :'merchant_score' => :'Integer',
+        :'message_category' => :'String',
+        :'npa_code' => :'String',
+        :'override_payment_method' => :'String',
+        :'override_country_code' => :'String',
+        :'prior_authentication_data' => :'String',
+        :'prior_authentication_method' => :'String',
+        :'prior_authentication_reference_id' => :'String',
+        :'prior_authentication_time' => :'String',
+        :'product_code' => :'String',
+        :'requestor_id' => :'String',
+        :'requestor_initiated_authentication_indicator' => :'String',
+        :'requestor_name' => :'String',
+        :'reference_id' => :'String',
+        :'sdk_max_timeout' => :'String',
+        :'secure_corporate_payment_indicator' => :'String',
+        :'transaction_mode' => :'String',
+        :'white_list_status' => :'String',
+        :'effective_authentication_type' => :'String',
+        :'signed_pares_status_reason' => :'String',
+        :'signed_pares' => :'String'
       }
     end
 
@@ -122,6 +327,170 @@ module CyberSource
       if attributes.has_key?(:'paSpecificationVersion')
         self.pa_specification_version = attributes[:'paSpecificationVersion']
       end
+
+      if attributes.has_key?(:'authenticationType')
+        self.authentication_type = attributes[:'authenticationType']
+      end
+
+      if attributes.has_key?(:'acsWindowSize')
+        self.acs_window_size = attributes[:'acsWindowSize']
+      end
+
+      if attributes.has_key?(:'alternateAuthenticationData')
+        self.alternate_authentication_data = attributes[:'alternateAuthenticationData']
+      end
+
+      if attributes.has_key?(:'alternateAuthenticationDate')
+        self.alternate_authentication_date = attributes[:'alternateAuthenticationDate']
+      end
+
+      if attributes.has_key?(:'alternateAuthenticationMethod')
+        self.alternate_authentication_method = attributes[:'alternateAuthenticationMethod']
+      end
+
+      if attributes.has_key?(:'authenticationDate')
+        self.authentication_date = attributes[:'authenticationDate']
+      end
+
+      if attributes.has_key?(:'authenticationTransactionId')
+        self.authentication_transaction_id = attributes[:'authenticationTransactionId']
+      end
+
+      if attributes.has_key?(:'challengeCancelCode')
+        self.challenge_cancel_code = attributes[:'challengeCancelCode']
+      end
+
+      if attributes.has_key?(:'challengeCode')
+        self.challenge_code = attributes[:'challengeCode']
+      end
+
+      if attributes.has_key?(:'challengeStatus')
+        self.challenge_status = attributes[:'challengeStatus']
+      end
+
+      if attributes.has_key?(:'customerCardAlias')
+        self.customer_card_alias = attributes[:'customerCardAlias']
+      end
+
+      if attributes.has_key?(:'decoupledAuthenticationIndicator')
+        self.decoupled_authentication_indicator = attributes[:'decoupledAuthenticationIndicator']
+      end
+
+      if attributes.has_key?(:'decoupledAuthenticationMaxTime')
+        self.decoupled_authentication_max_time = attributes[:'decoupledAuthenticationMaxTime']
+      end
+
+      if attributes.has_key?(:'defaultCard')
+        self.default_card = attributes[:'defaultCard']
+      end
+
+      if attributes.has_key?(:'deviceChannel')
+        self.device_channel = attributes[:'deviceChannel']
+      end
+
+      if attributes.has_key?(:'installmentTotalCount')
+        self.installment_total_count = attributes[:'installmentTotalCount']
+      end
+
+      if attributes.has_key?(:'merchantFraudRate')
+        self.merchant_fraud_rate = attributes[:'merchantFraudRate']
+      end
+
+      if attributes.has_key?(:'marketingOptIn')
+        self.marketing_opt_in = attributes[:'marketingOptIn']
+      end
+
+      if attributes.has_key?(:'marketingSource')
+        self.marketing_source = attributes[:'marketingSource']
+      end
+
+      if attributes.has_key?(:'mcc')
+        self.mcc = attributes[:'mcc']
+      end
+
+      if attributes.has_key?(:'merchantScore')
+        self.merchant_score = attributes[:'merchantScore']
+      end
+
+      if attributes.has_key?(:'messageCategory')
+        self.message_category = attributes[:'messageCategory']
+      end
+
+      if attributes.has_key?(:'npaCode')
+        self.npa_code = attributes[:'npaCode']
+      end
+
+      if attributes.has_key?(:'overridePaymentMethod')
+        self.override_payment_method = attributes[:'overridePaymentMethod']
+      end
+
+      if attributes.has_key?(:'overrideCountryCode')
+        self.override_country_code = attributes[:'overrideCountryCode']
+      end
+
+      if attributes.has_key?(:'priorAuthenticationData')
+        self.prior_authentication_data = attributes[:'priorAuthenticationData']
+      end
+
+      if attributes.has_key?(:'priorAuthenticationMethod')
+        self.prior_authentication_method = attributes[:'priorAuthenticationMethod']
+      end
+
+      if attributes.has_key?(:'priorAuthenticationReferenceId')
+        self.prior_authentication_reference_id = attributes[:'priorAuthenticationReferenceId']
+      end
+
+      if attributes.has_key?(:'priorAuthenticationTime')
+        self.prior_authentication_time = attributes[:'priorAuthenticationTime']
+      end
+
+      if attributes.has_key?(:'productCode')
+        self.product_code = attributes[:'productCode']
+      end
+
+      if attributes.has_key?(:'requestorId')
+        self.requestor_id = attributes[:'requestorId']
+      end
+
+      if attributes.has_key?(:'requestorInitiatedAuthenticationIndicator')
+        self.requestor_initiated_authentication_indicator = attributes[:'requestorInitiatedAuthenticationIndicator']
+      end
+
+      if attributes.has_key?(:'requestorName')
+        self.requestor_name = attributes[:'requestorName']
+      end
+
+      if attributes.has_key?(:'referenceId')
+        self.reference_id = attributes[:'referenceId']
+      end
+
+      if attributes.has_key?(:'sdkMaxTimeout')
+        self.sdk_max_timeout = attributes[:'sdkMaxTimeout']
+      end
+
+      if attributes.has_key?(:'secureCorporatePaymentIndicator')
+        self.secure_corporate_payment_indicator = attributes[:'secureCorporatePaymentIndicator']
+      end
+
+      if attributes.has_key?(:'transactionMode')
+        self.transaction_mode = attributes[:'transactionMode']
+      end
+
+      if attributes.has_key?(:'whiteListStatus')
+        self.white_list_status = attributes[:'whiteListStatus']
+      end
+
+      if attributes.has_key?(:'effectiveAuthenticationType')
+        self.effective_authentication_type = attributes[:'effectiveAuthenticationType']
+      end
+
+      if attributes.has_key?(:'signedParesStatusReason')
+        self.signed_pares_status_reason = attributes[:'signedParesStatusReason']
+      end
+
+      if attributes.has_key?(:'signedPares')
+        self.signed_pares = attributes[:'signedPares']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -164,6 +533,130 @@ module CyberSource
         invalid_properties.push('invalid value for "pa_specification_version", the character length must be smaller than or equal to 1.')
       end
 
+      if !@authentication_type.nil? && @authentication_type.to_s.length > 2
+        invalid_properties.push('invalid value for "authentication_type", the character length must be smaller than or equal to 2.')
+      end
+
+      if !@acs_window_size.nil? && @acs_window_size.to_s.length > 2
+        invalid_properties.push('invalid value for "acs_window_size", the character length must be smaller than or equal to 2.')
+      end
+
+      if !@alternate_authentication_data.nil? && @alternate_authentication_data.to_s.length > 2048
+        invalid_properties.push('invalid value for "alternate_authentication_data", the character length must be smaller than or equal to 2048.')
+      end
+
+      if !@alternate_authentication_date.nil? && @alternate_authentication_date.to_s.length > 14
+        invalid_properties.push('invalid value for "alternate_authentication_date", the character length must be smaller than or equal to 14.')
+      end
+
+      if !@authentication_date.nil? && @authentication_date.to_s.length > 14
+        invalid_properties.push('invalid value for "authentication_date", the character length must be smaller than or equal to 14.')
+      end
+
+      if !@authentication_transaction_id.nil? && @authentication_transaction_id.to_s.length > 20
+        invalid_properties.push('invalid value for "authentication_transaction_id", the character length must be smaller than or equal to 20.')
+      end
+
+      if !@challenge_cancel_code.nil? && @challenge_cancel_code.to_s.length > 2
+        invalid_properties.push('invalid value for "challenge_cancel_code", the character length must be smaller than or equal to 2.')
+      end
+
+      if !@challenge_status.nil? && @challenge_status.to_s.length > 2
+        invalid_properties.push('invalid value for "challenge_status", the character length must be smaller than or equal to 2.')
+      end
+
+      if !@customer_card_alias.nil? && @customer_card_alias.to_s.length > 128
+        invalid_properties.push('invalid value for "customer_card_alias", the character length must be smaller than or equal to 128.')
+      end
+
+      if !@decoupled_authentication_indicator.nil? && @decoupled_authentication_indicator.to_s.length > 1
+        invalid_properties.push('invalid value for "decoupled_authentication_indicator", the character length must be smaller than or equal to 1.')
+      end
+
+      if !@decoupled_authentication_max_time.nil? && @decoupled_authentication_max_time.to_s.length > 5
+        invalid_properties.push('invalid value for "decoupled_authentication_max_time", the character length must be smaller than or equal to 5.')
+      end
+
+      if !@device_channel.nil? && @device_channel.to_s.length > 10
+        invalid_properties.push('invalid value for "device_channel", the character length must be smaller than or equal to 10.')
+      end
+
+      if !@merchant_fraud_rate.nil? && @merchant_fraud_rate.to_s.length > 2
+        invalid_properties.push('invalid value for "merchant_fraud_rate", the character length must be smaller than or equal to 2.')
+      end
+
+      if !@marketing_source.nil? && @marketing_source.to_s.length > 40
+        invalid_properties.push('invalid value for "marketing_source", the character length must be smaller than or equal to 40.')
+      end
+
+      if !@mcc.nil? && @mcc.to_s.length > 4
+        invalid_properties.push('invalid value for "mcc", the character length must be smaller than or equal to 4.')
+      end
+
+      if !@npa_code.nil? && @npa_code.to_s.length > 2
+        invalid_properties.push('invalid value for "npa_code", the character length must be smaller than or equal to 2.')
+      end
+
+      if !@override_country_code.nil? && @override_country_code.to_s.length > 2
+        invalid_properties.push('invalid value for "override_country_code", the character length must be smaller than or equal to 2.')
+      end
+
+      if !@prior_authentication_data.nil? && @prior_authentication_data.to_s.length > 2048
+        invalid_properties.push('invalid value for "prior_authentication_data", the character length must be smaller than or equal to 2048.')
+      end
+
+      if !@prior_authentication_method.nil? && @prior_authentication_method.to_s.length > 2
+        invalid_properties.push('invalid value for "prior_authentication_method", the character length must be smaller than or equal to 2.')
+      end
+
+      if !@prior_authentication_reference_id.nil? && @prior_authentication_reference_id.to_s.length > 36
+        invalid_properties.push('invalid value for "prior_authentication_reference_id", the character length must be smaller than or equal to 36.')
+      end
+
+      if !@prior_authentication_time.nil? && @prior_authentication_time.to_s.length > 12
+        invalid_properties.push('invalid value for "prior_authentication_time", the character length must be smaller than or equal to 12.')
+      end
+
+      if !@product_code.nil? && @product_code.to_s.length > 3
+        invalid_properties.push('invalid value for "product_code", the character length must be smaller than or equal to 3.')
+      end
+
+      if !@requestor_id.nil? && @requestor_id.to_s.length > 35
+        invalid_properties.push('invalid value for "requestor_id", the character length must be smaller than or equal to 35.')
+      end
+
+      if !@requestor_initiated_authentication_indicator.nil? && @requestor_initiated_authentication_indicator.to_s.length > 2
+        invalid_properties.push('invalid value for "requestor_initiated_authentication_indicator", the character length must be smaller than or equal to 2.')
+      end
+
+      if !@requestor_name.nil? && @requestor_name.to_s.length > 40
+        invalid_properties.push('invalid value for "requestor_name", the character length must be smaller than or equal to 40.')
+      end
+
+      if !@reference_id.nil? && @reference_id.to_s.length > 50
+        invalid_properties.push('invalid value for "reference_id", the character length must be smaller than or equal to 50.')
+      end
+
+      if !@sdk_max_timeout.nil? && @sdk_max_timeout.to_s.length > 2
+        invalid_properties.push('invalid value for "sdk_max_timeout", the character length must be smaller than or equal to 2.')
+      end
+
+      if !@secure_corporate_payment_indicator.nil? && @secure_corporate_payment_indicator.to_s.length > 1
+        invalid_properties.push('invalid value for "secure_corporate_payment_indicator", the character length must be smaller than or equal to 1.')
+      end
+
+      if !@white_list_status.nil? && @white_list_status.to_s.length > 1
+        invalid_properties.push('invalid value for "white_list_status", the character length must be smaller than or equal to 1.')
+      end
+
+      if !@effective_authentication_type.nil? && @effective_authentication_type.to_s.length > 2
+        invalid_properties.push('invalid value for "effective_authentication_type", the character length must be smaller than or equal to 2.')
+      end
+
+      if !@signed_pares_status_reason.nil? && @signed_pares_status_reason.to_s.length > 2
+        invalid_properties.push('invalid value for "signed_pares_status_reason", the character length must be smaller than or equal to 2.')
+      end
+
       invalid_properties
     end
 
@@ -179,6 +672,37 @@ module CyberSource
       return false if !@ucaf_authentication_data.nil? && @ucaf_authentication_data.to_s.length > 32
       return false if !@directory_server_transaction_id.nil? && @directory_server_transaction_id.to_s.length > 36
       return false if !@pa_specification_version.nil? && @pa_specification_version.to_s.length > 1
+      return false if !@authentication_type.nil? && @authentication_type.to_s.length > 2
+      return false if !@acs_window_size.nil? && @acs_window_size.to_s.length > 2
+      return false if !@alternate_authentication_data.nil? && @alternate_authentication_data.to_s.length > 2048
+      return false if !@alternate_authentication_date.nil? && @alternate_authentication_date.to_s.length > 14
+      return false if !@authentication_date.nil? && @authentication_date.to_s.length > 14
+      return false if !@authentication_transaction_id.nil? && @authentication_transaction_id.to_s.length > 20
+      return false if !@challenge_cancel_code.nil? && @challenge_cancel_code.to_s.length > 2
+      return false if !@challenge_status.nil? && @challenge_status.to_s.length > 2
+      return false if !@customer_card_alias.nil? && @customer_card_alias.to_s.length > 128
+      return false if !@decoupled_authentication_indicator.nil? && @decoupled_authentication_indicator.to_s.length > 1
+      return false if !@decoupled_authentication_max_time.nil? && @decoupled_authentication_max_time.to_s.length > 5
+      return false if !@device_channel.nil? && @device_channel.to_s.length > 10
+      return false if !@merchant_fraud_rate.nil? && @merchant_fraud_rate.to_s.length > 2
+      return false if !@marketing_source.nil? && @marketing_source.to_s.length > 40
+      return false if !@mcc.nil? && @mcc.to_s.length > 4
+      return false if !@npa_code.nil? && @npa_code.to_s.length > 2
+      return false if !@override_country_code.nil? && @override_country_code.to_s.length > 2
+      return false if !@prior_authentication_data.nil? && @prior_authentication_data.to_s.length > 2048
+      return false if !@prior_authentication_method.nil? && @prior_authentication_method.to_s.length > 2
+      return false if !@prior_authentication_reference_id.nil? && @prior_authentication_reference_id.to_s.length > 36
+      return false if !@prior_authentication_time.nil? && @prior_authentication_time.to_s.length > 12
+      return false if !@product_code.nil? && @product_code.to_s.length > 3
+      return false if !@requestor_id.nil? && @requestor_id.to_s.length > 35
+      return false if !@requestor_initiated_authentication_indicator.nil? && @requestor_initiated_authentication_indicator.to_s.length > 2
+      return false if !@requestor_name.nil? && @requestor_name.to_s.length > 40
+      return false if !@reference_id.nil? && @reference_id.to_s.length > 50
+      return false if !@sdk_max_timeout.nil? && @sdk_max_timeout.to_s.length > 2
+      return false if !@secure_corporate_payment_indicator.nil? && @secure_corporate_payment_indicator.to_s.length > 1
+      return false if !@white_list_status.nil? && @white_list_status.to_s.length > 1
+      return false if !@effective_authentication_type.nil? && @effective_authentication_type.to_s.length > 2
+      return false if !@signed_pares_status_reason.nil? && @signed_pares_status_reason.to_s.length > 2
       true
     end
 
@@ -272,6 +796,316 @@ module CyberSource
       @pa_specification_version = pa_specification_version
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] authentication_type Value to be assigned
+    def authentication_type=(authentication_type)
+      if !authentication_type.nil? && authentication_type.to_s.length > 2
+        fail ArgumentError, 'invalid value for "authentication_type", the character length must be smaller than or equal to 2.'
+      end
+
+      @authentication_type = authentication_type
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] acs_window_size Value to be assigned
+    def acs_window_size=(acs_window_size)
+      if !acs_window_size.nil? && acs_window_size.to_s.length > 2
+        fail ArgumentError, 'invalid value for "acs_window_size", the character length must be smaller than or equal to 2.'
+      end
+
+      @acs_window_size = acs_window_size
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] alternate_authentication_data Value to be assigned
+    def alternate_authentication_data=(alternate_authentication_data)
+      if !alternate_authentication_data.nil? && alternate_authentication_data.to_s.length > 2048
+        fail ArgumentError, 'invalid value for "alternate_authentication_data", the character length must be smaller than or equal to 2048.'
+      end
+
+      @alternate_authentication_data = alternate_authentication_data
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] alternate_authentication_date Value to be assigned
+    def alternate_authentication_date=(alternate_authentication_date)
+      if !alternate_authentication_date.nil? && alternate_authentication_date.to_s.length > 14
+        fail ArgumentError, 'invalid value for "alternate_authentication_date", the character length must be smaller than or equal to 14.'
+      end
+
+      @alternate_authentication_date = alternate_authentication_date
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] authentication_date Value to be assigned
+    def authentication_date=(authentication_date)
+      if !authentication_date.nil? && authentication_date.to_s.length > 14
+        fail ArgumentError, 'invalid value for "authentication_date", the character length must be smaller than or equal to 14.'
+      end
+
+      @authentication_date = authentication_date
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] authentication_transaction_id Value to be assigned
+    def authentication_transaction_id=(authentication_transaction_id)
+      if !authentication_transaction_id.nil? && authentication_transaction_id.to_s.length > 20
+        fail ArgumentError, 'invalid value for "authentication_transaction_id", the character length must be smaller than or equal to 20.'
+      end
+
+      @authentication_transaction_id = authentication_transaction_id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] challenge_cancel_code Value to be assigned
+    def challenge_cancel_code=(challenge_cancel_code)
+      if !challenge_cancel_code.nil? && challenge_cancel_code.to_s.length > 2
+        fail ArgumentError, 'invalid value for "challenge_cancel_code", the character length must be smaller than or equal to 2.'
+      end
+
+      @challenge_cancel_code = challenge_cancel_code
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] challenge_status Value to be assigned
+    def challenge_status=(challenge_status)
+      if !challenge_status.nil? && challenge_status.to_s.length > 2
+        fail ArgumentError, 'invalid value for "challenge_status", the character length must be smaller than or equal to 2.'
+      end
+
+      @challenge_status = challenge_status
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] customer_card_alias Value to be assigned
+    def customer_card_alias=(customer_card_alias)
+      if !customer_card_alias.nil? && customer_card_alias.to_s.length > 128
+        fail ArgumentError, 'invalid value for "customer_card_alias", the character length must be smaller than or equal to 128.'
+      end
+
+      @customer_card_alias = customer_card_alias
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] decoupled_authentication_indicator Value to be assigned
+    def decoupled_authentication_indicator=(decoupled_authentication_indicator)
+      if !decoupled_authentication_indicator.nil? && decoupled_authentication_indicator.to_s.length > 1
+        fail ArgumentError, 'invalid value for "decoupled_authentication_indicator", the character length must be smaller than or equal to 1.'
+      end
+
+      @decoupled_authentication_indicator = decoupled_authentication_indicator
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] decoupled_authentication_max_time Value to be assigned
+    def decoupled_authentication_max_time=(decoupled_authentication_max_time)
+      if !decoupled_authentication_max_time.nil? && decoupled_authentication_max_time.to_s.length > 5
+        fail ArgumentError, 'invalid value for "decoupled_authentication_max_time", the character length must be smaller than or equal to 5.'
+      end
+
+      @decoupled_authentication_max_time = decoupled_authentication_max_time
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] device_channel Value to be assigned
+    def device_channel=(device_channel)
+      if !device_channel.nil? && device_channel.to_s.length > 10
+        fail ArgumentError, 'invalid value for "device_channel", the character length must be smaller than or equal to 10.'
+      end
+
+      @device_channel = device_channel
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] merchant_fraud_rate Value to be assigned
+    def merchant_fraud_rate=(merchant_fraud_rate)
+      if !merchant_fraud_rate.nil? && merchant_fraud_rate.to_s.length > 2
+        fail ArgumentError, 'invalid value for "merchant_fraud_rate", the character length must be smaller than or equal to 2.'
+      end
+
+      @merchant_fraud_rate = merchant_fraud_rate
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] marketing_source Value to be assigned
+    def marketing_source=(marketing_source)
+      if !marketing_source.nil? && marketing_source.to_s.length > 40
+        fail ArgumentError, 'invalid value for "marketing_source", the character length must be smaller than or equal to 40.'
+      end
+
+      @marketing_source = marketing_source
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] mcc Value to be assigned
+    def mcc=(mcc)
+      if !mcc.nil? && mcc.to_s.length > 4
+        fail ArgumentError, 'invalid value for "mcc", the character length must be smaller than or equal to 4.'
+      end
+
+      @mcc = mcc
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] npa_code Value to be assigned
+    def npa_code=(npa_code)
+      if !npa_code.nil? && npa_code.to_s.length > 2
+        fail ArgumentError, 'invalid value for "npa_code", the character length must be smaller than or equal to 2.'
+      end
+
+      @npa_code = npa_code
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] override_country_code Value to be assigned
+    def override_country_code=(override_country_code)
+      if !override_country_code.nil? && override_country_code.to_s.length > 2
+        fail ArgumentError, 'invalid value for "override_country_code", the character length must be smaller than or equal to 2.'
+      end
+
+      @override_country_code = override_country_code
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] prior_authentication_data Value to be assigned
+    def prior_authentication_data=(prior_authentication_data)
+      if !prior_authentication_data.nil? && prior_authentication_data.to_s.length > 2048
+        fail ArgumentError, 'invalid value for "prior_authentication_data", the character length must be smaller than or equal to 2048.'
+      end
+
+      @prior_authentication_data = prior_authentication_data
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] prior_authentication_method Value to be assigned
+    def prior_authentication_method=(prior_authentication_method)
+      if !prior_authentication_method.nil? && prior_authentication_method.to_s.length > 2
+        fail ArgumentError, 'invalid value for "prior_authentication_method", the character length must be smaller than or equal to 2.'
+      end
+
+      @prior_authentication_method = prior_authentication_method
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] prior_authentication_reference_id Value to be assigned
+    def prior_authentication_reference_id=(prior_authentication_reference_id)
+      if !prior_authentication_reference_id.nil? && prior_authentication_reference_id.to_s.length > 36
+        fail ArgumentError, 'invalid value for "prior_authentication_reference_id", the character length must be smaller than or equal to 36.'
+      end
+
+      @prior_authentication_reference_id = prior_authentication_reference_id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] prior_authentication_time Value to be assigned
+    def prior_authentication_time=(prior_authentication_time)
+      if !prior_authentication_time.nil? && prior_authentication_time.to_s.length > 12
+        fail ArgumentError, 'invalid value for "prior_authentication_time", the character length must be smaller than or equal to 12.'
+      end
+
+      @prior_authentication_time = prior_authentication_time
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] product_code Value to be assigned
+    def product_code=(product_code)
+      if !product_code.nil? && product_code.to_s.length > 3
+        fail ArgumentError, 'invalid value for "product_code", the character length must be smaller than or equal to 3.'
+      end
+
+      @product_code = product_code
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] requestor_id Value to be assigned
+    def requestor_id=(requestor_id)
+      if !requestor_id.nil? && requestor_id.to_s.length > 35
+        fail ArgumentError, 'invalid value for "requestor_id", the character length must be smaller than or equal to 35.'
+      end
+
+      @requestor_id = requestor_id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] requestor_initiated_authentication_indicator Value to be assigned
+    def requestor_initiated_authentication_indicator=(requestor_initiated_authentication_indicator)
+      if !requestor_initiated_authentication_indicator.nil? && requestor_initiated_authentication_indicator.to_s.length > 2
+        fail ArgumentError, 'invalid value for "requestor_initiated_authentication_indicator", the character length must be smaller than or equal to 2.'
+      end
+
+      @requestor_initiated_authentication_indicator = requestor_initiated_authentication_indicator
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] requestor_name Value to be assigned
+    def requestor_name=(requestor_name)
+      if !requestor_name.nil? && requestor_name.to_s.length > 40
+        fail ArgumentError, 'invalid value for "requestor_name", the character length must be smaller than or equal to 40.'
+      end
+
+      @requestor_name = requestor_name
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] reference_id Value to be assigned
+    def reference_id=(reference_id)
+      if !reference_id.nil? && reference_id.to_s.length > 50
+        fail ArgumentError, 'invalid value for "reference_id", the character length must be smaller than or equal to 50.'
+      end
+
+      @reference_id = reference_id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] sdk_max_timeout Value to be assigned
+    def sdk_max_timeout=(sdk_max_timeout)
+      if !sdk_max_timeout.nil? && sdk_max_timeout.to_s.length > 2
+        fail ArgumentError, 'invalid value for "sdk_max_timeout", the character length must be smaller than or equal to 2.'
+      end
+
+      @sdk_max_timeout = sdk_max_timeout
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] secure_corporate_payment_indicator Value to be assigned
+    def secure_corporate_payment_indicator=(secure_corporate_payment_indicator)
+      if !secure_corporate_payment_indicator.nil? && secure_corporate_payment_indicator.to_s.length > 1
+        fail ArgumentError, 'invalid value for "secure_corporate_payment_indicator", the character length must be smaller than or equal to 1.'
+      end
+
+      @secure_corporate_payment_indicator = secure_corporate_payment_indicator
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] white_list_status Value to be assigned
+    def white_list_status=(white_list_status)
+      if !white_list_status.nil? && white_list_status.to_s.length > 1
+        fail ArgumentError, 'invalid value for "white_list_status", the character length must be smaller than or equal to 1.'
+      end
+
+      @white_list_status = white_list_status
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] effective_authentication_type Value to be assigned
+    def effective_authentication_type=(effective_authentication_type)
+      if !effective_authentication_type.nil? && effective_authentication_type.to_s.length > 2
+        fail ArgumentError, 'invalid value for "effective_authentication_type", the character length must be smaller than or equal to 2.'
+      end
+
+      @effective_authentication_type = effective_authentication_type
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] signed_pares_status_reason Value to be assigned
+    def signed_pares_status_reason=(signed_pares_status_reason)
+      if !signed_pares_status_reason.nil? && signed_pares_status_reason.to_s.length > 2
+        fail ArgumentError, 'invalid value for "signed_pares_status_reason", the character length must be smaller than or equal to 2.'
+      end
+
+      @signed_pares_status_reason = signed_pares_status_reason
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -286,7 +1120,48 @@ module CyberSource
           ucaf_authentication_data == o.ucaf_authentication_data &&
           strong_authentication == o.strong_authentication &&
           directory_server_transaction_id == o.directory_server_transaction_id &&
-          pa_specification_version == o.pa_specification_version
+          pa_specification_version == o.pa_specification_version &&
+          authentication_type == o.authentication_type &&
+          acs_window_size == o.acs_window_size &&
+          alternate_authentication_data == o.alternate_authentication_data &&
+          alternate_authentication_date == o.alternate_authentication_date &&
+          alternate_authentication_method == o.alternate_authentication_method &&
+          authentication_date == o.authentication_date &&
+          authentication_transaction_id == o.authentication_transaction_id &&
+          challenge_cancel_code == o.challenge_cancel_code &&
+          challenge_code == o.challenge_code &&
+          challenge_status == o.challenge_status &&
+          customer_card_alias == o.customer_card_alias &&
+          decoupled_authentication_indicator == o.decoupled_authentication_indicator &&
+          decoupled_authentication_max_time == o.decoupled_authentication_max_time &&
+          default_card == o.default_card &&
+          device_channel == o.device_channel &&
+          installment_total_count == o.installment_total_count &&
+          merchant_fraud_rate == o.merchant_fraud_rate &&
+          marketing_opt_in == o.marketing_opt_in &&
+          marketing_source == o.marketing_source &&
+          mcc == o.mcc &&
+          merchant_score == o.merchant_score &&
+          message_category == o.message_category &&
+          npa_code == o.npa_code &&
+          override_payment_method == o.override_payment_method &&
+          override_country_code == o.override_country_code &&
+          prior_authentication_data == o.prior_authentication_data &&
+          prior_authentication_method == o.prior_authentication_method &&
+          prior_authentication_reference_id == o.prior_authentication_reference_id &&
+          prior_authentication_time == o.prior_authentication_time &&
+          product_code == o.product_code &&
+          requestor_id == o.requestor_id &&
+          requestor_initiated_authentication_indicator == o.requestor_initiated_authentication_indicator &&
+          requestor_name == o.requestor_name &&
+          reference_id == o.reference_id &&
+          sdk_max_timeout == o.sdk_max_timeout &&
+          secure_corporate_payment_indicator == o.secure_corporate_payment_indicator &&
+          transaction_mode == o.transaction_mode &&
+          white_list_status == o.white_list_status &&
+          effective_authentication_type == o.effective_authentication_type &&
+          signed_pares_status_reason == o.signed_pares_status_reason &&
+          signed_pares == o.signed_pares
     end
 
     # @see the `==` method
@@ -298,7 +1173,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [cavv, cavv_algorithm, eci_raw, pares_status, veres_enrolled, xid, ucaf_authentication_data, strong_authentication, directory_server_transaction_id, pa_specification_version].hash
+      [cavv, cavv_algorithm, eci_raw, pares_status, veres_enrolled, xid, ucaf_authentication_data, strong_authentication, directory_server_transaction_id, pa_specification_version, authentication_type, acs_window_size, alternate_authentication_data, alternate_authentication_date, alternate_authentication_method, authentication_date, authentication_transaction_id, challenge_cancel_code, challenge_code, challenge_status, customer_card_alias, decoupled_authentication_indicator, decoupled_authentication_max_time, default_card, device_channel, installment_total_count, merchant_fraud_rate, marketing_opt_in, marketing_source, mcc, merchant_score, message_category, npa_code, override_payment_method, override_country_code, prior_authentication_data, prior_authentication_method, prior_authentication_reference_id, prior_authentication_time, product_code, requestor_id, requestor_initiated_authentication_indicator, requestor_name, reference_id, sdk_max_timeout, secure_corporate_payment_indicator, transaction_mode, white_list_status, effective_authentication_type, signed_pares_status_reason, signed_pares].hash
     end
 
     # Builds the object from hash
