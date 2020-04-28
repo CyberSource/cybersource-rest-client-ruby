@@ -25,6 +25,8 @@ module CyberSource
 
     attr_accessor :shipping_details
 
+    attr_accessor :invoice_details
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -32,7 +34,8 @@ module CyberSource
         :'ship_to' => :'shipTo',
         :'line_items' => :'lineItems',
         :'amount_details' => :'amountDetails',
-        :'shipping_details' => :'shippingDetails'
+        :'shipping_details' => :'shippingDetails',
+        :'invoice_details' => :'invoiceDetails'
       }
     end
 
@@ -43,7 +46,8 @@ module CyberSource
         :'ship_to' => :'TssV2TransactionsGet200ResponseOrderInformationShipTo',
         :'line_items' => :'Array<TssV2TransactionsGet200ResponseOrderInformationLineItems>',
         :'amount_details' => :'TssV2TransactionsGet200ResponseOrderInformationAmountDetails',
-        :'shipping_details' => :'TssV2TransactionsGet200ResponseOrderInformationShippingDetails'
+        :'shipping_details' => :'TssV2TransactionsGet200ResponseOrderInformationShippingDetails',
+        :'invoice_details' => :'TssV2TransactionsGet200ResponseOrderInformationInvoiceDetails'
       }
     end
 
@@ -76,6 +80,10 @@ module CyberSource
       if attributes.has_key?(:'shippingDetails')
         self.shipping_details = attributes[:'shippingDetails']
       end
+
+      if attributes.has_key?(:'invoiceDetails')
+        self.invoice_details = attributes[:'invoiceDetails']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -100,7 +108,8 @@ module CyberSource
           ship_to == o.ship_to &&
           line_items == o.line_items &&
           amount_details == o.amount_details &&
-          shipping_details == o.shipping_details
+          shipping_details == o.shipping_details &&
+          invoice_details == o.invoice_details
     end
 
     # @see the `==` method
@@ -112,7 +121,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [bill_to, ship_to, line_items, amount_details, shipping_details].hash
+      [bill_to, ship_to, line_items, amount_details, shipping_details, invoice_details].hash
     end
 
     # Builds the object from hash

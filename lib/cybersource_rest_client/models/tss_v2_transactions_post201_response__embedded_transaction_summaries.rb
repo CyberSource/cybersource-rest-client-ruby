@@ -84,7 +84,7 @@ module CyberSource
         :'id' => :'String',
         :'submit_time_utc' => :'String',
         :'merchant_id' => :'String',
-        :'application_information' => :'TssV2TransactionsGet200ResponseApplicationInformation',
+        :'application_information' => :'TssV2TransactionsPost201ResponseEmbeddedApplicationInformation',
         :'buyer_information' => :'TssV2TransactionsPost201ResponseEmbeddedBuyerInformation',
         :'client_reference_information' => :'TssV2TransactionsPost201ResponseEmbeddedClientReferenceInformation',
         :'consumer_authentication_information' => :'TssV2TransactionsPost201ResponseEmbeddedConsumerAuthenticationInformation',

@@ -15,6 +15,9 @@ require 'date'
 module CyberSource
   # Contains information about the buyer.
   class Riskv1decisionsBuyerInformation
+    # Your identifier for the customer.  When a subscription or customer profile is being created, the maximum length for this field for most processors is 30. Otherwise, the maximum length is 100.  #### Comercio Latino For recurring payments in Mexico, the value is the customer’s contract number. Note Before you request the authorization, you must inform the issuer of the customer contract numbers that will be used for recurring transactions.  #### Worldpay VAP For a follow-on credit with Worldpay VAP, CyberSource checks the following locations, in the order given, for a customer account ID value and uses the first value it finds: 1. `customer_account_id` value in the follow-on credit request 2. Customer account ID value that was used for the capture that is being credited 3. Customer account ID value that was used for the original authorization If a customer account ID value cannot be found in any of these locations, then no value is used.  For processor-specific information, see the `customer_account_id` field description in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
+    attr_accessor :merchant_customer_id
+
     # Specifies the customer account user name.
     attr_accessor :username
 
@@ -29,6 +32,7 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'merchant_customer_id' => :'merchantCustomerId',
         :'username' => :'username',
         :'hashed_password' => :'hashedPassword',
         :'date_of_birth' => :'dateOfBirth',
@@ -39,6 +43,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'merchant_customer_id' => :'String',
         :'username' => :'String',
         :'hashed_password' => :'String',
         :'date_of_birth' => :'String',
@@ -53,6 +58,10 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'merchantCustomerId')
+        self.merchant_customer_id = attributes[:'merchantCustomerId']
+      end
 
       if attributes.has_key?(:'username')
         self.username = attributes[:'username']
@@ -77,6 +86,10 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if !@merchant_customer_id.nil? && @merchant_customer_id.to_s.length > 100
+        invalid_properties.push('invalid value for "merchant_customer_id", the character length must be smaller than or equal to 100.')
+      end
+
       if !@username.nil? && @username.to_s.length > 255
         invalid_properties.push('invalid value for "username", the character length must be smaller than or equal to 255.')
       end
@@ -95,10 +108,21 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if !@merchant_customer_id.nil? && @merchant_customer_id.to_s.length > 100
       return false if !@username.nil? && @username.to_s.length > 255
       return false if !@hashed_password.nil? && @hashed_password.to_s.length > 100
       return false if !@date_of_birth.nil? && @date_of_birth.to_s.length > 8
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] merchant_customer_id Value to be assigned
+    def merchant_customer_id=(merchant_customer_id)
+      if !merchant_customer_id.nil? && merchant_customer_id.to_s.length > 100
+        fail ArgumentError, 'invalid value for "merchant_customer_id", the character length must be smaller than or equal to 100.'
+      end
+
+      @merchant_customer_id = merchant_customer_id
     end
 
     # Custom attribute writer method with validation
@@ -136,6 +160,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          merchant_customer_id == o.merchant_customer_id &&
           username == o.username &&
           hashed_password == o.hashed_password &&
           date_of_birth == o.date_of_birth &&
@@ -151,7 +176,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [username, hashed_password, date_of_birth, personal_identification].hash
+      [merchant_customer_id, username, hashed_password, date_of_birth, personal_identification].hash
     end
 
     # Builds the object from hash

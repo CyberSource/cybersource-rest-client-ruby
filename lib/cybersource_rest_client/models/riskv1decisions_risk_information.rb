@@ -30,7 +30,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'profile' => :'Riskv1decisionsRiskInformationProfile',
+        :'profile' => :'Ptsv2paymentsRiskInformationProfile',
         :'event_type' => :'String'
       }
     end

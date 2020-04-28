@@ -5,7 +5,6 @@ All URIs are relative to *https://apitest.cybersource.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**check_payer_auth_enrollment**](PayerAuthenticationApi.md#check_payer_auth_enrollment) | **POST** /risk/v1/authentications | Check Payer Auth Enrollment
-[**payer_auth_setup**](PayerAuthenticationApi.md#payer_auth_setup) | **POST** /risk/v1/authentication-setups | Setup Payer Auth
 [**validate_authentication_results**](PayerAuthenticationApi.md#validate_authentication_results) | **POST** /risk/v1/authentication-results | Validate Authentication Results
 
 
@@ -44,53 +43,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**RiskV1AuthenticationsPost201Response**](RiskV1AuthenticationsPost201Response.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
-
-
-
-# **payer_auth_setup**
-> RiskV1AuthenticationSetupsPost201Response payer_auth_setup(payer_auth_setup_request)
-
-Setup Payer Auth
-
-A new service for Merchants to get reference_id for Digital Wallets to use in place of BIN number in Cardinal. Set up file while authenticating with Cardinal. This service should be called by Merchant when payment instrument chosen or changes. This service has to be called before enrollment check.
-
-### Example
-```ruby
-# load the gem
-require 'cybersource_rest_client'
-
-api_instance = CyberSource::PayerAuthenticationApi.new
-
-payer_auth_setup_request = CyberSource::PayerAuthSetupRequest.new # PayerAuthSetupRequest | 
-
-
-begin
-  #Setup Payer Auth
-  result = api_instance.payer_auth_setup(payer_auth_setup_request)
-  p result
-rescue CyberSource::ApiError => e
-  puts "Exception when calling PayerAuthenticationApi->payer_auth_setup: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **payer_auth_setup_request** | [**PayerAuthSetupRequest**](PayerAuthSetupRequest.md)|  | 
-
-### Return type
-
-[**RiskV1AuthenticationSetupsPost201Response**](RiskV1AuthenticationSetupsPost201Response.md)
 
 ### Authorization
 

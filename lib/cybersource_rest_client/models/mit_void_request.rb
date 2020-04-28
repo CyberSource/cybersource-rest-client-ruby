@@ -16,17 +16,21 @@ module CyberSource
   class MitVoidRequest
     attr_accessor :client_reference_information
 
+    attr_accessor :payment_information
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'client_reference_information' => :'clientReferenceInformation'
+        :'client_reference_information' => :'clientReferenceInformation',
+        :'payment_information' => :'paymentInformation'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'client_reference_information' => :'Ptsv2paymentsClientReferenceInformation'
+        :'client_reference_information' => :'Ptsv2paymentsClientReferenceInformation',
+        :'payment_information' => :'Ptsv2paymentsidvoidsPaymentInformation'
       }
     end
 
@@ -40,6 +44,10 @@ module CyberSource
 
       if attributes.has_key?(:'clientReferenceInformation')
         self.client_reference_information = attributes[:'clientReferenceInformation']
+      end
+
+      if attributes.has_key?(:'paymentInformation')
+        self.payment_information = attributes[:'paymentInformation']
       end
     end
 
@@ -61,7 +69,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          client_reference_information == o.client_reference_information
+          client_reference_information == o.client_reference_information &&
+          payment_information == o.payment_information
     end
 
     # @see the `==` method
@@ -73,7 +82,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_reference_information].hash
+      [client_reference_information, payment_information].hash
     end
 
     # Builds the object from hash

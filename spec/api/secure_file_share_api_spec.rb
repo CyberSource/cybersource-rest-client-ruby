@@ -52,6 +52,7 @@ describe 'SecureFileShareApi' do
   # @param end_date Valid end date in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)   **Example date format:**   - yyyy-MM-dd 
   # @param [Hash] opts the optional parameters
   # @option opts [String] :organization_id Valid Cybersource Organization Id
+  # @option opts [String] :name **Tailored to searches for specific files with in given Date range** example : MyTransactionDetailreport.xml 
   # @return [V1FileDetailsGet200Response]
   describe 'get_file_detail test' do
     it 'should work' do

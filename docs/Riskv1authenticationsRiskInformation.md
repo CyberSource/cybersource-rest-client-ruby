@@ -3,6 +3,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**buyer_history** | [**Riskv1authenticationsRiskInformationBuyerHistory**](Riskv1authenticationsRiskInformationBuyerHistory.md) |  | [optional] 
+**buyer_history** | [**Ptsv2paymentsRiskInformationBuyerHistory**](Ptsv2paymentsRiskInformationBuyerHistory.md) |  | [optional] 
 
 

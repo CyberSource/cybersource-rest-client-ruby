@@ -15,7 +15,7 @@ require 'date'
 module CyberSource
   class Ptsv2paymentsidOrderInformationAmountDetails
     # Additional charges that have to be authorized against a lodging or auto-rental order. This value cannot be negative. You can include a decimal point (.), but no other special characters. 
-    attr_accessor :additonal_amount
+    attr_accessor :additional_amount
 
     # Currency used for the order. Use the three-character I[ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)  For details about currency as used in partial authorizations, see \"Features for Debit Cards and Prepaid Cards\" in the [Credit Card Services Using the SCMP API Guide](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  For an authorization reversal (`reversalInformation`) or a capture (`processingOptions.capture` is set to `true`), you must use the same currency that you used in your payment authorization request.  #### DCC for First Data Your local currency. For details, see the `currency` field description in [Dynamic Currency Conversion For First Data Using the SCMP API](http://apps.cybersource.com/library/documentation/dev_guides/DCC_FirstData_SCMP/DCC_FirstData_SCMP_API.pdf). 
     attr_accessor :currency
@@ -23,7 +23,7 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'additonal_amount' => :'additonalAmount',
+        :'additional_amount' => :'additionalAmount',
         :'currency' => :'currency'
       }
     end
@@ -31,7 +31,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'additonal_amount' => :'String',
+        :'additional_amount' => :'String',
         :'currency' => :'String'
       }
     end
@@ -44,8 +44,8 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'additonalAmount')
-        self.additonal_amount = attributes[:'additonalAmount']
+      if attributes.has_key?(:'additionalAmount')
+        self.additional_amount = attributes[:'additionalAmount']
       end
 
       if attributes.has_key?(:'currency')
@@ -57,8 +57,8 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@additonal_amount.nil? && @additonal_amount.to_s.length > 19
-        invalid_properties.push('invalid value for "additonal_amount", the character length must be smaller than or equal to 19.')
+      if !@additional_amount.nil? && @additional_amount.to_s.length > 19
+        invalid_properties.push('invalid value for "additional_amount", the character length must be smaller than or equal to 19.')
       end
 
       if !@currency.nil? && @currency.to_s.length > 3
@@ -71,19 +71,19 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@additonal_amount.nil? && @additonal_amount.to_s.length > 19
+      return false if !@additional_amount.nil? && @additional_amount.to_s.length > 19
       return false if !@currency.nil? && @currency.to_s.length > 3
       true
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] additonal_amount Value to be assigned
-    def additonal_amount=(additonal_amount)
-      if !additonal_amount.nil? && additonal_amount.to_s.length > 19
-        fail ArgumentError, 'invalid value for "additonal_amount", the character length must be smaller than or equal to 19.'
+    # @param [Object] additional_amount Value to be assigned
+    def additional_amount=(additional_amount)
+      if !additional_amount.nil? && additional_amount.to_s.length > 19
+        fail ArgumentError, 'invalid value for "additional_amount", the character length must be smaller than or equal to 19.'
       end
 
-      @additonal_amount = additonal_amount
+      @additional_amount = additional_amount
     end
 
     # Custom attribute writer method with validation
@@ -101,7 +101,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          additonal_amount == o.additonal_amount &&
+          additional_amount == o.additional_amount &&
           currency == o.currency
     end
 
@@ -114,7 +114,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [additonal_amount, currency].hash
+      [additional_amount, currency].hash
     end
 
     # Builds the object from hash

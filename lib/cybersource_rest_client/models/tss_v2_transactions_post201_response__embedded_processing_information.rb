@@ -20,11 +20,15 @@ module CyberSource
     # Payouts transaction type. Required for OCT transactions. This field is a pass-through, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. **Note** When the request includes this field, this value overrides the information in your CyberSource account.  For valid values, see the `invoiceHeader_businessApplicationID` field description in [Payouts Using the Simple Order API.](http://apps.cybersource.com/library/documentation/dev_guides/payouts_SO/Payouts_SO_API.pdf) 
     attr_accessor :business_application_id
 
+    # Type of transaction. Certain card associations use this information when determining discount rates to charge you. Required for Verified by Visa and MasterCard SecureCode transactions.      This field can contain one of these values:      * 5: `vbv` (Successful Verified by Visa transaction)     * 6: `spa` (MasterCard SecureCode transaction)     * 7: `internet` (default) (eCommerce order placed by     using a Web site)     * 8: `vbv_attempted` (Verified by Visa transaction     was attempted but not authenticated)     * E: `vbv_failure` (Depending on your payment     processor, you may receive this result if Visa’s     directory service is not available)     * F: `spa_failure` (MasterCard SecureCode     authentication failed)     * M: `moto` (Mail order or telephone order)     * P: `retail` (Point-of-sale transaction)     * R: `recurring` (Recurring transaction)     * S: `install` (Installment payment) 
+    attr_accessor :commerce_indicator
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'payment_solution' => :'paymentSolution',
-        :'business_application_id' => :'businessApplicationId'
+        :'business_application_id' => :'businessApplicationId',
+        :'commerce_indicator' => :'commerceIndicator'
       }
     end
 
@@ -32,7 +36,8 @@ module CyberSource
     def self.swagger_types
       {
         :'payment_solution' => :'String',
-        :'business_application_id' => :'String'
+        :'business_application_id' => :'String',
+        :'commerce_indicator' => :'String'
       }
     end
 
@@ -51,6 +56,10 @@ module CyberSource
       if attributes.has_key?(:'businessApplicationId')
         self.business_application_id = attributes[:'businessApplicationId']
       end
+
+      if attributes.has_key?(:'commerceIndicator')
+        self.commerce_indicator = attributes[:'commerceIndicator']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -61,6 +70,10 @@ module CyberSource
         invalid_properties.push('invalid value for "payment_solution", the character length must be smaller than or equal to 12.')
       end
 
+      if !@commerce_indicator.nil? && @commerce_indicator.to_s.length > 20
+        invalid_properties.push('invalid value for "commerce_indicator", the character length must be smaller than or equal to 20.')
+      end
+
       invalid_properties
     end
 
@@ -68,6 +81,7 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if !@payment_solution.nil? && @payment_solution.to_s.length > 12
+      return false if !@commerce_indicator.nil? && @commerce_indicator.to_s.length > 20
       true
     end
 
@@ -81,13 +95,24 @@ module CyberSource
       @payment_solution = payment_solution
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] commerce_indicator Value to be assigned
+    def commerce_indicator=(commerce_indicator)
+      if !commerce_indicator.nil? && commerce_indicator.to_s.length > 20
+        fail ArgumentError, 'invalid value for "commerce_indicator", the character length must be smaller than or equal to 20.'
+      end
+
+      @commerce_indicator = commerce_indicator
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           payment_solution == o.payment_solution &&
-          business_application_id == o.business_application_id
+          business_application_id == o.business_application_id &&
+          commerce_indicator == o.commerce_indicator
     end
 
     # @see the `==` method
@@ -99,7 +124,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [payment_solution, business_application_id].hash
+      [payment_solution, business_application_id, commerce_indicator].hash
     end
 
     # Builds the object from hash

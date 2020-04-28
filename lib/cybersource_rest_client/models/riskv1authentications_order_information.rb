@@ -52,13 +52,13 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'amount_details' => :'Riskv1decisionsOrderInformationAmountDetails',
+        :'amount_details' => :'Riskv1authenticationsOrderInformationAmountDetails',
         :'pre_order' => :'String',
         :'pre_order_date' => :'String',
         :'reordered' => :'BOOLEAN',
         :'ship_to' => :'Riskv1authenticationsOrderInformationShipTo',
         :'line_items' => :'Array<Riskv1authenticationsOrderInformationLineItems>',
-        :'bill_to' => :'Riskv1authenticationexemptionsOrderInformationBillTo',
+        :'bill_to' => :'Riskv1authenticationsOrderInformationBillTo',
         :'total_offers_count' => :'String'
       }
     end

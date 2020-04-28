@@ -445,11 +445,7 @@ module CyberSource
         invalid_properties.push('invalid value for "marketing_source", the character length must be smaller than or equal to 40.')
       end
 
-      if @mcc.nil?
-        invalid_properties.push('invalid value for "mcc", mcc cannot be nil.')
-      end
-
-      if @mcc.to_s.length > 4
+      if !@mcc.nil? && @mcc.to_s.length > 4
         invalid_properties.push('invalid value for "mcc", the character length must be smaller than or equal to 4.')
       end
 
@@ -457,11 +453,7 @@ module CyberSource
         invalid_properties.push('invalid value for "npa_code", the character length must be smaller than or equal to 2.')
       end
 
-      if @override_country_code.nil?
-        invalid_properties.push('invalid value for "override_country_code", override_country_code cannot be nil.')
-      end
-
-      if @override_country_code.to_s.length > 2
+      if !@override_country_code.nil? && @override_country_code.to_s.length > 2
         invalid_properties.push('invalid value for "override_country_code", the character length must be smaller than or equal to 2.')
       end
 
@@ -497,11 +489,7 @@ module CyberSource
         invalid_properties.push('invalid value for "requestor_name", the character length must be smaller than or equal to 40.')
       end
 
-      if @reference_id.nil?
-        invalid_properties.push('invalid value for "reference_id", reference_id cannot be nil.')
-      end
-
-      if @reference_id.to_s.length > 50
+      if !@reference_id.nil? && @reference_id.to_s.length > 50
         invalid_properties.push('invalid value for "reference_id", the character length must be smaller than or equal to 50.')
       end
 
@@ -511,10 +499,6 @@ module CyberSource
 
       if !@secure_corporate_payment_indicator.nil? && @secure_corporate_payment_indicator.to_s.length > 1
         invalid_properties.push('invalid value for "secure_corporate_payment_indicator", the character length must be smaller than or equal to 1.')
-      end
-
-      if @transaction_mode.nil?
-        invalid_properties.push('invalid value for "transaction_mode", transaction_mode cannot be nil.')
       end
 
       if !@white_list_status.nil? && @white_list_status.to_s.length > 1
@@ -541,11 +525,9 @@ module CyberSource
       return false if !@device_channel.nil? && @device_channel.to_s.length > 10
       return false if !@merchant_fraud_rate.nil? && @merchant_fraud_rate.to_s.length > 2
       return false if !@marketing_source.nil? && @marketing_source.to_s.length > 40
-      return false if @mcc.nil?
-      return false if @mcc.to_s.length > 4
+      return false if !@mcc.nil? && @mcc.to_s.length > 4
       return false if !@npa_code.nil? && @npa_code.to_s.length > 2
-      return false if @override_country_code.nil?
-      return false if @override_country_code.to_s.length > 2
+      return false if !@override_country_code.nil? && @override_country_code.to_s.length > 2
       return false if !@prior_authentication_data.nil? && @prior_authentication_data.to_s.length > 2048
       return false if !@prior_authentication_method.nil? && @prior_authentication_method.to_s.length > 2
       return false if !@prior_authentication_reference_id.nil? && @prior_authentication_reference_id.to_s.length > 36
@@ -554,11 +536,9 @@ module CyberSource
       return false if !@requestor_id.nil? && @requestor_id.to_s.length > 35
       return false if !@requestor_initiated_authentication_indicator.nil? && @requestor_initiated_authentication_indicator.to_s.length > 2
       return false if !@requestor_name.nil? && @requestor_name.to_s.length > 40
-      return false if @reference_id.nil?
-      return false if @reference_id.to_s.length > 50
+      return false if !@reference_id.nil? && @reference_id.to_s.length > 50
       return false if !@sdk_max_timeout.nil? && @sdk_max_timeout.to_s.length > 2
       return false if !@secure_corporate_payment_indicator.nil? && @secure_corporate_payment_indicator.to_s.length > 1
-      return false if @transaction_mode.nil?
       return false if !@white_list_status.nil? && @white_list_status.to_s.length > 1
       true
     end
@@ -706,11 +686,7 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] mcc Value to be assigned
     def mcc=(mcc)
-      if mcc.nil?
-        fail ArgumentError, 'mcc cannot be nil'
-      end
-
-      if mcc.to_s.length > 4
+      if !mcc.nil? && mcc.to_s.length > 4
         fail ArgumentError, 'invalid value for "mcc", the character length must be smaller than or equal to 4.'
       end
 
@@ -730,11 +706,7 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] override_country_code Value to be assigned
     def override_country_code=(override_country_code)
-      if override_country_code.nil?
-        fail ArgumentError, 'override_country_code cannot be nil'
-      end
-
-      if override_country_code.to_s.length > 2
+      if !override_country_code.nil? && override_country_code.to_s.length > 2
         fail ArgumentError, 'invalid value for "override_country_code", the character length must be smaller than or equal to 2.'
       end
 
@@ -824,11 +796,7 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] reference_id Value to be assigned
     def reference_id=(reference_id)
-      if reference_id.nil?
-        fail ArgumentError, 'reference_id cannot be nil'
-      end
-
-      if reference_id.to_s.length > 50
+      if !reference_id.nil? && reference_id.to_s.length > 50
         fail ArgumentError, 'invalid value for "reference_id", the character length must be smaller than or equal to 50.'
       end
 

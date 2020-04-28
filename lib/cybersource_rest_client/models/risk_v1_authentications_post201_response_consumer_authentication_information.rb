@@ -180,7 +180,7 @@ module CyberSource
         :'eci' => :'String',
         :'eci_raw' => :'String',
         :'effective_authentication_type' => :'String',
-        :'ivr' => :'RiskV1AuthenticationsPost201ResponseConsumerAuthenticationInformationIvr',
+        :'ivr' => :'PtsV2PaymentsPost201ResponseConsumerAuthenticationInformationIvr',
         :'network_score' => :'String',
         :'pareq' => :'String',
         :'pares_status' => :'String',

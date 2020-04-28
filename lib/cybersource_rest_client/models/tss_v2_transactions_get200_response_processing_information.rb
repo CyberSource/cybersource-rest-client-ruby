@@ -17,7 +17,7 @@ module CyberSource
     # Type of digital payment solution for the transaction. Possible Values:   - `visacheckout`: Visa Checkout. This value is required for Visa Checkout transactions. For details, see `payment_solution` field description in [Visa Checkout Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/VCO_SCMP_API/html/)  - `001`: Apple Pay.  - `004`: Cybersource In-App Solution.  - `005`: Masterpass. This value is required for Masterpass transactions on OmniPay Direct. For details, see \"Masterpass\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  - `006`: Android Pay.  - `007`: Chase Pay.  - `008`: Samsung Pay.  - `012`: Google Pay. 
     attr_accessor :payment_solution
 
-    # Type of transaction. Some payment card companies use this information when determining discount rates.  #### Ingenico ePayments Ingenico ePayments was previously called _Global Collect_. When you omit this field for Ingenico ePayments, the processor uses the default transaction type they have on file for you instead of the default value listed in \"Commerce Indicators\" section of [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  #### Payer Authentication Transactions For the possible values and requirements, see \"Payer Authentication\" in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  #### Payouts OCT (Original Credit Transaction) Value for an OCT transaction: - `internet` For details, see the `e_commerce_indicator` field description in [Payouts Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/payouts_SCMP/html/)  #### Other Types of Transactions For details, see \"Commerce Indicators\" in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
+    # Type of transaction. Certain card associations use this information when determining discount rates to charge you. Required for Verified by Visa and MasterCard SecureCode transactions.      This field can contain one of these values:      * 5: `vbv` (Successful Verified by Visa transaction)     * 6: `spa` (MasterCard SecureCode transaction)     * 7: `internet` (default) (eCommerce order placed by     using a Web site)     * 8: `vbv_attempted` (Verified by Visa transaction     was attempted but not authenticated)     * E: `vbv_failure` (Depending on your payment     processor, you may receive this result if Visa’s     directory service is not available)     * F: `spa_failure` (MasterCard SecureCode     authentication failed)     * M: `moto` (Mail order or telephone order)     * P: `retail` (Point-of-sale transaction)     * R: `recurring` (Recurring transaction)     * S: `install` (Installment payment) 
     attr_accessor :commerce_indicator
 
     # Payouts transaction type. Required for OCT transactions. This field is a pass-through, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. **Note** When the request includes this field, this value overrides the information in your CyberSource account.  For valid values, see the `invoiceHeader_businessApplicationID` field description in [Payouts Using the Simple Order API.](http://apps.cybersource.com/library/documentation/dev_guides/payouts_SO/Payouts_SO_API.pdf) 
@@ -27,6 +27,8 @@ module CyberSource
 
     attr_accessor :bank_transfer_options
 
+    attr_accessor :japan_payment_options
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -34,7 +36,8 @@ module CyberSource
         :'commerce_indicator' => :'commerceIndicator',
         :'business_application_id' => :'businessApplicationId',
         :'authorization_options' => :'authorizationOptions',
-        :'bank_transfer_options' => :'bankTransferOptions'
+        :'bank_transfer_options' => :'bankTransferOptions',
+        :'japan_payment_options' => :'japanPaymentOptions'
       }
     end
 
@@ -45,7 +48,8 @@ module CyberSource
         :'commerce_indicator' => :'String',
         :'business_application_id' => :'String',
         :'authorization_options' => :'TssV2TransactionsGet200ResponseProcessingInformationAuthorizationOptions',
-        :'bank_transfer_options' => :'TssV2TransactionsGet200ResponseProcessingInformationBankTransferOptions'
+        :'bank_transfer_options' => :'TssV2TransactionsGet200ResponseProcessingInformationBankTransferOptions',
+        :'japan_payment_options' => :'TssV2TransactionsGet200ResponseProcessingInformationJapanPaymentOptions'
       }
     end
 
@@ -75,6 +79,10 @@ module CyberSource
 
       if attributes.has_key?(:'bankTransferOptions')
         self.bank_transfer_options = attributes[:'bankTransferOptions']
+      end
+
+      if attributes.has_key?(:'japanPaymentOptions')
+        self.japan_payment_options = attributes[:'japanPaymentOptions']
       end
     end
 
@@ -130,7 +138,8 @@ module CyberSource
           commerce_indicator == o.commerce_indicator &&
           business_application_id == o.business_application_id &&
           authorization_options == o.authorization_options &&
-          bank_transfer_options == o.bank_transfer_options
+          bank_transfer_options == o.bank_transfer_options &&
+          japan_payment_options == o.japan_payment_options
     end
 
     # @see the `==` method
@@ -142,7 +151,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [payment_solution, commerce_indicator, business_application_id, authorization_options, bank_transfer_options].hash
+      [payment_solution, commerce_indicator, business_application_id, authorization_options, bank_transfer_options, japan_payment_options].hash
     end
 
     # Builds the object from hash

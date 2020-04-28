@@ -69,7 +69,7 @@ module CyberSource
         :'product_sku' => :'String',
         :'product_description' => :'String',
         :'product_name' => :'String',
-        :'passenger' => :'Riskv1decisionsOrderInformationPassenger',
+        :'passenger' => :'Ptsv2paymentsOrderInformationPassenger',
         :'shipping_destination_types' => :'String',
         :'tax_amount' => :'String'
       }

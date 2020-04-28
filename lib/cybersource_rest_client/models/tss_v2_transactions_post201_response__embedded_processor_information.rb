@@ -16,17 +16,22 @@ module CyberSource
   class TssV2TransactionsPost201ResponseEmbeddedProcessorInformation
     attr_accessor :processor
 
+    # Authorization code. Returned only when the processor returns this value. 
+    attr_accessor :approval_code
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'processor' => :'processor'
+        :'processor' => :'processor',
+        :'approval_code' => :'approvalCode'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'processor' => :'TssV2TransactionsGet200ResponseProcessorInformationProcessor'
+        :'processor' => :'TssV2TransactionsGet200ResponseProcessorInformationProcessor',
+        :'approval_code' => :'String'
       }
     end
 
@@ -40,6 +45,10 @@ module CyberSource
 
       if attributes.has_key?(:'processor')
         self.processor = attributes[:'processor']
+      end
+
+      if attributes.has_key?(:'approvalCode')
+        self.approval_code = attributes[:'approvalCode']
       end
     end
 
@@ -61,7 +70,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          processor == o.processor
+          processor == o.processor &&
+          approval_code == o.approval_code
     end
 
     # @see the `==` method
@@ -73,7 +83,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [processor].hash
+      [processor, approval_code].hash
     end
 
     # Builds the object from hash

@@ -46,7 +46,7 @@ module CyberSource
         :'tokenized_card' => :'Ptsv2paymentsPaymentInformationTokenizedCard',
         :'fluid_data' => :'Ptsv2paymentsPaymentInformationFluidData',
         :'customer' => :'Ptsv2paymentsPaymentInformationCustomer',
-        :'payment_type' => :'Ptsv2paymentsPaymentInformationPaymentType'
+        :'payment_type' => :'Ptsv2paymentsidrefundsPaymentInformationPaymentType'
       }
     end
 

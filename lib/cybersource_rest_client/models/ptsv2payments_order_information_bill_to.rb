@@ -29,7 +29,6 @@ module CyberSource
     # Title. 
     attr_accessor :title
 
-    # Name of the customer’s company.  #### CyberSource through VisaNet Credit card networks cannot process transactions that contain non-ASCII characters. CyberSource through VisaNet accepts and stores non-ASCII characters correctly and displays them correctly in reports. However, the limitations of the credit card networks prevent CyberSource through VisaNet from transmitting non-ASCII characters to the credit card networks. Therefore, CyberSource through VisaNet replaces non-ASCII characters with meaningless ASCII characters for transmission to the credit card networks. For processor-specific information, see the company_name field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
     attr_accessor :company
 
     # Payment card billing street address as it appears on the credit card issuer’s records.  #### Atos This field must not contain colons (:).  #### CyberSource through VisaNet **Important** When you populate billing street address 1 and billing street address 2, CyberSource through VisaNet concatenates the two values. If the concatenated value exceeds 40 characters, CyberSource through VisaNet truncates the value at 40 characters before sending it to Visa and the issuing bank. Truncating this value affects AVS results and therefore might also affect risk decisions and chargebacks. Credit card networks cannot process transactions that contain non-ASCII characters. CyberSource through VisaNet accepts and stores non-ASCII characters correctly and displays them correctly in reports. However, the limitations of the credit card networks prevent CyberSource through VisaNet from transmitting non-ASCII characters to the credit card networks. Therefore, CyberSource through VisaNet replaces non-ASCII characters with meaningless ASCII characters for transmission to the credit card networks.  #### For Payouts: This field may be sent only for FDC Compass.  **Important** It is your responsibility to determine whether a field is required for the transaction you are requesting.  For processor-specific information, see the `bill_address1` request-level field description in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
@@ -108,7 +107,7 @@ module CyberSource
         :'middle_name' => :'String',
         :'name_suffix' => :'String',
         :'title' => :'String',
-        :'company' => :'String',
+        :'company' => :'Ptsv2paymentsOrderInformationBillToCompany',
         :'address1' => :'String',
         :'address2' => :'String',
         :'address3' => :'String',
@@ -239,10 +238,6 @@ module CyberSource
         invalid_properties.push('invalid value for "title", the character length must be smaller than or equal to 60.')
       end
 
-      if !@company.nil? && @company.to_s.length > 60
-        invalid_properties.push('invalid value for "company", the character length must be smaller than or equal to 60.')
-      end
-
       if !@address1.nil? && @address1.to_s.length > 60
         invalid_properties.push('invalid value for "address1", the character length must be smaller than or equal to 60.')
       end
@@ -306,7 +301,6 @@ module CyberSource
       return false if !@middle_name.nil? && @middle_name.to_s.length > 60
       return false if !@name_suffix.nil? && @name_suffix.to_s.length > 60
       return false if !@title.nil? && @title.to_s.length > 60
-      return false if !@company.nil? && @company.to_s.length > 60
       return false if !@address1.nil? && @address1.to_s.length > 60
       return false if !@address2.nil? && @address2.to_s.length > 60
       return false if !@address3.nil? && @address3.to_s.length > 60
@@ -371,16 +365,6 @@ module CyberSource
       end
 
       @title = title
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] company Value to be assigned
-    def company=(company)
-      if !company.nil? && company.to_s.length > 60
-        fail ArgumentError, 'invalid value for "company", the character length must be smaller than or equal to 60.'
-      end
-
-      @company = company
     end
 
     # Custom attribute writer method with validation

@@ -20,7 +20,6 @@ module CyberSource
     # Customer’s last name. This name must be the same as the name on the card.  #### CyberSource Latin American Processing **Important** For an authorization request, CyberSource Latin American Processing concatenates `orderInformation.billTo.firstName` and `orderInformation.billTo.lastName`. If the concatenated value exceeds 30 characters, CyberSource Latin American Processing declines the authorization request.\\ **Note** CyberSource Latin American Processing is the name of a specific processing connection that CyberSource supports. In the CyberSource API documentation, CyberSource Latin American Processing does not refer to the general topic of processing in Latin America. The information in this field description is for the specific processing connection called CyberSource Latin American Processing. It is not for any other Latin American processors that CyberSource supports.  #### CyberSource through VisaNet Credit card networks cannot process transactions that contain non-ASCII characters. CyberSource through VisaNet accepts and stores non-ASCII characters correctly and displays them correctly in reports. However, the limitations of the credit card networks prevent CyberSource through VisaNet from transmitting non-ASCII characters to the credit card networks. Therefore, CyberSource through VisaNet replaces non-ASCII characters with meaningless ASCII characters for transmission to the credit card networks.  **Important** It is your responsibility to determine whether a field is required for the transaction you are requesting.  #### For Payouts: This field may be sent only for FDC Compass.  For processor-specific information, see the `customer_lastname` request-level field description in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
     attr_accessor :last_name
 
-    # Name of the customer’s company.  #### CyberSource through VisaNet Credit card networks cannot process transactions that contain non-ASCII characters. CyberSource through VisaNet accepts and stores non-ASCII characters correctly and displays them correctly in reports. However, the limitations of the credit card networks prevent CyberSource through VisaNet from transmitting non-ASCII characters to the credit card networks. Therefore, CyberSource through VisaNet replaces non-ASCII characters with meaningless ASCII characters for transmission to the credit card networks. For processor-specific information, see the company_name field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
     attr_accessor :company
 
     # Payment card billing street address as it appears on the credit card issuer’s records.  #### Atos This field must not contain colons (:).  #### CyberSource through VisaNet **Important** When you populate billing street address 1 and billing street address 2, CyberSource through VisaNet concatenates the two values. If the concatenated value exceeds 40 characters, CyberSource through VisaNet truncates the value at 40 characters before sending it to Visa and the issuing bank. Truncating this value affects AVS results and therefore might also affect risk decisions and chargebacks. Credit card networks cannot process transactions that contain non-ASCII characters. CyberSource through VisaNet accepts and stores non-ASCII characters correctly and displays them correctly in reports. However, the limitations of the credit card networks prevent CyberSource through VisaNet from transmitting non-ASCII characters to the credit card networks. Therefore, CyberSource through VisaNet replaces non-ASCII characters with meaningless ASCII characters for transmission to the credit card networks.  #### For Payouts: This field may be sent only for FDC Compass.  **Important** It is your responsibility to determine whether a field is required for the transaction you are requesting.  For processor-specific information, see the `bill_address1` request-level field description in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
@@ -69,7 +68,7 @@ module CyberSource
       {
         :'first_name' => :'String',
         :'last_name' => :'String',
-        :'company' => :'String',
+        :'company' => :'Ptsv2paymentsOrderInformationBillToCompany',
         :'address1' => :'String',
         :'address2' => :'String',
         :'locality' => :'String',
@@ -146,10 +145,6 @@ module CyberSource
         invalid_properties.push('invalid value for "last_name", the character length must be smaller than or equal to 60.')
       end
 
-      if !@company.nil? && @company.to_s.length > 60
-        invalid_properties.push('invalid value for "company", the character length must be smaller than or equal to 60.')
-      end
-
       if !@address1.nil? && @address1.to_s.length > 60
         invalid_properties.push('invalid value for "address1", the character length must be smaller than or equal to 60.')
       end
@@ -190,7 +185,6 @@ module CyberSource
     def valid?
       return false if !@first_name.nil? && @first_name.to_s.length > 60
       return false if !@last_name.nil? && @last_name.to_s.length > 60
-      return false if !@company.nil? && @company.to_s.length > 60
       return false if !@address1.nil? && @address1.to_s.length > 60
       return false if !@address2.nil? && @address2.to_s.length > 60
       return false if !@locality.nil? && @locality.to_s.length > 50
@@ -220,16 +214,6 @@ module CyberSource
       end
 
       @last_name = last_name
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] company Value to be assigned
-    def company=(company)
-      if !company.nil? && company.to_s.length > 60
-        fail ArgumentError, 'invalid value for "company", the character length must be smaller than or equal to 60.'
-      end
-
-      @company = company
     end
 
     # Custom attribute writer method with validation

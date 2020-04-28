@@ -25,13 +25,25 @@ module CyberSource
 
     attr_accessor :partner
 
+    # The name of the Connection Method client (such as Virtual Terminal or SOAP Toolkit API) that the merchant uses to send a transaction request to CyberSource. 
+    attr_accessor :application_name
+
+    # Version of the CyberSource application or integration used for a transaction. 
+    attr_accessor :application_version
+
+    # The entity that is responsible for running the transaction and submitting the processing request to CyberSource. This could be a person, a system, or a connection method. 
+    attr_accessor :application_user
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'code' => :'code',
         :'transaction_id' => :'transactionId',
         :'comments' => :'comments',
-        :'partner' => :'partner'
+        :'partner' => :'partner',
+        :'application_name' => :'applicationName',
+        :'application_version' => :'applicationVersion',
+        :'application_user' => :'applicationUser'
       }
     end
 
@@ -41,7 +53,10 @@ module CyberSource
         :'code' => :'String',
         :'transaction_id' => :'String',
         :'comments' => :'String',
-        :'partner' => :'Ptsv2paymentsClientReferenceInformationPartner'
+        :'partner' => :'Ptsv2paymentsClientReferenceInformationPartner',
+        :'application_name' => :'String',
+        :'application_version' => :'String',
+        :'application_user' => :'String'
       }
     end
 
@@ -67,6 +82,18 @@ module CyberSource
 
       if attributes.has_key?(:'partner')
         self.partner = attributes[:'partner']
+      end
+
+      if attributes.has_key?(:'applicationName')
+        self.application_name = attributes[:'applicationName']
+      end
+
+      if attributes.has_key?(:'applicationVersion')
+        self.application_version = attributes[:'applicationVersion']
+      end
+
+      if attributes.has_key?(:'applicationUser')
+        self.application_user = attributes[:'applicationUser']
       end
     end
 
@@ -121,7 +148,10 @@ module CyberSource
           code == o.code &&
           transaction_id == o.transaction_id &&
           comments == o.comments &&
-          partner == o.partner
+          partner == o.partner &&
+          application_name == o.application_name &&
+          application_version == o.application_version &&
+          application_user == o.application_user
     end
 
     # @see the `==` method
@@ -133,7 +163,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [code, transaction_id, comments, partner].hash
+      [code, transaction_id, comments, partner, application_name, application_version, application_user].hash
     end
 
     # Builds the object from hash
