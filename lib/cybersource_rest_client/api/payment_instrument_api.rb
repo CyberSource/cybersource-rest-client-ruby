@@ -143,8 +143,8 @@ module CyberSource
         fail ArgumentError, 'invalid value for "token_id" when calling PaymentInstrumentApi.delete_payment_instrument, the character length must be smaller than or equal to 32.'
       end
 
-      if @api_client.config.client_side_validation && token_id.to_s.length < 16
-        fail ArgumentError, 'invalid value for "token_id" when calling PaymentInstrumentApi.delete_payment_instrument, the character length must be great than or equal to 16.'
+      if @api_client.config.client_side_validation && token_id.to_s.length < 1
+        fail ArgumentError, 'invalid value for "token_id" when calling PaymentInstrumentApi.delete_payment_instrument, the character length must be great than or equal to 1.'
       end
 
       # resource path
@@ -228,8 +228,8 @@ module CyberSource
         fail ArgumentError, 'invalid value for "token_id" when calling PaymentInstrumentApi.get_payment_instrument, the character length must be smaller than or equal to 32.'
       end
 
-      if @api_client.config.client_side_validation && token_id.to_s.length < 16
-        fail ArgumentError, 'invalid value for "token_id" when calling PaymentInstrumentApi.get_payment_instrument, the character length must be great than or equal to 16.'
+      if @api_client.config.client_side_validation && token_id.to_s.length < 1
+        fail ArgumentError, 'invalid value for "token_id" when calling PaymentInstrumentApi.get_payment_instrument, the character length must be great than or equal to 1.'
       end
 
       # resource path
@@ -316,8 +316,8 @@ module CyberSource
         fail ArgumentError, 'invalid value for "token_id" when calling PaymentInstrumentApi.update_payment_instrument, the character length must be smaller than or equal to 32.'
       end
 
-      if @api_client.config.client_side_validation && token_id.to_s.length < 16
-        fail ArgumentError, 'invalid value for "token_id" when calling PaymentInstrumentApi.update_payment_instrument, the character length must be great than or equal to 16.'
+      if @api_client.config.client_side_validation && token_id.to_s.length < 1
+        fail ArgumentError, 'invalid value for "token_id" when calling PaymentInstrumentApi.update_payment_instrument, the character length must be great than or equal to 1.'
       end
 
       # verify the required parameter 'update_payment_instrument_request' is set

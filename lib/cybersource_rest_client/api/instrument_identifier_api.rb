@@ -143,8 +143,8 @@ module CyberSource
         fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.delete_instrument_identifier, the character length must be smaller than or equal to 32.'
       end
 
-      if @api_client.config.client_side_validation && token_id.to_s.length < 16
-        fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.delete_instrument_identifier, the character length must be great than or equal to 16.'
+      if @api_client.config.client_side_validation && token_id.to_s.length < 12
+        fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.delete_instrument_identifier, the character length must be great than or equal to 12.'
       end
 
       # resource path
@@ -232,8 +232,8 @@ module CyberSource
         fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.get_all_payment_instruments, the character length must be smaller than or equal to 32.'
       end
 
-      if @api_client.config.client_side_validation && token_id.to_s.length < 16
-        fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.get_all_payment_instruments, the character length must be great than or equal to 16.'
+      if @api_client.config.client_side_validation && token_id.to_s.length < 12
+        fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.get_all_payment_instruments, the character length must be great than or equal to 12.'
       end
 
       if @api_client.config.client_side_validation && !opts[:'offset'].nil? && opts[:'offset'] < 0
@@ -332,8 +332,8 @@ module CyberSource
         fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.get_instrument_identifier, the character length must be smaller than or equal to 32.'
       end
 
-      if @api_client.config.client_side_validation && token_id.to_s.length < 16
-        fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.get_instrument_identifier, the character length must be great than or equal to 16.'
+      if @api_client.config.client_side_validation && token_id.to_s.length < 12
+        fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.get_instrument_identifier, the character length must be great than or equal to 12.'
       end
 
       # resource path
@@ -420,8 +420,8 @@ module CyberSource
         fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.update_instrument_identifier, the character length must be smaller than or equal to 32.'
       end
 
-      if @api_client.config.client_side_validation && token_id.to_s.length < 16
-        fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.update_instrument_identifier, the character length must be great than or equal to 16.'
+      if @api_client.config.client_side_validation && token_id.to_s.length < 12
+        fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.update_instrument_identifier, the character length must be great than or equal to 12.'
       end
 
       # verify the required parameter 'update_instrument_identifier_request' is set

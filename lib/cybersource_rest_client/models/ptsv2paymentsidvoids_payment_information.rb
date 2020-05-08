@@ -26,7 +26,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'payment_type' => :'Ptsv2paymentsidrefundsPaymentInformationPaymentType'
+        :'payment_type' => :'Ptsv2paymentsPaymentInformationPaymentType'
       }
     end
 

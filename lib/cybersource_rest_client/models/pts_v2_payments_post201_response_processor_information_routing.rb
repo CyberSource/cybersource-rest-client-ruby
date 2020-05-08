@@ -14,13 +14,13 @@ require 'date'
 
 module CyberSource
   class PtsV2PaymentsPost201ResponseProcessorInformationRouting
-    # Indicates whether the transaction was routed on a credit network, a debit network, or the STAR signature debit network.  Possible values: - `C`: Credit network - `D`: Debit network (without signature) - `S`: STAR signature debit network  This field is supported only on FDC Nashville Global.  For details, see the `routing_network_type` field description in [Card-Present Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Retail_SCMP_API/html/) 
+    # Indicates whether the transaction was routed on a credit network, a debit network, or the STAR signature debit network.  Possible values: - `C`: Credit network - `D`: Debit network (without signature) - `S`: STAR signature debit network  This field is supported only on FDC Nashville Global. 
     attr_accessor :network
 
-    # Name of the network on which the transaction was routed.  This field is supported only on FDC Nashville Global.  For details, see the `routing_network_label` field description in [Card-Present Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Retail_SCMP_API/html/) 
+    # Name of the network on which the transaction was routed.  This reply field is supported only on FDC Nashville Global. 
     attr_accessor :network_name
 
-    # Indicates whether you need to obtain the cardholder's signature.  Possible values: - `Y`: You need to obtain the cardholder's signature. - `N`: You do not need to obtain the cardholder's signature.  This field is supported only on FDC Nashville Global.  For details, see the `routing_signature_cvm_required` field description in [Card-Present Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Retail_SCMP_API/html/) 
+    # Indicates whether you need to obtain the cardholder's signature.  Possible values: - `Y`: You need to obtain the cardholder's signature. - `N`: You do not need to obtain the cardholder's signature.  This field is supported only on FDC Nashville Global. 
     attr_accessor :customer_signature_required
 
     # Attribute mapping from ruby-style variable name to JSON key.

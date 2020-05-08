@@ -32,6 +32,12 @@ describe 'Riskv1decisionsOrderInformationLineItems' do
       expect(@instance).to be_instance_of(CyberSource::Riskv1decisionsOrderInformationLineItems)
     end
   end
+  describe 'test attribute "total_amount"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "unit_price"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -44,6 +50,12 @@ describe 'Riskv1decisionsOrderInformationLineItems' do
     end
   end
 
+  describe 'test attribute "gift_card_currency"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "product_sku"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -51,6 +63,12 @@ describe 'Riskv1decisionsOrderInformationLineItems' do
   end
 
   describe 'test attribute "product_risk"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "product_description"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -81,6 +99,18 @@ describe 'Riskv1decisionsOrderInformationLineItems' do
   end
 
   describe 'test attribute "passenger"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "shipping_destination_types"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "tax_amount"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

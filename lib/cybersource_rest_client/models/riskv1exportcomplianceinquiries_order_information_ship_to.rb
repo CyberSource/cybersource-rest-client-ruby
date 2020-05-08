@@ -14,13 +14,13 @@ require 'date'
 
 module CyberSource
   class Riskv1exportcomplianceinquiriesOrderInformationShipTo
-    # Country of the shipping address. Use the two-character ISO Standard Country Codes.
+    # Country of the shipping address. Use the two-character [ISO Standard Country Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf)  Required field for authorization if any shipping address information is included in the request; otherwise, optional. 
     attr_accessor :country
 
-    # First name of the recipient.  **Processor specific maximum length**  - Litle: 25 - All other processors: 60 
+    # First name of the recipient.  #### Litle Maximum length: 25  #### All other processors Maximum length: 60  Optional field. 
     attr_accessor :first_name
 
-    # Last name of the recipient.  **Processor-specific maximum length**  - Litle: 25 - All other processors: 60 
+    # Last name of the recipient.  #### Litle Maximum length: 25  #### All other processors Maximum length: 60  Optional field. 
     attr_accessor :last_name
 
     # Attribute mapping from ruby-style variable name to JSON key.

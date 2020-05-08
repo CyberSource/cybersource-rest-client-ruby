@@ -19,11 +19,21 @@ module CyberSource
 
     attr_accessor :tokenized_card
 
+    attr_accessor :customer
+
+    attr_accessor :bank
+
+    # Method of payment used for the order. This field can contain one of the following values:   - `consumer` (default): Customer credit card   - `corporate`: Corporate credit card   - `debit`: Debit card, such as a Maestro (UK Domestic) card   - `cod`: Collect on delivery   - `check`: Electronic check   - `p2p`: Person-to-person payment   - `private1`: Private label credit card   - `other`: Other payment method 
+    attr_accessor :method
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'card' => :'card',
-        :'tokenized_card' => :'tokenizedCard'
+        :'tokenized_card' => :'tokenizedCard',
+        :'customer' => :'customer',
+        :'bank' => :'bank',
+        :'method' => :'method'
       }
     end
 
@@ -31,7 +41,10 @@ module CyberSource
     def self.swagger_types
       {
         :'card' => :'Riskv1decisionsPaymentInformationCard',
-        :'tokenized_card' => :'Riskv1decisionsPaymentInformationTokenizedCard'
+        :'tokenized_card' => :'Riskv1decisionsPaymentInformationTokenizedCard',
+        :'customer' => :'Riskv1decisionsPaymentInformationCustomer',
+        :'bank' => :'Ptsv2paymentsPaymentInformationBank',
+        :'method' => :'String'
       }
     end
 
@@ -50,19 +63,46 @@ module CyberSource
       if attributes.has_key?(:'tokenizedCard')
         self.tokenized_card = attributes[:'tokenizedCard']
       end
+
+      if attributes.has_key?(:'customer')
+        self.customer = attributes[:'customer']
+      end
+
+      if attributes.has_key?(:'bank')
+        self.bank = attributes[:'bank']
+      end
+
+      if attributes.has_key?(:'method')
+        self.method = attributes[:'method']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if !@method.nil? && @method.to_s.length > 10
+        invalid_properties.push('invalid value for "method", the character length must be smaller than or equal to 10.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if !@method.nil? && @method.to_s.length > 10
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] method Value to be assigned
+    def method=(method)
+      if !method.nil? && method.to_s.length > 10
+        fail ArgumentError, 'invalid value for "method", the character length must be smaller than or equal to 10.'
+      end
+
+      @method = method
     end
 
     # Checks equality by comparing each attribute.
@@ -71,7 +111,10 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           card == o.card &&
-          tokenized_card == o.tokenized_card
+          tokenized_card == o.tokenized_card &&
+          customer == o.customer &&
+          bank == o.bank &&
+          method == o.method
     end
 
     # @see the `==` method
@@ -83,7 +126,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card, tokenized_card].hash
+      [card, tokenized_card, customer, bank, method].hash
     end
 
     # Builds the object from hash

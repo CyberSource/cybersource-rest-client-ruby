@@ -13,34 +13,42 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  # Contains recipient shipping information.
   class Riskv1decisionsOrderInformationShipTo
-    # First line of the shipping address.
+    # First line of the shipping address.  Required field for authorization if any shipping address information is included in the request; otherwise, optional. 
     attr_accessor :address1
 
-    # Second line of the shipping address.
+    # Second line of the shipping address.  Optional field. 
     attr_accessor :address2
 
-    # State or province of the shipping address. Use the State, Province, and Territory Codes for the United States and Canada. 
+    # State or province of the shipping address. Use the [State, Province, and Territory Codes for the United States and Canada](https://developer.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf)  Required field for authorization if any shipping address information is included in the request and shipping to the U.S. or Canada; otherwise, optional. 
     attr_accessor :administrative_area
 
-    # Country of the shipping address. Use the two-character ISO Standard Country Codes.
+    # Country of the shipping address. Use the two-character [ISO Standard Country Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf)  Required field for authorization if any shipping address information is included in the request; otherwise, optional. 
     attr_accessor :country
 
-    # City of the shipping address.
+    # Shipping destination of item. Example: Commercial, Residential, Store 
+    attr_accessor :destination_types
+
+    # City of the shipping address.  Required field for authorization if any shipping address information is included in the request and shipping to the U.S. or Canada; otherwise, optional. 
     attr_accessor :locality
 
-    # First name of the recipient.  **Processor specific maximum length**  - Litle: 25 - All other processors: 60 
+    # First name of the recipient.  #### Litle Maximum length: 25  #### All other processors Maximum length: 60  Optional field. 
     attr_accessor :first_name
 
-    # Last name of the recipient.  **Processor-specific maximum length**  - Litle: 25 - All other processors: 60 
+    # Last name of the recipient.  #### Litle Maximum length: 25  #### All other processors Maximum length: 60  Optional field. 
     attr_accessor :last_name
 
     # Phone number associated with the shipping address.
     attr_accessor :phone_number
 
-    # Postal code for the shipping address. The postal code must consist of 5 to 9 digits.  When the billing country is the U.S., the 9-digit postal code must follow this format: [5 digits][dash][4 digits]  Example 12345-6789  When the billing country is Canada, the 6-digit postal code must follow this format: [alpha][numeric][alpha][space][numeric][alpha][numeric]  Example A1B 2C3  **American Express Direct**\\ Before sending the postal code to the processor, CyberSource removes all nonalphanumeric characters and, if the remaining value is longer than nine characters, truncates the value starting from the right side. 
+    # Postal code for the shipping address. The postal code must consist of 5 to 9 digits.  Required field for authorization if any shipping address information is included in the request and shipping to the U.S. or Canada; otherwise, optional.  When the billing country is the U.S., the 9-digit postal code must follow this format: [5 digits][dash][4 digits]  Example 12345-6789  When the billing country is Canada, the 6-digit postal code must follow this format: [alpha][numeric][alpha][space][numeric][alpha][numeric]  Example A1B 2C3  #### American Express Direct Before sending the postal code to the processor, all nonalphanumeric characters are removed and, if the remaining value is longer than nine characters, the value is truncated starting from the right side. 
     attr_accessor :postal_code
+
+    # Indicates destination chosen for the transaction. Possible values: - 01- Ship to cardholder billing address - 02- Ship to another verified address on file with merchant - 03- Ship to address that is different than billing address - 04- Ship to store (store address should be populated on request) - 05- Digital goods - 06- Travel and event tickets, not shipped - 07- Other 
+    attr_accessor :destination_code
+
+    # Shipping method for the product. Possible values: - lowcost: Lowest-cost service - sameday: Courier or same-day service - oneday: Next-day or overnight service - twoday: Two-day service - threeday: Three-day service - pickup: Store pick-up - other: Other shipping method - none: No shipping method because product is a service or subscription Required for American Express SafeKey (U.S.). 
+    attr_accessor :method
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -49,11 +57,14 @@ module CyberSource
         :'address2' => :'address2',
         :'administrative_area' => :'administrativeArea',
         :'country' => :'country',
+        :'destination_types' => :'destinationTypes',
         :'locality' => :'locality',
         :'first_name' => :'firstName',
         :'last_name' => :'lastName',
         :'phone_number' => :'phoneNumber',
-        :'postal_code' => :'postalCode'
+        :'postal_code' => :'postalCode',
+        :'destination_code' => :'destinationCode',
+        :'method' => :'method'
       }
     end
 
@@ -64,11 +75,14 @@ module CyberSource
         :'address2' => :'String',
         :'administrative_area' => :'String',
         :'country' => :'String',
+        :'destination_types' => :'String',
         :'locality' => :'String',
         :'first_name' => :'String',
         :'last_name' => :'String',
         :'phone_number' => :'String',
-        :'postal_code' => :'String'
+        :'postal_code' => :'String',
+        :'destination_code' => :'Integer',
+        :'method' => :'String'
       }
     end
 
@@ -96,6 +110,10 @@ module CyberSource
         self.country = attributes[:'country']
       end
 
+      if attributes.has_key?(:'destinationTypes')
+        self.destination_types = attributes[:'destinationTypes']
+      end
+
       if attributes.has_key?(:'locality')
         self.locality = attributes[:'locality']
       end
@@ -114,6 +132,14 @@ module CyberSource
 
       if attributes.has_key?(:'postalCode')
         self.postal_code = attributes[:'postalCode']
+      end
+
+      if attributes.has_key?(:'destinationCode')
+        self.destination_code = attributes[:'destinationCode']
+      end
+
+      if attributes.has_key?(:'method')
+        self.method = attributes[:'method']
       end
     end
 
@@ -137,6 +163,10 @@ module CyberSource
         invalid_properties.push('invalid value for "country", the character length must be smaller than or equal to 2.')
       end
 
+      if !@destination_types.nil? && @destination_types.to_s.length > 25
+        invalid_properties.push('invalid value for "destination_types", the character length must be smaller than or equal to 25.')
+      end
+
       if !@locality.nil? && @locality.to_s.length > 50
         invalid_properties.push('invalid value for "locality", the character length must be smaller than or equal to 50.')
       end
@@ -157,6 +187,10 @@ module CyberSource
         invalid_properties.push('invalid value for "postal_code", the character length must be smaller than or equal to 10.')
       end
 
+      if !@method.nil? && @method.to_s.length > 10
+        invalid_properties.push('invalid value for "method", the character length must be smaller than or equal to 10.')
+      end
+
       invalid_properties
     end
 
@@ -167,11 +201,13 @@ module CyberSource
       return false if !@address2.nil? && @address2.to_s.length > 60
       return false if !@administrative_area.nil? && @administrative_area.to_s.length > 2
       return false if !@country.nil? && @country.to_s.length > 2
+      return false if !@destination_types.nil? && @destination_types.to_s.length > 25
       return false if !@locality.nil? && @locality.to_s.length > 50
       return false if !@first_name.nil? && @first_name.to_s.length > 60
       return false if !@last_name.nil? && @last_name.to_s.length > 60
       return false if !@phone_number.nil? && @phone_number.to_s.length > 15
       return false if !@postal_code.nil? && @postal_code.to_s.length > 10
+      return false if !@method.nil? && @method.to_s.length > 10
       true
     end
 
@@ -213,6 +249,16 @@ module CyberSource
       end
 
       @country = country
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] destination_types Value to be assigned
+    def destination_types=(destination_types)
+      if !destination_types.nil? && destination_types.to_s.length > 25
+        fail ArgumentError, 'invalid value for "destination_types", the character length must be smaller than or equal to 25.'
+      end
+
+      @destination_types = destination_types
     end
 
     # Custom attribute writer method with validation
@@ -265,6 +311,16 @@ module CyberSource
       @postal_code = postal_code
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] method Value to be assigned
+    def method=(method)
+      if !method.nil? && method.to_s.length > 10
+        fail ArgumentError, 'invalid value for "method", the character length must be smaller than or equal to 10.'
+      end
+
+      @method = method
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -274,11 +330,14 @@ module CyberSource
           address2 == o.address2 &&
           administrative_area == o.administrative_area &&
           country == o.country &&
+          destination_types == o.destination_types &&
           locality == o.locality &&
           first_name == o.first_name &&
           last_name == o.last_name &&
           phone_number == o.phone_number &&
-          postal_code == o.postal_code
+          postal_code == o.postal_code &&
+          destination_code == o.destination_code &&
+          method == o.method
     end
 
     # @see the `==` method
@@ -290,7 +349,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [address1, address2, administrative_area, country, locality, first_name, last_name, phone_number, postal_code].hash
+      [address1, address2, administrative_area, country, destination_types, locality, first_name, last_name, phone_number, postal_code, destination_code, method].hash
     end
 
     # Builds the object from hash

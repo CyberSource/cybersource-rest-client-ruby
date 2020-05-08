@@ -14,13 +14,13 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsGet200ResponsePaymentInformationAccountFeatures
-    # Remaining balance on the account. 
+    # Remaining balance on the account.  Returned by authorization service. 
     attr_accessor :balance_amount
 
-    # Remaining balance on the account. 
+    # Remaining balance on the account.  Returned by authorization service. 
     attr_accessor :previous_balance_amount
 
-    # Currency of the remaining balance on the account. For the possible values, see the [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)  For details, see `auth_account_balance_currency` field description in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
+    # Currency of the remaining balance on the account. For the possible values, see the [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)  Returned by authorization service. 
     attr_accessor :currency
 
     # Attribute mapping from ruby-style variable name to JSON key.

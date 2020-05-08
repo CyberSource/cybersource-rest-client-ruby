@@ -14,22 +14,31 @@ require 'date'
 
 module CyberSource
   class Riskv1decisionsOrderInformationLineItems
-    # Per-item price of the product. This value cannot be negative. You can include a decimal point (.), but you cannot include any other special characters. CyberSource truncates the amount to the correct number of decimal places.  For processor-specific information, see the `amount` field description in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html)  **Important** Some processors have specific requirements and limitations, such as maximum amounts and maximum field lengths. See these guides for details: - [Merchant Descriptors Using the SCMP API Guide] (https://apps.cybersource.com/library/documentation/dev_guides/Merchant_Descriptors_SCMP_API/html/) - \"Capture Information for Specific Processors\" section in the [Credit Card Services Using the SCMP API Guide](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  #### DCC with a Third-Party Provider Set this field to the converted amount that was returned by the DCC provider. You must include either the 1st line item in the order and this field, or the request-level field `orderInformation.amountDetails.totalAmount` in your request. For details, see \"Dynamic Currency Conversion with a Third Party Provider\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  #### FDMS South If you accept IDR or CLP currencies, see the entry for FDMS South in the [Merchant Descriptors Using the SCMP API Guide.] (https://apps.cybersource.com/library/documentation/dev_guides/Merchant_Descriptors_SCMP_API/html/)  #### Zero Amount Authorizations If your processor supports zero amount authorizations, you can set this field to 0 for the authorization to check if the card is lost or stolen. See \"Zero Amount Authorizations\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
+    # Total amount for the item. Normally calculated as the unit price times quantity.  When `orderInformation.lineItems[].productCode` is \"gift_card\", this is the purchase amount total for prepaid gift cards in major units.  Example: 123.45 USD = 123 
+    attr_accessor :total_amount
+
+    # Per-item price of the product. This value for this field cannot be negative.  You must include either this field or the request-level field `orderInformation.amountDetails.totalAmount` in your request.  You can include a decimal point (.), but you cannot include any other special characters. The value is truncated to the correct number of decimal places.  #### DCC with a Third-Party Provider Set this field to the converted amount that was returned by the DCC provider. You must include either the 1st line item in the order and this field, or the request-level field `orderInformation.amountDetails.totalAmount` in your request.  #### FDMS South If you accept IDR or CLP currencies, see the entry for FDMS South in the [Merchant Descriptors Using the SCMP API Guide.] (https://apps.cybersource.com/library/documentation/dev_guides/Merchant_Descriptors_SCMP_API/html/)  #### Zero Amount Authorizations If your processor supports zero amount authorizations, you can set this field to 0 for the authorization to check if the card is lost or stolen.  #### Maximum Field Lengths For GPN and JCN Gateway: Decimal (10) All other processors: Decimal (15) 
     attr_accessor :unit_price
 
-    # Number of units for this order.  The default is `1`. For an authorization or capture transaction (`processingOptions.capture` is set to `true` or `false`), this field is required when _orderInformation.lineItems[].productCode_ is not set to **default** or one of the other values that are related to shipping and/or handling.  When orderInformation.lineItems[].productCode is \"gift_card\", this is the total count of individual prepaid gift cards purchased. 
+    # Number of units for this order. Must be a non-negative integer.  The default is `1`. For an authorization or capture transaction (`processingOptions.capture` is set to `true` or `false`), this field is required when `orderInformation.lineItems[].productCode` is not `default` or one of the other values related to shipping and/or handling. 
     attr_accessor :quantity
 
-    # Stock Keeping Unit (SKU) code for the product.  For an authorization or capture transaction (`processingOptions.capture` is set to `true` or `false`), this field is required when _orderInformation.lineItems[].productCode_ is not set to **default** or one of the other values that are related to shipping and/or handling. 
+    # When `orderInformation.lineItems[].productCode` is \"gift_card\", this is the currency used for the gift card purchase.  For details, see `pa_gift_card_currency` field description in [CyberSource Payer Authentication Using the SCMP API.] (https://apps.cybersource.com/library/documentation/dev_guides/Payer_Authentication_SCMP_API/Payer_Authentication_SCMP_API.pdf)  For the possible values, see the [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf) 
+    attr_accessor :gift_card_currency
+
+    # Product identifier code. Also known as the Stock Keeping Unit (SKU) code for the product.  For an authorization or capture transaction (`processingOptions.capture` is set to `true` or `false`), this field is required when `orderInformation.lineItems[].productCode` is not `default` or one of the values related to shipping and/or handling. 
     attr_accessor :product_sku
 
     # Indicates the level of risk for the product. This field can contain one of the following values: - `low`: The product is associated with few chargebacks. - `normal`: The product is associated with a normal number of chargebacks. - `high`: The product is associated with many chargebacks. 
     attr_accessor :product_risk
 
-    # For an authorization or capture transaction (`processingOptions.capture` is set to `true` or `false`), this field is required when `orderInformation.lineItems[].productCode` is not set to `default` or one of the other values that are related to shipping and/or handling. 
+    # Brief description of item.
+    attr_accessor :product_description
+
+    # For an authorization or capture transaction (`processingOptions.capture` is `true` or `false`), this field is required when `orderInformation.lineItems[].productCode` is not `default` or one of the other values that are related to shipping and/or handling. 
     attr_accessor :product_name
 
-    # Type of product. This value is used to determine the category that the product is in: electronic, handling, physical, service, or shipping. The default value is **default**. If you are performing an authorization transaction (`processingOptions.capture` is set to `false`), and you set this field to a value other than default or any of the values related to shipping and handling, then the fields `quantity`, `productName`, and `productSku` are required. It can also have a value of \"gift_card\".  For details, see the `product_code` field description in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
+    # Type of product. The value for this field is used to identify the product category (electronic, handling, physical, service, or shipping). The default value is `default`.  If you are performing an authorization transaction (`processingOptions.capture` is set to `false`), and you set this field to a value other than `default` or one of the values related to shipping and/or handling, then `orderInformation.lineItems[].quantity`, `orderInformation.lineItems[].productName`, and `orderInformation.lineItems[].productSku` fields are required.  Optional field. 
     attr_accessor :product_code
 
     # This field is only used in DM service.  Determines whether to assign risk to the order if the billing and shipping addresses specify different cities, states, or countries. This field can contain one of the following values: - true: Orders are assigned only slight additional risk if billing and shipping addresses are different. - false: Orders are assigned higher additional risk if billing and shipping addresses are different. 
@@ -40,33 +49,49 @@ module CyberSource
 
     attr_accessor :passenger
 
+    # Destination to where the item will be shipped. Example: Commercial, Residential, Store 
+    attr_accessor :shipping_destination_types
+
+    # Total tax to apply to the product. This value cannot be negative. The tax amount and the offer amount must be in the same currency. The tax amount field is additive.  The following example uses a two-exponent currency such as USD:   1. You include each line item in your request.  ..- 1st line item has amount=10.00, quantity=1, and taxAmount=0.80  ..- 2nd line item has amount=20.00, quantity=1, and taxAmount=1.60  2. The total amount authorized will be 32.40, not 30.00 with 2.40 of tax included.  Optional field. 
+    attr_accessor :tax_amount
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'total_amount' => :'totalAmount',
         :'unit_price' => :'unitPrice',
         :'quantity' => :'quantity',
+        :'gift_card_currency' => :'giftCardCurrency',
         :'product_sku' => :'productSKU',
         :'product_risk' => :'productRisk',
+        :'product_description' => :'productDescription',
         :'product_name' => :'productName',
         :'product_code' => :'productCode',
         :'gift' => :'gift',
         :'distributor_product_sku' => :'distributorProductSku',
-        :'passenger' => :'passenger'
+        :'passenger' => :'passenger',
+        :'shipping_destination_types' => :'shippingDestinationTypes',
+        :'tax_amount' => :'taxAmount'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'total_amount' => :'String',
         :'unit_price' => :'String',
         :'quantity' => :'Integer',
+        :'gift_card_currency' => :'Integer',
         :'product_sku' => :'String',
         :'product_risk' => :'String',
+        :'product_description' => :'String',
         :'product_name' => :'String',
         :'product_code' => :'String',
         :'gift' => :'BOOLEAN',
         :'distributor_product_sku' => :'String',
-        :'passenger' => :'Ptsv2paymentsOrderInformationPassenger'
+        :'passenger' => :'Ptsv2paymentsOrderInformationPassenger',
+        :'shipping_destination_types' => :'String',
+        :'tax_amount' => :'String'
       }
     end
 
@@ -78,6 +103,10 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
+      if attributes.has_key?(:'totalAmount')
+        self.total_amount = attributes[:'totalAmount']
+      end
+
       if attributes.has_key?(:'unitPrice')
         self.unit_price = attributes[:'unitPrice']
       end
@@ -86,12 +115,20 @@ module CyberSource
         self.quantity = attributes[:'quantity']
       end
 
+      if attributes.has_key?(:'giftCardCurrency')
+        self.gift_card_currency = attributes[:'giftCardCurrency']
+      end
+
       if attributes.has_key?(:'productSKU')
         self.product_sku = attributes[:'productSKU']
       end
 
       if attributes.has_key?(:'productRisk')
         self.product_risk = attributes[:'productRisk']
+      end
+
+      if attributes.has_key?(:'productDescription')
+        self.product_description = attributes[:'productDescription']
       end
 
       if attributes.has_key?(:'productName')
@@ -113,12 +150,24 @@ module CyberSource
       if attributes.has_key?(:'passenger')
         self.passenger = attributes[:'passenger']
       end
+
+      if attributes.has_key?(:'shippingDestinationTypes')
+        self.shipping_destination_types = attributes[:'shippingDestinationTypes']
+      end
+
+      if attributes.has_key?(:'taxAmount')
+        self.tax_amount = attributes[:'taxAmount']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if !@total_amount.nil? && @total_amount.to_s.length > 13
+        invalid_properties.push('invalid value for "total_amount", the character length must be smaller than or equal to 13.')
+      end
+
       if !@unit_price.nil? && @unit_price.to_s.length > 15
         invalid_properties.push('invalid value for "unit_price", the character length must be smaller than or equal to 15.')
       end
@@ -151,12 +200,21 @@ module CyberSource
         invalid_properties.push('invalid value for "distributor_product_sku", the character length must be smaller than or equal to 15.')
       end
 
+      if !@shipping_destination_types.nil? && @shipping_destination_types.to_s.length > 50
+        invalid_properties.push('invalid value for "shipping_destination_types", the character length must be smaller than or equal to 50.')
+      end
+
+      if !@tax_amount.nil? && @tax_amount.to_s.length > 15
+        invalid_properties.push('invalid value for "tax_amount", the character length must be smaller than or equal to 15.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if !@total_amount.nil? && @total_amount.to_s.length > 13
       return false if !@unit_price.nil? && @unit_price.to_s.length > 15
       return false if !@quantity.nil? && @quantity > 999999999
       return false if !@quantity.nil? && @quantity < 1
@@ -165,7 +223,19 @@ module CyberSource
       return false if !@product_name.nil? && @product_name.to_s.length > 255
       return false if !@product_code.nil? && @product_code.to_s.length > 255
       return false if !@distributor_product_sku.nil? && @distributor_product_sku.to_s.length > 15
+      return false if !@shipping_destination_types.nil? && @shipping_destination_types.to_s.length > 50
+      return false if !@tax_amount.nil? && @tax_amount.to_s.length > 15
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] total_amount Value to be assigned
+    def total_amount=(total_amount)
+      if !total_amount.nil? && total_amount.to_s.length > 13
+        fail ArgumentError, 'invalid value for "total_amount", the character length must be smaller than or equal to 13.'
+      end
+
+      @total_amount = total_amount
     end
 
     # Custom attribute writer method with validation
@@ -242,20 +312,45 @@ module CyberSource
       @distributor_product_sku = distributor_product_sku
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] shipping_destination_types Value to be assigned
+    def shipping_destination_types=(shipping_destination_types)
+      if !shipping_destination_types.nil? && shipping_destination_types.to_s.length > 50
+        fail ArgumentError, 'invalid value for "shipping_destination_types", the character length must be smaller than or equal to 50.'
+      end
+
+      @shipping_destination_types = shipping_destination_types
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] tax_amount Value to be assigned
+    def tax_amount=(tax_amount)
+      if !tax_amount.nil? && tax_amount.to_s.length > 15
+        fail ArgumentError, 'invalid value for "tax_amount", the character length must be smaller than or equal to 15.'
+      end
+
+      @tax_amount = tax_amount
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          total_amount == o.total_amount &&
           unit_price == o.unit_price &&
           quantity == o.quantity &&
+          gift_card_currency == o.gift_card_currency &&
           product_sku == o.product_sku &&
           product_risk == o.product_risk &&
+          product_description == o.product_description &&
           product_name == o.product_name &&
           product_code == o.product_code &&
           gift == o.gift &&
           distributor_product_sku == o.distributor_product_sku &&
-          passenger == o.passenger
+          passenger == o.passenger &&
+          shipping_destination_types == o.shipping_destination_types &&
+          tax_amount == o.tax_amount
     end
 
     # @see the `==` method
@@ -267,7 +362,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [unit_price, quantity, product_sku, product_risk, product_name, product_code, gift, distributor_product_sku, passenger].hash
+      [total_amount, unit_price, quantity, gift_card_currency, product_sku, product_risk, product_description, product_name, product_code, gift, distributor_product_sku, passenger, shipping_destination_types, tax_amount].hash
     end
 
     # Builds the object from hash

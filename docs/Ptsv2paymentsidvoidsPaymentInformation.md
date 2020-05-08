@@ -3,6 +3,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**payment_type** | [**Ptsv2paymentsidrefundsPaymentInformationPaymentType**](Ptsv2paymentsidrefundsPaymentInformationPaymentType.md) |  | [optional] 
+**payment_type** | [**Ptsv2paymentsPaymentInformationPaymentType**](Ptsv2paymentsPaymentInformationPaymentType.md) |  | [optional] 
 
 

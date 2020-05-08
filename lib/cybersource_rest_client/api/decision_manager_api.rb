@@ -92,33 +92,33 @@ module CyberSource
       return data, status_code, headers
     end
     # Create Decision Manager Case
-    # This is the combined request to the Decision Manager Service for a transaction sent to Cybersource. Decision Manager will return a decision based on the request values. 
-    # @param create_decision_manager_case_request 
+    # This is the combined request to the Decision Manager Service for a transaction sent to Cybersource. Decision Manager will return a decision based on the request values.
+    # @param create_bundled_decision_manager_case_request 
     # @param [Hash] opts the optional parameters
     # @return [RiskV1DecisionsPost201Response]
-    def create_decision_manager_case(create_decision_manager_case_request, opts = {})
-      data, status_code, headers = create_decision_manager_case_with_http_info(create_decision_manager_case_request, opts)
+    def create_bundled_decision_manager_case(create_bundled_decision_manager_case_request, opts = {})
+      data, status_code, headers = create_bundled_decision_manager_case_with_http_info(create_bundled_decision_manager_case_request, opts)
       return data, status_code, headers
     end
 
     # Create Decision Manager Case
-    # This is the combined request to the Decision Manager Service for a transaction sent to Cybersource. Decision Manager will return a decision based on the request values. 
-    # @param create_decision_manager_case_request 
+    # This is the combined request to the Decision Manager Service for a transaction sent to Cybersource. Decision Manager will return a decision based on the request values.
+    # @param create_bundled_decision_manager_case_request 
     # @param [Hash] opts the optional parameters
     # @return [Array<(RiskV1DecisionsPost201Response, Fixnum, Hash)>] RiskV1DecisionsPost201Response data, response status code and response headers
-    def create_decision_manager_case_with_http_info(create_decision_manager_case_request, opts = {})
+    def create_bundled_decision_manager_case_with_http_info(create_bundled_decision_manager_case_request, opts = {})
       
 	  if @api_client.config.debugging
 	  	begin
 			raise
-				@api_client.config.logger.debug 'Calling API: DecisionManagerApi.create_decision_manager_case ...'
+				@api_client.config.logger.debug 'Calling API: DecisionManagerApi.create_bundled_decision_manager_case ...'
 			rescue
 				puts 'Cannot write to log'
 			end
       end
-      # verify the required parameter 'create_decision_manager_case_request' is set
-      if @api_client.config.client_side_validation && create_decision_manager_case_request.nil?
-        fail ArgumentError, "Missing the required parameter 'create_decision_manager_case_request' when calling DecisionManagerApi.create_decision_manager_case"
+      # verify the required parameter 'create_bundled_decision_manager_case_request' is set
+      if @api_client.config.client_side_validation && create_bundled_decision_manager_case_request.nil?
+        fail ArgumentError, "Missing the required parameter 'create_bundled_decision_manager_case_request' when calling DecisionManagerApi.create_bundled_decision_manager_case"
       end
       # resource path
       local_var_path = 'risk/v1/decisions'
@@ -137,7 +137,7 @@ module CyberSource
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(create_decision_manager_case_request)
+      post_body = @api_client.object_to_http_body(create_bundled_decision_manager_case_request)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -149,7 +149,7 @@ module CyberSource
       if @api_client.config.debugging
 		begin
 		raise
-			@api_client.config.logger.debug "API called: DecisionManagerApi#create_decision_manager_case\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+			@api_client.config.logger.debug "API called: DecisionManagerApi#create_bundled_decision_manager_case\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
 		rescue
 			puts 'Cannot write to log'
 		end

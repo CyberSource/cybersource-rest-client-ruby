@@ -24,7 +24,9 @@ module CyberSource
 
     attr_accessor :bank
 
-    # \"This tag contains a MesterCard defined code that provides information about the type of device used to initiate a non-card transaction. Valid values for this tag are: - 00 Card (default) - 01 Mobile network operator (MNO) controlled removal secure element (SIM or UICC) personalized for use with a mobile phone or smartphone> - 02 Key fob - 03  Watch - 04  Mobile tag - 05  Wristband - 06  Mobile phone case or sleeve - 07  Mobile phone or smartphone with a fixed, (non-removable), secure element controlled by the MNO, for example, code division multiple access (CDMA) - 08  Removable secure element not controlled by the MNO, for example, memory card personalized for use with a mobile phone or smartphone - 09 Mobile phonen or smartphone with a fixed, (non-removable), secure element not controlled by the MNO - 10 MNO controlled removable secure element (SIM or UICC) personalized for use with a tablet or e-book - 11 Tablet or e-book with a fixed, (non-removable), secure element controlled by the MNO - 12 Removable secure element not controlled by the MNO, for example, memory card personalized for use with a tablet or e-book - 13 Table or e-book with fixed, (non-removable) secure element not controlled by the MNO - 14 - 99 = (Reserved for future use) 
+    attr_accessor :payment_type
+
+    # Mastercard-defined code that indicates how the account information was obtained.  - `00` (default): Card - `01`: Removable secure element that is personalized for use with a mobile phone and controlled by the wireless service provider; examples: subscriber identity module (SIM), universal integrated circuit card (UICC) - `02`: Key fob - `03`: Watch - `04`: Mobile tag - `05`: Wristband - `06`: Mobile phone case or sleeve - `07`: Mobile phone with a non-removable, secure element that is controlled by the wireless service provider; for example, code division multiple access (CDMA) - `08`: Removable secure element that is personalized for use with a mobile phone and not controlled by the wireless service provider; example: memory card - `09`: Mobile phone with a non-removable, secure element that is not controlled by the wireless service provider - `10`: Removable secure element that is personalized for use with a tablet or e-book and is controlled by the wireless service provider; examples: subscriber identity module (SIM), universal integrated circuit card (UICC) - `11`: Tablet or e-book with a non-removable, secure element that is controlled by the wireless service provider - `12`: Removable secure element that is personalized for use with a tablet or e-book and is not controlled by the wireless service provider - `13`: Tablet or e-book with a non-removable, secure element that is not controlled by the wireless service provider  This field is supported only for Mastercard on CyberSource through VisaNet.  #### Used by **Authorization**\\ Optional field. 
     attr_accessor :initiation_channel
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -35,6 +37,7 @@ module CyberSource
         :'fluid_data' => :'fluidData',
         :'customer' => :'customer',
         :'bank' => :'bank',
+        :'payment_type' => :'paymentType',
         :'initiation_channel' => :'initiationChannel'
       }
     end
@@ -47,6 +50,7 @@ module CyberSource
         :'fluid_data' => :'Ptsv2paymentsPaymentInformationFluidData',
         :'customer' => :'Ptsv2paymentsPaymentInformationCustomer',
         :'bank' => :'Ptsv2paymentsPaymentInformationBank',
+        :'payment_type' => :'Ptsv2paymentsPaymentInformationPaymentType',
         :'initiation_channel' => :'String'
       }
     end
@@ -77,6 +81,10 @@ module CyberSource
 
       if attributes.has_key?(:'bank')
         self.bank = attributes[:'bank']
+      end
+
+      if attributes.has_key?(:'paymentType')
+        self.payment_type = attributes[:'paymentType']
       end
 
       if attributes.has_key?(:'initiationChannel')
@@ -122,6 +130,7 @@ module CyberSource
           fluid_data == o.fluid_data &&
           customer == o.customer &&
           bank == o.bank &&
+          payment_type == o.payment_type &&
           initiation_channel == o.initiation_channel
     end
 
@@ -134,7 +143,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card, tokenized_card, fluid_data, customer, bank, initiation_channel].hash
+      [card, tokenized_card, fluid_data, customer, bank, payment_type, initiation_channel].hash
     end
 
     # Builds the object from hash

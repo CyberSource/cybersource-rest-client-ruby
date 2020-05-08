@@ -14,7 +14,10 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsProcessingInformation
-    # Flag that specifies whether to also include capture service in the submitted request or not.  Possible values: - **true** - **false** (default). 
+    # Array of actions (one or more) to be included in the payment to invoke bundled serviecs along with payment.  Possible values are one or more of follows:   - `DECISION`: Use this when you want to check Risk Score along with your payment request.   - `DECISION_SKIP`: Use this when you want to skip Decision Manager service(s).   - `TOKEN_CREATE`: Use this when you want to create a token from the card/bank data in your payment request.   - `CONSUMER_AUTHENTICATION`: Use this when you want to check if a card is enrolled in Payer Authentioncation along with your payment request.   - `VALIDATE_CONSUMER_AUTHENTICATION`: Use this after you acquire a Payer Authentioncation result that needs to be included for your payment request. 
+    attr_accessor :action_list
+
+    # Indicates whether to also include a capture  in the submitted authorization request or not.  Possible values: - `true`: Include a capture with an authorization request. - `false`: (default) Do not include a capture with an authorization request.  #### Used by **Authorization and Capture** Optional field. 
     attr_accessor :capture
 
     # Value that identifies the processor/acquirer to use for the transaction. This value is supported only for **CyberSource through VisaNet**.  Contact CyberSource Customer Support to get the value for this field. 
@@ -23,7 +26,7 @@ module CyberSource
     # Payouts transaction type. Required for OCT transactions. This field is a pass-through, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. **Note** When the request includes this field, this value overrides the information in your CyberSource account.  For valid values, see the `invoiceHeader_businessApplicationID` field description in [Payouts Using the Simple Order API.](http://apps.cybersource.com/library/documentation/dev_guides/payouts_SO/Payouts_SO_API.pdf) 
     attr_accessor :business_application_id
 
-    # Type of transaction. Certain card associations use this information when determining discount rates to charge you. Required for Verified by Visa and MasterCard SecureCode transactions.      This field can contain one of these values:      * 5: `vbv` (Successful Verified by Visa transaction)     * 6: `spa` (MasterCard SecureCode transaction)     * 7: `internet` (default) (eCommerce order placed by     using a Web site)     * 8: `vbv_attempted` (Verified by Visa transaction     was attempted but not authenticated)     * E: `vbv_failure` (Depending on your payment     processor, you may receive this result if Visa’s     directory service is not available)     * F: `spa_failure` (MasterCard SecureCode     authentication failed)     * M: `moto` (Mail order or telephone order)     * P: `retail` (Point-of-sale transaction)     * R: `recurring` (Recurring transaction)     * S: `install` (Installment payment) 
+    # Type of transaction. Some payment card companies use this information when determining discount rates.  #### Used by **Authorization** Required payer authentication transactions; otherwise, optional. **Credit** Required for standalone credits on Chase Paymentech solutions; otherwise, optional. Only `internet`, `moto`, `recurring`, and `recurring_internet` are valid values.  #### Ingenico ePayments When you omit this field for Ingenico ePayments, the processor uses the default transaction type they have on file for you instead of the default value (listed in Appendix I, \"Commerce Indicators,\" on page 441.)  #### Payer Authentication Transactions For the possible values and requirements, see \"Payer Authentication,\" page 195.  #### Other Types of Transactions See Appendix I, \"Commerce Indicators,\" on page 441.  #### Card Present You must set this field to `retail`. This field is required for a card-present transaction. 
     attr_accessor :commerce_indicator
 
     # Type of digital payment solution for the transaction. Possible Values:   - `visacheckout`: Visa Checkout. This value is required for Visa Checkout transactions. For details, see `payment_solution` field description in [Visa Checkout Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/VCO_SCMP_API/html/)  - `001`: Apple Pay.  - `004`: Cybersource In-App Solution.  - `005`: Masterpass. This value is required for Masterpass transactions on OmniPay Direct. For details, see \"Masterpass\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  - `006`: Android Pay.  - `007`: Chase Pay.  - `008`: Samsung Pay.  - `012`: Google Pay. 
@@ -44,7 +47,7 @@ module CyberSource
     # Identifier for the **Visa Checkout** order. Visa Checkout provides a unique order ID for every transaction in the Visa Checkout **callID** field.  For details, see the `vc_order_id` field description in [Visa Checkout Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/VCO_SCMP_API/html/) 
     attr_accessor :visa_checkout_id
 
-    # Flag that indicates that the transaction includes airline data or restaurant data.  This field must be set to `airline` in order for airline data to be sent to the processor.  For example, if this field is not set to airline or is not included in the request, CyberSource does not send airline data to the processor.  You must set this field to `restaurant` in order for restaurant data to be sent to the processor.  When this field is not set to restaurant or is not included in the request, CyberSource does not send restaurant data to the processor.  Possible Values:  - `airline` - `restaurant` - `lodging` - `auto_rental` - `transit` - `healthcare_medical` - `healthcare_transit` 
+    # Indicates that the transaction includes airline data or restaurant data. Possible Values: - `airline` - `restaurant` - `lodging` - `auto_rental` - `transit` - `healthcare_medical` - `healthcare_transit`  #### Card Present You must set this field to `airline` in order for airline data to be sent to the processor. For example, if this field is not set to `airline` or is not included in the request, no airline data is sent to the processor.  You must set this field to `restaurant` in order for restaurant data to be sent to the processor. When this field is not set to `restaurant` or is not included in the request, no restaurant data is sent to the processor.  Restaurant data is supported only on CyberSource through VisaNet. 
     attr_accessor :industry_data_type
 
     attr_accessor :authorization_options
@@ -69,7 +72,7 @@ module CyberSource
 
     attr_accessor :japan_payment_options
 
-    # This tag contains one of the following values: - `1` :  Remote purchase (Consumer initiated) face-to-face - `2` :  Remote purchase (Consumer initiated) ecommerce - `3` :  Remote purchase (Consumer initiated) MOTO - `4` :  Bill Pay (Consumer initiated) - `5` :  Top-up (Consumer initiated) - `6` :  Cash-out (Consumer initiated) - `7` :  Case-out (ATM/Agent triggered) - `8` :  Remote purchase (Merchant triggered) face-to-face - `9` :  Remote purchase (Merchant triggered) ecommerce 
+    # Type of payment initiated from a cardholder's mobile device. Possible values: - `1` :  Consumer-initiated remote purchase, face-to-face - `2` :  Consumer-initiated remote purchase, e-commerce - `3` :  Consumer-initiated remote purchase, mail order / telephone order - `4` :  Consumer-initiated bill pay - `5` :  Consumer-initiated top up - `6` :  Consumer-initiated cash out - `7` :  ATM triggered or agent-initiated cash out - `8` :  Merchant-initiated remote purchase, face-to-face - `9` :  Merchant-initiated remote purchase, e-commerce  This field is supported only for Mastercard transactions on CyberSource through VisaNet.  Optional field.  **Note** On CyberSource through VisaNet, the value for this field corresponds to the following data in the TC 33 capture file: - Record: CP01 TCR6 - Position: 94 - Field: Mastercard Mobile Remote Payment Program Indicator  The TC 33 Capture file contains information about the purchases and refunds that a merchant submits to CyberSource. CyberSource through VisaNet creates the TC 33 Capture file at the end of the day and sends it to the merchant’s acquirer, who uses this information to facilitate end-of-day clearing processing with payment networks. 
     attr_accessor :mobile_remote_payment_type
 
     # A private national-use field submitted by acquirers and issuers in South Africa for South Africa-domestic (intra-country) authorizations and financial requests. Values for this field are 00 through 99. 
@@ -81,6 +84,7 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'action_list' => :'actionList',
         :'capture' => :'capture',
         :'processor_id' => :'processorId',
         :'business_application_id' => :'businessApplicationId',
@@ -111,6 +115,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'action_list' => :'Array<String>',
         :'capture' => :'BOOLEAN',
         :'processor_id' => :'String',
         :'business_application_id' => :'String',
@@ -145,6 +150,12 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'actionList')
+        if (value = attributes[:'actionList']).is_a?(Array)
+          self.action_list = value
+        end
+      end
 
       if attributes.has_key?(:'capture')
         self.capture = attributes[:'capture']
@@ -473,6 +484,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          action_list == o.action_list &&
           capture == o.capture &&
           processor_id == o.processor_id &&
           business_application_id == o.business_application_id &&
@@ -508,7 +520,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [capture, processor_id, business_application_id, commerce_indicator, payment_solution, reconciliation_id, link_id, purchase_level, report_group, visa_checkout_id, industry_data_type, authorization_options, capture_options, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, wallet_type, national_net_domestic_data, japan_payment_options, mobile_remote_payment_type, extended_credit_total_count, network_routing_order].hash
+      [action_list, capture, processor_id, business_application_id, commerce_indicator, payment_solution, reconciliation_id, link_id, purchase_level, report_group, visa_checkout_id, industry_data_type, authorization_options, capture_options, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, wallet_type, national_net_domestic_data, japan_payment_options, mobile_remote_payment_type, extended_credit_total_count, network_routing_order].hash
     end
 
     # Builds the object from hash

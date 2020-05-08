@@ -34,7 +34,7 @@ describe 'PaymentsApi' do
 
   # unit tests for create_payment
   # Process a Payment
-  # Authorize the payment for the transaction. 
+  # Authorize the payment for the transaction. Authorization can be requested with Capture, Decision Manager, Payer Authentication(3ds). Find more on [Authorization with Add-On Features page.] (https://developer.cybersource.com/api/authorization-add-ons.html) 
   # @param create_payment_request 
   # @param [Hash] opts the optional parameters
   # @return [PtsV2PaymentsPost201Response]

@@ -33,9 +33,9 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'legs' => :'Array<Riskv1authenticationsTravelInformationLegs>',
+        :'legs' => :'Array<Riskv1decisionsTravelInformationLegs>',
         :'number_of_passengers' => :'Integer',
-        :'passengers' => :'Array<Riskv1authenticationsTravelInformationPassengers>'
+        :'passengers' => :'Array<Riskv1decisionsTravelInformationPassengers>'
       }
     end
 

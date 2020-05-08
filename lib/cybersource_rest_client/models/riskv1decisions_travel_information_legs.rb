@@ -20,15 +20,19 @@ module CyberSource
     # Use to specify the airport code for the destination of the leg of the trip, which is designated by the pound (#) symbol in the field name. This code is usually three digits long, for example: SFO = San Francisco. Do not use the colon (:) or the dash (-). For airport codes, see [IATA Airline and Airport Code Search](https://www.iata.org/publications/Pages/code-search.aspx). The leg number can be a positive integer from 0 to N. For example:  `travelInformation.legs.0.destination=SFO` `travelInformation.legs.1.destination=SFO`  **Note** In your request, send either the complete route or the individual legs (`legs.0.origination` and `legs.n.destination`). If you send all the fields, the complete route takes precedence over the individual legs.  For details, see the `decision_manager_travel_leg#_dest` field description in _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
     attr_accessor :destination
 
-    # Departure date and time for the each leg of the trip. Use one of the following formats: - `yyyy-MM-dd HH:mm z` - `yyyy-MM-dd hh:mm a z` - `yyyy-MM-dd hh:mma z`  Where:\\ `HH` = hour in 24-hour format\\ `hh` = hour in 12-hour format\\ `a` = am or pm (case insensitive)\\ `z` = time zone of the departing flight. For example, if the airline is based in city A, but the flight departs from city B, `z` is the time zone of city B at the time of departure.\\ **Important** For travel information, use GMT instead of UTC, or use the local time zone.  #### Examples  2011-03-20 11:30 PM PDT\\ 2011-03-20 11:30pm GMT\\ 2011-03-20 11:30pm GMT-05:00\\ Eastern Standard Time: GMT-05:00 or EST\\  **Note** When specifying an offset from GMT, the format must be exactly as specified in the example. Insert no spaces between the time zone and the offset. 
-    attr_accessor :departure_date_time
+    # International Air Transport Association (IATA) code for the carrier for this leg of the trip. Required for each leg. Required for American Express SafeKey (U.S.) for travel-related requests.  For details, see `airline_leg#_carrier_code` in [Airline Processing Using the SCMP API.] (https://apps.cybersource.com/library/documentation/dev_guides/Airline_SCMP_API/Airline_SCMP_API.pdf) 
+    attr_accessor :carrier_code
+
+    # Departure date for the first leg of the trip. Format: YYYYMMDD. Required for American Express SafeKey (U.S.) for travel-related requests.  For details, see `airline_leg#_leg_departure_date` in [Airline Processing Using the SCMP API.] (https://apps.cybersource.com/library/documentation/dev_guides/Airline_SCMP_API/Airline_SCMP_API.pdf) 
+    attr_accessor :departure_date
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'origination' => :'origination',
         :'destination' => :'destination',
-        :'departure_date_time' => :'departureDateTime'
+        :'carrier_code' => :'carrierCode',
+        :'departure_date' => :'departureDate'
       }
     end
 
@@ -37,7 +41,8 @@ module CyberSource
       {
         :'origination' => :'String',
         :'destination' => :'String',
-        :'departure_date_time' => :'String'
+        :'carrier_code' => :'String',
+        :'departure_date' => :'String'
       }
     end
 
@@ -57,8 +62,12 @@ module CyberSource
         self.destination = attributes[:'destination']
       end
 
-      if attributes.has_key?(:'departureDateTime')
-        self.departure_date_time = attributes[:'departureDateTime']
+      if attributes.has_key?(:'carrierCode')
+        self.carrier_code = attributes[:'carrierCode']
+      end
+
+      if attributes.has_key?(:'departureDate')
+        self.departure_date = attributes[:'departureDate']
       end
     end
 
@@ -74,8 +83,8 @@ module CyberSource
         invalid_properties.push('invalid value for "destination", the character length must be smaller than or equal to 3.')
       end
 
-      if !@departure_date_time.nil? && @departure_date_time.to_s.length > 25
-        invalid_properties.push('invalid value for "departure_date_time", the character length must be smaller than or equal to 25.')
+      if !@carrier_code.nil? && @carrier_code.to_s.length > 2
+        invalid_properties.push('invalid value for "carrier_code", the character length must be smaller than or equal to 2.')
       end
 
       invalid_properties
@@ -86,7 +95,7 @@ module CyberSource
     def valid?
       return false if !@origination.nil? && @origination.to_s.length > 3
       return false if !@destination.nil? && @destination.to_s.length > 3
-      return false if !@departure_date_time.nil? && @departure_date_time.to_s.length > 25
+      return false if !@carrier_code.nil? && @carrier_code.to_s.length > 2
       true
     end
 
@@ -111,13 +120,13 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] departure_date_time Value to be assigned
-    def departure_date_time=(departure_date_time)
-      if !departure_date_time.nil? && departure_date_time.to_s.length > 25
-        fail ArgumentError, 'invalid value for "departure_date_time", the character length must be smaller than or equal to 25.'
+    # @param [Object] carrier_code Value to be assigned
+    def carrier_code=(carrier_code)
+      if !carrier_code.nil? && carrier_code.to_s.length > 2
+        fail ArgumentError, 'invalid value for "carrier_code", the character length must be smaller than or equal to 2.'
       end
 
-      @departure_date_time = departure_date_time
+      @carrier_code = carrier_code
     end
 
     # Checks equality by comparing each attribute.
@@ -127,7 +136,8 @@ module CyberSource
       self.class == o.class &&
           origination == o.origination &&
           destination == o.destination &&
-          departure_date_time == o.departure_date_time
+          carrier_code == o.carrier_code &&
+          departure_date == o.departure_date
     end
 
     # @see the `==` method
@@ -139,7 +149,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [origination, destination, departure_date_time].hash
+      [origination, destination, carrier_code, departure_date].hash
     end
 
     # Builds the object from hash

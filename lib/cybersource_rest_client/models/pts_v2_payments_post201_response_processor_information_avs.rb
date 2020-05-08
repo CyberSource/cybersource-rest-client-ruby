@@ -14,10 +14,10 @@ require 'date'
 
 module CyberSource
   class PtsV2PaymentsPost201ResponseProcessorInformationAvs
-    # AVS result code. 
+    # AVS result code.  Returned by authorization service. 
     attr_accessor :code
 
-    # AVS result code sent directly from the processor. Returned only when the processor returns this value. Important Do not use this field to evaluate the result of AVS. Use for debugging purposes only. 
+    # AVS result code sent directly from the processor. Returned only when the processor returns this value. **Important** Do not use this field to evaluate the result of AVS. Use for debugging purposes only.  Returned by authorization service. 
     attr_accessor :code_raw
 
     # Attribute mapping from ruby-style variable name to JSON key.

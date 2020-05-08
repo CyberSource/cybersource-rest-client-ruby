@@ -19,11 +19,14 @@ module CyberSource
     # Specifies one of the following types of events: - login - account_creation - account_update For regular payment transactions, do not send this field. 
     attr_accessor :event_type
 
+    attr_accessor :buyer_history
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'profile' => :'profile',
-        :'event_type' => :'eventType'
+        :'event_type' => :'eventType',
+        :'buyer_history' => :'buyerHistory'
       }
     end
 
@@ -31,7 +34,8 @@ module CyberSource
     def self.swagger_types
       {
         :'profile' => :'Ptsv2paymentsRiskInformationProfile',
-        :'event_type' => :'String'
+        :'event_type' => :'String',
+        :'buyer_history' => :'Ptsv2paymentsRiskInformationBuyerHistory'
       }
     end
 
@@ -49,6 +53,10 @@ module CyberSource
 
       if attributes.has_key?(:'eventType')
         self.event_type = attributes[:'eventType']
+      end
+
+      if attributes.has_key?(:'buyerHistory')
+        self.buyer_history = attributes[:'buyerHistory']
       end
     end
 
@@ -86,7 +94,8 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           profile == o.profile &&
-          event_type == o.event_type
+          event_type == o.event_type &&
+          buyer_history == o.buyer_history
     end
 
     # @see the `==` method
@@ -98,7 +107,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [profile, event_type].hash
+      [profile, event_type, buyer_history].hash
     end
 
     # Builds the object from hash

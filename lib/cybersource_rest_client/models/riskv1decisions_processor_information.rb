@@ -17,17 +17,21 @@ module CyberSource
   class Riskv1decisionsProcessorInformation
     attr_accessor :avs
 
+    attr_accessor :card_verification
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'avs' => :'avs'
+        :'avs' => :'avs',
+        :'card_verification' => :'cardVerification'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'avs' => :'Riskv1decisionsProcessorInformationAvs'
+        :'avs' => :'Riskv1decisionsProcessorInformationAvs',
+        :'card_verification' => :'Riskv1decisionsProcessorInformationCardVerification'
       }
     end
 
@@ -41,6 +45,10 @@ module CyberSource
 
       if attributes.has_key?(:'avs')
         self.avs = attributes[:'avs']
+      end
+
+      if attributes.has_key?(:'cardVerification')
+        self.card_verification = attributes[:'cardVerification']
       end
     end
 
@@ -62,7 +70,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          avs == o.avs
+          avs == o.avs &&
+          card_verification == o.card_verification
     end
 
     # @see the `==` method
@@ -74,7 +83,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [avs].hash
+      [avs, card_verification].hash
     end
 
     # Builds the object from hash

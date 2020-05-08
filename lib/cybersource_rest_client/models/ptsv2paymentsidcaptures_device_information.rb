@@ -17,7 +17,7 @@ module CyberSource
     # DNS resolved hostname from `ipAddress`.
     attr_accessor :host_name
 
-    # IP address of the customer. 
+    # IP address of the customer.  #### Used by **Authorization, Capture, and Credit** Optional field. 
     attr_accessor :ip_address
 
     # Customer’s browser as identified from the HTTP header data. For example, `Mozilla` is the value that identifies the Netscape browser. 
