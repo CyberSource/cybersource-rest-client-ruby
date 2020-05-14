@@ -28,7 +28,10 @@ module CyberSource
     attr_accessor :default_headers
 
     # Defines the client ID for the SDK
-    attr_accessor :client_id
+    attr_accessor :client_id    
+
+    # Defines the user-defined Accept Header Type
+    attr_accessor :accept_header
 
     # Initializes the ApiClient
     # @option config [Configuration] Configuration for initializing the object, default to Configuration.default
@@ -43,6 +46,10 @@ module CyberSource
       @client_id = 'cybs-rest-sdk-ruby-' + Gem.loaded_specs["cybersource_rest_client"].version.to_s
     end
 
+    def set_user_defined_accept_header(accept_type)
+      @accept_header = accept_type
+    end
+
     def self.default
       @@default ||= ApiClient.new
     end
@@ -52,6 +59,11 @@ module CyberSource
     # @return [Array<(Object, Fixnum, Hash)>] an array of 3 elements:
     #   the data deserialized from response body (could be nil), response status code and response headers.
     def call_api(http_method, path, opts = {})
+      if @accept_header != ''
+        default_accept_header = ',' + (opts[:header_params])['Accept']
+        default_accept_header = @accept_header + default_accept_header.sub(',' + @accept_header, '')
+        opts[:header_params]['Accept'] = default_accept_header
+      end
       request = build_request(http_method, path, opts)
       response = request.run
 
