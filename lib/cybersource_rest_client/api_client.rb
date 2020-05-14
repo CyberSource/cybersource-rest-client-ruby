@@ -59,7 +59,7 @@ module CyberSource
     # @return [Array<(Object, Fixnum, Hash)>] an array of 3 elements:
     #   the data deserialized from response body (could be nil), response status code and response headers.
     def call_api(http_method, path, opts = {})
-      if @accept_header != ''
+      unless @accept_header.nil? || @accept_header.empty?
         default_accept_header = ',' + (opts[:header_params])['Accept']
         default_accept_header = @accept_header + default_accept_header.sub(',' + @accept_header, '')
         opts[:header_params]['Accept'] = default_accept_header
