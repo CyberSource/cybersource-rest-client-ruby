@@ -50,7 +50,7 @@ module CyberSource
         fail ArgumentError, "Missing the required parameter 'report_definition_name_version' when calling DownloadDTDApi.get_dtdv2"
       end
       # resource path
-      local_var_path = 'dtds/{reportDefinitionNameVersion}'.sub('{' + 'reportDefinitionNameVersion' + '}', report_definition_name_version.to_s)
+      local_var_path = 'reporting/v3/dtds/{reportDefinitionNameVersion}'.sub('{' + 'reportDefinitionNameVersion' + '}', report_definition_name_version.to_s)
 
       # query parameters
       query_params = {}

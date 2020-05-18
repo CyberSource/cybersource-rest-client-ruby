@@ -4,15 +4,15 @@ All URIs are relative to *https://apitest.cybersource.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_users**](UserManagementApi.md#get_users) | **GET** /ums/v1/users | Get User Information
+[**get_users**](UserManagementApi.md#get_users) | **GET** /ums/v1/users | Get User Information - Deprecated
 
 
 # **get_users**
 > UmsV1UsersGet200Response get_users(opts)
 
-Get User Information
+Get User Information - Deprecated
 
-This endpoint is to get all the user information depending on the filter criteria passed in the query.
+This endpoint is deprecated. Please use the search end point.
 
 ### Example
 ```ruby
@@ -29,7 +29,7 @@ opts = {
 }
 
 begin
-  #Get User Information
+  #Get User Information - Deprecated
   result = api_instance.get_users(opts)
   p result
 rescue CyberSource::ApiError => e

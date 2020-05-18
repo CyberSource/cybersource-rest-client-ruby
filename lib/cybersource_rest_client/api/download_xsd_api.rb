@@ -50,7 +50,7 @@ module CyberSource
         fail ArgumentError, "Missing the required parameter 'report_definition_name_version' when calling DownloadXSDApi.get_xsdv2"
       end
       # resource path
-      local_var_path = 'xsds/{reportDefinitionNameVersion}'.sub('{' + 'reportDefinitionNameVersion' + '}', report_definition_name_version.to_s)
+      local_var_path = 'reporting/v3/xsds/{reportDefinitionNameVersion}'.sub('{' + 'reportDefinitionNameVersion' + '}', report_definition_name_version.to_s)
 
       # query parameters
       query_params = {}

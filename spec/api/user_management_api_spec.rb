@@ -33,8 +33,8 @@ describe 'UserManagementApi' do
   end
 
   # unit tests for get_users
-  # Get User Information
-  # This endpoint is to get all the user information depending on the filter criteria passed in the query.
+  # Get User Information - Deprecated
+  # This endpoint is deprecated. Please use the search end point.
   # @param [Hash] opts the optional parameters
   # @option opts [String] :organization_id This is the orgId of the organization which the user belongs to.
   # @option opts [String] :user_name User ID of the user you want to get details on.

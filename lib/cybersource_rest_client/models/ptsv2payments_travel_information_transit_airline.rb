@@ -34,7 +34,7 @@ module CyberSource
     # Type of charge. Possible values: - 01: Charge is for an airline ticket - 02: Charge is for an item that is not an airline ticket 
     attr_accessor :transaction_type
 
-    # Airline process identifier. This value is the airline’s three-digit IATA1 code which is used to process extended payment airline tickets.. 
+    # The field is not currently supported. 
     attr_accessor :extended_payment_code
 
     # Name of the passenger to whom the ticket was issued. This will always be a single passenger's name. If there are more than one passengers, provide only the primary passenger's name. Do not include special characters such as commas, hyphens, or apostrophes. Only ASCII characters are supported. 
@@ -46,10 +46,10 @@ module CyberSource
     # Airline document type code that specifies the purpose of the transaction. For the possible values, see Appendix A, \"Airline Document Type Codes\". 
     attr_accessor :document_type
 
-    # Ticket number or a value that might be a booking reference number. 
+    # The field is not currently supported. 
     attr_accessor :document_number
 
-    # Number of travel legs. Numbering for the travel legs: 0 to 3. 
+    # The field is not currently supported. 
     attr_accessor :document_number_of_parts
 
     # Invoice number for the airline transaction. 
@@ -115,7 +115,7 @@ module CyberSource
     # Fee for exchanging the ticket. Format: English characters only 
     attr_accessor :exchange_ticket_fee_amount
 
-    # Type of journey such as one way or round trip. 
+    # The field is not currently supported. 
     attr_accessor :reservation_type
 
     # Boarding fee. 

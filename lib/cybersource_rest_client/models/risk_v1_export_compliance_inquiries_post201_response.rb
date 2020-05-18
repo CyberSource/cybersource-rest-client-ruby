@@ -19,7 +19,7 @@ module CyberSource
     # An unique identification number assigned by CyberSource to identify the submitted request. It is also appended to the endpoint of the resource.  On incremental authorizations, this value with be the same as the identification number returned in the original authorization response. 
     attr_accessor :id
 
-    # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` Example `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC. 
+    # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` Example `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC.  Returned by authorization service. 
     attr_accessor :submit_time_utc
 
     # Time that the transaction was submitted in local time.
@@ -27,9 +27,6 @@ module CyberSource
 
     # The status for the call can be: - COMPLETED - INVALID_REQUEST - DECLINED 
     attr_accessor :status
-
-    # The reason of the status. Value can be   - CUSTOMER_WATCHLIST_MATCH   - ADDRESS_COUNTRY_WATCHLIST_MATCH   - EMAIL_COUNTRY_WATCHLIST_MATCH   - IP_COUNTRY_WATCHLIST_MATCH 
-    attr_accessor :reason
 
     # The message describing the reason of the status. Value can be   - The customer matched the Denied Parties List   - The Export bill_country/ship_country  match   - Export email_country match   - Export hostname_country/ip_country match 
     attr_accessor :message
@@ -48,7 +45,6 @@ module CyberSource
         :'submit_time_utc' => :'submitTimeUtc',
         :'submit_time_local' => :'submitTimeLocal',
         :'status' => :'status',
-        :'reason' => :'reason',
         :'message' => :'message',
         :'client_reference_information' => :'clientReferenceInformation',
         :'export_compliance_information' => :'exportComplianceInformation',
@@ -64,11 +60,10 @@ module CyberSource
         :'submit_time_utc' => :'String',
         :'submit_time_local' => :'String',
         :'status' => :'String',
-        :'reason' => :'String',
         :'message' => :'String',
         :'client_reference_information' => :'PtsV2IncrementalAuthorizationPatch201ResponseClientReferenceInformation',
         :'export_compliance_information' => :'RiskV1ExportComplianceInquiriesPost201ResponseExportComplianceInformation',
-        :'error_information' => :'PtsV2PaymentsPost201ResponseErrorInformation'
+        :'error_information' => :'RiskV1ExportComplianceInquiriesPost201ResponseErrorInformation'
       }
     end
 
@@ -98,10 +93,6 @@ module CyberSource
 
       if attributes.has_key?(:'status')
         self.status = attributes[:'status']
-      end
-
-      if attributes.has_key?(:'reason')
-        self.reason = attributes[:'reason']
       end
 
       if attributes.has_key?(:'message')
@@ -159,7 +150,6 @@ module CyberSource
           submit_time_utc == o.submit_time_utc &&
           submit_time_local == o.submit_time_local &&
           status == o.status &&
-          reason == o.reason &&
           message == o.message &&
           client_reference_information == o.client_reference_information &&
           export_compliance_information == o.export_compliance_information &&
@@ -175,7 +165,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, submit_time_utc, submit_time_local, status, reason, message, client_reference_information, export_compliance_information, error_information].hash
+      [_links, id, submit_time_utc, submit_time_local, status, message, client_reference_information, export_compliance_information, error_information].hash
     end
 
     # Builds the object from hash

@@ -21,7 +21,7 @@ module CyberSource
 	  @api_client.set_configuration(config)
     end
     # Refund a Capture
-    # Include the capture ID in the POST request to refund the captured amount. 
+    # Refund a capture API is only used, if you have requested Capture independenlty using [/pts/v2/payments/{id}/captures](https://developer.cybersource.com/api-reference-assets/index.html#payments_capture) API call Include the capture ID in the POST request to refund the captured amount. 
     # @param refund_capture_request 
     # @param id The capture ID. This ID is returned from a previous capture request.
     # @param [Hash] opts the optional parameters
@@ -32,7 +32,7 @@ module CyberSource
     end
 
     # Refund a Capture
-    # Include the capture ID in the POST request to refund the captured amount. 
+    # Refund a capture API is only used, if you have requested Capture independenlty using [/pts/v2/payments/{id}/captures](https://developer.cybersource.com/api-reference-assets/index.html#payments_capture) API call Include the capture ID in the POST request to refund the captured amount. 
     # @param refund_capture_request 
     # @param id The capture ID. This ID is returned from a previous capture request.
     # @param [Hash] opts the optional parameters
@@ -92,7 +92,7 @@ module CyberSource
       return data, status_code, headers
     end
     # Refund a Payment
-    # Include the payment ID in the POST request to refund the payment amount. 
+    # Refund a Payment API is only used, if you have requested Authorization and Capture together in [/pts/v2/payments](https://developer.cybersource.com/api-reference-assets/index.html#payments_payments) API call.  Include the payment ID in the POST request to refund the payment amount. 
     # @param refund_payment_request 
     # @param id The payment ID. This ID is returned from a previous payment request.
     # @param [Hash] opts the optional parameters
@@ -103,7 +103,7 @@ module CyberSource
     end
 
     # Refund a Payment
-    # Include the payment ID in the POST request to refund the payment amount. 
+    # Refund a Payment API is only used, if you have requested Authorization and Capture together in [/pts/v2/payments](https://developer.cybersource.com/api-reference-assets/index.html#payments_payments) API call.  Include the payment ID in the POST request to refund the payment amount. 
     # @param refund_payment_request 
     # @param id The payment ID. This ID is returned from a previous payment request.
     # @param [Hash] opts the optional parameters

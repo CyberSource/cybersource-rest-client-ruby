@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class Riskv1liststypeentriesDeviceInformation
-    # IP address of the customer. 
+    # IP address of the customer.  #### Used by **Authorization, Capture, and Credit** Optional field. 
     attr_accessor :ip_address
 
     # Network IP address of the customer (for example, 10.1.27). A network IP address includes up to 256 IP addresses. 

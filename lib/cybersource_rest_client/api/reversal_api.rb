@@ -91,8 +91,8 @@ module CyberSource
 	  end
       return data, status_code, headers
     end
-    # Merchant Initiated Reversal
-    # This is to reverse a previous payment that merchant does not receive a reply.
+    # Timeout Reversal
+    # This is to reverse a previous payment that merchant does not receive a reply(Mostly due to Timeout). To use this feature/API, make sure to pass unique value to field - clientReferenceInformation -> transactionId in [/pts/v2/payments](https://developer.cybersource.com/api-reference-assets/index.html#payments_payments) API call and use same transactionId in this API request payload to reverse the payment.
     # @param mit_reversal_request 
     # @param [Hash] opts the optional parameters
     # @return [PtsV2PaymentsReversalsPost201Response]
@@ -101,8 +101,8 @@ module CyberSource
       return data, status_code, headers
     end
 
-    # Merchant Initiated Reversal
-    # This is to reverse a previous payment that merchant does not receive a reply.
+    # Timeout Reversal
+    # This is to reverse a previous payment that merchant does not receive a reply(Mostly due to Timeout). To use this feature/API, make sure to pass unique value to field - clientReferenceInformation -&gt; transactionId in [/pts/v2/payments](https://developer.cybersource.com/api-reference-assets/index.html#payments_payments) API call and use same transactionId in this API request payload to reverse the payment.
     # @param mit_reversal_request 
     # @param [Hash] opts the optional parameters
     # @return [Array<(PtsV2PaymentsReversalsPost201Response, Fixnum, Hash)>] PtsV2PaymentsReversalsPost201Response data, response status code and response headers

@@ -5,7 +5,7 @@ All URIs are relative to *https://apitest.cybersource.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**add_negative**](DecisionManagerApi.md#add_negative) | **POST** /risk/v1/lists/{type}/entries | List Management
-[**create_decision_manager_case**](DecisionManagerApi.md#create_decision_manager_case) | **POST** /risk/v1/decisions | Create Decision Manager Case
+[**create_bundled_decision_manager_case**](DecisionManagerApi.md#create_bundled_decision_manager_case) | **POST** /risk/v1/decisions | Create Decision Manager Case
 [**fraud_update**](DecisionManagerApi.md#fraud_update) | **POST** /risk/v1/decisions/{id}/marking | Fraud Marking
 
 
@@ -59,12 +59,12 @@ No authorization required
 
 
 
-# **create_decision_manager_case**
-> RiskV1DecisionsPost201Response create_decision_manager_case(create_decision_manager_case_request)
+# **create_bundled_decision_manager_case**
+> RiskV1DecisionsPost201Response create_bundled_decision_manager_case(create_bundled_decision_manager_case_request)
 
 Create Decision Manager Case
 
-This is the combined request to the Decision Manager Service for a transaction sent to Cybersource. Decision Manager will return a decision based on the request values. 
+This is the combined request to the Decision Manager Service for a transaction sent to Cybersource. Decision Manager will return a decision based on the request values.
 
 ### Example
 ```ruby
@@ -73,15 +73,15 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::DecisionManagerApi.new
 
-create_decision_manager_case_request = CyberSource::CreateDecisionManagerCaseRequest.new # CreateDecisionManagerCaseRequest | 
+create_bundled_decision_manager_case_request = CyberSource::CreateBundledDecisionManagerCaseRequest.new # CreateBundledDecisionManagerCaseRequest | 
 
 
 begin
   #Create Decision Manager Case
-  result = api_instance.create_decision_manager_case(create_decision_manager_case_request)
+  result = api_instance.create_bundled_decision_manager_case(create_bundled_decision_manager_case_request)
   p result
 rescue CyberSource::ApiError => e
-  puts "Exception when calling DecisionManagerApi->create_decision_manager_case: #{e}"
+  puts "Exception when calling DecisionManagerApi->create_bundled_decision_manager_case: #{e}"
 end
 ```
 
@@ -89,7 +89,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_decision_manager_case_request** | [**CreateDecisionManagerCaseRequest**](CreateDecisionManagerCaseRequest.md)|  | 
+ **create_bundled_decision_manager_case_request** | [**CreateBundledDecisionManagerCaseRequest**](CreateBundledDecisionManagerCaseRequest.md)|  | 
 
 ### Return type
 

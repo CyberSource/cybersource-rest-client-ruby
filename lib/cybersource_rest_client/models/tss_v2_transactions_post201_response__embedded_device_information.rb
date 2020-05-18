@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsPost201ResponseEmbeddedDeviceInformation
-    # IP address of the customer. 
+    # IP address of the customer.  #### Used by **Authorization, Capture, and Credit** Optional field. 
     attr_accessor :ip_address
 
     # Attribute mapping from ruby-style variable name to JSON key.

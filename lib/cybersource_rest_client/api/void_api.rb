@@ -20,8 +20,8 @@ module CyberSource
       @api_client = api_client
 	  @api_client.set_configuration(config)
     end
-    # Merchant Initiated Void
-    # This is to void a previous payment, capture, refund, or credit that merchant does not receive a reply.
+    # Timeout Void
+    # This is to void a previous payment, capture, refund, or credit that merchant does not receive a reply(Mostly due to timeout). This is to void a previous payment, capture, refund, or credit that merchant does not receive a reply(Mostly due to Timeout). To use this feature/API, make sure to pass unique value to field - clientReferenceInformation -> transactionId in your payment, capture, refund, or credit API call and use same transactionId in this API request payload to reverse the payment.
     # @param mit_void_request 
     # @param [Hash] opts the optional parameters
     # @return [PtsV2PaymentsVoidsPost201Response]
@@ -30,8 +30,8 @@ module CyberSource
       return data, status_code, headers
     end
 
-    # Merchant Initiated Void
-    # This is to void a previous payment, capture, refund, or credit that merchant does not receive a reply.
+    # Timeout Void
+    # This is to void a previous payment, capture, refund, or credit that merchant does not receive a reply(Mostly due to timeout). This is to void a previous payment, capture, refund, or credit that merchant does not receive a reply(Mostly due to Timeout). To use this feature/API, make sure to pass unique value to field - clientReferenceInformation -&gt; transactionId in your payment, capture, refund, or credit API call and use same transactionId in this API request payload to reverse the payment.
     # @param mit_void_request 
     # @param [Hash] opts the optional parameters
     # @return [Array<(PtsV2PaymentsVoidsPost201Response, Fixnum, Hash)>] PtsV2PaymentsVoidsPost201Response data, response status code and response headers
@@ -86,7 +86,7 @@ module CyberSource
       return data, status_code, headers
     end
     # Void a Capture
-    # Include the capture ID in the POST request to cancel the capture.
+    # Refund a capture API is only used, if you have requested Capture independenlty using [/pts/v2/payments/{id}/captures](https://developer.cybersource.com/api-reference-assets/index.html#payments_capture) API call.  Include the capture ID in the POST request to cancel the capture. 
     # @param void_capture_request 
     # @param id The capture ID returned from a previous capture request.
     # @param [Hash] opts the optional parameters
@@ -97,7 +97,7 @@ module CyberSource
     end
 
     # Void a Capture
-    # Include the capture ID in the POST request to cancel the capture.
+    # Refund a capture API is only used, if you have requested Capture independenlty using [/pts/v2/payments/{id}/captures](https://developer.cybersource.com/api-reference-assets/index.html#payments_capture) API call.  Include the capture ID in the POST request to cancel the capture. 
     # @param void_capture_request 
     # @param id The capture ID returned from a previous capture request.
     # @param [Hash] opts the optional parameters
@@ -228,7 +228,7 @@ module CyberSource
       return data, status_code, headers
     end
     # Void a Payment
-    # Include the payment ID in the POST request to cancel the payment.
+    # Void a Payment API is only used, if you have requested Authorization and Capture together in [/pts/v2/payments](https://developer.cybersource.com/api-reference-assets/index.html#payments_payments) API call.  Include the payment ID in the POST request to cancel the payment. 
     # @param void_payment_request 
     # @param id The payment ID returned from a previous payment request.
     # @param [Hash] opts the optional parameters
@@ -239,7 +239,7 @@ module CyberSource
     end
 
     # Void a Payment
-    # Include the payment ID in the POST request to cancel the payment.
+    # Void a Payment API is only used, if you have requested Authorization and Capture together in [/pts/v2/payments](https://developer.cybersource.com/api-reference-assets/index.html#payments_payments) API call.  Include the payment ID in the POST request to cancel the payment. 
     # @param void_payment_request 
     # @param id The payment ID returned from a previous payment request.
     # @param [Hash] opts the optional parameters

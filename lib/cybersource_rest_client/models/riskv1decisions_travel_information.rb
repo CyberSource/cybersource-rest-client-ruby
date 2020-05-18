@@ -28,6 +28,11 @@ module CyberSource
 
     attr_accessor :legs
 
+    # Number of passengers for whom the ticket was issued. If you do not include this field in your request, CyberSource uses a default value of 1. Required for American Express SafeKey (U.S.) for travel-related requests. 
+    attr_accessor :number_of_passengers
+
+    attr_accessor :passengers
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -35,7 +40,9 @@ module CyberSource
         :'complete_route' => :'completeRoute',
         :'departure_time' => :'departureTime',
         :'journey_type' => :'journeyType',
-        :'legs' => :'legs'
+        :'legs' => :'legs',
+        :'number_of_passengers' => :'numberOfPassengers',
+        :'passengers' => :'passengers'
       }
     end
 
@@ -46,7 +53,9 @@ module CyberSource
         :'complete_route' => :'String',
         :'departure_time' => :'String',
         :'journey_type' => :'String',
-        :'legs' => :'Array<Riskv1decisionsTravelInformationLegs>'
+        :'legs' => :'Array<Riskv1decisionsTravelInformationLegs>',
+        :'number_of_passengers' => :'Integer',
+        :'passengers' => :'Array<Riskv1decisionsTravelInformationPassengers>'
       }
     end
 
@@ -77,6 +86,16 @@ module CyberSource
       if attributes.has_key?(:'legs')
         if (value = attributes[:'legs']).is_a?(Array)
           self.legs = value
+        end
+      end
+
+      if attributes.has_key?(:'numberOfPassengers')
+        self.number_of_passengers = attributes[:'numberOfPassengers']
+      end
+
+      if attributes.has_key?(:'passengers')
+        if (value = attributes[:'passengers']).is_a?(Array)
+          self.passengers = value
         end
       end
     end
@@ -163,7 +182,9 @@ module CyberSource
           complete_route == o.complete_route &&
           departure_time == o.departure_time &&
           journey_type == o.journey_type &&
-          legs == o.legs
+          legs == o.legs &&
+          number_of_passengers == o.number_of_passengers &&
+          passengers == o.passengers
     end
 
     # @see the `==` method
@@ -175,7 +196,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [actual_final_destination, complete_route, departure_time, journey_type, legs].hash
+      [actual_final_destination, complete_route, departure_time, journey_type, legs, number_of_passengers, passengers].hash
     end
 
     # Builds the object from hash

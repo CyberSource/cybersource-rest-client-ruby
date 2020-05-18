@@ -112,7 +112,7 @@ No authorization required
 
 
 # **delete_subscription**
-> delete_subscription(report_name)
+> delete_subscription(report_name, opts)
 
 Delete Subscription of a Report Name by Organization
 
@@ -127,10 +127,13 @@ api_instance = CyberSource::ReportSubscriptionsApi.new
 
 report_name = "report_name_example" # String | Name of the Report to Delete
 
+opts = { 
+  organization_id: "organization_id_example" # String | Valid Cybersource Organization Id
+}
 
 begin
   #Delete Subscription of a Report Name by Organization
-  api_instance.delete_subscription(report_name)
+  api_instance.delete_subscription(report_name, opts)
 rescue CyberSource::ApiError => e
   puts "Exception when calling ReportSubscriptionsApi->delete_subscription: #{e}"
 end
@@ -141,6 +144,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **report_name** | **String**| Name of the Report to Delete | 
+ **organization_id** | **String**| Valid Cybersource Organization Id | [optional] 
 
 ### Return type
 
@@ -158,7 +162,7 @@ No authorization required
 
 
 # **get_all_subscriptions**
-> ReportingV3ReportSubscriptionsGet200Response get_all_subscriptions
+> ReportingV3ReportSubscriptionsGet200Response get_all_subscriptions(opts)
 
 Get All Subscriptions
 
@@ -171,9 +175,13 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::ReportSubscriptionsApi.new
 
+opts = { 
+  organization_id: "organization_id_example" # String | Valid Cybersource Organization Id
+}
+
 begin
   #Get All Subscriptions
-  result = api_instance.get_all_subscriptions
+  result = api_instance.get_all_subscriptions(opts)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling ReportSubscriptionsApi->get_all_subscriptions: #{e}"
@@ -181,7 +189,10 @@ end
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization_id** | **String**| Valid Cybersource Organization Id | [optional] 
 
 ### Return type
 
@@ -199,7 +210,7 @@ No authorization required
 
 
 # **get_subscription**
-> ReportingV3ReportSubscriptionsGet200ResponseSubscriptions get_subscription(report_name)
+> ReportingV3ReportSubscriptionsGet200ResponseSubscriptions get_subscription(report_name, opts)
 
 Get Subscription for Report Name
 
@@ -214,10 +225,13 @@ api_instance = CyberSource::ReportSubscriptionsApi.new
 
 report_name = "report_name_example" # String | Name of the Report to Retrieve
 
+opts = { 
+  organization_id: "organization_id_example" # String | Valid Cybersource Organization Id
+}
 
 begin
   #Get Subscription for Report Name
-  result = api_instance.get_subscription(report_name)
+  result = api_instance.get_subscription(report_name, opts)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling ReportSubscriptionsApi->get_subscription: #{e}"
@@ -229,6 +243,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **report_name** | **String**| Name of the Report to Retrieve | 
+ **organization_id** | **String**| Valid Cybersource Organization Id | [optional] 
 
 ### Return type
 

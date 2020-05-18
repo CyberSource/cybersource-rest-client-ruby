@@ -56,7 +56,7 @@ module CyberSource
         :'pre_order' => :'String',
         :'pre_order_date' => :'String',
         :'reordered' => :'BOOLEAN',
-        :'ship_to' => :'Riskv1authenticationsOrderInformationShipTo',
+        :'ship_to' => :'Riskv1decisionsOrderInformationShipTo',
         :'line_items' => :'Array<Riskv1authenticationsOrderInformationLineItems>',
         :'bill_to' => :'Riskv1authenticationsOrderInformationBillTo',
         :'total_offers_count' => :'String'

@@ -19,18 +19,24 @@ module CyberSource
     # An unique identification number assigned by CyberSource to identify the submitted request. It is also appended to the endpoint of the resource.  On incremental authorizations, this value with be the same as the identification number returned in the original authorization response. 
     attr_accessor :id
 
-    # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` Example `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC. 
+    # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` Example `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC.  Returned by authorization service. 
     attr_accessor :submit_time_utc
 
     # Time that the transaction was submitted in local time.
     attr_accessor :submit_time_local
 
-    # The status of the submitted transaction.  Possible values:   - `ACCEPTED`   - `REJECTED`   - `PENDING_REVIEW`   - `DECLINED`   - `CHALLENGE`   - `PENDING_AUTHENTICATION` 
+    # The status of the submitted transaction.  Possible values:   - `ACCEPTED`   - `REJECTED`   - `PENDING_REVIEW`   - `DECLINED`   - `PENDING_AUTHENTICATION`   - `INVALID_REQUEST`   - `AUTHENTICATION_FAILED`   - `CHALLENGE` 
     attr_accessor :status
 
     attr_accessor :risk_information
 
     attr_accessor :payment_information
+
+    attr_accessor :client_reference_information
+
+    attr_accessor :order_information
+
+    attr_accessor :consumer_authentication_information
 
     attr_accessor :error_information
 
@@ -44,6 +50,9 @@ module CyberSource
         :'status' => :'status',
         :'risk_information' => :'riskInformation',
         :'payment_information' => :'paymentInformation',
+        :'client_reference_information' => :'clientReferenceInformation',
+        :'order_information' => :'orderInformation',
+        :'consumer_authentication_information' => :'consumerAuthenticationInformation',
         :'error_information' => :'errorInformation'
       }
     end
@@ -58,7 +67,10 @@ module CyberSource
         :'status' => :'String',
         :'risk_information' => :'PtsV2PaymentsPost201ResponseRiskInformation',
         :'payment_information' => :'RiskV1DecisionsPost201ResponsePaymentInformation',
-        :'error_information' => :'PtsV2PaymentsPost201ResponseErrorInformation'
+        :'client_reference_information' => :'PtsV2IncrementalAuthorizationPatch201ResponseClientReferenceInformation',
+        :'order_information' => :'RiskV1DecisionsPost201ResponseOrderInformation',
+        :'consumer_authentication_information' => :'RiskV1DecisionsPost201ResponseConsumerAuthenticationInformation',
+        :'error_information' => :'RiskV1DecisionsPost201ResponseErrorInformation'
       }
     end
 
@@ -96,6 +108,18 @@ module CyberSource
 
       if attributes.has_key?(:'paymentInformation')
         self.payment_information = attributes[:'paymentInformation']
+      end
+
+      if attributes.has_key?(:'clientReferenceInformation')
+        self.client_reference_information = attributes[:'clientReferenceInformation']
+      end
+
+      if attributes.has_key?(:'orderInformation')
+        self.order_information = attributes[:'orderInformation']
+      end
+
+      if attributes.has_key?(:'consumerAuthenticationInformation')
+        self.consumer_authentication_information = attributes[:'consumerAuthenticationInformation']
       end
 
       if attributes.has_key?(:'errorInformation')
@@ -143,6 +167,9 @@ module CyberSource
           status == o.status &&
           risk_information == o.risk_information &&
           payment_information == o.payment_information &&
+          client_reference_information == o.client_reference_information &&
+          order_information == o.order_information &&
+          consumer_authentication_information == o.consumer_authentication_information &&
           error_information == o.error_information
     end
 
@@ -155,7 +182,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, submit_time_utc, submit_time_local, status, risk_information, payment_information, error_information].hash
+      [_links, id, submit_time_utc, submit_time_local, status, risk_information, payment_information, client_reference_information, order_information, consumer_authentication_information, error_information].hash
     end
 
     # Builds the object from hash

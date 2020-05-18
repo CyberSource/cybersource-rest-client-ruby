@@ -17,6 +17,15 @@ module CyberSource
   class Riskv1decisionsOrderInformation
     attr_accessor :amount_details
 
+    # Indicates whether cardholder is placing an order with a future availability or release date. This field can contain one of these values: - MERCHANDISE_AVAILABLE: Merchandise available - FUTURE_AVAILABILITY: Future availability 
+    attr_accessor :pre_order
+
+    # Expected date that a pre-ordered purchase will be available. Format: YYYYMMDD 
+    attr_accessor :pre_order_date
+
+    # Indicates whether the cardholder is reordering previously purchased merchandise. This field can contain one of these values: - false: First time ordered - true: Reordered 
+    attr_accessor :reordered
+
     attr_accessor :shipping_details
 
     attr_accessor :ship_to
@@ -29,15 +38,22 @@ module CyberSource
 
     attr_accessor :bill_to
 
+    # Total number of articles/items in the order as a numeric decimal count. Possible values: 00 - 99 
+    attr_accessor :total_offers_count
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'amount_details' => :'amountDetails',
+        :'pre_order' => :'preOrder',
+        :'pre_order_date' => :'preOrderDate',
+        :'reordered' => :'reordered',
         :'shipping_details' => :'shippingDetails',
         :'ship_to' => :'shipTo',
         :'returns_accepted' => :'returnsAccepted',
         :'line_items' => :'lineItems',
-        :'bill_to' => :'billTo'
+        :'bill_to' => :'billTo',
+        :'total_offers_count' => :'totalOffersCount'
       }
     end
 
@@ -45,11 +61,15 @@ module CyberSource
     def self.swagger_types
       {
         :'amount_details' => :'Riskv1decisionsOrderInformationAmountDetails',
+        :'pre_order' => :'String',
+        :'pre_order_date' => :'String',
+        :'reordered' => :'BOOLEAN',
         :'shipping_details' => :'Riskv1decisionsOrderInformationShippingDetails',
         :'ship_to' => :'Riskv1decisionsOrderInformationShipTo',
         :'returns_accepted' => :'BOOLEAN',
         :'line_items' => :'Array<Riskv1decisionsOrderInformationLineItems>',
-        :'bill_to' => :'Riskv1decisionsOrderInformationBillTo'
+        :'bill_to' => :'Riskv1decisionsOrderInformationBillTo',
+        :'total_offers_count' => :'String'
       }
     end
 
@@ -63,6 +83,18 @@ module CyberSource
 
       if attributes.has_key?(:'amountDetails')
         self.amount_details = attributes[:'amountDetails']
+      end
+
+      if attributes.has_key?(:'preOrder')
+        self.pre_order = attributes[:'preOrder']
+      end
+
+      if attributes.has_key?(:'preOrderDate')
+        self.pre_order_date = attributes[:'preOrderDate']
+      end
+
+      if attributes.has_key?(:'reordered')
+        self.reordered = attributes[:'reordered']
       end
 
       if attributes.has_key?(:'shippingDetails')
@@ -86,19 +118,53 @@ module CyberSource
       if attributes.has_key?(:'billTo')
         self.bill_to = attributes[:'billTo']
       end
+
+      if attributes.has_key?(:'totalOffersCount')
+        self.total_offers_count = attributes[:'totalOffersCount']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if !@pre_order_date.nil? && @pre_order_date.to_s.length > 10
+        invalid_properties.push('invalid value for "pre_order_date", the character length must be smaller than or equal to 10.')
+      end
+
+      if !@total_offers_count.nil? && @total_offers_count.to_s.length > 2
+        invalid_properties.push('invalid value for "total_offers_count", the character length must be smaller than or equal to 2.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if !@pre_order_date.nil? && @pre_order_date.to_s.length > 10
+      return false if !@total_offers_count.nil? && @total_offers_count.to_s.length > 2
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] pre_order_date Value to be assigned
+    def pre_order_date=(pre_order_date)
+      if !pre_order_date.nil? && pre_order_date.to_s.length > 10
+        fail ArgumentError, 'invalid value for "pre_order_date", the character length must be smaller than or equal to 10.'
+      end
+
+      @pre_order_date = pre_order_date
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] total_offers_count Value to be assigned
+    def total_offers_count=(total_offers_count)
+      if !total_offers_count.nil? && total_offers_count.to_s.length > 2
+        fail ArgumentError, 'invalid value for "total_offers_count", the character length must be smaller than or equal to 2.'
+      end
+
+      @total_offers_count = total_offers_count
     end
 
     # Checks equality by comparing each attribute.
@@ -107,11 +173,15 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           amount_details == o.amount_details &&
+          pre_order == o.pre_order &&
+          pre_order_date == o.pre_order_date &&
+          reordered == o.reordered &&
           shipping_details == o.shipping_details &&
           ship_to == o.ship_to &&
           returns_accepted == o.returns_accepted &&
           line_items == o.line_items &&
-          bill_to == o.bill_to
+          bill_to == o.bill_to &&
+          total_offers_count == o.total_offers_count
     end
 
     # @see the `==` method
@@ -123,7 +193,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [amount_details, shipping_details, ship_to, returns_accepted, line_items, bill_to].hash
+      [amount_details, pre_order, pre_order_date, reordered, shipping_details, ship_to, returns_accepted, line_items, bill_to, total_offers_count].hash
     end
 
     # Builds the object from hash

@@ -182,6 +182,7 @@ module CyberSource
     # Delete a report subscription for your organization. You must know the unique name of the report you want to delete. 
     # @param report_name Name of the Report to Delete
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [nil]
     def delete_subscription(report_name, opts = {})
       data, status_code, headers = delete_subscription_with_http_info(report_name, opts)
@@ -192,6 +193,7 @@ module CyberSource
     # Delete a report subscription for your organization. You must know the unique name of the report you want to delete. 
     # @param report_name Name of the Report to Delete
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def delete_subscription_with_http_info(report_name, opts = {})
       
@@ -219,11 +221,24 @@ module CyberSource
         #fail ArgumentError, "invalid value for 'report_name' when calling ReportSubscriptionsApi.delete_subscription, must conform to the pattern /[a-zA-Z0-9-_+]+/."
       #end
 
+      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length > 32
+        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportSubscriptionsApi.delete_subscription, the character length must be smaller than or equal to 32.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length < 1
+        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportSubscriptionsApi.delete_subscription, the character length must be great than or equal to 1.'
+      end
+
+      #if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
+        #fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling ReportSubscriptionsApi.delete_subscription, must conform to the pattern /[a-zA-Z0-9-_]+/."
+      #end
+
       # resource path
       local_var_path = 'reporting/v3/report-subscriptions/{reportName}'.sub('{' + 'reportName' + '}', report_name.to_s)
 
       # query parameters
       query_params = {}
+      query_params[:'organizationId'] = opts[:'organization_id'] if !opts[:'organization_id'].nil?
 
       # header parameters
       header_params = {}
@@ -257,6 +272,7 @@ module CyberSource
     # Get All Subscriptions
     # View a summary of all report subscriptions. 
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [ReportingV3ReportSubscriptionsGet200Response]
     def get_all_subscriptions(opts = {})
       data, status_code, headers = get_all_subscriptions_with_http_info(opts)
@@ -266,6 +282,7 @@ module CyberSource
     # Get All Subscriptions
     # View a summary of all report subscriptions. 
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [Array<(ReportingV3ReportSubscriptionsGet200Response, Fixnum, Hash)>] ReportingV3ReportSubscriptionsGet200Response data, response status code and response headers
     def get_all_subscriptions_with_http_info(opts = {})
       
@@ -277,11 +294,24 @@ module CyberSource
 				puts 'Cannot write to log'
 			end
       end
+      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length > 32
+        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportSubscriptionsApi.get_all_subscriptions, the character length must be smaller than or equal to 32.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length < 1
+        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportSubscriptionsApi.get_all_subscriptions, the character length must be great than or equal to 1.'
+      end
+
+      #if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
+        #fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling ReportSubscriptionsApi.get_all_subscriptions, must conform to the pattern /[a-zA-Z0-9-_]+/."
+      #end
+
       # resource path
       local_var_path = 'reporting/v3/report-subscriptions'
 
       # query parameters
       query_params = {}
+      query_params[:'organizationId'] = opts[:'organization_id'] if !opts[:'organization_id'].nil?
 
       # header parameters
       header_params = {}
@@ -317,6 +347,7 @@ module CyberSource
     # View the details of a report subscription, such as the report format or report frequency, using the report’s unique name. 
     # @param report_name Name of the Report to Retrieve
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [ReportingV3ReportSubscriptionsGet200ResponseSubscriptions]
     def get_subscription(report_name, opts = {})
       data, status_code, headers = get_subscription_with_http_info(report_name, opts)
@@ -327,6 +358,7 @@ module CyberSource
     # View the details of a report subscription, such as the report format or report frequency, using the report’s unique name. 
     # @param report_name Name of the Report to Retrieve
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [Array<(ReportingV3ReportSubscriptionsGet200ResponseSubscriptions, Fixnum, Hash)>] ReportingV3ReportSubscriptionsGet200ResponseSubscriptions data, response status code and response headers
     def get_subscription_with_http_info(report_name, opts = {})
       
@@ -354,11 +386,24 @@ module CyberSource
         #fail ArgumentError, "invalid value for 'report_name' when calling ReportSubscriptionsApi.get_subscription, must conform to the pattern /[a-zA-Z0-9-_+]+/."
       #end
 
+      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length > 32
+        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportSubscriptionsApi.get_subscription, the character length must be smaller than or equal to 32.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length < 1
+        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportSubscriptionsApi.get_subscription, the character length must be great than or equal to 1.'
+      end
+
+      #if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
+        #fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling ReportSubscriptionsApi.get_subscription, must conform to the pattern /[a-zA-Z0-9-_]+/."
+      #end
+
       # resource path
       local_var_path = 'reporting/v3/report-subscriptions/{reportName}'.sub('{' + 'reportName' + '}', report_name.to_s)
 
       # query parameters
       query_params = {}
+      query_params[:'organizationId'] = opts[:'organization_id'] if !opts[:'organization_id'].nil?
 
       # header parameters
       header_params = {}

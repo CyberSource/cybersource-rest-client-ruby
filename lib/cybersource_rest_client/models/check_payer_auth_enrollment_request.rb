@@ -68,10 +68,10 @@ module CyberSource
         :'processing_information' => :'Riskv1authenticationsProcessingInformation',
         :'buyer_information' => :'Riskv1authenticationsBuyerInformation',
         :'device_information' => :'Riskv1authenticationsDeviceInformation',
-        :'merchant_information' => :'Riskv1authenticationsMerchantInformation',
+        :'merchant_information' => :'Riskv1decisionsMerchantInformation',
         :'acquirer_information' => :'Ptsv2paymentsAcquirerInformation',
         :'recurring_payment_information' => :'Ptsv2paymentsRecurringPaymentInformation',
-        :'consumer_authentication_information' => :'Riskv1authenticationsConsumerAuthenticationInformation',
+        :'consumer_authentication_information' => :'Riskv1decisionsConsumerAuthenticationInformation',
         :'risk_information' => :'Riskv1authenticationsRiskInformation',
         :'travel_information' => :'Riskv1authenticationsTravelInformation',
         :'merchant_defined_information' => :'Array<Riskv1decisionsMerchantDefinedInformation>'
