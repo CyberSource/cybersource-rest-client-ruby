@@ -74,7 +74,7 @@ module CyberSource
         :'point_of_sale_information' => :'Ptsv2paymentsidcapturesPointOfSaleInformation',
         :'merchant_defined_information' => :'Array<Ptsv2paymentsMerchantDefinedInformation>',
         :'installment_information' => :'Ptsv2paymentsidcapturesInstallmentInformation',
-        :'travel_information' => :'Ptsv2paymentsidcapturesTravelInformation',
+        :'travel_information' => :'Ptsv2paymentsTravelInformation',
         :'promotion_information' => :'Ptsv2paymentsPromotionInformation'
       }
     end

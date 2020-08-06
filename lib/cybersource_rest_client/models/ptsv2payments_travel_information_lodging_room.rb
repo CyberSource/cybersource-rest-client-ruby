@@ -17,7 +17,7 @@ module CyberSource
     # Daily cost of the room. 
     attr_accessor :daily_rate
 
-    # Number of nights billed at the rate specified by lodging_daily_room_rate_1. 
+    # Number of nights billed at the rate specified by `travelInformation.lodging.room[].dailyRate`. 
     attr_accessor :number_of_nights
 
     # Attribute mapping from ruby-style variable name to JSON key.

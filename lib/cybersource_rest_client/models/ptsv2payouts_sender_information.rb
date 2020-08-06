@@ -37,10 +37,10 @@ module CyberSource
     # City of sender.  **Funds Disbursement**  This value is the city of the originator sending the funds disbursement. 
     attr_accessor :locality
 
-    # Sender’s state. Use the State, Province, and Territory Codes for the United States and Canada. 
+    # Sender’s state. Use the [State, Province, and Territory Codes for the United States and Canada](https://developer.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf). 
     attr_accessor :administrative_area
 
-    # Country of sender. Use the ISO Standard Country Codes. * CTV (3) 
+    # Country of sender. Use the [ISO Standard Country Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf). * CTV (3) 
     attr_accessor :country_code
 
     # Sender’s postal code. Required only for FDCCompass.

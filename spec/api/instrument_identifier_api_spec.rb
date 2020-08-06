@@ -32,23 +32,11 @@ describe 'InstrumentIdentifierApi' do
     end
   end
 
-  # unit tests for create_instrument_identifier
-  # Create an Instrument Identifier
-  # @param profile_id The id of a profile containing user specific TMS configuration.
-  # @param create_instrument_identifier_request Please specify either a Card, Bank Account or Enrollable Card
-  # @param [Hash] opts the optional parameters
-  # @return [TmsV1InstrumentIdentifiersPost200Response]
-  describe 'create_instrument_identifier test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   # unit tests for delete_instrument_identifier
   # Delete an Instrument Identifier
-  # @param profile_id The id of a profile containing user specific TMS configuration.
-  # @param token_id The TokenId of an Instrument Identifier.
+  # @param instrument_identifier_token_id The TokenId of a Instrument Identifier.
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
   # @return [nil]
   describe 'delete_instrument_identifier test' do
     it 'should work' do
@@ -56,40 +44,53 @@ describe 'InstrumentIdentifierApi' do
     end
   end
 
-  # unit tests for get_all_payment_instruments
-  # Retrieve all Payment Instruments
-  # @param profile_id The id of a profile containing user specific TMS configuration.
-  # @param token_id The TokenId of an Instrument Identifier.
-  # @param [Hash] opts the optional parameters
-  # @option opts [Integer] :offset Starting Payment Instrument record in zero-based dataset that should be returned as the first object in the array. Default is 0.
-  # @option opts [Integer] :limit The maximum number of Payment Instruments that can be returned in the array starting from the offset record in zero-based dataset. Default is 20, maximum is 100.
-  # @return [TmsV1InstrumentIdentifiersPaymentInstrumentsGet200Response]
-  describe 'get_all_payment_instruments test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   # unit tests for get_instrument_identifier
   # Retrieve an Instrument Identifier
-  # @param profile_id The id of a profile containing user specific TMS configuration.
-  # @param token_id The TokenId of an Instrument Identifier.
+  # @param instrument_identifier_token_id The TokenId of a Instrument Identifier.
   # @param [Hash] opts the optional parameters
-  # @return [TmsV1InstrumentIdentifiersPost200Response]
+  # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+  # @return [Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier]
   describe 'get_instrument_identifier test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  # unit tests for update_instrument_identifier
-  # Update a Instrument Identifier
-  # @param profile_id The id of a profile containing user specific TMS configuration.
-  # @param token_id The TokenId of an Instrument Identifier.
-  # @param update_instrument_identifier_request Specify the previous transaction ID to update.
+  # unit tests for get_instrument_identifier_payment_instruments_list
+  # List Payment Instruments for an Instrument Identifier
+  # @param instrument_identifier_token_id The TokenId of a Instrument Identifier.
   # @param [Hash] opts the optional parameters
-  # @return [TmsV1InstrumentIdentifiersPost200Response]
-  describe 'update_instrument_identifier test' do
+  # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+  # @option opts [Integer] :offset Starting record in zero-based dataset that should be returned as the first object in the array. Default is 0.
+  # @option opts [Integer] :limit The maximum number that can be returned in the array starting from the offset record in zero-based dataset. Default is 20, maximum is 100.
+  # @return [PaymentInstrumentListForCustomer]
+  describe 'get_instrument_identifier_payment_instruments_list test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for patch_instrument_identifier
+  # Update an Instrument Identifier
+  # @param instrument_identifier_token_id The TokenId of a Instrument Identifier.
+  # @param patch_instrument_identifier_request Specify the previous transaction ID to update.
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+  # @option opts [String] :if_match Contains an ETag value from a GET request to make the request conditional.
+  # @return [Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier]
+  describe 'patch_instrument_identifier test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for post_instrument_identifier
+  # Create an Instrument Identifier
+  # @param post_instrument_identifier_request Please specify either a Card, Bank Account or Enrollable Card
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+  # @return [Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier]
+  describe 'post_instrument_identifier test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

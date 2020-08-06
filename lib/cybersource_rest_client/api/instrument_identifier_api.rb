@@ -20,100 +20,22 @@ module CyberSource
       @api_client = api_client
 	  @api_client.set_configuration(config)
     end
-    # Create an Instrument Identifier
-    # @param profile_id The id of a profile containing user specific TMS configuration.
-    # @param create_instrument_identifier_request Please specify either a Card, Bank Account or Enrollable Card
-    # @param [Hash] opts the optional parameters
-    # @return [TmsV1InstrumentIdentifiersPost200Response]
-    def create_instrument_identifier(profile_id, create_instrument_identifier_request, opts = {})
-      data, status_code, headers = create_instrument_identifier_with_http_info(profile_id, create_instrument_identifier_request, opts)
-      return data, status_code, headers
-    end
-
-    # Create an Instrument Identifier
-    # @param profile_id The id of a profile containing user specific TMS configuration.
-    # @param create_instrument_identifier_request Please specify either a Card, Bank Account or Enrollable Card
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(TmsV1InstrumentIdentifiersPost200Response, Fixnum, Hash)>] TmsV1InstrumentIdentifiersPost200Response data, response status code and response headers
-    def create_instrument_identifier_with_http_info(profile_id, create_instrument_identifier_request, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: InstrumentIdentifierApi.create_instrument_identifier ...'
-			rescue
-				puts 'Cannot write to log'
-			end
-      end
-      # verify the required parameter 'profile_id' is set
-      if @api_client.config.client_side_validation && profile_id.nil?
-        fail ArgumentError, "Missing the required parameter 'profile_id' when calling InstrumentIdentifierApi.create_instrument_identifier"
-      end
-      if @api_client.config.client_side_validation && profile_id.to_s.length > 36
-        fail ArgumentError, 'invalid value for "profile_id" when calling InstrumentIdentifierApi.create_instrument_identifier, the character length must be smaller than or equal to 36.'
-      end
-
-      if @api_client.config.client_side_validation && profile_id.to_s.length < 36
-        fail ArgumentError, 'invalid value for "profile_id" when calling InstrumentIdentifierApi.create_instrument_identifier, the character length must be great than or equal to 36.'
-      end
-
-      # verify the required parameter 'create_instrument_identifier_request' is set
-      if @api_client.config.client_side_validation && create_instrument_identifier_request.nil?
-        fail ArgumentError, "Missing the required parameter 'create_instrument_identifier_request' when calling InstrumentIdentifierApi.create_instrument_identifier"
-      end
-      # resource path
-      local_var_path = 'tms/v1/instrumentidentifiers'
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
-      header_params[:'profile-id'] = profile_id
-
-      # form parameters
-      form_params = {}
-
-      # http body (model)
-      post_body = @api_client.object_to_http_body(create_instrument_identifier_request)
-      auth_names = []
-      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'TmsV1InstrumentIdentifiersPost200Response')
-      if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: InstrumentIdentifierApi#create_instrument_identifier\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
-      return data, status_code, headers
-    end
     # Delete an Instrument Identifier
-    # @param profile_id The id of a profile containing user specific TMS configuration.
-    # @param token_id The TokenId of an Instrument Identifier.
+    # @param instrument_identifier_token_id The TokenId of a Instrument Identifier.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
     # @return [nil]
-    def delete_instrument_identifier(profile_id, token_id, opts = {})
-      data, status_code, headers = delete_instrument_identifier_with_http_info(profile_id, token_id, opts)
+    def delete_instrument_identifier(instrument_identifier_token_id, opts = {})
+      data, status_code, headers = delete_instrument_identifier_with_http_info(instrument_identifier_token_id, opts)
       return data, status_code, headers
     end
 
     # Delete an Instrument Identifier
-    # @param profile_id The id of a profile containing user specific TMS configuration.
-    # @param token_id The TokenId of an Instrument Identifier.
+    # @param instrument_identifier_token_id The TokenId of a Instrument Identifier.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
-    def delete_instrument_identifier_with_http_info(profile_id, token_id, opts = {})
+    def delete_instrument_identifier_with_http_info(instrument_identifier_token_id, opts = {})
       
 	  if @api_client.config.debugging
 	  	begin
@@ -123,32 +45,28 @@ module CyberSource
 				puts 'Cannot write to log'
 			end
       end
-      # verify the required parameter 'profile_id' is set
-      if @api_client.config.client_side_validation && profile_id.nil?
-        fail ArgumentError, "Missing the required parameter 'profile_id' when calling InstrumentIdentifierApi.delete_instrument_identifier"
+      # verify the required parameter 'instrument_identifier_token_id' is set
+      if @api_client.config.client_side_validation && instrument_identifier_token_id.nil?
+        fail ArgumentError, "Missing the required parameter 'instrument_identifier_token_id' when calling InstrumentIdentifierApi.delete_instrument_identifier"
       end
-      if @api_client.config.client_side_validation && profile_id.to_s.length > 36
-        fail ArgumentError, 'invalid value for "profile_id" when calling InstrumentIdentifierApi.delete_instrument_identifier, the character length must be smaller than or equal to 36.'
-      end
-
-      if @api_client.config.client_side_validation && profile_id.to_s.length < 36
-        fail ArgumentError, 'invalid value for "profile_id" when calling InstrumentIdentifierApi.delete_instrument_identifier, the character length must be great than or equal to 36.'
+      if @api_client.config.client_side_validation && instrument_identifier_token_id.to_s.length > 32
+        fail ArgumentError, 'invalid value for "instrument_identifier_token_id" when calling InstrumentIdentifierApi.delete_instrument_identifier, the character length must be smaller than or equal to 32.'
       end
 
-      # verify the required parameter 'token_id' is set
-      if @api_client.config.client_side_validation && token_id.nil?
-        fail ArgumentError, "Missing the required parameter 'token_id' when calling InstrumentIdentifierApi.delete_instrument_identifier"
-      end
-      if @api_client.config.client_side_validation && token_id.to_s.length > 32
-        fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.delete_instrument_identifier, the character length must be smaller than or equal to 32.'
+      if @api_client.config.client_side_validation && instrument_identifier_token_id.to_s.length < 12
+        fail ArgumentError, 'invalid value for "instrument_identifier_token_id" when calling InstrumentIdentifierApi.delete_instrument_identifier, the character length must be great than or equal to 12.'
       end
 
-      if @api_client.config.client_side_validation && token_id.to_s.length < 12
-        fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.delete_instrument_identifier, the character length must be great than or equal to 12.'
+      if @api_client.config.client_side_validation && !opts[:'profile_id'].nil? && opts[:'profile_id'].to_s.length > 36
+        fail ArgumentError, 'invalid value for "opts[:"profile_id"]" when calling InstrumentIdentifierApi.delete_instrument_identifier, the character length must be smaller than or equal to 36.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'profile_id'].nil? && opts[:'profile_id'].to_s.length < 36
+        fail ArgumentError, 'invalid value for "opts[:"profile_id"]" when calling InstrumentIdentifierApi.delete_instrument_identifier, the character length must be great than or equal to 36.'
       end
 
       # resource path
-      local_var_path = 'tms/v1/instrumentidentifiers/{tokenId}'.sub('{' + 'tokenId' + '}', token_id.to_s)
+      local_var_path = 'tms/v1/instrumentidentifiers/{instrumentIdentifierTokenId}'.sub('{' + 'instrumentIdentifierTokenId' + '}', instrument_identifier_token_id.to_s)
 
       # query parameters
       query_params = {}
@@ -159,7 +77,7 @@ module CyberSource
       header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
-      header_params[:'profile-id'] = profile_id
+      header_params[:'profile-id'] = opts[:'profile_id'] if !opts[:'profile_id'].nil?
 
       # form parameters
       form_params = {}
@@ -183,73 +101,151 @@ module CyberSource
 	  end
       return data, status_code, headers
     end
-    # Retrieve all Payment Instruments
-    # @param profile_id The id of a profile containing user specific TMS configuration.
-    # @param token_id The TokenId of an Instrument Identifier.
+    # Retrieve an Instrument Identifier
+    # @param instrument_identifier_token_id The TokenId of a Instrument Identifier.
     # @param [Hash] opts the optional parameters
-    # @option opts [Integer] :offset Starting Payment Instrument record in zero-based dataset that should be returned as the first object in the array. Default is 0. (default to 0)
-    # @option opts [Integer] :limit The maximum number of Payment Instruments that can be returned in the array starting from the offset record in zero-based dataset. Default is 20, maximum is 100. (default to 20)
-    # @return [TmsV1InstrumentIdentifiersPaymentInstrumentsGet200Response]
-    def get_all_payment_instruments(profile_id, token_id, opts = {})
-      data, status_code, headers = get_all_payment_instruments_with_http_info(profile_id, token_id, opts)
+    # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+    # @return [Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier]
+    def get_instrument_identifier(instrument_identifier_token_id, opts = {})
+      data, status_code, headers = get_instrument_identifier_with_http_info(instrument_identifier_token_id, opts)
       return data, status_code, headers
     end
 
-    # Retrieve all Payment Instruments
-    # @param profile_id The id of a profile containing user specific TMS configuration.
-    # @param token_id The TokenId of an Instrument Identifier.
+    # Retrieve an Instrument Identifier
+    # @param instrument_identifier_token_id The TokenId of a Instrument Identifier.
     # @param [Hash] opts the optional parameters
-    # @option opts [Integer] :offset Starting Payment Instrument record in zero-based dataset that should be returned as the first object in the array. Default is 0.
-    # @option opts [Integer] :limit The maximum number of Payment Instruments that can be returned in the array starting from the offset record in zero-based dataset. Default is 20, maximum is 100.
-    # @return [Array<(TmsV1InstrumentIdentifiersPaymentInstrumentsGet200Response, Fixnum, Hash)>] TmsV1InstrumentIdentifiersPaymentInstrumentsGet200Response data, response status code and response headers
-    def get_all_payment_instruments_with_http_info(profile_id, token_id, opts = {})
+    # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+    # @return [Array<(Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier, Fixnum, Hash)>] Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier data, response status code and response headers
+    def get_instrument_identifier_with_http_info(instrument_identifier_token_id, opts = {})
       
 	  if @api_client.config.debugging
 	  	begin
 			raise
-				@api_client.config.logger.debug 'Calling API: InstrumentIdentifierApi.get_all_payment_instruments ...'
+				@api_client.config.logger.debug 'Calling API: InstrumentIdentifierApi.get_instrument_identifier ...'
 			rescue
 				puts 'Cannot write to log'
 			end
       end
-      # verify the required parameter 'profile_id' is set
-      if @api_client.config.client_side_validation && profile_id.nil?
-        fail ArgumentError, "Missing the required parameter 'profile_id' when calling InstrumentIdentifierApi.get_all_payment_instruments"
+      # verify the required parameter 'instrument_identifier_token_id' is set
+      if @api_client.config.client_side_validation && instrument_identifier_token_id.nil?
+        fail ArgumentError, "Missing the required parameter 'instrument_identifier_token_id' when calling InstrumentIdentifierApi.get_instrument_identifier"
       end
-      if @api_client.config.client_side_validation && profile_id.to_s.length > 36
-        fail ArgumentError, 'invalid value for "profile_id" when calling InstrumentIdentifierApi.get_all_payment_instruments, the character length must be smaller than or equal to 36.'
-      end
-
-      if @api_client.config.client_side_validation && profile_id.to_s.length < 36
-        fail ArgumentError, 'invalid value for "profile_id" when calling InstrumentIdentifierApi.get_all_payment_instruments, the character length must be great than or equal to 36.'
+      if @api_client.config.client_side_validation && instrument_identifier_token_id.to_s.length > 32
+        fail ArgumentError, 'invalid value for "instrument_identifier_token_id" when calling InstrumentIdentifierApi.get_instrument_identifier, the character length must be smaller than or equal to 32.'
       end
 
-      # verify the required parameter 'token_id' is set
-      if @api_client.config.client_side_validation && token_id.nil?
-        fail ArgumentError, "Missing the required parameter 'token_id' when calling InstrumentIdentifierApi.get_all_payment_instruments"
-      end
-      if @api_client.config.client_side_validation && token_id.to_s.length > 32
-        fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.get_all_payment_instruments, the character length must be smaller than or equal to 32.'
+      if @api_client.config.client_side_validation && instrument_identifier_token_id.to_s.length < 12
+        fail ArgumentError, 'invalid value for "instrument_identifier_token_id" when calling InstrumentIdentifierApi.get_instrument_identifier, the character length must be great than or equal to 12.'
       end
 
-      if @api_client.config.client_side_validation && token_id.to_s.length < 12
-        fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.get_all_payment_instruments, the character length must be great than or equal to 12.'
+      if @api_client.config.client_side_validation && !opts[:'profile_id'].nil? && opts[:'profile_id'].to_s.length > 36
+        fail ArgumentError, 'invalid value for "opts[:"profile_id"]" when calling InstrumentIdentifierApi.get_instrument_identifier, the character length must be smaller than or equal to 36.'
       end
 
-      if @api_client.config.client_side_validation && !opts[:'offset'].nil? && opts[:'offset'] < 0
-        fail ArgumentError, 'invalid value for "opts[:"offset"]" when calling InstrumentIdentifierApi.get_all_payment_instruments, must be greater than or equal to 0.'
-      end
-
-      if @api_client.config.client_side_validation && !opts[:'limit'].nil? && opts[:'limit'] > 100
-        fail ArgumentError, 'invalid value for "opts[:"limit"]" when calling InstrumentIdentifierApi.get_all_payment_instruments, must be smaller than or equal to 100.'
-      end
-
-      if @api_client.config.client_side_validation && !opts[:'limit'].nil? && opts[:'limit'] < 1
-        fail ArgumentError, 'invalid value for "opts[:"limit"]" when calling InstrumentIdentifierApi.get_all_payment_instruments, must be greater than or equal to 1.'
+      if @api_client.config.client_side_validation && !opts[:'profile_id'].nil? && opts[:'profile_id'].to_s.length < 36
+        fail ArgumentError, 'invalid value for "opts[:"profile_id"]" when calling InstrumentIdentifierApi.get_instrument_identifier, the character length must be great than or equal to 36.'
       end
 
       # resource path
-      local_var_path = 'tms/v1/instrumentidentifiers/{tokenId}/paymentinstruments'.sub('{' + 'tokenId' + '}', token_id.to_s)
+      local_var_path = 'tms/v1/instrumentidentifiers/{instrumentIdentifierTokenId}'.sub('{' + 'instrumentIdentifierTokenId' + '}', instrument_identifier_token_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params[:'profile-id'] = opts[:'profile_id'] if !opts[:'profile_id'].nil?
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier')
+      if @api_client.config.debugging
+		begin
+		raise
+			@api_client.config.logger.debug "API called: InstrumentIdentifierApi#get_instrument_identifier\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
+      return data, status_code, headers
+    end
+    # List Payment Instruments for an Instrument Identifier
+    # @param instrument_identifier_token_id The TokenId of a Instrument Identifier.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+    # @option opts [Integer] :offset Starting record in zero-based dataset that should be returned as the first object in the array. Default is 0. (default to 0)
+    # @option opts [Integer] :limit The maximum number that can be returned in the array starting from the offset record in zero-based dataset. Default is 20, maximum is 100. (default to 20)
+    # @return [PaymentInstrumentListForCustomer]
+    def get_instrument_identifier_payment_instruments_list(instrument_identifier_token_id, opts = {})
+      data, status_code, headers = get_instrument_identifier_payment_instruments_list_with_http_info(instrument_identifier_token_id, opts)
+      return data, status_code, headers
+    end
+
+    # List Payment Instruments for an Instrument Identifier
+    # @param instrument_identifier_token_id The TokenId of a Instrument Identifier.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+    # @option opts [Integer] :offset Starting record in zero-based dataset that should be returned as the first object in the array. Default is 0.
+    # @option opts [Integer] :limit The maximum number that can be returned in the array starting from the offset record in zero-based dataset. Default is 20, maximum is 100.
+    # @return [Array<(PaymentInstrumentListForCustomer, Fixnum, Hash)>] PaymentInstrumentListForCustomer data, response status code and response headers
+    def get_instrument_identifier_payment_instruments_list_with_http_info(instrument_identifier_token_id, opts = {})
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: InstrumentIdentifierApi.get_instrument_identifier_payment_instruments_list ...'
+			rescue
+				puts 'Cannot write to log'
+			end
+      end
+      # verify the required parameter 'instrument_identifier_token_id' is set
+      if @api_client.config.client_side_validation && instrument_identifier_token_id.nil?
+        fail ArgumentError, "Missing the required parameter 'instrument_identifier_token_id' when calling InstrumentIdentifierApi.get_instrument_identifier_payment_instruments_list"
+      end
+      if @api_client.config.client_side_validation && instrument_identifier_token_id.to_s.length > 32
+        fail ArgumentError, 'invalid value for "instrument_identifier_token_id" when calling InstrumentIdentifierApi.get_instrument_identifier_payment_instruments_list, the character length must be smaller than or equal to 32.'
+      end
+
+      if @api_client.config.client_side_validation && instrument_identifier_token_id.to_s.length < 12
+        fail ArgumentError, 'invalid value for "instrument_identifier_token_id" when calling InstrumentIdentifierApi.get_instrument_identifier_payment_instruments_list, the character length must be great than or equal to 12.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'profile_id'].nil? && opts[:'profile_id'].to_s.length > 36
+        fail ArgumentError, 'invalid value for "opts[:"profile_id"]" when calling InstrumentIdentifierApi.get_instrument_identifier_payment_instruments_list, the character length must be smaller than or equal to 36.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'profile_id'].nil? && opts[:'profile_id'].to_s.length < 36
+        fail ArgumentError, 'invalid value for "opts[:"profile_id"]" when calling InstrumentIdentifierApi.get_instrument_identifier_payment_instruments_list, the character length must be great than or equal to 36.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'offset'].nil? && opts[:'offset'] < 0
+        fail ArgumentError, 'invalid value for "opts[:"offset"]" when calling InstrumentIdentifierApi.get_instrument_identifier_payment_instruments_list, must be greater than or equal to 0.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'limit'].nil? && opts[:'limit'] > 100
+        fail ArgumentError, 'invalid value for "opts[:"limit"]" when calling InstrumentIdentifierApi.get_instrument_identifier_payment_instruments_list, must be smaller than or equal to 100.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'limit'].nil? && opts[:'limit'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"limit"]" when calling InstrumentIdentifierApi.get_instrument_identifier_payment_instruments_list, must be greater than or equal to 1.'
+      end
+
+      # resource path
+      local_var_path = 'tms/v1/instrumentidentifiers/{instrumentIdentifierTokenId}/paymentinstruments'.sub('{' + 'instrumentIdentifierTokenId' + '}', instrument_identifier_token_id.to_s)
 
       # query parameters
       query_params = {}
@@ -262,7 +258,7 @@ module CyberSource
       header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
-      header_params[:'profile-id'] = profile_id
+      header_params[:'profile-id'] = opts[:'profile_id'] if !opts[:'profile_id'].nil?
 
       # form parameters
       form_params = {}
@@ -276,68 +272,80 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200Response')
+        :return_type => 'PaymentInstrumentListForCustomer')
       if @api_client.config.debugging
 		begin
 		raise
-			@api_client.config.logger.debug "API called: InstrumentIdentifierApi#get_all_payment_instruments\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+			@api_client.config.logger.debug "API called: InstrumentIdentifierApi#get_instrument_identifier_payment_instruments_list\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
 		rescue
 			puts 'Cannot write to log'
 		end
 	  end
       return data, status_code, headers
     end
-    # Retrieve an Instrument Identifier
-    # @param profile_id The id of a profile containing user specific TMS configuration.
-    # @param token_id The TokenId of an Instrument Identifier.
+    # Update an Instrument Identifier
+    # @param instrument_identifier_token_id The TokenId of a Instrument Identifier.
+    # @param patch_instrument_identifier_request Specify the previous transaction ID to update.
     # @param [Hash] opts the optional parameters
-    # @return [TmsV1InstrumentIdentifiersPost200Response]
-    def get_instrument_identifier(profile_id, token_id, opts = {})
-      data, status_code, headers = get_instrument_identifier_with_http_info(profile_id, token_id, opts)
+    # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+    # @option opts [String] :if_match Contains an ETag value from a GET request to make the request conditional.
+    # @return [Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier]
+    def patch_instrument_identifier(instrument_identifier_token_id, patch_instrument_identifier_request, opts = {})
+      data, status_code, headers = patch_instrument_identifier_with_http_info(instrument_identifier_token_id, patch_instrument_identifier_request, opts)
       return data, status_code, headers
     end
 
-    # Retrieve an Instrument Identifier
-    # @param profile_id The id of a profile containing user specific TMS configuration.
-    # @param token_id The TokenId of an Instrument Identifier.
+    # Update an Instrument Identifier
+    # @param instrument_identifier_token_id The TokenId of a Instrument Identifier.
+    # @param patch_instrument_identifier_request Specify the previous transaction ID to update.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(TmsV1InstrumentIdentifiersPost200Response, Fixnum, Hash)>] TmsV1InstrumentIdentifiersPost200Response data, response status code and response headers
-    def get_instrument_identifier_with_http_info(profile_id, token_id, opts = {})
+    # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+    # @option opts [String] :if_match Contains an ETag value from a GET request to make the request conditional.
+    # @return [Array<(Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier, Fixnum, Hash)>] Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier data, response status code and response headers
+    def patch_instrument_identifier_with_http_info(instrument_identifier_token_id, patch_instrument_identifier_request, opts = {})
       
 	  if @api_client.config.debugging
 	  	begin
 			raise
-				@api_client.config.logger.debug 'Calling API: InstrumentIdentifierApi.get_instrument_identifier ...'
+				@api_client.config.logger.debug 'Calling API: InstrumentIdentifierApi.patch_instrument_identifier ...'
 			rescue
 				puts 'Cannot write to log'
 			end
       end
-      # verify the required parameter 'profile_id' is set
-      if @api_client.config.client_side_validation && profile_id.nil?
-        fail ArgumentError, "Missing the required parameter 'profile_id' when calling InstrumentIdentifierApi.get_instrument_identifier"
+      # verify the required parameter 'instrument_identifier_token_id' is set
+      if @api_client.config.client_side_validation && instrument_identifier_token_id.nil?
+        fail ArgumentError, "Missing the required parameter 'instrument_identifier_token_id' when calling InstrumentIdentifierApi.patch_instrument_identifier"
       end
-      if @api_client.config.client_side_validation && profile_id.to_s.length > 36
-        fail ArgumentError, 'invalid value for "profile_id" when calling InstrumentIdentifierApi.get_instrument_identifier, the character length must be smaller than or equal to 36.'
-      end
-
-      if @api_client.config.client_side_validation && profile_id.to_s.length < 36
-        fail ArgumentError, 'invalid value for "profile_id" when calling InstrumentIdentifierApi.get_instrument_identifier, the character length must be great than or equal to 36.'
+      if @api_client.config.client_side_validation && instrument_identifier_token_id.to_s.length > 32
+        fail ArgumentError, 'invalid value for "instrument_identifier_token_id" when calling InstrumentIdentifierApi.patch_instrument_identifier, the character length must be smaller than or equal to 32.'
       end
 
-      # verify the required parameter 'token_id' is set
-      if @api_client.config.client_side_validation && token_id.nil?
-        fail ArgumentError, "Missing the required parameter 'token_id' when calling InstrumentIdentifierApi.get_instrument_identifier"
-      end
-      if @api_client.config.client_side_validation && token_id.to_s.length > 32
-        fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.get_instrument_identifier, the character length must be smaller than or equal to 32.'
+      if @api_client.config.client_side_validation && instrument_identifier_token_id.to_s.length < 12
+        fail ArgumentError, 'invalid value for "instrument_identifier_token_id" when calling InstrumentIdentifierApi.patch_instrument_identifier, the character length must be great than or equal to 12.'
       end
 
-      if @api_client.config.client_side_validation && token_id.to_s.length < 12
-        fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.get_instrument_identifier, the character length must be great than or equal to 12.'
+      # verify the required parameter 'patch_instrument_identifier_request' is set
+      if @api_client.config.client_side_validation && patch_instrument_identifier_request.nil?
+        fail ArgumentError, "Missing the required parameter 'patch_instrument_identifier_request' when calling InstrumentIdentifierApi.patch_instrument_identifier"
+      end
+      if @api_client.config.client_side_validation && !opts[:'profile_id'].nil? && opts[:'profile_id'].to_s.length > 36
+        fail ArgumentError, 'invalid value for "opts[:"profile_id"]" when calling InstrumentIdentifierApi.patch_instrument_identifier, the character length must be smaller than or equal to 36.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'profile_id'].nil? && opts[:'profile_id'].to_s.length < 36
+        fail ArgumentError, 'invalid value for "opts[:"profile_id"]" when calling InstrumentIdentifierApi.patch_instrument_identifier, the character length must be great than or equal to 36.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'if_match'].nil? && opts[:'if_match'].to_s.length > 32
+        fail ArgumentError, 'invalid value for "opts[:"if_match"]" when calling InstrumentIdentifierApi.patch_instrument_identifier, the character length must be smaller than or equal to 32.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'if_match'].nil? && opts[:'if_match'].to_s.length < 1
+        fail ArgumentError, 'invalid value for "opts[:"if_match"]" when calling InstrumentIdentifierApi.patch_instrument_identifier, the character length must be great than or equal to 1.'
       end
 
       # resource path
-      local_var_path = 'tms/v1/instrumentidentifiers/{tokenId}'.sub('{' + 'tokenId' + '}', token_id.to_s)
+      local_var_path = 'tms/v1/instrumentidentifiers/{instrumentIdentifierTokenId}'.sub('{' + 'instrumentIdentifierTokenId' + '}', instrument_identifier_token_id.to_s)
 
       # query parameters
       query_params = {}
@@ -348,105 +356,14 @@ module CyberSource
       header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
-      header_params[:'profile-id'] = profile_id
+      header_params[:'profile-id'] = opts[:'profile_id'] if !opts[:'profile_id'].nil?
+      header_params[:'if-match'] = opts[:'if_match'] if !opts[:'if_match'].nil?
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = nil
-      auth_names = []
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'TmsV1InstrumentIdentifiersPost200Response')
-      if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: InstrumentIdentifierApi#get_instrument_identifier\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
-      return data, status_code, headers
-    end
-    # Update a Instrument Identifier
-    # @param profile_id The id of a profile containing user specific TMS configuration.
-    # @param token_id The TokenId of an Instrument Identifier.
-    # @param update_instrument_identifier_request Specify the previous transaction ID to update.
-    # @param [Hash] opts the optional parameters
-    # @return [TmsV1InstrumentIdentifiersPost200Response]
-    def update_instrument_identifier(profile_id, token_id, update_instrument_identifier_request, opts = {})
-      data, status_code, headers = update_instrument_identifier_with_http_info(profile_id, token_id, update_instrument_identifier_request, opts)
-      return data, status_code, headers
-    end
-
-    # Update a Instrument Identifier
-    # @param profile_id The id of a profile containing user specific TMS configuration.
-    # @param token_id The TokenId of an Instrument Identifier.
-    # @param update_instrument_identifier_request Specify the previous transaction ID to update.
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(TmsV1InstrumentIdentifiersPost200Response, Fixnum, Hash)>] TmsV1InstrumentIdentifiersPost200Response data, response status code and response headers
-    def update_instrument_identifier_with_http_info(profile_id, token_id, update_instrument_identifier_request, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: InstrumentIdentifierApi.update_instrument_identifier ...'
-			rescue
-				puts 'Cannot write to log'
-			end
-      end
-      # verify the required parameter 'profile_id' is set
-      if @api_client.config.client_side_validation && profile_id.nil?
-        fail ArgumentError, "Missing the required parameter 'profile_id' when calling InstrumentIdentifierApi.update_instrument_identifier"
-      end
-      if @api_client.config.client_side_validation && profile_id.to_s.length > 36
-        fail ArgumentError, 'invalid value for "profile_id" when calling InstrumentIdentifierApi.update_instrument_identifier, the character length must be smaller than or equal to 36.'
-      end
-
-      if @api_client.config.client_side_validation && profile_id.to_s.length < 36
-        fail ArgumentError, 'invalid value for "profile_id" when calling InstrumentIdentifierApi.update_instrument_identifier, the character length must be great than or equal to 36.'
-      end
-
-      # verify the required parameter 'token_id' is set
-      if @api_client.config.client_side_validation && token_id.nil?
-        fail ArgumentError, "Missing the required parameter 'token_id' when calling InstrumentIdentifierApi.update_instrument_identifier"
-      end
-      if @api_client.config.client_side_validation && token_id.to_s.length > 32
-        fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.update_instrument_identifier, the character length must be smaller than or equal to 32.'
-      end
-
-      if @api_client.config.client_side_validation && token_id.to_s.length < 12
-        fail ArgumentError, 'invalid value for "token_id" when calling InstrumentIdentifierApi.update_instrument_identifier, the character length must be great than or equal to 12.'
-      end
-
-      # verify the required parameter 'update_instrument_identifier_request' is set
-      if @api_client.config.client_side_validation && update_instrument_identifier_request.nil?
-        fail ArgumentError, "Missing the required parameter 'update_instrument_identifier_request' when calling InstrumentIdentifierApi.update_instrument_identifier"
-      end
-      # resource path
-      local_var_path = 'tms/v1/instrumentidentifiers/{tokenId}'.sub('{' + 'tokenId' + '}', token_id.to_s)
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
-      header_params[:'profile-id'] = profile_id
-
-      # form parameters
-      form_params = {}
-
-      # http body (model)
-      post_body = @api_client.object_to_http_body(update_instrument_identifier_request)
+      post_body = @api_client.object_to_http_body(patch_instrument_identifier_request)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:PATCH, local_var_path,
         :header_params => header_params,
@@ -454,11 +371,85 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'TmsV1InstrumentIdentifiersPost200Response')
+        :return_type => 'Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier')
       if @api_client.config.debugging
 		begin
 		raise
-			@api_client.config.logger.debug "API called: InstrumentIdentifierApi#update_instrument_identifier\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+			@api_client.config.logger.debug "API called: InstrumentIdentifierApi#patch_instrument_identifier\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
+      return data, status_code, headers
+    end
+    # Create an Instrument Identifier
+    # @param post_instrument_identifier_request Please specify either a Card, Bank Account or Enrollable Card
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+    # @return [Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier]
+    def post_instrument_identifier(post_instrument_identifier_request, opts = {})
+      data, status_code, headers = post_instrument_identifier_with_http_info(post_instrument_identifier_request, opts)
+      return data, status_code, headers
+    end
+
+    # Create an Instrument Identifier
+    # @param post_instrument_identifier_request Please specify either a Card, Bank Account or Enrollable Card
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+    # @return [Array<(Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier, Fixnum, Hash)>] Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier data, response status code and response headers
+    def post_instrument_identifier_with_http_info(post_instrument_identifier_request, opts = {})
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: InstrumentIdentifierApi.post_instrument_identifier ...'
+			rescue
+				puts 'Cannot write to log'
+			end
+      end
+      # verify the required parameter 'post_instrument_identifier_request' is set
+      if @api_client.config.client_side_validation && post_instrument_identifier_request.nil?
+        fail ArgumentError, "Missing the required parameter 'post_instrument_identifier_request' when calling InstrumentIdentifierApi.post_instrument_identifier"
+      end
+      if @api_client.config.client_side_validation && !opts[:'profile_id'].nil? && opts[:'profile_id'].to_s.length > 36
+        fail ArgumentError, 'invalid value for "opts[:"profile_id"]" when calling InstrumentIdentifierApi.post_instrument_identifier, the character length must be smaller than or equal to 36.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'profile_id'].nil? && opts[:'profile_id'].to_s.length < 36
+        fail ArgumentError, 'invalid value for "opts[:"profile_id"]" when calling InstrumentIdentifierApi.post_instrument_identifier, the character length must be great than or equal to 36.'
+      end
+
+      # resource path
+      local_var_path = 'tms/v1/instrumentidentifiers'
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params[:'profile-id'] = opts[:'profile_id'] if !opts[:'profile_id'].nil?
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(post_instrument_identifier_request)
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier')
+      if @api_client.config.debugging
+		begin
+		raise
+			@api_client.config.logger.debug "API called: InstrumentIdentifierApi#post_instrument_identifier\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
 		rescue
 			puts 'Cannot write to log'
 		end

@@ -88,7 +88,7 @@ module CyberSource
     # Specifies the Brazilian payment account type used for the transaction. This field overrides other payment types that might be specified in the request. Use one of the following values for this field: - `NA`: Not applicable. Do not override other payment types that are specified in the request. - `CR`: Credit card. - `DB`: Debit card. - `VSAVR`: Visa Vale Refeicao - `VSAVA`: Visa Vale Alimentacao **Important** Required only for Visa Secure transactions in Brazil. Do not use this request field for any other types of transactions. 
     attr_accessor :override_payment_method
 
-    # Two-character ISO standard Country Codes. 
+    # Two-character [ISO Standard Country Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf).. 
     attr_accessor :override_country_code
 
     # This field carry data that the ACS can use to verify the authentication process. 
@@ -105,6 +105,9 @@ module CyberSource
 
     # Specifies the product code, which designates the type of transaction. Specify one of the following values for this field: - AIR: Airline purchase Important Required for American Express SafeKey (U.S.). - `ACC`: Accommodation Rental - `ACF`: Account funding - `CHA`: Check acceptance - `DIG`: Digital Goods - `DSP`: Cash Dispensing - `GAS`: Fuel - `GEN`: General Retail - `LUX`: Luxury Retail - `PAL`: Prepaid activation and load - `PHY`: Goods or services purchase - `QCT`: Quasi-cash transaction - `REN`: Car Rental - `RES`: Restaurant - `SVC`: Services - `TBD`: Other - `TRA`: Travel **Important** Required for Visa Secure transactions in Brazil. Do not use this request field for any other types of transactions. 
     attr_accessor :product_code
+
+    # The URL of the merchant’s return page. CyberSource adds this return URL to the step-up JWT and returns it in the response of the Payer Authentication enrollment call. The merchant's return URL page serves as a listening URL. Once the bank session completes, the merchant receives a POST to their URL. This response contains the completed bank session’s transactionId. The merchant’s return page should capture the transaction ID and send it in the Payer Authentication validation call. 
+    attr_accessor :return_url
 
     # Cardinal's directory server assigned 3DS Requestor ID value
     attr_accessor :requestor_id
@@ -164,6 +167,7 @@ module CyberSource
         :'prior_authentication_reference_id' => :'priorAuthenticationReferenceId',
         :'prior_authentication_time' => :'priorAuthenticationTime',
         :'product_code' => :'productCode',
+        :'return_url' => :'returnUrl',
         :'requestor_id' => :'requestorId',
         :'requestor_initiated_authentication_indicator' => :'requestorInitiatedAuthenticationIndicator',
         :'requestor_name' => :'requestorName',
@@ -209,6 +213,7 @@ module CyberSource
         :'prior_authentication_reference_id' => :'String',
         :'prior_authentication_time' => :'String',
         :'product_code' => :'String',
+        :'return_url' => :'String',
         :'requestor_id' => :'String',
         :'requestor_initiated_authentication_indicator' => :'String',
         :'requestor_name' => :'String',
@@ -352,6 +357,10 @@ module CyberSource
         self.product_code = attributes[:'productCode']
       end
 
+      if attributes.has_key?(:'returnUrl')
+        self.return_url = attributes[:'returnUrl']
+      end
+
       if attributes.has_key?(:'requestorId')
         self.requestor_id = attributes[:'requestorId']
       end
@@ -477,6 +486,10 @@ module CyberSource
         invalid_properties.push('invalid value for "product_code", the character length must be smaller than or equal to 3.')
       end
 
+      if !@return_url.nil? && @return_url.to_s.length > 2048
+        invalid_properties.push('invalid value for "return_url", the character length must be smaller than or equal to 2048.')
+      end
+
       if !@requestor_id.nil? && @requestor_id.to_s.length > 35
         invalid_properties.push('invalid value for "requestor_id", the character length must be smaller than or equal to 35.')
       end
@@ -533,6 +546,7 @@ module CyberSource
       return false if !@prior_authentication_reference_id.nil? && @prior_authentication_reference_id.to_s.length > 36
       return false if !@prior_authentication_time.nil? && @prior_authentication_time.to_s.length > 12
       return false if !@product_code.nil? && @product_code.to_s.length > 3
+      return false if !@return_url.nil? && @return_url.to_s.length > 2048
       return false if !@requestor_id.nil? && @requestor_id.to_s.length > 35
       return false if !@requestor_initiated_authentication_indicator.nil? && @requestor_initiated_authentication_indicator.to_s.length > 2
       return false if !@requestor_name.nil? && @requestor_name.to_s.length > 40
@@ -764,6 +778,16 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] return_url Value to be assigned
+    def return_url=(return_url)
+      if !return_url.nil? && return_url.to_s.length > 2048
+        fail ArgumentError, 'invalid value for "return_url", the character length must be smaller than or equal to 2048.'
+      end
+
+      @return_url = return_url
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] requestor_id Value to be assigned
     def requestor_id=(requestor_id)
       if !requestor_id.nil? && requestor_id.to_s.length > 35
@@ -869,6 +893,7 @@ module CyberSource
           prior_authentication_reference_id == o.prior_authentication_reference_id &&
           prior_authentication_time == o.prior_authentication_time &&
           product_code == o.product_code &&
+          return_url == o.return_url &&
           requestor_id == o.requestor_id &&
           requestor_initiated_authentication_indicator == o.requestor_initiated_authentication_indicator &&
           requestor_name == o.requestor_name &&
@@ -888,7 +913,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [strong_authentication, authentication_type, acs_window_size, alternate_authentication_data, alternate_authentication_date, alternate_authentication_method, authentication_date, authentication_transaction_id, challenge_cancel_code, challenge_code, challenge_status, customer_card_alias, decoupled_authentication_indicator, decoupled_authentication_max_time, default_card, device_channel, installment_total_count, merchant_fraud_rate, marketing_opt_in, marketing_source, mcc, merchant_score, message_category, npa_code, override_payment_method, override_country_code, prior_authentication_data, prior_authentication_method, prior_authentication_reference_id, prior_authentication_time, product_code, requestor_id, requestor_initiated_authentication_indicator, requestor_name, reference_id, sdk_max_timeout, secure_corporate_payment_indicator, transaction_mode, white_list_status].hash
+      [strong_authentication, authentication_type, acs_window_size, alternate_authentication_data, alternate_authentication_date, alternate_authentication_method, authentication_date, authentication_transaction_id, challenge_cancel_code, challenge_code, challenge_status, customer_card_alias, decoupled_authentication_indicator, decoupled_authentication_max_time, default_card, device_channel, installment_total_count, merchant_fraud_rate, marketing_opt_in, marketing_source, mcc, merchant_score, message_category, npa_code, override_payment_method, override_country_code, prior_authentication_data, prior_authentication_method, prior_authentication_reference_id, prior_authentication_time, product_code, return_url, requestor_id, requestor_initiated_authentication_indicator, requestor_name, reference_id, sdk_max_timeout, secure_corporate_payment_indicator, transaction_mode, white_list_status].hash
     end
 
     # Builds the object from hash

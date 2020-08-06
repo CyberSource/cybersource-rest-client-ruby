@@ -4,62 +4,14 @@ All URIs are relative to *https://apitest.cybersource.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_payment_instrument**](PaymentInstrumentApi.md#create_payment_instrument) | **POST** /tms/v1/paymentinstruments | Create a Payment Instrument
-[**delete_payment_instrument**](PaymentInstrumentApi.md#delete_payment_instrument) | **DELETE** /tms/v1/paymentinstruments/{tokenId} | Delete a Payment Instrument
-[**get_payment_instrument**](PaymentInstrumentApi.md#get_payment_instrument) | **GET** /tms/v1/paymentinstruments/{tokenId} | Retrieve a Payment Instrument
-[**update_payment_instrument**](PaymentInstrumentApi.md#update_payment_instrument) | **PATCH** /tms/v1/paymentinstruments/{tokenId} | Update a Payment Instrument
-
-
-# **create_payment_instrument**
-> TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments create_payment_instrument(profile_id, create_payment_instrument_request)
-
-Create a Payment Instrument
-
-### Example
-```ruby
-# load the gem
-require 'cybersource_rest_client'
-
-api_instance = CyberSource::PaymentInstrumentApi.new
-
-profile_id = "profile_id_example" # String | The id of a profile containing user specific TMS configuration.
-
-create_payment_instrument_request = CyberSource::CreatePaymentInstrumentRequest.new # CreatePaymentInstrumentRequest | Specify the customer's payment details for card or bank account.
-
-
-begin
-  #Create a Payment Instrument
-  result = api_instance.create_payment_instrument(profile_id, create_payment_instrument_request)
-  p result
-rescue CyberSource::ApiError => e
-  puts "Exception when calling PaymentInstrumentApi->create_payment_instrument: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **profile_id** | **String**| The id of a profile containing user specific TMS configuration. | 
- **create_payment_instrument_request** | [**CreatePaymentInstrumentRequest**](CreatePaymentInstrumentRequest.md)| Specify the customer&#39;s payment details for card or bank account. | 
-
-### Return type
-
-[**TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments**](TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/json;charset=utf-8
-
+[**delete_payment_instrument**](PaymentInstrumentApi.md#delete_payment_instrument) | **DELETE** /tms/v1/paymentinstruments/{paymentInstrumentTokenId} | Delete a Payment Instrument
+[**get_payment_instrument**](PaymentInstrumentApi.md#get_payment_instrument) | **GET** /tms/v1/paymentinstruments/{paymentInstrumentTokenId} | Retrieve a Payment Instrument
+[**patch_payment_instrument**](PaymentInstrumentApi.md#patch_payment_instrument) | **PATCH** /tms/v1/paymentinstruments/{paymentInstrumentTokenId} | Update a Payment Instrument
+[**post_payment_instrument**](PaymentInstrumentApi.md#post_payment_instrument) | **POST** /tms/v1/paymentinstruments | Create a Payment Instrument
 
 
 # **delete_payment_instrument**
-> delete_payment_instrument(profile_id, token_id)
+> delete_payment_instrument(payment_instrument_token_id, opts)
 
 Delete a Payment Instrument
 
@@ -70,14 +22,15 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::PaymentInstrumentApi.new
 
-profile_id = "profile_id_example" # String | The id of a profile containing user specific TMS configuration.
+payment_instrument_token_id = "payment_instrument_token_id_example" # String | The TokenId of a payment instrument.
 
-token_id = "token_id_example" # String | The TokenId of a Payment Instrument.
-
+opts = { 
+  profile_id: "profile_id_example" # String | The id of a profile containing user specific TMS configuration.
+}
 
 begin
   #Delete a Payment Instrument
-  api_instance.delete_payment_instrument(profile_id, token_id)
+  api_instance.delete_payment_instrument(payment_instrument_token_id, opts)
 rescue CyberSource::ApiError => e
   puts "Exception when calling PaymentInstrumentApi->delete_payment_instrument: #{e}"
 end
@@ -87,8 +40,8 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **profile_id** | **String**| The id of a profile containing user specific TMS configuration. | 
- **token_id** | **String**| The TokenId of a Payment Instrument. | 
+ **payment_instrument_token_id** | **String**| The TokenId of a payment instrument. | 
+ **profile_id** | **String**| The id of a profile containing user specific TMS configuration. | [optional] 
 
 ### Return type
 
@@ -106,7 +59,7 @@ No authorization required
 
 
 # **get_payment_instrument**
-> TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments get_payment_instrument(profile_id, token_id)
+> Tmsv2customersEmbeddedDefaultPaymentInstrument get_payment_instrument(payment_instrument_token_id, opts)
 
 Retrieve a Payment Instrument
 
@@ -117,14 +70,15 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::PaymentInstrumentApi.new
 
-profile_id = "profile_id_example" # String | The id of a profile containing user specific TMS configuration.
+payment_instrument_token_id = "payment_instrument_token_id_example" # String | The TokenId of a payment instrument.
 
-token_id = "token_id_example" # String | The TokenId of a Payment Instrument.
-
+opts = { 
+  profile_id: "profile_id_example" # String | The id of a profile containing user specific TMS configuration.
+}
 
 begin
   #Retrieve a Payment Instrument
-  result = api_instance.get_payment_instrument(profile_id, token_id)
+  result = api_instance.get_payment_instrument(payment_instrument_token_id, opts)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling PaymentInstrumentApi->get_payment_instrument: #{e}"
@@ -135,12 +89,12 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **profile_id** | **String**| The id of a profile containing user specific TMS configuration. | 
- **token_id** | **String**| The TokenId of a Payment Instrument. | 
+ **payment_instrument_token_id** | **String**| The TokenId of a payment instrument. | 
+ **profile_id** | **String**| The id of a profile containing user specific TMS configuration. | [optional] 
 
 ### Return type
 
-[**TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments**](TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments.md)
+[**Tmsv2customersEmbeddedDefaultPaymentInstrument**](Tmsv2customersEmbeddedDefaultPaymentInstrument.md)
 
 ### Authorization
 
@@ -153,8 +107,8 @@ No authorization required
 
 
 
-# **update_payment_instrument**
-> TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments update_payment_instrument(profile_id, token_id, update_payment_instrument_request)
+# **patch_payment_instrument**
+> Tmsv2customersEmbeddedDefaultPaymentInstrument patch_payment_instrument(payment_instrument_token_id, patch_payment_instrument_request, opts)
 
 Update a Payment Instrument
 
@@ -165,19 +119,21 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::PaymentInstrumentApi.new
 
-profile_id = "profile_id_example" # String | The id of a profile containing user specific TMS configuration.
+payment_instrument_token_id = "payment_instrument_token_id_example" # String | The TokenId of a payment instrument.
 
-token_id = "token_id_example" # String | The TokenId of a Payment Instrument.
+patch_payment_instrument_request = CyberSource::PatchPaymentInstrumentRequest.new # PatchPaymentInstrumentRequest | 
 
-update_payment_instrument_request = CyberSource::UpdatePaymentInstrumentRequest.new # UpdatePaymentInstrumentRequest | Specify the customer's payment details.
-
+opts = { 
+  profile_id: "profile_id_example", # String | The id of a profile containing user specific TMS configuration.
+  if_match: "if_match_example" # String | Contains an ETag value from a GET request to make the request conditional.
+}
 
 begin
   #Update a Payment Instrument
-  result = api_instance.update_payment_instrument(profile_id, token_id, update_payment_instrument_request)
+  result = api_instance.patch_payment_instrument(payment_instrument_token_id, patch_payment_instrument_request, opts)
   p result
 rescue CyberSource::ApiError => e
-  puts "Exception when calling PaymentInstrumentApi->update_payment_instrument: #{e}"
+  puts "Exception when calling PaymentInstrumentApi->patch_payment_instrument: #{e}"
 end
 ```
 
@@ -185,13 +141,63 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **profile_id** | **String**| The id of a profile containing user specific TMS configuration. | 
- **token_id** | **String**| The TokenId of a Payment Instrument. | 
- **update_payment_instrument_request** | [**UpdatePaymentInstrumentRequest**](UpdatePaymentInstrumentRequest.md)| Specify the customer&#39;s payment details. | 
+ **payment_instrument_token_id** | **String**| The TokenId of a payment instrument. | 
+ **patch_payment_instrument_request** | [**PatchPaymentInstrumentRequest**](PatchPaymentInstrumentRequest.md)|  | 
+ **profile_id** | **String**| The id of a profile containing user specific TMS configuration. | [optional] 
+ **if_match** | **String**| Contains an ETag value from a GET request to make the request conditional. | [optional] 
 
 ### Return type
 
-[**TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments**](TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments.md)
+[**Tmsv2customersEmbeddedDefaultPaymentInstrument**](Tmsv2customersEmbeddedDefaultPaymentInstrument.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
+
+
+
+# **post_payment_instrument**
+> Tmsv2customersEmbeddedDefaultPaymentInstrument post_payment_instrument(post_payment_instrument_request, opts)
+
+Create a Payment Instrument
+
+### Example
+```ruby
+# load the gem
+require 'cybersource_rest_client'
+
+api_instance = CyberSource::PaymentInstrumentApi.new
+
+post_payment_instrument_request = CyberSource::PostPaymentInstrumentRequest.new # PostPaymentInstrumentRequest | 
+
+opts = { 
+  profile_id: "profile_id_example" # String | The id of a profile containing user specific TMS configuration.
+}
+
+begin
+  #Create a Payment Instrument
+  result = api_instance.post_payment_instrument(post_payment_instrument_request, opts)
+  p result
+rescue CyberSource::ApiError => e
+  puts "Exception when calling PaymentInstrumentApi->post_payment_instrument: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **post_payment_instrument_request** | [**PostPaymentInstrumentRequest**](PostPaymentInstrumentRequest.md)|  | 
+ **profile_id** | **String**| The id of a profile containing user specific TMS configuration. | [optional] 
+
+### Return type
+
+[**Tmsv2customersEmbeddedDefaultPaymentInstrument**](Tmsv2customersEmbeddedDefaultPaymentInstrument.md)
 
 ### Authorization
 

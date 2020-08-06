@@ -14,10 +14,10 @@ require 'date'
 
 module CyberSource
   class PtsV2PaymentsPost201ResponseProcessorInformationConsumerAuthenticationResponse
-    # Mapped response code for Visa Secure and American Express SafeKey.  For processor-specific details, see `auth_cavv_response_code` field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
+    # Mapped response code for Visa Secure and American Express SafeKey. 
     attr_accessor :code
 
-    # Raw response code sent directly from the processor for Visa Secure and American Express SafeKey:  For processor-specific details, see `auth_cavv_response_code_raw` field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
+    # Raw response code sent directly from the processor for Visa Secure and American Express SafeKey: 
     attr_accessor :code_raw
 
     # Attribute mapping from ruby-style variable name to JSON key.

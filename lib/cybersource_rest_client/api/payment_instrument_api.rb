@@ -20,100 +20,22 @@ module CyberSource
       @api_client = api_client
 	  @api_client.set_configuration(config)
     end
-    # Create a Payment Instrument
-    # @param profile_id The id of a profile containing user specific TMS configuration.
-    # @param create_payment_instrument_request Specify the customer&#39;s payment details for card or bank account.
-    # @param [Hash] opts the optional parameters
-    # @return [TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments]
-    def create_payment_instrument(profile_id, create_payment_instrument_request, opts = {})
-      data, status_code, headers = create_payment_instrument_with_http_info(profile_id, create_payment_instrument_request, opts)
-      return data, status_code, headers
-    end
-
-    # Create a Payment Instrument
-    # @param profile_id The id of a profile containing user specific TMS configuration.
-    # @param create_payment_instrument_request Specify the customer&#39;s payment details for card or bank account.
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments, Fixnum, Hash)>] TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments data, response status code and response headers
-    def create_payment_instrument_with_http_info(profile_id, create_payment_instrument_request, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: PaymentInstrumentApi.create_payment_instrument ...'
-			rescue
-				puts 'Cannot write to log'
-			end
-      end
-      # verify the required parameter 'profile_id' is set
-      if @api_client.config.client_side_validation && profile_id.nil?
-        fail ArgumentError, "Missing the required parameter 'profile_id' when calling PaymentInstrumentApi.create_payment_instrument"
-      end
-      if @api_client.config.client_side_validation && profile_id.to_s.length > 36
-        fail ArgumentError, 'invalid value for "profile_id" when calling PaymentInstrumentApi.create_payment_instrument, the character length must be smaller than or equal to 36.'
-      end
-
-      if @api_client.config.client_side_validation && profile_id.to_s.length < 36
-        fail ArgumentError, 'invalid value for "profile_id" when calling PaymentInstrumentApi.create_payment_instrument, the character length must be great than or equal to 36.'
-      end
-
-      # verify the required parameter 'create_payment_instrument_request' is set
-      if @api_client.config.client_side_validation && create_payment_instrument_request.nil?
-        fail ArgumentError, "Missing the required parameter 'create_payment_instrument_request' when calling PaymentInstrumentApi.create_payment_instrument"
-      end
-      # resource path
-      local_var_path = 'tms/v1/paymentinstruments'
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
-      header_params[:'profile-id'] = profile_id
-
-      # form parameters
-      form_params = {}
-
-      # http body (model)
-      post_body = @api_client.object_to_http_body(create_payment_instrument_request)
-      auth_names = []
-      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments')
-      if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: PaymentInstrumentApi#create_payment_instrument\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
-      return data, status_code, headers
-    end
     # Delete a Payment Instrument
-    # @param profile_id The id of a profile containing user specific TMS configuration.
-    # @param token_id The TokenId of a Payment Instrument.
+    # @param payment_instrument_token_id The TokenId of a payment instrument.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
     # @return [nil]
-    def delete_payment_instrument(profile_id, token_id, opts = {})
-      data, status_code, headers = delete_payment_instrument_with_http_info(profile_id, token_id, opts)
+    def delete_payment_instrument(payment_instrument_token_id, opts = {})
+      data, status_code, headers = delete_payment_instrument_with_http_info(payment_instrument_token_id, opts)
       return data, status_code, headers
     end
 
     # Delete a Payment Instrument
-    # @param profile_id The id of a profile containing user specific TMS configuration.
-    # @param token_id The TokenId of a Payment Instrument.
+    # @param payment_instrument_token_id The TokenId of a payment instrument.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
-    def delete_payment_instrument_with_http_info(profile_id, token_id, opts = {})
+    def delete_payment_instrument_with_http_info(payment_instrument_token_id, opts = {})
       
 	  if @api_client.config.debugging
 	  	begin
@@ -123,32 +45,28 @@ module CyberSource
 				puts 'Cannot write to log'
 			end
       end
-      # verify the required parameter 'profile_id' is set
-      if @api_client.config.client_side_validation && profile_id.nil?
-        fail ArgumentError, "Missing the required parameter 'profile_id' when calling PaymentInstrumentApi.delete_payment_instrument"
+      # verify the required parameter 'payment_instrument_token_id' is set
+      if @api_client.config.client_side_validation && payment_instrument_token_id.nil?
+        fail ArgumentError, "Missing the required parameter 'payment_instrument_token_id' when calling PaymentInstrumentApi.delete_payment_instrument"
       end
-      if @api_client.config.client_side_validation && profile_id.to_s.length > 36
-        fail ArgumentError, 'invalid value for "profile_id" when calling PaymentInstrumentApi.delete_payment_instrument, the character length must be smaller than or equal to 36.'
-      end
-
-      if @api_client.config.client_side_validation && profile_id.to_s.length < 36
-        fail ArgumentError, 'invalid value for "profile_id" when calling PaymentInstrumentApi.delete_payment_instrument, the character length must be great than or equal to 36.'
+      if @api_client.config.client_side_validation && payment_instrument_token_id.to_s.length > 32
+        fail ArgumentError, 'invalid value for "payment_instrument_token_id" when calling PaymentInstrumentApi.delete_payment_instrument, the character length must be smaller than or equal to 32.'
       end
 
-      # verify the required parameter 'token_id' is set
-      if @api_client.config.client_side_validation && token_id.nil?
-        fail ArgumentError, "Missing the required parameter 'token_id' when calling PaymentInstrumentApi.delete_payment_instrument"
-      end
-      if @api_client.config.client_side_validation && token_id.to_s.length > 32
-        fail ArgumentError, 'invalid value for "token_id" when calling PaymentInstrumentApi.delete_payment_instrument, the character length must be smaller than or equal to 32.'
+      if @api_client.config.client_side_validation && payment_instrument_token_id.to_s.length < 1
+        fail ArgumentError, 'invalid value for "payment_instrument_token_id" when calling PaymentInstrumentApi.delete_payment_instrument, the character length must be great than or equal to 1.'
       end
 
-      if @api_client.config.client_side_validation && token_id.to_s.length < 1
-        fail ArgumentError, 'invalid value for "token_id" when calling PaymentInstrumentApi.delete_payment_instrument, the character length must be great than or equal to 1.'
+      if @api_client.config.client_side_validation && !opts[:'profile_id'].nil? && opts[:'profile_id'].to_s.length > 36
+        fail ArgumentError, 'invalid value for "opts[:"profile_id"]" when calling PaymentInstrumentApi.delete_payment_instrument, the character length must be smaller than or equal to 36.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'profile_id'].nil? && opts[:'profile_id'].to_s.length < 36
+        fail ArgumentError, 'invalid value for "opts[:"profile_id"]" when calling PaymentInstrumentApi.delete_payment_instrument, the character length must be great than or equal to 36.'
       end
 
       # resource path
-      local_var_path = 'tms/v1/paymentinstruments/{tokenId}'.sub('{' + 'tokenId' + '}', token_id.to_s)
+      local_var_path = 'tms/v1/paymentinstruments/{paymentInstrumentTokenId}'.sub('{' + 'paymentInstrumentTokenId' + '}', payment_instrument_token_id.to_s)
 
       # query parameters
       query_params = {}
@@ -159,7 +77,7 @@ module CyberSource
       header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
-      header_params[:'profile-id'] = profile_id
+      header_params[:'profile-id'] = opts[:'profile_id'] if !opts[:'profile_id'].nil?
 
       # form parameters
       form_params = {}
@@ -184,21 +102,21 @@ module CyberSource
       return data, status_code, headers
     end
     # Retrieve a Payment Instrument
-    # @param profile_id The id of a profile containing user specific TMS configuration.
-    # @param token_id The TokenId of a Payment Instrument.
+    # @param payment_instrument_token_id The TokenId of a payment instrument.
     # @param [Hash] opts the optional parameters
-    # @return [TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments]
-    def get_payment_instrument(profile_id, token_id, opts = {})
-      data, status_code, headers = get_payment_instrument_with_http_info(profile_id, token_id, opts)
+    # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+    # @return [Tmsv2customersEmbeddedDefaultPaymentInstrument]
+    def get_payment_instrument(payment_instrument_token_id, opts = {})
+      data, status_code, headers = get_payment_instrument_with_http_info(payment_instrument_token_id, opts)
       return data, status_code, headers
     end
 
     # Retrieve a Payment Instrument
-    # @param profile_id The id of a profile containing user specific TMS configuration.
-    # @param token_id The TokenId of a Payment Instrument.
+    # @param payment_instrument_token_id The TokenId of a payment instrument.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments, Fixnum, Hash)>] TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments data, response status code and response headers
-    def get_payment_instrument_with_http_info(profile_id, token_id, opts = {})
+    # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+    # @return [Array<(Tmsv2customersEmbeddedDefaultPaymentInstrument, Fixnum, Hash)>] Tmsv2customersEmbeddedDefaultPaymentInstrument data, response status code and response headers
+    def get_payment_instrument_with_http_info(payment_instrument_token_id, opts = {})
       
 	  if @api_client.config.debugging
 	  	begin
@@ -208,32 +126,28 @@ module CyberSource
 				puts 'Cannot write to log'
 			end
       end
-      # verify the required parameter 'profile_id' is set
-      if @api_client.config.client_side_validation && profile_id.nil?
-        fail ArgumentError, "Missing the required parameter 'profile_id' when calling PaymentInstrumentApi.get_payment_instrument"
+      # verify the required parameter 'payment_instrument_token_id' is set
+      if @api_client.config.client_side_validation && payment_instrument_token_id.nil?
+        fail ArgumentError, "Missing the required parameter 'payment_instrument_token_id' when calling PaymentInstrumentApi.get_payment_instrument"
       end
-      if @api_client.config.client_side_validation && profile_id.to_s.length > 36
-        fail ArgumentError, 'invalid value for "profile_id" when calling PaymentInstrumentApi.get_payment_instrument, the character length must be smaller than or equal to 36.'
-      end
-
-      if @api_client.config.client_side_validation && profile_id.to_s.length < 36
-        fail ArgumentError, 'invalid value for "profile_id" when calling PaymentInstrumentApi.get_payment_instrument, the character length must be great than or equal to 36.'
+      if @api_client.config.client_side_validation && payment_instrument_token_id.to_s.length > 32
+        fail ArgumentError, 'invalid value for "payment_instrument_token_id" when calling PaymentInstrumentApi.get_payment_instrument, the character length must be smaller than or equal to 32.'
       end
 
-      # verify the required parameter 'token_id' is set
-      if @api_client.config.client_side_validation && token_id.nil?
-        fail ArgumentError, "Missing the required parameter 'token_id' when calling PaymentInstrumentApi.get_payment_instrument"
-      end
-      if @api_client.config.client_side_validation && token_id.to_s.length > 32
-        fail ArgumentError, 'invalid value for "token_id" when calling PaymentInstrumentApi.get_payment_instrument, the character length must be smaller than or equal to 32.'
+      if @api_client.config.client_side_validation && payment_instrument_token_id.to_s.length < 1
+        fail ArgumentError, 'invalid value for "payment_instrument_token_id" when calling PaymentInstrumentApi.get_payment_instrument, the character length must be great than or equal to 1.'
       end
 
-      if @api_client.config.client_side_validation && token_id.to_s.length < 1
-        fail ArgumentError, 'invalid value for "token_id" when calling PaymentInstrumentApi.get_payment_instrument, the character length must be great than or equal to 1.'
+      if @api_client.config.client_side_validation && !opts[:'profile_id'].nil? && opts[:'profile_id'].to_s.length > 36
+        fail ArgumentError, 'invalid value for "opts[:"profile_id"]" when calling PaymentInstrumentApi.get_payment_instrument, the character length must be smaller than or equal to 36.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'profile_id'].nil? && opts[:'profile_id'].to_s.length < 36
+        fail ArgumentError, 'invalid value for "opts[:"profile_id"]" when calling PaymentInstrumentApi.get_payment_instrument, the character length must be great than or equal to 36.'
       end
 
       # resource path
-      local_var_path = 'tms/v1/paymentinstruments/{tokenId}'.sub('{' + 'tokenId' + '}', token_id.to_s)
+      local_var_path = 'tms/v1/paymentinstruments/{paymentInstrumentTokenId}'.sub('{' + 'paymentInstrumentTokenId' + '}', payment_instrument_token_id.to_s)
 
       # query parameters
       query_params = {}
@@ -244,7 +158,7 @@ module CyberSource
       header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
-      header_params[:'profile-id'] = profile_id
+      header_params[:'profile-id'] = opts[:'profile_id'] if !opts[:'profile_id'].nil?
 
       # form parameters
       form_params = {}
@@ -258,7 +172,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments')
+        :return_type => 'Tmsv2customersEmbeddedDefaultPaymentInstrument')
       if @api_client.config.debugging
 		begin
 		raise
@@ -270,62 +184,68 @@ module CyberSource
       return data, status_code, headers
     end
     # Update a Payment Instrument
-    # @param profile_id The id of a profile containing user specific TMS configuration.
-    # @param token_id The TokenId of a Payment Instrument.
-    # @param update_payment_instrument_request Specify the customer&#39;s payment details.
+    # @param payment_instrument_token_id The TokenId of a payment instrument.
+    # @param patch_payment_instrument_request 
     # @param [Hash] opts the optional parameters
-    # @return [TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments]
-    def update_payment_instrument(profile_id, token_id, update_payment_instrument_request, opts = {})
-      data, status_code, headers = update_payment_instrument_with_http_info(profile_id, token_id, update_payment_instrument_request, opts)
+    # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+    # @option opts [String] :if_match Contains an ETag value from a GET request to make the request conditional.
+    # @return [Tmsv2customersEmbeddedDefaultPaymentInstrument]
+    def patch_payment_instrument(payment_instrument_token_id, patch_payment_instrument_request, opts = {})
+      data, status_code, headers = patch_payment_instrument_with_http_info(payment_instrument_token_id, patch_payment_instrument_request, opts)
       return data, status_code, headers
     end
 
     # Update a Payment Instrument
-    # @param profile_id The id of a profile containing user specific TMS configuration.
-    # @param token_id The TokenId of a Payment Instrument.
-    # @param update_payment_instrument_request Specify the customer&#39;s payment details.
+    # @param payment_instrument_token_id The TokenId of a payment instrument.
+    # @param patch_payment_instrument_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments, Fixnum, Hash)>] TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments data, response status code and response headers
-    def update_payment_instrument_with_http_info(profile_id, token_id, update_payment_instrument_request, opts = {})
+    # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+    # @option opts [String] :if_match Contains an ETag value from a GET request to make the request conditional.
+    # @return [Array<(Tmsv2customersEmbeddedDefaultPaymentInstrument, Fixnum, Hash)>] Tmsv2customersEmbeddedDefaultPaymentInstrument data, response status code and response headers
+    def patch_payment_instrument_with_http_info(payment_instrument_token_id, patch_payment_instrument_request, opts = {})
       
 	  if @api_client.config.debugging
 	  	begin
 			raise
-				@api_client.config.logger.debug 'Calling API: PaymentInstrumentApi.update_payment_instrument ...'
+				@api_client.config.logger.debug 'Calling API: PaymentInstrumentApi.patch_payment_instrument ...'
 			rescue
 				puts 'Cannot write to log'
 			end
       end
-      # verify the required parameter 'profile_id' is set
-      if @api_client.config.client_side_validation && profile_id.nil?
-        fail ArgumentError, "Missing the required parameter 'profile_id' when calling PaymentInstrumentApi.update_payment_instrument"
+      # verify the required parameter 'payment_instrument_token_id' is set
+      if @api_client.config.client_side_validation && payment_instrument_token_id.nil?
+        fail ArgumentError, "Missing the required parameter 'payment_instrument_token_id' when calling PaymentInstrumentApi.patch_payment_instrument"
       end
-      if @api_client.config.client_side_validation && profile_id.to_s.length > 36
-        fail ArgumentError, 'invalid value for "profile_id" when calling PaymentInstrumentApi.update_payment_instrument, the character length must be smaller than or equal to 36.'
-      end
-
-      if @api_client.config.client_side_validation && profile_id.to_s.length < 36
-        fail ArgumentError, 'invalid value for "profile_id" when calling PaymentInstrumentApi.update_payment_instrument, the character length must be great than or equal to 36.'
+      if @api_client.config.client_side_validation && payment_instrument_token_id.to_s.length > 32
+        fail ArgumentError, 'invalid value for "payment_instrument_token_id" when calling PaymentInstrumentApi.patch_payment_instrument, the character length must be smaller than or equal to 32.'
       end
 
-      # verify the required parameter 'token_id' is set
-      if @api_client.config.client_side_validation && token_id.nil?
-        fail ArgumentError, "Missing the required parameter 'token_id' when calling PaymentInstrumentApi.update_payment_instrument"
-      end
-      if @api_client.config.client_side_validation && token_id.to_s.length > 32
-        fail ArgumentError, 'invalid value for "token_id" when calling PaymentInstrumentApi.update_payment_instrument, the character length must be smaller than or equal to 32.'
+      if @api_client.config.client_side_validation && payment_instrument_token_id.to_s.length < 1
+        fail ArgumentError, 'invalid value for "payment_instrument_token_id" when calling PaymentInstrumentApi.patch_payment_instrument, the character length must be great than or equal to 1.'
       end
 
-      if @api_client.config.client_side_validation && token_id.to_s.length < 1
-        fail ArgumentError, 'invalid value for "token_id" when calling PaymentInstrumentApi.update_payment_instrument, the character length must be great than or equal to 1.'
+      # verify the required parameter 'patch_payment_instrument_request' is set
+      if @api_client.config.client_side_validation && patch_payment_instrument_request.nil?
+        fail ArgumentError, "Missing the required parameter 'patch_payment_instrument_request' when calling PaymentInstrumentApi.patch_payment_instrument"
+      end
+      if @api_client.config.client_side_validation && !opts[:'profile_id'].nil? && opts[:'profile_id'].to_s.length > 36
+        fail ArgumentError, 'invalid value for "opts[:"profile_id"]" when calling PaymentInstrumentApi.patch_payment_instrument, the character length must be smaller than or equal to 36.'
       end
 
-      # verify the required parameter 'update_payment_instrument_request' is set
-      if @api_client.config.client_side_validation && update_payment_instrument_request.nil?
-        fail ArgumentError, "Missing the required parameter 'update_payment_instrument_request' when calling PaymentInstrumentApi.update_payment_instrument"
+      if @api_client.config.client_side_validation && !opts[:'profile_id'].nil? && opts[:'profile_id'].to_s.length < 36
+        fail ArgumentError, 'invalid value for "opts[:"profile_id"]" when calling PaymentInstrumentApi.patch_payment_instrument, the character length must be great than or equal to 36.'
       end
+
+      if @api_client.config.client_side_validation && !opts[:'if_match'].nil? && opts[:'if_match'].to_s.length > 32
+        fail ArgumentError, 'invalid value for "opts[:"if_match"]" when calling PaymentInstrumentApi.patch_payment_instrument, the character length must be smaller than or equal to 32.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'if_match'].nil? && opts[:'if_match'].to_s.length < 1
+        fail ArgumentError, 'invalid value for "opts[:"if_match"]" when calling PaymentInstrumentApi.patch_payment_instrument, the character length must be great than or equal to 1.'
+      end
+
       # resource path
-      local_var_path = 'tms/v1/paymentinstruments/{tokenId}'.sub('{' + 'tokenId' + '}', token_id.to_s)
+      local_var_path = 'tms/v1/paymentinstruments/{paymentInstrumentTokenId}'.sub('{' + 'paymentInstrumentTokenId' + '}', payment_instrument_token_id.to_s)
 
       # query parameters
       query_params = {}
@@ -336,13 +256,14 @@ module CyberSource
       header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
-      header_params[:'profile-id'] = profile_id
+      header_params[:'profile-id'] = opts[:'profile_id'] if !opts[:'profile_id'].nil?
+      header_params[:'if-match'] = opts[:'if_match'] if !opts[:'if_match'].nil?
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(update_payment_instrument_request)
+      post_body = @api_client.object_to_http_body(patch_payment_instrument_request)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:PATCH, local_var_path,
         :header_params => header_params,
@@ -350,11 +271,85 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedPaymentInstruments')
+        :return_type => 'Tmsv2customersEmbeddedDefaultPaymentInstrument')
       if @api_client.config.debugging
 		begin
 		raise
-			@api_client.config.logger.debug "API called: PaymentInstrumentApi#update_payment_instrument\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+			@api_client.config.logger.debug "API called: PaymentInstrumentApi#patch_payment_instrument\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
+      return data, status_code, headers
+    end
+    # Create a Payment Instrument
+    # @param post_payment_instrument_request 
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+    # @return [Tmsv2customersEmbeddedDefaultPaymentInstrument]
+    def post_payment_instrument(post_payment_instrument_request, opts = {})
+      data, status_code, headers = post_payment_instrument_with_http_info(post_payment_instrument_request, opts)
+      return data, status_code, headers
+    end
+
+    # Create a Payment Instrument
+    # @param post_payment_instrument_request 
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+    # @return [Array<(Tmsv2customersEmbeddedDefaultPaymentInstrument, Fixnum, Hash)>] Tmsv2customersEmbeddedDefaultPaymentInstrument data, response status code and response headers
+    def post_payment_instrument_with_http_info(post_payment_instrument_request, opts = {})
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: PaymentInstrumentApi.post_payment_instrument ...'
+			rescue
+				puts 'Cannot write to log'
+			end
+      end
+      # verify the required parameter 'post_payment_instrument_request' is set
+      if @api_client.config.client_side_validation && post_payment_instrument_request.nil?
+        fail ArgumentError, "Missing the required parameter 'post_payment_instrument_request' when calling PaymentInstrumentApi.post_payment_instrument"
+      end
+      if @api_client.config.client_side_validation && !opts[:'profile_id'].nil? && opts[:'profile_id'].to_s.length > 36
+        fail ArgumentError, 'invalid value for "opts[:"profile_id"]" when calling PaymentInstrumentApi.post_payment_instrument, the character length must be smaller than or equal to 36.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'profile_id'].nil? && opts[:'profile_id'].to_s.length < 36
+        fail ArgumentError, 'invalid value for "opts[:"profile_id"]" when calling PaymentInstrumentApi.post_payment_instrument, the character length must be great than or equal to 36.'
+      end
+
+      # resource path
+      local_var_path = 'tms/v1/paymentinstruments'
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params[:'profile-id'] = opts[:'profile_id'] if !opts[:'profile_id'].nil?
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(post_payment_instrument_request)
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'Tmsv2customersEmbeddedDefaultPaymentInstrument')
+      if @api_client.config.debugging
+		begin
+		raise
+			@api_client.config.logger.debug "API called: PaymentInstrumentApi#post_payment_instrument\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
 		rescue
 			puts 'Cannot write to log'
 		end

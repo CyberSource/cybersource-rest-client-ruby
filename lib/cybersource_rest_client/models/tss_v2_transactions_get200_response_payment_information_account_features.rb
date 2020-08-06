@@ -14,13 +14,13 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsGet200ResponsePaymentInformationAccountFeatures
-    # Remaining balance on the account.  Returned by authorization service. 
+    # Remaining balance on the account.  Returned by authorization service.  #### PIN debit Remaining balance on the prepaid card.  Returned by PIN debit purchase. 
     attr_accessor :balance_amount
 
-    # Remaining balance on the account.  Returned by authorization service. 
+    # Remaining balance on the account.  Returned by authorization service.  #### PIN debit Remaining balance on the prepaid card.  Returned by PIN debit purchase. 
     attr_accessor :previous_balance_amount
 
-    # Currency of the remaining balance on the account. For the possible values, see the [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)  Returned by authorization service. 
+    # Currency of the remaining balance on the account. For the possible values, see the [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)  Returned by authorization service.  #### PIN debit Currency of the remaining balance on the prepaid card.  Returned by PIN debit purchase. 
     attr_accessor :currency
 
     # Attribute mapping from ruby-style variable name to JSON key.

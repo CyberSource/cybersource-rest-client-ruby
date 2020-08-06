@@ -14,28 +14,28 @@ require 'date'
 
 module CyberSource
   class PtsV2PaymentsPost201ResponseRiskInformationInfoCodes
-    # List of information codes triggered by the order. These information codes were generated when you created the order and product velocity rules and are returned so that you can associate them with the rules.  For all possible values, see the `decision_velocity_info` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
+    # List of information codes triggered by the order. These information codes were generated when you created the order and product velocity rules and are returned so that you can associate them with the rules.  Returned by Decision Manager service. 
     attr_accessor :velocity
 
-    # Indicates a mismatch between the customer’s billing and shipping addresses.  For all possible values, see the `score_address_info` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
+    # Indicates a mismatch between the customer’s billing and shipping addresses.  Returned by scoring service. 
     attr_accessor :address
 
-    # Indicates that customer information is associated with transactions that are either on the negative or the positive list.  For all possible values, see the `score_hotlist_info` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
+    # Indicates that customer information is associated with transactions that are either on the negative or the positive list.  Returned by scoring service. 
     attr_accessor :customer_list
 
-    # Indicates excessive identity changes. The threshold is variable depending on the identity elements being compared. This field can contain one or more information codes, separated by carets (^).  For all possible values, see the `score_identity_info` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
+    # Indicates excessive identity changes. The threshold is variable depending on the identity elements being compared. This field can contain one or more information codes, separated by carets (^).  Returned by scoring service. 
     attr_accessor :identity_change
 
-    # Indicates a problem with the customer’s email address, IP address, or billing address.  For all possible values, see the `score_internet_info` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
+    # Indicates a problem with the customer’s email address, IP address, or billing address.  Returned by scoring service. 
     attr_accessor :internet
 
-    # Indicates a problem with the customer’s phone number.  For all possible values, see the `score_phone_info` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
+    # Indicates a problem with the customer’s phone number.  Returned by scoring service. 
     attr_accessor :phone
 
-    # Indicates that the customer provided potentially suspicious information.  For all possible values, see the `score_suspicious_info` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
+    # Indicates that the customer provided potentially suspicious information.  Returned by scoring service. 
     attr_accessor :suspicious
 
-    # Indicates that the customer has a high purchase frequency.  For all possible values, see the `score_velocity_info` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
+    # Indicates that the customer has a high purchase frequency.  Returned by scoring service. 
     attr_accessor :global_velocity
 
     # Attribute mapping from ruby-style variable name to JSON key.

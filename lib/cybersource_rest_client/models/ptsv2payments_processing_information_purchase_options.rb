@@ -14,10 +14,10 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsProcessingInformationPurchaseOptions
-    # Flag that indicates that this transaction is an EBT transaction.Possible values: - **true** - **false** 
+    # Flag that indicates whether this transaction is an EBT transaction. Possible values: - `true` - `false`  #### PIN debit Required field for EBT and EBT voucher transactions that use PIN debit credit or PIN debit purchase; otherwise, not used. 
     attr_accessor :is_electronic_benefits_transfer
 
-    # This field is used in PIN Debit EBT transaction as a flag to identify EBT vouchers.Possible values: - `EBT_VOUCHER`: Indicates EBT voucher 
+    # Flag that indicates an EBT voucher transaction. Possible value: - `EBT_VOUCHER`: Indicates the PIN debit transaction is an EBT voucher.  #### PIN debit Required field for EBT voucher transactions that use PIN debit purchase; otherwise, not used. 
     attr_accessor :type
 
     # Attribute mapping from ruby-style variable name to JSON key.

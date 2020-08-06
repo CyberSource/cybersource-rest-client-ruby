@@ -55,6 +55,9 @@ module CyberSource
     # Transaction identifier that is generated. You have the option of printing the sales slip number on the receipt. This field is supported only on Cybersource through Visanet and JCN gateway.  Optional field.  #### Card Present processing message If you included this field in the request, the returned value is the value that you sent in the request. If you did not include this field in the request, the system generated this value for you.  The difference between this reply field and the `processorInformation.systemTraceAuditNumber` field is that the system generates the system trace audit number (STAN), and you must print the receipt number on the receipt; whereas you can generate the sales slip number, and you can choose to print the sales slip number on the receipt. 
     attr_accessor :sales_slip_number
 
+    # Date of the tax calculation. Use format YYYYMMDD. You can provide a date in the past if you are calculating tax for a refund and want to know what the tax was on the date the order was placed. You can provide a date in the future if you are calculating the tax for a future date, such as an upcoming tax holiday.  The default is the date, in Pacific time, that the bank receives the request. Keep this in mind if you are in a different time zone and want the tax calculated with the rates that are applicable on a specific date.  #### Tax Calculation Optional field for U.S., Canadian, international tax, and value added taxes. 
+    attr_accessor :invoice_date
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -71,7 +74,8 @@ module CyberSource
         :'transaction_advice_addendum' => :'transactionAdviceAddendum',
         :'reference_data_code' => :'referenceDataCode',
         :'reference_data_number' => :'referenceDataNumber',
-        :'sales_slip_number' => :'salesSlipNumber'
+        :'sales_slip_number' => :'salesSlipNumber',
+        :'invoice_date' => :'invoiceDate'
       }
     end
 
@@ -91,7 +95,8 @@ module CyberSource
         :'transaction_advice_addendum' => :'Array<Ptsv2paymentsOrderInformationInvoiceDetailsTransactionAdviceAddendum>',
         :'reference_data_code' => :'String',
         :'reference_data_number' => :'String',
-        :'sales_slip_number' => :'Integer'
+        :'sales_slip_number' => :'Integer',
+        :'invoice_date' => :'String'
       }
     end
 
@@ -160,6 +165,10 @@ module CyberSource
       if attributes.has_key?(:'salesSlipNumber')
         self.sales_slip_number = attributes[:'salesSlipNumber']
       end
+
+      if attributes.has_key?(:'invoiceDate')
+        self.invoice_date = attributes[:'invoiceDate']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -198,6 +207,10 @@ module CyberSource
         invalid_properties.push('invalid value for "sales_slip_number", must be smaller than or equal to 99999.')
       end
 
+      if !@invoice_date.nil? && @invoice_date.to_s.length > 8
+        invalid_properties.push('invalid value for "invoice_date", the character length must be smaller than or equal to 8.')
+      end
+
       invalid_properties
     end
 
@@ -212,6 +225,7 @@ module CyberSource
       return false if !@reference_data_code.nil? && @reference_data_code.to_s.length > 3
       return false if !@reference_data_number.nil? && @reference_data_number.to_s.length > 30
       return false if !@sales_slip_number.nil? && @sales_slip_number > 99999
+      return false if !@invoice_date.nil? && @invoice_date.to_s.length > 8
       true
     end
 
@@ -295,6 +309,16 @@ module CyberSource
       @sales_slip_number = sales_slip_number
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] invoice_date Value to be assigned
+    def invoice_date=(invoice_date)
+      if !invoice_date.nil? && invoice_date.to_s.length > 8
+        fail ArgumentError, 'invalid value for "invoice_date", the character length must be smaller than or equal to 8.'
+      end
+
+      @invoice_date = invoice_date
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -313,7 +337,8 @@ module CyberSource
           transaction_advice_addendum == o.transaction_advice_addendum &&
           reference_data_code == o.reference_data_code &&
           reference_data_number == o.reference_data_number &&
-          sales_slip_number == o.sales_slip_number
+          sales_slip_number == o.sales_slip_number &&
+          invoice_date == o.invoice_date
     end
 
     # @see the `==` method
@@ -325,7 +350,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [invoice_number, barcode_number, expiration_date, purchase_order_number, purchase_order_date, purchase_contact_name, taxable, vat_invoice_reference_number, commodity_code, merchandise_code, transaction_advice_addendum, reference_data_code, reference_data_number, sales_slip_number].hash
+      [invoice_number, barcode_number, expiration_date, purchase_order_number, purchase_order_date, purchase_contact_name, taxable, vat_invoice_reference_number, commodity_code, merchandise_code, transaction_advice_addendum, reference_data_code, reference_data_number, sales_slip_number, invoice_date].hash
     end
 
     # Builds the object from hash

@@ -14,64 +14,64 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsTravelInformationTransitAirlineLegs
-    # Carrier Code: IATA1 code for the carrier for this leg of the trip. 
+    # IATA code for the carrier for this leg of the trip. Format: English characters only. Restricted string data type that indicates a sequence of letters, numbers, and spaces; special characters are not included. Optional request field for travel legs. 
     attr_accessor :carrier_code
 
-    # Flight number for this leg of the trip. 
+    # Flight number for this leg of the trip. Restrictions are limitations for the ticket based on the type of fare, such as a nonrefundable ticket or a 3-day minimum stay. Format: English characters only. Optional request field for travel legs. 
     attr_accessor :flight_number
 
-    # IATA1 code for the originating airport for this leg of the trip. 
+    # IATA code for the originating airport for this leg of the trip. Format: English characters only. Restricted string data type that indicates a sequence of letters, numbers, and spaces; special characters are not included. Optional request field for travel legs. 
     attr_accessor :originating_airport_code
 
-    # IATA1 code for the class of service for this leg of the trip. 
+    # IATA code for the class of service for this leg of the trip. Format: English characters only. Restricted string data type that indicates a sequence of letters, numbers, and spaces; special characters are not included. Optional request field for travel legs. 
     attr_accessor :_class
 
-    # Code that indicates whether a stopover is allowed on this leg of the trip. Possible Values: O(capital letter \"O\"): stopover allowed.  X(capital letter \"X\"): Stopover not allowed. 
+    # Code that indicates whether a stopover is allowed on this leg of the trip. Possible values: - `O` (capital letter “O”) (default): Stopover allowed - `X` (capital letter “X”): Stopover not allowed Format: English characters only. Restricted string data type that indicates a sequence of letters, numbers, and spaces; special characters are not included. Optional request field for travel legs. 
     attr_accessor :stopover_indicator
 
-    # Departure date for the first leg of the trip. Format: YYYYMMDD. 
+    # Departure date for the first leg of the trip. Format: `YYYYMMDD`. Format: English characters only. Optional request field for travel legs. 
     attr_accessor :departure_date
 
-    # IATA1 code for the destination airport for this leg of the trip. 
+    # IATA code for the destination airport for this leg of the trip. Format: English characters only. Restricted string data type that indicates a sequence of letters, numbers, and spaces; special characters are not included. Optional request field for travel legs. 
     attr_accessor :destination_airport_code
 
-    # Code for the fare basis for this leg of the trip. The fare basis is assigned by the carriers and indicates a particular ticket type, such as business class or discounted/nonrefundable. 
+    # Code for the fare basis for this leg of the trip. The fare basis is assigned by the carriers and indicates a particular ticket type, such as business class or discounted/nonrefundable. Restricted string data type that indicates a sequence of letters, numbers, and spaces; special characters are not included. Format: English characters only. Optional request field for travel legs.auto_rental_regular_mileage_cost 
     attr_accessor :fare_basis
 
     # Amount of departure tax for this leg of the trip. 
     attr_accessor :depart_tax_amount
 
-    # Ticket that contains additional coupons for this leg of the trip on an itinerary that has more than four segments. 
+    # Ticket that contains additional coupons for this leg of the trip on an itinerary that has more than four segments. Format: English characters only. Restricted string data type that indicates a sequence of letters, numbers, and spaces; special characters are not included. Optional request field for travel legs. 
     attr_accessor :conjunction_ticket
 
-    # New ticket number that is issued when the ticket is exchanged for this leg of the trip. 
+    # New ticket number that is issued when the ticket is exchanged for this leg of the trip. Restrictions are limitations for the ticket based on the type of fare, such as a nonrefundable ticket or a 3-day minimum stay. Format: English characters only. Optional request field for travel legs. 
     attr_accessor :exchange_ticket_number
 
-    # Each leg on the ticket requires a separate coupon, and each coupon is identified by the coupon number. 
+    # Coupon number. Each leg on the ticket requires a separate coupon, and each coupon is identified by the coupon number. Format: English characters only. Restricted string data type that indicates a sequence of letters, numbers, and spaces; special characters are not included. Optional request field for travel legs. 
     attr_accessor :coupon_number
 
-    # Time of departure for this leg of the trip. The format is military time and HHMM: If not all zeros, then the hours must be 00-23 and the minutes must be 00-59 
+    # Time of departure for this leg of the trip. The format is military time and HHMM: If not all zeros, then the hours must be `00-23` and the minutes must be `00-59`. Format: English characters only. Optional request field for travel legs. 
     attr_accessor :departure_time
 
-    # AM or PM for the departure time. Possible values: - A: 12:00 midnight to 11:59 a.m. - P: 12:00 noon to 11:59 p.m 
+    # AM or PM for the departure time. Possible values: - A: 12:00 midnight to 11:59 a.m. - P: 12:00 noon to 11:59 p.m Format: English characters only. Restricted string data type that indicates a sequence of letters, numbers, and spaces; special characters are not included. Optional request field for travel legs. 
     attr_accessor :departure_time_meridian
 
-    # Time of arrival for this leg of the trip. The format is military time and HHMM: If not all zeros, then the hours must be 00-23 and the minutes must be 00-59 
+    # Time of arrival for this leg of the trip. The format is military time and HHMM: If not all zeros, then the hours must be `00-23` and the minutes must be `00-59` Format: English characters only. Optional request field for travel legs. 
     attr_accessor :arrival_time
 
-    # AM or PM for the arrival time for this leg of the trip. Possible values: - A: 12:00 midnight to 11:59 a.m. - P: 12:00 noon to 11:59 p.m. Format: English characters only 
+    # AM or PM for the arrival time for this leg of the trip. Possible values: - `A`: 12:00 midnight to 11:59 a.m. - `P`: 12:00 noon to 11:59 p.m. Format: English characters only. Restricted string data type that indicates a sequence of letters, numbers, and spaces; special characters are not included. Optional request field for travel legs. 
     attr_accessor :arrival_time_meridian
 
-    # Notes or notations about endorsements and restrictions for this leg of the trip. Endorsements can be notations added by the travel agency, including mandatory government required notations such as value added tax. Restrictions are limitations for the ticket based on the type of fare, such as a nonrefundable tic. 
+    # Notes or notations about endorsements and restrictions for this leg of the trip. Endorsements can be notations added by the travel agency, including mandatory government-required notations such as value added tax. Restrictions are limitations for the ticket based on the type of fare, such as a nonrefundable ticket or a 3-day minimum stay. Format: English characters only. Optional request field for travel legs. 
     attr_accessor :endorsements_restrictions
 
-    # Total fare for this leg of the trip. 
+    # Total fare for this leg of the trip. Format: English characters only. Optional request field for travel legs. 
     attr_accessor :total_fare_amount
 
-    # Fee for this leg of the trip, such as an airport fee or country fee. 
+    # Fee for this leg of the trip, such as an airport fee or country fee. Format: English characters only. Optional request field for travel legs. 
     attr_accessor :fee_amount
 
-    # Tax for this leg of the trip 
+    # Tax for this leg of the trip. Format: English characters only. Optional request field for travel legs. 
     attr_accessor :tax_amount
 
     # Attribute mapping from ruby-style variable name to JSON key.

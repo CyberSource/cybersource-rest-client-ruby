@@ -32,6 +32,12 @@ describe 'TssV2TransactionsGet200ResponsePointOfSaleInformation' do
       expect(@instance).to be_instance_of(CyberSource::TssV2TransactionsGet200ResponsePointOfSaleInformation)
     end
   end
+  describe 'test attribute "terminal_id"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "entry_mode"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

@@ -44,6 +44,12 @@ describe 'Ptsv2paymentsTravelInformation' do
     end
   end
 
+  describe 'test attribute "auto_rental"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "lodging"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

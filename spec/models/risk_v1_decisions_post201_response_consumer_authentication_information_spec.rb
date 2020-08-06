@@ -32,6 +32,12 @@ describe 'RiskV1DecisionsPost201ResponseConsumerAuthenticationInformation' do
       expect(@instance).to be_instance_of(CyberSource::RiskV1DecisionsPost201ResponseConsumerAuthenticationInformation)
     end
   end
+  describe 'test attribute "access_token"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "acs_rendering_type"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

@@ -20,12 +20,24 @@ module CyberSource
 
     attr_accessor :capture
 
+    attr_accessor :customer
+
+    attr_accessor :payment_instrument
+
+    attr_accessor :shipping_address
+
+    attr_accessor :instrument_identifier
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'_self' => :'self',
         :'reversal' => :'reversal',
-        :'capture' => :'capture'
+        :'capture' => :'capture',
+        :'customer' => :'customer',
+        :'payment_instrument' => :'paymentInstrument',
+        :'shipping_address' => :'shippingAddress',
+        :'instrument_identifier' => :'instrumentIdentifier'
       }
     end
 
@@ -34,7 +46,11 @@ module CyberSource
       {
         :'_self' => :'PtsV2PaymentsPost201ResponseLinksSelf',
         :'reversal' => :'PtsV2PaymentsPost201ResponseLinksSelf',
-        :'capture' => :'PtsV2PaymentsPost201ResponseLinksSelf'
+        :'capture' => :'PtsV2PaymentsPost201ResponseLinksSelf',
+        :'customer' => :'PtsV2PaymentsPost201ResponseLinksSelf',
+        :'payment_instrument' => :'PtsV2PaymentsPost201ResponseLinksSelf',
+        :'shipping_address' => :'PtsV2PaymentsPost201ResponseLinksSelf',
+        :'instrument_identifier' => :'PtsV2PaymentsPost201ResponseLinksSelf'
       }
     end
 
@@ -56,6 +72,22 @@ module CyberSource
 
       if attributes.has_key?(:'capture')
         self.capture = attributes[:'capture']
+      end
+
+      if attributes.has_key?(:'customer')
+        self.customer = attributes[:'customer']
+      end
+
+      if attributes.has_key?(:'paymentInstrument')
+        self.payment_instrument = attributes[:'paymentInstrument']
+      end
+
+      if attributes.has_key?(:'shippingAddress')
+        self.shipping_address = attributes[:'shippingAddress']
+      end
+
+      if attributes.has_key?(:'instrumentIdentifier')
+        self.instrument_identifier = attributes[:'instrumentIdentifier']
       end
     end
 
@@ -79,7 +111,11 @@ module CyberSource
       self.class == o.class &&
           _self == o._self &&
           reversal == o.reversal &&
-          capture == o.capture
+          capture == o.capture &&
+          customer == o.customer &&
+          payment_instrument == o.payment_instrument &&
+          shipping_address == o.shipping_address &&
+          instrument_identifier == o.instrument_identifier
     end
 
     # @see the `==` method
@@ -91,7 +127,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_self, reversal, capture].hash
+      [_self, reversal, capture, customer, payment_instrument, shipping_address, instrument_identifier].hash
     end
 
     # Builds the object from hash

@@ -20,11 +20,17 @@ module CyberSource
     # Flex API Transient Token encoded as JWT (JSON Web Token), e.g. Flex microform or Unified Payment checkout result. 
     attr_accessor :transient_token_jwt
 
+    attr_accessor :payment_instrument
+
+    attr_accessor :shipping_address
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'jti' => :'jti',
-        :'transient_token_jwt' => :'transientTokenJwt'
+        :'transient_token_jwt' => :'transientTokenJwt',
+        :'payment_instrument' => :'paymentInstrument',
+        :'shipping_address' => :'shippingAddress'
       }
     end
 
@@ -32,7 +38,9 @@ module CyberSource
     def self.swagger_types
       {
         :'jti' => :'String',
-        :'transient_token_jwt' => :'String'
+        :'transient_token_jwt' => :'String',
+        :'payment_instrument' => :'Ptsv2paymentsTokenInformationPaymentInstrument',
+        :'shipping_address' => :'Ptsv2paymentsTokenInformationShippingAddress'
       }
     end
 
@@ -50,6 +58,14 @@ module CyberSource
 
       if attributes.has_key?(:'transientTokenJwt')
         self.transient_token_jwt = attributes[:'transientTokenJwt']
+      end
+
+      if attributes.has_key?(:'paymentInstrument')
+        self.payment_instrument = attributes[:'paymentInstrument']
+      end
+
+      if attributes.has_key?(:'shippingAddress')
+        self.shipping_address = attributes[:'shippingAddress']
       end
     end
 
@@ -87,7 +103,9 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           jti == o.jti &&
-          transient_token_jwt == o.transient_token_jwt
+          transient_token_jwt == o.transient_token_jwt &&
+          payment_instrument == o.payment_instrument &&
+          shipping_address == o.shipping_address
     end
 
     # @see the `==` method
@@ -99,7 +117,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [jti, transient_token_jwt].hash
+      [jti, transient_token_jwt, payment_instrument, shipping_address].hash
     end
 
     # Builds the object from hash

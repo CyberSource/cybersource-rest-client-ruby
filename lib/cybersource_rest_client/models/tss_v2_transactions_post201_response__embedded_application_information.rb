@@ -14,16 +14,13 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsPost201ResponseEmbeddedApplicationInformation
-    # The status of the submitted transaction.
-    attr_accessor :status
-
     # Indicates the reason why a request succeeded or failed and possible action to take if a request fails.  For details, see the appendix of reason codes in the documentation for the relevant payment method. 
     attr_accessor :reason_code
 
-    # Indicates whether the service request was successful. Possible values:  - `-1`: An error occurred. - `0`: The request was declined. - `1`: The request was successful.  For details, see `auth_rcode` field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
+    # Indicates whether the service request was successful. Possible values:  - `-1`: An error occurred. - `0`: The request was declined. - `1`: The request was successful. 
     attr_accessor :r_code
 
-    # One-word description of the result of the application.  For details, see `auth_rflag` field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
+    # One-word description of the result of the application. 
     attr_accessor :r_flag
 
     attr_accessor :applications
@@ -34,7 +31,6 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'status' => :'status',
         :'reason_code' => :'reasonCode',
         :'r_code' => :'rCode',
         :'r_flag' => :'rFlag',
@@ -46,12 +42,11 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'status' => :'String',
         :'reason_code' => :'String',
         :'r_code' => :'String',
         :'r_flag' => :'String',
-        :'applications' => :'Array<TssV2TransactionsGet200ResponseApplicationInformationApplications>',
-        :'return_code' => :'String'
+        :'applications' => :'Array<TssV2TransactionsPost201ResponseEmbeddedApplicationInformationApplications>',
+        :'return_code' => :'Integer'
       }
     end
 
@@ -62,10 +57,6 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
-
-      if attributes.has_key?(:'status')
-        self.status = attributes[:'status']
-      end
 
       if attributes.has_key?(:'reasonCode')
         self.reason_code = attributes[:'reasonCode']
@@ -108,7 +99,6 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          status == o.status &&
           reason_code == o.reason_code &&
           r_code == o.r_code &&
           r_flag == o.r_flag &&
@@ -125,7 +115,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [status, reason_code, r_code, r_flag, applications, return_code].hash
+      [reason_code, r_code, r_flag, applications, return_code].hash
     end
 
     # Builds the object from hash

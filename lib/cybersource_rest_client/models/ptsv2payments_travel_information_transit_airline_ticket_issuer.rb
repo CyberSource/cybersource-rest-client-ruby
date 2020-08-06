@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsTravelInformationTransitAirlineTicketIssuer
-    # IATA2 airline code. Format: English characters only. 
+    # IATA2 airline code. Format: English characters only. Required for Mastercard; optional for all other card types. 
     attr_accessor :code
 
     # Name of the ticket issuer. If you do not include this field, CyberSource uses the value for your merchant name that is in the CyberSource merchant configuration database. 
@@ -23,7 +23,7 @@ module CyberSource
     # Address of the company issuing the ticket. 
     attr_accessor :address
 
-    # City in which the transactionoccurred. If the name of the city exceeds 18 characters, use meaningful abbreviations. Format: English characters only 
+    # City in which the transaction occurred. If the name of the city exceeds 18 characters, use meaningful abbreviations. Format: English characters only. Optional request field. 
     attr_accessor :locality
 
     # State in which transaction occured. 

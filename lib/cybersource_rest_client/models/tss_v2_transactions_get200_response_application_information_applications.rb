@@ -62,7 +62,7 @@ module CyberSource
         :'r_flag' => :'String',
         :'reconciliation_id' => :'String',
         :'r_message' => :'String',
-        :'return_code' => :'String'
+        :'return_code' => :'Integer'
       }
     end
 

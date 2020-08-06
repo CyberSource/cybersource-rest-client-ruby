@@ -32,6 +32,9 @@ module CyberSource
     # Transaction identifier.  For details, see `xid` request field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
     attr_accessor :xid
 
+    # Universal cardholder authentication field (UCAF) collection indicator.  For details, see `ucaf_collection_indicator` request field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  #### CyberSource through VisaNet The value for this field corresponds to the following data in the TC 33 capture file5: - Record: CP01 TCR7 - Position: 5 - Field: Mastercard Electronic Commerce Indicators—UCAF Collection Indicator 
+    attr_accessor :ucaf_collection_indicator
+
     # Universal cardholder authentication field (UCAF) data.  For details, see `ucaf_authentication_data` request field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
     attr_accessor :ucaf_authentication_data
 
@@ -115,7 +118,7 @@ module CyberSource
     # Specifies the Brazilian payment account type used for the transaction. This field overrides other payment types that might be specified in the request. Use one of the following values for this field: - `NA`: Not applicable. Do not override other payment types that are specified in the request. - `CR`: Credit card. - `DB`: Debit card. - `VSAVR`: Visa Vale Refeicao - `VSAVA`: Visa Vale Alimentacao **Important** Required only for Visa Secure transactions in Brazil. Do not use this request field for any other types of transactions. 
     attr_accessor :override_payment_method
 
-    # Two-character ISO standard Country Codes. 
+    # Two-character [ISO Standard Country Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf).. 
     attr_accessor :override_country_code
 
     # This field carry data that the ACS can use to verify the authentication process. 
@@ -175,6 +178,7 @@ module CyberSource
         :'pares_status' => :'paresStatus',
         :'veres_enrolled' => :'veresEnrolled',
         :'xid' => :'xid',
+        :'ucaf_collection_indicator' => :'ucafCollectionIndicator',
         :'ucaf_authentication_data' => :'ucafAuthenticationData',
         :'strong_authentication' => :'strongAuthentication',
         :'directory_server_transaction_id' => :'directoryServerTransactionId',
@@ -232,6 +236,7 @@ module CyberSource
         :'pares_status' => :'String',
         :'veres_enrolled' => :'String',
         :'xid' => :'String',
+        :'ucaf_collection_indicator' => :'String',
         :'ucaf_authentication_data' => :'String',
         :'strong_authentication' => :'Ptsv2paymentsConsumerAuthenticationInformationStrongAuthentication',
         :'directory_server_transaction_id' => :'String',
@@ -310,6 +315,10 @@ module CyberSource
 
       if attributes.has_key?(:'xid')
         self.xid = attributes[:'xid']
+      end
+
+      if attributes.has_key?(:'ucafCollectionIndicator')
+        self.ucaf_collection_indicator = attributes[:'ucafCollectionIndicator']
       end
 
       if attributes.has_key?(:'ucafAuthenticationData')
@@ -521,6 +530,10 @@ module CyberSource
         invalid_properties.push('invalid value for "xid", the character length must be smaller than or equal to 40.')
       end
 
+      if !@ucaf_collection_indicator.nil? && @ucaf_collection_indicator.to_s.length > 1
+        invalid_properties.push('invalid value for "ucaf_collection_indicator", the character length must be smaller than or equal to 1.')
+      end
+
       if !@ucaf_authentication_data.nil? && @ucaf_authentication_data.to_s.length > 32
         invalid_properties.push('invalid value for "ucaf_authentication_data", the character length must be smaller than or equal to 32.')
       end
@@ -669,6 +682,7 @@ module CyberSource
       return false if !@pares_status.nil? && @pares_status.to_s.length > 1
       return false if !@veres_enrolled.nil? && @veres_enrolled.to_s.length > 1
       return false if !@xid.nil? && @xid.to_s.length > 40
+      return false if !@ucaf_collection_indicator.nil? && @ucaf_collection_indicator.to_s.length > 1
       return false if !@ucaf_authentication_data.nil? && @ucaf_authentication_data.to_s.length > 32
       return false if !@directory_server_transaction_id.nil? && @directory_server_transaction_id.to_s.length > 36
       return false if !@pa_specification_version.nil? && @pa_specification_version.to_s.length > 1
@@ -764,6 +778,16 @@ module CyberSource
       end
 
       @xid = xid
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] ucaf_collection_indicator Value to be assigned
+    def ucaf_collection_indicator=(ucaf_collection_indicator)
+      if !ucaf_collection_indicator.nil? && ucaf_collection_indicator.to_s.length > 1
+        fail ArgumentError, 'invalid value for "ucaf_collection_indicator", the character length must be smaller than or equal to 1.'
+      end
+
+      @ucaf_collection_indicator = ucaf_collection_indicator
     end
 
     # Custom attribute writer method with validation
@@ -1117,6 +1141,7 @@ module CyberSource
           pares_status == o.pares_status &&
           veres_enrolled == o.veres_enrolled &&
           xid == o.xid &&
+          ucaf_collection_indicator == o.ucaf_collection_indicator &&
           ucaf_authentication_data == o.ucaf_authentication_data &&
           strong_authentication == o.strong_authentication &&
           directory_server_transaction_id == o.directory_server_transaction_id &&
@@ -1173,7 +1198,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [cavv, cavv_algorithm, eci_raw, pares_status, veres_enrolled, xid, ucaf_authentication_data, strong_authentication, directory_server_transaction_id, pa_specification_version, authentication_type, acs_window_size, alternate_authentication_data, alternate_authentication_date, alternate_authentication_method, authentication_date, authentication_transaction_id, challenge_cancel_code, challenge_code, challenge_status, customer_card_alias, decoupled_authentication_indicator, decoupled_authentication_max_time, default_card, device_channel, installment_total_count, merchant_fraud_rate, marketing_opt_in, marketing_source, mcc, merchant_score, message_category, npa_code, override_payment_method, override_country_code, prior_authentication_data, prior_authentication_method, prior_authentication_reference_id, prior_authentication_time, product_code, requestor_id, requestor_initiated_authentication_indicator, requestor_name, reference_id, sdk_max_timeout, secure_corporate_payment_indicator, transaction_mode, white_list_status, effective_authentication_type, signed_pares_status_reason, signed_pares].hash
+      [cavv, cavv_algorithm, eci_raw, pares_status, veres_enrolled, xid, ucaf_collection_indicator, ucaf_authentication_data, strong_authentication, directory_server_transaction_id, pa_specification_version, authentication_type, acs_window_size, alternate_authentication_data, alternate_authentication_date, alternate_authentication_method, authentication_date, authentication_transaction_id, challenge_cancel_code, challenge_code, challenge_status, customer_card_alias, decoupled_authentication_indicator, decoupled_authentication_max_time, default_card, device_channel, installment_total_count, merchant_fraud_rate, marketing_opt_in, marketing_source, mcc, merchant_score, message_category, npa_code, override_payment_method, override_country_code, prior_authentication_data, prior_authentication_method, prior_authentication_reference_id, prior_authentication_time, product_code, requestor_id, requestor_initiated_authentication_indicator, requestor_name, reference_id, sdk_max_timeout, secure_corporate_payment_indicator, transaction_mode, white_list_status, effective_authentication_type, signed_pares_status_reason, signed_pares].hash
     end
 
     # Builds the object from hash

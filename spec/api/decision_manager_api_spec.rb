@@ -46,8 +46,8 @@ describe 'DecisionManagerApi' do
   end
 
   # unit tests for create_bundled_decision_manager_case
-  # Create Decision Manager Case
-  # This is the combined request to the Decision Manager Service for a transaction sent to Cybersource. Decision Manager will return a decision based on the request values.
+  # Create Decision Manager
+  # Decision Manager can help you automate and streamline your fraud operations. Decision Manager will return a decision based on the request values.
   # @param create_bundled_decision_manager_case_request 
   # @param [Hash] opts the optional parameters
   # @return [RiskV1DecisionsPost201Response]

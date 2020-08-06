@@ -68,6 +68,12 @@ describe 'Ptsv2paymentsConsumerAuthenticationInformation' do
     end
   end
 
+  describe 'test attribute "ucaf_collection_indicator"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "ucaf_authentication_data"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

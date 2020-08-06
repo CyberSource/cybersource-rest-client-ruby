@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **generate_public_key**
-> FlexV1KeysPost200Response generate_public_key(generate_public_key_request, opts)
+> FlexV1KeysPost200Response generate_public_key(format, generate_public_key_request)
 
 Generate Key
 
@@ -21,15 +21,14 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::KeyGenerationApi.new
 
+format = "JWT" # String | Indicator to enable the receipt of the Keys response in Flex 11+ format (JWT) or legacy (parameter not required)
+
 generate_public_key_request = CyberSource::GeneratePublicKeyRequest.new # GeneratePublicKeyRequest | 
 
-opts = { 
-  format: "legacy" # String | Indicator to enable the receipt of the Keys response in Flex 11+ format (JWT) or legacy (parameter not required)
-}
 
 begin
   #Generate Key
-  result = api_instance.generate_public_key(generate_public_key_request, opts)
+  result = api_instance.generate_public_key(format, generate_public_key_request)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling KeyGenerationApi->generate_public_key: #{e}"
@@ -40,8 +39,8 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **format** | **String**| Indicator to enable the receipt of the Keys response in Flex 11+ format (JWT) or legacy (parameter not required) | [default to JWT]
  **generate_public_key_request** | [**GeneratePublicKeyRequest**](GeneratePublicKeyRequest.md)|  | 
- **format** | **String**| Indicator to enable the receipt of the Keys response in Flex 11+ format (JWT) or legacy (parameter not required) | [optional] [default to legacy]
 
 ### Return type
 
