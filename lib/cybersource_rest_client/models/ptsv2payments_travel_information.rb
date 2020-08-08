@@ -14,10 +14,12 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsTravelInformation
-    # Duration for which the vehicle was rented or lodge/hotel was booked. 
+    # Duration of the auto rental or lodging rental.  #### Auto rental This field is supported for Visa, MasterCard, and American Express. **Important** If this field is not included when the `processingInformation.industryDataType` is auto rental, the transaction is declined. 
     attr_accessor :duration
 
     attr_accessor :agency
+
+    attr_accessor :auto_rental
 
     attr_accessor :lodging
 
@@ -28,6 +30,7 @@ module CyberSource
       {
         :'duration' => :'duration',
         :'agency' => :'agency',
+        :'auto_rental' => :'autoRental',
         :'lodging' => :'lodging',
         :'transit' => :'transit'
       }
@@ -38,6 +41,7 @@ module CyberSource
       {
         :'duration' => :'String',
         :'agency' => :'Ptsv2paymentsTravelInformationAgency',
+        :'auto_rental' => :'Ptsv2paymentsTravelInformationAutoRental',
         :'lodging' => :'Ptsv2paymentsTravelInformationLodging',
         :'transit' => :'Ptsv2paymentsTravelInformationTransit'
       }
@@ -57,6 +61,10 @@ module CyberSource
 
       if attributes.has_key?(:'agency')
         self.agency = attributes[:'agency']
+      end
+
+      if attributes.has_key?(:'autoRental')
+        self.auto_rental = attributes[:'autoRental']
       end
 
       if attributes.has_key?(:'lodging')
@@ -103,6 +111,7 @@ module CyberSource
       self.class == o.class &&
           duration == o.duration &&
           agency == o.agency &&
+          auto_rental == o.auto_rental &&
           lodging == o.lodging &&
           transit == o.transit
     end
@@ -116,7 +125,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [duration, agency, lodging, transit].hash
+      [duration, agency, auto_rental, lodging, transit].hash
     end
 
     # Builds the object from hash

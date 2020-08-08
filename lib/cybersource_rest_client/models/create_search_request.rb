@@ -14,25 +14,25 @@ require 'date'
 
 module CyberSource
   class CreateSearchRequest
-    # save or not save.
+    # Indicates whether or not you want to save this search request for future use. The options are:  * `true` * `false` (default value)  If set to `true`, this field returns `searchID` in the response. You can use this value to retrieve the details of the saved search. 
     attr_accessor :save
 
-    # The description for this field is not available. 
+    # Name of this search. When `save` is set to `true`, this search is saved with this name. 
     attr_accessor :name
 
-    # Time Zone in ISO format.
+    # Merchant’s time zone in ISO standard, using the TZ database format. For example: `America/Chicago` 
     attr_accessor :timezone
 
-    # transaction search query string.
+    # String that contains the filters and variables for which you want to search. For information about supported field-filters and operators, see the [Query Filters]( https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn_search_api/creating_txn_search_request.html) section of the Transaction Search Developer Guide. 
     attr_accessor :query
 
-    # offset.
+    # Controls the starting point within the collection of results, which defaults to 0. The first item in the collection is retrieved by setting a zero offset.  For example, if you have a collection of 15 items to be retrieved from a resource and you specify limit=5, you can retrieve the entire set of results in 3 successive requests by varying the offset value like this:  `offset=0` `offset=5` `offset=10`  **Note:** If an offset larger than the number of results is provided, this will result in no embedded object being returned. 
     attr_accessor :offset
 
-    # Limit on number of results.
+    # Controls the maximum number of items that may be returned for a single request. The default is 20, the maximum is 2000. 
     attr_accessor :limit
 
-    # A comma separated list of the following form - fieldName1 asc or desc, fieldName2 asc or desc, etc.
+    # A comma separated list of the following form:  `submitTimeUtc:desc` 
     attr_accessor :sort
 
     # Attribute mapping from ruby-style variable name to JSON key.

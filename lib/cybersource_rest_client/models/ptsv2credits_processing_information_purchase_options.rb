@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class Ptsv2creditsProcessingInformationPurchaseOptions
-    # Flag that indicates that this transaction is an EBT transaction.Possible values: - **true** - **false** 
+    # Flag that indicates whether this transaction is an EBT transaction. Possible values: - `true` - `false`  #### PIN debit Required field for EBT and EBT voucher transactions that use PIN debit credit or PIN debit purchase; otherwise, not used. 
     attr_accessor :is_electronic_benefits_transfer
 
     # Attribute mapping from ruby-style variable name to JSON key.

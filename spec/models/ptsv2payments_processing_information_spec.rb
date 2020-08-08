@@ -38,6 +38,12 @@ describe 'Ptsv2paymentsProcessingInformation' do
     end
   end
 
+  describe 'test attribute "action_token_types"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "capture"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

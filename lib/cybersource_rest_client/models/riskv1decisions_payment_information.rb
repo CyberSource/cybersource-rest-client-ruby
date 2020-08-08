@@ -42,7 +42,7 @@ module CyberSource
       {
         :'card' => :'Riskv1decisionsPaymentInformationCard',
         :'tokenized_card' => :'Riskv1decisionsPaymentInformationTokenizedCard',
-        :'customer' => :'Riskv1decisionsPaymentInformationCustomer',
+        :'customer' => :'Ptsv2paymentsPaymentInformationCustomer',
         :'bank' => :'Ptsv2paymentsPaymentInformationBank',
         :'method' => :'String'
       }

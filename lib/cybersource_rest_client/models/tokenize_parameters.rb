@@ -31,7 +31,7 @@ module CyberSource
     def self.swagger_types
       {
         :'key_id' => :'String',
-        :'card_info' => :'Flexv1tokensCardInfo'
+        :'card_info' => :'TokenizeParametersCardInfo'
       }
     end
 

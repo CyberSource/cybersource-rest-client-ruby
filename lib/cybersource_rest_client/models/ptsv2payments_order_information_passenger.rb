@@ -21,7 +21,7 @@ module CyberSource
     # Your company's passenger classification, such as with a frequent flyer program. In this case, you might use values such as `standard`, `gold`, or `platinum`. 
     attr_accessor :status
 
-    # Passenger's phone number. If the order is from outside the U.S., CyberSource recommends that you include the [ISO Standard Country Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf) 
+    # Passenger's phone number. If the order is from outside the U.S., CyberSource recommends that you include the [ISO Standard Country Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf). 
     attr_accessor :phone
 
     # Passenger's first name.
@@ -36,7 +36,7 @@ module CyberSource
     # Passenger's email address, including the full domain name, such as jdoe@example.com.
     attr_accessor :email
 
-    # Passenger's nationality country. Use the two character ISO Standard Country Codes.
+    # Passenger's nationality country. Use the two character [ISO Standard Country Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf).
     attr_accessor :nationality
 
     # Attribute mapping from ruby-style variable name to JSON key.

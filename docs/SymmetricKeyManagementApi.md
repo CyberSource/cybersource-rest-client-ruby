@@ -1,0 +1,152 @@
+# CyberSource::SymmetricKeyManagementApi
+
+All URIs are relative to *https://apitest.cybersource.com*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**create_v2_shared_secret_keys**](SymmetricKeyManagementApi.md#create_v2_shared_secret_keys) | **POST** /kms/v2/keys-sym | Create Shared-Secret Keys
+[**delete_bulk_symmetric_keys**](SymmetricKeyManagementApi.md#delete_bulk_symmetric_keys) | **POST** /kms/v2/keys-sym/deletes | Delete one or more Symmetric keys
+[**get_key_details**](SymmetricKeyManagementApi.md#get_key_details) | **GET** /kms/v2/keys-sym/{keyId} | Retrieves shared secret key details
+
+
+# **create_v2_shared_secret_keys**
+> InlineResponse201 create_v2_shared_secret_keys(create_shared_secret_keys_request)
+
+Create Shared-Secret Keys
+
+Create one or more Shared-Secret Keys 
+
+### Example
+```ruby
+# load the gem
+require 'cybersource_rest_client'
+
+api_instance = CyberSource::SymmetricKeyManagementApi.new
+
+create_shared_secret_keys_request = CyberSource::CreateSharedSecretKeysRequest.new # CreateSharedSecretKeysRequest | 
+
+
+begin
+  #Create Shared-Secret Keys
+  result = api_instance.create_v2_shared_secret_keys(create_shared_secret_keys_request)
+  p result
+rescue CyberSource::ApiError => e
+  puts "Exception when calling SymmetricKeyManagementApi->create_v2_shared_secret_keys: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **create_shared_secret_keys_request** | [**CreateSharedSecretKeysRequest**](CreateSharedSecretKeysRequest.md)|  | 
+
+### Return type
+
+[**InlineResponse201**](InlineResponse201.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/hal+json;charset=utf-8
+
+
+
+# **delete_bulk_symmetric_keys**
+> InlineResponse2001 delete_bulk_symmetric_keys(delete_bulk_symmetric_keys_request)
+
+Delete one or more Symmetric keys
+
+'Delete one or more Symmetric keys' 
+
+### Example
+```ruby
+# load the gem
+require 'cybersource_rest_client'
+
+api_instance = CyberSource::SymmetricKeyManagementApi.new
+
+delete_bulk_symmetric_keys_request = CyberSource::DeleteBulkSymmetricKeysRequest.new # DeleteBulkSymmetricKeysRequest | 
+
+
+begin
+  #Delete one or more Symmetric keys
+  result = api_instance.delete_bulk_symmetric_keys(delete_bulk_symmetric_keys_request)
+  p result
+rescue CyberSource::ApiError => e
+  puts "Exception when calling SymmetricKeyManagementApi->delete_bulk_symmetric_keys: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **delete_bulk_symmetric_keys_request** | [**DeleteBulkSymmetricKeysRequest**](DeleteBulkSymmetricKeysRequest.md)|  | 
+
+### Return type
+
+[**InlineResponse2001**](InlineResponse2001.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/hal+json;charset=utf-8
+
+
+
+# **get_key_details**
+> InlineResponse200 get_key_details(key_id)
+
+Retrieves shared secret key details
+
+Retrieves keys details by providing the key id.
+
+### Example
+```ruby
+# load the gem
+require 'cybersource_rest_client'
+
+api_instance = CyberSource::SymmetricKeyManagementApi.new
+
+key_id = "key_id_example" # String | Key ID. 
+
+
+begin
+  #Retrieves shared secret key details
+  result = api_instance.get_key_details(key_id)
+  p result
+rescue CyberSource::ApiError => e
+  puts "Exception when calling SymmetricKeyManagementApi->get_key_details: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **key_id** | **String**| Key ID.  | 
+
+### Return type
+
+[**InlineResponse200**](InlineResponse200.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/hal+json;charset=utf-8
+
+
+

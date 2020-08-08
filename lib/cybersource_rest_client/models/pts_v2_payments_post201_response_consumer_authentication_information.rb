@@ -212,7 +212,7 @@ module CyberSource
         :'step_up_url' => :'String',
         :'three_ds_server_transaction_id' => :'String',
         :'ucaf_authentication_data' => :'String',
-        :'ucaf_collection_indicator' => :'Float',
+        :'ucaf_collection_indicator' => :'String',
         :'veres_enrolled' => :'String',
         :'white_list_status_source' => :'String',
         :'xid' => :'String',

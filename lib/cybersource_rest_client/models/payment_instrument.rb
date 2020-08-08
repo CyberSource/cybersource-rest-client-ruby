@@ -16,13 +16,13 @@ module CyberSource
   class PaymentInstrument
     attr_accessor :_links
 
-    # Unique identification number assigned by CyberSource to the submitted request.
+    # The id of the Payment Instrument Token.
     attr_accessor :id
 
-    # 'Describes type of token.'  Valid values: - instrumentIdentifier 
+    # The type of token.  Valid values: - paymentInstrument 
     attr_accessor :object
 
-    # 'Current state of the token.'  Valid values: - ACTIVE - CLOSED 
+    # Issuers state for the card number. Valid values: - ACTIVE - CLOSED : The account has been closed. 
     attr_accessor :state
 
     attr_accessor :bank_account
@@ -37,7 +37,9 @@ module CyberSource
 
     attr_accessor :merchant_information
 
-    attr_accessor :meta_data
+    attr_accessor :instrument_identifier
+
+    attr_accessor :metadata
 
     attr_accessor :_embedded
 
@@ -54,7 +56,8 @@ module CyberSource
         :'bill_to' => :'billTo',
         :'processing_information' => :'processingInformation',
         :'merchant_information' => :'merchantInformation',
-        :'meta_data' => :'metaData',
+        :'instrument_identifier' => :'instrumentIdentifier',
+        :'metadata' => :'metadata',
         :'_embedded' => :'_embedded'
       }
     end
@@ -62,18 +65,19 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'_links' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedLinks',
+        :'_links' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentLinks',
         :'id' => :'String',
         :'object' => :'String',
         :'state' => :'String',
-        :'bank_account' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedBankAccount',
-        :'card' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedCard',
-        :'buyer_information' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedBuyerInformation',
-        :'bill_to' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedBillTo',
-        :'processing_information' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedProcessingInformation',
-        :'merchant_information' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedMerchantInformation',
-        :'meta_data' => :'TmsV1InstrumentIdentifiersPost200ResponseMetadata',
-        :'_embedded' => :'TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedEmbedded'
+        :'bank_account' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentBankAccount',
+        :'card' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentCard',
+        :'buyer_information' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentBuyerInformation',
+        :'bill_to' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentBillTo',
+        :'processing_information' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentProcessingInformation',
+        :'merchant_information' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentMerchantInformation',
+        :'instrument_identifier' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentInstrumentIdentifier',
+        :'metadata' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentMetadata',
+        :'_embedded' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbedded'
       }
     end
 
@@ -125,8 +129,12 @@ module CyberSource
         self.merchant_information = attributes[:'merchantInformation']
       end
 
-      if attributes.has_key?(:'metaData')
-        self.meta_data = attributes[:'metaData']
+      if attributes.has_key?(:'instrumentIdentifier')
+        self.instrument_identifier = attributes[:'instrumentIdentifier']
+      end
+
+      if attributes.has_key?(:'metadata')
+        self.metadata = attributes[:'metadata']
       end
 
       if attributes.has_key?(:'_embedded')
@@ -138,13 +146,37 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if !@id.nil? && @id.to_s.length > 32
+        invalid_properties.push('invalid value for "id", the character length must be smaller than or equal to 32.')
+      end
+
+      if !@id.nil? && @id.to_s.length < 1
+        invalid_properties.push('invalid value for "id", the character length must be great than or equal to 1.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if !@id.nil? && @id.to_s.length > 32
+      return false if !@id.nil? && @id.to_s.length < 1
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] id Value to be assigned
+    def id=(id)
+      if !id.nil? && id.to_s.length > 32
+        fail ArgumentError, 'invalid value for "id", the character length must be smaller than or equal to 32.'
+      end
+
+      if !id.nil? && id.to_s.length < 1
+        fail ArgumentError, 'invalid value for "id", the character length must be great than or equal to 1.'
+      end
+
+      @id = id
     end
 
     # Checks equality by comparing each attribute.
@@ -162,7 +194,8 @@ module CyberSource
           bill_to == o.bill_to &&
           processing_information == o.processing_information &&
           merchant_information == o.merchant_information &&
-          meta_data == o.meta_data &&
+          instrument_identifier == o.instrument_identifier &&
+          metadata == o.metadata &&
           _embedded == o._embedded
     end
 
@@ -175,7 +208,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, object, state, bank_account, card, buyer_information, bill_to, processing_information, merchant_information, meta_data, _embedded].hash
+      [_links, id, object, state, bank_account, card, buyer_information, bill_to, processing_information, merchant_information, instrument_identifier, metadata, _embedded].hash
     end
 
     # Builds the object from hash

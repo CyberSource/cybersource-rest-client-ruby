@@ -17,7 +17,7 @@ module CyberSource
     # The event triggered for the invoice.  Possible values:  - `CREATE`  - `UPDATE`  - `SEND`  - `RESEND`  - `REMINDER`  - `PAYMENT`  - `CANCEL` 
     attr_accessor :event
 
-    # The invoice due date. This field is required for creating an invoice. Format: `YYYY-MM-DD`, where `YYYY` = year, `MM` = month, and `DD` = day 
+    # The date and time when the invoice event was triggered in ISO 8601 format. Format: YYYY-MM-DDThh:mm:ssZ 
     attr_accessor :date
 
     attr_accessor :transaction_details
@@ -35,7 +35,7 @@ module CyberSource
     def self.swagger_types
       {
         :'event' => :'String',
-        :'date' => :'Date',
+        :'date' => :'DateTime',
         :'transaction_details' => :'InvoicingV2InvoicesGet200ResponseTransactionDetails'
       }
     end

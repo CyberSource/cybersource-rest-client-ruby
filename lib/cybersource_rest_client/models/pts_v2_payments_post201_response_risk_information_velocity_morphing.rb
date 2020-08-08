@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class PtsV2PaymentsPost201ResponseRiskInformationVelocityMorphing
-    # Morphing count specified by the number #.  **Note** The count is not returned for the initial transaction.  For all possible values, see the `decision_velocity_morphing_#_count` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
+    # Morphing count specified by the number #.  **Note** The count is not returned for the initial transaction. 
     attr_accessor :count
 
     # Field name of the morphing element. specified by the setting that you chose in the Velocity Editor.  For all possible values, see the `decisionReply_morphingElement_#_fieldName` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 

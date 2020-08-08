@@ -17,18 +17,18 @@ module CyberSource
     # Reference number for the airline booking. Required if ticket numbers are not issued. 
     attr_accessor :booking_reference_number
 
-    # Name of the airline. If you do not include this field, CyberSource uses the value for your merchant name that is in the CyberSource merchant configuration database. 
+    # Airline that generated the ticket. Format: English characters only. Optional request field. 
     attr_accessor :carrier_name
 
     attr_accessor :ticket_issuer
 
-    # Ticket number. Format: English characters only 
+    # Ticket number. Format: English characters only. Restricted string data type that indicates a sequence of letters, numbers, and spaces; special characters are not included. Optional request field. 
     attr_accessor :ticket_number
 
     # Check digit for the ticket number. CyberSource recommends that you validate the check digit. With Discover and Diners Club, a valid ticket number has these characteristics: - The value is numeric. - The first three digits are a valid IATA2 license plate carrier code. - The last digit is a check digit or zero (0). - All remaining digits are nonzero. 
     attr_accessor :check_digit
 
-    # Flag that indicates whether or not the ticket is restricted (nonrefundable). Possible values: - 0: No restriction (refundable) - 1: Restricted (nonrefundable) 
+    # Flag that indicates whether or not the ticket is restricted (nonrefundable). Possible values: - 0: No restriction (refundable) - 1: Restricted (nonrefundable) Format: English characters only. Restricted string data type that indicates a sequence of letters, numbers, and spaces; special characters are not included. Optional request field. 
     attr_accessor :restricted_ticket_indicator
 
     # Type of charge. Possible values: - 01: Charge is for an airline ticket - 02: Charge is for an item that is not an airline ticket 
@@ -37,13 +37,13 @@ module CyberSource
     # The field is not currently supported. 
     attr_accessor :extended_payment_code
 
-    # Name of the passenger to whom the ticket was issued. This will always be a single passenger's name. If there are more than one passengers, provide only the primary passenger's name. Do not include special characters such as commas, hyphens, or apostrophes. Only ASCII characters are supported. 
+    # Name of the passenger to whom the ticket was issued.  This will always be a single passenger's name. If there are more than one passengers, provide only the primary passenger's name. Do not include special characters such as commas, hyphens, or apostrophes. Only ASCII characters are supported. Format: English characters only. Optional request field. 
     attr_accessor :passenger_name
 
-    # 1.Reference number or code that identifies the cardholder. 2. Code provided by the cardholder. 3. Address of the ticket issuer. The first 13 characters will appear onthe cardholder’s statement. 4. Customer reference. 
+    # Reference number or code that identifies the cardholder. Format: English characters only. Restricted string data type that indicates a sequence of letters, numbers, and spaces; special characters are not included. Optional request field. 
     attr_accessor :customer_code
 
-    # Airline document type code that specifies the purpose of the transaction. For the possible values, see Appendix A, \"Airline Document Type Codes\". 
+    # Airline document type code that specifies the purpose of the transaction. Format: English characters only. Optional request field.  | Code | Description | | --- | --- | | 01 | Passenger ticket | | 02 | Additional collection | | 03 | Excess baggage | | 04 | Miscellaneous charge order (MCO) or prepaid ticket authorization | | 05 | Special service ticket | | 06 | Supported refund | | 07 | Unsupported refund | | 08 | Lost ticket application | | 09 | Tour order voucher | | 10 | Ticket by mail | | 11 | Undercharge adjustment | | 12 | Group ticket | | 13 | Exchange adjustment | | 14 | SPD or air freight | | 15 | In-flight adjustment | | 16 | Agency passenger ticket | | 17 | Agency tour order or voucher | | 18 | Agency miscellaneous charge order (MCO) | | 19 | Agency exchange order | | 20 | Agency group ticket | | 21 | Debit adjustment for duplicate refund or use | | 22 | In-flight merchandise order | | 23 | Catalogue merchandise order | | 24 | In-flight phone charges | | 25 | Frequent flyer fee or purchase | | 26 | Kennel charge | | 27 | Animal transportation charge | | 28 | Firearms case | | 29 | Upgrade charge | | 30 | Credit for unused transportation | | 31 | Credit for class of service adjustment | | 32 | Credit for denied boarding | | 33 | Credit for miscellaneous refund | | 34 | Credit for lost ticket refund | | 35 | Credit for exchange refund | | 36 | Credit for overcharge adjustment | | 37 | Credit for multiple Unused tickets | | 38 | Exchange order | | 39 | Self-service ticket | | 41 | In-flight duty-free purchase | | 42 | Senior citizen discount booklets | | 43 | Club membership fee | | 44 | Coupon book | | 45 | In-flight charges | | 46 | Tour deposit | | 47 | Frequent flyer overnight delivery charge | | 48 | Frequent flyer fulfillment | | 49 | Small package delivery | | 50 | Vendor sale | | 51 | Miscellaneous taxes or fees | | 52 | Travel agency fee | | 60 | Vendor refund or credit | | 64 | Duty free sale | | 65 | Preferred seat upgrade | | 66 | Cabin upgrade | | 67 | Lounge or club access or day pass | | 68 | Agent assisted reservation or ticketing fee | | 69 | Ticket change or cancel fee | | 70 | Trip insurance | | 71 | Unaccompanied minor | | 72 | Standby fee | | 73 | Curbside baggage | | 74 | In-flight medical equipment | | 75 | Ticket or pass print fee | | 76 | Checked sporting or special equipment | | 77 | Dry ice fee | | 78 | Mail or postage fee | | 79 | Club membership fee or temporary trial | | 80 | Frequent flyer activation or reinstatement | | 81 | Gift certificate | | 82 | Onboard or in-flight prepaid voucher | | 83 | Optional services fee | | 84 | Advance purchase for excess baggage | | 85 | Advance purchase for preferred seat upgrade | | 86 | Advance purchase for cabin upgrade | | 87 | Advance purchase for optional services | | 88 | WiFi | | 89 | Packages | | 90 | In-flight entertainment or internet access | | 91 | Overweight bag fee | | 92 | Sleep sets | | 93 | Special purchase fee | 
     attr_accessor :document_type
 
     # The field is not currently supported. 
@@ -61,58 +61,58 @@ module CyberSource
     # Description of the charge if the charge does not involve an airline ticket. For example: Excess baggage. 
     attr_accessor :additional_charges
 
-    # Total fee for the ticket. This value cannot exceed 99999999999999999999 (twenty 9s). 
+    # Total fee for the ticket. This value cannot exceed `99999999999999999999` (twenty 9s). Format: English characters only. Optional request field. 
     attr_accessor :total_fee_amount
 
-    # Total number of captures when requesting multiple partial captures for one authorization. Used along with airlineData_clearingCount to keep track of which capture is beingprocessed. For example, the second of five captures would be passed to CyberSource as airlineData_clearingSequence = 2 and airlineData_clearingCount = 5. 
+    # Number that identifies the clearing message when multiple clearing messages are allowed per authorized transaction. Each clearing message linked to one authorization request must include a unique clearing sequence number between 1 and the total number of clearing records. Format: English characters only. Optional request field. 
     attr_accessor :clearing_sequence
 
-    # Total number of clearing messages associated with the authorization request. Format: English characters only. 
+    # Total number of clearing messages associated with the authorization request. Format: English characters only. Optional request field. 
     attr_accessor :clearing_count
 
-    # Total clearing amount for all transactions in the clearing count set. If this field is not set and if the total amount from the original authorization is not NULL, CyberSource sets the total clearing amount to the total amount from the original authorization. 
+    # Total clearing amount for all transactions in the clearing count set. This value cannot exceed `99999999999999999999` (twenty 9s). Format: English characters only. If this field is not set and if the total amount from the original authorization is not NULL, the total clearing amount is set to the total amount from the original authorization. 
     attr_accessor :total_clearing_amount
 
-    # Number of passengers for whom the ticket was issued. If you do not include this field in your request, CyberSource uses a default value of 1. 
+    # Number of passengers for whom the ticket was issued. Format: English characters only. Optional request field. 
     attr_accessor :number_of_passengers
 
-    # Code that specifies the computerized reservation system used to make the reservation and purchase the ticket. Format: English characters only 
+    # Code that specifies the computerized reservation system used to make the reservation and purchase the ticket. Format: English characters only. Restricted string data type that indicates a sequence of letters, numbers, and spaces; special characters are not included. Optional request field. 
     attr_accessor :reservation_system_code
 
     # Airline process identifier. This value is the airline’s three-digit IATA1 code which is used to process extended payment airline tickets. 
     attr_accessor :process_identifier
 
-    # Date on which the transactionoccurred. Format: YYYYMMDD 
+    # Date on which the transaction occurred. Format: `YYYYMMDD` Format: English characters only. Optional request field. 
     attr_accessor :ticket_issue_date
 
-    # Flag that indicates whether an electronic ticket was issued. Possible values: - true - false 
+    # Flag that indicates whether an electronic ticket was issued. Possible values: - `true` - `false` Optional request field. 
     attr_accessor :electronic_ticket_indicator
 
     # Original ticket number when the transaction is for a replacement ticket. 
     attr_accessor :original_ticket_number
 
-    # Type of purchase. Possible values: - EXC: Exchange ticket - MSC: Miscellaneous (not a ticket purchase and not a transaction related to an exchange ticket) - REF: Refund - TKT: Ticket Format: English characters only. 
+    # Type of purchase. Possible values: - `EXC`: Exchange ticket - `MSC`: Miscellaneous (not a ticket purchase and not a transaction related to an exchange ticket) - `REF`: Refund - `TKT`: Ticket Format: English characters only. Optional request field. 
     attr_accessor :purchase_type
 
-    # Reason for the credit. Possible values: - A: Cancellation of the ancillary passenger transport purchase. - B: Cancellation of the airline ticket and the passenger transport ancillary purchase. - C: Cancellation of the airline ticket. - O: Other. - P: Partial refund of the airline ticket. 
+    # Reason for the credit. Possible values: - `A`: Cancellation of the ancillary passenger transport purchase. - `B`: Cancellation of the airline ticket and the passenger transport ancillary purchase. - `C`: Cancellation of the airline ticket. - `O`: Other. - `P`: Partial refund of the airline ticket. Format: English characters only.  Optional request field. 
     attr_accessor :credit_reason_indicator
 
-    # Type of update. Possible values: - C: Change to the existing ticket. - N: New ticket. Format: English characters only 
+    # Type of update. Possible values: - `C`: Change to the existing ticket. - `N`: New ticket. Format: English characters only Optional request field. 
     attr_accessor :ticket_change_indicator
 
-    # Plan number based on the fare. This value is provided by the airline. Format: English characters only 
+    # Plan number based on the fare. This value is provided by the airline. Format: English characters only. Optional request field. 
     attr_accessor :plan_number
 
-    # Date of arrival for the last leg of the trip. Format: MMDDYYYY English characters only. 
+    # Date of arrival for the last leg of the trip. Format: `MMDDYYYY` English characters only. Optional request field. 
     attr_accessor :arrival_date
 
-    # Text that describes the ticket limitations, such as nonrefundable. Format: English characters only. 
+    # Text that describes the ticket limitations, such as _nonrefundable_. Format: English characters only. Optional request field. 
     attr_accessor :restricted_ticket_desciption
 
     # Amount of the exchanged ticket. Format: English characters only. 
     attr_accessor :exchange_ticket_amount
 
-    # Fee for exchanging the ticket. Format: English characters only 
+    # Fee for exchanging the ticket. Format: English characters only. Optional request field. 
     attr_accessor :exchange_ticket_fee_amount
 
     # The field is not currently supported. 

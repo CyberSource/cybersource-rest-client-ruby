@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsTravelInformationAgency
-    # Code of travel agency that made the vehicle rental reservation. 
+    # International Air Transport Association (IATA) code of travel agency that made the vehicle rental reservation. 
     attr_accessor :code
 
     # Name of travel agency that made the reservation. 

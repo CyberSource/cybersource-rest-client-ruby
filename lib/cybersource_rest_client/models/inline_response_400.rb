@@ -14,28 +14,19 @@ require 'date'
 
 module CyberSource
   class InlineResponse400
-    attr_accessor :type
-
-    # The detailed message related to the type stated above.
-    attr_accessor :message
-
-    attr_accessor :details
+    attr_accessor :errors
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'type' => :'type',
-        :'message' => :'message',
-        :'details' => :'details'
+        :'errors' => :'errors'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'type' => :'String',
-        :'message' => :'String',
-        :'details' => :'Tmsv1instrumentidentifiersDetails'
+        :'errors' => :'Array<InlineResponse400Errors>'
       }
     end
 
@@ -47,16 +38,10 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'type')
-        self.type = attributes[:'type']
-      end
-
-      if attributes.has_key?(:'message')
-        self.message = attributes[:'message']
-      end
-
-      if attributes.has_key?(:'details')
-        self.details = attributes[:'details']
+      if attributes.has_key?(:'errors')
+        if (value = attributes[:'errors']).is_a?(Array)
+          self.errors = value
+        end
       end
     end
 
@@ -78,9 +63,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          type == o.type &&
-          message == o.message &&
-          details == o.details
+          errors == o.errors
     end
 
     # @see the `==` method
@@ -92,7 +75,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [type, message, details].hash
+      [errors].hash
     end
 
     # Builds the object from hash

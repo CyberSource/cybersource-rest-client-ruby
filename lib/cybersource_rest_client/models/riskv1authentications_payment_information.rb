@@ -20,12 +20,15 @@ module CyberSource
 
     attr_accessor :fluid_data
 
+    attr_accessor :customer
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'card' => :'card',
         :'tokenized_card' => :'tokenizedCard',
-        :'fluid_data' => :'fluidData'
+        :'fluid_data' => :'fluidData',
+        :'customer' => :'customer'
       }
     end
 
@@ -34,7 +37,8 @@ module CyberSource
       {
         :'card' => :'Riskv1authenticationsPaymentInformationCard',
         :'tokenized_card' => :'Riskv1authenticationsPaymentInformationTokenizedCard',
-        :'fluid_data' => :'Riskv1authenticationsPaymentInformationFluidData'
+        :'fluid_data' => :'Riskv1authenticationsetupsPaymentInformationFluidData',
+        :'customer' => :'Ptsv2paymentsPaymentInformationCustomer'
       }
     end
 
@@ -56,6 +60,10 @@ module CyberSource
 
       if attributes.has_key?(:'fluidData')
         self.fluid_data = attributes[:'fluidData']
+      end
+
+      if attributes.has_key?(:'customer')
+        self.customer = attributes[:'customer']
       end
     end
 
@@ -79,7 +87,8 @@ module CyberSource
       self.class == o.class &&
           card == o.card &&
           tokenized_card == o.tokenized_card &&
-          fluid_data == o.fluid_data
+          fluid_data == o.fluid_data &&
+          customer == o.customer
     end
 
     # @see the `==` method
@@ -91,7 +100,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card, tokenized_card, fluid_data].hash
+      [card, tokenized_card, fluid_data, customer].hash
     end
 
     # Builds the object from hash

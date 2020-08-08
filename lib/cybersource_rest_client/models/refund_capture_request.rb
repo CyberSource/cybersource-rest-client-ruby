@@ -70,7 +70,7 @@ module CyberSource
         :'aggregator_information' => :'Ptsv2paymentsidcapturesAggregatorInformation',
         :'point_of_sale_information' => :'Ptsv2paymentsidrefundsPointOfSaleInformation',
         :'merchant_defined_information' => :'Array<Ptsv2paymentsMerchantDefinedInformation>',
-        :'travel_information' => :'Ptsv2paymentsidcapturesTravelInformation',
+        :'travel_information' => :'Ptsv2paymentsTravelInformation',
         :'promotion_information' => :'Ptsv2paymentsPromotionInformation'
       }
     end

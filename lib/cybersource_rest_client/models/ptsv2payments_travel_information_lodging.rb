@@ -14,10 +14,10 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsTravelInformationLodging
-    # Date on which the guest checked in. In the case of a no-show or a reservation, the scheduled arrival date. Format: MMDDYY. For best interchange rates, make sure it is a valid date. 
+    # Date on which the guest checked in. In the case of a no-show or a reservation, the scheduled arrival date. Format: `MMDDYY`. For best interchange rates, make sure it is a valid date. 
     attr_accessor :check_in_date
 
-    # Date on which the guest checked out. Format: MMDDYY. For best interchange rates, make sure it is a valid date. 
+    # Date on which the guest checked out. Format: `MMDDYY`. For best interchange rates, make sure it is a valid date. 
     attr_accessor :check_out_date
 
     # The object containing the number of nights and the daily rate that applies for that no of nights. 

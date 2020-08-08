@@ -62,4 +62,16 @@ describe 'InvoicingV2InvoiceSettingsGet200ResponseInvoiceSettingsInformation' do
     end
   end
 
+  describe 'test attribute "delivery_language"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "default_currency_code"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

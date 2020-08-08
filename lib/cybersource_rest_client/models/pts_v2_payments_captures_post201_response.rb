@@ -16,16 +16,16 @@ module CyberSource
   class PtsV2PaymentsCapturesPost201Response
     attr_accessor :_links
 
-    # An unique identification number assigned by CyberSource to identify the submitted request. It is also appended to the endpoint of the resource.  On incremental authorizations, this value with be the same as the identification number returned in the original authorization response. 
+    # An unique identification number to identify the submitted request. It is also appended to the endpoint of the resource.  On incremental authorizations, this value with be the same as the identification number returned in the original authorization response.  #### PIN debit Returned for all PIN debit services. 
     attr_accessor :id
 
-    # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` Example `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC.  Returned by authorization service. 
+    # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC.  Returned by authorization service.  #### PIN debit Time when the PIN debit credit, PIN debit purchase or PIN debit reversal was requested.  Returned by PIN debit credit, PIN debit purchase or PIN debit reversal. 
     attr_accessor :submit_time_utc
 
     # The status of the submitted transaction.  Possible values:  - PENDING 
     attr_accessor :status
 
-    # Reference number for the transaction. This value is not returned for all processors.  Returned by authorization service.  #### Atos Positive string (6)  #### All other processors String (60) 
+    # Reference number for the transaction. This value is not returned for all processors.  Returned by authorization service.  ##### PIN debit Returned by PIN debit credit, PIN debit purchase, and PIN debit reversal.  #### Atos Positive string (6)  #### All other processors String (60) 
     attr_accessor :reconciliation_id
 
     attr_accessor :client_reference_information
@@ -34,9 +34,9 @@ module CyberSource
 
     attr_accessor :order_information
 
-    attr_accessor :processing_information
-
     attr_accessor :point_of_sale_information
+
+    attr_accessor :processing_information
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -49,8 +49,8 @@ module CyberSource
         :'client_reference_information' => :'clientReferenceInformation',
         :'processor_information' => :'processorInformation',
         :'order_information' => :'orderInformation',
-        :'processing_information' => :'processingInformation',
-        :'point_of_sale_information' => :'pointOfSaleInformation'
+        :'point_of_sale_information' => :'pointOfSaleInformation',
+        :'processing_information' => :'processingInformation'
       }
     end
 
@@ -65,8 +65,8 @@ module CyberSource
         :'client_reference_information' => :'PtsV2PaymentsPost201ResponseClientReferenceInformation',
         :'processor_information' => :'PtsV2PaymentsCapturesPost201ResponseProcessorInformation',
         :'order_information' => :'PtsV2PaymentsCapturesPost201ResponseOrderInformation',
-        :'processing_information' => :'PtsV2PaymentsCapturesPost201ResponseProcessingInformation',
-        :'point_of_sale_information' => :'PtsV2PaymentsCapturesPost201ResponsePointOfSaleInformation'
+        :'point_of_sale_information' => :'PtsV2PaymentsCapturesPost201ResponsePointOfSaleInformation',
+        :'processing_information' => :'PtsV2PaymentsCapturesPost201ResponseProcessingInformation'
       }
     end
 
@@ -110,12 +110,12 @@ module CyberSource
         self.order_information = attributes[:'orderInformation']
       end
 
-      if attributes.has_key?(:'processingInformation')
-        self.processing_information = attributes[:'processingInformation']
-      end
-
       if attributes.has_key?(:'pointOfSaleInformation')
         self.point_of_sale_information = attributes[:'pointOfSaleInformation']
+      end
+
+      if attributes.has_key?(:'processingInformation')
+        self.processing_information = attributes[:'processingInformation']
       end
     end
 
@@ -175,8 +175,8 @@ module CyberSource
           client_reference_information == o.client_reference_information &&
           processor_information == o.processor_information &&
           order_information == o.order_information &&
-          processing_information == o.processing_information &&
-          point_of_sale_information == o.point_of_sale_information
+          point_of_sale_information == o.point_of_sale_information &&
+          processing_information == o.processing_information
     end
 
     # @see the `==` method
@@ -188,7 +188,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, submit_time_utc, status, reconciliation_id, client_reference_information, processor_information, order_information, processing_information, point_of_sale_information].hash
+      [_links, id, submit_time_utc, status, reconciliation_id, client_reference_information, processor_information, order_information, point_of_sale_information, processing_information].hash
     end
 
     # Builds the object from hash

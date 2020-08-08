@@ -218,6 +218,12 @@ describe 'Riskv1decisionsConsumerAuthenticationInformation' do
     end
   end
 
+  describe 'test attribute "return_url"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "requestor_id"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

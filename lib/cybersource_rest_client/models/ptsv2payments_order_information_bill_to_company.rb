@@ -32,7 +32,7 @@ module CyberSource
     # Postal code in the address of the company purchasing the product. The postal code must consist of 5 to 9 digits.  When the company country is the U.S., the 9-digit postal code must follow this format: **[5 digits][dash][4 digits]** #### Example `12345-6789`  When the company country is Canada, the 6-digit postal code must follow this format: **[alpha][numeric][alpha][space][numeric][alpha][numeric]** #### Example `A1B 2C3` 
     attr_accessor :postal_code
 
-    # Country in the address of the company purchasing the product. Use the [ISO Standard Country Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf) 
+    # Country in the address of the company purchasing the product. Use the [ISO Standard Country Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf). 
     attr_accessor :country
 
     # Attribute mapping from ruby-style variable name to JSON key.

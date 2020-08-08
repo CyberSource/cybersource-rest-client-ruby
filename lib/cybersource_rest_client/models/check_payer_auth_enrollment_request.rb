@@ -22,6 +22,8 @@ module CyberSource
 
     attr_accessor :processing_information
 
+    attr_accessor :token_information
+
     attr_accessor :buyer_information
 
     attr_accessor :device_information
@@ -47,6 +49,7 @@ module CyberSource
         :'order_information' => :'orderInformation',
         :'payment_information' => :'paymentInformation',
         :'processing_information' => :'processingInformation',
+        :'token_information' => :'tokenInformation',
         :'buyer_information' => :'buyerInformation',
         :'device_information' => :'deviceInformation',
         :'merchant_information' => :'merchantInformation',
@@ -62,10 +65,11 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'client_reference_information' => :'Riskv1authenticationsClientReferenceInformation',
+        :'client_reference_information' => :'Riskv1authenticationsetupsClientReferenceInformation',
         :'order_information' => :'Riskv1authenticationsOrderInformation',
         :'payment_information' => :'Riskv1authenticationsPaymentInformation',
-        :'processing_information' => :'Riskv1authenticationsProcessingInformation',
+        :'processing_information' => :'Riskv1authenticationsetupsProcessingInformation',
+        :'token_information' => :'Riskv1authenticationsetupsTokenInformation',
         :'buyer_information' => :'Riskv1authenticationsBuyerInformation',
         :'device_information' => :'Riskv1authenticationsDeviceInformation',
         :'merchant_information' => :'Riskv1decisionsMerchantInformation',
@@ -100,6 +104,10 @@ module CyberSource
 
       if attributes.has_key?(:'processingInformation')
         self.processing_information = attributes[:'processingInformation']
+      end
+
+      if attributes.has_key?(:'tokenInformation')
+        self.token_information = attributes[:'tokenInformation']
       end
 
       if attributes.has_key?(:'buyerInformation')
@@ -163,6 +171,7 @@ module CyberSource
           order_information == o.order_information &&
           payment_information == o.payment_information &&
           processing_information == o.processing_information &&
+          token_information == o.token_information &&
           buyer_information == o.buyer_information &&
           device_information == o.device_information &&
           merchant_information == o.merchant_information &&
@@ -183,7 +192,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_reference_information, order_information, payment_information, processing_information, buyer_information, device_information, merchant_information, acquirer_information, recurring_payment_information, consumer_authentication_information, risk_information, travel_information, merchant_defined_information].hash
+      [client_reference_information, order_information, payment_information, processing_information, token_information, buyer_information, device_information, merchant_information, acquirer_information, recurring_payment_information, consumer_authentication_information, risk_information, travel_information, merchant_defined_information].hash
     end
 
     # Builds the object from hash

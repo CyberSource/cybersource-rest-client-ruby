@@ -14,10 +14,13 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsGet200ResponsePointOfSaleInformation
-    # Method of entering payment card information into the POS terminal. Possible values:   - `contact`: Read from direct contact with chip card.  - `contactless`: Read from a contactless interface using chip data.  - `keyed`: Manually keyed into POS terminal. This value is not supported on OmniPay Direct.  - `msd`: Read from a contactless interface using magnetic stripe data (MSD). This value is not supported on OmniPay Direct.  - `swiped`: Read from credit card magnetic stripe.  The `contact`, `contactless`, and `msd` values are supported only for EMV transactions.  #### Used by **Authorization** Required field.  #### Card Present Card present information about EMV applies only to credit card processing and PIN debit processing. All other card present information applies only to credit card processing. 
+    # Identifier for the terminal at your retail location. You can define this value yourself, but consult the processor for requirements.  #### CyberSource through VisaNet A list of all possible values is stored in your CyberSource account. If terminal ID validation is enabled for your CyberSource account, the value you send for this field is validated against the list each time you include the field in a request. To enable or disable terminal ID validation, contact CyberSource Customer Support.  When you do not include this field in a request, CyberSource uses the default value that is defined in your CyberSource account.  #### FDC Nashville Global To have your account configured to support this field, contact CyberSource Customer Support. This value must be a value that FDC Nashville Global issued to you.  #### For Payouts This field is applicable for CyberSource through VisaNet.  #### GPX Identifier for the terminal at your retail location. A list of all possible values is stored in your account. If terminal ID validation is enabled for your account, the value you send for this field is validated against the list each time you include the field in a request. To enable or disable terminal ID validation, contact customer support.  When you do not include this field in a request, the default value that is defined in your account is used.  Optional for authorizations.  #### Used by **Authorization** Optional for the following processors. When you do not include this field in a request, the default value that is defined in your account is used.   - American Express Direct   - Credit Mutuel-CIC   - FDC Nashville Global   - SIX - Chase Paymentech Solutions: Optional field. If you include this field in your request, you must also include `pointOfSaleInformation.catLevel`. - FDMS Nashville: The default value that is defined in your account is used. - GPX - OmniPay Direct: Optional field.  For the following processors, this field is not used. - GPN - JCN Gateway - RBS WorldPay Atlanta - TSYS Acquiring Solutions - Worldpay VAP  #### Card Present reply Terminal identifier assigned by the acquirer. This value must be printed on the receipt. 
+    attr_accessor :terminal_id
+
+    # Method of entering payment card information into the POS terminal. Possible values:   - `contact`: Read from direct contact with chip card.  - `contactless`: Read from a contactless interface using chip data.  - `keyed`: Manually keyed into POS terminal. This value is not supported on OmniPay Direct.  - `msd`: Read from a contactless interface using magnetic stripe data (MSD). This value is not supported on OmniPay Direct.  - `swiped`: Read from credit card magnetic stripe.  The `contact`, `contactless`, and `msd` values are supported only for EMV transactions.  #### Used by **Authorization** Required field.  #### Card Present Card present information about EMV applies only to credit card processing and PIN debit processing. All other card present information applies only to credit card processing.  #### PIN debit Required for a PIN debit purchase and a PIN debit credit request. 
     attr_accessor :entry_mode
 
-    # POS terminal’s capability. Possible values:   - `1`: Terminal has a magnetic stripe reader only.  - `2`: Terminal has a magnetic stripe reader and manual entry capability.  - `3`: Terminal has manual entry capability only.  - `4`: Terminal can read chip cards.  - `5`: Terminal can read contactless chip cards; cannot use contact to read chip cards.  For an EMV transaction, the value of this field must be `4` or `5`.  #### Used by **Authorization** Required for the following processors: - American Express Direct - Chase Paymentech Solutions - Credit Mutuel-CIC - FDC Nashville Global - FDMS Nashville - OmniPay Direct - SIX - Worldpay VAP  Optional for the following processors: - CyberSource through VisaNet - GPN - GPX - JCN Gateway - RBS WorldPay Atlanta - TSYS Acquiring Solutions 
+    # POS terminal’s capability. Possible values:   - `1`: Terminal has a magnetic stripe reader only.  - `2`: Terminal has a magnetic stripe reader and manual entry capability.  - `3`: Terminal has manual entry capability only.  - `4`: Terminal can read chip cards.  - `5`: Terminal can read contactless chip cards; cannot use contact to read chip cards.  For an EMV transaction, the value of this field must be `4` or `5`.  #### PIN debit Required for PIN debit purchase and PIN debit credit request.  #### Used by **Authorization** Required for the following processors: - American Express Direct - Chase Paymentech Solutions - Credit Mutuel-CIC - FDC Nashville Global - FDMS Nashville - OmniPay Direct - SIX - Worldpay VAP  Optional for the following processors: - CyberSource through VisaNet - GPN - GPX - JCN Gateway - RBS WorldPay Atlanta - TSYS Acquiring Solutions 
     attr_accessor :terminal_capability
 
     attr_accessor :emv
@@ -25,6 +28,7 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'terminal_id' => :'terminalId',
         :'entry_mode' => :'entryMode',
         :'terminal_capability' => :'terminalCapability',
         :'emv' => :'emv'
@@ -34,6 +38,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'terminal_id' => :'String',
         :'entry_mode' => :'String',
         :'terminal_capability' => :'Integer',
         :'emv' => :'Ptsv2paymentsidreversalsPointOfSaleInformationEmv'
@@ -47,6 +52,10 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'terminalId')
+        self.terminal_id = attributes[:'terminalId']
+      end
 
       if attributes.has_key?(:'entryMode')
         self.entry_mode = attributes[:'entryMode']
@@ -65,6 +74,10 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if !@terminal_id.nil? && @terminal_id.to_s.length > 8
+        invalid_properties.push('invalid value for "terminal_id", the character length must be smaller than or equal to 8.')
+      end
+
       if !@entry_mode.nil? && @entry_mode.to_s.length > 11
         invalid_properties.push('invalid value for "entry_mode", the character length must be smaller than or equal to 11.')
       end
@@ -83,10 +96,21 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if !@terminal_id.nil? && @terminal_id.to_s.length > 8
       return false if !@entry_mode.nil? && @entry_mode.to_s.length > 11
       return false if !@terminal_capability.nil? && @terminal_capability > 5
       return false if !@terminal_capability.nil? && @terminal_capability < 1
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] terminal_id Value to be assigned
+    def terminal_id=(terminal_id)
+      if !terminal_id.nil? && terminal_id.to_s.length > 8
+        fail ArgumentError, 'invalid value for "terminal_id", the character length must be smaller than or equal to 8.'
+      end
+
+      @terminal_id = terminal_id
     end
 
     # Custom attribute writer method with validation
@@ -118,6 +142,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          terminal_id == o.terminal_id &&
           entry_mode == o.entry_mode &&
           terminal_capability == o.terminal_capability &&
           emv == o.emv
@@ -132,7 +157,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [entry_mode, terminal_capability, emv].hash
+      [terminal_id, entry_mode, terminal_capability, emv].hash
     end
 
     # Builds the object from hash

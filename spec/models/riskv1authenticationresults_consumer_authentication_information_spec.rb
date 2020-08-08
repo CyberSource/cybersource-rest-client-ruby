@@ -50,6 +50,12 @@ describe 'Riskv1authenticationresultsConsumerAuthenticationInformation' do
     end
   end
 
+  describe 'test attribute "response_access_token"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "signed_pares_status_reason"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

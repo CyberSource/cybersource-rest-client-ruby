@@ -16,16 +16,16 @@ module CyberSource
   class PtsV2PaymentsPost201Response
     attr_accessor :_links
 
-    # An unique identification number assigned by CyberSource to identify the submitted request. It is also appended to the endpoint of the resource.  On incremental authorizations, this value with be the same as the identification number returned in the original authorization response. 
+    # An unique identification number to identify the submitted request. It is also appended to the endpoint of the resource.  On incremental authorizations, this value with be the same as the identification number returned in the original authorization response.  #### PIN debit Returned for all PIN debit services. 
     attr_accessor :id
 
-    # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` Example `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC.  Returned by authorization service. 
+    # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC.  Returned by authorization service.  #### PIN debit Time when the PIN debit credit, PIN debit purchase or PIN debit reversal was requested.  Returned by PIN debit credit, PIN debit purchase or PIN debit reversal. 
     attr_accessor :submit_time_utc
 
     # The status of the submitted transaction.  Possible values:  - AUTHORIZED  - PARTIAL_AUTHORIZED  - AUTHORIZED_PENDING_REVIEW  - AUTHORIZED_RISK_DECLINED  - PENDING_AUTHENTICATION  - PENDING_REVIEW  - DECLINED  - INVALID_REQUEST 
     attr_accessor :status
 
-    # Reference number for the transaction. This value is not returned for all processors.  Returned by authorization service.  #### Atos Positive string (6)  #### All other processors String (60) 
+    # Reference number for the transaction. This value is not returned for all processors.  Returned by authorization service.  ##### PIN debit Returned by PIN debit credit, PIN debit purchase, and PIN debit reversal.  #### Atos Positive string (6)  #### All other processors String (60) 
     attr_accessor :reconciliation_id
 
     attr_accessor :error_information
@@ -45,6 +45,8 @@ module CyberSource
     attr_accessor :point_of_sale_information
 
     attr_accessor :installment_information
+
+    attr_accessor :token_information
 
     attr_accessor :risk_information
 
@@ -67,6 +69,7 @@ module CyberSource
         :'order_information' => :'orderInformation',
         :'point_of_sale_information' => :'pointOfSaleInformation',
         :'installment_information' => :'installmentInformation',
+        :'token_information' => :'tokenInformation',
         :'risk_information' => :'riskInformation',
         :'consumer_authentication_information' => :'consumerAuthenticationInformation'
       }
@@ -89,6 +92,7 @@ module CyberSource
         :'order_information' => :'PtsV2PaymentsPost201ResponseOrderInformation',
         :'point_of_sale_information' => :'PtsV2PaymentsPost201ResponsePointOfSaleInformation',
         :'installment_information' => :'PtsV2PaymentsPost201ResponseInstallmentInformation',
+        :'token_information' => :'PtsV2PaymentsPost201ResponseTokenInformation',
         :'risk_information' => :'PtsV2PaymentsPost201ResponseRiskInformation',
         :'consumer_authentication_information' => :'PtsV2PaymentsPost201ResponseConsumerAuthenticationInformation'
       }
@@ -156,6 +160,10 @@ module CyberSource
 
       if attributes.has_key?(:'installmentInformation')
         self.installment_information = attributes[:'installmentInformation']
+      end
+
+      if attributes.has_key?(:'tokenInformation')
+        self.token_information = attributes[:'tokenInformation']
       end
 
       if attributes.has_key?(:'riskInformation')
@@ -229,6 +237,7 @@ module CyberSource
           order_information == o.order_information &&
           point_of_sale_information == o.point_of_sale_information &&
           installment_information == o.installment_information &&
+          token_information == o.token_information &&
           risk_information == o.risk_information &&
           consumer_authentication_information == o.consumer_authentication_information
     end
@@ -242,7 +251,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, submit_time_utc, status, reconciliation_id, error_information, client_reference_information, processing_information, processor_information, issuer_information, payment_information, order_information, point_of_sale_information, installment_information, risk_information, consumer_authentication_information].hash
+      [_links, id, submit_time_utc, status, reconciliation_id, error_information, client_reference_information, processing_information, processor_information, issuer_information, payment_information, order_information, point_of_sale_information, installment_information, token_information, risk_information, consumer_authentication_information].hash
     end
 
     # Builds the object from hash

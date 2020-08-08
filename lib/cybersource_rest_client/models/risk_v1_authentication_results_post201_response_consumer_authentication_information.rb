@@ -133,7 +133,7 @@ module CyberSource
         :'specification_version' => :'String',
         :'three_ds_server_transaction_id' => :'String',
         :'ucaf_authentication_data' => :'String',
-        :'ucaf_collection_indicator' => :'Float',
+        :'ucaf_collection_indicator' => :'String',
         :'white_list_status' => :'String',
         :'white_list_status_source' => :'String',
         :'xid' => :'String',

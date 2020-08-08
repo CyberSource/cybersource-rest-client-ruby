@@ -19,7 +19,7 @@ module CyberSource
 
     attr_accessor :bar_code
 
-    # Value can be - Canada - US - International. The values of errorCode and statusCode mean different things depending on the applicable region. Refer to the guide for more info. 
+    # Value can be - Canada - US - International The values of errorCode and statusCode mean different things depending on the applicable region. Refer to the guide for more info. 
     attr_accessor :applicable_region
 
     # Four-character error code returned for Canadian, US and international addresses. For possible values, see Verification Services guide. The meaning of the errorCode depends on value of applicableRegion. 
