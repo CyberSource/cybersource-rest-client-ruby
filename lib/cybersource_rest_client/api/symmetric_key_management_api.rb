@@ -24,7 +24,7 @@ module CyberSource
     # Create one or more Shared-Secret Keys 
     # @param create_shared_secret_keys_request 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse201]
+    # @return [KmsV2KeysSymPost201Response]
     def create_v2_shared_secret_keys(create_shared_secret_keys_request, opts = {})
       data, status_code, headers = create_v2_shared_secret_keys_with_http_info(create_shared_secret_keys_request, opts)
       return data, status_code, headers
@@ -34,7 +34,7 @@ module CyberSource
     # Create one or more Shared-Secret Keys 
     # @param create_shared_secret_keys_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse201, Fixnum, Hash)>] InlineResponse201 data, response status code and response headers
+    # @return [Array<(KmsV2KeysSymPost201Response, Fixnum, Hash)>] KmsV2KeysSymPost201Response data, response status code and response headers
     def create_v2_shared_secret_keys_with_http_info(create_shared_secret_keys_request, opts = {})
       
 	  if @api_client.config.debugging
@@ -74,7 +74,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse201')
+        :return_type => 'KmsV2KeysSymPost201Response')
       if @api_client.config.debugging
 		begin
 		raise
@@ -89,7 +89,7 @@ module CyberSource
     # 'Delete one or more Symmetric keys' 
     # @param delete_bulk_symmetric_keys_request 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2001]
+    # @return [KmsV2KeysSymDeletesPost200Response]
     def delete_bulk_symmetric_keys(delete_bulk_symmetric_keys_request, opts = {})
       data, status_code, headers = delete_bulk_symmetric_keys_with_http_info(delete_bulk_symmetric_keys_request, opts)
       return data, status_code, headers
@@ -99,7 +99,7 @@ module CyberSource
     # &#39;Delete one or more Symmetric keys&#39; 
     # @param delete_bulk_symmetric_keys_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2001, Fixnum, Hash)>] InlineResponse2001 data, response status code and response headers
+    # @return [Array<(KmsV2KeysSymDeletesPost200Response, Fixnum, Hash)>] KmsV2KeysSymDeletesPost200Response data, response status code and response headers
     def delete_bulk_symmetric_keys_with_http_info(delete_bulk_symmetric_keys_request, opts = {})
       
 	  if @api_client.config.debugging
@@ -139,7 +139,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2001')
+        :return_type => 'KmsV2KeysSymDeletesPost200Response')
       if @api_client.config.debugging
 		begin
 		raise
@@ -154,7 +154,7 @@ module CyberSource
     # Retrieves keys details by providing the key id.
     # @param key_id Key ID. 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse200]
+    # @return [KmsV2KeysSymGet200Response]
     def get_key_details(key_id, opts = {})
       data, status_code, headers = get_key_details_with_http_info(key_id, opts)
       return data, status_code, headers
@@ -164,7 +164,7 @@ module CyberSource
     # Retrieves keys details by providing the key id.
     # @param key_id Key ID. 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse200, Fixnum, Hash)>] InlineResponse200 data, response status code and response headers
+    # @return [Array<(KmsV2KeysSymGet200Response, Fixnum, Hash)>] KmsV2KeysSymGet200Response data, response status code and response headers
     def get_key_details_with_http_info(key_id, opts = {})
       
 	  if @api_client.config.debugging
@@ -204,7 +204,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse200')
+        :return_type => 'KmsV2KeysSymGet200Response')
       if @api_client.config.debugging
 		begin
 		raise

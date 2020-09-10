@@ -24,7 +24,7 @@ module CyberSource
     # 'Create one or more PKCS#12 keys' 
     # @param create_p12_keys_request 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2011]
+    # @return [KmsV2KeysAsymPost201Response]
     def create_p12_keys(create_p12_keys_request, opts = {})
       data, status_code, headers = create_p12_keys_with_http_info(create_p12_keys_request, opts)
       return data, status_code, headers
@@ -34,7 +34,7 @@ module CyberSource
     # &#39;Create one or more PKCS#12 keys&#39; 
     # @param create_p12_keys_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2011, Fixnum, Hash)>] InlineResponse2011 data, response status code and response headers
+    # @return [Array<(KmsV2KeysAsymPost201Response, Fixnum, Hash)>] KmsV2KeysAsymPost201Response data, response status code and response headers
     def create_p12_keys_with_http_info(create_p12_keys_request, opts = {})
       
 	  if @api_client.config.debugging
@@ -74,7 +74,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2011')
+        :return_type => 'KmsV2KeysAsymPost201Response')
       if @api_client.config.debugging
 		begin
 		raise
@@ -89,7 +89,7 @@ module CyberSource
     # 'Delete one or more PKCS#12 keys' 
     # @param delete_bulk_p12_keys_request 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2003]
+    # @return [KmsV2KeysAsymDeletesPost200Response]
     def delete_bulk_p12_keys(delete_bulk_p12_keys_request, opts = {})
       data, status_code, headers = delete_bulk_p12_keys_with_http_info(delete_bulk_p12_keys_request, opts)
       return data, status_code, headers
@@ -99,7 +99,7 @@ module CyberSource
     # &#39;Delete one or more PKCS#12 keys&#39; 
     # @param delete_bulk_p12_keys_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2003, Fixnum, Hash)>] InlineResponse2003 data, response status code and response headers
+    # @return [Array<(KmsV2KeysAsymDeletesPost200Response, Fixnum, Hash)>] KmsV2KeysAsymDeletesPost200Response data, response status code and response headers
     def delete_bulk_p12_keys_with_http_info(delete_bulk_p12_keys_request, opts = {})
       
 	  if @api_client.config.debugging
@@ -139,7 +139,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2003')
+        :return_type => 'KmsV2KeysAsymDeletesPost200Response')
       if @api_client.config.debugging
 		begin
 		raise
@@ -154,7 +154,7 @@ module CyberSource
     # Retrieves keys details by providing the key id.
     # @param key_id Key ID. 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2002]
+    # @return [KmsV2KeysAsymGet200Response]
     def get_p12_key_details(key_id, opts = {})
       data, status_code, headers = get_p12_key_details_with_http_info(key_id, opts)
       return data, status_code, headers
@@ -164,7 +164,7 @@ module CyberSource
     # Retrieves keys details by providing the key id.
     # @param key_id Key ID. 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2002, Fixnum, Hash)>] InlineResponse2002 data, response status code and response headers
+    # @return [Array<(KmsV2KeysAsymGet200Response, Fixnum, Hash)>] KmsV2KeysAsymGet200Response data, response status code and response headers
     def get_p12_key_details_with_http_info(key_id, opts = {})
       
 	  if @api_client.config.debugging
@@ -204,7 +204,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2002')
+        :return_type => 'KmsV2KeysAsymGet200Response')
       if @api_client.config.debugging
 		begin
 		raise

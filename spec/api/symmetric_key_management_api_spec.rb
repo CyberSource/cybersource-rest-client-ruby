@@ -37,7 +37,7 @@ describe 'SymmetricKeyManagementApi' do
   # Create one or more Shared-Secret Keys 
   # @param create_shared_secret_keys_request 
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse201]
+  # @return [KmsV2KeysSymPost201Response]
   describe 'create_v2_shared_secret_keys test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -49,7 +49,7 @@ describe 'SymmetricKeyManagementApi' do
   # &#39;Delete one or more Symmetric keys&#39; 
   # @param delete_bulk_symmetric_keys_request 
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2001]
+  # @return [KmsV2KeysSymDeletesPost200Response]
   describe 'delete_bulk_symmetric_keys test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -61,7 +61,7 @@ describe 'SymmetricKeyManagementApi' do
   # Retrieves keys details by providing the key id.
   # @param key_id Key ID. 
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse200]
+  # @return [KmsV2KeysSymGet200Response]
   describe 'get_key_details test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
