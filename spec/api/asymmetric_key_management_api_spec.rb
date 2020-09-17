@@ -37,7 +37,7 @@ describe 'AsymmetricKeyManagementApi' do
   # &#39;Create one or more PKCS#12 keys&#39; 
   # @param create_p12_keys_request 
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2011]
+  # @return [KmsV2KeysAsymPost201Response]
   describe 'create_p12_keys test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -49,7 +49,7 @@ describe 'AsymmetricKeyManagementApi' do
   # &#39;Delete one or more PKCS#12 keys&#39; 
   # @param delete_bulk_p12_keys_request 
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2003]
+  # @return [KmsV2KeysAsymDeletesPost200Response]
   describe 'delete_bulk_p12_keys test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -61,7 +61,7 @@ describe 'AsymmetricKeyManagementApi' do
   # Retrieves keys details by providing the key id.
   # @param key_id Key ID. 
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2002]
+  # @return [KmsV2KeysAsymGet200Response]
   describe 'get_p12_key_details test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

@@ -38,7 +38,7 @@ module CyberSource
     # This field might contain information about a decline. This field is supported only for **CyberSource through VisaNet**. 
     attr_accessor :response_details
 
-    # Processor-defined response category code. The associated detail error code is in the `processorInformation.responseCode` or `issuerInformation.responseCode` field of the service you requested.  This field is supported only for:   - Japanese issuers  - Domestic transactions in Japan  - Comercio Latino—processor transaction ID required for troubleshooting  #### Maximum length for processors   - Comercio Latino: 32  - All other processors: 3 
+    # Processor-defined response category code. The associated detail error code is in the `processorInformation.responseCode` or `issuerInformation.responseCode` field of the service you requested.  This field is supported only for:   - Japanese issuers  - Domestic transactions in Japan  - Comercio Latino—processor transaction ID required for troubleshooting  #### Maximum length for processors   - Comercio Latino: 36  - All other processors: 3 
     attr_accessor :response_category_code
 
     # Name of the Japanese acquirer that processed the transaction. Returned only for JCN Gateway. Please contact the CyberSource Japan Support Group for more information. 
@@ -294,8 +294,8 @@ module CyberSource
         invalid_properties.push('invalid value for "response_details", the character length must be smaller than or equal to 255.')
       end
 
-      if !@response_category_code.nil? && @response_category_code.to_s.length > 32
-        invalid_properties.push('invalid value for "response_category_code", the character length must be smaller than or equal to 32.')
+      if !@response_category_code.nil? && @response_category_code.to_s.length > 36
+        invalid_properties.push('invalid value for "response_category_code", the character length must be smaller than or equal to 36.')
       end
 
       if !@forwarded_acquirer_code.nil? && @forwarded_acquirer_code.to_s.length > 32
@@ -349,7 +349,7 @@ module CyberSource
       return false if !@response_code.nil? && @response_code.to_s.length > 10
       return false if !@response_code_source.nil? && @response_code_source.to_s.length > 1
       return false if !@response_details.nil? && @response_details.to_s.length > 255
-      return false if !@response_category_code.nil? && @response_category_code.to_s.length > 32
+      return false if !@response_category_code.nil? && @response_category_code.to_s.length > 36
       return false if !@forwarded_acquirer_code.nil? && @forwarded_acquirer_code.to_s.length > 32
       return false if !@system_trace_audit_number.nil? && @system_trace_audit_number.to_s.length > 6
       return false if !@payment_account_reference_number.nil? && @payment_account_reference_number.to_s.length > 32
@@ -416,8 +416,8 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] response_category_code Value to be assigned
     def response_category_code=(response_category_code)
-      if !response_category_code.nil? && response_category_code.to_s.length > 32
-        fail ArgumentError, 'invalid value for "response_category_code", the character length must be smaller than or equal to 32.'
+      if !response_category_code.nil? && response_category_code.to_s.length > 36
+        fail ArgumentError, 'invalid value for "response_category_code", the character length must be smaller than or equal to 36.'
       end
 
       @response_category_code = response_category_code
