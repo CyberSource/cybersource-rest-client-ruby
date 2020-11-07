@@ -19,6 +19,9 @@ module CyberSource
     # The id of the Shipping Address Token.
     attr_accessor :id
 
+    # Flag that indicates whether customer shipping address is the dafault. Valid values:  - `true`: Shipping Address is customer's default.  - `false`: Shipping Address is not customer's default. 
+    attr_accessor :default
+
     attr_accessor :ship_to
 
     attr_accessor :metadata
@@ -28,6 +31,7 @@ module CyberSource
       {
         :'_links' => :'_links',
         :'id' => :'id',
+        :'default' => :'default',
         :'ship_to' => :'shipTo',
         :'metadata' => :'metadata'
       }
@@ -38,6 +42,7 @@ module CyberSource
       {
         :'_links' => :'Tmsv2customersEmbeddedDefaultShippingAddressLinks',
         :'id' => :'String',
+        :'default' => :'BOOLEAN',
         :'ship_to' => :'Tmsv2customersEmbeddedDefaultShippingAddressShipTo',
         :'metadata' => :'Tmsv2customersEmbeddedDefaultShippingAddressMetadata'
       }
@@ -57,6 +62,10 @@ module CyberSource
 
       if attributes.has_key?(:'id')
         self.id = attributes[:'id']
+      end
+
+      if attributes.has_key?(:'default')
+        self.default = attributes[:'default']
       end
 
       if attributes.has_key?(:'shipTo')
@@ -112,6 +121,7 @@ module CyberSource
       self.class == o.class &&
           _links == o._links &&
           id == o.id &&
+          default == o.default &&
           ship_to == o.ship_to &&
           metadata == o.metadata
     end
@@ -125,7 +135,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, ship_to, metadata].hash
+      [_links, id, default, ship_to, metadata].hash
     end
 
     # Builds the object from hash

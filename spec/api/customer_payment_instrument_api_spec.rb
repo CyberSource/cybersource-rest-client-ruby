@@ -89,6 +89,7 @@ describe 'CustomerPaymentInstrumentApi' do
 
   # unit tests for post_customer_payment_instrument
   # Create a Customer Payment Instrument
+  # Include an existing TMS Customer &amp; Instrument Identifier token id in the request. * A Customer token can be created by calling: **POST */tms/v2/customers*** * An Instrument Identifier token can be created by calling: **POST */tms/v1/instrumentidentifiers*** 
   # @param customer_token_id The TokenId of a customer.
   # @param post_customer_payment_instrument_request 
   # @param [Hash] opts the optional parameters

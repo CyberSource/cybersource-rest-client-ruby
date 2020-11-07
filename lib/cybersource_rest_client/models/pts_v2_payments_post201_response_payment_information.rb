@@ -30,6 +30,21 @@ module CyberSource
 
     attr_accessor :shipping_address
 
+    # Subtype of card account. This field can contain one of the following values: - Maestro International - Maestro UK Domestic - MasterCard Credit - MasterCard Debit - Visa Credit - Visa Debit - Visa Electron  **Note** Additional values may be present.  For all possible values, see the `score_card_scheme` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
+    attr_accessor :scheme
+
+    # Credit card BIN (the first six digits of the credit card).Derived either from the `cc_bin` request field or from the first six characters of the `customer_cc_num` field.  For all possible values, see the `score_cc_bin` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
+    attr_accessor :bin
+
+    # Type of payment card account. This field can refer to a credit card, debit card, or prepaid card account type.  For all possible values, see the `score_card_account_type` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
+    attr_accessor :account_type
+
+    # Name of the bank or entity that issued the card account.  For all possible values, see the `score_card_issuer` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
+    attr_accessor :issuer
+
+    # Country (two-digit country code) associated with the BIN of the customer’s card used for the payment. Returned if the information is available. Use this field for additional information when reviewing orders. This information is also displayed in the details page of the CyberSource Business Center.  For all possible values, see the `bin_country` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
+    attr_accessor :bin_country
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -40,7 +55,12 @@ module CyberSource
         :'customer' => :'customer',
         :'payment_instrument' => :'paymentInstrument',
         :'instrument_identifier' => :'instrumentIdentifier',
-        :'shipping_address' => :'shippingAddress'
+        :'shipping_address' => :'shippingAddress',
+        :'scheme' => :'scheme',
+        :'bin' => :'bin',
+        :'account_type' => :'accountType',
+        :'issuer' => :'issuer',
+        :'bin_country' => :'binCountry'
       }
     end
 
@@ -54,7 +74,12 @@ module CyberSource
         :'customer' => :'Ptsv2paymentsPaymentInformationCustomer',
         :'payment_instrument' => :'Ptsv2paymentsPaymentInformationPaymentInstrument',
         :'instrument_identifier' => :'PtsV2PaymentsPost201ResponsePaymentInformationInstrumentIdentifier',
-        :'shipping_address' => :'Ptsv2paymentsPaymentInformationShippingAddress'
+        :'shipping_address' => :'Ptsv2paymentsPaymentInformationShippingAddress',
+        :'scheme' => :'String',
+        :'bin' => :'String',
+        :'account_type' => :'String',
+        :'issuer' => :'String',
+        :'bin_country' => :'String'
       }
     end
 
@@ -97,19 +122,114 @@ module CyberSource
       if attributes.has_key?(:'shippingAddress')
         self.shipping_address = attributes[:'shippingAddress']
       end
+
+      if attributes.has_key?(:'scheme')
+        self.scheme = attributes[:'scheme']
+      end
+
+      if attributes.has_key?(:'bin')
+        self.bin = attributes[:'bin']
+      end
+
+      if attributes.has_key?(:'accountType')
+        self.account_type = attributes[:'accountType']
+      end
+
+      if attributes.has_key?(:'issuer')
+        self.issuer = attributes[:'issuer']
+      end
+
+      if attributes.has_key?(:'binCountry')
+        self.bin_country = attributes[:'binCountry']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if !@scheme.nil? && @scheme.to_s.length > 255
+        invalid_properties.push('invalid value for "scheme", the character length must be smaller than or equal to 255.')
+      end
+
+      if !@bin.nil? && @bin.to_s.length > 255
+        invalid_properties.push('invalid value for "bin", the character length must be smaller than or equal to 255.')
+      end
+
+      if !@account_type.nil? && @account_type.to_s.length > 255
+        invalid_properties.push('invalid value for "account_type", the character length must be smaller than or equal to 255.')
+      end
+
+      if !@issuer.nil? && @issuer.to_s.length > 255
+        invalid_properties.push('invalid value for "issuer", the character length must be smaller than or equal to 255.')
+      end
+
+      if !@bin_country.nil? && @bin_country.to_s.length > 255
+        invalid_properties.push('invalid value for "bin_country", the character length must be smaller than or equal to 255.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if !@scheme.nil? && @scheme.to_s.length > 255
+      return false if !@bin.nil? && @bin.to_s.length > 255
+      return false if !@account_type.nil? && @account_type.to_s.length > 255
+      return false if !@issuer.nil? && @issuer.to_s.length > 255
+      return false if !@bin_country.nil? && @bin_country.to_s.length > 255
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] scheme Value to be assigned
+    def scheme=(scheme)
+      if !scheme.nil? && scheme.to_s.length > 255
+        fail ArgumentError, 'invalid value for "scheme", the character length must be smaller than or equal to 255.'
+      end
+
+      @scheme = scheme
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] bin Value to be assigned
+    def bin=(bin)
+      if !bin.nil? && bin.to_s.length > 255
+        fail ArgumentError, 'invalid value for "bin", the character length must be smaller than or equal to 255.'
+      end
+
+      @bin = bin
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] account_type Value to be assigned
+    def account_type=(account_type)
+      if !account_type.nil? && account_type.to_s.length > 255
+        fail ArgumentError, 'invalid value for "account_type", the character length must be smaller than or equal to 255.'
+      end
+
+      @account_type = account_type
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] issuer Value to be assigned
+    def issuer=(issuer)
+      if !issuer.nil? && issuer.to_s.length > 255
+        fail ArgumentError, 'invalid value for "issuer", the character length must be smaller than or equal to 255.'
+      end
+
+      @issuer = issuer
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] bin_country Value to be assigned
+    def bin_country=(bin_country)
+      if !bin_country.nil? && bin_country.to_s.length > 255
+        fail ArgumentError, 'invalid value for "bin_country", the character length must be smaller than or equal to 255.'
+      end
+
+      @bin_country = bin_country
     end
 
     # Checks equality by comparing each attribute.
@@ -124,7 +244,12 @@ module CyberSource
           customer == o.customer &&
           payment_instrument == o.payment_instrument &&
           instrument_identifier == o.instrument_identifier &&
-          shipping_address == o.shipping_address
+          shipping_address == o.shipping_address &&
+          scheme == o.scheme &&
+          bin == o.bin &&
+          account_type == o.account_type &&
+          issuer == o.issuer &&
+          bin_country == o.bin_country
     end
 
     # @see the `==` method
@@ -136,7 +261,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card, tokenized_card, account_features, bank, customer, payment_instrument, instrument_identifier, shipping_address].hash
+      [card, tokenized_card, account_features, bank, customer, payment_instrument, instrument_identifier, shipping_address, scheme, bin, account_type, issuer, bin_country].hash
     end
 
     # Builds the object from hash

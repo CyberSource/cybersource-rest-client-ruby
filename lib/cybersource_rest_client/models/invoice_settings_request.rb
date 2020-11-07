@@ -26,7 +26,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'invoice_settings_information' => :'InvoicingV2InvoiceSettingsGet200ResponseInvoiceSettingsInformation'
+        :'invoice_settings_information' => :'Invoicingv2invoiceSettingsInvoiceSettingsInformation'
       }
     end
 

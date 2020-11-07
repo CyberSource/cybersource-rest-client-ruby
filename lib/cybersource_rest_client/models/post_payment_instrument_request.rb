@@ -22,6 +22,9 @@ module CyberSource
     # The type of token.  Valid values: - paymentInstrument 
     attr_accessor :object
 
+    # Flag that indicates whether customer payment instrument is the dafault. Valid values:  - `true`: Payment instrument is customer's default.  - `false`: Payment instrument is not customer's default. 
+    attr_accessor :default
+
     # Issuers state for the card number. Valid values: - ACTIVE - CLOSED : The account has been closed. 
     attr_accessor :state
 
@@ -49,6 +52,7 @@ module CyberSource
         :'_links' => :'_links',
         :'id' => :'id',
         :'object' => :'object',
+        :'default' => :'default',
         :'state' => :'state',
         :'bank_account' => :'bankAccount',
         :'card' => :'card',
@@ -68,6 +72,7 @@ module CyberSource
         :'_links' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentLinks',
         :'id' => :'String',
         :'object' => :'String',
+        :'default' => :'BOOLEAN',
         :'state' => :'String',
         :'bank_account' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentBankAccount',
         :'card' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentCard',
@@ -99,6 +104,10 @@ module CyberSource
 
       if attributes.has_key?(:'object')
         self.object = attributes[:'object']
+      end
+
+      if attributes.has_key?(:'default')
+        self.default = attributes[:'default']
       end
 
       if attributes.has_key?(:'state')
@@ -187,6 +196,7 @@ module CyberSource
           _links == o._links &&
           id == o.id &&
           object == o.object &&
+          default == o.default &&
           state == o.state &&
           bank_account == o.bank_account &&
           card == o.card &&
@@ -208,7 +218,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, object, state, bank_account, card, buyer_information, bill_to, processing_information, merchant_information, instrument_identifier, metadata, _embedded].hash
+      [_links, id, object, default, state, bank_account, card, buyer_information, bill_to, processing_information, merchant_information, instrument_identifier, metadata, _embedded].hash
     end
 
     # Builds the object from hash

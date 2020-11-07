@@ -89,6 +89,7 @@ describe 'CustomerShippingAddressApi' do
 
   # unit tests for post_customer_shipping_address
   # Create a Customer Shipping Address
+  # Include an existing TMS Customer token id in the request URI. * A Customer token can be created by calling: **POST */tms/v2/customers*** 
   # @param customer_token_id The TokenId of a customer.
   # @param post_customer_shipping_address_request 
   # @param [Hash] opts the optional parameters

@@ -34,6 +34,9 @@ module CyberSource
     # Currency used for the order. Use the three-character [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)  #### Used by **Authorization** Required field.  **Authorization Reversal** For an authorization reversal (`reversalInformation`) or a capture (`processingOptions.capture` is set to `true`), you must use the same currency that you used in your payment authorization request.  #### PIN Debit Currency for the amount you requested for the PIN debit purchase. This value is returned for partial authorizations. The issuing bank can approve a partial amount if the balance on the debit card is less than the requested transaction amount. For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf). Returned by PIN debit purchase.  For PIN debit reversal requests, you must use the same currency that was used for the PIN debit purchase or PIN debit credit that you are reversing. For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).  Required field for PIN Debit purchase and PIN Debit credit requests. Optional field for PIN Debit reversal requests.  #### GPX This field is optional for reversing an authorization or credit.  #### DCC for First Data Your local currency. For details, see the `currency` field description in [Dynamic Currency Conversion For First Data Using the SCMP API](http://apps.cybersource.com/library/documentation/dev_guides/DCC_FirstData_SCMP/DCC_FirstData_SCMP_API.pdf).  #### Tax Calculation Required for international tax and value added tax only. Optional for U.S. and Canadian taxes. Your local currency. 
     attr_accessor :default_currency_code
 
+    # The 3D Secure payer authentication version or status for a merchant's invoice payments. Possible values are: - `1` - `2` - `None` - `Disabled` 
+    attr_accessor :payer_authentication3_ds_version
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -43,7 +46,8 @@ module CyberSource
         :'enable_reminders' => :'enableReminders',
         :'header_style' => :'headerStyle',
         :'delivery_language' => :'deliveryLanguage',
-        :'default_currency_code' => :'defaultCurrencyCode'
+        :'default_currency_code' => :'defaultCurrencyCode',
+        :'payer_authentication3_ds_version' => :'payerAuthentication3DSVersion'
       }
     end
 
@@ -56,7 +60,8 @@ module CyberSource
         :'enable_reminders' => :'BOOLEAN',
         :'header_style' => :'InvoicingV2InvoiceSettingsGet200ResponseInvoiceSettingsInformationHeaderStyle',
         :'delivery_language' => :'String',
-        :'default_currency_code' => :'String'
+        :'default_currency_code' => :'String',
+        :'payer_authentication3_ds_version' => :'String'
       }
     end
 
@@ -95,6 +100,10 @@ module CyberSource
       if attributes.has_key?(:'defaultCurrencyCode')
         self.default_currency_code = attributes[:'defaultCurrencyCode']
       end
+
+      if attributes.has_key?(:'payerAuthentication3DSVersion')
+        self.payer_authentication3_ds_version = attributes[:'payerAuthentication3DSVersion']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -121,6 +130,10 @@ module CyberSource
         invalid_properties.push('invalid value for "default_currency_code", the character length must be smaller than or equal to 3.')
       end
 
+      if !@payer_authentication3_ds_version.nil? && @payer_authentication3_ds_version.to_s.length > 8
+        invalid_properties.push('invalid value for "payer_authentication3_ds_version", the character length must be smaller than or equal to 8.')
+      end
+
       invalid_properties
     end
 
@@ -132,6 +145,7 @@ module CyberSource
       return false if !@custom_email_message.nil? && @custom_email_message.to_s.length > 2000
       return false if !@delivery_language.nil? && @delivery_language.to_s.length > 6
       return false if !@default_currency_code.nil? && @default_currency_code.to_s.length > 3
+      return false if !@payer_authentication3_ds_version.nil? && @payer_authentication3_ds_version.to_s.length > 8
       true
     end
 
@@ -185,6 +199,16 @@ module CyberSource
       @default_currency_code = default_currency_code
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] payer_authentication3_ds_version Value to be assigned
+    def payer_authentication3_ds_version=(payer_authentication3_ds_version)
+      if !payer_authentication3_ds_version.nil? && payer_authentication3_ds_version.to_s.length > 8
+        fail ArgumentError, 'invalid value for "payer_authentication3_ds_version", the character length must be smaller than or equal to 8.'
+      end
+
+      @payer_authentication3_ds_version = payer_authentication3_ds_version
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -196,7 +220,8 @@ module CyberSource
           enable_reminders == o.enable_reminders &&
           header_style == o.header_style &&
           delivery_language == o.delivery_language &&
-          default_currency_code == o.default_currency_code
+          default_currency_code == o.default_currency_code &&
+          payer_authentication3_ds_version == o.payer_authentication3_ds_version
     end
 
     # @see the `==` method
@@ -208,7 +233,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [merchant_logo, merchant_display_name, custom_email_message, enable_reminders, header_style, delivery_language, default_currency_code].hash
+      [merchant_logo, merchant_display_name, custom_email_message, enable_reminders, header_style, delivery_language, default_currency_code, payer_authentication3_ds_version].hash
     end
 
     # Builds the object from hash

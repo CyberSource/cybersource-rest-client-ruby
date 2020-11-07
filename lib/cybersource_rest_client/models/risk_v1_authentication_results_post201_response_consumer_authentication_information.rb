@@ -35,7 +35,7 @@ module CyberSource
     # Field that is returned only when the CAVV is generated, which occurs when paresStatus contains the values Y (successful authentication) or A (attempted authentication). If you use the ATOS processor, send the value of this field in the `cavv_algorithm` request field of the authorization service. This field contains one of these values: - `2`: Visa, American Express, JCB, Diners Club, and Discover - `3`: Mastercard 
     attr_accessor :cavv_algorithm
 
-    # The directory server error code indicating a problem with this transaction. 
+    # The directory server error code indicating a problem with this transaction. Note - Max Length of this field is typically 3 characters. 
     attr_accessor :directory_server_error_code
 
     # Directory server text and additional detail about the error for this transaction. 
@@ -258,10 +258,6 @@ module CyberSource
         invalid_properties.push('invalid value for "cavv_algorithm", the character length must be smaller than or equal to 1.')
       end
 
-      if !@directory_server_error_code.nil? && @directory_server_error_code.to_s.length > 3
-        invalid_properties.push('invalid value for "directory_server_error_code", the character length must be smaller than or equal to 3.')
-      end
-
       if !@directory_server_error_description.nil? && @directory_server_error_description.to_s.length > 4096
         invalid_properties.push('invalid value for "directory_server_error_description", the character length must be smaller than or equal to 4096.')
       end
@@ -299,7 +295,6 @@ module CyberSource
       return false if !@acs_transaction_id.nil? && @acs_transaction_id.to_s.length > 36
       return false if !@cavv.nil? && @cavv.to_s.length > 255
       return false if !@cavv_algorithm.nil? && @cavv_algorithm.to_s.length > 1
-      return false if !@directory_server_error_code.nil? && @directory_server_error_code.to_s.length > 3
       return false if !@directory_server_error_description.nil? && @directory_server_error_description.to_s.length > 4096
       return false if !@interaction_counter.nil? && @interaction_counter.to_s.length > 2
       return false if !@sdk_transaction_id.nil? && @sdk_transaction_id.to_s.length > 36
@@ -338,16 +333,6 @@ module CyberSource
       end
 
       @cavv_algorithm = cavv_algorithm
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] directory_server_error_code Value to be assigned
-    def directory_server_error_code=(directory_server_error_code)
-      if !directory_server_error_code.nil? && directory_server_error_code.to_s.length > 3
-        fail ArgumentError, 'invalid value for "directory_server_error_code", the character length must be smaller than or equal to 3.'
-      end
-
-      @directory_server_error_code = directory_server_error_code
     end
 
     # Custom attribute writer method with validation

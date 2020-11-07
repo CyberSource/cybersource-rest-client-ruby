@@ -229,6 +229,8 @@ No authorization required
 
 Create a Customer Shipping Address
 
+Include an existing TMS Customer token id in the request URI. * A Customer token can be created by calling: **POST */tms/v2/customers*** 
+
 ### Example
 ```ruby
 # load the gem

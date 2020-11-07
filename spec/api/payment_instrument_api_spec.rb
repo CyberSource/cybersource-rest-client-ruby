@@ -72,6 +72,7 @@ describe 'PaymentInstrumentApi' do
 
   # unit tests for post_payment_instrument
   # Create a Payment Instrument
+  # Include an existing TMS Instrument Identifier id in the request body. * An Instrument Identifier token can be created by calling: **POST */tms/v1/instrumentidentifiers*** 
   # @param post_payment_instrument_request 
   # @param [Hash] opts the optional parameters
   # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.

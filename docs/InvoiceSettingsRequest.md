@@ -3,6 +3,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**invoice_settings_information** | [**InvoicingV2InvoiceSettingsGet200ResponseInvoiceSettingsInformation**](InvoicingV2InvoiceSettingsGet200ResponseInvoiceSettingsInformation.md) |  | [optional] 
+**invoice_settings_information** | [**Invoicingv2invoiceSettingsInvoiceSettingsInformation**](Invoicingv2invoiceSettingsInvoiceSettingsInformation.md) |  | [optional] 
 
 
