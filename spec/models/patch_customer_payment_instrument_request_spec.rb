@@ -50,6 +50,12 @@ describe 'PatchCustomerPaymentInstrumentRequest' do
     end
   end
 
+  describe 'test attribute "default"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "state"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

@@ -425,6 +425,7 @@ module CyberSource
       return data, status_code, headers
     end
     # Create a Customer Payment Instrument
+    # Include an existing TMS Customer & Instrument Identifier token id in the request. * A Customer token can be created by calling: **POST */tms/v2/customers*** * An Instrument Identifier token can be created by calling: **POST */tms/v1/instrumentidentifiers*** 
     # @param customer_token_id The TokenId of a customer.
     # @param post_customer_payment_instrument_request 
     # @param [Hash] opts the optional parameters
@@ -436,6 +437,7 @@ module CyberSource
     end
 
     # Create a Customer Payment Instrument
+    # Include an existing TMS Customer &amp; Instrument Identifier token id in the request. * A Customer token can be created by calling: **POST */tms/v2/customers*** * An Instrument Identifier token can be created by calling: **POST */tms/v1/instrumentidentifiers*** 
     # @param customer_token_id The TokenId of a customer.
     # @param post_customer_payment_instrument_request 
     # @param [Hash] opts the optional parameters

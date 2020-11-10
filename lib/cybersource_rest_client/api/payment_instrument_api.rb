@@ -283,6 +283,7 @@ module CyberSource
       return data, status_code, headers
     end
     # Create a Payment Instrument
+    # Include an existing TMS Instrument Identifier id in the request body. * An Instrument Identifier token can be created by calling: **POST */tms/v1/instrumentidentifiers*** 
     # @param post_payment_instrument_request 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
@@ -293,6 +294,7 @@ module CyberSource
     end
 
     # Create a Payment Instrument
+    # Include an existing TMS Instrument Identifier id in the request body. * An Instrument Identifier token can be created by calling: **POST */tms/v1/instrumentidentifiers*** 
     # @param post_payment_instrument_request 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.

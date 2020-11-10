@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class RiskV1DecisionsPost201ResponseConsumerAuthenticationInformation
-    # JSON Web Token (JWT) used to authenticate the consumer with the authentication provider, such as, CardinalCommerce or Rupay. 
+    # JSON Web Token (JWT) used to authenticate the consumer with the authentication provider, such as, CardinalCommerce or Rupay. Note - Max Length of this field is 2048 characters. 
     attr_accessor :access_token
 
     # Identifies the UI Type the ACS will use to complete the challenge. **NOTE**: Only available for App transactions using the Cardinal Mobile SDK. 
@@ -53,7 +53,7 @@ module CyberSource
     # Indicates whether the 3DS Requestor requests the ACS to utilize Decoupled Authentication and agrees to utilize Decoupled Authentication if the ACS confirms its use.  Possible Values:  Y - Decoupled Authentication is supported and preferred if challenge is necessary  N - Do not use Decoupled Authentication  **Default Value**: N 
     attr_accessor :decoupled_authentication_indicator
 
-    # The directory server error code indicating a problem with this transaction. 
+    # The directory server error code indicating a problem with this transaction. Note - Max Length of this field is typically 3 characters. 
     attr_accessor :directory_server_error_code
 
     # Directory server text and additional detail about the error for this transaction. 
@@ -362,10 +362,6 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@access_token.nil? && @access_token.to_s.length > 2048
-        invalid_properties.push('invalid value for "access_token", the character length must be smaller than or equal to 2048.')
-      end
-
       if !@acs_transaction_id.nil? && @acs_transaction_id.to_s.length > 36
         invalid_properties.push('invalid value for "acs_transaction_id", the character length must be smaller than or equal to 36.')
       end
@@ -400,10 +396,6 @@ module CyberSource
 
       if !@decoupled_authentication_indicator.nil? && @decoupled_authentication_indicator.to_s.length > 1
         invalid_properties.push('invalid value for "decoupled_authentication_indicator", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@directory_server_error_code.nil? && @directory_server_error_code.to_s.length > 3
-        invalid_properties.push('invalid value for "directory_server_error_code", the character length must be smaller than or equal to 3.')
       end
 
       if !@directory_server_error_description.nil? && @directory_server_error_description.to_s.length > 4096
@@ -452,7 +444,6 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@access_token.nil? && @access_token.to_s.length > 2048
       return false if !@acs_transaction_id.nil? && @acs_transaction_id.to_s.length > 36
       return false if !@acs_url.nil? && @acs_url.to_s.length > 2048
       return false if !@authentication_transaction_id.nil? && @authentication_transaction_id.to_s.length > 20
@@ -462,7 +453,6 @@ module CyberSource
       return false if !@challenge_cancel_code.nil? && @challenge_cancel_code.to_s.length > 2
       return false if !@challenge_required.nil? && @challenge_required.to_s.length > 1
       return false if !@decoupled_authentication_indicator.nil? && @decoupled_authentication_indicator.to_s.length > 1
-      return false if !@directory_server_error_code.nil? && @directory_server_error_code.to_s.length > 3
       return false if !@directory_server_error_description.nil? && @directory_server_error_description.to_s.length > 4096
       return false if !@ecommerce_indicator.nil? && @ecommerce_indicator.to_s.length > 255
       return false if !@effective_authentication_type.nil? && @effective_authentication_type.to_s.length > 2
@@ -474,16 +464,6 @@ module CyberSource
       return false if !@white_list_status_source.nil? && @white_list_status_source.to_s.length > 2
       return false if !@directory_server_transaction_id.nil? && @directory_server_transaction_id.to_s.length > 36
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] access_token Value to be assigned
-    def access_token=(access_token)
-      if !access_token.nil? && access_token.to_s.length > 2048
-        fail ArgumentError, 'invalid value for "access_token", the character length must be smaller than or equal to 2048.'
-      end
-
-      @access_token = access_token
     end
 
     # Custom attribute writer method with validation
@@ -574,16 +554,6 @@ module CyberSource
       end
 
       @decoupled_authentication_indicator = decoupled_authentication_indicator
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] directory_server_error_code Value to be assigned
-    def directory_server_error_code=(directory_server_error_code)
-      if !directory_server_error_code.nil? && directory_server_error_code.to_s.length > 3
-        fail ArgumentError, 'invalid value for "directory_server_error_code", the character length must be smaller than or equal to 3.'
-      end
-
-      @directory_server_error_code = directory_server_error_code
     end
 
     # Custom attribute writer method with validation

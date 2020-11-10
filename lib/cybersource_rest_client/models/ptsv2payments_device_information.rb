@@ -188,8 +188,8 @@ module CyberSource
         invalid_properties.push('invalid value for "host_name", the character length must be smaller than or equal to 60.')
       end
 
-      if !@ip_address.nil? && @ip_address.to_s.length > 48
-        invalid_properties.push('invalid value for "ip_address", the character length must be smaller than or equal to 48.')
+      if !@ip_address.nil? && @ip_address.to_s.length > 45
+        invalid_properties.push('invalid value for "ip_address", the character length must be smaller than or equal to 45.')
       end
 
       if !@user_agent.nil? && @user_agent.to_s.length > 40
@@ -235,7 +235,7 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if !@host_name.nil? && @host_name.to_s.length > 60
-      return false if !@ip_address.nil? && @ip_address.to_s.length > 48
+      return false if !@ip_address.nil? && @ip_address.to_s.length > 45
       return false if !@user_agent.nil? && @user_agent.to_s.length > 40
       return false if !@http_accept_browser_value.nil? && @http_accept_browser_value.to_s.length > 255
       return false if !@http_accept_content.nil? && @http_accept_content.to_s.length > 256
@@ -261,8 +261,8 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] ip_address Value to be assigned
     def ip_address=(ip_address)
-      if !ip_address.nil? && ip_address.to_s.length > 48
-        fail ArgumentError, 'invalid value for "ip_address", the character length must be smaller than or equal to 48.'
+      if !ip_address.nil? && ip_address.to_s.length > 45
+        fail ArgumentError, 'invalid value for "ip_address", the character length must be smaller than or equal to 45.'
       end
 
       @ip_address = ip_address

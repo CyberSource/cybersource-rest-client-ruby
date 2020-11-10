@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class RiskV1AuthenticationSetupsPost201ResponseConsumerAuthenticationInformation
-    # JSON Web Token (JWT) used to authenticate the consumer with the authentication provider, such as, CardinalCommerce or Rupay. 
+    # JSON Web Token (JWT) used to authenticate the consumer with the authentication provider, such as, CardinalCommerce or Rupay. Note - Max Length of this field is 2048 characters. 
     attr_accessor :access_token
 
     # This identifier represents cardinal has started device data collection session and this must be passed in Authentication JWT to Cardinal when invoking the deviceDataCollectionUrl. 
@@ -66,10 +66,6 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@access_token.nil? && @access_token.to_s.length > 2048
-        invalid_properties.push('invalid value for "access_token", the character length must be smaller than or equal to 2048.')
-      end
-
       if !@reference_id.nil? && @reference_id.to_s.length > 50
         invalid_properties.push('invalid value for "reference_id", the character length must be smaller than or equal to 50.')
       end
@@ -84,20 +80,9 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@access_token.nil? && @access_token.to_s.length > 2048
       return false if !@reference_id.nil? && @reference_id.to_s.length > 50
       return false if !@device_data_collection_url.nil? && @device_data_collection_url.to_s.length > 100
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] access_token Value to be assigned
-    def access_token=(access_token)
-      if !access_token.nil? && access_token.to_s.length > 2048
-        fail ArgumentError, 'invalid value for "access_token", the character length must be smaller than or equal to 2048.'
-      end
-
-      @access_token = access_token
     end
 
     # Custom attribute writer method with validation

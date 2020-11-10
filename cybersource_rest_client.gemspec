@@ -17,7 +17,7 @@ require "cybersource_rest_client/version"
 
 Gem::Specification.new do |s|
   s.name        = "cybersource_rest_client"
-  s.version     = "0.0.25"
+  s.version     = "0.0.26"
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["CyberSource"]
   s.email       = ["cybersourcedev@gmail.com"]
@@ -39,7 +39,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'autotest-growl', '~> 0.2', '>= 0.2.16'
   s.add_development_dependency 'autotest-fsevent', '~> 0.2', '>= 0.2.12'
 
-  s.add_runtime_dependency 'activesupport', '~> 5.2', '>= 5.2.0'
+  s.add_runtime_dependency 'activesupport', '~> 6.0', '>= 6.0.3.2'
   s.add_runtime_dependency 'interface','~> 1.0', '>= 1.0.4'
   s.add_runtime_dependency 'jwt', '~> 2.1.0'
   
