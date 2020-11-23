@@ -26,6 +26,8 @@ public
     @keyAlias = cybsPropertyObj['keyAlias']
     @keyPass = cybsPropertyObj['keyPass']
     @keyFilename = cybsPropertyObj['keyFilename']
+    @useMetaKey = cybsPropertyObj['useMetaKey']
+    @portfolioID = cybsPropertyObj['portfolioID']
     @logFilename = cybsPropertyObj['logFilename']
     @solutionId = cybsPropertyObj['solutionId']
     validateMerchantDetails()
@@ -140,6 +142,11 @@ public
           @merchantSecretKey=@merchantSecretKey.to_s
         end
       end
+      if @useMetaKey && @portfolioID.to_s.empty?
+        err = raise StandardError.new(Constants::ERROR_PREFIX+ Constants::PORTFOLIO_ID_MANDATORY) 
+        ApiException.new.apiexception(err,log_obj)
+      end
+
       if !@proxyAddress.instance_of? String
         @proxyAddress=@proxyAddress.to_s
       end
@@ -174,6 +181,8 @@ public
     attr_accessor :keyAlias
     attr_accessor :keyPass
     attr_accessor :keyFilename
+    attr_accessor :useMetaKey
+    attr_accessor :portfolioID
     attr_accessor :requestJsonData
     attr_accessor :requestUrl
     attr_accessor :requestType
