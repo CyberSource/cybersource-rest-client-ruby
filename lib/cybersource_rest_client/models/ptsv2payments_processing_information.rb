@@ -271,222 +271,96 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@processor_id.nil? && @processor_id.to_s.length > 3
-        invalid_properties.push('invalid value for "processor_id", the character length must be smaller than or equal to 3.')
-      end
-
-      if !@commerce_indicator.nil? && @commerce_indicator.to_s.length > 20
-        invalid_properties.push('invalid value for "commerce_indicator", the character length must be smaller than or equal to 20.')
-      end
-
-      if !@payment_solution.nil? && @payment_solution.to_s.length > 12
-        invalid_properties.push('invalid value for "payment_solution", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@reconciliation_id.nil? && @reconciliation_id.to_s.length > 60
-        invalid_properties.push('invalid value for "reconciliation_id", the character length must be smaller than or equal to 60.')
-      end
-
-      if !@link_id.nil? && @link_id.to_s.length > 26
-        invalid_properties.push('invalid value for "link_id", the character length must be smaller than or equal to 26.')
-      end
-
-      if !@purchase_level.nil? && @purchase_level.to_s.length > 1
-        invalid_properties.push('invalid value for "purchase_level", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@report_group.nil? && @report_group.to_s.length > 25
-        invalid_properties.push('invalid value for "report_group", the character length must be smaller than or equal to 25.')
-      end
-
-      if !@visa_checkout_id.nil? && @visa_checkout_id.to_s.length > 48
-        invalid_properties.push('invalid value for "visa_checkout_id", the character length must be smaller than or equal to 48.')
-      end
-
-      if !@industry_data_type.nil? && @industry_data_type.to_s.length > 20
-        invalid_properties.push('invalid value for "industry_data_type", the character length must be smaller than or equal to 20.')
-      end
-
-      if !@wallet_type.nil? && @wallet_type.to_s.length > 5
-        invalid_properties.push('invalid value for "wallet_type", the character length must be smaller than or equal to 5.')
-      end
-
-      if !@national_net_domestic_data.nil? && @national_net_domestic_data.to_s.length > 123
-        invalid_properties.push('invalid value for "national_net_domestic_data", the character length must be smaller than or equal to 123.')
-      end
-
-      if !@mobile_remote_payment_type.nil? && @mobile_remote_payment_type.to_s.length > 1
-        invalid_properties.push('invalid value for "mobile_remote_payment_type", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@extended_credit_total_count.nil? && @extended_credit_total_count.to_s.length > 1
-        invalid_properties.push('invalid value for "extended_credit_total_count", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@network_routing_order.nil? && @network_routing_order.to_s.length > 30
-        invalid_properties.push('invalid value for "network_routing_order", the character length must be smaller than or equal to 30.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@processor_id.nil? && @processor_id.to_s.length > 3
-      return false if !@commerce_indicator.nil? && @commerce_indicator.to_s.length > 20
-      return false if !@payment_solution.nil? && @payment_solution.to_s.length > 12
-      return false if !@reconciliation_id.nil? && @reconciliation_id.to_s.length > 60
-      return false if !@link_id.nil? && @link_id.to_s.length > 26
-      return false if !@purchase_level.nil? && @purchase_level.to_s.length > 1
-      return false if !@report_group.nil? && @report_group.to_s.length > 25
-      return false if !@visa_checkout_id.nil? && @visa_checkout_id.to_s.length > 48
-      return false if !@industry_data_type.nil? && @industry_data_type.to_s.length > 20
-      return false if !@wallet_type.nil? && @wallet_type.to_s.length > 5
-      return false if !@national_net_domestic_data.nil? && @national_net_domestic_data.to_s.length > 123
-      return false if !@mobile_remote_payment_type.nil? && @mobile_remote_payment_type.to_s.length > 1
-      return false if !@extended_credit_total_count.nil? && @extended_credit_total_count.to_s.length > 1
-      return false if !@network_routing_order.nil? && @network_routing_order.to_s.length > 30
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] processor_id Value to be assigned
     def processor_id=(processor_id)
-      if !processor_id.nil? && processor_id.to_s.length > 3
-        fail ArgumentError, 'invalid value for "processor_id", the character length must be smaller than or equal to 3.'
-      end
-
       @processor_id = processor_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] commerce_indicator Value to be assigned
     def commerce_indicator=(commerce_indicator)
-      if !commerce_indicator.nil? && commerce_indicator.to_s.length > 20
-        fail ArgumentError, 'invalid value for "commerce_indicator", the character length must be smaller than or equal to 20.'
-      end
-
       @commerce_indicator = commerce_indicator
     end
 
     # Custom attribute writer method with validation
     # @param [Object] payment_solution Value to be assigned
     def payment_solution=(payment_solution)
-      if !payment_solution.nil? && payment_solution.to_s.length > 12
-        fail ArgumentError, 'invalid value for "payment_solution", the character length must be smaller than or equal to 12.'
-      end
-
       @payment_solution = payment_solution
     end
 
     # Custom attribute writer method with validation
     # @param [Object] reconciliation_id Value to be assigned
     def reconciliation_id=(reconciliation_id)
-      if !reconciliation_id.nil? && reconciliation_id.to_s.length > 60
-        fail ArgumentError, 'invalid value for "reconciliation_id", the character length must be smaller than or equal to 60.'
-      end
-
       @reconciliation_id = reconciliation_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] link_id Value to be assigned
     def link_id=(link_id)
-      if !link_id.nil? && link_id.to_s.length > 26
-        fail ArgumentError, 'invalid value for "link_id", the character length must be smaller than or equal to 26.'
-      end
-
       @link_id = link_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] purchase_level Value to be assigned
     def purchase_level=(purchase_level)
-      if !purchase_level.nil? && purchase_level.to_s.length > 1
-        fail ArgumentError, 'invalid value for "purchase_level", the character length must be smaller than or equal to 1.'
-      end
-
       @purchase_level = purchase_level
     end
 
     # Custom attribute writer method with validation
     # @param [Object] report_group Value to be assigned
     def report_group=(report_group)
-      if !report_group.nil? && report_group.to_s.length > 25
-        fail ArgumentError, 'invalid value for "report_group", the character length must be smaller than or equal to 25.'
-      end
-
       @report_group = report_group
     end
 
     # Custom attribute writer method with validation
     # @param [Object] visa_checkout_id Value to be assigned
     def visa_checkout_id=(visa_checkout_id)
-      if !visa_checkout_id.nil? && visa_checkout_id.to_s.length > 48
-        fail ArgumentError, 'invalid value for "visa_checkout_id", the character length must be smaller than or equal to 48.'
-      end
-
       @visa_checkout_id = visa_checkout_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] industry_data_type Value to be assigned
     def industry_data_type=(industry_data_type)
-      if !industry_data_type.nil? && industry_data_type.to_s.length > 20
-        fail ArgumentError, 'invalid value for "industry_data_type", the character length must be smaller than or equal to 20.'
-      end
-
       @industry_data_type = industry_data_type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] wallet_type Value to be assigned
     def wallet_type=(wallet_type)
-      if !wallet_type.nil? && wallet_type.to_s.length > 5
-        fail ArgumentError, 'invalid value for "wallet_type", the character length must be smaller than or equal to 5.'
-      end
-
       @wallet_type = wallet_type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] national_net_domestic_data Value to be assigned
     def national_net_domestic_data=(national_net_domestic_data)
-      if !national_net_domestic_data.nil? && national_net_domestic_data.to_s.length > 123
-        fail ArgumentError, 'invalid value for "national_net_domestic_data", the character length must be smaller than or equal to 123.'
-      end
-
       @national_net_domestic_data = national_net_domestic_data
     end
 
     # Custom attribute writer method with validation
     # @param [Object] mobile_remote_payment_type Value to be assigned
     def mobile_remote_payment_type=(mobile_remote_payment_type)
-      if !mobile_remote_payment_type.nil? && mobile_remote_payment_type.to_s.length > 1
-        fail ArgumentError, 'invalid value for "mobile_remote_payment_type", the character length must be smaller than or equal to 1.'
-      end
-
       @mobile_remote_payment_type = mobile_remote_payment_type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] extended_credit_total_count Value to be assigned
     def extended_credit_total_count=(extended_credit_total_count)
-      if !extended_credit_total_count.nil? && extended_credit_total_count.to_s.length > 1
-        fail ArgumentError, 'invalid value for "extended_credit_total_count", the character length must be smaller than or equal to 1.'
-      end
-
       @extended_credit_total_count = extended_credit_total_count
     end
 
     # Custom attribute writer method with validation
     # @param [Object] network_routing_order Value to be assigned
     def network_routing_order=(network_routing_order)
-      if !network_routing_order.nil? && network_routing_order.to_s.length > 30
-        fail ArgumentError, 'invalid value for "network_routing_order", the character length must be smaller than or equal to 30.'
-      end
-
       @network_routing_order = network_routing_order
     end
 

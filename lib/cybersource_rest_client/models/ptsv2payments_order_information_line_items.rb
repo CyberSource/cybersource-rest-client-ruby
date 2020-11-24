@@ -318,18 +318,6 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@product_code.nil? && @product_code.to_s.length > 255
-        invalid_properties.push('invalid value for "product_code", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@product_name.nil? && @product_name.to_s.length > 255
-        invalid_properties.push('invalid value for "product_name", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@product_sku.nil? && @product_sku.to_s.length > 255
-        invalid_properties.push('invalid value for "product_sku", the character length must be smaller than or equal to 255.')
-      end
-
       if !@quantity.nil? && @quantity > 999999999
         invalid_properties.push('invalid value for "quantity", must be smaller than or equal to 999999999.')
       end
@@ -338,142 +326,32 @@ module CyberSource
         invalid_properties.push('invalid value for "quantity", must be greater than or equal to 1.')
       end
 
-      if !@unit_price.nil? && @unit_price.to_s.length > 15
-        invalid_properties.push('invalid value for "unit_price", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@unit_of_measure.nil? && @unit_of_measure.to_s.length > 12
-        invalid_properties.push('invalid value for "unit_of_measure", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@total_amount.nil? && @total_amount.to_s.length > 13
-        invalid_properties.push('invalid value for "total_amount", the character length must be smaller than or equal to 13.')
-      end
-
-      if !@tax_amount.nil? && @tax_amount.to_s.length > 15
-        invalid_properties.push('invalid value for "tax_amount", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@tax_rate.nil? && @tax_rate.to_s.length > 7
-        invalid_properties.push('invalid value for "tax_rate", the character length must be smaller than or equal to 7.')
-      end
-
-      if !@tax_applied_after_discount.nil? && @tax_applied_after_discount.to_s.length > 1
-        invalid_properties.push('invalid value for "tax_applied_after_discount", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@tax_status_indicator.nil? && @tax_status_indicator.to_s.length > 1
-        invalid_properties.push('invalid value for "tax_status_indicator", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@tax_type_code.nil? && @tax_type_code.to_s.length > 4
-        invalid_properties.push('invalid value for "tax_type_code", the character length must be smaller than or equal to 4.')
-      end
-
-      if !@type_of_supply.nil? && @type_of_supply.to_s.length > 2
-        invalid_properties.push('invalid value for "type_of_supply", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@commodity_code.nil? && @commodity_code.to_s.length > 15
-        invalid_properties.push('invalid value for "commodity_code", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@discount_amount.nil? && @discount_amount.to_s.length > 13
-        invalid_properties.push('invalid value for "discount_amount", the character length must be smaller than or equal to 13.')
-      end
-
-      if !@discount_rate.nil? && @discount_rate.to_s.length > 6
-        invalid_properties.push('invalid value for "discount_rate", the character length must be smaller than or equal to 6.')
-      end
-
-      if !@invoice_number.nil? && @invoice_number.to_s.length > 23
-        invalid_properties.push('invalid value for "invoice_number", the character length must be smaller than or equal to 23.')
-      end
-
-      if !@weight.nil? && @weight.to_s.length > 9
-        invalid_properties.push('invalid value for "weight", the character length must be smaller than or equal to 9.')
-      end
-
-      if !@weight_identifier.nil? && @weight_identifier.to_s.length > 1
-        invalid_properties.push('invalid value for "weight_identifier", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@weight_unit.nil? && @weight_unit.to_s.length > 2
-        invalid_properties.push('invalid value for "weight_unit", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@reference_data_code.nil? && @reference_data_code.to_s.length > 2
-        invalid_properties.push('invalid value for "reference_data_code", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@reference_data_number.nil? && @reference_data_number.to_s.length > 30
-        invalid_properties.push('invalid value for "reference_data_number", the character length must be smaller than or equal to 30.')
-      end
-
-      if !@shipping_destination_types.nil? && @shipping_destination_types.to_s.length > 50
-        invalid_properties.push('invalid value for "shipping_destination_types", the character length must be smaller than or equal to 50.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@product_code.nil? && @product_code.to_s.length > 255
-      return false if !@product_name.nil? && @product_name.to_s.length > 255
-      return false if !@product_sku.nil? && @product_sku.to_s.length > 255
       return false if !@quantity.nil? && @quantity > 999999999
       return false if !@quantity.nil? && @quantity < 1
-      return false if !@unit_price.nil? && @unit_price.to_s.length > 15
-      return false if !@unit_of_measure.nil? && @unit_of_measure.to_s.length > 12
-      return false if !@total_amount.nil? && @total_amount.to_s.length > 13
-      return false if !@tax_amount.nil? && @tax_amount.to_s.length > 15
-      return false if !@tax_rate.nil? && @tax_rate.to_s.length > 7
-      return false if !@tax_applied_after_discount.nil? && @tax_applied_after_discount.to_s.length > 1
-      return false if !@tax_status_indicator.nil? && @tax_status_indicator.to_s.length > 1
-      return false if !@tax_type_code.nil? && @tax_type_code.to_s.length > 4
-      return false if !@type_of_supply.nil? && @type_of_supply.to_s.length > 2
-      return false if !@commodity_code.nil? && @commodity_code.to_s.length > 15
-      return false if !@discount_amount.nil? && @discount_amount.to_s.length > 13
-      return false if !@discount_rate.nil? && @discount_rate.to_s.length > 6
-      return false if !@invoice_number.nil? && @invoice_number.to_s.length > 23
-      return false if !@weight.nil? && @weight.to_s.length > 9
-      return false if !@weight_identifier.nil? && @weight_identifier.to_s.length > 1
-      return false if !@weight_unit.nil? && @weight_unit.to_s.length > 2
-      return false if !@reference_data_code.nil? && @reference_data_code.to_s.length > 2
-      return false if !@reference_data_number.nil? && @reference_data_number.to_s.length > 30
-      return false if !@shipping_destination_types.nil? && @shipping_destination_types.to_s.length > 50
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] product_code Value to be assigned
     def product_code=(product_code)
-      if !product_code.nil? && product_code.to_s.length > 255
-        fail ArgumentError, 'invalid value for "product_code", the character length must be smaller than or equal to 255.'
-      end
-
       @product_code = product_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] product_name Value to be assigned
     def product_name=(product_name)
-      if !product_name.nil? && product_name.to_s.length > 255
-        fail ArgumentError, 'invalid value for "product_name", the character length must be smaller than or equal to 255.'
-      end
-
       @product_name = product_name
     end
 
     # Custom attribute writer method with validation
     # @param [Object] product_sku Value to be assigned
     def product_sku=(product_sku)
-      if !product_sku.nil? && product_sku.to_s.length > 255
-        fail ArgumentError, 'invalid value for "product_sku", the character length must be smaller than or equal to 255.'
-      end
-
       @product_sku = product_sku
     end
 
@@ -494,190 +372,114 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] unit_price Value to be assigned
     def unit_price=(unit_price)
-      if !unit_price.nil? && unit_price.to_s.length > 15
-        fail ArgumentError, 'invalid value for "unit_price", the character length must be smaller than or equal to 15.'
-      end
-
       @unit_price = unit_price
     end
 
     # Custom attribute writer method with validation
     # @param [Object] unit_of_measure Value to be assigned
     def unit_of_measure=(unit_of_measure)
-      if !unit_of_measure.nil? && unit_of_measure.to_s.length > 12
-        fail ArgumentError, 'invalid value for "unit_of_measure", the character length must be smaller than or equal to 12.'
-      end
-
       @unit_of_measure = unit_of_measure
     end
 
     # Custom attribute writer method with validation
     # @param [Object] total_amount Value to be assigned
     def total_amount=(total_amount)
-      if !total_amount.nil? && total_amount.to_s.length > 13
-        fail ArgumentError, 'invalid value for "total_amount", the character length must be smaller than or equal to 13.'
-      end
-
       @total_amount = total_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] tax_amount Value to be assigned
     def tax_amount=(tax_amount)
-      if !tax_amount.nil? && tax_amount.to_s.length > 15
-        fail ArgumentError, 'invalid value for "tax_amount", the character length must be smaller than or equal to 15.'
-      end
-
       @tax_amount = tax_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] tax_rate Value to be assigned
     def tax_rate=(tax_rate)
-      if !tax_rate.nil? && tax_rate.to_s.length > 7
-        fail ArgumentError, 'invalid value for "tax_rate", the character length must be smaller than or equal to 7.'
-      end
-
       @tax_rate = tax_rate
     end
 
     # Custom attribute writer method with validation
     # @param [Object] tax_applied_after_discount Value to be assigned
     def tax_applied_after_discount=(tax_applied_after_discount)
-      if !tax_applied_after_discount.nil? && tax_applied_after_discount.to_s.length > 1
-        fail ArgumentError, 'invalid value for "tax_applied_after_discount", the character length must be smaller than or equal to 1.'
-      end
-
       @tax_applied_after_discount = tax_applied_after_discount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] tax_status_indicator Value to be assigned
     def tax_status_indicator=(tax_status_indicator)
-      if !tax_status_indicator.nil? && tax_status_indicator.to_s.length > 1
-        fail ArgumentError, 'invalid value for "tax_status_indicator", the character length must be smaller than or equal to 1.'
-      end
-
       @tax_status_indicator = tax_status_indicator
     end
 
     # Custom attribute writer method with validation
     # @param [Object] tax_type_code Value to be assigned
     def tax_type_code=(tax_type_code)
-      if !tax_type_code.nil? && tax_type_code.to_s.length > 4
-        fail ArgumentError, 'invalid value for "tax_type_code", the character length must be smaller than or equal to 4.'
-      end
-
       @tax_type_code = tax_type_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] type_of_supply Value to be assigned
     def type_of_supply=(type_of_supply)
-      if !type_of_supply.nil? && type_of_supply.to_s.length > 2
-        fail ArgumentError, 'invalid value for "type_of_supply", the character length must be smaller than or equal to 2.'
-      end
-
       @type_of_supply = type_of_supply
     end
 
     # Custom attribute writer method with validation
     # @param [Object] commodity_code Value to be assigned
     def commodity_code=(commodity_code)
-      if !commodity_code.nil? && commodity_code.to_s.length > 15
-        fail ArgumentError, 'invalid value for "commodity_code", the character length must be smaller than or equal to 15.'
-      end
-
       @commodity_code = commodity_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] discount_amount Value to be assigned
     def discount_amount=(discount_amount)
-      if !discount_amount.nil? && discount_amount.to_s.length > 13
-        fail ArgumentError, 'invalid value for "discount_amount", the character length must be smaller than or equal to 13.'
-      end
-
       @discount_amount = discount_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] discount_rate Value to be assigned
     def discount_rate=(discount_rate)
-      if !discount_rate.nil? && discount_rate.to_s.length > 6
-        fail ArgumentError, 'invalid value for "discount_rate", the character length must be smaller than or equal to 6.'
-      end
-
       @discount_rate = discount_rate
     end
 
     # Custom attribute writer method with validation
     # @param [Object] invoice_number Value to be assigned
     def invoice_number=(invoice_number)
-      if !invoice_number.nil? && invoice_number.to_s.length > 23
-        fail ArgumentError, 'invalid value for "invoice_number", the character length must be smaller than or equal to 23.'
-      end
-
       @invoice_number = invoice_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] weight Value to be assigned
     def weight=(weight)
-      if !weight.nil? && weight.to_s.length > 9
-        fail ArgumentError, 'invalid value for "weight", the character length must be smaller than or equal to 9.'
-      end
-
       @weight = weight
     end
 
     # Custom attribute writer method with validation
     # @param [Object] weight_identifier Value to be assigned
     def weight_identifier=(weight_identifier)
-      if !weight_identifier.nil? && weight_identifier.to_s.length > 1
-        fail ArgumentError, 'invalid value for "weight_identifier", the character length must be smaller than or equal to 1.'
-      end
-
       @weight_identifier = weight_identifier
     end
 
     # Custom attribute writer method with validation
     # @param [Object] weight_unit Value to be assigned
     def weight_unit=(weight_unit)
-      if !weight_unit.nil? && weight_unit.to_s.length > 2
-        fail ArgumentError, 'invalid value for "weight_unit", the character length must be smaller than or equal to 2.'
-      end
-
       @weight_unit = weight_unit
     end
 
     # Custom attribute writer method with validation
     # @param [Object] reference_data_code Value to be assigned
     def reference_data_code=(reference_data_code)
-      if !reference_data_code.nil? && reference_data_code.to_s.length > 2
-        fail ArgumentError, 'invalid value for "reference_data_code", the character length must be smaller than or equal to 2.'
-      end
-
       @reference_data_code = reference_data_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] reference_data_number Value to be assigned
     def reference_data_number=(reference_data_number)
-      if !reference_data_number.nil? && reference_data_number.to_s.length > 30
-        fail ArgumentError, 'invalid value for "reference_data_number", the character length must be smaller than or equal to 30.'
-      end
-
       @reference_data_number = reference_data_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] shipping_destination_types Value to be assigned
     def shipping_destination_types=(shipping_destination_types)
-      if !shipping_destination_types.nil? && shipping_destination_types.to_s.length > 50
-        fail ArgumentError, 'invalid value for "shipping_destination_types", the character length must be smaller than or equal to 50.'
-      end
-
       @shipping_destination_types = shipping_destination_types
     end
 

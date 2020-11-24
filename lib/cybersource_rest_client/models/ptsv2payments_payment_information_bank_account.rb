@@ -84,87 +84,42 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@type.nil? && @type.to_s.length > 1
-        invalid_properties.push('invalid value for "type", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@number.nil? && @number.to_s.length > 17
-        invalid_properties.push('invalid value for "number", the character length must be smaller than or equal to 17.')
-      end
-
-      if !@encoder_id.nil? && @encoder_id.to_s.length > 3
-        invalid_properties.push('invalid value for "encoder_id", the character length must be smaller than or equal to 3.')
-      end
-
-      if !@check_number.nil? && @check_number.to_s.length > 8
-        invalid_properties.push('invalid value for "check_number", the character length must be smaller than or equal to 8.')
-      end
-
-      if !@check_image_reference_number.nil? && @check_image_reference_number.to_s.length > 32
-        invalid_properties.push('invalid value for "check_image_reference_number", the character length must be smaller than or equal to 32.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@type.nil? && @type.to_s.length > 1
-      return false if !@number.nil? && @number.to_s.length > 17
-      return false if !@encoder_id.nil? && @encoder_id.to_s.length > 3
-      return false if !@check_number.nil? && @check_number.to_s.length > 8
-      return false if !@check_image_reference_number.nil? && @check_image_reference_number.to_s.length > 32
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] type Value to be assigned
     def type=(type)
-      if !type.nil? && type.to_s.length > 1
-        fail ArgumentError, 'invalid value for "type", the character length must be smaller than or equal to 1.'
-      end
-
       @type = type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] number Value to be assigned
     def number=(number)
-      if !number.nil? && number.to_s.length > 17
-        fail ArgumentError, 'invalid value for "number", the character length must be smaller than or equal to 17.'
-      end
-
       @number = number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] encoder_id Value to be assigned
     def encoder_id=(encoder_id)
-      if !encoder_id.nil? && encoder_id.to_s.length > 3
-        fail ArgumentError, 'invalid value for "encoder_id", the character length must be smaller than or equal to 3.'
-      end
-
       @encoder_id = encoder_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] check_number Value to be assigned
     def check_number=(check_number)
-      if !check_number.nil? && check_number.to_s.length > 8
-        fail ArgumentError, 'invalid value for "check_number", the character length must be smaller than or equal to 8.'
-      end
-
       @check_number = check_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] check_image_reference_number Value to be assigned
     def check_image_reference_number=(check_image_reference_number)
-      if !check_image_reference_number.nil? && check_image_reference_number.to_s.length > 32
-        fail ArgumentError, 'invalid value for "check_image_reference_number", the character length must be smaller than or equal to 32.'
-      end
-
       @check_image_reference_number = check_image_reference_number
     end
 

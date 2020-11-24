@@ -85,72 +85,36 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@ticket_number.nil? && @ticket_number.to_s.length > 15
-        invalid_properties.push('invalid value for "ticket_number", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@passenger_name.nil? && @passenger_name.to_s.length > 20
-        invalid_properties.push('invalid value for "passenger_name", the character length must be smaller than or equal to 20.')
-      end
-
-      if !@connected_ticket_number.nil? && @connected_ticket_number.to_s.length > 15
-        invalid_properties.push('invalid value for "connected_ticket_number", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@credit_reason_indicator.nil? && @credit_reason_indicator.to_s.length > 15
-        invalid_properties.push('invalid value for "credit_reason_indicator", the character length must be smaller than or equal to 15.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@ticket_number.nil? && @ticket_number.to_s.length > 15
-      return false if !@passenger_name.nil? && @passenger_name.to_s.length > 20
-      return false if !@connected_ticket_number.nil? && @connected_ticket_number.to_s.length > 15
-      return false if !@credit_reason_indicator.nil? && @credit_reason_indicator.to_s.length > 15
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] ticket_number Value to be assigned
     def ticket_number=(ticket_number)
-      if !ticket_number.nil? && ticket_number.to_s.length > 15
-        fail ArgumentError, 'invalid value for "ticket_number", the character length must be smaller than or equal to 15.'
-      end
-
       @ticket_number = ticket_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] passenger_name Value to be assigned
     def passenger_name=(passenger_name)
-      if !passenger_name.nil? && passenger_name.to_s.length > 20
-        fail ArgumentError, 'invalid value for "passenger_name", the character length must be smaller than or equal to 20.'
-      end
-
       @passenger_name = passenger_name
     end
 
     # Custom attribute writer method with validation
     # @param [Object] connected_ticket_number Value to be assigned
     def connected_ticket_number=(connected_ticket_number)
-      if !connected_ticket_number.nil? && connected_ticket_number.to_s.length > 15
-        fail ArgumentError, 'invalid value for "connected_ticket_number", the character length must be smaller than or equal to 15.'
-      end
-
       @connected_ticket_number = connected_ticket_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] credit_reason_indicator Value to be assigned
     def credit_reason_indicator=(credit_reason_indicator)
-      if !credit_reason_indicator.nil? && credit_reason_indicator.to_s.length > 15
-        fail ArgumentError, 'invalid value for "credit_reason_indicator", the character length must be smaller than or equal to 15.'
-      end
-
       @credit_reason_indicator = credit_reason_indicator
     end
 

@@ -203,267 +203,114 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@account_type.nil? && @account_type.to_s.length > 2
-        invalid_properties.push('invalid value for "account_type", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@account_status.nil? && @account_status.to_s.length > 1
-        invalid_properties.push('invalid value for "account_status", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@balance_amount.nil? && @balance_amount.to_s.length > 12
-        invalid_properties.push('invalid value for "balance_amount", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@balance_amount_type.nil? && @balance_amount_type.to_s.length > 2
-        invalid_properties.push('invalid value for "balance_amount_type", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@currency.nil? && @currency.to_s.length > 5
-        invalid_properties.push('invalid value for "currency", the character length must be smaller than or equal to 5.')
-      end
-
-      if !@balance_sign.nil? && @balance_sign.to_s.length > 8
-        invalid_properties.push('invalid value for "balance_sign", the character length must be smaller than or equal to 8.')
-      end
-
-      if !@affluence_indicator.nil? && @affluence_indicator.to_s.length > 13
-        invalid_properties.push('invalid value for "affluence_indicator", the character length must be smaller than or equal to 13.')
-      end
-
-      if !@category.nil? && @category.to_s.length > 7
-        invalid_properties.push('invalid value for "category", the character length must be smaller than or equal to 7.')
-      end
-
-      if !@commercial.nil? && @commercial.to_s.length > 1
-        invalid_properties.push('invalid value for "commercial", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@group.nil? && @group.to_s.length > 1
-        invalid_properties.push('invalid value for "group", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@health_care.nil? && @health_care.to_s.length > 1
-        invalid_properties.push('invalid value for "health_care", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@payroll.nil? && @payroll.to_s.length > 1
-        invalid_properties.push('invalid value for "payroll", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@level3_eligible.nil? && @level3_eligible.to_s.length > 1
-        invalid_properties.push('invalid value for "level3_eligible", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@pinless_debit.nil? && @pinless_debit.to_s.length > 1
-        invalid_properties.push('invalid value for "pinless_debit", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@signature_debit.nil? && @signature_debit.to_s.length > 1
-        invalid_properties.push('invalid value for "signature_debit", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@prepaid.nil? && @prepaid.to_s.length > 1
-        invalid_properties.push('invalid value for "prepaid", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@regulated.nil? && @regulated.to_s.length > 1
-        invalid_properties.push('invalid value for "regulated", the character length must be smaller than or equal to 1.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@account_type.nil? && @account_type.to_s.length > 2
-      return false if !@account_status.nil? && @account_status.to_s.length > 1
-      return false if !@balance_amount.nil? && @balance_amount.to_s.length > 12
-      return false if !@balance_amount_type.nil? && @balance_amount_type.to_s.length > 2
-      return false if !@currency.nil? && @currency.to_s.length > 5
-      return false if !@balance_sign.nil? && @balance_sign.to_s.length > 8
-      return false if !@affluence_indicator.nil? && @affluence_indicator.to_s.length > 13
-      return false if !@category.nil? && @category.to_s.length > 7
-      return false if !@commercial.nil? && @commercial.to_s.length > 1
-      return false if !@group.nil? && @group.to_s.length > 1
-      return false if !@health_care.nil? && @health_care.to_s.length > 1
-      return false if !@payroll.nil? && @payroll.to_s.length > 1
-      return false if !@level3_eligible.nil? && @level3_eligible.to_s.length > 1
-      return false if !@pinless_debit.nil? && @pinless_debit.to_s.length > 1
-      return false if !@signature_debit.nil? && @signature_debit.to_s.length > 1
-      return false if !@prepaid.nil? && @prepaid.to_s.length > 1
-      return false if !@regulated.nil? && @regulated.to_s.length > 1
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] account_type Value to be assigned
     def account_type=(account_type)
-      if !account_type.nil? && account_type.to_s.length > 2
-        fail ArgumentError, 'invalid value for "account_type", the character length must be smaller than or equal to 2.'
-      end
-
       @account_type = account_type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] account_status Value to be assigned
     def account_status=(account_status)
-      if !account_status.nil? && account_status.to_s.length > 1
-        fail ArgumentError, 'invalid value for "account_status", the character length must be smaller than or equal to 1.'
-      end
-
       @account_status = account_status
     end
 
     # Custom attribute writer method with validation
     # @param [Object] balance_amount Value to be assigned
     def balance_amount=(balance_amount)
-      if !balance_amount.nil? && balance_amount.to_s.length > 12
-        fail ArgumentError, 'invalid value for "balance_amount", the character length must be smaller than or equal to 12.'
-      end
-
       @balance_amount = balance_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] balance_amount_type Value to be assigned
     def balance_amount_type=(balance_amount_type)
-      if !balance_amount_type.nil? && balance_amount_type.to_s.length > 2
-        fail ArgumentError, 'invalid value for "balance_amount_type", the character length must be smaller than or equal to 2.'
-      end
-
       @balance_amount_type = balance_amount_type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] currency Value to be assigned
     def currency=(currency)
-      if !currency.nil? && currency.to_s.length > 5
-        fail ArgumentError, 'invalid value for "currency", the character length must be smaller than or equal to 5.'
-      end
-
       @currency = currency
     end
 
     # Custom attribute writer method with validation
     # @param [Object] balance_sign Value to be assigned
     def balance_sign=(balance_sign)
-      if !balance_sign.nil? && balance_sign.to_s.length > 8
-        fail ArgumentError, 'invalid value for "balance_sign", the character length must be smaller than or equal to 8.'
-      end
-
       @balance_sign = balance_sign
     end
 
     # Custom attribute writer method with validation
     # @param [Object] affluence_indicator Value to be assigned
     def affluence_indicator=(affluence_indicator)
-      if !affluence_indicator.nil? && affluence_indicator.to_s.length > 13
-        fail ArgumentError, 'invalid value for "affluence_indicator", the character length must be smaller than or equal to 13.'
-      end
-
       @affluence_indicator = affluence_indicator
     end
 
     # Custom attribute writer method with validation
     # @param [Object] category Value to be assigned
     def category=(category)
-      if !category.nil? && category.to_s.length > 7
-        fail ArgumentError, 'invalid value for "category", the character length must be smaller than or equal to 7.'
-      end
-
       @category = category
     end
 
     # Custom attribute writer method with validation
     # @param [Object] commercial Value to be assigned
     def commercial=(commercial)
-      if !commercial.nil? && commercial.to_s.length > 1
-        fail ArgumentError, 'invalid value for "commercial", the character length must be smaller than or equal to 1.'
-      end
-
       @commercial = commercial
     end
 
     # Custom attribute writer method with validation
     # @param [Object] group Value to be assigned
     def group=(group)
-      if !group.nil? && group.to_s.length > 1
-        fail ArgumentError, 'invalid value for "group", the character length must be smaller than or equal to 1.'
-      end
-
       @group = group
     end
 
     # Custom attribute writer method with validation
     # @param [Object] health_care Value to be assigned
     def health_care=(health_care)
-      if !health_care.nil? && health_care.to_s.length > 1
-        fail ArgumentError, 'invalid value for "health_care", the character length must be smaller than or equal to 1.'
-      end
-
       @health_care = health_care
     end
 
     # Custom attribute writer method with validation
     # @param [Object] payroll Value to be assigned
     def payroll=(payroll)
-      if !payroll.nil? && payroll.to_s.length > 1
-        fail ArgumentError, 'invalid value for "payroll", the character length must be smaller than or equal to 1.'
-      end
-
       @payroll = payroll
     end
 
     # Custom attribute writer method with validation
     # @param [Object] level3_eligible Value to be assigned
     def level3_eligible=(level3_eligible)
-      if !level3_eligible.nil? && level3_eligible.to_s.length > 1
-        fail ArgumentError, 'invalid value for "level3_eligible", the character length must be smaller than or equal to 1.'
-      end
-
       @level3_eligible = level3_eligible
     end
 
     # Custom attribute writer method with validation
     # @param [Object] pinless_debit Value to be assigned
     def pinless_debit=(pinless_debit)
-      if !pinless_debit.nil? && pinless_debit.to_s.length > 1
-        fail ArgumentError, 'invalid value for "pinless_debit", the character length must be smaller than or equal to 1.'
-      end
-
       @pinless_debit = pinless_debit
     end
 
     # Custom attribute writer method with validation
     # @param [Object] signature_debit Value to be assigned
     def signature_debit=(signature_debit)
-      if !signature_debit.nil? && signature_debit.to_s.length > 1
-        fail ArgumentError, 'invalid value for "signature_debit", the character length must be smaller than or equal to 1.'
-      end
-
       @signature_debit = signature_debit
     end
 
     # Custom attribute writer method with validation
     # @param [Object] prepaid Value to be assigned
     def prepaid=(prepaid)
-      if !prepaid.nil? && prepaid.to_s.length > 1
-        fail ArgumentError, 'invalid value for "prepaid", the character length must be smaller than or equal to 1.'
-      end
-
       @prepaid = prepaid
     end
 
     # Custom attribute writer method with validation
     # @param [Object] regulated Value to be assigned
     def regulated=(regulated)
-      if !regulated.nil? && regulated.to_s.length > 1
-        fail ArgumentError, 'invalid value for "regulated", the character length must be smaller than or equal to 1.'
-      end
-
       @regulated = regulated
     end
 

@@ -129,132 +129,60 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@prefix.nil? && @prefix.to_s.length > 6
-        invalid_properties.push('invalid value for "prefix", the character length must be smaller than or equal to 6.')
-      end
-
-      if !@expiration_month.nil? && @expiration_month.to_s.length > 2
-        invalid_properties.push('invalid value for "expiration_month", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@expiration_year.nil? && @expiration_year.to_s.length > 4
-        invalid_properties.push('invalid value for "expiration_year", the character length must be smaller than or equal to 4.')
-      end
-
-      if !@start_month.nil? && @start_month.to_s.length > 2
-        invalid_properties.push('invalid value for "start_month", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@start_year.nil? && @start_year.to_s.length > 4
-        invalid_properties.push('invalid value for "start_year", the character length must be smaller than or equal to 4.')
-      end
-
-      if !@issue_number.nil? && @issue_number.to_s.length > 5
-        invalid_properties.push('invalid value for "issue_number", the character length must be smaller than or equal to 5.')
-      end
-
-      if !@account_encoder_id.nil? && @account_encoder_id.to_s.length > 3
-        invalid_properties.push('invalid value for "account_encoder_id", the character length must be smaller than or equal to 3.')
-      end
-
-      if !@use_as.nil? && @use_as.to_s.length > 20
-        invalid_properties.push('invalid value for "use_as", the character length must be smaller than or equal to 20.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@prefix.nil? && @prefix.to_s.length > 6
-      return false if !@expiration_month.nil? && @expiration_month.to_s.length > 2
-      return false if !@expiration_year.nil? && @expiration_year.to_s.length > 4
-      return false if !@start_month.nil? && @start_month.to_s.length > 2
-      return false if !@start_year.nil? && @start_year.to_s.length > 4
-      return false if !@issue_number.nil? && @issue_number.to_s.length > 5
-      return false if !@account_encoder_id.nil? && @account_encoder_id.to_s.length > 3
-      return false if !@use_as.nil? && @use_as.to_s.length > 20
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] prefix Value to be assigned
     def prefix=(prefix)
-      if !prefix.nil? && prefix.to_s.length > 6
-        fail ArgumentError, 'invalid value for "prefix", the character length must be smaller than or equal to 6.'
-      end
-
       @prefix = prefix
     end
 
     # Custom attribute writer method with validation
     # @param [Object] expiration_month Value to be assigned
     def expiration_month=(expiration_month)
-      if !expiration_month.nil? && expiration_month.to_s.length > 2
-        fail ArgumentError, 'invalid value for "expiration_month", the character length must be smaller than or equal to 2.'
-      end
-
       @expiration_month = expiration_month
     end
 
     # Custom attribute writer method with validation
     # @param [Object] expiration_year Value to be assigned
     def expiration_year=(expiration_year)
-      if !expiration_year.nil? && expiration_year.to_s.length > 4
-        fail ArgumentError, 'invalid value for "expiration_year", the character length must be smaller than or equal to 4.'
-      end
-
       @expiration_year = expiration_year
     end
 
     # Custom attribute writer method with validation
     # @param [Object] start_month Value to be assigned
     def start_month=(start_month)
-      if !start_month.nil? && start_month.to_s.length > 2
-        fail ArgumentError, 'invalid value for "start_month", the character length must be smaller than or equal to 2.'
-      end
-
       @start_month = start_month
     end
 
     # Custom attribute writer method with validation
     # @param [Object] start_year Value to be assigned
     def start_year=(start_year)
-      if !start_year.nil? && start_year.to_s.length > 4
-        fail ArgumentError, 'invalid value for "start_year", the character length must be smaller than or equal to 4.'
-      end
-
       @start_year = start_year
     end
 
     # Custom attribute writer method with validation
     # @param [Object] issue_number Value to be assigned
     def issue_number=(issue_number)
-      if !issue_number.nil? && issue_number.to_s.length > 5
-        fail ArgumentError, 'invalid value for "issue_number", the character length must be smaller than or equal to 5.'
-      end
-
       @issue_number = issue_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] account_encoder_id Value to be assigned
     def account_encoder_id=(account_encoder_id)
-      if !account_encoder_id.nil? && account_encoder_id.to_s.length > 3
-        fail ArgumentError, 'invalid value for "account_encoder_id", the character length must be smaller than or equal to 3.'
-      end
-
       @account_encoder_id = account_encoder_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] use_as Value to be assigned
     def use_as=(use_as)
-      if !use_as.nil? && use_as.to_s.length > 20
-        fail ArgumentError, 'invalid value for "use_as", the character length must be smaller than or equal to 20.'
-      end
-
       @use_as = use_as
     end
 

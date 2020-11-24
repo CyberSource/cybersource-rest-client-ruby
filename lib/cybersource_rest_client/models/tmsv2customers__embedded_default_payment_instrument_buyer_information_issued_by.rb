@@ -48,27 +48,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@administrative_area.nil? && @administrative_area.to_s.length > 20
-        invalid_properties.push('invalid value for "administrative_area", the character length must be smaller than or equal to 20.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@administrative_area.nil? && @administrative_area.to_s.length > 20
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] administrative_area Value to be assigned
     def administrative_area=(administrative_area)
-      if !administrative_area.nil? && administrative_area.to_s.length > 20
-        fail ArgumentError, 'invalid value for "administrative_area", the character length must be smaller than or equal to 20.'
-      end
-
       @administrative_area = administrative_area
     end
 

@@ -61,14 +61,6 @@ module CyberSource
         invalid_properties.push('invalid value for "code", code cannot be nil.')
       end
 
-      if @code.to_s.length > 50
-        invalid_properties.push('invalid value for "code", the character length must be smaller than or equal to 50.')
-      end
-
-      if !@comments.nil? && @comments.to_s.length > 255
-        invalid_properties.push('invalid value for "comments", the character length must be smaller than or equal to 255.')
-      end
-
       invalid_properties
     end
 
@@ -76,8 +68,6 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if @code.nil?
-      return false if @code.to_s.length > 50
-      return false if !@comments.nil? && @comments.to_s.length > 255
       true
     end
 
@@ -88,20 +78,12 @@ module CyberSource
         fail ArgumentError, 'code cannot be nil'
       end
 
-      if code.to_s.length > 50
-        fail ArgumentError, 'invalid value for "code", the character length must be smaller than or equal to 50.'
-      end
-
       @code = code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] comments Value to be assigned
     def comments=(comments)
-      if !comments.nil? && comments.to_s.length > 255
-        fail ArgumentError, 'invalid value for "comments", the character length must be smaller than or equal to 255.'
-      end
-
       @comments = comments
     end
 

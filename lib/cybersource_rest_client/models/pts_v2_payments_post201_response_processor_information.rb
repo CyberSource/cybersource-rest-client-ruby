@@ -274,252 +274,108 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@auth_indicator.nil? && @auth_indicator.to_s.length > 1
-        invalid_properties.push('invalid value for "auth_indicator", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@transaction_id.nil? && @transaction_id.to_s.length > 50
-        invalid_properties.push('invalid value for "transaction_id", the character length must be smaller than or equal to 50.')
-      end
-
-      if !@response_code.nil? && @response_code.to_s.length > 10
-        invalid_properties.push('invalid value for "response_code", the character length must be smaller than or equal to 10.')
-      end
-
-      if !@response_code_source.nil? && @response_code_source.to_s.length > 1
-        invalid_properties.push('invalid value for "response_code_source", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@response_details.nil? && @response_details.to_s.length > 255
-        invalid_properties.push('invalid value for "response_details", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@response_category_code.nil? && @response_category_code.to_s.length > 36
-        invalid_properties.push('invalid value for "response_category_code", the character length must be smaller than or equal to 36.')
-      end
-
-      if !@forwarded_acquirer_code.nil? && @forwarded_acquirer_code.to_s.length > 32
-        invalid_properties.push('invalid value for "forwarded_acquirer_code", the character length must be smaller than or equal to 32.')
-      end
-
-      if !@system_trace_audit_number.nil? && @system_trace_audit_number.to_s.length > 6
-        invalid_properties.push('invalid value for "system_trace_audit_number", the character length must be smaller than or equal to 6.')
-      end
-
-      if !@payment_account_reference_number.nil? && @payment_account_reference_number.to_s.length > 32
-        invalid_properties.push('invalid value for "payment_account_reference_number", the character length must be smaller than or equal to 32.')
-      end
-
-      if !@transaction_integrity_code.nil? && @transaction_integrity_code.to_s.length > 2
-        invalid_properties.push('invalid value for "transaction_integrity_code", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@amex_verbal_auth_reference_number.nil? && @amex_verbal_auth_reference_number.to_s.length > 6
-        invalid_properties.push('invalid value for "amex_verbal_auth_reference_number", the character length must be smaller than or equal to 6.')
-      end
-
-      if !@master_card_service_code.nil? && @master_card_service_code.to_s.length > 2
-        invalid_properties.push('invalid value for "master_card_service_code", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@master_card_service_reply_code.nil? && @master_card_service_reply_code.to_s.length > 1
-        invalid_properties.push('invalid value for "master_card_service_reply_code", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@master_card_authentication_type.nil? && @master_card_authentication_type.to_s.length > 1
-        invalid_properties.push('invalid value for "master_card_authentication_type", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@name.nil? && @name.to_s.length > 30
-        invalid_properties.push('invalid value for "name", the character length must be smaller than or equal to 30.')
-      end
-
-      if !@merchant_number.nil? && @merchant_number.to_s.length > 15
-        invalid_properties.push('invalid value for "merchant_number", the character length must be smaller than or equal to 15.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@auth_indicator.nil? && @auth_indicator.to_s.length > 1
-      return false if !@transaction_id.nil? && @transaction_id.to_s.length > 50
-      return false if !@response_code.nil? && @response_code.to_s.length > 10
-      return false if !@response_code_source.nil? && @response_code_source.to_s.length > 1
-      return false if !@response_details.nil? && @response_details.to_s.length > 255
-      return false if !@response_category_code.nil? && @response_category_code.to_s.length > 36
-      return false if !@forwarded_acquirer_code.nil? && @forwarded_acquirer_code.to_s.length > 32
-      return false if !@system_trace_audit_number.nil? && @system_trace_audit_number.to_s.length > 6
-      return false if !@payment_account_reference_number.nil? && @payment_account_reference_number.to_s.length > 32
-      return false if !@transaction_integrity_code.nil? && @transaction_integrity_code.to_s.length > 2
-      return false if !@amex_verbal_auth_reference_number.nil? && @amex_verbal_auth_reference_number.to_s.length > 6
-      return false if !@master_card_service_code.nil? && @master_card_service_code.to_s.length > 2
-      return false if !@master_card_service_reply_code.nil? && @master_card_service_reply_code.to_s.length > 1
-      return false if !@master_card_authentication_type.nil? && @master_card_authentication_type.to_s.length > 1
-      return false if !@name.nil? && @name.to_s.length > 30
-      return false if !@merchant_number.nil? && @merchant_number.to_s.length > 15
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] auth_indicator Value to be assigned
     def auth_indicator=(auth_indicator)
-      if !auth_indicator.nil? && auth_indicator.to_s.length > 1
-        fail ArgumentError, 'invalid value for "auth_indicator", the character length must be smaller than or equal to 1.'
-      end
-
       @auth_indicator = auth_indicator
     end
 
     # Custom attribute writer method with validation
     # @param [Object] transaction_id Value to be assigned
     def transaction_id=(transaction_id)
-      if !transaction_id.nil? && transaction_id.to_s.length > 50
-        fail ArgumentError, 'invalid value for "transaction_id", the character length must be smaller than or equal to 50.'
-      end
-
       @transaction_id = transaction_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] response_code Value to be assigned
     def response_code=(response_code)
-      if !response_code.nil? && response_code.to_s.length > 10
-        fail ArgumentError, 'invalid value for "response_code", the character length must be smaller than or equal to 10.'
-      end
-
       @response_code = response_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] response_code_source Value to be assigned
     def response_code_source=(response_code_source)
-      if !response_code_source.nil? && response_code_source.to_s.length > 1
-        fail ArgumentError, 'invalid value for "response_code_source", the character length must be smaller than or equal to 1.'
-      end
-
       @response_code_source = response_code_source
     end
 
     # Custom attribute writer method with validation
     # @param [Object] response_details Value to be assigned
     def response_details=(response_details)
-      if !response_details.nil? && response_details.to_s.length > 255
-        fail ArgumentError, 'invalid value for "response_details", the character length must be smaller than or equal to 255.'
-      end
-
       @response_details = response_details
     end
 
     # Custom attribute writer method with validation
     # @param [Object] response_category_code Value to be assigned
     def response_category_code=(response_category_code)
-      if !response_category_code.nil? && response_category_code.to_s.length > 36
-        fail ArgumentError, 'invalid value for "response_category_code", the character length must be smaller than or equal to 36.'
-      end
-
       @response_category_code = response_category_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] forwarded_acquirer_code Value to be assigned
     def forwarded_acquirer_code=(forwarded_acquirer_code)
-      if !forwarded_acquirer_code.nil? && forwarded_acquirer_code.to_s.length > 32
-        fail ArgumentError, 'invalid value for "forwarded_acquirer_code", the character length must be smaller than or equal to 32.'
-      end
-
       @forwarded_acquirer_code = forwarded_acquirer_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] system_trace_audit_number Value to be assigned
     def system_trace_audit_number=(system_trace_audit_number)
-      if !system_trace_audit_number.nil? && system_trace_audit_number.to_s.length > 6
-        fail ArgumentError, 'invalid value for "system_trace_audit_number", the character length must be smaller than or equal to 6.'
-      end
-
       @system_trace_audit_number = system_trace_audit_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] payment_account_reference_number Value to be assigned
     def payment_account_reference_number=(payment_account_reference_number)
-      if !payment_account_reference_number.nil? && payment_account_reference_number.to_s.length > 32
-        fail ArgumentError, 'invalid value for "payment_account_reference_number", the character length must be smaller than or equal to 32.'
-      end
-
       @payment_account_reference_number = payment_account_reference_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] transaction_integrity_code Value to be assigned
     def transaction_integrity_code=(transaction_integrity_code)
-      if !transaction_integrity_code.nil? && transaction_integrity_code.to_s.length > 2
-        fail ArgumentError, 'invalid value for "transaction_integrity_code", the character length must be smaller than or equal to 2.'
-      end
-
       @transaction_integrity_code = transaction_integrity_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] amex_verbal_auth_reference_number Value to be assigned
     def amex_verbal_auth_reference_number=(amex_verbal_auth_reference_number)
-      if !amex_verbal_auth_reference_number.nil? && amex_verbal_auth_reference_number.to_s.length > 6
-        fail ArgumentError, 'invalid value for "amex_verbal_auth_reference_number", the character length must be smaller than or equal to 6.'
-      end
-
       @amex_verbal_auth_reference_number = amex_verbal_auth_reference_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] master_card_service_code Value to be assigned
     def master_card_service_code=(master_card_service_code)
-      if !master_card_service_code.nil? && master_card_service_code.to_s.length > 2
-        fail ArgumentError, 'invalid value for "master_card_service_code", the character length must be smaller than or equal to 2.'
-      end
-
       @master_card_service_code = master_card_service_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] master_card_service_reply_code Value to be assigned
     def master_card_service_reply_code=(master_card_service_reply_code)
-      if !master_card_service_reply_code.nil? && master_card_service_reply_code.to_s.length > 1
-        fail ArgumentError, 'invalid value for "master_card_service_reply_code", the character length must be smaller than or equal to 1.'
-      end
-
       @master_card_service_reply_code = master_card_service_reply_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] master_card_authentication_type Value to be assigned
     def master_card_authentication_type=(master_card_authentication_type)
-      if !master_card_authentication_type.nil? && master_card_authentication_type.to_s.length > 1
-        fail ArgumentError, 'invalid value for "master_card_authentication_type", the character length must be smaller than or equal to 1.'
-      end
-
       @master_card_authentication_type = master_card_authentication_type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] name Value to be assigned
     def name=(name)
-      if !name.nil? && name.to_s.length > 30
-        fail ArgumentError, 'invalid value for "name", the character length must be smaller than or equal to 30.'
-      end
-
       @name = name
     end
 
     # Custom attribute writer method with validation
     # @param [Object] merchant_number Value to be assigned
     def merchant_number=(merchant_number)
-      if !merchant_number.nil? && merchant_number.to_s.length > 15
-        fail ArgumentError, 'invalid value for "merchant_number", the character length must be smaller than or equal to 15.'
-      end
-
       @merchant_number = merchant_number
     end
 

@@ -75,72 +75,36 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@payment_method.nil? && @payment_method.to_s.length > 2
-        invalid_properties.push('invalid value for "payment_method", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@terminal_id.nil? && @terminal_id.to_s.length > 13
-        invalid_properties.push('invalid value for "terminal_id", the character length must be smaller than or equal to 13.')
-      end
-
-      if !@business_name.nil? && @business_name.to_s.length > 25
-        invalid_properties.push('invalid value for "business_name", the character length must be smaller than or equal to 25.')
-      end
-
-      if !@business_name_katakana.nil? && @business_name_katakana.to_s.length > 25
-        invalid_properties.push('invalid value for "business_name_katakana", the character length must be smaller than or equal to 25.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@payment_method.nil? && @payment_method.to_s.length > 2
-      return false if !@terminal_id.nil? && @terminal_id.to_s.length > 13
-      return false if !@business_name.nil? && @business_name.to_s.length > 25
-      return false if !@business_name_katakana.nil? && @business_name_katakana.to_s.length > 25
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] payment_method Value to be assigned
     def payment_method=(payment_method)
-      if !payment_method.nil? && payment_method.to_s.length > 2
-        fail ArgumentError, 'invalid value for "payment_method", the character length must be smaller than or equal to 2.'
-      end
-
       @payment_method = payment_method
     end
 
     # Custom attribute writer method with validation
     # @param [Object] terminal_id Value to be assigned
     def terminal_id=(terminal_id)
-      if !terminal_id.nil? && terminal_id.to_s.length > 13
-        fail ArgumentError, 'invalid value for "terminal_id", the character length must be smaller than or equal to 13.'
-      end
-
       @terminal_id = terminal_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] business_name Value to be assigned
     def business_name=(business_name)
-      if !business_name.nil? && business_name.to_s.length > 25
-        fail ArgumentError, 'invalid value for "business_name", the character length must be smaller than or equal to 25.'
-      end
-
       @business_name = business_name
     end
 
     # Custom attribute writer method with validation
     # @param [Object] business_name_katakana Value to be assigned
     def business_name_katakana=(business_name_katakana)
-      if !business_name_katakana.nil? && business_name_katakana.to_s.length > 25
-        fail ArgumentError, 'invalid value for "business_name_katakana", the character length must be smaller than or equal to 25.'
-      end
-
       @business_name_katakana = business_name_katakana
     end
 

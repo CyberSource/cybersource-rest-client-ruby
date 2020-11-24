@@ -76,57 +76,30 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@notes.nil? && @notes.to_s.length > 120
-        invalid_properties.push('invalid value for "notes", the character length must be smaller than or equal to 120.')
-      end
-
-      if !@reason.nil? && @reason.to_s.length > 25
-        invalid_properties.push('invalid value for "reason", the character length must be smaller than or equal to 25.')
-      end
-
-      if !@record_name.nil? && @record_name.to_s.length > 255
-        invalid_properties.push('invalid value for "record_name", the character length must be smaller than or equal to 255.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@notes.nil? && @notes.to_s.length > 120
-      return false if !@reason.nil? && @reason.to_s.length > 25
-      return false if !@record_name.nil? && @record_name.to_s.length > 255
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] notes Value to be assigned
     def notes=(notes)
-      if !notes.nil? && notes.to_s.length > 120
-        fail ArgumentError, 'invalid value for "notes", the character length must be smaller than or equal to 120.'
-      end
-
       @notes = notes
     end
 
     # Custom attribute writer method with validation
     # @param [Object] reason Value to be assigned
     def reason=(reason)
-      if !reason.nil? && reason.to_s.length > 25
-        fail ArgumentError, 'invalid value for "reason", the character length must be smaller than or equal to 25.'
-      end
-
       @reason = reason
     end
 
     # Custom attribute writer method with validation
     # @param [Object] record_name Value to be assigned
     def record_name=(record_name)
-      if !record_name.nil? && record_name.to_s.length > 255
-        fail ArgumentError, 'invalid value for "record_name", the character length must be smaller than or equal to 255.'
-      end
-
       @record_name = record_name
     end
 

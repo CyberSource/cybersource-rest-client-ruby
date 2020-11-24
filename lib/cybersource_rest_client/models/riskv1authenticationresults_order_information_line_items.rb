@@ -70,20 +70,12 @@ module CyberSource
         invalid_properties.push('invalid value for "unit_price", unit_price cannot be nil.')
       end
 
-      if @unit_price.to_s.length > 15
-        invalid_properties.push('invalid value for "unit_price", the character length must be smaller than or equal to 15.')
-      end
-
       if !@quantity.nil? && @quantity > 999999999
         invalid_properties.push('invalid value for "quantity", must be smaller than or equal to 999999999.')
       end
 
       if !@quantity.nil? && @quantity < 1
         invalid_properties.push('invalid value for "quantity", must be greater than or equal to 1.')
-      end
-
-      if !@tax_amount.nil? && @tax_amount.to_s.length > 15
-        invalid_properties.push('invalid value for "tax_amount", the character length must be smaller than or equal to 15.')
       end
 
       invalid_properties
@@ -93,10 +85,8 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if @unit_price.nil?
-      return false if @unit_price.to_s.length > 15
       return false if !@quantity.nil? && @quantity > 999999999
       return false if !@quantity.nil? && @quantity < 1
-      return false if !@tax_amount.nil? && @tax_amount.to_s.length > 15
       true
     end
 
@@ -105,10 +95,6 @@ module CyberSource
     def unit_price=(unit_price)
       if unit_price.nil?
         fail ArgumentError, 'unit_price cannot be nil'
-      end
-
-      if unit_price.to_s.length > 15
-        fail ArgumentError, 'invalid value for "unit_price", the character length must be smaller than or equal to 15.'
       end
 
       @unit_price = unit_price
@@ -131,10 +117,6 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] tax_amount Value to be assigned
     def tax_amount=(tax_amount)
-      if !tax_amount.nil? && tax_amount.to_s.length > 15
-        fail ArgumentError, 'invalid value for "tax_amount", the character length must be smaller than or equal to 15.'
-      end
-
       @tax_amount = tax_amount
     end
 

@@ -66,57 +66,30 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@auth_type.nil? && @auth_type.to_s.length > 15
-        invalid_properties.push('invalid value for "auth_type", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@verbal_auth_code.nil? && @verbal_auth_code.to_s.length > 7
-        invalid_properties.push('invalid value for "verbal_auth_code", the character length must be smaller than or equal to 7.')
-      end
-
-      if !@verbal_auth_transaction_id.nil? && @verbal_auth_transaction_id.to_s.length > 15
-        invalid_properties.push('invalid value for "verbal_auth_transaction_id", the character length must be smaller than or equal to 15.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@auth_type.nil? && @auth_type.to_s.length > 15
-      return false if !@verbal_auth_code.nil? && @verbal_auth_code.to_s.length > 7
-      return false if !@verbal_auth_transaction_id.nil? && @verbal_auth_transaction_id.to_s.length > 15
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] auth_type Value to be assigned
     def auth_type=(auth_type)
-      if !auth_type.nil? && auth_type.to_s.length > 15
-        fail ArgumentError, 'invalid value for "auth_type", the character length must be smaller than or equal to 15.'
-      end
-
       @auth_type = auth_type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] verbal_auth_code Value to be assigned
     def verbal_auth_code=(verbal_auth_code)
-      if !verbal_auth_code.nil? && verbal_auth_code.to_s.length > 7
-        fail ArgumentError, 'invalid value for "verbal_auth_code", the character length must be smaller than or equal to 7.'
-      end
-
       @verbal_auth_code = verbal_auth_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] verbal_auth_transaction_id Value to be assigned
     def verbal_auth_transaction_id=(verbal_auth_transaction_id)
-      if !verbal_auth_transaction_id.nil? && verbal_auth_transaction_id.to_s.length > 15
-        fail ArgumentError, 'invalid value for "verbal_auth_transaction_id", the character length must be smaller than or equal to 15.'
-      end
-
       @verbal_auth_transaction_id = verbal_auth_transaction_id
     end
 

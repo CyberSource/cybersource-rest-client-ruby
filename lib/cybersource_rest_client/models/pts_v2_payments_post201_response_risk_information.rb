@@ -124,27 +124,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@local_time.nil? && @local_time.to_s.length > 255
-        invalid_properties.push('invalid value for "local_time", the character length must be smaller than or equal to 255.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@local_time.nil? && @local_time.to_s.length > 255
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] local_time Value to be assigned
     def local_time=(local_time)
-      if !local_time.nil? && local_time.to_s.length > 255
-        fail ArgumentError, 'invalid value for "local_time", the character length must be smaller than or equal to 255.'
-      end
-
       @local_time = local_time
     end
 

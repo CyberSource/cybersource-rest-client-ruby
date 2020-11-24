@@ -92,72 +92,36 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@transaction_id.nil? && @transaction_id.to_s.length > 50
-        invalid_properties.push('invalid value for "transaction_id", the character length must be smaller than or equal to 50.')
-      end
-
-      if !@response_code.nil? && @response_code.to_s.length > 10
-        invalid_properties.push('invalid value for "response_code", the character length must be smaller than or equal to 10.')
-      end
-
-      if !@system_trace_audit_number.nil? && @system_trace_audit_number.to_s.length > 6
-        invalid_properties.push('invalid value for "system_trace_audit_number", the character length must be smaller than or equal to 6.')
-      end
-
-      if !@response_details.nil? && @response_details.to_s.length > 255
-        invalid_properties.push('invalid value for "response_details", the character length must be smaller than or equal to 255.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@transaction_id.nil? && @transaction_id.to_s.length > 50
-      return false if !@response_code.nil? && @response_code.to_s.length > 10
-      return false if !@system_trace_audit_number.nil? && @system_trace_audit_number.to_s.length > 6
-      return false if !@response_details.nil? && @response_details.to_s.length > 255
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] transaction_id Value to be assigned
     def transaction_id=(transaction_id)
-      if !transaction_id.nil? && transaction_id.to_s.length > 50
-        fail ArgumentError, 'invalid value for "transaction_id", the character length must be smaller than or equal to 50.'
-      end
-
       @transaction_id = transaction_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] response_code Value to be assigned
     def response_code=(response_code)
-      if !response_code.nil? && response_code.to_s.length > 10
-        fail ArgumentError, 'invalid value for "response_code", the character length must be smaller than or equal to 10.'
-      end
-
       @response_code = response_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] system_trace_audit_number Value to be assigned
     def system_trace_audit_number=(system_trace_audit_number)
-      if !system_trace_audit_number.nil? && system_trace_audit_number.to_s.length > 6
-        fail ArgumentError, 'invalid value for "system_trace_audit_number", the character length must be smaller than or equal to 6.'
-      end
-
       @system_trace_audit_number = system_trace_audit_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] response_details Value to be assigned
     def response_details=(response_details)
-      if !response_details.nil? && response_details.to_s.length > 255
-        fail ArgumentError, 'invalid value for "response_details", the character length must be smaller than or equal to 255.'
-      end
-
       @response_details = response_details
     end
 

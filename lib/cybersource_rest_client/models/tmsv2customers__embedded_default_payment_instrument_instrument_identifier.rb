@@ -48,36 +48,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@id.nil? && @id.to_s.length > 32
-        invalid_properties.push('invalid value for "id", the character length must be smaller than or equal to 32.')
-      end
-
-      if !@id.nil? && @id.to_s.length < 12
-        invalid_properties.push('invalid value for "id", the character length must be great than or equal to 12.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@id.nil? && @id.to_s.length > 32
-      return false if !@id.nil? && @id.to_s.length < 12
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] id Value to be assigned
     def id=(id)
-      if !id.nil? && id.to_s.length > 32
-        fail ArgumentError, 'invalid value for "id", the character length must be smaller than or equal to 32.'
-      end
-
-      if !id.nil? && id.to_s.length < 12
-        fail ArgumentError, 'invalid value for "id", the character length must be great than or equal to 12.'
-      end
-
       @id = id
     end
 

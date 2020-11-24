@@ -67,42 +67,24 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@end_date.nil? && @end_date.to_s.length > 10
-        invalid_properties.push('invalid value for "end_date", the character length must be smaller than or equal to 10.')
-      end
-
-      if !@original_purchase_date.nil? && @original_purchase_date.to_s.length > 17
-        invalid_properties.push('invalid value for "original_purchase_date", the character length must be smaller than or equal to 17.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@end_date.nil? && @end_date.to_s.length > 10
-      return false if !@original_purchase_date.nil? && @original_purchase_date.to_s.length > 17
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] end_date Value to be assigned
     def end_date=(end_date)
-      if !end_date.nil? && end_date.to_s.length > 10
-        fail ArgumentError, 'invalid value for "end_date", the character length must be smaller than or equal to 10.'
-      end
-
       @end_date = end_date
     end
 
     # Custom attribute writer method with validation
     # @param [Object] original_purchase_date Value to be assigned
     def original_purchase_date=(original_purchase_date)
-      if !original_purchase_date.nil? && original_purchase_date.to_s.length > 17
-        fail ArgumentError, 'invalid value for "original_purchase_date", the character length must be smaller than or equal to 17.'
-      end
-
       @original_purchase_date = original_purchase_date
     end
 

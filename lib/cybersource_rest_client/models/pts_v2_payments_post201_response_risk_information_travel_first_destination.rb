@@ -75,72 +75,36 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@country.nil? && @country.to_s.length > 90
-        invalid_properties.push('invalid value for "country", the character length must be smaller than or equal to 90.')
-      end
-
-      if !@locality.nil? && @locality.to_s.length > 90
-        invalid_properties.push('invalid value for "locality", the character length must be smaller than or equal to 90.')
-      end
-
-      if !@latitude.nil? && @latitude.to_s.length > 10
-        invalid_properties.push('invalid value for "latitude", the character length must be smaller than or equal to 10.')
-      end
-
-      if !@longitude.nil? && @longitude.to_s.length > 10
-        invalid_properties.push('invalid value for "longitude", the character length must be smaller than or equal to 10.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@country.nil? && @country.to_s.length > 90
-      return false if !@locality.nil? && @locality.to_s.length > 90
-      return false if !@latitude.nil? && @latitude.to_s.length > 10
-      return false if !@longitude.nil? && @longitude.to_s.length > 10
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] country Value to be assigned
     def country=(country)
-      if !country.nil? && country.to_s.length > 90
-        fail ArgumentError, 'invalid value for "country", the character length must be smaller than or equal to 90.'
-      end
-
       @country = country
     end
 
     # Custom attribute writer method with validation
     # @param [Object] locality Value to be assigned
     def locality=(locality)
-      if !locality.nil? && locality.to_s.length > 90
-        fail ArgumentError, 'invalid value for "locality", the character length must be smaller than or equal to 90.'
-      end
-
       @locality = locality
     end
 
     # Custom attribute writer method with validation
     # @param [Object] latitude Value to be assigned
     def latitude=(latitude)
-      if !latitude.nil? && latitude.to_s.length > 10
-        fail ArgumentError, 'invalid value for "latitude", the character length must be smaller than or equal to 10.'
-      end
-
       @latitude = latitude
     end
 
     # Custom attribute writer method with validation
     # @param [Object] longitude Value to be assigned
     def longitude=(longitude)
-      if !longitude.nil? && longitude.to_s.length > 10
-        fail ArgumentError, 'invalid value for "longitude", the character length must be smaller than or equal to 10.'
-      end
-
       @longitude = longitude
     end
 

@@ -48,27 +48,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@settlement_method.nil? && @settlement_method.to_s.length > 1
-        invalid_properties.push('invalid value for "settlement_method", the character length must be smaller than or equal to 1.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@settlement_method.nil? && @settlement_method.to_s.length > 1
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] settlement_method Value to be assigned
     def settlement_method=(settlement_method)
-      if !settlement_method.nil? && settlement_method.to_s.length > 1
-        fail ArgumentError, 'invalid value for "settlement_method", the character length must be smaller than or equal to 1.'
-      end
-
       @settlement_method = settlement_method
     end
 

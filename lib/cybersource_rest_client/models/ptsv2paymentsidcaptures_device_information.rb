@@ -66,57 +66,30 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@host_name.nil? && @host_name.to_s.length > 60
-        invalid_properties.push('invalid value for "host_name", the character length must be smaller than or equal to 60.')
-      end
-
-      if !@ip_address.nil? && @ip_address.to_s.length > 45
-        invalid_properties.push('invalid value for "ip_address", the character length must be smaller than or equal to 45.')
-      end
-
-      if !@user_agent.nil? && @user_agent.to_s.length > 40
-        invalid_properties.push('invalid value for "user_agent", the character length must be smaller than or equal to 40.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@host_name.nil? && @host_name.to_s.length > 60
-      return false if !@ip_address.nil? && @ip_address.to_s.length > 45
-      return false if !@user_agent.nil? && @user_agent.to_s.length > 40
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] host_name Value to be assigned
     def host_name=(host_name)
-      if !host_name.nil? && host_name.to_s.length > 60
-        fail ArgumentError, 'invalid value for "host_name", the character length must be smaller than or equal to 60.'
-      end
-
       @host_name = host_name
     end
 
     # Custom attribute writer method with validation
     # @param [Object] ip_address Value to be assigned
     def ip_address=(ip_address)
-      if !ip_address.nil? && ip_address.to_s.length > 45
-        fail ArgumentError, 'invalid value for "ip_address", the character length must be smaller than or equal to 45.'
-      end
-
       @ip_address = ip_address
     end
 
     # Custom attribute writer method with validation
     # @param [Object] user_agent Value to be assigned
     def user_agent=(user_agent)
-      if !user_agent.nil? && user_agent.to_s.length > 40
-        fail ArgumentError, 'invalid value for "user_agent", the character length must be smaller than or equal to 40.'
-      end
-
       @user_agent = user_agent
     end
 

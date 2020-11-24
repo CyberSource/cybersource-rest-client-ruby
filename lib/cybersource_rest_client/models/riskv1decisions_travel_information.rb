@@ -104,72 +104,36 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@actual_final_destination.nil? && @actual_final_destination.to_s.length > 3
-        invalid_properties.push('invalid value for "actual_final_destination", the character length must be smaller than or equal to 3.')
-      end
-
-      if !@complete_route.nil? && @complete_route.to_s.length > 255
-        invalid_properties.push('invalid value for "complete_route", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@departure_time.nil? && @departure_time.to_s.length > 25
-        invalid_properties.push('invalid value for "departure_time", the character length must be smaller than or equal to 25.')
-      end
-
-      if !@journey_type.nil? && @journey_type.to_s.length > 32
-        invalid_properties.push('invalid value for "journey_type", the character length must be smaller than or equal to 32.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@actual_final_destination.nil? && @actual_final_destination.to_s.length > 3
-      return false if !@complete_route.nil? && @complete_route.to_s.length > 255
-      return false if !@departure_time.nil? && @departure_time.to_s.length > 25
-      return false if !@journey_type.nil? && @journey_type.to_s.length > 32
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] actual_final_destination Value to be assigned
     def actual_final_destination=(actual_final_destination)
-      if !actual_final_destination.nil? && actual_final_destination.to_s.length > 3
-        fail ArgumentError, 'invalid value for "actual_final_destination", the character length must be smaller than or equal to 3.'
-      end
-
       @actual_final_destination = actual_final_destination
     end
 
     # Custom attribute writer method with validation
     # @param [Object] complete_route Value to be assigned
     def complete_route=(complete_route)
-      if !complete_route.nil? && complete_route.to_s.length > 255
-        fail ArgumentError, 'invalid value for "complete_route", the character length must be smaller than or equal to 255.'
-      end
-
       @complete_route = complete_route
     end
 
     # Custom attribute writer method with validation
     # @param [Object] departure_time Value to be assigned
     def departure_time=(departure_time)
-      if !departure_time.nil? && departure_time.to_s.length > 25
-        fail ArgumentError, 'invalid value for "departure_time", the character length must be smaller than or equal to 25.'
-      end
-
       @departure_time = departure_time
     end
 
     # Custom attribute writer method with validation
     # @param [Object] journey_type Value to be assigned
     def journey_type=(journey_type)
-      if !journey_type.nil? && journey_type.to_s.length > 32
-        fail ArgumentError, 'invalid value for "journey_type", the character length must be smaller than or equal to 32.'
-      end
-
       @journey_type = journey_type
     end
 

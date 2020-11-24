@@ -85,87 +85,42 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@bin_country.nil? && @bin_country.to_s.length > 255
-        invalid_properties.push('invalid value for "bin_country", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@account_type.nil? && @account_type.to_s.length > 255
-        invalid_properties.push('invalid value for "account_type", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@issuer.nil? && @issuer.to_s.length > 255
-        invalid_properties.push('invalid value for "issuer", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@scheme.nil? && @scheme.to_s.length > 255
-        invalid_properties.push('invalid value for "scheme", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@bin.nil? && @bin.to_s.length > 255
-        invalid_properties.push('invalid value for "bin", the character length must be smaller than or equal to 255.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@bin_country.nil? && @bin_country.to_s.length > 255
-      return false if !@account_type.nil? && @account_type.to_s.length > 255
-      return false if !@issuer.nil? && @issuer.to_s.length > 255
-      return false if !@scheme.nil? && @scheme.to_s.length > 255
-      return false if !@bin.nil? && @bin.to_s.length > 255
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] bin_country Value to be assigned
     def bin_country=(bin_country)
-      if !bin_country.nil? && bin_country.to_s.length > 255
-        fail ArgumentError, 'invalid value for "bin_country", the character length must be smaller than or equal to 255.'
-      end
-
       @bin_country = bin_country
     end
 
     # Custom attribute writer method with validation
     # @param [Object] account_type Value to be assigned
     def account_type=(account_type)
-      if !account_type.nil? && account_type.to_s.length > 255
-        fail ArgumentError, 'invalid value for "account_type", the character length must be smaller than or equal to 255.'
-      end
-
       @account_type = account_type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] issuer Value to be assigned
     def issuer=(issuer)
-      if !issuer.nil? && issuer.to_s.length > 255
-        fail ArgumentError, 'invalid value for "issuer", the character length must be smaller than or equal to 255.'
-      end
-
       @issuer = issuer
     end
 
     # Custom attribute writer method with validation
     # @param [Object] scheme Value to be assigned
     def scheme=(scheme)
-      if !scheme.nil? && scheme.to_s.length > 255
-        fail ArgumentError, 'invalid value for "scheme", the character length must be smaller than or equal to 255.'
-      end
-
       @scheme = scheme
     end
 
     # Custom attribute writer method with validation
     # @param [Object] bin Value to be assigned
     def bin=(bin)
-      if !bin.nil? && bin.to_s.length > 255
-        fail ArgumentError, 'invalid value for "bin", the character length must be smaller than or equal to 255.'
-      end
-
       @bin = bin
     end
 

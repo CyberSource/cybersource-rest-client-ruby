@@ -66,57 +66,30 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@country.nil? && @country.to_s.length > 2
-        invalid_properties.push('invalid value for "country", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@first_name.nil? && @first_name.to_s.length > 60
-        invalid_properties.push('invalid value for "first_name", the character length must be smaller than or equal to 60.')
-      end
-
-      if !@last_name.nil? && @last_name.to_s.length > 60
-        invalid_properties.push('invalid value for "last_name", the character length must be smaller than or equal to 60.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@country.nil? && @country.to_s.length > 2
-      return false if !@first_name.nil? && @first_name.to_s.length > 60
-      return false if !@last_name.nil? && @last_name.to_s.length > 60
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] country Value to be assigned
     def country=(country)
-      if !country.nil? && country.to_s.length > 2
-        fail ArgumentError, 'invalid value for "country", the character length must be smaller than or equal to 2.'
-      end
-
       @country = country
     end
 
     # Custom attribute writer method with validation
     # @param [Object] first_name Value to be assigned
     def first_name=(first_name)
-      if !first_name.nil? && first_name.to_s.length > 60
-        fail ArgumentError, 'invalid value for "first_name", the character length must be smaller than or equal to 60.'
-      end
-
       @first_name = first_name
     end
 
     # Custom attribute writer method with validation
     # @param [Object] last_name Value to be assigned
     def last_name=(last_name)
-      if !last_name.nil? && last_name.to_s.length > 60
-        fail ArgumentError, 'invalid value for "last_name", the character length must be smaller than or equal to 60.'
-      end
-
       @last_name = last_name
     end
 

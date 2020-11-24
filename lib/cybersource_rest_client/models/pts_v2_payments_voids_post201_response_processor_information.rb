@@ -48,27 +48,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@response_code.nil? && @response_code.to_s.length > 10
-        invalid_properties.push('invalid value for "response_code", the character length must be smaller than or equal to 10.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@response_code.nil? && @response_code.to_s.length > 10
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] response_code Value to be assigned
     def response_code=(response_code)
-      if !response_code.nil? && response_code.to_s.length > 10
-        fail ArgumentError, 'invalid value for "response_code", the character length must be smaller than or equal to 10.'
-      end
-
       @response_code = response_code
     end
 

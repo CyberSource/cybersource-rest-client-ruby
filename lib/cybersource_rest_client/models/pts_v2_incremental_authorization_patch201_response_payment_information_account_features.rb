@@ -48,27 +48,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@category.nil? && @category.to_s.length > 7
-        invalid_properties.push('invalid value for "category", the character length must be smaller than or equal to 7.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@category.nil? && @category.to_s.length > 7
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] category Value to be assigned
     def category=(category)
-      if !category.nil? && category.to_s.length > 7
-        fail ArgumentError, 'invalid value for "category", the character length must be smaller than or equal to 7.'
-      end
-
       @category = category
     end
 

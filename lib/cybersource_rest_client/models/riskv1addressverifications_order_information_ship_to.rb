@@ -115,40 +115,8 @@ module CyberSource
         invalid_properties.push('invalid value for "address1", address1 cannot be nil.')
       end
 
-      if @address1.to_s.length > 60
-        invalid_properties.push('invalid value for "address1", the character length must be smaller than or equal to 60.')
-      end
-
-      if !@address2.nil? && @address2.to_s.length > 60
-        invalid_properties.push('invalid value for "address2", the character length must be smaller than or equal to 60.')
-      end
-
-      if !@address3.nil? && @address3.to_s.length > 60
-        invalid_properties.push('invalid value for "address3", the character length must be smaller than or equal to 60.')
-      end
-
-      if !@address4.nil? && @address4.to_s.length > 60
-        invalid_properties.push('invalid value for "address4", the character length must be smaller than or equal to 60.')
-      end
-
-      if !@administrative_area.nil? && @administrative_area.to_s.length > 2
-        invalid_properties.push('invalid value for "administrative_area", the character length must be smaller than or equal to 2.')
-      end
-
       if @country.nil?
         invalid_properties.push('invalid value for "country", country cannot be nil.')
-      end
-
-      if @country.to_s.length > 2
-        invalid_properties.push('invalid value for "country", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@locality.nil? && @locality.to_s.length > 50
-        invalid_properties.push('invalid value for "locality", the character length must be smaller than or equal to 50.')
-      end
-
-      if !@postal_code.nil? && @postal_code.to_s.length > 10
-        invalid_properties.push('invalid value for "postal_code", the character length must be smaller than or equal to 10.')
       end
 
       invalid_properties
@@ -158,15 +126,7 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if @address1.nil?
-      return false if @address1.to_s.length > 60
-      return false if !@address2.nil? && @address2.to_s.length > 60
-      return false if !@address3.nil? && @address3.to_s.length > 60
-      return false if !@address4.nil? && @address4.to_s.length > 60
-      return false if !@administrative_area.nil? && @administrative_area.to_s.length > 2
       return false if @country.nil?
-      return false if @country.to_s.length > 2
-      return false if !@locality.nil? && @locality.to_s.length > 50
-      return false if !@postal_code.nil? && @postal_code.to_s.length > 10
       true
     end
 
@@ -177,50 +137,30 @@ module CyberSource
         fail ArgumentError, 'address1 cannot be nil'
       end
 
-      if address1.to_s.length > 60
-        fail ArgumentError, 'invalid value for "address1", the character length must be smaller than or equal to 60.'
-      end
-
       @address1 = address1
     end
 
     # Custom attribute writer method with validation
     # @param [Object] address2 Value to be assigned
     def address2=(address2)
-      if !address2.nil? && address2.to_s.length > 60
-        fail ArgumentError, 'invalid value for "address2", the character length must be smaller than or equal to 60.'
-      end
-
       @address2 = address2
     end
 
     # Custom attribute writer method with validation
     # @param [Object] address3 Value to be assigned
     def address3=(address3)
-      if !address3.nil? && address3.to_s.length > 60
-        fail ArgumentError, 'invalid value for "address3", the character length must be smaller than or equal to 60.'
-      end
-
       @address3 = address3
     end
 
     # Custom attribute writer method with validation
     # @param [Object] address4 Value to be assigned
     def address4=(address4)
-      if !address4.nil? && address4.to_s.length > 60
-        fail ArgumentError, 'invalid value for "address4", the character length must be smaller than or equal to 60.'
-      end
-
       @address4 = address4
     end
 
     # Custom attribute writer method with validation
     # @param [Object] administrative_area Value to be assigned
     def administrative_area=(administrative_area)
-      if !administrative_area.nil? && administrative_area.to_s.length > 2
-        fail ArgumentError, 'invalid value for "administrative_area", the character length must be smaller than or equal to 2.'
-      end
-
       @administrative_area = administrative_area
     end
 
@@ -231,30 +171,18 @@ module CyberSource
         fail ArgumentError, 'country cannot be nil'
       end
 
-      if country.to_s.length > 2
-        fail ArgumentError, 'invalid value for "country", the character length must be smaller than or equal to 2.'
-      end
-
       @country = country
     end
 
     # Custom attribute writer method with validation
     # @param [Object] locality Value to be assigned
     def locality=(locality)
-      if !locality.nil? && locality.to_s.length > 50
-        fail ArgumentError, 'invalid value for "locality", the character length must be smaller than or equal to 50.'
-      end
-
       @locality = locality
     end
 
     # Custom attribute writer method with validation
     # @param [Object] postal_code Value to be assigned
     def postal_code=(postal_code)
-      if !postal_code.nil? && postal_code.to_s.length > 10
-        fail ArgumentError, 'invalid value for "postal_code", the character length must be smaller than or equal to 10.'
-      end
-
       @postal_code = postal_code
     end
 

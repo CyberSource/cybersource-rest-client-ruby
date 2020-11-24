@@ -52,10 +52,6 @@ module CyberSource
         invalid_properties.push('invalid value for "code", code cannot be nil.')
       end
 
-      if @code.to_s.length > 50
-        invalid_properties.push('invalid value for "code", the character length must be smaller than or equal to 50.')
-      end
-
       invalid_properties
     end
 
@@ -63,7 +59,6 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if @code.nil?
-      return false if @code.to_s.length > 50
       true
     end
 
@@ -72,10 +67,6 @@ module CyberSource
     def code=(code)
       if code.nil?
         fail ArgumentError, 'code cannot be nil'
-      end
-
-      if code.to_s.length > 50
-        fail ArgumentError, 'invalid value for "code", the character length must be smaller than or equal to 50.'
       end
 
       @code = code

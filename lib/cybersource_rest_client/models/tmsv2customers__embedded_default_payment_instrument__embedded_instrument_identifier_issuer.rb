@@ -48,27 +48,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@payment_account_reference.nil? && @payment_account_reference.to_s.length > 32
-        invalid_properties.push('invalid value for "payment_account_reference", the character length must be smaller than or equal to 32.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@payment_account_reference.nil? && @payment_account_reference.to_s.length > 32
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] payment_account_reference Value to be assigned
     def payment_account_reference=(payment_account_reference)
-      if !payment_account_reference.nil? && payment_account_reference.to_s.length > 32
-        fail ArgumentError, 'invalid value for "payment_account_reference", the character length must be smaller than or equal to 32.'
-      end
-
       @payment_account_reference = payment_account_reference
     end
 

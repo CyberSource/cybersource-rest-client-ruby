@@ -240,57 +240,30 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@id.nil? && @id.to_s.length > 26
-        invalid_properties.push('invalid value for "id", the character length must be smaller than or equal to 26.')
-      end
-
-      if !@root_id.nil? && @root_id.to_s.length > 26
-        invalid_properties.push('invalid value for "root_id", the character length must be smaller than or equal to 26.')
-      end
-
-      if !@reconciliation_id.nil? && @reconciliation_id.to_s.length > 60
-        invalid_properties.push('invalid value for "reconciliation_id", the character length must be smaller than or equal to 60.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@id.nil? && @id.to_s.length > 26
-      return false if !@root_id.nil? && @root_id.to_s.length > 26
-      return false if !@reconciliation_id.nil? && @reconciliation_id.to_s.length > 60
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] id Value to be assigned
     def id=(id)
-      if !id.nil? && id.to_s.length > 26
-        fail ArgumentError, 'invalid value for "id", the character length must be smaller than or equal to 26.'
-      end
-
       @id = id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] root_id Value to be assigned
     def root_id=(root_id)
-      if !root_id.nil? && root_id.to_s.length > 26
-        fail ArgumentError, 'invalid value for "root_id", the character length must be smaller than or equal to 26.'
-      end
-
       @root_id = root_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] reconciliation_id Value to be assigned
     def reconciliation_id=(reconciliation_id)
-      if !reconciliation_id.nil? && reconciliation_id.to_s.length > 60
-        fail ArgumentError, 'invalid value for "reconciliation_id", the character length must be smaller than or equal to 60.'
-      end
-
       @reconciliation_id = reconciliation_id
     end
 

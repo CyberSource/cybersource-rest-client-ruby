@@ -76,72 +76,36 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@account_number.nil? && @account_number.to_s.length > 30
-        invalid_properties.push('invalid value for "account_number", the character length must be smaller than or equal to 30.')
-      end
-
-      if !@code.nil? && @code.to_s.length > 15
-        invalid_properties.push('invalid value for "code", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@country.nil? && @country.to_s.length > 2
-        invalid_properties.push('invalid value for "country", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@iban.nil? && @iban.to_s.length > 30
-        invalid_properties.push('invalid value for "iban", the character length must be smaller than or equal to 30.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@account_number.nil? && @account_number.to_s.length > 30
-      return false if !@code.nil? && @code.to_s.length > 15
-      return false if !@country.nil? && @country.to_s.length > 2
-      return false if !@iban.nil? && @iban.to_s.length > 30
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] account_number Value to be assigned
     def account_number=(account_number)
-      if !account_number.nil? && account_number.to_s.length > 30
-        fail ArgumentError, 'invalid value for "account_number", the character length must be smaller than or equal to 30.'
-      end
-
       @account_number = account_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] code Value to be assigned
     def code=(code)
-      if !code.nil? && code.to_s.length > 15
-        fail ArgumentError, 'invalid value for "code", the character length must be smaller than or equal to 15.'
-      end
-
       @code = code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] country Value to be assigned
     def country=(country)
-      if !country.nil? && country.to_s.length > 2
-        fail ArgumentError, 'invalid value for "country", the character length must be smaller than or equal to 2.'
-      end
-
       @country = country
     end
 
     # Custom attribute writer method with validation
     # @param [Object] iban Value to be assigned
     def iban=(iban)
-      if !iban.nil? && iban.to_s.length > 30
-        fail ArgumentError, 'invalid value for "iban", the character length must be smaller than or equal to 30.'
-      end
-
       @iban = iban
     end
 

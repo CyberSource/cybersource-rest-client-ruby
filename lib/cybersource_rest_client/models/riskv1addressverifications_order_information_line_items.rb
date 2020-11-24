@@ -97,32 +97,12 @@ module CyberSource
         invalid_properties.push('invalid value for "unit_price", unit_price cannot be nil.')
       end
 
-      if @unit_price.to_s.length > 15
-        invalid_properties.push('invalid value for "unit_price", the character length must be smaller than or equal to 15.')
-      end
-
       if !@quantity.nil? && @quantity > 999999999
         invalid_properties.push('invalid value for "quantity", must be smaller than or equal to 999999999.')
       end
 
       if !@quantity.nil? && @quantity < 1
         invalid_properties.push('invalid value for "quantity", must be greater than or equal to 1.')
-      end
-
-      if !@product_sku.nil? && @product_sku.to_s.length > 255
-        invalid_properties.push('invalid value for "product_sku", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@product_risk.nil? && @product_risk.to_s.length > 6
-        invalid_properties.push('invalid value for "product_risk", the character length must be smaller than or equal to 6.')
-      end
-
-      if !@product_name.nil? && @product_name.to_s.length > 255
-        invalid_properties.push('invalid value for "product_name", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@product_code.nil? && @product_code.to_s.length > 255
-        invalid_properties.push('invalid value for "product_code", the character length must be smaller than or equal to 255.')
       end
 
       invalid_properties
@@ -132,13 +112,8 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if @unit_price.nil?
-      return false if @unit_price.to_s.length > 15
       return false if !@quantity.nil? && @quantity > 999999999
       return false if !@quantity.nil? && @quantity < 1
-      return false if !@product_sku.nil? && @product_sku.to_s.length > 255
-      return false if !@product_risk.nil? && @product_risk.to_s.length > 6
-      return false if !@product_name.nil? && @product_name.to_s.length > 255
-      return false if !@product_code.nil? && @product_code.to_s.length > 255
       true
     end
 
@@ -147,10 +122,6 @@ module CyberSource
     def unit_price=(unit_price)
       if unit_price.nil?
         fail ArgumentError, 'unit_price cannot be nil'
-      end
-
-      if unit_price.to_s.length > 15
-        fail ArgumentError, 'invalid value for "unit_price", the character length must be smaller than or equal to 15.'
       end
 
       @unit_price = unit_price
@@ -173,40 +144,24 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] product_sku Value to be assigned
     def product_sku=(product_sku)
-      if !product_sku.nil? && product_sku.to_s.length > 255
-        fail ArgumentError, 'invalid value for "product_sku", the character length must be smaller than or equal to 255.'
-      end
-
       @product_sku = product_sku
     end
 
     # Custom attribute writer method with validation
     # @param [Object] product_risk Value to be assigned
     def product_risk=(product_risk)
-      if !product_risk.nil? && product_risk.to_s.length > 6
-        fail ArgumentError, 'invalid value for "product_risk", the character length must be smaller than or equal to 6.'
-      end
-
       @product_risk = product_risk
     end
 
     # Custom attribute writer method with validation
     # @param [Object] product_name Value to be assigned
     def product_name=(product_name)
-      if !product_name.nil? && product_name.to_s.length > 255
-        fail ArgumentError, 'invalid value for "product_name", the character length must be smaller than or equal to 255.'
-      end
-
       @product_name = product_name
     end
 
     # Custom attribute writer method with validation
     # @param [Object] product_code Value to be assigned
     def product_code=(product_code)
-      if !product_code.nil? && product_code.to_s.length > 255
-        fail ArgumentError, 'invalid value for "product_code", the character length must be smaller than or equal to 255.'
-      end
-
       @product_code = product_code
     end
 

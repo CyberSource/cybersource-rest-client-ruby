@@ -65,10 +65,6 @@ module CyberSource
         invalid_properties.push('invalid value for "quantity", must be greater than or equal to 1.')
       end
 
-      if !@unit_price.nil? && @unit_price.to_s.length > 15
-        invalid_properties.push('invalid value for "unit_price", the character length must be smaller than or equal to 15.')
-      end
-
       invalid_properties
     end
 
@@ -77,7 +73,6 @@ module CyberSource
     def valid?
       return false if !@quantity.nil? && @quantity > 999999999
       return false if !@quantity.nil? && @quantity < 1
-      return false if !@unit_price.nil? && @unit_price.to_s.length > 15
       true
     end
 
@@ -98,10 +93,6 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] unit_price Value to be assigned
     def unit_price=(unit_price)
-      if !unit_price.nil? && unit_price.to_s.length > 15
-        fail ArgumentError, 'invalid value for "unit_price", the character length must be smaller than or equal to 15.'
-      end
-
       @unit_price = unit_price
     end
 

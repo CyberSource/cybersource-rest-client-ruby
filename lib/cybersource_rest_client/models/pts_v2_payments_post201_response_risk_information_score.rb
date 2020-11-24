@@ -67,42 +67,24 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@model_used.nil? && @model_used.to_s.length > 255
-        invalid_properties.push('invalid value for "model_used", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@result.nil? && @result.to_s.length > 255
-        invalid_properties.push('invalid value for "result", the character length must be smaller than or equal to 255.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@model_used.nil? && @model_used.to_s.length > 255
-      return false if !@result.nil? && @result.to_s.length > 255
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] model_used Value to be assigned
     def model_used=(model_used)
-      if !model_used.nil? && model_used.to_s.length > 255
-        fail ArgumentError, 'invalid value for "model_used", the character length must be smaller than or equal to 255.'
-      end
-
       @model_used = model_used
     end
 
     # Custom attribute writer method with validation
     # @param [Object] result Value to be assigned
     def result=(result)
-      if !result.nil? && result.to_s.length > 255
-        fail ArgumentError, 'invalid value for "result", the character length must be smaller than or equal to 255.'
-      end
-
       @result = result
     end
 

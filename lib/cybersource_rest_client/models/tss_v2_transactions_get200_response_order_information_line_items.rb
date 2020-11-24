@@ -102,22 +102,6 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@product_code.nil? && @product_code.to_s.length > 255
-        invalid_properties.push('invalid value for "product_code", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@product_name.nil? && @product_name.to_s.length > 255
-        invalid_properties.push('invalid value for "product_name", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@product_sku.nil? && @product_sku.to_s.length > 255
-        invalid_properties.push('invalid value for "product_sku", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@tax_amount.nil? && @tax_amount.to_s.length > 15
-        invalid_properties.push('invalid value for "tax_amount", the character length must be smaller than or equal to 15.')
-      end
-
       if !@quantity.nil? && @quantity > 999999999
         invalid_properties.push('invalid value for "quantity", must be smaller than or equal to 999999999.')
       end
@@ -126,63 +110,38 @@ module CyberSource
         invalid_properties.push('invalid value for "quantity", must be greater than or equal to 1.')
       end
 
-      if !@unit_price.nil? && @unit_price.to_s.length > 15
-        invalid_properties.push('invalid value for "unit_price", the character length must be smaller than or equal to 15.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@product_code.nil? && @product_code.to_s.length > 255
-      return false if !@product_name.nil? && @product_name.to_s.length > 255
-      return false if !@product_sku.nil? && @product_sku.to_s.length > 255
-      return false if !@tax_amount.nil? && @tax_amount.to_s.length > 15
       return false if !@quantity.nil? && @quantity > 999999999
       return false if !@quantity.nil? && @quantity < 1
-      return false if !@unit_price.nil? && @unit_price.to_s.length > 15
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] product_code Value to be assigned
     def product_code=(product_code)
-      if !product_code.nil? && product_code.to_s.length > 255
-        fail ArgumentError, 'invalid value for "product_code", the character length must be smaller than or equal to 255.'
-      end
-
       @product_code = product_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] product_name Value to be assigned
     def product_name=(product_name)
-      if !product_name.nil? && product_name.to_s.length > 255
-        fail ArgumentError, 'invalid value for "product_name", the character length must be smaller than or equal to 255.'
-      end
-
       @product_name = product_name
     end
 
     # Custom attribute writer method with validation
     # @param [Object] product_sku Value to be assigned
     def product_sku=(product_sku)
-      if !product_sku.nil? && product_sku.to_s.length > 255
-        fail ArgumentError, 'invalid value for "product_sku", the character length must be smaller than or equal to 255.'
-      end
-
       @product_sku = product_sku
     end
 
     # Custom attribute writer method with validation
     # @param [Object] tax_amount Value to be assigned
     def tax_amount=(tax_amount)
-      if !tax_amount.nil? && tax_amount.to_s.length > 15
-        fail ArgumentError, 'invalid value for "tax_amount", the character length must be smaller than or equal to 15.'
-      end
-
       @tax_amount = tax_amount
     end
 
@@ -203,10 +162,6 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] unit_price Value to be assigned
     def unit_price=(unit_price)
-      if !unit_price.nil? && unit_price.to_s.length > 15
-        fail ArgumentError, 'invalid value for "unit_price", the character length must be smaller than or equal to 15.'
-      end
-
       @unit_price = unit_price
     end
 

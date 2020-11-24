@@ -93,102 +93,48 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@transaction_id.nil? && @transaction_id.to_s.length > 18
-        invalid_properties.push('invalid value for "transaction_id", the character length must be smaller than or equal to 18.')
-      end
-
-      if !@response_code.nil? && @response_code.to_s.length > 10
-        invalid_properties.push('invalid value for "response_code", the character length must be smaller than or equal to 10.')
-      end
-
-      if !@response_category_code.nil? && @response_category_code.to_s.length > 36
-        invalid_properties.push('invalid value for "response_category_code", the character length must be smaller than or equal to 36.')
-      end
-
-      if !@forwarded_acquirer_code.nil? && @forwarded_acquirer_code.to_s.length > 32
-        invalid_properties.push('invalid value for "forwarded_acquirer_code", the character length must be smaller than or equal to 32.')
-      end
-
-      if !@master_card_service_code.nil? && @master_card_service_code.to_s.length > 2
-        invalid_properties.push('invalid value for "master_card_service_code", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@master_card_service_reply_code.nil? && @master_card_service_reply_code.to_s.length > 1
-        invalid_properties.push('invalid value for "master_card_service_reply_code", the character length must be smaller than or equal to 1.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@transaction_id.nil? && @transaction_id.to_s.length > 18
-      return false if !@response_code.nil? && @response_code.to_s.length > 10
-      return false if !@response_category_code.nil? && @response_category_code.to_s.length > 36
-      return false if !@forwarded_acquirer_code.nil? && @forwarded_acquirer_code.to_s.length > 32
-      return false if !@master_card_service_code.nil? && @master_card_service_code.to_s.length > 2
-      return false if !@master_card_service_reply_code.nil? && @master_card_service_reply_code.to_s.length > 1
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] transaction_id Value to be assigned
     def transaction_id=(transaction_id)
-      if !transaction_id.nil? && transaction_id.to_s.length > 18
-        fail ArgumentError, 'invalid value for "transaction_id", the character length must be smaller than or equal to 18.'
-      end
-
       @transaction_id = transaction_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] response_code Value to be assigned
     def response_code=(response_code)
-      if !response_code.nil? && response_code.to_s.length > 10
-        fail ArgumentError, 'invalid value for "response_code", the character length must be smaller than or equal to 10.'
-      end
-
       @response_code = response_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] response_category_code Value to be assigned
     def response_category_code=(response_category_code)
-      if !response_category_code.nil? && response_category_code.to_s.length > 36
-        fail ArgumentError, 'invalid value for "response_category_code", the character length must be smaller than or equal to 36.'
-      end
-
       @response_category_code = response_category_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] forwarded_acquirer_code Value to be assigned
     def forwarded_acquirer_code=(forwarded_acquirer_code)
-      if !forwarded_acquirer_code.nil? && forwarded_acquirer_code.to_s.length > 32
-        fail ArgumentError, 'invalid value for "forwarded_acquirer_code", the character length must be smaller than or equal to 32.'
-      end
-
       @forwarded_acquirer_code = forwarded_acquirer_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] master_card_service_code Value to be assigned
     def master_card_service_code=(master_card_service_code)
-      if !master_card_service_code.nil? && master_card_service_code.to_s.length > 2
-        fail ArgumentError, 'invalid value for "master_card_service_code", the character length must be smaller than or equal to 2.'
-      end
-
       @master_card_service_code = master_card_service_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] master_card_service_reply_code Value to be assigned
     def master_card_service_reply_code=(master_card_service_reply_code)
-      if !master_card_service_reply_code.nil? && master_card_service_reply_code.to_s.length > 1
-        fail ArgumentError, 'invalid value for "master_card_service_reply_code", the character length must be smaller than or equal to 1.'
-      end
-
       @master_card_service_reply_code = master_card_service_reply_code
     end
 

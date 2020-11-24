@@ -66,57 +66,30 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@true_ipaddress.nil? && @true_ipaddress.to_s.length > 255
-        invalid_properties.push('invalid value for "true_ipaddress", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@hash.nil? && @hash.to_s.length > 255
-        invalid_properties.push('invalid value for "hash", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@smart_id.nil? && @smart_id.to_s.length > 255
-        invalid_properties.push('invalid value for "smart_id", the character length must be smaller than or equal to 255.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@true_ipaddress.nil? && @true_ipaddress.to_s.length > 255
-      return false if !@hash.nil? && @hash.to_s.length > 255
-      return false if !@smart_id.nil? && @smart_id.to_s.length > 255
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] true_ipaddress Value to be assigned
     def true_ipaddress=(true_ipaddress)
-      if !true_ipaddress.nil? && true_ipaddress.to_s.length > 255
-        fail ArgumentError, 'invalid value for "true_ipaddress", the character length must be smaller than or equal to 255.'
-      end
-
       @true_ipaddress = true_ipaddress
     end
 
     # Custom attribute writer method with validation
     # @param [Object] hash Value to be assigned
     def hash=(hash)
-      if !hash.nil? && hash.to_s.length > 255
-        fail ArgumentError, 'invalid value for "hash", the character length must be smaller than or equal to 255.'
-      end
-
       @hash = hash
     end
 
     # Custom attribute writer method with validation
     # @param [Object] smart_id Value to be assigned
     def smart_id=(smart_id)
-      if !smart_id.nil? && smart_id.to_s.length > 255
-        fail ArgumentError, 'invalid value for "smart_id", the character length must be smaller than or equal to 255.'
-      end
-
       @smart_id = smart_id
     end
 

@@ -74,14 +74,6 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@terminal_id.nil? && @terminal_id.to_s.length > 8
-        invalid_properties.push('invalid value for "terminal_id", the character length must be smaller than or equal to 8.')
-      end
-
-      if !@entry_mode.nil? && @entry_mode.to_s.length > 11
-        invalid_properties.push('invalid value for "entry_mode", the character length must be smaller than or equal to 11.')
-      end
-
       if !@terminal_capability.nil? && @terminal_capability > 5
         invalid_properties.push('invalid value for "terminal_capability", must be smaller than or equal to 5.')
       end
@@ -96,8 +88,6 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@terminal_id.nil? && @terminal_id.to_s.length > 8
-      return false if !@entry_mode.nil? && @entry_mode.to_s.length > 11
       return false if !@terminal_capability.nil? && @terminal_capability > 5
       return false if !@terminal_capability.nil? && @terminal_capability < 1
       true
@@ -106,20 +96,12 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] terminal_id Value to be assigned
     def terminal_id=(terminal_id)
-      if !terminal_id.nil? && terminal_id.to_s.length > 8
-        fail ArgumentError, 'invalid value for "terminal_id", the character length must be smaller than or equal to 8.'
-      end
-
       @terminal_id = terminal_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] entry_mode Value to be assigned
     def entry_mode=(entry_mode)
-      if !entry_mode.nil? && entry_mode.to_s.length > 11
-        fail ArgumentError, 'invalid value for "entry_mode", the character length must be smaller than or equal to 11.'
-      end
-
       @entry_mode = entry_mode
     end
 

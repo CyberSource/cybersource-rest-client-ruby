@@ -83,72 +83,36 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@transaction_id.nil? && @transaction_id.to_s.length > 18
-        invalid_properties.push('invalid value for "transaction_id", the character length must be smaller than or equal to 18.')
-      end
-
-      if !@forwarded_acquirer_code.nil? && @forwarded_acquirer_code.to_s.length > 32
-        invalid_properties.push('invalid value for "forwarded_acquirer_code", the character length must be smaller than or equal to 32.')
-      end
-
-      if !@merchant_number.nil? && @merchant_number.to_s.length > 15
-        invalid_properties.push('invalid value for "merchant_number", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@response_code.nil? && @response_code.to_s.length > 10
-        invalid_properties.push('invalid value for "response_code", the character length must be smaller than or equal to 10.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@transaction_id.nil? && @transaction_id.to_s.length > 18
-      return false if !@forwarded_acquirer_code.nil? && @forwarded_acquirer_code.to_s.length > 32
-      return false if !@merchant_number.nil? && @merchant_number.to_s.length > 15
-      return false if !@response_code.nil? && @response_code.to_s.length > 10
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] transaction_id Value to be assigned
     def transaction_id=(transaction_id)
-      if !transaction_id.nil? && transaction_id.to_s.length > 18
-        fail ArgumentError, 'invalid value for "transaction_id", the character length must be smaller than or equal to 18.'
-      end
-
       @transaction_id = transaction_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] forwarded_acquirer_code Value to be assigned
     def forwarded_acquirer_code=(forwarded_acquirer_code)
-      if !forwarded_acquirer_code.nil? && forwarded_acquirer_code.to_s.length > 32
-        fail ArgumentError, 'invalid value for "forwarded_acquirer_code", the character length must be smaller than or equal to 32.'
-      end
-
       @forwarded_acquirer_code = forwarded_acquirer_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] merchant_number Value to be assigned
     def merchant_number=(merchant_number)
-      if !merchant_number.nil? && merchant_number.to_s.length > 15
-        fail ArgumentError, 'invalid value for "merchant_number", the character length must be smaller than or equal to 15.'
-      end
-
       @merchant_number = merchant_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] response_code Value to be assigned
     def response_code=(response_code)
-      if !response_code.nil? && response_code.to_s.length > 10
-        fail ArgumentError, 'invalid value for "response_code", the character length must be smaller than or equal to 10.'
-      end
-
       @response_code = response_code
     end
 

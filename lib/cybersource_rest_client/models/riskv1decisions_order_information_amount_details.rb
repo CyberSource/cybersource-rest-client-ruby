@@ -62,14 +62,6 @@ module CyberSource
         invalid_properties.push('invalid value for "currency", currency cannot be nil.')
       end
 
-      if @currency.to_s.length > 3
-        invalid_properties.push('invalid value for "currency", the character length must be smaller than or equal to 3.')
-      end
-
-      if !@total_amount.nil? && @total_amount.to_s.length > 19
-        invalid_properties.push('invalid value for "total_amount", the character length must be smaller than or equal to 19.')
-      end
-
       invalid_properties
     end
 
@@ -77,8 +69,6 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if @currency.nil?
-      return false if @currency.to_s.length > 3
-      return false if !@total_amount.nil? && @total_amount.to_s.length > 19
       true
     end
 
@@ -89,20 +79,12 @@ module CyberSource
         fail ArgumentError, 'currency cannot be nil'
       end
 
-      if currency.to_s.length > 3
-        fail ArgumentError, 'invalid value for "currency", the character length must be smaller than or equal to 3.'
-      end
-
       @currency = currency
     end
 
     # Custom attribute writer method with validation
     # @param [Object] total_amount Value to be assigned
     def total_amount=(total_amount)
-      if !total_amount.nil? && total_amount.to_s.length > 19
-        fail ArgumentError, 'invalid value for "total_amount", the character length must be smaller than or equal to 19.'
-      end
-
       @total_amount = total_amount
     end
 

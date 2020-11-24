@@ -75,72 +75,36 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@account_type.nil? && @account_type.to_s.length > 2
-        invalid_properties.push('invalid value for "account_type", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@amount.nil? && @amount.to_s.length > 13
-        invalid_properties.push('invalid value for "amount", the character length must be smaller than or equal to 13.')
-      end
-
-      if !@amount_type.nil? && @amount_type.to_s.length > 2
-        invalid_properties.push('invalid value for "amount_type", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@currency.nil? && @currency.to_s.length > 3
-        invalid_properties.push('invalid value for "currency", the character length must be smaller than or equal to 3.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@account_type.nil? && @account_type.to_s.length > 2
-      return false if !@amount.nil? && @amount.to_s.length > 13
-      return false if !@amount_type.nil? && @amount_type.to_s.length > 2
-      return false if !@currency.nil? && @currency.to_s.length > 3
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] account_type Value to be assigned
     def account_type=(account_type)
-      if !account_type.nil? && account_type.to_s.length > 2
-        fail ArgumentError, 'invalid value for "account_type", the character length must be smaller than or equal to 2.'
-      end
-
       @account_type = account_type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] amount Value to be assigned
     def amount=(amount)
-      if !amount.nil? && amount.to_s.length > 13
-        fail ArgumentError, 'invalid value for "amount", the character length must be smaller than or equal to 13.'
-      end
-
       @amount = amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] amount_type Value to be assigned
     def amount_type=(amount_type)
-      if !amount_type.nil? && amount_type.to_s.length > 2
-        fail ArgumentError, 'invalid value for "amount_type", the character length must be smaller than or equal to 2.'
-      end
-
       @amount_type = amount_type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] currency Value to be assigned
     def currency=(currency)
-      if !currency.nil? && currency.to_s.length > 3
-        fail ArgumentError, 'invalid value for "currency", the character length must be smaller than or equal to 3.'
-      end
-
       @currency = currency
     end
 

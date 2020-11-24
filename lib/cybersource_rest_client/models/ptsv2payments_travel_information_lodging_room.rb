@@ -57,10 +57,6 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@daily_rate.nil? && @daily_rate.to_s.length > 8
-        invalid_properties.push('invalid value for "daily_rate", the character length must be smaller than or equal to 8.')
-      end
-
       if !@number_of_nights.nil? && @number_of_nights > 9999
         invalid_properties.push('invalid value for "number_of_nights", must be smaller than or equal to 9999.')
       end
@@ -75,7 +71,6 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@daily_rate.nil? && @daily_rate.to_s.length > 8
       return false if !@number_of_nights.nil? && @number_of_nights > 9999
       return false if !@number_of_nights.nil? && @number_of_nights < 1
       true
@@ -84,10 +79,6 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] daily_rate Value to be assigned
     def daily_rate=(daily_rate)
-      if !daily_rate.nil? && daily_rate.to_s.length > 8
-        fail ArgumentError, 'invalid value for "daily_rate", the character length must be smaller than or equal to 8.'
-      end
-
       @daily_rate = daily_rate
     end
 

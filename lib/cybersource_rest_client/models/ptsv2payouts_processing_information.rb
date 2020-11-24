@@ -83,72 +83,36 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@business_application_id.nil? && @business_application_id.to_s.length > 2
-        invalid_properties.push('invalid value for "business_application_id", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@network_routing_order.nil? && @network_routing_order.to_s.length > 30
-        invalid_properties.push('invalid value for "network_routing_order", the character length must be smaller than or equal to 30.')
-      end
-
-      if !@commerce_indicator.nil? && @commerce_indicator.to_s.length > 13
-        invalid_properties.push('invalid value for "commerce_indicator", the character length must be smaller than or equal to 13.')
-      end
-
-      if !@reconciliation_id.nil? && @reconciliation_id.to_s.length > 60
-        invalid_properties.push('invalid value for "reconciliation_id", the character length must be smaller than or equal to 60.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@business_application_id.nil? && @business_application_id.to_s.length > 2
-      return false if !@network_routing_order.nil? && @network_routing_order.to_s.length > 30
-      return false if !@commerce_indicator.nil? && @commerce_indicator.to_s.length > 13
-      return false if !@reconciliation_id.nil? && @reconciliation_id.to_s.length > 60
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] business_application_id Value to be assigned
     def business_application_id=(business_application_id)
-      if !business_application_id.nil? && business_application_id.to_s.length > 2
-        fail ArgumentError, 'invalid value for "business_application_id", the character length must be smaller than or equal to 2.'
-      end
-
       @business_application_id = business_application_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] network_routing_order Value to be assigned
     def network_routing_order=(network_routing_order)
-      if !network_routing_order.nil? && network_routing_order.to_s.length > 30
-        fail ArgumentError, 'invalid value for "network_routing_order", the character length must be smaller than or equal to 30.'
-      end
-
       @network_routing_order = network_routing_order
     end
 
     # Custom attribute writer method with validation
     # @param [Object] commerce_indicator Value to be assigned
     def commerce_indicator=(commerce_indicator)
-      if !commerce_indicator.nil? && commerce_indicator.to_s.length > 13
-        fail ArgumentError, 'invalid value for "commerce_indicator", the character length must be smaller than or equal to 13.'
-      end
-
       @commerce_indicator = commerce_indicator
     end
 
     # Custom attribute writer method with validation
     # @param [Object] reconciliation_id Value to be assigned
     def reconciliation_id=(reconciliation_id)
-      if !reconciliation_id.nil? && reconciliation_id.to_s.length > 60
-        fail ArgumentError, 'invalid value for "reconciliation_id", the character length must be smaller than or equal to 60.'
-      end
-
       @reconciliation_id = reconciliation_id
     end
 

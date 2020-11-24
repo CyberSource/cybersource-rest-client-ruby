@@ -66,57 +66,30 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@network.nil? && @network.to_s.length > 1
-        invalid_properties.push('invalid value for "network", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@network_name.nil? && @network_name.to_s.length > 10
-        invalid_properties.push('invalid value for "network_name", the character length must be smaller than or equal to 10.')
-      end
-
-      if !@customer_signature_required.nil? && @customer_signature_required.to_s.length > 1
-        invalid_properties.push('invalid value for "customer_signature_required", the character length must be smaller than or equal to 1.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@network.nil? && @network.to_s.length > 1
-      return false if !@network_name.nil? && @network_name.to_s.length > 10
-      return false if !@customer_signature_required.nil? && @customer_signature_required.to_s.length > 1
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] network Value to be assigned
     def network=(network)
-      if !network.nil? && network.to_s.length > 1
-        fail ArgumentError, 'invalid value for "network", the character length must be smaller than or equal to 1.'
-      end
-
       @network = network
     end
 
     # Custom attribute writer method with validation
     # @param [Object] network_name Value to be assigned
     def network_name=(network_name)
-      if !network_name.nil? && network_name.to_s.length > 10
-        fail ArgumentError, 'invalid value for "network_name", the character length must be smaller than or equal to 10.'
-      end
-
       @network_name = network_name
     end
 
     # Custom attribute writer method with validation
     # @param [Object] customer_signature_required Value to be assigned
     def customer_signature_required=(customer_signature_required)
-      if !customer_signature_required.nil? && customer_signature_required.to_s.length > 1
-        fail ArgumentError, 'invalid value for "customer_signature_required", the character length must be smaller than or equal to 1.'
-      end
-
       @customer_signature_required = customer_signature_required
     end
 

@@ -57,42 +57,24 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@category.nil? && @category.to_s.length > 4
-        invalid_properties.push('invalid value for "category", the character length must be smaller than or equal to 4.')
-      end
-
-      if !@voucher_serial_number.nil? && @voucher_serial_number.to_s.length > 15
-        invalid_properties.push('invalid value for "voucher_serial_number", the character length must be smaller than or equal to 15.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@category.nil? && @category.to_s.length > 4
-      return false if !@voucher_serial_number.nil? && @voucher_serial_number.to_s.length > 15
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] category Value to be assigned
     def category=(category)
-      if !category.nil? && category.to_s.length > 4
-        fail ArgumentError, 'invalid value for "category", the character length must be smaller than or equal to 4.'
-      end
-
       @category = category
     end
 
     # Custom attribute writer method with validation
     # @param [Object] voucher_serial_number Value to be assigned
     def voucher_serial_number=(voucher_serial_number)
-      if !voucher_serial_number.nil? && voucher_serial_number.to_s.length > 15
-        fail ArgumentError, 'invalid value for "voucher_serial_number", the character length must be smaller than or equal to 15.'
-      end
-
       @voucher_serial_number = voucher_serial_number
     end
 

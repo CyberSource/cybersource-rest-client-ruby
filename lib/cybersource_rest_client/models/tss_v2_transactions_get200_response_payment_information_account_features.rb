@@ -66,57 +66,30 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@balance_amount.nil? && @balance_amount.to_s.length > 12
-        invalid_properties.push('invalid value for "balance_amount", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@previous_balance_amount.nil? && @previous_balance_amount.to_s.length > 12
-        invalid_properties.push('invalid value for "previous_balance_amount", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@currency.nil? && @currency.to_s.length > 5
-        invalid_properties.push('invalid value for "currency", the character length must be smaller than or equal to 5.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@balance_amount.nil? && @balance_amount.to_s.length > 12
-      return false if !@previous_balance_amount.nil? && @previous_balance_amount.to_s.length > 12
-      return false if !@currency.nil? && @currency.to_s.length > 5
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] balance_amount Value to be assigned
     def balance_amount=(balance_amount)
-      if !balance_amount.nil? && balance_amount.to_s.length > 12
-        fail ArgumentError, 'invalid value for "balance_amount", the character length must be smaller than or equal to 12.'
-      end
-
       @balance_amount = balance_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] previous_balance_amount Value to be assigned
     def previous_balance_amount=(previous_balance_amount)
-      if !previous_balance_amount.nil? && previous_balance_amount.to_s.length > 12
-        fail ArgumentError, 'invalid value for "previous_balance_amount", the character length must be smaller than or equal to 12.'
-      end
-
       @previous_balance_amount = previous_balance_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] currency Value to be assigned
     def currency=(currency)
-      if !currency.nil? && currency.to_s.length > 5
-        fail ArgumentError, 'invalid value for "currency", the character length must be smaller than or equal to 5.'
-      end
-
       @currency = currency
     end
 

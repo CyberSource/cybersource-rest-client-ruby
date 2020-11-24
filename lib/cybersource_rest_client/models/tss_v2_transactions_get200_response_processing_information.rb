@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsGet200ResponseProcessingInformation
-    # Type of digital payment solution for the transaction. Possible Values:   - `visacheckout`: Visa Checkout. This value is required for Visa Checkout transactions. For details, see `payment_solution` field description in [Visa Checkout Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/VCO_SCMP_API/html/)  - `001`: Apple Pay.  - `004`: Cybersource In-App Solution.  - `005`: Masterpass. This value is required for Masterpass transactions on OmniPay Direct. For details, see \"Masterpass\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  - `006`: Android Pay.  - `007`: Chase Pay.  - `008`: Samsung Pay.  - `012`: Google Pay. 
+    # Type of digital payment solution for the transaction.  
     attr_accessor :payment_solution
 
     # Type of transaction. Some payment card companies use this information when determining discount rates.  #### Used by **Authorization** Required payer authentication transactions; otherwise, optional. **Credit** Required for standalone credits on Chase Paymentech solutions; otherwise, optional. Only `internet`, `moto`, `install`, `recurring`, and `recurring_internet` are valid values.  #### Ingenico ePayments When you omit this field for Ingenico ePayments, the processor uses the default transaction type they have on file for you instead of the default value (listed in Appendix I, \"Commerce Indicators,\" on page 441.)  #### Payer Authentication Transactions For the possible values and requirements, see \"Payer Authentication,\" page 195.  #### Other Types of Transactions See Appendix I, \"Commerce Indicators,\" on page 441.  #### Card Present You must set this field to `retail`. This field is required for a card-present transaction. Note that this should ONLY be used when the cardholder and card are present at the time of the transaction. For all keyed transactions originated from a POS terminal where the cardholder and card are not present, commerceIndicator should be submitted as “moto\" 
@@ -90,42 +90,24 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@payment_solution.nil? && @payment_solution.to_s.length > 12
-        invalid_properties.push('invalid value for "payment_solution", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@commerce_indicator.nil? && @commerce_indicator.to_s.length > 20
-        invalid_properties.push('invalid value for "commerce_indicator", the character length must be smaller than or equal to 20.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@payment_solution.nil? && @payment_solution.to_s.length > 12
-      return false if !@commerce_indicator.nil? && @commerce_indicator.to_s.length > 20
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] payment_solution Value to be assigned
     def payment_solution=(payment_solution)
-      if !payment_solution.nil? && payment_solution.to_s.length > 12
-        fail ArgumentError, 'invalid value for "payment_solution", the character length must be smaller than or equal to 12.'
-      end
-
       @payment_solution = payment_solution
     end
 
     # Custom attribute writer method with validation
     # @param [Object] commerce_indicator Value to be assigned
     def commerce_indicator=(commerce_indicator)
-      if !commerce_indicator.nil? && commerce_indicator.to_s.length > 20
-        fail ArgumentError, 'invalid value for "commerce_indicator", the character length must be smaller than or equal to 20.'
-      end
-
       @commerce_indicator = commerce_indicator
     end
 

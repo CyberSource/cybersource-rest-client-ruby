@@ -106,42 +106,24 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@reporting_date.nil? && @reporting_date.to_s.length > 8
-        invalid_properties.push('invalid value for "reporting_date", the character length must be smaller than or equal to 8.')
-      end
-
-      if !@date_override_reason.nil? && @date_override_reason.to_s.length > 50
-        invalid_properties.push('invalid value for "date_override_reason", the character length must be smaller than or equal to 50.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@reporting_date.nil? && @reporting_date.to_s.length > 8
-      return false if !@date_override_reason.nil? && @date_override_reason.to_s.length > 50
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] reporting_date Value to be assigned
     def reporting_date=(reporting_date)
-      if !reporting_date.nil? && reporting_date.to_s.length > 8
-        fail ArgumentError, 'invalid value for "reporting_date", the character length must be smaller than or equal to 8.'
-      end
-
       @reporting_date = reporting_date
     end
 
     # Custom attribute writer method with validation
     # @param [Object] date_override_reason Value to be assigned
     def date_override_reason=(date_override_reason)
-      if !date_override_reason.nil? && date_override_reason.to_s.length > 50
-        fail ArgumentError, 'invalid value for "date_override_reason", the character length must be smaller than or equal to 50.'
-      end
-
       @date_override_reason = date_override_reason
     end
 

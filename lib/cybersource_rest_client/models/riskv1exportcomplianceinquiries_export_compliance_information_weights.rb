@@ -66,57 +66,30 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@address.nil? && @address.to_s.length > 6
-        invalid_properties.push('invalid value for "address", the character length must be smaller than or equal to 6.')
-      end
-
-      if !@company.nil? && @company.to_s.length > 6
-        invalid_properties.push('invalid value for "company", the character length must be smaller than or equal to 6.')
-      end
-
-      if !@name.nil? && @name.to_s.length > 6
-        invalid_properties.push('invalid value for "name", the character length must be smaller than or equal to 6.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@address.nil? && @address.to_s.length > 6
-      return false if !@company.nil? && @company.to_s.length > 6
-      return false if !@name.nil? && @name.to_s.length > 6
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] address Value to be assigned
     def address=(address)
-      if !address.nil? && address.to_s.length > 6
-        fail ArgumentError, 'invalid value for "address", the character length must be smaller than or equal to 6.'
-      end
-
       @address = address
     end
 
     # Custom attribute writer method with validation
     # @param [Object] company Value to be assigned
     def company=(company)
-      if !company.nil? && company.to_s.length > 6
-        fail ArgumentError, 'invalid value for "company", the character length must be smaller than or equal to 6.'
-      end
-
       @company = company
     end
 
     # Custom attribute writer method with validation
     # @param [Object] name Value to be assigned
     def name=(name)
-      if !name.nil? && name.to_s.length > 6
-        fail ArgumentError, 'invalid value for "name", the character length must be smaller than or equal to 6.'
-      end
-
       @name = name
     end
 

@@ -136,6 +136,7 @@ require 'cybersource_rest_client/models/payment_instrument_list_for_customer__li
 require 'cybersource_rest_client/models/post_customer_payment_instrument_request'
 require 'cybersource_rest_client/models/post_customer_request'
 require 'cybersource_rest_client/models/post_customer_shipping_address_request'
+require 'cybersource_rest_client/models/post_instrument_identifier_enrollment_request'
 require 'cybersource_rest_client/models/post_instrument_identifier_request'
 require 'cybersource_rest_client/models/post_payment_instrument_request'
 require 'cybersource_rest_client/models/predefined_subscription_request_bean'

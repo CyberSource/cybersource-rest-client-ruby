@@ -82,10 +82,6 @@ module CyberSource
         invalid_properties.push('invalid value for "total_capture_count", must be greater than or equal to 1.')
       end
 
-      if !@date_to_capture.nil? && @date_to_capture.to_s.length > 4
-        invalid_properties.push('invalid value for "date_to_capture", the character length must be smaller than or equal to 4.')
-      end
-
       invalid_properties
     end
 
@@ -96,7 +92,6 @@ module CyberSource
       return false if !@capture_sequence_number.nil? && @capture_sequence_number < 1
       return false if !@total_capture_count.nil? && @total_capture_count > 99
       return false if !@total_capture_count.nil? && @total_capture_count < 1
-      return false if !@date_to_capture.nil? && @date_to_capture.to_s.length > 4
       true
     end
 
@@ -131,10 +126,6 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] date_to_capture Value to be assigned
     def date_to_capture=(date_to_capture)
-      if !date_to_capture.nil? && date_to_capture.to_s.length > 4
-        fail ArgumentError, 'invalid value for "date_to_capture", the character length must be smaller than or equal to 4.'
-      end
-
       @date_to_capture = date_to_capture
     end
 

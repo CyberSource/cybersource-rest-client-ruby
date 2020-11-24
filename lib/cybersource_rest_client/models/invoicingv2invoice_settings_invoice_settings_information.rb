@@ -110,102 +110,48 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@merchant_logo.nil? && @merchant_logo.to_s.length > 10000000
-        invalid_properties.push('invalid value for "merchant_logo", the character length must be smaller than or equal to 10000000.')
-      end
-
-      if !@merchant_display_name.nil? && @merchant_display_name.to_s.length > 100
-        invalid_properties.push('invalid value for "merchant_display_name", the character length must be smaller than or equal to 100.')
-      end
-
-      if !@custom_email_message.nil? && @custom_email_message.to_s.length > 2000
-        invalid_properties.push('invalid value for "custom_email_message", the character length must be smaller than or equal to 2000.')
-      end
-
-      if !@delivery_language.nil? && @delivery_language.to_s.length > 6
-        invalid_properties.push('invalid value for "delivery_language", the character length must be smaller than or equal to 6.')
-      end
-
-      if !@default_currency_code.nil? && @default_currency_code.to_s.length > 3
-        invalid_properties.push('invalid value for "default_currency_code", the character length must be smaller than or equal to 3.')
-      end
-
-      if !@payer_authentication_in_invoicing.nil? && @payer_authentication_in_invoicing.to_s.length > 7
-        invalid_properties.push('invalid value for "payer_authentication_in_invoicing", the character length must be smaller than or equal to 7.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@merchant_logo.nil? && @merchant_logo.to_s.length > 10000000
-      return false if !@merchant_display_name.nil? && @merchant_display_name.to_s.length > 100
-      return false if !@custom_email_message.nil? && @custom_email_message.to_s.length > 2000
-      return false if !@delivery_language.nil? && @delivery_language.to_s.length > 6
-      return false if !@default_currency_code.nil? && @default_currency_code.to_s.length > 3
-      return false if !@payer_authentication_in_invoicing.nil? && @payer_authentication_in_invoicing.to_s.length > 7
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] merchant_logo Value to be assigned
     def merchant_logo=(merchant_logo)
-      if !merchant_logo.nil? && merchant_logo.to_s.length > 10000000
-        fail ArgumentError, 'invalid value for "merchant_logo", the character length must be smaller than or equal to 10000000.'
-      end
-
       @merchant_logo = merchant_logo
     end
 
     # Custom attribute writer method with validation
     # @param [Object] merchant_display_name Value to be assigned
     def merchant_display_name=(merchant_display_name)
-      if !merchant_display_name.nil? && merchant_display_name.to_s.length > 100
-        fail ArgumentError, 'invalid value for "merchant_display_name", the character length must be smaller than or equal to 100.'
-      end
-
       @merchant_display_name = merchant_display_name
     end
 
     # Custom attribute writer method with validation
     # @param [Object] custom_email_message Value to be assigned
     def custom_email_message=(custom_email_message)
-      if !custom_email_message.nil? && custom_email_message.to_s.length > 2000
-        fail ArgumentError, 'invalid value for "custom_email_message", the character length must be smaller than or equal to 2000.'
-      end
-
       @custom_email_message = custom_email_message
     end
 
     # Custom attribute writer method with validation
     # @param [Object] delivery_language Value to be assigned
     def delivery_language=(delivery_language)
-      if !delivery_language.nil? && delivery_language.to_s.length > 6
-        fail ArgumentError, 'invalid value for "delivery_language", the character length must be smaller than or equal to 6.'
-      end
-
       @delivery_language = delivery_language
     end
 
     # Custom attribute writer method with validation
     # @param [Object] default_currency_code Value to be assigned
     def default_currency_code=(default_currency_code)
-      if !default_currency_code.nil? && default_currency_code.to_s.length > 3
-        fail ArgumentError, 'invalid value for "default_currency_code", the character length must be smaller than or equal to 3.'
-      end
-
       @default_currency_code = default_currency_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] payer_authentication_in_invoicing Value to be assigned
     def payer_authentication_in_invoicing=(payer_authentication_in_invoicing)
-      if !payer_authentication_in_invoicing.nil? && payer_authentication_in_invoicing.to_s.length > 7
-        fail ArgumentError, 'invalid value for "payer_authentication_in_invoicing", the character length must be smaller than or equal to 7.'
-      end
-
       @payer_authentication_in_invoicing = payer_authentication_in_invoicing
     end
 

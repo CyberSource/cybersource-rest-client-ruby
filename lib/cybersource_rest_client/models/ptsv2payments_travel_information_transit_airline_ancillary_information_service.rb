@@ -57,42 +57,24 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@category_code.nil? && @category_code.to_s.length > 4
-        invalid_properties.push('invalid value for "category_code", the character length must be smaller than or equal to 4.')
-      end
-
-      if !@sub_category_code.nil? && @sub_category_code.to_s.length > 4
-        invalid_properties.push('invalid value for "sub_category_code", the character length must be smaller than or equal to 4.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@category_code.nil? && @category_code.to_s.length > 4
-      return false if !@sub_category_code.nil? && @sub_category_code.to_s.length > 4
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] category_code Value to be assigned
     def category_code=(category_code)
-      if !category_code.nil? && category_code.to_s.length > 4
-        fail ArgumentError, 'invalid value for "category_code", the character length must be smaller than or equal to 4.'
-      end
-
       @category_code = category_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] sub_category_code Value to be assigned
     def sub_category_code=(sub_category_code)
-      if !sub_category_code.nil? && sub_category_code.to_s.length > 4
-        fail ArgumentError, 'invalid value for "sub_category_code", the character length must be smaller than or equal to 4.'
-      end
-
       @sub_category_code = sub_category_code
     end
 

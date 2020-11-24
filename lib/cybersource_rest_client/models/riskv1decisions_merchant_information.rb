@@ -56,27 +56,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@merchant_name.nil? && @merchant_name.to_s.length > 25
-        invalid_properties.push('invalid value for "merchant_name", the character length must be smaller than or equal to 25.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@merchant_name.nil? && @merchant_name.to_s.length > 25
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] merchant_name Value to be assigned
     def merchant_name=(merchant_name)
-      if !merchant_name.nil? && merchant_name.to_s.length > 25
-        fail ArgumentError, 'invalid value for "merchant_name", the character length must be smaller than or equal to 25.'
-      end
-
       @merchant_name = merchant_name
     end
 

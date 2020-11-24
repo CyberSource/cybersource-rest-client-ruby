@@ -110,42 +110,24 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@pre_order_date.nil? && @pre_order_date.to_s.length > 10
-        invalid_properties.push('invalid value for "pre_order_date", the character length must be smaller than or equal to 10.')
-      end
-
-      if !@total_offers_count.nil? && @total_offers_count.to_s.length > 2
-        invalid_properties.push('invalid value for "total_offers_count", the character length must be smaller than or equal to 2.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@pre_order_date.nil? && @pre_order_date.to_s.length > 10
-      return false if !@total_offers_count.nil? && @total_offers_count.to_s.length > 2
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] pre_order_date Value to be assigned
     def pre_order_date=(pre_order_date)
-      if !pre_order_date.nil? && pre_order_date.to_s.length > 10
-        fail ArgumentError, 'invalid value for "pre_order_date", the character length must be smaller than or equal to 10.'
-      end
-
       @pre_order_date = pre_order_date
     end
 
     # Custom attribute writer method with validation
     # @param [Object] total_offers_count Value to be assigned
     def total_offers_count=(total_offers_count)
-      if !total_offers_count.nil? && total_offers_count.to_s.length > 2
-        fail ArgumentError, 'invalid value for "total_offers_count", the character length must be smaller than or equal to 2.'
-      end
-
       @total_offers_count = total_offers_count
     end
 

@@ -57,42 +57,24 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@merchant_customer_id.nil? && @merchant_customer_id.to_s.length > 100
-        invalid_properties.push('invalid value for "merchant_customer_id", the character length must be smaller than or equal to 100.')
-      end
-
-      if !@vat_registration_number.nil? && @vat_registration_number.to_s.length > 20
-        invalid_properties.push('invalid value for "vat_registration_number", the character length must be smaller than or equal to 20.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@merchant_customer_id.nil? && @merchant_customer_id.to_s.length > 100
-      return false if !@vat_registration_number.nil? && @vat_registration_number.to_s.length > 20
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] merchant_customer_id Value to be assigned
     def merchant_customer_id=(merchant_customer_id)
-      if !merchant_customer_id.nil? && merchant_customer_id.to_s.length > 100
-        fail ArgumentError, 'invalid value for "merchant_customer_id", the character length must be smaller than or equal to 100.'
-      end
-
       @merchant_customer_id = merchant_customer_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] vat_registration_number Value to be assigned
     def vat_registration_number=(vat_registration_number)
-      if !vat_registration_number.nil? && vat_registration_number.to_s.length > 20
-        fail ArgumentError, 'invalid value for "vat_registration_number", the character length must be smaller than or equal to 20.'
-      end
-
       @vat_registration_number = vat_registration_number
     end
 

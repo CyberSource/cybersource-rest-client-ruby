@@ -57,42 +57,24 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@requestor_id.nil? && @requestor_id.to_s.length > 11
-        invalid_properties.push('invalid value for "requestor_id", the character length must be smaller than or equal to 11.')
-      end
-
-      if !@transaction_type.nil? && @transaction_type.to_s.length > 1
-        invalid_properties.push('invalid value for "transaction_type", the character length must be smaller than or equal to 1.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@requestor_id.nil? && @requestor_id.to_s.length > 11
-      return false if !@transaction_type.nil? && @transaction_type.to_s.length > 1
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] requestor_id Value to be assigned
     def requestor_id=(requestor_id)
-      if !requestor_id.nil? && requestor_id.to_s.length > 11
-        fail ArgumentError, 'invalid value for "requestor_id", the character length must be smaller than or equal to 11.'
-      end
-
       @requestor_id = requestor_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] transaction_type Value to be assigned
     def transaction_type=(transaction_type)
-      if !transaction_type.nil? && transaction_type.to_s.length > 1
-        fail ArgumentError, 'invalid value for "transaction_type", the character length must be smaller than or equal to 1.'
-      end
-
       @transaction_type = transaction_type
     end
 

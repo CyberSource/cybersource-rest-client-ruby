@@ -66,57 +66,30 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@name.nil? && @name.to_s.length > 30
-        invalid_properties.push('invalid value for "name", the character length must be smaller than or equal to 30.')
-      end
-
-      if !@desination_queue.nil? && @desination_queue.to_s.length > 255
-        invalid_properties.push('invalid value for "desination_queue", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@selector_rule.nil? && @selector_rule.to_s.length > 255
-        invalid_properties.push('invalid value for "selector_rule", the character length must be smaller than or equal to 255.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@name.nil? && @name.to_s.length > 30
-      return false if !@desination_queue.nil? && @desination_queue.to_s.length > 255
-      return false if !@selector_rule.nil? && @selector_rule.to_s.length > 255
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] name Value to be assigned
     def name=(name)
-      if !name.nil? && name.to_s.length > 30
-        fail ArgumentError, 'invalid value for "name", the character length must be smaller than or equal to 30.'
-      end
-
       @name = name
     end
 
     # Custom attribute writer method with validation
     # @param [Object] desination_queue Value to be assigned
     def desination_queue=(desination_queue)
-      if !desination_queue.nil? && desination_queue.to_s.length > 255
-        fail ArgumentError, 'invalid value for "desination_queue", the character length must be smaller than or equal to 255.'
-      end
-
       @desination_queue = desination_queue
     end
 
     # Custom attribute writer method with validation
     # @param [Object] selector_rule Value to be assigned
     def selector_rule=(selector_rule)
-      if !selector_rule.nil? && selector_rule.to_s.length > 255
-        fail ArgumentError, 'invalid value for "selector_rule", the character length must be smaller than or equal to 255.'
-      end
-
       @selector_rule = selector_rule
     end
 

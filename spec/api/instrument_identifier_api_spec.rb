@@ -86,11 +86,24 @@ describe 'InstrumentIdentifierApi' do
 
   # unit tests for post_instrument_identifier
   # Create an Instrument Identifier
-  # @param post_instrument_identifier_request Please specify either a Card, Bank Account or Enrollable Card
+  # @param post_instrument_identifier_request Specify either a Card, Bank Account or Enrollable Card
   # @param [Hash] opts the optional parameters
   # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
   # @return [Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier]
   describe 'post_instrument_identifier test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for post_instrument_identifier_enrollment
+  # Enroll an Instrument Identifier for Network Tokenization
+  # @param instrument_identifier_token_id The TokenId of a Instrument Identifier.
+  # @param post_instrument_identifier_enrollment_request Specify Enrollable Card details
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+  # @return [nil]
+  describe 'post_instrument_identifier_enrollment test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

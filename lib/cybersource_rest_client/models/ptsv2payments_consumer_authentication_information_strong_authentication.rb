@@ -93,102 +93,48 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@low_value_exemption_indicator.nil? && @low_value_exemption_indicator.to_s.length > 1
-        invalid_properties.push('invalid value for "low_value_exemption_indicator", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@risk_analysis_exemption_indicator.nil? && @risk_analysis_exemption_indicator.to_s.length > 1
-        invalid_properties.push('invalid value for "risk_analysis_exemption_indicator", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@trusted_merchant_exemption_indicator.nil? && @trusted_merchant_exemption_indicator.to_s.length > 1
-        invalid_properties.push('invalid value for "trusted_merchant_exemption_indicator", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@secure_corporate_payment_indicator.nil? && @secure_corporate_payment_indicator.to_s.length > 1
-        invalid_properties.push('invalid value for "secure_corporate_payment_indicator", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@delegated_authentication_exemption_indicator.nil? && @delegated_authentication_exemption_indicator.to_s.length > 1
-        invalid_properties.push('invalid value for "delegated_authentication_exemption_indicator", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@authentication_indicator.nil? && @authentication_indicator.to_s.length > 2
-        invalid_properties.push('invalid value for "authentication_indicator", the character length must be smaller than or equal to 2.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@low_value_exemption_indicator.nil? && @low_value_exemption_indicator.to_s.length > 1
-      return false if !@risk_analysis_exemption_indicator.nil? && @risk_analysis_exemption_indicator.to_s.length > 1
-      return false if !@trusted_merchant_exemption_indicator.nil? && @trusted_merchant_exemption_indicator.to_s.length > 1
-      return false if !@secure_corporate_payment_indicator.nil? && @secure_corporate_payment_indicator.to_s.length > 1
-      return false if !@delegated_authentication_exemption_indicator.nil? && @delegated_authentication_exemption_indicator.to_s.length > 1
-      return false if !@authentication_indicator.nil? && @authentication_indicator.to_s.length > 2
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] low_value_exemption_indicator Value to be assigned
     def low_value_exemption_indicator=(low_value_exemption_indicator)
-      if !low_value_exemption_indicator.nil? && low_value_exemption_indicator.to_s.length > 1
-        fail ArgumentError, 'invalid value for "low_value_exemption_indicator", the character length must be smaller than or equal to 1.'
-      end
-
       @low_value_exemption_indicator = low_value_exemption_indicator
     end
 
     # Custom attribute writer method with validation
     # @param [Object] risk_analysis_exemption_indicator Value to be assigned
     def risk_analysis_exemption_indicator=(risk_analysis_exemption_indicator)
-      if !risk_analysis_exemption_indicator.nil? && risk_analysis_exemption_indicator.to_s.length > 1
-        fail ArgumentError, 'invalid value for "risk_analysis_exemption_indicator", the character length must be smaller than or equal to 1.'
-      end
-
       @risk_analysis_exemption_indicator = risk_analysis_exemption_indicator
     end
 
     # Custom attribute writer method with validation
     # @param [Object] trusted_merchant_exemption_indicator Value to be assigned
     def trusted_merchant_exemption_indicator=(trusted_merchant_exemption_indicator)
-      if !trusted_merchant_exemption_indicator.nil? && trusted_merchant_exemption_indicator.to_s.length > 1
-        fail ArgumentError, 'invalid value for "trusted_merchant_exemption_indicator", the character length must be smaller than or equal to 1.'
-      end
-
       @trusted_merchant_exemption_indicator = trusted_merchant_exemption_indicator
     end
 
     # Custom attribute writer method with validation
     # @param [Object] secure_corporate_payment_indicator Value to be assigned
     def secure_corporate_payment_indicator=(secure_corporate_payment_indicator)
-      if !secure_corporate_payment_indicator.nil? && secure_corporate_payment_indicator.to_s.length > 1
-        fail ArgumentError, 'invalid value for "secure_corporate_payment_indicator", the character length must be smaller than or equal to 1.'
-      end
-
       @secure_corporate_payment_indicator = secure_corporate_payment_indicator
     end
 
     # Custom attribute writer method with validation
     # @param [Object] delegated_authentication_exemption_indicator Value to be assigned
     def delegated_authentication_exemption_indicator=(delegated_authentication_exemption_indicator)
-      if !delegated_authentication_exemption_indicator.nil? && delegated_authentication_exemption_indicator.to_s.length > 1
-        fail ArgumentError, 'invalid value for "delegated_authentication_exemption_indicator", the character length must be smaller than or equal to 1.'
-      end
-
       @delegated_authentication_exemption_indicator = delegated_authentication_exemption_indicator
     end
 
     # Custom attribute writer method with validation
     # @param [Object] authentication_indicator Value to be assigned
     def authentication_indicator=(authentication_indicator)
-      if !authentication_indicator.nil? && authentication_indicator.to_s.length > 2
-        fail ArgumentError, 'invalid value for "authentication_indicator", the character length must be smaller than or equal to 2.'
-      end
-
       @authentication_indicator = authentication_indicator
     end
 

@@ -80,27 +80,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@duration.nil? && @duration.to_s.length > 2
-        invalid_properties.push('invalid value for "duration", the character length must be smaller than or equal to 2.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@duration.nil? && @duration.to_s.length > 2
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] duration Value to be assigned
     def duration=(duration)
-      if !duration.nil? && duration.to_s.length > 2
-        fail ArgumentError, 'invalid value for "duration", the character length must be smaller than or equal to 2.'
-      end
-
       @duration = duration
     end
 

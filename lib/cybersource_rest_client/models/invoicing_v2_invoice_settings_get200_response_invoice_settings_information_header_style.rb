@@ -57,17 +57,9 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@font_color.nil? && @font_color.to_s.length > 7
-        invalid_properties.push('invalid value for "font_color", the character length must be smaller than or equal to 7.')
-      end
-
       #if !@font_color.nil? && @font_color !~ Regexp.new(/^#(?:[0-9a-fA-F]{3}){1,2}$/)
         #invalid_properties.push('invalid value for "font_color", must conform to the pattern /^#(?:[0-9a-fA-F]{3}){1,2}$/.')
       #end
-
-      if !@background_color.nil? && @background_color.to_s.length > 7
-        invalid_properties.push('invalid value for "background_color", the character length must be smaller than or equal to 7.')
-      end
 
       #if !@background_color.nil? && @background_color !~ Regexp.new(/^#(?:[0-9a-fA-F]{3}){1,2}$/)
         #invalid_properties.push('invalid value for "background_color", must conform to the pattern /^#(?:[0-9a-fA-F]{3}){1,2}$/.')
@@ -79,9 +71,7 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@font_color.nil? && @font_color.to_s.length > 7
       #return false if !@font_color.nil? && @font_color !~ Regexp.new(/^#(?:[0-9a-fA-F]{3}){1,2}$/)
-      return false if !@background_color.nil? && @background_color.to_s.length > 7
       #return false if !@background_color.nil? && @background_color !~ Regexp.new(/^#(?:[0-9a-fA-F]{3}){1,2}$/)
       true
     end
@@ -89,10 +79,6 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] font_color Value to be assigned
     def font_color=(font_color)
-      if !font_color.nil? && font_color.to_s.length > 7
-        fail ArgumentError, 'invalid value for "font_color", the character length must be smaller than or equal to 7.'
-      end
-
       #if !font_color.nil? && font_color !~ Regexp.new(/^#(?:[0-9a-fA-F]{3}){1,2}$/)
         #fail ArgumentError, 'invalid value for "font_color", must conform to the pattern /^#(?:[0-9a-fA-F]{3}){1,2}$/.'
       #end
@@ -103,10 +89,6 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] background_color Value to be assigned
     def background_color=(background_color)
-      if !background_color.nil? && background_color.to_s.length > 7
-        fail ArgumentError, 'invalid value for "background_color", the character length must be smaller than or equal to 7.'
-      end
-
       #if !background_color.nil? && background_color !~ Regexp.new(/^#(?:[0-9a-fA-F]{3}){1,2}$/)
         #fail ArgumentError, 'invalid value for "background_color", must conform to the pattern /^#(?:[0-9a-fA-F]{3}){1,2}$/.'
       #end

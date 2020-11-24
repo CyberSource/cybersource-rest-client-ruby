@@ -66,42 +66,24 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@payment_solution.nil? && @payment_solution.to_s.length > 12
-        invalid_properties.push('invalid value for "payment_solution", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@commerce_indicator.nil? && @commerce_indicator.to_s.length > 20
-        invalid_properties.push('invalid value for "commerce_indicator", the character length must be smaller than or equal to 20.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@payment_solution.nil? && @payment_solution.to_s.length > 12
-      return false if !@commerce_indicator.nil? && @commerce_indicator.to_s.length > 20
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] payment_solution Value to be assigned
     def payment_solution=(payment_solution)
-      if !payment_solution.nil? && payment_solution.to_s.length > 12
-        fail ArgumentError, 'invalid value for "payment_solution", the character length must be smaller than or equal to 12.'
-      end
-
       @payment_solution = payment_solution
     end
 
     # Custom attribute writer method with validation
     # @param [Object] commerce_indicator Value to be assigned
     def commerce_indicator=(commerce_indicator)
-      if !commerce_indicator.nil? && commerce_indicator.to_s.length > 20
-        fail ArgumentError, 'invalid value for "commerce_indicator", the character length must be smaller than or equal to 20.'
-      end
-
       @commerce_indicator = commerce_indicator
     end
 

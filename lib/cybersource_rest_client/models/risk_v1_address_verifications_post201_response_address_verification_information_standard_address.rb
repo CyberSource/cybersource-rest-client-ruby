@@ -137,162 +137,72 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@address2.nil? && @address2.to_s.length > 255
-        invalid_properties.push('invalid value for "address2", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@address3.nil? && @address3.to_s.length > 255
-        invalid_properties.push('invalid value for "address3", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@address4.nil? && @address4.to_s.length > 255
-        invalid_properties.push('invalid value for "address4", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@locality.nil? && @locality.to_s.length > 255
-        invalid_properties.push('invalid value for "locality", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@county.nil? && @county.to_s.length > 255
-        invalid_properties.push('invalid value for "county", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@country.nil? && @country.to_s.length > 255
-        invalid_properties.push('invalid value for "country", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@csz.nil? && @csz.to_s.length > 255
-        invalid_properties.push('invalid value for "csz", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@iso_country.nil? && @iso_country.to_s.length > 255
-        invalid_properties.push('invalid value for "iso_country", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@administrative_area.nil? && @administrative_area.to_s.length > 255
-        invalid_properties.push('invalid value for "administrative_area", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@postal_code.nil? && @postal_code.to_s.length > 255
-        invalid_properties.push('invalid value for "postal_code", the character length must be smaller than or equal to 255.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@address2.nil? && @address2.to_s.length > 255
-      return false if !@address3.nil? && @address3.to_s.length > 255
-      return false if !@address4.nil? && @address4.to_s.length > 255
-      return false if !@locality.nil? && @locality.to_s.length > 255
-      return false if !@county.nil? && @county.to_s.length > 255
-      return false if !@country.nil? && @country.to_s.length > 255
-      return false if !@csz.nil? && @csz.to_s.length > 255
-      return false if !@iso_country.nil? && @iso_country.to_s.length > 255
-      return false if !@administrative_area.nil? && @administrative_area.to_s.length > 255
-      return false if !@postal_code.nil? && @postal_code.to_s.length > 255
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] address2 Value to be assigned
     def address2=(address2)
-      if !address2.nil? && address2.to_s.length > 255
-        fail ArgumentError, 'invalid value for "address2", the character length must be smaller than or equal to 255.'
-      end
-
       @address2 = address2
     end
 
     # Custom attribute writer method with validation
     # @param [Object] address3 Value to be assigned
     def address3=(address3)
-      if !address3.nil? && address3.to_s.length > 255
-        fail ArgumentError, 'invalid value for "address3", the character length must be smaller than or equal to 255.'
-      end
-
       @address3 = address3
     end
 
     # Custom attribute writer method with validation
     # @param [Object] address4 Value to be assigned
     def address4=(address4)
-      if !address4.nil? && address4.to_s.length > 255
-        fail ArgumentError, 'invalid value for "address4", the character length must be smaller than or equal to 255.'
-      end
-
       @address4 = address4
     end
 
     # Custom attribute writer method with validation
     # @param [Object] locality Value to be assigned
     def locality=(locality)
-      if !locality.nil? && locality.to_s.length > 255
-        fail ArgumentError, 'invalid value for "locality", the character length must be smaller than or equal to 255.'
-      end
-
       @locality = locality
     end
 
     # Custom attribute writer method with validation
     # @param [Object] county Value to be assigned
     def county=(county)
-      if !county.nil? && county.to_s.length > 255
-        fail ArgumentError, 'invalid value for "county", the character length must be smaller than or equal to 255.'
-      end
-
       @county = county
     end
 
     # Custom attribute writer method with validation
     # @param [Object] country Value to be assigned
     def country=(country)
-      if !country.nil? && country.to_s.length > 255
-        fail ArgumentError, 'invalid value for "country", the character length must be smaller than or equal to 255.'
-      end
-
       @country = country
     end
 
     # Custom attribute writer method with validation
     # @param [Object] csz Value to be assigned
     def csz=(csz)
-      if !csz.nil? && csz.to_s.length > 255
-        fail ArgumentError, 'invalid value for "csz", the character length must be smaller than or equal to 255.'
-      end
-
       @csz = csz
     end
 
     # Custom attribute writer method with validation
     # @param [Object] iso_country Value to be assigned
     def iso_country=(iso_country)
-      if !iso_country.nil? && iso_country.to_s.length > 255
-        fail ArgumentError, 'invalid value for "iso_country", the character length must be smaller than or equal to 255.'
-      end
-
       @iso_country = iso_country
     end
 
     # Custom attribute writer method with validation
     # @param [Object] administrative_area Value to be assigned
     def administrative_area=(administrative_area)
-      if !administrative_area.nil? && administrative_area.to_s.length > 255
-        fail ArgumentError, 'invalid value for "administrative_area", the character length must be smaller than or equal to 255.'
-      end
-
       @administrative_area = administrative_area
     end
 
     # Custom attribute writer method with validation
     # @param [Object] postal_code Value to be assigned
     def postal_code=(postal_code)
-      if !postal_code.nil? && postal_code.to_s.length > 255
-        fail ArgumentError, 'invalid value for "postal_code", the character length must be smaller than or equal to 255.'
-      end
-
       @postal_code = postal_code
     end
 

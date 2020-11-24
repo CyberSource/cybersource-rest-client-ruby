@@ -265,28 +265,12 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@terminal_id.nil? && @terminal_id.to_s.length > 8
-        invalid_properties.push('invalid value for "terminal_id", the character length must be smaller than or equal to 8.')
-      end
-
-      if !@terminal_serial_number.nil? && @terminal_serial_number.to_s.length > 32
-        invalid_properties.push('invalid value for "terminal_serial_number", the character length must be smaller than or equal to 32.')
-      end
-
-      if !@lane_number.nil? && @lane_number.to_s.length > 8
-        invalid_properties.push('invalid value for "lane_number", the character length must be smaller than or equal to 8.')
-      end
-
       if !@cat_level.nil? && @cat_level > 9
         invalid_properties.push('invalid value for "cat_level", must be smaller than or equal to 9.')
       end
 
       if !@cat_level.nil? && @cat_level < 1
         invalid_properties.push('invalid value for "cat_level", must be greater than or equal to 1.')
-      end
-
-      if !@entry_mode.nil? && @entry_mode.to_s.length > 11
-        invalid_properties.push('invalid value for "entry_mode", the character length must be smaller than or equal to 11.')
       end
 
       if !@terminal_capability.nil? && @terminal_capability > 5
@@ -305,56 +289,8 @@ module CyberSource
         invalid_properties.push('invalid value for "pin_entry_capability", must be greater than or equal to 1.')
       end
 
-      if !@operating_environment.nil? && @operating_environment.to_s.length > 1
-        invalid_properties.push('invalid value for "operating_environment", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@amex_capn_data.nil? && @amex_capn_data.to_s.length > 15
-        invalid_properties.push('invalid value for "amex_capn_data", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@store_and_forward_indicator.nil? && @store_and_forward_indicator.to_s.length > 1
-        invalid_properties.push('invalid value for "store_and_forward_indicator", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@terminal_card_capture_capability.nil? && @terminal_card_capture_capability.to_s.length > 1
-        invalid_properties.push('invalid value for "terminal_card_capture_capability", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@terminal_output_capability.nil? && @terminal_output_capability.to_s.length > 1
-        invalid_properties.push('invalid value for "terminal_output_capability", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@device_id.nil? && @device_id.to_s.length > 32
-        invalid_properties.push('invalid value for "device_id", the character length must be smaller than or equal to 32.')
-      end
-
       if !@pin_block_encoding_format.nil? && @pin_block_encoding_format > 9
         invalid_properties.push('invalid value for "pin_block_encoding_format", must be smaller than or equal to 9.')
-      end
-
-      if !@encrypted_pin.nil? && @encrypted_pin.to_s.length > 16
-        invalid_properties.push('invalid value for "encrypted_pin", the character length must be smaller than or equal to 16.')
-      end
-
-      if !@encrypted_key_serial_number.nil? && @encrypted_key_serial_number.to_s.length > 20
-        invalid_properties.push('invalid value for "encrypted_key_serial_number", the character length must be smaller than or equal to 20.')
-      end
-
-      if !@partner_sdk_version.nil? && @partner_sdk_version.to_s.length > 32
-        invalid_properties.push('invalid value for "partner_sdk_version", the character length must be smaller than or equal to 32.')
-      end
-
-      if !@emv_application_identifier_and_dedicated_file_name.nil? && @emv_application_identifier_and_dedicated_file_name.to_s.length > 32
-        invalid_properties.push('invalid value for "emv_application_identifier_and_dedicated_file_name", the character length must be smaller than or equal to 32.')
-      end
-
-      if !@terminal_compliance.nil? && @terminal_compliance.to_s.length > 2
-        invalid_properties.push('invalid value for "terminal_compliance", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@is_dedicated_hardware_terminal.nil? && @is_dedicated_hardware_terminal.to_s.length > 1
-        invalid_properties.push('invalid value for "is_dedicated_hardware_terminal", the character length must be smaller than or equal to 1.')
       end
 
       invalid_properties
@@ -363,59 +299,31 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@terminal_id.nil? && @terminal_id.to_s.length > 8
-      return false if !@terminal_serial_number.nil? && @terminal_serial_number.to_s.length > 32
-      return false if !@lane_number.nil? && @lane_number.to_s.length > 8
       return false if !@cat_level.nil? && @cat_level > 9
       return false if !@cat_level.nil? && @cat_level < 1
-      return false if !@entry_mode.nil? && @entry_mode.to_s.length > 11
       return false if !@terminal_capability.nil? && @terminal_capability > 5
       return false if !@terminal_capability.nil? && @terminal_capability < 1
       return false if !@pin_entry_capability.nil? && @pin_entry_capability > 1
       return false if !@pin_entry_capability.nil? && @pin_entry_capability < 1
-      return false if !@operating_environment.nil? && @operating_environment.to_s.length > 1
-      return false if !@amex_capn_data.nil? && @amex_capn_data.to_s.length > 15
-      return false if !@store_and_forward_indicator.nil? && @store_and_forward_indicator.to_s.length > 1
-      return false if !@terminal_card_capture_capability.nil? && @terminal_card_capture_capability.to_s.length > 1
-      return false if !@terminal_output_capability.nil? && @terminal_output_capability.to_s.length > 1
-      return false if !@device_id.nil? && @device_id.to_s.length > 32
       return false if !@pin_block_encoding_format.nil? && @pin_block_encoding_format > 9
-      return false if !@encrypted_pin.nil? && @encrypted_pin.to_s.length > 16
-      return false if !@encrypted_key_serial_number.nil? && @encrypted_key_serial_number.to_s.length > 20
-      return false if !@partner_sdk_version.nil? && @partner_sdk_version.to_s.length > 32
-      return false if !@emv_application_identifier_and_dedicated_file_name.nil? && @emv_application_identifier_and_dedicated_file_name.to_s.length > 32
-      return false if !@terminal_compliance.nil? && @terminal_compliance.to_s.length > 2
-      return false if !@is_dedicated_hardware_terminal.nil? && @is_dedicated_hardware_terminal.to_s.length > 1
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] terminal_id Value to be assigned
     def terminal_id=(terminal_id)
-      if !terminal_id.nil? && terminal_id.to_s.length > 8
-        fail ArgumentError, 'invalid value for "terminal_id", the character length must be smaller than or equal to 8.'
-      end
-
       @terminal_id = terminal_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] terminal_serial_number Value to be assigned
     def terminal_serial_number=(terminal_serial_number)
-      if !terminal_serial_number.nil? && terminal_serial_number.to_s.length > 32
-        fail ArgumentError, 'invalid value for "terminal_serial_number", the character length must be smaller than or equal to 32.'
-      end
-
       @terminal_serial_number = terminal_serial_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] lane_number Value to be assigned
     def lane_number=(lane_number)
-      if !lane_number.nil? && lane_number.to_s.length > 8
-        fail ArgumentError, 'invalid value for "lane_number", the character length must be smaller than or equal to 8.'
-      end
-
       @lane_number = lane_number
     end
 
@@ -436,10 +344,6 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] entry_mode Value to be assigned
     def entry_mode=(entry_mode)
-      if !entry_mode.nil? && entry_mode.to_s.length > 11
-        fail ArgumentError, 'invalid value for "entry_mode", the character length must be smaller than or equal to 11.'
-      end
-
       @entry_mode = entry_mode
     end
 
@@ -474,60 +378,36 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] operating_environment Value to be assigned
     def operating_environment=(operating_environment)
-      if !operating_environment.nil? && operating_environment.to_s.length > 1
-        fail ArgumentError, 'invalid value for "operating_environment", the character length must be smaller than or equal to 1.'
-      end
-
       @operating_environment = operating_environment
     end
 
     # Custom attribute writer method with validation
     # @param [Object] amex_capn_data Value to be assigned
     def amex_capn_data=(amex_capn_data)
-      if !amex_capn_data.nil? && amex_capn_data.to_s.length > 15
-        fail ArgumentError, 'invalid value for "amex_capn_data", the character length must be smaller than or equal to 15.'
-      end
-
       @amex_capn_data = amex_capn_data
     end
 
     # Custom attribute writer method with validation
     # @param [Object] store_and_forward_indicator Value to be assigned
     def store_and_forward_indicator=(store_and_forward_indicator)
-      if !store_and_forward_indicator.nil? && store_and_forward_indicator.to_s.length > 1
-        fail ArgumentError, 'invalid value for "store_and_forward_indicator", the character length must be smaller than or equal to 1.'
-      end
-
       @store_and_forward_indicator = store_and_forward_indicator
     end
 
     # Custom attribute writer method with validation
     # @param [Object] terminal_card_capture_capability Value to be assigned
     def terminal_card_capture_capability=(terminal_card_capture_capability)
-      if !terminal_card_capture_capability.nil? && terminal_card_capture_capability.to_s.length > 1
-        fail ArgumentError, 'invalid value for "terminal_card_capture_capability", the character length must be smaller than or equal to 1.'
-      end
-
       @terminal_card_capture_capability = terminal_card_capture_capability
     end
 
     # Custom attribute writer method with validation
     # @param [Object] terminal_output_capability Value to be assigned
     def terminal_output_capability=(terminal_output_capability)
-      if !terminal_output_capability.nil? && terminal_output_capability.to_s.length > 1
-        fail ArgumentError, 'invalid value for "terminal_output_capability", the character length must be smaller than or equal to 1.'
-      end
-
       @terminal_output_capability = terminal_output_capability
     end
 
     # Custom attribute writer method with validation
     # @param [Object] device_id Value to be assigned
     def device_id=(device_id)
-      if !device_id.nil? && device_id.to_s.length > 32
-        fail ArgumentError, 'invalid value for "device_id", the character length must be smaller than or equal to 32.'
-      end
-
       @device_id = device_id
     end
 
@@ -544,60 +424,36 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] encrypted_pin Value to be assigned
     def encrypted_pin=(encrypted_pin)
-      if !encrypted_pin.nil? && encrypted_pin.to_s.length > 16
-        fail ArgumentError, 'invalid value for "encrypted_pin", the character length must be smaller than or equal to 16.'
-      end
-
       @encrypted_pin = encrypted_pin
     end
 
     # Custom attribute writer method with validation
     # @param [Object] encrypted_key_serial_number Value to be assigned
     def encrypted_key_serial_number=(encrypted_key_serial_number)
-      if !encrypted_key_serial_number.nil? && encrypted_key_serial_number.to_s.length > 20
-        fail ArgumentError, 'invalid value for "encrypted_key_serial_number", the character length must be smaller than or equal to 20.'
-      end
-
       @encrypted_key_serial_number = encrypted_key_serial_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] partner_sdk_version Value to be assigned
     def partner_sdk_version=(partner_sdk_version)
-      if !partner_sdk_version.nil? && partner_sdk_version.to_s.length > 32
-        fail ArgumentError, 'invalid value for "partner_sdk_version", the character length must be smaller than or equal to 32.'
-      end
-
       @partner_sdk_version = partner_sdk_version
     end
 
     # Custom attribute writer method with validation
     # @param [Object] emv_application_identifier_and_dedicated_file_name Value to be assigned
     def emv_application_identifier_and_dedicated_file_name=(emv_application_identifier_and_dedicated_file_name)
-      if !emv_application_identifier_and_dedicated_file_name.nil? && emv_application_identifier_and_dedicated_file_name.to_s.length > 32
-        fail ArgumentError, 'invalid value for "emv_application_identifier_and_dedicated_file_name", the character length must be smaller than or equal to 32.'
-      end
-
       @emv_application_identifier_and_dedicated_file_name = emv_application_identifier_and_dedicated_file_name
     end
 
     # Custom attribute writer method with validation
     # @param [Object] terminal_compliance Value to be assigned
     def terminal_compliance=(terminal_compliance)
-      if !terminal_compliance.nil? && terminal_compliance.to_s.length > 2
-        fail ArgumentError, 'invalid value for "terminal_compliance", the character length must be smaller than or equal to 2.'
-      end
-
       @terminal_compliance = terminal_compliance
     end
 
     # Custom attribute writer method with validation
     # @param [Object] is_dedicated_hardware_terminal Value to be assigned
     def is_dedicated_hardware_terminal=(is_dedicated_hardware_terminal)
-      if !is_dedicated_hardware_terminal.nil? && is_dedicated_hardware_terminal.to_s.length > 1
-        fail ArgumentError, 'invalid value for "is_dedicated_hardware_terminal", the character length must be smaller than or equal to 1.'
-      end
-
       @is_dedicated_hardware_terminal = is_dedicated_hardware_terminal
     end
 

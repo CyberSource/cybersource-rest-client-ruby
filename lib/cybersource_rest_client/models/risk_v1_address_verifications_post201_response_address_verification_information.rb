@@ -109,87 +109,42 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@address_type.nil? && @address_type.to_s.length > 255
-        invalid_properties.push('invalid value for "address_type", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@applicable_region.nil? && @applicable_region.to_s.length > 255
-        invalid_properties.push('invalid value for "applicable_region", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@error_code.nil? && @error_code.to_s.length > 255
-        invalid_properties.push('invalid value for "error_code", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@status_code.nil? && @status_code.to_s.length > 255
-        invalid_properties.push('invalid value for "status_code", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@care_of.nil? && @care_of.to_s.length > 255
-        invalid_properties.push('invalid value for "care_of", the character length must be smaller than or equal to 255.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@address_type.nil? && @address_type.to_s.length > 255
-      return false if !@applicable_region.nil? && @applicable_region.to_s.length > 255
-      return false if !@error_code.nil? && @error_code.to_s.length > 255
-      return false if !@status_code.nil? && @status_code.to_s.length > 255
-      return false if !@care_of.nil? && @care_of.to_s.length > 255
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] address_type Value to be assigned
     def address_type=(address_type)
-      if !address_type.nil? && address_type.to_s.length > 255
-        fail ArgumentError, 'invalid value for "address_type", the character length must be smaller than or equal to 255.'
-      end
-
       @address_type = address_type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] applicable_region Value to be assigned
     def applicable_region=(applicable_region)
-      if !applicable_region.nil? && applicable_region.to_s.length > 255
-        fail ArgumentError, 'invalid value for "applicable_region", the character length must be smaller than or equal to 255.'
-      end
-
       @applicable_region = applicable_region
     end
 
     # Custom attribute writer method with validation
     # @param [Object] error_code Value to be assigned
     def error_code=(error_code)
-      if !error_code.nil? && error_code.to_s.length > 255
-        fail ArgumentError, 'invalid value for "error_code", the character length must be smaller than or equal to 255.'
-      end
-
       @error_code = error_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] status_code Value to be assigned
     def status_code=(status_code)
-      if !status_code.nil? && status_code.to_s.length > 255
-        fail ArgumentError, 'invalid value for "status_code", the character length must be smaller than or equal to 255.'
-      end
-
       @status_code = status_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] care_of Value to be assigned
     def care_of=(care_of)
-      if !care_of.nil? && care_of.to_s.length > 255
-        fail ArgumentError, 'invalid value for "care_of", the character length must be smaller than or equal to 255.'
-      end
-
       @care_of = care_of
     end
 

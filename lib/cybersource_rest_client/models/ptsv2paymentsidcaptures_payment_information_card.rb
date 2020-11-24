@@ -57,42 +57,24 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@source_account_type.nil? && @source_account_type.to_s.length > 20
-        invalid_properties.push('invalid value for "source_account_type", the character length must be smaller than or equal to 20.')
-      end
-
-      if !@source_account_type_details.nil? && @source_account_type_details.to_s.length > 4
-        invalid_properties.push('invalid value for "source_account_type_details", the character length must be smaller than or equal to 4.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@source_account_type.nil? && @source_account_type.to_s.length > 20
-      return false if !@source_account_type_details.nil? && @source_account_type_details.to_s.length > 4
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] source_account_type Value to be assigned
     def source_account_type=(source_account_type)
-      if !source_account_type.nil? && source_account_type.to_s.length > 20
-        fail ArgumentError, 'invalid value for "source_account_type", the character length must be smaller than or equal to 20.'
-      end
-
       @source_account_type = source_account_type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] source_account_type_details Value to be assigned
     def source_account_type_details=(source_account_type_details)
-      if !source_account_type_details.nil? && source_account_type_details.to_s.length > 4
-        fail ArgumentError, 'invalid value for "source_account_type_details", the character length must be smaller than or equal to 4.'
-      end
-
       @source_account_type_details = source_account_type_details
     end
 

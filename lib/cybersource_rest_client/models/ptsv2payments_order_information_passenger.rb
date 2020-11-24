@@ -112,132 +112,60 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@type.nil? && @type.to_s.length > 32
-        invalid_properties.push('invalid value for "type", the character length must be smaller than or equal to 32.')
-      end
-
-      if !@status.nil? && @status.to_s.length > 32
-        invalid_properties.push('invalid value for "status", the character length must be smaller than or equal to 32.')
-      end
-
-      if !@phone.nil? && @phone.to_s.length > 15
-        invalid_properties.push('invalid value for "phone", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@first_name.nil? && @first_name.to_s.length > 60
-        invalid_properties.push('invalid value for "first_name", the character length must be smaller than or equal to 60.')
-      end
-
-      if !@last_name.nil? && @last_name.to_s.length > 60
-        invalid_properties.push('invalid value for "last_name", the character length must be smaller than or equal to 60.')
-      end
-
-      if !@id.nil? && @id.to_s.length > 40
-        invalid_properties.push('invalid value for "id", the character length must be smaller than or equal to 40.')
-      end
-
-      if !@email.nil? && @email.to_s.length > 255
-        invalid_properties.push('invalid value for "email", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@nationality.nil? && @nationality.to_s.length > 2
-        invalid_properties.push('invalid value for "nationality", the character length must be smaller than or equal to 2.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@type.nil? && @type.to_s.length > 32
-      return false if !@status.nil? && @status.to_s.length > 32
-      return false if !@phone.nil? && @phone.to_s.length > 15
-      return false if !@first_name.nil? && @first_name.to_s.length > 60
-      return false if !@last_name.nil? && @last_name.to_s.length > 60
-      return false if !@id.nil? && @id.to_s.length > 40
-      return false if !@email.nil? && @email.to_s.length > 255
-      return false if !@nationality.nil? && @nationality.to_s.length > 2
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] type Value to be assigned
     def type=(type)
-      if !type.nil? && type.to_s.length > 32
-        fail ArgumentError, 'invalid value for "type", the character length must be smaller than or equal to 32.'
-      end
-
       @type = type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] status Value to be assigned
     def status=(status)
-      if !status.nil? && status.to_s.length > 32
-        fail ArgumentError, 'invalid value for "status", the character length must be smaller than or equal to 32.'
-      end
-
       @status = status
     end
 
     # Custom attribute writer method with validation
     # @param [Object] phone Value to be assigned
     def phone=(phone)
-      if !phone.nil? && phone.to_s.length > 15
-        fail ArgumentError, 'invalid value for "phone", the character length must be smaller than or equal to 15.'
-      end
-
       @phone = phone
     end
 
     # Custom attribute writer method with validation
     # @param [Object] first_name Value to be assigned
     def first_name=(first_name)
-      if !first_name.nil? && first_name.to_s.length > 60
-        fail ArgumentError, 'invalid value for "first_name", the character length must be smaller than or equal to 60.'
-      end
-
       @first_name = first_name
     end
 
     # Custom attribute writer method with validation
     # @param [Object] last_name Value to be assigned
     def last_name=(last_name)
-      if !last_name.nil? && last_name.to_s.length > 60
-        fail ArgumentError, 'invalid value for "last_name", the character length must be smaller than or equal to 60.'
-      end
-
       @last_name = last_name
     end
 
     # Custom attribute writer method with validation
     # @param [Object] id Value to be assigned
     def id=(id)
-      if !id.nil? && id.to_s.length > 40
-        fail ArgumentError, 'invalid value for "id", the character length must be smaller than or equal to 40.'
-      end
-
       @id = id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] email Value to be assigned
     def email=(email)
-      if !email.nil? && email.to_s.length > 255
-        fail ArgumentError, 'invalid value for "email", the character length must be smaller than or equal to 255.'
-      end
-
       @email = email
     end
 
     # Custom attribute writer method with validation
     # @param [Object] nationality Value to be assigned
     def nationality=(nationality)
-      if !nationality.nil? && nationality.to_s.length > 2
-        fail ArgumentError, 'invalid value for "nationality", the character length must be smaller than or equal to 2.'
-      end
-
       @nationality = nationality
     end
 

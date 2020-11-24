@@ -264,327 +264,138 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@total_amount.nil? && @total_amount.to_s.length > 19
-        invalid_properties.push('invalid value for "total_amount", the character length must be smaller than or equal to 19.')
-      end
-
-      if !@currency.nil? && @currency.to_s.length > 3
-        invalid_properties.push('invalid value for "currency", the character length must be smaller than or equal to 3.')
-      end
-
-      if !@discount_amount.nil? && @discount_amount.to_s.length > 15
-        invalid_properties.push('invalid value for "discount_amount", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@duty_amount.nil? && @duty_amount.to_s.length > 15
-        invalid_properties.push('invalid value for "duty_amount", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@gratuity_amount.nil? && @gratuity_amount.to_s.length > 13
-        invalid_properties.push('invalid value for "gratuity_amount", the character length must be smaller than or equal to 13.')
-      end
-
-      if !@tax_amount.nil? && @tax_amount.to_s.length > 12
-        invalid_properties.push('invalid value for "tax_amount", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@national_tax_included.nil? && @national_tax_included.to_s.length > 1
-        invalid_properties.push('invalid value for "national_tax_included", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@tax_applied_after_discount.nil? && @tax_applied_after_discount.to_s.length > 1
-        invalid_properties.push('invalid value for "tax_applied_after_discount", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@tax_applied_level.nil? && @tax_applied_level.to_s.length > 1
-        invalid_properties.push('invalid value for "tax_applied_level", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@tax_type_code.nil? && @tax_type_code.to_s.length > 3
-        invalid_properties.push('invalid value for "tax_type_code", the character length must be smaller than or equal to 3.')
-      end
-
-      if !@freight_amount.nil? && @freight_amount.to_s.length > 13
-        invalid_properties.push('invalid value for "freight_amount", the character length must be smaller than or equal to 13.')
-      end
-
-      if !@foreign_amount.nil? && @foreign_amount.to_s.length > 15
-        invalid_properties.push('invalid value for "foreign_amount", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@foreign_currency.nil? && @foreign_currency.to_s.length > 5
-        invalid_properties.push('invalid value for "foreign_currency", the character length must be smaller than or equal to 5.')
-      end
-
-      if !@exchange_rate.nil? && @exchange_rate.to_s.length > 13
-        invalid_properties.push('invalid value for "exchange_rate", the character length must be smaller than or equal to 13.')
-      end
-
-      if !@exchange_rate_time_stamp.nil? && @exchange_rate_time_stamp.to_s.length > 14
-        invalid_properties.push('invalid value for "exchange_rate_time_stamp", the character length must be smaller than or equal to 14.')
-      end
-
-      if !@settlement_amount.nil? && @settlement_amount.to_s.length > 12
-        invalid_properties.push('invalid value for "settlement_amount", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@settlement_currency.nil? && @settlement_currency.to_s.length > 3
-        invalid_properties.push('invalid value for "settlement_currency", the character length must be smaller than or equal to 3.')
-      end
-
-      if !@service_fee_amount.nil? && @service_fee_amount.to_s.length > 15
-        invalid_properties.push('invalid value for "service_fee_amount", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@original_amount.nil? && @original_amount.to_s.length > 15
-        invalid_properties.push('invalid value for "original_amount", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@original_currency.nil? && @original_currency.to_s.length > 15
-        invalid_properties.push('invalid value for "original_currency", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@cashback_amount.nil? && @cashback_amount.to_s.length > 13
-        invalid_properties.push('invalid value for "cashback_amount", the character length must be smaller than or equal to 13.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@total_amount.nil? && @total_amount.to_s.length > 19
-      return false if !@currency.nil? && @currency.to_s.length > 3
-      return false if !@discount_amount.nil? && @discount_amount.to_s.length > 15
-      return false if !@duty_amount.nil? && @duty_amount.to_s.length > 15
-      return false if !@gratuity_amount.nil? && @gratuity_amount.to_s.length > 13
-      return false if !@tax_amount.nil? && @tax_amount.to_s.length > 12
-      return false if !@national_tax_included.nil? && @national_tax_included.to_s.length > 1
-      return false if !@tax_applied_after_discount.nil? && @tax_applied_after_discount.to_s.length > 1
-      return false if !@tax_applied_level.nil? && @tax_applied_level.to_s.length > 1
-      return false if !@tax_type_code.nil? && @tax_type_code.to_s.length > 3
-      return false if !@freight_amount.nil? && @freight_amount.to_s.length > 13
-      return false if !@foreign_amount.nil? && @foreign_amount.to_s.length > 15
-      return false if !@foreign_currency.nil? && @foreign_currency.to_s.length > 5
-      return false if !@exchange_rate.nil? && @exchange_rate.to_s.length > 13
-      return false if !@exchange_rate_time_stamp.nil? && @exchange_rate_time_stamp.to_s.length > 14
-      return false if !@settlement_amount.nil? && @settlement_amount.to_s.length > 12
-      return false if !@settlement_currency.nil? && @settlement_currency.to_s.length > 3
-      return false if !@service_fee_amount.nil? && @service_fee_amount.to_s.length > 15
-      return false if !@original_amount.nil? && @original_amount.to_s.length > 15
-      return false if !@original_currency.nil? && @original_currency.to_s.length > 15
-      return false if !@cashback_amount.nil? && @cashback_amount.to_s.length > 13
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] total_amount Value to be assigned
     def total_amount=(total_amount)
-      if !total_amount.nil? && total_amount.to_s.length > 19
-        fail ArgumentError, 'invalid value for "total_amount", the character length must be smaller than or equal to 19.'
-      end
-
       @total_amount = total_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] currency Value to be assigned
     def currency=(currency)
-      if !currency.nil? && currency.to_s.length > 3
-        fail ArgumentError, 'invalid value for "currency", the character length must be smaller than or equal to 3.'
-      end
-
       @currency = currency
     end
 
     # Custom attribute writer method with validation
     # @param [Object] discount_amount Value to be assigned
     def discount_amount=(discount_amount)
-      if !discount_amount.nil? && discount_amount.to_s.length > 15
-        fail ArgumentError, 'invalid value for "discount_amount", the character length must be smaller than or equal to 15.'
-      end
-
       @discount_amount = discount_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] duty_amount Value to be assigned
     def duty_amount=(duty_amount)
-      if !duty_amount.nil? && duty_amount.to_s.length > 15
-        fail ArgumentError, 'invalid value for "duty_amount", the character length must be smaller than or equal to 15.'
-      end
-
       @duty_amount = duty_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] gratuity_amount Value to be assigned
     def gratuity_amount=(gratuity_amount)
-      if !gratuity_amount.nil? && gratuity_amount.to_s.length > 13
-        fail ArgumentError, 'invalid value for "gratuity_amount", the character length must be smaller than or equal to 13.'
-      end
-
       @gratuity_amount = gratuity_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] tax_amount Value to be assigned
     def tax_amount=(tax_amount)
-      if !tax_amount.nil? && tax_amount.to_s.length > 12
-        fail ArgumentError, 'invalid value for "tax_amount", the character length must be smaller than or equal to 12.'
-      end
-
       @tax_amount = tax_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] national_tax_included Value to be assigned
     def national_tax_included=(national_tax_included)
-      if !national_tax_included.nil? && national_tax_included.to_s.length > 1
-        fail ArgumentError, 'invalid value for "national_tax_included", the character length must be smaller than or equal to 1.'
-      end
-
       @national_tax_included = national_tax_included
     end
 
     # Custom attribute writer method with validation
     # @param [Object] tax_applied_after_discount Value to be assigned
     def tax_applied_after_discount=(tax_applied_after_discount)
-      if !tax_applied_after_discount.nil? && tax_applied_after_discount.to_s.length > 1
-        fail ArgumentError, 'invalid value for "tax_applied_after_discount", the character length must be smaller than or equal to 1.'
-      end
-
       @tax_applied_after_discount = tax_applied_after_discount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] tax_applied_level Value to be assigned
     def tax_applied_level=(tax_applied_level)
-      if !tax_applied_level.nil? && tax_applied_level.to_s.length > 1
-        fail ArgumentError, 'invalid value for "tax_applied_level", the character length must be smaller than or equal to 1.'
-      end
-
       @tax_applied_level = tax_applied_level
     end
 
     # Custom attribute writer method with validation
     # @param [Object] tax_type_code Value to be assigned
     def tax_type_code=(tax_type_code)
-      if !tax_type_code.nil? && tax_type_code.to_s.length > 3
-        fail ArgumentError, 'invalid value for "tax_type_code", the character length must be smaller than or equal to 3.'
-      end
-
       @tax_type_code = tax_type_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] freight_amount Value to be assigned
     def freight_amount=(freight_amount)
-      if !freight_amount.nil? && freight_amount.to_s.length > 13
-        fail ArgumentError, 'invalid value for "freight_amount", the character length must be smaller than or equal to 13.'
-      end
-
       @freight_amount = freight_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] foreign_amount Value to be assigned
     def foreign_amount=(foreign_amount)
-      if !foreign_amount.nil? && foreign_amount.to_s.length > 15
-        fail ArgumentError, 'invalid value for "foreign_amount", the character length must be smaller than or equal to 15.'
-      end
-
       @foreign_amount = foreign_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] foreign_currency Value to be assigned
     def foreign_currency=(foreign_currency)
-      if !foreign_currency.nil? && foreign_currency.to_s.length > 5
-        fail ArgumentError, 'invalid value for "foreign_currency", the character length must be smaller than or equal to 5.'
-      end
-
       @foreign_currency = foreign_currency
     end
 
     # Custom attribute writer method with validation
     # @param [Object] exchange_rate Value to be assigned
     def exchange_rate=(exchange_rate)
-      if !exchange_rate.nil? && exchange_rate.to_s.length > 13
-        fail ArgumentError, 'invalid value for "exchange_rate", the character length must be smaller than or equal to 13.'
-      end
-
       @exchange_rate = exchange_rate
     end
 
     # Custom attribute writer method with validation
     # @param [Object] exchange_rate_time_stamp Value to be assigned
     def exchange_rate_time_stamp=(exchange_rate_time_stamp)
-      if !exchange_rate_time_stamp.nil? && exchange_rate_time_stamp.to_s.length > 14
-        fail ArgumentError, 'invalid value for "exchange_rate_time_stamp", the character length must be smaller than or equal to 14.'
-      end
-
       @exchange_rate_time_stamp = exchange_rate_time_stamp
     end
 
     # Custom attribute writer method with validation
     # @param [Object] settlement_amount Value to be assigned
     def settlement_amount=(settlement_amount)
-      if !settlement_amount.nil? && settlement_amount.to_s.length > 12
-        fail ArgumentError, 'invalid value for "settlement_amount", the character length must be smaller than or equal to 12.'
-      end
-
       @settlement_amount = settlement_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] settlement_currency Value to be assigned
     def settlement_currency=(settlement_currency)
-      if !settlement_currency.nil? && settlement_currency.to_s.length > 3
-        fail ArgumentError, 'invalid value for "settlement_currency", the character length must be smaller than or equal to 3.'
-      end
-
       @settlement_currency = settlement_currency
     end
 
     # Custom attribute writer method with validation
     # @param [Object] service_fee_amount Value to be assigned
     def service_fee_amount=(service_fee_amount)
-      if !service_fee_amount.nil? && service_fee_amount.to_s.length > 15
-        fail ArgumentError, 'invalid value for "service_fee_amount", the character length must be smaller than or equal to 15.'
-      end
-
       @service_fee_amount = service_fee_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] original_amount Value to be assigned
     def original_amount=(original_amount)
-      if !original_amount.nil? && original_amount.to_s.length > 15
-        fail ArgumentError, 'invalid value for "original_amount", the character length must be smaller than or equal to 15.'
-      end
-
       @original_amount = original_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] original_currency Value to be assigned
     def original_currency=(original_currency)
-      if !original_currency.nil? && original_currency.to_s.length > 15
-        fail ArgumentError, 'invalid value for "original_currency", the character length must be smaller than or equal to 15.'
-      end
-
       @original_currency = original_currency
     end
 
     # Custom attribute writer method with validation
     # @param [Object] cashback_amount Value to be assigned
     def cashback_amount=(cashback_amount)
-      if !cashback_amount.nil? && cashback_amount.to_s.length > 13
-        fail ArgumentError, 'invalid value for "cashback_amount", the character length must be smaller than or equal to 13.'
-      end
-
       @cashback_amount = cashback_amount
     end
 

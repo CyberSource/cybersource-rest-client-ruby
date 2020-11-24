@@ -79,18 +79,6 @@ module CyberSource
         invalid_properties.push('invalid value for "value", value cannot be nil.')
       end
 
-      if @value.to_s.length > 3072
-        invalid_properties.push('invalid value for "value", the character length must be smaller than or equal to 3072.')
-      end
-
-      if !@descriptor.nil? && @descriptor.to_s.length > 128
-        invalid_properties.push('invalid value for "descriptor", the character length must be smaller than or equal to 128.')
-      end
-
-      if !@encoding.nil? && @encoding.to_s.length > 6
-        invalid_properties.push('invalid value for "encoding", the character length must be smaller than or equal to 6.')
-      end
-
       invalid_properties
     end
 
@@ -98,9 +86,6 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if @value.nil?
-      return false if @value.to_s.length > 3072
-      return false if !@descriptor.nil? && @descriptor.to_s.length > 128
-      return false if !@encoding.nil? && @encoding.to_s.length > 6
       true
     end
 
@@ -111,30 +96,18 @@ module CyberSource
         fail ArgumentError, 'value cannot be nil'
       end
 
-      if value.to_s.length > 3072
-        fail ArgumentError, 'invalid value for "value", the character length must be smaller than or equal to 3072.'
-      end
-
       @value = value
     end
 
     # Custom attribute writer method with validation
     # @param [Object] descriptor Value to be assigned
     def descriptor=(descriptor)
-      if !descriptor.nil? && descriptor.to_s.length > 128
-        fail ArgumentError, 'invalid value for "descriptor", the character length must be smaller than or equal to 128.'
-      end
-
       @descriptor = descriptor
     end
 
     # Custom attribute writer method with validation
     # @param [Object] encoding Value to be assigned
     def encoding=(encoding)
-      if !encoding.nil? && encoding.to_s.length > 6
-        fail ArgumentError, 'invalid value for "encoding", the character length must be smaller than or equal to 6.'
-      end
-
       @encoding = encoding
     end
 

@@ -132,28 +132,12 @@ module CyberSource
         invalid_properties.push('invalid value for "report_definition_name", report_definition_name cannot be nil.')
       end
 
-      if @report_definition_name.to_s.length > 80
-        invalid_properties.push('invalid value for "report_definition_name", the character length must be smaller than or equal to 80.')
-      end
-
-      if @report_definition_name.to_s.length < 1
-        invalid_properties.push('invalid value for "report_definition_name", the character length must be great than or equal to 1.')
-      end
-
       #if @report_definition_name !~ Regexp.new(/[a-zA-Z]+/)
         #invalid_properties.push('invalid value for "report_definition_name", must conform to the pattern /[a-zA-Z]+/.')
       #end
 
       if @subscription_type.nil?
         invalid_properties.push('invalid value for "subscription_type", subscription_type cannot be nil.')
-      end
-
-      if !@report_name.nil? && @report_name.to_s.length > 128
-        invalid_properties.push('invalid value for "report_name", the character length must be smaller than or equal to 128.')
-      end
-
-      if !@report_name.nil? && @report_name.to_s.length < 1
-        invalid_properties.push('invalid value for "report_name", the character length must be great than or equal to 1.')
       end
 
       #if !@report_name.nil? && @report_name !~ Regexp.new(/[a-zA-Z0-9-_ ]+/)
@@ -179,12 +163,8 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if @report_definition_name.nil?
-      return false if @report_definition_name.to_s.length > 80
-      return false if @report_definition_name.to_s.length < 1
       #return false if @report_definition_name !~ Regexp.new(/[a-zA-Z]+/)
       return false if @subscription_type.nil?
-      return false if !@report_name.nil? && @report_name.to_s.length > 128
-      return false if !@report_name.nil? && @report_name.to_s.length < 1
       #return false if !@report_name.nil? && @report_name !~ Regexp.new(/[a-zA-Z0-9-_ ]+/)
       #return false if !@report_interval.nil? && @report_interval !~ Regexp.new(/^PT((([1-9]|1[0-9]|2[0-3])H(([1-9]|[1-4][0-9]|5[0-9])M)?)|((([1-9]|1[0-9]|2[0-3])H)?([1-9]|[1-4][0-9]|5[0-9])M))$/)
       return false if !@start_day.nil? && @start_day > 31
@@ -199,14 +179,6 @@ module CyberSource
         fail ArgumentError, 'report_definition_name cannot be nil'
       end
 
-      if report_definition_name.to_s.length > 80
-        fail ArgumentError, 'invalid value for "report_definition_name", the character length must be smaller than or equal to 80.'
-      end
-
-      if report_definition_name.to_s.length < 1
-        fail ArgumentError, 'invalid value for "report_definition_name", the character length must be great than or equal to 1.'
-      end
-
       #if report_definition_name !~ Regexp.new(/[a-zA-Z]+/)
         #fail ArgumentError, 'invalid value for "report_definition_name", must conform to the pattern /[a-zA-Z]+/.'
       #end
@@ -217,14 +189,6 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] report_name Value to be assigned
     def report_name=(report_name)
-      if !report_name.nil? && report_name.to_s.length > 128
-        fail ArgumentError, 'invalid value for "report_name", the character length must be smaller than or equal to 128.'
-      end
-
-      if !report_name.nil? && report_name.to_s.length < 1
-        fail ArgumentError, 'invalid value for "report_name", the character length must be great than or equal to 1.'
-      end
-
       #if !report_name.nil? && report_name !~ Regexp.new(/[a-zA-Z0-9-_ ]+/)
         #fail ArgumentError, 'invalid value for "report_name", must conform to the pattern /[a-zA-Z0-9-_ ]+/.'
       #end

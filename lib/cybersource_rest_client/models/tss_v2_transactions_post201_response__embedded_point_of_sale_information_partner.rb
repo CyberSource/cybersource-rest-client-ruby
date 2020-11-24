@@ -48,27 +48,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@original_transaction_id.nil? && @original_transaction_id.to_s.length > 32
-        invalid_properties.push('invalid value for "original_transaction_id", the character length must be smaller than or equal to 32.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@original_transaction_id.nil? && @original_transaction_id.to_s.length > 32
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] original_transaction_id Value to be assigned
     def original_transaction_id=(original_transaction_id)
-      if !original_transaction_id.nil? && original_transaction_id.to_s.length > 32
-        fail ArgumentError, 'invalid value for "original_transaction_id", the character length must be smaller than or equal to 32.'
-      end
-
       @original_transaction_id = original_transaction_id
     end
 

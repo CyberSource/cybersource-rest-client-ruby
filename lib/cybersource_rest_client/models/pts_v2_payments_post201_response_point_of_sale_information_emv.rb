@@ -66,57 +66,30 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@tags.nil? && @tags.to_s.length > 1998
-        invalid_properties.push('invalid value for "tags", the character length must be smaller than or equal to 1998.')
-      end
-
-      if !@chip_validation_type.nil? && @chip_validation_type.to_s.length > 2
-        invalid_properties.push('invalid value for "chip_validation_type", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@chip_validation_result.nil? && @chip_validation_result.to_s.length > 1
-        invalid_properties.push('invalid value for "chip_validation_result", the character length must be smaller than or equal to 1.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@tags.nil? && @tags.to_s.length > 1998
-      return false if !@chip_validation_type.nil? && @chip_validation_type.to_s.length > 2
-      return false if !@chip_validation_result.nil? && @chip_validation_result.to_s.length > 1
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] tags Value to be assigned
     def tags=(tags)
-      if !tags.nil? && tags.to_s.length > 1998
-        fail ArgumentError, 'invalid value for "tags", the character length must be smaller than or equal to 1998.'
-      end
-
       @tags = tags
     end
 
     # Custom attribute writer method with validation
     # @param [Object] chip_validation_type Value to be assigned
     def chip_validation_type=(chip_validation_type)
-      if !chip_validation_type.nil? && chip_validation_type.to_s.length > 2
-        fail ArgumentError, 'invalid value for "chip_validation_type", the character length must be smaller than or equal to 2.'
-      end
-
       @chip_validation_type = chip_validation_type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] chip_validation_result Value to be assigned
     def chip_validation_result=(chip_validation_result)
-      if !chip_validation_result.nil? && chip_validation_result.to_s.length > 1
-        fail ArgumentError, 'invalid value for "chip_validation_result", the character length must be smaller than or equal to 1.'
-      end
-
       @chip_validation_result = chip_validation_result
     end
 
