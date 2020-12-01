@@ -129,162 +129,72 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@email.nil? && @email.to_s.length > 1
-        invalid_properties.push('invalid value for "email", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@email_raw.nil? && @email_raw.to_s.length > 1
-        invalid_properties.push('invalid value for "email_raw", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@name.nil? && @name.to_s.length > 30
-        invalid_properties.push('invalid value for "name", the character length must be smaller than or equal to 30.')
-      end
-
-      if !@name_raw.nil? && @name_raw.to_s.length > 30
-        invalid_properties.push('invalid value for "name_raw", the character length must be smaller than or equal to 30.')
-      end
-
-      if !@phone_number.nil? && @phone_number.to_s.length > 1
-        invalid_properties.push('invalid value for "phone_number", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@phone_number_raw.nil? && @phone_number_raw.to_s.length > 1
-        invalid_properties.push('invalid value for "phone_number_raw", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@street.nil? && @street.to_s.length > 1
-        invalid_properties.push('invalid value for "street", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@street_raw.nil? && @street_raw.to_s.length > 1
-        invalid_properties.push('invalid value for "street_raw", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@postal_code.nil? && @postal_code.to_s.length > 1
-        invalid_properties.push('invalid value for "postal_code", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@postal_code_raw.nil? && @postal_code_raw.to_s.length > 1
-        invalid_properties.push('invalid value for "postal_code_raw", the character length must be smaller than or equal to 1.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@email.nil? && @email.to_s.length > 1
-      return false if !@email_raw.nil? && @email_raw.to_s.length > 1
-      return false if !@name.nil? && @name.to_s.length > 30
-      return false if !@name_raw.nil? && @name_raw.to_s.length > 30
-      return false if !@phone_number.nil? && @phone_number.to_s.length > 1
-      return false if !@phone_number_raw.nil? && @phone_number_raw.to_s.length > 1
-      return false if !@street.nil? && @street.to_s.length > 1
-      return false if !@street_raw.nil? && @street_raw.to_s.length > 1
-      return false if !@postal_code.nil? && @postal_code.to_s.length > 1
-      return false if !@postal_code_raw.nil? && @postal_code_raw.to_s.length > 1
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] email Value to be assigned
     def email=(email)
-      if !email.nil? && email.to_s.length > 1
-        fail ArgumentError, 'invalid value for "email", the character length must be smaller than or equal to 1.'
-      end
-
       @email = email
     end
 
     # Custom attribute writer method with validation
     # @param [Object] email_raw Value to be assigned
     def email_raw=(email_raw)
-      if !email_raw.nil? && email_raw.to_s.length > 1
-        fail ArgumentError, 'invalid value for "email_raw", the character length must be smaller than or equal to 1.'
-      end
-
       @email_raw = email_raw
     end
 
     # Custom attribute writer method with validation
     # @param [Object] name Value to be assigned
     def name=(name)
-      if !name.nil? && name.to_s.length > 30
-        fail ArgumentError, 'invalid value for "name", the character length must be smaller than or equal to 30.'
-      end
-
       @name = name
     end
 
     # Custom attribute writer method with validation
     # @param [Object] name_raw Value to be assigned
     def name_raw=(name_raw)
-      if !name_raw.nil? && name_raw.to_s.length > 30
-        fail ArgumentError, 'invalid value for "name_raw", the character length must be smaller than or equal to 30.'
-      end
-
       @name_raw = name_raw
     end
 
     # Custom attribute writer method with validation
     # @param [Object] phone_number Value to be assigned
     def phone_number=(phone_number)
-      if !phone_number.nil? && phone_number.to_s.length > 1
-        fail ArgumentError, 'invalid value for "phone_number", the character length must be smaller than or equal to 1.'
-      end
-
       @phone_number = phone_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] phone_number_raw Value to be assigned
     def phone_number_raw=(phone_number_raw)
-      if !phone_number_raw.nil? && phone_number_raw.to_s.length > 1
-        fail ArgumentError, 'invalid value for "phone_number_raw", the character length must be smaller than or equal to 1.'
-      end
-
       @phone_number_raw = phone_number_raw
     end
 
     # Custom attribute writer method with validation
     # @param [Object] street Value to be assigned
     def street=(street)
-      if !street.nil? && street.to_s.length > 1
-        fail ArgumentError, 'invalid value for "street", the character length must be smaller than or equal to 1.'
-      end
-
       @street = street
     end
 
     # Custom attribute writer method with validation
     # @param [Object] street_raw Value to be assigned
     def street_raw=(street_raw)
-      if !street_raw.nil? && street_raw.to_s.length > 1
-        fail ArgumentError, 'invalid value for "street_raw", the character length must be smaller than or equal to 1.'
-      end
-
       @street_raw = street_raw
     end
 
     # Custom attribute writer method with validation
     # @param [Object] postal_code Value to be assigned
     def postal_code=(postal_code)
-      if !postal_code.nil? && postal_code.to_s.length > 1
-        fail ArgumentError, 'invalid value for "postal_code", the character length must be smaller than or equal to 1.'
-      end
-
       @postal_code = postal_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] postal_code_raw Value to be assigned
     def postal_code_raw=(postal_code_raw)
-      if !postal_code_raw.nil? && postal_code_raw.to_s.length > 1
-        fail ArgumentError, 'invalid value for "postal_code_raw", the character length must be smaller than or equal to 1.'
-      end
-
       @postal_code_raw = postal_code_raw
     end
 

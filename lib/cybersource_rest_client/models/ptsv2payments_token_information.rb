@@ -73,27 +73,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@jti.nil? && @jti.to_s.length > 64
-        invalid_properties.push('invalid value for "jti", the character length must be smaller than or equal to 64.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@jti.nil? && @jti.to_s.length > 64
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] jti Value to be assigned
     def jti=(jti)
-      if !jti.nil? && jti.to_s.length > 64
-        fail ArgumentError, 'invalid value for "jti", the character length must be smaller than or equal to 64.'
-      end
-
       @jti = jti
     end
 

@@ -57,42 +57,24 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@with_apartment.nil? && @with_apartment.to_s.length > 255
-        invalid_properties.push('invalid value for "with_apartment", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@without_apartment.nil? && @without_apartment.to_s.length > 255
-        invalid_properties.push('invalid value for "without_apartment", the character length must be smaller than or equal to 255.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@with_apartment.nil? && @with_apartment.to_s.length > 255
-      return false if !@without_apartment.nil? && @without_apartment.to_s.length > 255
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] with_apartment Value to be assigned
     def with_apartment=(with_apartment)
-      if !with_apartment.nil? && with_apartment.to_s.length > 255
-        fail ArgumentError, 'invalid value for "with_apartment", the character length must be smaller than or equal to 255.'
-      end
-
       @with_apartment = with_apartment
     end
 
     # Custom attribute writer method with validation
     # @param [Object] without_apartment Value to be assigned
     def without_apartment=(without_apartment)
-      if !without_apartment.nil? && without_apartment.to_s.length > 255
-        fail ArgumentError, 'invalid value for "without_apartment", the character length must be smaller than or equal to 255.'
-      end
-
       @without_apartment = without_apartment
     end
 

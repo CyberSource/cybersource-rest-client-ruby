@@ -103,117 +103,54 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@anonymizer_status.nil? && @anonymizer_status.to_s.length > 255
-        invalid_properties.push('invalid value for "anonymizer_status", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@locality.nil? && @locality.to_s.length > 255
-        invalid_properties.push('invalid value for "locality", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@country.nil? && @country.to_s.length > 255
-        invalid_properties.push('invalid value for "country", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@administrative_area.nil? && @administrative_area.to_s.length > 255
-        invalid_properties.push('invalid value for "administrative_area", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@routing_method.nil? && @routing_method.to_s.length > 255
-        invalid_properties.push('invalid value for "routing_method", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@carrier.nil? && @carrier.to_s.length > 255
-        invalid_properties.push('invalid value for "carrier", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@organization.nil? && @organization.to_s.length > 255
-        invalid_properties.push('invalid value for "organization", the character length must be smaller than or equal to 255.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@anonymizer_status.nil? && @anonymizer_status.to_s.length > 255
-      return false if !@locality.nil? && @locality.to_s.length > 255
-      return false if !@country.nil? && @country.to_s.length > 255
-      return false if !@administrative_area.nil? && @administrative_area.to_s.length > 255
-      return false if !@routing_method.nil? && @routing_method.to_s.length > 255
-      return false if !@carrier.nil? && @carrier.to_s.length > 255
-      return false if !@organization.nil? && @organization.to_s.length > 255
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] anonymizer_status Value to be assigned
     def anonymizer_status=(anonymizer_status)
-      if !anonymizer_status.nil? && anonymizer_status.to_s.length > 255
-        fail ArgumentError, 'invalid value for "anonymizer_status", the character length must be smaller than or equal to 255.'
-      end
-
       @anonymizer_status = anonymizer_status
     end
 
     # Custom attribute writer method with validation
     # @param [Object] locality Value to be assigned
     def locality=(locality)
-      if !locality.nil? && locality.to_s.length > 255
-        fail ArgumentError, 'invalid value for "locality", the character length must be smaller than or equal to 255.'
-      end
-
       @locality = locality
     end
 
     # Custom attribute writer method with validation
     # @param [Object] country Value to be assigned
     def country=(country)
-      if !country.nil? && country.to_s.length > 255
-        fail ArgumentError, 'invalid value for "country", the character length must be smaller than or equal to 255.'
-      end
-
       @country = country
     end
 
     # Custom attribute writer method with validation
     # @param [Object] administrative_area Value to be assigned
     def administrative_area=(administrative_area)
-      if !administrative_area.nil? && administrative_area.to_s.length > 255
-        fail ArgumentError, 'invalid value for "administrative_area", the character length must be smaller than or equal to 255.'
-      end
-
       @administrative_area = administrative_area
     end
 
     # Custom attribute writer method with validation
     # @param [Object] routing_method Value to be assigned
     def routing_method=(routing_method)
-      if !routing_method.nil? && routing_method.to_s.length > 255
-        fail ArgumentError, 'invalid value for "routing_method", the character length must be smaller than or equal to 255.'
-      end
-
       @routing_method = routing_method
     end
 
     # Custom attribute writer method with validation
     # @param [Object] carrier Value to be assigned
     def carrier=(carrier)
-      if !carrier.nil? && carrier.to_s.length > 255
-        fail ArgumentError, 'invalid value for "carrier", the character length must be smaller than or equal to 255.'
-      end
-
       @carrier = carrier
     end
 
     # Custom attribute writer method with validation
     # @param [Object] organization Value to be assigned
     def organization=(organization)
-      if !organization.nil? && organization.to_s.length > 255
-        fail ArgumentError, 'invalid value for "organization", the character length must be smaller than or equal to 255.'
-      end
-
       @organization = organization
     end
 

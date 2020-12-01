@@ -94,18 +94,6 @@
 
       {{/required}}
       {{#hasValidation}}
-      {{#maxLength}}
-      if {{^required}}!@{{{name}}}.nil? && {{/required}}@{{{name}}}.to_s.length > {{{maxLength}}}
-        invalid_properties.push('invalid value for "{{{name}}}", the character length must be smaller than or equal to {{{maxLength}}}.')
-      end
-
-      {{/maxLength}}
-      {{#minLength}}
-      if {{^required}}!@{{{name}}}.nil? && {{/required}}@{{{name}}}.to_s.length < {{{minLength}}}
-        invalid_properties.push('invalid value for "{{{name}}}", the character length must be great than or equal to {{{minLength}}}.')
-      end
-
-      {{/minLength}}
       {{#maximum}}
       if {{^required}}!@{{{name}}}.nil? && {{/required}}@{{{name}}} >{{#exclusiveMaximum}}={{/exclusiveMaximum}} {{{maximum}}}
         invalid_properties.push('invalid value for "{{{name}}}", must be smaller than {{^exclusiveMaximum}}or equal to {{/exclusiveMaximum}}{{{maximum}}}.')
@@ -155,12 +143,6 @@
       {{/isContainer}}
       {{/isEnum}}
       {{#hasValidation}}
-      {{#maxLength}}
-      return false if {{^required}}!@{{{name}}}.nil? && {{/required}}@{{{name}}}.to_s.length > {{{maxLength}}}
-      {{/maxLength}}
-      {{#minLength}}
-      return false if {{^required}}!@{{{name}}}.nil? && {{/required}}@{{{name}}}.to_s.length < {{{minLength}}}
-      {{/minLength}}
       {{#maximum}}
       return false if {{^required}}!@{{{name}}}.nil? && {{/required}}@{{{name}}} >{{#exclusiveMaximum}}={{/exclusiveMaximum}} {{{maximum}}}
       {{/maximum}}
@@ -207,18 +189,6 @@
       end
 
       {{/required}}
-      {{#maxLength}}
-      if {{^required}}!{{{name}}}.nil? && {{/required}}{{{name}}}.to_s.length > {{{maxLength}}}
-        fail ArgumentError, 'invalid value for "{{{name}}}", the character length must be smaller than or equal to {{{maxLength}}}.'
-      end
-
-      {{/maxLength}}
-      {{#minLength}}
-      if {{^required}}!{{{name}}}.nil? && {{/required}}{{{name}}}.to_s.length < {{{minLength}}}
-        fail ArgumentError, 'invalid value for "{{{name}}}", the character length must be great than or equal to {{{minLength}}}.'
-      end
-
-      {{/minLength}}
       {{#maximum}}
       if {{^required}}!{{{name}}}.nil? && {{/required}}{{{name}}} >{{#exclusiveMaximum}}={{/exclusiveMaximum}} {{{maximum}}}
         fail ArgumentError, 'invalid value for "{{{name}}}", must be smaller than {{^exclusiveMaximum}}or equal to {{/exclusiveMaximum}}{{{maximum}}}.'

@@ -65,42 +65,24 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@aggregator_id.nil? && @aggregator_id.to_s.length > 20
-        invalid_properties.push('invalid value for "aggregator_id", the character length must be smaller than or equal to 20.')
-      end
-
-      if !@name.nil? && @name.to_s.length > 37
-        invalid_properties.push('invalid value for "name", the character length must be smaller than or equal to 37.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@aggregator_id.nil? && @aggregator_id.to_s.length > 20
-      return false if !@name.nil? && @name.to_s.length > 37
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] aggregator_id Value to be assigned
     def aggregator_id=(aggregator_id)
-      if !aggregator_id.nil? && aggregator_id.to_s.length > 20
-        fail ArgumentError, 'invalid value for "aggregator_id", the character length must be smaller than or equal to 20.'
-      end
-
       @aggregator_id = aggregator_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] name Value to be assigned
     def name=(name)
-      if !name.nil? && name.to_s.length > 37
-        fail ArgumentError, 'invalid value for "name", the character length must be smaller than or equal to 37.'
-      end
-
       @name = name
     end
 

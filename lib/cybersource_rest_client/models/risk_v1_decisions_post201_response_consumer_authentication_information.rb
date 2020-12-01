@@ -362,297 +362,126 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@acs_transaction_id.nil? && @acs_transaction_id.to_s.length > 36
-        invalid_properties.push('invalid value for "acs_transaction_id", the character length must be smaller than or equal to 36.')
-      end
-
-      if !@acs_url.nil? && @acs_url.to_s.length > 2048
-        invalid_properties.push('invalid value for "acs_url", the character length must be smaller than or equal to 2048.')
-      end
-
-      if !@authentication_transaction_id.nil? && @authentication_transaction_id.to_s.length > 20
-        invalid_properties.push('invalid value for "authentication_transaction_id", the character length must be smaller than or equal to 20.')
-      end
-
-      if !@cardholder_message.nil? && @cardholder_message.to_s.length > 128
-        invalid_properties.push('invalid value for "cardholder_message", the character length must be smaller than or equal to 128.')
-      end
-
-      if !@cavv.nil? && @cavv.to_s.length > 255
-        invalid_properties.push('invalid value for "cavv", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@cavv_algorithm.nil? && @cavv_algorithm.to_s.length > 1
-        invalid_properties.push('invalid value for "cavv_algorithm", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@challenge_cancel_code.nil? && @challenge_cancel_code.to_s.length > 2
-        invalid_properties.push('invalid value for "challenge_cancel_code", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@challenge_required.nil? && @challenge_required.to_s.length > 1
-        invalid_properties.push('invalid value for "challenge_required", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@decoupled_authentication_indicator.nil? && @decoupled_authentication_indicator.to_s.length > 1
-        invalid_properties.push('invalid value for "decoupled_authentication_indicator", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@directory_server_error_description.nil? && @directory_server_error_description.to_s.length > 4096
-        invalid_properties.push('invalid value for "directory_server_error_description", the character length must be smaller than or equal to 4096.')
-      end
-
-      if !@ecommerce_indicator.nil? && @ecommerce_indicator.to_s.length > 255
-        invalid_properties.push('invalid value for "ecommerce_indicator", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@effective_authentication_type.nil? && @effective_authentication_type.to_s.length > 2
-        invalid_properties.push('invalid value for "effective_authentication_type", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@network_score.nil? && @network_score.to_s.length > 2
-        invalid_properties.push('invalid value for "network_score", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@sdk_transaction_id.nil? && @sdk_transaction_id.to_s.length > 36
-        invalid_properties.push('invalid value for "sdk_transaction_id", the character length must be smaller than or equal to 36.')
-      end
-
-      if !@signed_pares_status_reason.nil? && @signed_pares_status_reason.to_s.length > 2
-        invalid_properties.push('invalid value for "signed_pares_status_reason", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@step_up_url.nil? && @step_up_url.to_s.length > 2048
-        invalid_properties.push('invalid value for "step_up_url", the character length must be smaller than or equal to 2048.')
-      end
-
-      if !@three_ds_server_transaction_id.nil? && @three_ds_server_transaction_id.to_s.length > 36
-        invalid_properties.push('invalid value for "three_ds_server_transaction_id", the character length must be smaller than or equal to 36.')
-      end
-
-      if !@white_list_status_source.nil? && @white_list_status_source.to_s.length > 2
-        invalid_properties.push('invalid value for "white_list_status_source", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@directory_server_transaction_id.nil? && @directory_server_transaction_id.to_s.length > 36
-        invalid_properties.push('invalid value for "directory_server_transaction_id", the character length must be smaller than or equal to 36.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@acs_transaction_id.nil? && @acs_transaction_id.to_s.length > 36
-      return false if !@acs_url.nil? && @acs_url.to_s.length > 2048
-      return false if !@authentication_transaction_id.nil? && @authentication_transaction_id.to_s.length > 20
-      return false if !@cardholder_message.nil? && @cardholder_message.to_s.length > 128
-      return false if !@cavv.nil? && @cavv.to_s.length > 255
-      return false if !@cavv_algorithm.nil? && @cavv_algorithm.to_s.length > 1
-      return false if !@challenge_cancel_code.nil? && @challenge_cancel_code.to_s.length > 2
-      return false if !@challenge_required.nil? && @challenge_required.to_s.length > 1
-      return false if !@decoupled_authentication_indicator.nil? && @decoupled_authentication_indicator.to_s.length > 1
-      return false if !@directory_server_error_description.nil? && @directory_server_error_description.to_s.length > 4096
-      return false if !@ecommerce_indicator.nil? && @ecommerce_indicator.to_s.length > 255
-      return false if !@effective_authentication_type.nil? && @effective_authentication_type.to_s.length > 2
-      return false if !@network_score.nil? && @network_score.to_s.length > 2
-      return false if !@sdk_transaction_id.nil? && @sdk_transaction_id.to_s.length > 36
-      return false if !@signed_pares_status_reason.nil? && @signed_pares_status_reason.to_s.length > 2
-      return false if !@step_up_url.nil? && @step_up_url.to_s.length > 2048
-      return false if !@three_ds_server_transaction_id.nil? && @three_ds_server_transaction_id.to_s.length > 36
-      return false if !@white_list_status_source.nil? && @white_list_status_source.to_s.length > 2
-      return false if !@directory_server_transaction_id.nil? && @directory_server_transaction_id.to_s.length > 36
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] acs_transaction_id Value to be assigned
     def acs_transaction_id=(acs_transaction_id)
-      if !acs_transaction_id.nil? && acs_transaction_id.to_s.length > 36
-        fail ArgumentError, 'invalid value for "acs_transaction_id", the character length must be smaller than or equal to 36.'
-      end
-
       @acs_transaction_id = acs_transaction_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] acs_url Value to be assigned
     def acs_url=(acs_url)
-      if !acs_url.nil? && acs_url.to_s.length > 2048
-        fail ArgumentError, 'invalid value for "acs_url", the character length must be smaller than or equal to 2048.'
-      end
-
       @acs_url = acs_url
     end
 
     # Custom attribute writer method with validation
     # @param [Object] authentication_transaction_id Value to be assigned
     def authentication_transaction_id=(authentication_transaction_id)
-      if !authentication_transaction_id.nil? && authentication_transaction_id.to_s.length > 20
-        fail ArgumentError, 'invalid value for "authentication_transaction_id", the character length must be smaller than or equal to 20.'
-      end
-
       @authentication_transaction_id = authentication_transaction_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] cardholder_message Value to be assigned
     def cardholder_message=(cardholder_message)
-      if !cardholder_message.nil? && cardholder_message.to_s.length > 128
-        fail ArgumentError, 'invalid value for "cardholder_message", the character length must be smaller than or equal to 128.'
-      end
-
       @cardholder_message = cardholder_message
     end
 
     # Custom attribute writer method with validation
     # @param [Object] cavv Value to be assigned
     def cavv=(cavv)
-      if !cavv.nil? && cavv.to_s.length > 255
-        fail ArgumentError, 'invalid value for "cavv", the character length must be smaller than or equal to 255.'
-      end
-
       @cavv = cavv
     end
 
     # Custom attribute writer method with validation
     # @param [Object] cavv_algorithm Value to be assigned
     def cavv_algorithm=(cavv_algorithm)
-      if !cavv_algorithm.nil? && cavv_algorithm.to_s.length > 1
-        fail ArgumentError, 'invalid value for "cavv_algorithm", the character length must be smaller than or equal to 1.'
-      end
-
       @cavv_algorithm = cavv_algorithm
     end
 
     # Custom attribute writer method with validation
     # @param [Object] challenge_cancel_code Value to be assigned
     def challenge_cancel_code=(challenge_cancel_code)
-      if !challenge_cancel_code.nil? && challenge_cancel_code.to_s.length > 2
-        fail ArgumentError, 'invalid value for "challenge_cancel_code", the character length must be smaller than or equal to 2.'
-      end
-
       @challenge_cancel_code = challenge_cancel_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] challenge_required Value to be assigned
     def challenge_required=(challenge_required)
-      if !challenge_required.nil? && challenge_required.to_s.length > 1
-        fail ArgumentError, 'invalid value for "challenge_required", the character length must be smaller than or equal to 1.'
-      end
-
       @challenge_required = challenge_required
     end
 
     # Custom attribute writer method with validation
     # @param [Object] decoupled_authentication_indicator Value to be assigned
     def decoupled_authentication_indicator=(decoupled_authentication_indicator)
-      if !decoupled_authentication_indicator.nil? && decoupled_authentication_indicator.to_s.length > 1
-        fail ArgumentError, 'invalid value for "decoupled_authentication_indicator", the character length must be smaller than or equal to 1.'
-      end
-
       @decoupled_authentication_indicator = decoupled_authentication_indicator
     end
 
     # Custom attribute writer method with validation
     # @param [Object] directory_server_error_description Value to be assigned
     def directory_server_error_description=(directory_server_error_description)
-      if !directory_server_error_description.nil? && directory_server_error_description.to_s.length > 4096
-        fail ArgumentError, 'invalid value for "directory_server_error_description", the character length must be smaller than or equal to 4096.'
-      end
-
       @directory_server_error_description = directory_server_error_description
     end
 
     # Custom attribute writer method with validation
     # @param [Object] ecommerce_indicator Value to be assigned
     def ecommerce_indicator=(ecommerce_indicator)
-      if !ecommerce_indicator.nil? && ecommerce_indicator.to_s.length > 255
-        fail ArgumentError, 'invalid value for "ecommerce_indicator", the character length must be smaller than or equal to 255.'
-      end
-
       @ecommerce_indicator = ecommerce_indicator
     end
 
     # Custom attribute writer method with validation
     # @param [Object] effective_authentication_type Value to be assigned
     def effective_authentication_type=(effective_authentication_type)
-      if !effective_authentication_type.nil? && effective_authentication_type.to_s.length > 2
-        fail ArgumentError, 'invalid value for "effective_authentication_type", the character length must be smaller than or equal to 2.'
-      end
-
       @effective_authentication_type = effective_authentication_type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] network_score Value to be assigned
     def network_score=(network_score)
-      if !network_score.nil? && network_score.to_s.length > 2
-        fail ArgumentError, 'invalid value for "network_score", the character length must be smaller than or equal to 2.'
-      end
-
       @network_score = network_score
     end
 
     # Custom attribute writer method with validation
     # @param [Object] sdk_transaction_id Value to be assigned
     def sdk_transaction_id=(sdk_transaction_id)
-      if !sdk_transaction_id.nil? && sdk_transaction_id.to_s.length > 36
-        fail ArgumentError, 'invalid value for "sdk_transaction_id", the character length must be smaller than or equal to 36.'
-      end
-
       @sdk_transaction_id = sdk_transaction_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] signed_pares_status_reason Value to be assigned
     def signed_pares_status_reason=(signed_pares_status_reason)
-      if !signed_pares_status_reason.nil? && signed_pares_status_reason.to_s.length > 2
-        fail ArgumentError, 'invalid value for "signed_pares_status_reason", the character length must be smaller than or equal to 2.'
-      end
-
       @signed_pares_status_reason = signed_pares_status_reason
     end
 
     # Custom attribute writer method with validation
     # @param [Object] step_up_url Value to be assigned
     def step_up_url=(step_up_url)
-      if !step_up_url.nil? && step_up_url.to_s.length > 2048
-        fail ArgumentError, 'invalid value for "step_up_url", the character length must be smaller than or equal to 2048.'
-      end
-
       @step_up_url = step_up_url
     end
 
     # Custom attribute writer method with validation
     # @param [Object] three_ds_server_transaction_id Value to be assigned
     def three_ds_server_transaction_id=(three_ds_server_transaction_id)
-      if !three_ds_server_transaction_id.nil? && three_ds_server_transaction_id.to_s.length > 36
-        fail ArgumentError, 'invalid value for "three_ds_server_transaction_id", the character length must be smaller than or equal to 36.'
-      end
-
       @three_ds_server_transaction_id = three_ds_server_transaction_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] white_list_status_source Value to be assigned
     def white_list_status_source=(white_list_status_source)
-      if !white_list_status_source.nil? && white_list_status_source.to_s.length > 2
-        fail ArgumentError, 'invalid value for "white_list_status_source", the character length must be smaller than or equal to 2.'
-      end
-
       @white_list_status_source = white_list_status_source
     end
 
     # Custom attribute writer method with validation
     # @param [Object] directory_server_transaction_id Value to be assigned
     def directory_server_transaction_id=(directory_server_transaction_id)
-      if !directory_server_transaction_id.nil? && directory_server_transaction_id.to_s.length > 36
-        fail ArgumentError, 'invalid value for "directory_server_transaction_id", the character length must be smaller than or equal to 36.'
-      end
-
       @directory_server_transaction_id = directory_server_transaction_id
     end
 

@@ -48,27 +48,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@transaction_id.nil? && @transaction_id.to_s.length > 18
-        invalid_properties.push('invalid value for "transaction_id", the character length must be smaller than or equal to 18.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@transaction_id.nil? && @transaction_id.to_s.length > 18
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] transaction_id Value to be assigned
     def transaction_id=(transaction_id)
-      if !transaction_id.nil? && transaction_id.to_s.length > 18
-        fail ArgumentError, 'invalid value for "transaction_id", the character length must be smaller than or equal to 18.'
-      end
-
       @transaction_id = transaction_id
     end
 

@@ -246,162 +246,72 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@acs_transaction_id.nil? && @acs_transaction_id.to_s.length > 36
-        invalid_properties.push('invalid value for "acs_transaction_id", the character length must be smaller than or equal to 36.')
-      end
-
-      if !@cavv.nil? && @cavv.to_s.length > 255
-        invalid_properties.push('invalid value for "cavv", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@cavv_algorithm.nil? && @cavv_algorithm.to_s.length > 1
-        invalid_properties.push('invalid value for "cavv_algorithm", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@directory_server_error_description.nil? && @directory_server_error_description.to_s.length > 4096
-        invalid_properties.push('invalid value for "directory_server_error_description", the character length must be smaller than or equal to 4096.')
-      end
-
-      if !@interaction_counter.nil? && @interaction_counter.to_s.length > 2
-        invalid_properties.push('invalid value for "interaction_counter", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@sdk_transaction_id.nil? && @sdk_transaction_id.to_s.length > 36
-        invalid_properties.push('invalid value for "sdk_transaction_id", the character length must be smaller than or equal to 36.')
-      end
-
-      if !@three_ds_server_transaction_id.nil? && @three_ds_server_transaction_id.to_s.length > 36
-        invalid_properties.push('invalid value for "three_ds_server_transaction_id", the character length must be smaller than or equal to 36.')
-      end
-
-      if !@white_list_status.nil? && @white_list_status.to_s.length > 1
-        invalid_properties.push('invalid value for "white_list_status", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@white_list_status_source.nil? && @white_list_status_source.to_s.length > 2
-        invalid_properties.push('invalid value for "white_list_status_source", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@directory_server_transaction_id.nil? && @directory_server_transaction_id.to_s.length > 36
-        invalid_properties.push('invalid value for "directory_server_transaction_id", the character length must be smaller than or equal to 36.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@acs_transaction_id.nil? && @acs_transaction_id.to_s.length > 36
-      return false if !@cavv.nil? && @cavv.to_s.length > 255
-      return false if !@cavv_algorithm.nil? && @cavv_algorithm.to_s.length > 1
-      return false if !@directory_server_error_description.nil? && @directory_server_error_description.to_s.length > 4096
-      return false if !@interaction_counter.nil? && @interaction_counter.to_s.length > 2
-      return false if !@sdk_transaction_id.nil? && @sdk_transaction_id.to_s.length > 36
-      return false if !@three_ds_server_transaction_id.nil? && @three_ds_server_transaction_id.to_s.length > 36
-      return false if !@white_list_status.nil? && @white_list_status.to_s.length > 1
-      return false if !@white_list_status_source.nil? && @white_list_status_source.to_s.length > 2
-      return false if !@directory_server_transaction_id.nil? && @directory_server_transaction_id.to_s.length > 36
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] acs_transaction_id Value to be assigned
     def acs_transaction_id=(acs_transaction_id)
-      if !acs_transaction_id.nil? && acs_transaction_id.to_s.length > 36
-        fail ArgumentError, 'invalid value for "acs_transaction_id", the character length must be smaller than or equal to 36.'
-      end
-
       @acs_transaction_id = acs_transaction_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] cavv Value to be assigned
     def cavv=(cavv)
-      if !cavv.nil? && cavv.to_s.length > 255
-        fail ArgumentError, 'invalid value for "cavv", the character length must be smaller than or equal to 255.'
-      end
-
       @cavv = cavv
     end
 
     # Custom attribute writer method with validation
     # @param [Object] cavv_algorithm Value to be assigned
     def cavv_algorithm=(cavv_algorithm)
-      if !cavv_algorithm.nil? && cavv_algorithm.to_s.length > 1
-        fail ArgumentError, 'invalid value for "cavv_algorithm", the character length must be smaller than or equal to 1.'
-      end
-
       @cavv_algorithm = cavv_algorithm
     end
 
     # Custom attribute writer method with validation
     # @param [Object] directory_server_error_description Value to be assigned
     def directory_server_error_description=(directory_server_error_description)
-      if !directory_server_error_description.nil? && directory_server_error_description.to_s.length > 4096
-        fail ArgumentError, 'invalid value for "directory_server_error_description", the character length must be smaller than or equal to 4096.'
-      end
-
       @directory_server_error_description = directory_server_error_description
     end
 
     # Custom attribute writer method with validation
     # @param [Object] interaction_counter Value to be assigned
     def interaction_counter=(interaction_counter)
-      if !interaction_counter.nil? && interaction_counter.to_s.length > 2
-        fail ArgumentError, 'invalid value for "interaction_counter", the character length must be smaller than or equal to 2.'
-      end
-
       @interaction_counter = interaction_counter
     end
 
     # Custom attribute writer method with validation
     # @param [Object] sdk_transaction_id Value to be assigned
     def sdk_transaction_id=(sdk_transaction_id)
-      if !sdk_transaction_id.nil? && sdk_transaction_id.to_s.length > 36
-        fail ArgumentError, 'invalid value for "sdk_transaction_id", the character length must be smaller than or equal to 36.'
-      end
-
       @sdk_transaction_id = sdk_transaction_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] three_ds_server_transaction_id Value to be assigned
     def three_ds_server_transaction_id=(three_ds_server_transaction_id)
-      if !three_ds_server_transaction_id.nil? && three_ds_server_transaction_id.to_s.length > 36
-        fail ArgumentError, 'invalid value for "three_ds_server_transaction_id", the character length must be smaller than or equal to 36.'
-      end
-
       @three_ds_server_transaction_id = three_ds_server_transaction_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] white_list_status Value to be assigned
     def white_list_status=(white_list_status)
-      if !white_list_status.nil? && white_list_status.to_s.length > 1
-        fail ArgumentError, 'invalid value for "white_list_status", the character length must be smaller than or equal to 1.'
-      end
-
       @white_list_status = white_list_status
     end
 
     # Custom attribute writer method with validation
     # @param [Object] white_list_status_source Value to be assigned
     def white_list_status_source=(white_list_status_source)
-      if !white_list_status_source.nil? && white_list_status_source.to_s.length > 2
-        fail ArgumentError, 'invalid value for "white_list_status_source", the character length must be smaller than or equal to 2.'
-      end
-
       @white_list_status_source = white_list_status_source
     end
 
     # Custom attribute writer method with validation
     # @param [Object] directory_server_transaction_id Value to be assigned
     def directory_server_transaction_id=(directory_server_transaction_id)
-      if !directory_server_transaction_id.nil? && directory_server_transaction_id.to_s.length > 36
-        fail ArgumentError, 'invalid value for "directory_server_transaction_id", the character length must be smaller than or equal to 36.'
-      end
-
       @directory_server_transaction_id = directory_server_transaction_id
     end
 

@@ -78,10 +78,6 @@ module CyberSource
         invalid_properties.push('invalid value for "category_code", must be smaller than or equal to 9999.')
       end
 
-      if !@vat_registration_number.nil? && @vat_registration_number.to_s.length > 21
-        invalid_properties.push('invalid value for "vat_registration_number", the character length must be smaller than or equal to 21.')
-      end
-
       invalid_properties
     end
 
@@ -89,7 +85,6 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if !@category_code.nil? && @category_code > 9999
-      return false if !@vat_registration_number.nil? && @vat_registration_number.to_s.length > 21
       true
     end
 
@@ -106,10 +101,6 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] vat_registration_number Value to be assigned
     def vat_registration_number=(vat_registration_number)
-      if !vat_registration_number.nil? && vat_registration_number.to_s.length > 21
-        fail ArgumentError, 'invalid value for "vat_registration_number", the character length must be smaller than or equal to 21.'
-      end
-
       @vat_registration_number = vat_registration_number
     end
 

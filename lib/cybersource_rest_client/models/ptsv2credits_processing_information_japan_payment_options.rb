@@ -57,27 +57,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@payment_method.nil? && @payment_method.to_s.length > 2
-        invalid_properties.push('invalid value for "payment_method", the character length must be smaller than or equal to 2.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@payment_method.nil? && @payment_method.to_s.length > 2
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] payment_method Value to be assigned
     def payment_method=(payment_method)
-      if !payment_method.nil? && payment_method.to_s.length > 2
-        fail ArgumentError, 'invalid value for "payment_method", the character length must be smaller than or equal to 2.'
-      end
-
       @payment_method = payment_method
     end
 

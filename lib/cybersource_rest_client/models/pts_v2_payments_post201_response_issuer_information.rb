@@ -75,72 +75,36 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@country.nil? && @country.to_s.length > 3
-        invalid_properties.push('invalid value for "country", the character length must be smaller than or equal to 3.')
-      end
-
-      if !@discretionary_data.nil? && @discretionary_data.to_s.length > 255
-        invalid_properties.push('invalid value for "discretionary_data", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@country_specific_discretionary_data.nil? && @country_specific_discretionary_data.to_s.length > 140
-        invalid_properties.push('invalid value for "country_specific_discretionary_data", the character length must be smaller than or equal to 140.')
-      end
-
-      if !@response_code.nil? && @response_code.to_s.length > 6
-        invalid_properties.push('invalid value for "response_code", the character length must be smaller than or equal to 6.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@country.nil? && @country.to_s.length > 3
-      return false if !@discretionary_data.nil? && @discretionary_data.to_s.length > 255
-      return false if !@country_specific_discretionary_data.nil? && @country_specific_discretionary_data.to_s.length > 140
-      return false if !@response_code.nil? && @response_code.to_s.length > 6
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] country Value to be assigned
     def country=(country)
-      if !country.nil? && country.to_s.length > 3
-        fail ArgumentError, 'invalid value for "country", the character length must be smaller than or equal to 3.'
-      end
-
       @country = country
     end
 
     # Custom attribute writer method with validation
     # @param [Object] discretionary_data Value to be assigned
     def discretionary_data=(discretionary_data)
-      if !discretionary_data.nil? && discretionary_data.to_s.length > 255
-        fail ArgumentError, 'invalid value for "discretionary_data", the character length must be smaller than or equal to 255.'
-      end
-
       @discretionary_data = discretionary_data
     end
 
     # Custom attribute writer method with validation
     # @param [Object] country_specific_discretionary_data Value to be assigned
     def country_specific_discretionary_data=(country_specific_discretionary_data)
-      if !country_specific_discretionary_data.nil? && country_specific_discretionary_data.to_s.length > 140
-        fail ArgumentError, 'invalid value for "country_specific_discretionary_data", the character length must be smaller than or equal to 140.'
-      end
-
       @country_specific_discretionary_data = country_specific_discretionary_data
     end
 
     # Custom attribute writer method with validation
     # @param [Object] response_code Value to be assigned
     def response_code=(response_code)
-      if !response_code.nil? && response_code.to_s.length > 6
-        fail ArgumentError, 'invalid value for "response_code", the character length must be smaller than or equal to 6.'
-      end
-
       @response_code = response_code
     end
 

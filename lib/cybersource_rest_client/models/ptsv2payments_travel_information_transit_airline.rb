@@ -380,447 +380,186 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@booking_reference_number.nil? && @booking_reference_number.to_s.length > 15
-        invalid_properties.push('invalid value for "booking_reference_number", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@carrier_name.nil? && @carrier_name.to_s.length > 15
-        invalid_properties.push('invalid value for "carrier_name", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@ticket_number.nil? && @ticket_number.to_s.length > 15
-        invalid_properties.push('invalid value for "ticket_number", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@check_digit.nil? && @check_digit.to_s.length > 1
-        invalid_properties.push('invalid value for "check_digit", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@extended_payment_code.nil? && @extended_payment_code.to_s.length > 3
-        invalid_properties.push('invalid value for "extended_payment_code", the character length must be smaller than or equal to 3.')
-      end
-
-      if !@passenger_name.nil? && @passenger_name.to_s.length > 42
-        invalid_properties.push('invalid value for "passenger_name", the character length must be smaller than or equal to 42.')
-      end
-
-      if !@customer_code.nil? && @customer_code.to_s.length > 40
-        invalid_properties.push('invalid value for "customer_code", the character length must be smaller than or equal to 40.')
-      end
-
-      if !@document_type.nil? && @document_type.to_s.length > 1
-        invalid_properties.push('invalid value for "document_type", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@document_number.nil? && @document_number.to_s.length > 14
-        invalid_properties.push('invalid value for "document_number", the character length must be smaller than or equal to 14.')
-      end
-
-      if !@invoice_number.nil? && @invoice_number.to_s.length > 25
-        invalid_properties.push('invalid value for "invoice_number", the character length must be smaller than or equal to 25.')
-      end
-
-      if !@additional_charges.nil? && @additional_charges.to_s.length > 20
-        invalid_properties.push('invalid value for "additional_charges", the character length must be smaller than or equal to 20.')
-      end
-
-      if !@total_fee_amount.nil? && @total_fee_amount.to_s.length > 12
-        invalid_properties.push('invalid value for "total_fee_amount", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@clearing_sequence.nil? && @clearing_sequence.to_s.length > 2
-        invalid_properties.push('invalid value for "clearing_sequence", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@clearing_count.nil? && @clearing_count.to_s.length > 2
-        invalid_properties.push('invalid value for "clearing_count", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@total_clearing_amount.nil? && @total_clearing_amount.to_s.length > 20
-        invalid_properties.push('invalid value for "total_clearing_amount", the character length must be smaller than or equal to 20.')
-      end
-
-      if !@reservation_system_code.nil? && @reservation_system_code.to_s.length > 4
-        invalid_properties.push('invalid value for "reservation_system_code", the character length must be smaller than or equal to 4.')
-      end
-
-      if !@process_identifier.nil? && @process_identifier.to_s.length > 3
-        invalid_properties.push('invalid value for "process_identifier", the character length must be smaller than or equal to 3.')
-      end
-
-      if !@ticket_issue_date.nil? && @ticket_issue_date.to_s.length > 8
-        invalid_properties.push('invalid value for "ticket_issue_date", the character length must be smaller than or equal to 8.')
-      end
-
-      if !@original_ticket_number.nil? && @original_ticket_number.to_s.length > 14
-        invalid_properties.push('invalid value for "original_ticket_number", the character length must be smaller than or equal to 14.')
-      end
-
-      if !@purchase_type.nil? && @purchase_type.to_s.length > 3
-        invalid_properties.push('invalid value for "purchase_type", the character length must be smaller than or equal to 3.')
-      end
-
-      if !@credit_reason_indicator.nil? && @credit_reason_indicator.to_s.length > 1
-        invalid_properties.push('invalid value for "credit_reason_indicator", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@ticket_change_indicator.nil? && @ticket_change_indicator.to_s.length > 1
-        invalid_properties.push('invalid value for "ticket_change_indicator", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@plan_number.nil? && @plan_number.to_s.length > 1
-        invalid_properties.push('invalid value for "plan_number", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@arrival_date.nil? && @arrival_date.to_s.length > 8
-        invalid_properties.push('invalid value for "arrival_date", the character length must be smaller than or equal to 8.')
-      end
-
-      if !@restricted_ticket_desciption.nil? && @restricted_ticket_desciption.to_s.length > 20
-        invalid_properties.push('invalid value for "restricted_ticket_desciption", the character length must be smaller than or equal to 20.')
-      end
-
-      if !@exchange_ticket_amount.nil? && @exchange_ticket_amount.to_s.length > 12
-        invalid_properties.push('invalid value for "exchange_ticket_amount", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@exchange_ticket_fee_amount.nil? && @exchange_ticket_fee_amount.to_s.length > 12
-        invalid_properties.push('invalid value for "exchange_ticket_fee_amount", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@reservation_type.nil? && @reservation_type.to_s.length > 32
-        invalid_properties.push('invalid value for "reservation_type", the character length must be smaller than or equal to 32.')
-      end
-
-      if !@boarding_fee_amount.nil? && @boarding_fee_amount.to_s.length > 12
-        invalid_properties.push('invalid value for "boarding_fee_amount", the character length must be smaller than or equal to 12.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@booking_reference_number.nil? && @booking_reference_number.to_s.length > 15
-      return false if !@carrier_name.nil? && @carrier_name.to_s.length > 15
-      return false if !@ticket_number.nil? && @ticket_number.to_s.length > 15
-      return false if !@check_digit.nil? && @check_digit.to_s.length > 1
-      return false if !@extended_payment_code.nil? && @extended_payment_code.to_s.length > 3
-      return false if !@passenger_name.nil? && @passenger_name.to_s.length > 42
-      return false if !@customer_code.nil? && @customer_code.to_s.length > 40
-      return false if !@document_type.nil? && @document_type.to_s.length > 1
-      return false if !@document_number.nil? && @document_number.to_s.length > 14
-      return false if !@invoice_number.nil? && @invoice_number.to_s.length > 25
-      return false if !@additional_charges.nil? && @additional_charges.to_s.length > 20
-      return false if !@total_fee_amount.nil? && @total_fee_amount.to_s.length > 12
-      return false if !@clearing_sequence.nil? && @clearing_sequence.to_s.length > 2
-      return false if !@clearing_count.nil? && @clearing_count.to_s.length > 2
-      return false if !@total_clearing_amount.nil? && @total_clearing_amount.to_s.length > 20
-      return false if !@reservation_system_code.nil? && @reservation_system_code.to_s.length > 4
-      return false if !@process_identifier.nil? && @process_identifier.to_s.length > 3
-      return false if !@ticket_issue_date.nil? && @ticket_issue_date.to_s.length > 8
-      return false if !@original_ticket_number.nil? && @original_ticket_number.to_s.length > 14
-      return false if !@purchase_type.nil? && @purchase_type.to_s.length > 3
-      return false if !@credit_reason_indicator.nil? && @credit_reason_indicator.to_s.length > 1
-      return false if !@ticket_change_indicator.nil? && @ticket_change_indicator.to_s.length > 1
-      return false if !@plan_number.nil? && @plan_number.to_s.length > 1
-      return false if !@arrival_date.nil? && @arrival_date.to_s.length > 8
-      return false if !@restricted_ticket_desciption.nil? && @restricted_ticket_desciption.to_s.length > 20
-      return false if !@exchange_ticket_amount.nil? && @exchange_ticket_amount.to_s.length > 12
-      return false if !@exchange_ticket_fee_amount.nil? && @exchange_ticket_fee_amount.to_s.length > 12
-      return false if !@reservation_type.nil? && @reservation_type.to_s.length > 32
-      return false if !@boarding_fee_amount.nil? && @boarding_fee_amount.to_s.length > 12
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] booking_reference_number Value to be assigned
     def booking_reference_number=(booking_reference_number)
-      if !booking_reference_number.nil? && booking_reference_number.to_s.length > 15
-        fail ArgumentError, 'invalid value for "booking_reference_number", the character length must be smaller than or equal to 15.'
-      end
-
       @booking_reference_number = booking_reference_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] carrier_name Value to be assigned
     def carrier_name=(carrier_name)
-      if !carrier_name.nil? && carrier_name.to_s.length > 15
-        fail ArgumentError, 'invalid value for "carrier_name", the character length must be smaller than or equal to 15.'
-      end
-
       @carrier_name = carrier_name
     end
 
     # Custom attribute writer method with validation
     # @param [Object] ticket_number Value to be assigned
     def ticket_number=(ticket_number)
-      if !ticket_number.nil? && ticket_number.to_s.length > 15
-        fail ArgumentError, 'invalid value for "ticket_number", the character length must be smaller than or equal to 15.'
-      end
-
       @ticket_number = ticket_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] check_digit Value to be assigned
     def check_digit=(check_digit)
-      if !check_digit.nil? && check_digit.to_s.length > 1
-        fail ArgumentError, 'invalid value for "check_digit", the character length must be smaller than or equal to 1.'
-      end
-
       @check_digit = check_digit
     end
 
     # Custom attribute writer method with validation
     # @param [Object] extended_payment_code Value to be assigned
     def extended_payment_code=(extended_payment_code)
-      if !extended_payment_code.nil? && extended_payment_code.to_s.length > 3
-        fail ArgumentError, 'invalid value for "extended_payment_code", the character length must be smaller than or equal to 3.'
-      end
-
       @extended_payment_code = extended_payment_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] passenger_name Value to be assigned
     def passenger_name=(passenger_name)
-      if !passenger_name.nil? && passenger_name.to_s.length > 42
-        fail ArgumentError, 'invalid value for "passenger_name", the character length must be smaller than or equal to 42.'
-      end
-
       @passenger_name = passenger_name
     end
 
     # Custom attribute writer method with validation
     # @param [Object] customer_code Value to be assigned
     def customer_code=(customer_code)
-      if !customer_code.nil? && customer_code.to_s.length > 40
-        fail ArgumentError, 'invalid value for "customer_code", the character length must be smaller than or equal to 40.'
-      end
-
       @customer_code = customer_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] document_type Value to be assigned
     def document_type=(document_type)
-      if !document_type.nil? && document_type.to_s.length > 1
-        fail ArgumentError, 'invalid value for "document_type", the character length must be smaller than or equal to 1.'
-      end
-
       @document_type = document_type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] document_number Value to be assigned
     def document_number=(document_number)
-      if !document_number.nil? && document_number.to_s.length > 14
-        fail ArgumentError, 'invalid value for "document_number", the character length must be smaller than or equal to 14.'
-      end
-
       @document_number = document_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] invoice_number Value to be assigned
     def invoice_number=(invoice_number)
-      if !invoice_number.nil? && invoice_number.to_s.length > 25
-        fail ArgumentError, 'invalid value for "invoice_number", the character length must be smaller than or equal to 25.'
-      end
-
       @invoice_number = invoice_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] additional_charges Value to be assigned
     def additional_charges=(additional_charges)
-      if !additional_charges.nil? && additional_charges.to_s.length > 20
-        fail ArgumentError, 'invalid value for "additional_charges", the character length must be smaller than or equal to 20.'
-      end
-
       @additional_charges = additional_charges
     end
 
     # Custom attribute writer method with validation
     # @param [Object] total_fee_amount Value to be assigned
     def total_fee_amount=(total_fee_amount)
-      if !total_fee_amount.nil? && total_fee_amount.to_s.length > 12
-        fail ArgumentError, 'invalid value for "total_fee_amount", the character length must be smaller than or equal to 12.'
-      end
-
       @total_fee_amount = total_fee_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] clearing_sequence Value to be assigned
     def clearing_sequence=(clearing_sequence)
-      if !clearing_sequence.nil? && clearing_sequence.to_s.length > 2
-        fail ArgumentError, 'invalid value for "clearing_sequence", the character length must be smaller than or equal to 2.'
-      end
-
       @clearing_sequence = clearing_sequence
     end
 
     # Custom attribute writer method with validation
     # @param [Object] clearing_count Value to be assigned
     def clearing_count=(clearing_count)
-      if !clearing_count.nil? && clearing_count.to_s.length > 2
-        fail ArgumentError, 'invalid value for "clearing_count", the character length must be smaller than or equal to 2.'
-      end
-
       @clearing_count = clearing_count
     end
 
     # Custom attribute writer method with validation
     # @param [Object] total_clearing_amount Value to be assigned
     def total_clearing_amount=(total_clearing_amount)
-      if !total_clearing_amount.nil? && total_clearing_amount.to_s.length > 20
-        fail ArgumentError, 'invalid value for "total_clearing_amount", the character length must be smaller than or equal to 20.'
-      end
-
       @total_clearing_amount = total_clearing_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] reservation_system_code Value to be assigned
     def reservation_system_code=(reservation_system_code)
-      if !reservation_system_code.nil? && reservation_system_code.to_s.length > 4
-        fail ArgumentError, 'invalid value for "reservation_system_code", the character length must be smaller than or equal to 4.'
-      end
-
       @reservation_system_code = reservation_system_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] process_identifier Value to be assigned
     def process_identifier=(process_identifier)
-      if !process_identifier.nil? && process_identifier.to_s.length > 3
-        fail ArgumentError, 'invalid value for "process_identifier", the character length must be smaller than or equal to 3.'
-      end
-
       @process_identifier = process_identifier
     end
 
     # Custom attribute writer method with validation
     # @param [Object] ticket_issue_date Value to be assigned
     def ticket_issue_date=(ticket_issue_date)
-      if !ticket_issue_date.nil? && ticket_issue_date.to_s.length > 8
-        fail ArgumentError, 'invalid value for "ticket_issue_date", the character length must be smaller than or equal to 8.'
-      end
-
       @ticket_issue_date = ticket_issue_date
     end
 
     # Custom attribute writer method with validation
     # @param [Object] original_ticket_number Value to be assigned
     def original_ticket_number=(original_ticket_number)
-      if !original_ticket_number.nil? && original_ticket_number.to_s.length > 14
-        fail ArgumentError, 'invalid value for "original_ticket_number", the character length must be smaller than or equal to 14.'
-      end
-
       @original_ticket_number = original_ticket_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] purchase_type Value to be assigned
     def purchase_type=(purchase_type)
-      if !purchase_type.nil? && purchase_type.to_s.length > 3
-        fail ArgumentError, 'invalid value for "purchase_type", the character length must be smaller than or equal to 3.'
-      end
-
       @purchase_type = purchase_type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] credit_reason_indicator Value to be assigned
     def credit_reason_indicator=(credit_reason_indicator)
-      if !credit_reason_indicator.nil? && credit_reason_indicator.to_s.length > 1
-        fail ArgumentError, 'invalid value for "credit_reason_indicator", the character length must be smaller than or equal to 1.'
-      end
-
       @credit_reason_indicator = credit_reason_indicator
     end
 
     # Custom attribute writer method with validation
     # @param [Object] ticket_change_indicator Value to be assigned
     def ticket_change_indicator=(ticket_change_indicator)
-      if !ticket_change_indicator.nil? && ticket_change_indicator.to_s.length > 1
-        fail ArgumentError, 'invalid value for "ticket_change_indicator", the character length must be smaller than or equal to 1.'
-      end
-
       @ticket_change_indicator = ticket_change_indicator
     end
 
     # Custom attribute writer method with validation
     # @param [Object] plan_number Value to be assigned
     def plan_number=(plan_number)
-      if !plan_number.nil? && plan_number.to_s.length > 1
-        fail ArgumentError, 'invalid value for "plan_number", the character length must be smaller than or equal to 1.'
-      end
-
       @plan_number = plan_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] arrival_date Value to be assigned
     def arrival_date=(arrival_date)
-      if !arrival_date.nil? && arrival_date.to_s.length > 8
-        fail ArgumentError, 'invalid value for "arrival_date", the character length must be smaller than or equal to 8.'
-      end
-
       @arrival_date = arrival_date
     end
 
     # Custom attribute writer method with validation
     # @param [Object] restricted_ticket_desciption Value to be assigned
     def restricted_ticket_desciption=(restricted_ticket_desciption)
-      if !restricted_ticket_desciption.nil? && restricted_ticket_desciption.to_s.length > 20
-        fail ArgumentError, 'invalid value for "restricted_ticket_desciption", the character length must be smaller than or equal to 20.'
-      end
-
       @restricted_ticket_desciption = restricted_ticket_desciption
     end
 
     # Custom attribute writer method with validation
     # @param [Object] exchange_ticket_amount Value to be assigned
     def exchange_ticket_amount=(exchange_ticket_amount)
-      if !exchange_ticket_amount.nil? && exchange_ticket_amount.to_s.length > 12
-        fail ArgumentError, 'invalid value for "exchange_ticket_amount", the character length must be smaller than or equal to 12.'
-      end
-
       @exchange_ticket_amount = exchange_ticket_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] exchange_ticket_fee_amount Value to be assigned
     def exchange_ticket_fee_amount=(exchange_ticket_fee_amount)
-      if !exchange_ticket_fee_amount.nil? && exchange_ticket_fee_amount.to_s.length > 12
-        fail ArgumentError, 'invalid value for "exchange_ticket_fee_amount", the character length must be smaller than or equal to 12.'
-      end
-
       @exchange_ticket_fee_amount = exchange_ticket_fee_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] reservation_type Value to be assigned
     def reservation_type=(reservation_type)
-      if !reservation_type.nil? && reservation_type.to_s.length > 32
-        fail ArgumentError, 'invalid value for "reservation_type", the character length must be smaller than or equal to 32.'
-      end
-
       @reservation_type = reservation_type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] boarding_fee_amount Value to be assigned
     def boarding_fee_amount=(boarding_fee_amount)
-      if !boarding_fee_amount.nil? && boarding_fee_amount.to_s.length > 12
-        fail ArgumentError, 'invalid value for "boarding_fee_amount", the character length must be smaller than or equal to 12.'
-      end
-
       @boarding_fee_amount = boarding_fee_amount
     end
 

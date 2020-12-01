@@ -76,57 +76,30 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@number.nil? && @number.to_s.length > 20
-        invalid_properties.push('invalid value for "number", the character length must be smaller than or equal to 20.')
-      end
-
-      if !@expiration_month.nil? && @expiration_month.to_s.length > 2
-        invalid_properties.push('invalid value for "expiration_month", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@expiration_year.nil? && @expiration_year.to_s.length > 4
-        invalid_properties.push('invalid value for "expiration_year", the character length must be smaller than or equal to 4.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@number.nil? && @number.to_s.length > 20
-      return false if !@expiration_month.nil? && @expiration_month.to_s.length > 2
-      return false if !@expiration_year.nil? && @expiration_year.to_s.length > 4
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] number Value to be assigned
     def number=(number)
-      if !number.nil? && number.to_s.length > 20
-        fail ArgumentError, 'invalid value for "number", the character length must be smaller than or equal to 20.'
-      end
-
       @number = number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] expiration_month Value to be assigned
     def expiration_month=(expiration_month)
-      if !expiration_month.nil? && expiration_month.to_s.length > 2
-        fail ArgumentError, 'invalid value for "expiration_month", the character length must be smaller than or equal to 2.'
-      end
-
       @expiration_month = expiration_month
     end
 
     # Custom attribute writer method with validation
     # @param [Object] expiration_year Value to be assigned
     def expiration_year=(expiration_year)
-      if !expiration_year.nil? && expiration_year.to_s.length > 4
-        fail ArgumentError, 'invalid value for "expiration_year", the character length must be smaller than or equal to 4.'
-      end
-
       @expiration_year = expiration_year
     end
 

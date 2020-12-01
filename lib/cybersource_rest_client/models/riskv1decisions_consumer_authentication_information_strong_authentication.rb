@@ -48,27 +48,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@authentication_indicator.nil? && @authentication_indicator.to_s.length > 2
-        invalid_properties.push('invalid value for "authentication_indicator", the character length must be smaller than or equal to 2.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@authentication_indicator.nil? && @authentication_indicator.to_s.length > 2
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] authentication_indicator Value to be assigned
     def authentication_indicator=(authentication_indicator)
-      if !authentication_indicator.nil? && authentication_indicator.to_s.length > 2
-        fail ArgumentError, 'invalid value for "authentication_indicator", the character length must be smaller than or equal to 2.'
-      end
-
       @authentication_indicator = authentication_indicator
     end
 

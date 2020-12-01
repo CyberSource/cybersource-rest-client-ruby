@@ -102,87 +102,42 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@amount.nil? && @amount.to_s.length > 13
-        invalid_properties.push('invalid value for "amount", the character length must be smaller than or equal to 13.')
-      end
-
-      if !@rate.nil? && @rate.to_s.length > 6
-        invalid_properties.push('invalid value for "rate", the character length must be smaller than or equal to 6.')
-      end
-
-      if !@code.nil? && @code.to_s.length > 4
-        invalid_properties.push('invalid value for "code", the character length must be smaller than or equal to 4.')
-      end
-
-      if !@tax_id.nil? && @tax_id.to_s.length > 15
-        invalid_properties.push('invalid value for "tax_id", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@exemption_code.nil? && @exemption_code.to_s.length > 1
-        invalid_properties.push('invalid value for "exemption_code", the character length must be smaller than or equal to 1.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@amount.nil? && @amount.to_s.length > 13
-      return false if !@rate.nil? && @rate.to_s.length > 6
-      return false if !@code.nil? && @code.to_s.length > 4
-      return false if !@tax_id.nil? && @tax_id.to_s.length > 15
-      return false if !@exemption_code.nil? && @exemption_code.to_s.length > 1
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] amount Value to be assigned
     def amount=(amount)
-      if !amount.nil? && amount.to_s.length > 13
-        fail ArgumentError, 'invalid value for "amount", the character length must be smaller than or equal to 13.'
-      end
-
       @amount = amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] rate Value to be assigned
     def rate=(rate)
-      if !rate.nil? && rate.to_s.length > 6
-        fail ArgumentError, 'invalid value for "rate", the character length must be smaller than or equal to 6.'
-      end
-
       @rate = rate
     end
 
     # Custom attribute writer method with validation
     # @param [Object] code Value to be assigned
     def code=(code)
-      if !code.nil? && code.to_s.length > 4
-        fail ArgumentError, 'invalid value for "code", the character length must be smaller than or equal to 4.'
-      end
-
       @code = code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] tax_id Value to be assigned
     def tax_id=(tax_id)
-      if !tax_id.nil? && tax_id.to_s.length > 15
-        fail ArgumentError, 'invalid value for "tax_id", the character length must be smaller than or equal to 15.'
-      end
-
       @tax_id = tax_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] exemption_code Value to be assigned
     def exemption_code=(exemption_code)
-      if !exemption_code.nil? && exemption_code.to_s.length > 1
-        fail ArgumentError, 'invalid value for "exemption_code", the character length must be smaller than or equal to 1.'
-      end
-
       @exemption_code = exemption_code
     end
 

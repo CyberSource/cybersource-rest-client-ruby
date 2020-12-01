@@ -102,87 +102,42 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@encryption_key.nil? && @encryption_key.to_s.length > 16
-        invalid_properties.push('invalid value for "encryption_key", the character length must be smaller than or equal to 16.')
-      end
-
-      if !@encryption_type.nil? && @encryption_type.to_s.length > 20
-        invalid_properties.push('invalid value for "encryption_type", the character length must be smaller than or equal to 20.')
-      end
-
-      if !@label.nil? && @label.to_s.length > 20
-        invalid_properties.push('invalid value for "label", the character length must be smaller than or equal to 20.')
-      end
-
-      if !@prompt.nil? && @prompt.to_s.length > 80
-        invalid_properties.push('invalid value for "prompt", the character length must be smaller than or equal to 80.')
-      end
-
-      if !@status_message.nil? && @status_message.to_s.length > 80
-        invalid_properties.push('invalid value for "status_message", the character length must be smaller than or equal to 80.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@encryption_key.nil? && @encryption_key.to_s.length > 16
-      return false if !@encryption_type.nil? && @encryption_type.to_s.length > 20
-      return false if !@label.nil? && @label.to_s.length > 20
-      return false if !@prompt.nil? && @prompt.to_s.length > 80
-      return false if !@status_message.nil? && @status_message.to_s.length > 80
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] encryption_key Value to be assigned
     def encryption_key=(encryption_key)
-      if !encryption_key.nil? && encryption_key.to_s.length > 16
-        fail ArgumentError, 'invalid value for "encryption_key", the character length must be smaller than or equal to 16.'
-      end
-
       @encryption_key = encryption_key
     end
 
     # Custom attribute writer method with validation
     # @param [Object] encryption_type Value to be assigned
     def encryption_type=(encryption_type)
-      if !encryption_type.nil? && encryption_type.to_s.length > 20
-        fail ArgumentError, 'invalid value for "encryption_type", the character length must be smaller than or equal to 20.'
-      end
-
       @encryption_type = encryption_type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] label Value to be assigned
     def label=(label)
-      if !label.nil? && label.to_s.length > 20
-        fail ArgumentError, 'invalid value for "label", the character length must be smaller than or equal to 20.'
-      end
-
       @label = label
     end
 
     # Custom attribute writer method with validation
     # @param [Object] prompt Value to be assigned
     def prompt=(prompt)
-      if !prompt.nil? && prompt.to_s.length > 80
-        fail ArgumentError, 'invalid value for "prompt", the character length must be smaller than or equal to 80.'
-      end
-
       @prompt = prompt
     end
 
     # Custom attribute writer method with validation
     # @param [Object] status_message Value to be assigned
     def status_message=(status_message)
-      if !status_message.nil? && status_message.to_s.length > 80
-        fail ArgumentError, 'invalid value for "status_message", the character length must be smaller than or equal to 80.'
-      end
-
       @status_message = status_message
     end
 

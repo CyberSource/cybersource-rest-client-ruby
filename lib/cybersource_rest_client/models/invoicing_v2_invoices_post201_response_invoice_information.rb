@@ -94,27 +94,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@description.nil? && @description.to_s.length > 2000
-        invalid_properties.push('invalid value for "description", the character length must be smaller than or equal to 2000.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@description.nil? && @description.to_s.length > 2000
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] description Value to be assigned
     def description=(description)
-      if !description.nil? && description.to_s.length > 2000
-        fail ArgumentError, 'invalid value for "description", the character length must be smaller than or equal to 2000.'
-      end
-
       @description = description
     end
 

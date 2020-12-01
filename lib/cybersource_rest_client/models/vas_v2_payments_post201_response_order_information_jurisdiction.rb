@@ -120,132 +120,66 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@type.nil? && @type.to_s.length > 15
-        invalid_properties.push('invalid value for "type", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@tax_name.nil? && @tax_name.to_s.length > 15
-        invalid_properties.push('invalid value for "tax_name", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@tax_amount.nil? && @tax_amount.to_s.length > 15
-        invalid_properties.push('invalid value for "tax_amount", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@taxable.nil? && @taxable.to_s.length > 15
-        invalid_properties.push('invalid value for "taxable", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@code.nil? && @code.to_s.length > 15
-        invalid_properties.push('invalid value for "code", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@rate.nil? && @rate.to_s.length > 15
-        invalid_properties.push('invalid value for "rate", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@region.nil? && @region.to_s.length > 15
-        invalid_properties.push('invalid value for "region", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@country.nil? && @country.to_s.length > 15
-        invalid_properties.push('invalid value for "country", the character length must be smaller than or equal to 15.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@type.nil? && @type.to_s.length > 15
-      return false if !@tax_name.nil? && @tax_name.to_s.length > 15
-      return false if !@tax_amount.nil? && @tax_amount.to_s.length > 15
-      return false if !@taxable.nil? && @taxable.to_s.length > 15
-      return false if !@code.nil? && @code.to_s.length > 15
-      return false if !@rate.nil? && @rate.to_s.length > 15
-      return false if !@region.nil? && @region.to_s.length > 15
-      return false if !@country.nil? && @country.to_s.length > 15
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] type Value to be assigned
     def type=(type)
-      if !type.nil? && type.to_s.length > 15
-        fail ArgumentError, 'invalid value for "type", the character length must be smaller than or equal to 15.'
-      end
-
       @type = type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] tax_name Value to be assigned
     def tax_name=(tax_name)
-      if !tax_name.nil? && tax_name.to_s.length > 15
-        fail ArgumentError, 'invalid value for "tax_name", the character length must be smaller than or equal to 15.'
-      end
-
       @tax_name = tax_name
     end
 
     # Custom attribute writer method with validation
     # @param [Object] tax_amount Value to be assigned
     def tax_amount=(tax_amount)
-      if !tax_amount.nil? && tax_amount.to_s.length > 15
-        fail ArgumentError, 'invalid value for "tax_amount", the character length must be smaller than or equal to 15.'
-      end
-
       @tax_amount = tax_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] taxable Value to be assigned
     def taxable=(taxable)
-      if !taxable.nil? && taxable.to_s.length > 15
-        fail ArgumentError, 'invalid value for "taxable", the character length must be smaller than or equal to 15.'
-      end
-
       @taxable = taxable
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] name Value to be assigned
+    def name=(name)
+      @name = name
     end
 
     # Custom attribute writer method with validation
     # @param [Object] code Value to be assigned
     def code=(code)
-      if !code.nil? && code.to_s.length > 15
-        fail ArgumentError, 'invalid value for "code", the character length must be smaller than or equal to 15.'
-      end
-
       @code = code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] rate Value to be assigned
     def rate=(rate)
-      if !rate.nil? && rate.to_s.length > 15
-        fail ArgumentError, 'invalid value for "rate", the character length must be smaller than or equal to 15.'
-      end
-
       @rate = rate
     end
 
     # Custom attribute writer method with validation
     # @param [Object] region Value to be assigned
     def region=(region)
-      if !region.nil? && region.to_s.length > 15
-        fail ArgumentError, 'invalid value for "region", the character length must be smaller than or equal to 15.'
-      end
-
       @region = region
     end
 
     # Custom attribute writer method with validation
     # @param [Object] country Value to be assigned
     def country=(country)
-      if !country.nil? && country.to_s.length > 15
-        fail ArgumentError, 'invalid value for "country", the character length must be smaller than or equal to 15.'
-      end
-
       @country = country
     end
 

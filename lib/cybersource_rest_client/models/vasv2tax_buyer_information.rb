@@ -48,27 +48,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@vat_registration_number.nil? && @vat_registration_number.to_s.length > 20
-        invalid_properties.push('invalid value for "vat_registration_number", the character length must be smaller than or equal to 20.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@vat_registration_number.nil? && @vat_registration_number.to_s.length > 20
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] vat_registration_number Value to be assigned
     def vat_registration_number=(vat_registration_number)
-      if !vat_registration_number.nil? && vat_registration_number.to_s.length > 20
-        fail ArgumentError, 'invalid value for "vat_registration_number", the character length must be smaller than or equal to 20.'
-      end
-
       @vat_registration_number = vat_registration_number
     end
 

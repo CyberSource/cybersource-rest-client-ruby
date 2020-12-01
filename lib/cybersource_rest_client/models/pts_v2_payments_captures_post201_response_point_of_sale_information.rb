@@ -48,27 +48,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@terminal_id.nil? && @terminal_id.to_s.length > 8
-        invalid_properties.push('invalid value for "terminal_id", the character length must be smaller than or equal to 8.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@terminal_id.nil? && @terminal_id.to_s.length > 8
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] terminal_id Value to be assigned
     def terminal_id=(terminal_id)
-      if !terminal_id.nil? && terminal_id.to_s.length > 8
-        fail ArgumentError, 'invalid value for "terminal_id", the character length must be smaller than or equal to 8.'
-      end
-
       @terminal_id = terminal_id
     end
 

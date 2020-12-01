@@ -129,147 +129,66 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@number.nil? && @number.to_s.length > 20
-        invalid_properties.push('invalid value for "number", the character length must be smaller than or equal to 20.')
-      end
-
-      if !@expiration_month.nil? && @expiration_month.to_s.length > 2
-        invalid_properties.push('invalid value for "expiration_month", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@expiration_year.nil? && @expiration_year.to_s.length > 4
-        invalid_properties.push('invalid value for "expiration_year", the character length must be smaller than or equal to 4.')
-      end
-
-      if !@cryptogram.nil? && @cryptogram.to_s.length > 40
-        invalid_properties.push('invalid value for "cryptogram", the character length must be smaller than or equal to 40.')
-      end
-
-      if !@requestor_id.nil? && @requestor_id.to_s.length > 11
-        invalid_properties.push('invalid value for "requestor_id", the character length must be smaller than or equal to 11.')
-      end
-
-      if !@transaction_type.nil? && @transaction_type.to_s.length > 1
-        invalid_properties.push('invalid value for "transaction_type", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@assurance_level.nil? && @assurance_level.to_s.length > 2
-        invalid_properties.push('invalid value for "assurance_level", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@storage_method.nil? && @storage_method.to_s.length > 3
-        invalid_properties.push('invalid value for "storage_method", the character length must be smaller than or equal to 3.')
-      end
-
-      if !@security_code.nil? && @security_code.to_s.length > 4
-        invalid_properties.push('invalid value for "security_code", the character length must be smaller than or equal to 4.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@number.nil? && @number.to_s.length > 20
-      return false if !@expiration_month.nil? && @expiration_month.to_s.length > 2
-      return false if !@expiration_year.nil? && @expiration_year.to_s.length > 4
-      return false if !@cryptogram.nil? && @cryptogram.to_s.length > 40
-      return false if !@requestor_id.nil? && @requestor_id.to_s.length > 11
-      return false if !@transaction_type.nil? && @transaction_type.to_s.length > 1
-      return false if !@assurance_level.nil? && @assurance_level.to_s.length > 2
-      return false if !@storage_method.nil? && @storage_method.to_s.length > 3
-      return false if !@security_code.nil? && @security_code.to_s.length > 4
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] number Value to be assigned
     def number=(number)
-      if !number.nil? && number.to_s.length > 20
-        fail ArgumentError, 'invalid value for "number", the character length must be smaller than or equal to 20.'
-      end
-
       @number = number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] expiration_month Value to be assigned
     def expiration_month=(expiration_month)
-      if !expiration_month.nil? && expiration_month.to_s.length > 2
-        fail ArgumentError, 'invalid value for "expiration_month", the character length must be smaller than or equal to 2.'
-      end
-
       @expiration_month = expiration_month
     end
 
     # Custom attribute writer method with validation
     # @param [Object] expiration_year Value to be assigned
     def expiration_year=(expiration_year)
-      if !expiration_year.nil? && expiration_year.to_s.length > 4
-        fail ArgumentError, 'invalid value for "expiration_year", the character length must be smaller than or equal to 4.'
-      end
-
       @expiration_year = expiration_year
     end
 
     # Custom attribute writer method with validation
     # @param [Object] cryptogram Value to be assigned
     def cryptogram=(cryptogram)
-      if !cryptogram.nil? && cryptogram.to_s.length > 40
-        fail ArgumentError, 'invalid value for "cryptogram", the character length must be smaller than or equal to 40.'
-      end
-
       @cryptogram = cryptogram
     end
 
     # Custom attribute writer method with validation
     # @param [Object] requestor_id Value to be assigned
     def requestor_id=(requestor_id)
-      if !requestor_id.nil? && requestor_id.to_s.length > 11
-        fail ArgumentError, 'invalid value for "requestor_id", the character length must be smaller than or equal to 11.'
-      end
-
       @requestor_id = requestor_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] transaction_type Value to be assigned
     def transaction_type=(transaction_type)
-      if !transaction_type.nil? && transaction_type.to_s.length > 1
-        fail ArgumentError, 'invalid value for "transaction_type", the character length must be smaller than or equal to 1.'
-      end
-
       @transaction_type = transaction_type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] assurance_level Value to be assigned
     def assurance_level=(assurance_level)
-      if !assurance_level.nil? && assurance_level.to_s.length > 2
-        fail ArgumentError, 'invalid value for "assurance_level", the character length must be smaller than or equal to 2.'
-      end
-
       @assurance_level = assurance_level
     end
 
     # Custom attribute writer method with validation
     # @param [Object] storage_method Value to be assigned
     def storage_method=(storage_method)
-      if !storage_method.nil? && storage_method.to_s.length > 3
-        fail ArgumentError, 'invalid value for "storage_method", the character length must be smaller than or equal to 3.'
-      end
-
       @storage_method = storage_method
     end
 
     # Custom attribute writer method with validation
     # @param [Object] security_code Value to be assigned
     def security_code=(security_code)
-      if !security_code.nil? && security_code.to_s.length > 4
-        fail ArgumentError, 'invalid value for "security_code", the character length must be smaller than or equal to 4.'
-      end
-
       @security_code = security_code
     end
 

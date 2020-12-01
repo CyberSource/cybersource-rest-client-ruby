@@ -88,10 +88,6 @@ module CyberSource
         invalid_properties.push('invalid value for "transaction_type", transaction_type cannot be nil.')
       end
 
-      if @transaction_type.to_s.length > 1
-        invalid_properties.push('invalid value for "transaction_type", the character length must be smaller than or equal to 1.')
-      end
-
       if @type.nil?
         invalid_properties.push('invalid value for "type", type cannot be nil.')
       end
@@ -100,24 +96,12 @@ module CyberSource
         invalid_properties.push('invalid value for "expiration_month", expiration_month cannot be nil.')
       end
 
-      if @expiration_month.to_s.length > 2
-        invalid_properties.push('invalid value for "expiration_month", the character length must be smaller than or equal to 2.')
-      end
-
       if @expiration_year.nil?
         invalid_properties.push('invalid value for "expiration_year", expiration_year cannot be nil.')
       end
 
-      if @expiration_year.to_s.length > 4
-        invalid_properties.push('invalid value for "expiration_year", the character length must be smaller than or equal to 4.')
-      end
-
       if @number.nil?
         invalid_properties.push('invalid value for "number", number cannot be nil.')
-      end
-
-      if @number.to_s.length > 20
-        invalid_properties.push('invalid value for "number", the character length must be smaller than or equal to 20.')
       end
 
       invalid_properties
@@ -127,14 +111,10 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if @transaction_type.nil?
-      return false if @transaction_type.to_s.length > 1
       return false if @type.nil?
       return false if @expiration_month.nil?
-      return false if @expiration_month.to_s.length > 2
       return false if @expiration_year.nil?
-      return false if @expiration_year.to_s.length > 4
       return false if @number.nil?
-      return false if @number.to_s.length > 20
       true
     end
 
@@ -143,10 +123,6 @@ module CyberSource
     def transaction_type=(transaction_type)
       if transaction_type.nil?
         fail ArgumentError, 'transaction_type cannot be nil'
-      end
-
-      if transaction_type.to_s.length > 1
-        fail ArgumentError, 'invalid value for "transaction_type", the character length must be smaller than or equal to 1.'
       end
 
       @transaction_type = transaction_type
@@ -159,10 +135,6 @@ module CyberSource
         fail ArgumentError, 'expiration_month cannot be nil'
       end
 
-      if expiration_month.to_s.length > 2
-        fail ArgumentError, 'invalid value for "expiration_month", the character length must be smaller than or equal to 2.'
-      end
-
       @expiration_month = expiration_month
     end
 
@@ -173,10 +145,6 @@ module CyberSource
         fail ArgumentError, 'expiration_year cannot be nil'
       end
 
-      if expiration_year.to_s.length > 4
-        fail ArgumentError, 'invalid value for "expiration_year", the character length must be smaller than or equal to 4.'
-      end
-
       @expiration_year = expiration_year
     end
 
@@ -185,10 +153,6 @@ module CyberSource
     def number=(number)
       if number.nil?
         fail ArgumentError, 'number cannot be nil'
-      end
-
-      if number.to_s.length > 20
-        fail ArgumentError, 'invalid value for "number", the character length must be smaller than or equal to 20.'
       end
 
       @number = number

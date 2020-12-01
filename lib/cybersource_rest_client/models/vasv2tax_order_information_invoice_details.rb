@@ -48,27 +48,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@invoice_date.nil? && @invoice_date.to_s.length > 8
-        invalid_properties.push('invalid value for "invoice_date", the character length must be smaller than or equal to 8.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@invoice_date.nil? && @invoice_date.to_s.length > 8
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] invoice_date Value to be assigned
     def invoice_date=(invoice_date)
-      if !invoice_date.nil? && invoice_date.to_s.length > 8
-        fail ArgumentError, 'invalid value for "invoice_date", the character length must be smaller than or equal to 8.'
-      end
-
       @invoice_date = invoice_date
     end
 

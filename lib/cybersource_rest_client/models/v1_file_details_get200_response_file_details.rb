@@ -57,7 +57,7 @@ module CyberSource
         :'last_modified_time' => :'DateTime',
         :'date' => :'Date',
         :'mime_type' => :'String',
-        :'size' => :'Integer'
+        :'size' => :'Float'
       }
     end
 

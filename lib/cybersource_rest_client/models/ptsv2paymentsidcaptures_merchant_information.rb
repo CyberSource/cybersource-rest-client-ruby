@@ -91,20 +91,8 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@card_acceptor_reference_number.nil? && @card_acceptor_reference_number.to_s.length > 25
-        invalid_properties.push('invalid value for "card_acceptor_reference_number", the character length must be smaller than or equal to 25.')
-      end
-
       if !@category_code.nil? && @category_code > 9999
         invalid_properties.push('invalid value for "category_code", must be smaller than or equal to 9999.')
-      end
-
-      if !@vat_registration_number.nil? && @vat_registration_number.to_s.length > 21
-        invalid_properties.push('invalid value for "vat_registration_number", the character length must be smaller than or equal to 21.')
-      end
-
-      if !@tax_id.nil? && @tax_id.to_s.length > 15
-        invalid_properties.push('invalid value for "tax_id", the character length must be smaller than or equal to 15.')
       end
 
       invalid_properties
@@ -113,20 +101,13 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@card_acceptor_reference_number.nil? && @card_acceptor_reference_number.to_s.length > 25
       return false if !@category_code.nil? && @category_code > 9999
-      return false if !@vat_registration_number.nil? && @vat_registration_number.to_s.length > 21
-      return false if !@tax_id.nil? && @tax_id.to_s.length > 15
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] card_acceptor_reference_number Value to be assigned
     def card_acceptor_reference_number=(card_acceptor_reference_number)
-      if !card_acceptor_reference_number.nil? && card_acceptor_reference_number.to_s.length > 25
-        fail ArgumentError, 'invalid value for "card_acceptor_reference_number", the character length must be smaller than or equal to 25.'
-      end
-
       @card_acceptor_reference_number = card_acceptor_reference_number
     end
 
@@ -143,20 +124,12 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] vat_registration_number Value to be assigned
     def vat_registration_number=(vat_registration_number)
-      if !vat_registration_number.nil? && vat_registration_number.to_s.length > 21
-        fail ArgumentError, 'invalid value for "vat_registration_number", the character length must be smaller than or equal to 21.'
-      end
-
       @vat_registration_number = vat_registration_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] tax_id Value to be assigned
     def tax_id=(tax_id)
-      if !tax_id.nil? && tax_id.to_s.length > 15
-        fail ArgumentError, 'invalid value for "tax_id", the character length must be smaller than or equal to 15.'
-      end
-
       @tax_id = tax_id
     end
 

@@ -75,72 +75,36 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@acquirer_merchant_id.nil? && @acquirer_merchant_id.to_s.length > 15
-        invalid_properties.push('invalid value for "acquirer_merchant_id", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@acquirer_bin.nil? && @acquirer_bin.to_s.length > 11
-        invalid_properties.push('invalid value for "acquirer_bin", the character length must be smaller than or equal to 11.')
-      end
-
-      if !@retrieval_reference_number.nil? && @retrieval_reference_number.to_s.length > 12
-        invalid_properties.push('invalid value for "retrieval_reference_number", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@account_funding_reference_id.nil? && @account_funding_reference_id.to_s.length > 15
-        invalid_properties.push('invalid value for "account_funding_reference_id", the character length must be smaller than or equal to 15.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@acquirer_merchant_id.nil? && @acquirer_merchant_id.to_s.length > 15
-      return false if !@acquirer_bin.nil? && @acquirer_bin.to_s.length > 11
-      return false if !@retrieval_reference_number.nil? && @retrieval_reference_number.to_s.length > 12
-      return false if !@account_funding_reference_id.nil? && @account_funding_reference_id.to_s.length > 15
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] acquirer_merchant_id Value to be assigned
     def acquirer_merchant_id=(acquirer_merchant_id)
-      if !acquirer_merchant_id.nil? && acquirer_merchant_id.to_s.length > 15
-        fail ArgumentError, 'invalid value for "acquirer_merchant_id", the character length must be smaller than or equal to 15.'
-      end
-
       @acquirer_merchant_id = acquirer_merchant_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] acquirer_bin Value to be assigned
     def acquirer_bin=(acquirer_bin)
-      if !acquirer_bin.nil? && acquirer_bin.to_s.length > 11
-        fail ArgumentError, 'invalid value for "acquirer_bin", the character length must be smaller than or equal to 11.'
-      end
-
       @acquirer_bin = acquirer_bin
     end
 
     # Custom attribute writer method with validation
     # @param [Object] retrieval_reference_number Value to be assigned
     def retrieval_reference_number=(retrieval_reference_number)
-      if !retrieval_reference_number.nil? && retrieval_reference_number.to_s.length > 12
-        fail ArgumentError, 'invalid value for "retrieval_reference_number", the character length must be smaller than or equal to 12.'
-      end
-
       @retrieval_reference_number = retrieval_reference_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] account_funding_reference_id Value to be assigned
     def account_funding_reference_id=(account_funding_reference_id)
-      if !account_funding_reference_id.nil? && account_funding_reference_id.to_s.length > 15
-        fail ArgumentError, 'invalid value for "account_funding_reference_id", the character length must be smaller than or equal to 15.'
-      end
-
       @account_funding_reference_id = account_funding_reference_id
     end
 

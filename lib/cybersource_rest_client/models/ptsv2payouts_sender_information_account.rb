@@ -57,51 +57,24 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@funds_source.nil? && @funds_source.to_s.length > 2
-        invalid_properties.push('invalid value for "funds_source", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@funds_source.nil? && @funds_source.to_s.length < 2
-        invalid_properties.push('invalid value for "funds_source", the character length must be great than or equal to 2.')
-      end
-
-      if !@number.nil? && @number.to_s.length > 34
-        invalid_properties.push('invalid value for "number", the character length must be smaller than or equal to 34.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@funds_source.nil? && @funds_source.to_s.length > 2
-      return false if !@funds_source.nil? && @funds_source.to_s.length < 2
-      return false if !@number.nil? && @number.to_s.length > 34
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] funds_source Value to be assigned
     def funds_source=(funds_source)
-      if !funds_source.nil? && funds_source.to_s.length > 2
-        fail ArgumentError, 'invalid value for "funds_source", the character length must be smaller than or equal to 2.'
-      end
-
-      if !funds_source.nil? && funds_source.to_s.length < 2
-        fail ArgumentError, 'invalid value for "funds_source", the character length must be great than or equal to 2.'
-      end
-
       @funds_source = funds_source
     end
 
     # Custom attribute writer method with validation
     # @param [Object] number Value to be assigned
     def number=(number)
-      if !number.nil? && number.to_s.length > 34
-        fail ArgumentError, 'invalid value for "number", the character length must be smaller than or equal to 34.'
-      end
-
       @number = number
     end
 

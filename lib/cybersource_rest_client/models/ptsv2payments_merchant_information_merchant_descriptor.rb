@@ -129,117 +129,54 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@alternate_name.nil? && @alternate_name.to_s.length > 13
-        invalid_properties.push('invalid value for "alternate_name", the character length must be smaller than or equal to 13.')
-      end
-
-      if !@contact.nil? && @contact.to_s.length > 14
-        invalid_properties.push('invalid value for "contact", the character length must be smaller than or equal to 14.')
-      end
-
-      if !@address1.nil? && @address1.to_s.length > 60
-        invalid_properties.push('invalid value for "address1", the character length must be smaller than or equal to 60.')
-      end
-
-      if !@locality.nil? && @locality.to_s.length > 13
-        invalid_properties.push('invalid value for "locality", the character length must be smaller than or equal to 13.')
-      end
-
-      if !@postal_code.nil? && @postal_code.to_s.length > 14
-        invalid_properties.push('invalid value for "postal_code", the character length must be smaller than or equal to 14.')
-      end
-
-      if !@phone.nil? && @phone.to_s.length > 13
-        invalid_properties.push('invalid value for "phone", the character length must be smaller than or equal to 13.')
-      end
-
-      if !@url.nil? && @url.to_s.length > 255
-        invalid_properties.push('invalid value for "url", the character length must be smaller than or equal to 255.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@alternate_name.nil? && @alternate_name.to_s.length > 13
-      return false if !@contact.nil? && @contact.to_s.length > 14
-      return false if !@address1.nil? && @address1.to_s.length > 60
-      return false if !@locality.nil? && @locality.to_s.length > 13
-      return false if !@postal_code.nil? && @postal_code.to_s.length > 14
-      return false if !@phone.nil? && @phone.to_s.length > 13
-      return false if !@url.nil? && @url.to_s.length > 255
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] alternate_name Value to be assigned
     def alternate_name=(alternate_name)
-      if !alternate_name.nil? && alternate_name.to_s.length > 13
-        fail ArgumentError, 'invalid value for "alternate_name", the character length must be smaller than or equal to 13.'
-      end
-
       @alternate_name = alternate_name
     end
 
     # Custom attribute writer method with validation
     # @param [Object] contact Value to be assigned
     def contact=(contact)
-      if !contact.nil? && contact.to_s.length > 14
-        fail ArgumentError, 'invalid value for "contact", the character length must be smaller than or equal to 14.'
-      end
-
       @contact = contact
     end
 
     # Custom attribute writer method with validation
     # @param [Object] address1 Value to be assigned
     def address1=(address1)
-      if !address1.nil? && address1.to_s.length > 60
-        fail ArgumentError, 'invalid value for "address1", the character length must be smaller than or equal to 60.'
-      end
-
       @address1 = address1
     end
 
     # Custom attribute writer method with validation
     # @param [Object] locality Value to be assigned
     def locality=(locality)
-      if !locality.nil? && locality.to_s.length > 13
-        fail ArgumentError, 'invalid value for "locality", the character length must be smaller than or equal to 13.'
-      end
-
       @locality = locality
     end
 
     # Custom attribute writer method with validation
     # @param [Object] postal_code Value to be assigned
     def postal_code=(postal_code)
-      if !postal_code.nil? && postal_code.to_s.length > 14
-        fail ArgumentError, 'invalid value for "postal_code", the character length must be smaller than or equal to 14.'
-      end
-
       @postal_code = postal_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] phone Value to be assigned
     def phone=(phone)
-      if !phone.nil? && phone.to_s.length > 13
-        fail ArgumentError, 'invalid value for "phone", the character length must be smaller than or equal to 13.'
-      end
-
       @phone = phone
     end
 
     # Custom attribute writer method with validation
     # @param [Object] url Value to be assigned
     def url=(url)
-      if !url.nil? && url.to_s.length > 255
-        fail ArgumentError, 'invalid value for "url", the character length must be smaller than or equal to 255.'
-      end
-
       @url = url
     end
 

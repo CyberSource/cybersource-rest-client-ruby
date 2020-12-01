@@ -57,27 +57,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@number.nil? && @number.to_s.length > 17
-        invalid_properties.push('invalid value for "number", the character length must be smaller than or equal to 17.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@number.nil? && @number.to_s.length > 17
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] number Value to be assigned
     def number=(number)
-      if !number.nil? && number.to_s.length > 17
-        fail ArgumentError, 'invalid value for "number", the character length must be smaller than or equal to 17.'
-      end
-
       @number = number
     end
 

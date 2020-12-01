@@ -48,27 +48,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@ship_from_postal_code.nil? && @ship_from_postal_code.to_s.length > 10
-        invalid_properties.push('invalid value for "ship_from_postal_code", the character length must be smaller than or equal to 10.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@ship_from_postal_code.nil? && @ship_from_postal_code.to_s.length > 10
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] ship_from_postal_code Value to be assigned
     def ship_from_postal_code=(ship_from_postal_code)
-      if !ship_from_postal_code.nil? && ship_from_postal_code.to_s.length > 10
-        fail ArgumentError, 'invalid value for "ship_from_postal_code", the character length must be smaller than or equal to 10.'
-      end
-
       @ship_from_postal_code = ship_from_postal_code
     end
 

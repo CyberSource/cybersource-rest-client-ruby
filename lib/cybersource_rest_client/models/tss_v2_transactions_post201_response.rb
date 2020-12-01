@@ -163,27 +163,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@search_id.nil? && @search_id.to_s.length > 60
-        invalid_properties.push('invalid value for "search_id", the character length must be smaller than or equal to 60.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@search_id.nil? && @search_id.to_s.length > 60
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] search_id Value to be assigned
     def search_id=(search_id)
-      if !search_id.nil? && search_id.to_s.length > 60
-        fail ArgumentError, 'invalid value for "search_id", the character length must be smaller than or equal to 60.'
-      end
-
       @search_id = search_id
     end
 

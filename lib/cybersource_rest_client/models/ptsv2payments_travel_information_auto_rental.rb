@@ -414,567 +414,234 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@customer_name.nil? && @customer_name.to_s.length > 40
-        invalid_properties.push('invalid value for "customer_name", the character length must be smaller than or equal to 40.')
-      end
-
-      if !@vehicle_class.nil? && @vehicle_class.to_s.length > 4
-        invalid_properties.push('invalid value for "vehicle_class", the character length must be smaller than or equal to 4.')
-      end
-
-      if !@distance_travelled.nil? && @distance_travelled.to_s.length > 5
-        invalid_properties.push('invalid value for "distance_travelled", the character length must be smaller than or equal to 5.')
-      end
-
-      if !@distance_unit.nil? && @distance_unit.to_s.length > 1
-        invalid_properties.push('invalid value for "distance_unit", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@return_date_time.nil? && @return_date_time.to_s.length > 21
-        invalid_properties.push('invalid value for "return_date_time", the character length must be smaller than or equal to 21.')
-      end
-
-      if !@rental_date_time.nil? && @rental_date_time.to_s.length > 21
-        invalid_properties.push('invalid value for "rental_date_time", the character length must be smaller than or equal to 21.')
-      end
-
-      if !@max_free_distance.nil? && @max_free_distance.to_s.length > 4
-        invalid_properties.push('invalid value for "max_free_distance", the character length must be smaller than or equal to 4.')
-      end
-
-      if !@program_code.nil? && @program_code.to_s.length > 2
-        invalid_properties.push('invalid value for "program_code", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@agreement_number.nil? && @agreement_number.to_s.length > 25
-        invalid_properties.push('invalid value for "agreement_number", the character length must be smaller than or equal to 25.')
-      end
-
-      if !@odometer_reading.nil? && @odometer_reading.to_s.length > 8
-        invalid_properties.push('invalid value for "odometer_reading", the character length must be smaller than or equal to 8.')
-      end
-
-      if !@vehicle_identification_number.nil? && @vehicle_identification_number.to_s.length > 20
-        invalid_properties.push('invalid value for "vehicle_identification_number", the character length must be smaller than or equal to 20.')
-      end
-
-      if !@company_id.nil? && @company_id.to_s.length > 12
-        invalid_properties.push('invalid value for "company_id", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@number_of_additional_drivers.nil? && @number_of_additional_drivers.to_s.length > 1
-        invalid_properties.push('invalid value for "number_of_additional_drivers", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@driver_age.nil? && @driver_age.to_s.length > 3
-        invalid_properties.push('invalid value for "driver_age", the character length must be smaller than or equal to 3.')
-      end
-
-      if !@special_program_code.nil? && @special_program_code.to_s.length > 2
-        invalid_properties.push('invalid value for "special_program_code", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@vehicle_make.nil? && @vehicle_make.to_s.length > 10
-        invalid_properties.push('invalid value for "vehicle_make", the character length must be smaller than or equal to 10.')
-      end
-
-      if !@vehicle_model.nil? && @vehicle_model.to_s.length > 10
-        invalid_properties.push('invalid value for "vehicle_model", the character length must be smaller than or equal to 10.')
-      end
-
-      if !@time_period.nil? && @time_period.to_s.length > 7
-        invalid_properties.push('invalid value for "time_period", the character length must be smaller than or equal to 7.')
-      end
-
-      if !@commodity_code.nil? && @commodity_code.to_s.length > 15
-        invalid_properties.push('invalid value for "commodity_code", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@customer_service_phone_number.nil? && @customer_service_phone_number.to_s.length > 17
-        invalid_properties.push('invalid value for "customer_service_phone_number", the character length must be smaller than or equal to 17.')
-      end
-
-      if !@insurance_amount.nil? && @insurance_amount.to_s.length > 12
-        invalid_properties.push('invalid value for "insurance_amount", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@one_way_drop_off_amount.nil? && @one_way_drop_off_amount.to_s.length > 12
-        invalid_properties.push('invalid value for "one_way_drop_off_amount", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@adjusted_amount_indicator.nil? && @adjusted_amount_indicator.to_s.length > 1
-        invalid_properties.push('invalid value for "adjusted_amount_indicator", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@adjusted_amount.nil? && @adjusted_amount.to_s.length > 12
-        invalid_properties.push('invalid value for "adjusted_amount", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@fuel_charges.nil? && @fuel_charges.to_s.length > 12
-        invalid_properties.push('invalid value for "fuel_charges", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@weekly_rental_rate.nil? && @weekly_rental_rate.to_s.length > 12
-        invalid_properties.push('invalid value for "weekly_rental_rate", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@daily_rental_rate.nil? && @daily_rental_rate.to_s.length > 12
-        invalid_properties.push('invalid value for "daily_rental_rate", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@rate_per_mile.nil? && @rate_per_mile.to_s.length > 12
-        invalid_properties.push('invalid value for "rate_per_mile", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@mileage_charge.nil? && @mileage_charge.to_s.length > 12
-        invalid_properties.push('invalid value for "mileage_charge", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@extra_mileage_charge.nil? && @extra_mileage_charge.to_s.length > 12
-        invalid_properties.push('invalid value for "extra_mileage_charge", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@late_fee_amount.nil? && @late_fee_amount.to_s.length > 12
-        invalid_properties.push('invalid value for "late_fee_amount", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@towing_charge.nil? && @towing_charge.to_s.length > 4
-        invalid_properties.push('invalid value for "towing_charge", the character length must be smaller than or equal to 4.')
-      end
-
-      if !@extra_charge.nil? && @extra_charge.to_s.length > 12
-        invalid_properties.push('invalid value for "extra_charge", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@gps_charge.nil? && @gps_charge.to_s.length > 12
-        invalid_properties.push('invalid value for "gps_charge", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@phone_charge.nil? && @phone_charge.to_s.length > 12
-        invalid_properties.push('invalid value for "phone_charge", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@parking_violation_charge.nil? && @parking_violation_charge.to_s.length > 12
-        invalid_properties.push('invalid value for "parking_violation_charge", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@other_charges.nil? && @other_charges.to_s.length > 12
-        invalid_properties.push('invalid value for "other_charges", the character length must be smaller than or equal to 12.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@customer_name.nil? && @customer_name.to_s.length > 40
-      return false if !@vehicle_class.nil? && @vehicle_class.to_s.length > 4
-      return false if !@distance_travelled.nil? && @distance_travelled.to_s.length > 5
-      return false if !@distance_unit.nil? && @distance_unit.to_s.length > 1
-      return false if !@return_date_time.nil? && @return_date_time.to_s.length > 21
-      return false if !@rental_date_time.nil? && @rental_date_time.to_s.length > 21
-      return false if !@max_free_distance.nil? && @max_free_distance.to_s.length > 4
-      return false if !@program_code.nil? && @program_code.to_s.length > 2
-      return false if !@agreement_number.nil? && @agreement_number.to_s.length > 25
-      return false if !@odometer_reading.nil? && @odometer_reading.to_s.length > 8
-      return false if !@vehicle_identification_number.nil? && @vehicle_identification_number.to_s.length > 20
-      return false if !@company_id.nil? && @company_id.to_s.length > 12
-      return false if !@number_of_additional_drivers.nil? && @number_of_additional_drivers.to_s.length > 1
-      return false if !@driver_age.nil? && @driver_age.to_s.length > 3
-      return false if !@special_program_code.nil? && @special_program_code.to_s.length > 2
-      return false if !@vehicle_make.nil? && @vehicle_make.to_s.length > 10
-      return false if !@vehicle_model.nil? && @vehicle_model.to_s.length > 10
-      return false if !@time_period.nil? && @time_period.to_s.length > 7
-      return false if !@commodity_code.nil? && @commodity_code.to_s.length > 15
-      return false if !@customer_service_phone_number.nil? && @customer_service_phone_number.to_s.length > 17
-      return false if !@insurance_amount.nil? && @insurance_amount.to_s.length > 12
-      return false if !@one_way_drop_off_amount.nil? && @one_way_drop_off_amount.to_s.length > 12
-      return false if !@adjusted_amount_indicator.nil? && @adjusted_amount_indicator.to_s.length > 1
-      return false if !@adjusted_amount.nil? && @adjusted_amount.to_s.length > 12
-      return false if !@fuel_charges.nil? && @fuel_charges.to_s.length > 12
-      return false if !@weekly_rental_rate.nil? && @weekly_rental_rate.to_s.length > 12
-      return false if !@daily_rental_rate.nil? && @daily_rental_rate.to_s.length > 12
-      return false if !@rate_per_mile.nil? && @rate_per_mile.to_s.length > 12
-      return false if !@mileage_charge.nil? && @mileage_charge.to_s.length > 12
-      return false if !@extra_mileage_charge.nil? && @extra_mileage_charge.to_s.length > 12
-      return false if !@late_fee_amount.nil? && @late_fee_amount.to_s.length > 12
-      return false if !@towing_charge.nil? && @towing_charge.to_s.length > 4
-      return false if !@extra_charge.nil? && @extra_charge.to_s.length > 12
-      return false if !@gps_charge.nil? && @gps_charge.to_s.length > 12
-      return false if !@phone_charge.nil? && @phone_charge.to_s.length > 12
-      return false if !@parking_violation_charge.nil? && @parking_violation_charge.to_s.length > 12
-      return false if !@other_charges.nil? && @other_charges.to_s.length > 12
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] customer_name Value to be assigned
     def customer_name=(customer_name)
-      if !customer_name.nil? && customer_name.to_s.length > 40
-        fail ArgumentError, 'invalid value for "customer_name", the character length must be smaller than or equal to 40.'
-      end
-
       @customer_name = customer_name
     end
 
     # Custom attribute writer method with validation
     # @param [Object] vehicle_class Value to be assigned
     def vehicle_class=(vehicle_class)
-      if !vehicle_class.nil? && vehicle_class.to_s.length > 4
-        fail ArgumentError, 'invalid value for "vehicle_class", the character length must be smaller than or equal to 4.'
-      end
-
       @vehicle_class = vehicle_class
     end
 
     # Custom attribute writer method with validation
     # @param [Object] distance_travelled Value to be assigned
     def distance_travelled=(distance_travelled)
-      if !distance_travelled.nil? && distance_travelled.to_s.length > 5
-        fail ArgumentError, 'invalid value for "distance_travelled", the character length must be smaller than or equal to 5.'
-      end
-
       @distance_travelled = distance_travelled
     end
 
     # Custom attribute writer method with validation
     # @param [Object] distance_unit Value to be assigned
     def distance_unit=(distance_unit)
-      if !distance_unit.nil? && distance_unit.to_s.length > 1
-        fail ArgumentError, 'invalid value for "distance_unit", the character length must be smaller than or equal to 1.'
-      end
-
       @distance_unit = distance_unit
     end
 
     # Custom attribute writer method with validation
     # @param [Object] return_date_time Value to be assigned
     def return_date_time=(return_date_time)
-      if !return_date_time.nil? && return_date_time.to_s.length > 21
-        fail ArgumentError, 'invalid value for "return_date_time", the character length must be smaller than or equal to 21.'
-      end
-
       @return_date_time = return_date_time
     end
 
     # Custom attribute writer method with validation
     # @param [Object] rental_date_time Value to be assigned
     def rental_date_time=(rental_date_time)
-      if !rental_date_time.nil? && rental_date_time.to_s.length > 21
-        fail ArgumentError, 'invalid value for "rental_date_time", the character length must be smaller than or equal to 21.'
-      end
-
       @rental_date_time = rental_date_time
     end
 
     # Custom attribute writer method with validation
     # @param [Object] max_free_distance Value to be assigned
     def max_free_distance=(max_free_distance)
-      if !max_free_distance.nil? && max_free_distance.to_s.length > 4
-        fail ArgumentError, 'invalid value for "max_free_distance", the character length must be smaller than or equal to 4.'
-      end
-
       @max_free_distance = max_free_distance
     end
 
     # Custom attribute writer method with validation
     # @param [Object] program_code Value to be assigned
     def program_code=(program_code)
-      if !program_code.nil? && program_code.to_s.length > 2
-        fail ArgumentError, 'invalid value for "program_code", the character length must be smaller than or equal to 2.'
-      end
-
       @program_code = program_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] agreement_number Value to be assigned
     def agreement_number=(agreement_number)
-      if !agreement_number.nil? && agreement_number.to_s.length > 25
-        fail ArgumentError, 'invalid value for "agreement_number", the character length must be smaller than or equal to 25.'
-      end
-
       @agreement_number = agreement_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] odometer_reading Value to be assigned
     def odometer_reading=(odometer_reading)
-      if !odometer_reading.nil? && odometer_reading.to_s.length > 8
-        fail ArgumentError, 'invalid value for "odometer_reading", the character length must be smaller than or equal to 8.'
-      end
-
       @odometer_reading = odometer_reading
     end
 
     # Custom attribute writer method with validation
     # @param [Object] vehicle_identification_number Value to be assigned
     def vehicle_identification_number=(vehicle_identification_number)
-      if !vehicle_identification_number.nil? && vehicle_identification_number.to_s.length > 20
-        fail ArgumentError, 'invalid value for "vehicle_identification_number", the character length must be smaller than or equal to 20.'
-      end
-
       @vehicle_identification_number = vehicle_identification_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] company_id Value to be assigned
     def company_id=(company_id)
-      if !company_id.nil? && company_id.to_s.length > 12
-        fail ArgumentError, 'invalid value for "company_id", the character length must be smaller than or equal to 12.'
-      end
-
       @company_id = company_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] number_of_additional_drivers Value to be assigned
     def number_of_additional_drivers=(number_of_additional_drivers)
-      if !number_of_additional_drivers.nil? && number_of_additional_drivers.to_s.length > 1
-        fail ArgumentError, 'invalid value for "number_of_additional_drivers", the character length must be smaller than or equal to 1.'
-      end
-
       @number_of_additional_drivers = number_of_additional_drivers
     end
 
     # Custom attribute writer method with validation
     # @param [Object] driver_age Value to be assigned
     def driver_age=(driver_age)
-      if !driver_age.nil? && driver_age.to_s.length > 3
-        fail ArgumentError, 'invalid value for "driver_age", the character length must be smaller than or equal to 3.'
-      end
-
       @driver_age = driver_age
     end
 
     # Custom attribute writer method with validation
     # @param [Object] special_program_code Value to be assigned
     def special_program_code=(special_program_code)
-      if !special_program_code.nil? && special_program_code.to_s.length > 2
-        fail ArgumentError, 'invalid value for "special_program_code", the character length must be smaller than or equal to 2.'
-      end
-
       @special_program_code = special_program_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] vehicle_make Value to be assigned
     def vehicle_make=(vehicle_make)
-      if !vehicle_make.nil? && vehicle_make.to_s.length > 10
-        fail ArgumentError, 'invalid value for "vehicle_make", the character length must be smaller than or equal to 10.'
-      end
-
       @vehicle_make = vehicle_make
     end
 
     # Custom attribute writer method with validation
     # @param [Object] vehicle_model Value to be assigned
     def vehicle_model=(vehicle_model)
-      if !vehicle_model.nil? && vehicle_model.to_s.length > 10
-        fail ArgumentError, 'invalid value for "vehicle_model", the character length must be smaller than or equal to 10.'
-      end
-
       @vehicle_model = vehicle_model
     end
 
     # Custom attribute writer method with validation
     # @param [Object] time_period Value to be assigned
     def time_period=(time_period)
-      if !time_period.nil? && time_period.to_s.length > 7
-        fail ArgumentError, 'invalid value for "time_period", the character length must be smaller than or equal to 7.'
-      end
-
       @time_period = time_period
     end
 
     # Custom attribute writer method with validation
     # @param [Object] commodity_code Value to be assigned
     def commodity_code=(commodity_code)
-      if !commodity_code.nil? && commodity_code.to_s.length > 15
-        fail ArgumentError, 'invalid value for "commodity_code", the character length must be smaller than or equal to 15.'
-      end
-
       @commodity_code = commodity_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] customer_service_phone_number Value to be assigned
     def customer_service_phone_number=(customer_service_phone_number)
-      if !customer_service_phone_number.nil? && customer_service_phone_number.to_s.length > 17
-        fail ArgumentError, 'invalid value for "customer_service_phone_number", the character length must be smaller than or equal to 17.'
-      end
-
       @customer_service_phone_number = customer_service_phone_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] insurance_amount Value to be assigned
     def insurance_amount=(insurance_amount)
-      if !insurance_amount.nil? && insurance_amount.to_s.length > 12
-        fail ArgumentError, 'invalid value for "insurance_amount", the character length must be smaller than or equal to 12.'
-      end
-
       @insurance_amount = insurance_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] one_way_drop_off_amount Value to be assigned
     def one_way_drop_off_amount=(one_way_drop_off_amount)
-      if !one_way_drop_off_amount.nil? && one_way_drop_off_amount.to_s.length > 12
-        fail ArgumentError, 'invalid value for "one_way_drop_off_amount", the character length must be smaller than or equal to 12.'
-      end
-
       @one_way_drop_off_amount = one_way_drop_off_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] adjusted_amount_indicator Value to be assigned
     def adjusted_amount_indicator=(adjusted_amount_indicator)
-      if !adjusted_amount_indicator.nil? && adjusted_amount_indicator.to_s.length > 1
-        fail ArgumentError, 'invalid value for "adjusted_amount_indicator", the character length must be smaller than or equal to 1.'
-      end
-
       @adjusted_amount_indicator = adjusted_amount_indicator
     end
 
     # Custom attribute writer method with validation
     # @param [Object] adjusted_amount Value to be assigned
     def adjusted_amount=(adjusted_amount)
-      if !adjusted_amount.nil? && adjusted_amount.to_s.length > 12
-        fail ArgumentError, 'invalid value for "adjusted_amount", the character length must be smaller than or equal to 12.'
-      end
-
       @adjusted_amount = adjusted_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] fuel_charges Value to be assigned
     def fuel_charges=(fuel_charges)
-      if !fuel_charges.nil? && fuel_charges.to_s.length > 12
-        fail ArgumentError, 'invalid value for "fuel_charges", the character length must be smaller than or equal to 12.'
-      end
-
       @fuel_charges = fuel_charges
     end
 
     # Custom attribute writer method with validation
     # @param [Object] weekly_rental_rate Value to be assigned
     def weekly_rental_rate=(weekly_rental_rate)
-      if !weekly_rental_rate.nil? && weekly_rental_rate.to_s.length > 12
-        fail ArgumentError, 'invalid value for "weekly_rental_rate", the character length must be smaller than or equal to 12.'
-      end
-
       @weekly_rental_rate = weekly_rental_rate
     end
 
     # Custom attribute writer method with validation
     # @param [Object] daily_rental_rate Value to be assigned
     def daily_rental_rate=(daily_rental_rate)
-      if !daily_rental_rate.nil? && daily_rental_rate.to_s.length > 12
-        fail ArgumentError, 'invalid value for "daily_rental_rate", the character length must be smaller than or equal to 12.'
-      end
-
       @daily_rental_rate = daily_rental_rate
     end
 
     # Custom attribute writer method with validation
     # @param [Object] rate_per_mile Value to be assigned
     def rate_per_mile=(rate_per_mile)
-      if !rate_per_mile.nil? && rate_per_mile.to_s.length > 12
-        fail ArgumentError, 'invalid value for "rate_per_mile", the character length must be smaller than or equal to 12.'
-      end
-
       @rate_per_mile = rate_per_mile
     end
 
     # Custom attribute writer method with validation
     # @param [Object] mileage_charge Value to be assigned
     def mileage_charge=(mileage_charge)
-      if !mileage_charge.nil? && mileage_charge.to_s.length > 12
-        fail ArgumentError, 'invalid value for "mileage_charge", the character length must be smaller than or equal to 12.'
-      end
-
       @mileage_charge = mileage_charge
     end
 
     # Custom attribute writer method with validation
     # @param [Object] extra_mileage_charge Value to be assigned
     def extra_mileage_charge=(extra_mileage_charge)
-      if !extra_mileage_charge.nil? && extra_mileage_charge.to_s.length > 12
-        fail ArgumentError, 'invalid value for "extra_mileage_charge", the character length must be smaller than or equal to 12.'
-      end
-
       @extra_mileage_charge = extra_mileage_charge
     end
 
     # Custom attribute writer method with validation
     # @param [Object] late_fee_amount Value to be assigned
     def late_fee_amount=(late_fee_amount)
-      if !late_fee_amount.nil? && late_fee_amount.to_s.length > 12
-        fail ArgumentError, 'invalid value for "late_fee_amount", the character length must be smaller than or equal to 12.'
-      end
-
       @late_fee_amount = late_fee_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] towing_charge Value to be assigned
     def towing_charge=(towing_charge)
-      if !towing_charge.nil? && towing_charge.to_s.length > 4
-        fail ArgumentError, 'invalid value for "towing_charge", the character length must be smaller than or equal to 4.'
-      end
-
       @towing_charge = towing_charge
     end
 
     # Custom attribute writer method with validation
     # @param [Object] extra_charge Value to be assigned
     def extra_charge=(extra_charge)
-      if !extra_charge.nil? && extra_charge.to_s.length > 12
-        fail ArgumentError, 'invalid value for "extra_charge", the character length must be smaller than or equal to 12.'
-      end
-
       @extra_charge = extra_charge
     end
 
     # Custom attribute writer method with validation
     # @param [Object] gps_charge Value to be assigned
     def gps_charge=(gps_charge)
-      if !gps_charge.nil? && gps_charge.to_s.length > 12
-        fail ArgumentError, 'invalid value for "gps_charge", the character length must be smaller than or equal to 12.'
-      end
-
       @gps_charge = gps_charge
     end
 
     # Custom attribute writer method with validation
     # @param [Object] phone_charge Value to be assigned
     def phone_charge=(phone_charge)
-      if !phone_charge.nil? && phone_charge.to_s.length > 12
-        fail ArgumentError, 'invalid value for "phone_charge", the character length must be smaller than or equal to 12.'
-      end
-
       @phone_charge = phone_charge
     end
 
     # Custom attribute writer method with validation
     # @param [Object] parking_violation_charge Value to be assigned
     def parking_violation_charge=(parking_violation_charge)
-      if !parking_violation_charge.nil? && parking_violation_charge.to_s.length > 12
-        fail ArgumentError, 'invalid value for "parking_violation_charge", the character length must be smaller than or equal to 12.'
-      end
-
       @parking_violation_charge = parking_violation_charge
     end
 
     # Custom attribute writer method with validation
     # @param [Object] other_charges Value to be assigned
     def other_charges=(other_charges)
-      if !other_charges.nil? && other_charges.to_s.length > 12
-        fail ArgumentError, 'invalid value for "other_charges", the character length must be smaller than or equal to 12.'
-      end
-
       @other_charges = other_charges
     end
 

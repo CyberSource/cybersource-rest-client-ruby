@@ -66,57 +66,30 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@approval_code.nil? && @approval_code.to_s.length > 6
-        invalid_properties.push('invalid value for "approval_code", the character length must be smaller than or equal to 6.')
-      end
-
-      if !@reason_code.nil? && @reason_code.to_s.length > 50
-        invalid_properties.push('invalid value for "reason_code", the character length must be smaller than or equal to 50.')
-      end
-
-      if !@reversal_submitted.nil? && @reversal_submitted.to_s.length > 1
-        invalid_properties.push('invalid value for "reversal_submitted", the character length must be smaller than or equal to 1.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@approval_code.nil? && @approval_code.to_s.length > 6
-      return false if !@reason_code.nil? && @reason_code.to_s.length > 50
-      return false if !@reversal_submitted.nil? && @reversal_submitted.to_s.length > 1
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] approval_code Value to be assigned
     def approval_code=(approval_code)
-      if !approval_code.nil? && approval_code.to_s.length > 6
-        fail ArgumentError, 'invalid value for "approval_code", the character length must be smaller than or equal to 6.'
-      end
-
       @approval_code = approval_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] reason_code Value to be assigned
     def reason_code=(reason_code)
-      if !reason_code.nil? && reason_code.to_s.length > 50
-        fail ArgumentError, 'invalid value for "reason_code", the character length must be smaller than or equal to 50.'
-      end
-
       @reason_code = reason_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] reversal_submitted Value to be assigned
     def reversal_submitted=(reversal_submitted)
-      if !reversal_submitted.nil? && reversal_submitted.to_s.length > 1
-        fail ArgumentError, 'invalid value for "reversal_submitted", the character length must be smaller than or equal to 1.'
-      end
-
       @reversal_submitted = reversal_submitted
     end
 

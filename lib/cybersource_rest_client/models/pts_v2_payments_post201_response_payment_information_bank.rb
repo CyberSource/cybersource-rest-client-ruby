@@ -56,27 +56,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@corrected_routing_number.nil? && @corrected_routing_number.to_s.length > 9
-        invalid_properties.push('invalid value for "corrected_routing_number", the character length must be smaller than or equal to 9.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@corrected_routing_number.nil? && @corrected_routing_number.to_s.length > 9
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] corrected_routing_number Value to be assigned
     def corrected_routing_number=(corrected_routing_number)
-      if !corrected_routing_number.nil? && corrected_routing_number.to_s.length > 9
-        fail ArgumentError, 'invalid value for "corrected_routing_number", the character length must be smaller than or equal to 9.'
-      end
-
       @corrected_routing_number = corrected_routing_number
     end
 

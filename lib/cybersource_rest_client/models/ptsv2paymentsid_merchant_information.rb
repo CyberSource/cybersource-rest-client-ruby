@@ -48,27 +48,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@transaction_local_date_time.nil? && @transaction_local_date_time.to_s.length > 14
-        invalid_properties.push('invalid value for "transaction_local_date_time", the character length must be smaller than or equal to 14.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@transaction_local_date_time.nil? && @transaction_local_date_time.to_s.length > 14
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] transaction_local_date_time Value to be assigned
     def transaction_local_date_time=(transaction_local_date_time)
-      if !transaction_local_date_time.nil? && transaction_local_date_time.to_s.length > 14
-        fail ArgumentError, 'invalid value for "transaction_local_date_time", the character length must be smaller than or equal to 14.'
-      end
-
       @transaction_local_date_time = transaction_local_date_time
     end
 

@@ -102,102 +102,48 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@prefix.nil? && @prefix.to_s.length > 6
-        invalid_properties.push('invalid value for "prefix", the character length must be smaller than or equal to 6.')
-      end
-
-      if !@suffix.nil? && @suffix.to_s.length > 4
-        invalid_properties.push('invalid value for "suffix", the character length must be smaller than or equal to 4.')
-      end
-
-      if !@assurance_level.nil? && @assurance_level.to_s.length > 2
-        invalid_properties.push('invalid value for "assurance_level", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@expiration_month.nil? && @expiration_month.to_s.length > 2
-        invalid_properties.push('invalid value for "expiration_month", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@expiration_year.nil? && @expiration_year.to_s.length > 4
-        invalid_properties.push('invalid value for "expiration_year", the character length must be smaller than or equal to 4.')
-      end
-
-      if !@requestor_id.nil? && @requestor_id.to_s.length > 11
-        invalid_properties.push('invalid value for "requestor_id", the character length must be smaller than or equal to 11.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@prefix.nil? && @prefix.to_s.length > 6
-      return false if !@suffix.nil? && @suffix.to_s.length > 4
-      return false if !@assurance_level.nil? && @assurance_level.to_s.length > 2
-      return false if !@expiration_month.nil? && @expiration_month.to_s.length > 2
-      return false if !@expiration_year.nil? && @expiration_year.to_s.length > 4
-      return false if !@requestor_id.nil? && @requestor_id.to_s.length > 11
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] prefix Value to be assigned
     def prefix=(prefix)
-      if !prefix.nil? && prefix.to_s.length > 6
-        fail ArgumentError, 'invalid value for "prefix", the character length must be smaller than or equal to 6.'
-      end
-
       @prefix = prefix
     end
 
     # Custom attribute writer method with validation
     # @param [Object] suffix Value to be assigned
     def suffix=(suffix)
-      if !suffix.nil? && suffix.to_s.length > 4
-        fail ArgumentError, 'invalid value for "suffix", the character length must be smaller than or equal to 4.'
-      end
-
       @suffix = suffix
     end
 
     # Custom attribute writer method with validation
     # @param [Object] assurance_level Value to be assigned
     def assurance_level=(assurance_level)
-      if !assurance_level.nil? && assurance_level.to_s.length > 2
-        fail ArgumentError, 'invalid value for "assurance_level", the character length must be smaller than or equal to 2.'
-      end
-
       @assurance_level = assurance_level
     end
 
     # Custom attribute writer method with validation
     # @param [Object] expiration_month Value to be assigned
     def expiration_month=(expiration_month)
-      if !expiration_month.nil? && expiration_month.to_s.length > 2
-        fail ArgumentError, 'invalid value for "expiration_month", the character length must be smaller than or equal to 2.'
-      end
-
       @expiration_month = expiration_month
     end
 
     # Custom attribute writer method with validation
     # @param [Object] expiration_year Value to be assigned
     def expiration_year=(expiration_year)
-      if !expiration_year.nil? && expiration_year.to_s.length > 4
-        fail ArgumentError, 'invalid value for "expiration_year", the character length must be smaller than or equal to 4.'
-      end
-
       @expiration_year = expiration_year
     end
 
     # Custom attribute writer method with validation
     # @param [Object] requestor_id Value to be assigned
     def requestor_id=(requestor_id)
-      if !requestor_id.nil? && requestor_id.to_s.length > 11
-        fail ArgumentError, 'invalid value for "requestor_id", the character length must be smaller than or equal to 11.'
-      end
-
       @requestor_id = requestor_id
     end
 

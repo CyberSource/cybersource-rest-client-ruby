@@ -66,42 +66,24 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@xid.nil? && @xid.to_s.length > 40
-        invalid_properties.push('invalid value for "xid", the character length must be smaller than or equal to 40.')
-      end
-
-      if !@eci_raw.nil? && @eci_raw.to_s.length > 2
-        invalid_properties.push('invalid value for "eci_raw", the character length must be smaller than or equal to 2.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@xid.nil? && @xid.to_s.length > 40
-      return false if !@eci_raw.nil? && @eci_raw.to_s.length > 2
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] xid Value to be assigned
     def xid=(xid)
-      if !xid.nil? && xid.to_s.length > 40
-        fail ArgumentError, 'invalid value for "xid", the character length must be smaller than or equal to 40.'
-      end
-
       @xid = xid
     end
 
     # Custom attribute writer method with validation
     # @param [Object] eci_raw Value to be assigned
     def eci_raw=(eci_raw)
-      if !eci_raw.nil? && eci_raw.to_s.length > 2
-        fail ArgumentError, 'invalid value for "eci_raw", the character length must be smaller than or equal to 2.'
-      end
-
       @eci_raw = eci_raw
     end
 

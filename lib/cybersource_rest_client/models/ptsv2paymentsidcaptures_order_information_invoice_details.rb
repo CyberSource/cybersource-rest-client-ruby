@@ -103,87 +103,42 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@purchase_order_number.nil? && @purchase_order_number.to_s.length > 25
-        invalid_properties.push('invalid value for "purchase_order_number", the character length must be smaller than or equal to 25.')
-      end
-
-      if !@purchase_order_date.nil? && @purchase_order_date.to_s.length > 10
-        invalid_properties.push('invalid value for "purchase_order_date", the character length must be smaller than or equal to 10.')
-      end
-
-      if !@purchase_contact_name.nil? && @purchase_contact_name.to_s.length > 36
-        invalid_properties.push('invalid value for "purchase_contact_name", the character length must be smaller than or equal to 36.')
-      end
-
-      if !@vat_invoice_reference_number.nil? && @vat_invoice_reference_number.to_s.length > 15
-        invalid_properties.push('invalid value for "vat_invoice_reference_number", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@commodity_code.nil? && @commodity_code.to_s.length > 4
-        invalid_properties.push('invalid value for "commodity_code", the character length must be smaller than or equal to 4.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@purchase_order_number.nil? && @purchase_order_number.to_s.length > 25
-      return false if !@purchase_order_date.nil? && @purchase_order_date.to_s.length > 10
-      return false if !@purchase_contact_name.nil? && @purchase_contact_name.to_s.length > 36
-      return false if !@vat_invoice_reference_number.nil? && @vat_invoice_reference_number.to_s.length > 15
-      return false if !@commodity_code.nil? && @commodity_code.to_s.length > 4
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] purchase_order_number Value to be assigned
     def purchase_order_number=(purchase_order_number)
-      if !purchase_order_number.nil? && purchase_order_number.to_s.length > 25
-        fail ArgumentError, 'invalid value for "purchase_order_number", the character length must be smaller than or equal to 25.'
-      end
-
       @purchase_order_number = purchase_order_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] purchase_order_date Value to be assigned
     def purchase_order_date=(purchase_order_date)
-      if !purchase_order_date.nil? && purchase_order_date.to_s.length > 10
-        fail ArgumentError, 'invalid value for "purchase_order_date", the character length must be smaller than or equal to 10.'
-      end
-
       @purchase_order_date = purchase_order_date
     end
 
     # Custom attribute writer method with validation
     # @param [Object] purchase_contact_name Value to be assigned
     def purchase_contact_name=(purchase_contact_name)
-      if !purchase_contact_name.nil? && purchase_contact_name.to_s.length > 36
-        fail ArgumentError, 'invalid value for "purchase_contact_name", the character length must be smaller than or equal to 36.'
-      end
-
       @purchase_contact_name = purchase_contact_name
     end
 
     # Custom attribute writer method with validation
     # @param [Object] vat_invoice_reference_number Value to be assigned
     def vat_invoice_reference_number=(vat_invoice_reference_number)
-      if !vat_invoice_reference_number.nil? && vat_invoice_reference_number.to_s.length > 15
-        fail ArgumentError, 'invalid value for "vat_invoice_reference_number", the character length must be smaller than or equal to 15.'
-      end
-
       @vat_invoice_reference_number = vat_invoice_reference_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] commodity_code Value to be assigned
     def commodity_code=(commodity_code)
-      if !commodity_code.nil? && commodity_code.to_s.length > 4
-        fail ArgumentError, 'invalid value for "commodity_code", the character length must be smaller than or equal to 4.'
-      end
-
       @commodity_code = commodity_code
     end
 

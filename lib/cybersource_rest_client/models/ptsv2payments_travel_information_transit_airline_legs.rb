@@ -219,252 +219,108 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@carrier_code.nil? && @carrier_code.to_s.length > 4
-        invalid_properties.push('invalid value for "carrier_code", the character length must be smaller than or equal to 4.')
-      end
-
-      if !@flight_number.nil? && @flight_number.to_s.length > 6
-        invalid_properties.push('invalid value for "flight_number", the character length must be smaller than or equal to 6.')
-      end
-
-      if !@originating_airport_code.nil? && @originating_airport_code.to_s.length > 5
-        invalid_properties.push('invalid value for "originating_airport_code", the character length must be smaller than or equal to 5.')
-      end
-
-      if !@_class.nil? && @_class.to_s.length > 3
-        invalid_properties.push('invalid value for "_class", the character length must be smaller than or equal to 3.')
-      end
-
-      if !@destination_airport_code.nil? && @destination_airport_code.to_s.length > 3
-        invalid_properties.push('invalid value for "destination_airport_code", the character length must be smaller than or equal to 3.')
-      end
-
-      if !@fare_basis.nil? && @fare_basis.to_s.length > 15
-        invalid_properties.push('invalid value for "fare_basis", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@depart_tax_amount.nil? && @depart_tax_amount.to_s.length > 12
-        invalid_properties.push('invalid value for "depart_tax_amount", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@conjunction_ticket.nil? && @conjunction_ticket.to_s.length > 25
-        invalid_properties.push('invalid value for "conjunction_ticket", the character length must be smaller than or equal to 25.')
-      end
-
-      if !@exchange_ticket_number.nil? && @exchange_ticket_number.to_s.length > 25
-        invalid_properties.push('invalid value for "exchange_ticket_number", the character length must be smaller than or equal to 25.')
-      end
-
-      if !@coupon_number.nil? && @coupon_number.to_s.length > 1
-        invalid_properties.push('invalid value for "coupon_number", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@departure_time_meridian.nil? && @departure_time_meridian.to_s.length > 1
-        invalid_properties.push('invalid value for "departure_time_meridian", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@arrival_time_meridian.nil? && @arrival_time_meridian.to_s.length > 1
-        invalid_properties.push('invalid value for "arrival_time_meridian", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@endorsements_restrictions.nil? && @endorsements_restrictions.to_s.length > 20
-        invalid_properties.push('invalid value for "endorsements_restrictions", the character length must be smaller than or equal to 20.')
-      end
-
-      if !@total_fare_amount.nil? && @total_fare_amount.to_s.length > 15
-        invalid_properties.push('invalid value for "total_fare_amount", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@fee_amount.nil? && @fee_amount.to_s.length > 12
-        invalid_properties.push('invalid value for "fee_amount", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@tax_amount.nil? && @tax_amount.to_s.length > 12
-        invalid_properties.push('invalid value for "tax_amount", the character length must be smaller than or equal to 12.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@carrier_code.nil? && @carrier_code.to_s.length > 4
-      return false if !@flight_number.nil? && @flight_number.to_s.length > 6
-      return false if !@originating_airport_code.nil? && @originating_airport_code.to_s.length > 5
-      return false if !@_class.nil? && @_class.to_s.length > 3
-      return false if !@destination_airport_code.nil? && @destination_airport_code.to_s.length > 3
-      return false if !@fare_basis.nil? && @fare_basis.to_s.length > 15
-      return false if !@depart_tax_amount.nil? && @depart_tax_amount.to_s.length > 12
-      return false if !@conjunction_ticket.nil? && @conjunction_ticket.to_s.length > 25
-      return false if !@exchange_ticket_number.nil? && @exchange_ticket_number.to_s.length > 25
-      return false if !@coupon_number.nil? && @coupon_number.to_s.length > 1
-      return false if !@departure_time_meridian.nil? && @departure_time_meridian.to_s.length > 1
-      return false if !@arrival_time_meridian.nil? && @arrival_time_meridian.to_s.length > 1
-      return false if !@endorsements_restrictions.nil? && @endorsements_restrictions.to_s.length > 20
-      return false if !@total_fare_amount.nil? && @total_fare_amount.to_s.length > 15
-      return false if !@fee_amount.nil? && @fee_amount.to_s.length > 12
-      return false if !@tax_amount.nil? && @tax_amount.to_s.length > 12
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] carrier_code Value to be assigned
     def carrier_code=(carrier_code)
-      if !carrier_code.nil? && carrier_code.to_s.length > 4
-        fail ArgumentError, 'invalid value for "carrier_code", the character length must be smaller than or equal to 4.'
-      end
-
       @carrier_code = carrier_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] flight_number Value to be assigned
     def flight_number=(flight_number)
-      if !flight_number.nil? && flight_number.to_s.length > 6
-        fail ArgumentError, 'invalid value for "flight_number", the character length must be smaller than or equal to 6.'
-      end
-
       @flight_number = flight_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] originating_airport_code Value to be assigned
     def originating_airport_code=(originating_airport_code)
-      if !originating_airport_code.nil? && originating_airport_code.to_s.length > 5
-        fail ArgumentError, 'invalid value for "originating_airport_code", the character length must be smaller than or equal to 5.'
-      end
-
       @originating_airport_code = originating_airport_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] _class Value to be assigned
     def _class=(_class)
-      if !_class.nil? && _class.to_s.length > 3
-        fail ArgumentError, 'invalid value for "_class", the character length must be smaller than or equal to 3.'
-      end
-
       @_class = _class
     end
 
     # Custom attribute writer method with validation
     # @param [Object] destination_airport_code Value to be assigned
     def destination_airport_code=(destination_airport_code)
-      if !destination_airport_code.nil? && destination_airport_code.to_s.length > 3
-        fail ArgumentError, 'invalid value for "destination_airport_code", the character length must be smaller than or equal to 3.'
-      end
-
       @destination_airport_code = destination_airport_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] fare_basis Value to be assigned
     def fare_basis=(fare_basis)
-      if !fare_basis.nil? && fare_basis.to_s.length > 15
-        fail ArgumentError, 'invalid value for "fare_basis", the character length must be smaller than or equal to 15.'
-      end
-
       @fare_basis = fare_basis
     end
 
     # Custom attribute writer method with validation
     # @param [Object] depart_tax_amount Value to be assigned
     def depart_tax_amount=(depart_tax_amount)
-      if !depart_tax_amount.nil? && depart_tax_amount.to_s.length > 12
-        fail ArgumentError, 'invalid value for "depart_tax_amount", the character length must be smaller than or equal to 12.'
-      end
-
       @depart_tax_amount = depart_tax_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] conjunction_ticket Value to be assigned
     def conjunction_ticket=(conjunction_ticket)
-      if !conjunction_ticket.nil? && conjunction_ticket.to_s.length > 25
-        fail ArgumentError, 'invalid value for "conjunction_ticket", the character length must be smaller than or equal to 25.'
-      end
-
       @conjunction_ticket = conjunction_ticket
     end
 
     # Custom attribute writer method with validation
     # @param [Object] exchange_ticket_number Value to be assigned
     def exchange_ticket_number=(exchange_ticket_number)
-      if !exchange_ticket_number.nil? && exchange_ticket_number.to_s.length > 25
-        fail ArgumentError, 'invalid value for "exchange_ticket_number", the character length must be smaller than or equal to 25.'
-      end
-
       @exchange_ticket_number = exchange_ticket_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] coupon_number Value to be assigned
     def coupon_number=(coupon_number)
-      if !coupon_number.nil? && coupon_number.to_s.length > 1
-        fail ArgumentError, 'invalid value for "coupon_number", the character length must be smaller than or equal to 1.'
-      end
-
       @coupon_number = coupon_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] departure_time_meridian Value to be assigned
     def departure_time_meridian=(departure_time_meridian)
-      if !departure_time_meridian.nil? && departure_time_meridian.to_s.length > 1
-        fail ArgumentError, 'invalid value for "departure_time_meridian", the character length must be smaller than or equal to 1.'
-      end
-
       @departure_time_meridian = departure_time_meridian
     end
 
     # Custom attribute writer method with validation
     # @param [Object] arrival_time_meridian Value to be assigned
     def arrival_time_meridian=(arrival_time_meridian)
-      if !arrival_time_meridian.nil? && arrival_time_meridian.to_s.length > 1
-        fail ArgumentError, 'invalid value for "arrival_time_meridian", the character length must be smaller than or equal to 1.'
-      end
-
       @arrival_time_meridian = arrival_time_meridian
     end
 
     # Custom attribute writer method with validation
     # @param [Object] endorsements_restrictions Value to be assigned
     def endorsements_restrictions=(endorsements_restrictions)
-      if !endorsements_restrictions.nil? && endorsements_restrictions.to_s.length > 20
-        fail ArgumentError, 'invalid value for "endorsements_restrictions", the character length must be smaller than or equal to 20.'
-      end
-
       @endorsements_restrictions = endorsements_restrictions
     end
 
     # Custom attribute writer method with validation
     # @param [Object] total_fare_amount Value to be assigned
     def total_fare_amount=(total_fare_amount)
-      if !total_fare_amount.nil? && total_fare_amount.to_s.length > 15
-        fail ArgumentError, 'invalid value for "total_fare_amount", the character length must be smaller than or equal to 15.'
-      end
-
       @total_fare_amount = total_fare_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] fee_amount Value to be assigned
     def fee_amount=(fee_amount)
-      if !fee_amount.nil? && fee_amount.to_s.length > 12
-        fail ArgumentError, 'invalid value for "fee_amount", the character length must be smaller than or equal to 12.'
-      end
-
       @fee_amount = fee_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] tax_amount Value to be assigned
     def tax_amount=(tax_amount)
-      if !tax_amount.nil? && tax_amount.to_s.length > 12
-        fail ArgumentError, 'invalid value for "tax_amount", the character length must be smaller than or equal to 12.'
-      end
-
       @tax_amount = tax_amount
     end
 

@@ -66,57 +66,30 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@original_transaction_id.nil? && @original_transaction_id.to_s.length > 32
-        invalid_properties.push('invalid value for "original_transaction_id", the character length must be smaller than or equal to 32.')
-      end
-
-      if !@developer_id.nil? && @developer_id.to_s.length > 8
-        invalid_properties.push('invalid value for "developer_id", the character length must be smaller than or equal to 8.')
-      end
-
-      if !@solution_id.nil? && @solution_id.to_s.length > 8
-        invalid_properties.push('invalid value for "solution_id", the character length must be smaller than or equal to 8.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@original_transaction_id.nil? && @original_transaction_id.to_s.length > 32
-      return false if !@developer_id.nil? && @developer_id.to_s.length > 8
-      return false if !@solution_id.nil? && @solution_id.to_s.length > 8
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] original_transaction_id Value to be assigned
     def original_transaction_id=(original_transaction_id)
-      if !original_transaction_id.nil? && original_transaction_id.to_s.length > 32
-        fail ArgumentError, 'invalid value for "original_transaction_id", the character length must be smaller than or equal to 32.'
-      end
-
       @original_transaction_id = original_transaction_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] developer_id Value to be assigned
     def developer_id=(developer_id)
-      if !developer_id.nil? && developer_id.to_s.length > 8
-        fail ArgumentError, 'invalid value for "developer_id", the character length must be smaller than or equal to 8.'
-      end
-
       @developer_id = developer_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] solution_id Value to be assigned
     def solution_id=(solution_id)
-      if !solution_id.nil? && solution_id.to_s.length > 8
-        fail ArgumentError, 'invalid value for "solution_id", the character length must be smaller than or equal to 8.'
-      end
-
       @solution_id = solution_id
     end
 

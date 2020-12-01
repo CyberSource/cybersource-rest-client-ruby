@@ -419,18 +419,6 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@check_in_date.nil? && @check_in_date.to_s.length > 6
-        invalid_properties.push('invalid value for "check_in_date", the character length must be smaller than or equal to 6.')
-      end
-
-      if !@check_out_date.nil? && @check_out_date.to_s.length > 6
-        invalid_properties.push('invalid value for "check_out_date", the character length must be smaller than or equal to 6.')
-      end
-
-      if !@smoking_preference.nil? && @smoking_preference.to_s.length > 1
-        invalid_properties.push('invalid value for "smoking_preference", the character length must be smaller than or equal to 1.')
-      end
-
       if !@number_of_rooms.nil? && @number_of_rooms > 99
         invalid_properties.push('invalid value for "number_of_rooms", must be smaller than or equal to 99.')
       end
@@ -447,229 +435,34 @@ module CyberSource
         invalid_properties.push('invalid value for "number_of_guests", must be greater than or equal to 1.')
       end
 
-      if !@room_bed_type.nil? && @room_bed_type.to_s.length > 12
-        invalid_properties.push('invalid value for "room_bed_type", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@room_tax_type.nil? && @room_tax_type.to_s.length > 10
-        invalid_properties.push('invalid value for "room_tax_type", the character length must be smaller than or equal to 10.')
-      end
-
-      if !@room_rate_type.nil? && @room_rate_type.to_s.length > 12
-        invalid_properties.push('invalid value for "room_rate_type", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@guest_name.nil? && @guest_name.to_s.length > 40
-        invalid_properties.push('invalid value for "guest_name", the character length must be smaller than or equal to 40.')
-      end
-
-      if !@customer_service_phone_number.nil? && @customer_service_phone_number.to_s.length > 17
-        invalid_properties.push('invalid value for "customer_service_phone_number", the character length must be smaller than or equal to 17.')
-      end
-
-      if !@corporate_client_code.nil? && @corporate_client_code.to_s.length > 17
-        invalid_properties.push('invalid value for "corporate_client_code", the character length must be smaller than or equal to 17.')
-      end
-
-      if !@additional_discount_amount.nil? && @additional_discount_amount.to_s.length > 12
-        invalid_properties.push('invalid value for "additional_discount_amount", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@room_location.nil? && @room_location.to_s.length > 10
-        invalid_properties.push('invalid value for "room_location", the character length must be smaller than or equal to 10.')
-      end
-
-      if !@special_program_code.nil? && @special_program_code.to_s.length > 1
-        invalid_properties.push('invalid value for "special_program_code", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@total_tax_amount.nil? && @total_tax_amount.to_s.length > 12
-        invalid_properties.push('invalid value for "total_tax_amount", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@prepaid_cost.nil? && @prepaid_cost.to_s.length > 12
-        invalid_properties.push('invalid value for "prepaid_cost", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@food_and_beverage_cost.nil? && @food_and_beverage_cost.to_s.length > 12
-        invalid_properties.push('invalid value for "food_and_beverage_cost", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@room_tax_amount.nil? && @room_tax_amount.to_s.length > 12
-        invalid_properties.push('invalid value for "room_tax_amount", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@adjustment_amount.nil? && @adjustment_amount.to_s.length > 12
-        invalid_properties.push('invalid value for "adjustment_amount", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@phone_cost.nil? && @phone_cost.to_s.length > 12
-        invalid_properties.push('invalid value for "phone_cost", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@restaurant_cost.nil? && @restaurant_cost.to_s.length > 12
-        invalid_properties.push('invalid value for "restaurant_cost", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@room_service_cost.nil? && @room_service_cost.to_s.length > 12
-        invalid_properties.push('invalid value for "room_service_cost", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@mini_bar_cost.nil? && @mini_bar_cost.to_s.length > 12
-        invalid_properties.push('invalid value for "mini_bar_cost", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@laundry_cost.nil? && @laundry_cost.to_s.length > 12
-        invalid_properties.push('invalid value for "laundry_cost", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@miscellaneous_cost.nil? && @miscellaneous_cost.to_s.length > 12
-        invalid_properties.push('invalid value for "miscellaneous_cost", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@gift_shop_cost.nil? && @gift_shop_cost.to_s.length > 12
-        invalid_properties.push('invalid value for "gift_shop_cost", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@movie_cost.nil? && @movie_cost.to_s.length > 12
-        invalid_properties.push('invalid value for "movie_cost", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@health_club_cost.nil? && @health_club_cost.to_s.length > 12
-        invalid_properties.push('invalid value for "health_club_cost", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@valet_parking_cost.nil? && @valet_parking_cost.to_s.length > 12
-        invalid_properties.push('invalid value for "valet_parking_cost", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@cash_disbursement_cost.nil? && @cash_disbursement_cost.to_s.length > 12
-        invalid_properties.push('invalid value for "cash_disbursement_cost", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@non_room_cost.nil? && @non_room_cost.to_s.length > 12
-        invalid_properties.push('invalid value for "non_room_cost", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@business_center_cost.nil? && @business_center_cost.to_s.length > 12
-        invalid_properties.push('invalid value for "business_center_cost", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@lounge_bar_cost.nil? && @lounge_bar_cost.to_s.length > 12
-        invalid_properties.push('invalid value for "lounge_bar_cost", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@transportation_cost.nil? && @transportation_cost.to_s.length > 12
-        invalid_properties.push('invalid value for "transportation_cost", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@gratuity_amount.nil? && @gratuity_amount.to_s.length > 12
-        invalid_properties.push('invalid value for "gratuity_amount", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@conference_room_cost.nil? && @conference_room_cost.to_s.length > 12
-        invalid_properties.push('invalid value for "conference_room_cost", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@audio_visual_cost.nil? && @audio_visual_cost.to_s.length > 12
-        invalid_properties.push('invalid value for "audio_visual_cost", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@banquest_cost.nil? && @banquest_cost.to_s.length > 12
-        invalid_properties.push('invalid value for "banquest_cost", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@non_room_tax_amount.nil? && @non_room_tax_amount.to_s.length > 12
-        invalid_properties.push('invalid value for "non_room_tax_amount", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@early_check_out_cost.nil? && @early_check_out_cost.to_s.length > 12
-        invalid_properties.push('invalid value for "early_check_out_cost", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@internet_access_cost.nil? && @internet_access_cost.to_s.length > 12
-        invalid_properties.push('invalid value for "internet_access_cost", the character length must be smaller than or equal to 12.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@check_in_date.nil? && @check_in_date.to_s.length > 6
-      return false if !@check_out_date.nil? && @check_out_date.to_s.length > 6
-      return false if !@smoking_preference.nil? && @smoking_preference.to_s.length > 1
       return false if !@number_of_rooms.nil? && @number_of_rooms > 99
       return false if !@number_of_rooms.nil? && @number_of_rooms < 1
       return false if !@number_of_guests.nil? && @number_of_guests > 99
       return false if !@number_of_guests.nil? && @number_of_guests < 1
-      return false if !@room_bed_type.nil? && @room_bed_type.to_s.length > 12
-      return false if !@room_tax_type.nil? && @room_tax_type.to_s.length > 10
-      return false if !@room_rate_type.nil? && @room_rate_type.to_s.length > 12
-      return false if !@guest_name.nil? && @guest_name.to_s.length > 40
-      return false if !@customer_service_phone_number.nil? && @customer_service_phone_number.to_s.length > 17
-      return false if !@corporate_client_code.nil? && @corporate_client_code.to_s.length > 17
-      return false if !@additional_discount_amount.nil? && @additional_discount_amount.to_s.length > 12
-      return false if !@room_location.nil? && @room_location.to_s.length > 10
-      return false if !@special_program_code.nil? && @special_program_code.to_s.length > 1
-      return false if !@total_tax_amount.nil? && @total_tax_amount.to_s.length > 12
-      return false if !@prepaid_cost.nil? && @prepaid_cost.to_s.length > 12
-      return false if !@food_and_beverage_cost.nil? && @food_and_beverage_cost.to_s.length > 12
-      return false if !@room_tax_amount.nil? && @room_tax_amount.to_s.length > 12
-      return false if !@adjustment_amount.nil? && @adjustment_amount.to_s.length > 12
-      return false if !@phone_cost.nil? && @phone_cost.to_s.length > 12
-      return false if !@restaurant_cost.nil? && @restaurant_cost.to_s.length > 12
-      return false if !@room_service_cost.nil? && @room_service_cost.to_s.length > 12
-      return false if !@mini_bar_cost.nil? && @mini_bar_cost.to_s.length > 12
-      return false if !@laundry_cost.nil? && @laundry_cost.to_s.length > 12
-      return false if !@miscellaneous_cost.nil? && @miscellaneous_cost.to_s.length > 12
-      return false if !@gift_shop_cost.nil? && @gift_shop_cost.to_s.length > 12
-      return false if !@movie_cost.nil? && @movie_cost.to_s.length > 12
-      return false if !@health_club_cost.nil? && @health_club_cost.to_s.length > 12
-      return false if !@valet_parking_cost.nil? && @valet_parking_cost.to_s.length > 12
-      return false if !@cash_disbursement_cost.nil? && @cash_disbursement_cost.to_s.length > 12
-      return false if !@non_room_cost.nil? && @non_room_cost.to_s.length > 12
-      return false if !@business_center_cost.nil? && @business_center_cost.to_s.length > 12
-      return false if !@lounge_bar_cost.nil? && @lounge_bar_cost.to_s.length > 12
-      return false if !@transportation_cost.nil? && @transportation_cost.to_s.length > 12
-      return false if !@gratuity_amount.nil? && @gratuity_amount.to_s.length > 12
-      return false if !@conference_room_cost.nil? && @conference_room_cost.to_s.length > 12
-      return false if !@audio_visual_cost.nil? && @audio_visual_cost.to_s.length > 12
-      return false if !@banquest_cost.nil? && @banquest_cost.to_s.length > 12
-      return false if !@non_room_tax_amount.nil? && @non_room_tax_amount.to_s.length > 12
-      return false if !@early_check_out_cost.nil? && @early_check_out_cost.to_s.length > 12
-      return false if !@internet_access_cost.nil? && @internet_access_cost.to_s.length > 12
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] check_in_date Value to be assigned
     def check_in_date=(check_in_date)
-      if !check_in_date.nil? && check_in_date.to_s.length > 6
-        fail ArgumentError, 'invalid value for "check_in_date", the character length must be smaller than or equal to 6.'
-      end
-
       @check_in_date = check_in_date
     end
 
     # Custom attribute writer method with validation
     # @param [Object] check_out_date Value to be assigned
     def check_out_date=(check_out_date)
-      if !check_out_date.nil? && check_out_date.to_s.length > 6
-        fail ArgumentError, 'invalid value for "check_out_date", the character length must be smaller than or equal to 6.'
-      end
-
       @check_out_date = check_out_date
     end
 
     # Custom attribute writer method with validation
     # @param [Object] smoking_preference Value to be assigned
     def smoking_preference=(smoking_preference)
-      if !smoking_preference.nil? && smoking_preference.to_s.length > 1
-        fail ArgumentError, 'invalid value for "smoking_preference", the character length must be smaller than or equal to 1.'
-      end
-
       @smoking_preference = smoking_preference
     end
 
@@ -704,360 +497,216 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] room_bed_type Value to be assigned
     def room_bed_type=(room_bed_type)
-      if !room_bed_type.nil? && room_bed_type.to_s.length > 12
-        fail ArgumentError, 'invalid value for "room_bed_type", the character length must be smaller than or equal to 12.'
-      end
-
       @room_bed_type = room_bed_type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] room_tax_type Value to be assigned
     def room_tax_type=(room_tax_type)
-      if !room_tax_type.nil? && room_tax_type.to_s.length > 10
-        fail ArgumentError, 'invalid value for "room_tax_type", the character length must be smaller than or equal to 10.'
-      end
-
       @room_tax_type = room_tax_type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] room_rate_type Value to be assigned
     def room_rate_type=(room_rate_type)
-      if !room_rate_type.nil? && room_rate_type.to_s.length > 12
-        fail ArgumentError, 'invalid value for "room_rate_type", the character length must be smaller than or equal to 12.'
-      end
-
       @room_rate_type = room_rate_type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] guest_name Value to be assigned
     def guest_name=(guest_name)
-      if !guest_name.nil? && guest_name.to_s.length > 40
-        fail ArgumentError, 'invalid value for "guest_name", the character length must be smaller than or equal to 40.'
-      end
-
       @guest_name = guest_name
     end
 
     # Custom attribute writer method with validation
     # @param [Object] customer_service_phone_number Value to be assigned
     def customer_service_phone_number=(customer_service_phone_number)
-      if !customer_service_phone_number.nil? && customer_service_phone_number.to_s.length > 17
-        fail ArgumentError, 'invalid value for "customer_service_phone_number", the character length must be smaller than or equal to 17.'
-      end
-
       @customer_service_phone_number = customer_service_phone_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] corporate_client_code Value to be assigned
     def corporate_client_code=(corporate_client_code)
-      if !corporate_client_code.nil? && corporate_client_code.to_s.length > 17
-        fail ArgumentError, 'invalid value for "corporate_client_code", the character length must be smaller than or equal to 17.'
-      end
-
       @corporate_client_code = corporate_client_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] additional_discount_amount Value to be assigned
     def additional_discount_amount=(additional_discount_amount)
-      if !additional_discount_amount.nil? && additional_discount_amount.to_s.length > 12
-        fail ArgumentError, 'invalid value for "additional_discount_amount", the character length must be smaller than or equal to 12.'
-      end
-
       @additional_discount_amount = additional_discount_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] room_location Value to be assigned
     def room_location=(room_location)
-      if !room_location.nil? && room_location.to_s.length > 10
-        fail ArgumentError, 'invalid value for "room_location", the character length must be smaller than or equal to 10.'
-      end
-
       @room_location = room_location
     end
 
     # Custom attribute writer method with validation
     # @param [Object] special_program_code Value to be assigned
     def special_program_code=(special_program_code)
-      if !special_program_code.nil? && special_program_code.to_s.length > 1
-        fail ArgumentError, 'invalid value for "special_program_code", the character length must be smaller than or equal to 1.'
-      end
-
       @special_program_code = special_program_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] total_tax_amount Value to be assigned
     def total_tax_amount=(total_tax_amount)
-      if !total_tax_amount.nil? && total_tax_amount.to_s.length > 12
-        fail ArgumentError, 'invalid value for "total_tax_amount", the character length must be smaller than or equal to 12.'
-      end
-
       @total_tax_amount = total_tax_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] prepaid_cost Value to be assigned
     def prepaid_cost=(prepaid_cost)
-      if !prepaid_cost.nil? && prepaid_cost.to_s.length > 12
-        fail ArgumentError, 'invalid value for "prepaid_cost", the character length must be smaller than or equal to 12.'
-      end
-
       @prepaid_cost = prepaid_cost
     end
 
     # Custom attribute writer method with validation
     # @param [Object] food_and_beverage_cost Value to be assigned
     def food_and_beverage_cost=(food_and_beverage_cost)
-      if !food_and_beverage_cost.nil? && food_and_beverage_cost.to_s.length > 12
-        fail ArgumentError, 'invalid value for "food_and_beverage_cost", the character length must be smaller than or equal to 12.'
-      end
-
       @food_and_beverage_cost = food_and_beverage_cost
     end
 
     # Custom attribute writer method with validation
     # @param [Object] room_tax_amount Value to be assigned
     def room_tax_amount=(room_tax_amount)
-      if !room_tax_amount.nil? && room_tax_amount.to_s.length > 12
-        fail ArgumentError, 'invalid value for "room_tax_amount", the character length must be smaller than or equal to 12.'
-      end
-
       @room_tax_amount = room_tax_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] adjustment_amount Value to be assigned
     def adjustment_amount=(adjustment_amount)
-      if !adjustment_amount.nil? && adjustment_amount.to_s.length > 12
-        fail ArgumentError, 'invalid value for "adjustment_amount", the character length must be smaller than or equal to 12.'
-      end
-
       @adjustment_amount = adjustment_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] phone_cost Value to be assigned
     def phone_cost=(phone_cost)
-      if !phone_cost.nil? && phone_cost.to_s.length > 12
-        fail ArgumentError, 'invalid value for "phone_cost", the character length must be smaller than or equal to 12.'
-      end
-
       @phone_cost = phone_cost
     end
 
     # Custom attribute writer method with validation
     # @param [Object] restaurant_cost Value to be assigned
     def restaurant_cost=(restaurant_cost)
-      if !restaurant_cost.nil? && restaurant_cost.to_s.length > 12
-        fail ArgumentError, 'invalid value for "restaurant_cost", the character length must be smaller than or equal to 12.'
-      end
-
       @restaurant_cost = restaurant_cost
     end
 
     # Custom attribute writer method with validation
     # @param [Object] room_service_cost Value to be assigned
     def room_service_cost=(room_service_cost)
-      if !room_service_cost.nil? && room_service_cost.to_s.length > 12
-        fail ArgumentError, 'invalid value for "room_service_cost", the character length must be smaller than or equal to 12.'
-      end
-
       @room_service_cost = room_service_cost
     end
 
     # Custom attribute writer method with validation
     # @param [Object] mini_bar_cost Value to be assigned
     def mini_bar_cost=(mini_bar_cost)
-      if !mini_bar_cost.nil? && mini_bar_cost.to_s.length > 12
-        fail ArgumentError, 'invalid value for "mini_bar_cost", the character length must be smaller than or equal to 12.'
-      end
-
       @mini_bar_cost = mini_bar_cost
     end
 
     # Custom attribute writer method with validation
     # @param [Object] laundry_cost Value to be assigned
     def laundry_cost=(laundry_cost)
-      if !laundry_cost.nil? && laundry_cost.to_s.length > 12
-        fail ArgumentError, 'invalid value for "laundry_cost", the character length must be smaller than or equal to 12.'
-      end
-
       @laundry_cost = laundry_cost
     end
 
     # Custom attribute writer method with validation
     # @param [Object] miscellaneous_cost Value to be assigned
     def miscellaneous_cost=(miscellaneous_cost)
-      if !miscellaneous_cost.nil? && miscellaneous_cost.to_s.length > 12
-        fail ArgumentError, 'invalid value for "miscellaneous_cost", the character length must be smaller than or equal to 12.'
-      end
-
       @miscellaneous_cost = miscellaneous_cost
     end
 
     # Custom attribute writer method with validation
     # @param [Object] gift_shop_cost Value to be assigned
     def gift_shop_cost=(gift_shop_cost)
-      if !gift_shop_cost.nil? && gift_shop_cost.to_s.length > 12
-        fail ArgumentError, 'invalid value for "gift_shop_cost", the character length must be smaller than or equal to 12.'
-      end
-
       @gift_shop_cost = gift_shop_cost
     end
 
     # Custom attribute writer method with validation
     # @param [Object] movie_cost Value to be assigned
     def movie_cost=(movie_cost)
-      if !movie_cost.nil? && movie_cost.to_s.length > 12
-        fail ArgumentError, 'invalid value for "movie_cost", the character length must be smaller than or equal to 12.'
-      end
-
       @movie_cost = movie_cost
     end
 
     # Custom attribute writer method with validation
     # @param [Object] health_club_cost Value to be assigned
     def health_club_cost=(health_club_cost)
-      if !health_club_cost.nil? && health_club_cost.to_s.length > 12
-        fail ArgumentError, 'invalid value for "health_club_cost", the character length must be smaller than or equal to 12.'
-      end
-
       @health_club_cost = health_club_cost
     end
 
     # Custom attribute writer method with validation
     # @param [Object] valet_parking_cost Value to be assigned
     def valet_parking_cost=(valet_parking_cost)
-      if !valet_parking_cost.nil? && valet_parking_cost.to_s.length > 12
-        fail ArgumentError, 'invalid value for "valet_parking_cost", the character length must be smaller than or equal to 12.'
-      end
-
       @valet_parking_cost = valet_parking_cost
     end
 
     # Custom attribute writer method with validation
     # @param [Object] cash_disbursement_cost Value to be assigned
     def cash_disbursement_cost=(cash_disbursement_cost)
-      if !cash_disbursement_cost.nil? && cash_disbursement_cost.to_s.length > 12
-        fail ArgumentError, 'invalid value for "cash_disbursement_cost", the character length must be smaller than or equal to 12.'
-      end
-
       @cash_disbursement_cost = cash_disbursement_cost
     end
 
     # Custom attribute writer method with validation
     # @param [Object] non_room_cost Value to be assigned
     def non_room_cost=(non_room_cost)
-      if !non_room_cost.nil? && non_room_cost.to_s.length > 12
-        fail ArgumentError, 'invalid value for "non_room_cost", the character length must be smaller than or equal to 12.'
-      end
-
       @non_room_cost = non_room_cost
     end
 
     # Custom attribute writer method with validation
     # @param [Object] business_center_cost Value to be assigned
     def business_center_cost=(business_center_cost)
-      if !business_center_cost.nil? && business_center_cost.to_s.length > 12
-        fail ArgumentError, 'invalid value for "business_center_cost", the character length must be smaller than or equal to 12.'
-      end
-
       @business_center_cost = business_center_cost
     end
 
     # Custom attribute writer method with validation
     # @param [Object] lounge_bar_cost Value to be assigned
     def lounge_bar_cost=(lounge_bar_cost)
-      if !lounge_bar_cost.nil? && lounge_bar_cost.to_s.length > 12
-        fail ArgumentError, 'invalid value for "lounge_bar_cost", the character length must be smaller than or equal to 12.'
-      end
-
       @lounge_bar_cost = lounge_bar_cost
     end
 
     # Custom attribute writer method with validation
     # @param [Object] transportation_cost Value to be assigned
     def transportation_cost=(transportation_cost)
-      if !transportation_cost.nil? && transportation_cost.to_s.length > 12
-        fail ArgumentError, 'invalid value for "transportation_cost", the character length must be smaller than or equal to 12.'
-      end
-
       @transportation_cost = transportation_cost
     end
 
     # Custom attribute writer method with validation
     # @param [Object] gratuity_amount Value to be assigned
     def gratuity_amount=(gratuity_amount)
-      if !gratuity_amount.nil? && gratuity_amount.to_s.length > 12
-        fail ArgumentError, 'invalid value for "gratuity_amount", the character length must be smaller than or equal to 12.'
-      end
-
       @gratuity_amount = gratuity_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] conference_room_cost Value to be assigned
     def conference_room_cost=(conference_room_cost)
-      if !conference_room_cost.nil? && conference_room_cost.to_s.length > 12
-        fail ArgumentError, 'invalid value for "conference_room_cost", the character length must be smaller than or equal to 12.'
-      end
-
       @conference_room_cost = conference_room_cost
     end
 
     # Custom attribute writer method with validation
     # @param [Object] audio_visual_cost Value to be assigned
     def audio_visual_cost=(audio_visual_cost)
-      if !audio_visual_cost.nil? && audio_visual_cost.to_s.length > 12
-        fail ArgumentError, 'invalid value for "audio_visual_cost", the character length must be smaller than or equal to 12.'
-      end
-
       @audio_visual_cost = audio_visual_cost
     end
 
     # Custom attribute writer method with validation
     # @param [Object] banquest_cost Value to be assigned
     def banquest_cost=(banquest_cost)
-      if !banquest_cost.nil? && banquest_cost.to_s.length > 12
-        fail ArgumentError, 'invalid value for "banquest_cost", the character length must be smaller than or equal to 12.'
-      end
-
       @banquest_cost = banquest_cost
     end
 
     # Custom attribute writer method with validation
     # @param [Object] non_room_tax_amount Value to be assigned
     def non_room_tax_amount=(non_room_tax_amount)
-      if !non_room_tax_amount.nil? && non_room_tax_amount.to_s.length > 12
-        fail ArgumentError, 'invalid value for "non_room_tax_amount", the character length must be smaller than or equal to 12.'
-      end
-
       @non_room_tax_amount = non_room_tax_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] early_check_out_cost Value to be assigned
     def early_check_out_cost=(early_check_out_cost)
-      if !early_check_out_cost.nil? && early_check_out_cost.to_s.length > 12
-        fail ArgumentError, 'invalid value for "early_check_out_cost", the character length must be smaller than or equal to 12.'
-      end
-
       @early_check_out_cost = early_check_out_cost
     end
 
     # Custom attribute writer method with validation
     # @param [Object] internet_access_cost Value to be assigned
     def internet_access_cost=(internet_access_cost)
-      if !internet_access_cost.nil? && internet_access_cost.to_s.length > 12
-        fail ArgumentError, 'invalid value for "internet_access_cost", the character length must be smaller than or equal to 12.'
-      end
-
       @internet_access_cost = internet_access_cost
     end
 

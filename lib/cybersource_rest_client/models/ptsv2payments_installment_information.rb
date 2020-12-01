@@ -156,52 +156,12 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@amount.nil? && @amount.to_s.length > 12
-        invalid_properties.push('invalid value for "amount", the character length must be smaller than or equal to 12.')
-      end
-
-      if !@frequency.nil? && @frequency.to_s.length > 1
-        invalid_properties.push('invalid value for "frequency", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@plan_type.nil? && @plan_type.to_s.length > 1
-        invalid_properties.push('invalid value for "plan_type", the character length must be smaller than or equal to 1.')
-      end
-
       if !@sequence.nil? && @sequence > 99
         invalid_properties.push('invalid value for "sequence", must be smaller than or equal to 99.')
       end
 
-      if !@total_amount.nil? && @total_amount.to_s.length > 12
-        invalid_properties.push('invalid value for "total_amount", the character length must be smaller than or equal to 12.')
-      end
-
       if !@total_count.nil? && @total_count > 99
         invalid_properties.push('invalid value for "total_count", must be smaller than or equal to 99.')
-      end
-
-      if !@first_installment_date.nil? && @first_installment_date.to_s.length > 6
-        invalid_properties.push('invalid value for "first_installment_date", the character length must be smaller than or equal to 6.')
-      end
-
-      if !@invoice_data.nil? && @invoice_data.to_s.length > 20
-        invalid_properties.push('invalid value for "invoice_data", the character length must be smaller than or equal to 20.')
-      end
-
-      if !@payment_type.nil? && @payment_type.to_s.length > 1
-        invalid_properties.push('invalid value for "payment_type", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@eligibility_inquiry.nil? && @eligibility_inquiry.to_s.length > 9
-        invalid_properties.push('invalid value for "eligibility_inquiry", the character length must be smaller than or equal to 9.')
-      end
-
-      if !@grace_period_duration_type.nil? && @grace_period_duration_type.to_s.length > 1
-        invalid_properties.push('invalid value for "grace_period_duration_type", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@first_installment_amount.nil? && @first_installment_amount.to_s.length > 13
-        invalid_properties.push('invalid value for "first_installment_amount", the character length must be smaller than or equal to 13.')
       end
 
       invalid_properties
@@ -210,48 +170,26 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@amount.nil? && @amount.to_s.length > 12
-      return false if !@frequency.nil? && @frequency.to_s.length > 1
-      return false if !@plan_type.nil? && @plan_type.to_s.length > 1
       return false if !@sequence.nil? && @sequence > 99
-      return false if !@total_amount.nil? && @total_amount.to_s.length > 12
       return false if !@total_count.nil? && @total_count > 99
-      return false if !@first_installment_date.nil? && @first_installment_date.to_s.length > 6
-      return false if !@invoice_data.nil? && @invoice_data.to_s.length > 20
-      return false if !@payment_type.nil? && @payment_type.to_s.length > 1
-      return false if !@eligibility_inquiry.nil? && @eligibility_inquiry.to_s.length > 9
-      return false if !@grace_period_duration_type.nil? && @grace_period_duration_type.to_s.length > 1
-      return false if !@first_installment_amount.nil? && @first_installment_amount.to_s.length > 13
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] amount Value to be assigned
     def amount=(amount)
-      if !amount.nil? && amount.to_s.length > 12
-        fail ArgumentError, 'invalid value for "amount", the character length must be smaller than or equal to 12.'
-      end
-
       @amount = amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] frequency Value to be assigned
     def frequency=(frequency)
-      if !frequency.nil? && frequency.to_s.length > 1
-        fail ArgumentError, 'invalid value for "frequency", the character length must be smaller than or equal to 1.'
-      end
-
       @frequency = frequency
     end
 
     # Custom attribute writer method with validation
     # @param [Object] plan_type Value to be assigned
     def plan_type=(plan_type)
-      if !plan_type.nil? && plan_type.to_s.length > 1
-        fail ArgumentError, 'invalid value for "plan_type", the character length must be smaller than or equal to 1.'
-      end
-
       @plan_type = plan_type
     end
 
@@ -268,10 +206,6 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] total_amount Value to be assigned
     def total_amount=(total_amount)
-      if !total_amount.nil? && total_amount.to_s.length > 12
-        fail ArgumentError, 'invalid value for "total_amount", the character length must be smaller than or equal to 12.'
-      end
-
       @total_amount = total_amount
     end
 
@@ -288,60 +222,36 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] first_installment_date Value to be assigned
     def first_installment_date=(first_installment_date)
-      if !first_installment_date.nil? && first_installment_date.to_s.length > 6
-        fail ArgumentError, 'invalid value for "first_installment_date", the character length must be smaller than or equal to 6.'
-      end
-
       @first_installment_date = first_installment_date
     end
 
     # Custom attribute writer method with validation
     # @param [Object] invoice_data Value to be assigned
     def invoice_data=(invoice_data)
-      if !invoice_data.nil? && invoice_data.to_s.length > 20
-        fail ArgumentError, 'invalid value for "invoice_data", the character length must be smaller than or equal to 20.'
-      end
-
       @invoice_data = invoice_data
     end
 
     # Custom attribute writer method with validation
     # @param [Object] payment_type Value to be assigned
     def payment_type=(payment_type)
-      if !payment_type.nil? && payment_type.to_s.length > 1
-        fail ArgumentError, 'invalid value for "payment_type", the character length must be smaller than or equal to 1.'
-      end
-
       @payment_type = payment_type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] eligibility_inquiry Value to be assigned
     def eligibility_inquiry=(eligibility_inquiry)
-      if !eligibility_inquiry.nil? && eligibility_inquiry.to_s.length > 9
-        fail ArgumentError, 'invalid value for "eligibility_inquiry", the character length must be smaller than or equal to 9.'
-      end
-
       @eligibility_inquiry = eligibility_inquiry
     end
 
     # Custom attribute writer method with validation
     # @param [Object] grace_period_duration_type Value to be assigned
     def grace_period_duration_type=(grace_period_duration_type)
-      if !grace_period_duration_type.nil? && grace_period_duration_type.to_s.length > 1
-        fail ArgumentError, 'invalid value for "grace_period_duration_type", the character length must be smaller than or equal to 1.'
-      end
-
       @grace_period_duration_type = grace_period_duration_type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] first_installment_amount Value to be assigned
     def first_installment_amount=(first_installment_amount)
-      if !first_installment_amount.nil? && first_installment_amount.to_s.length > 13
-        fail ArgumentError, 'invalid value for "first_installment_amount", the character length must be smaller than or equal to 13.'
-      end
-
       @first_installment_amount = first_installment_amount
     end
 

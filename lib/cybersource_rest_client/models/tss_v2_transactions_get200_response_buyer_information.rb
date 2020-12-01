@@ -57,42 +57,24 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@merchant_customer_id.nil? && @merchant_customer_id.to_s.length > 100
-        invalid_properties.push('invalid value for "merchant_customer_id", the character length must be smaller than or equal to 100.')
-      end
-
-      if !@hashed_password.nil? && @hashed_password.to_s.length > 100
-        invalid_properties.push('invalid value for "hashed_password", the character length must be smaller than or equal to 100.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@merchant_customer_id.nil? && @merchant_customer_id.to_s.length > 100
-      return false if !@hashed_password.nil? && @hashed_password.to_s.length > 100
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] merchant_customer_id Value to be assigned
     def merchant_customer_id=(merchant_customer_id)
-      if !merchant_customer_id.nil? && merchant_customer_id.to_s.length > 100
-        fail ArgumentError, 'invalid value for "merchant_customer_id", the character length must be smaller than or equal to 100.'
-      end
-
       @merchant_customer_id = merchant_customer_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] hashed_password Value to be assigned
     def hashed_password=(hashed_password)
-      if !hashed_password.nil? && hashed_password.to_s.length > 100
-        fail ArgumentError, 'invalid value for "hashed_password", the character length must be smaller than or equal to 100.'
-      end
-
       @hashed_password = hashed_password
     end
 

@@ -193,177 +193,78 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@ip_address.nil? && @ip_address.to_s.length > 45
-        invalid_properties.push('invalid value for "ip_address", the character length must be smaller than or equal to 45.')
-      end
-
-      if !@host_name.nil? && @host_name.to_s.length > 60
-        invalid_properties.push('invalid value for "host_name", the character length must be smaller than or equal to 60.')
-      end
-
-      if !@user_agent.nil? && @user_agent.to_s.length > 40
-        invalid_properties.push('invalid value for "user_agent", the character length must be smaller than or equal to 40.')
-      end
-
-      if !@http_accept_browser_value.nil? && @http_accept_browser_value.to_s.length > 255
-        invalid_properties.push('invalid value for "http_accept_browser_value", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@http_accept_content.nil? && @http_accept_content.to_s.length > 256
-        invalid_properties.push('invalid value for "http_accept_content", the character length must be smaller than or equal to 256.')
-      end
-
-      if !@http_browser_language.nil? && @http_browser_language.to_s.length > 8
-        invalid_properties.push('invalid value for "http_browser_language", the character length must be smaller than or equal to 8.')
-      end
-
-      if !@http_browser_color_depth.nil? && @http_browser_color_depth.to_s.length > 2
-        invalid_properties.push('invalid value for "http_browser_color_depth", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@http_browser_screen_height.nil? && @http_browser_screen_height.to_s.length > 6
-        invalid_properties.push('invalid value for "http_browser_screen_height", the character length must be smaller than or equal to 6.')
-      end
-
-      if !@http_browser_screen_width.nil? && @http_browser_screen_width.to_s.length > 6
-        invalid_properties.push('invalid value for "http_browser_screen_width", the character length must be smaller than or equal to 6.')
-      end
-
-      if !@http_browser_time_difference.nil? && @http_browser_time_difference.to_s.length > 5
-        invalid_properties.push('invalid value for "http_browser_time_difference", the character length must be smaller than or equal to 5.')
-      end
-
-      if !@user_agent_browser_value.nil? && @user_agent_browser_value.to_s.length > 255
-        invalid_properties.push('invalid value for "user_agent_browser_value", the character length must be smaller than or equal to 255.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@ip_address.nil? && @ip_address.to_s.length > 45
-      return false if !@host_name.nil? && @host_name.to_s.length > 60
-      return false if !@user_agent.nil? && @user_agent.to_s.length > 40
-      return false if !@http_accept_browser_value.nil? && @http_accept_browser_value.to_s.length > 255
-      return false if !@http_accept_content.nil? && @http_accept_content.to_s.length > 256
-      return false if !@http_browser_language.nil? && @http_browser_language.to_s.length > 8
-      return false if !@http_browser_color_depth.nil? && @http_browser_color_depth.to_s.length > 2
-      return false if !@http_browser_screen_height.nil? && @http_browser_screen_height.to_s.length > 6
-      return false if !@http_browser_screen_width.nil? && @http_browser_screen_width.to_s.length > 6
-      return false if !@http_browser_time_difference.nil? && @http_browser_time_difference.to_s.length > 5
-      return false if !@user_agent_browser_value.nil? && @user_agent_browser_value.to_s.length > 255
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] ip_address Value to be assigned
     def ip_address=(ip_address)
-      if !ip_address.nil? && ip_address.to_s.length > 45
-        fail ArgumentError, 'invalid value for "ip_address", the character length must be smaller than or equal to 45.'
-      end
-
       @ip_address = ip_address
     end
 
     # Custom attribute writer method with validation
     # @param [Object] host_name Value to be assigned
     def host_name=(host_name)
-      if !host_name.nil? && host_name.to_s.length > 60
-        fail ArgumentError, 'invalid value for "host_name", the character length must be smaller than or equal to 60.'
-      end
-
       @host_name = host_name
     end
 
     # Custom attribute writer method with validation
     # @param [Object] user_agent Value to be assigned
     def user_agent=(user_agent)
-      if !user_agent.nil? && user_agent.to_s.length > 40
-        fail ArgumentError, 'invalid value for "user_agent", the character length must be smaller than or equal to 40.'
-      end
-
       @user_agent = user_agent
     end
 
     # Custom attribute writer method with validation
     # @param [Object] http_accept_browser_value Value to be assigned
     def http_accept_browser_value=(http_accept_browser_value)
-      if !http_accept_browser_value.nil? && http_accept_browser_value.to_s.length > 255
-        fail ArgumentError, 'invalid value for "http_accept_browser_value", the character length must be smaller than or equal to 255.'
-      end
-
       @http_accept_browser_value = http_accept_browser_value
     end
 
     # Custom attribute writer method with validation
     # @param [Object] http_accept_content Value to be assigned
     def http_accept_content=(http_accept_content)
-      if !http_accept_content.nil? && http_accept_content.to_s.length > 256
-        fail ArgumentError, 'invalid value for "http_accept_content", the character length must be smaller than or equal to 256.'
-      end
-
       @http_accept_content = http_accept_content
     end
 
     # Custom attribute writer method with validation
     # @param [Object] http_browser_language Value to be assigned
     def http_browser_language=(http_browser_language)
-      if !http_browser_language.nil? && http_browser_language.to_s.length > 8
-        fail ArgumentError, 'invalid value for "http_browser_language", the character length must be smaller than or equal to 8.'
-      end
-
       @http_browser_language = http_browser_language
     end
 
     # Custom attribute writer method with validation
     # @param [Object] http_browser_color_depth Value to be assigned
     def http_browser_color_depth=(http_browser_color_depth)
-      if !http_browser_color_depth.nil? && http_browser_color_depth.to_s.length > 2
-        fail ArgumentError, 'invalid value for "http_browser_color_depth", the character length must be smaller than or equal to 2.'
-      end
-
       @http_browser_color_depth = http_browser_color_depth
     end
 
     # Custom attribute writer method with validation
     # @param [Object] http_browser_screen_height Value to be assigned
     def http_browser_screen_height=(http_browser_screen_height)
-      if !http_browser_screen_height.nil? && http_browser_screen_height.to_s.length > 6
-        fail ArgumentError, 'invalid value for "http_browser_screen_height", the character length must be smaller than or equal to 6.'
-      end
-
       @http_browser_screen_height = http_browser_screen_height
     end
 
     # Custom attribute writer method with validation
     # @param [Object] http_browser_screen_width Value to be assigned
     def http_browser_screen_width=(http_browser_screen_width)
-      if !http_browser_screen_width.nil? && http_browser_screen_width.to_s.length > 6
-        fail ArgumentError, 'invalid value for "http_browser_screen_width", the character length must be smaller than or equal to 6.'
-      end
-
       @http_browser_screen_width = http_browser_screen_width
     end
 
     # Custom attribute writer method with validation
     # @param [Object] http_browser_time_difference Value to be assigned
     def http_browser_time_difference=(http_browser_time_difference)
-      if !http_browser_time_difference.nil? && http_browser_time_difference.to_s.length > 5
-        fail ArgumentError, 'invalid value for "http_browser_time_difference", the character length must be smaller than or equal to 5.'
-      end
-
       @http_browser_time_difference = http_browser_time_difference
     end
 
     # Custom attribute writer method with validation
     # @param [Object] user_agent_browser_value Value to be assigned
     def user_agent_browser_value=(user_agent_browser_value)
-      if !user_agent_browser_value.nil? && user_agent_browser_value.to_s.length > 255
-        fail ArgumentError, 'invalid value for "user_agent_browser_value", the character length must be smaller than or equal to 255.'
-      end
-
       @user_agent_browser_value = user_agent_browser_value
     end
 

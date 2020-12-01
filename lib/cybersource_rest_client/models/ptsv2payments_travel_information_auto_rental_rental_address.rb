@@ -102,117 +102,54 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@city.nil? && @city.to_s.length > 25
-        invalid_properties.push('invalid value for "city", the character length must be smaller than or equal to 25.')
-      end
-
-      if !@state.nil? && @state.to_s.length > 3
-        invalid_properties.push('invalid value for "state", the character length must be smaller than or equal to 3.')
-      end
-
-      if !@country.nil? && @country.to_s.length > 3
-        invalid_properties.push('invalid value for "country", the character length must be smaller than or equal to 3.')
-      end
-
-      if !@location_id.nil? && @location_id.to_s.length > 10
-        invalid_properties.push('invalid value for "location_id", the character length must be smaller than or equal to 10.')
-      end
-
-      if !@address1.nil? && @address1.to_s.length > 13
-        invalid_properties.push('invalid value for "address1", the character length must be smaller than or equal to 13.')
-      end
-
-      if !@address2.nil? && @address2.to_s.length > 13
-        invalid_properties.push('invalid value for "address2", the character length must be smaller than or equal to 13.')
-      end
-
-      if !@location.nil? && @location.to_s.length > 38
-        invalid_properties.push('invalid value for "location", the character length must be smaller than or equal to 38.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@city.nil? && @city.to_s.length > 25
-      return false if !@state.nil? && @state.to_s.length > 3
-      return false if !@country.nil? && @country.to_s.length > 3
-      return false if !@location_id.nil? && @location_id.to_s.length > 10
-      return false if !@address1.nil? && @address1.to_s.length > 13
-      return false if !@address2.nil? && @address2.to_s.length > 13
-      return false if !@location.nil? && @location.to_s.length > 38
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] city Value to be assigned
     def city=(city)
-      if !city.nil? && city.to_s.length > 25
-        fail ArgumentError, 'invalid value for "city", the character length must be smaller than or equal to 25.'
-      end
-
       @city = city
     end
 
     # Custom attribute writer method with validation
     # @param [Object] state Value to be assigned
     def state=(state)
-      if !state.nil? && state.to_s.length > 3
-        fail ArgumentError, 'invalid value for "state", the character length must be smaller than or equal to 3.'
-      end
-
       @state = state
     end
 
     # Custom attribute writer method with validation
     # @param [Object] country Value to be assigned
     def country=(country)
-      if !country.nil? && country.to_s.length > 3
-        fail ArgumentError, 'invalid value for "country", the character length must be smaller than or equal to 3.'
-      end
-
       @country = country
     end
 
     # Custom attribute writer method with validation
     # @param [Object] location_id Value to be assigned
     def location_id=(location_id)
-      if !location_id.nil? && location_id.to_s.length > 10
-        fail ArgumentError, 'invalid value for "location_id", the character length must be smaller than or equal to 10.'
-      end
-
       @location_id = location_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] address1 Value to be assigned
     def address1=(address1)
-      if !address1.nil? && address1.to_s.length > 13
-        fail ArgumentError, 'invalid value for "address1", the character length must be smaller than or equal to 13.'
-      end
-
       @address1 = address1
     end
 
     # Custom attribute writer method with validation
     # @param [Object] address2 Value to be assigned
     def address2=(address2)
-      if !address2.nil? && address2.to_s.length > 13
-        fail ArgumentError, 'invalid value for "address2", the character length must be smaller than or equal to 13.'
-      end
-
       @address2 = address2
     end
 
     # Custom attribute writer method with validation
     # @param [Object] location Value to be assigned
     def location=(location)
-      if !location.nil? && location.to_s.length > 38
-        fail ArgumentError, 'invalid value for "location", the character length must be smaller than or equal to 38.'
-      end
-
       @location = location
     end
 

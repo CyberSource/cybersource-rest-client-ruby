@@ -66,57 +66,30 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@account_id.nil? && @account_id.to_s.length > 10
-        invalid_properties.push('invalid value for "account_id", the character length must be smaller than or equal to 10.')
-      end
-
-      if !@last_name.nil? && @last_name.to_s.length > 6
-        invalid_properties.push('invalid value for "last_name", the character length must be smaller than or equal to 6.')
-      end
-
-      if !@postal_code.nil? && @postal_code.to_s.length > 6
-        invalid_properties.push('invalid value for "postal_code", the character length must be smaller than or equal to 6.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@account_id.nil? && @account_id.to_s.length > 10
-      return false if !@last_name.nil? && @last_name.to_s.length > 6
-      return false if !@postal_code.nil? && @postal_code.to_s.length > 6
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] account_id Value to be assigned
     def account_id=(account_id)
-      if !account_id.nil? && account_id.to_s.length > 10
-        fail ArgumentError, 'invalid value for "account_id", the character length must be smaller than or equal to 10.'
-      end
-
       @account_id = account_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] last_name Value to be assigned
     def last_name=(last_name)
-      if !last_name.nil? && last_name.to_s.length > 6
-        fail ArgumentError, 'invalid value for "last_name", the character length must be smaller than or equal to 6.'
-      end
-
       @last_name = last_name
     end
 
     # Custom attribute writer method with validation
     # @param [Object] postal_code Value to be assigned
     def postal_code=(postal_code)
-      if !postal_code.nil? && postal_code.to_s.length > 6
-        fail ArgumentError, 'invalid value for "postal_code", the character length must be smaller than or equal to 6.'
-      end
-
       @postal_code = postal_code
     end
 

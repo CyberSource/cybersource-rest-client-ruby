@@ -57,27 +57,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@url.nil? && @url.to_s.length > 255
-        invalid_properties.push('invalid value for "url", the character length must be smaller than or equal to 255.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@url.nil? && @url.to_s.length > 255
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] url Value to be assigned
     def url=(url)
-      if !url.nil? && url.to_s.length > 255
-        fail ArgumentError, 'invalid value for "url", the character length must be smaller than or equal to 255.'
-      end
-
       @url = url
     end
 

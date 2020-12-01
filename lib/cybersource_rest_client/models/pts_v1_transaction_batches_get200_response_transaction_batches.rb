@@ -102,14 +102,6 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@id.nil? && @id.to_s.length > 8
-        invalid_properties.push('invalid value for "id", the character length must be smaller than or equal to 8.')
-      end
-
-      if !@id.nil? && @id.to_s.length < 1
-        invalid_properties.push('invalid value for "id", the character length must be great than or equal to 1.')
-      end
-
       #if !@id.nil? && @id !~ Regexp.new(/^[a-zA-Z0-9_+-]*$/)
         #invalid_properties.push('invalid value for "id", must conform to the pattern /^[a-zA-Z0-9_+-]*$/.')
       #end
@@ -120,8 +112,6 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@id.nil? && @id.to_s.length > 8
-      return false if !@id.nil? && @id.to_s.length < 1
       #return false if !@id.nil? && @id !~ Regexp.new(/^[a-zA-Z0-9_+-]*$/)
       true
     end
@@ -129,14 +119,6 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] id Value to be assigned
     def id=(id)
-      if !id.nil? && id.to_s.length > 8
-        fail ArgumentError, 'invalid value for "id", the character length must be smaller than or equal to 8.'
-      end
-
-      if !id.nil? && id.to_s.length < 1
-        fail ArgumentError, 'invalid value for "id", the character length must be great than or equal to 1.'
-      end
-
       #if !id.nil? && id !~ Regexp.new(/^[a-zA-Z0-9_+-]*$/)
         #fail ArgumentError, 'invalid value for "id", must conform to the pattern /^[a-zA-Z0-9_+-]*$/.'
       #end

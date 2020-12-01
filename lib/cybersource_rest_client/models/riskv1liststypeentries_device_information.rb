@@ -57,42 +57,24 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@ip_address.nil? && @ip_address.to_s.length > 45
-        invalid_properties.push('invalid value for "ip_address", the character length must be smaller than or equal to 45.')
-      end
-
-      if !@network_ip_address.nil? && @network_ip_address.to_s.length > 11
-        invalid_properties.push('invalid value for "network_ip_address", the character length must be smaller than or equal to 11.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@ip_address.nil? && @ip_address.to_s.length > 45
-      return false if !@network_ip_address.nil? && @network_ip_address.to_s.length > 11
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] ip_address Value to be assigned
     def ip_address=(ip_address)
-      if !ip_address.nil? && ip_address.to_s.length > 45
-        fail ArgumentError, 'invalid value for "ip_address", the character length must be smaller than or equal to 45.'
-      end
-
       @ip_address = ip_address
     end
 
     # Custom attribute writer method with validation
     # @param [Object] network_ip_address Value to be assigned
     def network_ip_address=(network_ip_address)
-      if !network_ip_address.nil? && network_ip_address.to_s.length > 11
-        fail ArgumentError, 'invalid value for "network_ip_address", the character length must be smaller than or equal to 11.'
-      end
-
       @network_ip_address = network_ip_address
     end
 

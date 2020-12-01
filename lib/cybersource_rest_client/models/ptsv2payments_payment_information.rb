@@ -128,27 +128,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@initiation_channel.nil? && @initiation_channel.to_s.length > 2
-        invalid_properties.push('invalid value for "initiation_channel", the character length must be smaller than or equal to 2.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@initiation_channel.nil? && @initiation_channel.to_s.length > 2
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] initiation_channel Value to be assigned
     def initiation_channel=(initiation_channel)
-      if !initiation_channel.nil? && initiation_channel.to_s.length > 2
-        fail ArgumentError, 'invalid value for "initiation_channel", the character length must be smaller than or equal to 2.'
-      end
-
       @initiation_channel = initiation_channel
     end
 

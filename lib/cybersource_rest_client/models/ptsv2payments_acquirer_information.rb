@@ -75,72 +75,36 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@acquirer_bin.nil? && @acquirer_bin.to_s.length > 6
-        invalid_properties.push('invalid value for "acquirer_bin", the character length must be smaller than or equal to 6.')
-      end
-
-      if !@country.nil? && @country.to_s.length > 2
-        invalid_properties.push('invalid value for "country", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@password.nil? && @password.to_s.length > 8
-        invalid_properties.push('invalid value for "password", the character length must be smaller than or equal to 8.')
-      end
-
-      if !@merchant_id.nil? && @merchant_id.to_s.length > 15
-        invalid_properties.push('invalid value for "merchant_id", the character length must be smaller than or equal to 15.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@acquirer_bin.nil? && @acquirer_bin.to_s.length > 6
-      return false if !@country.nil? && @country.to_s.length > 2
-      return false if !@password.nil? && @password.to_s.length > 8
-      return false if !@merchant_id.nil? && @merchant_id.to_s.length > 15
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] acquirer_bin Value to be assigned
     def acquirer_bin=(acquirer_bin)
-      if !acquirer_bin.nil? && acquirer_bin.to_s.length > 6
-        fail ArgumentError, 'invalid value for "acquirer_bin", the character length must be smaller than or equal to 6.'
-      end
-
       @acquirer_bin = acquirer_bin
     end
 
     # Custom attribute writer method with validation
     # @param [Object] country Value to be assigned
     def country=(country)
-      if !country.nil? && country.to_s.length > 2
-        fail ArgumentError, 'invalid value for "country", the character length must be smaller than or equal to 2.'
-      end
-
       @country = country
     end
 
     # Custom attribute writer method with validation
     # @param [Object] password Value to be assigned
     def password=(password)
-      if !password.nil? && password.to_s.length > 8
-        fail ArgumentError, 'invalid value for "password", the character length must be smaller than or equal to 8.'
-      end
-
       @password = password
     end
 
     # Custom attribute writer method with validation
     # @param [Object] merchant_id Value to be assigned
     def merchant_id=(merchant_id)
-      if !merchant_id.nil? && merchant_id.to_s.length > 15
-        fail ArgumentError, 'invalid value for "merchant_id", the character length must be smaller than or equal to 15.'
-      end
-
       @merchant_id = merchant_id
     end
 

@@ -138,177 +138,78 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@decline_avs_flags.nil? && @decline_avs_flags.to_s.length > 15
-        invalid_properties.push('invalid value for "decline_avs_flags", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@sec_code.nil? && @sec_code.to_s.length > 3
-        invalid_properties.push('invalid value for "sec_code", the character length must be smaller than or equal to 3.')
-      end
-
-      if !@terminal_city.nil? && @terminal_city.to_s.length > 4
-        invalid_properties.push('invalid value for "terminal_city", the character length must be smaller than or equal to 4.')
-      end
-
-      if !@terminal_state.nil? && @terminal_state.to_s.length > 2
-        invalid_properties.push('invalid value for "terminal_state", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@effective_date.nil? && @effective_date.to_s.length > 8
-        invalid_properties.push('invalid value for "effective_date", the character length must be smaller than or equal to 8.')
-      end
-
-      if !@partial_payment_id.nil? && @partial_payment_id.to_s.length > 25
-        invalid_properties.push('invalid value for "partial_payment_id", the character length must be smaller than or equal to 25.')
-      end
-
-      if !@customer_memo.nil? && @customer_memo.to_s.length > 80
-        invalid_properties.push('invalid value for "customer_memo", the character length must be smaller than or equal to 80.')
-      end
-
-      if !@payment_category_code.nil? && @payment_category_code.to_s.length > 1
-        invalid_properties.push('invalid value for "payment_category_code", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@settlement_method.nil? && @settlement_method.to_s.length > 1
-        invalid_properties.push('invalid value for "settlement_method", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@fraud_screening_level.nil? && @fraud_screening_level.to_s.length > 1
-        invalid_properties.push('invalid value for "fraud_screening_level", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@customer_present.nil? && @customer_present.to_s.length > 1
-        invalid_properties.push('invalid value for "customer_present", the character length must be smaller than or equal to 1.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@decline_avs_flags.nil? && @decline_avs_flags.to_s.length > 15
-      return false if !@sec_code.nil? && @sec_code.to_s.length > 3
-      return false if !@terminal_city.nil? && @terminal_city.to_s.length > 4
-      return false if !@terminal_state.nil? && @terminal_state.to_s.length > 2
-      return false if !@effective_date.nil? && @effective_date.to_s.length > 8
-      return false if !@partial_payment_id.nil? && @partial_payment_id.to_s.length > 25
-      return false if !@customer_memo.nil? && @customer_memo.to_s.length > 80
-      return false if !@payment_category_code.nil? && @payment_category_code.to_s.length > 1
-      return false if !@settlement_method.nil? && @settlement_method.to_s.length > 1
-      return false if !@fraud_screening_level.nil? && @fraud_screening_level.to_s.length > 1
-      return false if !@customer_present.nil? && @customer_present.to_s.length > 1
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] decline_avs_flags Value to be assigned
     def decline_avs_flags=(decline_avs_flags)
-      if !decline_avs_flags.nil? && decline_avs_flags.to_s.length > 15
-        fail ArgumentError, 'invalid value for "decline_avs_flags", the character length must be smaller than or equal to 15.'
-      end
-
       @decline_avs_flags = decline_avs_flags
     end
 
     # Custom attribute writer method with validation
     # @param [Object] sec_code Value to be assigned
     def sec_code=(sec_code)
-      if !sec_code.nil? && sec_code.to_s.length > 3
-        fail ArgumentError, 'invalid value for "sec_code", the character length must be smaller than or equal to 3.'
-      end
-
       @sec_code = sec_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] terminal_city Value to be assigned
     def terminal_city=(terminal_city)
-      if !terminal_city.nil? && terminal_city.to_s.length > 4
-        fail ArgumentError, 'invalid value for "terminal_city", the character length must be smaller than or equal to 4.'
-      end
-
       @terminal_city = terminal_city
     end
 
     # Custom attribute writer method with validation
     # @param [Object] terminal_state Value to be assigned
     def terminal_state=(terminal_state)
-      if !terminal_state.nil? && terminal_state.to_s.length > 2
-        fail ArgumentError, 'invalid value for "terminal_state", the character length must be smaller than or equal to 2.'
-      end
-
       @terminal_state = terminal_state
     end
 
     # Custom attribute writer method with validation
     # @param [Object] effective_date Value to be assigned
     def effective_date=(effective_date)
-      if !effective_date.nil? && effective_date.to_s.length > 8
-        fail ArgumentError, 'invalid value for "effective_date", the character length must be smaller than or equal to 8.'
-      end
-
       @effective_date = effective_date
     end
 
     # Custom attribute writer method with validation
     # @param [Object] partial_payment_id Value to be assigned
     def partial_payment_id=(partial_payment_id)
-      if !partial_payment_id.nil? && partial_payment_id.to_s.length > 25
-        fail ArgumentError, 'invalid value for "partial_payment_id", the character length must be smaller than or equal to 25.'
-      end
-
       @partial_payment_id = partial_payment_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] customer_memo Value to be assigned
     def customer_memo=(customer_memo)
-      if !customer_memo.nil? && customer_memo.to_s.length > 80
-        fail ArgumentError, 'invalid value for "customer_memo", the character length must be smaller than or equal to 80.'
-      end
-
       @customer_memo = customer_memo
     end
 
     # Custom attribute writer method with validation
     # @param [Object] payment_category_code Value to be assigned
     def payment_category_code=(payment_category_code)
-      if !payment_category_code.nil? && payment_category_code.to_s.length > 1
-        fail ArgumentError, 'invalid value for "payment_category_code", the character length must be smaller than or equal to 1.'
-      end
-
       @payment_category_code = payment_category_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] settlement_method Value to be assigned
     def settlement_method=(settlement_method)
-      if !settlement_method.nil? && settlement_method.to_s.length > 1
-        fail ArgumentError, 'invalid value for "settlement_method", the character length must be smaller than or equal to 1.'
-      end
-
       @settlement_method = settlement_method
     end
 
     # Custom attribute writer method with validation
     # @param [Object] fraud_screening_level Value to be assigned
     def fraud_screening_level=(fraud_screening_level)
-      if !fraud_screening_level.nil? && fraud_screening_level.to_s.length > 1
-        fail ArgumentError, 'invalid value for "fraud_screening_level", the character length must be smaller than or equal to 1.'
-      end
-
       @fraud_screening_level = fraud_screening_level
     end
 
     # Custom attribute writer method with validation
     # @param [Object] customer_present Value to be assigned
     def customer_present=(customer_present)
-      if !customer_present.nil? && customer_present.to_s.length > 1
-        fail ArgumentError, 'invalid value for "customer_present", the character length must be smaller than or equal to 1.'
-      end
-
       @customer_present = customer_present
     end
 

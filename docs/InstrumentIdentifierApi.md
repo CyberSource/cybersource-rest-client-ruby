@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**get_instrument_identifier_payment_instruments_list**](InstrumentIdentifierApi.md#get_instrument_identifier_payment_instruments_list) | **GET** /tms/v1/instrumentidentifiers/{instrumentIdentifierTokenId}/paymentinstruments | List Payment Instruments for an Instrument Identifier
 [**patch_instrument_identifier**](InstrumentIdentifierApi.md#patch_instrument_identifier) | **PATCH** /tms/v1/instrumentidentifiers/{instrumentIdentifierTokenId} | Update an Instrument Identifier
 [**post_instrument_identifier**](InstrumentIdentifierApi.md#post_instrument_identifier) | **POST** /tms/v1/instrumentidentifiers | Create an Instrument Identifier
+[**post_instrument_identifier_enrollment**](InstrumentIdentifierApi.md#post_instrument_identifier_enrollment) | **POST** /tms/v1/instrumentidentifiers/{instrumentIdentifierTokenId}/enrollment | Enroll an Instrument Identifier for Network Tokenization
 
 
 # **delete_instrument_identifier**
@@ -227,7 +228,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::InstrumentIdentifierApi.new
 
-post_instrument_identifier_request = CyberSource::PostInstrumentIdentifierRequest.new # PostInstrumentIdentifierRequest | Please specify either a Card, Bank Account or Enrollable Card
+post_instrument_identifier_request = CyberSource::PostInstrumentIdentifierRequest.new # PostInstrumentIdentifierRequest | Specify either a Card, Bank Account or Enrollable Card
 
 opts = { 
   profile_id: "profile_id_example" # String | The id of a profile containing user specific TMS configuration.
@@ -246,12 +247,63 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **post_instrument_identifier_request** | [**PostInstrumentIdentifierRequest**](PostInstrumentIdentifierRequest.md)| Please specify either a Card, Bank Account or Enrollable Card | 
+ **post_instrument_identifier_request** | [**PostInstrumentIdentifierRequest**](PostInstrumentIdentifierRequest.md)| Specify either a Card, Bank Account or Enrollable Card | 
  **profile_id** | **String**| The id of a profile containing user specific TMS configuration. | [optional] 
 
 ### Return type
 
 [**Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier**](Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
+
+
+
+# **post_instrument_identifier_enrollment**
+> post_instrument_identifier_enrollment(instrument_identifier_token_id, post_instrument_identifier_enrollment_request, opts)
+
+Enroll an Instrument Identifier for Network Tokenization
+
+### Example
+```ruby
+# load the gem
+require 'cybersource_rest_client'
+
+api_instance = CyberSource::InstrumentIdentifierApi.new
+
+instrument_identifier_token_id = "instrument_identifier_token_id_example" # String | The TokenId of a Instrument Identifier.
+
+post_instrument_identifier_enrollment_request = CyberSource::PostInstrumentIdentifierEnrollmentRequest.new # PostInstrumentIdentifierEnrollmentRequest | Specify Enrollable Card details
+
+opts = { 
+  profile_id: "profile_id_example" # String | The id of a profile containing user specific TMS configuration.
+}
+
+begin
+  #Enroll an Instrument Identifier for Network Tokenization
+  api_instance.post_instrument_identifier_enrollment(instrument_identifier_token_id, post_instrument_identifier_enrollment_request, opts)
+rescue CyberSource::ApiError => e
+  puts "Exception when calling InstrumentIdentifierApi->post_instrument_identifier_enrollment: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **instrument_identifier_token_id** | **String**| The TokenId of a Instrument Identifier. | 
+ **post_instrument_identifier_enrollment_request** | [**PostInstrumentIdentifierEnrollmentRequest**](PostInstrumentIdentifierEnrollmentRequest.md)| Specify Enrollable Card details | 
+ **profile_id** | **String**| The id of a profile containing user specific TMS configuration. | [optional] 
+
+### Return type
+
+nil (empty response body)
 
 ### Authorization
 

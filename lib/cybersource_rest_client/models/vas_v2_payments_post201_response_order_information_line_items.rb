@@ -86,57 +86,30 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@exempt_amount.nil? && @exempt_amount.to_s.length > 15
-        invalid_properties.push('invalid value for "exempt_amount", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@taxable_amount.nil? && @taxable_amount.to_s.length > 15
-        invalid_properties.push('invalid value for "taxable_amount", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@tax_amount.nil? && @tax_amount.to_s.length > 15
-        invalid_properties.push('invalid value for "tax_amount", the character length must be smaller than or equal to 15.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@exempt_amount.nil? && @exempt_amount.to_s.length > 15
-      return false if !@taxable_amount.nil? && @taxable_amount.to_s.length > 15
-      return false if !@tax_amount.nil? && @tax_amount.to_s.length > 15
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] exempt_amount Value to be assigned
     def exempt_amount=(exempt_amount)
-      if !exempt_amount.nil? && exempt_amount.to_s.length > 15
-        fail ArgumentError, 'invalid value for "exempt_amount", the character length must be smaller than or equal to 15.'
-      end
-
       @exempt_amount = exempt_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] taxable_amount Value to be assigned
     def taxable_amount=(taxable_amount)
-      if !taxable_amount.nil? && taxable_amount.to_s.length > 15
-        fail ArgumentError, 'invalid value for "taxable_amount", the character length must be smaller than or equal to 15.'
-      end
-
       @taxable_amount = taxable_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] tax_amount Value to be assigned
     def tax_amount=(tax_amount)
-      if !tax_amount.nil? && tax_amount.to_s.length > 15
-        fail ArgumentError, 'invalid value for "tax_amount", the character length must be smaller than or equal to 15.'
-      end
-
       @tax_amount = tax_amount
     end
 

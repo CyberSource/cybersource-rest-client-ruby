@@ -102,28 +102,8 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@authentication_transaction_id.nil? && @authentication_transaction_id.to_s.length > 20
-        invalid_properties.push('invalid value for "authentication_transaction_id", the character length must be smaller than or equal to 20.')
-      end
-
-      if !@authentication_type.nil? && @authentication_type.to_s.length > 2
-        invalid_properties.push('invalid value for "authentication_type", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@effective_authentication_type.nil? && @effective_authentication_type.to_s.length > 2
-        invalid_properties.push('invalid value for "effective_authentication_type", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@signed_pares_status_reason.nil? && @signed_pares_status_reason.to_s.length > 2
-        invalid_properties.push('invalid value for "signed_pares_status_reason", the character length must be smaller than or equal to 2.')
-      end
-
       if @signed_pares.nil?
         invalid_properties.push('invalid value for "signed_pares", signed_pares cannot be nil.')
-      end
-
-      if !@white_list_status.nil? && @white_list_status.to_s.length > 1
-        invalid_properties.push('invalid value for "white_list_status", the character length must be smaller than or equal to 1.')
       end
 
       invalid_properties
@@ -132,62 +112,37 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@authentication_transaction_id.nil? && @authentication_transaction_id.to_s.length > 20
-      return false if !@authentication_type.nil? && @authentication_type.to_s.length > 2
-      return false if !@effective_authentication_type.nil? && @effective_authentication_type.to_s.length > 2
-      return false if !@signed_pares_status_reason.nil? && @signed_pares_status_reason.to_s.length > 2
       return false if @signed_pares.nil?
-      return false if !@white_list_status.nil? && @white_list_status.to_s.length > 1
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] authentication_transaction_id Value to be assigned
     def authentication_transaction_id=(authentication_transaction_id)
-      if !authentication_transaction_id.nil? && authentication_transaction_id.to_s.length > 20
-        fail ArgumentError, 'invalid value for "authentication_transaction_id", the character length must be smaller than or equal to 20.'
-      end
-
       @authentication_transaction_id = authentication_transaction_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] authentication_type Value to be assigned
     def authentication_type=(authentication_type)
-      if !authentication_type.nil? && authentication_type.to_s.length > 2
-        fail ArgumentError, 'invalid value for "authentication_type", the character length must be smaller than or equal to 2.'
-      end
-
       @authentication_type = authentication_type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] effective_authentication_type Value to be assigned
     def effective_authentication_type=(effective_authentication_type)
-      if !effective_authentication_type.nil? && effective_authentication_type.to_s.length > 2
-        fail ArgumentError, 'invalid value for "effective_authentication_type", the character length must be smaller than or equal to 2.'
-      end
-
       @effective_authentication_type = effective_authentication_type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] signed_pares_status_reason Value to be assigned
     def signed_pares_status_reason=(signed_pares_status_reason)
-      if !signed_pares_status_reason.nil? && signed_pares_status_reason.to_s.length > 2
-        fail ArgumentError, 'invalid value for "signed_pares_status_reason", the character length must be smaller than or equal to 2.'
-      end
-
       @signed_pares_status_reason = signed_pares_status_reason
     end
 
     # Custom attribute writer method with validation
     # @param [Object] white_list_status Value to be assigned
     def white_list_status=(white_list_status)
-      if !white_list_status.nil? && white_list_status.to_s.length > 1
-        fail ArgumentError, 'invalid value for "white_list_status", the character length must be smaller than or equal to 1.'
-      end
-
       @white_list_status = white_list_status
     end
 

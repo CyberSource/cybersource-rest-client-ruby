@@ -66,42 +66,24 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@reference_id.nil? && @reference_id.to_s.length > 50
-        invalid_properties.push('invalid value for "reference_id", the character length must be smaller than or equal to 50.')
-      end
-
-      if !@device_data_collection_url.nil? && @device_data_collection_url.to_s.length > 100
-        invalid_properties.push('invalid value for "device_data_collection_url", the character length must be smaller than or equal to 100.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@reference_id.nil? && @reference_id.to_s.length > 50
-      return false if !@device_data_collection_url.nil? && @device_data_collection_url.to_s.length > 100
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] reference_id Value to be assigned
     def reference_id=(reference_id)
-      if !reference_id.nil? && reference_id.to_s.length > 50
-        fail ArgumentError, 'invalid value for "reference_id", the character length must be smaller than or equal to 50.'
-      end
-
       @reference_id = reference_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] device_data_collection_url Value to be assigned
     def device_data_collection_url=(device_data_collection_url)
-      if !device_data_collection_url.nil? && device_data_collection_url.to_s.length > 100
-        fail ArgumentError, 'invalid value for "device_data_collection_url", the character length must be smaller than or equal to 100.'
-      end
-
       @device_data_collection_url = device_data_collection_url
     end
 

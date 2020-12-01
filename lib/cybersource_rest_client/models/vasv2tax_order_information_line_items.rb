@@ -163,14 +163,6 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@product_sku.nil? && @product_sku.to_s.length > 255
-        invalid_properties.push('invalid value for "product_sku", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@product_code.nil? && @product_code.to_s.length > 255
-        invalid_properties.push('invalid value for "product_code", the character length must be smaller than or equal to 255.')
-      end
-
       if !@quantity.nil? && @quantity > 999999999
         invalid_properties.push('invalid value for "quantity", must be smaller than or equal to 999999999.')
       end
@@ -179,81 +171,26 @@ module CyberSource
         invalid_properties.push('invalid value for "quantity", must be greater than or equal to 1.')
       end
 
-      if !@product_name.nil? && @product_name.to_s.length > 255
-        invalid_properties.push('invalid value for "product_name", the character length must be smaller than or equal to 255.')
-      end
-
-      if !@unit_price.nil? && @unit_price.to_s.length > 15
-        invalid_properties.push('invalid value for "unit_price", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@tax_amount.nil? && @tax_amount.to_s.length > 15
-        invalid_properties.push('invalid value for "tax_amount", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@ship_from_country.nil? && @ship_from_country.to_s.length > 2
-        invalid_properties.push('invalid value for "ship_from_country", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@ship_from_administrative_area.nil? && @ship_from_administrative_area.to_s.length > 2
-        invalid_properties.push('invalid value for "ship_from_administrative_area", the character length must be smaller than or equal to 2.')
-      end
-
-      if !@ship_from_locality.nil? && @ship_from_locality.to_s.length > 50
-        invalid_properties.push('invalid value for "ship_from_locality", the character length must be smaller than or equal to 50.')
-      end
-
-      if !@ship_from_postal_code.nil? && @ship_from_postal_code.to_s.length > 10
-        invalid_properties.push('invalid value for "ship_from_postal_code", the character length must be smaller than or equal to 10.')
-      end
-
-      if !@buyer_vat_registration_number.nil? && @buyer_vat_registration_number.to_s.length > 25
-        invalid_properties.push('invalid value for "buyer_vat_registration_number", the character length must be smaller than or equal to 25.')
-      end
-
-      if !@seller_vat_registration_number.nil? && @seller_vat_registration_number.to_s.length > 25
-        invalid_properties.push('invalid value for "seller_vat_registration_number", the character length must be smaller than or equal to 25.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@product_sku.nil? && @product_sku.to_s.length > 255
-      return false if !@product_code.nil? && @product_code.to_s.length > 255
       return false if !@quantity.nil? && @quantity > 999999999
       return false if !@quantity.nil? && @quantity < 1
-      return false if !@product_name.nil? && @product_name.to_s.length > 255
-      return false if !@unit_price.nil? && @unit_price.to_s.length > 15
-      return false if !@tax_amount.nil? && @tax_amount.to_s.length > 15
-      return false if !@ship_from_country.nil? && @ship_from_country.to_s.length > 2
-      return false if !@ship_from_administrative_area.nil? && @ship_from_administrative_area.to_s.length > 2
-      return false if !@ship_from_locality.nil? && @ship_from_locality.to_s.length > 50
-      return false if !@ship_from_postal_code.nil? && @ship_from_postal_code.to_s.length > 10
-      return false if !@buyer_vat_registration_number.nil? && @buyer_vat_registration_number.to_s.length > 25
-      return false if !@seller_vat_registration_number.nil? && @seller_vat_registration_number.to_s.length > 25
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] product_sku Value to be assigned
     def product_sku=(product_sku)
-      if !product_sku.nil? && product_sku.to_s.length > 255
-        fail ArgumentError, 'invalid value for "product_sku", the character length must be smaller than or equal to 255.'
-      end
-
       @product_sku = product_sku
     end
 
     # Custom attribute writer method with validation
     # @param [Object] product_code Value to be assigned
     def product_code=(product_code)
-      if !product_code.nil? && product_code.to_s.length > 255
-        fail ArgumentError, 'invalid value for "product_code", the character length must be smaller than or equal to 255.'
-      end
-
       @product_code = product_code
     end
 
@@ -274,90 +211,54 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] product_name Value to be assigned
     def product_name=(product_name)
-      if !product_name.nil? && product_name.to_s.length > 255
-        fail ArgumentError, 'invalid value for "product_name", the character length must be smaller than or equal to 255.'
-      end
-
       @product_name = product_name
     end
 
     # Custom attribute writer method with validation
     # @param [Object] unit_price Value to be assigned
     def unit_price=(unit_price)
-      if !unit_price.nil? && unit_price.to_s.length > 15
-        fail ArgumentError, 'invalid value for "unit_price", the character length must be smaller than or equal to 15.'
-      end
-
       @unit_price = unit_price
     end
 
     # Custom attribute writer method with validation
     # @param [Object] tax_amount Value to be assigned
     def tax_amount=(tax_amount)
-      if !tax_amount.nil? && tax_amount.to_s.length > 15
-        fail ArgumentError, 'invalid value for "tax_amount", the character length must be smaller than or equal to 15.'
-      end
-
       @tax_amount = tax_amount
     end
 
     # Custom attribute writer method with validation
     # @param [Object] ship_from_country Value to be assigned
     def ship_from_country=(ship_from_country)
-      if !ship_from_country.nil? && ship_from_country.to_s.length > 2
-        fail ArgumentError, 'invalid value for "ship_from_country", the character length must be smaller than or equal to 2.'
-      end
-
       @ship_from_country = ship_from_country
     end
 
     # Custom attribute writer method with validation
     # @param [Object] ship_from_administrative_area Value to be assigned
     def ship_from_administrative_area=(ship_from_administrative_area)
-      if !ship_from_administrative_area.nil? && ship_from_administrative_area.to_s.length > 2
-        fail ArgumentError, 'invalid value for "ship_from_administrative_area", the character length must be smaller than or equal to 2.'
-      end
-
       @ship_from_administrative_area = ship_from_administrative_area
     end
 
     # Custom attribute writer method with validation
     # @param [Object] ship_from_locality Value to be assigned
     def ship_from_locality=(ship_from_locality)
-      if !ship_from_locality.nil? && ship_from_locality.to_s.length > 50
-        fail ArgumentError, 'invalid value for "ship_from_locality", the character length must be smaller than or equal to 50.'
-      end
-
       @ship_from_locality = ship_from_locality
     end
 
     # Custom attribute writer method with validation
     # @param [Object] ship_from_postal_code Value to be assigned
     def ship_from_postal_code=(ship_from_postal_code)
-      if !ship_from_postal_code.nil? && ship_from_postal_code.to_s.length > 10
-        fail ArgumentError, 'invalid value for "ship_from_postal_code", the character length must be smaller than or equal to 10.'
-      end
-
       @ship_from_postal_code = ship_from_postal_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] buyer_vat_registration_number Value to be assigned
     def buyer_vat_registration_number=(buyer_vat_registration_number)
-      if !buyer_vat_registration_number.nil? && buyer_vat_registration_number.to_s.length > 25
-        fail ArgumentError, 'invalid value for "buyer_vat_registration_number", the character length must be smaller than or equal to 25.'
-      end
-
       @buyer_vat_registration_number = buyer_vat_registration_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] seller_vat_registration_number Value to be assigned
     def seller_vat_registration_number=(seller_vat_registration_number)
-      if !seller_vat_registration_number.nil? && seller_vat_registration_number.to_s.length > 25
-        fail ArgumentError, 'invalid value for "seller_vat_registration_number", the character length must be smaller than or equal to 25.'
-      end
-
       @seller_vat_registration_number = seller_vat_registration_number
     end
 

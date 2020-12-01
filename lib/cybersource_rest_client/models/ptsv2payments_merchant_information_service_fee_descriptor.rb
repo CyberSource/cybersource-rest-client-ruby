@@ -66,57 +66,30 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@name.nil? && @name.to_s.length > 22
-        invalid_properties.push('invalid value for "name", the character length must be smaller than or equal to 22.')
-      end
-
-      if !@contact.nil? && @contact.to_s.length > 11
-        invalid_properties.push('invalid value for "contact", the character length must be smaller than or equal to 11.')
-      end
-
-      if !@state.nil? && @state.to_s.length > 20
-        invalid_properties.push('invalid value for "state", the character length must be smaller than or equal to 20.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@name.nil? && @name.to_s.length > 22
-      return false if !@contact.nil? && @contact.to_s.length > 11
-      return false if !@state.nil? && @state.to_s.length > 20
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] name Value to be assigned
     def name=(name)
-      if !name.nil? && name.to_s.length > 22
-        fail ArgumentError, 'invalid value for "name", the character length must be smaller than or equal to 22.'
-      end
-
       @name = name
     end
 
     # Custom attribute writer method with validation
     # @param [Object] contact Value to be assigned
     def contact=(contact)
-      if !contact.nil? && contact.to_s.length > 11
-        fail ArgumentError, 'invalid value for "contact", the character length must be smaller than or equal to 11.'
-      end
-
       @contact = contact
     end
 
     # Custom attribute writer method with validation
     # @param [Object] state Value to be assigned
     def state=(state)
-      if !state.nil? && state.to_s.length > 20
-        fail ArgumentError, 'invalid value for "state", the character length must be smaller than or equal to 20.'
-      end
-
       @state = state
     end
 

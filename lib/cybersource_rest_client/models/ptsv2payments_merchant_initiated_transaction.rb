@@ -66,57 +66,30 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@reason.nil? && @reason.to_s.length > 1
-        invalid_properties.push('invalid value for "reason", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@previous_transaction_id.nil? && @previous_transaction_id.to_s.length > 15
-        invalid_properties.push('invalid value for "previous_transaction_id", the character length must be smaller than or equal to 15.')
-      end
-
-      if !@original_authorized_amount.nil? && @original_authorized_amount.to_s.length > 61
-        invalid_properties.push('invalid value for "original_authorized_amount", the character length must be smaller than or equal to 61.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@reason.nil? && @reason.to_s.length > 1
-      return false if !@previous_transaction_id.nil? && @previous_transaction_id.to_s.length > 15
-      return false if !@original_authorized_amount.nil? && @original_authorized_amount.to_s.length > 61
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] reason Value to be assigned
     def reason=(reason)
-      if !reason.nil? && reason.to_s.length > 1
-        fail ArgumentError, 'invalid value for "reason", the character length must be smaller than or equal to 1.'
-      end
-
       @reason = reason
     end
 
     # Custom attribute writer method with validation
     # @param [Object] previous_transaction_id Value to be assigned
     def previous_transaction_id=(previous_transaction_id)
-      if !previous_transaction_id.nil? && previous_transaction_id.to_s.length > 15
-        fail ArgumentError, 'invalid value for "previous_transaction_id", the character length must be smaller than or equal to 15.'
-      end
-
       @previous_transaction_id = previous_transaction_id
     end
 
     # Custom attribute writer method with validation
     # @param [Object] original_authorized_amount Value to be assigned
     def original_authorized_amount=(original_authorized_amount)
-      if !original_authorized_amount.nil? && original_authorized_amount.to_s.length > 61
-        fail ArgumentError, 'invalid value for "original_authorized_amount", the character length must be smaller than or equal to 61.'
-      end
-
       @original_authorized_amount = original_authorized_amount
     end
 

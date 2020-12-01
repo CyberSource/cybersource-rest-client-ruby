@@ -383,7 +383,7 @@ module CyberSource
       return data, status_code, headers
     end
     # Create an Instrument Identifier
-    # @param post_instrument_identifier_request Please specify either a Card, Bank Account or Enrollable Card
+    # @param post_instrument_identifier_request Specify either a Card, Bank Account or Enrollable Card
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
     # @return [Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier]
@@ -393,7 +393,7 @@ module CyberSource
     end
 
     # Create an Instrument Identifier
-    # @param post_instrument_identifier_request Please specify either a Card, Bank Account or Enrollable Card
+    # @param post_instrument_identifier_request Specify either a Card, Bank Account or Enrollable Card
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
     # @return [Array<(Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier, Fixnum, Hash)>] Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier data, response status code and response headers
@@ -450,6 +450,93 @@ module CyberSource
 		begin
 		raise
 			@api_client.config.logger.debug "API called: InstrumentIdentifierApi#post_instrument_identifier\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+		rescue
+			puts 'Cannot write to log'
+		end
+	  end
+      return data, status_code, headers
+    end
+    # Enroll an Instrument Identifier for Network Tokenization
+    # @param instrument_identifier_token_id The TokenId of a Instrument Identifier.
+    # @param post_instrument_identifier_enrollment_request Specify Enrollable Card details
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+    # @return [nil]
+    def post_instrument_identifier_enrollment(instrument_identifier_token_id, post_instrument_identifier_enrollment_request, opts = {})
+      data, status_code, headers = post_instrument_identifier_enrollment_with_http_info(instrument_identifier_token_id, post_instrument_identifier_enrollment_request, opts)
+      return data, status_code, headers
+    end
+
+    # Enroll an Instrument Identifier for Network Tokenization
+    # @param instrument_identifier_token_id The TokenId of a Instrument Identifier.
+    # @param post_instrument_identifier_enrollment_request Specify Enrollable Card details
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
+    def post_instrument_identifier_enrollment_with_http_info(instrument_identifier_token_id, post_instrument_identifier_enrollment_request, opts = {})
+      
+	  if @api_client.config.debugging
+	  	begin
+			raise
+				@api_client.config.logger.debug 'Calling API: InstrumentIdentifierApi.post_instrument_identifier_enrollment ...'
+			rescue
+				puts 'Cannot write to log'
+			end
+      end
+      # verify the required parameter 'instrument_identifier_token_id' is set
+      if @api_client.config.client_side_validation && instrument_identifier_token_id.nil?
+        fail ArgumentError, "Missing the required parameter 'instrument_identifier_token_id' when calling InstrumentIdentifierApi.post_instrument_identifier_enrollment"
+      end
+      if @api_client.config.client_side_validation && instrument_identifier_token_id.to_s.length > 32
+        fail ArgumentError, 'invalid value for "instrument_identifier_token_id" when calling InstrumentIdentifierApi.post_instrument_identifier_enrollment, the character length must be smaller than or equal to 32.'
+      end
+
+      if @api_client.config.client_side_validation && instrument_identifier_token_id.to_s.length < 12
+        fail ArgumentError, 'invalid value for "instrument_identifier_token_id" when calling InstrumentIdentifierApi.post_instrument_identifier_enrollment, the character length must be great than or equal to 12.'
+      end
+
+      # verify the required parameter 'post_instrument_identifier_enrollment_request' is set
+      if @api_client.config.client_side_validation && post_instrument_identifier_enrollment_request.nil?
+        fail ArgumentError, "Missing the required parameter 'post_instrument_identifier_enrollment_request' when calling InstrumentIdentifierApi.post_instrument_identifier_enrollment"
+      end
+      if @api_client.config.client_side_validation && !opts[:'profile_id'].nil? && opts[:'profile_id'].to_s.length > 36
+        fail ArgumentError, 'invalid value for "opts[:"profile_id"]" when calling InstrumentIdentifierApi.post_instrument_identifier_enrollment, the character length must be smaller than or equal to 36.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'profile_id'].nil? && opts[:'profile_id'].to_s.length < 36
+        fail ArgumentError, 'invalid value for "opts[:"profile_id"]" when calling InstrumentIdentifierApi.post_instrument_identifier_enrollment, the character length must be great than or equal to 36.'
+      end
+
+      # resource path
+      local_var_path = 'tms/v1/instrumentidentifiers/{instrumentIdentifierTokenId}/enrollment'.sub('{' + 'instrumentIdentifierTokenId' + '}', instrument_identifier_token_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params[:'profile-id'] = opts[:'profile_id'] if !opts[:'profile_id'].nil?
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(post_instrument_identifier_enrollment_request)
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names)
+      if @api_client.config.debugging
+		begin
+		raise
+			@api_client.config.logger.debug "API called: InstrumentIdentifierApi#post_instrument_identifier_enrollment\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
 		rescue
 			puts 'Cannot write to log'
 		end

@@ -93,57 +93,30 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@locality.nil? && @locality.to_s.length > 13
-        invalid_properties.push('invalid value for "locality", the character length must be smaller than or equal to 13.')
-      end
-
-      if !@postal_code.nil? && @postal_code.to_s.length > 14
-        invalid_properties.push('invalid value for "postal_code", the character length must be smaller than or equal to 14.')
-      end
-
-      if !@contact.nil? && @contact.to_s.length > 14
-        invalid_properties.push('invalid value for "contact", the character length must be smaller than or equal to 14.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@locality.nil? && @locality.to_s.length > 13
-      return false if !@postal_code.nil? && @postal_code.to_s.length > 14
-      return false if !@contact.nil? && @contact.to_s.length > 14
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] locality Value to be assigned
     def locality=(locality)
-      if !locality.nil? && locality.to_s.length > 13
-        fail ArgumentError, 'invalid value for "locality", the character length must be smaller than or equal to 13.'
-      end
-
       @locality = locality
     end
 
     # Custom attribute writer method with validation
     # @param [Object] postal_code Value to be assigned
     def postal_code=(postal_code)
-      if !postal_code.nil? && postal_code.to_s.length > 14
-        fail ArgumentError, 'invalid value for "postal_code", the character length must be smaller than or equal to 14.'
-      end
-
       @postal_code = postal_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] contact Value to be assigned
     def contact=(contact)
-      if !contact.nil? && contact.to_s.length > 14
-        fail ArgumentError, 'invalid value for "contact", the character length must be smaller than or equal to 14.'
-      end
-
       @contact = contact
     end
 

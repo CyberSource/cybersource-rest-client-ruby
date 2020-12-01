@@ -75,57 +75,30 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@origination.nil? && @origination.to_s.length > 3
-        invalid_properties.push('invalid value for "origination", the character length must be smaller than or equal to 3.')
-      end
-
-      if !@destination.nil? && @destination.to_s.length > 3
-        invalid_properties.push('invalid value for "destination", the character length must be smaller than or equal to 3.')
-      end
-
-      if !@carrier_code.nil? && @carrier_code.to_s.length > 2
-        invalid_properties.push('invalid value for "carrier_code", the character length must be smaller than or equal to 2.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@origination.nil? && @origination.to_s.length > 3
-      return false if !@destination.nil? && @destination.to_s.length > 3
-      return false if !@carrier_code.nil? && @carrier_code.to_s.length > 2
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] origination Value to be assigned
     def origination=(origination)
-      if !origination.nil? && origination.to_s.length > 3
-        fail ArgumentError, 'invalid value for "origination", the character length must be smaller than or equal to 3.'
-      end
-
       @origination = origination
     end
 
     # Custom attribute writer method with validation
     # @param [Object] destination Value to be assigned
     def destination=(destination)
-      if !destination.nil? && destination.to_s.length > 3
-        fail ArgumentError, 'invalid value for "destination", the character length must be smaller than or equal to 3.'
-      end
-
       @destination = destination
     end
 
     # Custom attribute writer method with validation
     # @param [Object] carrier_code Value to be assigned
     def carrier_code=(carrier_code)
-      if !carrier_code.nil? && carrier_code.to_s.length > 2
-        fail ArgumentError, 'invalid value for "carrier_code", the character length must be smaller than or equal to 2.'
-      end
-
       @carrier_code = carrier_code
     end
 

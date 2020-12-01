@@ -57,42 +57,24 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@amount_type.nil? && @amount_type.to_s.length > 35
-        invalid_properties.push('invalid value for "amount_type", the character length must be smaller than or equal to 35.')
-      end
-
-      if !@amount.nil? && @amount.to_s.length > 13
-        invalid_properties.push('invalid value for "amount", the character length must be smaller than or equal to 13.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@amount_type.nil? && @amount_type.to_s.length > 35
-      return false if !@amount.nil? && @amount.to_s.length > 13
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] amount_type Value to be assigned
     def amount_type=(amount_type)
-      if !amount_type.nil? && amount_type.to_s.length > 35
-        fail ArgumentError, 'invalid value for "amount_type", the character length must be smaller than or equal to 35.'
-      end
-
       @amount_type = amount_type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] amount Value to be assigned
     def amount=(amount)
-      if !amount.nil? && amount.to_s.length > 13
-        fail ArgumentError, 'invalid value for "amount", the character length must be smaller than or equal to 13.'
-      end
-
       @amount = amount
     end
 

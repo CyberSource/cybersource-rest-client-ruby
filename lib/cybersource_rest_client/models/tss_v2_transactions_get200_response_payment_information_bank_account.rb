@@ -102,57 +102,30 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@check_number.nil? && @check_number.to_s.length > 8
-        invalid_properties.push('invalid value for "check_number", the character length must be smaller than or equal to 8.')
-      end
-
-      if !@type.nil? && @type.to_s.length > 1
-        invalid_properties.push('invalid value for "type", the character length must be smaller than or equal to 1.')
-      end
-
-      if !@encoder_id.nil? && @encoder_id.to_s.length > 3
-        invalid_properties.push('invalid value for "encoder_id", the character length must be smaller than or equal to 3.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@check_number.nil? && @check_number.to_s.length > 8
-      return false if !@type.nil? && @type.to_s.length > 1
-      return false if !@encoder_id.nil? && @encoder_id.to_s.length > 3
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] check_number Value to be assigned
     def check_number=(check_number)
-      if !check_number.nil? && check_number.to_s.length > 8
-        fail ArgumentError, 'invalid value for "check_number", the character length must be smaller than or equal to 8.'
-      end
-
       @check_number = check_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] type Value to be assigned
     def type=(type)
-      if !type.nil? && type.to_s.length > 1
-        fail ArgumentError, 'invalid value for "type", the character length must be smaller than or equal to 1.'
-      end
-
       @type = type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] encoder_id Value to be assigned
     def encoder_id=(encoder_id)
-      if !encoder_id.nil? && encoder_id.to_s.length > 3
-        fail ArgumentError, 'invalid value for "encoder_id", the character length must be smaller than or equal to 3.'
-      end
-
       @encoder_id = encoder_id
     end
 
