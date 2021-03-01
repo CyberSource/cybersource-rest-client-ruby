@@ -14,28 +14,31 @@ require 'date'
 
 module CyberSource
   class PtsV2PaymentsPost201ResponseRiskInformationInfoCodes
-    # List of information codes triggered by the order. These information codes were generated when you created the order and product velocity rules and are returned so that you can associate them with the rules.  Returned by Decision Manager service. 
+    # List of information codes triggered by the order. These information codes were generated when you created the order and product velocity rules and are returned so that you can associate them with the rules. 
     attr_accessor :velocity
 
-    # Indicates a mismatch between the customer’s billing and shipping addresses.  Returned by scoring service. 
+    # Indicates a mismatch between the customer’s billing and shipping addresses. 
     attr_accessor :address
 
-    # Indicates that customer information is associated with transactions that are either on the negative or the positive list.  Returned by scoring service. 
+    # Indicates that customer information is associated with transactions that are either on the negative or the positive list. 
     attr_accessor :customer_list
 
-    # Indicates excessive identity changes. The threshold is variable depending on the identity elements being compared. This field can contain one or more information codes, separated by carets (^).  Returned by scoring service. 
+    # Indicates the device behavior information code(s) returned from device fingerprinting. 
+    attr_accessor :device_behavior
+
+    # Indicates excessive identity changes. The threshold is variable depending on the identity elements being compared. 
     attr_accessor :identity_change
 
-    # Indicates a problem with the customer’s email address, IP address, or billing address.  Returned by scoring service. 
+    # Indicates a problem with the customer’s email address, IP address, or billing address. 
     attr_accessor :internet
 
-    # Indicates a problem with the customer’s phone number.  Returned by scoring service. 
+    # Indicates a problem with the customer’s phone number. 
     attr_accessor :phone
 
-    # Indicates that the customer provided potentially suspicious information.  Returned by scoring service. 
+    # Indicates that the customer provided potentially suspicious information. 
     attr_accessor :suspicious
 
-    # Indicates that the customer has a high purchase frequency.  Returned by scoring service. 
+    # Indicates that the customer has a high purchase frequency. 
     attr_accessor :global_velocity
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -44,6 +47,7 @@ module CyberSource
         :'velocity' => :'velocity',
         :'address' => :'address',
         :'customer_list' => :'customerList',
+        :'device_behavior' => :'deviceBehavior',
         :'identity_change' => :'identityChange',
         :'internet' => :'internet',
         :'phone' => :'phone',
@@ -58,6 +62,7 @@ module CyberSource
         :'velocity' => :'Array<String>',
         :'address' => :'Array<String>',
         :'customer_list' => :'Array<String>',
+        :'device_behavior' => :'Array<String>',
         :'identity_change' => :'Array<String>',
         :'internet' => :'Array<String>',
         :'phone' => :'Array<String>',
@@ -89,6 +94,12 @@ module CyberSource
       if attributes.has_key?(:'customerList')
         if (value = attributes[:'customerList']).is_a?(Array)
           self.customer_list = value
+        end
+      end
+
+      if attributes.has_key?(:'deviceBehavior')
+        if (value = attributes[:'deviceBehavior']).is_a?(Array)
+          self.device_behavior = value
         end
       end
 
@@ -144,6 +155,7 @@ module CyberSource
           velocity == o.velocity &&
           address == o.address &&
           customer_list == o.customer_list &&
+          device_behavior == o.device_behavior &&
           identity_change == o.identity_change &&
           internet == o.internet &&
           phone == o.phone &&
@@ -160,7 +172,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [velocity, address, customer_list, identity_change, internet, phone, suspicious, global_velocity].hash
+      [velocity, address, customer_list, device_behavior, identity_change, internet, phone, suspicious, global_velocity].hash
     end
 
     # Builds the object from hash

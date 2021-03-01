@@ -61,7 +61,7 @@ module CyberSource
         :'submit_time_local' => :'String',
         :'status' => :'String',
         :'message' => :'String',
-        :'client_reference_information' => :'PtsV2IncrementalAuthorizationPatch201ResponseClientReferenceInformation',
+        :'client_reference_information' => :'RiskV1DecisionsPost201ResponseClientReferenceInformation',
         :'address_verification_information' => :'RiskV1AddressVerificationsPost201ResponseAddressVerificationInformation',
         :'error_information' => :'RiskV1AddressVerificationsPost201ResponseErrorInformation'
       }

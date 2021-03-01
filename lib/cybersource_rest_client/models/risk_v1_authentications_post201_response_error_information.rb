@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class RiskV1AuthenticationsPost201ResponseErrorInformation
-    # The reason of the status. Possible values are: - `INVALID_MERCHANT_CONFIGURATION` - `PENDING_AUTHENTICATION` - `AUTHENTICATION_FAILED` 
+    # The reason of the status. Possible values are: - `INVALID_MERCHANT_CONFIGURATION` - `CONSUMER_AUTHENTICATION_REQUIRED` - `CONSUMER_AUTHENTICATION_FAILED` - `AUTHENTICATION_FAILED` 
     attr_accessor :reason
 
     # The detail message related to the status and reason listed above.

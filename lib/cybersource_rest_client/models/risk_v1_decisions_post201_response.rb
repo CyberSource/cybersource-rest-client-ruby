@@ -67,7 +67,7 @@ module CyberSource
         :'status' => :'String',
         :'risk_information' => :'PtsV2PaymentsPost201ResponseRiskInformation',
         :'payment_information' => :'RiskV1DecisionsPost201ResponsePaymentInformation',
-        :'client_reference_information' => :'PtsV2IncrementalAuthorizationPatch201ResponseClientReferenceInformation',
+        :'client_reference_information' => :'RiskV1DecisionsPost201ResponseClientReferenceInformation',
         :'order_information' => :'RiskV1DecisionsPost201ResponseOrderInformation',
         :'consumer_authentication_information' => :'RiskV1DecisionsPost201ResponseConsumerAuthenticationInformation',
         :'error_information' => :'RiskV1DecisionsPost201ResponseErrorInformation'

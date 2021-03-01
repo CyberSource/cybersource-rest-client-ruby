@@ -16,17 +16,21 @@ module CyberSource
   class FraudMarkingActionRequest
     attr_accessor :risk_information
 
+    attr_accessor :client_reference_information
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'risk_information' => :'riskInformation'
+        :'risk_information' => :'riskInformation',
+        :'client_reference_information' => :'clientReferenceInformation'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'risk_information' => :'Riskv1decisionsidmarkingRiskInformation'
+        :'risk_information' => :'Riskv1decisionsidmarkingRiskInformation',
+        :'client_reference_information' => :'Riskv1decisionsClientReferenceInformation'
       }
     end
 
@@ -40,6 +44,10 @@ module CyberSource
 
       if attributes.has_key?(:'riskInformation')
         self.risk_information = attributes[:'riskInformation']
+      end
+
+      if attributes.has_key?(:'clientReferenceInformation')
+        self.client_reference_information = attributes[:'clientReferenceInformation']
       end
     end
 
@@ -61,7 +69,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          risk_information == o.risk_information
+          risk_information == o.risk_information &&
+          client_reference_information == o.client_reference_information
     end
 
     # @see the `==` method
@@ -73,7 +82,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [risk_information].hash
+      [risk_information, client_reference_information].hash
     end
 
     # Builds the object from hash

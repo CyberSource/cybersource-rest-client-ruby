@@ -35,7 +35,7 @@ module CyberSource
     def self.swagger_types
       {
         :'code' => :'String',
-        :'partner' => :'Vasv2taxClientReferenceInformationPartner',
+        :'partner' => :'Riskv1decisionsClientReferenceInformationPartner',
         :'comments' => :'String'
       }
     end
