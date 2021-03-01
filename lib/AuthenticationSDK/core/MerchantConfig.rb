@@ -38,12 +38,12 @@ public
       logmessage=''
       if @enableLog.to_s.empty?
         @enableLog = true
-      elsif @enableLog.instance_of? Fixnum
+      elsif @enableLog.instance_of? Integer
         @enableLog = @enableLog.to_s
       end
       if @logSize.to_s.empty?
         @logSize = Constants::DEFAULT_LOG_SIZE
-      elsif !@logSize.instance_of? Fixnum
+      elsif !@logSize.instance_of? Integer
         @logSize=@logSize.to_i
       end
       if @logDirectory.to_s.empty? || !Dir.exist?(@logDirectory)
