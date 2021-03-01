@@ -117,6 +117,8 @@
       MERCHANT_KEY_ID_MANDATORY = 'MerchantKeyId is Mandatory' unless const_defined?(:MERCHANT_KEY_ID_MANDATORY)
       
       MERCHANT_SECRET_KEY_MANDATORY = 'MerchantSecretKey is Mandatory' unless const_defined?(:MERCHANT_SECRET_KEY_MANDATORY)
+
+      PORTFOLIO_ID_MANDATORY = 'PortfolioID is Mandatory' unless const_defined?(:PORTFOLIO_ID_MANDATORY)
       
       KEY_PASS_NULL = 'keyPass is empty, Assigining merchantID value' unless const_defined?(:KEY_PASS_NULL)
       

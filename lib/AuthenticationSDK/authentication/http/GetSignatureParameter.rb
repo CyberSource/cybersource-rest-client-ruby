@@ -30,7 +30,11 @@ require 'openssl'
         digest_payload = Constants::SHA256 + digest
         signatureString << Constants::DIGEST + ': ' + digest_payload + "\n"
       end
-      signatureString << Constants::V_C_MERCHANT_ID + ': ' + merchantconfig_obj.merchantId
+      if merchantconfig_obj.useMetaKey
+        signatureString << Constants::V_C_MERCHANT_ID + ': ' + merchantconfig_obj.portfolioID
+      else
+        signatureString << Constants::V_C_MERCHANT_ID + ': ' + merchantconfig_obj.merchantId
+      end
       encodedSignatureString = signatureString.force_encoding(Encoding::UTF_8)
       decodedKey = Base64.decode64(merchantSecretKey)
       base64EncodedSignature = Base64.strict_encode64(OpenSSL::HMAC.digest('sha256', decodedKey, encodedSignatureString))
