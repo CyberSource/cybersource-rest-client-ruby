@@ -27,6 +27,8 @@ module CyberSource
 
     attr_accessor :consumer_authentication_information
 
+    attr_accessor :client_reference_information
+
     attr_accessor :error_information
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -37,6 +39,7 @@ module CyberSource
         :'submit_time_utc' => :'submitTimeUtc',
         :'status' => :'status',
         :'consumer_authentication_information' => :'consumerAuthenticationInformation',
+        :'client_reference_information' => :'clientReferenceInformation',
         :'error_information' => :'errorInformation'
       }
     end
@@ -49,6 +52,7 @@ module CyberSource
         :'submit_time_utc' => :'String',
         :'status' => :'String',
         :'consumer_authentication_information' => :'RiskV1AuthenticationSetupsPost201ResponseConsumerAuthenticationInformation',
+        :'client_reference_information' => :'RiskV1DecisionsPost201ResponseClientReferenceInformation',
         :'error_information' => :'RiskV1AuthenticationSetupsPost201ResponseErrorInformation'
       }
     end
@@ -79,6 +83,10 @@ module CyberSource
 
       if attributes.has_key?(:'consumerAuthenticationInformation')
         self.consumer_authentication_information = attributes[:'consumerAuthenticationInformation']
+      end
+
+      if attributes.has_key?(:'clientReferenceInformation')
+        self.client_reference_information = attributes[:'clientReferenceInformation']
       end
 
       if attributes.has_key?(:'errorInformation')
@@ -115,6 +123,7 @@ module CyberSource
           submit_time_utc == o.submit_time_utc &&
           status == o.status &&
           consumer_authentication_information == o.consumer_authentication_information &&
+          client_reference_information == o.client_reference_information &&
           error_information == o.error_information
     end
 
@@ -127,7 +136,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, submit_time_utc, status, consumer_authentication_information, error_information].hash
+      [_links, id, submit_time_utc, status, consumer_authentication_information, client_reference_information, error_information].hash
     end
 
     # Builds the object from hash

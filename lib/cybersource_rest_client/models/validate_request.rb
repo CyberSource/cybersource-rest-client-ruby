@@ -38,7 +38,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'client_reference_information' => :'Riskv1authenticationsetupsClientReferenceInformation',
+        :'client_reference_information' => :'Riskv1decisionsClientReferenceInformation',
         :'processing_information' => :'Riskv1authenticationsetupsProcessingInformation',
         :'order_information' => :'Riskv1authenticationresultsOrderInformation',
         :'payment_information' => :'Riskv1authenticationresultsPaymentInformation',

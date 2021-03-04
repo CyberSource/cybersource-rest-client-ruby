@@ -20,11 +20,14 @@ module CyberSource
     # Brief description of the order or any comment you wish to add to the order. 
     attr_accessor :comments
 
+    attr_accessor :partner
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'code' => :'code',
-        :'comments' => :'comments'
+        :'comments' => :'comments',
+        :'partner' => :'partner'
       }
     end
 
@@ -32,7 +35,8 @@ module CyberSource
     def self.swagger_types
       {
         :'code' => :'String',
-        :'comments' => :'String'
+        :'comments' => :'String',
+        :'partner' => :'Riskv1decisionsClientReferenceInformationPartner'
       }
     end
 
@@ -51,24 +55,37 @@ module CyberSource
       if attributes.has_key?(:'comments')
         self.comments = attributes[:'comments']
       end
+
+      if attributes.has_key?(:'partner')
+        self.partner = attributes[:'partner']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @code.nil?
+        invalid_properties.push('invalid value for "code", code cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @code.nil?
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] code Value to be assigned
     def code=(code)
+      if code.nil?
+        fail ArgumentError, 'code cannot be nil'
+      end
+
       @code = code
     end
 
@@ -84,7 +101,8 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           code == o.code &&
-          comments == o.comments
+          comments == o.comments &&
+          partner == o.partner
     end
 
     # @see the `==` method
@@ -96,7 +114,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [code, comments].hash
+      [code, comments, partner].hash
     end
 
     # Builds the object from hash

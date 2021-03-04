@@ -64,7 +64,7 @@ module CyberSource
         :'submit_time_local' => :'String',
         :'status' => :'String',
         :'message' => :'String',
-        :'client_reference_information' => :'PtsV2IncrementalAuthorizationPatch201ResponseClientReferenceInformation',
+        :'client_reference_information' => :'RiskV1DecisionsPost201ResponseClientReferenceInformation',
         :'order_information' => :'RiskV1DecisionsPost201ResponseOrderInformation',
         :'consumer_authentication_information' => :'RiskV1DecisionsPost201ResponseConsumerAuthenticationInformation',
         :'error_information' => :'RiskV1AuthenticationsPost201ResponseErrorInformation'

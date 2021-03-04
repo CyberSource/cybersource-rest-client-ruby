@@ -48,6 +48,8 @@ module CyberSource
 
     attr_accessor :fraud_marking_information
 
+    attr_accessor :health_care_information
+
     # The object containing the custom data that the merchant defines. 
     attr_accessor :merchant_defined_information
 
@@ -86,6 +88,7 @@ module CyberSource
         :'error_information' => :'errorInformation',
         :'installment_information' => :'installmentInformation',
         :'fraud_marking_information' => :'fraudMarkingInformation',
+        :'health_care_information' => :'healthCareInformation',
         :'merchant_defined_information' => :'merchantDefinedInformation',
         :'merchant_information' => :'merchantInformation',
         :'order_information' => :'orderInformation',
@@ -116,6 +119,7 @@ module CyberSource
         :'error_information' => :'TssV2TransactionsGet200ResponseErrorInformation',
         :'installment_information' => :'TssV2TransactionsGet200ResponseInstallmentInformation',
         :'fraud_marking_information' => :'TssV2TransactionsGet200ResponseFraudMarkingInformation',
+        :'health_care_information' => :'Ptsv2paymentsHealthCareInformation',
         :'merchant_defined_information' => :'Array<Ptsv2paymentsMerchantDefinedInformation>',
         :'merchant_information' => :'TssV2TransactionsGet200ResponseMerchantInformation',
         :'order_information' => :'TssV2TransactionsGet200ResponseOrderInformation',
@@ -191,6 +195,10 @@ module CyberSource
 
       if attributes.has_key?(:'fraudMarkingInformation')
         self.fraud_marking_information = attributes[:'fraudMarkingInformation']
+      end
+
+      if attributes.has_key?(:'healthCareInformation')
+        self.health_care_information = attributes[:'healthCareInformation']
       end
 
       if attributes.has_key?(:'merchantDefinedInformation')
@@ -286,6 +294,7 @@ module CyberSource
           error_information == o.error_information &&
           installment_information == o.installment_information &&
           fraud_marking_information == o.fraud_marking_information &&
+          health_care_information == o.health_care_information &&
           merchant_defined_information == o.merchant_defined_information &&
           merchant_information == o.merchant_information &&
           order_information == o.order_information &&
@@ -307,7 +316,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, root_id, reconciliation_id, merchant_id, status, submit_time_utc, application_information, buyer_information, client_reference_information, consumer_authentication_information, device_information, error_information, installment_information, fraud_marking_information, merchant_defined_information, merchant_information, order_information, payment_information, processing_information, processor_information, point_of_sale_information, risk_information, sender_information, _links].hash
+      [id, root_id, reconciliation_id, merchant_id, status, submit_time_utc, application_information, buyer_information, client_reference_information, consumer_authentication_information, device_information, error_information, installment_information, fraud_marking_information, health_care_information, merchant_defined_information, merchant_information, order_information, payment_information, processing_information, processor_information, point_of_sale_information, risk_information, sender_information, _links].hash
     end
 
     # Builds the object from hash

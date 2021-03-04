@@ -42,7 +42,7 @@ module CyberSource
     def self.swagger_types
       {
         :'_links' => :'PtsV2IncrementalAuthorizationPatch201ResponseLinks',
-        :'client_reference_informaton' => :'PtsV2IncrementalAuthorizationPatch201ResponseClientReferenceInformation',
+        :'client_reference_informaton' => :'RiskV1DecisionsPost201ResponseClientReferenceInformation',
         :'id' => :'String',
         :'status' => :'String',
         :'submit_time_utc' => :'String'

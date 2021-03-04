@@ -14,6 +14,9 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsGet200ResponseProcessingInformation
+    # Indicates that the transaction includes industry-specific data.  Possible Values: - `airline` - `restaurant` - `lodging` - `auto_rental` - `transit` - `healthcare_medical` - `healthcare_transit` - `transit`  #### Card Present, Airlines and Auto Rental You must set this field to `airline` in order for airline data to be sent to the processor. For example, if this field is not set to `airline` or is not included in the request, no airline data is sent to the processor.  You must set this field to `restaurant` in order for restaurant data to be sent to the processor. When this field is not set to `restaurant` or is not included in the request, no restaurant data is sent to the processor.  You must set this field to `auto_rental` in order for auto rental data to be sent to the processor. For example, if this field is not set to `auto_rental` or is not included in the request, no auto rental data is sent to the processor.  Restaurant data is supported only on CyberSource through VisaNet. 
+    attr_accessor :industry_data_type
+
     # Type of digital payment solution for the transaction.  
     attr_accessor :payment_solution
 
@@ -32,6 +35,7 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'industry_data_type' => :'industryDataType',
         :'payment_solution' => :'paymentSolution',
         :'commerce_indicator' => :'commerceIndicator',
         :'business_application_id' => :'businessApplicationId',
@@ -44,6 +48,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'industry_data_type' => :'String',
         :'payment_solution' => :'String',
         :'commerce_indicator' => :'String',
         :'business_application_id' => :'String',
@@ -60,6 +65,10 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'industryDataType')
+        self.industry_data_type = attributes[:'industryDataType']
+      end
 
       if attributes.has_key?(:'paymentSolution')
         self.payment_solution = attributes[:'paymentSolution']
@@ -100,6 +109,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] industry_data_type Value to be assigned
+    def industry_data_type=(industry_data_type)
+      @industry_data_type = industry_data_type
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] payment_solution Value to be assigned
     def payment_solution=(payment_solution)
       @payment_solution = payment_solution
@@ -116,6 +131,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          industry_data_type == o.industry_data_type &&
           payment_solution == o.payment_solution &&
           commerce_indicator == o.commerce_indicator &&
           business_application_id == o.business_application_id &&
@@ -133,7 +149,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [payment_solution, commerce_indicator, business_application_id, authorization_options, bank_transfer_options, japan_payment_options].hash
+      [industry_data_type, payment_solution, commerce_indicator, business_application_id, authorization_options, bank_transfer_options, japan_payment_options].hash
     end
 
     # Builds the object from hash

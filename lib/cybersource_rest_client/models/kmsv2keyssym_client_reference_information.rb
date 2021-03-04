@@ -36,7 +36,7 @@ module CyberSource
       {
         :'code' => :'String',
         :'comments' => :'String',
-        :'partner' => :'Vasv2taxClientReferenceInformationPartner'
+        :'partner' => :'Riskv1decisionsClientReferenceInformationPartner'
       }
     end
 

@@ -116,6 +116,12 @@ describe 'TssV2TransactionsGet200Response' do
     end
   end
 
+  describe 'test attribute "health_care_information"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "merchant_defined_information"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

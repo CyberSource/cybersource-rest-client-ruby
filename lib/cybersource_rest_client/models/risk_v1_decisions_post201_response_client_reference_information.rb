@@ -13,26 +13,30 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  class Vasv2taxClientReferenceInformationPartner
-    # Identifier for the developer that helped integrate a partner solution to CyberSource.  Send this value in all requests that are sent through the partner solutions built by that developer. CyberSource assigns the ID to the developer.  **Note** When you see a developer ID of 999 in reports, the developer ID that was submitted is incorrect. 
-    attr_accessor :developer_id
+  class RiskV1DecisionsPost201ResponseClientReferenceInformation
+    # Merchant-generated order reference or tracking number. It is recommended that you send a unique value for each transaction so that you can perform meaningful searches for the transaction.  #### Used by **Authorization** Required field.  #### PIN Debit Requests for PIN debit reversals need to use the same merchant reference number that was used in the transaction that is being reversed.  Required field for all PIN Debit requests (purchase, credit, and reversal).  #### FDC Nashville Global Certain circumstances can cause the processor to truncate this value to 15 or 17 characters for Level II and Level III processing, which can cause a discrepancy between the value you submit and the value included in some processor reports. 
+    attr_accessor :code
 
-    # Identifier for the partner that is integrated to CyberSource.  Send this value in all requests that are sent through the partner solution. CyberSource assigns the ID to the partner.  **Note** When you see a solutionId of 999 in reports, the solutionId that was submitted is incorrect. 
-    attr_accessor :solution_id
+    # Brief description of the order or any comment you wish to add to the order. 
+    attr_accessor :comments
+
+    attr_accessor :partner
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'developer_id' => :'developerId',
-        :'solution_id' => :'solutionId'
+        :'code' => :'code',
+        :'comments' => :'comments',
+        :'partner' => :'partner'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'developer_id' => :'String',
-        :'solution_id' => :'String'
+        :'code' => :'String',
+        :'comments' => :'String',
+        :'partner' => :'Riskv1decisionsClientReferenceInformationPartner'
       }
     end
 
@@ -44,12 +48,16 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'developerId')
-        self.developer_id = attributes[:'developerId']
+      if attributes.has_key?(:'code')
+        self.code = attributes[:'code']
       end
 
-      if attributes.has_key?(:'solutionId')
-        self.solution_id = attributes[:'solutionId']
+      if attributes.has_key?(:'comments')
+        self.comments = attributes[:'comments']
+      end
+
+      if attributes.has_key?(:'partner')
+        self.partner = attributes[:'partner']
       end
     end
 
@@ -67,15 +75,15 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] developer_id Value to be assigned
-    def developer_id=(developer_id)
-      @developer_id = developer_id
+    # @param [Object] code Value to be assigned
+    def code=(code)
+      @code = code
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] solution_id Value to be assigned
-    def solution_id=(solution_id)
-      @solution_id = solution_id
+    # @param [Object] comments Value to be assigned
+    def comments=(comments)
+      @comments = comments
     end
 
     # Checks equality by comparing each attribute.
@@ -83,8 +91,9 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          developer_id == o.developer_id &&
-          solution_id == o.solution_id
+          code == o.code &&
+          comments == o.comments &&
+          partner == o.partner
     end
 
     # @see the `==` method
@@ -96,7 +105,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [developer_id, solution_id].hash
+      [code, comments, partner].hash
     end
 
     # Builds the object from hash
