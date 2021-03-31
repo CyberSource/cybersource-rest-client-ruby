@@ -16,6 +16,9 @@ module CyberSource
   class PtsV2PaymentsPost201ResponseProcessingInformation
     attr_accessor :bank_transfer_options
 
+    # Type of digital payment solution for the transaction. Possible Values:   - `visacheckout`: Visa Checkout. This value is required for Visa Checkout transactions. For details, see `payment_solution` field description in [Visa Checkout Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/VCO_SCMP_API/html/)  - `001`: Apple Pay.  - `004`: Cybersource In-App Solution.  - `005`: Masterpass. This value is required for Masterpass transactions on OmniPay Direct. For details, see \"Masterpass\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  - `006`: Android Pay.  - `007`: Chase Pay.  - `008`: Samsung Pay.  - `012`: Google Pay.  - `014`: Mastercard credential on file (COF) payment network token. Returned in authorizations that use a payment network token associated with a TMS token.  - `015`: Visa credential on file (COF) payment network token. Returned in authorizations that use a payment network token associated with a TMS token. 
+    attr_accessor :payment_solution
+
     # The possible values for the reply field are: - `true` : the airline data was included in the request to the processor. - `false` : the airline data was not included in the request to the processor.  Returned by authorization, capture, or credit services. 
     attr_accessor :enhanced_data_enabled
 
@@ -23,6 +26,7 @@ module CyberSource
     def self.attribute_map
       {
         :'bank_transfer_options' => :'bankTransferOptions',
+        :'payment_solution' => :'paymentSolution',
         :'enhanced_data_enabled' => :'enhancedDataEnabled'
       }
     end
@@ -31,6 +35,7 @@ module CyberSource
     def self.swagger_types
       {
         :'bank_transfer_options' => :'PtsV2PaymentsPost201ResponseProcessingInformationBankTransferOptions',
+        :'payment_solution' => :'String',
         :'enhanced_data_enabled' => :'BOOLEAN'
       }
     end
@@ -45,6 +50,10 @@ module CyberSource
 
       if attributes.has_key?(:'bankTransferOptions')
         self.bank_transfer_options = attributes[:'bankTransferOptions']
+      end
+
+      if attributes.has_key?(:'paymentSolution')
+        self.payment_solution = attributes[:'paymentSolution']
       end
 
       if attributes.has_key?(:'enhancedDataEnabled')
@@ -65,12 +74,19 @@ module CyberSource
       true
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] payment_solution Value to be assigned
+    def payment_solution=(payment_solution)
+      @payment_solution = payment_solution
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           bank_transfer_options == o.bank_transfer_options &&
+          payment_solution == o.payment_solution &&
           enhanced_data_enabled == o.enhanced_data_enabled
     end
 
@@ -83,7 +99,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [bank_transfer_options, enhanced_data_enabled].hash
+      [bank_transfer_options, payment_solution, enhanced_data_enabled].hash
     end
 
     # Builds the object from hash
