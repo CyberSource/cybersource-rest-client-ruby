@@ -24,13 +24,17 @@ module CyberSource
 
     attr_accessor :shipping_address
 
+    # Indicates whether a payment network token associated with a TMS token should be used for authorization. This field can contain one of following values:  - `ignore`: Use a tokenized card number for an authorization, even if the TMS token has an associated payment network token. - `prefer`: (Default) Use an associated payment network token for an authorization if the TMS token has one; otherwise, use the tokenized card number. 
+    attr_accessor :network_token_option
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'jti' => :'jti',
         :'transient_token_jwt' => :'transientTokenJwt',
         :'payment_instrument' => :'paymentInstrument',
-        :'shipping_address' => :'shippingAddress'
+        :'shipping_address' => :'shippingAddress',
+        :'network_token_option' => :'networkTokenOption'
       }
     end
 
@@ -40,7 +44,8 @@ module CyberSource
         :'jti' => :'String',
         :'transient_token_jwt' => :'String',
         :'payment_instrument' => :'Ptsv2paymentsTokenInformationPaymentInstrument',
-        :'shipping_address' => :'Ptsv2paymentsTokenInformationShippingAddress'
+        :'shipping_address' => :'Ptsv2paymentsTokenInformationShippingAddress',
+        :'network_token_option' => :'String'
       }
     end
 
@@ -66,6 +71,10 @@ module CyberSource
 
       if attributes.has_key?(:'shippingAddress')
         self.shipping_address = attributes[:'shippingAddress']
+      end
+
+      if attributes.has_key?(:'networkTokenOption')
+        self.network_token_option = attributes[:'networkTokenOption']
       end
     end
 
@@ -96,7 +105,8 @@ module CyberSource
           jti == o.jti &&
           transient_token_jwt == o.transient_token_jwt &&
           payment_instrument == o.payment_instrument &&
-          shipping_address == o.shipping_address
+          shipping_address == o.shipping_address &&
+          network_token_option == o.network_token_option
     end
 
     # @see the `==` method
@@ -108,7 +118,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [jti, transient_token_jwt, payment_instrument, shipping_address].hash
+      [jti, transient_token_jwt, payment_instrument, shipping_address, network_token_option].hash
     end
 
     # Builds the object from hash
