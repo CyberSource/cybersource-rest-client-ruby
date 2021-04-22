@@ -53,7 +53,7 @@ module CyberSource
     attr_accessor :redemption_inquiry
 
     # Type of transportation mode :  Possible Values: - 00 = Unknown - 01 = Urban bus - 02 = Interurban bus - 03=Lighttrainmasstransit(Underground Metro LTR) - 04 = Train - 05 = Commuter train - 06 = Water-borne vehicle - 07 = Toll - 08 = Parking - 09 = Taxi - 10 = High-speed train - 11 = Rural bus - 12 = Express commuter train - 13 = Para transit - 14 = Self drive vehicle - 15 = Coach - 16 = Locomotive - 17 = Powered motor coach - 18 = Trailer - 19 = Regional train - 20 = Inter-city - 21 = Funicular train - 22 = Cable car 
-    attr_accessor :transit_transaction_type
+    attr_accessor :transportation_mode
 
     # Indicates if transaction is an aggregated auth  Possible values: - **true** - **false** 
     attr_accessor :aggregated_auth_indicator
@@ -80,7 +80,7 @@ module CyberSource
         :'bill_payment' => :'billPayment',
         :'bill_payment_type' => :'billPaymentType',
         :'redemption_inquiry' => :'redemptionInquiry',
-        :'transit_transaction_type' => :'transitTransactionType',
+        :'transportation_mode' => :'transportationMode',
         :'aggregated_auth_indicator' => :'aggregatedAuthIndicator',
         :'debt_recovery_indicator' => :'debtRecoveryIndicator',
         :'deferred_auth_indicator' => :'deferredAuthIndicator'
@@ -103,7 +103,7 @@ module CyberSource
         :'bill_payment' => :'BOOLEAN',
         :'bill_payment_type' => :'String',
         :'redemption_inquiry' => :'BOOLEAN',
-        :'transit_transaction_type' => :'String',
+        :'transportation_mode' => :'String',
         :'aggregated_auth_indicator' => :'String',
         :'debt_recovery_indicator' => :'String',
         :'deferred_auth_indicator' => :'BOOLEAN'
@@ -176,8 +176,8 @@ module CyberSource
         self.redemption_inquiry = attributes[:'redemptionInquiry']
       end
 
-      if attributes.has_key?(:'transitTransactionType')
-        self.transit_transaction_type = attributes[:'transitTransactionType']
+      if attributes.has_key?(:'transportationMode')
+        self.transportation_mode = attributes[:'transportationMode']
       end
 
       if attributes.has_key?(:'aggregatedAuthIndicator')
@@ -248,7 +248,7 @@ module CyberSource
           bill_payment == o.bill_payment &&
           bill_payment_type == o.bill_payment_type &&
           redemption_inquiry == o.redemption_inquiry &&
-          transit_transaction_type == o.transit_transaction_type &&
+          transportation_mode == o.transportation_mode &&
           aggregated_auth_indicator == o.aggregated_auth_indicator &&
           debt_recovery_indicator == o.debt_recovery_indicator &&
           deferred_auth_indicator == o.deferred_auth_indicator
@@ -263,7 +263,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [auth_type, verbal_auth_code, verbal_auth_transaction_id, auth_indicator, partial_auth_indicator, balance_inquiry, ignore_avs_result, decline_avs_flags, ignore_cv_result, initiator, bill_payment, bill_payment_type, redemption_inquiry, transit_transaction_type, aggregated_auth_indicator, debt_recovery_indicator, deferred_auth_indicator].hash
+      [auth_type, verbal_auth_code, verbal_auth_transaction_id, auth_indicator, partial_auth_indicator, balance_inquiry, ignore_avs_result, decline_avs_flags, ignore_cv_result, initiator, bill_payment, bill_payment_type, redemption_inquiry, transportation_mode, aggregated_auth_indicator, debt_recovery_indicator, deferred_auth_indicator].hash
     end
 
     # Builds the object from hash

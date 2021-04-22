@@ -104,6 +104,12 @@ describe 'Ptsv2paymentsConsumerAuthenticationInformation' do
     end
   end
 
+  describe 'test attribute "acs_transaction_id"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "acs_window_size"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -225,6 +231,12 @@ describe 'Ptsv2paymentsConsumerAuthenticationInformation' do
   end
 
   describe 'test attribute "message_category"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "network_score"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

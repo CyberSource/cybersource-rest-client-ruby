@@ -49,6 +49,9 @@ module CyberSource
     # Indicates the type of authentication that will be used to challenge the card holder.  Possible Values:  01 - Static  02 - Dynamic  03 - OOB (Out of Band)  04 - Decoupled **NOTE**:  EMV 3-D Secure version 2.1.0 supports values 01-03.  Version 2.2.0 supports values 01-04.  Decoupled authentication is not supported at this time. 
     attr_accessor :authentication_type
 
+    # Unique transaction identifier assigned by the ACS to identify a single transaction.  This field is supported for Cartes Bancaires Fast'R transactions on Credit Mutuel-CIC. 
+    attr_accessor :acs_transaction_id
+
     # An override field that a merchant can pass in to set the challenge window size to display to the end cardholder.  The ACS (Active Control Server) will reply with content that is formatted appropriately to this window size to allow for the best user experience.  The sizes are width x height in pixels of the window displayed in the cardholder browser window.  01 - 250x400  02 - 390x400  03 - 500x600  04 - 600x400  05 - Full page 
     attr_accessor :acs_window_size
 
@@ -61,7 +64,7 @@ module CyberSource
     # Mechanism used by the cardholder to authenticate to the 3D Secure requestor. Possible values: - `01`: No authentication occurred - `02`: Login using merchant system credentials - `03`: Login using Federated ID - `04`: Login using issuer credentials - `05`: Login using third-party authenticator - `06`: Login using FIDO Authenticator 
     attr_accessor :alternate_authentication_method
 
-    # The date/time of the authentication at the 3DS servers. RISK update authorization service in auth request payload with value returned in `consumerAuthenticationInformation.alternateAuthenticationData` if merchant calls via CYBS or field can be provided by merchant in authorization request if calling an external 3DS provider. 
+    # The date/time of the authentication at the 3DS servers. RISK update authorization service in auth request payload with value returned in `consumerAuthenticationInformation.alternateAuthenticationData` if merchant calls via CYBS or field can be provided by merchant in authorization request if calling an external 3DS provider.  This field is supported for Cartes Bancaires Fast'R transactions on Credit Mutuel-CIC. Format: YYYYMMDDHHMMSS 
     attr_accessor :authentication_date
 
     # Payer authentication transaction identifier passed to link the check enrollment and validate authentication messages. **Note**: Required for Standard integration for enroll service. Required for Hybrid integration for validate service. 
@@ -111,6 +114,9 @@ module CyberSource
 
     # Category of the message for a specific use case. Possible values:  - `01`: PA- payment authentication - `02`: NPA- non-payment authentication - `03-79`: Reserved for EMVCo future use (values invalid until defined by EMVCo) - `80-99`: Reserved for DS use 
     attr_accessor :message_category
+
+    # The global score calculated by the CB scoring platform and returned to merchants.  Possible values:  - '00' - '99'  When you request the payer authentication and authorization services separately, get the value for this field from the pa_network_score reply field.         This field is supported only for Cartes Bancaires Fast'R transactions on Credit Mutuel-CIC. 
+    attr_accessor :network_score
 
     # Non-Payer Authentication Indicator. Possible values: - `01`: Add card - `02`: Maintain card information - `03`: Cardholder verification for EMV token - `04-80` Reserved for EMVCo - `80-90` Reserved DS 
     attr_accessor :npa_code
@@ -184,6 +190,7 @@ module CyberSource
         :'directory_server_transaction_id' => :'directoryServerTransactionId',
         :'pa_specification_version' => :'paSpecificationVersion',
         :'authentication_type' => :'authenticationType',
+        :'acs_transaction_id' => :'acsTransactionId',
         :'acs_window_size' => :'acsWindowSize',
         :'alternate_authentication_data' => :'alternateAuthenticationData',
         :'alternate_authentication_date' => :'alternateAuthenticationDate',
@@ -205,6 +212,7 @@ module CyberSource
         :'mcc' => :'mcc',
         :'merchant_score' => :'merchantScore',
         :'message_category' => :'messageCategory',
+        :'network_score' => :'networkScore',
         :'npa_code' => :'npaCode',
         :'override_payment_method' => :'overridePaymentMethod',
         :'override_country_code' => :'overrideCountryCode',
@@ -242,6 +250,7 @@ module CyberSource
         :'directory_server_transaction_id' => :'String',
         :'pa_specification_version' => :'String',
         :'authentication_type' => :'String',
+        :'acs_transaction_id' => :'String',
         :'acs_window_size' => :'String',
         :'alternate_authentication_data' => :'String',
         :'alternate_authentication_date' => :'String',
@@ -263,6 +272,7 @@ module CyberSource
         :'mcc' => :'String',
         :'merchant_score' => :'Integer',
         :'message_category' => :'String',
+        :'network_score' => :'String',
         :'npa_code' => :'String',
         :'override_payment_method' => :'String',
         :'override_country_code' => :'String',
@@ -339,6 +349,10 @@ module CyberSource
 
       if attributes.has_key?(:'authenticationType')
         self.authentication_type = attributes[:'authenticationType']
+      end
+
+      if attributes.has_key?(:'acsTransactionId')
+        self.acs_transaction_id = attributes[:'acsTransactionId']
       end
 
       if attributes.has_key?(:'acsWindowSize')
@@ -423,6 +437,10 @@ module CyberSource
 
       if attributes.has_key?(:'messageCategory')
         self.message_category = attributes[:'messageCategory']
+      end
+
+      if attributes.has_key?(:'networkScore')
+        self.network_score = attributes[:'networkScore']
       end
 
       if attributes.has_key?(:'npaCode')
@@ -582,6 +600,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] acs_transaction_id Value to be assigned
+    def acs_transaction_id=(acs_transaction_id)
+      @acs_transaction_id = acs_transaction_id
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] acs_window_size Value to be assigned
     def acs_window_size=(acs_window_size)
       @acs_window_size = acs_window_size
@@ -663,6 +687,12 @@ module CyberSource
     # @param [Object] mcc Value to be assigned
     def mcc=(mcc)
       @mcc = mcc
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] network_score Value to be assigned
+    def network_score=(network_score)
+      @network_score = network_score
     end
 
     # Custom attribute writer method with validation
@@ -778,6 +808,7 @@ module CyberSource
           directory_server_transaction_id == o.directory_server_transaction_id &&
           pa_specification_version == o.pa_specification_version &&
           authentication_type == o.authentication_type &&
+          acs_transaction_id == o.acs_transaction_id &&
           acs_window_size == o.acs_window_size &&
           alternate_authentication_data == o.alternate_authentication_data &&
           alternate_authentication_date == o.alternate_authentication_date &&
@@ -799,6 +830,7 @@ module CyberSource
           mcc == o.mcc &&
           merchant_score == o.merchant_score &&
           message_category == o.message_category &&
+          network_score == o.network_score &&
           npa_code == o.npa_code &&
           override_payment_method == o.override_payment_method &&
           override_country_code == o.override_country_code &&
@@ -829,7 +861,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [cavv, cavv_algorithm, eci_raw, pares_status, veres_enrolled, xid, ucaf_collection_indicator, ucaf_authentication_data, strong_authentication, directory_server_transaction_id, pa_specification_version, authentication_type, acs_window_size, alternate_authentication_data, alternate_authentication_date, alternate_authentication_method, authentication_date, authentication_transaction_id, challenge_cancel_code, challenge_code, challenge_status, customer_card_alias, decoupled_authentication_indicator, decoupled_authentication_max_time, default_card, device_channel, installment_total_count, merchant_fraud_rate, marketing_opt_in, marketing_source, mcc, merchant_score, message_category, npa_code, override_payment_method, override_country_code, prior_authentication_data, prior_authentication_method, prior_authentication_reference_id, prior_authentication_time, product_code, requestor_id, requestor_initiated_authentication_indicator, requestor_name, reference_id, sdk_max_timeout, secure_corporate_payment_indicator, transaction_mode, white_list_status, effective_authentication_type, signed_pares_status_reason, signed_pares].hash
+      [cavv, cavv_algorithm, eci_raw, pares_status, veres_enrolled, xid, ucaf_collection_indicator, ucaf_authentication_data, strong_authentication, directory_server_transaction_id, pa_specification_version, authentication_type, acs_transaction_id, acs_window_size, alternate_authentication_data, alternate_authentication_date, alternate_authentication_method, authentication_date, authentication_transaction_id, challenge_cancel_code, challenge_code, challenge_status, customer_card_alias, decoupled_authentication_indicator, decoupled_authentication_max_time, default_card, device_channel, installment_total_count, merchant_fraud_rate, marketing_opt_in, marketing_source, mcc, merchant_score, message_category, network_score, npa_code, override_payment_method, override_country_code, prior_authentication_data, prior_authentication_method, prior_authentication_reference_id, prior_authentication_time, product_code, requestor_id, requestor_initiated_authentication_indicator, requestor_name, reference_id, sdk_max_timeout, secure_corporate_payment_indicator, transaction_mode, white_list_status, effective_authentication_type, signed_pares_status_reason, signed_pares].hash
     end
 
     # Builds the object from hash
