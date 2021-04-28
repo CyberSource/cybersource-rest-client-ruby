@@ -115,7 +115,7 @@ No authorization required
 
 
 # **get_customer_payment_instruments_list**
-> PaymentInstrumentListForCustomer get_customer_payment_instruments_list(customer_token_id, opts)
+> PaymentInstrumentList get_customer_payment_instruments_list(customer_token_id, opts)
 
 List Payment Instruments for a Customer
 
@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaymentInstrumentListForCustomer**](PaymentInstrumentListForCustomer.md)
+[**PaymentInstrumentList**](PaymentInstrumentList.md)
 
 ### Authorization
 

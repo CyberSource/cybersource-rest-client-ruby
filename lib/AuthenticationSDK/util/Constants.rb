@@ -86,7 +86,7 @@
 
       # constants for fall back logic
 
-      DEFAULT_LOG_SIZE = '10485760' unless const_defined?(:DEFAULT_LOG_SIZE)
+      DEFAULT_LOG_SIZE = 10485760 unless const_defined?(:DEFAULT_LOG_SIZE)
       
       DEFAULT_PROXY_ADDRESS = 'userproxy.visa.com' unless const_defined?(:DEFAULT_PROXY_ADDRESS)
       

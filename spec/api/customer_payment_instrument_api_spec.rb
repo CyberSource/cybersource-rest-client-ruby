@@ -65,7 +65,7 @@ describe 'CustomerPaymentInstrumentApi' do
   # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
   # @option opts [Integer] :offset Starting record in zero-based dataset that should be returned as the first object in the array. Default is 0.
   # @option opts [Integer] :limit The maximum number that can be returned in the array starting from the offset record in zero-based dataset. Default is 20, maximum is 100.
-  # @return [PaymentInstrumentListForCustomer]
+  # @return [PaymentInstrumentList]
   describe 'get_customer_payment_instruments_list test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

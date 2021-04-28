@@ -110,7 +110,7 @@ describe 'Ptsv2paymentsProcessingInformationAuthorizationOptions' do
     end
   end
 
-  describe 'test attribute "transit_transaction_type"' do
+  describe 'test attribute "transportation_mode"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

@@ -21,15 +21,23 @@ module CyberSource
     # Integer value indicating the minimum number of days between recurring authorizations. A frequency of monthly is indicated by the value 28. Multiple of 28 days will be used to indicate months.  Example: 6 months = 168  Example values accepted (31 days): - 31 - 031 - 0031  **Note** This field is required for recurring transactions. 
     attr_accessor :frequency
 
+    # Total number of payments for the duration of the recurring subscription. 
+    attr_accessor :number_of_payments
+
     # Date of original purchase. Required for recurring transactions. Format: `YYYY-MM-DDTHH:MM:SSZ` **Note**: If this field is empty, the current date is used. 
     attr_accessor :original_purchase_date
+
+    # This field is mandatory for Cartes Bancaires recurring transactions on Credit Mutuel-CIC.       This field records recurring sequence, e.g. 1st for initial,  2 for subsequent, 3 etc 
+    attr_accessor :sequence_number
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'end_date' => :'endDate',
         :'frequency' => :'frequency',
-        :'original_purchase_date' => :'originalPurchaseDate'
+        :'number_of_payments' => :'numberOfPayments',
+        :'original_purchase_date' => :'originalPurchaseDate',
+        :'sequence_number' => :'sequenceNumber'
       }
     end
 
@@ -38,7 +46,9 @@ module CyberSource
       {
         :'end_date' => :'String',
         :'frequency' => :'Integer',
-        :'original_purchase_date' => :'String'
+        :'number_of_payments' => :'Integer',
+        :'original_purchase_date' => :'String',
+        :'sequence_number' => :'Integer'
       }
     end
 
@@ -58,8 +68,16 @@ module CyberSource
         self.frequency = attributes[:'frequency']
       end
 
+      if attributes.has_key?(:'numberOfPayments')
+        self.number_of_payments = attributes[:'numberOfPayments']
+      end
+
       if attributes.has_key?(:'originalPurchaseDate')
         self.original_purchase_date = attributes[:'originalPurchaseDate']
+      end
+
+      if attributes.has_key?(:'sequenceNumber')
+        self.sequence_number = attributes[:'sequenceNumber']
       end
     end
 
@@ -95,7 +113,9 @@ module CyberSource
       self.class == o.class &&
           end_date == o.end_date &&
           frequency == o.frequency &&
-          original_purchase_date == o.original_purchase_date
+          number_of_payments == o.number_of_payments &&
+          original_purchase_date == o.original_purchase_date &&
+          sequence_number == o.sequence_number
     end
 
     # @see the `==` method
@@ -107,7 +127,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [end_date, frequency, original_purchase_date].hash
+      [end_date, frequency, number_of_payments, original_purchase_date, sequence_number].hash
     end
 
     # Builds the object from hash
