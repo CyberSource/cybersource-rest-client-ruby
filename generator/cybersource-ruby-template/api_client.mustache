@@ -7,7 +7,7 @@ require 'json'
 require 'logger'
 require 'tempfile'
 require 'typhoeus'
-require 'uri'
+require 'addressable/uri'
 
 module {{moduleName}}
   class ApiClient
@@ -105,7 +105,7 @@ module {{moduleName}}
       body_params = opts[:body] || {}
       query_params = opts[:query_params] || {}
       if !query_params.empty?
-        query_params = URI.encode_www_form(query_params)
+        query_params = Addressable::URI.form_encode(query_params)
       end
       headers = CallAuthenticationHeader(http_method, path, body_params, opts[:header_params], query_params)
       http_method = http_method.to_sym.downcase
@@ -354,7 +354,7 @@ module {{moduleName}}
     def build_request_url(path)
       # Add leading and trailing slashes to path
       path = "/#{path}".gsub(/\/+/, '/')
-      URI.encode(@config.base_url + path)
+      Addressable::URI.encode(@config.base_url + path)
     end
 
     # Builds the HTTP request body

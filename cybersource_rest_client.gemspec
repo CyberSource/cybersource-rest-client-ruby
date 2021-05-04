@@ -30,7 +30,13 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'typhoeus', '~> 1.0', '>= 1.0.1'
   s.add_runtime_dependency 'json', '~> 2.1', '>= 2.1.0'
+  s.add_runtime_dependency 'activesupport', '~> 6.0', '>= 6.0.3.2'
+  s.add_runtime_dependency 'interface','~> 1.0', '>= 1.0.4'
+  s.add_runtime_dependency 'jwt', '~> 2.1.0'
+  s.add_runtime_dependency 'addressable', '~> 2.3', '>= 2.3.0'
 
+  s.add_development_dependency 'simplecov'
+  s.add_development_dependency 'rubocop', '~> 0.57.2'
   s.add_development_dependency 'rspec', '~> 3.6', '>= 3.6.0'
   s.add_development_dependency 'vcr', '~> 3.0', '>= 3.0.1'
   s.add_development_dependency 'webmock', '~> 1.24', '>= 1.24.3'
@@ -39,12 +45,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'autotest-growl', '~> 0.2', '>= 0.2.16'
   s.add_development_dependency 'autotest-fsevent', '~> 0.2', '>= 0.2.12'
 
-  s.add_runtime_dependency 'activesupport', '~> 6.0', '>= 6.0.3.2'
-  s.add_runtime_dependency 'interface','~> 1.0', '>= 1.0.4'
-  s.add_runtime_dependency 'jwt', '~> 2.1.0'
-  
-  s.add_development_dependency 'simplecov'
-  s.add_development_dependency 'rubocop', '~> 0.57.2'
-  
   s.require_paths = ["lib"]
 end
