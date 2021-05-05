@@ -80,18 +80,11 @@ public
       if !@runEnvironment.to_s.empty?
         if !@runEnvironment.instance_of? String
           @requestHost = @runEnvironment.to_s
-        elsif @runEnvironment.upcase == Constants::RUN_ENV_PROD
-          @requestHost = Constants::PRODUCTION_URL
-        elsif @runEnvironment.upcase == Constants::RUN_ENV_SANDBOX
-          @requestHost = Constants::SANDBOX_URL
-        elsif @runEnvironment.upcase == Constants::BOA_RUN_ENV_PROD
-          @requestHost = Constants::BOA_PRODUCTION_URL
-        elsif @runEnvironment.upcase == Constants.BOA_RUN_ENV_SANDBOX
-          @requestHost = Constants::BOA_SANDBOX_URL
-        elsif @runEnvironment.upcase == Constants::IDC_RUN_ENV_PROD
-          @requestHost = Constants::IDC_PRODUCTION_URL
-        elsif @runEnvironment.upcase == Constants.IDC_RUN_ENV_SANDBOX
-          @requestHost = Constants::IDC_SANDBOX_URL
+        end
+        
+        if Constants::OLD_RUN_ENVIRONMENT_CONSTANTS.include?(@runEnvironment.upcase)
+          err = raise StandardError.new(Constants::ERROR_PREFIX + Constants::DERPECATED_ENVIRONMENT)
+          ApiException.new.apiexception(err, log_obj)
         else
           @requestHost = @runEnvironment
         end
