@@ -60,13 +60,33 @@
       
       AUTH_TYPE_JWT = 'JWT' unless const_defined?(:AUTH_TYPE_JWT)
 
+      AUTH_TYPE_OAUTH = 'OAUTH' unless const_defined?(:AUTH_TYPE_OAUTH)
+
+      AUTH_TYPE_MUTUAL_AUTH = 'MUTUAL_AUTH' unless const_defined?(:AUTH_TYPE_MUTUAL_AUTH)
+
       RUN_ENV_SANDBOX = 'CYBERSOURCE.ENVIRONMENT.SANDBOX' unless const_defined?(:RUN_ENV_SANDBOX)
+
+      RUN_ENV_MUTUAL_AUTH_SANDBOX = 'CYBERSOURCE.ENVIRONMENT.MUTUALAUTH.SANDBOX' unless const_defined?(:RUN_ENV_MUTUAL_AUTH_SANDBOX)
       
       RUN_ENV_PROD = 'CYBERSOURCE.ENVIRONMENT.PRODUCTION'unless const_defined?(:RUN_ENV_PROD)
 
+      RUN_ENV_MUTUAL_AUTH_PROD = 'CYBERSOURCE.ENVIRONMENT.MUTUALAUTH.PRODUCTION' unless const_defined?(:RUN_ENV_MUTUAL_AUTH_PROD)
+
+      RUN_ENV_SIT = 'CYBERSOURCE.ENVIRONMENT.SIT' unless const_defined?(:RUN_ENV_SIT)
+
+      RUN_ENV_MUTUAL_AUTH_SIT = 'CYBERSOURCE.ENVIRONMENT.MUTUALAUTH.SIT' unless const_defined?(:RUN_ENV_MUTUAL_AUTH_SIT)
+
       SANDBOX_URL = 'apitest.cybersource.com' unless const_defined?(:SANDBOX_URL)
+
+      SIT_URL = 'pnrstage.ic3.com:7448' unless const_defined?(:SIT_URL)
+
+      MA_SIT_URL = 'pnrstage.ic3.com:8451' unless const_defined?(:MA_SIT_URL)
+
+      MA_SANDBOX_URL = 'api-matest.cybersource.com' unless const_defined?(:MA_SANDBOX_URL)
       
       PRODUCTION_URL = 'api.cybersource.com' unless const_defined?(:PRODUCTION_URL)
+
+      MA_PRODUCTION_URL = 'api-ma.cybersource.com' unless const_defined?(:MA_PRODUCTION_URL)
 
       BOA_RUN_ENV_SANDBOX = 'BANKOFAMERICA.ENVIRONMENT.SANDBOX' unless const_defined?(:RUN_ENV_SANDBOX)
       
@@ -82,7 +102,7 @@
 
       IDC_SANDBOX_URL = 'apitest.cybersource.com' unless const_defined?(:SANDBOX_URL)
 
-      IDC_PRODUCTION_URL = 'api.in.cybersource.com' unless const_defined?(:PRODUCTION_URL)
+      IDC_PRODUCTION_URL = 'api.in.cybersource.com' unless const_defined?(:PRODUCTION_URL)	    
 
       # constants for fall back logic
 
@@ -153,4 +173,22 @@
       KEY_ALIAS_NULL_EMPTY = 'KeyAlias Empty/Null. Assigining merchantID value' unless const_defined?(:KEY_ALIAS_NULL_EMPTY)
       
       INCORRECT_KEY_ALIAS = 'The Entered KeyAlias is Incorrect. Assigining merchantID value' unless const_defined?(:INCORRECT_KEY_ALIAS)
+
+      ENABLE_CLIENT_CERT_EMPTY = 'Enable Clientcert is Empty/Null.' unless const_defined?(:ENABLE_CLIENT_CERT_EMPTY)
+      
+      CLIENT_CERT_DIR_EMPTY = 'Client Cert Directory is Empty/Null' unless const_defined?(:CLIENT_CERT_DIR_EMPTY)
+      
+      SSL_CLIENT_CERT_EMPTY = 'SSL Client Cert is Empty/Null' unless const_defined?(:SSL_CLIENT_CERT_EMPTY)
+
+      PRIVATE_KEY_EMPTY = 'Private Key is Empty/Null' unless const_defined?(:PRIVATE_KEY_EMPTY)
+      
+      SSL_KEY_PASSWORD_EMPTY = 'SSL Key Password is Empty/Null' unless const_defined?(:SSL_KEY_PASSWORD_EMPTY)
+      
+      CLIENT_ID_EMPTY = 'Client Id is Empty/Null' unless const_defined?(:CLIENT_ID_EMPTY)
+      
+      CLIENT_SECRET_EMPTY = 'Client Secret is Empty/Null' unless const_defined?(:CLIENT_SECRET_EMPTY)
+      
+      ACCESS_TOKEN_EMPTY = 'AccessToken is Empty/Null' unless const_defined?(:ACCESS_TOKEN_REQ)
+      
+      REFRESH_TOKEN_EMPTY = 'RefreshToken is Empty/Null' unless const_defined?(:REFRESH_TOKEN_REQ)
   end

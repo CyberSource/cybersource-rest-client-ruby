@@ -30,6 +30,16 @@ public
     @portfolioID = cybsPropertyObj['portfolioID']
     @logFilename = cybsPropertyObj['logFilename']
     @solutionId = cybsPropertyObj['solutionId']
+    # MutualAuth & OAuth Parameters
+    @enableClientCert = cybsPropertyObj['enableClientCert']
+    @clientCertDirectory = cybsPropertyObj['clientCertDirectory']
+    @sslClientCert = cybsPropertyObj['sslClientCert']
+    @privateKey = cybsPropertyObj['privateKey']
+    @sslKeyPassword = cybsPropertyObj['sslKeyPassword']
+    @clientId = cybsPropertyObj['clientId']
+    @clientSecret = cybsPropertyObj['clientSecret']
+    @accessToken = cybsPropertyObj['accessToken']
+    @refreshToken = cybsPropertyObj['refreshToken'] 
     validateMerchantDetails()
     logAllProperties(cybsPropertyObj)
     end
@@ -62,13 +72,7 @@ public
       @log_obj.logger.info('START> =======================================')
       if !logmessage.to_s.empty?
         ApiException.new.apiwarning(logmessage,log_obj)
-      end
-      if @merchantId.to_s.empty?
-        err = raise StandardError.new(Constants::ERROR_PREFIX + Constants::MERCHANT_ID_NULL)
-        ApiException.new.apiexception(err,log_obj)
-      elsif !@merchantId.instance_of? String
-        @merchantId=@merchantId.to_s
-      end
+      end      
       if @authenticationType.to_s.empty?
         err = raise StandardError.new(Constants::ERROR_PREFIX + Constants::AUTH_TYPE_MANDATORY)
         ApiException.new.apiexception(err,log_obj) 
@@ -92,6 +96,14 @@ public
           @requestHost = Constants::IDC_PRODUCTION_URL
         elsif @runEnvironment.upcase == Constants.IDC_RUN_ENV_SANDBOX
           @requestHost = Constants::IDC_SANDBOX_URL
+        elsif @runEnvironment.upcase == Constants.RUN_ENV_MUTUAL_AUTH_SANDBOX
+          @requestHost = Constants::MA_SANDBOX_URL
+        elsif @runEnvironment.upcase == Constants.RUN_ENV_MUTUAL_AUTH_PROD
+          @requestHost = Constants::MA_PRODUCTION_URL
+        elsif @runEnvironment.upcase == Constants.RUN_ENV_SIT
+          @requestHost = Constants::SIT_URL
+        elsif @runEnvironment.upcase == Constants.RUN_ENV_MUTUAL_AUTH_SIT
+          @requestHost = Constants::MA_SIT_URL
         else
           @requestHost = @runEnvironment
         end
@@ -99,7 +111,41 @@ public
         err = raise StandardError.new(Constants::ERROR_PREFIX + Constants::RUN_ENVIRONMENT)
         ApiException.new.apiexception(err,log_obj)
       end
+
+      if !@enableClientCert.nil? && @enableClientCert
+        if @sslClientCert.to_s.empty?
+          err = raise StandardError.new(Constants::ERROR_PREFIX + Constants::SSL_CLIENT_CERT_EMPTY)
+          ApiException.new.apiexception(err,log_obj)
+        elsif !@sslClientCert.instance_of? String
+          @sslClientCert=@sslClientCert.to_s
+        end
+        if @privateKey.to_s.empty?
+          err = raise StandardError.new(Constants::ERROR_PREFIX + Constants::PRIVATE_KEY_EMPTY)
+          ApiException.new.apiexception(err,log_obj)
+        elsif !@privateKey.instance_of? String
+          @privateKey=@privateKey.to_s
+        end
+        if @sslKeyPassword.to_s.empty?
+          err = Constants::WARNING_PREFIX + Constants::SSL_KEY_PASSWORD_EMPTY
+          ApiException.new.apiwarning(err,log_obj)
+        elsif !@sslKeyPassword.instance_of? String
+          @sslKeyPassword=@sslKeyPassword.to_s
+        end
+        if @clientCertDirectory.to_s.empty?
+          err = raise StandardError.new(Constants::ERROR_PREFIX + Constants::CLIENT_CERT_DIR_EMPTY)
+          ApiException.new.apiexception(err,log_obj)
+        elsif !@clientCertDirectory.instance_of? String
+          @clientCertDirectory=@clientCertDirectory.to_s
+        end
+      end
+
       if @authenticationType.upcase == Constants::AUTH_TYPE_JWT
+        if @merchantId.to_s.empty?
+          err = raise StandardError.new(Constants::ERROR_PREFIX + Constants::MERCHANT_ID_NULL)
+          ApiException.new.apiexception(err,log_obj)
+        elsif !@merchantId.instance_of? String
+          @merchantId=@merchantId.to_s
+        end
         if @keyAlias.to_s.empty?
           @keyAlias = @merchantId
           ApiException.new.apiwarning(Constants::WARNING_PREFIX + Constants::KEY_ALIAS_NULL_EMPTY, log_obj)
@@ -128,7 +174,41 @@ public
           @keyFilename=@keyFilename.to_s
         end
       end
+      if @authenticationType.upcase == Constants::AUTH_TYPE_MUTUAL_AUTH
+        if @clientId.to_s.empty?
+          err = raise StandardError.new(Constants::ERROR_PREFIX + Constants::CLIENT_ID_EMPTY)
+          ApiException.new.apiexception(err,log_obj)
+        elsif !@clientId.instance_of? String
+          @clientId=@clientId.to_s
+        end
+        if @clientSecret.to_s.empty?
+          err = raise StandardError.new(Constants::ERROR_PREFIX + Constants::CLIENT_SECRET_EMPTY)
+          ApiException.new.apiexception(err,log_obj)
+        elsif !@clientSecret.instance_of? String
+          @clientSecret=@clientSecret.to_s
+        end
+      end
+      if @authenticationType.upcase == Constants::AUTH_TYPE_OAUTH
+        if @accessToken.to_s.empty?
+          err = raise StandardError.new(Constants::ERROR_PREFIX + Constants::ACCESS_TOKEN_EMPTY)
+          ApiException.new.apiexception(err,log_obj)
+        elsif !@accessToken.instance_of? String
+          @accessToken=@accessToken.to_s
+        end
+        if @refreshToken.to_s.empty?
+          err = raise StandardError.new(Constants::ERROR_PREFIX + Constants::REFRESH_TOKEN_EMPTY)
+          ApiException.new.apiexception(err,log_obj)
+        elsif !@refreshToken.instance_of? String
+          @refreshToken=@refreshToken.to_s
+        end
+      end
       if @authenticationType.upcase == Constants::AUTH_TYPE_HTTP
+        if @merchantId.to_s.empty?
+          err = raise StandardError.new(Constants::ERROR_PREFIX + Constants::MERCHANT_ID_NULL)
+          ApiException.new.apiexception(err,log_obj)
+        elsif !@merchantId.instance_of? String
+          @merchantId=@merchantId.to_s
+        end
         if @merchantKeyId.to_s.empty?
           err = raise StandardError.new(Constants::ERROR_PREFIX+ Constants::MERCHANT_KEY_ID_MANDATORY)
           ApiException.new.apiexception(err,log_obj)
@@ -183,6 +263,15 @@ public
     attr_accessor :keyFilename
     attr_accessor :useMetaKey
     attr_accessor :portfolioID
+    attr_accessor :enableClientCert
+    attr_accessor :clientCertDirectory
+    attr_accessor :sslClientCert
+    attr_accessor :sslKeyPassword
+    attr_accessor :privateKey
+    attr_accessor :clientId
+    attr_accessor :clientSecret
+    attr_accessor :accessToken
+    attr_accessor :refreshToken
     attr_accessor :requestJsonData
     attr_accessor :requestUrl
     attr_accessor :requestType

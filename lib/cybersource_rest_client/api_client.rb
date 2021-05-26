@@ -115,7 +115,10 @@ module CyberSource
       if !query_params.empty?
         query_params = Addressable::URI.form_encode(query_params)
       end
-      headers = CallAuthenticationHeader(http_method, path, body_params, opts[:header_params], query_params)
+
+      if merchantconfig_obj.authenticationType.upcase != Constants::AUTH_TYPE_MUTUAL_AUTH
+        headers = CallAuthenticationHeader(http_method, path, body_params, opts[:header_params], query_params)
+      end
       http_method = http_method.to_sym.downcase
       header_params = @default_headers.merge(headers || {})
       form_params = opts[:form_params] || {}
@@ -123,6 +126,12 @@ module CyberSource
 
       # set ssl_verifyhosts option based on @config.verify_ssl_host (true/false)
       _verify_ssl_host = @config.verify_ssl_host ? 2 : 0
+
+      # client cert
+      if merchantconfig_obj.enableClientCert
+        @config.cert_file = File.join(merchantconfig_obj.clientCertDirectory, merchantconfig_obj.publicKey)
+        @config.key_file = File.join(merchantconfig_obj.clientCertDirectory, merchantconfig_obj.privateKey)
+      end
 
       req_opts = {
         :method => http_method,
@@ -133,6 +142,7 @@ module CyberSource
         :ssl_verifypeer => @config.verify_ssl,
         :ssl_verifyhost => _verify_ssl_host,
         :sslcert => @config.cert_file,
+        :sslkeypasswd => merchantconfig_obj.clientCertPassword || "",
         :sslkey => @config.key_file,
         :verbose => @config.debugging
       }
@@ -205,6 +215,10 @@ module CyberSource
         end
       end
       if $merchantconfig_obj.authenticationType.upcase == Constants::AUTH_TYPE_JWT
+        token = "Bearer " + token
+        header_params['Authorization'] = token
+      end
+      if $merchantconfig_obj.authenticationType.upcase == Constants::AUTH_TYPE_OAUTH
         token = "Bearer " + token
         header_params['Authorization'] = token
       end
