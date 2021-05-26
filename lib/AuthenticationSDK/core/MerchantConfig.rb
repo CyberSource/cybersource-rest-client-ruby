@@ -90,19 +90,19 @@ public
           @requestHost = Constants::SANDBOX_URL
         elsif @runEnvironment.upcase == Constants::BOA_RUN_ENV_PROD
           @requestHost = Constants::BOA_PRODUCTION_URL
-        elsif @runEnvironment.upcase == Constants.BOA_RUN_ENV_SANDBOX
+        elsif @runEnvironment.upcase == Constants::BOA_RUN_ENV_SANDBOX
           @requestHost = Constants::BOA_SANDBOX_URL
         elsif @runEnvironment.upcase == Constants::IDC_RUN_ENV_PROD
           @requestHost = Constants::IDC_PRODUCTION_URL
-        elsif @runEnvironment.upcase == Constants.IDC_RUN_ENV_SANDBOX
+        elsif @runEnvironment.upcase == Constants::IDC_RUN_ENV_SANDBOX
           @requestHost = Constants::IDC_SANDBOX_URL
-        elsif @runEnvironment.upcase == Constants.RUN_ENV_MUTUAL_AUTH_SANDBOX
+        elsif @runEnvironment.upcase == Constants::RUN_ENV_MUTUAL_AUTH_SANDBOX
           @requestHost = Constants::MA_SANDBOX_URL
-        elsif @runEnvironment.upcase == Constants.RUN_ENV_MUTUAL_AUTH_PROD
+        elsif @runEnvironment.upcase == Constants::RUN_ENV_MUTUAL_AUTH_PROD
           @requestHost = Constants::MA_PRODUCTION_URL
-        elsif @runEnvironment.upcase == Constants.RUN_ENV_SIT
+        elsif @runEnvironment.upcase == Constants::RUN_ENV_SIT
           @requestHost = Constants::SIT_URL
-        elsif @runEnvironment.upcase == Constants.RUN_ENV_MUTUAL_AUTH_SIT
+        elsif @runEnvironment.upcase == Constants::RUN_ENV_MUTUAL_AUTH_SIT
           @requestHost = Constants::MA_SIT_URL
         else
           @requestHost = @runEnvironment
