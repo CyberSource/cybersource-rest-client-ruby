@@ -25,7 +25,7 @@ module CyberSource
     # @param create_access_token_request Request payload
     # @param [Hash] opts the optional parameters
     # @option opts [String] :v_c_client_correlation_id We recommended that you submit this header with a unique value in every client request to this endpoint.  It is sent back in the response header and logged both in the request log and response log. 
-    # @return [InlineResponse200]
+    # @return [AccessTokenResponse]
     def create_access_token(create_access_token_request, opts = {})
       data, status_code, headers = create_access_token_with_http_info(create_access_token_request, opts)
       return data, status_code, headers
@@ -36,7 +36,7 @@ module CyberSource
     # @param create_access_token_request Request payload
     # @param [Hash] opts the optional parameters
     # @option opts [String] :v_c_client_correlation_id We recommended that you submit this header with a unique value in every client request to this endpoint.  It is sent back in the response header and logged both in the request log and response log. 
-    # @return [Array<(InlineResponse200, Fixnum, Hash)>] InlineResponse200 data, response status code and response headers
+    # @return [Array<(AccessTokenResponse, Fixnum, Hash)>] AccessTokenResponse data, response status code and response headers
     def create_access_token_with_http_info(create_access_token_request, opts = {})
       
 	  if @api_client.config.debugging
@@ -74,7 +74,7 @@ module CyberSource
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/x-www-form-urlencoded'])
       header_params[:'v-c-client-correlation-id'] = opts[:'v_c_client_correlation_id'] if !opts[:'v_c_client_correlation_id'].nil?
 
       # form parameters
@@ -89,7 +89,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse200')
+        :return_type => 'AccessTokenResponse')
       if @api_client.config.debugging
 		begin
 		raise

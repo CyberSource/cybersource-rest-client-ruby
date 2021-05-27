@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **create_access_token**
-> InlineResponse200 create_access_token(create_access_token_request, opts)
+> AccessTokenResponse create_access_token(create_access_token_request, opts)
 
 Create access token and refresh token
 
@@ -21,7 +21,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::OAuthApi.new
 
-create_access_token_request = CyberSource::CreateAccessTokenRequest1.new # CreateAccessTokenRequest1 | Request payload
+create_access_token_request = CyberSource::CreateAccessTokenRequest.new # CreateAccessTokenRequest | Request payload
 
 opts = { 
   v_c_client_correlation_id: "v_c_client_correlation_id_example" # String | We recommended that you submit this header with a unique value in every client request to this endpoint.  It is sent back in the response header and logged both in the request log and response log. 
@@ -40,12 +40,12 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_access_token_request** | [**CreateAccessTokenRequest1**](CreateAccessTokenRequest1.md)| Request payload | 
+ **create_access_token_request** | [**CreateAccessTokenRequest**](CreateAccessTokenRequest.md)| Request payload | 
  **v_c_client_correlation_id** | **String**| We recommended that you submit this header with a unique value in every client request to this endpoint.  It is sent back in the response header and logged both in the request log and response log.  | [optional] 
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**AccessTokenResponse**](AccessTokenResponse.md)
 
 ### Authorization
 
@@ -53,7 +53,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json;charset=utf-8
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json;charset=utf-8
 
 
