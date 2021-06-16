@@ -38,6 +38,12 @@ describe 'Ptsv2paymentsidreversalsClientReferenceInformation' do
     end
   end
 
+  describe 'test attribute "paused_request_id"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "comments"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

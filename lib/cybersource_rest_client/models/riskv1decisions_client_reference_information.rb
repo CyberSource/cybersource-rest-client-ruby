@@ -17,6 +17,9 @@ module CyberSource
     # Merchant-generated order reference or tracking number. It is recommended that you send a unique value for each transaction so that you can perform meaningful searches for the transaction.  #### Used by **Authorization** Required field.  #### PIN Debit Requests for PIN debit reversals need to use the same merchant reference number that was used in the transaction that is being reversed.  Required field for all PIN Debit requests (purchase, credit, and reversal).  #### FDC Nashville Global Certain circumstances can cause the processor to truncate this value to 15 or 17 characters for Level II and Level III processing, which can cause a discrepancy between the value you submit and the value included in some processor reports. 
     attr_accessor :code
 
+    # Used to resume a transaction that was paused for an order modification rule to allow for payer authentication to complete. To resume and continue with the authorization/decision service flow, call the services and include the request id from the prior decision call. 
+    attr_accessor :paused_request_id
+
     # Brief description of the order or any comment you wish to add to the order. 
     attr_accessor :comments
 
@@ -26,6 +29,7 @@ module CyberSource
     def self.attribute_map
       {
         :'code' => :'code',
+        :'paused_request_id' => :'pausedRequestId',
         :'comments' => :'comments',
         :'partner' => :'partner'
       }
@@ -35,6 +39,7 @@ module CyberSource
     def self.swagger_types
       {
         :'code' => :'String',
+        :'paused_request_id' => :'String',
         :'comments' => :'String',
         :'partner' => :'Riskv1decisionsClientReferenceInformationPartner'
       }
@@ -50,6 +55,10 @@ module CyberSource
 
       if attributes.has_key?(:'code')
         self.code = attributes[:'code']
+      end
+
+      if attributes.has_key?(:'pausedRequestId')
+        self.paused_request_id = attributes[:'pausedRequestId']
       end
 
       if attributes.has_key?(:'comments')
@@ -90,6 +99,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] paused_request_id Value to be assigned
+    def paused_request_id=(paused_request_id)
+      @paused_request_id = paused_request_id
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] comments Value to be assigned
     def comments=(comments)
       @comments = comments
@@ -101,6 +116,7 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           code == o.code &&
+          paused_request_id == o.paused_request_id &&
           comments == o.comments &&
           partner == o.partner
     end
@@ -114,7 +130,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [code, comments, partner].hash
+      [code, paused_request_id, comments, partner].hash
     end
 
     # Builds the object from hash

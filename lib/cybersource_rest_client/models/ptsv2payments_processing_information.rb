@@ -32,7 +32,7 @@ module CyberSource
     # Type of transaction. Some payment card companies use this information when determining discount rates.  #### Used by **Authorization** Required payer authentication transactions; otherwise, optional. **Credit** Required for standalone credits on Chase Paymentech solutions; otherwise, optional. Only `internet`, `moto`, `install`, `recurring`, and `recurring_internet` are valid values.  #### Ingenico ePayments When you omit this field for Ingenico ePayments, the processor uses the default transaction type they have on file for you instead of the default value (listed in Appendix I, \"Commerce Indicators,\" on page 441.)  #### Payer Authentication Transactions For the possible values and requirements, see \"Payer Authentication,\" page 195.  #### Other Types of Transactions See Appendix I, \"Commerce Indicators,\" on page 441.  #### Card Present You must set this field to `retail`. This field is required for a card-present transaction. Note that this should ONLY be used when the cardholder and card are present at the time of the transaction. For all keyed transactions originated from a POS terminal where the cardholder and card are not present, commerceIndicator should be submitted as “moto\" 
     attr_accessor :commerce_indicator
 
-    # Type of digital payment solution for the transaction. Possible Values:   - `visacheckout`: Visa Checkout. This value is required for Visa Checkout transactions. For details, see `payment_solution` field description in [Visa Checkout Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/VCO_SCMP_API/html/)  - `001`: Apple Pay.  - `004`: Cybersource In-App Solution.  - `005`: Masterpass. This value is required for Masterpass transactions on OmniPay Direct. For details, see \"Masterpass\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  - `006`: Android Pay.  - `007`: Chase Pay.  - `008`: Samsung Pay.  - `012`: Google Pay.  - `014`: Mastercard credential on file (COF) payment network token. Returned in authorizations that use a payment network token associated with a TMS token.  - `015`: Visa credential on file (COF) payment network token. Returned in authorizations that use a payment network token associated with a TMS token. 
+    # Type of digital payment solution for the transaction. Possible Values:   - `visacheckout`: Visa Checkout. This value is required for Visa Checkout transactions. For details, see `payment_solution` field description in [Visa Checkout Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/VCO_SCMP_API/html/)  - `001`: Apple Pay.  - `004`: Cybersource In-App Solution.  - `005`: Masterpass. This value is required for Masterpass transactions on OmniPay Direct. For details, see \"Masterpass\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  - `006`: Android Pay.  - `007`: Chase Pay.  - `008`: Samsung Pay.  - `012`: Google Pay.  - `013`: Cybersource P2PE Decryption  - `014`: Mastercard credential on file (COF) payment network token. Returned in authorizations that use a payment network token associated with a TMS token.  - `015`: Visa credential on file (COF) payment network token. Returned in authorizations that use a payment network token associated with a TMS token. 
     attr_accessor :payment_solution
 
     # Please check with Cybersource customer support to see if your merchant account is configured correctly so you can include this field in your request. * For Payouts: max length for FDCCompass is String (22). 
@@ -84,6 +84,9 @@ module CyberSource
     # On PIN Debit Gateways: This U.S.-only field is optionally used by  participants (merchants and acquirers) to specify the network access priority. VisaNet checks to determine if there are issuer routing preferences for any of the networks specified by the sharing group code. If an issuer preference exists for one of the specified debit networks, VisaNet makes a routing selection based on the issuer’s preference. If an issuer preference exists for more than one of the specified debit networks, or if no issuer preference exists, VisaNet makes a selection based on the acquirer’s routing priorities.  #### PIN debit Priority order of the networks through which he transaction will be routed. Set this value to a series of one-character network codes in your preferred order. This is a list of the network codes:  | Network | Code | | --- | --- | | Accel | E | | AFFN | U | | Alaska Option | 3 | | CU24 | C | | Interlink | G | | Maestro | 8 | | NETS | P | | NYCE | F | | Pulse | H | | Shazam | 7 | | Star | M | | Visa | V |  For example, if the Star network is your first preference and Pulse is your second preference, set this field to a value of `MH`.  When you do not include this value in your PIN debit request, the list of network codes from your account is used. **Note** This field is supported only for businesses located in the U.S.  Optional field for PIN debit credit or PIN debit purchase. 
     attr_accessor :network_routing_order
 
+    # Flag that indicates if the transaction is pay by points transaction true: Transaction uses loyalty points false: Transaction does not use loyalty points Default: false 
+    attr_accessor :pay_by_points_indicator
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -112,7 +115,8 @@ module CyberSource
         :'japan_payment_options' => :'japanPaymentOptions',
         :'mobile_remote_payment_type' => :'mobileRemotePaymentType',
         :'extended_credit_total_count' => :'extendedCreditTotalCount',
-        :'network_routing_order' => :'networkRoutingOrder'
+        :'network_routing_order' => :'networkRoutingOrder',
+        :'pay_by_points_indicator' => :'payByPointsIndicator'
       }
     end
 
@@ -144,7 +148,8 @@ module CyberSource
         :'japan_payment_options' => :'Ptsv2paymentsProcessingInformationJapanPaymentOptions',
         :'mobile_remote_payment_type' => :'String',
         :'extended_credit_total_count' => :'String',
-        :'network_routing_order' => :'String'
+        :'network_routing_order' => :'String',
+        :'pay_by_points_indicator' => :'BOOLEAN'
       }
     end
 
@@ -264,6 +269,10 @@ module CyberSource
 
       if attributes.has_key?(:'networkRoutingOrder')
         self.network_routing_order = attributes[:'networkRoutingOrder']
+      end
+
+      if attributes.has_key?(:'payByPointsIndicator')
+        self.pay_by_points_indicator = attributes[:'payByPointsIndicator']
       end
     end
 
@@ -394,7 +403,8 @@ module CyberSource
           japan_payment_options == o.japan_payment_options &&
           mobile_remote_payment_type == o.mobile_remote_payment_type &&
           extended_credit_total_count == o.extended_credit_total_count &&
-          network_routing_order == o.network_routing_order
+          network_routing_order == o.network_routing_order &&
+          pay_by_points_indicator == o.pay_by_points_indicator
     end
 
     # @see the `==` method
@@ -406,7 +416,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [action_list, action_token_types, capture, processor_id, business_application_id, commerce_indicator, payment_solution, reconciliation_id, link_id, purchase_level, report_group, visa_checkout_id, industry_data_type, authorization_options, capture_options, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, wallet_type, national_net_domestic_data, japan_payment_options, mobile_remote_payment_type, extended_credit_total_count, network_routing_order].hash
+      [action_list, action_token_types, capture, processor_id, business_application_id, commerce_indicator, payment_solution, reconciliation_id, link_id, purchase_level, report_group, visa_checkout_id, industry_data_type, authorization_options, capture_options, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, wallet_type, national_net_domestic_data, japan_payment_options, mobile_remote_payment_type, extended_credit_total_count, network_routing_order, pay_by_points_indicator].hash
     end
 
     # Builds the object from hash

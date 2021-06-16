@@ -104,6 +104,12 @@ describe 'Ptsv2paymentsConsumerAuthenticationInformation' do
     end
   end
 
+  describe 'test attribute "response_access_token"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "acs_transaction_id"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -285,6 +291,12 @@ describe 'Ptsv2paymentsConsumerAuthenticationInformation' do
   end
 
   describe 'test attribute "product_code"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "return_url"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

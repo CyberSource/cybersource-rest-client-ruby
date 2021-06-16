@@ -188,4 +188,10 @@ describe 'Ptsv2paymentsProcessingInformation' do
     end
   end
 
+  describe 'test attribute "pay_by_points_indicator"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

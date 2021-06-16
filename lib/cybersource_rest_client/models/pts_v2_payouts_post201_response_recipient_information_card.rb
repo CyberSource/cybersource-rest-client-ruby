@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class PtsV2PayoutsPost201ResponseRecipientInformationCard
-    # This field shows the available balance in the prepaid account.  Acquirers always receive the available balance in the transaction currency. 
+    # This field shows the available balance in the prepaid account. Acquirers always receive the available balance in the transaction currency. 
     attr_accessor :balance
 
     # This is a multicurrency-only field. It contains a 3-digit numeric code that identifies the currency used by the issuer. 

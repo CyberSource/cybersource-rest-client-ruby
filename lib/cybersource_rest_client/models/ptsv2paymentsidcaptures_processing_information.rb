@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsidcapturesProcessingInformation
-    # Type of digital payment solution for the transaction. Possible Values:   - `visacheckout`: Visa Checkout. This value is required for Visa Checkout transactions. For details, see `payment_solution` field description in [Visa Checkout Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/VCO_SCMP_API/html/)  - `001`: Apple Pay.  - `004`: Cybersource In-App Solution.  - `005`: Masterpass. This value is required for Masterpass transactions on OmniPay Direct. For details, see \"Masterpass\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  - `006`: Android Pay.  - `007`: Chase Pay.  - `008`: Samsung Pay.  - `012`: Google Pay.  - `014`: Mastercard credential on file (COF) payment network token. Returned in authorizations that use a payment network token associated with a TMS token.  - `015`: Visa credential on file (COF) payment network token. Returned in authorizations that use a payment network token associated with a TMS token. 
+    # Type of digital payment solution for the transaction. Possible Values:   - `visacheckout`: Visa Checkout. This value is required for Visa Checkout transactions. For details, see `payment_solution` field description in [Visa Checkout Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/VCO_SCMP_API/html/)  - `001`: Apple Pay.  - `004`: Cybersource In-App Solution.  - `005`: Masterpass. This value is required for Masterpass transactions on OmniPay Direct. For details, see \"Masterpass\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  - `006`: Android Pay.  - `007`: Chase Pay.  - `008`: Samsung Pay.  - `012`: Google Pay.  - `013`: Cybersource P2PE Decryption  - `014`: Mastercard credential on file (COF) payment network token. Returned in authorizations that use a payment network token associated with a TMS token.  - `015`: Visa credential on file (COF) payment network token. Returned in authorizations that use a payment network token associated with a TMS token. 
     attr_accessor :payment_solution
 
     # Please check with Cybersource customer support to see if your merchant account is configured correctly so you can include this field in your request. * For Payouts: max length for FDCCompass is String (22). 
@@ -43,6 +43,9 @@ module CyberSource
 
     attr_accessor :loan_options
 
+    # Flag that indicates if the transaction is pay by points transaction true: Transaction uses loyalty points false: Transaction does not use loyalty points Default: false 
+    attr_accessor :pay_by_points_indicator
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -56,7 +59,8 @@ module CyberSource
         :'issuer' => :'issuer',
         :'authorization_options' => :'authorizationOptions',
         :'capture_options' => :'captureOptions',
-        :'loan_options' => :'loanOptions'
+        :'loan_options' => :'loanOptions',
+        :'pay_by_points_indicator' => :'payByPointsIndicator'
       }
     end
 
@@ -73,7 +77,8 @@ module CyberSource
         :'issuer' => :'Ptsv2paymentsIssuerInformation',
         :'authorization_options' => :'Ptsv2paymentsidcapturesProcessingInformationAuthorizationOptions',
         :'capture_options' => :'Ptsv2paymentsidcapturesProcessingInformationCaptureOptions',
-        :'loan_options' => :'Ptsv2paymentsProcessingInformationLoanOptions'
+        :'loan_options' => :'Ptsv2paymentsProcessingInformationLoanOptions',
+        :'pay_by_points_indicator' => :'BOOLEAN'
       }
     end
 
@@ -127,6 +132,10 @@ module CyberSource
 
       if attributes.has_key?(:'loanOptions')
         self.loan_options = attributes[:'loanOptions']
+      end
+
+      if attributes.has_key?(:'payByPointsIndicator')
+        self.pay_by_points_indicator = attributes[:'payByPointsIndicator']
       end
     end
 
@@ -200,7 +209,8 @@ module CyberSource
           issuer == o.issuer &&
           authorization_options == o.authorization_options &&
           capture_options == o.capture_options &&
-          loan_options == o.loan_options
+          loan_options == o.loan_options &&
+          pay_by_points_indicator == o.pay_by_points_indicator
     end
 
     # @see the `==` method
@@ -212,7 +222,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [payment_solution, reconciliation_id, link_id, report_group, visa_checkout_id, purchase_level, industry_data_type, issuer, authorization_options, capture_options, loan_options].hash
+      [payment_solution, reconciliation_id, link_id, report_group, visa_checkout_id, purchase_level, industry_data_type, issuer, authorization_options, capture_options, loan_options, pay_by_points_indicator].hash
     end
 
     # Builds the object from hash

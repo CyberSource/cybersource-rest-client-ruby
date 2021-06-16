@@ -18,11 +18,14 @@ module CyberSource
 
     attr_accessor :invoice_details
 
+    attr_accessor :reward_points_details
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'amount_details' => :'amountDetails',
-        :'invoice_details' => :'invoiceDetails'
+        :'invoice_details' => :'invoiceDetails',
+        :'reward_points_details' => :'rewardPointsDetails'
       }
     end
 
@@ -30,7 +33,8 @@ module CyberSource
     def self.swagger_types
       {
         :'amount_details' => :'PtsV2PaymentsPost201ResponseOrderInformationAmountDetails',
-        :'invoice_details' => :'PtsV2PaymentsPost201ResponseOrderInformationInvoiceDetails'
+        :'invoice_details' => :'PtsV2PaymentsPost201ResponseOrderInformationInvoiceDetails',
+        :'reward_points_details' => :'PtsV2PaymentsPost201ResponseOrderInformationRewardPointsDetails'
       }
     end
 
@@ -48,6 +52,10 @@ module CyberSource
 
       if attributes.has_key?(:'invoiceDetails')
         self.invoice_details = attributes[:'invoiceDetails']
+      end
+
+      if attributes.has_key?(:'rewardPointsDetails')
+        self.reward_points_details = attributes[:'rewardPointsDetails']
       end
     end
 
@@ -70,7 +78,8 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           amount_details == o.amount_details &&
-          invoice_details == o.invoice_details
+          invoice_details == o.invoice_details &&
+          reward_points_details == o.reward_points_details
     end
 
     # @see the `==` method
@@ -82,7 +91,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [amount_details, invoice_details].hash
+      [amount_details, invoice_details, reward_points_details].hash
     end
 
     # Builds the object from hash

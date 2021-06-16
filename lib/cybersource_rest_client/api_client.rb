@@ -38,7 +38,7 @@ module CyberSource
     def initialize(config = Configuration.default)
       @config = config
       @user_agent = "Swagger-Codegen/#{VERSION}/ruby"
-      @default_headers = {        
+      @default_headers = {
         'User-Agent' => @user_agent
       }
 
@@ -114,7 +114,6 @@ module CyberSource
       if !query_params.empty?
         query_params = Addressable::URI.form_encode(query_params)
       end
-
 
       headers = opts[:header_params]
       if $merchantconfig_obj.authenticationType.upcase != Constants::AUTH_TYPE_MUTUAL_AUTH

@@ -14,6 +14,9 @@ require 'date'
 
 module CyberSource
   class PtsV2PaymentsPost201ResponseConsumerAuthenticationInformation
+    # JSON Web Token (JWT) used to authenticate the consumer with the authentication provider, such as, CardinalCommerce or Rupay. Note - Max Length of this field is 2048 characters. 
+    attr_accessor :access_token
+
     # Identifies the UI Type the ACS will use to complete the challenge. **NOTE**: Only available for App transactions using the Cardinal Mobile SDK. 
     attr_accessor :acs_rendering_type
 
@@ -136,6 +139,7 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'access_token' => :'accessToken',
         :'acs_rendering_type' => :'acsRenderingType',
         :'acs_transaction_id' => :'acsTransactionId',
         :'acs_url' => :'acsUrl',
@@ -182,6 +186,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'access_token' => :'String',
         :'acs_rendering_type' => :'String',
         :'acs_transaction_id' => :'String',
         :'acs_url' => :'String',
@@ -232,6 +237,10 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'accessToken')
+        self.access_token = attributes[:'accessToken']
+      end
 
       if attributes.has_key?(:'acsRenderingType')
         self.acs_rendering_type = attributes[:'acsRenderingType']
@@ -538,6 +547,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          access_token == o.access_token &&
           acs_rendering_type == o.acs_rendering_type &&
           acs_transaction_id == o.acs_transaction_id &&
           acs_url == o.acs_url &&
@@ -589,7 +599,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [acs_rendering_type, acs_transaction_id, acs_url, authentication_path, authorization_payload, authentication_transaction_id, cardholder_message, cavv, cavv_algorithm, challenge_cancel_code, challenge_required, decoupled_authentication_indicator, directory_server_error_code, directory_server_error_description, ecommerce_indicator, eci, eci_raw, effective_authentication_type, ivr, network_score, pareq, pares_status, proof_xml, proxy_pan, sdk_transaction_id, signed_pares_status_reason, specification_version, step_up_url, three_ds_server_transaction_id, ucaf_authentication_data, ucaf_collection_indicator, veres_enrolled, white_list_status_source, xid, directory_server_transaction_id, authentication_result, authentication_status_msg, indicator, interaction_counter, white_list_status].hash
+      [access_token, acs_rendering_type, acs_transaction_id, acs_url, authentication_path, authorization_payload, authentication_transaction_id, cardholder_message, cavv, cavv_algorithm, challenge_cancel_code, challenge_required, decoupled_authentication_indicator, directory_server_error_code, directory_server_error_description, ecommerce_indicator, eci, eci_raw, effective_authentication_type, ivr, network_score, pareq, pares_status, proof_xml, proxy_pan, sdk_transaction_id, signed_pares_status_reason, specification_version, step_up_url, three_ds_server_transaction_id, ucaf_authentication_data, ucaf_collection_indicator, veres_enrolled, white_list_status_source, xid, directory_server_transaction_id, authentication_result, authentication_status_msg, indicator, interaction_counter, white_list_status].hash
     end
 
     # Builds the object from hash

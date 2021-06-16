@@ -130,7 +130,6 @@ module CyberSource
     def initialize
       @scheme = 'https'
       @host = 'apitest.cybersource.com'
-      # @host = 'api-ma.Cybersource.com'	  
       @base_path = '/'
       @api_key = {}
       @api_key_prefix = {}
