@@ -49,6 +49,9 @@ module CyberSource
     # Indicates the type of authentication that will be used to challenge the card holder.  Possible Values:  01 - Static  02 - Dynamic  03 - OOB (Out of Band)  04 - Decoupled **NOTE**:  EMV 3-D Secure version 2.1.0 supports values 01-03.  Version 2.2.0 supports values 01-04.  Decoupled authentication is not supported at this time. 
     attr_accessor :authentication_type
 
+    # JWT returned by the 3D Secure provider when the authentication is complete. Required for Hybrid integration if you use the Cybersource-generated access token. Note: Max. length of this field is 2048 characters. 
+    attr_accessor :response_access_token
+
     # Unique transaction identifier assigned by the ACS to identify a single transaction.  This field is supported for Cartes Bancaires Fast'R transactions on Credit Mutuel-CIC. 
     attr_accessor :acs_transaction_id
 
@@ -142,6 +145,9 @@ module CyberSource
     # Specifies the product code, which designates the type of transaction. Specify one of the following values for this field: - AIR: Airline purchase Important Required for American Express SafeKey (U.S.). - `ACC`: Accommodation Rental - `ACF`: Account funding - `CHA`: Check acceptance - `DIG`: Digital Goods - `DSP`: Cash Dispensing - `GAS`: Fuel - `GEN`: General Retail - `LUX`: Luxury Retail - `PAL`: Prepaid activation and load - `PHY`: Goods or services purchase - `QCT`: Quasi-cash transaction - `REN`: Car Rental - `RES`: Restaurant - `SVC`: Services - `TBD`: Other - `TRA`: Travel **Important** Required for Visa Secure transactions in Brazil. Do not use this request field for any other types of transactions. 
     attr_accessor :product_code
 
+    # The URL of the merchant’s return page. CyberSource adds this return URL to the step-up JWT and returns it in the response of the Payer Authentication enrollment call. The merchant's return URL page serves as a listening URL. Once the bank session completes, the merchant receives a POST to their URL. This response contains the completed bank session’s transactionId. The merchant’s return page should capture the transaction ID and send it in the Payer Authentication validation call. 
+    attr_accessor :return_url
+
     # Cardinal's directory server assigned 3DS Requestor ID value
     attr_accessor :requestor_id
 
@@ -190,6 +196,7 @@ module CyberSource
         :'directory_server_transaction_id' => :'directoryServerTransactionId',
         :'pa_specification_version' => :'paSpecificationVersion',
         :'authentication_type' => :'authenticationType',
+        :'response_access_token' => :'responseAccessToken',
         :'acs_transaction_id' => :'acsTransactionId',
         :'acs_window_size' => :'acsWindowSize',
         :'alternate_authentication_data' => :'alternateAuthenticationData',
@@ -221,6 +228,7 @@ module CyberSource
         :'prior_authentication_reference_id' => :'priorAuthenticationReferenceId',
         :'prior_authentication_time' => :'priorAuthenticationTime',
         :'product_code' => :'productCode',
+        :'return_url' => :'returnUrl',
         :'requestor_id' => :'requestorId',
         :'requestor_initiated_authentication_indicator' => :'requestorInitiatedAuthenticationIndicator',
         :'requestor_name' => :'requestorName',
@@ -250,6 +258,7 @@ module CyberSource
         :'directory_server_transaction_id' => :'String',
         :'pa_specification_version' => :'String',
         :'authentication_type' => :'String',
+        :'response_access_token' => :'String',
         :'acs_transaction_id' => :'String',
         :'acs_window_size' => :'String',
         :'alternate_authentication_data' => :'String',
@@ -281,6 +290,7 @@ module CyberSource
         :'prior_authentication_reference_id' => :'String',
         :'prior_authentication_time' => :'String',
         :'product_code' => :'String',
+        :'return_url' => :'String',
         :'requestor_id' => :'String',
         :'requestor_initiated_authentication_indicator' => :'String',
         :'requestor_name' => :'String',
@@ -349,6 +359,10 @@ module CyberSource
 
       if attributes.has_key?(:'authenticationType')
         self.authentication_type = attributes[:'authenticationType']
+      end
+
+      if attributes.has_key?(:'responseAccessToken')
+        self.response_access_token = attributes[:'responseAccessToken']
       end
 
       if attributes.has_key?(:'acsTransactionId')
@@ -473,6 +487,10 @@ module CyberSource
 
       if attributes.has_key?(:'productCode')
         self.product_code = attributes[:'productCode']
+      end
+
+      if attributes.has_key?(:'returnUrl')
+        self.return_url = attributes[:'returnUrl']
       end
 
       if attributes.has_key?(:'requestorId')
@@ -738,6 +756,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] return_url Value to be assigned
+    def return_url=(return_url)
+      @return_url = return_url
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] requestor_id Value to be assigned
     def requestor_id=(requestor_id)
       @requestor_id = requestor_id
@@ -808,6 +832,7 @@ module CyberSource
           directory_server_transaction_id == o.directory_server_transaction_id &&
           pa_specification_version == o.pa_specification_version &&
           authentication_type == o.authentication_type &&
+          response_access_token == o.response_access_token &&
           acs_transaction_id == o.acs_transaction_id &&
           acs_window_size == o.acs_window_size &&
           alternate_authentication_data == o.alternate_authentication_data &&
@@ -839,6 +864,7 @@ module CyberSource
           prior_authentication_reference_id == o.prior_authentication_reference_id &&
           prior_authentication_time == o.prior_authentication_time &&
           product_code == o.product_code &&
+          return_url == o.return_url &&
           requestor_id == o.requestor_id &&
           requestor_initiated_authentication_indicator == o.requestor_initiated_authentication_indicator &&
           requestor_name == o.requestor_name &&
@@ -861,7 +887,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [cavv, cavv_algorithm, eci_raw, pares_status, veres_enrolled, xid, ucaf_collection_indicator, ucaf_authentication_data, strong_authentication, directory_server_transaction_id, pa_specification_version, authentication_type, acs_transaction_id, acs_window_size, alternate_authentication_data, alternate_authentication_date, alternate_authentication_method, authentication_date, authentication_transaction_id, challenge_cancel_code, challenge_code, challenge_status, customer_card_alias, decoupled_authentication_indicator, decoupled_authentication_max_time, default_card, device_channel, installment_total_count, merchant_fraud_rate, marketing_opt_in, marketing_source, mcc, merchant_score, message_category, network_score, npa_code, override_payment_method, override_country_code, prior_authentication_data, prior_authentication_method, prior_authentication_reference_id, prior_authentication_time, product_code, requestor_id, requestor_initiated_authentication_indicator, requestor_name, reference_id, sdk_max_timeout, secure_corporate_payment_indicator, transaction_mode, white_list_status, effective_authentication_type, signed_pares_status_reason, signed_pares].hash
+      [cavv, cavv_algorithm, eci_raw, pares_status, veres_enrolled, xid, ucaf_collection_indicator, ucaf_authentication_data, strong_authentication, directory_server_transaction_id, pa_specification_version, authentication_type, response_access_token, acs_transaction_id, acs_window_size, alternate_authentication_data, alternate_authentication_date, alternate_authentication_method, authentication_date, authentication_transaction_id, challenge_cancel_code, challenge_code, challenge_status, customer_card_alias, decoupled_authentication_indicator, decoupled_authentication_max_time, default_card, device_channel, installment_total_count, merchant_fraud_rate, marketing_opt_in, marketing_source, mcc, merchant_score, message_category, network_score, npa_code, override_payment_method, override_country_code, prior_authentication_data, prior_authentication_method, prior_authentication_reference_id, prior_authentication_time, product_code, return_url, requestor_id, requestor_initiated_authentication_indicator, requestor_name, reference_id, sdk_max_timeout, secure_corporate_payment_indicator, transaction_mode, white_list_status, effective_authentication_type, signed_pares_status_reason, signed_pares].hash
     end
 
     # Builds the object from hash

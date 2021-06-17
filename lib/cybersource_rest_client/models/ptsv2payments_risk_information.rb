@@ -22,12 +22,15 @@ module CyberSource
 
     attr_accessor :buyer_history
 
+    attr_accessor :auxiliary_data
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'profile' => :'profile',
         :'event_type' => :'eventType',
-        :'buyer_history' => :'buyerHistory'
+        :'buyer_history' => :'buyerHistory',
+        :'auxiliary_data' => :'auxiliaryData'
       }
     end
 
@@ -36,7 +39,8 @@ module CyberSource
       {
         :'profile' => :'Ptsv2paymentsRiskInformationProfile',
         :'event_type' => :'String',
-        :'buyer_history' => :'Ptsv2paymentsRiskInformationBuyerHistory'
+        :'buyer_history' => :'Ptsv2paymentsRiskInformationBuyerHistory',
+        :'auxiliary_data' => :'Array<Ptsv2paymentsRiskInformationAuxiliaryData>'
       }
     end
 
@@ -58,6 +62,12 @@ module CyberSource
 
       if attributes.has_key?(:'buyerHistory')
         self.buyer_history = attributes[:'buyerHistory']
+      end
+
+      if attributes.has_key?(:'auxiliaryData')
+        if (value = attributes[:'auxiliaryData']).is_a?(Array)
+          self.auxiliary_data = value
+        end
       end
     end
 
@@ -87,7 +97,8 @@ module CyberSource
       self.class == o.class &&
           profile == o.profile &&
           event_type == o.event_type &&
-          buyer_history == o.buyer_history
+          buyer_history == o.buyer_history &&
+          auxiliary_data == o.auxiliary_data
     end
 
     # @see the `==` method
@@ -99,7 +110,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [profile, event_type, buyer_history].hash
+      [profile, event_type, buyer_history, auxiliary_data].hash
     end
 
     # Builds the object from hash

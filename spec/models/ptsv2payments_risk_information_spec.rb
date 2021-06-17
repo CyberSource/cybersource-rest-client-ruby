@@ -50,4 +50,10 @@ describe 'Ptsv2paymentsRiskInformation' do
     end
   end
 
+  describe 'test attribute "auxiliary_data"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

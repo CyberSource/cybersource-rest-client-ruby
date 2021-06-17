@@ -39,7 +39,6 @@ module CyberSource
       @config = config
       @user_agent = "Swagger-Codegen/#{VERSION}/ruby"
       @default_headers = {
-        'Content-Type' => 'application/json',
         'User-Agent' => @user_agent
       }
 
@@ -115,14 +114,24 @@ module CyberSource
       if !query_params.empty?
         query_params = Addressable::URI.form_encode(query_params)
       end
-      headers = CallAuthenticationHeader(http_method, path, body_params, opts[:header_params], query_params)
+
+      headers = opts[:header_params]
+      if $merchantconfig_obj.authenticationType.upcase != Constants::AUTH_TYPE_MUTUAL_AUTH
+        headers = CallAuthenticationHeader(http_method, path, body_params, headers, query_params)
+      end
       http_method = http_method.to_sym.downcase
-      header_params = @default_headers.merge(headers || {})
+      header_params = headers.merge(@default_headers)
       form_params = opts[:form_params] || {}
 
 
       # set ssl_verifyhosts option based on @config.verify_ssl_host (true/false)
       _verify_ssl_host = @config.verify_ssl_host ? 2 : 0
+
+      # client cert
+      if $merchantconfig_obj.enableClientCert
+        @config.cert_file = File.join($merchantconfig_obj.clientCertDirectory, $merchantconfig_obj.sslClientCert)
+        @config.key_file = File.join($merchantconfig_obj.clientCertDirectory, $merchantconfig_obj.privateKey)
+      end
 
       req_opts = {
         :method => http_method,
@@ -133,6 +142,7 @@ module CyberSource
         :ssl_verifypeer => @config.verify_ssl,
         :ssl_verifyhost => _verify_ssl_host,
         :sslcert => @config.cert_file,
+        :sslkeypasswd => $merchantconfig_obj.sslKeyPassword || "",
         :sslkey => @config.key_file,
         :verbose => @config.debugging
       }
@@ -208,9 +218,13 @@ module CyberSource
         token = "Bearer " + token
         header_params['Authorization'] = token
       end
-      header_params.each do |key, value|
-        log_obj.logger.info("#{key} : #{value}")
+      if $merchantconfig_obj.authenticationType.upcase == Constants::AUTH_TYPE_OAUTH
+        token = "Bearer " + token
+        header_params['Authorization'] = token
       end
+      # header_params.each do |key, value|
+      #   log_obj.logger.info("#{key} : #{value}")
+      # end
       return header_params
     end
     def get_query_param(path, query_params)
@@ -374,6 +388,15 @@ module CyberSource
           header_params['Content-Type'] == 'multipart/form-data'
         data = {}
         form_params.each do |key, value|
+          case value
+          when ::File, ::Array, nil
+            # let typhoeus handle File, Array and nil parameters
+            data[key] = value
+          else
+            data[key] = value.to_s
+          end
+        end
+        JSON.parse(body).each do |key, value|
           case value
           when ::File, ::Array, nil
             # let typhoeus handle File, Array and nil parameters

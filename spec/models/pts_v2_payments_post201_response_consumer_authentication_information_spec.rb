@@ -32,6 +32,12 @@ describe 'PtsV2PaymentsPost201ResponseConsumerAuthenticationInformation' do
       expect(@instance).to be_instance_of(CyberSource::PtsV2PaymentsPost201ResponseConsumerAuthenticationInformation)
     end
   end
+  describe 'test attribute "access_token"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "acs_rendering_type"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
