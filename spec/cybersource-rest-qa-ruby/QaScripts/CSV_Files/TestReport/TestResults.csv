@@ -1,0 +1,9 @@
+TestCaseId,APIName,Status,Message,TimeStamp
+CPAP_01,ProcessPayment,Pass:201-5511756285216380104005,Success,2019-02-26T15:37:08+05:30
+CPAP_02,ProcessPayment,Assertion Failed:201,Fails due to mismatch amount,2019-02-26T15:37:09+05:30
+CPAP_03,ProcessPayment,Fail:400,Declined - One or more fields in the request contains invalid data,2019-02-26T15:37:09+05:30
+CACre_01,ProcessCredit,Pass:201-5511756301216511204003,Success,2019-02-26T15:37:10+05:30
+CACre_02,ProcessCredit,Assertion Failed:201,Fails due to mismatch amount,2019-02-26T15:37:10+05:30
+CACre_03,ProcessCredit,Fail:400,Declined - One or more fields in the request contains invalid data,2019-02-26T15:37:10+05:30
+RAP_01,RefundPayment,Pass:201-5511756310746511304003,Success,2019-02-26T15:37:11+05:30
+RAP_02,RefundPayment,Assertion Failed:201,Fails due to mismatch amount,2019-02-26T15:37:11+05:30
