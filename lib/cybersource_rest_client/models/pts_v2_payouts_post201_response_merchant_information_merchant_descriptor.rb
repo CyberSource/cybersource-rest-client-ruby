@@ -81,6 +81,12 @@ module CyberSource
       @locality = locality
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] country Value to be assigned
+    def country=(country)
+      @country = country
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)

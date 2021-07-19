@@ -32,9 +32,6 @@ module CyberSource
     # POS terminal’s capability. Possible values:   - `1`: Terminal has a magnetic stripe reader only.  - `2`: Terminal has a magnetic stripe reader and manual entry capability.  - `3`: Terminal has manual entry capability only.  - `4`: Terminal can read chip cards.  - `5`: Terminal can read contactless chip cards; cannot use contact to read chip cards.  For an EMV transaction, the value of this field must be `4` or `5`.  #### PIN debit Required for PIN debit purchase and PIN debit credit request.  #### Used by **Authorization** Required for the following processors: - American Express Direct - Chase Paymentech Solutions - Credit Mutuel-CIC - FDC Nashville Global - FDMS Nashville - OmniPay Direct - SIX - Worldpay VAP  Optional for the following processors: - CyberSource through VisaNet - GPN - GPX - JCN Gateway - RBS WorldPay Atlanta - TSYS Acquiring Solutions 
     attr_accessor :terminal_capability
 
-    # A one-digit code that identifies the capability of terminal to capture PINs. This code does not necessarily mean that a PIN was entered or is included in this message. For Payouts: This field is applicable for CtV. For details, see the `terminal_pin_capability` field description in [Card-Present Processing Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/Retail_SCMP_API/html/) 
-    attr_accessor :pin_entry_capability
-
     # Operating environment.  Possible values for all card types except Mastercard: - `0`: No terminal used or unknown environment. - `1`: On merchant premises, attended. - `2`: On merchant premises, unattended. Examples: oil, kiosks, self-checkout, mobile telephone, personal digital assistant (PDA). - `3`: Off merchant premises, attended. Examples: portable POS devices at trade shows, at service calls, or in taxis. - `4`: Off merchant premises, unattended. Examples: vending machines, home computer, mobile telephone, PDA. - `5`: On premises of cardholder, unattended. - `9`: Unknown delivery mode. - `S`: Electronic delivery of product. Examples: music, software, or eTickets that are downloaded over the internet. - `T`: Physical delivery of product. Examples: music or software that is delivered by mail or by a courier.  #### Possible values for Mastercard: - `2`: On merchant premises, unattended, or cardholder terminal. Examples: oil, kiosks, self-checkout, home computer, mobile telephone, personal digital assistant (PDA). Cardholder terminal is supported only for Mastercard transactions on CyberSource through VisaNet. - `4`: Off merchant premises, unattended, or cardholder terminal. Examples: vending machines, home computer, mobile telephone, PDA. Cardholder terminal is supported only for Mastercard transactions on CyberSource through VisaNet.  This field is supported only for American Express Direct and CyberSource through VisaNet. 
     attr_accessor :operating_environment
 
@@ -86,6 +83,12 @@ module CyberSource
     # Type of mPOS device. Possible values: - 0: Dongle - 1: Phone or tablet  This optional field is supported only for Mastercard transactions on CyberSource through VisaNet.  The value for this field corresponds to the following data in the TC 33 capture file: - Record: CP01 TCR6 - Position: 141 - Field: Mastercard mPOS Transaction  The TC 33 Capture file contains information about the purchases and refunds that a merchant submits to CyberSource. CyberSource through VisaNet creates the TC 33 Capture file at the end of the day and sends it to the merchant’s acquirer, who uses this information to facilitate end-of-day clearing processing with payment networks. 
     attr_accessor :is_dedicated_hardware_terminal
 
+    # This is the model name of the reader which is used to accept the payment. Possible values:  - E3555  - P400  - A920 
+    attr_accessor :terminal_model
+
+    # This is the manufacturer name of the reader which is used to accept the payment. Possible values:  - PAX  - Verifone  - Ingenico 
+    attr_accessor :terminal_make
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -95,7 +98,6 @@ module CyberSource
         :'cat_level' => :'catLevel',
         :'entry_mode' => :'entryMode',
         :'terminal_capability' => :'terminalCapability',
-        :'pin_entry_capability' => :'pinEntryCapability',
         :'operating_environment' => :'operatingEnvironment',
         :'emv' => :'emv',
         :'amex_capn_data' => :'amexCapnData',
@@ -113,7 +115,9 @@ module CyberSource
         :'partner_sdk_version' => :'partnerSdkVersion',
         :'emv_application_identifier_and_dedicated_file_name' => :'emvApplicationIdentifierAndDedicatedFileName',
         :'terminal_compliance' => :'terminalCompliance',
-        :'is_dedicated_hardware_terminal' => :'isDedicatedHardwareTerminal'
+        :'is_dedicated_hardware_terminal' => :'isDedicatedHardwareTerminal',
+        :'terminal_model' => :'terminalModel',
+        :'terminal_make' => :'terminalMake'
       }
     end
 
@@ -126,7 +130,6 @@ module CyberSource
         :'cat_level' => :'Integer',
         :'entry_mode' => :'String',
         :'terminal_capability' => :'Integer',
-        :'pin_entry_capability' => :'Integer',
         :'operating_environment' => :'String',
         :'emv' => :'Ptsv2paymentsPointOfSaleInformationEmv',
         :'amex_capn_data' => :'String',
@@ -144,7 +147,9 @@ module CyberSource
         :'partner_sdk_version' => :'String',
         :'emv_application_identifier_and_dedicated_file_name' => :'String',
         :'terminal_compliance' => :'String',
-        :'is_dedicated_hardware_terminal' => :'String'
+        :'is_dedicated_hardware_terminal' => :'String',
+        :'terminal_model' => :'String',
+        :'terminal_make' => :'String'
       }
     end
 
@@ -178,10 +183,6 @@ module CyberSource
 
       if attributes.has_key?(:'terminalCapability')
         self.terminal_capability = attributes[:'terminalCapability']
-      end
-
-      if attributes.has_key?(:'pinEntryCapability')
-        self.pin_entry_capability = attributes[:'pinEntryCapability']
       end
 
       if attributes.has_key?(:'operatingEnvironment')
@@ -259,6 +260,14 @@ module CyberSource
       if attributes.has_key?(:'isDedicatedHardwareTerminal')
         self.is_dedicated_hardware_terminal = attributes[:'isDedicatedHardwareTerminal']
       end
+
+      if attributes.has_key?(:'terminalModel')
+        self.terminal_model = attributes[:'terminalModel']
+      end
+
+      if attributes.has_key?(:'terminalMake')
+        self.terminal_make = attributes[:'terminalMake']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -281,14 +290,6 @@ module CyberSource
         invalid_properties.push('invalid value for "terminal_capability", must be greater than or equal to 1.')
       end
 
-      if !@pin_entry_capability.nil? && @pin_entry_capability > 1
-        invalid_properties.push('invalid value for "pin_entry_capability", must be smaller than or equal to 1.')
-      end
-
-      if !@pin_entry_capability.nil? && @pin_entry_capability < 1
-        invalid_properties.push('invalid value for "pin_entry_capability", must be greater than or equal to 1.')
-      end
-
       if !@pin_block_encoding_format.nil? && @pin_block_encoding_format > 9
         invalid_properties.push('invalid value for "pin_block_encoding_format", must be smaller than or equal to 9.')
       end
@@ -303,8 +304,6 @@ module CyberSource
       return false if !@cat_level.nil? && @cat_level < 1
       return false if !@terminal_capability.nil? && @terminal_capability > 5
       return false if !@terminal_capability.nil? && @terminal_capability < 1
-      return false if !@pin_entry_capability.nil? && @pin_entry_capability > 1
-      return false if !@pin_entry_capability.nil? && @pin_entry_capability < 1
       return false if !@pin_block_encoding_format.nil? && @pin_block_encoding_format > 9
       true
     end
@@ -359,20 +358,6 @@ module CyberSource
       end
 
       @terminal_capability = terminal_capability
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] pin_entry_capability Value to be assigned
-    def pin_entry_capability=(pin_entry_capability)
-      if !pin_entry_capability.nil? && pin_entry_capability > 1
-        fail ArgumentError, 'invalid value for "pin_entry_capability", must be smaller than or equal to 1.'
-      end
-
-      if !pin_entry_capability.nil? && pin_entry_capability < 1
-        fail ArgumentError, 'invalid value for "pin_entry_capability", must be greater than or equal to 1.'
-      end
-
-      @pin_entry_capability = pin_entry_capability
     end
 
     # Custom attribute writer method with validation
@@ -457,6 +442,18 @@ module CyberSource
       @is_dedicated_hardware_terminal = is_dedicated_hardware_terminal
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] terminal_model Value to be assigned
+    def terminal_model=(terminal_model)
+      @terminal_model = terminal_model
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] terminal_make Value to be assigned
+    def terminal_make=(terminal_make)
+      @terminal_make = terminal_make
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -468,7 +465,6 @@ module CyberSource
           cat_level == o.cat_level &&
           entry_mode == o.entry_mode &&
           terminal_capability == o.terminal_capability &&
-          pin_entry_capability == o.pin_entry_capability &&
           operating_environment == o.operating_environment &&
           emv == o.emv &&
           amex_capn_data == o.amex_capn_data &&
@@ -486,7 +482,9 @@ module CyberSource
           partner_sdk_version == o.partner_sdk_version &&
           emv_application_identifier_and_dedicated_file_name == o.emv_application_identifier_and_dedicated_file_name &&
           terminal_compliance == o.terminal_compliance &&
-          is_dedicated_hardware_terminal == o.is_dedicated_hardware_terminal
+          is_dedicated_hardware_terminal == o.is_dedicated_hardware_terminal &&
+          terminal_model == o.terminal_model &&
+          terminal_make == o.terminal_make
     end
 
     # @see the `==` method
@@ -498,7 +496,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [terminal_id, terminal_serial_number, lane_number, cat_level, entry_mode, terminal_capability, pin_entry_capability, operating_environment, emv, amex_capn_data, track_data, store_and_forward_indicator, cardholder_verification_method, terminal_input_capability, terminal_card_capture_capability, terminal_output_capability, terminal_pin_capability, device_id, pin_block_encoding_format, encrypted_pin, encrypted_key_serial_number, partner_sdk_version, emv_application_identifier_and_dedicated_file_name, terminal_compliance, is_dedicated_hardware_terminal].hash
+      [terminal_id, terminal_serial_number, lane_number, cat_level, entry_mode, terminal_capability, operating_environment, emv, amex_capn_data, track_data, store_and_forward_indicator, cardholder_verification_method, terminal_input_capability, terminal_card_capture_capability, terminal_output_capability, terminal_pin_capability, device_id, pin_block_encoding_format, encrypted_pin, encrypted_key_serial_number, partner_sdk_version, emv_application_identifier_and_dedicated_file_name, terminal_compliance, is_dedicated_hardware_terminal, terminal_model, terminal_make].hash
     end
 
     # Builds the object from hash

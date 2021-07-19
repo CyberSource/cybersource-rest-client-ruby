@@ -38,6 +38,8 @@ module CyberSource
 
     attr_accessor :issuer_information
 
+    attr_accessor :payment_account_information
+
     attr_accessor :payment_information
 
     attr_accessor :order_information
@@ -65,6 +67,7 @@ module CyberSource
         :'processing_information' => :'processingInformation',
         :'processor_information' => :'processorInformation',
         :'issuer_information' => :'issuerInformation',
+        :'payment_account_information' => :'paymentAccountInformation',
         :'payment_information' => :'paymentInformation',
         :'order_information' => :'orderInformation',
         :'point_of_sale_information' => :'pointOfSaleInformation',
@@ -88,6 +91,7 @@ module CyberSource
         :'processing_information' => :'PtsV2PaymentsPost201ResponseProcessingInformation',
         :'processor_information' => :'PtsV2PaymentsPost201ResponseProcessorInformation',
         :'issuer_information' => :'PtsV2PaymentsPost201ResponseIssuerInformation',
+        :'payment_account_information' => :'PtsV2PaymentsPost201ResponsePaymentAccountInformation',
         :'payment_information' => :'PtsV2PaymentsPost201ResponsePaymentInformation',
         :'order_information' => :'PtsV2PaymentsPost201ResponseOrderInformation',
         :'point_of_sale_information' => :'PtsV2PaymentsPost201ResponsePointOfSaleInformation',
@@ -144,6 +148,10 @@ module CyberSource
 
       if attributes.has_key?(:'issuerInformation')
         self.issuer_information = attributes[:'issuerInformation']
+      end
+
+      if attributes.has_key?(:'paymentAccountInformation')
+        self.payment_account_information = attributes[:'paymentAccountInformation']
       end
 
       if attributes.has_key?(:'paymentInformation')
@@ -215,6 +223,7 @@ module CyberSource
           processing_information == o.processing_information &&
           processor_information == o.processor_information &&
           issuer_information == o.issuer_information &&
+          payment_account_information == o.payment_account_information &&
           payment_information == o.payment_information &&
           order_information == o.order_information &&
           point_of_sale_information == o.point_of_sale_information &&
@@ -233,7 +242,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, submit_time_utc, status, reconciliation_id, error_information, client_reference_information, processing_information, processor_information, issuer_information, payment_information, order_information, point_of_sale_information, installment_information, token_information, risk_information, consumer_authentication_information].hash
+      [_links, id, submit_time_utc, status, reconciliation_id, error_information, client_reference_information, processing_information, processor_information, issuer_information, payment_account_information, payment_information, order_information, point_of_sale_information, installment_information, token_information, risk_information, consumer_authentication_information].hash
     end
 
     # Builds the object from hash

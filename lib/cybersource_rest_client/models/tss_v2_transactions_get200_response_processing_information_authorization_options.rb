@@ -17,17 +17,21 @@ module CyberSource
     # Authorization type. Possible values:   - `AUTOCAPTURE`: automatic capture.  - `STANDARDCAPTURE`: standard capture.  - `VERBAL`: forced capture. Include it in the payment request for a forced capture. Include it in the capture request for a verbal payment.  #### Asia, Middle East, and Africa Gateway; Cielo; Comercio Latino; and CyberSource Latin American Processing Set this field to `AUTOCAPTURE` and include it in a bundled request to indicate that you are requesting an automatic capture. If your account is configured to enable automatic captures, set this field to `STANDARDCAPTURE` and include it in a standard authorization or bundled request to indicate that you are overriding an automatic capture. For more information, see the `auth_type` field description in [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  #### Forced Capture Set this field to `VERBAL` and include it in the authorization request to indicate that you are performing a forced capture; therefore, you receive the authorization code outside the CyberSource system.  #### Verbal Authorization Set this field to `VERBAL` and include it in the capture request to indicate that the request is for a verbal authorization. For more information, see \"Verbal Authorizations\" in [Credit Card Services Using the SCMP API](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html). 
     attr_accessor :auth_type
 
+    attr_accessor :initiator
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'auth_type' => :'authType'
+        :'auth_type' => :'authType',
+        :'initiator' => :'initiator'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'auth_type' => :'String'
+        :'auth_type' => :'String',
+        :'initiator' => :'Ptsv2paymentsProcessingInformationAuthorizationOptionsInitiator'
       }
     end
 
@@ -41,6 +45,10 @@ module CyberSource
 
       if attributes.has_key?(:'authType')
         self.auth_type = attributes[:'authType']
+      end
+
+      if attributes.has_key?(:'initiator')
+        self.initiator = attributes[:'initiator']
       end
     end
 
@@ -68,7 +76,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          auth_type == o.auth_type
+          auth_type == o.auth_type &&
+          initiator == o.initiator
     end
 
     # @see the `==` method
@@ -80,7 +89,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [auth_type].hash
+      [auth_type, initiator].hash
     end
 
     # Builds the object from hash

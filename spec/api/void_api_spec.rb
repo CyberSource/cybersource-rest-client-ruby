@@ -46,7 +46,7 @@ describe 'VoidApi' do
 
   # unit tests for void_capture
   # Void a Capture
-  # Refund a capture API is only used, if you have requested Capture independenlty using [/pts/v2/payments/{id}/captures](https://developer.cybersource.com/api-reference-assets/index.html#payments_capture) API call.  Include the capture ID in the POST request to cancel the capture. 
+  # Refund a capture API is only used, if you have requested Capture independenlty using [/pts/v2/payments/{id}/captures](https://developer.cybersource.com/api-reference-assets/index.html#payments_capture) API call. Include the capture ID in the POST request to cancel the capture. 
   # @param void_capture_request 
   # @param id The capture ID returned from a previous capture request.
   # @param [Hash] opts the optional parameters
@@ -72,7 +72,7 @@ describe 'VoidApi' do
 
   # unit tests for void_payment
   # Void a Payment
-  # Void a Payment API is only used, if you have requested Authorization and Capture together in [/pts/v2/payments](https://developer.cybersource.com/api-reference-assets/index.html#payments_payments) API call.  Include the payment ID in the POST request to cancel the payment. 
+  # Void a Payment API is only used, if you have requested Authorization and Capture together in [/pts/v2/payments](https://developer.cybersource.com/api-reference-assets/index.html#payments_payments) API call. Include the payment ID in the POST request to cancel the payment. 
   # @param void_payment_request 
   # @param id The payment ID returned from a previous payment request.
   # @param [Hash] opts the optional parameters
