@@ -38,4 +38,10 @@ describe 'TssV2TransactionsGet200ResponseProcessingInformationAuthorizationOptio
     end
   end
 
+  describe 'test attribute "initiator"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

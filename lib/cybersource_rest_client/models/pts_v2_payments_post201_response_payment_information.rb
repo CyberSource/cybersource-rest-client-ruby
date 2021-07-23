@@ -67,7 +67,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'card' => :'PtsV2PaymentsPost201ResponsePaymentInformationCard',
+        :'card' => :'PtsV2PaymentsPost201ResponsePaymentAccountInformationCard',
         :'tokenized_card' => :'PtsV2PaymentsPost201ResponsePaymentInformationTokenizedCard',
         :'account_features' => :'PtsV2PaymentsPost201ResponsePaymentInformationAccountFeatures',
         :'bank' => :'PtsV2PaymentsPost201ResponsePaymentInformationBank',

@@ -26,9 +26,6 @@ module CyberSource
     # Field that contains the session ID that you send to Decision Manager to obtain the device fingerprint information. The string can contain uppercase and lowercase letters, digits, hyphen (-), and underscore (_). However, do not use the same uppercase and lowercase letters to indicate different session IDs.  The session ID must be unique for each merchant ID. You can use any string that you are already generating, such as an order number or web session ID.  The session ID must be unique for each page load, regardless of an individual’s web session ID. If a user navigates to a profiled page and is assigned a web session, navigates away from the profiled page, then navigates back to the profiled page, the generated session ID should be different and unique. You may use a web session ID, but it is preferable to use an application GUID (Globally Unique Identifier). This measure ensures that a unique ID is generated every time the page is loaded, even if it is the same user reloading the page. 
     attr_accessor :fingerprint_session_id
 
-    # Boolean that indicates whether request contains the device fingerprint information. Values: - `true`: Use raw fingerprintSessionId when looking up device details. - `false` (default): Use merchant id + fingerprintSessionId as the session id for Device detail collection. 
-    attr_accessor :use_raw_fingerprint_session_id
-
     # Email address set in the customer’s browser, which may differ from customer email. 
     attr_accessor :http_browser_email
 
@@ -74,7 +71,6 @@ module CyberSource
         :'ip_address' => :'ipAddress',
         :'host_name' => :'hostName',
         :'fingerprint_session_id' => :'fingerprintSessionId',
-        :'use_raw_fingerprint_session_id' => :'useRawFingerprintSessionId',
         :'http_browser_email' => :'httpBrowserEmail',
         :'user_agent' => :'userAgent',
         :'raw_data' => :'rawData',
@@ -98,7 +94,6 @@ module CyberSource
         :'ip_address' => :'String',
         :'host_name' => :'String',
         :'fingerprint_session_id' => :'String',
-        :'use_raw_fingerprint_session_id' => :'BOOLEAN',
         :'http_browser_email' => :'String',
         :'user_agent' => :'String',
         :'raw_data' => :'Array<Ptsv2paymentsDeviceInformationRawData>',
@@ -137,10 +132,6 @@ module CyberSource
 
       if attributes.has_key?(:'fingerprintSessionId')
         self.fingerprint_session_id = attributes[:'fingerprintSessionId']
-      end
-
-      if attributes.has_key?(:'useRawFingerprintSessionId')
-        self.use_raw_fingerprint_session_id = attributes[:'useRawFingerprintSessionId']
       end
 
       if attributes.has_key?(:'httpBrowserEmail')
@@ -286,7 +277,6 @@ module CyberSource
           ip_address == o.ip_address &&
           host_name == o.host_name &&
           fingerprint_session_id == o.fingerprint_session_id &&
-          use_raw_fingerprint_session_id == o.use_raw_fingerprint_session_id &&
           http_browser_email == o.http_browser_email &&
           user_agent == o.user_agent &&
           raw_data == o.raw_data &&
@@ -311,7 +301,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [cookies_accepted, ip_address, host_name, fingerprint_session_id, use_raw_fingerprint_session_id, http_browser_email, user_agent, raw_data, http_accept_browser_value, http_accept_content, http_browser_language, http_browser_java_enabled, http_browser_java_script_enabled, http_browser_color_depth, http_browser_screen_height, http_browser_screen_width, http_browser_time_difference, user_agent_browser_value].hash
+      [cookies_accepted, ip_address, host_name, fingerprint_session_id, http_browser_email, user_agent, raw_data, http_accept_browser_value, http_accept_content, http_browser_language, http_browser_java_enabled, http_browser_java_script_enabled, http_browser_color_depth, http_browser_screen_height, http_browser_screen_width, http_browser_time_difference, user_agent_browser_value].hash
     end
 
     # Builds the object from hash
