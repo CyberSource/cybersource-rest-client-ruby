@@ -56,4 +56,10 @@ describe 'TssV2TransactionsGet200ResponseConsumerAuthenticationInformation' do
     end
   end
 
+  describe 'test attribute "strong_authentication"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

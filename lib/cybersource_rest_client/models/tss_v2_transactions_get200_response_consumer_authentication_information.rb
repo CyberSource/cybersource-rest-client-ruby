@@ -26,13 +26,16 @@ module CyberSource
     # Payer auth Transaction identifier.
     attr_accessor :transaction_id
 
+    attr_accessor :strong_authentication
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'eci_raw' => :'eciRaw',
         :'cavv' => :'cavv',
         :'xid' => :'xid',
-        :'transaction_id' => :'transactionId'
+        :'transaction_id' => :'transactionId',
+        :'strong_authentication' => :'strongAuthentication'
       }
     end
 
@@ -42,7 +45,8 @@ module CyberSource
         :'eci_raw' => :'String',
         :'cavv' => :'String',
         :'xid' => :'String',
-        :'transaction_id' => :'String'
+        :'transaction_id' => :'String',
+        :'strong_authentication' => :'TssV2TransactionsGet200ResponseConsumerAuthenticationInformationStrongAuthentication'
       }
     end
 
@@ -68,6 +72,10 @@ module CyberSource
 
       if attributes.has_key?(:'transactionId')
         self.transaction_id = attributes[:'transactionId']
+      end
+
+      if attributes.has_key?(:'strongAuthentication')
+        self.strong_authentication = attributes[:'strongAuthentication']
       end
     end
 
@@ -110,7 +118,8 @@ module CyberSource
           eci_raw == o.eci_raw &&
           cavv == o.cavv &&
           xid == o.xid &&
-          transaction_id == o.transaction_id
+          transaction_id == o.transaction_id &&
+          strong_authentication == o.strong_authentication
     end
 
     # @see the `==` method
@@ -122,7 +131,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [eci_raw, cavv, xid, transaction_id].hash
+      [eci_raw, cavv, xid, transaction_id, strong_authentication].hash
     end
 
     # Builds the object from hash

@@ -65,6 +65,12 @@ module CyberSource
       true
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] approval_code Value to be assigned
+    def approval_code=(approval_code)
+      @approval_code = approval_code
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
