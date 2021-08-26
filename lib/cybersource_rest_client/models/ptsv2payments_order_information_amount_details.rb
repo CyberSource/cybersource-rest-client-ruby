@@ -61,10 +61,10 @@ module CyberSource
 
     attr_accessor :surcharge
 
-    # This is a multicurrency field. It contains the transaction amount (field 4), converted to the Currency used to bill the cardholder’s account. 
+    # This is a multicurrency field. It contains the transaction amount (field 4), converted to the Currency used to bill the cardholder’s account. This field is returned for OCT transactions. 
     attr_accessor :settlement_amount
 
-    # This is a multicurrency-only field. It contains a 3-digit numeric code that identifies the currency used by the issuer to bill the cardholder's account. 
+    # This is a multicurrency-only field. It contains a 3-digit numeric code that identifies the currency used by the issuer to bill the cardholder's account. This field is returned for OCT transactions. 
     attr_accessor :settlement_currency
 
     attr_accessor :amex_additional_amounts

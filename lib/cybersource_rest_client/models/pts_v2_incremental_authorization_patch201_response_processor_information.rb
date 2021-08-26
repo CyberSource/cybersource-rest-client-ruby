@@ -102,6 +102,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] approval_code Value to be assigned
+    def approval_code=(approval_code)
+      @approval_code = approval_code
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] transaction_id Value to be assigned
     def transaction_id=(transaction_id)
       @transaction_id = transaction_id
