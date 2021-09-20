@@ -223,7 +223,7 @@ module CyberSource
         header_params['Authorization'] = token
       end
       # header_params.each do |key, value|
-      #   log_obj.logger.info("#{key} : #{value}")
+      #  log_obj.logger.info("#{key} : #{value}")
       # end
       return header_params
     end

@@ -109,6 +109,12 @@ module CyberSource
       true
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] iban Value to be assigned
+    def iban=(iban)
+      @iban = iban
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
