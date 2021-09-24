@@ -19,11 +19,15 @@ module CyberSource
     # Bank routing number. This is also called the _transit number_.  For details, see `ecp_rdfi` request field description in the [Electronic Check Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/EChecks_SCMP_API/html/) 
     attr_accessor :routing_number
 
+    # International Bank Account Number (IBAN) for the bank account. For some countries you can provide this number instead of the traditional bank account information. You can use this field only when scoring a direct debit transaction.  For all possible values, see the `bank_iban` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
+    attr_accessor :iban
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'account' => :'account',
-        :'routing_number' => :'routingNumber'
+        :'routing_number' => :'routingNumber',
+        :'iban' => :'iban'
       }
     end
 
@@ -31,7 +35,8 @@ module CyberSource
     def self.swagger_types
       {
         :'account' => :'Ptsv2paymentsPaymentInformationBankAccount',
-        :'routing_number' => :'String'
+        :'routing_number' => :'String',
+        :'iban' => :'String'
       }
     end
 
@@ -49,6 +54,10 @@ module CyberSource
 
       if attributes.has_key?(:'routingNumber')
         self.routing_number = attributes[:'routingNumber']
+      end
+
+      if attributes.has_key?(:'iban')
+        self.iban = attributes[:'iban']
       end
     end
 
@@ -71,13 +80,20 @@ module CyberSource
       @routing_number = routing_number
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] iban Value to be assigned
+    def iban=(iban)
+      @iban = iban
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           account == o.account &&
-          routing_number == o.routing_number
+          routing_number == o.routing_number &&
+          iban == o.iban
     end
 
     # @see the `==` method
@@ -89,7 +105,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [account, routing_number].hash
+      [account, routing_number, iban].hash
     end
 
     # Builds the object from hash
