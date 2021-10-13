@@ -24,7 +24,7 @@ module CyberSource
     # Create or update an already existing classic or standard subscription. 
     # @param predefined_subscription_request_bean Report subscription request payload
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :organization_id Valid Cybersource Organization Id
+    # @option opts [String] :organization_id Valid Organization Id
     # @return [nil]
     def create_standard_or_classic_subscription(predefined_subscription_request_bean, opts = {})
       data, status_code, headers = create_standard_or_classic_subscription_with_http_info(predefined_subscription_request_bean, opts)
@@ -35,7 +35,7 @@ module CyberSource
     # Create or update an already existing classic or standard subscription. 
     # @param predefined_subscription_request_bean Report subscription request payload
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :organization_id Valid Cybersource Organization Id
+    # @option opts [String] :organization_id Valid Organization Id
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def create_standard_or_classic_subscription_with_http_info(predefined_subscription_request_bean, opts = {})
       
@@ -103,7 +103,7 @@ module CyberSource
     # Create a report subscription for your organization. The report name must be unique. 
     # @param create_report_subscription_request Report subscription request payload
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :organization_id Valid Cybersource Organization Id
+    # @option opts [String] :organization_id Valid Organization Id
     # @return [nil]
     def create_subscription(create_report_subscription_request, opts = {})
       data, status_code, headers = create_subscription_with_http_info(create_report_subscription_request, opts)
@@ -114,7 +114,7 @@ module CyberSource
     # Create a report subscription for your organization. The report name must be unique. 
     # @param create_report_subscription_request Report subscription request payload
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :organization_id Valid Cybersource Organization Id
+    # @option opts [String] :organization_id Valid Organization Id
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def create_subscription_with_http_info(create_report_subscription_request, opts = {})
       
@@ -182,7 +182,7 @@ module CyberSource
     # Delete a report subscription for your organization. You must know the unique name of the report you want to delete. 
     # @param report_name Name of the Report to Delete
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :organization_id Valid Cybersource Organization Id
+    # @option opts [String] :organization_id Valid Organization Id
     # @return [nil]
     def delete_subscription(report_name, opts = {})
       data, status_code, headers = delete_subscription_with_http_info(report_name, opts)
@@ -193,7 +193,7 @@ module CyberSource
     # Delete a report subscription for your organization. You must know the unique name of the report you want to delete. 
     # @param report_name Name of the Report to Delete
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :organization_id Valid Cybersource Organization Id
+    # @option opts [String] :organization_id Valid Organization Id
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def delete_subscription_with_http_info(report_name, opts = {})
       
@@ -272,7 +272,7 @@ module CyberSource
     # Get All Subscriptions
     # View a summary of all report subscriptions. 
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :organization_id Valid Cybersource Organization Id
+    # @option opts [String] :organization_id Valid Organization Id
     # @return [ReportingV3ReportSubscriptionsGet200Response]
     def get_all_subscriptions(opts = {})
       data, status_code, headers = get_all_subscriptions_with_http_info(opts)
@@ -282,7 +282,7 @@ module CyberSource
     # Get All Subscriptions
     # View a summary of all report subscriptions. 
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :organization_id Valid Cybersource Organization Id
+    # @option opts [String] :organization_id Valid Organization Id
     # @return [Array<(ReportingV3ReportSubscriptionsGet200Response, Fixnum, Hash)>] ReportingV3ReportSubscriptionsGet200Response data, response status code and response headers
     def get_all_subscriptions_with_http_info(opts = {})
       
@@ -347,7 +347,7 @@ module CyberSource
     # View the details of a report subscription, such as the report format or report frequency, using the report’s unique name. 
     # @param report_name Name of the Report to Retrieve
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :organization_id Valid Cybersource Organization Id
+    # @option opts [String] :organization_id Valid Organization Id
     # @return [ReportingV3ReportSubscriptionsGet200ResponseSubscriptions]
     def get_subscription(report_name, opts = {})
       data, status_code, headers = get_subscription_with_http_info(report_name, opts)
@@ -358,7 +358,7 @@ module CyberSource
     # View the details of a report subscription, such as the report format or report frequency, using the report’s unique name. 
     # @param report_name Name of the Report to Retrieve
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :organization_id Valid Cybersource Organization Id
+    # @option opts [String] :organization_id Valid Organization Id
     # @return [Array<(ReportingV3ReportSubscriptionsGet200ResponseSubscriptions, Fixnum, Hash)>] ReportingV3ReportSubscriptionsGet200ResponseSubscriptions data, response status code and response headers
     def get_subscription_with_http_info(report_name, opts = {})
       

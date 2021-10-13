@@ -26,7 +26,7 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @option opts [String] :subscription_type The subscription type for which report definition is required. By default the type will be CUSTOM. Valid Values: - CLASSIC - CUSTOM - STANDARD 
     # @option opts [String] :report_mime_type The format for which the report definition is required. By default the value will be CSV. Valid Values: - application/xml - text/csv 
-    # @option opts [String] :organization_id Valid Cybersource Organization Id
+    # @option opts [String] :organization_id Valid Organization Id
     # @return [ReportingV3ReportDefinitionsNameGet200Response]
     def get_resource_info_by_report_definition(report_definition_name, opts = {})
       data, status_code, headers = get_resource_info_by_report_definition_with_http_info(report_definition_name, opts)
@@ -39,7 +39,7 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @option opts [String] :subscription_type The subscription type for which report definition is required. By default the type will be CUSTOM. Valid Values: - CLASSIC - CUSTOM - STANDARD 
     # @option opts [String] :report_mime_type The format for which the report definition is required. By default the value will be CSV. Valid Values: - application/xml - text/csv 
-    # @option opts [String] :organization_id Valid Cybersource Organization Id
+    # @option opts [String] :organization_id Valid Organization Id
     # @return [Array<(ReportingV3ReportDefinitionsNameGet200Response, Fixnum, Hash)>] ReportingV3ReportDefinitionsNameGet200Response data, response status code and response headers
     def get_resource_info_by_report_definition_with_http_info(report_definition_name, opts = {})
       
@@ -110,7 +110,7 @@ module CyberSource
     # View a list of supported reports and their attributes before subscribing to them. 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :subscription_type Valid Values: - CLASSIC - CUSTOM - STANDARD 
-    # @option opts [String] :organization_id Valid Cybersource Organization Id
+    # @option opts [String] :organization_id Valid Organization Id
     # @return [ReportingV3ReportDefinitionsGet200Response]
     def get_resource_v2_info(opts = {})
       data, status_code, headers = get_resource_v2_info_with_http_info(opts)
@@ -121,7 +121,7 @@ module CyberSource
     # View a list of supported reports and their attributes before subscribing to them. 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :subscription_type Valid Values: - CLASSIC - CUSTOM - STANDARD 
-    # @option opts [String] :organization_id Valid Cybersource Organization Id
+    # @option opts [String] :organization_id Valid Organization Id
     # @return [Array<(ReportingV3ReportDefinitionsGet200Response, Fixnum, Hash)>] ReportingV3ReportDefinitionsGet200Response data, response status code and response headers
     def get_resource_v2_info_with_http_info(opts = {})
       
