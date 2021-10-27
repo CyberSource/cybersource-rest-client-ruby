@@ -27,7 +27,7 @@ report_definition_name = "report_definition_name_example" # String | Name of the
 opts = { 
   subscription_type: "subscription_type_example", # String | The subscription type for which report definition is required. By default the type will be CUSTOM. Valid Values: - CLASSIC - CUSTOM - STANDARD 
   report_mime_type: "report_mime_type_example", # String | The format for which the report definition is required. By default the value will be CSV. Valid Values: - application/xml - text/csv 
-  organization_id: "organization_id_example" # String | Valid Cybersource Organization Id
+  organization_id: "organization_id_example" # String | Valid Organization Id
 }
 
 begin
@@ -46,7 +46,7 @@ Name | Type | Description  | Notes
  **report_definition_name** | **String**| Name of the Report definition to retrieve | 
  **subscription_type** | **String**| The subscription type for which report definition is required. By default the type will be CUSTOM. Valid Values: - CLASSIC - CUSTOM - STANDARD  | [optional] 
  **report_mime_type** | **String**| The format for which the report definition is required. By default the value will be CSV. Valid Values: - application/xml - text/csv  | [optional] 
- **organization_id** | **String**| Valid Cybersource Organization Id | [optional] 
+ **organization_id** | **String**| Valid Organization Id | [optional] 
 
 ### Return type
 
@@ -79,7 +79,7 @@ api_instance = CyberSource::ReportDefinitionsApi.new
 
 opts = { 
   subscription_type: "subscription_type_example", # String | Valid Values: - CLASSIC - CUSTOM - STANDARD 
-  organization_id: "organization_id_example" # String | Valid Cybersource Organization Id
+  organization_id: "organization_id_example" # String | Valid Organization Id
 }
 
 begin
@@ -96,7 +96,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subscription_type** | **String**| Valid Values: - CLASSIC - CUSTOM - STANDARD  | [optional] 
- **organization_id** | **String**| Valid Cybersource Organization Id | [optional] 
+ **organization_id** | **String**| Valid Organization Id | [optional] 
 
 ### Return type
 

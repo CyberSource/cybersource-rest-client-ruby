@@ -28,7 +28,7 @@ api_instance = CyberSource::ReportSubscriptionsApi.new
 predefined_subscription_request_bean = CyberSource::PredefinedSubscriptionRequestBean.new # PredefinedSubscriptionRequestBean | Report subscription request payload
 
 opts = { 
-  organization_id: "organization_id_example" # String | Valid Cybersource Organization Id
+  organization_id: "organization_id_example" # String | Valid Organization Id
 }
 
 begin
@@ -44,7 +44,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **predefined_subscription_request_bean** | [**PredefinedSubscriptionRequestBean**](PredefinedSubscriptionRequestBean.md)| Report subscription request payload | 
- **organization_id** | **String**| Valid Cybersource Organization Id | [optional] 
+ **organization_id** | **String**| Valid Organization Id | [optional] 
 
 ### Return type
 
@@ -78,7 +78,7 @@ api_instance = CyberSource::ReportSubscriptionsApi.new
 create_report_subscription_request = CyberSource::CreateReportSubscriptionRequest.new # CreateReportSubscriptionRequest | Report subscription request payload
 
 opts = { 
-  organization_id: "organization_id_example" # String | Valid Cybersource Organization Id
+  organization_id: "organization_id_example" # String | Valid Organization Id
 }
 
 begin
@@ -94,7 +94,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **create_report_subscription_request** | [**CreateReportSubscriptionRequest**](CreateReportSubscriptionRequest.md)| Report subscription request payload | 
- **organization_id** | **String**| Valid Cybersource Organization Id | [optional] 
+ **organization_id** | **String**| Valid Organization Id | [optional] 
 
 ### Return type
 
@@ -128,7 +128,7 @@ api_instance = CyberSource::ReportSubscriptionsApi.new
 report_name = "report_name_example" # String | Name of the Report to Delete
 
 opts = { 
-  organization_id: "organization_id_example" # String | Valid Cybersource Organization Id
+  organization_id: "organization_id_example" # String | Valid Organization Id
 }
 
 begin
@@ -144,7 +144,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **report_name** | **String**| Name of the Report to Delete | 
- **organization_id** | **String**| Valid Cybersource Organization Id | [optional] 
+ **organization_id** | **String**| Valid Organization Id | [optional] 
 
 ### Return type
 
@@ -176,7 +176,7 @@ require 'cybersource_rest_client'
 api_instance = CyberSource::ReportSubscriptionsApi.new
 
 opts = { 
-  organization_id: "organization_id_example" # String | Valid Cybersource Organization Id
+  organization_id: "organization_id_example" # String | Valid Organization Id
 }
 
 begin
@@ -192,7 +192,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **String**| Valid Cybersource Organization Id | [optional] 
+ **organization_id** | **String**| Valid Organization Id | [optional] 
 
 ### Return type
 
@@ -226,7 +226,7 @@ api_instance = CyberSource::ReportSubscriptionsApi.new
 report_name = "report_name_example" # String | Name of the Report to Retrieve
 
 opts = { 
-  organization_id: "organization_id_example" # String | Valid Cybersource Organization Id
+  organization_id: "organization_id_example" # String | Valid Organization Id
 }
 
 begin
@@ -243,7 +243,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **report_name** | **String**| Name of the Report to Retrieve | 
- **organization_id** | **String**| Valid Cybersource Organization Id | [optional] 
+ **organization_id** | **String**| Valid Organization Id | [optional] 
 
 ### Return type
 

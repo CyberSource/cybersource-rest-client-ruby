@@ -26,7 +26,7 @@ api_instance = CyberSource::ReportsApi.new
 create_adhoc_report_request = CyberSource::CreateAdhocReportRequest.new # CreateAdhocReportRequest | Report subscription request payload
 
 opts = { 
-  organization_id: "organization_id_example" # String | Valid Cybersource Organization Id
+  organization_id: "organization_id_example" # String | Valid Organization Id
 }
 
 begin
@@ -42,7 +42,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **create_adhoc_report_request** | [**CreateAdhocReportRequest**](CreateAdhocReportRequest.md)| Report subscription request payload | 
- **organization_id** | **String**| Valid Cybersource Organization Id | [optional] 
+ **organization_id** | **String**| Valid Organization Id | [optional] 
 
 ### Return type
 
@@ -76,7 +76,7 @@ api_instance = CyberSource::ReportsApi.new
 report_id = "report_id_example" # String | Valid Report Id
 
 opts = { 
-  organization_id: "organization_id_example" # String | Valid Cybersource Organization Id
+  organization_id: "organization_id_example" # String | Valid Organization Id
 }
 
 begin
@@ -93,7 +93,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **report_id** | **String**| Valid Report Id | 
- **organization_id** | **String**| Valid Cybersource Organization Id | [optional] 
+ **organization_id** | **String**| Valid Organization Id | [optional] 
 
 ### Return type
 
@@ -131,7 +131,7 @@ end_time = DateTime.parse("2013-10-20T19:20:30+01:00") # DateTime | Valid report
 time_query_type = "time_query_type_example" # String | Specify time you would like to search  Valid values: - reportTimeFrame - executedTime 
 
 opts = { 
-  organization_id: "organization_id_example", # String | Valid Cybersource Organization Id
+  organization_id: "organization_id_example", # String | Valid Organization Id
   report_mime_type: "report_mime_type_example", # String | Valid Report Format  Valid values: - application/xml - text/csv 
   report_frequency: "report_frequency_example", # String | Valid Report Frequency  Valid values: - DAILY - WEEKLY - MONTHLY - USER_DEFINED - ADHOC 
   report_name: "report_name_example", # String | Valid Report Name
@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
  **start_time** | **DateTime**| Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z)  | 
  **end_time** | **DateTime**| Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z)  | 
  **time_query_type** | **String**| Specify time you would like to search  Valid values: - reportTimeFrame - executedTime  | 
- **organization_id** | **String**| Valid Cybersource Organization Id | [optional] 
+ **organization_id** | **String**| Valid Organization Id | [optional] 
  **report_mime_type** | **String**| Valid Report Format  Valid values: - application/xml - text/csv  | [optional] 
  **report_frequency** | **String**| Valid Report Frequency  Valid values: - DAILY - WEEKLY - MONTHLY - USER_DEFINED - ADHOC  | [optional] 
  **report_name** | **String**| Valid Report Name | [optional] 

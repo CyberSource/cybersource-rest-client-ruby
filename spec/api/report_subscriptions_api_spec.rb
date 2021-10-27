@@ -37,7 +37,7 @@ describe 'ReportSubscriptionsApi' do
   # Create or update an already existing classic or standard subscription. 
   # @param predefined_subscription_request_bean Report subscription request payload
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :organization_id Valid Cybersource Organization Id
+  # @option opts [String] :organization_id Valid Organization Id
   # @return [nil]
   describe 'create_standard_or_classic_subscription test' do
     it 'should work' do
@@ -50,7 +50,7 @@ describe 'ReportSubscriptionsApi' do
   # Create a report subscription for your organization. The report name must be unique. 
   # @param create_report_subscription_request Report subscription request payload
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :organization_id Valid Cybersource Organization Id
+  # @option opts [String] :organization_id Valid Organization Id
   # @return [nil]
   describe 'create_subscription test' do
     it 'should work' do
@@ -63,7 +63,7 @@ describe 'ReportSubscriptionsApi' do
   # Delete a report subscription for your organization. You must know the unique name of the report you want to delete. 
   # @param report_name Name of the Report to Delete
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :organization_id Valid Cybersource Organization Id
+  # @option opts [String] :organization_id Valid Organization Id
   # @return [nil]
   describe 'delete_subscription test' do
     it 'should work' do
@@ -75,7 +75,7 @@ describe 'ReportSubscriptionsApi' do
   # Get All Subscriptions
   # View a summary of all report subscriptions. 
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :organization_id Valid Cybersource Organization Id
+  # @option opts [String] :organization_id Valid Organization Id
   # @return [ReportingV3ReportSubscriptionsGet200Response]
   describe 'get_all_subscriptions test' do
     it 'should work' do
@@ -88,7 +88,7 @@ describe 'ReportSubscriptionsApi' do
   # View the details of a report subscription, such as the report format or report frequency, using the report’s unique name. 
   # @param report_name Name of the Report to Retrieve
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :organization_id Valid Cybersource Organization Id
+  # @option opts [String] :organization_id Valid Organization Id
   # @return [ReportingV3ReportSubscriptionsGet200ResponseSubscriptions]
   describe 'get_subscription test' do
     it 'should work' do

@@ -38,7 +38,7 @@ describe 'PaymentBatchSummariesApi' do
   # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
   # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :organization_id Valid Cybersource Organization Id
+  # @option opts [String] :organization_id Valid Organization Id
   # @option opts [String] :roll_up Conditional - RollUp for data for day/week/month. Required while getting breakdown data for a Merchant
   # @option opts [String] :breakdown Conditional - Breakdown on account_rollup/all_merchant/selected_merchant. Required while getting breakdown data for a Merchant.
   # @option opts [Integer] :start_day_of_week Optional - Start day of week to breakdown data for weeks in a month
