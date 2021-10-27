@@ -23,6 +23,8 @@ REM to rename long file name
 
 powershell -Command " rename-item -Path ..\lib\cybersource_rest_client\models\ptsv2payments_processing_information_authorization_options_initiator_merchant_initiated_transaction.rb  -newname ptsv2payments_merchant_initiated_transaction.rb"
 
+powershell -Command " rename-item -Path ..\lib\cybersource_rest_client\models\reporting_v3_interchange_clearing_level_details_get200_response_interchange_clearing_level_details.rb  -newname reporting_get200_response_interchange_clearing_level_details.rb"
+
 REM powershell -Command " rename-item -Path ..\lib\cybersource_rest_client\models\risk_v1_authentication_exemptions_post201_response_consumer_authentication_information_strong_authentication.rb  -newname risk_v1_authentication_exemptions_consumer_authentication_information_strong_authentication.rb"
 
 REM powershell -Command " rename-item -Path ..\lib\cybersource_rest_client\models\tms_v1_instrument_identifiers_payment_instruments_get200_response__embedded__embedded_instrument_identifier.rb  -newname tms_v1_instrument_identifiers_payment_instruments_embedded_instrument_identifier.rb"
@@ -73,6 +75,8 @@ REM powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEa
 REM powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-Object { $_ -replace 'cybersource_rest_client/models/tms_v1_instrument_identifiers_payment_instruments_get200_response__embedded__embedded_instrument_identifier', 'cybersource_rest_client/models/tms_v1_instrument_identifiers_payment_instruments_embedded_instrument_identifier' } | Set-Content ..\lib\cybersource_rest_client.rb"
 
 powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-Object { $_ -replace 'cybersource_rest_client/models/tmsv2customers__embedded_default_payment_instrument__embedded_instrument_identifier_processing_information_authorization_options_initiator_merchant_initiated_transaction', 'cybersource_rest_client/models/tmsv2customers__embedded_merchant_initiated_transaction' } | Set-Content ..\lib\cybersource_rest_client.rb"
+
+powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-Object { $_ -replace 'cybersource_rest_client/models/reporting_v3_interchange_clearing_level_details_get200_response_interchange_clearing_level_details', 'cybersource_rest_client/models/reporting_get200_response_interchange_clearing_level_details' } | Set-Content ..\lib\cybersource_rest_client.rb"
 
 REM powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-Object { $_ -replace 'cybersource_rest_client/models/tms_v1_instrument_identifiers_payment_instruments_get200_response__embedded_processing_information_bank_transfer_options', 'cybersource_rest_client/models/tms_v1_instrument_identifiers_payment_instruments_get200_response_bank_transfer_options' } | Set-Content ..\lib\cybersource_rest_client.rb"
 
