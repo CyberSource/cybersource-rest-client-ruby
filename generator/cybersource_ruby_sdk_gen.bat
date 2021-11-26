@@ -56,6 +56,8 @@ powershell -Command " rename-item -Path ..\lib\cybersource_rest_client\models\tm
 
 powershell -Command " rename-item -Path ..\lib\cybersource_rest_client\models\tmsv2customers__embedded_default_payment_instrument__embedded_instrument_identifier_tokenized_card_card.rb  -newname tmsv2customers__embedded_tokenized_card_card.rb"
 
+powershell -Command " rename-item -Path ..\lib\cybersource_rest_client\models\pts_v2_payments_post201_response_consumer_authentication_information_strong_authentication_issuer_information.rb  -newname pts_v2_payments_post201_response_consumer_authentication_information_issuer_information.rb"
+
 powershell -Command " rename-item -Path ..\docs\Ptsv2paymentsProcessingInformationAuthorizationOptionsInitiatorMerchantInitiatedTransaction.md  -newname Ptsv2paymentsMerchantInitiatedTransaction.md"
 
 powershell -Command " rename-item -Path ..\docs\Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifierProcessingInformationAuthorizationOptionsInitiatorMerchantInitiatedTransaction.md  -newname Tmsv2customersEmbeddedMerchantInitiatedTransaction.md"
@@ -100,6 +102,8 @@ powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-O
 
 powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-Object { $_ -replace 'cybersource_rest_client/models/tmsv2customers__embedded_default_payment_instrument__embedded_instrument_identifier_tokenized_card_card', 'cybersource_rest_client/models/tmsv2customers__embedded_tokenized_card_card' } | Set-Content ..\lib\cybersource_rest_client.rb"
 
+powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-Object { $_ -replace 'cybersource_rest_client/models/pts_v2_payments_post201_response_consumer_authentication_information_strong_authentication_issuer_information', 'cybersource_rest_client/models/pts_v2_payments_post201_response_consumer_authentication_information_issuer_information' } | Set-Content ..\lib\cybersource_rest_client.rb"
+
 powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-Object { $_ -replace 'cybersource_rest_client/models/tmsv2customers__embedded_default_payment_instrument__embedded_instrument_identifier_tokenized_card', 'cybersource_rest_client/models/tmsv2customers__embedded_tokenized_card' } | Set-Content ..\lib\cybersource_rest_client.rb"
 
 powershell -Command "(Get-Content ..\lib\cybersource_rest_client.rb) | ForEach-Object { $_ -replace 'cybersource_rest_client/models/risk_v1_address_verifications_post201_response_address_verification_information_standard_address_address1', 'cybersource_rest_client/models/risk_v1_address_verifications_post201_response_address1' } | Set-Content ..\lib\cybersource_rest_client.rb"
@@ -131,5 +135,26 @@ cd %~dp0\..
 
 git checkout README.md
 git checkout cybersource_rest_client.gemspec
+
+git checkout lib\cybersource_rest_client\api\o_auth_api.rb
+git checkout lib\cybersource_rest_client\models\access_token_response.rb
+git checkout lib\cybersource_rest_client\models\bad_request_error.rb
+git checkout lib\cybersource_rest_client\models\create_access_token_request.rb
+git checkout lib\cybersource_rest_client\models\resource_not_found_error.rb
+git checkout lib\cybersource_rest_client\models\unauthorized_client_error.rb
+
+git checkout docs\OAuthApi.md
+git checkout docs\AccessTokenResponse.md
+git checkout docs\BadRequestError.md
+git checkout docs\CreateAccessTokenRequest.md
+git checkout docs\ResourceNotFoundError.md
+git checkout docs\UnauthorizedClientError.md
+
+git checkout spec\api\o_auth_api_spec.rb
+git checkout spec\models\access_token_response_spec.rb
+git checkout spec\models\bad_request_error_spec.rb
+git checkout spec\models\create_access_token_request_spec.rb
+git checkout spec\models\resource_not_found_error_spec.rb
+git checkout spec\models\unauthorized_client_error_spec.rb
 
 pause

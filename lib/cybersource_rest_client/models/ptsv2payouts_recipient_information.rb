@@ -20,6 +20,9 @@ module CyberSource
     # Middle Initial of recipient. Required only for FDCCompass. 
     attr_accessor :middle_initial
 
+    # Recipient’s middle name. This field is a _passthrough_, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. If the field is not required for the transaction, CyberSource does not forward it to the processor. 
+    attr_accessor :middle_name
+
     # Last name of recipient. characters. * CTV (14) * Paymentech (30) 
     attr_accessor :last_name
 
@@ -49,6 +52,7 @@ module CyberSource
       {
         :'first_name' => :'firstName',
         :'middle_initial' => :'middleInitial',
+        :'middle_name' => :'middleName',
         :'last_name' => :'lastName',
         :'address1' => :'address1',
         :'locality' => :'locality',
@@ -65,6 +69,7 @@ module CyberSource
       {
         :'first_name' => :'String',
         :'middle_initial' => :'String',
+        :'middle_name' => :'String',
         :'last_name' => :'String',
         :'address1' => :'String',
         :'locality' => :'String',
@@ -90,6 +95,10 @@ module CyberSource
 
       if attributes.has_key?(:'middleInitial')
         self.middle_initial = attributes[:'middleInitial']
+      end
+
+      if attributes.has_key?(:'middleName')
+        self.middle_name = attributes[:'middleName']
       end
 
       if attributes.has_key?(:'lastName')
@@ -151,6 +160,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] middle_name Value to be assigned
+    def middle_name=(middle_name)
+      @middle_name = middle_name
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] last_name Value to be assigned
     def last_name=(last_name)
       @last_name = last_name
@@ -205,6 +220,7 @@ module CyberSource
       self.class == o.class &&
           first_name == o.first_name &&
           middle_initial == o.middle_initial &&
+          middle_name == o.middle_name &&
           last_name == o.last_name &&
           address1 == o.address1 &&
           locality == o.locality &&
@@ -224,7 +240,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [first_name, middle_initial, last_name, address1, locality, administrative_area, country, postal_code, phone_number, date_of_birth].hash
+      [first_name, middle_initial, middle_name, last_name, address1, locality, administrative_area, country, postal_code, phone_number, date_of_birth].hash
     end
 
     # Builds the object from hash

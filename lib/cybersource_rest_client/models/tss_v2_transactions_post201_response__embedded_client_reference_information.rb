@@ -23,12 +23,15 @@ module CyberSource
     # The entity that is responsible for running the transaction and submitting the processing request to CyberSource. This could be a person, a system, or a connection method. 
     attr_accessor :application_user
 
+    attr_accessor :partner
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'code' => :'code',
         :'application_name' => :'applicationName',
-        :'application_user' => :'applicationUser'
+        :'application_user' => :'applicationUser',
+        :'partner' => :'partner'
       }
     end
 
@@ -37,7 +40,8 @@ module CyberSource
       {
         :'code' => :'String',
         :'application_name' => :'String',
-        :'application_user' => :'String'
+        :'application_user' => :'String',
+        :'partner' => :'TssV2TransactionsPost201ResponseEmbeddedClientReferenceInformationPartner'
       }
     end
 
@@ -59,6 +63,10 @@ module CyberSource
 
       if attributes.has_key?(:'applicationUser')
         self.application_user = attributes[:'applicationUser']
+      end
+
+      if attributes.has_key?(:'partner')
+        self.partner = attributes[:'partner']
       end
     end
 
@@ -88,7 +96,8 @@ module CyberSource
       self.class == o.class &&
           code == o.code &&
           application_name == o.application_name &&
-          application_user == o.application_user
+          application_user == o.application_user &&
+          partner == o.partner
     end
 
     # @see the `==` method
@@ -100,7 +109,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [code, application_name, application_user].hash
+      [code, application_name, application_user, partner].hash
     end
 
     # Builds the object from hash

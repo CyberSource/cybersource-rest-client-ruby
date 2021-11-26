@@ -152,6 +152,12 @@ describe 'PtsV2PaymentsPost201ResponseConsumerAuthenticationInformation' do
     end
   end
 
+  describe 'test attribute "strong_authentication"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "network_score"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

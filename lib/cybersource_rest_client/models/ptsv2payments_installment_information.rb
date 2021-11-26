@@ -53,6 +53,12 @@ module CyberSource
     # Amount of the first installment payment. The issuer provides this value when the first installment payment is successful. This field is supported for Mastercard installment payments on CyberSource through VisaNet in all countries except Brazil,Croatia, Georgia, and Greece. The value for this field corresponds to the following data in the TC 33 capture file: - Record: CP01 TCR5 - Position: 23-34 - Field: Amount of Each Installment 
     attr_accessor :first_installment_amount
 
+    # Standing Instruction/Installment validation indicator. - '1': Prevalidated - '2': Not Validated 
+    attr_accessor :validation_indicator
+
+    # Standing Instruction/Installment identifier. 
+    attr_accessor :identifier
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -68,7 +74,9 @@ module CyberSource
         :'eligibility_inquiry' => :'eligibilityInquiry',
         :'grace_period_duration' => :'gracePeriodDuration',
         :'grace_period_duration_type' => :'gracePeriodDurationType',
-        :'first_installment_amount' => :'firstInstallmentAmount'
+        :'first_installment_amount' => :'firstInstallmentAmount',
+        :'validation_indicator' => :'validationIndicator',
+        :'identifier' => :'identifier'
       }
     end
 
@@ -87,7 +95,9 @@ module CyberSource
         :'eligibility_inquiry' => :'String',
         :'grace_period_duration' => :'String',
         :'grace_period_duration_type' => :'String',
-        :'first_installment_amount' => :'String'
+        :'first_installment_amount' => :'String',
+        :'validation_indicator' => :'String',
+        :'identifier' => :'String'
       }
     end
 
@@ -149,6 +159,14 @@ module CyberSource
 
       if attributes.has_key?(:'firstInstallmentAmount')
         self.first_installment_amount = attributes[:'firstInstallmentAmount']
+      end
+
+      if attributes.has_key?(:'validationIndicator')
+        self.validation_indicator = attributes[:'validationIndicator']
+      end
+
+      if attributes.has_key?(:'identifier')
+        self.identifier = attributes[:'identifier']
       end
     end
 
@@ -272,7 +290,9 @@ module CyberSource
           eligibility_inquiry == o.eligibility_inquiry &&
           grace_period_duration == o.grace_period_duration &&
           grace_period_duration_type == o.grace_period_duration_type &&
-          first_installment_amount == o.first_installment_amount
+          first_installment_amount == o.first_installment_amount &&
+          validation_indicator == o.validation_indicator &&
+          identifier == o.identifier
     end
 
     # @see the `==` method
@@ -284,7 +304,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [amount, frequency, plan_type, sequence, total_amount, total_count, first_installment_date, invoice_data, payment_type, eligibility_inquiry, grace_period_duration, grace_period_duration_type, first_installment_amount].hash
+      [amount, frequency, plan_type, sequence, total_amount, total_count, first_installment_date, invoice_data, payment_type, eligibility_inquiry, grace_period_duration, grace_period_duration_type, first_installment_amount, validation_indicator, identifier].hash
     end
 
     # Builds the object from hash
