@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **account** | [**Ptsv2payoutsSenderInformationAccount**](Ptsv2payoutsSenderInformationAccount.md) |  | [optional] 
 **first_name** | **String** | First name of sender (Optional). * CTV (14) * Paymentech (30)  | [optional] 
 **middle_initial** | **String** | Recipient middle initial (Optional).  | [optional] 
+**middle_name** | **String** | Sender’s middle name. This field is a _passthrough_, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. If the field is not required for the transaction, CyberSource does not forward it to the processor.  | [optional] 
 **last_name** | **String** | Recipient last name (Optional). * CTV (14) * Paymentech (30)  | [optional] 
 **name** | **String** | Name of sender.  **Funds Disbursement**  This value is the name of the originator sending the funds disbursement. * CTV, Paymentech (30)  | [optional] 
 **address1** | **String** | Street address of sender.  **Funds Disbursement**  This value is the address of the originator sending the funds disbursement.  | [optional] 

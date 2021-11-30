@@ -20,6 +20,9 @@ module CyberSource
     # Recipient’s last name. This field is a _passthrough_, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. If the field is not required for the transaction, CyberSource does not forward it to the processor.  For details, see the `recipient_lastname` field description in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
     attr_accessor :last_name
 
+    # Recipient’s middle name. This field is a _passthrough_, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. If the field is not required for the transaction, CyberSource does not forward it to the processor.  For details, see the `recipient_middlename` field description in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
+    attr_accessor :middle_name
+
     # Partial postal code for the recipient’s address. For example, if the postal code is **NN5 7SG**, the value for this field should be the first part of the postal code: **NN5**. This field is a _pass-through_, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. If the field is not required for the transaction, CyberSource does not forward it to the processor.  For details, see the `recipient_postal_code` field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
     attr_accessor :postal_code
 
@@ -28,6 +31,7 @@ module CyberSource
       {
         :'account_id' => :'accountId',
         :'last_name' => :'lastName',
+        :'middle_name' => :'middleName',
         :'postal_code' => :'postalCode'
       }
     end
@@ -37,6 +41,7 @@ module CyberSource
       {
         :'account_id' => :'String',
         :'last_name' => :'String',
+        :'middle_name' => :'String',
         :'postal_code' => :'String'
       }
     end
@@ -55,6 +60,10 @@ module CyberSource
 
       if attributes.has_key?(:'lastName')
         self.last_name = attributes[:'lastName']
+      end
+
+      if attributes.has_key?(:'middleName')
+        self.middle_name = attributes[:'middleName']
       end
 
       if attributes.has_key?(:'postalCode')
@@ -88,6 +97,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] middle_name Value to be assigned
+    def middle_name=(middle_name)
+      @middle_name = middle_name
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] postal_code Value to be assigned
     def postal_code=(postal_code)
       @postal_code = postal_code
@@ -100,6 +115,7 @@ module CyberSource
       self.class == o.class &&
           account_id == o.account_id &&
           last_name == o.last_name &&
+          middle_name == o.middle_name &&
           postal_code == o.postal_code
     end
 
@@ -112,7 +128,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [account_id, last_name, postal_code].hash
+      [account_id, last_name, middle_name, postal_code].hash
     end
 
     # Builds the object from hash

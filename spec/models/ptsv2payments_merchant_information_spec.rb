@@ -38,6 +38,12 @@ describe 'Ptsv2paymentsMerchantInformation' do
     end
   end
 
+  describe 'test attribute "domain_name"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "sales_organization_id"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

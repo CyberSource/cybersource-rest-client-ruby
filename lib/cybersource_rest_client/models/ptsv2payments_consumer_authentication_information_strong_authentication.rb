@@ -29,6 +29,9 @@ module CyberSource
     # This field will contain the delegated authentication exemption indicator with one of the following values: Possible values: - `0`  (delegated Authentication exemption does not apply to the transaction) - `1` (Transaction exempt from SCA as authentication has been delegated to other provider (PSP,Acquirer)) 
     attr_accessor :delegated_authentication_exemption_indicator
 
+    # This field will contain the outage exemption indicator with one of the following values: Possible values: - `0`  (Outage Authentication exemption does not apply to the transaction) - `1` (Outage exempt from SCA as authentication could not be done due to outage) 
+    attr_accessor :outage_exemption_indicator
+
     # Indicates the type of Authentication request  01 - Payment transaction  02 - Recurring transaction  03 - Installment transaction  04 - Add card  05 - Maintain card  06 - Cardholder verification as part of EMV token ID and V 
     attr_accessor :authentication_indicator
 
@@ -40,6 +43,7 @@ module CyberSource
         :'trusted_merchant_exemption_indicator' => :'trustedMerchantExemptionIndicator',
         :'secure_corporate_payment_indicator' => :'secureCorporatePaymentIndicator',
         :'delegated_authentication_exemption_indicator' => :'delegatedAuthenticationExemptionIndicator',
+        :'outage_exemption_indicator' => :'outageExemptionIndicator',
         :'authentication_indicator' => :'authenticationIndicator'
       }
     end
@@ -52,6 +56,7 @@ module CyberSource
         :'trusted_merchant_exemption_indicator' => :'String',
         :'secure_corporate_payment_indicator' => :'String',
         :'delegated_authentication_exemption_indicator' => :'String',
+        :'outage_exemption_indicator' => :'String',
         :'authentication_indicator' => :'String'
       }
     end
@@ -82,6 +87,10 @@ module CyberSource
 
       if attributes.has_key?(:'delegatedAuthenticationExemptionIndicator')
         self.delegated_authentication_exemption_indicator = attributes[:'delegatedAuthenticationExemptionIndicator']
+      end
+
+      if attributes.has_key?(:'outageExemptionIndicator')
+        self.outage_exemption_indicator = attributes[:'outageExemptionIndicator']
       end
 
       if attributes.has_key?(:'authenticationIndicator')
@@ -133,6 +142,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] outage_exemption_indicator Value to be assigned
+    def outage_exemption_indicator=(outage_exemption_indicator)
+      @outage_exemption_indicator = outage_exemption_indicator
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] authentication_indicator Value to be assigned
     def authentication_indicator=(authentication_indicator)
       @authentication_indicator = authentication_indicator
@@ -148,6 +163,7 @@ module CyberSource
           trusted_merchant_exemption_indicator == o.trusted_merchant_exemption_indicator &&
           secure_corporate_payment_indicator == o.secure_corporate_payment_indicator &&
           delegated_authentication_exemption_indicator == o.delegated_authentication_exemption_indicator &&
+          outage_exemption_indicator == o.outage_exemption_indicator &&
           authentication_indicator == o.authentication_indicator
     end
 
@@ -160,7 +176,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [low_value_exemption_indicator, risk_analysis_exemption_indicator, trusted_merchant_exemption_indicator, secure_corporate_payment_indicator, delegated_authentication_exemption_indicator, authentication_indicator].hash
+      [low_value_exemption_indicator, risk_analysis_exemption_indicator, trusted_merchant_exemption_indicator, secure_corporate_payment_indicator, delegated_authentication_exemption_indicator, outage_exemption_indicator, authentication_indicator].hash
     end
 
     # Builds the object from hash

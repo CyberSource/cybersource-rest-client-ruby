@@ -25,6 +25,9 @@ module CyberSource
     # Same value as `processorInformation.transactionId`
     attr_accessor :network_transaction_id
 
+    # #### Ingenico ePayments Unique number that CyberSource generates to identify the transaction. You can use this value to identify transactions in the Ingenico ePayments Collections Report, which provides settlement information. Contact customer support for information about the report.  ### CyberSource through VisaNet Retrieval request number. 
+    attr_accessor :retrieval_reference_number
+
     # Response ID sent from the processor. 
     attr_accessor :response_id
 
@@ -55,6 +58,7 @@ module CyberSource
         :'multi_processor_routing' => :'multiProcessorRouting',
         :'transaction_id' => :'transactionId',
         :'network_transaction_id' => :'networkTransactionId',
+        :'retrieval_reference_number' => :'retrievalReferenceNumber',
         :'response_id' => :'responseId',
         :'approval_code' => :'approvalCode',
         :'response_code' => :'responseCode',
@@ -74,6 +78,7 @@ module CyberSource
         :'multi_processor_routing' => :'Array<TssV2TransactionsGet200ResponseProcessorInformationMultiProcessorRouting>',
         :'transaction_id' => :'String',
         :'network_transaction_id' => :'String',
+        :'retrieval_reference_number' => :'String',
         :'response_id' => :'String',
         :'approval_code' => :'String',
         :'response_code' => :'String',
@@ -110,6 +115,10 @@ module CyberSource
 
       if attributes.has_key?(:'networkTransactionId')
         self.network_transaction_id = attributes[:'networkTransactionId']
+      end
+
+      if attributes.has_key?(:'retrievalReferenceNumber')
+        self.retrieval_reference_number = attributes[:'retrievalReferenceNumber']
       end
 
       if attributes.has_key?(:'responseId')
@@ -169,6 +178,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] retrieval_reference_number Value to be assigned
+    def retrieval_reference_number=(retrieval_reference_number)
+      @retrieval_reference_number = retrieval_reference_number
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] approval_code Value to be assigned
     def approval_code=(approval_code)
       @approval_code = approval_code
@@ -201,6 +216,7 @@ module CyberSource
           multi_processor_routing == o.multi_processor_routing &&
           transaction_id == o.transaction_id &&
           network_transaction_id == o.network_transaction_id &&
+          retrieval_reference_number == o.retrieval_reference_number &&
           response_id == o.response_id &&
           approval_code == o.approval_code &&
           response_code == o.response_code &&
@@ -221,7 +237,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [processor, multi_processor_routing, transaction_id, network_transaction_id, response_id, approval_code, response_code, avs, card_verification, ach_verification, electronic_verification_results, system_trace_audit_number, response_code_source].hash
+      [processor, multi_processor_routing, transaction_id, network_transaction_id, retrieval_reference_number, response_id, approval_code, response_code, avs, card_verification, ach_verification, electronic_verification_results, system_trace_audit_number, response_code_source].hash
     end
 
     # Builds the object from hash

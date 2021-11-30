@@ -50,6 +50,8 @@ module CyberSource
 
     attr_accessor :token_information
 
+    attr_accessor :buyer_information
+
     attr_accessor :risk_information
 
     attr_accessor :consumer_authentication_information
@@ -73,6 +75,7 @@ module CyberSource
         :'point_of_sale_information' => :'pointOfSaleInformation',
         :'installment_information' => :'installmentInformation',
         :'token_information' => :'tokenInformation',
+        :'buyer_information' => :'buyerInformation',
         :'risk_information' => :'riskInformation',
         :'consumer_authentication_information' => :'consumerAuthenticationInformation'
       }
@@ -97,6 +100,7 @@ module CyberSource
         :'point_of_sale_information' => :'PtsV2PaymentsPost201ResponsePointOfSaleInformation',
         :'installment_information' => :'PtsV2PaymentsPost201ResponseInstallmentInformation',
         :'token_information' => :'PtsV2PaymentsPost201ResponseTokenInformation',
+        :'buyer_information' => :'PtsV2PaymentsPost201ResponseBuyerInformation',
         :'risk_information' => :'PtsV2PaymentsPost201ResponseRiskInformation',
         :'consumer_authentication_information' => :'PtsV2PaymentsPost201ResponseConsumerAuthenticationInformation'
       }
@@ -174,6 +178,10 @@ module CyberSource
         self.token_information = attributes[:'tokenInformation']
       end
 
+      if attributes.has_key?(:'buyerInformation')
+        self.buyer_information = attributes[:'buyerInformation']
+      end
+
       if attributes.has_key?(:'riskInformation')
         self.risk_information = attributes[:'riskInformation']
       end
@@ -229,6 +237,7 @@ module CyberSource
           point_of_sale_information == o.point_of_sale_information &&
           installment_information == o.installment_information &&
           token_information == o.token_information &&
+          buyer_information == o.buyer_information &&
           risk_information == o.risk_information &&
           consumer_authentication_information == o.consumer_authentication_information
     end
@@ -242,7 +251,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, submit_time_utc, status, reconciliation_id, error_information, client_reference_information, processing_information, processor_information, issuer_information, payment_account_information, payment_information, order_information, point_of_sale_information, installment_information, token_information, risk_information, consumer_authentication_information].hash
+      [_links, id, submit_time_utc, status, reconciliation_id, error_information, client_reference_information, processing_information, processor_information, issuer_information, payment_account_information, payment_information, order_information, point_of_sale_information, installment_information, token_information, buyer_information, risk_information, consumer_authentication_information].hash
     end
 
     # Builds the object from hash

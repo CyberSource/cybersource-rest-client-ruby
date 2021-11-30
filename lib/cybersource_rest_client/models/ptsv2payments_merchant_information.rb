@@ -16,6 +16,9 @@ module CyberSource
   class Ptsv2paymentsMerchantInformation
     attr_accessor :merchant_descriptor
 
+    # This field will contain either the merchant url or the reverse domain as per the requirement for DSRP Format 3. This might vary transaction to transaction and might not be static. Merchant needs to have access to send this value for all DSRP program. 
+    attr_accessor :domain_name
+
     # Company ID assigned to an independent sales organization. Get this value from Mastercard.  #### CyberSource through VisaNet The value for this field corresponds to the following data in the TC 33 capture file: - Record: CP01 TCR6 - Position: 106-116 - Field: Mastercard Independent Sales Organization ID  **Note** The TC 33 Capture file contains information about the purchases and refunds that a merchant submits to CyberSource. CyberSource through VisaNet creates the TC 33 Capture file at the end of the day and sends it to the merchant’s acquirer, who uses this information to facilitate end-of-day clearing processing with payment card companies.  For processor-specific information, see the `sales_organization_ID` field description in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
     attr_accessor :sales_organization_id
 
@@ -46,6 +49,7 @@ module CyberSource
     def self.attribute_map
       {
         :'merchant_descriptor' => :'merchantDescriptor',
+        :'domain_name' => :'domainName',
         :'sales_organization_id' => :'salesOrganizationId',
         :'category_code' => :'categoryCode',
         :'category_code_domestic' => :'categoryCodeDomestic',
@@ -62,6 +66,7 @@ module CyberSource
     def self.swagger_types
       {
         :'merchant_descriptor' => :'Ptsv2paymentsMerchantInformationMerchantDescriptor',
+        :'domain_name' => :'String',
         :'sales_organization_id' => :'String',
         :'category_code' => :'Integer',
         :'category_code_domestic' => :'Integer',
@@ -84,6 +89,10 @@ module CyberSource
 
       if attributes.has_key?(:'merchantDescriptor')
         self.merchant_descriptor = attributes[:'merchantDescriptor']
+      end
+
+      if attributes.has_key?(:'domainName')
+        self.domain_name = attributes[:'domainName']
       end
 
       if attributes.has_key?(:'salesOrganizationId')
@@ -144,6 +153,12 @@ module CyberSource
       return false if !@category_code.nil? && @category_code > 9999
       return false if !@category_code_domestic.nil? && @category_code_domestic > 9999
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] domain_name Value to be assigned
+    def domain_name=(domain_name)
+      @domain_name = domain_name
     end
 
     # Custom attribute writer method with validation
@@ -208,6 +223,7 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           merchant_descriptor == o.merchant_descriptor &&
+          domain_name == o.domain_name &&
           sales_organization_id == o.sales_organization_id &&
           category_code == o.category_code &&
           category_code_domestic == o.category_code_domestic &&
@@ -228,7 +244,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [merchant_descriptor, sales_organization_id, category_code, category_code_domestic, tax_id, vat_registration_number, card_acceptor_reference_number, transaction_local_date_time, service_fee_descriptor, merchant_name].hash
+      [merchant_descriptor, domain_name, sales_organization_id, category_code, category_code_domestic, tax_id, vat_registration_number, card_acceptor_reference_number, transaction_local_date_time, service_fee_descriptor, merchant_name].hash
     end
 
     # Builds the object from hash

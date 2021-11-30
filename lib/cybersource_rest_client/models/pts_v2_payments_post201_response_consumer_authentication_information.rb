@@ -73,6 +73,8 @@ module CyberSource
 
     attr_accessor :ivr
 
+    attr_accessor :strong_authentication
+
     # The global score calculated by the CB scoring platform and returned to merchants. 
     attr_accessor :network_score
 
@@ -159,6 +161,7 @@ module CyberSource
         :'eci_raw' => :'eciRaw',
         :'effective_authentication_type' => :'effectiveAuthenticationType',
         :'ivr' => :'ivr',
+        :'strong_authentication' => :'strongAuthentication',
         :'network_score' => :'networkScore',
         :'pareq' => :'pareq',
         :'pares_status' => :'paresStatus',
@@ -206,6 +209,7 @@ module CyberSource
         :'eci_raw' => :'String',
         :'effective_authentication_type' => :'String',
         :'ivr' => :'PtsV2PaymentsPost201ResponseConsumerAuthenticationInformationIvr',
+        :'strong_authentication' => :'PtsV2PaymentsPost201ResponseConsumerAuthenticationInformationStrongAuthentication',
         :'network_score' => :'String',
         :'pareq' => :'String',
         :'pares_status' => :'String',
@@ -316,6 +320,10 @@ module CyberSource
 
       if attributes.has_key?(:'ivr')
         self.ivr = attributes[:'ivr']
+      end
+
+      if attributes.has_key?(:'strongAuthentication')
+        self.strong_authentication = attributes[:'strongAuthentication']
       end
 
       if attributes.has_key?(:'networkScore')
@@ -567,6 +575,7 @@ module CyberSource
           eci_raw == o.eci_raw &&
           effective_authentication_type == o.effective_authentication_type &&
           ivr == o.ivr &&
+          strong_authentication == o.strong_authentication &&
           network_score == o.network_score &&
           pareq == o.pareq &&
           pares_status == o.pares_status &&
@@ -599,7 +608,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [access_token, acs_rendering_type, acs_transaction_id, acs_url, authentication_path, authorization_payload, authentication_transaction_id, cardholder_message, cavv, cavv_algorithm, challenge_cancel_code, challenge_required, decoupled_authentication_indicator, directory_server_error_code, directory_server_error_description, ecommerce_indicator, eci, eci_raw, effective_authentication_type, ivr, network_score, pareq, pares_status, proof_xml, proxy_pan, sdk_transaction_id, signed_pares_status_reason, specification_version, step_up_url, three_ds_server_transaction_id, ucaf_authentication_data, ucaf_collection_indicator, veres_enrolled, white_list_status_source, xid, directory_server_transaction_id, authentication_result, authentication_status_msg, indicator, interaction_counter, white_list_status].hash
+      [access_token, acs_rendering_type, acs_transaction_id, acs_url, authentication_path, authorization_payload, authentication_transaction_id, cardholder_message, cavv, cavv_algorithm, challenge_cancel_code, challenge_required, decoupled_authentication_indicator, directory_server_error_code, directory_server_error_description, ecommerce_indicator, eci, eci_raw, effective_authentication_type, ivr, strong_authentication, network_score, pareq, pares_status, proof_xml, proxy_pan, sdk_transaction_id, signed_pares_status_reason, specification_version, step_up_url, three_ds_server_transaction_id, ucaf_authentication_data, ucaf_collection_indicator, veres_enrolled, white_list_status_source, xid, directory_server_transaction_id, authentication_result, authentication_status_msg, indicator, interaction_counter, white_list_status].hash
     end
 
     # Builds the object from hash

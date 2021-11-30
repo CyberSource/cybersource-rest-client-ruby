@@ -62,4 +62,16 @@ describe 'Ptsv2payoutsProcessingInformation' do
     end
   end
 
+  describe 'test attribute "transaction_reason"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "purpose_of_payment"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

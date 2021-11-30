@@ -28,6 +28,12 @@ module CyberSource
 
     attr_accessor :payouts_options
 
+    # Transaction reason code. 
+    attr_accessor :transaction_reason
+
+    # This will send purpose of funds code for original credit transactions (OCTs). 
+    attr_accessor :purpose_of_payment
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -35,7 +41,9 @@ module CyberSource
         :'network_routing_order' => :'networkRoutingOrder',
         :'commerce_indicator' => :'commerceIndicator',
         :'reconciliation_id' => :'reconciliationId',
-        :'payouts_options' => :'payoutsOptions'
+        :'payouts_options' => :'payoutsOptions',
+        :'transaction_reason' => :'transactionReason',
+        :'purpose_of_payment' => :'purposeOfPayment'
       }
     end
 
@@ -46,7 +54,9 @@ module CyberSource
         :'network_routing_order' => :'String',
         :'commerce_indicator' => :'String',
         :'reconciliation_id' => :'String',
-        :'payouts_options' => :'Ptsv2payoutsProcessingInformationPayoutsOptions'
+        :'payouts_options' => :'Ptsv2payoutsProcessingInformationPayoutsOptions',
+        :'transaction_reason' => :'String',
+        :'purpose_of_payment' => :'String'
       }
     end
 
@@ -76,6 +86,14 @@ module CyberSource
 
       if attributes.has_key?(:'payoutsOptions')
         self.payouts_options = attributes[:'payoutsOptions']
+      end
+
+      if attributes.has_key?(:'transactionReason')
+        self.transaction_reason = attributes[:'transactionReason']
+      end
+
+      if attributes.has_key?(:'purposeOfPayment')
+        self.purpose_of_payment = attributes[:'purposeOfPayment']
       end
     end
 
@@ -116,6 +134,18 @@ module CyberSource
       @reconciliation_id = reconciliation_id
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] transaction_reason Value to be assigned
+    def transaction_reason=(transaction_reason)
+      @transaction_reason = transaction_reason
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] purpose_of_payment Value to be assigned
+    def purpose_of_payment=(purpose_of_payment)
+      @purpose_of_payment = purpose_of_payment
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -125,7 +155,9 @@ module CyberSource
           network_routing_order == o.network_routing_order &&
           commerce_indicator == o.commerce_indicator &&
           reconciliation_id == o.reconciliation_id &&
-          payouts_options == o.payouts_options
+          payouts_options == o.payouts_options &&
+          transaction_reason == o.transaction_reason &&
+          purpose_of_payment == o.purpose_of_payment
     end
 
     # @see the `==` method
@@ -137,7 +169,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [business_application_id, network_routing_order, commerce_indicator, reconciliation_id, payouts_options].hash
+      [business_application_id, network_routing_order, commerce_indicator, reconciliation_id, payouts_options, transaction_reason, purpose_of_payment].hash
     end
 
     # Builds the object from hash
