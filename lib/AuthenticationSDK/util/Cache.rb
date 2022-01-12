@@ -12,7 +12,7 @@ public
         certificateFromP12File = getCertificate(p12File, keyPass, cacheObj, currentFileLastModifiedTime)
         return certificateFromP12File
         elsif currentFileLastModifiedTime > cachedLastModifiedTimeStamp
-        # Function call to read the file and put values to new cache 
+        # Function call to read the file and put values to new cache
         certificateFromP12File = getCertificate(p12File, keyPass, cacheObj, currentFileLastModifiedTime)
         return certificateFromP12File
       else

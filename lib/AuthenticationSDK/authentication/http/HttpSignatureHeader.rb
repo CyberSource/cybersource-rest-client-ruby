@@ -1,9 +1,10 @@
 require 'base64'
 require_relative '../../core/ITokenGeneration.rb'
 require_relative '../../util/Constants.rb'
-require_relative '../../util/ApiException.rb'
 require_relative '.././payloadDigest/digest.rb'
 require_relative '.././http/GetSignatureParameter.rb'
+require_relative '../../logging/log_factory.rb'
+require_relative '../../util/ExceptionHandler.rb'
 public
 #  SignatureHeader return SignatureHeader Value that contains following paramters
 #  * keyid     -- Merchant ID obtained from EBC portal
@@ -15,23 +16,30 @@ public
 #  * signature -- Signature header has paramter called signature
 #                 Paramter 'Signature' must contain all the paramters mentioned in header above in given order
   class GenerateHttpSignature
+    @log_obj
     # Generates Signature based on the requestType
-    def getToken(merchantconfig_obj, gmtdatetime, log_obj)
+    def getToken(merchantconfig_obj, gmtdatetime)
+      @log_obj = Log.new merchantconfig_obj.log_config, "GenerateHttpSignature"
+
       request_type = merchantconfig_obj.requestType.upcase
       signatureHeaderValue =''
       signatureHeaderValue << Constants::KEY_ID + merchantconfig_obj.merchantKeyId + "\""
+
       # Algorithm should be always HmacSHA256 for http signature
       signatureHeaderValue << ', ' + Constants::ALGORITHM + Constants::SIGNATURE_ALGORITHM + "\""
+
       # Headers - list is choosen based on HTTP method
       signatureheader=getsignatureHeader(request_type)
       signatureHeaderValue << ', ' + Constants::HEADERS_PARAM + signatureheader + "\""
+
       # Get Value for parameter 'Signature' to be passed to Signature Header
-      signature_value = SignatureParameter.new.generateSignatureParameter(merchantconfig_obj, gmtdatetime, log_obj)
+      signature_value = SignatureParameter.new.generateSignatureParameter(merchantconfig_obj, gmtdatetime)
       signatureHeaderValue << ', ' + Constants::SIGNATURE_PARAM + signature_value + "\""
       return signatureHeaderValue
     rescue StandardError => err
-      ApiException.new.apiexception(err,log_obj)
-      exit!
+      @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+      raise err
+      # exit!
     end
     def getsignatureHeader(request_type)
       headers = ''
