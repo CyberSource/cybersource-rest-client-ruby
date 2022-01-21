@@ -34,6 +34,8 @@ module CyberSource
 
     attr_accessor :payment_type
 
+    attr_accessor :e_wallet
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -46,7 +48,8 @@ module CyberSource
         :'instrument_identifier' => :'instrumentIdentifier',
         :'shipping_address' => :'shippingAddress',
         :'legacy_token' => :'legacyToken',
-        :'payment_type' => :'paymentType'
+        :'payment_type' => :'paymentType',
+        :'e_wallet' => :'eWallet'
       }
     end
 
@@ -54,7 +57,7 @@ module CyberSource
     def self.swagger_types
       {
         :'card' => :'Ptsv2paymentsidrefundsPaymentInformationCard',
-        :'bank' => :'Ptsv2paymentsPaymentInformationBank',
+        :'bank' => :'Ptsv2paymentsidrefundsPaymentInformationBank',
         :'tokenized_card' => :'Ptsv2paymentsPaymentInformationTokenizedCard',
         :'fluid_data' => :'Ptsv2paymentsPaymentInformationFluidData',
         :'customer' => :'Ptsv2paymentsPaymentInformationCustomer',
@@ -62,7 +65,8 @@ module CyberSource
         :'instrument_identifier' => :'Ptsv2paymentsPaymentInformationInstrumentIdentifier',
         :'shipping_address' => :'Ptsv2paymentsPaymentInformationShippingAddress',
         :'legacy_token' => :'Ptsv2paymentsPaymentInformationLegacyToken',
-        :'payment_type' => :'Ptsv2paymentsPaymentInformationPaymentType'
+        :'payment_type' => :'Ptsv2paymentsPaymentInformationPaymentType',
+        :'e_wallet' => :'Ptsv2paymentsPaymentInformationEWallet'
       }
     end
 
@@ -113,6 +117,10 @@ module CyberSource
       if attributes.has_key?(:'paymentType')
         self.payment_type = attributes[:'paymentType']
       end
+
+      if attributes.has_key?(:'eWallet')
+        self.e_wallet = attributes[:'eWallet']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -142,7 +150,8 @@ module CyberSource
           instrument_identifier == o.instrument_identifier &&
           shipping_address == o.shipping_address &&
           legacy_token == o.legacy_token &&
-          payment_type == o.payment_type
+          payment_type == o.payment_type &&
+          e_wallet == o.e_wallet
     end
 
     # @see the `==` method
@@ -154,7 +163,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card, bank, tokenized_card, fluid_data, customer, payment_instrument, instrument_identifier, shipping_address, legacy_token, payment_type].hash
+      [card, bank, tokenized_card, fluid_data, customer, payment_instrument, instrument_identifier, shipping_address, legacy_token, payment_type, e_wallet].hash
     end
 
     # Builds the object from hash

@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-	  @api_client.set_configuration(config)
+      @api_client.set_configuration(config)
     end
     # Create a Search Request
     # Create a search request. 
@@ -36,14 +36,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(TssV2TransactionsPost201Response, Fixnum, Hash)>] TssV2TransactionsPost201Response data, response status code and response headers
     def create_search_with_http_info(create_search_request, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: SearchTransactionsApi.create_search ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: SearchTransactionsApi.create_search ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'create_search_request' is set
       if @api_client.config.client_side_validation && create_search_request.nil?
@@ -76,13 +76,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'TssV2TransactionsPost201Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: SearchTransactionsApi#create_search\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: SearchTransactionsApi#create_search\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
     # Get Search Results
@@ -101,14 +101,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(TssV2TransactionsPost201Response, Fixnum, Hash)>] TssV2TransactionsPost201Response data, response status code and response headers
     def get_search_with_http_info(search_id, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: SearchTransactionsApi.get_search ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: SearchTransactionsApi.get_search ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'search_id' is set
       if @api_client.config.client_side_validation && search_id.nil?
@@ -141,13 +141,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'TssV2TransactionsPost201Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: SearchTransactionsApi#get_search\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: SearchTransactionsApi#get_search\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
   end

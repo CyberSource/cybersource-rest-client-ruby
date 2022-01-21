@@ -17,17 +17,22 @@ module CyberSource
     # Number of Installments.
     attr_accessor :number_of_installments
 
+    # Standing Instruction/Installment identifier. 
+    attr_accessor :identifier
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'number_of_installments' => :'numberOfInstallments'
+        :'number_of_installments' => :'numberOfInstallments',
+        :'identifier' => :'identifier'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'number_of_installments' => :'String'
+        :'number_of_installments' => :'String',
+        :'identifier' => :'String'
       }
     end
 
@@ -41,6 +46,10 @@ module CyberSource
 
       if attributes.has_key?(:'numberOfInstallments')
         self.number_of_installments = attributes[:'numberOfInstallments']
+      end
+
+      if attributes.has_key?(:'identifier')
+        self.identifier = attributes[:'identifier']
       end
     end
 
@@ -62,7 +71,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          number_of_installments == o.number_of_installments
+          number_of_installments == o.number_of_installments &&
+          identifier == o.identifier
     end
 
     # @see the `==` method
@@ -74,7 +84,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [number_of_installments].hash
+      [number_of_installments, identifier].hash
     end
 
     # Builds the object from hash

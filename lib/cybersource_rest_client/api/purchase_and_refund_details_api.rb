@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-	  @api_client.set_configuration(config)
+      @api_client.set_configuration(config)
     end
     # Get Purchase and Refund Details
     # Download the Purchase and Refund Details report. This report report includes all purchases and refund transactions, as well as all activities related to transactions resulting in an adjustment to the net proceeds. 
@@ -50,14 +50,14 @@ module CyberSource
     # @option opts [Integer] :limit Results count per page. Range(1-2000)
     # @return [Array<(ReportingV3PurchaseRefundDetailsGet200Response, Fixnum, Hash)>] ReportingV3PurchaseRefundDetailsGet200Response data, response status code and response headers
     def get_purchase_and_refund_details_with_http_info(start_time, end_time, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: PurchaseAndRefundDetailsApi.get_purchase_and_refund_details ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: PurchaseAndRefundDetailsApi.get_purchase_and_refund_details ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'start_time' is set
       if @api_client.config.client_side_validation && start_time.nil?
@@ -122,13 +122,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'ReportingV3PurchaseRefundDetailsGet200Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: PurchaseAndRefundDetailsApi#get_purchase_and_refund_details\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: PurchaseAndRefundDetailsApi#get_purchase_and_refund_details\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
   end

@@ -90,6 +90,12 @@ module CyberSource
     # #### Ingenico ePayments Unique number that CyberSource generates to identify the transaction. You can use this value to identify transactions in the Ingenico ePayments Collections Report, which provides settlement information. Contact customer support for information about the report.  ### CyberSource through VisaNet Retrieval request number. 
     attr_accessor :retrieval_reference_number
 
+    # Direct the customer to this URL to complete the payment.
+    attr_accessor :payment_url
+
+    # The redirect URL for forwarding the consumer to complete page.  This redirect needed by PSP to track browser information of consumer. PSP then redirect consumer to merchant success URL. 
+    attr_accessor :complete_url
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -120,7 +126,9 @@ module CyberSource
         :'name' => :'name',
         :'routing' => :'routing',
         :'merchant_number' => :'merchantNumber',
-        :'retrieval_reference_number' => :'retrievalReferenceNumber'
+        :'retrieval_reference_number' => :'retrievalReferenceNumber',
+        :'payment_url' => :'paymentUrl',
+        :'complete_url' => :'completeUrl'
       }
     end
 
@@ -154,7 +162,9 @@ module CyberSource
         :'name' => :'String',
         :'routing' => :'PtsV2PaymentsPost201ResponseProcessorInformationRouting',
         :'merchant_number' => :'String',
-        :'retrieval_reference_number' => :'String'
+        :'retrieval_reference_number' => :'String',
+        :'payment_url' => :'String',
+        :'complete_url' => :'String'
       }
     end
 
@@ -276,6 +286,14 @@ module CyberSource
 
       if attributes.has_key?(:'retrievalReferenceNumber')
         self.retrieval_reference_number = attributes[:'retrievalReferenceNumber']
+      end
+
+      if attributes.has_key?(:'paymentUrl')
+        self.payment_url = attributes[:'paymentUrl']
+      end
+
+      if attributes.has_key?(:'completeUrl')
+        self.complete_url = attributes[:'completeUrl']
       end
     end
 
@@ -406,6 +424,18 @@ module CyberSource
       @retrieval_reference_number = retrieval_reference_number
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] payment_url Value to be assigned
+    def payment_url=(payment_url)
+      @payment_url = payment_url
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] complete_url Value to be assigned
+    def complete_url=(complete_url)
+      @complete_url = complete_url
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -438,7 +468,9 @@ module CyberSource
           name == o.name &&
           routing == o.routing &&
           merchant_number == o.merchant_number &&
-          retrieval_reference_number == o.retrieval_reference_number
+          retrieval_reference_number == o.retrieval_reference_number &&
+          payment_url == o.payment_url &&
+          complete_url == o.complete_url
     end
 
     # @see the `==` method
@@ -450,7 +482,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [auth_indicator, approval_code, card_reference_data, transaction_id, network_transaction_id, response_code, response_code_source, response_details, response_category_code, forwarded_acquirer_code, avs, card_verification, merchant_advice, electronic_verification_results, ach_verification, customer, consumer_authentication_response, system_trace_audit_number, payment_account_reference_number, transaction_integrity_code, amex_verbal_auth_reference_number, master_card_service_code, master_card_service_reply_code, master_card_authentication_type, name, routing, merchant_number, retrieval_reference_number].hash
+      [auth_indicator, approval_code, card_reference_data, transaction_id, network_transaction_id, response_code, response_code_source, response_details, response_category_code, forwarded_acquirer_code, avs, card_verification, merchant_advice, electronic_verification_results, ach_verification, customer, consumer_authentication_response, system_trace_audit_number, payment_account_reference_number, transaction_integrity_code, amex_verbal_auth_reference_number, master_card_service_code, master_card_service_reply_code, master_card_authentication_type, name, routing, merchant_number, retrieval_reference_number, payment_url, complete_url].hash
     end
 
     # Builds the object from hash

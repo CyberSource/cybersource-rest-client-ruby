@@ -37,7 +37,6 @@ module CyberSource
     # End time of the report
     attr_accessor :report_end_time
 
-    # List of filters to apply
     attr_accessor :report_filters
 
     attr_accessor :report_preferences
@@ -73,7 +72,7 @@ module CyberSource
         :'timezone' => :'String',
         :'report_start_time' => :'DateTime',
         :'report_end_time' => :'DateTime',
-        :'report_filters' => :'Hash<String, Array<String>>',
+        :'report_filters' => :'Reportingv3reportsReportFilters',
         :'report_preferences' => :'Reportingv3reportsReportPreferences',
         :'group_name' => :'String'
       }
@@ -122,9 +121,7 @@ module CyberSource
       end
 
       if attributes.has_key?(:'reportFilters')
-        if (value = attributes[:'reportFilters']).is_a?(Hash)
-          self.report_filters = value
-        end
+        self.report_filters = attributes[:'reportFilters']
       end
 
       if attributes.has_key?(:'reportPreferences')

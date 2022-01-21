@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-	  @api_client.set_configuration(config)
+      @api_client.set_configuration(config)
     end
     # Check Payer Auth Enrollment
     # This call verifies that the card is enrolled in a card authentication program.
@@ -36,14 +36,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(RiskV1AuthenticationsPost201Response, Fixnum, Hash)>] RiskV1AuthenticationsPost201Response data, response status code and response headers
     def check_payer_auth_enrollment_with_http_info(check_payer_auth_enrollment_request, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: PayerAuthenticationApi.check_payer_auth_enrollment ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: PayerAuthenticationApi.check_payer_auth_enrollment ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'check_payer_auth_enrollment_request' is set
       if @api_client.config.client_side_validation && check_payer_auth_enrollment_request.nil?
@@ -76,13 +76,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'RiskV1AuthenticationsPost201Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: PayerAuthenticationApi#check_payer_auth_enrollment\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: PayerAuthenticationApi#check_payer_auth_enrollment\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
     # Setup Payer Auth
@@ -101,14 +101,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(RiskV1AuthenticationSetupsPost201Response, Fixnum, Hash)>] RiskV1AuthenticationSetupsPost201Response data, response status code and response headers
     def payer_auth_setup_with_http_info(payer_auth_setup_request, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: PayerAuthenticationApi.payer_auth_setup ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: PayerAuthenticationApi.payer_auth_setup ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'payer_auth_setup_request' is set
       if @api_client.config.client_side_validation && payer_auth_setup_request.nil?
@@ -141,13 +141,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'RiskV1AuthenticationSetupsPost201Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: PayerAuthenticationApi#payer_auth_setup\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: PayerAuthenticationApi#payer_auth_setup\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
     # Validate Authentication Results
@@ -166,14 +166,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(RiskV1AuthenticationResultsPost201Response, Fixnum, Hash)>] RiskV1AuthenticationResultsPost201Response data, response status code and response headers
     def validate_authentication_results_with_http_info(validate_request, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: PayerAuthenticationApi.validate_authentication_results ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: PayerAuthenticationApi.validate_authentication_results ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'validate_request' is set
       if @api_client.config.client_side_validation && validate_request.nil?
@@ -206,13 +206,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'RiskV1AuthenticationResultsPost201Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: PayerAuthenticationApi#validate_authentication_results\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: PayerAuthenticationApi#validate_authentication_results\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
   end

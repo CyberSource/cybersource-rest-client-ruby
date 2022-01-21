@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-	  @api_client.set_configuration(config)
+      @api_client.set_configuration(config)
     end
     # Process a Credit
     # POST to the credit resource to credit funds to a specified credit card.
@@ -36,14 +36,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(PtsV2CreditsPost201Response, Fixnum, Hash)>] PtsV2CreditsPost201Response data, response status code and response headers
     def create_credit_with_http_info(create_credit_request, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: CreditApi.create_credit ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: CreditApi.create_credit ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'create_credit_request' is set
       if @api_client.config.client_side_validation && create_credit_request.nil?
@@ -76,13 +76,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'PtsV2CreditsPost201Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: CreditApi#create_credit\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: CreditApi#create_credit\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
   end

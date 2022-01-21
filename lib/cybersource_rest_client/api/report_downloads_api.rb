@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-	  @api_client.set_configuration(config)
+      @api_client.set_configuration(config)
     end
     # Download a Report
     # Download a report using the unique report name and date. 
@@ -40,14 +40,14 @@ module CyberSource
     # @option opts [String] :organization_id Valid Organization Id
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def download_report_with_http_info(report_date, report_name, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: ReportDownloadsApi.download_report ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: ReportDownloadsApi.download_report ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'report_date' is set
       if @api_client.config.client_side_validation && report_date.nil?
@@ -98,13 +98,13 @@ module CyberSource
         :body => post_body,
         :auth_names => auth_names)
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: ReportDownloadsApi#download_report\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: ReportDownloadsApi#download_report\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
   end

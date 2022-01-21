@@ -28,7 +28,7 @@ module CyberSource
     attr_accessor :default_headers
 
     # Defines the client ID for the SDK
-    attr_accessor :client_id   
+    attr_accessor :client_id
 
     # Defines the user-defined Accept Header Type
     attr_accessor :accept_header
@@ -72,7 +72,7 @@ module CyberSource
         raise
             @config.logger.debug "HTTP response body ~BEGIN~\n#{response.body}\n~END~\n"
         rescue
-            puts 'Cannot write to log'            
+            puts 'Cannot write to log'
         end
       end
 
@@ -167,7 +167,7 @@ module CyberSource
       download_file(request) if opts[:return_type] == 'File'
       request
     end
-    # set merchantConfig 
+    # set merchantConfig
     def set_configuration(config)
        require_relative '../AuthenticationSDK/core/MerchantConfig.rb'
        $merchantconfig_obj = Merchantconfig.new(config)
@@ -180,7 +180,7 @@ module CyberSource
       request_target = get_query_param(path, query_params)
       # Request Type. [Non-Editable]
       request_type = http_method.to_s
-      log_obj = Log.new $merchantconfig_obj.logDirectory, $merchantconfig_obj.logFilename, $merchantconfig_obj.logSize, $merchantconfig_obj.enableLog
+      log_obj = Log.new $merchantconfig_obj.log_config, "ApiClient"
       # Set Request Type into the merchant config object.
       $merchantconfig_obj.requestType = request_type
       # Set Request Target into the merchant config object.
@@ -193,14 +193,13 @@ module CyberSource
       $merchantconfig_obj.requestUrl = url
       # Calling APISDK, Apisdk.controller.
       gmtDateTime = DateTime.now.httpdate
-      token = Authorization.new.getToken($merchantconfig_obj, gmtDateTime, log_obj)
+      token = Authorization.new.getToken($merchantconfig_obj, gmtDateTime)
 
       # Adding client ID header
       header_params['v-c-client-id'] = @client_id
 
       # Adding solution ID header
       # header_params['v-c-solution-id'] = $merchantconfig_obj.solutionId if !$merchantconfig_obj.solutionId.nil? && !$merchantconfig_obj.solutionId.empty?
-      
       # HTTP header 'Accept' (if needed)
       if $merchantconfig_obj.authenticationType.upcase == Constants::AUTH_TYPE_HTTP
         # Appending headers for Get Connection
@@ -209,7 +208,7 @@ module CyberSource
         header_params['Host'] = $merchantconfig_obj.requestHost
         header_params['Signature'] = token
         if request_type == Constants::POST_REQUEST_TYPE || request_type == Constants::PUT_REQUEST_TYPE || request_type == Constants::PATCH_REQUEST_TYPE
-          digest = DigestGeneration.new.generateDigest(body_params, log_obj)
+          digest = DigestGeneration.new.generateDigest(body_params)
           digest_payload = Constants::SHA256 + digest
           header_params['Digest'] = digest_payload
         end
@@ -236,7 +235,7 @@ module CyberSource
       end
       request_target
     end
-    
+
     # Check if the given MIME is a JSON MIME.
     # JSON MIME examples:
     #   application/json

@@ -14,6 +14,9 @@ require 'date'
 
 module CyberSource
   class Riskv1authenticationsPaymentInformationTokenizedCard
+    # Type of transaction that provided the token data. This value does not specify the token service provider; it specifies the entity that provided you with information about the token.  Possible value: - `2`: Near-field communication (NFC) transaction. The customer’s mobile device provided the token data for a contactless EMV transaction. For recurring transactions, use this value if the original transaction was a contactless EMV transaction.  **NOTE** No CyberSource through VisaNet acquirers support EMV at this time.  Required field for PIN debit credit or PIN debit purchase transactions that use payment network tokens; otherwise, not used. 
+    attr_accessor :transaction_type
+
     # Three-digit value that indicates the card type.  **IMPORTANT** It is strongly recommended that you include the card type field in request messages even if it is optional for your processor and card type. Omitting the card type can cause the transaction to be processed with the wrong card type.  Possible values: - `001`: Visa. For card-present transactions on all processors except SIX, the Visa Electron card type is processed the same way that the Visa debit card is processed. Use card type value `001` for Visa Electron. - `002`: Mastercard, Eurocard[^1], which is a European regional brand of Mastercard. - `003`: American Express - `004`: Discover - `005`: Diners Club - `006`: Carte Blanche[^1] - `007`: JCB[^1] - `014`: Enroute[^1] - `021`: JAL[^1] - `024`: Maestro (UK Domestic)[^1] - `031`: Delta[^1]: Use this value only for Ingenico ePayments. For other processors, use `001` for all Visa card types. - `033`: Visa Electron[^1]. Use this value only for Ingenico ePayments and SIX. For other processors, use `001` for all Visa card types. - `034`: Dankort[^1] - `036`: Cartes Bancaires[^1,4] - `037`: Carta Si[^1] - `039`: Encoded account number[^1] - `040`: UATP[^1] - `042`: Maestro (International)[^1] - `050`: Hipercard[^2,3] - `051`: Aura - `054`: Elo[^3] - `062`: China UnionPay  [^1]: For this card type, you must include the `paymentInformation.card.type` or `paymentInformation.tokenizedCard.type` field in your request for an authorization or a stand-alone credit. [^2]: For this card type on Cielo 3.0, you must include the `paymentInformation.card.type` or `paymentInformation.tokenizedCard.type` field in a request for an authorization or a stand-alone credit. This card type is not supported on Cielo 1.5. [^3]: For this card type on Getnet and Rede, you must include the `paymentInformation.card.type` or `paymentInformation.tokenizedCard.type` field in a request for an authorization or a stand-alone credit. [^4]: For this card type, you must include the `paymentInformation.card.type` in your request for any payer authentication services.  #### Used by **Authorization** Required for Carte Blanche and JCB. Optional for all other card types.  #### Card Present reply This field is included in the reply message when the client software that is installed on the POS terminal uses the token management service (TMS) to retrieve tokenized payment details. You must contact customer support to have your account enabled to receive these fields in the credit reply message.  Returned by the Credit service.  This reply field is only supported by the following processors: - American Express Direct - Credit Mutuel-CIC - FDC Nashville Global - OmniPay Direct - SIX  #### Google Pay transactions For PAN-based Google Pay transactions, this field is returned in the API response.  #### GPX This field only supports transactions from the following card types: - Visa - Mastercard - AMEX - Discover - Diners - JCB - Union Pay International 
     attr_accessor :type
 
@@ -29,6 +32,7 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'transaction_type' => :'transactionType',
         :'type' => :'type',
         :'expiration_month' => :'expirationMonth',
         :'expiration_year' => :'expirationYear',
@@ -39,6 +43,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'transaction_type' => :'String',
         :'type' => :'String',
         :'expiration_month' => :'String',
         :'expiration_year' => :'String',
@@ -53,6 +58,10 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'transactionType')
+        self.transaction_type = attributes[:'transactionType']
+      end
 
       if attributes.has_key?(:'type')
         self.type = attributes[:'type']
@@ -105,6 +114,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] transaction_type Value to be assigned
+    def transaction_type=(transaction_type)
+      @transaction_type = transaction_type
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] expiration_month Value to be assigned
     def expiration_month=(expiration_month)
       if expiration_month.nil?
@@ -139,6 +154,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          transaction_type == o.transaction_type &&
           type == o.type &&
           expiration_month == o.expiration_month &&
           expiration_year == o.expiration_year &&
@@ -154,7 +170,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [type, expiration_month, expiration_year, number].hash
+      [transaction_type, type, expiration_month, expiration_year, number].hash
     end
 
     # Builds the object from hash

@@ -14,8 +14,14 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsOrderInformationShipTo
+    # The title of the person receiving the product.
+    attr_accessor :title
+
     # First name of the recipient.  #### Litle Maximum length: 25  #### All other processors Maximum length: 60  Optional field. 
     attr_accessor :first_name
+
+    # Middle name of the recipient.  #### Litle Maximum length: 25  #### All other processors Maximum length: 60  Optional field. 
+    attr_accessor :middle_name
 
     # Last name of the recipient.  #### Litle Maximum length: 25  #### All other processors Maximum length: 60  Optional field. 
     attr_accessor :last_name
@@ -62,7 +68,9 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'title' => :'title',
         :'first_name' => :'firstName',
+        :'middle_name' => :'middleName',
         :'last_name' => :'lastName',
         :'address1' => :'address1',
         :'address2' => :'address2',
@@ -83,7 +91,9 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'title' => :'String',
         :'first_name' => :'String',
+        :'middle_name' => :'String',
         :'last_name' => :'String',
         :'address1' => :'String',
         :'address2' => :'String',
@@ -109,8 +119,16 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
+      if attributes.has_key?(:'title')
+        self.title = attributes[:'title']
+      end
+
       if attributes.has_key?(:'firstName')
         self.first_name = attributes[:'firstName']
+      end
+
+      if attributes.has_key?(:'middleName')
+        self.middle_name = attributes[:'middleName']
       end
 
       if attributes.has_key?(:'lastName')
@@ -184,9 +202,21 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] title Value to be assigned
+    def title=(title)
+      @title = title
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] first_name Value to be assigned
     def first_name=(first_name)
       @first_name = first_name
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] middle_name Value to be assigned
+    def middle_name=(middle_name)
+      @middle_name = middle_name
     end
 
     # Custom attribute writer method with validation
@@ -272,7 +302,9 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          title == o.title &&
           first_name == o.first_name &&
+          middle_name == o.middle_name &&
           last_name == o.last_name &&
           address1 == o.address1 &&
           address2 == o.address2 &&
@@ -298,7 +330,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [first_name, last_name, address1, address2, locality, administrative_area, postal_code, country, district, building_number, phone_number, company, destination_types, destination_code, method].hash
+      [title, first_name, middle_name, last_name, address1, address2, locality, administrative_area, postal_code, country, district, building_number, phone_number, company, destination_types, destination_code, method].hash
     end
 
     # Builds the object from hash

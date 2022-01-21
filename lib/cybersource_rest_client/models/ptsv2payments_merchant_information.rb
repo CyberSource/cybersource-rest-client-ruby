@@ -42,6 +42,15 @@ module CyberSource
 
     attr_accessor :service_fee_descriptor
 
+    # customer would be redirected to this url based on the decision of the transaction
+    attr_accessor :cancel_url
+
+    # customer would be redirected to this url based on the decision of the transaction
+    attr_accessor :success_url
+
+    # customer would be redirected to this url based on the decision of the transaction
+    attr_accessor :failure_url
+
     # Use this field only if you are requesting payment with Payer Authentication serice together.  Your company’s name as you want it to appear to the customer in the issuing bank’s authentication form. This value overrides the value specified by your merchant bank. 
     attr_accessor :merchant_name
 
@@ -58,6 +67,9 @@ module CyberSource
         :'card_acceptor_reference_number' => :'cardAcceptorReferenceNumber',
         :'transaction_local_date_time' => :'transactionLocalDateTime',
         :'service_fee_descriptor' => :'serviceFeeDescriptor',
+        :'cancel_url' => :'cancelUrl',
+        :'success_url' => :'successUrl',
+        :'failure_url' => :'failureUrl',
         :'merchant_name' => :'merchantName'
       }
     end
@@ -75,6 +87,9 @@ module CyberSource
         :'card_acceptor_reference_number' => :'String',
         :'transaction_local_date_time' => :'String',
         :'service_fee_descriptor' => :'Ptsv2paymentsMerchantInformationServiceFeeDescriptor',
+        :'cancel_url' => :'String',
+        :'success_url' => :'String',
+        :'failure_url' => :'String',
         :'merchant_name' => :'String'
       }
     end
@@ -125,6 +140,18 @@ module CyberSource
 
       if attributes.has_key?(:'serviceFeeDescriptor')
         self.service_fee_descriptor = attributes[:'serviceFeeDescriptor']
+      end
+
+      if attributes.has_key?(:'cancelUrl')
+        self.cancel_url = attributes[:'cancelUrl']
+      end
+
+      if attributes.has_key?(:'successUrl')
+        self.success_url = attributes[:'successUrl']
+      end
+
+      if attributes.has_key?(:'failureUrl')
+        self.failure_url = attributes[:'failureUrl']
       end
 
       if attributes.has_key?(:'merchantName')
@@ -212,6 +239,24 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] cancel_url Value to be assigned
+    def cancel_url=(cancel_url)
+      @cancel_url = cancel_url
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] success_url Value to be assigned
+    def success_url=(success_url)
+      @success_url = success_url
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] failure_url Value to be assigned
+    def failure_url=(failure_url)
+      @failure_url = failure_url
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] merchant_name Value to be assigned
     def merchant_name=(merchant_name)
       @merchant_name = merchant_name
@@ -232,6 +277,9 @@ module CyberSource
           card_acceptor_reference_number == o.card_acceptor_reference_number &&
           transaction_local_date_time == o.transaction_local_date_time &&
           service_fee_descriptor == o.service_fee_descriptor &&
+          cancel_url == o.cancel_url &&
+          success_url == o.success_url &&
+          failure_url == o.failure_url &&
           merchant_name == o.merchant_name
     end
 
@@ -244,7 +292,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [merchant_descriptor, domain_name, sales_organization_id, category_code, category_code_domestic, tax_id, vat_registration_number, card_acceptor_reference_number, transaction_local_date_time, service_fee_descriptor, merchant_name].hash
+      [merchant_descriptor, domain_name, sales_organization_id, category_code, category_code_domestic, tax_id, vat_registration_number, card_acceptor_reference_number, transaction_local_date_time, service_fee_descriptor, cancel_url, success_url, failure_url, merchant_name].hash
     end
 
     # Builds the object from hash

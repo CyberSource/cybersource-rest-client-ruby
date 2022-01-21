@@ -37,6 +37,8 @@ module CyberSource
     # Mastercard-defined code that indicates how the account information was obtained.  - `00` (default): Card - `01`: Removable secure element that is personalized for use with a mobile phone and controlled by the wireless service provider; examples: subscriber identity module (SIM), universal integrated circuit card (UICC) - `02`: Key fob - `03`: Watch - `04`: Mobile tag - `05`: Wristband - `06`: Mobile phone case or sleeve - `07`: Mobile phone with a non-removable, secure element that is controlled by the wireless service provider; for example, code division multiple access (CDMA) - `08`: Removable secure element that is personalized for use with a mobile phone and not controlled by the wireless service provider; example: memory card - `09`: Mobile phone with a non-removable, secure element that is not controlled by the wireless service provider - `10`: Removable secure element that is personalized for use with a tablet or e-book and is controlled by the wireless service provider; examples: subscriber identity module (SIM), universal integrated circuit card (UICC) - `11`: Tablet or e-book with a non-removable, secure element that is controlled by the wireless service provider - `12`: Removable secure element that is personalized for use with a tablet or e-book and is not controlled by the wireless service provider - `13`: Tablet or e-book with a non-removable, secure element that is not controlled by the wireless service provider  This field is supported only for Mastercard on CyberSource through VisaNet.  #### Used by **Authorization** Optional field. 
     attr_accessor :initiation_channel
 
+    attr_accessor :e_wallet
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -50,7 +52,8 @@ module CyberSource
         :'legacy_token' => :'legacyToken',
         :'bank' => :'bank',
         :'payment_type' => :'paymentType',
-        :'initiation_channel' => :'initiationChannel'
+        :'initiation_channel' => :'initiationChannel',
+        :'e_wallet' => :'eWallet'
       }
     end
 
@@ -67,7 +70,8 @@ module CyberSource
         :'legacy_token' => :'Ptsv2paymentsPaymentInformationLegacyToken',
         :'bank' => :'Ptsv2paymentsPaymentInformationBank',
         :'payment_type' => :'Ptsv2paymentsPaymentInformationPaymentType',
-        :'initiation_channel' => :'String'
+        :'initiation_channel' => :'String',
+        :'e_wallet' => :'Ptsv2paymentsPaymentInformationEWallet'
       }
     end
 
@@ -122,6 +126,10 @@ module CyberSource
       if attributes.has_key?(:'initiationChannel')
         self.initiation_channel = attributes[:'initiationChannel']
       end
+
+      if attributes.has_key?(:'eWallet')
+        self.e_wallet = attributes[:'eWallet']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -158,7 +166,8 @@ module CyberSource
           legacy_token == o.legacy_token &&
           bank == o.bank &&
           payment_type == o.payment_type &&
-          initiation_channel == o.initiation_channel
+          initiation_channel == o.initiation_channel &&
+          e_wallet == o.e_wallet
     end
 
     # @see the `==` method
@@ -170,7 +179,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card, tokenized_card, fluid_data, customer, payment_instrument, instrument_identifier, shipping_address, legacy_token, bank, payment_type, initiation_channel].hash
+      [card, tokenized_card, fluid_data, customer, payment_instrument, instrument_identifier, shipping_address, legacy_token, bank, payment_type, initiation_channel, e_wallet].hash
     end
 
     # Builds the object from hash

@@ -17,6 +17,9 @@ module CyberSource
     # Grand total for the order. This value cannot be negative. You can include a decimal point (.), but no other special characters. CyberSource truncates the amount to the correct number of decimal places.  **Note** For CTV, FDCCompass, Paymentech processors, the maximum length for this field is 12.  **Important** Some processors have specific requirements and limitations, such as maximum amounts and maximum field lengths. For details, see: - \"Authorization Information for Specific Processors\" in the [Credit Card Services Using the SCMP API Guide](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/). - \"Capture Information for Specific Processors\" in the [Credit Card Services Using the SCMP API Guide](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/). - \"Credit Information for Specific Processors\" in the [Credit Card Services Using the SCMP API Guide](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/).  If your processor supports zero amount authorizations, you can set this field to 0 for the authorization to check if the card is lost or stolen. For details, see \"Zero Amount Authorizations,\" \"Credit Information for Specific Processors\" in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  #### Card Present Required to include either this field or `orderInformation.lineItems[].unitPrice` for the order.  #### Invoicing Required for creating a new invoice.  #### PIN Debit Amount you requested for the PIN debit purchase. This value is returned for partial authorizations. The issuing bank can approve a partial amount if the balance on the debit card is less than the requested transaction amount.  Required field for PIN Debit purchase and PIN Debit credit requests. Optional field for PIN Debit reversal requests.  #### GPX This field is optional for reversing an authorization or credit; however, for all other processors, these fields are required.  #### DCC with a Third-Party Provider Set this field to the converted amount that was returned by the DCC provider. You must include either this field or the 1st line item in the order and the specific line-order amount in your request. For details, see `grand_total_amount` field description in [Dynamic Currency Conversion For First Data Using the SCMP API](http://apps.cybersource.com/library/documentation/dev_guides/DCC_FirstData_SCMP/DCC_FirstData_SCMP_API.pdf).  #### FDMS South If you accept IDR or CLP currencies, see the entry for FDMS South in \"Authorization Information for Specific Processors\" of the [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  #### DCC for First Data Not used. 
     attr_accessor :total_amount
 
+    # Subtotal amount of all the items.This amount (which is the value of all items in the cart, not including the additional amounts such as tax, shipping, etc.) cannot change after a sessions request. When there is a change to any of the additional amounts, this field should be resent in the order request. When the sub total amount changes, you must initiate a new transaction starting with a sessions request. Note The amount value must be a non-negative number containing 2 decimal places and limited to 7 digits before the decimal point. This value can not be changed after a sessions request. 
+    attr_accessor :sub_total_amount
+
     # Currency used for the order. Use the three-character [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)  #### Used by **Authorization** Required field.  **Authorization Reversal** For an authorization reversal (`reversalInformation`) or a capture (`processingOptions.capture` is set to `true`), you must use the same currency that you used in your payment authorization request.  #### PIN Debit Currency for the amount you requested for the PIN debit purchase. This value is returned for partial authorizations. The issuing bank can approve a partial amount if the balance on the debit card is less than the requested transaction amount. For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf). Returned by PIN debit purchase.  For PIN debit reversal requests, you must use the same currency that was used for the PIN debit purchase or PIN debit credit that you are reversing. For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).  Required field for PIN Debit purchase and PIN Debit credit requests. Optional field for PIN Debit reversal requests.  #### GPX This field is optional for reversing an authorization or credit.  #### DCC for First Data Your local currency. For details, see the `currency` field description in [Dynamic Currency Conversion For First Data Using the SCMP API](http://apps.cybersource.com/library/documentation/dev_guides/DCC_FirstData_SCMP/DCC_FirstData_SCMP_API.pdf).  #### Tax Calculation Required for international tax and value added tax only. Optional for U.S. and Canadian taxes. Your local currency. 
     attr_accessor :currency
 
@@ -89,6 +92,7 @@ module CyberSource
     def self.attribute_map
       {
         :'total_amount' => :'totalAmount',
+        :'sub_total_amount' => :'subTotalAmount',
         :'currency' => :'currency',
         :'discount_amount' => :'discountAmount',
         :'duty_amount' => :'dutyAmount',
@@ -120,6 +124,7 @@ module CyberSource
     def self.swagger_types
       {
         :'total_amount' => :'String',
+        :'sub_total_amount' => :'String',
         :'currency' => :'String',
         :'discount_amount' => :'String',
         :'duty_amount' => :'String',
@@ -157,6 +162,10 @@ module CyberSource
 
       if attributes.has_key?(:'totalAmount')
         self.total_amount = attributes[:'totalAmount']
+      end
+
+      if attributes.has_key?(:'subTotalAmount')
+        self.sub_total_amount = attributes[:'subTotalAmount']
       end
 
       if attributes.has_key?(:'currency')
@@ -277,6 +286,12 @@ module CyberSource
     # @param [Object] total_amount Value to be assigned
     def total_amount=(total_amount)
       @total_amount = total_amount
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] sub_total_amount Value to be assigned
+    def sub_total_amount=(sub_total_amount)
+      @sub_total_amount = sub_total_amount
     end
 
     # Custom attribute writer method with validation
@@ -405,6 +420,7 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           total_amount == o.total_amount &&
+          sub_total_amount == o.sub_total_amount &&
           currency == o.currency &&
           discount_amount == o.discount_amount &&
           duty_amount == o.duty_amount &&
@@ -440,7 +456,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [total_amount, currency, discount_amount, duty_amount, gratuity_amount, tax_amount, national_tax_included, tax_applied_after_discount, tax_applied_level, tax_type_code, freight_amount, foreign_amount, foreign_currency, exchange_rate, exchange_rate_time_stamp, surcharge, settlement_amount, settlement_currency, amex_additional_amounts, tax_details, service_fee_amount, original_amount, original_currency, cashback_amount, currency_conversion].hash
+      [total_amount, sub_total_amount, currency, discount_amount, duty_amount, gratuity_amount, tax_amount, national_tax_included, tax_applied_after_discount, tax_applied_level, tax_type_code, freight_amount, foreign_amount, foreign_currency, exchange_rate, exchange_rate_time_stamp, surcharge, settlement_amount, settlement_currency, amex_additional_amounts, tax_details, service_fee_amount, original_amount, original_currency, cashback_amount, currency_conversion].hash
     end
 
     # Builds the object from hash

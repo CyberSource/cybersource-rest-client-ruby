@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-	  @api_client.set_configuration(config)
+      @api_client.set_configuration(config)
     end
     # Get User Information - Deprecated
     # This endpoint is deprecated. Please use the search end point.
@@ -42,14 +42,14 @@ module CyberSource
     # @option opts [String] :role_id role of the user you are trying to search on.
     # @return [Array<(UmsV1UsersGet200Response, Fixnum, Hash)>] UmsV1UsersGet200Response data, response status code and response headers
     def get_users_with_http_info(opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: UserManagementApi.get_users ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: UserManagementApi.get_users ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # resource path
       local_var_path = 'ums/v1/users'
@@ -82,13 +82,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'UmsV1UsersGet200Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: UserManagementApi#get_users\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: UserManagementApi#get_users\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
   end

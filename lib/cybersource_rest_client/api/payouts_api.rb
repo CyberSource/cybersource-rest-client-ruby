@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-	  @api_client.set_configuration(config)
+      @api_client.set_configuration(config)
     end
     # Process a Payout
     # Send funds from a selected funding source to a designated credit/debit card account or a prepaid card using an Original Credit Transaction (OCT). 
@@ -36,14 +36,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(PtsV2PayoutsPost201Response, Fixnum, Hash)>] PtsV2PayoutsPost201Response data, response status code and response headers
     def oct_create_payment_with_http_info(oct_create_payment_request, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: PayoutsApi.oct_create_payment ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: PayoutsApi.oct_create_payment ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'oct_create_payment_request' is set
       if @api_client.config.client_side_validation && oct_create_payment_request.nil?
@@ -76,13 +76,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'PtsV2PayoutsPost201Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: PayoutsApi#oct_create_payment\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: PayoutsApi#oct_create_payment\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
   end

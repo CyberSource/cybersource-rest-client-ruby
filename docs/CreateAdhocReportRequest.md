@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **timezone** | **String** | Timezone of the report | [optional] 
 **report_start_time** | **DateTime** | Start time of the report | [optional] 
 **report_end_time** | **DateTime** | End time of the report | [optional] 
-**report_filters** | **Hash&lt;String, Array&lt;String&gt;&gt;** | List of filters to apply | [optional] 
+**report_filters** | [**Reportingv3reportsReportFilters**](Reportingv3reportsReportFilters.md) |  | [optional] 
 **report_preferences** | [**Reportingv3reportsReportPreferences**](Reportingv3reportsReportPreferences.md) |  | [optional] 
 **group_name** | **String** | Specifies the group name | [optional] 
 

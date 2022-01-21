@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-	  @api_client.set_configuration(config)
+      @api_client.set_configuration(config)
     end
     # Calculate Taxes
     # Get tax details for a transaction. 
@@ -36,14 +36,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(VasV2PaymentsPost201Response, Fixnum, Hash)>] VasV2PaymentsPost201Response data, response status code and response headers
     def calculate_tax_with_http_info(tax_request, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: TaxesApi.calculate_tax ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: TaxesApi.calculate_tax ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'tax_request' is set
       if @api_client.config.client_side_validation && tax_request.nil?
@@ -76,13 +76,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'VasV2PaymentsPost201Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: TaxesApi#calculate_tax\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: TaxesApi#calculate_tax\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
     # Void Taxes
@@ -103,14 +103,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(VasV2TaxVoid200Response, Fixnum, Hash)>] VasV2TaxVoid200Response data, response status code and response headers
     def void_tax_with_http_info(void_tax_request, id, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: TaxesApi.void_tax ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: TaxesApi.void_tax ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'void_tax_request' is set
       if @api_client.config.client_side_validation && void_tax_request.nil?
@@ -147,13 +147,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'VasV2TaxVoid200Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: TaxesApi#void_tax\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: TaxesApi#void_tax\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
   end

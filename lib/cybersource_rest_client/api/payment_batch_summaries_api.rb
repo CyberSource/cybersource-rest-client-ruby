@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-	  @api_client.set_configuration(config)
+      @api_client.set_configuration(config)
     end
     # Get Payment Batch Summary Data
     # Scope can be either account/merchant or reseller.
@@ -46,14 +46,14 @@ module CyberSource
     # @option opts [Integer] :start_day_of_week Optional - Start day of week to breakdown data for weeks in a month
     # @return [Array<(ReportingV3PaymentBatchSummariesGet200Response, Fixnum, Hash)>] ReportingV3PaymentBatchSummariesGet200Response data, response status code and response headers
     def get_payment_batch_summary_with_http_info(start_time, end_time, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: PaymentBatchSummariesApi.get_payment_batch_summary ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: PaymentBatchSummariesApi.get_payment_batch_summary ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'start_time' is set
       if @api_client.config.client_side_validation && start_time.nil?
@@ -116,13 +116,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'ReportingV3PaymentBatchSummariesGet200Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: PaymentBatchSummariesApi#get_payment_batch_summary\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: PaymentBatchSummariesApi#get_payment_batch_summary\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
   end

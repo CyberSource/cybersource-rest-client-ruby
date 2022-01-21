@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-	  @api_client.set_configuration(config)
+      @api_client.set_configuration(config)
     end
     # Process an Authorization Reversal
     # Include the payment ID in the POST request to reverse the payment amount.
@@ -38,14 +38,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(PtsV2PaymentsReversalsPost201Response, Fixnum, Hash)>] PtsV2PaymentsReversalsPost201Response data, response status code and response headers
     def auth_reversal_with_http_info(id, auth_reversal_request, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: ReversalApi.auth_reversal ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: ReversalApi.auth_reversal ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
@@ -82,13 +82,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'PtsV2PaymentsReversalsPost201Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: ReversalApi#auth_reversal\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: ReversalApi#auth_reversal\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
     # Timeout Reversal
@@ -107,14 +107,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(PtsV2PaymentsReversalsPost201Response, Fixnum, Hash)>] PtsV2PaymentsReversalsPost201Response data, response status code and response headers
     def mit_reversal_with_http_info(mit_reversal_request, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: ReversalApi.mit_reversal ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: ReversalApi.mit_reversal ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'mit_reversal_request' is set
       if @api_client.config.client_side_validation && mit_reversal_request.nil?
@@ -147,13 +147,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'PtsV2PaymentsReversalsPost201Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: ReversalApi#mit_reversal\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: ReversalApi#mit_reversal\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
   end

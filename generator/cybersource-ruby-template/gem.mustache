@@ -8,11 +8,12 @@ require 'AuthenticationSDK/util/PropertiesUtil.rb'
 require 'AuthenticationSDK/util/Constants.rb'
 require 'AuthenticationSDK/util/Cache.rb'
 require 'AuthenticationSDK/util/ExceptionHandler.rb'
+require 'AuthenticationSDK/logging/log_configuration.rb'
+require 'AuthenticationSDK/logging/log_factory.rb'
+require 'AuthenticationSDK/logging/sensitive_logging.rb'
 require 'AuthenticationSDK/core/MerchantConfig.rb'
 require 'AuthenticationSDK/core/ITokenGeneration.rb'
 require 'AuthenticationSDK/core/Authorization.rb'
-require 'AuthenticationSDK/logging/log_configuration.rb'
-require 'AuthenticationSDK/logging/log_factory.rb'
 require 'AuthenticationSDK/authentication/payloadDigest/digest.rb'
 require 'AuthenticationSDK/authentication/jwt/JwtToken.rb'
 require 'AuthenticationSDK/authentication/http/HttpSignatureHeader.rb'
@@ -25,12 +26,18 @@ require '{{gemName}}/version'
 require '{{gemName}}/configuration'
 
 # Models
+require 'cybersource_rest_client/models/resource_not_found_error'
+require 'cybersource_rest_client/models/unauthorized_client_error'
+require 'cybersource_rest_client/models/access_token_response'
+require 'cybersource_rest_client/models/bad_request_error'
+require 'cybersource_rest_client/models/create_access_token_request'
 {{#models}}
 {{#model}}
 require '{{gemName}}/{{modelPackage}}/{{classFilename}}'{{/model}}
 {{/models}}
 
 # APIs
+require 'cybersource_rest_client/api/o_auth_api'
 {{#apiInfo}}
 {{#apis}}
 require '{{importPath}}'

@@ -58,6 +58,9 @@ module CyberSource
     # Date of the tax calculation. Use format YYYYMMDD. You can provide a date in the past if you are calculating tax for a refund and want to know what the tax was on the date the order was placed. You can provide a date in the future if you are calculating the tax for a future date, such as an upcoming tax holiday.  The default is the date, in Pacific time, that the bank receives the request. Keep this in mind if you are in a different time zone and want the tax calculated with the rates that are applicable on a specific date.  #### Tax Calculation Optional field for U.S., Canadian, international tax, and value added taxes. 
     attr_accessor :invoice_date
 
+    # Cost centre of the merchant
+    attr_accessor :cost_center
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -75,7 +78,8 @@ module CyberSource
         :'reference_data_code' => :'referenceDataCode',
         :'reference_data_number' => :'referenceDataNumber',
         :'sales_slip_number' => :'salesSlipNumber',
-        :'invoice_date' => :'invoiceDate'
+        :'invoice_date' => :'invoiceDate',
+        :'cost_center' => :'costCenter'
       }
     end
 
@@ -96,7 +100,8 @@ module CyberSource
         :'reference_data_code' => :'String',
         :'reference_data_number' => :'String',
         :'sales_slip_number' => :'Integer',
-        :'invoice_date' => :'String'
+        :'invoice_date' => :'String',
+        :'cost_center' => :'String'
       }
     end
 
@@ -168,6 +173,10 @@ module CyberSource
 
       if attributes.has_key?(:'invoiceDate')
         self.invoice_date = attributes[:'invoiceDate']
+      end
+
+      if attributes.has_key?(:'costCenter')
+        self.cost_center = attributes[:'costCenter']
       end
     end
 
@@ -247,6 +256,12 @@ module CyberSource
       @invoice_date = invoice_date
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] cost_center Value to be assigned
+    def cost_center=(cost_center)
+      @cost_center = cost_center
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -266,7 +281,8 @@ module CyberSource
           reference_data_code == o.reference_data_code &&
           reference_data_number == o.reference_data_number &&
           sales_slip_number == o.sales_slip_number &&
-          invoice_date == o.invoice_date
+          invoice_date == o.invoice_date &&
+          cost_center == o.cost_center
     end
 
     # @see the `==` method
@@ -278,7 +294,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [invoice_number, barcode_number, expiration_date, purchase_order_number, purchase_order_date, purchase_contact_name, taxable, vat_invoice_reference_number, commodity_code, merchandise_code, transaction_advice_addendum, reference_data_code, reference_data_number, sales_slip_number, invoice_date].hash
+      [invoice_number, barcode_number, expiration_date, purchase_order_number, purchase_order_date, purchase_contact_name, taxable, vat_invoice_reference_number, commodity_code, merchandise_code, transaction_advice_addendum, reference_data_code, reference_data_number, sales_slip_number, invoice_date, cost_center].hash
     end
 
     # Builds the object from hash

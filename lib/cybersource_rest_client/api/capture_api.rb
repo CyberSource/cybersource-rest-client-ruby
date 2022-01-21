@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-	  @api_client.set_configuration(config)
+      @api_client.set_configuration(config)
     end
     # Capture a Payment
     # Include the payment ID in the POST request to capture the payment amount.
@@ -38,14 +38,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(PtsV2PaymentsCapturesPost201Response, Fixnum, Hash)>] PtsV2PaymentsCapturesPost201Response data, response status code and response headers
     def capture_payment_with_http_info(capture_payment_request, id, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: CaptureApi.capture_payment ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: CaptureApi.capture_payment ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'capture_payment_request' is set
       if @api_client.config.client_side_validation && capture_payment_request.nil?
@@ -82,13 +82,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'PtsV2PaymentsCapturesPost201Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: CaptureApi#capture_payment\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: CaptureApi#capture_payment\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
   end

@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-	  @api_client.set_configuration(config)
+      @api_client.set_configuration(config)
     end
     # Create a New Invoice
     # Create a new invoice.
@@ -36,14 +36,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(InvoicingV2InvoicesPost201Response, Fixnum, Hash)>] InvoicingV2InvoicesPost201Response data, response status code and response headers
     def create_invoice_with_http_info(create_invoice_request, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: InvoicesApi.create_invoice ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: InvoicesApi.create_invoice ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'create_invoice_request' is set
       if @api_client.config.client_side_validation && create_invoice_request.nil?
@@ -76,13 +76,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'InvoicingV2InvoicesPost201Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: InvoicesApi#create_invoice\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: InvoicesApi#create_invoice\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
     # Get a List of Invoices
@@ -105,14 +105,14 @@ module CyberSource
     # @option opts [String] :status The status of the invoice.  Possible values:   - DRAFT   - CREATED   - SENT   - PARTIAL   - PAID   - CANCELED 
     # @return [Array<(InvoicingV2InvoicesAllGet200Response, Fixnum, Hash)>] InvoicingV2InvoicesAllGet200Response data, response status code and response headers
     def get_all_invoices_with_http_info(offset, limit, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: InvoicesApi.get_all_invoices ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: InvoicesApi.get_all_invoices ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'offset' is set
       if @api_client.config.client_side_validation && offset.nil?
@@ -152,13 +152,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'InvoicingV2InvoicesAllGet200Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: InvoicesApi#get_all_invoices\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: InvoicesApi#get_all_invoices\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
     # Get Invoice Details
@@ -177,14 +177,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(InvoicingV2InvoicesGet200Response, Fixnum, Hash)>] InvoicingV2InvoicesGet200Response data, response status code and response headers
     def get_invoice_with_http_info(id, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: InvoicesApi.get_invoice ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: InvoicesApi.get_invoice ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
@@ -217,13 +217,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'InvoicingV2InvoicesGet200Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: InvoicesApi#get_invoice\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: InvoicesApi#get_invoice\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
     # Cancel an Invoice
@@ -242,14 +242,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(InvoicingV2InvoicesPost201Response, Fixnum, Hash)>] InvoicingV2InvoicesPost201Response data, response status code and response headers
     def perform_cancel_action_with_http_info(id, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: InvoicesApi.perform_cancel_action ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: InvoicesApi.perform_cancel_action ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
@@ -282,13 +282,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'InvoicingV2InvoicesPost201Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: InvoicesApi#perform_cancel_action\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: InvoicesApi#perform_cancel_action\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
     # Send an Invoice
@@ -307,14 +307,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(InvoicingV2InvoicesPost201Response, Fixnum, Hash)>] InvoicingV2InvoicesPost201Response data, response status code and response headers
     def perform_send_action_with_http_info(id, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: InvoicesApi.perform_send_action ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: InvoicesApi.perform_send_action ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
@@ -347,13 +347,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'InvoicingV2InvoicesPost201Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: InvoicesApi#perform_send_action\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: InvoicesApi#perform_send_action\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
     # Update an Invoice
@@ -374,14 +374,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(InvoicingV2InvoicesPost201Response, Fixnum, Hash)>] InvoicingV2InvoicesPost201Response data, response status code and response headers
     def update_invoice_with_http_info(id, update_invoice_request, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: InvoicesApi.update_invoice ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: InvoicesApi.update_invoice ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
@@ -418,13 +418,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'InvoicingV2InvoicesPost201Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: InvoicesApi#update_invoice\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: InvoicesApi#update_invoice\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
   end

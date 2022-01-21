@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-	  @api_client.set_configuration(config)
+      @api_client.set_configuration(config)
     end
     # Create Adhoc Report
     # Create a one-time report. You must specify the type of report in reportDefinitionName. For a list of values for reportDefinitionName, see the [Reporting Developer Guide](https://www.cybersource.com/developers/documentation/reporting_and_reconciliation) 
@@ -38,14 +38,14 @@ module CyberSource
     # @option opts [String] :organization_id Valid Organization Id
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def create_report_with_http_info(create_adhoc_report_request, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: ReportsApi.create_report ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: ReportsApi.create_report ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'create_adhoc_report_request' is set
       if @api_client.config.client_side_validation && create_adhoc_report_request.nil?
@@ -90,13 +90,13 @@ module CyberSource
         :body => post_body,
         :auth_names => auth_names)
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: ReportsApi#create_report\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: ReportsApi#create_report\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
     # Get Report Based on Report Id
@@ -117,14 +117,14 @@ module CyberSource
     # @option opts [String] :organization_id Valid Organization Id
     # @return [Array<(ReportingV3ReportsIdGet200Response, Fixnum, Hash)>] ReportingV3ReportsIdGet200Response data, response status code and response headers
     def get_report_by_report_id_with_http_info(report_id, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: ReportsApi.get_report_by_report_id ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: ReportsApi.get_report_by_report_id ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'report_id' is set
       if @api_client.config.client_side_validation && report_id.nil?
@@ -170,13 +170,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'ReportingV3ReportsIdGet200Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: ReportsApi#get_report_by_report_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: ReportsApi#get_report_by_report_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
     # Retrieve Available Reports
@@ -211,14 +211,14 @@ module CyberSource
     # @option opts [String] :report_status Valid Report Status  Valid values: - COMPLETED - PENDING - QUEUED - RUNNING - ERROR - NO_DATA 
     # @return [Array<(ReportingV3ReportsGet200Response, Fixnum, Hash)>] ReportingV3ReportsGet200Response data, response status code and response headers
     def search_reports_with_http_info(start_time, end_time, time_query_type, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: ReportsApi.search_reports ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: ReportsApi.search_reports ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'start_time' is set
       if @api_client.config.client_side_validation && start_time.nil?
@@ -280,13 +280,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'ReportingV3ReportsGet200Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: ReportsApi#search_reports\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: ReportsApi#search_reports\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
   end
