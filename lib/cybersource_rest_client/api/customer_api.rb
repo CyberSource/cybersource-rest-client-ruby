@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-	  @api_client.set_configuration(config)
+      @api_client.set_configuration(config)
     end
     # Delete a Customer
     # @param customer_token_id The TokenId of a customer.
@@ -36,14 +36,14 @@ module CyberSource
     # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def delete_customer_with_http_info(customer_token_id, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: CustomerApi.delete_customer ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: CustomerApi.delete_customer ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'customer_token_id' is set
       if @api_client.config.client_side_validation && customer_token_id.nil?
@@ -92,13 +92,13 @@ module CyberSource
         :body => post_body,
         :auth_names => auth_names)
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: CustomerApi#delete_customer\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: CustomerApi#delete_customer\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
     # Retrieve a Customer
@@ -117,14 +117,14 @@ module CyberSource
     # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
     # @return [Array<(TmsV2CustomersResponse, Fixnum, Hash)>] TmsV2CustomersResponse data, response status code and response headers
     def get_customer_with_http_info(customer_token_id, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: CustomerApi.get_customer ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: CustomerApi.get_customer ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'customer_token_id' is set
       if @api_client.config.client_side_validation && customer_token_id.nil?
@@ -174,13 +174,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'TmsV2CustomersResponse')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: CustomerApi#get_customer\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: CustomerApi#get_customer\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
     # Update a Customer
@@ -203,14 +203,14 @@ module CyberSource
     # @option opts [String] :if_match Contains an ETag value from a GET request to make the request conditional.
     # @return [Array<(TmsV2CustomersResponse, Fixnum, Hash)>] TmsV2CustomersResponse data, response status code and response headers
     def patch_customer_with_http_info(customer_token_id, patch_customer_request, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: CustomerApi.patch_customer ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: CustomerApi.patch_customer ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'customer_token_id' is set
       if @api_client.config.client_side_validation && customer_token_id.nil?
@@ -273,13 +273,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'TmsV2CustomersResponse')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: CustomerApi#patch_customer\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: CustomerApi#patch_customer\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
     # Create a Customer
@@ -298,14 +298,14 @@ module CyberSource
     # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
     # @return [Array<(TmsV2CustomersResponse, Fixnum, Hash)>] TmsV2CustomersResponse data, response status code and response headers
     def post_customer_with_http_info(post_customer_request, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: CustomerApi.post_customer ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: CustomerApi.post_customer ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'post_customer_request' is set
       if @api_client.config.client_side_validation && post_customer_request.nil?
@@ -347,13 +347,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'TmsV2CustomersResponse')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: CustomerApi#post_customer\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: CustomerApi#post_customer\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
   end

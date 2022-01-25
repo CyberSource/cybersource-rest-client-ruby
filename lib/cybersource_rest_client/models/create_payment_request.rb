@@ -51,6 +51,10 @@ module CyberSource
 
     attr_accessor :token_information
 
+    attr_accessor :invoice_details
+
+    attr_accessor :processor_information
+
     attr_accessor :risk_information
 
     attr_accessor :acquirer_information
@@ -78,6 +82,8 @@ module CyberSource
         :'health_care_information' => :'healthCareInformation',
         :'promotion_information' => :'promotionInformation',
         :'token_information' => :'tokenInformation',
+        :'invoice_details' => :'invoiceDetails',
+        :'processor_information' => :'processorInformation',
         :'risk_information' => :'riskInformation',
         :'acquirer_information' => :'acquirerInformation',
         :'recurring_payment_information' => :'recurringPaymentInformation'
@@ -105,6 +111,8 @@ module CyberSource
         :'health_care_information' => :'Ptsv2paymentsHealthCareInformation',
         :'promotion_information' => :'Ptsv2paymentsPromotionInformation',
         :'token_information' => :'Ptsv2paymentsTokenInformation',
+        :'invoice_details' => :'Ptsv2paymentsInvoiceDetails',
+        :'processor_information' => :'Ptsv2paymentsProcessorInformation',
         :'risk_information' => :'Ptsv2paymentsRiskInformation',
         :'acquirer_information' => :'Ptsv2paymentsAcquirerInformation',
         :'recurring_payment_information' => :'Ptsv2paymentsRecurringPaymentInformation'
@@ -193,6 +201,14 @@ module CyberSource
         self.token_information = attributes[:'tokenInformation']
       end
 
+      if attributes.has_key?(:'invoiceDetails')
+        self.invoice_details = attributes[:'invoiceDetails']
+      end
+
+      if attributes.has_key?(:'processorInformation')
+        self.processor_information = attributes[:'processorInformation']
+      end
+
       if attributes.has_key?(:'riskInformation')
         self.risk_information = attributes[:'riskInformation']
       end
@@ -242,6 +258,8 @@ module CyberSource
           health_care_information == o.health_care_information &&
           promotion_information == o.promotion_information &&
           token_information == o.token_information &&
+          invoice_details == o.invoice_details &&
+          processor_information == o.processor_information &&
           risk_information == o.risk_information &&
           acquirer_information == o.acquirer_information &&
           recurring_payment_information == o.recurring_payment_information
@@ -256,7 +274,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_reference_information, processing_information, issuer_information, payment_information, order_information, buyer_information, recipient_information, device_information, merchant_information, aggregator_information, consumer_authentication_information, point_of_sale_information, merchant_defined_information, installment_information, travel_information, health_care_information, promotion_information, token_information, risk_information, acquirer_information, recurring_payment_information].hash
+      [client_reference_information, processing_information, issuer_information, payment_information, order_information, buyer_information, recipient_information, device_information, merchant_information, aggregator_information, consumer_authentication_information, point_of_sale_information, merchant_defined_information, installment_information, travel_information, health_care_information, promotion_information, token_information, invoice_details, processor_information, risk_information, acquirer_information, recurring_payment_information].hash
     end
 
     # Builds the object from hash

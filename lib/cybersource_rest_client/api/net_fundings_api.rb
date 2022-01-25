@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-	  @api_client.set_configuration(config)
+      @api_client.set_configuration(config)
     end
     # Get Netfunding Information for an Account or a Merchant
     # Get Netfunding information for an account or a merchant.
@@ -42,14 +42,14 @@ module CyberSource
     # @option opts [String] :group_name Valid CyberSource Group Name.
     # @return [Array<(ReportingV3NetFundingsGet200Response, Fixnum, Hash)>] ReportingV3NetFundingsGet200Response data, response status code and response headers
     def get_net_funding_details_with_http_info(start_time, end_time, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: NetFundingsApi.get_net_funding_details ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: NetFundingsApi.get_net_funding_details ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'start_time' is set
       if @api_client.config.client_side_validation && start_time.nil?
@@ -102,13 +102,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'ReportingV3NetFundingsGet200Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: NetFundingsApi#get_net_funding_details\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: NetFundingsApi#get_net_funding_details\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
   end

@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-	  @api_client.set_configuration(config)
+      @api_client.set_configuration(config)
     end
     # Download DTD for Report
     # Used to download DTDs for reports on no-auth.
@@ -36,14 +36,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def get_dtdv2_with_http_info(report_definition_name_version, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: DownloadDTDApi.get_dtdv2 ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: DownloadDTDApi.get_dtdv2 ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'report_definition_name_version' is set
       if @api_client.config.client_side_validation && report_definition_name_version.nil?
@@ -75,13 +75,13 @@ module CyberSource
         :body => post_body,
         :auth_names => auth_names)
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: DownloadDTDApi#get_dtdv2\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: DownloadDTDApi#get_dtdv2\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
   end

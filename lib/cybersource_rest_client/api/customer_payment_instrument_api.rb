@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-	  @api_client.set_configuration(config)
+      @api_client.set_configuration(config)
     end
     # Delete a Customer Payment Instrument
     # @param customer_token_id The TokenId of a customer.
@@ -38,14 +38,14 @@ module CyberSource
     # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def delete_customer_payment_instrument_with_http_info(customer_token_id, payment_instrument_token_id, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: CustomerPaymentInstrumentApi.delete_customer_payment_instrument ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: CustomerPaymentInstrumentApi.delete_customer_payment_instrument ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'customer_token_id' is set
       if @api_client.config.client_side_validation && customer_token_id.nil?
@@ -106,13 +106,13 @@ module CyberSource
         :body => post_body,
         :auth_names => auth_names)
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: CustomerPaymentInstrumentApi#delete_customer_payment_instrument\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: CustomerPaymentInstrumentApi#delete_customer_payment_instrument\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
     # Retrieve a Customer Payment Instrument
@@ -133,14 +133,14 @@ module CyberSource
     # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
     # @return [Array<(Tmsv2customersEmbeddedDefaultPaymentInstrument, Fixnum, Hash)>] Tmsv2customersEmbeddedDefaultPaymentInstrument data, response status code and response headers
     def get_customer_payment_instrument_with_http_info(customer_token_id, payment_instrument_token_id, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: CustomerPaymentInstrumentApi.get_customer_payment_instrument ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: CustomerPaymentInstrumentApi.get_customer_payment_instrument ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'customer_token_id' is set
       if @api_client.config.client_side_validation && customer_token_id.nil?
@@ -202,13 +202,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'Tmsv2customersEmbeddedDefaultPaymentInstrument')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: CustomerPaymentInstrumentApi#get_customer_payment_instrument\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: CustomerPaymentInstrumentApi#get_customer_payment_instrument\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
     # List Payment Instruments for a Customer
@@ -231,14 +231,14 @@ module CyberSource
     # @option opts [Integer] :limit The maximum number that can be returned in the array starting from the offset record in zero-based dataset. Default is 20, maximum is 100.
     # @return [Array<(PaymentInstrumentList, Fixnum, Hash)>] PaymentInstrumentList data, response status code and response headers
     def get_customer_payment_instruments_list_with_http_info(customer_token_id, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: CustomerPaymentInstrumentApi.get_customer_payment_instruments_list ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: CustomerPaymentInstrumentApi.get_customer_payment_instruments_list ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'customer_token_id' is set
       if @api_client.config.client_side_validation && customer_token_id.nil?
@@ -302,13 +302,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'PaymentInstrumentList')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: CustomerPaymentInstrumentApi#get_customer_payment_instruments_list\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: CustomerPaymentInstrumentApi#get_customer_payment_instruments_list\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
     # Update a Customer Payment Instrument
@@ -333,14 +333,14 @@ module CyberSource
     # @option opts [String] :if_match Contains an ETag value from a GET request to make the request conditional.
     # @return [Array<(Tmsv2customersEmbeddedDefaultPaymentInstrument, Fixnum, Hash)>] Tmsv2customersEmbeddedDefaultPaymentInstrument data, response status code and response headers
     def patch_customers_payment_instrument_with_http_info(customer_token_id, payment_instrument_token_id, patch_customer_payment_instrument_request, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: CustomerPaymentInstrumentApi.patch_customers_payment_instrument ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: CustomerPaymentInstrumentApi.patch_customers_payment_instrument ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'customer_token_id' is set
       if @api_client.config.client_side_validation && customer_token_id.nil?
@@ -415,13 +415,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'Tmsv2customersEmbeddedDefaultPaymentInstrument')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: CustomerPaymentInstrumentApi#patch_customers_payment_instrument\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: CustomerPaymentInstrumentApi#patch_customers_payment_instrument\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
     # Create a Customer Payment Instrument
@@ -444,14 +444,14 @@ module CyberSource
     # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
     # @return [Array<(Tmsv2customersEmbeddedDefaultPaymentInstrument, Fixnum, Hash)>] Tmsv2customersEmbeddedDefaultPaymentInstrument data, response status code and response headers
     def post_customer_payment_instrument_with_http_info(customer_token_id, post_customer_payment_instrument_request, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: CustomerPaymentInstrumentApi.post_customer_payment_instrument ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: CustomerPaymentInstrumentApi.post_customer_payment_instrument ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'customer_token_id' is set
       if @api_client.config.client_side_validation && customer_token_id.nil?
@@ -505,13 +505,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'Tmsv2customersEmbeddedDefaultPaymentInstrument')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: CustomerPaymentInstrumentApi#post_customer_payment_instrument\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: CustomerPaymentInstrumentApi#post_customer_payment_instrument\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
   end

@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-	  @api_client.set_configuration(config)
+      @api_client.set_configuration(config)
     end
     # Create one or more PKCS#12 keys
     # 'Create one or more PKCS#12 keys' 
@@ -36,14 +36,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(KmsV2KeysAsymPost201Response, Fixnum, Hash)>] KmsV2KeysAsymPost201Response data, response status code and response headers
     def create_p12_keys_with_http_info(create_p12_keys_request, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: AsymmetricKeyManagementApi.create_p12_keys ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: AsymmetricKeyManagementApi.create_p12_keys ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'create_p12_keys_request' is set
       if @api_client.config.client_side_validation && create_p12_keys_request.nil?
@@ -76,13 +76,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'KmsV2KeysAsymPost201Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: AsymmetricKeyManagementApi#create_p12_keys\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: AsymmetricKeyManagementApi#create_p12_keys\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
     # Delete one or more PKCS#12 keys
@@ -101,14 +101,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(KmsV2KeysAsymDeletesPost200Response, Fixnum, Hash)>] KmsV2KeysAsymDeletesPost200Response data, response status code and response headers
     def delete_bulk_p12_keys_with_http_info(delete_bulk_p12_keys_request, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: AsymmetricKeyManagementApi.delete_bulk_p12_keys ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: AsymmetricKeyManagementApi.delete_bulk_p12_keys ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'delete_bulk_p12_keys_request' is set
       if @api_client.config.client_side_validation && delete_bulk_p12_keys_request.nil?
@@ -141,13 +141,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'KmsV2KeysAsymDeletesPost200Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: AsymmetricKeyManagementApi#delete_bulk_p12_keys\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: AsymmetricKeyManagementApi#delete_bulk_p12_keys\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
     # Retrieves PKCS#12 key details
@@ -166,14 +166,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(KmsV2KeysAsymGet200Response, Fixnum, Hash)>] KmsV2KeysAsymGet200Response data, response status code and response headers
     def get_p12_key_details_with_http_info(key_id, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: AsymmetricKeyManagementApi.get_p12_key_details ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: AsymmetricKeyManagementApi.get_p12_key_details ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'key_id' is set
       if @api_client.config.client_side_validation && key_id.nil?
@@ -206,13 +206,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'KmsV2KeysAsymGet200Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: AsymmetricKeyManagementApi#get_p12_key_details\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: AsymmetricKeyManagementApi#get_p12_key_details\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
   end

@@ -92,4 +92,10 @@ describe 'Ptsv2paymentsidrefundsPaymentInformation' do
     end
   end
 
+  describe 'test attribute "e_wallet"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

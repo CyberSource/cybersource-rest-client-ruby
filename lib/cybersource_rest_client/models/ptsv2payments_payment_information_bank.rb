@@ -22,12 +22,16 @@ module CyberSource
     # International Bank Account Number (IBAN) for the bank account. For some countries you can provide this number instead of the traditional bank account information. You can use this field only when scoring a direct debit transaction.  For all possible values, see the `bank_iban` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
     attr_accessor :iban
 
+    # Bank’s SWIFT code. You can use this field only when scoring a direct debit transaction. Required only for crossborder transactions.  For all possible values, see the `bank_swiftcode` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
+    attr_accessor :swift_code
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'account' => :'account',
         :'routing_number' => :'routingNumber',
-        :'iban' => :'iban'
+        :'iban' => :'iban',
+        :'swift_code' => :'swiftCode'
       }
     end
 
@@ -36,7 +40,8 @@ module CyberSource
       {
         :'account' => :'Ptsv2paymentsPaymentInformationBankAccount',
         :'routing_number' => :'String',
-        :'iban' => :'String'
+        :'iban' => :'String',
+        :'swift_code' => :'String'
       }
     end
 
@@ -58,6 +63,10 @@ module CyberSource
 
       if attributes.has_key?(:'iban')
         self.iban = attributes[:'iban']
+      end
+
+      if attributes.has_key?(:'swiftCode')
+        self.swift_code = attributes[:'swiftCode']
       end
     end
 
@@ -93,7 +102,8 @@ module CyberSource
       self.class == o.class &&
           account == o.account &&
           routing_number == o.routing_number &&
-          iban == o.iban
+          iban == o.iban &&
+          swift_code == o.swift_code
     end
 
     # @see the `==` method
@@ -105,7 +115,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [account, routing_number, iban].hash
+      [account, routing_number, iban, swift_code].hash
     end
 
     # Builds the object from hash

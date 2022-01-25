@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-	  @api_client.set_configuration(config)
+      @api_client.set_configuration(config)
     end
     # Create Shared-Secret Keys
     # Create one or more Shared-Secret Keys 
@@ -36,14 +36,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(KmsV2KeysSymPost201Response, Fixnum, Hash)>] KmsV2KeysSymPost201Response data, response status code and response headers
     def create_v2_shared_secret_keys_with_http_info(create_shared_secret_keys_request, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: SymmetricKeyManagementApi.create_v2_shared_secret_keys ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: SymmetricKeyManagementApi.create_v2_shared_secret_keys ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'create_shared_secret_keys_request' is set
       if @api_client.config.client_side_validation && create_shared_secret_keys_request.nil?
@@ -76,13 +76,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'KmsV2KeysSymPost201Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: SymmetricKeyManagementApi#create_v2_shared_secret_keys\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: SymmetricKeyManagementApi#create_v2_shared_secret_keys\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
     # Delete one or more Symmetric keys
@@ -101,14 +101,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(KmsV2KeysSymDeletesPost200Response, Fixnum, Hash)>] KmsV2KeysSymDeletesPost200Response data, response status code and response headers
     def delete_bulk_symmetric_keys_with_http_info(delete_bulk_symmetric_keys_request, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: SymmetricKeyManagementApi.delete_bulk_symmetric_keys ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: SymmetricKeyManagementApi.delete_bulk_symmetric_keys ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'delete_bulk_symmetric_keys_request' is set
       if @api_client.config.client_side_validation && delete_bulk_symmetric_keys_request.nil?
@@ -141,13 +141,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'KmsV2KeysSymDeletesPost200Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: SymmetricKeyManagementApi#delete_bulk_symmetric_keys\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: SymmetricKeyManagementApi#delete_bulk_symmetric_keys\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
     # Retrieves shared secret key details
@@ -166,14 +166,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(KmsV2KeysSymGet200Response, Fixnum, Hash)>] KmsV2KeysSymGet200Response data, response status code and response headers
     def get_key_details_with_http_info(key_id, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: SymmetricKeyManagementApi.get_key_details ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: SymmetricKeyManagementApi.get_key_details ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'key_id' is set
       if @api_client.config.client_side_validation && key_id.nil?
@@ -206,13 +206,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'KmsV2KeysSymGet200Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: SymmetricKeyManagementApi#get_key_details\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: SymmetricKeyManagementApi#get_key_details\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
   end

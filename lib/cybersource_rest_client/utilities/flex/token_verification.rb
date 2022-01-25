@@ -1,4 +1,4 @@
-module CyberSource    
+module CyberSource
     class TokenVerification
         def verifyToken(public_key, post_param)
             post_param = JSON.parse(post_param)
@@ -26,10 +26,10 @@ module CyberSource
             string_to_pem = Base64.decode64(public_key)
             public_key_to_pem = OpenSSL::PKey::RSA.new(string_to_pem)
             verify = public_key_to_pem.verify(OpenSSL::Digest::SHA512.new, Base64.decode64(signature), signed_values)
-        rescue StandardError => err 
-            puts err.message
+        rescue StandardError => err
+            raise err
         end
-        
+      
         # Converting response field from camelCase to Underscore
         def CamelCasetoUnderscore(str)
             str.gsub(/::/, '/').

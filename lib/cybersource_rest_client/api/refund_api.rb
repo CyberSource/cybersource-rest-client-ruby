@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-	  @api_client.set_configuration(config)
+      @api_client.set_configuration(config)
     end
     # Refund a Capture
     # Refund a capture API is only used, if you have requested Capture independenlty using [/pts/v2/payments/{id}/captures](https://developer.cybersource.com/api-reference-assets/index.html#payments_capture) API call. Include the capture ID in the POST request to refund the captured amount. 
@@ -38,14 +38,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(PtsV2PaymentsRefundPost201Response, Fixnum, Hash)>] PtsV2PaymentsRefundPost201Response data, response status code and response headers
     def refund_capture_with_http_info(refund_capture_request, id, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: RefundApi.refund_capture ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: RefundApi.refund_capture ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'refund_capture_request' is set
       if @api_client.config.client_side_validation && refund_capture_request.nil?
@@ -82,13 +82,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'PtsV2PaymentsRefundPost201Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: RefundApi#refund_capture\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: RefundApi#refund_capture\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
     # Refund a Payment
@@ -109,14 +109,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(PtsV2PaymentsRefundPost201Response, Fixnum, Hash)>] PtsV2PaymentsRefundPost201Response data, response status code and response headers
     def refund_payment_with_http_info(refund_payment_request, id, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: RefundApi.refund_payment ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: RefundApi.refund_payment ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'refund_payment_request' is set
       if @api_client.config.client_side_validation && refund_payment_request.nil?
@@ -153,13 +153,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'PtsV2PaymentsRefundPost201Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: RefundApi#refund_payment\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: RefundApi#refund_payment\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
   end

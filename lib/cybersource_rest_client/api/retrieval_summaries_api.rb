@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-	  @api_client.set_configuration(config)
+      @api_client.set_configuration(config)
     end
     # Get Retrieval Summaries
     # Retrieval Summary Report Description
@@ -40,14 +40,14 @@ module CyberSource
     # @option opts [String] :organization_id Valid Organization Id
     # @return [Array<(ReportingV3RetrievalSummariesGet200Response, Fixnum, Hash)>] ReportingV3RetrievalSummariesGet200Response data, response status code and response headers
     def get_retrieval_summary_with_http_info(start_time, end_time, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: RetrievalSummariesApi.get_retrieval_summary ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: RetrievalSummariesApi.get_retrieval_summary ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'start_time' is set
       if @api_client.config.client_side_validation && start_time.nil?
@@ -99,13 +99,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'ReportingV3RetrievalSummariesGet200Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: RetrievalSummariesApi#get_retrieval_summary\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: RetrievalSummariesApi#get_retrieval_summary\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
   end

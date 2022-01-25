@@ -12,7 +12,7 @@ The CyberSource Ruby client provides convenient access to the [CyberSource REST 
 * Ruby 2.5.0 or higher
 * [CyberSource Account](https://developer.cybersource.com/api/developer-guides/dita-gettingstarted/registration.html)
 * [CyberSource API Keys](https://prod.developer.cybersource.com/api/developer-guides/dita-gettingstarted/registration/createCertSharedKey.html)
- 
+
 ## Dependencies
 
 * activesupport 6.0.3.2
@@ -37,9 +37,9 @@ Be sure to always use HTTPS rubygems source in your gemfile and include the cybe
 
 Use of this SDK and the CyberSource APIs requires having an account on our system. You can find details of getting a test account and creating your keys [here](https://developer.cybersource.com/api/developer-guides/dita-gettingstarted/registration.html)
 
-Once you have your keys, simply load them into the appropriate variables in your code, as per the below sample code dealing with the authentication part of the API request. 
+Once you have your keys, simply load them into the appropriate variables in your code, as per the below sample code dealing with the authentication part of the API request.
 
-Remember this SDK is for use in server-side Ruby applications that access the CyberSource REST API and credentials should always be securely stored and accessed appropriately. 
+Remember this SDK is for use in server-side Ruby applications that access the CyberSource REST API and credentials should always be securely stored and accessed appropriately.
 
 ## SDK Usage Examples and Sample Code
 

@@ -31,6 +31,12 @@ module CyberSource
     # The merchant's password that CyberSource hashes and stores as a hashed password.  For details about this field, see the `customer_password` field description in _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
     attr_accessor :hashed_password
 
+    # Customer's gender. Possible values are F (female), M (male),O (other).
+    attr_accessor :gender
+
+    # language setting of the user
+    attr_accessor :language
+
     # Cardholder’s mobile phone number. **Important** Required for Visa Secure transactions in Brazil. Do not use this request field for any other types of transactions. 
     attr_accessor :mobile_phone
 
@@ -43,6 +49,8 @@ module CyberSource
         :'company_tax_id' => :'companyTaxId',
         :'personal_identification' => :'personalIdentification',
         :'hashed_password' => :'hashedPassword',
+        :'gender' => :'gender',
+        :'language' => :'language',
         :'mobile_phone' => :'mobilePhone'
       }
     end
@@ -56,6 +64,8 @@ module CyberSource
         :'company_tax_id' => :'String',
         :'personal_identification' => :'Array<Ptsv2paymentsBuyerInformationPersonalIdentification>',
         :'hashed_password' => :'String',
+        :'gender' => :'String',
+        :'language' => :'String',
         :'mobile_phone' => :'Integer'
       }
     end
@@ -92,6 +102,14 @@ module CyberSource
 
       if attributes.has_key?(:'hashedPassword')
         self.hashed_password = attributes[:'hashedPassword']
+      end
+
+      if attributes.has_key?(:'gender')
+        self.gender = attributes[:'gender']
+      end
+
+      if attributes.has_key?(:'language')
+        self.language = attributes[:'language']
       end
 
       if attributes.has_key?(:'mobilePhone')
@@ -142,6 +160,18 @@ module CyberSource
       @hashed_password = hashed_password
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] gender Value to be assigned
+    def gender=(gender)
+      @gender = gender
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] language Value to be assigned
+    def language=(language)
+      @language = language
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -153,6 +183,8 @@ module CyberSource
           company_tax_id == o.company_tax_id &&
           personal_identification == o.personal_identification &&
           hashed_password == o.hashed_password &&
+          gender == o.gender &&
+          language == o.language &&
           mobile_phone == o.mobile_phone
     end
 
@@ -165,7 +197,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [merchant_customer_id, date_of_birth, vat_registration_number, company_tax_id, personal_identification, hashed_password, mobile_phone].hash
+      [merchant_customer_id, date_of_birth, vat_registration_number, company_tax_id, personal_identification, hashed_password, gender, language, mobile_phone].hash
     end
 
     # Builds the object from hash

@@ -13,7 +13,7 @@ public
         raise Constants::ERROR_PREFIX + Constants::PROPERTY_FILE_NOT_FOUND
       end
     rescue StandardError => err
-      puts err.message
-      exit!
+      raise err
+      # exit!
     end
   end

@@ -20,11 +20,15 @@ module CyberSource
     # Currency used for the order. Use the three-character [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)  #### Used by **Authorization** Required field.  **Authorization Reversal** For an authorization reversal (`reversalInformation`) or a capture (`processingOptions.capture` is set to `true`), you must use the same currency that you used in your payment authorization request.  #### PIN Debit Currency for the amount you requested for the PIN debit purchase. This value is returned for partial authorizations. The issuing bank can approve a partial amount if the balance on the debit card is less than the requested transaction amount. For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf). Returned by PIN debit purchase.  For PIN debit reversal requests, you must use the same currency that was used for the PIN debit purchase or PIN debit credit that you are reversing. For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).  Required field for PIN Debit purchase and PIN Debit credit requests. Optional field for PIN Debit reversal requests.  #### GPX This field is optional for reversing an authorization or credit.  #### DCC for First Data Your local currency. For details, see the `currency` field description in [Dynamic Currency Conversion For First Data Using the SCMP API](http://apps.cybersource.com/library/documentation/dev_guides/DCC_FirstData_SCMP/DCC_FirstData_SCMP_API.pdf).  #### Tax Calculation Required for international tax and value added tax only. Optional for U.S. and Canadian taxes. Your local currency. 
     attr_accessor :currency
 
+    # The fee decided by the PSP/Processor per transaction.
+    attr_accessor :processor_transaction_fee
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'total_amount' => :'totalAmount',
-        :'currency' => :'currency'
+        :'currency' => :'currency',
+        :'processor_transaction_fee' => :'processorTransactionFee'
       }
     end
 
@@ -32,7 +36,8 @@ module CyberSource
     def self.swagger_types
       {
         :'total_amount' => :'String',
-        :'currency' => :'String'
+        :'currency' => :'String',
+        :'processor_transaction_fee' => :'String'
       }
     end
 
@@ -50,6 +55,10 @@ module CyberSource
 
       if attributes.has_key?(:'currency')
         self.currency = attributes[:'currency']
+      end
+
+      if attributes.has_key?(:'processorTransactionFee')
+        self.processor_transaction_fee = attributes[:'processorTransactionFee']
       end
     end
 
@@ -78,13 +87,20 @@ module CyberSource
       @currency = currency
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] processor_transaction_fee Value to be assigned
+    def processor_transaction_fee=(processor_transaction_fee)
+      @processor_transaction_fee = processor_transaction_fee
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           total_amount == o.total_amount &&
-          currency == o.currency
+          currency == o.currency &&
+          processor_transaction_fee == o.processor_transaction_fee
     end
 
     # @see the `==` method
@@ -96,7 +112,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [total_amount, currency].hash
+      [total_amount, currency, processor_transaction_fee].hash
     end
 
     # Builds the object from hash

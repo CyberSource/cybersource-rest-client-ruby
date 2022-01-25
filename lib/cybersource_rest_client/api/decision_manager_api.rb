@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-	  @api_client.set_configuration(config)
+      @api_client.set_configuration(config)
     end
     # List Management
     # This call adds/deletes/converts the request information in the negative list.  Provide the list to be updated as the path parameter. This value can be 'postiive', 'negative' or 'review'. 
@@ -38,14 +38,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(RiskV1UpdatePost201Response, Fixnum, Hash)>] RiskV1UpdatePost201Response data, response status code and response headers
     def add_negative_with_http_info(type, add_negative_list_request, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: DecisionManagerApi.add_negative ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: DecisionManagerApi.add_negative ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'type' is set
       if @api_client.config.client_side_validation && type.nil?
@@ -82,13 +82,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'RiskV1UpdatePost201Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: DecisionManagerApi#add_negative\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: DecisionManagerApi#add_negative\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
     # Create Decision Manager
@@ -107,14 +107,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(RiskV1DecisionsPost201Response, Fixnum, Hash)>] RiskV1DecisionsPost201Response data, response status code and response headers
     def create_bundled_decision_manager_case_with_http_info(create_bundled_decision_manager_case_request, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: DecisionManagerApi.create_bundled_decision_manager_case ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: DecisionManagerApi.create_bundled_decision_manager_case ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'create_bundled_decision_manager_case_request' is set
       if @api_client.config.client_side_validation && create_bundled_decision_manager_case_request.nil?
@@ -147,13 +147,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'RiskV1DecisionsPost201Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: DecisionManagerApi#create_bundled_decision_manager_case\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: DecisionManagerApi#create_bundled_decision_manager_case\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
     # Fraud Marking
@@ -174,14 +174,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(RiskV1UpdatePost201Response, Fixnum, Hash)>] RiskV1UpdatePost201Response data, response status code and response headers
     def fraud_update_with_http_info(id, fraud_marking_action_request, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: DecisionManagerApi.fraud_update ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: DecisionManagerApi.fraud_update ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
@@ -218,13 +218,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'RiskV1UpdatePost201Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: DecisionManagerApi#fraud_update\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: DecisionManagerApi#fraud_update\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
   end

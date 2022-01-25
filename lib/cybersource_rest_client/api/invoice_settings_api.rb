@@ -18,7 +18,7 @@ module CyberSource
 
     def initialize(api_client = ApiClient.default, config)
       @api_client = api_client
-	  @api_client.set_configuration(config)
+      @api_client.set_configuration(config)
     end
     # Get Invoice Settings
     # Get the invoice settings for the invoice payment page.
@@ -34,14 +34,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(InvoicingV2InvoiceSettingsGet200Response, Fixnum, Hash)>] InvoicingV2InvoiceSettingsGet200Response data, response status code and response headers
     def get_invoice_settings_with_http_info(opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: InvoiceSettingsApi.get_invoice_settings ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: InvoiceSettingsApi.get_invoice_settings ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # resource path
       local_var_path = 'invoicing/v2/invoiceSettings'
@@ -70,13 +70,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'InvoicingV2InvoiceSettingsGet200Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: InvoiceSettingsApi#get_invoice_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: InvoiceSettingsApi#get_invoice_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
     # Update Invoice Settings
@@ -95,14 +95,14 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<(InvoicingV2InvoiceSettingsGet200Response, Fixnum, Hash)>] InvoicingV2InvoiceSettingsGet200Response data, response status code and response headers
     def update_invoice_settings_with_http_info(invoice_settings_request, opts = {})
-      
-	  if @api_client.config.debugging
-	  	begin
-			raise
-				@api_client.config.logger.debug 'Calling API: InvoiceSettingsApi.update_invoice_settings ...'
-			rescue
-				puts 'Cannot write to log'
-			end
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: InvoiceSettingsApi.update_invoice_settings ...'
+            rescue
+                puts 'Cannot write to log'
+            end
       end
       # verify the required parameter 'invoice_settings_request' is set
       if @api_client.config.client_side_validation && invoice_settings_request.nil?
@@ -135,13 +135,13 @@ module CyberSource
         :auth_names => auth_names,
         :return_type => 'InvoicingV2InvoiceSettingsGet200Response')
       if @api_client.config.debugging
-		begin
-		raise
-			@api_client.config.logger.debug "API called: InvoiceSettingsApi#update_invoice_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-		rescue
-			puts 'Cannot write to log'
-		end
-	  end
+        begin
+        raise
+            @api_client.config.logger.debug "API called: InvoiceSettingsApi#update_invoice_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
       return data, status_code, headers
     end
   end

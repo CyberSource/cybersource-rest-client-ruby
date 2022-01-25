@@ -61,26 +61,28 @@
       AUTH_TYPE_OAUTH = 'OAUTH' unless const_defined?(:AUTH_TYPE_OAUTH)
 
       AUTH_TYPE_MUTUAL_AUTH = 'MUTUAL_AUTH' unless const_defined?(:AUTH_TYPE_MUTUAL_AUTH)
-	    
+
       AUTH_TYPE_JWT = 'JWT' unless const_defined?(:AUTH_TYPE_JWT)
 
       OLD_RUN_ENVIRONMENT_CONSTANTS = ['CYBERSOURCE.ENVIRONMENT.SANDBOX', 'CYBERSOURCE.ENVIRONMENT.PRODUCTION', 'CYBERSOURCE.IN.ENVIRONMENT.SANDBOX', 'CYBERSOURCE.IN.ENVIRONMENT.PRODUCTION', 'BANKOFAMERICA.ENVIRONMENT.SANDBOX', 'BANKOFAMERICA.ENVIRONMENT.PRODUCTION']
 
       # constants for fall back logic
 
-      DEFAULT_LOG_SIZE = 10485760 unless const_defined?(:DEFAULT_LOG_SIZE)
-
-      DEFAULT_PROXY_ADDRESS = 'userproxy.visa.com' unless const_defined?(:DEFAULT_PROXY_ADDRESS)
-
-      DEFAULT_PROXY_PORT = '443' unless const_defined?(:DEFAULT_PROXY_PORT)
+      DEFAULT_LOG_SIZE = '10485760' unless const_defined?(:DEFAULT_LOG_SIZE)
 
       DEFAULT_TIMEOUT = '1000' unless const_defined?(:DEFAULT_TIMEOUT)
 
-      DEFAULT_LOG_DIRECTORY = '../log' unless const_defined?(:DEFAULT_LOG_DIRECTORY)
+      DEFAULT_LOG_DIRECTORY = 'log' unless const_defined?(:DEFAULT_LOG_DIRECTORY)
 
       DEFAULT_KEY_DIRECTORY = 'resource' unless const_defined?(:DEFAULT_KEY_DIRECTORY)
 
       DEFAULT_LOGFILE_NAME = 'cybs' unless const_defined?(:DEFAULT_LOGFILE_NAME)
+
+      DEFAULT_MAX_LOG_FILES = '5' unless const_defined?(:DEFAULT_MAX_LOG_FILES)
+
+      DEFAULT_LOG_LEVEL = 'debug' unless const_defined?(:DEFAULT_LOG_LEVEL)
+
+      LOG_LEVELS = ['UNKNOWN', 'FATAL', 'ERROR', 'WARN', 'INFO', 'DEBUG'] unless const_defined?(:LOG_LEVELS)
 
       # Constant for Fall back logic and Exception Handling
 
@@ -110,7 +112,13 @@
 
       INVALID_REQUEST_TYPE_METHOD = 'Entered Request Type should be (GET/POST/PUT)' unless const_defined?(:INVALID_REQUEST_TYPE_METHOD)
 
-      INVALID_LOG_DIRECTORY = 'Entered LogDirectory is Incorrect. Using Default Path: ' unless const_defined?(:INVALID_LOG_DIRECTORY)
+      INVALID_LOG_DIRECTORY = 'Entered LogDirectory is Missing/Incorrect. Using Default Path: ' unless const_defined?(:INVALID_LOG_DIRECTORY)
+
+      INVALID_MAX_LOG_SIZE = 'Entered MaxLogSize is Missing/Incorrect. Using Default Value: ' unless const_defined?(:INVALID_MAX_LOG_SIZE)
+
+      INVALID_MAX_LOG_FILES = 'Entered MaxLogFiles is Missing/Incorrect. Using Default Value: ' unless const_defined?(:INVALID_MAX_LOG_FILES)
+
+      INVALID_LOG_LEVEL = 'Entered LogLevel is Missing/Incorrect. Using Default Value: ' unless const_defined?(:INVALID_LOG_LEVEL)
 
       RUN_ENVIRONMENT_ERROR = 'Entered RunEnvironment is Incorrect.' unless const_defined?(:RUN_ENVIRONMENT_ERROR)
 
@@ -137,22 +145,22 @@
       INCORRECT_KEY_ALIAS = 'The Entered KeyAlias is Incorrect. Assigining merchantID value' unless const_defined?(:INCORRECT_KEY_ALIAS)
 
       ENABLE_CLIENT_CERT_EMPTY = 'Enable Clientcert is Empty/Null.' unless const_defined?(:ENABLE_CLIENT_CERT_EMPTY)
-      
+
       CLIENT_CERT_DIR_EMPTY = 'Client Cert Directory is Empty/Null' unless const_defined?(:CLIENT_CERT_DIR_EMPTY)
-      
+
       SSL_CLIENT_CERT_EMPTY = 'SSL Client Cert is Empty/Null' unless const_defined?(:SSL_CLIENT_CERT_EMPTY)
 
       PRIVATE_KEY_EMPTY = 'Private Key is Empty/Null' unless const_defined?(:PRIVATE_KEY_EMPTY)
-      
+
       SSL_KEY_PASSWORD_EMPTY = 'SSL Key Password is Empty/Null' unless const_defined?(:SSL_KEY_PASSWORD_EMPTY)
-      
+
       CLIENT_ID_EMPTY = 'Client Id is Empty/Null' unless const_defined?(:CLIENT_ID_EMPTY)
-      
+
       CLIENT_SECRET_EMPTY = 'Client Secret is Empty/Null' unless const_defined?(:CLIENT_SECRET_EMPTY)
-      
+
       ACCESS_TOKEN_EMPTY = 'AccessToken is Empty/Null' unless const_defined?(:ACCESS_TOKEN_REQ)
-      
+
       REFRESH_TOKEN_EMPTY = 'RefreshToken is Empty/Null' unless const_defined?(:REFRESH_TOKEN_REQ)
-      
-      DERPECATED_ENVIRONMENT = 'The value provided for this field `RunEnvironment` has been deprecated and will not be used anymore.\n\nPlease refer to the README file [ https://github.com/CyberSource/cybersource-rest-samples-node/blob/master/README.md ] for information about the new values that are accepted.'
+
+      DEPRECATED_ENVIRONMENT = 'The value provided for this field `RunEnvironment` has been deprecated and will not be used anymore.\n\nPlease refer to the README file [ https://github.com/CyberSource/cybersource-rest-samples-node/blob/master/README.md ] for information about the new values that are accepted.'
   end
