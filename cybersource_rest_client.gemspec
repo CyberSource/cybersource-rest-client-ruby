@@ -17,7 +17,7 @@ require "cybersource_rest_client/version"
 
 Gem::Specification.new do |s|
   s.name        = "cybersource_rest_client"
-  s.version     = "0.0.38"
+  s.version     = "0.0.39"
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["CyberSource"]
   s.email       = ["cybersourcedev@gmail.com"]
@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'typhoeus', '~> 1.0', '>= 1.0.1'
   s.add_runtime_dependency 'json', '~> 2.1', '>= 2.1.0'
-  s.add_runtime_dependency 'activesupport', '~> 6.0', '>= 6.0.3.2'
+  s.add_runtime_dependency 'activesupport', '>= 6.0'
   s.add_runtime_dependency 'interface','~> 1.0', '>= 1.0.4'
   s.add_runtime_dependency 'jwt', '~> 2.1'
   s.add_runtime_dependency 'addressable', '~> 2.3', '>= 2.3.0'
