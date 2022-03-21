@@ -41,7 +41,7 @@ module CyberSource
         :'code' => :'String',
         :'application_name' => :'String',
         :'application_user' => :'String',
-        :'partner' => :'TssV2TransactionsPost201ResponseEmbeddedClientReferenceInformationPartner'
+        :'partner' => :'TssV2TransactionsGet200ResponseClientReferenceInformationPartner'
       }
     end
 
