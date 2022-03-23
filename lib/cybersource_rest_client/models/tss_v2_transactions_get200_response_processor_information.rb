@@ -51,6 +51,9 @@ module CyberSource
     # Used by Visa only and contains the response source/reason code that identifies the source of the response decision. 
     attr_accessor :response_code_source
 
+    # Visa-generated reference number that identifies a card-present transaction for which you provided one of the following:   - Visa primary account number (PAN)  - Visa-generated token for a PAN  This reference number serves as a link to the cardholder account and to all transactions for that account. This reply field is returned only for CyberSource through VisaNet.  **Note** On CyberSource through VisaNet, the value for this field corresponds to the following data in the TC 33 capture file: - Record: CP01 TCR8 - Position: 79-110 - Field: Payment Account Reference  The TC 33 Capture file contains information about the purchases and refunds that a merchant submits to CyberSource. CyberSource through VisaNet creates the TC 33 Capture file at the end of the day and sends it to the merchant’s acquirer, who uses this information to facilitate end-of-day clearing processing with payment networks. 
+    attr_accessor :payment_account_reference_number
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -67,7 +70,8 @@ module CyberSource
         :'ach_verification' => :'achVerification',
         :'electronic_verification_results' => :'electronicVerificationResults',
         :'system_trace_audit_number' => :'systemTraceAuditNumber',
-        :'response_code_source' => :'responseCodeSource'
+        :'response_code_source' => :'responseCodeSource',
+        :'payment_account_reference_number' => :'paymentAccountReferenceNumber'
       }
     end
 
@@ -87,7 +91,8 @@ module CyberSource
         :'ach_verification' => :'PtsV2PaymentsPost201ResponseProcessorInformationAchVerification',
         :'electronic_verification_results' => :'TssV2TransactionsGet200ResponseProcessorInformationElectronicVerificationResults',
         :'system_trace_audit_number' => :'String',
-        :'response_code_source' => :'String'
+        :'response_code_source' => :'String',
+        :'payment_account_reference_number' => :'String'
       }
     end
 
@@ -156,6 +161,10 @@ module CyberSource
       if attributes.has_key?(:'responseCodeSource')
         self.response_code_source = attributes[:'responseCodeSource']
       end
+
+      if attributes.has_key?(:'paymentAccountReferenceNumber')
+        self.payment_account_reference_number = attributes[:'paymentAccountReferenceNumber']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -207,6 +216,12 @@ module CyberSource
       @response_code_source = response_code_source
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] payment_account_reference_number Value to be assigned
+    def payment_account_reference_number=(payment_account_reference_number)
+      @payment_account_reference_number = payment_account_reference_number
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -225,7 +240,8 @@ module CyberSource
           ach_verification == o.ach_verification &&
           electronic_verification_results == o.electronic_verification_results &&
           system_trace_audit_number == o.system_trace_audit_number &&
-          response_code_source == o.response_code_source
+          response_code_source == o.response_code_source &&
+          payment_account_reference_number == o.payment_account_reference_number
     end
 
     # @see the `==` method
@@ -237,7 +253,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [processor, multi_processor_routing, transaction_id, network_transaction_id, retrieval_reference_number, response_id, approval_code, response_code, avs, card_verification, ach_verification, electronic_verification_results, system_trace_audit_number, response_code_source].hash
+      [processor, multi_processor_routing, transaction_id, network_transaction_id, retrieval_reference_number, response_id, approval_code, response_code, avs, card_verification, ach_verification, electronic_verification_results, system_trace_audit_number, response_code_source, payment_account_reference_number].hash
     end
 
     # Builds the object from hash

@@ -26,9 +26,6 @@ module CyberSource
     # Your CyberSource merchant ID.
     attr_accessor :merchant_id
 
-    # The status of the submitted transaction.
-    attr_accessor :status
-
     # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC.  Returned by Cybersource for all services. 
     attr_accessor :submit_time_utc
 
@@ -69,6 +66,8 @@ module CyberSource
 
     attr_accessor :sender_information
 
+    attr_accessor :token_information
+
     attr_accessor :_links
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -78,7 +77,6 @@ module CyberSource
         :'root_id' => :'rootId',
         :'reconciliation_id' => :'reconciliationId',
         :'merchant_id' => :'merchantId',
-        :'status' => :'status',
         :'submit_time_utc' => :'submitTimeUTC',
         :'application_information' => :'applicationInformation',
         :'buyer_information' => :'buyerInformation',
@@ -98,6 +96,7 @@ module CyberSource
         :'point_of_sale_information' => :'pointOfSaleInformation',
         :'risk_information' => :'riskInformation',
         :'sender_information' => :'senderInformation',
+        :'token_information' => :'tokenInformation',
         :'_links' => :'_links'
       }
     end
@@ -109,7 +108,6 @@ module CyberSource
         :'root_id' => :'String',
         :'reconciliation_id' => :'String',
         :'merchant_id' => :'String',
-        :'status' => :'String',
         :'submit_time_utc' => :'String',
         :'application_information' => :'TssV2TransactionsGet200ResponseApplicationInformation',
         :'buyer_information' => :'TssV2TransactionsGet200ResponseBuyerInformation',
@@ -129,6 +127,7 @@ module CyberSource
         :'point_of_sale_information' => :'TssV2TransactionsGet200ResponsePointOfSaleInformation',
         :'risk_information' => :'TssV2TransactionsGet200ResponseRiskInformation',
         :'sender_information' => :'TssV2TransactionsGet200ResponseSenderInformation',
+        :'token_information' => :'TssV2TransactionsGet200ResponseTokenInformation',
         :'_links' => :'TssV2TransactionsGet200ResponseLinks'
       }
     end
@@ -155,10 +154,6 @@ module CyberSource
 
       if attributes.has_key?(:'merchantId')
         self.merchant_id = attributes[:'merchantId']
-      end
-
-      if attributes.has_key?(:'status')
-        self.status = attributes[:'status']
       end
 
       if attributes.has_key?(:'submitTimeUTC')
@@ -239,6 +234,10 @@ module CyberSource
         self.sender_information = attributes[:'senderInformation']
       end
 
+      if attributes.has_key?(:'tokenInformation')
+        self.token_information = attributes[:'tokenInformation']
+      end
+
       if attributes.has_key?(:'_links')
         self._links = attributes[:'_links']
       end
@@ -284,7 +283,6 @@ module CyberSource
           root_id == o.root_id &&
           reconciliation_id == o.reconciliation_id &&
           merchant_id == o.merchant_id &&
-          status == o.status &&
           submit_time_utc == o.submit_time_utc &&
           application_information == o.application_information &&
           buyer_information == o.buyer_information &&
@@ -304,6 +302,7 @@ module CyberSource
           point_of_sale_information == o.point_of_sale_information &&
           risk_information == o.risk_information &&
           sender_information == o.sender_information &&
+          token_information == o.token_information &&
           _links == o._links
     end
 
@@ -316,7 +315,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, root_id, reconciliation_id, merchant_id, status, submit_time_utc, application_information, buyer_information, client_reference_information, consumer_authentication_information, device_information, error_information, installment_information, fraud_marking_information, health_care_information, merchant_defined_information, merchant_information, order_information, payment_information, processing_information, processor_information, point_of_sale_information, risk_information, sender_information, _links].hash
+      [id, root_id, reconciliation_id, merchant_id, submit_time_utc, application_information, buyer_information, client_reference_information, consumer_authentication_information, device_information, error_information, installment_information, fraud_marking_information, health_care_information, merchant_defined_information, merchant_information, order_information, payment_information, processing_information, processor_information, point_of_sale_information, risk_information, sender_information, token_information, _links].hash
     end
 
     # Builds the object from hash

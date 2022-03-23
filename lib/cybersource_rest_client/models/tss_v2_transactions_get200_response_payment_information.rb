@@ -26,6 +26,12 @@ module CyberSource
 
     attr_accessor :account_features
 
+    attr_accessor :payment_instrument
+
+    attr_accessor :instrument_identifier
+
+    attr_accessor :shipping_address
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -34,7 +40,10 @@ module CyberSource
         :'card' => :'card',
         :'invoice' => :'invoice',
         :'bank' => :'bank',
-        :'account_features' => :'accountFeatures'
+        :'account_features' => :'accountFeatures',
+        :'payment_instrument' => :'paymentInstrument',
+        :'instrument_identifier' => :'instrumentIdentifier',
+        :'shipping_address' => :'shippingAddress'
       }
     end
 
@@ -42,11 +51,14 @@ module CyberSource
     def self.swagger_types
       {
         :'payment_type' => :'TssV2TransactionsGet200ResponsePaymentInformationPaymentType',
-        :'customer' => :'Riskv1authenticationsetupsPaymentInformationCustomer',
+        :'customer' => :'TssV2TransactionsGet200ResponsePaymentInformationCustomer',
         :'card' => :'TssV2TransactionsGet200ResponsePaymentInformationCard',
         :'invoice' => :'TssV2TransactionsGet200ResponsePaymentInformationInvoice',
         :'bank' => :'TssV2TransactionsGet200ResponsePaymentInformationBank',
-        :'account_features' => :'TssV2TransactionsGet200ResponsePaymentInformationAccountFeatures'
+        :'account_features' => :'TssV2TransactionsGet200ResponsePaymentInformationAccountFeatures',
+        :'payment_instrument' => :'PtsV2PaymentsPost201ResponseTokenInformationPaymentInstrument',
+        :'instrument_identifier' => :'TssV2TransactionsGet200ResponsePaymentInformationInstrumentIdentifier',
+        :'shipping_address' => :'PtsV2PaymentsPost201ResponseTokenInformationShippingAddress'
       }
     end
 
@@ -81,6 +93,18 @@ module CyberSource
       if attributes.has_key?(:'accountFeatures')
         self.account_features = attributes[:'accountFeatures']
       end
+
+      if attributes.has_key?(:'paymentInstrument')
+        self.payment_instrument = attributes[:'paymentInstrument']
+      end
+
+      if attributes.has_key?(:'instrumentIdentifier')
+        self.instrument_identifier = attributes[:'instrumentIdentifier']
+      end
+
+      if attributes.has_key?(:'shippingAddress')
+        self.shipping_address = attributes[:'shippingAddress']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -106,7 +130,10 @@ module CyberSource
           card == o.card &&
           invoice == o.invoice &&
           bank == o.bank &&
-          account_features == o.account_features
+          account_features == o.account_features &&
+          payment_instrument == o.payment_instrument &&
+          instrument_identifier == o.instrument_identifier &&
+          shipping_address == o.shipping_address
     end
 
     # @see the `==` method
@@ -118,7 +145,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [payment_type, customer, card, invoice, bank, account_features].hash
+      [payment_type, customer, card, invoice, bank, account_features, payment_instrument, instrument_identifier, shipping_address].hash
     end
 
     # Builds the object from hash

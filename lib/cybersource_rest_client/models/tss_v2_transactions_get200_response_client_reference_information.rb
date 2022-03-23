@@ -26,6 +26,8 @@ module CyberSource
     # The entity that is responsible for running the transaction and submitting the processing request to CyberSource. This could be a person, a system, or a connection method. 
     attr_accessor :application_user
 
+    attr_accessor :partner
+
     # Brief description of the order or any comment you wish to add to the order. 
     attr_accessor :comments
 
@@ -36,6 +38,7 @@ module CyberSource
         :'application_version' => :'applicationVersion',
         :'application_name' => :'applicationName',
         :'application_user' => :'applicationUser',
+        :'partner' => :'partner',
         :'comments' => :'comments'
       }
     end
@@ -47,6 +50,7 @@ module CyberSource
         :'application_version' => :'String',
         :'application_name' => :'String',
         :'application_user' => :'String',
+        :'partner' => :'TssV2TransactionsGet200ResponseClientReferenceInformationPartner',
         :'comments' => :'String'
       }
     end
@@ -73,6 +77,10 @@ module CyberSource
 
       if attributes.has_key?(:'applicationUser')
         self.application_user = attributes[:'applicationUser']
+      end
+
+      if attributes.has_key?(:'partner')
+        self.partner = attributes[:'partner']
       end
 
       if attributes.has_key?(:'comments')
@@ -114,6 +122,7 @@ module CyberSource
           application_version == o.application_version &&
           application_name == o.application_name &&
           application_user == o.application_user &&
+          partner == o.partner &&
           comments == o.comments
     end
 
@@ -126,7 +135,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [code, application_version, application_name, application_user, comments].hash
+      [code, application_version, application_name, application_user, partner, comments].hash
     end
 
     # Builds the object from hash

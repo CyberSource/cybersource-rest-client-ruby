@@ -14,6 +14,9 @@ require 'date'
 
 module CyberSource
   class PtsV2PaymentsRefundPost201ResponseProcessorInformation
+    # Authorization code. Returned only when the processor returns this value.  The length of this value depends on your processor.  Returned by authorization service.  #### PIN debit Authorization code that is returned by the processor.  Returned by PIN debit credit.  #### Elavon Encrypted Account Number Program The returned value is OFFLINE.  #### TSYS Acquiring Solutions The returned value for a successful zero amount authorization is 000000. 
+    attr_accessor :approval_code
+
     # Processor transaction ID.  This value identifies the transaction on a host system. This value is supported only for Moneris. It contains this information:   - Terminal used to process the transaction  - Shift during which the transaction took place  - Batch number  - Transaction number within the batch  You must store this value. If you give the customer a receipt, display this value on the receipt.  Example For the value 66012345001069003:   - Terminal ID = 66012345  - Shift number = 001  - Batch number = 069  - Transaction number = 003 
     attr_accessor :transaction_id
 
@@ -31,6 +34,7 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'approval_code' => :'approvalCode',
         :'transaction_id' => :'transactionId',
         :'forwarded_acquirer_code' => :'forwardedAcquirerCode',
         :'merchant_number' => :'merchantNumber',
@@ -42,6 +46,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'approval_code' => :'String',
         :'transaction_id' => :'String',
         :'forwarded_acquirer_code' => :'String',
         :'merchant_number' => :'String',
@@ -57,6 +62,10 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'approvalCode')
+        self.approval_code = attributes[:'approvalCode']
+      end
 
       if attributes.has_key?(:'transactionId')
         self.transaction_id = attributes[:'transactionId']
@@ -93,6 +102,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] approval_code Value to be assigned
+    def approval_code=(approval_code)
+      @approval_code = approval_code
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] transaction_id Value to be assigned
     def transaction_id=(transaction_id)
       @transaction_id = transaction_id
@@ -121,6 +136,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          approval_code == o.approval_code &&
           transaction_id == o.transaction_id &&
           forwarded_acquirer_code == o.forwarded_acquirer_code &&
           merchant_number == o.merchant_number &&
@@ -137,7 +153,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [transaction_id, forwarded_acquirer_code, merchant_number, response_code, ach_verification].hash
+      [approval_code, transaction_id, forwarded_acquirer_code, merchant_number, response_code, ach_verification].hash
     end
 
     # Builds the object from hash
