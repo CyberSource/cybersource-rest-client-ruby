@@ -15,7 +15,7 @@ The CyberSource Ruby client provides convenient access to the [CyberSource REST 
 
 ## Dependencies
 
-* activesupport 6.0.3.2
+* activesupport >= 6.0.3.2, < 8.0
 * interface 1.0.4
 * json 2.1.0
 * jwt 2.1.0
