@@ -5,6 +5,7 @@ All URIs are relative to *https://apitest.cybersource.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_v2_shared_secret_keys**](SymmetricKeyManagementApi.md#create_v2_shared_secret_keys) | **POST** /kms/v2/keys-sym | Create Shared-Secret Keys
+[**create_v2_shared_secret_keys_verifi**](SymmetricKeyManagementApi.md#create_v2_shared_secret_keys_verifi) | **POST** /kms/v2/keys-sym/verifi | Create Shared-Secret Keys as per verifi spec
 [**delete_bulk_symmetric_keys**](SymmetricKeyManagementApi.md#delete_bulk_symmetric_keys) | **POST** /kms/v2/keys-sym/deletes | Delete one or more Symmetric keys
 [**get_key_details**](SymmetricKeyManagementApi.md#get_key_details) | **GET** /kms/v2/keys-sym/{keyId} | Retrieves shared secret key details
 
@@ -40,6 +41,56 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **create_shared_secret_keys_request** | [**CreateSharedSecretKeysRequest**](CreateSharedSecretKeysRequest.md)|  | 
+
+### Return type
+
+[**KmsV2KeysSymPost201Response**](KmsV2KeysSymPost201Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/hal+json;charset=utf-8
+
+
+
+# **create_v2_shared_secret_keys_verifi**
+> KmsV2KeysSymPost201Response create_v2_shared_secret_keys_verifi(v_ic_domain, create_shared_secret_keys_verifi_request)
+
+Create Shared-Secret Keys as per verifi spec
+
+Create one or more Shared-Secret Keys as per Verifi spec with 32 chars, store digest algo during key generation. 
+
+### Example
+```ruby
+# load the gem
+require 'cybersource_rest_client'
+
+api_instance = CyberSource::SymmetricKeyManagementApi.new
+
+v_ic_domain = "v_ic_domain_example" # String | domain
+
+create_shared_secret_keys_verifi_request = CyberSource::CreateSharedSecretKeysVerifiRequest.new # CreateSharedSecretKeysVerifiRequest | 
+
+
+begin
+  #Create Shared-Secret Keys as per verifi spec
+  result = api_instance.create_v2_shared_secret_keys_verifi(v_ic_domain, create_shared_secret_keys_verifi_request)
+  p result
+rescue CyberSource::ApiError => e
+  puts "Exception when calling SymmetricKeyManagementApi->create_v2_shared_secret_keys_verifi: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **v_ic_domain** | **String**| domain | 
+ **create_shared_secret_keys_verifi_request** | [**CreateSharedSecretKeysVerifiRequest**](CreateSharedSecretKeysVerifiRequest.md)|  | 
 
 ### Return type
 

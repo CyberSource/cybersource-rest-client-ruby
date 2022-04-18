@@ -85,6 +85,78 @@ module CyberSource
       end
       return data, status_code, headers
     end
+    # Create Shared-Secret Keys as per verifi spec
+    # Create one or more Shared-Secret Keys as per Verifi spec with 32 chars, store digest algo during key generation. 
+    # @param v_ic_domain domain
+    # @param create_shared_secret_keys_verifi_request 
+    # @param [Hash] opts the optional parameters
+    # @return [KmsV2KeysSymPost201Response]
+    def create_v2_shared_secret_keys_verifi(v_ic_domain, create_shared_secret_keys_verifi_request, opts = {})
+      data, status_code, headers = create_v2_shared_secret_keys_verifi_with_http_info(v_ic_domain, create_shared_secret_keys_verifi_request, opts)
+      return data, status_code, headers
+    end
+
+    # Create Shared-Secret Keys as per verifi spec
+    # Create one or more Shared-Secret Keys as per Verifi spec with 32 chars, store digest algo during key generation. 
+    # @param v_ic_domain domain
+    # @param create_shared_secret_keys_verifi_request 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(KmsV2KeysSymPost201Response, Fixnum, Hash)>] KmsV2KeysSymPost201Response data, response status code and response headers
+    def create_v2_shared_secret_keys_verifi_with_http_info(v_ic_domain, create_shared_secret_keys_verifi_request, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: SymmetricKeyManagementApi.create_v2_shared_secret_keys_verifi ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'v_ic_domain' is set
+      if @api_client.config.client_side_validation && v_ic_domain.nil?
+        fail ArgumentError, "Missing the required parameter 'v_ic_domain' when calling SymmetricKeyManagementApi.create_v2_shared_secret_keys_verifi"
+      end
+      # verify the required parameter 'create_shared_secret_keys_verifi_request' is set
+      if @api_client.config.client_side_validation && create_shared_secret_keys_verifi_request.nil?
+        fail ArgumentError, "Missing the required parameter 'create_shared_secret_keys_verifi_request' when calling SymmetricKeyManagementApi.create_v2_shared_secret_keys_verifi"
+      end
+      # resource path
+      local_var_path = 'kms/v2/keys-sym/verifi'
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params[:'v-ic-domain'] = v_ic_domain
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(create_shared_secret_keys_verifi_request)
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'KmsV2KeysSymPost201Response')
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: SymmetricKeyManagementApi#create_v2_shared_secret_keys_verifi\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
     # Delete one or more Symmetric keys
     # 'Delete one or more Symmetric keys' 
     # @param delete_bulk_symmetric_keys_request 
