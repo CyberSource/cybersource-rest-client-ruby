@@ -44,6 +44,19 @@ describe 'SymmetricKeyManagementApi' do
     end
   end
 
+  # unit tests for create_v2_shared_secret_keys_verifi
+  # Create Shared-Secret Keys as per verifi spec
+  # Create one or more Shared-Secret Keys as per Verifi spec with 32 chars, store digest algo during key generation. 
+  # @param v_ic_domain domain
+  # @param create_shared_secret_keys_verifi_request 
+  # @param [Hash] opts the optional parameters
+  # @return [KmsV2KeysSymPost201Response]
+  describe 'create_v2_shared_secret_keys_verifi test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for delete_bulk_symmetric_keys
   # Delete one or more Symmetric keys
   # &#39;Delete one or more Symmetric keys&#39; 
