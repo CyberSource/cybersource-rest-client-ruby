@@ -28,7 +28,9 @@ class SensitiveDataConfigType
             SensitiveTag.new("phoneNumber", "(\\+[0-9]{1,2} )?\\(?[0-9]{3}\\)?[ .-]?[0-9]{3}[ .-]?[0-9]{4}", "xxxxx", false),
             SensitiveTag.new("type", "[-A-Za-z0-9 ]+", "xxxxx", false),
             SensitiveTag.new("token", "[-.A-Za-z0-9 ]+", "xxxxx", false),
-            SensitiveTag.new("signature", "[-.A-Za-z0-9 ]+", "xxxxx", false)
+            SensitiveTag.new("signature", "[-.A-Za-z0-9 ]+", "xxxxx", false),
+            SensitiveTag.new("prefix", "(\\p{N}{6})(\\p{N}*)", "\\1-XXXXX", false),
+            SensitiveTag.new("bin", "(\\p{N}{6})(\\p{N}*)", "\\1-XXXXX", false)
         ]).freeze
 
     @sensitiveStringRegexes = [
