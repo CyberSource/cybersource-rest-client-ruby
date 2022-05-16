@@ -29,8 +29,10 @@ class SensitiveDataConfigType
             SensitiveTag.new("type", "[-A-Za-z0-9 ]+", "xxxxx", false),
             SensitiveTag.new("token", "[-.A-Za-z0-9 ]+", "xxxxx", false),
             SensitiveTag.new("signature", "[-.A-Za-z0-9 ]+", "xxxxx", false),
-            SensitiveTag.new("prefix", "(\\p{N}{6})(\\p{N}*)", "\\1-XXXXX", false),
-            SensitiveTag.new("bin", "(\\p{N}{6})(\\p{N}*)", "\\1-XXXXX", false)
+            SensitiveTag.new("prefix", "(\\p{N}{6})(\\p{N}*)", "\\2-XXXXX", false),
+            SensitiveTag.new("prefix", "(\\d{4})\s?(\\d{4})", "\\1-XXXX", false),
+            SensitiveTag.new("bin", "(\\p{N}{4})(\\p{N}*)", "\\1-XXXX", false),
+            SensitiveTag.new("bin", "(\\d{4})\s?(\\d{4})", "\\1-XXXX", false)
         ]).freeze
 
     @sensitiveStringRegexes = [
@@ -88,6 +90,8 @@ class SensitiveDataFilter < Logger::Formatter
     def maskSensitiveString(input)
         encoded_input = input #.force_encoding("UTF-8")
         @@tagPatterns.each_with_index do |item, index|
+            puts("Itemmm : "+item)
+            puts("Replacement : "+@@tagReplacements[index])
             encoded_input = encoded_input.gsub(/#{item}/,@@tagReplacements[index])
         end
         return encoded_input
