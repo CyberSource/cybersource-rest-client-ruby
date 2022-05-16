@@ -62,4 +62,10 @@ describe 'PtsV2PaymentsPost201ResponsePaymentAccountInformationCard' do
     end
   end
 
+  describe 'test attribute "hashed_number"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

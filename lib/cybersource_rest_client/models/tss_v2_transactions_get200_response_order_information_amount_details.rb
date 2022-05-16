@@ -56,7 +56,7 @@ module CyberSource
         :'authorized_amount' => :'String',
         :'settlement_amount' => :'String',
         :'settlement_currency' => :'String',
-        :'surcharge' => :'Ptsv2paymentsOrderInformationAmountDetailsSurcharge'
+        :'surcharge' => :'Ptsv2payoutsOrderInformationAmountDetailsSurcharge'
       }
     end
 

@@ -29,6 +29,9 @@ module CyberSource
     # This is only needed when you are requesting both payment and DM service at same time.  Boolean that indicates whether returns are accepted for this order. This field can contain one of the following values: - true: Returns are accepted for this order. - false: Returns are not accepted for this order. 
     attr_accessor :returns_accepted
 
+    # #### Visa Platform Connect : This API will contain the Flag that specifies whether the payment is for the purchase of cryptocurrency. Additional values to add : This API will contain the Flag that specifies whether the payment is for the purchase of cryptocurrency. valid values are - Y/y, true - N/n, false 
+    attr_accessor :is_cryptocurrency_purchase
+
     # Indicates whether cardholder is placing an order with a future availability or release date. This field can contain one of these values: - MERCHANDISE_AVAILABLE: Merchandise available - FUTURE_AVAILABILITY: Future availability 
     attr_accessor :pre_order
 
@@ -51,6 +54,7 @@ module CyberSource
         :'invoice_details' => :'invoiceDetails',
         :'shipping_details' => :'shippingDetails',
         :'returns_accepted' => :'returnsAccepted',
+        :'is_cryptocurrency_purchase' => :'isCryptocurrencyPurchase',
         :'pre_order' => :'preOrder',
         :'pre_order_date' => :'preOrderDate',
         :'reordered' => :'reordered',
@@ -68,6 +72,7 @@ module CyberSource
         :'invoice_details' => :'Ptsv2paymentsOrderInformationInvoiceDetails',
         :'shipping_details' => :'Ptsv2paymentsOrderInformationShippingDetails',
         :'returns_accepted' => :'BOOLEAN',
+        :'is_cryptocurrency_purchase' => :'String',
         :'pre_order' => :'String',
         :'pre_order_date' => :'String',
         :'reordered' => :'BOOLEAN',
@@ -111,6 +116,10 @@ module CyberSource
 
       if attributes.has_key?(:'returnsAccepted')
         self.returns_accepted = attributes[:'returnsAccepted']
+      end
+
+      if attributes.has_key?(:'isCryptocurrencyPurchase')
+        self.is_cryptocurrency_purchase = attributes[:'isCryptocurrencyPurchase']
       end
 
       if attributes.has_key?(:'preOrder')
@@ -167,6 +176,7 @@ module CyberSource
           invoice_details == o.invoice_details &&
           shipping_details == o.shipping_details &&
           returns_accepted == o.returns_accepted &&
+          is_cryptocurrency_purchase == o.is_cryptocurrency_purchase &&
           pre_order == o.pre_order &&
           pre_order_date == o.pre_order_date &&
           reordered == o.reordered &&
@@ -182,7 +192,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [amount_details, bill_to, ship_to, line_items, invoice_details, shipping_details, returns_accepted, pre_order, pre_order_date, reordered, total_offers_count].hash
+      [amount_details, bill_to, ship_to, line_items, invoice_details, shipping_details, returns_accepted, is_cryptocurrency_purchase, pre_order, pre_order_date, reordered, total_offers_count].hash
     end
 
     # Builds the object from hash

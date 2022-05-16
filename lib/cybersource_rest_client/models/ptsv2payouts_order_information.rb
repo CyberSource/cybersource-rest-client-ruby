@@ -18,11 +18,15 @@ module CyberSource
 
     attr_accessor :bill_to
 
+    # #### Visa Platform Connect : This API will contain the Flag that specifies whether the payment is for the purchase of cryptocurrency. Additional values to add : This API will contain the Flag that specifies whether the payment is for the purchase of cryptocurrency. valid values are - Y/y, true - N/n, false 
+    attr_accessor :is_cryptocurrency_purchase
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'amount_details' => :'amountDetails',
-        :'bill_to' => :'billTo'
+        :'bill_to' => :'billTo',
+        :'is_cryptocurrency_purchase' => :'isCryptocurrencyPurchase'
       }
     end
 
@@ -30,7 +34,8 @@ module CyberSource
     def self.swagger_types
       {
         :'amount_details' => :'Ptsv2payoutsOrderInformationAmountDetails',
-        :'bill_to' => :'Ptsv2payoutsOrderInformationBillTo'
+        :'bill_to' => :'Ptsv2payoutsOrderInformationBillTo',
+        :'is_cryptocurrency_purchase' => :'String'
       }
     end
 
@@ -48,6 +53,10 @@ module CyberSource
 
       if attributes.has_key?(:'billTo')
         self.bill_to = attributes[:'billTo']
+      end
+
+      if attributes.has_key?(:'isCryptocurrencyPurchase')
+        self.is_cryptocurrency_purchase = attributes[:'isCryptocurrencyPurchase']
       end
     end
 
@@ -70,7 +79,8 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           amount_details == o.amount_details &&
-          bill_to == o.bill_to
+          bill_to == o.bill_to &&
+          is_cryptocurrency_purchase == o.is_cryptocurrency_purchase
     end
 
     # @see the `==` method
@@ -82,7 +92,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [amount_details, bill_to].hash
+      [amount_details, bill_to, is_cryptocurrency_purchase].hash
     end
 
     # Builds the object from hash

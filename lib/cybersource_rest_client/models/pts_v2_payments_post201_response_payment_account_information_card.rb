@@ -29,6 +29,9 @@ module CyberSource
     # Bank Identification Number (BIN). This is the initial four to six numbers on a credit card account number.  #### Google Pay transactions For PAN-based Google Pay transactions, this field is returned in the API response. 
     attr_accessor :prefix
 
+    # #### Visa Platform Connect This API field will contain the SHA 256 hashed value of PAN. 
+    attr_accessor :hashed_number
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -36,7 +39,8 @@ module CyberSource
         :'expiration_month' => :'expirationMonth',
         :'expiration_year' => :'expirationYear',
         :'type' => :'type',
-        :'prefix' => :'prefix'
+        :'prefix' => :'prefix',
+        :'hashed_number' => :'hashedNumber'
       }
     end
 
@@ -47,7 +51,8 @@ module CyberSource
         :'expiration_month' => :'String',
         :'expiration_year' => :'String',
         :'type' => :'String',
-        :'prefix' => :'String'
+        :'prefix' => :'String',
+        :'hashed_number' => :'String'
       }
     end
 
@@ -77,6 +82,10 @@ module CyberSource
 
       if attributes.has_key?(:'prefix')
         self.prefix = attributes[:'prefix']
+      end
+
+      if attributes.has_key?(:'hashedNumber')
+        self.hashed_number = attributes[:'hashedNumber']
       end
     end
 
@@ -111,6 +120,12 @@ module CyberSource
       @prefix = prefix
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] hashed_number Value to be assigned
+    def hashed_number=(hashed_number)
+      @hashed_number = hashed_number
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -120,7 +135,8 @@ module CyberSource
           expiration_month == o.expiration_month &&
           expiration_year == o.expiration_year &&
           type == o.type &&
-          prefix == o.prefix
+          prefix == o.prefix &&
+          hashed_number == o.hashed_number
     end
 
     # @see the `==` method
@@ -132,7 +148,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [suffix, expiration_month, expiration_year, type, prefix].hash
+      [suffix, expiration_month, expiration_year, type, prefix, hashed_number].hash
     end
 
     # Builds the object from hash
