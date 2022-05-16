@@ -90,8 +90,6 @@ class SensitiveDataFilter < Logger::Formatter
     def maskSensitiveString(input)
         encoded_input = input #.force_encoding("UTF-8")
         @@tagPatterns.each_with_index do |item, index|
-            puts("Itemmm : "+item)
-            puts("Replacement : "+@@tagReplacements[index])
             encoded_input = encoded_input.gsub(/#{item}/,@@tagReplacements[index])
         end
         return encoded_input
