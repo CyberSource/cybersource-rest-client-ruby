@@ -58,6 +58,15 @@ module CyberSource
     # Customer's government-assigned tax identification number. 
     attr_accessor :vat_registration_number
 
+    # #### Visa Platform Connect This tag will contain the type of sender identification. The valid values are: • BTHD (Date of birth) • CUID (Customer identification (unspecified)) • NTID (National identification) • PASN (Passport number) • DRLN (Driver license) • TXIN (Tax identification) • CPNY (Company registration number) • PRXY (Proxy identification) • SSNB (Social security number) • ARNB (Alien registration number) • LAWE (Law enforcement identification) • MILI (Military identification) • TRVL (Travel identification (non-passport)) • EMAL (Email) • PHON (Phone number) 
+    attr_accessor :personal_id_type
+
+    # #### Visa Platform Connect This tag will denote whether the tax ID is a business or individual tax ID when personal ID Type contains the value of TXIN (Tax identification).  The valid values are: • B (Business) • I (Individual) 
+    attr_accessor :type
+
+    # #### Visa Platform Connect This tag will contain an acquirer-populated value associated with the API : senderInformation.personalIdType which will identify the personal ID type of the sender. 
+    attr_accessor :identification_number
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -75,7 +84,10 @@ module CyberSource
         :'postal_code' => :'postalCode',
         :'phone_number' => :'phoneNumber',
         :'date_of_birth' => :'dateOfBirth',
-        :'vat_registration_number' => :'vatRegistrationNumber'
+        :'vat_registration_number' => :'vatRegistrationNumber',
+        :'personal_id_type' => :'personalIdType',
+        :'type' => :'type',
+        :'identification_number' => :'identificationNumber'
       }
     end
 
@@ -96,7 +108,10 @@ module CyberSource
         :'postal_code' => :'String',
         :'phone_number' => :'String',
         :'date_of_birth' => :'String',
-        :'vat_registration_number' => :'String'
+        :'vat_registration_number' => :'String',
+        :'personal_id_type' => :'String',
+        :'type' => :'String',
+        :'identification_number' => :'String'
       }
     end
 
@@ -166,6 +181,18 @@ module CyberSource
 
       if attributes.has_key?(:'vatRegistrationNumber')
         self.vat_registration_number = attributes[:'vatRegistrationNumber']
+      end
+
+      if attributes.has_key?(:'personalIdType')
+        self.personal_id_type = attributes[:'personalIdType']
+      end
+
+      if attributes.has_key?(:'type')
+        self.type = attributes[:'type']
+      end
+
+      if attributes.has_key?(:'identificationNumber')
+        self.identification_number = attributes[:'identificationNumber']
       end
     end
 
@@ -266,6 +293,24 @@ module CyberSource
       @vat_registration_number = vat_registration_number
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] personal_id_type Value to be assigned
+    def personal_id_type=(personal_id_type)
+      @personal_id_type = personal_id_type
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] type Value to be assigned
+    def type=(type)
+      @type = type
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] identification_number Value to be assigned
+    def identification_number=(identification_number)
+      @identification_number = identification_number
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -285,7 +330,10 @@ module CyberSource
           postal_code == o.postal_code &&
           phone_number == o.phone_number &&
           date_of_birth == o.date_of_birth &&
-          vat_registration_number == o.vat_registration_number
+          vat_registration_number == o.vat_registration_number &&
+          personal_id_type == o.personal_id_type &&
+          type == o.type &&
+          identification_number == o.identification_number
     end
 
     # @see the `==` method
@@ -297,7 +345,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [reference_number, account, first_name, middle_initial, middle_name, last_name, name, address1, locality, administrative_area, country_code, postal_code, phone_number, date_of_birth, vat_registration_number].hash
+      [reference_number, account, first_name, middle_initial, middle_name, last_name, name, address1, locality, administrative_area, country_code, postal_code, phone_number, date_of_birth, vat_registration_number, personal_id_type, type, identification_number].hash
     end
 
     # Builds the object from hash

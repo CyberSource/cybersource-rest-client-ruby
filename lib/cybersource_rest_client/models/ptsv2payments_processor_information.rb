@@ -18,17 +18,21 @@ module CyberSource
     # Token received in original session service.
     attr_accessor :pre_approval_token
 
+    attr_accessor :authorization_options
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'pre_approval_token' => :'preApprovalToken'
+        :'pre_approval_token' => :'preApprovalToken',
+        :'authorization_options' => :'authorizationOptions'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'pre_approval_token' => :'String'
+        :'pre_approval_token' => :'String',
+        :'authorization_options' => :'Ptsv2paymentsProcessorInformationAuthorizationOptions'
       }
     end
 
@@ -42,6 +46,10 @@ module CyberSource
 
       if attributes.has_key?(:'preApprovalToken')
         self.pre_approval_token = attributes[:'preApprovalToken']
+      end
+
+      if attributes.has_key?(:'authorizationOptions')
+        self.authorization_options = attributes[:'authorizationOptions']
       end
     end
 
@@ -69,7 +77,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          pre_approval_token == o.pre_approval_token
+          pre_approval_token == o.pre_approval_token &&
+          authorization_options == o.authorization_options
     end
 
     # @see the `==` method
@@ -81,7 +90,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [pre_approval_token].hash
+      [pre_approval_token, authorization_options].hash
     end
 
     # Builds the object from hash

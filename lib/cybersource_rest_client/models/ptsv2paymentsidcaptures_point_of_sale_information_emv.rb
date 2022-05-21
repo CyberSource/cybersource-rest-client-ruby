@@ -50,8 +50,6 @@ module CyberSource
 
       if attributes.has_key?(:'fallback')
         self.fallback = attributes[:'fallback']
-      else
-        self.fallback = false
       end
     end
 

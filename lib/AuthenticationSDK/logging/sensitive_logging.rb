@@ -16,11 +16,11 @@ class SensitiveDataConfigType
     def initialize
     @sensitiveTags = Array.new([
             SensitiveTag.new("securityCode", "[0-9]{3,4}", "XXX", false),
-            SensitiveTag.new("number", "(\\p{N}+)(\\p{N}{4})", "XXXX-\\2", false),
-            SensitiveTag.new("cardNumber", "(\\p{N}+)(\\p{N}{4})", "XXXX-\\2", false),
+            SensitiveTag.new("number", "(\\s*\\p{N}\\s*)+(\\p{N}{4})(\\s*)", "XXXX-\\2", false),
+            SensitiveTag.new("cardNumber", "(\\s*\\p{N}\\s*)+(\\p{N}{4})(\\s*)", "XXXX-\\2", false),
             SensitiveTag.new("expirationMonth", "[0-1][0-9]", "XXXX", false),
             SensitiveTag.new("expirationYear", "2[0-9][0-9][0-9]", "XXXX", false),
-            SensitiveTag.new("account", "(\\p{N}+)(\\p{N}{4})", "XXXX-\\2", false),
+            SensitiveTag.new("account", "(\\s*\\p{N}\\s*)+(\\p{N}{4})(\\s*)", "XXXX-\\2", false),
             SensitiveTag.new("routingNumber", "[0-9]+", "XXXXX", false),
             SensitiveTag.new("email", "[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", "XXXXX", false),
             SensitiveTag.new("firstName", "([a-zA-Z]+( )?[a-zA-Z]*'?-?[a-zA-Z]*( )?([a-zA-Z]*)?)", "xxxxx", false),
@@ -28,7 +28,10 @@ class SensitiveDataConfigType
             SensitiveTag.new("phoneNumber", "(\\+[0-9]{1,2} )?\\(?[0-9]{3}\\)?[ .-]?[0-9]{3}[ .-]?[0-9]{4}", "xxxxx", false),
             SensitiveTag.new("type", "[-A-Za-z0-9 ]+", "xxxxx", false),
             SensitiveTag.new("token", "[-.A-Za-z0-9 ]+", "xxxxx", false),
-            SensitiveTag.new("signature", "[-.A-Za-z0-9 ]+", "xxxxx", false)
+            SensitiveTag.new("signature", "[-.A-Za-z0-9 ]+", "xxxxx", false),
+            SensitiveTag.new("prefix", "(\\p{N}{6})(\\p{N}*)", "\\2-XXXXX", false),
+            SensitiveTag.new("prefix", "(\\s*)(\\p{N}{4})(\\s*)(\\p{N}{2})(\\s*\\p{N}*\\s*)", "\\2-XXXX", false),
+            SensitiveTag.new("bin", "(\\s*)(\\p{N}{4})(\\s*)(\\p{N}{2})(\\s*\\p{N}*\\s*)", "\\2-XXXX", false)
         ]).freeze
 
     @sensitiveStringRegexes = [

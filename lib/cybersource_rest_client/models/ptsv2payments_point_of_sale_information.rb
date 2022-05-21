@@ -91,6 +91,9 @@ module CyberSource
     # This is the manufacturer name of the reader which is used to accept the payment. Possible values:  - PAX  - Verifone  - Ingenico 
     attr_accessor :terminal_make
 
+    # #### Visa Platform Connect Mastercard service code that is included in the track data. You can extract the service code from the track data and provide it in this API field. This field is supported only for Mastercard on Visa Platform Connect. 
+    attr_accessor :service_code
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -119,7 +122,8 @@ module CyberSource
         :'terminal_compliance' => :'terminalCompliance',
         :'is_dedicated_hardware_terminal' => :'isDedicatedHardwareTerminal',
         :'terminal_model' => :'terminalModel',
-        :'terminal_make' => :'terminalMake'
+        :'terminal_make' => :'terminalMake',
+        :'service_code' => :'serviceCode'
       }
     end
 
@@ -151,7 +155,8 @@ module CyberSource
         :'terminal_compliance' => :'String',
         :'is_dedicated_hardware_terminal' => :'String',
         :'terminal_model' => :'String',
-        :'terminal_make' => :'String'
+        :'terminal_make' => :'String',
+        :'service_code' => :'String'
       }
     end
 
@@ -269,6 +274,10 @@ module CyberSource
 
       if attributes.has_key?(:'terminalMake')
         self.terminal_make = attributes[:'terminalMake']
+      end
+
+      if attributes.has_key?(:'serviceCode')
+        self.service_code = attributes[:'serviceCode']
       end
     end
 
@@ -456,6 +465,12 @@ module CyberSource
       @terminal_make = terminal_make
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] service_code Value to be assigned
+    def service_code=(service_code)
+      @service_code = service_code
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -486,7 +501,8 @@ module CyberSource
           terminal_compliance == o.terminal_compliance &&
           is_dedicated_hardware_terminal == o.is_dedicated_hardware_terminal &&
           terminal_model == o.terminal_model &&
-          terminal_make == o.terminal_make
+          terminal_make == o.terminal_make &&
+          service_code == o.service_code
     end
 
     # @see the `==` method
@@ -498,7 +514,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [terminal_id, terminal_serial_number, lane_number, cat_level, entry_mode, terminal_capability, operating_environment, emv, amex_capn_data, track_data, store_and_forward_indicator, cardholder_verification_method, terminal_input_capability, terminal_card_capture_capability, terminal_output_capability, terminal_pin_capability, device_id, pin_block_encoding_format, encrypted_pin, encrypted_key_serial_number, partner_sdk_version, emv_application_identifier_and_dedicated_file_name, terminal_compliance, is_dedicated_hardware_terminal, terminal_model, terminal_make].hash
+      [terminal_id, terminal_serial_number, lane_number, cat_level, entry_mode, terminal_capability, operating_environment, emv, amex_capn_data, track_data, store_and_forward_indicator, cardholder_verification_method, terminal_input_capability, terminal_card_capture_capability, terminal_output_capability, terminal_pin_capability, device_id, pin_block_encoding_format, encrypted_pin, encrypted_key_serial_number, partner_sdk_version, emv_application_identifier_and_dedicated_file_name, terminal_compliance, is_dedicated_hardware_terminal, terminal_model, terminal_make, service_code].hash
     end
 
     # Builds the object from hash

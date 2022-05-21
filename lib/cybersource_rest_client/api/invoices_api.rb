@@ -142,7 +142,11 @@ module CyberSource
       form_params = {}
 
       # http body (model)
-      post_body = nil
+      if 'GET' == 'POST'
+        post_body = '{}'
+      else
+        post_body = nil
+      end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,
         :header_params => header_params,
@@ -207,7 +211,11 @@ module CyberSource
       form_params = {}
 
       # http body (model)
-      post_body = nil
+      if 'GET' == 'POST'
+        post_body = '{}'
+      else
+        post_body = nil
+      end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,
         :header_params => header_params,
@@ -272,7 +280,11 @@ module CyberSource
       form_params = {}
 
       # http body (model)
-      post_body = nil
+      if 'POST' == 'POST'
+        post_body = '{}'
+      else
+        post_body = nil
+      end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -337,7 +349,11 @@ module CyberSource
       form_params = {}
 
       # http body (model)
-      post_body = nil
+      if 'POST' == 'POST'
+        post_body = '{}'
+      else
+        post_body = nil
+      end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,

@@ -26,8 +26,11 @@ module CyberSource
     # Indicates whether a fallback method was used to enter credit card information into the POS terminal. When a technical problem prevents a successful exchange of information between a chip card and a chip-capable terminal:   1. Swipe the card or key the credit card information into the POS terminal.  2. Use the pointOfSaleInformation.entryMode field to indicate whether the information was swiped or keyed.   Possible values: - `true`: Fallback method was used. - `false` (default): Fallback method was not used.  This field is supported only on American Express Direct, Chase Paymentech Solutions, CyberSource through VisaNet, FDC Nashville Global, GPN, JCN Gateway, OmniPay Direct, and SIX. 
     attr_accessor :fallback
 
-    # Reason for the EMV fallback transaction. An EMV fallback transaction occurs when an EMV transaction fails for one of these reasons:   - Technical failure: the EMV terminal or EMV card cannot read and process chip data.  - Empty candidate list failure: the EMV terminal does not have any applications in common with the EMV card.    EMV terminals are coded to determine whether the terminal and EMV card have any applications in common.    EMV terminals provide this information to you.  Possible values:   - `1`: Transaction was initiated with information from a magnetic stripe, and the previous transaction at the       EMV terminal either used information from a successful chip read or it was not a chip transaction.  - `2`: Transaction was initiated with information from a magnetic stripe, and the previous transaction at the       EMV terminal was an EMV fallback transaction because the attempted chip read was unsuccessful.  This field is supported only on **GPN** and **JCN Gateway**.  **NOTE**: This field is required when an EMV transaction fails for a technical reason. Do not include this field  when the EMV terminal does not have any applications in common with the EMV card. 
+    # Reason for the EMV fallback transaction. An EMV fallback transaction occurs when an EMV transaction fails for one of these reasons:   - Technical failure: the EMV terminal or EMV card cannot read and process chip data.  - Empty candidate list failure: the EMV terminal does not have any applications in common with the EMV card.    EMV terminals are coded to determine whether the terminal and EMV card have any applications in common.    EMV terminals provide this information to you.  Possible values:   - `1`: Transaction was initiated with information from a magnetic stripe, and the previous transaction at the     EMV terminal either used information from a successful chip read or it was not a chip transaction.  - `2`: Transaction was initiated with information from a magnetic stripe, and the previous transaction at the     EMV terminal was an EMV fallback transaction because the attempted chip read was unsuccessful.  This field is supported only on **GPN** and **JCN Gateway**. **NOTE**: This field is required when an EMV transaction fails for a technical reason. Do not include this field when the EMV terminal does not have any applications in common with the EMV card. 
     attr_accessor :fallback_condition
+
+    # #### Visa Platform Connect Value 1  indicates this transaction is intentionally duplicated  The field contains value “1” which indicates that merchant has intentionally duplicated single tap transaction. Merchant is intentionally sending a duplicate auth request for a single tap txn because the issuer requested a PIN. 
+    attr_accessor :is_repeat
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -36,7 +39,8 @@ module CyberSource
         :'cardholder_verification_method_used' => :'cardholderVerificationMethodUsed',
         :'card_sequence_number' => :'cardSequenceNumber',
         :'fallback' => :'fallback',
-        :'fallback_condition' => :'fallbackCondition'
+        :'fallback_condition' => :'fallbackCondition',
+        :'is_repeat' => :'isRepeat'
       }
     end
 
@@ -47,7 +51,8 @@ module CyberSource
         :'cardholder_verification_method_used' => :'Integer',
         :'card_sequence_number' => :'String',
         :'fallback' => :'BOOLEAN',
-        :'fallback_condition' => :'Integer'
+        :'fallback_condition' => :'Integer',
+        :'is_repeat' => :'String'
       }
     end
 
@@ -73,12 +78,14 @@ module CyberSource
 
       if attributes.has_key?(:'fallback')
         self.fallback = attributes[:'fallback']
-      else
-        self.fallback = false
       end
 
       if attributes.has_key?(:'fallbackCondition')
         self.fallback_condition = attributes[:'fallbackCondition']
+      end
+
+      if attributes.has_key?(:'isRepeat')
+        self.is_repeat = attributes[:'isRepeat']
       end
     end
 
@@ -107,6 +114,12 @@ module CyberSource
       @card_sequence_number = card_sequence_number
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] is_repeat Value to be assigned
+    def is_repeat=(is_repeat)
+      @is_repeat = is_repeat
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -116,7 +129,8 @@ module CyberSource
           cardholder_verification_method_used == o.cardholder_verification_method_used &&
           card_sequence_number == o.card_sequence_number &&
           fallback == o.fallback &&
-          fallback_condition == o.fallback_condition
+          fallback_condition == o.fallback_condition &&
+          is_repeat == o.is_repeat
     end
 
     # @see the `==` method
@@ -128,7 +142,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [tags, cardholder_verification_method_used, card_sequence_number, fallback, fallback_condition].hash
+      [tags, cardholder_verification_method_used, card_sequence_number, fallback, fallback_condition, is_repeat].hash
     end
 
     # Builds the object from hash

@@ -10,5 +10,6 @@ Name | Type | Description | Notes
 **payouts_options** | [**Ptsv2payoutsProcessingInformationPayoutsOptions**](Ptsv2payoutsProcessingInformationPayoutsOptions.md) |  | [optional] 
 **transaction_reason** | **String** | Transaction reason code.  | [optional] 
 **purpose_of_payment** | **String** | This will send purpose of funds code for original credit transactions (OCTs).  | [optional] 
+**funding_options** | [**Ptsv2payoutsProcessingInformationFundingOptions**](Ptsv2payoutsProcessingInformationFundingOptions.md) |  | [optional] 
 
 

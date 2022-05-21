@@ -44,6 +44,9 @@ module CyberSource
     # Address of company's website provided by merchant 
     attr_accessor :url
 
+    # #### Visa Platform Connect This field will indicate merchant country of origin 
+    attr_accessor :country_of_origin
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -56,7 +59,8 @@ module CyberSource
         :'postal_code' => :'postalCode',
         :'administrative_area' => :'administrativeArea',
         :'phone' => :'phone',
-        :'url' => :'url'
+        :'url' => :'url',
+        :'country_of_origin' => :'countryOfOrigin'
       }
     end
 
@@ -72,7 +76,8 @@ module CyberSource
         :'postal_code' => :'String',
         :'administrative_area' => :'String',
         :'phone' => :'String',
-        :'url' => :'String'
+        :'url' => :'String',
+        :'country_of_origin' => :'String'
       }
     end
 
@@ -122,6 +127,10 @@ module CyberSource
 
       if attributes.has_key?(:'url')
         self.url = attributes[:'url']
+      end
+
+      if attributes.has_key?(:'countryOfOrigin')
+        self.country_of_origin = attributes[:'countryOfOrigin']
       end
     end
 
@@ -186,6 +195,12 @@ module CyberSource
       @url = url
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] country_of_origin Value to be assigned
+    def country_of_origin=(country_of_origin)
+      @country_of_origin = country_of_origin
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -200,7 +215,8 @@ module CyberSource
           postal_code == o.postal_code &&
           administrative_area == o.administrative_area &&
           phone == o.phone &&
-          url == o.url
+          url == o.url &&
+          country_of_origin == o.country_of_origin
     end
 
     # @see the `==` method
@@ -212,7 +228,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name, alternate_name, contact, address1, locality, country, postal_code, administrative_area, phone, url].hash
+      [name, alternate_name, contact, address1, locality, country, postal_code, administrative_area, phone, url, country_of_origin].hash
     end
 
     # Builds the object from hash

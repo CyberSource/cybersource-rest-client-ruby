@@ -34,6 +34,8 @@ module CyberSource
     # This will send purpose of funds code for original credit transactions (OCTs). 
     attr_accessor :purpose_of_payment
 
+    attr_accessor :funding_options
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -43,7 +45,8 @@ module CyberSource
         :'reconciliation_id' => :'reconciliationId',
         :'payouts_options' => :'payoutsOptions',
         :'transaction_reason' => :'transactionReason',
-        :'purpose_of_payment' => :'purposeOfPayment'
+        :'purpose_of_payment' => :'purposeOfPayment',
+        :'funding_options' => :'fundingOptions'
       }
     end
 
@@ -56,7 +59,8 @@ module CyberSource
         :'reconciliation_id' => :'String',
         :'payouts_options' => :'Ptsv2payoutsProcessingInformationPayoutsOptions',
         :'transaction_reason' => :'String',
-        :'purpose_of_payment' => :'String'
+        :'purpose_of_payment' => :'String',
+        :'funding_options' => :'Ptsv2payoutsProcessingInformationFundingOptions'
       }
     end
 
@@ -94,6 +98,10 @@ module CyberSource
 
       if attributes.has_key?(:'purposeOfPayment')
         self.purpose_of_payment = attributes[:'purposeOfPayment']
+      end
+
+      if attributes.has_key?(:'fundingOptions')
+        self.funding_options = attributes[:'fundingOptions']
       end
     end
 
@@ -157,7 +165,8 @@ module CyberSource
           reconciliation_id == o.reconciliation_id &&
           payouts_options == o.payouts_options &&
           transaction_reason == o.transaction_reason &&
-          purpose_of_payment == o.purpose_of_payment
+          purpose_of_payment == o.purpose_of_payment &&
+          funding_options == o.funding_options
     end
 
     # @see the `==` method
@@ -169,7 +178,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [business_application_id, network_routing_order, commerce_indicator, reconciliation_id, payouts_options, transaction_reason, purpose_of_payment].hash
+      [business_application_id, network_routing_order, commerce_indicator, reconciliation_id, payouts_options, transaction_reason, purpose_of_payment, funding_options].hash
     end
 
     # Builds the object from hash

@@ -20,11 +20,15 @@ module CyberSource
     # Raw merchant advice code sent directly from the processor. This field is used only for Mastercard.  #### CyberSource through VisaNet The value for this field corresponds to the following data in the TC 33 capture file1: - Record: CP01 TCR7 - Position: 96-99 - Field: Response Data-Merchant Advice Code   For processor-specific information, see the `auth_merchant_advice_code_raw` field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
     attr_accessor :code_raw
 
+    # #### Visa Platform Connect The field contains will contain the Account Name Request Result for zero amount Authorization request. Valid values are:  00 = Name Match Performed 01 = Name Match not Performed 02 = Name Match not supported 
+    attr_accessor :name_match
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'code' => :'code',
-        :'code_raw' => :'codeRaw'
+        :'code_raw' => :'codeRaw',
+        :'name_match' => :'nameMatch'
       }
     end
 
@@ -32,7 +36,8 @@ module CyberSource
     def self.swagger_types
       {
         :'code' => :'String',
-        :'code_raw' => :'String'
+        :'code_raw' => :'String',
+        :'name_match' => :'String'
       }
     end
 
@@ -50,6 +55,10 @@ module CyberSource
 
       if attributes.has_key?(:'codeRaw')
         self.code_raw = attributes[:'codeRaw']
+      end
+
+      if attributes.has_key?(:'nameMatch')
+        self.name_match = attributes[:'nameMatch']
       end
     end
 
@@ -78,13 +87,20 @@ module CyberSource
       @code_raw = code_raw
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] name_match Value to be assigned
+    def name_match=(name_match)
+      @name_match = name_match
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           code == o.code &&
-          code_raw == o.code_raw
+          code_raw == o.code_raw &&
+          name_match == o.name_match
     end
 
     # @see the `==` method
@@ -96,7 +112,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [code, code_raw].hash
+      [code, code_raw, name_match].hash
     end
 
     # Builds the object from hash

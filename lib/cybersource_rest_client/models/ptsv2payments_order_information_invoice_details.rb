@@ -61,6 +61,9 @@ module CyberSource
     # Cost centre of the merchant
     attr_accessor :cost_center
 
+    # Text message from the issuer. If you give the customer a receipt, display this value on the receipt.
+    attr_accessor :issuer_message
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -79,7 +82,8 @@ module CyberSource
         :'reference_data_number' => :'referenceDataNumber',
         :'sales_slip_number' => :'salesSlipNumber',
         :'invoice_date' => :'invoiceDate',
-        :'cost_center' => :'costCenter'
+        :'cost_center' => :'costCenter',
+        :'issuer_message' => :'issuerMessage'
       }
     end
 
@@ -101,7 +105,8 @@ module CyberSource
         :'reference_data_number' => :'String',
         :'sales_slip_number' => :'Integer',
         :'invoice_date' => :'String',
-        :'cost_center' => :'String'
+        :'cost_center' => :'String',
+        :'issuer_message' => :'String'
       }
     end
 
@@ -177,6 +182,10 @@ module CyberSource
 
       if attributes.has_key?(:'costCenter')
         self.cost_center = attributes[:'costCenter']
+      end
+
+      if attributes.has_key?(:'issuerMessage')
+        self.issuer_message = attributes[:'issuerMessage']
       end
     end
 
@@ -262,6 +271,12 @@ module CyberSource
       @cost_center = cost_center
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] issuer_message Value to be assigned
+    def issuer_message=(issuer_message)
+      @issuer_message = issuer_message
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -282,7 +297,8 @@ module CyberSource
           reference_data_number == o.reference_data_number &&
           sales_slip_number == o.sales_slip_number &&
           invoice_date == o.invoice_date &&
-          cost_center == o.cost_center
+          cost_center == o.cost_center &&
+          issuer_message == o.issuer_message
     end
 
     # @see the `==` method
@@ -294,7 +310,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [invoice_number, barcode_number, expiration_date, purchase_order_number, purchase_order_date, purchase_contact_name, taxable, vat_invoice_reference_number, commodity_code, merchandise_code, transaction_advice_addendum, reference_data_code, reference_data_number, sales_slip_number, invoice_date, cost_center].hash
+      [invoice_number, barcode_number, expiration_date, purchase_order_number, purchase_order_date, purchase_contact_name, taxable, vat_invoice_reference_number, commodity_code, merchandise_code, transaction_advice_addendum, reference_data_code, reference_data_number, sales_slip_number, invoice_date, cost_center, issuer_message].hash
     end
 
     # Builds the object from hash
