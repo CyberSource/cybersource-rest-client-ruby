@@ -56,4 +56,10 @@ describe 'PtsV2PaymentsPost201ResponseIssuerInformation' do
     end
   end
 
+  describe 'test attribute "response_raw"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

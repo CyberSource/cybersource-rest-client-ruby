@@ -88,7 +88,7 @@ module CyberSource
         :'buyer_information' => :'TssV2TransactionsPost201ResponseEmbeddedBuyerInformation',
         :'client_reference_information' => :'TssV2TransactionsPost201ResponseEmbeddedClientReferenceInformation',
         :'consumer_authentication_information' => :'TssV2TransactionsPost201ResponseEmbeddedConsumerAuthenticationInformation',
-        :'device_information' => :'TssV2TransactionsPost201ResponseEmbeddedDeviceInformation',
+        :'device_information' => :'Riskv1authenticationresultsDeviceInformation',
         :'fraud_marking_information' => :'TssV2TransactionsGet200ResponseFraudMarkingInformation',
         :'merchant_defined_information' => :'Array<Ptsv2paymentsMerchantDefinedInformation>',
         :'merchant_information' => :'TssV2TransactionsPost201ResponseEmbeddedMerchantInformation',

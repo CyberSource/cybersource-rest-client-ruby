@@ -56,6 +56,9 @@ module CyberSource
     # Name of the card product.  Possible value: - BNDES  This field is supported only for BNDES transactions on CyberSource through VisaNet.  The value for this field corresponds to the following data in the TC 33 capture file5: - Record: CP07 TCR4 - Position: 115-120 - Field: Brazil Country Data 
     attr_accessor :product_name
 
+    # Flag that identifies how the card type was selected.  Possible values: - 0: Card type was selected based on default acquirer settings. - 1: Customer selected the card type. 
+    attr_accessor :type_selection_indicator
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -72,7 +75,8 @@ module CyberSource
         :'issue_number' => :'issueNumber',
         :'start_month' => :'startMonth',
         :'start_year' => :'startYear',
-        :'product_name' => :'productName'
+        :'product_name' => :'productName',
+        :'type_selection_indicator' => :'typeSelectionIndicator'
       }
     end
 
@@ -92,7 +96,8 @@ module CyberSource
         :'issue_number' => :'String',
         :'start_month' => :'String',
         :'start_year' => :'String',
-        :'product_name' => :'String'
+        :'product_name' => :'String',
+        :'type_selection_indicator' => :'String'
       }
     end
 
@@ -158,6 +163,10 @@ module CyberSource
 
       if attributes.has_key?(:'productName')
         self.product_name = attributes[:'productName']
+      end
+
+      if attributes.has_key?(:'typeSelectionIndicator')
+        self.type_selection_indicator = attributes[:'typeSelectionIndicator']
       end
     end
 
@@ -252,6 +261,12 @@ module CyberSource
       @product_name = product_name
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] type_selection_indicator Value to be assigned
+    def type_selection_indicator=(type_selection_indicator)
+      @type_selection_indicator = type_selection_indicator
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -270,7 +285,8 @@ module CyberSource
           issue_number == o.issue_number &&
           start_month == o.start_month &&
           start_year == o.start_year &&
-          product_name == o.product_name
+          product_name == o.product_name &&
+          type_selection_indicator == o.type_selection_indicator
     end
 
     # @see the `==` method
@@ -282,7 +298,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [number, expiration_month, expiration_year, type, use_as, source_account_type, source_account_type_details, security_code, security_code_indicator, account_encoder_id, issue_number, start_month, start_year, product_name].hash
+      [number, expiration_month, expiration_year, type, use_as, source_account_type, source_account_type_details, security_code, security_code_indicator, account_encoder_id, issue_number, start_month, start_year, product_name, type_selection_indicator].hash
     end
 
     # Builds the object from hash

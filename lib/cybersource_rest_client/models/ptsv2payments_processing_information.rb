@@ -87,6 +87,9 @@ module CyberSource
     # Flag that indicates if the transaction is pay by points transaction true: Transaction uses loyalty points false: Transaction does not use loyalty points Default: false 
     attr_accessor :pay_by_points_indicator
 
+    # Flag that indicates the functionality we are having for merchants for which auth is done through Cybersource but settlement is done by themselves. true: functionality is supported. Processor should send raw processor auth response to Merchant. false: functionality is not supported. Default: false 
+    attr_accessor :is_return_auth_record_enabled
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -116,7 +119,8 @@ module CyberSource
         :'mobile_remote_payment_type' => :'mobileRemotePaymentType',
         :'extended_credit_total_count' => :'extendedCreditTotalCount',
         :'network_routing_order' => :'networkRoutingOrder',
-        :'pay_by_points_indicator' => :'payByPointsIndicator'
+        :'pay_by_points_indicator' => :'payByPointsIndicator',
+        :'is_return_auth_record_enabled' => :'isReturnAuthRecordEnabled'
       }
     end
 
@@ -149,7 +153,8 @@ module CyberSource
         :'mobile_remote_payment_type' => :'String',
         :'extended_credit_total_count' => :'String',
         :'network_routing_order' => :'String',
-        :'pay_by_points_indicator' => :'BOOLEAN'
+        :'pay_by_points_indicator' => :'BOOLEAN',
+        :'is_return_auth_record_enabled' => :'BOOLEAN'
       }
     end
 
@@ -273,6 +278,10 @@ module CyberSource
 
       if attributes.has_key?(:'payByPointsIndicator')
         self.pay_by_points_indicator = attributes[:'payByPointsIndicator']
+      end
+
+      if attributes.has_key?(:'isReturnAuthRecordEnabled')
+        self.is_return_auth_record_enabled = attributes[:'isReturnAuthRecordEnabled']
       end
     end
 
@@ -404,7 +413,8 @@ module CyberSource
           mobile_remote_payment_type == o.mobile_remote_payment_type &&
           extended_credit_total_count == o.extended_credit_total_count &&
           network_routing_order == o.network_routing_order &&
-          pay_by_points_indicator == o.pay_by_points_indicator
+          pay_by_points_indicator == o.pay_by_points_indicator &&
+          is_return_auth_record_enabled == o.is_return_auth_record_enabled
     end
 
     # @see the `==` method
@@ -416,7 +426,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [action_list, action_token_types, capture, processor_id, business_application_id, commerce_indicator, payment_solution, reconciliation_id, link_id, purchase_level, report_group, visa_checkout_id, industry_data_type, authorization_options, capture_options, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, wallet_type, national_net_domestic_data, japan_payment_options, mobile_remote_payment_type, extended_credit_total_count, network_routing_order, pay_by_points_indicator].hash
+      [action_list, action_token_types, capture, processor_id, business_application_id, commerce_indicator, payment_solution, reconciliation_id, link_id, purchase_level, report_group, visa_checkout_id, industry_data_type, authorization_options, capture_options, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, wallet_type, national_net_domestic_data, japan_payment_options, mobile_remote_payment_type, extended_credit_total_count, network_routing_order, pay_by_points_indicator, is_return_auth_record_enabled].hash
     end
 
     # Builds the object from hash

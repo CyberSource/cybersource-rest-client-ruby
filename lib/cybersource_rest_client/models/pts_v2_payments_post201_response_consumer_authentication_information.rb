@@ -32,7 +32,7 @@ module CyberSource
     # The Base64 encoded JSON Payload of CB specific Authorization Values returned in the challenge Flow 
     attr_accessor :authorization_payload
 
-    # Payer authentication transaction identifier passed to link the check enrollment and validate authentication messages. 
+    # Payer authentication transaction identifier is used to link the check enrollment and validate authentication messages. For Rupay, this field should be passed as request only for Resend OTP use case. 
     attr_accessor :authentication_transaction_id
 
     # Text provided by the ACS/Issuer to Cardholder during a Frictionless or Decoupled transaction.The Issuer can provide information to Cardholder. For example, “Additional authentication is needed for this transaction, please contact (Issuer Name) at xxx-xxx-xxxx.”. The Issuing Bank can optionally support this value. 

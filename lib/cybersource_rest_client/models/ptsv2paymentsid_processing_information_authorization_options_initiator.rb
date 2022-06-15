@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsidProcessingInformationAuthorizationOptionsInitiator
-    # Indicates to an issuing bank whether a merchant-initiated transaction came from a card that was already stored on file.  Possible values: - **Y** means the merchant-initiated transaction came from a card that was already stored on file. - **N**  means the merchant-initiated transaction came from a card that was not stored on file. 
+    # Indicates to an issuing bank whether a merchant-initiated transaction came from a card that was already stored on file.  Possible values: - **true** means the merchant-initiated transaction came from a card that was already stored on file. - **false**  means the merchant-initiated transaction came from a card that was not stored on file. 
     attr_accessor :stored_credential_used
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -27,7 +27,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'stored_credential_used' => :'String'
+        :'stored_credential_used' => :'BOOLEAN'
       }
     end
 

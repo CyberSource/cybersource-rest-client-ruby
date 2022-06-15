@@ -31,7 +31,7 @@ module CyberSource
     def self.swagger_types
       {
         :'auth_type' => :'String',
-        :'initiator' => :'Ptsv2paymentsProcessingInformationAuthorizationOptionsInitiator'
+        :'initiator' => :'TssV2TransactionsGet200ResponseProcessingInformationAuthorizationOptionsInitiator'
       }
     end
 

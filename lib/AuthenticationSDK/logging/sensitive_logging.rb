@@ -73,6 +73,7 @@ class SensitiveDataFilter < Logger::Formatter
     end
 
     def call(severity, time, progname, msg)
+        puts("Message #{msg}")
         maskedMessage = maskSensitiveString(msg)
         ccMasked = maskCreditCards(maskedMessage)
         return formatLogEntry(severity, time, progname, ccMasked)

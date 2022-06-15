@@ -104,6 +104,12 @@ describe 'PtsV2PaymentsPost201Response' do
     end
   end
 
+  describe 'test attribute "payment_insights_information"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "order_information"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

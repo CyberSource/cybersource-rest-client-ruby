@@ -80,6 +80,9 @@ module CyberSource
     # Event Request Date
     attr_accessor :event_requested_time
 
+    # Pre Dispute Flag
+    attr_accessor :pre_dispute_flag
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -104,7 +107,8 @@ module CyberSource
         :'reason_code' => :'reasonCode',
         :'representment_cp_time' => :'representmentCPTime',
         :'applications' => :'applications',
-        :'event_requested_time' => :'eventRequestedTime'
+        :'event_requested_time' => :'eventRequestedTime',
+        :'pre_dispute_flag' => :'preDisputeFlag'
       }
     end
 
@@ -132,7 +136,8 @@ module CyberSource
         :'reason_code' => :'String',
         :'representment_cp_time' => :'DateTime',
         :'applications' => :'String',
-        :'event_requested_time' => :'DateTime'
+        :'event_requested_time' => :'DateTime',
+        :'pre_dispute_flag' => :'String'
       }
     end
 
@@ -231,6 +236,10 @@ module CyberSource
       if attributes.has_key?(:'eventRequestedTime')
         self.event_requested_time = attributes[:'eventRequestedTime']
       end
+
+      if attributes.has_key?(:'preDisputeFlag')
+        self.pre_dispute_flag = attributes[:'preDisputeFlag']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -272,7 +281,8 @@ module CyberSource
           reason_code == o.reason_code &&
           representment_cp_time == o.representment_cp_time &&
           applications == o.applications &&
-          event_requested_time == o.event_requested_time
+          event_requested_time == o.event_requested_time &&
+          pre_dispute_flag == o.pre_dispute_flag
     end
 
     # @see the `==` method
@@ -284,7 +294,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [processor_merchant_id, merchant_name, transaction_reference_number, merchant_reference_number, nature_of_dispute, alert_type, amount, sign, action, card_type, original_settlement_time, tracking_number, currency_code, request_id, response_due_time, time, action_description, customer_id, reason_code, representment_cp_time, applications, event_requested_time].hash
+      [processor_merchant_id, merchant_name, transaction_reference_number, merchant_reference_number, nature_of_dispute, alert_type, amount, sign, action, card_type, original_settlement_time, tracking_number, currency_code, request_id, response_due_time, time, action_description, customer_id, reason_code, representment_cp_time, applications, event_requested_time, pre_dispute_flag].hash
     end
 
     # Builds the object from hash
