@@ -26,6 +26,15 @@ module CyberSource
     # Message that explains the authenticationResult reply field. 
     attr_accessor :authentication_status_msg
 
+    # Payer authentication transaction identifier is used to link the check enrollment and validate authentication messages. For Rupay, this field should be passed as request only for Resend OTP use case. 
+    attr_accessor :authentication_transaction_id
+
+    # Payer authentication transaction identifier passed to link the validation and authorization calls. 
+    attr_accessor :authentication_transaction_context_id
+
+    # Web based token used to authenticate consumer with Rupay authentication provider. 
+    attr_accessor :transaction_token
+
     # The Base64 encoded JSON Payload of CB specific Authorization Values returned in the challenge Flow 
     attr_accessor :authorization_payload
 
@@ -90,6 +99,9 @@ module CyberSource
         :'acs_transaction_id' => :'acsTransactionId',
         :'authentication_result' => :'authenticationResult',
         :'authentication_status_msg' => :'authenticationStatusMsg',
+        :'authentication_transaction_id' => :'authenticationTransactionId',
+        :'authentication_transaction_context_id' => :'authenticationTransactionContextId',
+        :'transaction_token' => :'transactionToken',
         :'authorization_payload' => :'authorizationPayload',
         :'cavv' => :'cavv',
         :'cavv_algorithm' => :'cavvAlgorithm',
@@ -119,6 +131,9 @@ module CyberSource
         :'acs_transaction_id' => :'String',
         :'authentication_result' => :'String',
         :'authentication_status_msg' => :'String',
+        :'authentication_transaction_id' => :'String',
+        :'authentication_transaction_context_id' => :'String',
+        :'transaction_token' => :'String',
         :'authorization_payload' => :'String',
         :'cavv' => :'String',
         :'cavv_algorithm' => :'String',
@@ -163,6 +178,18 @@ module CyberSource
 
       if attributes.has_key?(:'authenticationStatusMsg')
         self.authentication_status_msg = attributes[:'authenticationStatusMsg']
+      end
+
+      if attributes.has_key?(:'authenticationTransactionId')
+        self.authentication_transaction_id = attributes[:'authenticationTransactionId']
+      end
+
+      if attributes.has_key?(:'authenticationTransactionContextId')
+        self.authentication_transaction_context_id = attributes[:'authenticationTransactionContextId']
+      end
+
+      if attributes.has_key?(:'transactionToken')
+        self.transaction_token = attributes[:'transactionToken']
       end
 
       if attributes.has_key?(:'authorizationPayload')
@@ -262,6 +289,24 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] authentication_transaction_id Value to be assigned
+    def authentication_transaction_id=(authentication_transaction_id)
+      @authentication_transaction_id = authentication_transaction_id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] authentication_transaction_context_id Value to be assigned
+    def authentication_transaction_context_id=(authentication_transaction_context_id)
+      @authentication_transaction_context_id = authentication_transaction_context_id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] transaction_token Value to be assigned
+    def transaction_token=(transaction_token)
+      @transaction_token = transaction_token
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] cavv Value to be assigned
     def cavv=(cavv)
       @cavv = cavv
@@ -324,6 +369,9 @@ module CyberSource
           acs_transaction_id == o.acs_transaction_id &&
           authentication_result == o.authentication_result &&
           authentication_status_msg == o.authentication_status_msg &&
+          authentication_transaction_id == o.authentication_transaction_id &&
+          authentication_transaction_context_id == o.authentication_transaction_context_id &&
+          transaction_token == o.transaction_token &&
           authorization_payload == o.authorization_payload &&
           cavv == o.cavv &&
           cavv_algorithm == o.cavv_algorithm &&
@@ -354,7 +402,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [acs_rendering_type, acs_transaction_id, authentication_result, authentication_status_msg, authorization_payload, cavv, cavv_algorithm, directory_server_error_code, directory_server_error_description, indicator, interaction_counter, eci, eci_raw, pares_status, sdk_transaction_id, specification_version, three_ds_server_transaction_id, ucaf_authentication_data, ucaf_collection_indicator, white_list_status, white_list_status_source, xid, directory_server_transaction_id].hash
+      [acs_rendering_type, acs_transaction_id, authentication_result, authentication_status_msg, authentication_transaction_id, authentication_transaction_context_id, transaction_token, authorization_payload, cavv, cavv_algorithm, directory_server_error_code, directory_server_error_description, indicator, interaction_counter, eci, eci_raw, pares_status, sdk_transaction_id, specification_version, three_ds_server_transaction_id, ucaf_authentication_data, ucaf_collection_indicator, white_list_status, white_list_status_source, xid, directory_server_transaction_id].hash
     end
 
     # Builds the object from hash

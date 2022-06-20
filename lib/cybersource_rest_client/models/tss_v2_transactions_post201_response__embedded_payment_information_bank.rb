@@ -13,21 +13,20 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  class TssV2TransactionsPost201ResponseEmbeddedDeviceInformation
-    # IP address of the customer.  #### Used by **Authorization, Capture, and Credit** Optional field. 
-    attr_accessor :ip_address
+  class TssV2TransactionsPost201ResponseEmbeddedPaymentInformationBank
+    attr_accessor :account
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'ip_address' => :'ipAddress'
+        :'account' => :'account'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'ip_address' => :'String'
+        :'account' => :'TssV2TransactionsPost201ResponseEmbeddedPaymentInformationBankAccount'
       }
     end
 
@@ -39,8 +38,8 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'ipAddress')
-        self.ip_address = attributes[:'ipAddress']
+      if attributes.has_key?(:'account')
+        self.account = attributes[:'account']
       end
     end
 
@@ -57,18 +56,12 @@ module CyberSource
       true
     end
 
-    # Custom attribute writer method with validation
-    # @param [Object] ip_address Value to be assigned
-    def ip_address=(ip_address)
-      @ip_address = ip_address
-    end
-
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          ip_address == o.ip_address
+          account == o.account
     end
 
     # @see the `==` method
@@ -80,7 +73,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [ip_address].hash
+      [account].hash
     end
 
     # Builds the object from hash

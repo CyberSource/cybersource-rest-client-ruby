@@ -20,12 +20,15 @@ module CyberSource
 
     attr_accessor :card
 
+    attr_accessor :bank
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'payment_type' => :'paymentType',
         :'customer' => :'customer',
-        :'card' => :'card'
+        :'card' => :'card',
+        :'bank' => :'bank'
       }
     end
 
@@ -33,8 +36,9 @@ module CyberSource
     def self.swagger_types
       {
         :'payment_type' => :'TssV2TransactionsPost201ResponseEmbeddedPaymentInformationPaymentType',
-        :'customer' => :'Riskv1authenticationsetupsPaymentInformationCustomer',
-        :'card' => :'TssV2TransactionsPost201ResponseEmbeddedPaymentInformationCard'
+        :'customer' => :'TssV2TransactionsPost201ResponseEmbeddedPaymentInformationCustomer',
+        :'card' => :'TssV2TransactionsPost201ResponseEmbeddedPaymentInformationCard',
+        :'bank' => :'TssV2TransactionsPost201ResponseEmbeddedPaymentInformationBank'
       }
     end
 
@@ -56,6 +60,10 @@ module CyberSource
 
       if attributes.has_key?(:'card')
         self.card = attributes[:'card']
+      end
+
+      if attributes.has_key?(:'bank')
+        self.bank = attributes[:'bank']
       end
     end
 
@@ -79,7 +87,8 @@ module CyberSource
       self.class == o.class &&
           payment_type == o.payment_type &&
           customer == o.customer &&
-          card == o.card
+          card == o.card &&
+          bank == o.bank
     end
 
     # @see the `==` method
@@ -91,7 +100,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [payment_type, customer, card].hash
+      [payment_type, customer, card, bank].hash
     end
 
     # Builds the object from hash

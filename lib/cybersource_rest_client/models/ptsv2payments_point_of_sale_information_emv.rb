@@ -29,7 +29,7 @@ module CyberSource
     # Reason for the EMV fallback transaction. An EMV fallback transaction occurs when an EMV transaction fails for one of these reasons:   - Technical failure: the EMV terminal or EMV card cannot read and process chip data.  - Empty candidate list failure: the EMV terminal does not have any applications in common with the EMV card.    EMV terminals are coded to determine whether the terminal and EMV card have any applications in common.    EMV terminals provide this information to you.  Possible values:   - `1`: Transaction was initiated with information from a magnetic stripe, and the previous transaction at the     EMV terminal either used information from a successful chip read or it was not a chip transaction.  - `2`: Transaction was initiated with information from a magnetic stripe, and the previous transaction at the     EMV terminal was an EMV fallback transaction because the attempted chip read was unsuccessful.  This field is supported only on **GPN** and **JCN Gateway**. **NOTE**: This field is required when an EMV transaction fails for a technical reason. Do not include this field when the EMV terminal does not have any applications in common with the EMV card. 
     attr_accessor :fallback_condition
 
-    # #### Visa Platform Connect Value 1  indicates this transaction is intentionally duplicated  The field contains value “1” which indicates that merchant has intentionally duplicated single tap transaction. Merchant is intentionally sending a duplicate auth request for a single tap txn because the issuer requested a PIN. 
+    # #### Visa Platform Connect Value “true” indicates this transaction is intentionally duplicated . The field contains value “true” which indicates that merchant has intentionally duplicated single tap transaction. Merchant is intentionally sending a duplicate auth request for a single tap txn because the issuer requested a PIN. 
     attr_accessor :is_repeat
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -52,7 +52,7 @@ module CyberSource
         :'card_sequence_number' => :'String',
         :'fallback' => :'BOOLEAN',
         :'fallback_condition' => :'Integer',
-        :'is_repeat' => :'String'
+        :'is_repeat' => :'BOOLEAN'
       }
     end
 
@@ -112,12 +112,6 @@ module CyberSource
     # @param [Object] card_sequence_number Value to be assigned
     def card_sequence_number=(card_sequence_number)
       @card_sequence_number = card_sequence_number
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] is_repeat Value to be assigned
-    def is_repeat=(is_repeat)
-      @is_repeat = is_repeat
     end
 
     # Checks equality by comparing each attribute.

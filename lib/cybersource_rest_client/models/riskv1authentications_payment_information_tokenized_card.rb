@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class Riskv1authenticationsPaymentInformationTokenizedCard
-    # Type of transaction that provided the token data. This value does not specify the token service provider; it specifies the entity that provided you with information about the token.  Possible value: - `2`: Near-field communication (NFC) transaction. The customer’s mobile device provided the token data for a contactless EMV transaction. For recurring transactions, use this value if the original transaction was a contactless EMV transaction.  #### Visa Platform Connect - `1`: In App tokenization. Example: InApp apple pay. - `3`: Card/Credential On File Tokenization.  **NOTE** No CyberSource through VisaNet acquirers support EMV at this time.  Required field for PIN debit credit or PIN debit purchase transactions that use payment network tokens; otherwise, not used. 
+    # Type of transaction that provided the token data. This value does not specify the token service provider; it specifies the entity that provided you with information about the token.  Possible value: - `2`: Near-field communication (NFC) transaction. The customer’s mobile device provided the token data for a contactless EMV transaction. For recurring transactions, use this value if the original transaction was a contactless EMV transaction.  #### Visa Platform Connect - `1`: For Rupay and In App tokenization. Example: InApp apple pay. - `3`: Card/Credential On File Tokenization.  **NOTE** No CyberSource through VisaNet acquirers support EMV at this time.  Required field for PIN debit credit or PIN debit purchase transactions that use payment network tokens; otherwise, not used. 
     attr_accessor :transaction_type
 
     # Three-digit value that indicates the card type.  **IMPORTANT** It is strongly recommended that you include the card type field in request messages even if it is optional for your processor and card type. Omitting the card type can cause the transaction to be processed with the wrong card type.  Possible values: - `001`: Visa. For card-present transactions on all processors except SIX, the Visa Electron card type is processed the same way that the Visa debit card is processed. Use card type value `001` for Visa Electron. - `002`: Mastercard, Eurocard[^1], which is a European regional brand of Mastercard. - `003`: American Express - `004`: Discover - `005`: Diners Club - `006`: Carte Blanche[^1] - `007`: JCB[^1] - `014`: Enroute[^1] - `021`: JAL[^1] - `024`: Maestro (UK Domestic)[^1] - `031`: Delta[^1]: Use this value only for Ingenico ePayments. For other processors, use `001` for all Visa card types. - `033`: Visa Electron[^1]. Use this value only for Ingenico ePayments and SIX. For other processors, use `001` for all Visa card types. - `034`: Dankort[^1] - `036`: Cartes Bancaires[^1,4] - `037`: Carta Si[^1] - `039`: Encoded account number[^1] - `040`: UATP[^1] - `042`: Maestro (International)[^1] - `050`: Hipercard[^2,3] - `051`: Aura - `054`: Elo[^3] - `062`: China UnionPay  [^1]: For this card type, you must include the `paymentInformation.card.type` or `paymentInformation.tokenizedCard.type` field in your request for an authorization or a stand-alone credit. [^2]: For this card type on Cielo 3.0, you must include the `paymentInformation.card.type` or `paymentInformation.tokenizedCard.type` field in a request for an authorization or a stand-alone credit. This card type is not supported on Cielo 1.5. [^3]: For this card type on Getnet and Rede, you must include the `paymentInformation.card.type` or `paymentInformation.tokenizedCard.type` field in a request for an authorization or a stand-alone credit. [^4]: For this card type, you must include the `paymentInformation.card.type` in your request for any payer authentication services.  #### Used by **Authorization** Required for Carte Blanche and JCB. Optional for all other card types.  #### Card Present reply This field is included in the reply message when the client software that is installed on the POS terminal uses the token management service (TMS) to retrieve tokenized payment details. You must contact customer support to have your account enabled to receive these fields in the credit reply message.  Returned by the Credit service.  This reply field is only supported by the following processors: - American Express Direct - Credit Mutuel-CIC - FDC Nashville Global - OmniPay Direct - SIX  #### Google Pay transactions For PAN-based Google Pay transactions, this field is returned in the API response.  #### GPX This field only supports transactions from the following card types: - Visa - Mastercard - AMEX - Discover - Diners - JCB - Union Pay International 
@@ -26,6 +26,12 @@ module CyberSource
     # One of two possible meanings: - The four-digit year in which a token expires. - The four-digit year in which a card expires. Format: `YYYY` Possible values: `1900` through `3000` Data type: Non-negative integer  **NOTE** The meaning of this field is dependent on the payment processor that is returning the value in an authorization reply. Please see the processor-specific details below.  #### Barclays and Streamline For Maestro (UK Domestic) and Maestro (International) cards on Barclays and Streamline, this must be a valid value (1900 through 3000) but is not required to be a valid expiration date. In other words, an expiration date that is in the past does not cause CyberSource to reject your request. However, an invalid expiration date might cause the issuer to reject your request.  #### Encoded Account Numbers For encoded account numbers (`card_ type=039`), if there is no expiration date on the card, use `2021`.  #### FDC Nashville Global and FDMS South You can send in 2 digits or 4 digits. When you send in 2 digits, they must be the last 2 digits of the year.  #### Samsung Pay and Apple Pay Year in which the token expires. CyberSource includes this field in the reply message when it decrypts the payment blob for the tokenized transaction.  **Important** It is your responsibility to determine whether a field is required for the transaction you are requesting.  For processor-specific information, see the `customer_cc_expyr` or `token_expiration_year` field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
     attr_accessor :expiration_year
 
+    # This field contains token information.
+    attr_accessor :cryptogram
+
+    # Card Verification Number (CVN).  #### Ingenico ePayments Do not include this field when **commerceIndicator=recurring**. **Note** Ingenico ePayments was previously called _Global Collect_.  For details, see `customer_cc_cv_number` field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
+    attr_accessor :security_code
+
     # Customer’s payment network token value. 
     attr_accessor :number
 
@@ -36,6 +42,8 @@ module CyberSource
         :'type' => :'type',
         :'expiration_month' => :'expirationMonth',
         :'expiration_year' => :'expirationYear',
+        :'cryptogram' => :'cryptogram',
+        :'security_code' => :'securityCode',
         :'number' => :'number'
       }
     end
@@ -47,6 +55,8 @@ module CyberSource
         :'type' => :'String',
         :'expiration_month' => :'String',
         :'expiration_year' => :'String',
+        :'cryptogram' => :'String',
+        :'security_code' => :'String',
         :'number' => :'String'
       }
     end
@@ -75,6 +85,14 @@ module CyberSource
         self.expiration_year = attributes[:'expirationYear']
       end
 
+      if attributes.has_key?(:'cryptogram')
+        self.cryptogram = attributes[:'cryptogram']
+      end
+
+      if attributes.has_key?(:'securityCode')
+        self.security_code = attributes[:'securityCode']
+      end
+
       if attributes.has_key?(:'number')
         self.number = attributes[:'number']
       end
@@ -84,6 +102,10 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @transaction_type.nil?
+        invalid_properties.push('invalid value for "transaction_type", transaction_type cannot be nil.')
+      end
+
       if @type.nil?
         invalid_properties.push('invalid value for "type", type cannot be nil.')
       end
@@ -96,6 +118,14 @@ module CyberSource
         invalid_properties.push('invalid value for "expiration_year", expiration_year cannot be nil.')
       end
 
+      if @cryptogram.nil?
+        invalid_properties.push('invalid value for "cryptogram", cryptogram cannot be nil.')
+      end
+
+      if @security_code.nil?
+        invalid_properties.push('invalid value for "security_code", security_code cannot be nil.')
+      end
+
       if @number.nil?
         invalid_properties.push('invalid value for "number", number cannot be nil.')
       end
@@ -106,9 +136,12 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @transaction_type.nil?
       return false if @type.nil?
       return false if @expiration_month.nil?
       return false if @expiration_year.nil?
+      return false if @cryptogram.nil?
+      return false if @security_code.nil?
       return false if @number.nil?
       true
     end
@@ -116,6 +149,10 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] transaction_type Value to be assigned
     def transaction_type=(transaction_type)
+      if transaction_type.nil?
+        fail ArgumentError, 'transaction_type cannot be nil'
+      end
+
       @transaction_type = transaction_type
     end
 
@@ -140,6 +177,26 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] cryptogram Value to be assigned
+    def cryptogram=(cryptogram)
+      if cryptogram.nil?
+        fail ArgumentError, 'cryptogram cannot be nil'
+      end
+
+      @cryptogram = cryptogram
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] security_code Value to be assigned
+    def security_code=(security_code)
+      if security_code.nil?
+        fail ArgumentError, 'security_code cannot be nil'
+      end
+
+      @security_code = security_code
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] number Value to be assigned
     def number=(number)
       if number.nil?
@@ -158,6 +215,8 @@ module CyberSource
           type == o.type &&
           expiration_month == o.expiration_month &&
           expiration_year == o.expiration_year &&
+          cryptogram == o.cryptogram &&
+          security_code == o.security_code &&
           number == o.number
     end
 
@@ -170,7 +229,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [transaction_type, type, expiration_month, expiration_year, number].hash
+      [transaction_type, type, expiration_month, expiration_year, cryptogram, security_code, number].hash
     end
 
     # Builds the object from hash

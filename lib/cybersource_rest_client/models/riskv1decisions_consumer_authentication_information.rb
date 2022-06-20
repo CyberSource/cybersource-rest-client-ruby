@@ -16,7 +16,7 @@ module CyberSource
   class Riskv1decisionsConsumerAuthenticationInformation
     attr_accessor :strong_authentication
 
-    # Indicates the type of authentication that will be used to challenge the card holder.  Possible Values:  01 - Static  02 - Dynamic  03 - OOB (Out of Band)  04 - Decoupled **NOTE**:  EMV 3-D Secure version 2.1.0 supports values 01-03.  Version 2.2.0 supports values 01-04.  Decoupled authentication is not supported at this time. 
+    # Indicates the type of authentication that will be used to challenge the card holder.  Possible Values:  01 - Static  02 - Dynamic  03 - OOB (Out of Band)  04 - Decoupled  20 - OTP hosted at merchant end. (Rupay S2S flow) **NOTE**:  EMV 3-D Secure version 2.1.0 supports values 01-03.  Version 2.2.0 supports values 01-04.  Decoupled authentication is not supported at this time. 
     attr_accessor :authentication_type
 
     # An override field that a merchant can pass in to set the challenge window size to display to the end cardholder.  The ACS (Active Control Server) will reply with content that is formatted appropriately to this window size to allow for the best user experience.  The sizes are width x height in pixels of the window displayed in the cardholder browser window.  01 - 250x400  02 - 390x400  03 - 500x600  04 - 600x400  05 - Full page 
@@ -34,8 +34,11 @@ module CyberSource
     # The date/time of the authentication at the 3DS servers. RISK update authorization service in auth request payload with value returned in `consumerAuthenticationInformation.alternateAuthenticationData` if merchant calls via CYBS or field can be provided by merchant in authorization request if calling an external 3DS provider.  This field is supported for Cartes Bancaires Fast'R transactions on Credit Mutuel-CIC. Format: YYYYMMDDHHMMSS 
     attr_accessor :authentication_date
 
-    # Payer authentication transaction identifier passed to link the check enrollment and validate authentication messages. **Note**: Required for Standard integration for enroll service. Required for Hybrid integration for validate service. 
+    # Payer authentication transaction identifier passed to link the check enrollment and validate authentication messages.For Rupay,this is passed only in Re-Send OTP usecase. **Note**: Required for Standard integration, Rupay Seamless server to server integration for enroll service. Required for Hybrid integration for validate service. 
     attr_accessor :authentication_transaction_id
+
+    # This  field is only applicable to Rupay and is optional. Merchant will have to pass a valid value from 01 through 07 which indicates the transaction flow. Below are the possible values. 01:NW – Transaction performed at domestic merchant. 02:TW - Transaction performed at domestic merchant along with Token provisioning. 03:IT – Transaction performed at International merchant. 04:AT- Authentication Transaction Only. 05:AW- Authentication transaction for provisioning. 06:DI- Domestic InApp Transaction. 07:II- International InApp transaction. 
+    attr_accessor :transaction_flow_indicator
 
     # An indicator as to why the transaction was canceled. Possible Values:  - `01`: Cardholder selected Cancel. - `02`: Reserved for future EMVCo use (values invalid until defined by EMVCo). - `03`: Transaction Timed Out—Decoupled Authentication - `04`: Transaction timed out at ACS—other timeouts - `05`: Transaction Timed out at ACS - First CReq not received by ACS - `06`: Transaction Error - `07`: Unknown - `08`: Transaction Timed Out at SDK 
     attr_accessor :challenge_cancel_code
@@ -144,6 +147,7 @@ module CyberSource
         :'alternate_authentication_method' => :'alternateAuthenticationMethod',
         :'authentication_date' => :'authenticationDate',
         :'authentication_transaction_id' => :'authenticationTransactionId',
+        :'transaction_flow_indicator' => :'transactionFlowIndicator',
         :'challenge_cancel_code' => :'challengeCancelCode',
         :'challenge_code' => :'challengeCode',
         :'challenge_status' => :'challengeStatus',
@@ -190,6 +194,7 @@ module CyberSource
         :'alternate_authentication_method' => :'String',
         :'authentication_date' => :'String',
         :'authentication_transaction_id' => :'String',
+        :'transaction_flow_indicator' => :'Integer',
         :'challenge_cancel_code' => :'String',
         :'challenge_code' => :'String',
         :'challenge_status' => :'String',
@@ -263,6 +268,10 @@ module CyberSource
 
       if attributes.has_key?(:'authenticationTransactionId')
         self.authentication_transaction_id = attributes[:'authenticationTransactionId']
+      end
+
+      if attributes.has_key?(:'transactionFlowIndicator')
+        self.transaction_flow_indicator = attributes[:'transactionFlowIndicator']
       end
 
       if attributes.has_key?(:'challengeCancelCode')
@@ -600,6 +609,7 @@ module CyberSource
           alternate_authentication_method == o.alternate_authentication_method &&
           authentication_date == o.authentication_date &&
           authentication_transaction_id == o.authentication_transaction_id &&
+          transaction_flow_indicator == o.transaction_flow_indicator &&
           challenge_cancel_code == o.challenge_cancel_code &&
           challenge_code == o.challenge_code &&
           challenge_status == o.challenge_status &&
@@ -643,7 +653,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [strong_authentication, authentication_type, acs_window_size, alternate_authentication_data, alternate_authentication_date, alternate_authentication_method, authentication_date, authentication_transaction_id, challenge_cancel_code, challenge_code, challenge_status, customer_card_alias, decoupled_authentication_indicator, decoupled_authentication_max_time, default_card, device_channel, installment_total_count, merchant_fraud_rate, marketing_opt_in, marketing_source, mcc, merchant_score, message_category, npa_code, override_payment_method, override_country_code, prior_authentication_data, prior_authentication_method, prior_authentication_reference_id, prior_authentication_time, product_code, return_url, requestor_id, requestor_initiated_authentication_indicator, requestor_name, reference_id, sdk_max_timeout, secure_corporate_payment_indicator, transaction_mode, white_list_status].hash
+      [strong_authentication, authentication_type, acs_window_size, alternate_authentication_data, alternate_authentication_date, alternate_authentication_method, authentication_date, authentication_transaction_id, transaction_flow_indicator, challenge_cancel_code, challenge_code, challenge_status, customer_card_alias, decoupled_authentication_indicator, decoupled_authentication_max_time, default_card, device_channel, installment_total_count, merchant_fraud_rate, marketing_opt_in, marketing_source, mcc, merchant_score, message_category, npa_code, override_payment_method, override_country_code, prior_authentication_data, prior_authentication_method, prior_authentication_reference_id, prior_authentication_time, product_code, return_url, requestor_id, requestor_initiated_authentication_indicator, requestor_name, reference_id, sdk_max_timeout, secure_corporate_payment_indicator, transaction_mode, white_list_status].hash
     end
 
     # Builds the object from hash

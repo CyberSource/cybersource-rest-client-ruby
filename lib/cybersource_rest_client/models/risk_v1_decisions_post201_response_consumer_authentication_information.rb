@@ -32,8 +32,17 @@ module CyberSource
     # The Base64 encoded JSON Payload of CB specific Authorization Values returned in the challenge Flow 
     attr_accessor :authorization_payload
 
-    # Payer authentication transaction identifier passed to link the check enrollment and validate authentication messages. 
+    # Indicates the type of authentication that will be used to challenge the card holder.  Possible Values:  01 - Static  02 - Dynamic  03 - OOB (Out of Band)  04 - Decoupled  20 - OTP hosted at merchant end. (Rupay S2S flow) **NOTE**:  EMV 3-D Secure version 2.1.0 supports values 01-03.  Version 2.2.0 supports values 01-04.  Decoupled authentication is not supported at this time. 
+    attr_accessor :authentication_type
+
+    # Payer authentication transaction identifier is used to link the check enrollment and validate authentication messages. For Rupay, this field should be passed as request only for Resend OTP use case. 
     attr_accessor :authentication_transaction_id
+
+    # Payer authentication transaction identifier passed to link the validation and authorization calls. 
+    attr_accessor :authentication_transaction_context_id
+
+    # Describes validity of OTP in minutes for incoming transaction.        . 
+    attr_accessor :validity_period
 
     # Text provided by the ACS/Issuer to Cardholder during a Frictionless or Decoupled transaction.The Issuer can provide information to Cardholder. For example, “Additional authentication is needed for this transaction, please contact (Issuer Name) at xxx-xxx-xxxx.”. The Issuing Bank can optionally support this value. 
     attr_accessor :cardholder_message
@@ -130,7 +139,10 @@ module CyberSource
         :'acs_url' => :'acsUrl',
         :'authentication_path' => :'authenticationPath',
         :'authorization_payload' => :'authorizationPayload',
+        :'authentication_type' => :'authenticationType',
         :'authentication_transaction_id' => :'authenticationTransactionId',
+        :'authentication_transaction_context_id' => :'authenticationTransactionContextId',
+        :'validity_period' => :'validityPeriod',
         :'cardholder_message' => :'cardholderMessage',
         :'cavv' => :'cavv',
         :'cavv_algorithm' => :'cavvAlgorithm',
@@ -172,7 +184,10 @@ module CyberSource
         :'acs_url' => :'String',
         :'authentication_path' => :'String',
         :'authorization_payload' => :'String',
+        :'authentication_type' => :'String',
         :'authentication_transaction_id' => :'String',
+        :'authentication_transaction_context_id' => :'String',
+        :'validity_period' => :'Integer',
         :'cardholder_message' => :'String',
         :'cavv' => :'String',
         :'cavv_algorithm' => :'String',
@@ -237,8 +252,20 @@ module CyberSource
         self.authorization_payload = attributes[:'authorizationPayload']
       end
 
+      if attributes.has_key?(:'authenticationType')
+        self.authentication_type = attributes[:'authenticationType']
+      end
+
       if attributes.has_key?(:'authenticationTransactionId')
         self.authentication_transaction_id = attributes[:'authenticationTransactionId']
+      end
+
+      if attributes.has_key?(:'authenticationTransactionContextId')
+        self.authentication_transaction_context_id = attributes[:'authenticationTransactionContextId']
+      end
+
+      if attributes.has_key?(:'validityPeriod')
+        self.validity_period = attributes[:'validityPeriod']
       end
 
       if attributes.has_key?(:'cardholderMessage')
@@ -384,9 +411,21 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] authentication_type Value to be assigned
+    def authentication_type=(authentication_type)
+      @authentication_type = authentication_type
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] authentication_transaction_id Value to be assigned
     def authentication_transaction_id=(authentication_transaction_id)
       @authentication_transaction_id = authentication_transaction_id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] authentication_transaction_context_id Value to be assigned
+    def authentication_transaction_context_id=(authentication_transaction_context_id)
+      @authentication_transaction_context_id = authentication_transaction_context_id
     end
 
     # Custom attribute writer method with validation
@@ -496,7 +535,10 @@ module CyberSource
           acs_url == o.acs_url &&
           authentication_path == o.authentication_path &&
           authorization_payload == o.authorization_payload &&
+          authentication_type == o.authentication_type &&
           authentication_transaction_id == o.authentication_transaction_id &&
+          authentication_transaction_context_id == o.authentication_transaction_context_id &&
+          validity_period == o.validity_period &&
           cardholder_message == o.cardholder_message &&
           cavv == o.cavv &&
           cavv_algorithm == o.cavv_algorithm &&
@@ -537,7 +579,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [access_token, acs_rendering_type, acs_transaction_id, acs_url, authentication_path, authorization_payload, authentication_transaction_id, cardholder_message, cavv, cavv_algorithm, challenge_cancel_code, challenge_required, decoupled_authentication_indicator, directory_server_error_code, directory_server_error_description, ecommerce_indicator, eci, eci_raw, effective_authentication_type, ivr, network_score, pareq, pares_status, proof_xml, proxy_pan, sdk_transaction_id, signed_pares_status_reason, specification_version, step_up_url, three_ds_server_transaction_id, ucaf_authentication_data, ucaf_collection_indicator, veres_enrolled, white_list_status_source, xid, directory_server_transaction_id].hash
+      [access_token, acs_rendering_type, acs_transaction_id, acs_url, authentication_path, authorization_payload, authentication_type, authentication_transaction_id, authentication_transaction_context_id, validity_period, cardholder_message, cavv, cavv_algorithm, challenge_cancel_code, challenge_required, decoupled_authentication_indicator, directory_server_error_code, directory_server_error_description, ecommerce_indicator, eci, eci_raw, effective_authentication_type, ivr, network_score, pareq, pares_status, proof_xml, proxy_pan, sdk_transaction_id, signed_pares_status_reason, specification_version, step_up_url, three_ds_server_transaction_id, ucaf_authentication_data, ucaf_collection_indicator, veres_enrolled, white_list_status_source, xid, directory_server_transaction_id].hash
     end
 
     # Builds the object from hash
