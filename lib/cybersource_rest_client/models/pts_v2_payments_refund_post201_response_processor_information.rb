@@ -31,6 +31,9 @@ module CyberSource
 
     attr_accessor :ach_verification
 
+    # Same value as `processorInformation.transactionId`
+    attr_accessor :network_transaction_id
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -39,7 +42,8 @@ module CyberSource
         :'forwarded_acquirer_code' => :'forwardedAcquirerCode',
         :'merchant_number' => :'merchantNumber',
         :'response_code' => :'responseCode',
-        :'ach_verification' => :'achVerification'
+        :'ach_verification' => :'achVerification',
+        :'network_transaction_id' => :'networkTransactionId'
       }
     end
 
@@ -51,7 +55,8 @@ module CyberSource
         :'forwarded_acquirer_code' => :'String',
         :'merchant_number' => :'String',
         :'response_code' => :'String',
-        :'ach_verification' => :'PtsV2PaymentsPost201ResponseProcessorInformationAchVerification'
+        :'ach_verification' => :'PtsV2PaymentsPost201ResponseProcessorInformationAchVerification',
+        :'network_transaction_id' => :'String'
       }
     end
 
@@ -85,6 +90,10 @@ module CyberSource
 
       if attributes.has_key?(:'achVerification')
         self.ach_verification = attributes[:'achVerification']
+      end
+
+      if attributes.has_key?(:'networkTransactionId')
+        self.network_transaction_id = attributes[:'networkTransactionId']
       end
     end
 
@@ -141,7 +150,8 @@ module CyberSource
           forwarded_acquirer_code == o.forwarded_acquirer_code &&
           merchant_number == o.merchant_number &&
           response_code == o.response_code &&
-          ach_verification == o.ach_verification
+          ach_verification == o.ach_verification &&
+          network_transaction_id == o.network_transaction_id
     end
 
     # @see the `==` method
@@ -153,7 +163,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [approval_code, transaction_id, forwarded_acquirer_code, merchant_number, response_code, ach_verification].hash
+      [approval_code, transaction_id, forwarded_acquirer_code, merchant_number, response_code, ach_verification, network_transaction_id].hash
     end
 
     # Builds the object from hash
