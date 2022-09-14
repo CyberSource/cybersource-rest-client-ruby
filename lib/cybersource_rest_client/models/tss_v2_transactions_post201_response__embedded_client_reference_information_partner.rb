@@ -13,26 +13,21 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  class TssV2TransactionsGet200ResponseClientReferenceInformationPartner
+  class TssV2TransactionsPost201ResponseEmbeddedClientReferenceInformationPartner
     # Identifier for the partner that is integrated to CyberSource.  Send this value in all requests that are sent through the partner solution. CyberSource assigns the ID to the partner.  **Note** When you see a solutionId of 999 in reports, the solutionId that was submitted is incorrect. 
     attr_accessor :solution_id
-
-    # Value that identifies the application vendor and application version for a third party gateway. CyberSource provides you with this value during testing and validation. This field is supported only on CyberSource through VisaNet.  #### Used by **Authorization, Authorization Reversal, Capture, Credit, Incremental Authorization, and Void** Optional field.  #### PIN debit Required field for PIN debit credit, PIN debit purchase, or PIN debit reversal request. 
-    attr_accessor :third_party_certification_number
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'solution_id' => :'solutionId',
-        :'third_party_certification_number' => :'thirdPartyCertificationNumber'
+        :'solution_id' => :'solutionId'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'solution_id' => :'String',
-        :'third_party_certification_number' => :'String'
+        :'solution_id' => :'String'
       }
     end
 
@@ -46,10 +41,6 @@ module CyberSource
 
       if attributes.has_key?(:'solutionId')
         self.solution_id = attributes[:'solutionId']
-      end
-
-      if attributes.has_key?(:'thirdPartyCertificationNumber')
-        self.third_party_certification_number = attributes[:'thirdPartyCertificationNumber']
       end
     end
 
@@ -72,19 +63,12 @@ module CyberSource
       @solution_id = solution_id
     end
 
-    # Custom attribute writer method with validation
-    # @param [Object] third_party_certification_number Value to be assigned
-    def third_party_certification_number=(third_party_certification_number)
-      @third_party_certification_number = third_party_certification_number
-    end
-
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          solution_id == o.solution_id &&
-          third_party_certification_number == o.third_party_certification_number
+          solution_id == o.solution_id
     end
 
     # @see the `==` method
@@ -96,7 +80,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [solution_id, third_party_certification_number].hash
+      [solution_id].hash
     end
 
     # Builds the object from hash

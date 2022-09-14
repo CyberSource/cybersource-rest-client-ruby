@@ -20,6 +20,9 @@ module CyberSource
     # Terminal serial number assigned by the hardware manufacturer. This value is provided by the client software that is installed on the POS terminal.  This value is not forwarded to the processor. Instead, the value is forwarded to the reporting functionality.  #### Used by **Authorization and Credit** Optional. This field is supported only by client software that is installed on your POS terminals for the following processors: - American Express Direct - Credit Mutuel-CIC - FDC Nashville Global - OmniPay Direct - SIX 
     attr_accessor :terminal_serial_number
 
+    # Method that was used to verify the cardholder's identity. Possible values:    - `0`: No verification   - `1`: Signature   - `2`: PIN   - `3`: Cardholder device CVM 
+    attr_accessor :cardholder_verification_method_used
+
     # Identifier for an alternate terminal at your retail location. You define the value for this field.  This field is supported only for MasterCard transactions on FDC Nashville Global. Otherwise, this field is not used by all other processors. Use the `terminalId` field to identify the main terminal at your retail location. If your retail location has multiple terminals, use this `laneNumber` field to identify the terminal used for the transaction.  This field is a pass-through, which means that the value is not checked or modified in any way before sending it to the processor.  Optional field.  #### Card present reply messaging Identifier for an alternate terminal at your retail location. You defined the value for this field in the request message. This value must be printed on the receipt.  This field is supported only for MasterCard transactions on FDC Nashville Global. 
     attr_accessor :lane_number
 
@@ -99,6 +102,7 @@ module CyberSource
       {
         :'terminal_id' => :'terminalId',
         :'terminal_serial_number' => :'terminalSerialNumber',
+        :'cardholder_verification_method_used' => :'cardholderVerificationMethodUsed',
         :'lane_number' => :'laneNumber',
         :'cat_level' => :'catLevel',
         :'entry_mode' => :'entryMode',
@@ -132,6 +136,7 @@ module CyberSource
       {
         :'terminal_id' => :'String',
         :'terminal_serial_number' => :'String',
+        :'cardholder_verification_method_used' => :'Integer',
         :'lane_number' => :'String',
         :'cat_level' => :'Integer',
         :'entry_mode' => :'String',
@@ -174,6 +179,10 @@ module CyberSource
 
       if attributes.has_key?(:'terminalSerialNumber')
         self.terminal_serial_number = attributes[:'terminalSerialNumber']
+      end
+
+      if attributes.has_key?(:'cardholderVerificationMethodUsed')
+        self.cardholder_verification_method_used = attributes[:'cardholderVerificationMethodUsed']
       end
 
       if attributes.has_key?(:'laneNumber')
@@ -478,6 +487,7 @@ module CyberSource
       self.class == o.class &&
           terminal_id == o.terminal_id &&
           terminal_serial_number == o.terminal_serial_number &&
+          cardholder_verification_method_used == o.cardholder_verification_method_used &&
           lane_number == o.lane_number &&
           cat_level == o.cat_level &&
           entry_mode == o.entry_mode &&
@@ -514,7 +524,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [terminal_id, terminal_serial_number, lane_number, cat_level, entry_mode, terminal_capability, operating_environment, emv, amex_capn_data, track_data, store_and_forward_indicator, cardholder_verification_method, terminal_input_capability, terminal_card_capture_capability, terminal_output_capability, terminal_pin_capability, device_id, pin_block_encoding_format, encrypted_pin, encrypted_key_serial_number, partner_sdk_version, emv_application_identifier_and_dedicated_file_name, terminal_compliance, is_dedicated_hardware_terminal, terminal_model, terminal_make, service_code].hash
+      [terminal_id, terminal_serial_number, cardholder_verification_method_used, lane_number, cat_level, entry_mode, terminal_capability, operating_environment, emv, amex_capn_data, track_data, store_and_forward_indicator, cardholder_verification_method, terminal_input_capability, terminal_card_capture_capability, terminal_output_capability, terminal_pin_capability, device_id, pin_block_encoding_format, encrypted_pin, encrypted_key_serial_number, partner_sdk_version, emv_application_identifier_and_dedicated_file_name, terminal_compliance, is_dedicated_hardware_terminal, terminal_model, terminal_make, service_code].hash
     end
 
     # Builds the object from hash

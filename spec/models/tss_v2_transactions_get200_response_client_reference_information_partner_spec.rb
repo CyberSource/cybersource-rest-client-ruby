@@ -38,4 +38,10 @@ describe 'TssV2TransactionsGet200ResponseClientReferenceInformationPartner' do
     end
   end
 
+  describe 'test attribute "third_party_certification_number"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

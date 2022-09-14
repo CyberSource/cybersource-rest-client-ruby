@@ -21,5 +21,6 @@ Name | Type | Description | Notes
 **aggregated_auth_indicator** | **String** | Indicates if transaction is an aggregated auth  Possible values: - **true** - **false**  | [optional] 
 **debt_recovery_indicator** | **String** | Indicates if transaction is a debt recovery request  Possible values: - **true** - **false**  | [optional] 
 **deferred_auth_indicator** | **BOOLEAN** | Flag that indicates whether the authorization request was delayed because connectivity was interrupted.  Possible values:   - &#x60;true&#x60; (Deferred authorization)   - &#x60;false&#x60; (default: Not a deferred authorization)  | [optional] 
+**cash_advance_indicator** | **BOOLEAN** | This API field enables the merchant to indicate that a given transaction is Cash Advance.  Cash advance or Cash disbursement functionality allows a merchant to dispense cash at a point of sale. It provides the ability of a POS system to act like an ATM. These terminals are typically seen in bank branches where customers can use their card and withdraw cash or at merchant locations where ATMs are sparse.  Possible values:   - &#x60;true&#x60; (Cash advance is supported)   - &#x60;false&#x60; (default: cash advance is not supported)  | [optional] 
 
 

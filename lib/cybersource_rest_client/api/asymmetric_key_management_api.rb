@@ -20,8 +20,8 @@ module CyberSource
       @api_client = api_client
       @api_client.set_configuration(config)
     end
-    # Create one or more PKCS#12 keys
-    # 'Create one or more PKCS#12 keys' 
+    # Create one or more PKCS12 keys
+    # 'Create one or more PKCS12 keys' 
     # @param create_p12_keys_request 
     # @param [Hash] opts the optional parameters
     # @return [KmsV2KeysAsymPost201Response]
@@ -30,8 +30,8 @@ module CyberSource
       return data, status_code, headers
     end
 
-    # Create one or more PKCS#12 keys
-    # &#39;Create one or more PKCS#12 keys&#39; 
+    # Create one or more PKCS12 keys
+    # &#39;Create one or more PKCS12 keys&#39; 
     # @param create_p12_keys_request 
     # @param [Hash] opts the optional parameters
     # @return [Array<(KmsV2KeysAsymPost201Response, Fixnum, Hash)>] KmsV2KeysAsymPost201Response data, response status code and response headers
@@ -85,8 +85,8 @@ module CyberSource
       end
       return data, status_code, headers
     end
-    # Delete one or more PKCS#12 keys
-    # 'Delete one or more PKCS#12 keys' 
+    # Delete one or more PKCS12 keys
+    # 'Delete one or more PKCS12 keys' 
     # @param delete_bulk_p12_keys_request 
     # @param [Hash] opts the optional parameters
     # @return [KmsV2KeysAsymDeletesPost200Response]
@@ -95,8 +95,8 @@ module CyberSource
       return data, status_code, headers
     end
 
-    # Delete one or more PKCS#12 keys
-    # &#39;Delete one or more PKCS#12 keys&#39; 
+    # Delete one or more PKCS12 keys
+    # &#39;Delete one or more PKCS12 keys&#39; 
     # @param delete_bulk_p12_keys_request 
     # @param [Hash] opts the optional parameters
     # @return [Array<(KmsV2KeysAsymDeletesPost200Response, Fixnum, Hash)>] KmsV2KeysAsymDeletesPost200Response data, response status code and response headers
@@ -150,7 +150,7 @@ module CyberSource
       end
       return data, status_code, headers
     end
-    # Retrieves PKCS#12 key details
+    # Retrieves PKCS12 key details
     # Retrieves keys details by providing the key id.
     # @param key_id Key ID. 
     # @param [Hash] opts the optional parameters
@@ -160,7 +160,7 @@ module CyberSource
       return data, status_code, headers
     end
 
-    # Retrieves PKCS#12 key details
+    # Retrieves PKCS12 key details
     # Retrieves keys details by providing the key id.
     # @param key_id Key ID. 
     # @param [Hash] opts the optional parameters

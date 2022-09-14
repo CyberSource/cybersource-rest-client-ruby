@@ -32,6 +32,8 @@ module CyberSource
 
     attr_accessor :shipping_address
 
+    attr_accessor :fluid_data
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -43,7 +45,8 @@ module CyberSource
         :'account_features' => :'accountFeatures',
         :'payment_instrument' => :'paymentInstrument',
         :'instrument_identifier' => :'instrumentIdentifier',
-        :'shipping_address' => :'shippingAddress'
+        :'shipping_address' => :'shippingAddress',
+        :'fluid_data' => :'fluidData'
       }
     end
 
@@ -58,7 +61,8 @@ module CyberSource
         :'account_features' => :'TssV2TransactionsGet200ResponsePaymentInformationAccountFeatures',
         :'payment_instrument' => :'PtsV2PaymentsPost201ResponseTokenInformationPaymentInstrument',
         :'instrument_identifier' => :'TssV2TransactionsGet200ResponsePaymentInformationInstrumentIdentifier',
-        :'shipping_address' => :'PtsV2PaymentsPost201ResponseTokenInformationShippingAddress'
+        :'shipping_address' => :'PtsV2PaymentsPost201ResponseTokenInformationShippingAddress',
+        :'fluid_data' => :'TssV2TransactionsGet200ResponsePaymentInformationFluidData'
       }
     end
 
@@ -105,6 +109,10 @@ module CyberSource
       if attributes.has_key?(:'shippingAddress')
         self.shipping_address = attributes[:'shippingAddress']
       end
+
+      if attributes.has_key?(:'fluidData')
+        self.fluid_data = attributes[:'fluidData']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -133,7 +141,8 @@ module CyberSource
           account_features == o.account_features &&
           payment_instrument == o.payment_instrument &&
           instrument_identifier == o.instrument_identifier &&
-          shipping_address == o.shipping_address
+          shipping_address == o.shipping_address &&
+          fluid_data == o.fluid_data
     end
 
     # @see the `==` method
@@ -145,7 +154,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [payment_type, customer, card, invoice, bank, account_features, payment_instrument, instrument_identifier, shipping_address].hash
+      [payment_type, customer, card, invoice, bank, account_features, payment_instrument, instrument_identifier, shipping_address, fluid_data].hash
     end
 
     # Builds the object from hash

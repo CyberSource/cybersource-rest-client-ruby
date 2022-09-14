@@ -13,26 +13,41 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  class TssV2TransactionsGet200ResponseClientReferenceInformationPartner
-    # Identifier for the partner that is integrated to CyberSource.  Send this value in all requests that are sent through the partner solution. CyberSource assigns the ID to the partner.  **Note** When you see a solutionId of 999 in reports, the solutionId that was submitted is incorrect. 
-    attr_accessor :solution_id
+  class InlineResponse502
+    # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC.  Returned by Cybersource for all services. 
+    attr_accessor :submit_time_utc
 
-    # Value that identifies the application vendor and application version for a third party gateway. CyberSource provides you with this value during testing and validation. This field is supported only on CyberSource through VisaNet.  #### Used by **Authorization, Authorization Reversal, Capture, Credit, Incremental Authorization, and Void** Optional field.  #### PIN debit Required field for PIN debit credit, PIN debit purchase, or PIN debit reversal request. 
-    attr_accessor :third_party_certification_number
+    # The status of the submitted transaction.  Possible values:  - SERVER_ERROR 
+    attr_accessor :status
+
+    # The reason of the status.  Possible values:  - SYSTEM_ERROR  - SERVER_TIMEOUT  - SERVICE_TIMEOUT 
+    attr_accessor :reason
+
+    # The detail message related to the status and reason listed above.
+    attr_accessor :message
+
+    # HTTP status code of the submitted request.  Possible values:  - 500 
+    attr_accessor :status_code
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'solution_id' => :'solutionId',
-        :'third_party_certification_number' => :'thirdPartyCertificationNumber'
+        :'submit_time_utc' => :'submitTimeUtc',
+        :'status' => :'status',
+        :'reason' => :'reason',
+        :'message' => :'message',
+        :'status_code' => :'statusCode'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'solution_id' => :'String',
-        :'third_party_certification_number' => :'String'
+        :'submit_time_utc' => :'String',
+        :'status' => :'String',
+        :'reason' => :'String',
+        :'message' => :'String',
+        :'status_code' => :'String'
       }
     end
 
@@ -44,12 +59,24 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'solutionId')
-        self.solution_id = attributes[:'solutionId']
+      if attributes.has_key?(:'submitTimeUtc')
+        self.submit_time_utc = attributes[:'submitTimeUtc']
       end
 
-      if attributes.has_key?(:'thirdPartyCertificationNumber')
-        self.third_party_certification_number = attributes[:'thirdPartyCertificationNumber']
+      if attributes.has_key?(:'status')
+        self.status = attributes[:'status']
+      end
+
+      if attributes.has_key?(:'reason')
+        self.reason = attributes[:'reason']
+      end
+
+      if attributes.has_key?(:'message')
+        self.message = attributes[:'message']
+      end
+
+      if attributes.has_key?(:'statusCode')
+        self.status_code = attributes[:'statusCode']
       end
     end
 
@@ -66,25 +93,16 @@ module CyberSource
       true
     end
 
-    # Custom attribute writer method with validation
-    # @param [Object] solution_id Value to be assigned
-    def solution_id=(solution_id)
-      @solution_id = solution_id
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] third_party_certification_number Value to be assigned
-    def third_party_certification_number=(third_party_certification_number)
-      @third_party_certification_number = third_party_certification_number
-    end
-
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          solution_id == o.solution_id &&
-          third_party_certification_number == o.third_party_certification_number
+          submit_time_utc == o.submit_time_utc &&
+          status == o.status &&
+          reason == o.reason &&
+          message == o.message &&
+          status_code == o.status_code
     end
 
     # @see the `==` method
@@ -96,7 +114,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [solution_id, third_party_certification_number].hash
+      [submit_time_utc, status, reason, message, status_code].hash
     end
 
     # Builds the object from hash

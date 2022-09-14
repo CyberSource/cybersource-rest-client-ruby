@@ -20,11 +20,14 @@ module CyberSource
     # The status of the submitted transaction.  Possible values:  - INVALID_REQUEST 
     attr_accessor :status
 
-    # The reason of the status.  Possible values:  - MISSING_FIELD  - INVALID_DATA 
+    # The reason of the status.  Possible values:  - MISSING_FIELD 
     attr_accessor :reason
 
     # The detail message related to the status and reason listed above.
     attr_accessor :message
+
+    # HTTP status code of the submitted request.  Possible values:  - 500 
+    attr_accessor :status_code
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -32,7 +35,8 @@ module CyberSource
         :'submit_time_utc' => :'submitTimeUtc',
         :'status' => :'status',
         :'reason' => :'reason',
-        :'message' => :'message'
+        :'message' => :'message',
+        :'status_code' => :'statusCode'
       }
     end
 
@@ -42,7 +46,8 @@ module CyberSource
         :'submit_time_utc' => :'String',
         :'status' => :'String',
         :'reason' => :'String',
-        :'message' => :'String'
+        :'message' => :'String',
+        :'status_code' => :'String'
       }
     end
 
@@ -69,6 +74,10 @@ module CyberSource
       if attributes.has_key?(:'message')
         self.message = attributes[:'message']
       end
+
+      if attributes.has_key?(:'statusCode')
+        self.status_code = attributes[:'statusCode']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -92,7 +101,8 @@ module CyberSource
           submit_time_utc == o.submit_time_utc &&
           status == o.status &&
           reason == o.reason &&
-          message == o.message
+          message == o.message &&
+          status_code == o.status_code
     end
 
     # @see the `==` method
@@ -104,7 +114,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [submit_time_utc, status, reason, message].hash
+      [submit_time_utc, status, reason, message, status_code].hash
     end
 
     # Builds the object from hash
