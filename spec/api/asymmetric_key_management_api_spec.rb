@@ -33,8 +33,8 @@ describe 'AsymmetricKeyManagementApi' do
   end
 
   # unit tests for create_p12_keys
-  # Create one or more PKCS#12 keys
-  # &#39;Create one or more PKCS#12 keys&#39; 
+  # Create one or more PKCS12 keys
+  # &#39;Create one or more PKCS12 keys&#39; 
   # @param create_p12_keys_request 
   # @param [Hash] opts the optional parameters
   # @return [KmsV2KeysAsymPost201Response]
@@ -45,8 +45,8 @@ describe 'AsymmetricKeyManagementApi' do
   end
 
   # unit tests for delete_bulk_p12_keys
-  # Delete one or more PKCS#12 keys
-  # &#39;Delete one or more PKCS#12 keys&#39; 
+  # Delete one or more PKCS12 keys
+  # &#39;Delete one or more PKCS12 keys&#39; 
   # @param delete_bulk_p12_keys_request 
   # @param [Hash] opts the optional parameters
   # @return [KmsV2KeysAsymDeletesPost200Response]
@@ -57,7 +57,7 @@ describe 'AsymmetricKeyManagementApi' do
   end
 
   # unit tests for get_p12_key_details
-  # Retrieves PKCS#12 key details
+  # Retrieves PKCS12 key details
   # Retrieves keys details by providing the key id.
   # @param key_id Key ID. 
   # @param [Hash] opts the optional parameters

@@ -32,6 +32,9 @@ module CyberSource
     # Type of transaction. Some payment card companies use this information when determining discount rates.  #### Used by **Authorization** Required payer authentication transactions; otherwise, optional. **Credit** Required for standalone credits on Chase Paymentech solutions; otherwise, optional.  The list of valid values in this field depends on your processor. See Appendix I, \"Commerce Indicators,\" on page 441 of the Cybersource Credit Card Guide.  #### Ingenico ePayments When you omit this field for Ingenico ePayments, the processor uses the default transaction type they have on file for you instead of the default value (listed in Appendix I, \"Commerce Indicators,\" on page 441.)  #### Payer Authentication Transactions For the possible values and requirements, see \"Payer Authentication,\" page 195.  #### Card Present You must set this field to `retail`. This field is required for a card-present transaction. Note that this should ONLY be used when the cardholder and card are present at the time of the transaction. For all keyed transactions originated from a POS terminal where the cardholder and card are not present, commerceIndicator should be submitted as “moto\" 
     attr_accessor :commerce_indicator
 
+    # Type of transaction. Some payment card companies use this information when determining discount rates.  #### Used by **Authorization** Required payer authentication transactions; otherwise, optional. **Credit** Required for standalone credits on Chase Paymentech solutions; otherwise, optional.  The list of valid values in this field depends on your processor. See Appendix I, \"Commerce Indicators,\" on page 441 of the Cybersource Credit Card Guide.  #### Ingenico ePayments When you omit this field for Ingenico ePayments, the processor uses the default transaction type they have on file for you instead of the default value (listed in Appendix I, \"Commerce Indicators,\" on page 441.)  #### Payer Authentication Transactions For the possible values and requirements, see \"Payer Authentication,\" page 195.  #### Card Present You must set this field to `retail`. This field is required for a card-present transaction. Note that this should ONLY be used when the cardholder and card are present at the time of the transaction. For all keyed transactions originated from a POS terminal where the cardholder and card are not present, commerceIndicator should be submitted as “moto\" 
+    attr_accessor :commerce_indicator_label
+
     # Type of digital payment solution for the transaction. Possible Values:   - `visacheckout`: Visa Checkout. This value is required for Visa Checkout transactions. For details, see `payment_solution` field description in [Visa Checkout Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/VCO_SCMP_API/html/)  - `001`: Apple Pay.  - `004`: Cybersource In-App Solution.  - `005`: Masterpass. This value is required for Masterpass transactions on OmniPay Direct. For details, see \"Masterpass\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  - `006`: Android Pay.  - `007`: Chase Pay.  - `008`: Samsung Pay.  - `012`: Google Pay.  - `013`: Cybersource P2PE Decryption  - `014`: Mastercard credential on file (COF) payment network token. Returned in authorizations that use a payment network token associated with a TMS token.  - `015`: Visa credential on file (COF) payment network token. Returned in authorizations that use a payment network token associated with a TMS token.  - `027`: Click to Pay. 
     attr_accessor :payment_solution
 
@@ -43,6 +46,9 @@ module CyberSource
 
     # Set this field to 3 to indicate that the request includes Level III data.
     attr_accessor :purchase_level
+
+    # This field is to accept the id of credit/capture in the body of L1 requests so the type of void can be identified and processed correctly downstream.
+    attr_accessor :payment_id
 
     # Attribute that lets you define custom grouping for your processor reports. This field is supported only for **Worldpay VAP**.  For details, see `report_group` field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
     attr_accessor :report_group
@@ -99,10 +105,12 @@ module CyberSource
         :'processor_id' => :'processorId',
         :'business_application_id' => :'businessApplicationId',
         :'commerce_indicator' => :'commerceIndicator',
+        :'commerce_indicator_label' => :'commerceIndicatorLabel',
         :'payment_solution' => :'paymentSolution',
         :'reconciliation_id' => :'reconciliationId',
         :'link_id' => :'linkId',
         :'purchase_level' => :'purchaseLevel',
+        :'payment_id' => :'paymentId',
         :'report_group' => :'reportGroup',
         :'visa_checkout_id' => :'visaCheckoutId',
         :'industry_data_type' => :'industryDataType',
@@ -133,10 +141,12 @@ module CyberSource
         :'processor_id' => :'String',
         :'business_application_id' => :'String',
         :'commerce_indicator' => :'String',
+        :'commerce_indicator_label' => :'String',
         :'payment_solution' => :'String',
         :'reconciliation_id' => :'String',
         :'link_id' => :'String',
         :'purchase_level' => :'String',
+        :'payment_id' => :'String',
         :'report_group' => :'String',
         :'visa_checkout_id' => :'String',
         :'industry_data_type' => :'String',
@@ -196,6 +206,10 @@ module CyberSource
         self.commerce_indicator = attributes[:'commerceIndicator']
       end
 
+      if attributes.has_key?(:'commerceIndicatorLabel')
+        self.commerce_indicator_label = attributes[:'commerceIndicatorLabel']
+      end
+
       if attributes.has_key?(:'paymentSolution')
         self.payment_solution = attributes[:'paymentSolution']
       end
@@ -210,6 +224,10 @@ module CyberSource
 
       if attributes.has_key?(:'purchaseLevel')
         self.purchase_level = attributes[:'purchaseLevel']
+      end
+
+      if attributes.has_key?(:'paymentId')
+        self.payment_id = attributes[:'paymentId']
       end
 
       if attributes.has_key?(:'reportGroup')
@@ -311,6 +329,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] commerce_indicator_label Value to be assigned
+    def commerce_indicator_label=(commerce_indicator_label)
+      @commerce_indicator_label = commerce_indicator_label
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] payment_solution Value to be assigned
     def payment_solution=(payment_solution)
       @payment_solution = payment_solution
@@ -332,6 +356,12 @@ module CyberSource
     # @param [Object] purchase_level Value to be assigned
     def purchase_level=(purchase_level)
       @purchase_level = purchase_level
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] payment_id Value to be assigned
+    def payment_id=(payment_id)
+      @payment_id = payment_id
     end
 
     # Custom attribute writer method with validation
@@ -393,10 +423,12 @@ module CyberSource
           processor_id == o.processor_id &&
           business_application_id == o.business_application_id &&
           commerce_indicator == o.commerce_indicator &&
+          commerce_indicator_label == o.commerce_indicator_label &&
           payment_solution == o.payment_solution &&
           reconciliation_id == o.reconciliation_id &&
           link_id == o.link_id &&
           purchase_level == o.purchase_level &&
+          payment_id == o.payment_id &&
           report_group == o.report_group &&
           visa_checkout_id == o.visa_checkout_id &&
           industry_data_type == o.industry_data_type &&
@@ -426,7 +458,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [action_list, action_token_types, capture, processor_id, business_application_id, commerce_indicator, payment_solution, reconciliation_id, link_id, purchase_level, report_group, visa_checkout_id, industry_data_type, authorization_options, capture_options, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, wallet_type, national_net_domestic_data, japan_payment_options, mobile_remote_payment_type, extended_credit_total_count, network_routing_order, pay_by_points_indicator, is_return_auth_record_enabled].hash
+      [action_list, action_token_types, capture, processor_id, business_application_id, commerce_indicator, commerce_indicator_label, payment_solution, reconciliation_id, link_id, purchase_level, payment_id, report_group, visa_checkout_id, industry_data_type, authorization_options, capture_options, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, wallet_type, national_net_domestic_data, japan_payment_options, mobile_remote_payment_type, extended_credit_total_count, network_routing_order, pay_by_points_indicator, is_return_auth_record_enabled].hash
     end
 
     # Builds the object from hash

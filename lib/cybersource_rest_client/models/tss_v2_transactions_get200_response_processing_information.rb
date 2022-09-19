@@ -23,6 +23,9 @@ module CyberSource
     # Type of transaction. Some payment card companies use this information when determining discount rates.  #### Used by **Authorization** Required payer authentication transactions; otherwise, optional. **Credit** Required for standalone credits on Chase Paymentech solutions; otherwise, optional.  The list of valid values in this field depends on your processor. See Appendix I, \"Commerce Indicators,\" on page 441 of the Cybersource Credit Card Guide.  #### Ingenico ePayments When you omit this field for Ingenico ePayments, the processor uses the default transaction type they have on file for you instead of the default value (listed in Appendix I, \"Commerce Indicators,\" on page 441.)  #### Payer Authentication Transactions For the possible values and requirements, see \"Payer Authentication,\" page 195.  #### Card Present You must set this field to `retail`. This field is required for a card-present transaction. Note that this should ONLY be used when the cardholder and card are present at the time of the transaction. For all keyed transactions originated from a POS terminal where the cardholder and card are not present, commerceIndicator should be submitted as “moto\" 
     attr_accessor :commerce_indicator
 
+    # Type of transaction. Some payment card companies use this information when determining discount rates.  #### Used by **Authorization** Required payer authentication transactions; otherwise, optional. **Credit** Required for standalone credits on Chase Paymentech solutions; otherwise, optional.  The list of valid values in this field depends on your processor. See Appendix I, \"Commerce Indicators,\" on page 441 of the Cybersource Credit Card Guide.  #### Ingenico ePayments When you omit this field for Ingenico ePayments, the processor uses the default transaction type they have on file for you instead of the default value (listed in Appendix I, \"Commerce Indicators,\" on page 441.)  #### Payer Authentication Transactions For the possible values and requirements, see \"Payer Authentication,\" page 195.  #### Card Present You must set this field to `retail`. This field is required for a card-present transaction. Note that this should ONLY be used when the cardholder and card are present at the time of the transaction. For all keyed transactions originated from a POS terminal where the cardholder and card are not present, commerceIndicator should be submitted as “moto\" 
+    attr_accessor :commerce_indicator_label
+
     # Payouts transaction type. Required for OCT transactions. This field is a pass-through, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. **Note** When the request includes this field, this value overrides the information in your CyberSource account.  For valid values, see the `invoiceHeader_businessApplicationID` field description in [Payouts Using the Simple Order API.](http://apps.cybersource.com/library/documentation/dev_guides/payouts_SO/Payouts_SO_API.pdf) 
     attr_accessor :business_application_id
 
@@ -38,6 +41,7 @@ module CyberSource
         :'industry_data_type' => :'industryDataType',
         :'payment_solution' => :'paymentSolution',
         :'commerce_indicator' => :'commerceIndicator',
+        :'commerce_indicator_label' => :'commerceIndicatorLabel',
         :'business_application_id' => :'businessApplicationId',
         :'authorization_options' => :'authorizationOptions',
         :'bank_transfer_options' => :'bankTransferOptions',
@@ -51,6 +55,7 @@ module CyberSource
         :'industry_data_type' => :'String',
         :'payment_solution' => :'String',
         :'commerce_indicator' => :'String',
+        :'commerce_indicator_label' => :'String',
         :'business_application_id' => :'String',
         :'authorization_options' => :'TssV2TransactionsGet200ResponseProcessingInformationAuthorizationOptions',
         :'bank_transfer_options' => :'TssV2TransactionsGet200ResponseProcessingInformationBankTransferOptions',
@@ -76,6 +81,10 @@ module CyberSource
 
       if attributes.has_key?(:'commerceIndicator')
         self.commerce_indicator = attributes[:'commerceIndicator']
+      end
+
+      if attributes.has_key?(:'commerceIndicatorLabel')
+        self.commerce_indicator_label = attributes[:'commerceIndicatorLabel']
       end
 
       if attributes.has_key?(:'businessApplicationId')
@@ -126,6 +135,12 @@ module CyberSource
       @commerce_indicator = commerce_indicator
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] commerce_indicator_label Value to be assigned
+    def commerce_indicator_label=(commerce_indicator_label)
+      @commerce_indicator_label = commerce_indicator_label
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -134,6 +149,7 @@ module CyberSource
           industry_data_type == o.industry_data_type &&
           payment_solution == o.payment_solution &&
           commerce_indicator == o.commerce_indicator &&
+          commerce_indicator_label == o.commerce_indicator_label &&
           business_application_id == o.business_application_id &&
           authorization_options == o.authorization_options &&
           bank_transfer_options == o.bank_transfer_options &&
@@ -149,7 +165,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [industry_data_type, payment_solution, commerce_indicator, business_application_id, authorization_options, bank_transfer_options, japan_payment_options].hash
+      [industry_data_type, payment_solution, commerce_indicator, commerce_indicator_label, business_application_id, authorization_options, bank_transfer_options, japan_payment_options].hash
     end
 
     # Builds the object from hash

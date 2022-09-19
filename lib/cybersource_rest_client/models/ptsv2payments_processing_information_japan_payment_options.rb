@@ -17,6 +17,24 @@ module CyberSource
     # This value is a 2-digit code indicating the payment method. Use Payment Method Code value that applies to the tranasction. - 10 (One-time payment) - 21, 22, 23, 24  (Bonus(one-time)payment) - 61 (Installment payment) - 31, 32, 33, 34  (Integrated (Bonus + Installment)payment) - 80 (Revolving payment) 
     attr_accessor :payment_method
 
+    # This value is a 2-digit code indicating the Number of Bonuses. Valid value from 1 to 6. 
+    attr_accessor :bonuses
+
+    # This value is a 2-digit code indicating the first bonus month. Valid value from 1 to 12. 
+    attr_accessor :bonus_month
+
+    # This value is a 2-digit code indicating the second bonus month. Valid value from 1 to 12. 
+    attr_accessor :second_bonus_month
+
+    # This value contains the bonus amount of the first month. Maximum value without decimal 99999999. 
+    attr_accessor :bonus_amount
+
+    # This value contains the bonus amount of the second month. Maximum value without decimal 99999999. 
+    attr_accessor :second_bonus_amount
+
+    # This will contain the details of the kind of transaction that has been processe. Used only for Japan. Possible Values: - 0 = Normal (authorization with amount and clearing/settlement; data capture or paper draft) - 1 = Negative card authorization (authorization-only with 0 or 1 amount) - 2 = Reservation of authorization (authorization-only with amount) - 3 = Cancel transaction - 4 = Merchant-initiated reversal/refund transactions - 5 = Cancel reservation of authorization - 6 = Post authorization 
+    attr_accessor :preapproval_type
+
     # Number of Installments. 
     attr_accessor :installments
 
@@ -42,6 +60,12 @@ module CyberSource
     def self.attribute_map
       {
         :'payment_method' => :'paymentMethod',
+        :'bonuses' => :'bonuses',
+        :'bonus_month' => :'bonusMonth',
+        :'second_bonus_month' => :'secondBonusMonth',
+        :'bonus_amount' => :'bonusAmount',
+        :'second_bonus_amount' => :'secondBonusAmount',
+        :'preapproval_type' => :'preapprovalType',
         :'installments' => :'installments',
         :'terminal_id' => :'terminalId',
         :'first_billing_month' => :'firstBillingMonth',
@@ -56,6 +80,12 @@ module CyberSource
     def self.swagger_types
       {
         :'payment_method' => :'String',
+        :'bonuses' => :'String',
+        :'bonus_month' => :'String',
+        :'second_bonus_month' => :'String',
+        :'bonus_amount' => :'String',
+        :'second_bonus_amount' => :'String',
+        :'preapproval_type' => :'String',
         :'installments' => :'String',
         :'terminal_id' => :'String',
         :'first_billing_month' => :'String',
@@ -76,6 +106,30 @@ module CyberSource
 
       if attributes.has_key?(:'paymentMethod')
         self.payment_method = attributes[:'paymentMethod']
+      end
+
+      if attributes.has_key?(:'bonuses')
+        self.bonuses = attributes[:'bonuses']
+      end
+
+      if attributes.has_key?(:'bonusMonth')
+        self.bonus_month = attributes[:'bonusMonth']
+      end
+
+      if attributes.has_key?(:'secondBonusMonth')
+        self.second_bonus_month = attributes[:'secondBonusMonth']
+      end
+
+      if attributes.has_key?(:'bonusAmount')
+        self.bonus_amount = attributes[:'bonusAmount']
+      end
+
+      if attributes.has_key?(:'secondBonusAmount')
+        self.second_bonus_amount = attributes[:'secondBonusAmount']
+      end
+
+      if attributes.has_key?(:'preapprovalType')
+        self.preapproval_type = attributes[:'preapprovalType']
       end
 
       if attributes.has_key?(:'installments')
@@ -127,6 +181,42 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] bonuses Value to be assigned
+    def bonuses=(bonuses)
+      @bonuses = bonuses
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] bonus_month Value to be assigned
+    def bonus_month=(bonus_month)
+      @bonus_month = bonus_month
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] second_bonus_month Value to be assigned
+    def second_bonus_month=(second_bonus_month)
+      @second_bonus_month = second_bonus_month
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] bonus_amount Value to be assigned
+    def bonus_amount=(bonus_amount)
+      @bonus_amount = bonus_amount
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] second_bonus_amount Value to be assigned
+    def second_bonus_amount=(second_bonus_amount)
+      @second_bonus_amount = second_bonus_amount
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] preapproval_type Value to be assigned
+    def preapproval_type=(preapproval_type)
+      @preapproval_type = preapproval_type
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] terminal_id Value to be assigned
     def terminal_id=(terminal_id)
       @terminal_id = terminal_id
@@ -168,6 +258,12 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           payment_method == o.payment_method &&
+          bonuses == o.bonuses &&
+          bonus_month == o.bonus_month &&
+          second_bonus_month == o.second_bonus_month &&
+          bonus_amount == o.bonus_amount &&
+          second_bonus_amount == o.second_bonus_amount &&
+          preapproval_type == o.preapproval_type &&
           installments == o.installments &&
           terminal_id == o.terminal_id &&
           first_billing_month == o.first_billing_month &&
@@ -186,7 +282,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [payment_method, installments, terminal_id, first_billing_month, business_name, business_name_katakana, jis2_track_data, business_name_alpha_numeric].hash
+      [payment_method, bonuses, bonus_month, second_bonus_month, bonus_amount, second_bonus_amount, preapproval_type, installments, terminal_id, first_billing_month, business_name, business_name_katakana, jis2_track_data, business_name_alpha_numeric].hash
     end
 
     # Builds the object from hash

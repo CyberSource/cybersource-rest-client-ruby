@@ -44,6 +44,12 @@ describe 'Ptsv2paymentsPointOfSaleInformation' do
     end
   end
 
+  describe 'test attribute "cardholder_verification_method_used"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "lane_number"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

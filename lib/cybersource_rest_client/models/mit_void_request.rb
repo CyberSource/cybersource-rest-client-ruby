@@ -20,12 +20,15 @@ module CyberSource
 
     attr_accessor :order_information
 
+    attr_accessor :processing_information
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'client_reference_information' => :'clientReferenceInformation',
         :'payment_information' => :'paymentInformation',
-        :'order_information' => :'orderInformation'
+        :'order_information' => :'orderInformation',
+        :'processing_information' => :'processingInformation'
       }
     end
 
@@ -34,7 +37,8 @@ module CyberSource
       {
         :'client_reference_information' => :'Ptsv2paymentsClientReferenceInformation',
         :'payment_information' => :'Ptsv2paymentsidvoidsPaymentInformation',
-        :'order_information' => :'Ptsv2paymentsidvoidsOrderInformation'
+        :'order_information' => :'Ptsv2paymentsidvoidsOrderInformation',
+        :'processing_information' => :'Ptsv2voidsProcessingInformation'
       }
     end
 
@@ -56,6 +60,10 @@ module CyberSource
 
       if attributes.has_key?(:'orderInformation')
         self.order_information = attributes[:'orderInformation']
+      end
+
+      if attributes.has_key?(:'processingInformation')
+        self.processing_information = attributes[:'processingInformation']
       end
     end
 
@@ -79,7 +87,8 @@ module CyberSource
       self.class == o.class &&
           client_reference_information == o.client_reference_information &&
           payment_information == o.payment_information &&
-          order_information == o.order_information
+          order_information == o.order_information &&
+          processing_information == o.processing_information
     end
 
     # @see the `==` method
@@ -91,7 +100,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_reference_information, payment_information, order_information].hash
+      [client_reference_information, payment_information, order_information, processing_information].hash
     end
 
     # Builds the object from hash

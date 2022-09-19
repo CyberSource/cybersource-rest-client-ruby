@@ -18,6 +18,9 @@ module CyberSource
     # Merchant Id 
     attr_accessor :organization_id
 
+    # Payworks MerchantId for given organizationId. 
+    attr_accessor :external_organization_id
+
     # Reference number is a unique identifier provided by the client along with the organization Id. This is an optional field provided solely for the client’s convenience. If client specifies value for this field in the request, it is expected to be available in the response. 
     attr_accessor :reference_number
 
@@ -42,6 +45,7 @@ module CyberSource
     def self.attribute_map
       {
         :'organization_id' => :'organizationId',
+        :'external_organization_id' => :'externalOrganizationId',
         :'reference_number' => :'referenceNumber',
         :'key_id' => :'keyId',
         :'key' => :'key',
@@ -56,6 +60,7 @@ module CyberSource
     def self.swagger_types
       {
         :'organization_id' => :'String',
+        :'external_organization_id' => :'String',
         :'reference_number' => :'String',
         :'key_id' => :'String',
         :'key' => :'String',
@@ -76,6 +81,10 @@ module CyberSource
 
       if attributes.has_key?(:'organizationId')
         self.organization_id = attributes[:'organizationId']
+      end
+
+      if attributes.has_key?(:'externalOrganizationId')
+        self.external_organization_id = attributes[:'externalOrganizationId']
       end
 
       if attributes.has_key?(:'referenceNumber')
@@ -126,6 +135,7 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           organization_id == o.organization_id &&
+          external_organization_id == o.external_organization_id &&
           reference_number == o.reference_number &&
           key_id == o.key_id &&
           key == o.key &&
@@ -144,7 +154,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [organization_id, reference_number, key_id, key, status, expiration_date, message, error_information].hash
+      [organization_id, external_organization_id, reference_number, key_id, key, status, expiration_date, message, error_information].hash
     end
 
     # Builds the object from hash

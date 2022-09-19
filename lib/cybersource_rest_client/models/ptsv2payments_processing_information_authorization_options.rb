@@ -67,6 +67,9 @@ module CyberSource
     # Flag that indicates whether the authorization request was delayed because connectivity was interrupted.  Possible values:   - `true` (Deferred authorization)   - `false` (default: Not a deferred authorization) 
     attr_accessor :deferred_auth_indicator
 
+    # This API field enables the merchant to indicate that a given transaction is Cash Advance.  Cash advance or Cash disbursement functionality allows a merchant to dispense cash at a point of sale. It provides the ability of a POS system to act like an ATM. These terminals are typically seen in bank branches where customers can use their card and withdraw cash or at merchant locations where ATMs are sparse.  Possible values:   - `true` (Cash advance is supported)   - `false` (default: cash advance is not supported) 
+    attr_accessor :cash_advance_indicator
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -87,7 +90,8 @@ module CyberSource
         :'transportation_mode' => :'transportationMode',
         :'aggregated_auth_indicator' => :'aggregatedAuthIndicator',
         :'debt_recovery_indicator' => :'debtRecoveryIndicator',
-        :'deferred_auth_indicator' => :'deferredAuthIndicator'
+        :'deferred_auth_indicator' => :'deferredAuthIndicator',
+        :'cash_advance_indicator' => :'cashAdvanceIndicator'
       }
     end
 
@@ -111,7 +115,8 @@ module CyberSource
         :'transportation_mode' => :'String',
         :'aggregated_auth_indicator' => :'String',
         :'debt_recovery_indicator' => :'String',
-        :'deferred_auth_indicator' => :'BOOLEAN'
+        :'deferred_auth_indicator' => :'BOOLEAN',
+        :'cash_advance_indicator' => :'BOOLEAN'
       }
     end
 
@@ -200,6 +205,10 @@ module CyberSource
       if attributes.has_key?(:'deferredAuthIndicator')
         self.deferred_auth_indicator = attributes[:'deferredAuthIndicator']
       end
+
+      if attributes.has_key?(:'cashAdvanceIndicator')
+        self.cash_advance_indicator = attributes[:'cashAdvanceIndicator']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -267,7 +276,8 @@ module CyberSource
           transportation_mode == o.transportation_mode &&
           aggregated_auth_indicator == o.aggregated_auth_indicator &&
           debt_recovery_indicator == o.debt_recovery_indicator &&
-          deferred_auth_indicator == o.deferred_auth_indicator
+          deferred_auth_indicator == o.deferred_auth_indicator &&
+          cash_advance_indicator == o.cash_advance_indicator
     end
 
     # @see the `==` method
@@ -279,7 +289,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [auth_type, pan_return_indicator, verbal_auth_code, verbal_auth_transaction_id, auth_indicator, partial_auth_indicator, balance_inquiry, ignore_avs_result, decline_avs_flags, ignore_cv_result, initiator, bill_payment, bill_payment_type, redemption_inquiry, transportation_mode, aggregated_auth_indicator, debt_recovery_indicator, deferred_auth_indicator].hash
+      [auth_type, pan_return_indicator, verbal_auth_code, verbal_auth_transaction_id, auth_indicator, partial_auth_indicator, balance_inquiry, ignore_avs_result, decline_avs_flags, ignore_cv_result, initiator, bill_payment, bill_payment_type, redemption_inquiry, transportation_mode, aggregated_auth_indicator, debt_recovery_indicator, deferred_auth_indicator, cash_advance_indicator].hash
     end
 
     # Builds the object from hash
