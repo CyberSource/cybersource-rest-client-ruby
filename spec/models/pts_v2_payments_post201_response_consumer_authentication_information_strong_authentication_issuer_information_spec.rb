@@ -44,4 +44,22 @@ describe 'PtsV2PaymentsPost201ResponseConsumerAuthenticationInformationStrongAut
     end
   end
 
+  describe 'test attribute "low_value_exemption_result"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "secure_corporate_payment_result"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "transaction_risk_analysis_exemption_result"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

@@ -40,6 +40,8 @@ module CyberSource
 
     attr_accessor :recipient_information
 
+    attr_accessor :issuer_information
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -53,7 +55,8 @@ module CyberSource
         :'merchant_information' => :'merchantInformation',
         :'order_information' => :'orderInformation',
         :'processor_information' => :'processorInformation',
-        :'recipient_information' => :'recipientInformation'
+        :'recipient_information' => :'recipientInformation',
+        :'issuer_information' => :'issuerInformation'
       }
     end
 
@@ -70,7 +73,8 @@ module CyberSource
         :'merchant_information' => :'PtsV2PayoutsPost201ResponseMerchantInformation',
         :'order_information' => :'PtsV2PayoutsPost201ResponseOrderInformation',
         :'processor_information' => :'PtsV2PayoutsPost201ResponseProcessorInformation',
-        :'recipient_information' => :'PtsV2PayoutsPost201ResponseRecipientInformation'
+        :'recipient_information' => :'PtsV2PayoutsPost201ResponseRecipientInformation',
+        :'issuer_information' => :'PtsV2PayoutsPost201ResponseIssuerInformation'
       }
     end
 
@@ -125,6 +129,10 @@ module CyberSource
       if attributes.has_key?(:'recipientInformation')
         self.recipient_information = attributes[:'recipientInformation']
       end
+
+      if attributes.has_key?(:'issuerInformation')
+        self.issuer_information = attributes[:'issuerInformation']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -167,7 +175,8 @@ module CyberSource
           merchant_information == o.merchant_information &&
           order_information == o.order_information &&
           processor_information == o.processor_information &&
-          recipient_information == o.recipient_information
+          recipient_information == o.recipient_information &&
+          issuer_information == o.issuer_information
     end
 
     # @see the `==` method
@@ -179,7 +188,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, submit_time_utc, status, reconciliation_id, error_information, client_reference_information, merchant_information, order_information, processor_information, recipient_information].hash
+      [_links, id, submit_time_utc, status, reconciliation_id, error_information, client_reference_information, merchant_information, order_information, processor_information, recipient_information, issuer_information].hash
     end
 
     # Builds the object from hash

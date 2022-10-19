@@ -20,11 +20,23 @@ module CyberSource
     # Possible values: Visa Platform Connect - `2` Trusted merchant exemption validated/honored. - `3` Trusted merchant exemption failed validation/not honored. 
     attr_accessor :trusted_merchant_exemption_result
 
+    # This will be the value returned by Visanet when low value exemption has been requested.  Valid values: Visa Platform Connect - `2` Low value exemption validated/honored - `3` Low value exemption failed validation/not honored 
+    attr_accessor :low_value_exemption_result
+
+    # This will be the value returned by Visanet when secure corporate payment (scp) exemption has been requested.  Valid values: Visa Platform Connect - `2` Secure corporate payment exemption validated/honored - `3` Secure corporate payment exemption failed validation/not honored 
+    attr_accessor :secure_corporate_payment_result
+
+    # This will be the value returned by Visanet when transaction risk analysis (TRA) exemption has been requested.    Valid values: Visa Platform Connect   - `2` transaction risk analysis (TRA) exemption validated/honored   - `3` transaction risk analysis (TRA) exemption failed validation/not honored 
+    attr_accessor :transaction_risk_analysis_exemption_result
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'risk_analysis_exemption_result' => :'riskAnalysisExemptionResult',
-        :'trusted_merchant_exemption_result' => :'trustedMerchantExemptionResult'
+        :'trusted_merchant_exemption_result' => :'trustedMerchantExemptionResult',
+        :'low_value_exemption_result' => :'lowValueExemptionResult',
+        :'secure_corporate_payment_result' => :'secureCorporatePaymentResult',
+        :'transaction_risk_analysis_exemption_result' => :'transactionRiskAnalysisExemptionResult'
       }
     end
 
@@ -32,7 +44,10 @@ module CyberSource
     def self.swagger_types
       {
         :'risk_analysis_exemption_result' => :'String',
-        :'trusted_merchant_exemption_result' => :'String'
+        :'trusted_merchant_exemption_result' => :'String',
+        :'low_value_exemption_result' => :'String',
+        :'secure_corporate_payment_result' => :'String',
+        :'transaction_risk_analysis_exemption_result' => :'String'
       }
     end
 
@@ -50,6 +65,18 @@ module CyberSource
 
       if attributes.has_key?(:'trustedMerchantExemptionResult')
         self.trusted_merchant_exemption_result = attributes[:'trustedMerchantExemptionResult']
+      end
+
+      if attributes.has_key?(:'lowValueExemptionResult')
+        self.low_value_exemption_result = attributes[:'lowValueExemptionResult']
+      end
+
+      if attributes.has_key?(:'secureCorporatePaymentResult')
+        self.secure_corporate_payment_result = attributes[:'secureCorporatePaymentResult']
+      end
+
+      if attributes.has_key?(:'transactionRiskAnalysisExemptionResult')
+        self.transaction_risk_analysis_exemption_result = attributes[:'transactionRiskAnalysisExemptionResult']
       end
     end
 
@@ -78,13 +105,34 @@ module CyberSource
       @trusted_merchant_exemption_result = trusted_merchant_exemption_result
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] low_value_exemption_result Value to be assigned
+    def low_value_exemption_result=(low_value_exemption_result)
+      @low_value_exemption_result = low_value_exemption_result
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] secure_corporate_payment_result Value to be assigned
+    def secure_corporate_payment_result=(secure_corporate_payment_result)
+      @secure_corporate_payment_result = secure_corporate_payment_result
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] transaction_risk_analysis_exemption_result Value to be assigned
+    def transaction_risk_analysis_exemption_result=(transaction_risk_analysis_exemption_result)
+      @transaction_risk_analysis_exemption_result = transaction_risk_analysis_exemption_result
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           risk_analysis_exemption_result == o.risk_analysis_exemption_result &&
-          trusted_merchant_exemption_result == o.trusted_merchant_exemption_result
+          trusted_merchant_exemption_result == o.trusted_merchant_exemption_result &&
+          low_value_exemption_result == o.low_value_exemption_result &&
+          secure_corporate_payment_result == o.secure_corporate_payment_result &&
+          transaction_risk_analysis_exemption_result == o.transaction_risk_analysis_exemption_result
     end
 
     # @see the `==` method
@@ -96,7 +144,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [risk_analysis_exemption_result, trusted_merchant_exemption_result].hash
+      [risk_analysis_exemption_result, trusted_merchant_exemption_result, low_value_exemption_result, secure_corporate_payment_result, transaction_risk_analysis_exemption_result].hash
     end
 
     # Builds the object from hash
