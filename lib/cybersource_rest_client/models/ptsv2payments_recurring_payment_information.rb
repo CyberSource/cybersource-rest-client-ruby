@@ -30,6 +30,24 @@ module CyberSource
     # This field is mandatory for Cartes Bancaires recurring transactions on Credit Mutuel-CIC.       This field records recurring sequence, e.g. 1st for initial,  2 for subsequent, 3 etc 
     attr_accessor :sequence_number
 
+    # This contains the type of recurring payment. Valid Values : 1 - Registration/First transaction 2 - Subsequent transaction 3 - Modification 4 - Cancellation 
+    attr_accessor :type
+
+    # This value indicates how often a recurring payment occurs. Valid Values : • 01 (Daily) • 02 (Twice weekly) • 03 (Weekly) • 04 (Ten days) • 05 (Fortnightly) • 06 (Monthly) • 07 (Every two months) • 08 (Trimester) • 09 (Quarterly) • 10 (Twice yearly) • 11 (Annually) • 12 (Unscheduled) 
+    attr_accessor :occurrence
+
+    # This tag will contain a value that indicates whether or not the recurring payment transaction has been validated. Valid values : 0- Not validated 1- Validated 
+    attr_accessor :validation_indicator
+
+    # Indicates recurring amount type agreed by the cardholder Valid Values : 1- Fixed amount recurring payment 2- Recurring payment with maximum amount 
+    attr_accessor :amount_type
+
+    # This API field will contain the maximum amount agreed to by the cardholder. The currency of this amount will be specified in Field 49—Currency Code,Transaction. 
+    attr_accessor :maximum_amount
+
+    # This will contain a unique reference number for the recurring payment transaction. 
+    attr_accessor :reference_number
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -37,7 +55,13 @@ module CyberSource
         :'frequency' => :'frequency',
         :'number_of_payments' => :'numberOfPayments',
         :'original_purchase_date' => :'originalPurchaseDate',
-        :'sequence_number' => :'sequenceNumber'
+        :'sequence_number' => :'sequenceNumber',
+        :'type' => :'type',
+        :'occurrence' => :'occurrence',
+        :'validation_indicator' => :'validationIndicator',
+        :'amount_type' => :'amountType',
+        :'maximum_amount' => :'maximumAmount',
+        :'reference_number' => :'referenceNumber'
       }
     end
 
@@ -48,7 +72,13 @@ module CyberSource
         :'frequency' => :'Integer',
         :'number_of_payments' => :'Integer',
         :'original_purchase_date' => :'String',
-        :'sequence_number' => :'Integer'
+        :'sequence_number' => :'Integer',
+        :'type' => :'String',
+        :'occurrence' => :'String',
+        :'validation_indicator' => :'String',
+        :'amount_type' => :'String',
+        :'maximum_amount' => :'String',
+        :'reference_number' => :'String'
       }
     end
 
@@ -79,6 +109,30 @@ module CyberSource
       if attributes.has_key?(:'sequenceNumber')
         self.sequence_number = attributes[:'sequenceNumber']
       end
+
+      if attributes.has_key?(:'type')
+        self.type = attributes[:'type']
+      end
+
+      if attributes.has_key?(:'occurrence')
+        self.occurrence = attributes[:'occurrence']
+      end
+
+      if attributes.has_key?(:'validationIndicator')
+        self.validation_indicator = attributes[:'validationIndicator']
+      end
+
+      if attributes.has_key?(:'amountType')
+        self.amount_type = attributes[:'amountType']
+      end
+
+      if attributes.has_key?(:'maximumAmount')
+        self.maximum_amount = attributes[:'maximumAmount']
+      end
+
+      if attributes.has_key?(:'referenceNumber')
+        self.reference_number = attributes[:'referenceNumber']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -106,6 +160,42 @@ module CyberSource
       @original_purchase_date = original_purchase_date
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] type Value to be assigned
+    def type=(type)
+      @type = type
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] occurrence Value to be assigned
+    def occurrence=(occurrence)
+      @occurrence = occurrence
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] validation_indicator Value to be assigned
+    def validation_indicator=(validation_indicator)
+      @validation_indicator = validation_indicator
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] amount_type Value to be assigned
+    def amount_type=(amount_type)
+      @amount_type = amount_type
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] maximum_amount Value to be assigned
+    def maximum_amount=(maximum_amount)
+      @maximum_amount = maximum_amount
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] reference_number Value to be assigned
+    def reference_number=(reference_number)
+      @reference_number = reference_number
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -115,7 +205,13 @@ module CyberSource
           frequency == o.frequency &&
           number_of_payments == o.number_of_payments &&
           original_purchase_date == o.original_purchase_date &&
-          sequence_number == o.sequence_number
+          sequence_number == o.sequence_number &&
+          type == o.type &&
+          occurrence == o.occurrence &&
+          validation_indicator == o.validation_indicator &&
+          amount_type == o.amount_type &&
+          maximum_amount == o.maximum_amount &&
+          reference_number == o.reference_number
     end
 
     # @see the `==` method
@@ -127,7 +223,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [end_date, frequency, number_of_payments, original_purchase_date, sequence_number].hash
+      [end_date, frequency, number_of_payments, original_purchase_date, sequence_number, type, occurrence, validation_indicator, amount_type, maximum_amount, reference_number].hash
     end
 
     # Builds the object from hash
