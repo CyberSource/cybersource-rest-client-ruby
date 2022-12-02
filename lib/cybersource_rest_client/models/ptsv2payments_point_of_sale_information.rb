@@ -94,7 +94,7 @@ module CyberSource
     # This is the manufacturer name of the reader which is used to accept the payment. Possible values:  - PAX  - Verifone  - Ingenico 
     attr_accessor :terminal_make
 
-    # #### Visa Platform Connect Mastercard service code that is included in the track data. You can extract the service code from the track data and provide it in this API field. This field is supported only for Mastercard on Visa Platform Connect. 
+    # #### Visa Platform Connect Mastercard service code that is included in the track data.  This field is supported only for Mastercard on Visa Platform Connect.   You can extract the service code from the track data and provide it in this API field.   When not provided it will be extracted from:   - Track2Data for MSR transactions   - EMV tag 5F30 for EMV transactions  To enable this feature please call support. 
     attr_accessor :service_code
 
     # Attribute mapping from ruby-style variable name to JSON key.

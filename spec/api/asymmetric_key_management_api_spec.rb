@@ -68,4 +68,17 @@ describe 'AsymmetricKeyManagementApi' do
     end
   end
 
+  # unit tests for update_asym_key
+  # Activate or De-activate Asymmetric Key
+  # Activate or De-activate Asymmetric Key 
+  # @param key_id Key ID. 
+  # @param update_asym_keys_request 
+  # @param [Hash] opts the optional parameters
+  # @return [Object]
+  describe 'update_asym_key test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

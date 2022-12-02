@@ -51,7 +51,7 @@ module CyberSource
     # customer would be redirected to this url based on the decision of the transaction
     attr_accessor :failure_url
 
-    # Use this field only if you are requesting payment with Payer Authentication serice together.  Your company’s name as you want it to appear to the customer in the issuing bank’s authentication form. This value overrides the value specified by your merchant bank. 
+    # Use this field only if you are requesting payment with Payer Authentication service together.  Your company’s name as you want it to appear to the customer in the issuing bank’s authentication form. This value overrides the value specified by your merchant bank. 
     attr_accessor :merchant_name
 
     # Attribute mapping from ruby-style variable name to JSON key.
