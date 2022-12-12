@@ -13,24 +13,26 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  class InlineResponse4003Details
-    attr_accessor :location
+  class UpdatePGPKeysRequest
+    # Status can be active/inactive
+    attr_accessor :status
 
-    attr_accessor :message
+    # Organization Id
+    attr_accessor :organization_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'location' => :'location',
-        :'message' => :'message'
+        :'status' => :'status',
+        :'organization_id' => :'organizationId'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'location' => :'String',
-        :'message' => :'String'
+        :'status' => :'String',
+        :'organization_id' => :'String'
       }
     end
 
@@ -42,12 +44,12 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'location')
-        self.location = attributes[:'location']
+      if attributes.has_key?(:'status')
+        self.status = attributes[:'status']
       end
 
-      if attributes.has_key?(:'message')
-        self.message = attributes[:'message']
+      if attributes.has_key?(:'organizationId')
+        self.organization_id = attributes[:'organizationId']
       end
     end
 
@@ -55,12 +57,22 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @status.nil?
+        invalid_properties.push('invalid value for "status", status cannot be nil.')
+      end
+
+      if @organization_id.nil?
+        invalid_properties.push('invalid value for "organization_id", organization_id cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @status.nil?
+      return false if @organization_id.nil?
       true
     end
 
@@ -69,8 +81,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          location == o.location &&
-          message == o.message
+          status == o.status &&
+          organization_id == o.organization_id
     end
 
     # @see the `==` method
@@ -82,7 +94,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [location, message].hash
+      [status, organization_id].hash
     end
 
     # Builds the object from hash

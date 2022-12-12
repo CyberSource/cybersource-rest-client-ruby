@@ -50,7 +50,7 @@ module CyberSource
         fail ArgumentError, "Missing the required parameter 'mit_void_request' when calling VoidApi.mit_void"
       end
       # resource path
-      local_var_path = 'pts/v2/voids/'
+      local_var_path = 'pts/v2/voids'
 
       # query parameters
       query_params = {}

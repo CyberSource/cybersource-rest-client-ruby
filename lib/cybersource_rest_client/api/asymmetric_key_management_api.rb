@@ -219,5 +219,76 @@ module CyberSource
       end
       return data, status_code, headers
     end
+    # Activate or De-activate Asymmetric Key
+    # Activate or De-activate Asymmetric Key 
+    # @param key_id Key ID. 
+    # @param update_asym_keys_request 
+    # @param [Hash] opts the optional parameters
+    # @return [Object]
+    def update_asym_key(key_id, update_asym_keys_request, opts = {})
+      data, status_code, headers = update_asym_key_with_http_info(key_id, update_asym_keys_request, opts)
+      return data, status_code, headers
+    end
+
+    # Activate or De-activate Asymmetric Key
+    # Activate or De-activate Asymmetric Key 
+    # @param key_id Key ID. 
+    # @param update_asym_keys_request 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Object, Fixnum, Hash)>] Object data, response status code and response headers
+    def update_asym_key_with_http_info(key_id, update_asym_keys_request, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: AsymmetricKeyManagementApi.update_asym_key ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'key_id' is set
+      if @api_client.config.client_side_validation && key_id.nil?
+        fail ArgumentError, "Missing the required parameter 'key_id' when calling AsymmetricKeyManagementApi.update_asym_key"
+      end
+      # verify the required parameter 'update_asym_keys_request' is set
+      if @api_client.config.client_side_validation && update_asym_keys_request.nil?
+        fail ArgumentError, "Missing the required parameter 'update_asym_keys_request' when calling AsymmetricKeyManagementApi.update_asym_key"
+      end
+      # resource path
+      local_var_path = 'kms/v2/keys-asym/{keyId}'.sub('{' + 'keyId' + '}', key_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(update_asym_keys_request)
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:PATCH, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'Object')
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: AsymmetricKeyManagementApi#update_asym_key\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
   end
 end

@@ -121,7 +121,7 @@ module CyberSource
         fail ArgumentError, "Missing the required parameter 'mit_reversal_request' when calling ReversalApi.mit_reversal"
       end
       # resource path
-      local_var_path = 'pts/v2/reversals/'
+      local_var_path = 'pts/v2/reversals'
 
       # query parameters
       query_params = {}
