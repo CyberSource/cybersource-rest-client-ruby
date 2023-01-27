@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_payment**](PaymentsApi.md#create_payment) | **POST** /pts/v2/payments | Process a Payment
 [**increment_auth**](PaymentsApi.md#increment_auth) | **PATCH** /pts/v2/payments/{id} | Increment an Authorization
+[**refresh_payment_status**](PaymentsApi.md#refresh_payment_status) | **POST** /pts/v2/refresh-payment-status/{id} | Check a Payment Status
 
 
 # **create_payment**
@@ -93,6 +94,56 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PtsV2IncrementalAuthorizationPatch201Response**](PtsV2IncrementalAuthorizationPatch201Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/hal+json;charset=utf-8
+
+
+
+# **refresh_payment_status**
+> PtsV2PaymentsPost201Response1 refresh_payment_status(id, refresh_payment_status_request)
+
+Check a Payment Status
+
+Checks and updates the payment status 
+
+### Example
+```ruby
+# load the gem
+require 'cybersource_rest_client'
+
+api_instance = CyberSource::PaymentsApi.new
+
+id = "id_example" # String | The payment id whose status needs to be checked and updated.
+
+refresh_payment_status_request = CyberSource::RefreshPaymentStatusRequest.new # RefreshPaymentStatusRequest | 
+
+
+begin
+  #Check a Payment Status
+  result = api_instance.refresh_payment_status(id, refresh_payment_status_request)
+  p result
+rescue CyberSource::ApiError => e
+  puts "Exception when calling PaymentsApi->refresh_payment_status: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| The payment id whose status needs to be checked and updated. | 
+ **refresh_payment_status_request** | [**RefreshPaymentStatusRequest**](RefreshPaymentStatusRequest.md)|  | 
+
+### Return type
+
+[**PtsV2PaymentsPost201Response1**](PtsV2PaymentsPost201Response1.md)
 
 ### Authorization
 

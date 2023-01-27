@@ -14,20 +14,25 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsPaymentInformationPaymentTypeMethod
-    # A Payment Type is enabled through a Method. Examples: Visa, Master Card, ApplePay, iDeal, 7Eleven, alfamart, etc  For Japan Payment Processing Valid Values: - 1 Banking Data - 2 Authorization Data 
+    # A Payment Type is enabled through a Method. Examples: Visa, Master Card, ApplePay, iDeal, 7Eleven, alfamart, etc  For Japan Payment Processing Valid Values: - 1 Banking Data - 2 Authorization Data  #### Via KCP - `KCP` : Local Card, Bank Transfer and Carrier Billing. - `PAYCO` - `KAKAOPAY` - `NAVERPAY` 
     attr_accessor :name
+
+    # The payment channel that facilitates the transactions. This parameter can be used if the payment channels are listed on the merchant’s site, and the payment channel is known.  Possible Values:  #### Via PPRO - `alfaVa` - `kredivo` - `consumerBarCode` - `merchantQrCode` - `dokuWallet` 
+    attr_accessor :type
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'name' => :'name'
+        :'name' => :'name',
+        :'type' => :'type'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'name' => :'String'
+        :'name' => :'String',
+        :'type' => :'String'
       }
     end
 
@@ -41,6 +46,10 @@ module CyberSource
 
       if attributes.has_key?(:'name')
         self.name = attributes[:'name']
+      end
+
+      if attributes.has_key?(:'type')
+        self.type = attributes[:'type']
       end
     end
 
@@ -62,7 +71,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          name == o.name
+          name == o.name &&
+          type == o.type
     end
 
     # @see the `==` method
@@ -74,7 +84,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name].hash
+      [name, type].hash
     end
 
     # Builds the object from hash

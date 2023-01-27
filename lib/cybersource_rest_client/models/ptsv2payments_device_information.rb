@@ -32,6 +32,9 @@ module CyberSource
     # The device type at the client side.
     attr_accessor :device_type
 
+    # This field will contain the deep link that would help the Customer App to wake up. 
+    attr_accessor :app_url
+
     attr_accessor :raw_data
 
     # Value of the Accept header sent by the customer’s web browser. **Note** If the customer’s browser provides a value, you must include it in your request. 
@@ -76,6 +79,7 @@ module CyberSource
         :'fingerprint_session_id' => :'fingerprintSessionId',
         :'use_raw_fingerprint_session_id' => :'useRawFingerprintSessionId',
         :'device_type' => :'deviceType',
+        :'app_url' => :'appUrl',
         :'raw_data' => :'rawData',
         :'http_accept_browser_value' => :'httpAcceptBrowserValue',
         :'http_accept_content' => :'httpAcceptContent',
@@ -100,6 +104,7 @@ module CyberSource
         :'fingerprint_session_id' => :'String',
         :'use_raw_fingerprint_session_id' => :'BOOLEAN',
         :'device_type' => :'String',
+        :'app_url' => :'String',
         :'raw_data' => :'Array<Ptsv2paymentsDeviceInformationRawData>',
         :'http_accept_browser_value' => :'String',
         :'http_accept_content' => :'String',
@@ -145,6 +150,10 @@ module CyberSource
 
       if attributes.has_key?(:'deviceType')
         self.device_type = attributes[:'deviceType']
+      end
+
+      if attributes.has_key?(:'appUrl')
+        self.app_url = attributes[:'appUrl']
       end
 
       if attributes.has_key?(:'rawData')
@@ -294,6 +303,7 @@ module CyberSource
           fingerprint_session_id == o.fingerprint_session_id &&
           use_raw_fingerprint_session_id == o.use_raw_fingerprint_session_id &&
           device_type == o.device_type &&
+          app_url == o.app_url &&
           raw_data == o.raw_data &&
           http_accept_browser_value == o.http_accept_browser_value &&
           http_accept_content == o.http_accept_content &&
@@ -317,7 +327,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [host_name, ip_address, user_agent, fingerprint_session_id, use_raw_fingerprint_session_id, device_type, raw_data, http_accept_browser_value, http_accept_content, http_browser_email, http_browser_language, http_browser_java_enabled, http_browser_java_script_enabled, http_browser_color_depth, http_browser_screen_height, http_browser_screen_width, http_browser_time_difference, user_agent_browser_value].hash
+      [host_name, ip_address, user_agent, fingerprint_session_id, use_raw_fingerprint_session_id, device_type, app_url, raw_data, http_accept_browser_value, http_accept_content, http_browser_email, http_browser_language, http_browser_java_enabled, http_browser_java_script_enabled, http_browser_color_depth, http_browser_screen_height, http_browser_screen_width, http_browser_time_difference, user_agent_browser_value].hash
     end
 
     # Builds the object from hash

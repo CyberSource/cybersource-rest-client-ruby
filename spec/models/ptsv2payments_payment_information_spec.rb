@@ -32,6 +32,18 @@ describe 'Ptsv2paymentsPaymentInformation' do
       expect(@instance).to be_instance_of(CyberSource::Ptsv2paymentsPaymentInformation)
     end
   end
+  describe 'test attribute "intent"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "country_code"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "card"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

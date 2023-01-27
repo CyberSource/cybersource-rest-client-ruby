@@ -65,8 +65,8 @@ module CyberSource
         :'instrument_identifier' => :'Ptsv2paymentsPaymentInformationInstrumentIdentifier',
         :'shipping_address' => :'Ptsv2paymentsPaymentInformationShippingAddress',
         :'legacy_token' => :'Ptsv2paymentsPaymentInformationLegacyToken',
-        :'payment_type' => :'Ptsv2paymentsPaymentInformationPaymentType',
-        :'e_wallet' => :'Ptsv2paymentsPaymentInformationEWallet'
+        :'payment_type' => :'Ptsv2paymentsidrefundsPaymentInformationPaymentType',
+        :'e_wallet' => :'Ptsv2paymentsidrefundsPaymentInformationEWallet'
       }
     end
 

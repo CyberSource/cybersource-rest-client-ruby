@@ -62,7 +62,7 @@ module CyberSource
         :'submit_time_utc' => :'String',
         :'status' => :'String',
         :'reconciliation_id' => :'String',
-        :'client_reference_information' => :'PtsV2PaymentsPost201ResponseClientReferenceInformation',
+        :'client_reference_information' => :'PtsV2PaymentsRefundPost201ResponseClientReferenceInformation',
         :'refund_amount_details' => :'PtsV2PaymentsRefundPost201ResponseRefundAmountDetails',
         :'processor_information' => :'PtsV2PaymentsRefundPost201ResponseProcessorInformation',
         :'order_information' => :'PtsV2PaymentsRefundPost201ResponseOrderInformation',

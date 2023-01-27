@@ -14,6 +14,9 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsidrefundsProcessingInformation
+    # Array of actions (one or more) to be included in the payment to invoke bundled services along with payment status.  Possible values are one or more of follows:   - `AP_REFUND`: Use this when Alternative Payment Refund service is requested. 
+    attr_accessor :action_list
+
     # Type of digital payment solution for the transaction. Possible Values:   - `visacheckout`: Visa Checkout. This value is required for Visa Checkout transactions. For details, see `payment_solution` field description in [Visa Checkout Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/VCO_SCMP_API/html/)  - `001`: Apple Pay.  - `004`: Cybersource In-App Solution.  - `005`: Masterpass. This value is required for Masterpass transactions on OmniPay Direct. For details, see \"Masterpass\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  - `006`: Android Pay.  - `007`: Chase Pay.  - `008`: Samsung Pay.  - `012`: Google Pay.  - `013`: Cybersource P2PE Decryption  - `014`: Mastercard credential on file (COF) payment network token. Returned in authorizations that use a payment network token associated with a TMS token.  - `015`: Visa credential on file (COF) payment network token. Returned in authorizations that use a payment network token associated with a TMS token.  - `027`: Click to Pay. 
     attr_accessor :payment_solution
 
@@ -37,9 +40,15 @@ module CyberSource
     # Indicates that the transaction includes industry-specific data.  Possible Values: - `airline` - `restaurant` - `lodging` - `auto_rental` - `transit` - `healthcare_medical` - `healthcare_transit` - `transit`  #### Card Present, Airlines and Auto Rental You must set this field to `airline` in order for airline data to be sent to the processor. For example, if this field is not set to `airline` or is not included in the request, no airline data is sent to the processor.  You must set this field to `restaurant` in order for restaurant data to be sent to the processor. When this field is not set to `restaurant` or is not included in the request, no restaurant data is sent to the processor.  You must set this field to `auto_rental` in order for auto rental data to be sent to the processor. For example, if this field is not set to `auto_rental` or is not included in the request, no auto rental data is sent to the processor.  Restaurant data is supported only on CyberSource through VisaNet. 
     attr_accessor :industry_data_type
 
+    # Identifier for the payment type
+    attr_accessor :payment_type
+
+    attr_accessor :refund_options
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'action_list' => :'actionList',
         :'payment_solution' => :'paymentSolution',
         :'reconciliation_id' => :'reconciliationId',
         :'link_id' => :'linkId',
@@ -47,13 +56,16 @@ module CyberSource
         :'visa_checkout_id' => :'visaCheckoutId',
         :'purchase_level' => :'purchaseLevel',
         :'recurring_options' => :'recurringOptions',
-        :'industry_data_type' => :'industryDataType'
+        :'industry_data_type' => :'industryDataType',
+        :'payment_type' => :'paymentType',
+        :'refund_options' => :'refundOptions'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'action_list' => :'Array<String>',
         :'payment_solution' => :'String',
         :'reconciliation_id' => :'String',
         :'link_id' => :'String',
@@ -61,7 +73,9 @@ module CyberSource
         :'visa_checkout_id' => :'String',
         :'purchase_level' => :'String',
         :'recurring_options' => :'Ptsv2paymentsidrefundsProcessingInformationRecurringOptions',
-        :'industry_data_type' => :'String'
+        :'industry_data_type' => :'String',
+        :'payment_type' => :'String',
+        :'refund_options' => :'Ptsv2paymentsidrefundsProcessingInformationRefundOptions'
       }
     end
 
@@ -72,6 +86,12 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'actionList')
+        if (value = attributes[:'actionList']).is_a?(Array)
+          self.action_list = value
+        end
+      end
 
       if attributes.has_key?(:'paymentSolution')
         self.payment_solution = attributes[:'paymentSolution']
@@ -103,6 +123,14 @@ module CyberSource
 
       if attributes.has_key?(:'industryDataType')
         self.industry_data_type = attributes[:'industryDataType']
+      end
+
+      if attributes.has_key?(:'paymentType')
+        self.payment_type = attributes[:'paymentType']
+      end
+
+      if attributes.has_key?(:'refundOptions')
+        self.refund_options = attributes[:'refundOptions']
       end
     end
 
@@ -166,6 +194,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          action_list == o.action_list &&
           payment_solution == o.payment_solution &&
           reconciliation_id == o.reconciliation_id &&
           link_id == o.link_id &&
@@ -173,7 +202,9 @@ module CyberSource
           visa_checkout_id == o.visa_checkout_id &&
           purchase_level == o.purchase_level &&
           recurring_options == o.recurring_options &&
-          industry_data_type == o.industry_data_type
+          industry_data_type == o.industry_data_type &&
+          payment_type == o.payment_type &&
+          refund_options == o.refund_options
     end
 
     # @see the `==` method
@@ -185,7 +216,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [payment_solution, reconciliation_id, link_id, report_group, visa_checkout_id, purchase_level, recurring_options, industry_data_type].hash
+      [action_list, payment_solution, reconciliation_id, link_id, report_group, visa_checkout_id, purchase_level, recurring_options, industry_data_type, payment_type, refund_options].hash
     end
 
     # Builds the object from hash

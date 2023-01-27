@@ -110,6 +110,12 @@ describe 'Ptsv2paymentsOrderInformationBillTo' do
     end
   end
 
+  describe 'test attribute "county"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "country"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -147,6 +153,12 @@ describe 'Ptsv2paymentsOrderInformationBillTo' do
   end
 
   describe 'test attribute "phone_type"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "verification_status"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

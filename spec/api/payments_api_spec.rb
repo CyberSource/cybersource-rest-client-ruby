@@ -57,4 +57,17 @@ describe 'PaymentsApi' do
     end
   end
 
+  # unit tests for refresh_payment_status
+  # Check a Payment Status
+  # Checks and updates the payment status 
+  # @param id The payment id whose status needs to be checked and updated.
+  # @param refresh_payment_status_request 
+  # @param [Hash] opts the optional parameters
+  # @return [PtsV2PaymentsPost201Response1]
+  describe 'refresh_payment_status test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

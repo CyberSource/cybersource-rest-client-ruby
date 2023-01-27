@@ -17,6 +17,9 @@ module CyberSource
     # Total amount of the refund.
     attr_accessor :refund_amount
 
+    # Amount that was credited to the cardholder’s account.  Returned by PIN debit credit. 
+    attr_accessor :credit_amount
+
     # Currency used for the order. Use the three-character [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)  #### Used by **Authorization** Required field.  **Authorization Reversal** For an authorization reversal (`reversalInformation`) or a capture (`processingOptions.capture` is set to `true`), you must use the same currency that you used in your payment authorization request.  #### PIN Debit Currency for the amount you requested for the PIN debit purchase. This value is returned for partial authorizations. The issuing bank can approve a partial amount if the balance on the debit card is less than the requested transaction amount. For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf). Returned by PIN debit purchase.  For PIN debit reversal requests, you must use the same currency that was used for the PIN debit purchase or PIN debit credit that you are reversing. For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).  Required field for PIN Debit purchase and PIN Debit credit requests. Optional field for PIN Debit reversal requests.  #### GPX This field is optional for reversing an authorization or credit.  #### DCC for First Data Your local currency. For details, see the `currency` field description in [Dynamic Currency Conversion For First Data Using the SCMP API](http://apps.cybersource.com/library/documentation/dev_guides/DCC_FirstData_SCMP/DCC_FirstData_SCMP_API.pdf).  #### Tax Calculation Required for international tax and value added tax only. Optional for U.S. and Canadian taxes. Your local currency. 
     attr_accessor :currency
 
@@ -24,6 +27,7 @@ module CyberSource
     def self.attribute_map
       {
         :'refund_amount' => :'refundAmount',
+        :'credit_amount' => :'creditAmount',
         :'currency' => :'currency'
       }
     end
@@ -32,6 +36,7 @@ module CyberSource
     def self.swagger_types
       {
         :'refund_amount' => :'String',
+        :'credit_amount' => :'String',
         :'currency' => :'String'
       }
     end
@@ -46,6 +51,10 @@ module CyberSource
 
       if attributes.has_key?(:'refundAmount')
         self.refund_amount = attributes[:'refundAmount']
+      end
+
+      if attributes.has_key?(:'creditAmount')
+        self.credit_amount = attributes[:'creditAmount']
       end
 
       if attributes.has_key?(:'currency')
@@ -73,6 +82,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] credit_amount Value to be assigned
+    def credit_amount=(credit_amount)
+      @credit_amount = credit_amount
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] currency Value to be assigned
     def currency=(currency)
       @currency = currency
@@ -84,6 +99,7 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           refund_amount == o.refund_amount &&
+          credit_amount == o.credit_amount &&
           currency == o.currency
     end
 
@@ -96,7 +112,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [refund_amount, currency].hash
+      [refund_amount, credit_amount, currency].hash
     end
 
     # Builds the object from hash

@@ -33,6 +33,7 @@ module CyberSource
 
     attr_accessor :ip_address
 
+    # Name of the 3rd party provider, for example, Emailage. For all possible values, see the `decision_provider_#_name` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link).
     attr_accessor :providers
 
     attr_accessor :travel
@@ -64,7 +65,7 @@ module CyberSource
         :'local_time' => :'String',
         :'score' => :'PtsV2PaymentsPost201ResponseRiskInformationScore',
         :'ip_address' => :'PtsV2PaymentsPost201ResponseRiskInformationIpAddress',
-        :'providers' => :'PtsV2PaymentsPost201ResponseRiskInformationProviders',
+        :'providers' => :'Hash<String, Hash<String, String>>',
         :'travel' => :'PtsV2PaymentsPost201ResponseRiskInformationTravel'
       }
     end
@@ -112,7 +113,9 @@ module CyberSource
       end
 
       if attributes.has_key?(:'providers')
-        self.providers = attributes[:'providers']
+        if (value = attributes[:'providers']).is_a?(Hash)
+          self.providers = value
+        end
       end
 
       if attributes.has_key?(:'travel')

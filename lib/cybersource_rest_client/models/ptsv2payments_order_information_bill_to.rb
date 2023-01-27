@@ -52,6 +52,9 @@ module CyberSource
     # Postal code for the billing address. The postal code must consist of 5 to 9 digits.  When the billing country is the U.S., the 9-digit postal code must follow this format: [5 digits][dash][4 digits]  **Example** `12345-6789`  When the billing country is Canada, the 6-digit postal code must follow this format: [alpha][numeric][alpha][space][numeric][alpha][numeric]  **Example** `A1B 2C3`  **Important** It is your responsibility to determine whether a field is required for the transaction you are requesting.  #### For Payouts:  This field may be sent only for FDC Compass.  #### American Express Direct Before sending the postal code to the processor, CyberSource removes all nonalphanumeric characters and, if the remaining value is longer than nine characters, truncates the value starting from the right side.  #### Atos This field must not contain colons (:).  #### CyberSource through VisaNet Credit card networks cannot process transactions that contain non-ASCII characters. CyberSource through VisaNet accepts and stores non-ASCII characters correctly and displays them correctly in reports. However, the limitations of the credit card networks prevent CyberSource through VisaNet from transmitting non-ASCII characters to the credit card networks. Therefore, CyberSource through VisaNet replaces non-ASCII characters with meaningless ASCII characters for transmission to the credit card networks.  #### FDMS Nashville Required if `pointOfSaleInformation.entryMode=keyed` and the address is in the U.S. or Canada. Optional if `pointOfSaleInformation.entryMode=keyed` and the address is **not** in the U.S. or Canada. Not used if swiped.  #### RBS WorldPay Atlanta: For best card-present keyed rates, send the postal code if `pointOfSaleInformation.entryMode=keyed`.  #### TSYS Acquiring Solutions Required when `processingInformation.billPaymentOptions.billPayment=true` and `pointOfSaleInformation.entryMode=keyed`.  #### All other processors: Optional field. 
     attr_accessor :postal_code
 
+    # U.S. county if available.
+    attr_accessor :county
+
     # Payment card billing country. Use the two-character [ISO Standard Country Codes](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf).  #### CyberSource through VisaNet Credit card networks cannot process transactions that contain non-ASCII characters. CyberSource through VisaNet accepts and stores non-ASCII characters correctly and displays them correctly in reports. However, the limitations of the credit card networks prevent CyberSource through VisaNet from transmitting non-ASCII characters to the credit card networks. Therefore, CyberSource through VisaNet replaces non-ASCII characters with meaningless ASCII characters for transmission to the credit card networks.  **Important** It is your responsibility to determine whether a field is required for the transaction you are requesting.  #### Chase Paymentech Solutions Optional field.  ####  Credit Mutuel-CIC Optional field.  #### OmniPay Direct Optional field.  #### SIX Optional field.  #### TSYS Acquiring Solutions Required when `processingInformation.billPaymentOptions.billPayment=true` and `pointOfSaleInformation.entryMode=keyed`.  #### Worldpay VAP Optional field.  #### All other processors Not used. 
     attr_accessor :country
 
@@ -73,6 +76,9 @@ module CyberSource
     # Customer's phone number type.  #### For Payouts: This field may be sent only for FDC Compass.  Possible Values: * day * home * night * work 
     attr_accessor :phone_type
 
+    # Whether buyer has verified their identity. Used in case of PayPal transactions.  Possible Values: * VERIFIED * UNVERIFIED 
+    attr_accessor :verification_status
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -89,13 +95,15 @@ module CyberSource
         :'locality' => :'locality',
         :'administrative_area' => :'administrativeArea',
         :'postal_code' => :'postalCode',
+        :'county' => :'county',
         :'country' => :'country',
         :'district' => :'district',
         :'building_number' => :'buildingNumber',
         :'email' => :'email',
         :'email_domain' => :'emailDomain',
         :'phone_number' => :'phoneNumber',
-        :'phone_type' => :'phoneType'
+        :'phone_type' => :'phoneType',
+        :'verification_status' => :'verificationStatus'
       }
     end
 
@@ -115,13 +123,15 @@ module CyberSource
         :'locality' => :'String',
         :'administrative_area' => :'String',
         :'postal_code' => :'String',
+        :'county' => :'String',
         :'country' => :'String',
         :'district' => :'String',
         :'building_number' => :'String',
         :'email' => :'String',
         :'email_domain' => :'String',
         :'phone_number' => :'String',
-        :'phone_type' => :'String'
+        :'phone_type' => :'String',
+        :'verification_status' => :'String'
       }
     end
 
@@ -185,6 +195,10 @@ module CyberSource
         self.postal_code = attributes[:'postalCode']
       end
 
+      if attributes.has_key?(:'county')
+        self.county = attributes[:'county']
+      end
+
       if attributes.has_key?(:'country')
         self.country = attributes[:'country']
       end
@@ -211,6 +225,10 @@ module CyberSource
 
       if attributes.has_key?(:'phoneType')
         self.phone_type = attributes[:'phoneType']
+      end
+
+      if attributes.has_key?(:'verificationStatus')
+        self.verification_status = attributes[:'verificationStatus']
       end
     end
 
@@ -300,6 +318,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] county Value to be assigned
+    def county=(county)
+      @county = county
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] country Value to be assigned
     def country=(country)
       @country = country
@@ -353,13 +377,15 @@ module CyberSource
           locality == o.locality &&
           administrative_area == o.administrative_area &&
           postal_code == o.postal_code &&
+          county == o.county &&
           country == o.country &&
           district == o.district &&
           building_number == o.building_number &&
           email == o.email &&
           email_domain == o.email_domain &&
           phone_number == o.phone_number &&
-          phone_type == o.phone_type
+          phone_type == o.phone_type &&
+          verification_status == o.verification_status
     end
 
     # @see the `==` method
@@ -371,7 +397,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [first_name, last_name, middle_name, name_suffix, title, company, address1, address2, address3, address4, locality, administrative_area, postal_code, country, district, building_number, email, email_domain, phone_number, phone_type].hash
+      [first_name, last_name, middle_name, name_suffix, title, company, address1, address2, address3, address4, locality, administrative_area, postal_code, county, country, district, building_number, email, email_domain, phone_number, phone_type, verification_status].hash
     end
 
     # Builds the object from hash

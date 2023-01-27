@@ -14,11 +14,8 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsPaymentInformationPaymentType
-    # A Payment Type is an agreed means for a payee to receive legal tender from a payer. The way one pays for a commercial financial transaction. Examples: Card, Bank Transfer, Digital, Direct Debit. Possible values: - `CARD` (use this for a PIN debit transaction) - `CHECK` (use this for all eCheck payment transactions - ECP Debit, ECP Follow-on Credit, ECP StandAlone Credit) - `bankTransfer` (use for Online Bank Transafer for methods such as P24, iDeal, Estonia Bank) 
+    # A Payment Type is an agreed means for a payee to receive legal tender from a payer. The way one pays for a commercial financial transaction. Examples: Card, Bank Transfer, Digital, Direct Debit. Possible values: - `CARD` (use this for a PIN debit transaction) - `CHECK` (use this for all eCheck payment transactions - ECP Debit, ECP Follow-on Credit, ECP StandAlone Credit) - `bankTransfer` (use for Online Bank Transafer for methods such as P24, iDeal, Estonia Bank, KCP) - `localCard` (KCP Local card via Altpay) - `carrierBilling` (KCP Carrier Billing via Altpay) 
     attr_accessor :name
-
-    # Detailed information about the Payment Type. Possible values: - `DEBIT`: Use this value to indicate a PIN debit transaction.  Examples: For Card, if Credit or Debit or PrePaid. For Bank Transfer, if Online Bank Transfer or Wire Transfers. 
-    attr_accessor :sub_type_name
 
     attr_accessor :method
 
@@ -26,7 +23,6 @@ module CyberSource
     def self.attribute_map
       {
         :'name' => :'name',
-        :'sub_type_name' => :'subTypeName',
         :'method' => :'method'
       }
     end
@@ -35,7 +31,6 @@ module CyberSource
     def self.swagger_types
       {
         :'name' => :'String',
-        :'sub_type_name' => :'String',
         :'method' => :'Ptsv2paymentsPaymentInformationPaymentTypeMethod'
       }
     end
@@ -50,10 +45,6 @@ module CyberSource
 
       if attributes.has_key?(:'name')
         self.name = attributes[:'name']
-      end
-
-      if attributes.has_key?(:'subTypeName')
-        self.sub_type_name = attributes[:'subTypeName']
       end
 
       if attributes.has_key?(:'method')
@@ -80,7 +71,6 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           name == o.name &&
-          sub_type_name == o.sub_type_name &&
           method == o.method
     end
 
@@ -93,7 +83,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name, sub_type_name, method].hash
+      [name, method].hash
     end
 
     # Builds the object from hash
