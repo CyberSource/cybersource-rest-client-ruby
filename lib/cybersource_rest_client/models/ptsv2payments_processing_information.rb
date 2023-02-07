@@ -14,8 +14,11 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsProcessingInformation
-    # Array of actions (one or more) to be included in the payment to invoke bundled serviecs along with payment.  Possible values are one or more of follows:   - `DECISION_SKIP`: Use this when you want to skip Decision Manager service(s).   - `TOKEN_CREATE`: Use this when you want to create a token from the card/bank data in your payment request.   - `CONSUMER_AUTHENTICATION`: Use this when you want to check if a card is enrolled in Payer Authentioncation along with your payment request.   - `VALIDATE_CONSUMER_AUTHENTICATION`: Use this after you acquire a Payer Authentioncation result that needs to be included for your payment request. 
+    # Array of actions (one or more) to be included in the payment to invoke bundled services along with payment.  Possible values are one or more of follows:   - `DECISION_SKIP`: Use this when you want to skip Decision Manager service(s).   - `TOKEN_CREATE`: Use this when you want to create a token from the card/bank data in your payment request.   - `CONSUMER_AUTHENTICATION`: Use this when you want to check if a card is enrolled in Payer Authentioncation along with your payment request.   - `VALIDATE_CONSUMER_AUTHENTICATION`: Use this after you acquire a Payer Authentioncation result that needs to be included for your payment request.    - `AP_INITIATE`: Use this when Alternative Payment Initiate service is requested. 
     attr_accessor :action_list
+
+    # Indicates whether to use the customer’s escrow agreement. Possible values: - `true`: yes, use the customer’s escrow agreement. - `false`: no, do not use the customer’s escrow agreement.  
+    attr_accessor :enable_escrow_option
 
     # CyberSource tokens types you are performing a create on. If not supplied the default token type for the merchants token vault will be used.  Valid values: - customer - paymentInstrument - instrumentIdentifier - shippingAddress 
     attr_accessor :action_token_types
@@ -100,6 +103,7 @@ module CyberSource
     def self.attribute_map
       {
         :'action_list' => :'actionList',
+        :'enable_escrow_option' => :'enableEscrowOption',
         :'action_token_types' => :'actionTokenTypes',
         :'capture' => :'capture',
         :'processor_id' => :'processorId',
@@ -136,6 +140,7 @@ module CyberSource
     def self.swagger_types
       {
         :'action_list' => :'Array<String>',
+        :'enable_escrow_option' => :'BOOLEAN',
         :'action_token_types' => :'Array<String>',
         :'capture' => :'BOOLEAN',
         :'processor_id' => :'String',
@@ -180,6 +185,10 @@ module CyberSource
         if (value = attributes[:'actionList']).is_a?(Array)
           self.action_list = value
         end
+      end
+
+      if attributes.has_key?(:'enableEscrowOption')
+        self.enable_escrow_option = attributes[:'enableEscrowOption']
       end
 
       if attributes.has_key?(:'actionTokenTypes')
@@ -418,6 +427,7 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           action_list == o.action_list &&
+          enable_escrow_option == o.enable_escrow_option &&
           action_token_types == o.action_token_types &&
           capture == o.capture &&
           processor_id == o.processor_id &&
@@ -458,7 +468,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [action_list, action_token_types, capture, processor_id, business_application_id, commerce_indicator, commerce_indicator_label, payment_solution, reconciliation_id, link_id, purchase_level, payment_id, report_group, visa_checkout_id, industry_data_type, authorization_options, capture_options, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, wallet_type, national_net_domestic_data, japan_payment_options, mobile_remote_payment_type, extended_credit_total_count, network_routing_order, pay_by_points_indicator, is_return_auth_record_enabled].hash
+      [action_list, enable_escrow_option, action_token_types, capture, processor_id, business_application_id, commerce_indicator, commerce_indicator_label, payment_solution, reconciliation_id, link_id, purchase_level, payment_id, report_group, visa_checkout_id, industry_data_type, authorization_options, capture_options, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, wallet_type, national_net_domestic_data, japan_payment_options, mobile_remote_payment_type, extended_credit_total_count, network_routing_order, pay_by_points_indicator, is_return_auth_record_enabled].hash
     end
 
     # Builds the object from hash

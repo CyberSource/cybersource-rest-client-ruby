@@ -96,6 +96,10 @@ module CyberSource
     # The redirect URL for forwarding the consumer to complete page.  This redirect needed by PSP to track browser information of consumer. PSP then redirect consumer to merchant success URL. 
     attr_accessor :complete_url
 
+    attr_accessor :signature
+
+    attr_accessor :public_key
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -128,7 +132,9 @@ module CyberSource
         :'merchant_number' => :'merchantNumber',
         :'retrieval_reference_number' => :'retrievalReferenceNumber',
         :'payment_url' => :'paymentUrl',
-        :'complete_url' => :'completeUrl'
+        :'complete_url' => :'completeUrl',
+        :'signature' => :'signature',
+        :'public_key' => :'publicKey'
       }
     end
 
@@ -164,7 +170,9 @@ module CyberSource
         :'merchant_number' => :'String',
         :'retrieval_reference_number' => :'String',
         :'payment_url' => :'String',
-        :'complete_url' => :'String'
+        :'complete_url' => :'String',
+        :'signature' => :'String',
+        :'public_key' => :'String'
       }
     end
 
@@ -294,6 +302,14 @@ module CyberSource
 
       if attributes.has_key?(:'completeUrl')
         self.complete_url = attributes[:'completeUrl']
+      end
+
+      if attributes.has_key?(:'signature')
+        self.signature = attributes[:'signature']
+      end
+
+      if attributes.has_key?(:'publicKey')
+        self.public_key = attributes[:'publicKey']
       end
     end
 
@@ -470,7 +486,9 @@ module CyberSource
           merchant_number == o.merchant_number &&
           retrieval_reference_number == o.retrieval_reference_number &&
           payment_url == o.payment_url &&
-          complete_url == o.complete_url
+          complete_url == o.complete_url &&
+          signature == o.signature &&
+          public_key == o.public_key
     end
 
     # @see the `==` method
@@ -482,7 +500,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [auth_indicator, approval_code, card_reference_data, transaction_id, network_transaction_id, response_code, response_code_source, response_details, response_category_code, forwarded_acquirer_code, avs, card_verification, merchant_advice, electronic_verification_results, ach_verification, customer, consumer_authentication_response, system_trace_audit_number, payment_account_reference_number, transaction_integrity_code, amex_verbal_auth_reference_number, master_card_service_code, master_card_service_reply_code, master_card_authentication_type, name, routing, merchant_number, retrieval_reference_number, payment_url, complete_url].hash
+      [auth_indicator, approval_code, card_reference_data, transaction_id, network_transaction_id, response_code, response_code_source, response_details, response_category_code, forwarded_acquirer_code, avs, card_verification, merchant_advice, electronic_verification_results, ach_verification, customer, consumer_authentication_response, system_trace_audit_number, payment_account_reference_number, transaction_integrity_code, amex_verbal_auth_reference_number, master_card_service_code, master_card_service_reply_code, master_card_authentication_type, name, routing, merchant_number, retrieval_reference_number, payment_url, complete_url, signature, public_key].hash
     end
 
     # Builds the object from hash

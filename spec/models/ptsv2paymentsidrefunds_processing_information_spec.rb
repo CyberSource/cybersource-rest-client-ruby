@@ -32,6 +32,12 @@ describe 'Ptsv2paymentsidrefundsProcessingInformation' do
       expect(@instance).to be_instance_of(CyberSource::Ptsv2paymentsidrefundsProcessingInformation)
     end
   end
+  describe 'test attribute "action_list"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "payment_solution"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -75,6 +81,18 @@ describe 'Ptsv2paymentsidrefundsProcessingInformation' do
   end
 
   describe 'test attribute "industry_data_type"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "payment_type"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "refund_options"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

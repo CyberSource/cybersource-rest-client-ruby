@@ -33,5 +33,7 @@ Name | Type | Description | Notes
 **retrieval_reference_number** | **String** | #### Ingenico ePayments Unique number that CyberSource generates to identify the transaction. You can use this value to identify transactions in the Ingenico ePayments Collections Report, which provides settlement information. Contact customer support for information about the report.  ### CyberSource through VisaNet Retrieval request number.  | [optional] 
 **payment_url** | **String** | Direct the customer to this URL to complete the payment. | [optional] 
 **complete_url** | **String** | The redirect URL for forwarding the consumer to complete page.  This redirect needed by PSP to track browser information of consumer. PSP then redirect consumer to merchant success URL.  | [optional] 
+**signature** | **String** |  | [optional] 
+**public_key** | **String** |  | [optional] 
 
 

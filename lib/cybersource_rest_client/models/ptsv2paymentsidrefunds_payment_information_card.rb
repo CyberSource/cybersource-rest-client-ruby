@@ -44,6 +44,12 @@ module CyberSource
     # Type of account that is being used when the value for the override_payment_method field is line of credit (LI) or prepaid card (PP). Possible values for line of credit: - `AGRC`: Visa Agro Custeio - `AGRE`: Visa Agro Electron - `AGRI`: Visa Agro Investimento - `AGRO`: Visa Agro Possible values for prepaid card: - `VVA`: Visa Vale Alimentacao - `VVF`: Visa Vale Flex - `VVR`: Visa Vale Refeicao This field is supported only for combo card transactions in Brazil on CyberSource through VisaNet. 
     attr_accessor :source_account_type_details
 
+    # Card Verification Number.  #### FDMS Nashville Required for American Express or if swiped; otherwise, optional.  #### Ingenico ePayments Do not include this field when `commerceIndicator=recurring`. **Note** Ingenico ePayments was previously called _Global Collect_.  #### TSYS Acquiring Solutions Optional if pointOfSaleInformation.entryMode=keyed; otherwise, not used.  #### GPX Optional.  #### All other processors: Optional. 
+    attr_accessor :security_code
+
+    # Flag that specifies the type of account associated with the card. The cardholder provides this information during the payment process.  Possible values:   - C: Credit transaction  - D: Debit transaction  This field is supported only for all card Types on Visa Platform Connect.  This field is required for:  - Debit transactions on Cielo and Comercio Latino.  - Transactions with Brazilian-issued cards on CyberSource through VisaNet.  **Note** The value for this field corresponds to the following data in the TC 33 capture file5: - Record: CP07 TCR0 - Position: 51 - Field: Combination Card Transaction Identifier 
+    attr_accessor :use_as
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -56,7 +62,9 @@ module CyberSource
         :'start_month' => :'startMonth',
         :'start_year' => :'startYear',
         :'source_account_type' => :'sourceAccountType',
-        :'source_account_type_details' => :'sourceAccountTypeDetails'
+        :'source_account_type_details' => :'sourceAccountTypeDetails',
+        :'security_code' => :'securityCode',
+        :'use_as' => :'useAs'
       }
     end
 
@@ -72,7 +80,9 @@ module CyberSource
         :'start_month' => :'String',
         :'start_year' => :'String',
         :'source_account_type' => :'String',
-        :'source_account_type_details' => :'String'
+        :'source_account_type_details' => :'String',
+        :'security_code' => :'String',
+        :'use_as' => :'String'
       }
     end
 
@@ -122,6 +132,14 @@ module CyberSource
 
       if attributes.has_key?(:'sourceAccountTypeDetails')
         self.source_account_type_details = attributes[:'sourceAccountTypeDetails']
+      end
+
+      if attributes.has_key?(:'securityCode')
+        self.security_code = attributes[:'securityCode']
+      end
+
+      if attributes.has_key?(:'useAs')
+        self.use_as = attributes[:'useAs']
       end
     end
 
@@ -192,6 +210,18 @@ module CyberSource
       @source_account_type_details = source_account_type_details
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] security_code Value to be assigned
+    def security_code=(security_code)
+      @security_code = security_code
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] use_as Value to be assigned
+    def use_as=(use_as)
+      @use_as = use_as
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -206,7 +236,9 @@ module CyberSource
           start_month == o.start_month &&
           start_year == o.start_year &&
           source_account_type == o.source_account_type &&
-          source_account_type_details == o.source_account_type_details
+          source_account_type_details == o.source_account_type_details &&
+          security_code == o.security_code &&
+          use_as == o.use_as
     end
 
     # @see the `==` method
@@ -218,7 +250,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [number, expiration_month, expiration_year, type, account_encoder_id, issue_number, start_month, start_year, source_account_type, source_account_type_details].hash
+      [number, expiration_month, expiration_year, type, account_encoder_id, issue_number, start_month, start_year, source_account_type, source_account_type_details, security_code, use_as].hash
     end
 
     # Builds the object from hash

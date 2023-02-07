@@ -68,6 +68,12 @@ describe 'Ptsv2paymentsDeviceInformation' do
     end
   end
 
+  describe 'test attribute "app_url"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "raw_data"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

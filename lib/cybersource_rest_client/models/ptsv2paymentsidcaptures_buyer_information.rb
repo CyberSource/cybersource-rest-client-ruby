@@ -20,11 +20,26 @@ module CyberSource
     # Customer’s government-assigned tax identification number.  #### Tax Calculation Optional for international and value added taxes only. Not applicable to U.S. and Canadian taxes.  For processor-specific information, see the purchaser_vat_registration_number field in [Level II and Level III Processing Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/Level_2_3_SCMP_API/html) 
     attr_accessor :vat_registration_number
 
+    # Recipient’s date of birth. **Format**: `YYYYMMDD`.  This field is a `pass-through`, which means that CyberSource ensures that the value is eight numeric characters but otherwise does not verify the value or modify it in any way before sending it to the processor. If the field is not required for the transaction, CyberSource does not forward it to the processor.  For more details, see `recipient_date_of_birth` field description in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
+    attr_accessor :date_of_birth
+
+    # Customer's gender. Possible values are F (female), M (male),O (other).
+    attr_accessor :gender
+
+    # language setting of the user
+    attr_accessor :language
+
+    attr_accessor :personal_identification
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'merchant_customer_id' => :'merchantCustomerId',
-        :'vat_registration_number' => :'vatRegistrationNumber'
+        :'vat_registration_number' => :'vatRegistrationNumber',
+        :'date_of_birth' => :'dateOfBirth',
+        :'gender' => :'gender',
+        :'language' => :'language',
+        :'personal_identification' => :'personalIdentification'
       }
     end
 
@@ -32,7 +47,11 @@ module CyberSource
     def self.swagger_types
       {
         :'merchant_customer_id' => :'String',
-        :'vat_registration_number' => :'String'
+        :'vat_registration_number' => :'String',
+        :'date_of_birth' => :'String',
+        :'gender' => :'String',
+        :'language' => :'String',
+        :'personal_identification' => :'Array<Ptsv2paymentsidcapturesBuyerInformationPersonalIdentification>'
       }
     end
 
@@ -50,6 +69,24 @@ module CyberSource
 
       if attributes.has_key?(:'vatRegistrationNumber')
         self.vat_registration_number = attributes[:'vatRegistrationNumber']
+      end
+
+      if attributes.has_key?(:'dateOfBirth')
+        self.date_of_birth = attributes[:'dateOfBirth']
+      end
+
+      if attributes.has_key?(:'gender')
+        self.gender = attributes[:'gender']
+      end
+
+      if attributes.has_key?(:'language')
+        self.language = attributes[:'language']
+      end
+
+      if attributes.has_key?(:'personalIdentification')
+        if (value = attributes[:'personalIdentification']).is_a?(Array)
+          self.personal_identification = value
+        end
       end
     end
 
@@ -78,13 +115,35 @@ module CyberSource
       @vat_registration_number = vat_registration_number
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] date_of_birth Value to be assigned
+    def date_of_birth=(date_of_birth)
+      @date_of_birth = date_of_birth
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] gender Value to be assigned
+    def gender=(gender)
+      @gender = gender
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] language Value to be assigned
+    def language=(language)
+      @language = language
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           merchant_customer_id == o.merchant_customer_id &&
-          vat_registration_number == o.vat_registration_number
+          vat_registration_number == o.vat_registration_number &&
+          date_of_birth == o.date_of_birth &&
+          gender == o.gender &&
+          language == o.language &&
+          personal_identification == o.personal_identification
     end
 
     # @see the `==` method
@@ -96,7 +155,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [merchant_customer_id, vat_registration_number].hash
+      [merchant_customer_id, vat_registration_number, date_of_birth, gender, language, personal_identification].hash
     end
 
     # Builds the object from hash

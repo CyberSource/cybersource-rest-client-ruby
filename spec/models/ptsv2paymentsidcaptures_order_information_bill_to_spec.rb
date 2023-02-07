@@ -32,7 +32,19 @@ describe 'Ptsv2paymentsidcapturesOrderInformationBillTo' do
       expect(@instance).to be_instance_of(CyberSource::Ptsv2paymentsidcapturesOrderInformationBillTo)
     end
   end
+  describe 'test attribute "title"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "first_name"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "middle_name"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -68,6 +80,12 @@ describe 'Ptsv2paymentsidcapturesOrderInformationBillTo' do
     end
   end
 
+  describe 'test attribute "district"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "administrative_area"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -75,6 +93,12 @@ describe 'Ptsv2paymentsidcapturesOrderInformationBillTo' do
   end
 
   describe 'test attribute "postal_code"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "county"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

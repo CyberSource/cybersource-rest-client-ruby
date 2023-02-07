@@ -14,6 +14,12 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsPaymentInformation
+    # Intent. 
+    attr_accessor :intent
+
+    # Country code. 
+    attr_accessor :country_code
+
     attr_accessor :card
 
     attr_accessor :tokenized_card
@@ -42,6 +48,8 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'intent' => :'intent',
+        :'country_code' => :'countryCode',
         :'card' => :'card',
         :'tokenized_card' => :'tokenizedCard',
         :'fluid_data' => :'fluidData',
@@ -60,6 +68,8 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'intent' => :'String',
+        :'country_code' => :'String',
         :'card' => :'Ptsv2paymentsPaymentInformationCard',
         :'tokenized_card' => :'Ptsv2paymentsPaymentInformationTokenizedCard',
         :'fluid_data' => :'Ptsv2paymentsPaymentInformationFluidData',
@@ -82,6 +92,14 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'intent')
+        self.intent = attributes[:'intent']
+      end
+
+      if attributes.has_key?(:'countryCode')
+        self.country_code = attributes[:'countryCode']
+      end
 
       if attributes.has_key?(:'card')
         self.card = attributes[:'card']
@@ -156,6 +174,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          intent == o.intent &&
+          country_code == o.country_code &&
           card == o.card &&
           tokenized_card == o.tokenized_card &&
           fluid_data == o.fluid_data &&
@@ -179,7 +199,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card, tokenized_card, fluid_data, customer, payment_instrument, instrument_identifier, shipping_address, legacy_token, bank, payment_type, initiation_channel, e_wallet].hash
+      [intent, country_code, card, tokenized_card, fluid_data, customer, payment_instrument, instrument_identifier, shipping_address, legacy_token, bank, payment_type, initiation_channel, e_wallet].hash
     end
 
     # Builds the object from hash
