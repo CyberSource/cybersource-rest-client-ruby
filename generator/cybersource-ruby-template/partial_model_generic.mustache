@@ -94,36 +94,12 @@
 
       {{/required}}
       {{#hasValidation}}
-      {{#maximum}}
-      if {{^required}}!@{{{name}}}.nil? && {{/required}}@{{{name}}} >{{#exclusiveMaximum}}={{/exclusiveMaximum}} {{{maximum}}}
-        invalid_properties.push('invalid value for "{{{name}}}", must be smaller than {{^exclusiveMaximum}}or equal to {{/exclusiveMaximum}}{{{maximum}}}.')
-      end
-
-      {{/maximum}}
-      {{#minimum}}
-      if {{^required}}!@{{{name}}}.nil? && {{/required}}@{{{name}}} <{{#exclusiveMinimum}}={{/exclusiveMinimum}} {{{minimum}}}
-        invalid_properties.push('invalid value for "{{{name}}}", must be greater than {{^exclusiveMinimum}}or equal to {{/exclusiveMinimum}}{{{minimum}}}.')
-      end
-
-      {{/minimum}}
       {{#pattern}}
       #if {{^required}}!@{{{name}}}.nil? && {{/required}}@{{{name}}} !~ Regexp.new({{{pattern}}})
         #invalid_properties.push('invalid value for "{{{name}}}", must conform to the pattern {{{pattern}}}.')
       #end
 
       {{/pattern}}
-      {{#maxItems}}
-      if {{^required}}!@{{{name}}}.nil? && {{/required}}@{{{name}}}.length > {{{maxItems}}}
-        invalid_properties.push('invalid value for "{{{name}}}", number of items must be less than or equal to {{{maxItems}}}.'
-      end
-
-      {{/maxItems}}
-      {{#minItems}}
-      if {{^required}}!@{{{name}}}.nil? && {{/required}}@{{{name}}}.length < {{{minItems}}}
-        invalid_properties.push('invalid value for "{{{name}}}", number of items must be greater than or equal to {{{minItems}}}.'
-      end
-
-      {{/minItems}}
       {{/hasValidation}}
       {{/vars}}
       invalid_properties
@@ -143,21 +119,9 @@
       {{/isContainer}}
       {{/isEnum}}
       {{#hasValidation}}
-      {{#maximum}}
-      return false if {{^required}}!@{{{name}}}.nil? && {{/required}}@{{{name}}} >{{#exclusiveMaximum}}={{/exclusiveMaximum}} {{{maximum}}}
-      {{/maximum}}
-      {{#minimum}}
-      return false if {{^required}}!@{{{name}}}.nil? && {{/required}}@{{{name}}} <{{#exclusiveMinimum}}={{/exclusiveMinimum}} {{{minimum}}}
-      {{/minimum}}
       {{#pattern}}
       #return false if {{^required}}!@{{{name}}}.nil? && {{/required}}@{{{name}}} !~ Regexp.new({{{pattern}}})
       {{/pattern}}
-      {{#maxItems}}
-      return false if {{^required}}!@{{{name}}}.nil? && {{/required}}@{{{name}}}.length > {{{maxItems}}}
-      {{/maxItems}}
-      {{#minItems}}
-      return false if {{^required}}!@{{{name}}}.nil? && {{/required}}@{{{name}}}.length < {{{minItems}}}
-      {{/minItems}}
       {{/hasValidation}}
       {{/vars}}
       true
@@ -189,36 +153,12 @@
       end
 
       {{/required}}
-      {{#maximum}}
-      if {{^required}}!{{{name}}}.nil? && {{/required}}{{{name}}} >{{#exclusiveMaximum}}={{/exclusiveMaximum}} {{{maximum}}}
-        fail ArgumentError, 'invalid value for "{{{name}}}", must be smaller than {{^exclusiveMaximum}}or equal to {{/exclusiveMaximum}}{{{maximum}}}.'
-      end
-
-      {{/maximum}}
-      {{#minimum}}
-      if {{^required}}!{{{name}}}.nil? && {{/required}}{{{name}}} <{{#exclusiveMinimum}}={{/exclusiveMinimum}} {{{minimum}}}
-        fail ArgumentError, 'invalid value for "{{{name}}}", must be greater than {{^exclusiveMinimum}}or equal to {{/exclusiveMinimum}}{{{minimum}}}.'
-      end
-
-      {{/minimum}}
       {{#pattern}}
       #if {{^required}}!{{{name}}}.nil? && {{/required}}{{{name}}} !~ Regexp.new({{{pattern}}})
         #fail ArgumentError, 'invalid value for "{{{name}}}", must conform to the pattern {{{pattern}}}.'
       #end
 
       {{/pattern}}
-      {{#maxItems}}
-      if {{^required}}!{{{name}}}.nil? && {{/required}}{{{name}}}.length > {{{maxItems}}}
-        fail ArgumentError, 'invalid value for "{{{name}}}", number of items must be less than or equal to {{{maxItems}}}.'
-      end
-
-      {{/maxItems}}
-      {{#minItems}}
-      if {{^required}}!{{{name}}}.nil? && {{/required}}{{{name}}}.length < {{{minItems}}}
-        fail ArgumentError, 'invalid value for "{{{name}}}", number of items must be greater than or equal to {{{minItems}}}.'
-      end
-
-      {{/minItems}}
       @{{{name}}} = {{{name}}}
     end
 
