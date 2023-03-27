@@ -10,6 +10,7 @@ public
     # Common Parameters
     @merchantId = cybsPropertyObj['merchantID']
     @runEnvironment = cybsPropertyObj['runEnvironment']
+    @intermediateHost = cybsPropertyObj['intermediateHost']
     @authenticationType = cybsPropertyObj['authenticationType']
     @proxyAddress = cybsPropertyObj['proxyAddress']
     @proxyPort = cybsPropertyObj['proxyPort']
@@ -40,6 +41,8 @@ public
     @refreshToken = cybsPropertyObj['refreshToken']
     # LogConfiguration
     @log_config = LogConfiguration.new(cybsPropertyObj['logConfiguration'])
+    # Custom Default Headers
+    @defaultCustomHeaders = cybsPropertyObj['defaultCustomHeaders']
     validateMerchantDetails()
     logAllProperties(cybsPropertyObj)
     end
@@ -240,6 +243,7 @@ public
     attr_accessor :authenticationType
     attr_accessor :keysDirectory
     attr_accessor :requestHost
+    attr_accessor :intermediateHost
     attr_accessor :keyAlias
     attr_accessor :keyPass
     attr_accessor :keyFilename
@@ -265,4 +269,5 @@ public
     attr_accessor :requestTarget
     attr_accessor :log_obj
     attr_accessor :solutionId
+    attr_accessor :defaultCustomHeaders
   end
