@@ -23,12 +23,16 @@ module CyberSource
     # Cardholder’s mobile phone number. **Important** Required for Visa Secure transactions in Brazil. Do not use this request field for any other types of transactions. 
     attr_accessor :mobile_phone
 
+    # Cardholder's work phone number.
+    attr_accessor :work_phone
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'merchant_customer_id' => :'merchantCustomerId',
         :'personal_identification' => :'personalIdentification',
-        :'mobile_phone' => :'mobilePhone'
+        :'mobile_phone' => :'mobilePhone',
+        :'work_phone' => :'workPhone'
       }
     end
 
@@ -37,7 +41,8 @@ module CyberSource
       {
         :'merchant_customer_id' => :'String',
         :'personal_identification' => :'Array<Ptsv2paymentsBuyerInformationPersonalIdentification>',
-        :'mobile_phone' => :'Integer'
+        :'mobile_phone' => :'Integer',
+        :'work_phone' => :'Integer'
       }
     end
 
@@ -61,6 +66,10 @@ module CyberSource
 
       if attributes.has_key?(:'mobilePhone')
         self.mobile_phone = attributes[:'mobilePhone']
+      end
+
+      if attributes.has_key?(:'workPhone')
+        self.work_phone = attributes[:'workPhone']
       end
     end
 
@@ -95,7 +104,8 @@ module CyberSource
       self.class == o.class &&
           merchant_customer_id == o.merchant_customer_id &&
           personal_identification == o.personal_identification &&
-          mobile_phone == o.mobile_phone
+          mobile_phone == o.mobile_phone &&
+          work_phone == o.work_phone
     end
 
     # @see the `==` method
@@ -107,7 +117,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [merchant_customer_id, personal_identification, mobile_phone].hash
+      [merchant_customer_id, personal_identification, mobile_phone, work_phone].hash
     end
 
     # Builds the object from hash

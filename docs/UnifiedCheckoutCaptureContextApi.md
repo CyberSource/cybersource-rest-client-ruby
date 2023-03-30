@@ -8,11 +8,11 @@ Method | HTTP request | Description
 
 
 # **generate_unified_checkout_capture_context**
-> generate_unified_checkout_capture_context(generate_unified_checkout_capture_context_request)
+> String generate_unified_checkout_capture_context(generate_unified_checkout_capture_context_request)
 
 Generate Unified Checkout Capture Context
 
-Generate a one-time use capture context used for the invocation of Unified Checkout. The Request wil contain all of the paramiters for how Unified Chkcout will operate within a client webpage. The resulting payload will be a JWT signed object that can be used to initate Unified Checkout within a merchnat web page
+Generate a one-time use capture context used for the invocation of Unified Checkout. The Request wil contain all of the parameters for how Unified Checkout will operate within a client webpage. The resulting payload will be a JWT signed object that can be used to initiate Unified Checkout within a merchant web page
 
 ### Example
 ```ruby
@@ -26,7 +26,8 @@ generate_unified_checkout_capture_context_request = CyberSource::GenerateUnified
 
 begin
   #Generate Unified Checkout Capture Context
-  api_instance.generate_unified_checkout_capture_context(generate_unified_checkout_capture_context_request)
+  result = api_instance.generate_unified_checkout_capture_context(generate_unified_checkout_capture_context_request)
+  p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling UnifiedCheckoutCaptureContextApi->generate_unified_checkout_capture_context: #{e}"
 end
@@ -40,7 +41,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-nil (empty response body)
+**String**
 
 ### Authorization
 

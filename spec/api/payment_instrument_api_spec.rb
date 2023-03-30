@@ -34,9 +34,10 @@ describe 'PaymentInstrumentApi' do
 
   # unit tests for delete_payment_instrument
   # Delete a Payment Instrument
-  # @param payment_instrument_token_id The TokenId of a payment instrument.
+  # |  |  |  | | --- | --- | --- | |**Standalone Payment Instruments**&lt;br&gt;A Payment Instrument represents tokenized payment information such as expiration date, billing address &amp; card type.&lt;br&gt;A Payment Instrument token does not store the card number. A Payment Instrument is associated with an [Instrument Identifier](#token-management_instrument-identifier_create-an-instrument-identifier) that represents either a payment card number, or in the case of an ACH bank account, the routing and account number.&lt;br&gt;**Standalone Payment Instruments do not belong to a [Customer](#token-management_customer_create-a-customer).**|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;|**Deleting a Payment Instrument**&lt;br&gt;Your system can use this API to delete an existing Payment Instrument.&lt;br&gt;Any Instrument Identifiers representing the card number will also be deleted if they are not associated with any other Payment Instruments. 
+  # @param payment_instrument_id The Id of a payment instrument.
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+  # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
   # @return [nil]
   describe 'delete_payment_instrument test' do
     it 'should work' do
@@ -46,9 +47,10 @@ describe 'PaymentInstrumentApi' do
 
   # unit tests for get_payment_instrument
   # Retrieve a Payment Instrument
-  # @param payment_instrument_token_id The TokenId of a payment instrument.
+  # |  |  |  | | --- | --- | --- | |**Standalone Payment Instruments**&lt;br&gt;A Payment Instrument represents tokenized payment information such as expiration date, billing address &amp; card type.&lt;br&gt;A Payment Instrument token does not store the card number. A Payment Instrument is associated with an [Instrument Identifier](#token-management_instrument-identifier_create-an-instrument-identifier) that represents either a payment card number, or in the case of an ACH bank account, the routing and account number.&lt;br&gt;**Standalone Payment Instruments do not belong to a [Customer](#token-management_customer_create-a-customer).**|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;|**Retrieving a Payment Instrument**&lt;br&gt;Your system can use this API to retrieve an existing Payment Instrument.&lt;br&gt;To perform a payment with a particular Payment Instrument simply specify the [Payment Instrument Id in the payments request](#payments_payments_process-a-payment_samplerequests-dropdown_authorization-using-tokens_authorization-with-customer-payment-instrument-and-shipping-address-token-id_liveconsole-tab-request-body). 
+  # @param payment_instrument_id The Id of a payment instrument.
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+  # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
   # @return [Tmsv2customersEmbeddedDefaultPaymentInstrument]
   describe 'get_payment_instrument test' do
     it 'should work' do
@@ -58,10 +60,11 @@ describe 'PaymentInstrumentApi' do
 
   # unit tests for patch_payment_instrument
   # Update a Payment Instrument
-  # @param payment_instrument_token_id The TokenId of a payment instrument.
+  # |  |  |  | | --- | --- | --- | |**Standalone Payment Instruments**&lt;br&gt;A Payment Instrument represents tokenized payment information such as expiration date, billing address &amp; card type.&lt;br&gt;A Payment Instrument token does not store the card number. A Payment Instrument is associated with an [Instrument Identifier](#token-management_instrument-identifier_create-an-instrument-identifier) that represents either a payment card number, or in the case of an ACH bank account, the routing and account number.&lt;br&gt;**Standalone Payment Instruments do not belong to a [Customer](#token-management_customer_create-a-customer).**|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;|**Updating a Payment Instrument**&lt;br&gt;Your system can use this API to update an existing Payment Instrument. 
+  # @param payment_instrument_id The Id of a payment instrument.
   # @param patch_payment_instrument_request 
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+  # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
   # @option opts [String] :if_match Contains an ETag value from a GET request to make the request conditional.
   # @return [Tmsv2customersEmbeddedDefaultPaymentInstrument]
   describe 'patch_payment_instrument test' do
@@ -72,10 +75,10 @@ describe 'PaymentInstrumentApi' do
 
   # unit tests for post_payment_instrument
   # Create a Payment Instrument
-  # Include an existing TMS Instrument Identifier id in the request body. * An Instrument Identifier token can be created by calling: **POST */tms/v1/instrumentidentifiers*** 
+  # |  |  |  | | --- | --- | --- | |**Standalone Payment Instruments**&lt;br&gt;A Payment Instrument represents tokenized payment information such as expiration date, billing address &amp; card type.&lt;br&gt;A Payment Instrument token does not store the card number. A Payment Instrument is associated with an [Instrument Identifier](#token-management_instrument-identifier_create-an-instrument-identifier) that represents either a payment card number, or in the case of an ACH bank account, the routing and account number.&lt;br&gt;**Standalone Payment Instruments do not belong to a [Customer](#token-management_customer_create-a-customer).**&lt;br&gt;&lt;br&gt;**Creating a Payment Instrument**&lt;br&gt;It is recommended you [create a Payment Instrument via a Payment Authorization](#payments_payments_process-a-payment_samplerequests-dropdown_authorization-with-token-create_authorization-with-customer-token-creation_liveconsole-tab-request-body), this can be for a zero amount.&lt;br&gt;In Europe: You should perform Payer Authentication alongside the Authorization.|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;|**Payment Network Tokens**&lt;br&gt;Network tokens perform better than regular card numbers and they are not necessarily invalidated when a cardholder loses their card, or it expires.&lt;br&gt;A Payment Network Token will be automatically created and used in future payments if you are enabled for the service.&lt;br&gt;A Payment Network Token can also be [provisioned for an existing Instrument Identifier](#token-management_instrument-identifier_enroll-an-instrument-identifier-for-payment-network-token).&lt;br&gt;For more information about Payment Network Tokens see the Developer Guide.&lt;br&gt;&lt;br&gt;**Payments with Payment Instruments**&lt;br&gt;To perform a payment with a particular Payment Instrument specify the [Payment Instrument in the payment request](#payments_payments_process-a-payment_samplerequests-dropdown_authorization-using-tokens_authorization-with-customer-payment-instrument-and-shipping-address-token-id_liveconsole-tab-request-body). 
   # @param post_payment_instrument_request 
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+  # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
   # @return [Tmsv2customersEmbeddedDefaultPaymentInstrument]
   describe 'post_payment_instrument test' do
     it 'should work' do

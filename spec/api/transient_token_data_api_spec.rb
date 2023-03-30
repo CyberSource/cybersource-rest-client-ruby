@@ -34,7 +34,7 @@ describe 'TransientTokenDataApi' do
 
   # unit tests for get_transaction_for_transient_token
   # Get Transient Token Data
-  # Retrieve the data captured by Unfied Checkout. This API is used to retrieve the detailed data represented by the Transient Token. This API will not return PCI payment data (PAN). Include the Request ID in the GET request to retrieve the transaction details.
+  # Retrieve the data captured by Unified Checkout. This API is used to retrieve the detailed data represented by the Transient Token. This API will not return PCI payment data (PAN). Include the Request ID in the GET request to retrieve the transaction details.
   # @param transient_token Transient Token returned by the Unified Checkout application. 
   # @param [Hash] opts the optional parameters
   # @return [nil]

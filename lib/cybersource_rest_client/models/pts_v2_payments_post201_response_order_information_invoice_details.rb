@@ -57,27 +57,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@sales_slip_number.nil? && @sales_slip_number > 99999
-        invalid_properties.push('invalid value for "sales_slip_number", must be smaller than or equal to 99999.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@sales_slip_number.nil? && @sales_slip_number > 99999
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] sales_slip_number Value to be assigned
     def sales_slip_number=(sales_slip_number)
-      if !sales_slip_number.nil? && sales_slip_number > 99999
-        fail ArgumentError, 'invalid value for "sales_slip_number", must be smaller than or equal to 99999.'
-      end
-
       @sales_slip_number = sales_slip_number
     end
 

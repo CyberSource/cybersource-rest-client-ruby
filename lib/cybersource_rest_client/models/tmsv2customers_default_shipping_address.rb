@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class Tmsv2customersDefaultShippingAddress
-    # The id of the Customers default Shipping Address 
+    # The Id of the Customers default Shipping Address 
     attr_accessor :id
 
     # Attribute mapping from ruby-style variable name to JSON key.

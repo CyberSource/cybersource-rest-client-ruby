@@ -17,17 +17,22 @@ module CyberSource
     # Network transaction identifier that was returned in the payment response field _processorInformation.transactionID_ in the reply message for either the original merchant-initiated payment in the series or the previous merchant-initiated payment in the series. 
     attr_accessor :previous_transaction_id
 
+    # Amount of the original authorization. 
+    attr_accessor :original_authorized_amount
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'previous_transaction_id' => :'previousTransactionId'
+        :'previous_transaction_id' => :'previousTransactionId',
+        :'original_authorized_amount' => :'originalAuthorizedAmount'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'previous_transaction_id' => :'String'
+        :'previous_transaction_id' => :'String',
+        :'original_authorized_amount' => :'String'
       }
     end
 
@@ -41,6 +46,10 @@ module CyberSource
 
       if attributes.has_key?(:'previousTransactionId')
         self.previous_transaction_id = attributes[:'previousTransactionId']
+      end
+
+      if attributes.has_key?(:'originalAuthorizedAmount')
+        self.original_authorized_amount = attributes[:'originalAuthorizedAmount']
       end
     end
 
@@ -63,12 +72,19 @@ module CyberSource
       @previous_transaction_id = previous_transaction_id
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] original_authorized_amount Value to be assigned
+    def original_authorized_amount=(original_authorized_amount)
+      @original_authorized_amount = original_authorized_amount
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          previous_transaction_id == o.previous_transaction_id
+          previous_transaction_id == o.previous_transaction_id &&
+          original_authorized_amount == o.original_authorized_amount
     end
 
     # @see the `==` method
@@ -80,7 +96,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [previous_transaction_id].hash
+      [previous_transaction_id, original_authorized_amount].hash
     end
 
     # Builds the object from hash

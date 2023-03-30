@@ -83,22 +83,12 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@terminal_capability.nil? && @terminal_capability > 5
-        invalid_properties.push('invalid value for "terminal_capability", must be smaller than or equal to 5.')
-      end
-
-      if !@terminal_capability.nil? && @terminal_capability < 1
-        invalid_properties.push('invalid value for "terminal_capability", must be greater than or equal to 1.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@terminal_capability.nil? && @terminal_capability > 5
-      return false if !@terminal_capability.nil? && @terminal_capability < 1
       true
     end
 
@@ -117,14 +107,6 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] terminal_capability Value to be assigned
     def terminal_capability=(terminal_capability)
-      if !terminal_capability.nil? && terminal_capability > 5
-        fail ArgumentError, 'invalid value for "terminal_capability", must be smaller than or equal to 5.'
-      end
-
-      if !terminal_capability.nil? && terminal_capability < 1
-        fail ArgumentError, 'invalid value for "terminal_capability", must be greater than or equal to 1.'
-      end
-
       @terminal_capability = terminal_capability
     end
 

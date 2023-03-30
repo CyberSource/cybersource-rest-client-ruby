@@ -13,46 +13,34 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  # Successful searchKeysResponse
   class InlineResponse200
-    # Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the time. The Z indicates UTC. 
+    attr_accessor :_links
+
+    # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC.  Returned by Cybersource for all services. 
     attr_accessor :submit_time_utc
 
-    # Specifies the total number of items found based on the request
+    # total number of plans created
     attr_accessor :total_count
 
-    # Specifies the record offset from the records are returned part of the response
-    attr_accessor :offset
-
-    # Specifies the maximum number of records requested part of the response
-    attr_accessor :limit
-
-    # Specifies a comma separated list of field names based on which the result is sorted.
-    attr_accessor :sort
-
-    attr_accessor :keys
+    attr_accessor :plans
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'_links' => :'_links',
         :'submit_time_utc' => :'submitTimeUtc',
         :'total_count' => :'totalCount',
-        :'offset' => :'offset',
-        :'limit' => :'limit',
-        :'sort' => :'sort',
-        :'keys' => :'keys'
+        :'plans' => :'plans'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'_links' => :'InlineResponse200Links',
         :'submit_time_utc' => :'String',
         :'total_count' => :'Integer',
-        :'offset' => :'Integer',
-        :'limit' => :'Integer',
-        :'sort' => :'String',
-        :'keys' => :'Array<InlineResponse200Keys>'
+        :'plans' => :'Array<InlineResponse200Plans>'
       }
     end
 
@@ -64,6 +52,10 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
+      if attributes.has_key?(:'_links')
+        self._links = attributes[:'_links']
+      end
+
       if attributes.has_key?(:'submitTimeUtc')
         self.submit_time_utc = attributes[:'submitTimeUtc']
       end
@@ -72,21 +64,9 @@ module CyberSource
         self.total_count = attributes[:'totalCount']
       end
 
-      if attributes.has_key?(:'offset')
-        self.offset = attributes[:'offset']
-      end
-
-      if attributes.has_key?(:'limit')
-        self.limit = attributes[:'limit']
-      end
-
-      if attributes.has_key?(:'sort')
-        self.sort = attributes[:'sort']
-      end
-
-      if attributes.has_key?(:'keys')
-        if (value = attributes[:'keys']).is_a?(Array)
-          self.keys = value
+      if attributes.has_key?(:'plans')
+        if (value = attributes[:'plans']).is_a?(Array)
+          self.plans = value
         end
       end
     end
@@ -109,12 +89,10 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          _links == o._links &&
           submit_time_utc == o.submit_time_utc &&
           total_count == o.total_count &&
-          offset == o.offset &&
-          limit == o.limit &&
-          sort == o.sort &&
-          keys == o.keys
+          plans == o.plans
     end
 
     # @see the `==` method
@@ -126,7 +104,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [submit_time_utc, total_count, offset, limit, sort, keys].hash
+      [_links, submit_time_utc, total_count, plans].hash
     end
 
     # Builds the object from hash

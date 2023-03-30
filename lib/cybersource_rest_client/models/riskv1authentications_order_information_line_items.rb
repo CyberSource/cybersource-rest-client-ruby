@@ -43,6 +43,36 @@ module CyberSource
     # Total tax to apply to the product. This value cannot be negative. The tax amount and the offer amount must be in the same currency. The tax amount field is additive.  The following example uses a two-exponent currency such as USD:   1. You include each line item in your request.  ..- 1st line item has amount=10.00, quantity=1, and taxAmount=0.80  ..- 2nd line item has amount=20.00, quantity=1, and taxAmount=1.60  2. The total amount authorized will be 32.40, not 30.00 with 2.40 of tax included.  Optional field.  #### Airlines processing Tax portion of the order amount. This value cannot exceed 99999999999999 (fourteen 9s). Format: English characters only. Optional request field for a line item.  #### Tax Calculation Optional field for U.S., Canadian, international tax, and value added taxes.  Note if you send this field in your tax request, the value in the field will override the tax engine 
     attr_accessor :tax_amount
 
+    # Address where item will be shipped
+    attr_accessor :shipping_address1
+
+    # Address where item will be shipped
+    attr_accessor :shipping_address2
+
+    # City where item will be shipped
+    attr_accessor :shipping_city
+
+    # Country where item will be shipped
+    attr_accessor :shipping_country_code
+
+    # Customer's first name
+    attr_accessor :shipping_first_name
+
+    # Customer's last name
+    attr_accessor :shipping_last_name
+
+    # Customer's middle name
+    attr_accessor :shipping_middle_name
+
+    # Phone number where item will be shipped
+    attr_accessor :shipping_phone
+
+    # Postal code where item will be shipped
+    attr_accessor :shipping_postal_code
+
+    # State where item will be shipped
+    attr_accessor :shipping_state
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -55,7 +85,17 @@ module CyberSource
         :'product_name' => :'productName',
         :'passenger' => :'passenger',
         :'shipping_destination_types' => :'shippingDestinationTypes',
-        :'tax_amount' => :'taxAmount'
+        :'tax_amount' => :'taxAmount',
+        :'shipping_address1' => :'shippingAddress1',
+        :'shipping_address2' => :'shippingAddress2',
+        :'shipping_city' => :'shippingCity',
+        :'shipping_country_code' => :'shippingCountryCode',
+        :'shipping_first_name' => :'shippingFirstName',
+        :'shipping_last_name' => :'shippingLastName',
+        :'shipping_middle_name' => :'shippingMiddleName',
+        :'shipping_phone' => :'shippingPhone',
+        :'shipping_postal_code' => :'shippingPostalCode',
+        :'shipping_state' => :'shippingState'
       }
     end
 
@@ -71,7 +111,17 @@ module CyberSource
         :'product_name' => :'String',
         :'passenger' => :'Ptsv2paymentsOrderInformationPassenger',
         :'shipping_destination_types' => :'String',
-        :'tax_amount' => :'String'
+        :'tax_amount' => :'String',
+        :'shipping_address1' => :'String',
+        :'shipping_address2' => :'String',
+        :'shipping_city' => :'String',
+        :'shipping_country_code' => :'String',
+        :'shipping_first_name' => :'String',
+        :'shipping_last_name' => :'String',
+        :'shipping_middle_name' => :'String',
+        :'shipping_phone' => :'Integer',
+        :'shipping_postal_code' => :'Integer',
+        :'shipping_state' => :'String'
       }
     end
 
@@ -122,6 +172,46 @@ module CyberSource
       if attributes.has_key?(:'taxAmount')
         self.tax_amount = attributes[:'taxAmount']
       end
+
+      if attributes.has_key?(:'shippingAddress1')
+        self.shipping_address1 = attributes[:'shippingAddress1']
+      end
+
+      if attributes.has_key?(:'shippingAddress2')
+        self.shipping_address2 = attributes[:'shippingAddress2']
+      end
+
+      if attributes.has_key?(:'shippingCity')
+        self.shipping_city = attributes[:'shippingCity']
+      end
+
+      if attributes.has_key?(:'shippingCountryCode')
+        self.shipping_country_code = attributes[:'shippingCountryCode']
+      end
+
+      if attributes.has_key?(:'shippingFirstName')
+        self.shipping_first_name = attributes[:'shippingFirstName']
+      end
+
+      if attributes.has_key?(:'shippingLastName')
+        self.shipping_last_name = attributes[:'shippingLastName']
+      end
+
+      if attributes.has_key?(:'shippingMiddleName')
+        self.shipping_middle_name = attributes[:'shippingMiddleName']
+      end
+
+      if attributes.has_key?(:'shippingPhone')
+        self.shipping_phone = attributes[:'shippingPhone']
+      end
+
+      if attributes.has_key?(:'shippingPostalCode')
+        self.shipping_postal_code = attributes[:'shippingPostalCode']
+      end
+
+      if attributes.has_key?(:'shippingState')
+        self.shipping_state = attributes[:'shippingState']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -132,14 +222,6 @@ module CyberSource
         invalid_properties.push('invalid value for "unit_price", unit_price cannot be nil.')
       end
 
-      if !@quantity.nil? && @quantity > 999999999
-        invalid_properties.push('invalid value for "quantity", must be smaller than or equal to 999999999.')
-      end
-
-      if !@quantity.nil? && @quantity < 1
-        invalid_properties.push('invalid value for "quantity", must be greater than or equal to 1.')
-      end
-
       invalid_properties
     end
 
@@ -147,8 +229,6 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if @unit_price.nil?
-      return false if !@quantity.nil? && @quantity > 999999999
-      return false if !@quantity.nil? && @quantity < 1
       true
     end
 
@@ -171,14 +251,6 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] quantity Value to be assigned
     def quantity=(quantity)
-      if !quantity.nil? && quantity > 999999999
-        fail ArgumentError, 'invalid value for "quantity", must be smaller than or equal to 999999999.'
-      end
-
-      if !quantity.nil? && quantity < 1
-        fail ArgumentError, 'invalid value for "quantity", must be greater than or equal to 1.'
-      end
-
       @quantity = quantity
     end
 
@@ -206,6 +278,54 @@ module CyberSource
       @tax_amount = tax_amount
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] shipping_address1 Value to be assigned
+    def shipping_address1=(shipping_address1)
+      @shipping_address1 = shipping_address1
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] shipping_address2 Value to be assigned
+    def shipping_address2=(shipping_address2)
+      @shipping_address2 = shipping_address2
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] shipping_city Value to be assigned
+    def shipping_city=(shipping_city)
+      @shipping_city = shipping_city
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] shipping_country_code Value to be assigned
+    def shipping_country_code=(shipping_country_code)
+      @shipping_country_code = shipping_country_code
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] shipping_first_name Value to be assigned
+    def shipping_first_name=(shipping_first_name)
+      @shipping_first_name = shipping_first_name
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] shipping_last_name Value to be assigned
+    def shipping_last_name=(shipping_last_name)
+      @shipping_last_name = shipping_last_name
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] shipping_middle_name Value to be assigned
+    def shipping_middle_name=(shipping_middle_name)
+      @shipping_middle_name = shipping_middle_name
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] shipping_state Value to be assigned
+    def shipping_state=(shipping_state)
+      @shipping_state = shipping_state
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -220,7 +340,17 @@ module CyberSource
           product_name == o.product_name &&
           passenger == o.passenger &&
           shipping_destination_types == o.shipping_destination_types &&
-          tax_amount == o.tax_amount
+          tax_amount == o.tax_amount &&
+          shipping_address1 == o.shipping_address1 &&
+          shipping_address2 == o.shipping_address2 &&
+          shipping_city == o.shipping_city &&
+          shipping_country_code == o.shipping_country_code &&
+          shipping_first_name == o.shipping_first_name &&
+          shipping_last_name == o.shipping_last_name &&
+          shipping_middle_name == o.shipping_middle_name &&
+          shipping_phone == o.shipping_phone &&
+          shipping_postal_code == o.shipping_postal_code &&
+          shipping_state == o.shipping_state
     end
 
     # @see the `==` method
@@ -232,7 +362,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [total_amount, unit_price, quantity, gift_card_currency, product_sku, product_description, product_name, passenger, shipping_destination_types, tax_amount].hash
+      [total_amount, unit_price, quantity, gift_card_currency, product_sku, product_description, product_name, passenger, shipping_destination_types, tax_amount, shipping_address1, shipping_address2, shipping_city, shipping_country_code, shipping_first_name, shipping_last_name, shipping_middle_name, shipping_phone, shipping_postal_code, shipping_state].hash
     end
 
     # Builds the object from hash

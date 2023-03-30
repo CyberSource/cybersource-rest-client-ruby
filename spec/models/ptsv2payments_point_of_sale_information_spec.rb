@@ -134,6 +134,12 @@ describe 'Ptsv2paymentsPointOfSaleInformation' do
     end
   end
 
+  describe 'test attribute "pin_entry_solution"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "device_id"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

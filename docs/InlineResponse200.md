@@ -3,11 +3,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**submit_time_utc** | **String** | Time of request in UTC. &#x60;Format: YYYY-MM-DDThh:mm:ssZ&#x60;  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the time. The Z indicates UTC.  | [optional] 
-**total_count** | **Integer** | Specifies the total number of items found based on the request | [optional] 
-**offset** | **Integer** | Specifies the record offset from the records are returned part of the response | [optional] 
-**limit** | **Integer** | Specifies the maximum number of records requested part of the response | [optional] 
-**sort** | **String** | Specifies a comma separated list of field names based on which the result is sorted. | [optional] 
-**keys** | [**Array&lt;InlineResponse200Keys&gt;**](InlineResponse200Keys.md) |  | [optional] 
+**_links** | [**InlineResponse200Links**](InlineResponse200Links.md) |  | [optional] 
+**submit_time_utc** | **String** | Time of request in UTC. Format: &#x60;YYYY-MM-DDThh:mm:ssZ&#x60; **Example** &#x60;2016-08-11T22:47:57Z&#x60; equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The &#x60;T&#x60; separates the date and the time. The &#x60;Z&#x60; indicates UTC.  Returned by Cybersource for all services.  | [optional] 
+**total_count** | **Integer** | total number of plans created | [optional] 
+**plans** | [**Array&lt;InlineResponse200Plans&gt;**](InlineResponse200Plans.md) |  | [optional] 
 
 

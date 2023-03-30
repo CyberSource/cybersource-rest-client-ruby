@@ -20,12 +20,15 @@ module CyberSource
 
     attr_accessor :contact_information
 
+    attr_accessor :custom_fields
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'account_information' => :'accountInformation',
         :'organization_information' => :'organizationInformation',
-        :'contact_information' => :'contactInformation'
+        :'contact_information' => :'contactInformation',
+        :'custom_fields' => :'customFields'
       }
     end
 
@@ -34,7 +37,8 @@ module CyberSource
       {
         :'account_information' => :'UmsV1UsersGet200ResponseAccountInformation',
         :'organization_information' => :'UmsV1UsersGet200ResponseOrganizationInformation',
-        :'contact_information' => :'UmsV1UsersGet200ResponseContactInformation'
+        :'contact_information' => :'UmsV1UsersGet200ResponseContactInformation',
+        :'custom_fields' => :'Hash<String, String>'
       }
     end
 
@@ -56,6 +60,12 @@ module CyberSource
 
       if attributes.has_key?(:'contactInformation')
         self.contact_information = attributes[:'contactInformation']
+      end
+
+      if attributes.has_key?(:'customFields')
+        if (value = attributes[:'customFields']).is_a?(Hash)
+          self.custom_fields = value
+        end
       end
     end
 
@@ -79,7 +89,8 @@ module CyberSource
       self.class == o.class &&
           account_information == o.account_information &&
           organization_information == o.organization_information &&
-          contact_information == o.contact_information
+          contact_information == o.contact_information &&
+          custom_fields == o.custom_fields
     end
 
     # @see the `==` method
@@ -91,7 +102,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [account_information, organization_information, contact_information].hash
+      [account_information, organization_information, contact_information, custom_fields].hash
     end
 
     # Builds the object from hash

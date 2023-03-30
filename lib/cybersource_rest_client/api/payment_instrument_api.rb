@@ -21,21 +21,23 @@ module CyberSource
       @api_client.set_configuration(config)
     end
     # Delete a Payment Instrument
-    # @param payment_instrument_token_id The TokenId of a payment instrument.
+    # |  |  |  | | --- | --- | --- | |**Standalone Payment Instruments**<br>A Payment Instrument represents tokenized payment information such as expiration date, billing address & card type.<br>A Payment Instrument token does not store the card number. A Payment Instrument is associated with an [Instrument Identifier](#token-management_instrument-identifier_create-an-instrument-identifier) that represents either a payment card number, or in the case of an ACH bank account, the routing and account number.<br>**Standalone Payment Instruments do not belong to a [Customer](#token-management_customer_create-a-customer).**|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|**Deleting a Payment Instrument**<br>Your system can use this API to delete an existing Payment Instrument.<br>Any Instrument Identifiers representing the card number will also be deleted if they are not associated with any other Payment Instruments. 
+    # @param payment_instrument_id The Id of a payment instrument.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+    # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
     # @return [nil]
-    def delete_payment_instrument(payment_instrument_token_id, opts = {})
-      data, status_code, headers = delete_payment_instrument_with_http_info(payment_instrument_token_id, opts)
+    def delete_payment_instrument(payment_instrument_id, opts = {})
+      data, status_code, headers = delete_payment_instrument_with_http_info(payment_instrument_id, opts)
       return data, status_code, headers
     end
 
     # Delete a Payment Instrument
-    # @param payment_instrument_token_id The TokenId of a payment instrument.
+    # |  |  |  | | --- | --- | --- | |**Standalone Payment Instruments**&lt;br&gt;A Payment Instrument represents tokenized payment information such as expiration date, billing address &amp; card type.&lt;br&gt;A Payment Instrument token does not store the card number. A Payment Instrument is associated with an [Instrument Identifier](#token-management_instrument-identifier_create-an-instrument-identifier) that represents either a payment card number, or in the case of an ACH bank account, the routing and account number.&lt;br&gt;**Standalone Payment Instruments do not belong to a [Customer](#token-management_customer_create-a-customer).**|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;|**Deleting a Payment Instrument**&lt;br&gt;Your system can use this API to delete an existing Payment Instrument.&lt;br&gt;Any Instrument Identifiers representing the card number will also be deleted if they are not associated with any other Payment Instruments. 
+    # @param payment_instrument_id The Id of a payment instrument.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+    # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
-    def delete_payment_instrument_with_http_info(payment_instrument_token_id, opts = {})
+    def delete_payment_instrument_with_http_info(payment_instrument_id, opts = {})
 
       if @api_client.config.debugging
           begin
@@ -45,16 +47,16 @@ module CyberSource
                 puts 'Cannot write to log'
             end
       end
-      # verify the required parameter 'payment_instrument_token_id' is set
-      if @api_client.config.client_side_validation && payment_instrument_token_id.nil?
-        fail ArgumentError, "Missing the required parameter 'payment_instrument_token_id' when calling PaymentInstrumentApi.delete_payment_instrument"
+      # verify the required parameter 'payment_instrument_id' is set
+      if @api_client.config.client_side_validation && payment_instrument_id.nil?
+        fail ArgumentError, "Missing the required parameter 'payment_instrument_id' when calling PaymentInstrumentApi.delete_payment_instrument"
       end
-      if @api_client.config.client_side_validation && payment_instrument_token_id.to_s.length > 32
-        fail ArgumentError, 'invalid value for "payment_instrument_token_id" when calling PaymentInstrumentApi.delete_payment_instrument, the character length must be smaller than or equal to 32.'
+      if @api_client.config.client_side_validation && payment_instrument_id.to_s.length > 32
+        fail ArgumentError, 'invalid value for "payment_instrument_id" when calling PaymentInstrumentApi.delete_payment_instrument, the character length must be smaller than or equal to 32.'
       end
 
-      if @api_client.config.client_side_validation && payment_instrument_token_id.to_s.length < 1
-        fail ArgumentError, 'invalid value for "payment_instrument_token_id" when calling PaymentInstrumentApi.delete_payment_instrument, the character length must be great than or equal to 1.'
+      if @api_client.config.client_side_validation && payment_instrument_id.to_s.length < 1
+        fail ArgumentError, 'invalid value for "payment_instrument_id" when calling PaymentInstrumentApi.delete_payment_instrument, the character length must be great than or equal to 1.'
       end
 
       if @api_client.config.client_side_validation && !opts[:'profile_id'].nil? && opts[:'profile_id'].to_s.length > 36
@@ -66,7 +68,7 @@ module CyberSource
       end
 
       # resource path
-      local_var_path = 'tms/v1/paymentinstruments/{paymentInstrumentTokenId}'.sub('{' + 'paymentInstrumentTokenId' + '}', payment_instrument_token_id.to_s)
+      local_var_path = 'tms/v1/paymentinstruments/{paymentInstrumentId}'.sub('{' + 'paymentInstrumentId' + '}', payment_instrument_id.to_s)
 
       # query parameters
       query_params = {}
@@ -106,21 +108,23 @@ module CyberSource
       return data, status_code, headers
     end
     # Retrieve a Payment Instrument
-    # @param payment_instrument_token_id The TokenId of a payment instrument.
+    # |  |  |  | | --- | --- | --- | |**Standalone Payment Instruments**<br>A Payment Instrument represents tokenized payment information such as expiration date, billing address & card type.<br>A Payment Instrument token does not store the card number. A Payment Instrument is associated with an [Instrument Identifier](#token-management_instrument-identifier_create-an-instrument-identifier) that represents either a payment card number, or in the case of an ACH bank account, the routing and account number.<br>**Standalone Payment Instruments do not belong to a [Customer](#token-management_customer_create-a-customer).**|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|**Retrieving a Payment Instrument**<br>Your system can use this API to retrieve an existing Payment Instrument.<br>To perform a payment with a particular Payment Instrument simply specify the [Payment Instrument Id in the payments request](#payments_payments_process-a-payment_samplerequests-dropdown_authorization-using-tokens_authorization-with-customer-payment-instrument-and-shipping-address-token-id_liveconsole-tab-request-body). 
+    # @param payment_instrument_id The Id of a payment instrument.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+    # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
     # @return [Tmsv2customersEmbeddedDefaultPaymentInstrument]
-    def get_payment_instrument(payment_instrument_token_id, opts = {})
-      data, status_code, headers = get_payment_instrument_with_http_info(payment_instrument_token_id, opts)
+    def get_payment_instrument(payment_instrument_id, opts = {})
+      data, status_code, headers = get_payment_instrument_with_http_info(payment_instrument_id, opts)
       return data, status_code, headers
     end
 
     # Retrieve a Payment Instrument
-    # @param payment_instrument_token_id The TokenId of a payment instrument.
+    # |  |  |  | | --- | --- | --- | |**Standalone Payment Instruments**&lt;br&gt;A Payment Instrument represents tokenized payment information such as expiration date, billing address &amp; card type.&lt;br&gt;A Payment Instrument token does not store the card number. A Payment Instrument is associated with an [Instrument Identifier](#token-management_instrument-identifier_create-an-instrument-identifier) that represents either a payment card number, or in the case of an ACH bank account, the routing and account number.&lt;br&gt;**Standalone Payment Instruments do not belong to a [Customer](#token-management_customer_create-a-customer).**|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;|**Retrieving a Payment Instrument**&lt;br&gt;Your system can use this API to retrieve an existing Payment Instrument.&lt;br&gt;To perform a payment with a particular Payment Instrument simply specify the [Payment Instrument Id in the payments request](#payments_payments_process-a-payment_samplerequests-dropdown_authorization-using-tokens_authorization-with-customer-payment-instrument-and-shipping-address-token-id_liveconsole-tab-request-body). 
+    # @param payment_instrument_id The Id of a payment instrument.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+    # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
     # @return [Array<(Tmsv2customersEmbeddedDefaultPaymentInstrument, Fixnum, Hash)>] Tmsv2customersEmbeddedDefaultPaymentInstrument data, response status code and response headers
-    def get_payment_instrument_with_http_info(payment_instrument_token_id, opts = {})
+    def get_payment_instrument_with_http_info(payment_instrument_id, opts = {})
 
       if @api_client.config.debugging
           begin
@@ -130,16 +134,16 @@ module CyberSource
                 puts 'Cannot write to log'
             end
       end
-      # verify the required parameter 'payment_instrument_token_id' is set
-      if @api_client.config.client_side_validation && payment_instrument_token_id.nil?
-        fail ArgumentError, "Missing the required parameter 'payment_instrument_token_id' when calling PaymentInstrumentApi.get_payment_instrument"
+      # verify the required parameter 'payment_instrument_id' is set
+      if @api_client.config.client_side_validation && payment_instrument_id.nil?
+        fail ArgumentError, "Missing the required parameter 'payment_instrument_id' when calling PaymentInstrumentApi.get_payment_instrument"
       end
-      if @api_client.config.client_side_validation && payment_instrument_token_id.to_s.length > 32
-        fail ArgumentError, 'invalid value for "payment_instrument_token_id" when calling PaymentInstrumentApi.get_payment_instrument, the character length must be smaller than or equal to 32.'
+      if @api_client.config.client_side_validation && payment_instrument_id.to_s.length > 32
+        fail ArgumentError, 'invalid value for "payment_instrument_id" when calling PaymentInstrumentApi.get_payment_instrument, the character length must be smaller than or equal to 32.'
       end
 
-      if @api_client.config.client_side_validation && payment_instrument_token_id.to_s.length < 1
-        fail ArgumentError, 'invalid value for "payment_instrument_token_id" when calling PaymentInstrumentApi.get_payment_instrument, the character length must be great than or equal to 1.'
+      if @api_client.config.client_side_validation && payment_instrument_id.to_s.length < 1
+        fail ArgumentError, 'invalid value for "payment_instrument_id" when calling PaymentInstrumentApi.get_payment_instrument, the character length must be great than or equal to 1.'
       end
 
       if @api_client.config.client_side_validation && !opts[:'profile_id'].nil? && opts[:'profile_id'].to_s.length > 36
@@ -151,7 +155,7 @@ module CyberSource
       end
 
       # resource path
-      local_var_path = 'tms/v1/paymentinstruments/{paymentInstrumentTokenId}'.sub('{' + 'paymentInstrumentTokenId' + '}', payment_instrument_token_id.to_s)
+      local_var_path = 'tms/v1/paymentinstruments/{paymentInstrumentId}'.sub('{' + 'paymentInstrumentId' + '}', payment_instrument_id.to_s)
 
       # query parameters
       query_params = {}
@@ -192,25 +196,27 @@ module CyberSource
       return data, status_code, headers
     end
     # Update a Payment Instrument
-    # @param payment_instrument_token_id The TokenId of a payment instrument.
+    # |  |  |  | | --- | --- | --- | |**Standalone Payment Instruments**<br>A Payment Instrument represents tokenized payment information such as expiration date, billing address & card type.<br>A Payment Instrument token does not store the card number. A Payment Instrument is associated with an [Instrument Identifier](#token-management_instrument-identifier_create-an-instrument-identifier) that represents either a payment card number, or in the case of an ACH bank account, the routing and account number.<br>**Standalone Payment Instruments do not belong to a [Customer](#token-management_customer_create-a-customer).**|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|**Updating a Payment Instrument**<br>Your system can use this API to update an existing Payment Instrument. 
+    # @param payment_instrument_id The Id of a payment instrument.
     # @param patch_payment_instrument_request 
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+    # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
     # @option opts [String] :if_match Contains an ETag value from a GET request to make the request conditional.
     # @return [Tmsv2customersEmbeddedDefaultPaymentInstrument]
-    def patch_payment_instrument(payment_instrument_token_id, patch_payment_instrument_request, opts = {})
-      data, status_code, headers = patch_payment_instrument_with_http_info(payment_instrument_token_id, patch_payment_instrument_request, opts)
+    def patch_payment_instrument(payment_instrument_id, patch_payment_instrument_request, opts = {})
+      data, status_code, headers = patch_payment_instrument_with_http_info(payment_instrument_id, patch_payment_instrument_request, opts)
       return data, status_code, headers
     end
 
     # Update a Payment Instrument
-    # @param payment_instrument_token_id The TokenId of a payment instrument.
+    # |  |  |  | | --- | --- | --- | |**Standalone Payment Instruments**&lt;br&gt;A Payment Instrument represents tokenized payment information such as expiration date, billing address &amp; card type.&lt;br&gt;A Payment Instrument token does not store the card number. A Payment Instrument is associated with an [Instrument Identifier](#token-management_instrument-identifier_create-an-instrument-identifier) that represents either a payment card number, or in the case of an ACH bank account, the routing and account number.&lt;br&gt;**Standalone Payment Instruments do not belong to a [Customer](#token-management_customer_create-a-customer).**|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;|**Updating a Payment Instrument**&lt;br&gt;Your system can use this API to update an existing Payment Instrument. 
+    # @param payment_instrument_id The Id of a payment instrument.
     # @param patch_payment_instrument_request 
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+    # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
     # @option opts [String] :if_match Contains an ETag value from a GET request to make the request conditional.
     # @return [Array<(Tmsv2customersEmbeddedDefaultPaymentInstrument, Fixnum, Hash)>] Tmsv2customersEmbeddedDefaultPaymentInstrument data, response status code and response headers
-    def patch_payment_instrument_with_http_info(payment_instrument_token_id, patch_payment_instrument_request, opts = {})
+    def patch_payment_instrument_with_http_info(payment_instrument_id, patch_payment_instrument_request, opts = {})
 
       if @api_client.config.debugging
           begin
@@ -220,16 +226,16 @@ module CyberSource
                 puts 'Cannot write to log'
             end
       end
-      # verify the required parameter 'payment_instrument_token_id' is set
-      if @api_client.config.client_side_validation && payment_instrument_token_id.nil?
-        fail ArgumentError, "Missing the required parameter 'payment_instrument_token_id' when calling PaymentInstrumentApi.patch_payment_instrument"
+      # verify the required parameter 'payment_instrument_id' is set
+      if @api_client.config.client_side_validation && payment_instrument_id.nil?
+        fail ArgumentError, "Missing the required parameter 'payment_instrument_id' when calling PaymentInstrumentApi.patch_payment_instrument"
       end
-      if @api_client.config.client_side_validation && payment_instrument_token_id.to_s.length > 32
-        fail ArgumentError, 'invalid value for "payment_instrument_token_id" when calling PaymentInstrumentApi.patch_payment_instrument, the character length must be smaller than or equal to 32.'
+      if @api_client.config.client_side_validation && payment_instrument_id.to_s.length > 32
+        fail ArgumentError, 'invalid value for "payment_instrument_id" when calling PaymentInstrumentApi.patch_payment_instrument, the character length must be smaller than or equal to 32.'
       end
 
-      if @api_client.config.client_side_validation && payment_instrument_token_id.to_s.length < 1
-        fail ArgumentError, 'invalid value for "payment_instrument_token_id" when calling PaymentInstrumentApi.patch_payment_instrument, the character length must be great than or equal to 1.'
+      if @api_client.config.client_side_validation && payment_instrument_id.to_s.length < 1
+        fail ArgumentError, 'invalid value for "payment_instrument_id" when calling PaymentInstrumentApi.patch_payment_instrument, the character length must be great than or equal to 1.'
       end
 
       # verify the required parameter 'patch_payment_instrument_request' is set
@@ -253,7 +259,7 @@ module CyberSource
       end
 
       # resource path
-      local_var_path = 'tms/v1/paymentinstruments/{paymentInstrumentTokenId}'.sub('{' + 'paymentInstrumentTokenId' + '}', payment_instrument_token_id.to_s)
+      local_var_path = 'tms/v1/paymentinstruments/{paymentInstrumentId}'.sub('{' + 'paymentInstrumentId' + '}', payment_instrument_id.to_s)
 
       # query parameters
       query_params = {}
@@ -291,10 +297,10 @@ module CyberSource
       return data, status_code, headers
     end
     # Create a Payment Instrument
-    # Include an existing TMS Instrument Identifier id in the request body. * An Instrument Identifier token can be created by calling: **POST */tms/v1/instrumentidentifiers*** 
+    # |  |  |  | | --- | --- | --- | |**Standalone Payment Instruments**<br>A Payment Instrument represents tokenized payment information such as expiration date, billing address & card type.<br>A Payment Instrument token does not store the card number. A Payment Instrument is associated with an [Instrument Identifier](#token-management_instrument-identifier_create-an-instrument-identifier) that represents either a payment card number, or in the case of an ACH bank account, the routing and account number.<br>**Standalone Payment Instruments do not belong to a [Customer](#token-management_customer_create-a-customer).**<br><br>**Creating a Payment Instrument**<br>It is recommended you [create a Payment Instrument via a Payment Authorization](#payments_payments_process-a-payment_samplerequests-dropdown_authorization-with-token-create_authorization-with-customer-token-creation_liveconsole-tab-request-body), this can be for a zero amount.<br>In Europe: You should perform Payer Authentication alongside the Authorization.|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|**Payment Network Tokens**<br>Network tokens perform better than regular card numbers and they are not necessarily invalidated when a cardholder loses their card, or it expires.<br>A Payment Network Token will be automatically created and used in future payments if you are enabled for the service.<br>A Payment Network Token can also be [provisioned for an existing Instrument Identifier](#token-management_instrument-identifier_enroll-an-instrument-identifier-for-payment-network-token).<br>For more information about Payment Network Tokens see the Developer Guide.<br><br>**Payments with Payment Instruments**<br>To perform a payment with a particular Payment Instrument specify the [Payment Instrument in the payment request](#payments_payments_process-a-payment_samplerequests-dropdown_authorization-using-tokens_authorization-with-customer-payment-instrument-and-shipping-address-token-id_liveconsole-tab-request-body). 
     # @param post_payment_instrument_request 
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+    # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
     # @return [Tmsv2customersEmbeddedDefaultPaymentInstrument]
     def post_payment_instrument(post_payment_instrument_request, opts = {})
       data, status_code, headers = post_payment_instrument_with_http_info(post_payment_instrument_request, opts)
@@ -302,10 +308,10 @@ module CyberSource
     end
 
     # Create a Payment Instrument
-    # Include an existing TMS Instrument Identifier id in the request body. * An Instrument Identifier token can be created by calling: **POST */tms/v1/instrumentidentifiers*** 
+    # |  |  |  | | --- | --- | --- | |**Standalone Payment Instruments**&lt;br&gt;A Payment Instrument represents tokenized payment information such as expiration date, billing address &amp; card type.&lt;br&gt;A Payment Instrument token does not store the card number. A Payment Instrument is associated with an [Instrument Identifier](#token-management_instrument-identifier_create-an-instrument-identifier) that represents either a payment card number, or in the case of an ACH bank account, the routing and account number.&lt;br&gt;**Standalone Payment Instruments do not belong to a [Customer](#token-management_customer_create-a-customer).**&lt;br&gt;&lt;br&gt;**Creating a Payment Instrument**&lt;br&gt;It is recommended you [create a Payment Instrument via a Payment Authorization](#payments_payments_process-a-payment_samplerequests-dropdown_authorization-with-token-create_authorization-with-customer-token-creation_liveconsole-tab-request-body), this can be for a zero amount.&lt;br&gt;In Europe: You should perform Payer Authentication alongside the Authorization.|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;|**Payment Network Tokens**&lt;br&gt;Network tokens perform better than regular card numbers and they are not necessarily invalidated when a cardholder loses their card, or it expires.&lt;br&gt;A Payment Network Token will be automatically created and used in future payments if you are enabled for the service.&lt;br&gt;A Payment Network Token can also be [provisioned for an existing Instrument Identifier](#token-management_instrument-identifier_enroll-an-instrument-identifier-for-payment-network-token).&lt;br&gt;For more information about Payment Network Tokens see the Developer Guide.&lt;br&gt;&lt;br&gt;**Payments with Payment Instruments**&lt;br&gt;To perform a payment with a particular Payment Instrument specify the [Payment Instrument in the payment request](#payments_payments_process-a-payment_samplerequests-dropdown_authorization-using-tokens_authorization-with-customer-payment-instrument-and-shipping-address-token-id_liveconsole-tab-request-body). 
     # @param post_payment_instrument_request 
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :profile_id The id of a profile containing user specific TMS configuration.
+    # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
     # @return [Array<(Tmsv2customersEmbeddedDefaultPaymentInstrument, Fixnum, Hash)>] Tmsv2customersEmbeddedDefaultPaymentInstrument data, response status code and response headers
     def post_payment_instrument_with_http_info(post_payment_instrument_request, opts = {})
 

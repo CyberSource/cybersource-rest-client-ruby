@@ -278,4 +278,10 @@ describe 'Riskv1decisionsConsumerAuthenticationInformation' do
     end
   end
 
+  describe 'test attribute "score_request"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

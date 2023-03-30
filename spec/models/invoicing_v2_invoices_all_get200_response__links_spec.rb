@@ -38,13 +38,19 @@ describe 'InvoicingV2InvoicesAllGet200ResponseLinks' do
     end
   end
 
-  describe 'test attribute "_next"' do
+  describe 'test attribute "update"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "previous"' do
+  describe 'test attribute "deliver"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "cancel"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

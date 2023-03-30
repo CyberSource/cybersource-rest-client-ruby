@@ -44,7 +44,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'_links' => :'InvoicingV2InvoicesAllGet200ResponseLinks1',
+        :'_links' => :'InvoicingV2InvoicesAllGet200ResponseLinks',
         :'id' => :'String',
         :'status' => :'String',
         :'customer_information' => :'InvoicingV2InvoicesAllGet200ResponseCustomerInformation',

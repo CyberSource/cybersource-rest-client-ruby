@@ -32,19 +32,25 @@ describe 'Body' do
       expect(@instance).to be_instance_of(CyberSource::Body)
     end
   end
-  describe 'test attribute "requestor"' do
+  describe 'test attribute "type"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "parsed_tag_limit"' do
+  describe 'test attribute "included"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "emv_details_list"' do
+  describe 'test attribute "merchant_reference"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "notification_email"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

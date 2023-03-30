@@ -61,8 +61,11 @@ module CyberSource
     # Indicates whether the terminal can print or display messages.  Possible values: - 1: Neither - 2: Print only - 3: Display only - 4: Print and display - 5: Merchant terminal supports purchase only approvals  This field is supported for authorizations and credits only on the following processors: - American Express Direct - Credit Mutuel-CIC - FDC Nashville Global - OmniPay Direct - SIX - VisaNet  Optional field. 
     attr_accessor :terminal_output_capability
 
-    # Maximum PIN length that the terminal can capture.  Possible values: -  0: No PIN capture capability -  1: PIN capture capability unknown -  4: Four characters -  5: Five characters -  6: Six characters -  7: Seven characters -  8: Eight characters -  9: Nine characters - 10: Ten characters - 11: Eleven characters - 12: Twelve characters  This field is supported for authorizations and credits only on the following processors: - American Express Direct - Credit Mutuel-CIC - OmniPay Direct - SIX  Required field for authorization or credit of PIN transactions. 
+    # Maximum PIN length that the terminal can capture.  Possible values: -  0: No PIN capture capability -  1: PIN capture capability unknown -  2: PIN Pad down -  4: Four characters -  5: Five characters -  6: Six characters -  7: Seven characters -  8: Eight characters -  9: Nine characters - 10: Ten characters - 11: Eleven characters - 12: Twelve characters  This field is supported for authorizations and credits only on the following processors: - American Express Direct - Credit Mutuel-CIC - OmniPay Direct - SIX  Required field for authorization or credit of PIN transactions. 
     attr_accessor :terminal_pin_capability
+
+    # This field will contain the type of Pin Pad the terminal has.  Possible values: -   PCI-SPoC: Where the pin is being put on screen -   PCI-PTS: Where the pin is being put on actual hardware pin pad 
+    attr_accessor :pin_entry_solution
 
     # Value created by the client software that uniquely identifies the POS device. This value is provided by the client software that is installed on the POS terminal.  CyberSource does not forward this value to the processor. Instead, the value is forwarded to the CyberSource reporting functionality.  This field is supported only on American Express Direct, FDC Nashville Global, and SIX. 
     attr_accessor :device_id
@@ -117,6 +120,7 @@ module CyberSource
         :'terminal_card_capture_capability' => :'terminalCardCaptureCapability',
         :'terminal_output_capability' => :'terminalOutputCapability',
         :'terminal_pin_capability' => :'terminalPinCapability',
+        :'pin_entry_solution' => :'pinEntrySolution',
         :'device_id' => :'deviceId',
         :'pin_block_encoding_format' => :'pinBlockEncodingFormat',
         :'encrypted_pin' => :'encryptedPin',
@@ -151,6 +155,7 @@ module CyberSource
         :'terminal_card_capture_capability' => :'String',
         :'terminal_output_capability' => :'String',
         :'terminal_pin_capability' => :'Integer',
+        :'pin_entry_solution' => :'String',
         :'device_id' => :'String',
         :'pin_block_encoding_format' => :'Integer',
         :'encrypted_pin' => :'String',
@@ -245,6 +250,10 @@ module CyberSource
         self.terminal_pin_capability = attributes[:'terminalPinCapability']
       end
 
+      if attributes.has_key?(:'pinEntrySolution')
+        self.pin_entry_solution = attributes[:'pinEntrySolution']
+      end
+
       if attributes.has_key?(:'deviceId')
         self.device_id = attributes[:'deviceId']
       end
@@ -294,37 +303,12 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@cat_level.nil? && @cat_level > 9
-        invalid_properties.push('invalid value for "cat_level", must be smaller than or equal to 9.')
-      end
-
-      if !@cat_level.nil? && @cat_level < 1
-        invalid_properties.push('invalid value for "cat_level", must be greater than or equal to 1.')
-      end
-
-      if !@terminal_capability.nil? && @terminal_capability > 5
-        invalid_properties.push('invalid value for "terminal_capability", must be smaller than or equal to 5.')
-      end
-
-      if !@terminal_capability.nil? && @terminal_capability < 1
-        invalid_properties.push('invalid value for "terminal_capability", must be greater than or equal to 1.')
-      end
-
-      if !@pin_block_encoding_format.nil? && @pin_block_encoding_format > 9
-        invalid_properties.push('invalid value for "pin_block_encoding_format", must be smaller than or equal to 9.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@cat_level.nil? && @cat_level > 9
-      return false if !@cat_level.nil? && @cat_level < 1
-      return false if !@terminal_capability.nil? && @terminal_capability > 5
-      return false if !@terminal_capability.nil? && @terminal_capability < 1
-      return false if !@pin_block_encoding_format.nil? && @pin_block_encoding_format > 9
       true
     end
 
@@ -349,14 +333,6 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] cat_level Value to be assigned
     def cat_level=(cat_level)
-      if !cat_level.nil? && cat_level > 9
-        fail ArgumentError, 'invalid value for "cat_level", must be smaller than or equal to 9.'
-      end
-
-      if !cat_level.nil? && cat_level < 1
-        fail ArgumentError, 'invalid value for "cat_level", must be greater than or equal to 1.'
-      end
-
       @cat_level = cat_level
     end
 
@@ -369,14 +345,6 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] terminal_capability Value to be assigned
     def terminal_capability=(terminal_capability)
-      if !terminal_capability.nil? && terminal_capability > 5
-        fail ArgumentError, 'invalid value for "terminal_capability", must be smaller than or equal to 5.'
-      end
-
-      if !terminal_capability.nil? && terminal_capability < 1
-        fail ArgumentError, 'invalid value for "terminal_capability", must be greater than or equal to 1.'
-      end
-
       @terminal_capability = terminal_capability
     end
 
@@ -419,10 +387,6 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] pin_block_encoding_format Value to be assigned
     def pin_block_encoding_format=(pin_block_encoding_format)
-      if !pin_block_encoding_format.nil? && pin_block_encoding_format > 9
-        fail ArgumentError, 'invalid value for "pin_block_encoding_format", must be smaller than or equal to 9.'
-      end
-
       @pin_block_encoding_format = pin_block_encoding_format
     end
 
@@ -502,6 +466,7 @@ module CyberSource
           terminal_card_capture_capability == o.terminal_card_capture_capability &&
           terminal_output_capability == o.terminal_output_capability &&
           terminal_pin_capability == o.terminal_pin_capability &&
+          pin_entry_solution == o.pin_entry_solution &&
           device_id == o.device_id &&
           pin_block_encoding_format == o.pin_block_encoding_format &&
           encrypted_pin == o.encrypted_pin &&
@@ -524,7 +489,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [terminal_id, terminal_serial_number, cardholder_verification_method_used, lane_number, cat_level, entry_mode, terminal_capability, operating_environment, emv, amex_capn_data, track_data, store_and_forward_indicator, cardholder_verification_method, terminal_input_capability, terminal_card_capture_capability, terminal_output_capability, terminal_pin_capability, device_id, pin_block_encoding_format, encrypted_pin, encrypted_key_serial_number, partner_sdk_version, emv_application_identifier_and_dedicated_file_name, terminal_compliance, is_dedicated_hardware_terminal, terminal_model, terminal_make, service_code].hash
+      [terminal_id, terminal_serial_number, cardholder_verification_method_used, lane_number, cat_level, entry_mode, terminal_capability, operating_environment, emv, amex_capn_data, track_data, store_and_forward_indicator, cardholder_verification_method, terminal_input_capability, terminal_card_capture_capability, terminal_output_capability, terminal_pin_capability, pin_entry_solution, device_id, pin_block_encoding_format, encrypted_pin, encrypted_key_serial_number, partner_sdk_version, emv_application_identifier_and_dedicated_file_name, terminal_compliance, is_dedicated_hardware_terminal, terminal_model, terminal_make, service_code].hash
     end
 
     # Builds the object from hash

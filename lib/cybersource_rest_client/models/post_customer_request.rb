@@ -16,7 +16,7 @@ module CyberSource
   class PostCustomerRequest
     attr_accessor :_links
 
-    # The id of the Customer Token.
+    # The Id of the Customer Token.
     attr_accessor :id
 
     attr_accessor :object_information

@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class Tmsv2customersEmbeddedDefaultPaymentInstrumentBankAccount
-    # Account type.  Valid values:  - checking : C  - general ledger : G This value is supported only on Wells Fargo ACH  - savings : S (U.S. dollars only)  - corporate checking : X (U.S. dollars only) 
+    # Account type.  Possible Values:  - checking : C  - general ledger : G This value is supported only on Wells Fargo ACH  - savings : S (U.S. dollars only)  - corporate checking : X (U.S. dollars only) 
     attr_accessor :type
 
     # Attribute mapping from ruby-style variable name to JSON key.

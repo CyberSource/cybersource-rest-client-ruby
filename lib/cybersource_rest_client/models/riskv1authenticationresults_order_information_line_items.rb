@@ -70,14 +70,6 @@ module CyberSource
         invalid_properties.push('invalid value for "unit_price", unit_price cannot be nil.')
       end
 
-      if !@quantity.nil? && @quantity > 999999999
-        invalid_properties.push('invalid value for "quantity", must be smaller than or equal to 999999999.')
-      end
-
-      if !@quantity.nil? && @quantity < 1
-        invalid_properties.push('invalid value for "quantity", must be greater than or equal to 1.')
-      end
-
       invalid_properties
     end
 
@@ -85,8 +77,6 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if @unit_price.nil?
-      return false if !@quantity.nil? && @quantity > 999999999
-      return false if !@quantity.nil? && @quantity < 1
       true
     end
 
@@ -103,14 +93,6 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] quantity Value to be assigned
     def quantity=(quantity)
-      if !quantity.nil? && quantity > 999999999
-        fail ArgumentError, 'invalid value for "quantity", must be smaller than or equal to 999999999.'
-      end
-
-      if !quantity.nil? && quantity < 1
-        fail ArgumentError, 'invalid value for "quantity", must be greater than or equal to 1.'
-      end
-
       @quantity = quantity
     end
 

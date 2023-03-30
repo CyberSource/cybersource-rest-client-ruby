@@ -13,40 +13,47 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
+  # Error Bean
   class InlineResponse4003
-    # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC.  Returned by Cybersource for all services. 
-    attr_accessor :submit_time_utc
+    # Error code
+    attr_accessor :code
 
-    # The status of the submitted transaction.  Possible values:  - INVALID_REQUEST 
-    attr_accessor :status
-
-    # The reason of the status.  Possible values:  - MISSING_FIELD  - INVALID_DATA 
-    attr_accessor :reason
-
-    # The detail message related to the status and reason listed above.
+    # Error message
     attr_accessor :message
 
-    attr_accessor :details
+    # Localization Key Name
+    attr_accessor :localization_key
+
+    # Correlation Id
+    attr_accessor :correlation_id
+
+    # Error Detail
+    attr_accessor :detail
+
+    # Error fields List
+    attr_accessor :fields
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'submit_time_utc' => :'submitTimeUtc',
-        :'status' => :'status',
-        :'reason' => :'reason',
+        :'code' => :'code',
         :'message' => :'message',
-        :'details' => :'details'
+        :'localization_key' => :'localizationKey',
+        :'correlation_id' => :'correlationId',
+        :'detail' => :'detail',
+        :'fields' => :'fields'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'submit_time_utc' => :'String',
-        :'status' => :'String',
-        :'reason' => :'String',
+        :'code' => :'String',
         :'message' => :'String',
-        :'details' => :'Array<PtsV2PaymentsPost201ResponseErrorInformationDetails>'
+        :'localization_key' => :'String',
+        :'correlation_id' => :'String',
+        :'detail' => :'String',
+        :'fields' => :'Array<InlineResponse4003Fields>'
       }
     end
 
@@ -58,25 +65,29 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'submitTimeUtc')
-        self.submit_time_utc = attributes[:'submitTimeUtc']
-      end
-
-      if attributes.has_key?(:'status')
-        self.status = attributes[:'status']
-      end
-
-      if attributes.has_key?(:'reason')
-        self.reason = attributes[:'reason']
+      if attributes.has_key?(:'code')
+        self.code = attributes[:'code']
       end
 
       if attributes.has_key?(:'message')
         self.message = attributes[:'message']
       end
 
-      if attributes.has_key?(:'details')
-        if (value = attributes[:'details']).is_a?(Array)
-          self.details = value
+      if attributes.has_key?(:'localizationKey')
+        self.localization_key = attributes[:'localizationKey']
+      end
+
+      if attributes.has_key?(:'correlationId')
+        self.correlation_id = attributes[:'correlationId']
+      end
+
+      if attributes.has_key?(:'detail')
+        self.detail = attributes[:'detail']
+      end
+
+      if attributes.has_key?(:'fields')
+        if (value = attributes[:'fields']).is_a?(Array)
+          self.fields = value
         end
       end
     end
@@ -85,12 +96,22 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @code.nil?
+        invalid_properties.push('invalid value for "code", code cannot be nil.')
+      end
+
+      if @message.nil?
+        invalid_properties.push('invalid value for "message", message cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @code.nil?
+      return false if @message.nil?
       true
     end
 
@@ -99,11 +120,12 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          submit_time_utc == o.submit_time_utc &&
-          status == o.status &&
-          reason == o.reason &&
+          code == o.code &&
           message == o.message &&
-          details == o.details
+          localization_key == o.localization_key &&
+          correlation_id == o.correlation_id &&
+          detail == o.detail &&
+          fields == o.fields
     end
 
     # @see the `==` method
@@ -115,7 +137,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [submit_time_utc, status, reason, message, details].hash
+      [code, message, localization_key, correlation_id, detail, fields].hash
     end
 
     # Builds the object from hash

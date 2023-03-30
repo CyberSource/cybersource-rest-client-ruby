@@ -200,14 +200,6 @@ module CyberSource
         invalid_properties.push('invalid value for "start_time", start_time cannot be nil.')
       end
 
-      if !@start_day.nil? && @start_day > 31
-        invalid_properties.push('invalid value for "start_day", must be smaller than or equal to 31.')
-      end
-
-      if !@start_day.nil? && @start_day < 1
-        invalid_properties.push('invalid value for "start_day", must be greater than or equal to 1.')
-      end
-
       #if !@group_name.nil? && @group_name !~ Regexp.new(/[a-zA-Z0-9-_ ]+/)
         #invalid_properties.push('invalid value for "group_name", must conform to the pattern /[a-zA-Z0-9-_ ]+/.')
       #end
@@ -229,8 +221,6 @@ module CyberSource
       #return false if @report_name !~ Regexp.new(/[a-zA-Z0-9-_ ]+/)
       return false if @timezone.nil?
       return false if @start_time.nil?
-      return false if !@start_day.nil? && @start_day > 31
-      return false if !@start_day.nil? && @start_day < 1
       #return false if !@group_name.nil? && @group_name !~ Regexp.new(/[a-zA-Z0-9-_ ]+/)
       true
     end
@@ -286,14 +276,6 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] start_day Value to be assigned
     def start_day=(start_day)
-      if !start_day.nil? && start_day > 31
-        fail ArgumentError, 'invalid value for "start_day", must be smaller than or equal to 31.'
-      end
-
-      if !start_day.nil? && start_day < 1
-        fail ArgumentError, 'invalid value for "start_day", must be greater than or equal to 1.'
-      end
-
       @start_day = start_day
     end
 

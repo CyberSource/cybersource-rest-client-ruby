@@ -44,7 +44,7 @@ describe 'KeymanagementApi' do
   # @option opts [Array<String>] :key_types Key Type, Possible values -  certificate, password, pgp and scmp_api. When Key Type is provided atleast one more filter needs to be provided
   # @option opts [DateTime] :expiration_start_date Expiry Filter Start Date. When Expiration Date filter is provided, atleast one more filter needs to be provided
   # @option opts [DateTime] :expiration_end_date Expiry Filter End Date. When Expiration Date filter is provided, atleast one more filter needs to be provided
-  # @return [InlineResponse200]
+  # @return [InlineResponse20011]
   describe 'search_keys test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

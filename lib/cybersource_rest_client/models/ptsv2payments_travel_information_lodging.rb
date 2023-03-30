@@ -419,32 +419,12 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@number_of_rooms.nil? && @number_of_rooms > 99
-        invalid_properties.push('invalid value for "number_of_rooms", must be smaller than or equal to 99.')
-      end
-
-      if !@number_of_rooms.nil? && @number_of_rooms < 1
-        invalid_properties.push('invalid value for "number_of_rooms", must be greater than or equal to 1.')
-      end
-
-      if !@number_of_guests.nil? && @number_of_guests > 99
-        invalid_properties.push('invalid value for "number_of_guests", must be smaller than or equal to 99.')
-      end
-
-      if !@number_of_guests.nil? && @number_of_guests < 1
-        invalid_properties.push('invalid value for "number_of_guests", must be greater than or equal to 1.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@number_of_rooms.nil? && @number_of_rooms > 99
-      return false if !@number_of_rooms.nil? && @number_of_rooms < 1
-      return false if !@number_of_guests.nil? && @number_of_guests > 99
-      return false if !@number_of_guests.nil? && @number_of_guests < 1
       true
     end
 
@@ -469,28 +449,12 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] number_of_rooms Value to be assigned
     def number_of_rooms=(number_of_rooms)
-      if !number_of_rooms.nil? && number_of_rooms > 99
-        fail ArgumentError, 'invalid value for "number_of_rooms", must be smaller than or equal to 99.'
-      end
-
-      if !number_of_rooms.nil? && number_of_rooms < 1
-        fail ArgumentError, 'invalid value for "number_of_rooms", must be greater than or equal to 1.'
-      end
-
       @number_of_rooms = number_of_rooms
     end
 
     # Custom attribute writer method with validation
     # @param [Object] number_of_guests Value to be assigned
     def number_of_guests=(number_of_guests)
-      if !number_of_guests.nil? && number_of_guests > 99
-        fail ArgumentError, 'invalid value for "number_of_guests", must be smaller than or equal to 99.'
-      end
-
-      if !number_of_guests.nil? && number_of_guests < 1
-        fail ArgumentError, 'invalid value for "number_of_guests", must be greater than or equal to 1.'
-      end
-
       @number_of_guests = number_of_guests
     end
 

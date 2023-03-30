@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class Tmsv2customersEmbeddedDefaultPaymentInstrumentInstrumentIdentifier
-    # The id of the Instrument Identifier token linked to the Payment Instrument. 
+    # The Id of the Instrument Identifier linked to the Payment Instrument. 
     attr_accessor :id
 
     # Attribute mapping from ruby-style variable name to JSON key.

@@ -17,7 +17,7 @@ module CyberSource
     # The value of the identification type. 
     attr_accessor :id
 
-    # The type of the identification.  Valid values:   - driver license 
+    # The type of the identification.  Possible Values:   - driver license 
     attr_accessor :type
 
     attr_accessor :issued_by

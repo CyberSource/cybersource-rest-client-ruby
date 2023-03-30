@@ -16,16 +16,19 @@ module CyberSource
   class InvoicingV2InvoicesAllGet200ResponseLinks
     attr_accessor :_self
 
-    attr_accessor :_next
+    attr_accessor :update
 
-    attr_accessor :previous
+    attr_accessor :deliver
+
+    attr_accessor :cancel
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'_self' => :'self',
-        :'_next' => :'next',
-        :'previous' => :'previous'
+        :'update' => :'update',
+        :'deliver' => :'deliver',
+        :'cancel' => :'cancel'
       }
     end
 
@@ -33,8 +36,9 @@ module CyberSource
     def self.swagger_types
       {
         :'_self' => :'PtsV2PaymentsPost201ResponseLinksSelf',
-        :'_next' => :'PtsV2PaymentsPost201ResponseLinksSelf',
-        :'previous' => :'PtsV2PaymentsPost201ResponseLinksSelf'
+        :'update' => :'PtsV2PaymentsPost201ResponseLinksSelf',
+        :'deliver' => :'PtsV2PaymentsPost201ResponseLinksSelf',
+        :'cancel' => :'PtsV2PaymentsPost201ResponseLinksSelf'
       }
     end
 
@@ -50,12 +54,16 @@ module CyberSource
         self._self = attributes[:'self']
       end
 
-      if attributes.has_key?(:'next')
-        self._next = attributes[:'next']
+      if attributes.has_key?(:'update')
+        self.update = attributes[:'update']
       end
 
-      if attributes.has_key?(:'previous')
-        self.previous = attributes[:'previous']
+      if attributes.has_key?(:'deliver')
+        self.deliver = attributes[:'deliver']
+      end
+
+      if attributes.has_key?(:'cancel')
+        self.cancel = attributes[:'cancel']
       end
     end
 
@@ -78,8 +86,9 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           _self == o._self &&
-          _next == o._next &&
-          previous == o.previous
+          update == o.update &&
+          deliver == o.deliver &&
+          cancel == o.cancel
     end
 
     # @see the `==` method
@@ -91,7 +100,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_self, _next, previous].hash
+      [_self, update, deliver, cancel].hash
     end
 
     # Builds the object from hash

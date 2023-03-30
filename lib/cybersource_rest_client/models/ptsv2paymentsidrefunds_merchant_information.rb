@@ -83,27 +83,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@category_code.nil? && @category_code > 9999
-        invalid_properties.push('invalid value for "category_code", must be smaller than or equal to 9999.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@category_code.nil? && @category_code > 9999
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] category_code Value to be assigned
     def category_code=(category_code)
-      if !category_code.nil? && category_code > 9999
-        fail ArgumentError, 'invalid value for "category_code", must be smaller than or equal to 9999.'
-      end
-
       @category_code = category_code
     end
 

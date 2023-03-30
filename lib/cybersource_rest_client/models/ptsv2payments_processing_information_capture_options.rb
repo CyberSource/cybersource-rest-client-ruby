@@ -66,60 +66,24 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@capture_sequence_number.nil? && @capture_sequence_number > 99
-        invalid_properties.push('invalid value for "capture_sequence_number", must be smaller than or equal to 99.')
-      end
-
-      if !@capture_sequence_number.nil? && @capture_sequence_number < 1
-        invalid_properties.push('invalid value for "capture_sequence_number", must be greater than or equal to 1.')
-      end
-
-      if !@total_capture_count.nil? && @total_capture_count > 99
-        invalid_properties.push('invalid value for "total_capture_count", must be smaller than or equal to 99.')
-      end
-
-      if !@total_capture_count.nil? && @total_capture_count < 1
-        invalid_properties.push('invalid value for "total_capture_count", must be greater than or equal to 1.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@capture_sequence_number.nil? && @capture_sequence_number > 99
-      return false if !@capture_sequence_number.nil? && @capture_sequence_number < 1
-      return false if !@total_capture_count.nil? && @total_capture_count > 99
-      return false if !@total_capture_count.nil? && @total_capture_count < 1
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] capture_sequence_number Value to be assigned
     def capture_sequence_number=(capture_sequence_number)
-      if !capture_sequence_number.nil? && capture_sequence_number > 99
-        fail ArgumentError, 'invalid value for "capture_sequence_number", must be smaller than or equal to 99.'
-      end
-
-      if !capture_sequence_number.nil? && capture_sequence_number < 1
-        fail ArgumentError, 'invalid value for "capture_sequence_number", must be greater than or equal to 1.'
-      end
-
       @capture_sequence_number = capture_sequence_number
     end
 
     # Custom attribute writer method with validation
     # @param [Object] total_capture_count Value to be assigned
     def total_capture_count=(total_capture_count)
-      if !total_capture_count.nil? && total_capture_count > 99
-        fail ArgumentError, 'invalid value for "total_capture_count", must be smaller than or equal to 99.'
-      end
-
-      if !total_capture_count.nil? && total_capture_count < 1
-        fail ArgumentError, 'invalid value for "total_capture_count", must be greater than or equal to 1.'
-      end
-
       @total_capture_count = total_capture_count
     end
 

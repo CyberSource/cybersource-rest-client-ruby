@@ -20,7 +20,10 @@ module CyberSource
     # Second line of the shipping address.  Optional field.  #### Tax Calculation Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes. Billing address objects will be used to determine the cardholder’s location when shipTo objects are not present. 
     attr_accessor :address2
 
-    # State or province of the shipping address. Use the [State, Province, and Territory Codes for the United States and Canada](https://developer.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf)  Required field for authorization if any shipping address information is included in the request and shipping to the U.S. or Canada; otherwise, optional.  #### Tax Calculation Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes. Billing address objects will be used to determine the cardholder’s location when shipTo objects are not present. 
+    # Third line of the shipping address.  #### Tax Calculation Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes. Billing address objects will be used to determine the cardholder’s location when shipTo objects are not present. 
+    attr_accessor :address3
+
+    # State or province of the shipping address. Use the [State, Province, and Territory Codes for the United States and Canada](https://developer.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf) (maximum length: 2)   Required field for authorization if any shipping address information is included in the request and shipping to the U.S. or Canada; otherwise, optional.  #### Tax Calculation Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes. Billing address objects will be used to determine the cardholder’s location when shipTo objects are not present. 
     attr_accessor :administrative_area
 
     # Country of the shipping address. Use the two-character [ISO Standard Country Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf)  Required field for authorization if any shipping address information is included in the request; otherwise, optional.  #### Tax Calculation Optional field for U.S., Canadian, international tax, and value added taxes. Billing address objects will be used to determine the cardholder’s location when shipTo objects are not present. 
@@ -37,6 +40,9 @@ module CyberSource
 
     # Last name of the recipient.  #### Litle Maximum length: 25  #### All other processors Maximum length: 60  Optional field. 
     attr_accessor :last_name
+
+    # Middle name of the recipient.  #### Litle Maximum length: 25  #### All other processors Maximum length: 60  Optional field. 
+    attr_accessor :middle_name
 
     # Phone number associated with the shipping address.
     attr_accessor :phone_number
@@ -55,12 +61,14 @@ module CyberSource
       {
         :'address1' => :'address1',
         :'address2' => :'address2',
+        :'address3' => :'address3',
         :'administrative_area' => :'administrativeArea',
         :'country' => :'country',
         :'destination_types' => :'destinationTypes',
         :'locality' => :'locality',
         :'first_name' => :'firstName',
         :'last_name' => :'lastName',
+        :'middle_name' => :'middleName',
         :'phone_number' => :'phoneNumber',
         :'postal_code' => :'postalCode',
         :'destination_code' => :'destinationCode',
@@ -73,12 +81,14 @@ module CyberSource
       {
         :'address1' => :'String',
         :'address2' => :'String',
+        :'address3' => :'String',
         :'administrative_area' => :'String',
         :'country' => :'String',
         :'destination_types' => :'String',
         :'locality' => :'String',
         :'first_name' => :'String',
         :'last_name' => :'String',
+        :'middle_name' => :'String',
         :'phone_number' => :'String',
         :'postal_code' => :'String',
         :'destination_code' => :'Integer',
@@ -100,6 +110,10 @@ module CyberSource
 
       if attributes.has_key?(:'address2')
         self.address2 = attributes[:'address2']
+      end
+
+      if attributes.has_key?(:'address3')
+        self.address3 = attributes[:'address3']
       end
 
       if attributes.has_key?(:'administrativeArea')
@@ -124,6 +138,10 @@ module CyberSource
 
       if attributes.has_key?(:'lastName')
         self.last_name = attributes[:'lastName']
+      end
+
+      if attributes.has_key?(:'middleName')
+        self.middle_name = attributes[:'middleName']
       end
 
       if attributes.has_key?(:'phoneNumber')
@@ -169,6 +187,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] address3 Value to be assigned
+    def address3=(address3)
+      @address3 = address3
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] administrative_area Value to be assigned
     def administrative_area=(administrative_area)
       @administrative_area = administrative_area
@@ -205,6 +229,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] middle_name Value to be assigned
+    def middle_name=(middle_name)
+      @middle_name = middle_name
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] phone_number Value to be assigned
     def phone_number=(phone_number)
       @phone_number = phone_number
@@ -229,12 +259,14 @@ module CyberSource
       self.class == o.class &&
           address1 == o.address1 &&
           address2 == o.address2 &&
+          address3 == o.address3 &&
           administrative_area == o.administrative_area &&
           country == o.country &&
           destination_types == o.destination_types &&
           locality == o.locality &&
           first_name == o.first_name &&
           last_name == o.last_name &&
+          middle_name == o.middle_name &&
           phone_number == o.phone_number &&
           postal_code == o.postal_code &&
           destination_code == o.destination_code &&
@@ -250,7 +282,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [address1, address2, administrative_area, country, destination_types, locality, first_name, last_name, phone_number, postal_code, destination_code, method].hash
+      [address1, address2, address3, administrative_area, country, destination_types, locality, first_name, last_name, middle_name, phone_number, postal_code, destination_code, method].hash
     end
 
     # Builds the object from hash

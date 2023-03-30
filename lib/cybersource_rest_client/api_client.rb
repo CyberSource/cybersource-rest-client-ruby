@@ -121,6 +121,9 @@ module CyberSource
       end
       http_method = http_method.to_sym.downcase
       header_params = headers.merge(@default_headers)
+      if $merchantconfig_obj.defaultCustomHeaders
+        header_params = header_params.merge($merchantconfig_obj.defaultCustomHeaders)
+      end
       form_params = opts[:form_params] || {}
 
 
@@ -172,6 +175,14 @@ module CyberSource
        require_relative '../AuthenticationSDK/core/MerchantConfig.rb'
        $merchantconfig_obj = Merchantconfig.new(config)
        @config.host = $merchantconfig_obj.requestHost
+       if $merchantconfig_obj.intermediateHost
+        @config.host =  $merchantconfig_obj.intermediateHost
+        if $merchantconfig_obj.intermediateHost.start_with?(Constants::HTTPS_URI_PREFIX)
+          @config.scheme =  'https'
+        elsif $merchantconfig_obj.intermediateHost.start_with?(Constants::HTTP_URI_PREFIX)
+          @config.scheme = 'http'
+        end
+       end
     end
     # Calling Authentication
     def CallAuthenticationHeader(http_method, path, body_params, header_params, query_params)
