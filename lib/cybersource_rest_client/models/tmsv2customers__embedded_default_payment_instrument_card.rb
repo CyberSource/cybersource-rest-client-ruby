@@ -37,6 +37,8 @@ module CyberSource
 
     # Hash value representing the card. 
     attr_accessor :hash
+    alias :hash_value :hash
+    alias :hash_value= :hash=
 
     attr_accessor :tokenized_information
 
@@ -50,7 +52,7 @@ module CyberSource
         :'start_month' => :'startMonth',
         :'start_year' => :'startYear',
         :'use_as' => :'useAs',
-        :'hash' => :'hash',
+        :'hash_value' => :'hashValue',
         :'tokenized_information' => :'tokenizedInformation'
       }
     end
@@ -65,7 +67,7 @@ module CyberSource
         :'start_month' => :'String',
         :'start_year' => :'String',
         :'use_as' => :'String',
-        :'hash' => :'String',
+        :'hash_value' => :'String',
         :'tokenized_information' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentCardTokenizedInformation'
       }
     end
@@ -106,8 +108,8 @@ module CyberSource
         self.use_as = attributes[:'useAs']
       end
 
-      if attributes.has_key?(:'hash')
-        self.hash = attributes[:'hash']
+      if attributes.has_key?(:'hashValue')
+        self.hash_value = attributes[:'hashValue']
       end
 
       if attributes.has_key?(:'tokenizedInformation')
@@ -160,8 +162,8 @@ module CyberSource
 
     # Custom attribute writer method with validation
     # @param [Object] hash Value to be assigned
-    def hash=(hash)
-      @hash = hash
+    def hash_value=(hash_value)
+      @hash_value = hash_value
     end
 
     # Checks equality by comparing each attribute.
@@ -176,7 +178,7 @@ module CyberSource
           start_month == o.start_month &&
           start_year == o.start_year &&
           use_as == o.use_as &&
-          hash == o.hash &&
+          hash_value == o.hash_value &&
           tokenized_information == o.tokenized_information
     end
 
@@ -189,7 +191,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [expiration_month, expiration_year, type, issue_number, start_month, start_year, use_as, hash, tokenized_information].hash
+      [expiration_month, expiration_year, type, issue_number, start_month, start_year, use_as, hash_value, tokenized_information].hash
     end
 
     # Builds the object from hash
