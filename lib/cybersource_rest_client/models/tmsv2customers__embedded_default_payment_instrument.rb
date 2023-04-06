@@ -16,17 +16,20 @@ module CyberSource
   class Tmsv2customersEmbeddedDefaultPaymentInstrument
     attr_accessor :_links
 
-    # The id of the Payment Instrument Token.
+    # The Id of the Payment Instrument Token.
     attr_accessor :id
 
-    # The type of token.  Valid values: - paymentInstrument 
+    # The type.  Possible Values: - paymentInstrument 
     attr_accessor :object
 
-    # Flag that indicates whether customer payment instrument is the dafault. Valid values:  - `true`: Payment instrument is customer's default.  - `false`: Payment instrument is not customer's default. 
+    # Flag that indicates whether customer payment instrument is the dafault. Possible Values:  - `true`: Payment instrument is customer's default.  - `false`: Payment instrument is not customer's default. 
     attr_accessor :default
 
-    # Issuers state for the card number. Valid values: - ACTIVE - CLOSED : The account has been closed. 
+    # Issuers state for the card number. Possible Values: - ACTIVE - CLOSED : The account has been closed. 
     attr_accessor :state
+
+    # The type of Payment Instrument. Possible Values: - cardHash 
+    attr_accessor :type
 
     attr_accessor :bank_account
 
@@ -54,6 +57,7 @@ module CyberSource
         :'object' => :'object',
         :'default' => :'default',
         :'state' => :'state',
+        :'type' => :'type',
         :'bank_account' => :'bankAccount',
         :'card' => :'card',
         :'buyer_information' => :'buyerInformation',
@@ -74,6 +78,7 @@ module CyberSource
         :'object' => :'String',
         :'default' => :'BOOLEAN',
         :'state' => :'String',
+        :'type' => :'String',
         :'bank_account' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentBankAccount',
         :'card' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentCard',
         :'buyer_information' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentBuyerInformation',
@@ -112,6 +117,10 @@ module CyberSource
 
       if attributes.has_key?(:'state')
         self.state = attributes[:'state']
+      end
+
+      if attributes.has_key?(:'type')
+        self.type = attributes[:'type']
       end
 
       if attributes.has_key?(:'bankAccount')
@@ -180,6 +189,7 @@ module CyberSource
           object == o.object &&
           default == o.default &&
           state == o.state &&
+          type == o.type &&
           bank_account == o.bank_account &&
           card == o.card &&
           buyer_information == o.buyer_information &&
@@ -200,7 +210,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, object, default, state, bank_account, card, buyer_information, bill_to, processing_information, merchant_information, instrument_identifier, metadata, _embedded].hash
+      [_links, id, object, default, state, type, bank_account, card, buyer_information, bill_to, processing_information, merchant_information, instrument_identifier, metadata, _embedded].hash
     end
 
     # Builds the object from hash

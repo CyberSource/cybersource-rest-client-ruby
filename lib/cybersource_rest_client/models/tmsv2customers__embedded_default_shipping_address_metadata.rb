@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class Tmsv2customersEmbeddedDefaultShippingAddressMetadata
-    # The creator of the Shipping Address token.
+    # The creator of the Shipping Address.
     attr_accessor :creator
 
     # Attribute mapping from ruby-style variable name to JSON key.

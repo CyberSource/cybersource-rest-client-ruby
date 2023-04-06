@@ -20,6 +20,9 @@ module CyberSource
     # Used for additional address information. For example: _Attention: Accounts Payable_ Optional field.  For Payouts: This field may be sent only for FDC Compass.  #### Atos This field must not contain colons (:).  #### CyberSource through VisaNet **Important** When you populate `orderInformation.billTo.address1` and `orderInformation.billTo.address2`, CyberSource through VisaNet concatenates the two values. If the concatenated value exceeds 40 characters, CyberSource through VisaNet truncates the value at 40 characters before sending it to Visa and the issuing bank. Truncating this value affects AVS results and therefore might also affect risk decisions and chargebacks. Credit card networks cannot process transactions that contain non-ASCII characters. CyberSource through VisaNet accepts and stores non-ASCII characters correctly and displays them correctly in reports. However, the limitations of the credit card networks prevent CyberSource through VisaNet from transmitting non-ASCII characters to the credit card networks. Therefore, CyberSource through VisaNet replaces non-ASCII characters with meaningless ASCII characters for transmission to the credit card networks.  #### Chase Paymentech Solutions, FDC Compass, and TSYS Acquiring Solutions This value is used for AVS.  #### FDMS Nashville `orderInformation.billTo.address1` and `orderInformation.billTo.address2` together cannot exceed 20 characters. String (20)  #### All Other Processors String (60) 
     attr_accessor :address2
 
+    # Additional address information (third line of the billing address) 
+    attr_accessor :address3
+
     # State or province of the billing address. Use the [State, Province, and Territory Codes for the United States and Canada](https://developer.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf).  For Payouts: This field may be sent only for FDC Compass.  ##### CyberSource through VisaNet Credit card networks cannot process transactions that contain non-ASCII characters. CyberSource through VisaNet accepts and stores non-ASCII characters correctly and displays them correctly in reports. However, the limitations of the credit card networks prevent CyberSource through VisaNet from transmitting non-ASCII characters to the credit card networks. Therefore, CyberSource through VisaNet replaces non-ASCII characters with meaningless ASCII characters for transmission to the credit card networks.  **Important** It is your responsibility to determine whether a field is required for the transaction you are requesting.  #### Chase Paymentech Solutions Optional field.  ####  Credit Mutuel-CIC Optional field.  #### OmniPay Direct Optional field.  #### SIX Optional field.  #### TSYS Acquiring Solutions Required when `processingInformation.billPaymentOptions.billPayment=true` and `pointOfSaleInformation.entryMode=keyed`.  #### Worldpay VAP Optional field.  #### All other processors Not used. 
     attr_accessor :administrative_area
 
@@ -49,6 +52,7 @@ module CyberSource
       {
         :'address1' => :'address1',
         :'address2' => :'address2',
+        :'address3' => :'address3',
         :'administrative_area' => :'administrativeArea',
         :'country' => :'country',
         :'locality' => :'locality',
@@ -65,6 +69,7 @@ module CyberSource
       {
         :'address1' => :'String',
         :'address2' => :'String',
+        :'address3' => :'String',
         :'administrative_area' => :'String',
         :'country' => :'String',
         :'locality' => :'String',
@@ -90,6 +95,10 @@ module CyberSource
 
       if attributes.has_key?(:'address2')
         self.address2 = attributes[:'address2']
+      end
+
+      if attributes.has_key?(:'address3')
+        self.address3 = attributes[:'address3']
       end
 
       if attributes.has_key?(:'administrativeArea')
@@ -190,6 +199,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] address3 Value to be assigned
+    def address3=(address3)
+      @address3 = address3
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] administrative_area Value to be assigned
     def administrative_area=(administrative_area)
       if administrative_area.nil?
@@ -268,6 +283,7 @@ module CyberSource
       self.class == o.class &&
           address1 == o.address1 &&
           address2 == o.address2 &&
+          address3 == o.address3 &&
           administrative_area == o.administrative_area &&
           country == o.country &&
           locality == o.locality &&
@@ -287,7 +303,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [address1, address2, administrative_area, country, locality, first_name, last_name, phone_number, email, postal_code].hash
+      [address1, address2, address3, administrative_area, country, locality, first_name, last_name, phone_number, email, postal_code].hash
     end
 
     # Builds the object from hash

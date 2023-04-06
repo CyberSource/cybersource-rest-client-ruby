@@ -16,16 +16,16 @@ module CyberSource
   class PostInstrumentIdentifierEnrollmentRequest
     attr_accessor :_links
 
-    # The id of the Instrument Identifier Token. 
+    # The Id of the Instrument Identifier Token. 
     attr_accessor :id
 
-    # The type of token.  Valid values: - instrumentIdentifier 
+    # The type.  Possible Values: - instrumentIdentifier 
     attr_accessor :object
 
-    # Issuers state for the card number. Valid values: - ACTIVE - CLOSED : The account has been closed. 
+    # Issuers state for the card number. Possible Values: - ACTIVE - CLOSED : The account has been closed. 
     attr_accessor :state
 
-    # The type of Instrument Identifier. Valid values: - enrollable card 
+    # The type of Instrument Identifier. Possible Values: - enrollable card 
     attr_accessor :type
 
     attr_accessor :card

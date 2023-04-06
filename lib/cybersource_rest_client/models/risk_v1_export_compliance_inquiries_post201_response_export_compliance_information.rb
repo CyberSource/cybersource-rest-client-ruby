@@ -67,36 +67,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@ip_country_confidence.nil? && @ip_country_confidence > 100
-        invalid_properties.push('invalid value for "ip_country_confidence", must be smaller than or equal to 100.')
-      end
-
-      if !@ip_country_confidence.nil? && @ip_country_confidence < -1
-        invalid_properties.push('invalid value for "ip_country_confidence", must be greater than or equal to -1.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@ip_country_confidence.nil? && @ip_country_confidence > 100
-      return false if !@ip_country_confidence.nil? && @ip_country_confidence < -1
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] ip_country_confidence Value to be assigned
     def ip_country_confidence=(ip_country_confidence)
-      if !ip_country_confidence.nil? && ip_country_confidence > 100
-        fail ArgumentError, 'invalid value for "ip_country_confidence", must be smaller than or equal to 100.'
-      end
-
-      if !ip_country_confidence.nil? && ip_country_confidence < -1
-        fail ArgumentError, 'invalid value for "ip_country_confidence", must be greater than or equal to -1.'
-      end
-
       @ip_country_confidence = ip_country_confidence
     end
 

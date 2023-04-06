@@ -25,13 +25,16 @@ module CyberSource
 
     attr_accessor :partner
 
+    attr_accessor :emv
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'terminal_id' => :'terminalId',
         :'terminal_serial_number' => :'terminalSerialNumber',
         :'device_id' => :'deviceId',
-        :'partner' => :'partner'
+        :'partner' => :'partner',
+        :'emv' => :'emv'
       }
     end
 
@@ -41,7 +44,8 @@ module CyberSource
         :'terminal_id' => :'String',
         :'terminal_serial_number' => :'String',
         :'device_id' => :'String',
-        :'partner' => :'TssV2TransactionsPost201ResponseEmbeddedPointOfSaleInformationPartner'
+        :'partner' => :'TssV2TransactionsPost201ResponseEmbeddedPointOfSaleInformationPartner',
+        :'emv' => :'Ptsv2paymentsidreversalsPointOfSaleInformationEmv'
       }
     end
 
@@ -67,6 +71,10 @@ module CyberSource
 
       if attributes.has_key?(:'partner')
         self.partner = attributes[:'partner']
+      end
+
+      if attributes.has_key?(:'emv')
+        self.emv = attributes[:'emv']
       end
     end
 
@@ -103,7 +111,8 @@ module CyberSource
           terminal_id == o.terminal_id &&
           terminal_serial_number == o.terminal_serial_number &&
           device_id == o.device_id &&
-          partner == o.partner
+          partner == o.partner &&
+          emv == o.emv
     end
 
     # @see the `==` method
@@ -115,7 +124,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [terminal_id, terminal_serial_number, device_id, partner].hash
+      [terminal_id, terminal_serial_number, device_id, partner, emv].hash
     end
 
     # Builds the object from hash

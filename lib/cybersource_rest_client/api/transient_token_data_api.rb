@@ -21,7 +21,7 @@ module CyberSource
       @api_client.set_configuration(config)
     end
     # Get Transient Token Data
-    # Retrieve the data captured by Unfied Checkout. This API is used to retrieve the detailed data represented by the Transient Token. This API will not return PCI payment data (PAN). Include the Request ID in the GET request to retrieve the transaction details.
+    # Retrieve the data captured by Unified Checkout. This API is used to retrieve the detailed data represented by the Transient Token. This API will not return PCI payment data (PAN). Include the Request ID in the GET request to retrieve the transaction details.
     # @param transient_token Transient Token returned by the Unified Checkout application. 
     # @param [Hash] opts the optional parameters
     # @return [nil]
@@ -31,7 +31,7 @@ module CyberSource
     end
 
     # Get Transient Token Data
-    # Retrieve the data captured by Unfied Checkout. This API is used to retrieve the detailed data represented by the Transient Token. This API will not return PCI payment data (PAN). Include the Request ID in the GET request to retrieve the transaction details.
+    # Retrieve the data captured by Unified Checkout. This API is used to retrieve the detailed data represented by the Transient Token. This API will not return PCI payment data (PAN). Include the Request ID in the GET request to retrieve the transaction details.
     # @param transient_token Transient Token returned by the Unified Checkout application. 
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers

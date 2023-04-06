@@ -136,6 +136,9 @@ module CyberSource
     # Enables the communication of trusted beneficiary/whitelist status between the ACS, the DS and the 3DS Requestor.  Possible Values:  Y - 3DS Requestor is whitelisted by cardholder  N - 3DS Requestor is not whitelisted by cardholder 
     attr_accessor :white_list_status
 
+    # Risk Assessment from Mastercard. This is to be sent by merchant if they would like to request a score
+    attr_accessor :score_request
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -179,7 +182,8 @@ module CyberSource
         :'sdk_max_timeout' => :'sdkMaxTimeout',
         :'secure_corporate_payment_indicator' => :'secureCorporatePaymentIndicator',
         :'transaction_mode' => :'transactionMode',
-        :'white_list_status' => :'whiteListStatus'
+        :'white_list_status' => :'whiteListStatus',
+        :'score_request' => :'scoreRequest'
       }
     end
 
@@ -226,7 +230,8 @@ module CyberSource
         :'sdk_max_timeout' => :'String',
         :'secure_corporate_payment_indicator' => :'String',
         :'transaction_mode' => :'String',
-        :'white_list_status' => :'String'
+        :'white_list_status' => :'String',
+        :'score_request' => :'Integer'
       }
     end
 
@@ -400,6 +405,10 @@ module CyberSource
 
       if attributes.has_key?(:'whiteListStatus')
         self.white_list_status = attributes[:'whiteListStatus']
+      end
+
+      if attributes.has_key?(:'scoreRequest')
+        self.score_request = attributes[:'scoreRequest']
       end
     end
 
@@ -641,7 +650,8 @@ module CyberSource
           sdk_max_timeout == o.sdk_max_timeout &&
           secure_corporate_payment_indicator == o.secure_corporate_payment_indicator &&
           transaction_mode == o.transaction_mode &&
-          white_list_status == o.white_list_status
+          white_list_status == o.white_list_status &&
+          score_request == o.score_request
     end
 
     # @see the `==` method
@@ -653,7 +663,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [strong_authentication, authentication_type, acs_window_size, alternate_authentication_data, alternate_authentication_date, alternate_authentication_method, authentication_date, authentication_transaction_id, transaction_flow_indicator, challenge_cancel_code, challenge_code, challenge_status, customer_card_alias, decoupled_authentication_indicator, decoupled_authentication_max_time, default_card, device_channel, installment_total_count, merchant_fraud_rate, marketing_opt_in, marketing_source, mcc, merchant_score, message_category, npa_code, override_payment_method, override_country_code, prior_authentication_data, prior_authentication_method, prior_authentication_reference_id, prior_authentication_time, product_code, return_url, requestor_id, requestor_initiated_authentication_indicator, requestor_name, reference_id, sdk_max_timeout, secure_corporate_payment_indicator, transaction_mode, white_list_status].hash
+      [strong_authentication, authentication_type, acs_window_size, alternate_authentication_data, alternate_authentication_date, alternate_authentication_method, authentication_date, authentication_transaction_id, transaction_flow_indicator, challenge_cancel_code, challenge_code, challenge_status, customer_card_alias, decoupled_authentication_indicator, decoupled_authentication_max_time, default_card, device_channel, installment_total_count, merchant_fraud_rate, marketing_opt_in, marketing_source, mcc, merchant_score, message_category, npa_code, override_payment_method, override_country_code, prior_authentication_data, prior_authentication_method, prior_authentication_reference_id, prior_authentication_time, product_code, return_url, requestor_id, requestor_initiated_authentication_indicator, requestor_name, reference_id, sdk_max_timeout, secure_corporate_payment_indicator, transaction_mode, white_list_status, score_request].hash
     end
 
     # Builds the object from hash

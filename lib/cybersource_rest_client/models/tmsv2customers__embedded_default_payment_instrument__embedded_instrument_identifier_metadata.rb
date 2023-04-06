@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifierMetadata
-    # The creator of the Instrument Identifier token.
+    # The creator of the Instrument Identifier.
     attr_accessor :creator
 
     # Attribute mapping from ruby-style variable name to JSON key.

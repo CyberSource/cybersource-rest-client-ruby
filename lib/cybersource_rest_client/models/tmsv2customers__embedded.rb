@@ -13,7 +13,7 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  # Additional resources for the Customer token. 
+  # Additional resources for the Customer. 
   class Tmsv2customersEmbedded
     attr_accessor :default_payment_instrument
 

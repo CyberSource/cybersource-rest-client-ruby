@@ -20,7 +20,7 @@ module CyberSource
     # The status of the submitted transaction.  Possible values:  - INVALID_REQUEST 
     attr_accessor :status
 
-    # The reason of the status.  Possible values:  - MISSING_FIELD  - INVALID_DATA  - DUPLICATE_REQUEST  - INVALID_MERCHANT_CONFIGURATION  - NOT_VOIDABLE 
+    # The reason of the status.  Possible values:  - MISSING_FIELD  - INVALID_DATA  - DUPLICATE_REQUEST  - INVALID_MERCHANT_CONFIGURATION  - NOT_VOIDABLE  - NOT_SUPPORTED 
     attr_accessor :reason
 
     # The detail message related to the status and reason listed above.

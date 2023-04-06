@@ -14,30 +14,34 @@ require 'date'
 
 module CyberSource
   class Body
-    # Identifies the service requesting parsing 
-    attr_accessor :requestor
+    # Valid Values:   * oneOff   * amexRegistration 
+    attr_accessor :type
 
-    # Number of tags to parse for each EMV tag string provided. 
-    attr_accessor :parsed_tag_limit
+    attr_accessor :included
 
-    # An array of objects, each containing a requestId and the corresponding emvRequestCombinedTags 
-    attr_accessor :emv_details_list
+    # Reference used by merchant to identify batch.
+    attr_accessor :merchant_reference
+
+    # Email used to notify the batch status.
+    attr_accessor :notification_email
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'requestor' => :'requestor',
-        :'parsed_tag_limit' => :'parsedTagLimit',
-        :'emv_details_list' => :'emvDetailsList'
+        :'type' => :'type',
+        :'included' => :'included',
+        :'merchant_reference' => :'merchantReference',
+        :'notification_email' => :'notificationEmail'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'requestor' => :'String',
-        :'parsed_tag_limit' => :'Integer',
-        :'emv_details_list' => :'Array<Tssv2transactionsemvTagDetailsEmvDetailsList>'
+        :'type' => :'String',
+        :'included' => :'Accountupdaterv1batchesIncluded',
+        :'merchant_reference' => :'String',
+        :'notification_email' => :'String'
       }
     end
 
@@ -49,18 +53,22 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'requestor')
-        self.requestor = attributes[:'requestor']
+      if attributes.has_key?(:'type')
+        self.type = attributes[:'type']
+      else
+        self.type = "oneOff"
       end
 
-      if attributes.has_key?(:'parsedTagLimit')
-        self.parsed_tag_limit = attributes[:'parsedTagLimit']
+      if attributes.has_key?(:'included')
+        self.included = attributes[:'included']
       end
 
-      if attributes.has_key?(:'emvDetailsList')
-        if (value = attributes[:'emvDetailsList']).is_a?(Array)
-          self.emv_details_list = value
-        end
+      if attributes.has_key?(:'merchantReference')
+        self.merchant_reference = attributes[:'merchantReference']
+      end
+
+      if attributes.has_key?(:'notificationEmail')
+        self.notification_email = attributes[:'notificationEmail']
       end
     end
 
@@ -68,12 +76,8 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @requestor.nil?
-        invalid_properties.push('invalid value for "requestor", requestor cannot be nil.')
-      end
-
-      if @emv_details_list.nil?
-        invalid_properties.push('invalid value for "emv_details_list", emv_details_list cannot be nil.')
+      if @notification_email.nil?
+        invalid_properties.push('invalid value for "notification_email", notification_email cannot be nil.')
       end
 
       invalid_properties
@@ -82,9 +86,14 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @requestor.nil?
-      return false if @emv_details_list.nil?
+      return false if @notification_email.nil?
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] merchant_reference Value to be assigned
+    def merchant_reference=(merchant_reference)
+      @merchant_reference = merchant_reference
     end
 
     # Checks equality by comparing each attribute.
@@ -92,9 +101,10 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          requestor == o.requestor &&
-          parsed_tag_limit == o.parsed_tag_limit &&
-          emv_details_list == o.emv_details_list
+          type == o.type &&
+          included == o.included &&
+          merchant_reference == o.merchant_reference &&
+          notification_email == o.notification_email
     end
 
     # @see the `==` method
@@ -106,7 +116,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [requestor, parsed_tag_limit, emv_details_list].hash
+      [type, included, merchant_reference, notification_email].hash
     end
 
     # Builds the object from hash

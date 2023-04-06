@@ -14,10 +14,10 @@ require 'date'
 
 module CyberSource
   class InlineResponse400Errors
-    # The type of error.
+    # The type of error.  Possible Values:   - invalidHeaders   - missingHeaders   - invalidFields   - missingFields   - unsupportedPaymentMethodModification   - invalidCombination 
     attr_accessor :type
 
-    # The detailed message related to the type stated above.
+    # The detailed message related to the type.
     attr_accessor :message
 
     attr_accessor :details

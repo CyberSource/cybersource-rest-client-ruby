@@ -13,7 +13,7 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  # Additional resources for the Payment Instrument token. 
+  # Additional resources for the Payment Instrument. 
   class Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbedded
     attr_accessor :instrument_identifier
 

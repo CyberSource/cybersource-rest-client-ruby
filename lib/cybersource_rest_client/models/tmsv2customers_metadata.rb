@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class Tmsv2customersMetadata
-    # The creator of the Customer token. 
+    # The creator of the Customer. 
     attr_accessor :creator
 
     # Attribute mapping from ruby-style variable name to JSON key.

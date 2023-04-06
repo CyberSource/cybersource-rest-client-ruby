@@ -41,6 +41,9 @@ module CyberSource
     # Enables the communication of trusted beneficiary/whitelist status between the ACS, the DS and the 3DS Requestor.  Possible Values:  Y - 3DS Requestor is whitelisted by cardholder  N - 3DS Requestor is not whitelisted by cardholder 
     attr_accessor :white_list_status
 
+    # A flag to indicate if the passed credential has been encrypted by the Merchant.
+    attr_accessor :credential_encrypted
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -52,7 +55,8 @@ module CyberSource
         :'response_access_token' => :'responseAccessToken',
         :'signed_pares_status_reason' => :'signedParesStatusReason',
         :'signed_pares' => :'signedPares',
-        :'white_list_status' => :'whiteListStatus'
+        :'white_list_status' => :'whiteListStatus',
+        :'credential_encrypted' => :'credentialEncrypted'
       }
     end
 
@@ -67,7 +71,8 @@ module CyberSource
         :'response_access_token' => :'String',
         :'signed_pares_status_reason' => :'String',
         :'signed_pares' => :'String',
-        :'white_list_status' => :'String'
+        :'white_list_status' => :'String',
+        :'credential_encrypted' => :'String'
       }
     end
 
@@ -113,6 +118,10 @@ module CyberSource
 
       if attributes.has_key?(:'whiteListStatus')
         self.white_list_status = attributes[:'whiteListStatus']
+      end
+
+      if attributes.has_key?(:'credentialEncrypted')
+        self.credential_encrypted = attributes[:'credentialEncrypted']
       end
     end
 
@@ -171,6 +180,12 @@ module CyberSource
       @white_list_status = white_list_status
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] credential_encrypted Value to be assigned
+    def credential_encrypted=(credential_encrypted)
+      @credential_encrypted = credential_encrypted
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -184,7 +199,8 @@ module CyberSource
           response_access_token == o.response_access_token &&
           signed_pares_status_reason == o.signed_pares_status_reason &&
           signed_pares == o.signed_pares &&
-          white_list_status == o.white_list_status
+          white_list_status == o.white_list_status &&
+          credential_encrypted == o.credential_encrypted
     end
 
     # @see the `==` method
@@ -196,7 +212,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [authentication_transaction_id, authentication_transaction_context, otp_token, authentication_type, effective_authentication_type, response_access_token, signed_pares_status_reason, signed_pares, white_list_status].hash
+      [authentication_transaction_id, authentication_transaction_context, otp_token, authentication_type, effective_authentication_type, response_access_token, signed_pares_status_reason, signed_pares, white_list_status, credential_encrypted].hash
     end
 
     # Builds the object from hash

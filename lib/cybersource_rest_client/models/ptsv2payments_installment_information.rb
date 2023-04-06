@@ -174,22 +174,12 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@sequence.nil? && @sequence > 99
-        invalid_properties.push('invalid value for "sequence", must be smaller than or equal to 99.')
-      end
-
-      if !@total_count.nil? && @total_count > 99
-        invalid_properties.push('invalid value for "total_count", must be smaller than or equal to 99.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@sequence.nil? && @sequence > 99
-      return false if !@total_count.nil? && @total_count > 99
       true
     end
 
@@ -214,10 +204,6 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] sequence Value to be assigned
     def sequence=(sequence)
-      if !sequence.nil? && sequence > 99
-        fail ArgumentError, 'invalid value for "sequence", must be smaller than or equal to 99.'
-      end
-
       @sequence = sequence
     end
 
@@ -230,10 +216,6 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] total_count Value to be assigned
     def total_count=(total_count)
-      if !total_count.nil? && total_count > 99
-        fail ArgumentError, 'invalid value for "total_count", must be smaller than or equal to 99.'
-      end
-
       @total_count = total_count
     end
 

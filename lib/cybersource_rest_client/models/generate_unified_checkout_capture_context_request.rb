@@ -16,7 +16,7 @@ module CyberSource
   class GenerateUnifiedCheckoutCaptureContextRequest
     attr_accessor :target_origins
 
-    # verson number of Unified Checkout being used
+    # version number of Unified Checkout being used
     attr_accessor :client_version
 
     attr_accessor :allowed_card_networks

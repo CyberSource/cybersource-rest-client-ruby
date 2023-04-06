@@ -34,6 +34,8 @@
 
       HTTPS_URI_PREFIX = 'https://' unless const_defined?(:HTTPS_URI_PREFIX)
 
+      HTTP_URI_PREFIX = 'http://' unless const_defined?(:HTTP_URI_PREFIX)
+
       BEARER = 'Bearer' unless const_defined?(:BEARER)
 
       MEDIA_TYPE_JSON = 'application/json' unless const_defined?(:MEDIA_TYPE_JSON)

@@ -148,14 +148,6 @@ module CyberSource
         #invalid_properties.push('invalid value for "report_interval", must conform to the pattern /^PT((([1-9]|1[0-9]|2[0-3])H(([1-9]|[1-4][0-9]|5[0-9])M)?)|((([1-9]|1[0-9]|2[0-3])H)?([1-9]|[1-4][0-9]|5[0-9])M))$/.')
       #end
 
-      if !@start_day.nil? && @start_day > 31
-        invalid_properties.push('invalid value for "start_day", must be smaller than or equal to 31.')
-      end
-
-      if !@start_day.nil? && @start_day < 1
-        invalid_properties.push('invalid value for "start_day", must be greater than or equal to 1.')
-      end
-
       invalid_properties
     end
 
@@ -167,8 +159,6 @@ module CyberSource
       return false if @subscription_type.nil?
       #return false if !@report_name.nil? && @report_name !~ Regexp.new(/[a-zA-Z0-9-_ ]+/)
       #return false if !@report_interval.nil? && @report_interval !~ Regexp.new(/^PT((([1-9]|1[0-9]|2[0-3])H(([1-9]|[1-4][0-9]|5[0-9])M)?)|((([1-9]|1[0-9]|2[0-3])H)?([1-9]|[1-4][0-9]|5[0-9])M))$/)
-      return false if !@start_day.nil? && @start_day > 31
-      return false if !@start_day.nil? && @start_day < 1
       true
     end
 
@@ -209,14 +199,6 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] start_day Value to be assigned
     def start_day=(start_day)
-      if !start_day.nil? && start_day > 31
-        fail ArgumentError, 'invalid value for "start_day", must be smaller than or equal to 31.'
-      end
-
-      if !start_day.nil? && start_day < 1
-        fail ArgumentError, 'invalid value for "start_day", must be greater than or equal to 1.'
-      end
-
       @start_day = start_day
     end
 

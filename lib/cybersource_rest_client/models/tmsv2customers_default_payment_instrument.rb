@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class Tmsv2customersDefaultPaymentInstrument
-    # The id of the Customers default Payment Instrument 
+    # The Id of the Customers default Payment Instrument 
     attr_accessor :id
 
     # Attribute mapping from ruby-style variable name to JSON key.

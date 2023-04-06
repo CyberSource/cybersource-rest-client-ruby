@@ -13,18 +13,18 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  # The expirationMonth, expirationYear and securityCode is sent to the issuer as part of network token enrollment and is not stored under the Instrument Identifier token. 
+  # The expirationMonth, expirationYear and securityCode is sent to the issuer as part of network token enrollment and is not stored under the Instrument Identifier. 
   class Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifierCard
     # The customer’s payment card number, also known as the Primary Account Number (PAN). You can also use this field for encoded account numbers. 
     attr_accessor :number
 
-    # Two-digit month in which the payment card expires.  Format: `MM`.  Valid values: `01` through `12`. 
+    # Two-digit month in which the payment card expires.  Format: `MM`.  Possible Values: `01` through `12`. 
     attr_accessor :expiration_month
 
     # Four-digit year in which the credit card expires.  Format: `YYYY`. 
     attr_accessor :expiration_year
 
-    # Card Verification Number. 
+    # Card Verification Code.  This value is sent to the issuer to support the approval of a network token provision. It is not persisted against the Instrument Identifier. 
     attr_accessor :security_code
 
     # Attribute mapping from ruby-style variable name to JSON key.
