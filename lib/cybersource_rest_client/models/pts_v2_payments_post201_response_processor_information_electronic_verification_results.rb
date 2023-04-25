@@ -44,11 +44,29 @@ module CyberSource
     # Raw Electronic Verification response code from the processor for the customer’s street address.
     attr_accessor :street_raw
 
-    # Mapped Electronic Verification response code for the customer’s name. 
+    # #### Visa Platform Connect Mapped Electronic Verification response code for the customer’s name.  Valid values :  'Y'   Yes, the data Matches 'N'   No Match 'O'   Partial Match 
     attr_accessor :name
 
-    # Raw Electronic Verification response code from the processor for the customer’s name. 
+    # #### Visa Platform Connect Raw Electronic Verification response code from the processor for the customer’s name.  Valid values :  '01'     Match '50'     Partial Match '99'     No Match 
     attr_accessor :name_raw
+
+    # #### Visa Platform Connect Raw electronic verification response code from the processor for the customer’s first name.  Valid values :  '01'     Match '50'     Partial Match '99'     No Match 
+    attr_accessor :first_name_raw
+
+    # #### Visa Platform Connect Mapped electronic verification response code from the processor for the customer’s first name.  Valid values :  'Y'   Yes, the data Matches 'N'   No Match 'O'   Partial Match 
+    attr_accessor :first_name
+
+    # #### Visa Platform Connect Raw electronic verification response code from the processor for the customer’s middle name.  Valid values :  '01'     Match '50'     Partial Match '99'     No Match 
+    attr_accessor :middle_name_raw
+
+    # #### Visa Platform Connect Mapped electronic verification response code from the processor for the customer’s middle name.  Valid values :  'Y'   Yes, the data Matches 'N'   No Match 'O'   Partial Match 
+    attr_accessor :middle_name
+
+    # #### Visa Platform Connect Raw electronic verification response code from the processor for the customer’s last name.  Valid values :  '01'     Match '50'     Partial Match '99'     No Match 
+    attr_accessor :last_name_raw
+
+    # #### Visa Platform Connect Mapped electronic verification response code from the processor for the customer’s last name.  Valid values :  'Y'   Yes, the data Matches 'N'   No Match 'O'   Partial Match 
+    attr_accessor :last_name
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -64,7 +82,13 @@ module CyberSource
         :'street' => :'street',
         :'street_raw' => :'streetRaw',
         :'name' => :'name',
-        :'name_raw' => :'nameRaw'
+        :'name_raw' => :'nameRaw',
+        :'first_name_raw' => :'firstNameRaw',
+        :'first_name' => :'firstName',
+        :'middle_name_raw' => :'middleNameRaw',
+        :'middle_name' => :'middleName',
+        :'last_name_raw' => :'lastNameRaw',
+        :'last_name' => :'lastName'
       }
     end
 
@@ -82,7 +106,13 @@ module CyberSource
         :'street' => :'String',
         :'street_raw' => :'String',
         :'name' => :'String',
-        :'name_raw' => :'String'
+        :'name_raw' => :'String',
+        :'first_name_raw' => :'String',
+        :'first_name' => :'String',
+        :'middle_name_raw' => :'String',
+        :'middle_name' => :'String',
+        :'last_name_raw' => :'String',
+        :'last_name' => :'String'
       }
     end
 
@@ -140,6 +170,30 @@ module CyberSource
 
       if attributes.has_key?(:'nameRaw')
         self.name_raw = attributes[:'nameRaw']
+      end
+
+      if attributes.has_key?(:'firstNameRaw')
+        self.first_name_raw = attributes[:'firstNameRaw']
+      end
+
+      if attributes.has_key?(:'firstName')
+        self.first_name = attributes[:'firstName']
+      end
+
+      if attributes.has_key?(:'middleNameRaw')
+        self.middle_name_raw = attributes[:'middleNameRaw']
+      end
+
+      if attributes.has_key?(:'middleName')
+        self.middle_name = attributes[:'middleName']
+      end
+
+      if attributes.has_key?(:'lastNameRaw')
+        self.last_name_raw = attributes[:'lastNameRaw']
+      end
+
+      if attributes.has_key?(:'lastName')
+        self.last_name = attributes[:'lastName']
       end
     end
 
@@ -228,6 +282,42 @@ module CyberSource
       @name_raw = name_raw
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] first_name_raw Value to be assigned
+    def first_name_raw=(first_name_raw)
+      @first_name_raw = first_name_raw
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] first_name Value to be assigned
+    def first_name=(first_name)
+      @first_name = first_name
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] middle_name_raw Value to be assigned
+    def middle_name_raw=(middle_name_raw)
+      @middle_name_raw = middle_name_raw
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] middle_name Value to be assigned
+    def middle_name=(middle_name)
+      @middle_name = middle_name
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] last_name_raw Value to be assigned
+    def last_name_raw=(last_name_raw)
+      @last_name_raw = last_name_raw
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] last_name Value to be assigned
+    def last_name=(last_name)
+      @last_name = last_name
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -244,7 +334,13 @@ module CyberSource
           street == o.street &&
           street_raw == o.street_raw &&
           name == o.name &&
-          name_raw == o.name_raw
+          name_raw == o.name_raw &&
+          first_name_raw == o.first_name_raw &&
+          first_name == o.first_name &&
+          middle_name_raw == o.middle_name_raw &&
+          middle_name == o.middle_name &&
+          last_name_raw == o.last_name_raw &&
+          last_name == o.last_name
     end
 
     # @see the `==` method
@@ -256,7 +352,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [code, code_raw, email, email_raw, phone_number, phone_number_raw, postal_code, postal_code_raw, street, street_raw, name, name_raw].hash
+      [code, code_raw, email, email_raw, phone_number, phone_number_raw, postal_code, postal_code_raw, street, street_raw, name, name_raw, first_name_raw, first_name, middle_name_raw, middle_name, last_name_raw, last_name].hash
     end
 
     # Builds the object from hash

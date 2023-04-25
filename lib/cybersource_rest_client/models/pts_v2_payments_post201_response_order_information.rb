@@ -20,12 +20,15 @@ module CyberSource
 
     attr_accessor :reward_points_details
 
+    attr_accessor :bill_to
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'amount_details' => :'amountDetails',
         :'invoice_details' => :'invoiceDetails',
-        :'reward_points_details' => :'rewardPointsDetails'
+        :'reward_points_details' => :'rewardPointsDetails',
+        :'bill_to' => :'billTo'
       }
     end
 
@@ -34,7 +37,8 @@ module CyberSource
       {
         :'amount_details' => :'PtsV2PaymentsPost201ResponseOrderInformationAmountDetails',
         :'invoice_details' => :'PtsV2PaymentsPost201ResponseOrderInformationInvoiceDetails',
-        :'reward_points_details' => :'PtsV2PaymentsPost201ResponseOrderInformationRewardPointsDetails'
+        :'reward_points_details' => :'PtsV2PaymentsPost201ResponseOrderInformationRewardPointsDetails',
+        :'bill_to' => :'PtsV2PaymentsPost201ResponseOrderInformationBillTo'
       }
     end
 
@@ -56,6 +60,10 @@ module CyberSource
 
       if attributes.has_key?(:'rewardPointsDetails')
         self.reward_points_details = attributes[:'rewardPointsDetails']
+      end
+
+      if attributes.has_key?(:'billTo')
+        self.bill_to = attributes[:'billTo']
       end
     end
 
@@ -79,7 +87,8 @@ module CyberSource
       self.class == o.class &&
           amount_details == o.amount_details &&
           invoice_details == o.invoice_details &&
-          reward_points_details == o.reward_points_details
+          reward_points_details == o.reward_points_details &&
+          bill_to == o.bill_to
     end
 
     # @see the `==` method
@@ -91,7 +100,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [amount_details, invoice_details, reward_points_details].hash
+      [amount_details, invoice_details, reward_points_details, bill_to].hash
     end
 
     # Builds the object from hash

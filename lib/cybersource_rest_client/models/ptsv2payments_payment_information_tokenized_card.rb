@@ -35,7 +35,7 @@ module CyberSource
     # Type of transaction that provided the token data. This value does not specify the token service provider; it specifies the entity that provided you with information about the token.  Possible value: - `2`: Near-field communication (NFC) transaction. The customer’s mobile device provided the token data for a contactless EMV transaction. For recurring transactions, use this value if the original transaction was a contactless EMV transaction.  #### Visa Platform Connect - `1`: For Rupay and In App tokenization. Example: InApp apple pay. - `3`: Card/Credential On File Tokenization.  **NOTE** No CyberSource through VisaNet acquirers support EMV at this time.  Required field for PIN debit credit or PIN debit purchase transactions that use payment network tokens; otherwise, not used. 
     attr_accessor :transaction_type
 
-    # Confidence level of the tokenization. This value is assigned by the token service provider.  **Note** This field is supported only for **CyberSource through VisaNet** and **FDC Nashville Global**.  Returned by PIN debit credit or PIN debit purchase. 
+    # Confidence level of the tokenization. This value is assigned by the token service provider.  **Note** This field is supported only for **CyberSource through VisaNet** and **FDC Nashville Global**.  Returned by PIN debit credit or PIN debit purchase.  **Note** Merchants supported for **CyberSource through VisaNet**/**Visa Platform Connect** are advised not to use this field. 
     attr_accessor :assurance_level
 
     # Type of technology used in the device to store token data. Possible values:  - `001`: Secure Element (SE). Smart card or memory with restricted access and encryption to prevent data tampering. For storing payment    credentials, a SE is tested against a set of requirements defined by the payment networks.     **Note** This field is supported only for _FDC Compass_.  - 002: Host Card Emulation (HCE). Emulation of a smart card by using software to create a virtual and exact representation of the card. Sensitive data is stored in a database that is hosted in the cloud. For storing payment credentials, a database must meet very stringent security requirements that exceed PCI DSS.  **Note** This field is supported only for _FDC Compass_. 
@@ -46,6 +46,9 @@ module CyberSource
 
     # Indicates whether a CVN code was sent. Possible values:   - `0` (default): CVN service not requested. This default value is used when you do not include      `securityCode` field in the request.  - `1` (default): CVN service requested and supported. This default value is used when you include      `securityCode` field in the request.  - `2`: CVN on credit card is illegible.  - `9`: CVN was not imprinted on credit card.  #### FDMS Nashville Required for American Express cards; otherwise, optional.  #### TSYS Acquiring Solutions Optional if `pointOfSaleInformation.entryMode=keyed`; otherwise, not used.  #### All other processors Optional. 
     attr_accessor :security_code_indicator
+
+    # Confidence level of the tokenization. This value is assigned by the token service provider.  **Note** This field is supported only for **Visa Platform Connect** 
+    attr_accessor :assurance_method
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -60,7 +63,8 @@ module CyberSource
         :'assurance_level' => :'assuranceLevel',
         :'storage_method' => :'storageMethod',
         :'security_code' => :'securityCode',
-        :'security_code_indicator' => :'securityCodeIndicator'
+        :'security_code_indicator' => :'securityCodeIndicator',
+        :'assurance_method' => :'assuranceMethod'
       }
     end
 
@@ -77,7 +81,8 @@ module CyberSource
         :'assurance_level' => :'String',
         :'storage_method' => :'String',
         :'security_code' => :'String',
-        :'security_code_indicator' => :'String'
+        :'security_code_indicator' => :'String',
+        :'assurance_method' => :'String'
       }
     end
 
@@ -131,6 +136,10 @@ module CyberSource
 
       if attributes.has_key?(:'securityCodeIndicator')
         self.security_code_indicator = attributes[:'securityCodeIndicator']
+      end
+
+      if attributes.has_key?(:'assuranceMethod')
+        self.assurance_method = attributes[:'assuranceMethod']
       end
     end
 
@@ -207,6 +216,12 @@ module CyberSource
       @security_code_indicator = security_code_indicator
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] assurance_method Value to be assigned
+    def assurance_method=(assurance_method)
+      @assurance_method = assurance_method
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -222,7 +237,8 @@ module CyberSource
           assurance_level == o.assurance_level &&
           storage_method == o.storage_method &&
           security_code == o.security_code &&
-          security_code_indicator == o.security_code_indicator
+          security_code_indicator == o.security_code_indicator &&
+          assurance_method == o.assurance_method
     end
 
     # @see the `==` method
@@ -234,7 +250,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [number, expiration_month, expiration_year, type, cryptogram, requestor_id, transaction_type, assurance_level, storage_method, security_code, security_code_indicator].hash
+      [number, expiration_month, expiration_year, type, cryptogram, requestor_id, transaction_type, assurance_level, storage_method, security_code, security_code_indicator, assurance_method].hash
     end
 
     # Builds the object from hash

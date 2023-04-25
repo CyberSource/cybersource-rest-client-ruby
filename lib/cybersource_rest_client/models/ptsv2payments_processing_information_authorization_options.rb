@@ -70,6 +70,9 @@ module CyberSource
     # This API field enables the merchant to indicate that a given transaction is Cash Advance.  Cash advance or Cash disbursement functionality allows a merchant to dispense cash at a point of sale. It provides the ability of a POS system to act like an ATM. These terminals are typically seen in bank branches where customers can use their card and withdraw cash or at merchant locations where ATMs are sparse.  Possible values:   - `true` (Cash advance is supported)   - `false` (default: cash advance is not supported) 
     attr_accessor :cash_advance_indicator
 
+    # #### Visa Platform Connect Indicates split payment transaction. A split payment allows the use of two payment methods for a single transaction.  Possible values:   - `true` (split payment transaction is supported)   - `false` (default: split payment transaction is not supported) 
+    attr_accessor :split_payment_transaction
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -91,7 +94,8 @@ module CyberSource
         :'aggregated_auth_indicator' => :'aggregatedAuthIndicator',
         :'debt_recovery_indicator' => :'debtRecoveryIndicator',
         :'deferred_auth_indicator' => :'deferredAuthIndicator',
-        :'cash_advance_indicator' => :'cashAdvanceIndicator'
+        :'cash_advance_indicator' => :'cashAdvanceIndicator',
+        :'split_payment_transaction' => :'splitPaymentTransaction'
       }
     end
 
@@ -116,7 +120,8 @@ module CyberSource
         :'aggregated_auth_indicator' => :'String',
         :'debt_recovery_indicator' => :'String',
         :'deferred_auth_indicator' => :'BOOLEAN',
-        :'cash_advance_indicator' => :'BOOLEAN'
+        :'cash_advance_indicator' => :'BOOLEAN',
+        :'split_payment_transaction' => :'BOOLEAN'
       }
     end
 
@@ -209,6 +214,10 @@ module CyberSource
       if attributes.has_key?(:'cashAdvanceIndicator')
         self.cash_advance_indicator = attributes[:'cashAdvanceIndicator']
       end
+
+      if attributes.has_key?(:'splitPaymentTransaction')
+        self.split_payment_transaction = attributes[:'splitPaymentTransaction']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -277,7 +286,8 @@ module CyberSource
           aggregated_auth_indicator == o.aggregated_auth_indicator &&
           debt_recovery_indicator == o.debt_recovery_indicator &&
           deferred_auth_indicator == o.deferred_auth_indicator &&
-          cash_advance_indicator == o.cash_advance_indicator
+          cash_advance_indicator == o.cash_advance_indicator &&
+          split_payment_transaction == o.split_payment_transaction
     end
 
     # @see the `==` method
@@ -289,7 +299,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [auth_type, pan_return_indicator, verbal_auth_code, verbal_auth_transaction_id, auth_indicator, partial_auth_indicator, balance_inquiry, ignore_avs_result, decline_avs_flags, ignore_cv_result, initiator, bill_payment, bill_payment_type, redemption_inquiry, transportation_mode, aggregated_auth_indicator, debt_recovery_indicator, deferred_auth_indicator, cash_advance_indicator].hash
+      [auth_type, pan_return_indicator, verbal_auth_code, verbal_auth_transaction_id, auth_indicator, partial_auth_indicator, balance_inquiry, ignore_avs_result, decline_avs_flags, ignore_cv_result, initiator, bill_payment, bill_payment_type, redemption_inquiry, transportation_mode, aggregated_auth_indicator, debt_recovery_indicator, deferred_auth_indicator, cash_advance_indicator, split_payment_transaction].hash
     end
 
     # Builds the object from hash

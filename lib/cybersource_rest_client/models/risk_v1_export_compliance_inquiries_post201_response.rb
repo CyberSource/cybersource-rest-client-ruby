@@ -62,7 +62,7 @@ module CyberSource
         :'status' => :'String',
         :'message' => :'String',
         :'client_reference_information' => :'RiskV1DecisionsPost201ResponseClientReferenceInformation',
-        :'export_compliance_information' => :'RiskV1ExportComplianceInquiriesPost201ResponseExportComplianceInformation',
+        :'export_compliance_information' => :'PtsV2PaymentsPost201ResponseWatchlistScreeningInformation',
         :'error_information' => :'RiskV1ExportComplianceInquiriesPost201ResponseErrorInformation'
       }
     end
