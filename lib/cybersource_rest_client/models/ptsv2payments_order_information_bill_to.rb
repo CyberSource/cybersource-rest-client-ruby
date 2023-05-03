@@ -79,6 +79,12 @@ module CyberSource
     # Whether buyer has verified their identity. Used in case of PayPal transactions.  Possible Values: * VERIFIED * UNVERIFIED 
     attr_accessor :verification_status
 
+    # #### Visa Platform Connect contains customer’s alternate phone number. 
+    attr_accessor :alternate_phone_number
+
+    # #### Visa Platform Connect contains customer’s alternate email address. 
+    attr_accessor :alternate_email
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -103,7 +109,9 @@ module CyberSource
         :'email_domain' => :'emailDomain',
         :'phone_number' => :'phoneNumber',
         :'phone_type' => :'phoneType',
-        :'verification_status' => :'verificationStatus'
+        :'verification_status' => :'verificationStatus',
+        :'alternate_phone_number' => :'alternatePhoneNumber',
+        :'alternate_email' => :'alternateEmail'
       }
     end
 
@@ -131,7 +139,9 @@ module CyberSource
         :'email_domain' => :'String',
         :'phone_number' => :'String',
         :'phone_type' => :'String',
-        :'verification_status' => :'String'
+        :'verification_status' => :'String',
+        :'alternate_phone_number' => :'String',
+        :'alternate_email' => :'String'
       }
     end
 
@@ -229,6 +239,14 @@ module CyberSource
 
       if attributes.has_key?(:'verificationStatus')
         self.verification_status = attributes[:'verificationStatus']
+      end
+
+      if attributes.has_key?(:'alternatePhoneNumber')
+        self.alternate_phone_number = attributes[:'alternatePhoneNumber']
+      end
+
+      if attributes.has_key?(:'alternateEmail')
+        self.alternate_email = attributes[:'alternateEmail']
       end
     end
 
@@ -359,6 +377,18 @@ module CyberSource
       @phone_number = phone_number
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] alternate_phone_number Value to be assigned
+    def alternate_phone_number=(alternate_phone_number)
+      @alternate_phone_number = alternate_phone_number
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] alternate_email Value to be assigned
+    def alternate_email=(alternate_email)
+      @alternate_email = alternate_email
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -385,7 +415,9 @@ module CyberSource
           email_domain == o.email_domain &&
           phone_number == o.phone_number &&
           phone_type == o.phone_type &&
-          verification_status == o.verification_status
+          verification_status == o.verification_status &&
+          alternate_phone_number == o.alternate_phone_number &&
+          alternate_email == o.alternate_email
     end
 
     # @see the `==` method
@@ -397,7 +429,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [first_name, last_name, middle_name, name_suffix, title, company, address1, address2, address3, address4, locality, administrative_area, postal_code, county, country, district, building_number, email, email_domain, phone_number, phone_type, verification_status].hash
+      [first_name, last_name, middle_name, name_suffix, title, company, address1, address2, address3, address4, locality, administrative_area, postal_code, county, country, district, building_number, email, email_domain, phone_number, phone_type, verification_status, alternate_phone_number, alternate_email].hash
     end
 
     # Builds the object from hash

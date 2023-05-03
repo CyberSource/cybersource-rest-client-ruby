@@ -55,6 +55,10 @@ module CyberSource
     # Total tax to apply to the product. This value cannot be negative. The tax amount and the offer amount must be in the same currency. The tax amount field is additive.  The following example uses a two-exponent currency such as USD:   1. You include each line item in your request.  ..- 1st line item has amount=10.00, quantity=1, and taxAmount=0.80  ..- 2nd line item has amount=20.00, quantity=1, and taxAmount=1.60  2. The total amount authorized will be 32.40, not 30.00 with 2.40 of tax included.  Optional field.  #### Airlines processing Tax portion of the order amount. This value cannot exceed 99999999999999 (fourteen 9s). Format: English characters only. Optional request field for a line item.  #### Tax Calculation Optional field for U.S., Canadian, international tax, and value added taxes.  Note if you send this field in your tax request, the value in the field will override the tax engine 
     attr_accessor :tax_amount
 
+    attr_accessor :allowed_export_countries
+
+    attr_accessor :restricted_export_countries
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -71,7 +75,9 @@ module CyberSource
         :'distributor_product_sku' => :'distributorProductSku',
         :'passenger' => :'passenger',
         :'shipping_destination_types' => :'shippingDestinationTypes',
-        :'tax_amount' => :'taxAmount'
+        :'tax_amount' => :'taxAmount',
+        :'allowed_export_countries' => :'allowedExportCountries',
+        :'restricted_export_countries' => :'restrictedExportCountries'
       }
     end
 
@@ -91,7 +97,9 @@ module CyberSource
         :'distributor_product_sku' => :'String',
         :'passenger' => :'Ptsv2paymentsOrderInformationPassenger',
         :'shipping_destination_types' => :'String',
-        :'tax_amount' => :'String'
+        :'tax_amount' => :'String',
+        :'allowed_export_countries' => :'Array<String>',
+        :'restricted_export_countries' => :'Array<String>'
       }
     end
 
@@ -157,6 +165,18 @@ module CyberSource
 
       if attributes.has_key?(:'taxAmount')
         self.tax_amount = attributes[:'taxAmount']
+      end
+
+      if attributes.has_key?(:'allowedExportCountries')
+        if (value = attributes[:'allowedExportCountries']).is_a?(Array)
+          self.allowed_export_countries = value
+        end
+      end
+
+      if attributes.has_key?(:'restrictedExportCountries')
+        if (value = attributes[:'restrictedExportCountries']).is_a?(Array)
+          self.restricted_export_countries = value
+        end
       end
     end
 
@@ -251,7 +271,9 @@ module CyberSource
           distributor_product_sku == o.distributor_product_sku &&
           passenger == o.passenger &&
           shipping_destination_types == o.shipping_destination_types &&
-          tax_amount == o.tax_amount
+          tax_amount == o.tax_amount &&
+          allowed_export_countries == o.allowed_export_countries &&
+          restricted_export_countries == o.restricted_export_countries
     end
 
     # @see the `==` method
@@ -263,7 +285,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [total_amount, unit_price, quantity, gift_card_currency, product_sku, product_risk, product_description, product_name, product_code, gift, distributor_product_sku, passenger, shipping_destination_types, tax_amount].hash
+      [total_amount, unit_price, quantity, gift_card_currency, product_sku, product_risk, product_description, product_name, product_code, gift, distributor_product_sku, passenger, shipping_destination_types, tax_amount, allowed_export_countries, restricted_export_countries].hash
     end
 
     # Builds the object from hash

@@ -61,6 +61,8 @@ module CyberSource
 
     attr_accessor :recurring_payment_information
 
+    attr_accessor :watchlist_screening_information
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -86,7 +88,8 @@ module CyberSource
         :'processor_information' => :'processorInformation',
         :'risk_information' => :'riskInformation',
         :'acquirer_information' => :'acquirerInformation',
-        :'recurring_payment_information' => :'recurringPaymentInformation'
+        :'recurring_payment_information' => :'recurringPaymentInformation',
+        :'watchlist_screening_information' => :'watchlistScreeningInformation'
       }
     end
 
@@ -115,7 +118,8 @@ module CyberSource
         :'processor_information' => :'Ptsv2paymentsProcessorInformation',
         :'risk_information' => :'Ptsv2paymentsRiskInformation',
         :'acquirer_information' => :'Ptsv2paymentsAcquirerInformation',
-        :'recurring_payment_information' => :'Ptsv2paymentsRecurringPaymentInformation'
+        :'recurring_payment_information' => :'Ptsv2paymentsRecurringPaymentInformation',
+        :'watchlist_screening_information' => :'Ptsv2paymentsWatchlistScreeningInformation'
       }
     end
 
@@ -220,6 +224,10 @@ module CyberSource
       if attributes.has_key?(:'recurringPaymentInformation')
         self.recurring_payment_information = attributes[:'recurringPaymentInformation']
       end
+
+      if attributes.has_key?(:'watchlistScreeningInformation')
+        self.watchlist_screening_information = attributes[:'watchlistScreeningInformation']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -262,7 +270,8 @@ module CyberSource
           processor_information == o.processor_information &&
           risk_information == o.risk_information &&
           acquirer_information == o.acquirer_information &&
-          recurring_payment_information == o.recurring_payment_information
+          recurring_payment_information == o.recurring_payment_information &&
+          watchlist_screening_information == o.watchlist_screening_information
     end
 
     # @see the `==` method
@@ -274,7 +283,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_reference_information, processing_information, issuer_information, payment_information, order_information, buyer_information, recipient_information, device_information, merchant_information, aggregator_information, consumer_authentication_information, point_of_sale_information, merchant_defined_information, installment_information, travel_information, health_care_information, promotion_information, token_information, invoice_details, processor_information, risk_information, acquirer_information, recurring_payment_information].hash
+      [client_reference_information, processing_information, issuer_information, payment_information, order_information, buyer_information, recipient_information, device_information, merchant_information, aggregator_information, consumer_authentication_information, point_of_sale_information, merchant_defined_information, installment_information, travel_information, health_care_information, promotion_information, token_information, invoice_details, processor_information, risk_information, acquirer_information, recurring_payment_information, watchlist_screening_information].hash
     end
 
     # Builds the object from hash

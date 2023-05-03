@@ -54,6 +54,11 @@ module CyberSource
     # URL for displaying payment results to the consumer (notifications) after the transaction is processed. Usually this URL belongs to merchant and its behavior is defined by merchant 
     attr_accessor :return_url
 
+    # #### Visa Platform Connect This field may be used for transactions on accounts issued under co-branding agreements when one of the co-branding partners. 
+    attr_accessor :partner_id_code
+
+    attr_accessor :service_location
+
     # Use this field only if you are requesting payment with Payer Authentication service together.  Your company’s name as you want it to appear to the customer in the issuing bank’s authentication form. This value overrides the value specified by your merchant bank. 
     attr_accessor :merchant_name
 
@@ -74,6 +79,8 @@ module CyberSource
         :'success_url' => :'successUrl',
         :'failure_url' => :'failureUrl',
         :'return_url' => :'returnUrl',
+        :'partner_id_code' => :'partnerIdCode',
+        :'service_location' => :'serviceLocation',
         :'merchant_name' => :'merchantName'
       }
     end
@@ -95,6 +102,8 @@ module CyberSource
         :'success_url' => :'String',
         :'failure_url' => :'String',
         :'return_url' => :'String',
+        :'partner_id_code' => :'String',
+        :'service_location' => :'Ptsv2paymentsMerchantInformationServiceLocation',
         :'merchant_name' => :'String'
       }
     end
@@ -161,6 +170,14 @@ module CyberSource
 
       if attributes.has_key?(:'returnUrl')
         self.return_url = attributes[:'returnUrl']
+      end
+
+      if attributes.has_key?(:'partnerIdCode')
+        self.partner_id_code = attributes[:'partnerIdCode']
+      end
+
+      if attributes.has_key?(:'serviceLocation')
+        self.service_location = attributes[:'serviceLocation']
       end
 
       if attributes.has_key?(:'merchantName')
@@ -254,6 +271,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] partner_id_code Value to be assigned
+    def partner_id_code=(partner_id_code)
+      @partner_id_code = partner_id_code
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] merchant_name Value to be assigned
     def merchant_name=(merchant_name)
       @merchant_name = merchant_name
@@ -278,6 +301,8 @@ module CyberSource
           success_url == o.success_url &&
           failure_url == o.failure_url &&
           return_url == o.return_url &&
+          partner_id_code == o.partner_id_code &&
+          service_location == o.service_location &&
           merchant_name == o.merchant_name
     end
 
@@ -290,7 +315,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [merchant_descriptor, domain_name, sales_organization_id, category_code, category_code_domestic, tax_id, vat_registration_number, card_acceptor_reference_number, transaction_local_date_time, service_fee_descriptor, cancel_url, success_url, failure_url, return_url, merchant_name].hash
+      [merchant_descriptor, domain_name, sales_organization_id, category_code, category_code_domestic, tax_id, vat_registration_number, card_acceptor_reference_number, transaction_local_date_time, service_fee_descriptor, cancel_url, success_url, failure_url, return_url, partner_id_code, service_location, merchant_name].hash
     end
 
     # Builds the object from hash

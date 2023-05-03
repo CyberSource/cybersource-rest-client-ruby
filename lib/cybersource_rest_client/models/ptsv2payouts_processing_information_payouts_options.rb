@@ -26,13 +26,17 @@ module CyberSource
     # Visa-generated transaction identifier (TID) that is unique for each original authorization and financial request. * Applicable only for CTV for Payouts. 
     attr_accessor :account_funding_reference_id
 
+    # #### Visa Platform Connect  Contains date and time value indicating scheduled deferred OCT.  Format is : 'yyyyMMddHHmm', where  'YYYY' = year 'MM' = month 'DD' = day 'hh' = hour 'mm' = minutes 
+    attr_accessor :deferred_date_time
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'acquirer_merchant_id' => :'acquirerMerchantId',
         :'acquirer_bin' => :'acquirerBin',
         :'retrieval_reference_number' => :'retrievalReferenceNumber',
-        :'account_funding_reference_id' => :'accountFundingReferenceId'
+        :'account_funding_reference_id' => :'accountFundingReferenceId',
+        :'deferred_date_time' => :'deferredDateTime'
       }
     end
 
@@ -42,7 +46,8 @@ module CyberSource
         :'acquirer_merchant_id' => :'String',
         :'acquirer_bin' => :'String',
         :'retrieval_reference_number' => :'String',
-        :'account_funding_reference_id' => :'String'
+        :'account_funding_reference_id' => :'String',
+        :'deferred_date_time' => :'String'
       }
     end
 
@@ -68,6 +73,10 @@ module CyberSource
 
       if attributes.has_key?(:'accountFundingReferenceId')
         self.account_funding_reference_id = attributes[:'accountFundingReferenceId']
+      end
+
+      if attributes.has_key?(:'deferredDateTime')
+        self.deferred_date_time = attributes[:'deferredDateTime']
       end
     end
 
@@ -108,6 +117,12 @@ module CyberSource
       @account_funding_reference_id = account_funding_reference_id
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] deferred_date_time Value to be assigned
+    def deferred_date_time=(deferred_date_time)
+      @deferred_date_time = deferred_date_time
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -116,7 +131,8 @@ module CyberSource
           acquirer_merchant_id == o.acquirer_merchant_id &&
           acquirer_bin == o.acquirer_bin &&
           retrieval_reference_number == o.retrieval_reference_number &&
-          account_funding_reference_id == o.account_funding_reference_id
+          account_funding_reference_id == o.account_funding_reference_id &&
+          deferred_date_time == o.deferred_date_time
     end
 
     # @see the `==` method
@@ -128,7 +144,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [acquirer_merchant_id, acquirer_bin, retrieval_reference_number, account_funding_reference_id].hash
+      [acquirer_merchant_id, acquirer_bin, retrieval_reference_number, account_funding_reference_id, deferred_date_time].hash
     end
 
     # Builds the object from hash

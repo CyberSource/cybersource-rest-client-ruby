@@ -38,6 +38,8 @@ module CyberSource
 
     attr_accessor :consumer_authentication_information
 
+    attr_accessor :watchlist_screening_information
+
     attr_accessor :error_information
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -53,6 +55,7 @@ module CyberSource
         :'client_reference_information' => :'clientReferenceInformation',
         :'order_information' => :'orderInformation',
         :'consumer_authentication_information' => :'consumerAuthenticationInformation',
+        :'watchlist_screening_information' => :'watchlistScreeningInformation',
         :'error_information' => :'errorInformation'
       }
     end
@@ -70,6 +73,7 @@ module CyberSource
         :'client_reference_information' => :'RiskV1DecisionsPost201ResponseClientReferenceInformation',
         :'order_information' => :'RiskV1DecisionsPost201ResponseOrderInformation',
         :'consumer_authentication_information' => :'RiskV1DecisionsPost201ResponseConsumerAuthenticationInformation',
+        :'watchlist_screening_information' => :'PtsV2PaymentsPost201ResponseWatchlistScreeningInformation',
         :'error_information' => :'RiskV1DecisionsPost201ResponseErrorInformation'
       }
     end
@@ -122,6 +126,10 @@ module CyberSource
         self.consumer_authentication_information = attributes[:'consumerAuthenticationInformation']
       end
 
+      if attributes.has_key?(:'watchlistScreeningInformation')
+        self.watchlist_screening_information = attributes[:'watchlistScreeningInformation']
+      end
+
       if attributes.has_key?(:'errorInformation')
         self.error_information = attributes[:'errorInformation']
       end
@@ -161,6 +169,7 @@ module CyberSource
           client_reference_information == o.client_reference_information &&
           order_information == o.order_information &&
           consumer_authentication_information == o.consumer_authentication_information &&
+          watchlist_screening_information == o.watchlist_screening_information &&
           error_information == o.error_information
     end
 
@@ -173,7 +182,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, submit_time_utc, submit_time_local, status, risk_information, payment_information, client_reference_information, order_information, consumer_authentication_information, error_information].hash
+      [_links, id, submit_time_utc, submit_time_local, status, risk_information, payment_information, client_reference_information, order_information, consumer_authentication_information, watchlist_screening_information, error_information].hash
     end
 
     # Builds the object from hash

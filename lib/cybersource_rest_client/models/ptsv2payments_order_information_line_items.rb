@@ -105,6 +105,10 @@ module CyberSource
 
     attr_accessor :passenger
 
+    attr_accessor :allowed_export_countries
+
+    attr_accessor :restricted_export_countries
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -138,7 +142,9 @@ module CyberSource
         :'gift_card_currency' => :'giftCardCurrency',
         :'shipping_destination_types' => :'shippingDestinationTypes',
         :'gift' => :'gift',
-        :'passenger' => :'passenger'
+        :'passenger' => :'passenger',
+        :'allowed_export_countries' => :'allowedExportCountries',
+        :'restricted_export_countries' => :'restrictedExportCountries'
       }
     end
 
@@ -175,7 +181,9 @@ module CyberSource
         :'gift_card_currency' => :'Integer',
         :'shipping_destination_types' => :'String',
         :'gift' => :'BOOLEAN',
-        :'passenger' => :'Ptsv2paymentsOrderInformationPassenger'
+        :'passenger' => :'Ptsv2paymentsOrderInformationPassenger',
+        :'allowed_export_countries' => :'Array<String>',
+        :'restricted_export_countries' => :'Array<String>'
       }
     end
 
@@ -311,6 +319,18 @@ module CyberSource
 
       if attributes.has_key?(:'passenger')
         self.passenger = attributes[:'passenger']
+      end
+
+      if attributes.has_key?(:'allowedExportCountries')
+        if (value = attributes[:'allowedExportCountries']).is_a?(Array)
+          self.allowed_export_countries = value
+        end
+      end
+
+      if attributes.has_key?(:'restrictedExportCountries')
+        if (value = attributes[:'restrictedExportCountries']).is_a?(Array)
+          self.restricted_export_countries = value
+        end
       end
     end
 
@@ -500,7 +520,9 @@ module CyberSource
           gift_card_currency == o.gift_card_currency &&
           shipping_destination_types == o.shipping_destination_types &&
           gift == o.gift &&
-          passenger == o.passenger
+          passenger == o.passenger &&
+          allowed_export_countries == o.allowed_export_countries &&
+          restricted_export_countries == o.restricted_export_countries
     end
 
     # @see the `==` method
@@ -512,7 +534,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [product_code, product_name, product_sku, quantity, unit_price, unit_of_measure, total_amount, tax_amount, tax_rate, tax_applied_after_discount, tax_status_indicator, tax_type_code, amount_includes_tax, type_of_supply, commodity_code, discount_amount, discount_applied, discount_rate, invoice_number, tax_details, fulfillment_type, weight, weight_identifier, weight_unit, reference_data_code, reference_data_number, product_description, gift_card_currency, shipping_destination_types, gift, passenger].hash
+      [product_code, product_name, product_sku, quantity, unit_price, unit_of_measure, total_amount, tax_amount, tax_rate, tax_applied_after_discount, tax_status_indicator, tax_type_code, amount_includes_tax, type_of_supply, commodity_code, discount_amount, discount_applied, discount_rate, invoice_number, tax_details, fulfillment_type, weight, weight_identifier, weight_unit, reference_data_code, reference_data_number, product_description, gift_card_currency, shipping_destination_types, gift, passenger, allowed_export_countries, restricted_export_countries].hash
     end
 
     # Builds the object from hash

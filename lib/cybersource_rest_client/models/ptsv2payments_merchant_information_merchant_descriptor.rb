@@ -47,6 +47,9 @@ module CyberSource
     # #### Visa Platform Connect This field will indicate merchant country of origin 
     attr_accessor :country_of_origin
 
+    # #### Visa Platform Connect Indicates customer service phone number of Merchant. 
+    attr_accessor :customer_service_phone_number
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -60,7 +63,8 @@ module CyberSource
         :'administrative_area' => :'administrativeArea',
         :'phone' => :'phone',
         :'url' => :'url',
-        :'country_of_origin' => :'countryOfOrigin'
+        :'country_of_origin' => :'countryOfOrigin',
+        :'customer_service_phone_number' => :'customerServicePhoneNumber'
       }
     end
 
@@ -77,7 +81,8 @@ module CyberSource
         :'administrative_area' => :'String',
         :'phone' => :'String',
         :'url' => :'String',
-        :'country_of_origin' => :'String'
+        :'country_of_origin' => :'String',
+        :'customer_service_phone_number' => :'String'
       }
     end
 
@@ -131,6 +136,10 @@ module CyberSource
 
       if attributes.has_key?(:'countryOfOrigin')
         self.country_of_origin = attributes[:'countryOfOrigin']
+      end
+
+      if attributes.has_key?(:'customerServicePhoneNumber')
+        self.customer_service_phone_number = attributes[:'customerServicePhoneNumber']
       end
     end
 
@@ -201,6 +210,12 @@ module CyberSource
       @country_of_origin = country_of_origin
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] customer_service_phone_number Value to be assigned
+    def customer_service_phone_number=(customer_service_phone_number)
+      @customer_service_phone_number = customer_service_phone_number
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -216,7 +231,8 @@ module CyberSource
           administrative_area == o.administrative_area &&
           phone == o.phone &&
           url == o.url &&
-          country_of_origin == o.country_of_origin
+          country_of_origin == o.country_of_origin &&
+          customer_service_phone_number == o.customer_service_phone_number
     end
 
     # @see the `==` method
@@ -228,7 +244,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name, alternate_name, contact, address1, locality, country, postal_code, administrative_area, phone, url, country_of_origin].hash
+      [name, alternate_name, contact, address1, locality, country, postal_code, administrative_area, phone, url, country_of_origin, customer_service_phone_number].hash
     end
 
     # Builds the object from hash

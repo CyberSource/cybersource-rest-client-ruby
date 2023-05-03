@@ -35,7 +35,7 @@ module CyberSource
     def self.swagger_types
       {
         :'address_operator' => :'String',
-        :'weights' => :'Riskv1exportcomplianceinquiriesExportComplianceInformationWeights',
+        :'weights' => :'Ptsv2paymentsWatchlistScreeningInformationWeights',
         :'sanction_lists' => :'Array<String>'
       }
     end
