@@ -3,14 +3,12 @@ require 'openssl'
 require 'jwt'
 require 'json'
 require 'active_support'
-require 'time'
 require_relative '../../core/ITokenGeneration.rb'
 require_relative '../../util/Constants.rb'
 require_relative '../../util/ExceptionHandler.rb'
 require_relative '../../util/Cache.rb'
 require_relative '../../authentication/payloadDigest/digest.rb'
 require_relative '../../logging/log_factory.rb'
-
 public
   class GenerateJwtToken
     @log_obj
@@ -68,9 +66,9 @@ public
 
         # Note: Digest is not passed for GET calls
         digest = DigestGeneration.new.generateDigest(payload)
-        jwtBody = "{\n      \"digest\":\"" + digest + "\", \"digestAlgorithm\":\"SHA-256\", \"iat\":" + Time.parse(gmtdatetime).to_i.to_s + "}"
+        jwtBody = "{\n      \"digest\":\"" + digest + "\", \"digestAlgorithm\":\"SHA-256\", \"iat\":\"" + gmtDatetime + "\"}"
       elsif request_type == Constants::GET_REQUEST_TYPE || request_type == Constants::DELETE_REQUEST_TYPE
-        jwtBody = "{\n \"iat\":" + Time.parse(gmtdatetime).to_i.to_s + "\n} \n\n"
+        jwtBody = "{\n \"iat\":\"" + gmtDatetime + "\"\n} \n\n"
       else
         raise StandardError.new(Constants::ERROR_PREFIX + Constants::INVALID_REQUEST_TYPE_METHOD)
       end
