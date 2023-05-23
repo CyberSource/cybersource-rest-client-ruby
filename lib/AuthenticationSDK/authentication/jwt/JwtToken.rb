@@ -68,9 +68,9 @@ public
 
         # Note: Digest is not passed for GET calls
         digest = DigestGeneration.new.generateDigest(payload)
-        jwtBody = "{\n      \"digest\":\"" + digest + "\", \"digestAlgorithm\":\"SHA-256\", \"iat\":" + Time.parse(gmtdatetime).to_i.to_s + "}"
+        jwtBody = "{\n      \"digest\":\"" + digest + "\", \"digestAlgorithm\":\"SHA-256\", \"iat\":" + Time.parse(gmtDatetime).to_i.to_s + "}"
       elsif request_type == Constants::GET_REQUEST_TYPE || request_type == Constants::DELETE_REQUEST_TYPE
-        jwtBody = "{\n \"iat\":" + Time.parse(gmtdatetime).to_i.to_s + "\n} \n\n"
+        jwtBody = "{\n \"iat\":" + Time.parse(gmtDatetime).to_i.to_s + "\n} \n\n"
       else
         raise StandardError.new(Constants::ERROR_PREFIX + Constants::INVALID_REQUEST_TYPE_METHOD)
       end
