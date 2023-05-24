@@ -24,12 +24,15 @@ module CyberSource
     # Your identifier for the customer.  When a subscription or customer profile is being created, the maximum length for this field for most processors is 30. Otherwise, the maximum length is 100.  #### Comercio Latino For recurring payments in Mexico, the value is the customer’s contract number. Note Before you request the authorization, you must inform the issuer of the customer contract numbers that will be used for recurring transactions.  #### Worldpay VAP For a follow-on credit with Worldpay VAP, CyberSource checks the following locations, in the order given, for a customer account ID value and uses the first value it finds: 1. `customer_account_id` value in the follow-on credit request 2. Customer account ID value that was used for the capture that is being credited 3. Customer account ID value that was used for the original authorization If a customer account ID value cannot be found in any of these locations, then no value is used.  For processor-specific information, see the `customer_account_id` field description in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
     attr_accessor :merchant_customer_id
 
+    attr_accessor :company
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'name' => :'name',
         :'email' => :'email',
-        :'merchant_customer_id' => :'merchantCustomerId'
+        :'merchant_customer_id' => :'merchantCustomerId',
+        :'company' => :'company'
       }
     end
 
@@ -38,7 +41,8 @@ module CyberSource
       {
         :'name' => :'String',
         :'email' => :'String',
-        :'merchant_customer_id' => :'String'
+        :'merchant_customer_id' => :'String',
+        :'company' => :'Invoicingv2invoicesCustomerInformationCompany'
       }
     end
 
@@ -60,6 +64,10 @@ module CyberSource
 
       if attributes.has_key?(:'merchantCustomerId')
         self.merchant_customer_id = attributes[:'merchantCustomerId']
+      end
+
+      if attributes.has_key?(:'company')
+        self.company = attributes[:'company']
       end
     end
 
@@ -101,7 +109,8 @@ module CyberSource
       self.class == o.class &&
           name == o.name &&
           email == o.email &&
-          merchant_customer_id == o.merchant_customer_id
+          merchant_customer_id == o.merchant_customer_id &&
+          company == o.company
     end
 
     # @see the `==` method
@@ -113,7 +122,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name, email, merchant_customer_id].hash
+      [name, email, merchant_customer_id, company].hash
     end
 
     # Builds the object from hash

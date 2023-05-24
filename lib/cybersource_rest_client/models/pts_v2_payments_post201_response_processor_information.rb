@@ -44,6 +44,9 @@ module CyberSource
     # Name of the Japanese acquirer that processed the transaction. Returned only for JCN Gateway. Please contact the CyberSource Japan Support Group for more information. 
     attr_accessor :forwarded_acquirer_code
 
+    # Field contains a settlement date. The date is in mmdd format, where: mm = month and dd = day. 
+    attr_accessor :settlement_date
+
     attr_accessor :avs
 
     attr_accessor :card_verification
@@ -113,6 +116,7 @@ module CyberSource
         :'response_details' => :'responseDetails',
         :'response_category_code' => :'responseCategoryCode',
         :'forwarded_acquirer_code' => :'forwardedAcquirerCode',
+        :'settlement_date' => :'settlementDate',
         :'avs' => :'avs',
         :'card_verification' => :'cardVerification',
         :'merchant_advice' => :'merchantAdvice',
@@ -151,6 +155,7 @@ module CyberSource
         :'response_details' => :'String',
         :'response_category_code' => :'String',
         :'forwarded_acquirer_code' => :'String',
+        :'settlement_date' => :'String',
         :'avs' => :'PtsV2PaymentsPost201ResponseProcessorInformationAvs',
         :'card_verification' => :'PtsV2PaymentsPost201ResponseProcessorInformationCardVerification',
         :'merchant_advice' => :'PtsV2PaymentsPost201ResponseProcessorInformationMerchantAdvice',
@@ -222,6 +227,10 @@ module CyberSource
 
       if attributes.has_key?(:'forwardedAcquirerCode')
         self.forwarded_acquirer_code = attributes[:'forwardedAcquirerCode']
+      end
+
+      if attributes.has_key?(:'settlementDate')
+        self.settlement_date = attributes[:'settlementDate']
       end
 
       if attributes.has_key?(:'avs')
@@ -381,6 +390,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] settlement_date Value to be assigned
+    def settlement_date=(settlement_date)
+      @settlement_date = settlement_date
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] system_trace_audit_number Value to be assigned
     def system_trace_audit_number=(system_trace_audit_number)
       @system_trace_audit_number = system_trace_audit_number
@@ -467,6 +482,7 @@ module CyberSource
           response_details == o.response_details &&
           response_category_code == o.response_category_code &&
           forwarded_acquirer_code == o.forwarded_acquirer_code &&
+          settlement_date == o.settlement_date &&
           avs == o.avs &&
           card_verification == o.card_verification &&
           merchant_advice == o.merchant_advice &&
@@ -500,7 +516,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [auth_indicator, approval_code, card_reference_data, transaction_id, network_transaction_id, response_code, response_code_source, response_details, response_category_code, forwarded_acquirer_code, avs, card_verification, merchant_advice, electronic_verification_results, ach_verification, customer, consumer_authentication_response, system_trace_audit_number, payment_account_reference_number, transaction_integrity_code, amex_verbal_auth_reference_number, master_card_service_code, master_card_service_reply_code, master_card_authentication_type, name, routing, merchant_number, retrieval_reference_number, payment_url, complete_url, signature, public_key].hash
+      [auth_indicator, approval_code, card_reference_data, transaction_id, network_transaction_id, response_code, response_code_source, response_details, response_category_code, forwarded_acquirer_code, settlement_date, avs, card_verification, merchant_advice, electronic_verification_results, ach_verification, customer, consumer_authentication_response, system_trace_audit_number, payment_account_reference_number, transaction_integrity_code, amex_verbal_auth_reference_number, master_card_service_code, master_card_service_reply_code, master_card_authentication_type, name, routing, merchant_number, retrieval_reference_number, payment_url, complete_url, signature, public_key].hash
     end
 
     # Builds the object from hash

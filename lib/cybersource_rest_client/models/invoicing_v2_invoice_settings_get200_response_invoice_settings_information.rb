@@ -34,8 +34,14 @@ module CyberSource
     # Currency used for the order. Use the three-character [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)  #### Used by **Authorization** Required field.  **Authorization Reversal** For an authorization reversal (`reversalInformation`) or a capture (`processingOptions.capture` is set to `true`), you must use the same currency that you used in your payment authorization request.  #### PIN Debit Currency for the amount you requested for the PIN debit purchase. This value is returned for partial authorizations. The issuing bank can approve a partial amount if the balance on the debit card is less than the requested transaction amount. For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf). Returned by PIN debit purchase.  For PIN debit reversal requests, you must use the same currency that was used for the PIN debit purchase or PIN debit credit that you are reversing. For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).  Required field for PIN Debit purchase and PIN Debit credit requests. Optional field for PIN Debit reversal requests.  #### GPX This field is optional for reversing an authorization or credit.  #### DCC for First Data Your local currency. For details, see the `currency` field description in [Dynamic Currency Conversion For First Data Using the SCMP API](http://apps.cybersource.com/library/documentation/dev_guides/DCC_FirstData_SCMP/DCC_FirstData_SCMP_API.pdf).  #### Tax Calculation Required for international tax and value added tax only. Optional for U.S. and Canadian taxes. Your local currency. 
     attr_accessor :default_currency_code
 
-    # The 3D Secure payer authentication version or status for a merchant's invoice payments. Possible values are: - `1` - `2` - `None` - `Disabled` 
+    # The 3D Secure payer authentication status for a merchant's invoice payments.
     attr_accessor :payer_authentication3_ds_version
+
+    # Display VAT number on Invoice.
+    attr_accessor :show_vat_number
+
+    # Your government-assigned tax identification number.  #### Tax Calculation Required field for value added tax only. Not applicable to U.S. and Canadian taxes.       
+    attr_accessor :vat_registration_number
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -47,7 +53,9 @@ module CyberSource
         :'header_style' => :'headerStyle',
         :'delivery_language' => :'deliveryLanguage',
         :'default_currency_code' => :'defaultCurrencyCode',
-        :'payer_authentication3_ds_version' => :'payerAuthentication3DSVersion'
+        :'payer_authentication3_ds_version' => :'payerAuthentication3DSVersion',
+        :'show_vat_number' => :'showVatNumber',
+        :'vat_registration_number' => :'vatRegistrationNumber'
       }
     end
 
@@ -61,7 +69,9 @@ module CyberSource
         :'header_style' => :'InvoicingV2InvoiceSettingsGet200ResponseInvoiceSettingsInformationHeaderStyle',
         :'delivery_language' => :'String',
         :'default_currency_code' => :'String',
-        :'payer_authentication3_ds_version' => :'String'
+        :'payer_authentication3_ds_version' => :'BOOLEAN',
+        :'show_vat_number' => :'BOOLEAN',
+        :'vat_registration_number' => :'String'
       }
     end
 
@@ -103,6 +113,18 @@ module CyberSource
 
       if attributes.has_key?(:'payerAuthentication3DSVersion')
         self.payer_authentication3_ds_version = attributes[:'payerAuthentication3DSVersion']
+      else
+        self.payer_authentication3_ds_version = false
+      end
+
+      if attributes.has_key?(:'showVatNumber')
+        self.show_vat_number = attributes[:'showVatNumber']
+      else
+        self.show_vat_number = false
+      end
+
+      if attributes.has_key?(:'vatRegistrationNumber')
+        self.vat_registration_number = attributes[:'vatRegistrationNumber']
       end
     end
 
@@ -150,9 +172,9 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] payer_authentication3_ds_version Value to be assigned
-    def payer_authentication3_ds_version=(payer_authentication3_ds_version)
-      @payer_authentication3_ds_version = payer_authentication3_ds_version
+    # @param [Object] vat_registration_number Value to be assigned
+    def vat_registration_number=(vat_registration_number)
+      @vat_registration_number = vat_registration_number
     end
 
     # Checks equality by comparing each attribute.
@@ -167,7 +189,9 @@ module CyberSource
           header_style == o.header_style &&
           delivery_language == o.delivery_language &&
           default_currency_code == o.default_currency_code &&
-          payer_authentication3_ds_version == o.payer_authentication3_ds_version
+          payer_authentication3_ds_version == o.payer_authentication3_ds_version &&
+          show_vat_number == o.show_vat_number &&
+          vat_registration_number == o.vat_registration_number
     end
 
     # @see the `==` method
@@ -179,7 +203,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [merchant_logo, merchant_display_name, custom_email_message, enable_reminders, header_style, delivery_language, default_currency_code, payer_authentication3_ds_version].hash
+      [merchant_logo, merchant_display_name, custom_email_message, enable_reminders, header_style, delivery_language, default_currency_code, payer_authentication3_ds_version, show_vat_number, vat_registration_number].hash
     end
 
     # Builds the object from hash

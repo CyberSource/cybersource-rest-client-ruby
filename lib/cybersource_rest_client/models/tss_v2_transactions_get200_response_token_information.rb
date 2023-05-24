@@ -22,13 +22,21 @@ module CyberSource
 
     attr_accessor :instrument_identifier
 
+    # TMS Transient Token, 64 hexadecimal id value representing captured payment credentials (including Sensitive Authentication Data, e.g. CVV). 
+    attr_accessor :jti
+
+    # Flex API Transient Token encoded as JWT (JSON Web Token), e.g. Flex microform or Unified Payment checkout result. 
+    attr_accessor :transient_token_jwt
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'customer' => :'customer',
         :'payment_instrument' => :'paymentInstrument',
         :'shipping_address' => :'shippingAddress',
-        :'instrument_identifier' => :'instrumentIdentifier'
+        :'instrument_identifier' => :'instrumentIdentifier',
+        :'jti' => :'jti',
+        :'transient_token_jwt' => :'transientTokenJwt'
       }
     end
 
@@ -38,7 +46,9 @@ module CyberSource
         :'customer' => :'PtsV2PaymentsPost201ResponseTokenInformationCustomer',
         :'payment_instrument' => :'PtsV2PaymentsPost201ResponseTokenInformationPaymentInstrument',
         :'shipping_address' => :'PtsV2PaymentsPost201ResponseTokenInformationShippingAddress',
-        :'instrument_identifier' => :'TssV2TransactionsGet200ResponsePaymentInformationInstrumentIdentifier'
+        :'instrument_identifier' => :'TssV2TransactionsGet200ResponsePaymentInformationInstrumentIdentifier',
+        :'jti' => :'String',
+        :'transient_token_jwt' => :'String'
       }
     end
 
@@ -65,6 +75,14 @@ module CyberSource
       if attributes.has_key?(:'instrumentIdentifier')
         self.instrument_identifier = attributes[:'instrumentIdentifier']
       end
+
+      if attributes.has_key?(:'jti')
+        self.jti = attributes[:'jti']
+      end
+
+      if attributes.has_key?(:'transientTokenJwt')
+        self.transient_token_jwt = attributes[:'transientTokenJwt']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -88,7 +106,9 @@ module CyberSource
           customer == o.customer &&
           payment_instrument == o.payment_instrument &&
           shipping_address == o.shipping_address &&
-          instrument_identifier == o.instrument_identifier
+          instrument_identifier == o.instrument_identifier &&
+          jti == o.jti &&
+          transient_token_jwt == o.transient_token_jwt
     end
 
     # @see the `==` method
@@ -100,7 +120,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [customer, payment_instrument, shipping_address, instrument_identifier].hash
+      [customer, payment_instrument, shipping_address, instrument_identifier, jti, transient_token_jwt].hash
     end
 
     # Builds the object from hash
