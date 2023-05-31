@@ -61,7 +61,7 @@ No authorization required
 
 
 # **get_payment_instrument**
-> Tmsv2customersEmbeddedDefaultPaymentInstrument get_payment_instrument(payment_instrument_id, opts)
+> TmsV2CustomersResponseEmbeddedDefaultPaymentInstrument get_payment_instrument(payment_instrument_id, opts)
 
 Retrieve a Payment Instrument
 
@@ -98,7 +98,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Tmsv2customersEmbeddedDefaultPaymentInstrument**](Tmsv2customersEmbeddedDefaultPaymentInstrument.md)
+[**TmsV2CustomersResponseEmbeddedDefaultPaymentInstrument**](TmsV2CustomersResponseEmbeddedDefaultPaymentInstrument.md)
 
 ### Authorization
 
@@ -112,7 +112,7 @@ No authorization required
 
 
 # **patch_payment_instrument**
-> Tmsv2customersEmbeddedDefaultPaymentInstrument patch_payment_instrument(payment_instrument_id, patch_payment_instrument_request, opts)
+> TmsV2CustomersResponseEmbeddedDefaultPaymentInstrument patch_payment_instrument(payment_instrument_id, patch_payment_instrument_request, opts)
 
 Update a Payment Instrument
 
@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Tmsv2customersEmbeddedDefaultPaymentInstrument**](Tmsv2customersEmbeddedDefaultPaymentInstrument.md)
+[**TmsV2CustomersResponseEmbeddedDefaultPaymentInstrument**](TmsV2CustomersResponseEmbeddedDefaultPaymentInstrument.md)
 
 ### Authorization
 
@@ -168,7 +168,7 @@ No authorization required
 
 
 # **post_payment_instrument**
-> Tmsv2customersEmbeddedDefaultPaymentInstrument post_payment_instrument(post_payment_instrument_request, opts)
+> TmsV2CustomersResponseEmbeddedDefaultPaymentInstrument post_payment_instrument(post_payment_instrument_request, opts)
 
 Create a Payment Instrument
 
@@ -205,7 +205,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Tmsv2customersEmbeddedDefaultPaymentInstrument**](Tmsv2customersEmbeddedDefaultPaymentInstrument.md)
+[**TmsV2CustomersResponseEmbeddedDefaultPaymentInstrument**](TmsV2CustomersResponseEmbeddedDefaultPaymentInstrument.md)
 
 ### Authorization
 

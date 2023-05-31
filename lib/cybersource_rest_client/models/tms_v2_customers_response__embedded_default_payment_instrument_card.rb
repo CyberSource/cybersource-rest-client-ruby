@@ -13,7 +13,7 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  class Tmsv2customersEmbeddedDefaultPaymentInstrumentCard
+  class TmsV2CustomersResponseEmbeddedDefaultPaymentInstrumentCard
     # Two-digit month in which the payment card expires.  Format: `MM`.  Possible Values: `01` through `12`. 
     attr_accessor :expiration_month
 
@@ -36,7 +36,7 @@ module CyberSource
     attr_accessor :use_as
 
     # Hash value representing the card. 
-    attr_accessor :hash_value
+    attr_accessor :hash
 
     attr_accessor :tokenized_information
 
@@ -50,7 +50,7 @@ module CyberSource
         :'start_month' => :'startMonth',
         :'start_year' => :'startYear',
         :'use_as' => :'useAs',
-        :'hash_value' => :'hashValue',
+        :'hash' => :'hash',
         :'tokenized_information' => :'tokenizedInformation'
       }
     end
@@ -65,7 +65,7 @@ module CyberSource
         :'start_month' => :'String',
         :'start_year' => :'String',
         :'use_as' => :'String',
-        :'hash_value' => :'String',
+        :'hash' => :'String',
         :'tokenized_information' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentCardTokenizedInformation'
       }
     end
@@ -106,8 +106,8 @@ module CyberSource
         self.use_as = attributes[:'useAs']
       end
 
-      if attributes.has_key?(:'hashValue')
-        self.hash_value = attributes[:'hashValue']
+      if attributes.has_key?(:'hash')
+        self.hash = attributes[:'hash']
       end
 
       if attributes.has_key?(:'tokenizedInformation')
@@ -159,9 +159,9 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] hash_value Value to be assigned
-    def hash_value=(hash_value)
-      @hash_value = hash_value
+    # @param [Object] hash Value to be assigned
+    def hash=(hash)
+      @hash = hash
     end
 
     # Checks equality by comparing each attribute.
@@ -176,7 +176,7 @@ module CyberSource
           start_month == o.start_month &&
           start_year == o.start_year &&
           use_as == o.use_as &&
-          hash_value == o.hash_value &&
+          hash == o.hash &&
           tokenized_information == o.tokenized_information
     end
 
@@ -189,7 +189,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [expiration_month, expiration_year, type, issue_number, start_month, start_year, use_as, hash_value, tokenized_information].hash
+      [expiration_month, expiration_year, type, issue_number, start_month, start_year, use_as, hash, tokenized_information].hash
     end
 
     # Builds the object from hash

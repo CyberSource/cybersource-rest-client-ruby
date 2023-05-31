@@ -65,7 +65,7 @@ No authorization required
 
 
 # **get_customer_payment_instrument**
-> Tmsv2customersEmbeddedDefaultPaymentInstrument get_customer_payment_instrument(customer_id, payment_instrument_id, opts)
+> TmsV2CustomersResponseEmbeddedDefaultPaymentInstrument get_customer_payment_instrument(customer_id, payment_instrument_id, opts)
 
 Retrieve a Customer Payment Instrument
 
@@ -105,7 +105,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Tmsv2customersEmbeddedDefaultPaymentInstrument**](Tmsv2customersEmbeddedDefaultPaymentInstrument.md)
+[**TmsV2CustomersResponseEmbeddedDefaultPaymentInstrument**](TmsV2CustomersResponseEmbeddedDefaultPaymentInstrument.md)
 
 ### Authorization
 
@@ -174,7 +174,7 @@ No authorization required
 
 
 # **patch_customers_payment_instrument**
-> Tmsv2customersEmbeddedDefaultPaymentInstrument patch_customers_payment_instrument(customer_id, payment_instrument_id, patch_customer_payment_instrument_request, opts)
+> TmsV2CustomersResponseEmbeddedDefaultPaymentInstrument patch_customers_payment_instrument(customer_id, payment_instrument_id, patch_customer_payment_instrument_request, opts)
 
 Update a Customer Payment Instrument
 
@@ -219,7 +219,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Tmsv2customersEmbeddedDefaultPaymentInstrument**](Tmsv2customersEmbeddedDefaultPaymentInstrument.md)
+[**TmsV2CustomersResponseEmbeddedDefaultPaymentInstrument**](TmsV2CustomersResponseEmbeddedDefaultPaymentInstrument.md)
 
 ### Authorization
 
@@ -233,7 +233,7 @@ No authorization required
 
 
 # **post_customer_payment_instrument**
-> Tmsv2customersEmbeddedDefaultPaymentInstrument post_customer_payment_instrument(customer_id, post_customer_payment_instrument_request, opts)
+> TmsV2CustomersResponseEmbeddedDefaultPaymentInstrument post_customer_payment_instrument(customer_id, post_customer_payment_instrument_request, opts)
 
 Create a Customer Payment Instrument
 
@@ -273,7 +273,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Tmsv2customersEmbeddedDefaultPaymentInstrument**](Tmsv2customersEmbeddedDefaultPaymentInstrument.md)
+[**TmsV2CustomersResponseEmbeddedDefaultPaymentInstrument**](TmsV2CustomersResponseEmbeddedDefaultPaymentInstrument.md)
 
 ### Authorization
 

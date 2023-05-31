@@ -13,24 +13,37 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  class TmsV2CustomersResponse
+  class TmsV2CustomersResponseEmbeddedDefaultPaymentInstrument
     attr_accessor :_links
 
-    # The Id of the Customer Token.
+    # The Id of the Payment Instrument Token.
     attr_accessor :id
 
-    attr_accessor :object_information
+    # The type.  Possible Values: - paymentInstrument 
+    attr_accessor :object
+
+    # Flag that indicates whether customer payment instrument is the dafault. Possible Values:  - `true`: Payment instrument is customer's default.  - `false`: Payment instrument is not customer's default. 
+    attr_accessor :default
+
+    # Issuers state for the card number. Possible Values: - ACTIVE - CLOSED : The account has been closed. 
+    attr_accessor :state
+
+    # The type of Payment Instrument. Possible Values: - cardHash 
+    attr_accessor :type
+
+    attr_accessor :bank_account
+
+    attr_accessor :card
 
     attr_accessor :buyer_information
 
-    attr_accessor :client_reference_information
+    attr_accessor :bill_to
 
-    # Object containing the custom data that the merchant defines. 
-    attr_accessor :merchant_defined_information
+    attr_accessor :processing_information
 
-    attr_accessor :default_payment_instrument
+    attr_accessor :merchant_information
 
-    attr_accessor :default_shipping_address
+    attr_accessor :instrument_identifier
 
     attr_accessor :metadata
 
@@ -41,12 +54,17 @@ module CyberSource
       {
         :'_links' => :'_links',
         :'id' => :'id',
-        :'object_information' => :'objectInformation',
+        :'object' => :'object',
+        :'default' => :'default',
+        :'state' => :'state',
+        :'type' => :'type',
+        :'bank_account' => :'bankAccount',
+        :'card' => :'card',
         :'buyer_information' => :'buyerInformation',
-        :'client_reference_information' => :'clientReferenceInformation',
-        :'merchant_defined_information' => :'merchantDefinedInformation',
-        :'default_payment_instrument' => :'defaultPaymentInstrument',
-        :'default_shipping_address' => :'defaultShippingAddress',
+        :'bill_to' => :'billTo',
+        :'processing_information' => :'processingInformation',
+        :'merchant_information' => :'merchantInformation',
+        :'instrument_identifier' => :'instrumentIdentifier',
         :'metadata' => :'metadata',
         :'_embedded' => :'_embedded'
       }
@@ -55,16 +73,21 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'_links' => :'Tmsv2customersLinks',
+        :'_links' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentLinks',
         :'id' => :'String',
-        :'object_information' => :'Tmsv2customersObjectInformation',
-        :'buyer_information' => :'Tmsv2customersBuyerInformation',
-        :'client_reference_information' => :'Tmsv2customersClientReferenceInformation',
-        :'merchant_defined_information' => :'Array<Tmsv2customersMerchantDefinedInformation>',
-        :'default_payment_instrument' => :'Tmsv2customersDefaultPaymentInstrument',
-        :'default_shipping_address' => :'Tmsv2customersDefaultShippingAddress',
-        :'metadata' => :'Tmsv2customersMetadata',
-        :'_embedded' => :'TmsV2CustomersResponseEmbedded'
+        :'object' => :'String',
+        :'default' => :'BOOLEAN',
+        :'state' => :'String',
+        :'type' => :'String',
+        :'bank_account' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentBankAccount',
+        :'card' => :'TmsV2CustomersResponseEmbeddedDefaultPaymentInstrumentCard',
+        :'buyer_information' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentBuyerInformation',
+        :'bill_to' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentBillTo',
+        :'processing_information' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentProcessingInformation',
+        :'merchant_information' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentMerchantInformation',
+        :'instrument_identifier' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentInstrumentIdentifier',
+        :'metadata' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentMetadata',
+        :'_embedded' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbedded'
       }
     end
 
@@ -84,30 +107,48 @@ module CyberSource
         self.id = attributes[:'id']
       end
 
-      if attributes.has_key?(:'objectInformation')
-        self.object_information = attributes[:'objectInformation']
+      if attributes.has_key?(:'object')
+        self.object = attributes[:'object']
+      end
+
+      if attributes.has_key?(:'default')
+        self.default = attributes[:'default']
+      end
+
+      if attributes.has_key?(:'state')
+        self.state = attributes[:'state']
+      end
+
+      if attributes.has_key?(:'type')
+        self.type = attributes[:'type']
+      end
+
+      if attributes.has_key?(:'bankAccount')
+        self.bank_account = attributes[:'bankAccount']
+      end
+
+      if attributes.has_key?(:'card')
+        self.card = attributes[:'card']
       end
 
       if attributes.has_key?(:'buyerInformation')
         self.buyer_information = attributes[:'buyerInformation']
       end
 
-      if attributes.has_key?(:'clientReferenceInformation')
-        self.client_reference_information = attributes[:'clientReferenceInformation']
+      if attributes.has_key?(:'billTo')
+        self.bill_to = attributes[:'billTo']
       end
 
-      if attributes.has_key?(:'merchantDefinedInformation')
-        if (value = attributes[:'merchantDefinedInformation']).is_a?(Array)
-          self.merchant_defined_information = value
-        end
+      if attributes.has_key?(:'processingInformation')
+        self.processing_information = attributes[:'processingInformation']
       end
 
-      if attributes.has_key?(:'defaultPaymentInstrument')
-        self.default_payment_instrument = attributes[:'defaultPaymentInstrument']
+      if attributes.has_key?(:'merchantInformation')
+        self.merchant_information = attributes[:'merchantInformation']
       end
 
-      if attributes.has_key?(:'defaultShippingAddress')
-        self.default_shipping_address = attributes[:'defaultShippingAddress']
+      if attributes.has_key?(:'instrumentIdentifier')
+        self.instrument_identifier = attributes[:'instrumentIdentifier']
       end
 
       if attributes.has_key?(:'metadata')
@@ -145,12 +186,17 @@ module CyberSource
       self.class == o.class &&
           _links == o._links &&
           id == o.id &&
-          object_information == o.object_information &&
+          object == o.object &&
+          default == o.default &&
+          state == o.state &&
+          type == o.type &&
+          bank_account == o.bank_account &&
+          card == o.card &&
           buyer_information == o.buyer_information &&
-          client_reference_information == o.client_reference_information &&
-          merchant_defined_information == o.merchant_defined_information &&
-          default_payment_instrument == o.default_payment_instrument &&
-          default_shipping_address == o.default_shipping_address &&
+          bill_to == o.bill_to &&
+          processing_information == o.processing_information &&
+          merchant_information == o.merchant_information &&
+          instrument_identifier == o.instrument_identifier &&
           metadata == o.metadata &&
           _embedded == o._embedded
     end
@@ -164,7 +210,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, object_information, buyer_information, client_reference_information, merchant_defined_information, default_payment_instrument, default_shipping_address, metadata, _embedded].hash
+      [_links, id, object, default, state, type, bank_account, card, buyer_information, bill_to, processing_information, merchant_information, instrument_identifier, metadata, _embedded].hash
     end
 
     # Builds the object from hash

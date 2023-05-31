@@ -12,6 +12,6 @@ Name | Type | Description | Notes
 **default_payment_instrument** | [**Tmsv2customersDefaultPaymentInstrument**](Tmsv2customersDefaultPaymentInstrument.md) |  | [optional] 
 **default_shipping_address** | [**Tmsv2customersDefaultShippingAddress**](Tmsv2customersDefaultShippingAddress.md) |  | [optional] 
 **metadata** | [**Tmsv2customersMetadata**](Tmsv2customersMetadata.md) |  | [optional] 
-**_embedded** | [**Tmsv2customersEmbedded**](Tmsv2customersEmbedded.md) |  | [optional] 
+**_embedded** | [**TmsV2CustomersResponseEmbedded**](TmsV2CustomersResponseEmbedded.md) |  | [optional] 
 
 

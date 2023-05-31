@@ -13,58 +13,25 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  class TmsV2CustomersResponse
-    attr_accessor :_links
-
-    # The Id of the Customer Token.
-    attr_accessor :id
-
-    attr_accessor :object_information
-
-    attr_accessor :buyer_information
-
-    attr_accessor :client_reference_information
-
-    # Object containing the custom data that the merchant defines. 
-    attr_accessor :merchant_defined_information
-
+  # Additional resources for the Customer. 
+  class TmsV2CustomersResponseEmbedded
     attr_accessor :default_payment_instrument
 
     attr_accessor :default_shipping_address
 
-    attr_accessor :metadata
-
-    attr_accessor :_embedded
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'_links' => :'_links',
-        :'id' => :'id',
-        :'object_information' => :'objectInformation',
-        :'buyer_information' => :'buyerInformation',
-        :'client_reference_information' => :'clientReferenceInformation',
-        :'merchant_defined_information' => :'merchantDefinedInformation',
         :'default_payment_instrument' => :'defaultPaymentInstrument',
-        :'default_shipping_address' => :'defaultShippingAddress',
-        :'metadata' => :'metadata',
-        :'_embedded' => :'_embedded'
+        :'default_shipping_address' => :'defaultShippingAddress'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'_links' => :'Tmsv2customersLinks',
-        :'id' => :'String',
-        :'object_information' => :'Tmsv2customersObjectInformation',
-        :'buyer_information' => :'Tmsv2customersBuyerInformation',
-        :'client_reference_information' => :'Tmsv2customersClientReferenceInformation',
-        :'merchant_defined_information' => :'Array<Tmsv2customersMerchantDefinedInformation>',
-        :'default_payment_instrument' => :'Tmsv2customersDefaultPaymentInstrument',
-        :'default_shipping_address' => :'Tmsv2customersDefaultShippingAddress',
-        :'metadata' => :'Tmsv2customersMetadata',
-        :'_embedded' => :'TmsV2CustomersResponseEmbedded'
+        :'default_payment_instrument' => :'TmsV2CustomersResponseEmbeddedDefaultPaymentInstrument',
+        :'default_shipping_address' => :'Tmsv2customersEmbeddedDefaultShippingAddress'
       }
     end
 
@@ -76,46 +43,12 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'_links')
-        self._links = attributes[:'_links']
-      end
-
-      if attributes.has_key?(:'id')
-        self.id = attributes[:'id']
-      end
-
-      if attributes.has_key?(:'objectInformation')
-        self.object_information = attributes[:'objectInformation']
-      end
-
-      if attributes.has_key?(:'buyerInformation')
-        self.buyer_information = attributes[:'buyerInformation']
-      end
-
-      if attributes.has_key?(:'clientReferenceInformation')
-        self.client_reference_information = attributes[:'clientReferenceInformation']
-      end
-
-      if attributes.has_key?(:'merchantDefinedInformation')
-        if (value = attributes[:'merchantDefinedInformation']).is_a?(Array)
-          self.merchant_defined_information = value
-        end
-      end
-
       if attributes.has_key?(:'defaultPaymentInstrument')
         self.default_payment_instrument = attributes[:'defaultPaymentInstrument']
       end
 
       if attributes.has_key?(:'defaultShippingAddress')
         self.default_shipping_address = attributes[:'defaultShippingAddress']
-      end
-
-      if attributes.has_key?(:'metadata')
-        self.metadata = attributes[:'metadata']
-      end
-
-      if attributes.has_key?(:'_embedded')
-        self._embedded = attributes[:'_embedded']
       end
     end
 
@@ -132,27 +65,13 @@ module CyberSource
       true
     end
 
-    # Custom attribute writer method with validation
-    # @param [Object] id Value to be assigned
-    def id=(id)
-      @id = id
-    end
-
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          _links == o._links &&
-          id == o.id &&
-          object_information == o.object_information &&
-          buyer_information == o.buyer_information &&
-          client_reference_information == o.client_reference_information &&
-          merchant_defined_information == o.merchant_defined_information &&
           default_payment_instrument == o.default_payment_instrument &&
-          default_shipping_address == o.default_shipping_address &&
-          metadata == o.metadata &&
-          _embedded == o._embedded
+          default_shipping_address == o.default_shipping_address
     end
 
     # @see the `==` method
@@ -164,7 +83,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, object_information, buyer_information, client_reference_information, merchant_defined_information, default_payment_instrument, default_shipping_address, metadata, _embedded].hash
+      [default_payment_instrument, default_shipping_address].hash
     end
 
     # Builds the object from hash

@@ -53,7 +53,7 @@ describe 'CustomerPaymentInstrumentApi' do
   # @param payment_instrument_id The Id of a payment instrument.
   # @param [Hash] opts the optional parameters
   # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
-  # @return [Tmsv2customersEmbeddedDefaultPaymentInstrument]
+  # @return [TmsV2CustomersResponseEmbeddedDefaultPaymentInstrument]
   describe 'get_customer_payment_instrument test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -84,7 +84,7 @@ describe 'CustomerPaymentInstrumentApi' do
   # @param [Hash] opts the optional parameters
   # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
   # @option opts [String] :if_match Contains an ETag value from a GET request to make the request conditional.
-  # @return [Tmsv2customersEmbeddedDefaultPaymentInstrument]
+  # @return [TmsV2CustomersResponseEmbeddedDefaultPaymentInstrument]
   describe 'patch_customers_payment_instrument test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -98,7 +98,7 @@ describe 'CustomerPaymentInstrumentApi' do
   # @param post_customer_payment_instrument_request 
   # @param [Hash] opts the optional parameters
   # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
-  # @return [Tmsv2customersEmbeddedDefaultPaymentInstrument]
+  # @return [TmsV2CustomersResponseEmbeddedDefaultPaymentInstrument]
   describe 'post_customer_payment_instrument test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

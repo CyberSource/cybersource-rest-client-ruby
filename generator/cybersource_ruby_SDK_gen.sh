@@ -1,6 +1,9 @@
 #!/bin/bash
 echo $0
 
+python replaceFieldNameFromRequestBody.py
+
+
 # Delete the previously generated SDK code
 
 rm -rf ../docs
@@ -11,7 +14,7 @@ rm ../lib/cybersource_rest_client.rb
 
 # Command to generate SDK
 
-java -jar swagger-codegen-cli-2.2.3.jar generate -t cybersource-ruby-template -i cybersource-rest-spec.json -l ruby -o ../ -c cybersource-ruby-config.json
+java -jar swagger-codegen-cli-2.2.3.jar generate -t cybersource-ruby-template -i rest-api-spec-ruby.json -l ruby -o ../ -c cybersource-ruby-config.json
 
 sed -i "s|select_header_content_type(\["\'"application\/json;charset=utf-8|select_header_content_type(\["\'"\*\/\*|g" ../lib/cybersource_rest_client/api/secure_file_share_api.rb
 #sed -i 's/$/\r/' ../lib/cybersource_rest_client/api/secure_file_share_api.rb

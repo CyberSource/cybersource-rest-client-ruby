@@ -1,4 +1,4 @@
-# CyberSource::Tmsv2customersEmbeddedDefaultPaymentInstrumentCard
+# CyberSource::TmsV2CustomersResponseEmbeddedDefaultPaymentInstrumentCard
 
 ## Properties
 Name | Type | Description | Notes
@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **start_month** | **String** | Month of the start of the Maestro (UK Domestic) card validity period. Do not include the field, even with a blank value, if the card is not a Maestro (UK Domestic) card. &#x60;Format: MM&#x60;. Possible Values: 01 through 12.  **Note** The start date is not required for Maestro (UK Domestic) transactions.  | [optional] 
 **start_year** | **String** | Year of the start of the Maestro (UK Domestic) card validity period. Do not include the field, even with a blank value, if the card is not a Maestro (UK Domestic) card. &#x60;Format: YYYY&#x60;.  **Note** The start date is not required for Maestro (UK Domestic) transactions.  | [optional] 
 **use_as** | **String** | &#39;Payment Instrument was created / updated as part of a pinless debit transaction.&#39;  | [optional] 
-**hash_value** | **String** | Hash value representing the card.  | [optional] 
+**hash** | **String** | Hash value representing the card.  | [optional] 
 **tokenized_information** | [**Tmsv2customersEmbeddedDefaultPaymentInstrumentCardTokenizedInformation**](Tmsv2customersEmbeddedDefaultPaymentInstrumentCardTokenizedInformation.md) |  | [optional] 
 
 
