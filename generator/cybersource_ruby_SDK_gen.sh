@@ -168,3 +168,12 @@ git checkout spec/models/bad_request_error_spec.rb
 git checkout spec/models/create_access_token_request_spec.rb
 git checkout spec/models/resource_not_found_error_spec.rb
 git checkout spec/models/unauthorized_client_error_spec.rb
+
+# replace hashValue fieldName to hash for supporting hash field name in request body
+cd ./lib/cybersource_rest_client/models
+echo "starting of replacing the hash keyword in models"
+for file in ./*.rb; do \
+    sed -i 's/attr_accessor :hash_value/attr_accessor :hash \n \t alias :hash_value :hash \n \t alias :hash_value :hash/g' "$file"
+    sed -i "s/:'hash_value' => :'hashValue'/:'hash_value' => :'hash'/g" "$file"
+done
+echo "completed the task of replacing the hash keyword in models"
