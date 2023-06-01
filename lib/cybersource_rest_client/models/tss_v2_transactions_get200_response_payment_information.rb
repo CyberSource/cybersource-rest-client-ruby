@@ -20,7 +20,16 @@ module CyberSource
 
     attr_accessor :card
 
+    # This array contains the supported brands. 
+    attr_accessor :brands
+
+    attr_accessor :features
+
     attr_accessor :invoice
+
+    attr_accessor :network
+
+    attr_accessor :issuer_information
 
     attr_accessor :bank
 
@@ -40,7 +49,11 @@ module CyberSource
         :'payment_type' => :'paymentType',
         :'customer' => :'customer',
         :'card' => :'card',
+        :'brands' => :'brands',
+        :'features' => :'features',
         :'invoice' => :'invoice',
+        :'network' => :'network',
+        :'issuer_information' => :'issuerInformation',
         :'bank' => :'bank',
         :'account_features' => :'accountFeatures',
         :'payment_instrument' => :'paymentInstrument',
@@ -56,7 +69,11 @@ module CyberSource
         :'payment_type' => :'TssV2TransactionsGet200ResponsePaymentInformationPaymentType',
         :'customer' => :'TssV2TransactionsGet200ResponsePaymentInformationCustomer',
         :'card' => :'TssV2TransactionsGet200ResponsePaymentInformationCard',
+        :'brands' => :'Array<TssV2TransactionsGet200ResponsePaymentInformationBrands>',
+        :'features' => :'TssV2TransactionsGet200ResponsePaymentInformationFeatures',
         :'invoice' => :'TssV2TransactionsGet200ResponsePaymentInformationInvoice',
+        :'network' => :'TssV2TransactionsGet200ResponsePaymentInformationNetwork',
+        :'issuer_information' => :'TssV2TransactionsGet200ResponsePaymentInformationIssuerInformation',
         :'bank' => :'TssV2TransactionsGet200ResponsePaymentInformationBank',
         :'account_features' => :'TssV2TransactionsGet200ResponsePaymentInformationAccountFeatures',
         :'payment_instrument' => :'PtsV2PaymentsPost201ResponseTokenInformationPaymentInstrument',
@@ -86,8 +103,26 @@ module CyberSource
         self.card = attributes[:'card']
       end
 
+      if attributes.has_key?(:'brands')
+        if (value = attributes[:'brands']).is_a?(Array)
+          self.brands = value
+        end
+      end
+
+      if attributes.has_key?(:'features')
+        self.features = attributes[:'features']
+      end
+
       if attributes.has_key?(:'invoice')
         self.invoice = attributes[:'invoice']
+      end
+
+      if attributes.has_key?(:'network')
+        self.network = attributes[:'network']
+      end
+
+      if attributes.has_key?(:'issuerInformation')
+        self.issuer_information = attributes[:'issuerInformation']
       end
 
       if attributes.has_key?(:'bank')
@@ -136,7 +171,11 @@ module CyberSource
           payment_type == o.payment_type &&
           customer == o.customer &&
           card == o.card &&
+          brands == o.brands &&
+          features == o.features &&
           invoice == o.invoice &&
+          network == o.network &&
+          issuer_information == o.issuer_information &&
           bank == o.bank &&
           account_features == o.account_features &&
           payment_instrument == o.payment_instrument &&
@@ -154,7 +193,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [payment_type, customer, card, invoice, bank, account_features, payment_instrument, instrument_identifier, shipping_address, fluid_data].hash
+      [payment_type, customer, card, brands, features, invoice, network, issuer_information, bank, account_features, payment_instrument, instrument_identifier, shipping_address, fluid_data].hash
     end
 
     # Builds the object from hash

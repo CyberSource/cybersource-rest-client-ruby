@@ -34,6 +34,9 @@ module CyberSource
     # Same value as `processorInformation.transactionId`
     attr_accessor :network_transaction_id
 
+    # Field contains a settlement date. The date is in mmdd format, where: mm = month and dd = day. 
+    attr_accessor :settlement_date
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -43,7 +46,8 @@ module CyberSource
         :'merchant_number' => :'merchantNumber',
         :'response_code' => :'responseCode',
         :'ach_verification' => :'achVerification',
-        :'network_transaction_id' => :'networkTransactionId'
+        :'network_transaction_id' => :'networkTransactionId',
+        :'settlement_date' => :'settlementDate'
       }
     end
 
@@ -56,7 +60,8 @@ module CyberSource
         :'merchant_number' => :'String',
         :'response_code' => :'String',
         :'ach_verification' => :'PtsV2PaymentsPost201ResponseProcessorInformationAchVerification',
-        :'network_transaction_id' => :'String'
+        :'network_transaction_id' => :'String',
+        :'settlement_date' => :'String'
       }
     end
 
@@ -94,6 +99,10 @@ module CyberSource
 
       if attributes.has_key?(:'networkTransactionId')
         self.network_transaction_id = attributes[:'networkTransactionId']
+      end
+
+      if attributes.has_key?(:'settlementDate')
+        self.settlement_date = attributes[:'settlementDate']
       end
     end
 
@@ -140,6 +149,12 @@ module CyberSource
       @response_code = response_code
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] settlement_date Value to be assigned
+    def settlement_date=(settlement_date)
+      @settlement_date = settlement_date
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -151,7 +166,8 @@ module CyberSource
           merchant_number == o.merchant_number &&
           response_code == o.response_code &&
           ach_verification == o.ach_verification &&
-          network_transaction_id == o.network_transaction_id
+          network_transaction_id == o.network_transaction_id &&
+          settlement_date == o.settlement_date
     end
 
     # @see the `==` method
@@ -163,7 +179,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [approval_code, transaction_id, forwarded_acquirer_code, merchant_number, response_code, ach_verification, network_transaction_id].hash
+      [approval_code, transaction_id, forwarded_acquirer_code, merchant_number, response_code, ach_verification, network_transaction_id, settlement_date].hash
     end
 
     # Builds the object from hash

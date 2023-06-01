@@ -37,6 +37,12 @@ module CyberSource
     # For a merchant's invoice payments, enable 3D Secure payer authentication version 1, update to 3D Secure version 2, or disable 3D Secure. Possible values are:  - `enable` - `update` - `disable`  
     attr_accessor :payer_authentication_in_invoicing
 
+    # Display VAT number on Invoice.
+    attr_accessor :show_vat_number
+
+    # Your government-assigned tax identification number.  #### Tax Calculation Required field for value added tax only. Not applicable to U.S. and Canadian taxes. 
+    attr_accessor :vat_registration_number
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -47,7 +53,9 @@ module CyberSource
         :'header_style' => :'headerStyle',
         :'delivery_language' => :'deliveryLanguage',
         :'default_currency_code' => :'defaultCurrencyCode',
-        :'payer_authentication_in_invoicing' => :'payerAuthenticationInInvoicing'
+        :'payer_authentication_in_invoicing' => :'payerAuthenticationInInvoicing',
+        :'show_vat_number' => :'showVatNumber',
+        :'vat_registration_number' => :'vatRegistrationNumber'
       }
     end
 
@@ -61,7 +69,9 @@ module CyberSource
         :'header_style' => :'InvoicingV2InvoiceSettingsGet200ResponseInvoiceSettingsInformationHeaderStyle',
         :'delivery_language' => :'String',
         :'default_currency_code' => :'String',
-        :'payer_authentication_in_invoicing' => :'String'
+        :'payer_authentication_in_invoicing' => :'String',
+        :'show_vat_number' => :'BOOLEAN',
+        :'vat_registration_number' => :'String'
       }
     end
 
@@ -103,6 +113,16 @@ module CyberSource
 
       if attributes.has_key?(:'payerAuthenticationInInvoicing')
         self.payer_authentication_in_invoicing = attributes[:'payerAuthenticationInInvoicing']
+      end
+
+      if attributes.has_key?(:'showVatNumber')
+        self.show_vat_number = attributes[:'showVatNumber']
+      else
+        self.show_vat_number = false
+      end
+
+      if attributes.has_key?(:'vatRegistrationNumber')
+        self.vat_registration_number = attributes[:'vatRegistrationNumber']
       end
     end
 
@@ -155,6 +175,12 @@ module CyberSource
       @payer_authentication_in_invoicing = payer_authentication_in_invoicing
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] vat_registration_number Value to be assigned
+    def vat_registration_number=(vat_registration_number)
+      @vat_registration_number = vat_registration_number
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -167,7 +193,9 @@ module CyberSource
           header_style == o.header_style &&
           delivery_language == o.delivery_language &&
           default_currency_code == o.default_currency_code &&
-          payer_authentication_in_invoicing == o.payer_authentication_in_invoicing
+          payer_authentication_in_invoicing == o.payer_authentication_in_invoicing &&
+          show_vat_number == o.show_vat_number &&
+          vat_registration_number == o.vat_registration_number
     end
 
     # @see the `==` method
@@ -179,7 +207,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [merchant_logo, merchant_display_name, custom_email_message, enable_reminders, header_style, delivery_language, default_currency_code, payer_authentication_in_invoicing].hash
+      [merchant_logo, merchant_display_name, custom_email_message, enable_reminders, header_style, delivery_language, default_currency_code, payer_authentication_in_invoicing, show_vat_number, vat_registration_number].hash
     end
 
     # Builds the object from hash

@@ -21,11 +21,15 @@ module CyberSource
     # Flag that indicates whether an order is taxable. This value must be true if the sum of all _lineItems[].taxAmount_ values > 0.  If you do not include any `lineItems[].taxAmount` values in your request, CyberSource does not include `invoiceDetails.taxable` in the data it sends to the processor.  For processor-specific information, see the `tax_indicator` field in [Level II and Level III Processing Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/Level_2_3_SCMP_API/html)  Possible values:  - **true**  - **false** 
     attr_accessor :taxable
 
+    # Shipping Tax rate applied to the freight amount.  **Visa**: Valid range is 0.01 to 0.99 (1% to 99%, with only whole percentage values accepted; values with additional decimal places will be truncated).  **Mastercard**: Valid range is 0.00001 to 0.99999 (0.001% to 99.999%). 
+    attr_accessor :tax_rate
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'amount' => :'amount',
-        :'taxable' => :'taxable'
+        :'taxable' => :'taxable',
+        :'tax_rate' => :'taxRate'
       }
     end
 
@@ -33,7 +37,8 @@ module CyberSource
     def self.swagger_types
       {
         :'amount' => :'String',
-        :'taxable' => :'BOOLEAN'
+        :'taxable' => :'BOOLEAN',
+        :'tax_rate' => :'String'
       }
     end
 
@@ -51,6 +56,10 @@ module CyberSource
 
       if attributes.has_key?(:'taxable')
         self.taxable = attributes[:'taxable']
+      end
+
+      if attributes.has_key?(:'taxRate')
+        self.tax_rate = attributes[:'taxRate']
       end
     end
 
@@ -73,13 +82,20 @@ module CyberSource
       @amount = amount
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] tax_rate Value to be assigned
+    def tax_rate=(tax_rate)
+      @tax_rate = tax_rate
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           amount == o.amount &&
-          taxable == o.taxable
+          taxable == o.taxable &&
+          tax_rate == o.tax_rate
     end
 
     # @see the `==` method
@@ -91,7 +107,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [amount, taxable].hash
+      [amount, taxable, tax_rate].hash
     end
 
     # Builds the object from hash

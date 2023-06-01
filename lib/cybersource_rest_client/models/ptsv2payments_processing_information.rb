@@ -23,6 +23,9 @@ module CyberSource
     # CyberSource tokens types you are performing a create on. If not supplied the default token type for the merchants token vault will be used.  Valid values: - customer - paymentInstrument - instrumentIdentifier - shippingAddress 
     attr_accessor :action_token_types
 
+    # Bin Source File Identifier. Possible values: - itmx - rupay 
+    attr_accessor :bin_source
+
     # Indicates whether to also include a capture  in the submitted authorization request or not.  Possible values: - `true`: Include a capture with an authorization request. - `false`: (default) Do not include a capture with an authorization request.  #### Used by **Authorization and Capture** Optional field. 
     attr_accessor :capture
 
@@ -105,6 +108,7 @@ module CyberSource
         :'action_list' => :'actionList',
         :'enable_escrow_option' => :'enableEscrowOption',
         :'action_token_types' => :'actionTokenTypes',
+        :'bin_source' => :'binSource',
         :'capture' => :'capture',
         :'processor_id' => :'processorId',
         :'business_application_id' => :'businessApplicationId',
@@ -142,6 +146,7 @@ module CyberSource
         :'action_list' => :'Array<String>',
         :'enable_escrow_option' => :'BOOLEAN',
         :'action_token_types' => :'Array<String>',
+        :'bin_source' => :'String',
         :'capture' => :'BOOLEAN',
         :'processor_id' => :'String',
         :'business_application_id' => :'String',
@@ -195,6 +200,10 @@ module CyberSource
         if (value = attributes[:'actionTokenTypes']).is_a?(Array)
           self.action_token_types = value
         end
+      end
+
+      if attributes.has_key?(:'binSource')
+        self.bin_source = attributes[:'binSource']
       end
 
       if attributes.has_key?(:'capture')
@@ -429,6 +438,7 @@ module CyberSource
           action_list == o.action_list &&
           enable_escrow_option == o.enable_escrow_option &&
           action_token_types == o.action_token_types &&
+          bin_source == o.bin_source &&
           capture == o.capture &&
           processor_id == o.processor_id &&
           business_application_id == o.business_application_id &&
@@ -468,7 +478,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [action_list, enable_escrow_option, action_token_types, capture, processor_id, business_application_id, commerce_indicator, commerce_indicator_label, payment_solution, reconciliation_id, link_id, purchase_level, payment_id, report_group, visa_checkout_id, industry_data_type, authorization_options, capture_options, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, wallet_type, national_net_domestic_data, japan_payment_options, mobile_remote_payment_type, extended_credit_total_count, network_routing_order, pay_by_points_indicator, is_return_auth_record_enabled].hash
+      [action_list, enable_escrow_option, action_token_types, bin_source, capture, processor_id, business_application_id, commerce_indicator, commerce_indicator_label, payment_solution, reconciliation_id, link_id, purchase_level, payment_id, report_group, visa_checkout_id, industry_data_type, authorization_options, capture_options, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, wallet_type, national_net_domestic_data, japan_payment_options, mobile_remote_payment_type, extended_credit_total_count, network_routing_order, pay_by_points_indicator, is_return_auth_record_enabled].hash
     end
 
     # Builds the object from hash

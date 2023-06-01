@@ -17,7 +17,7 @@ module CyberSource
     # This field shows the available balance in the prepaid account. Acquirers always receive the available balance in the transaction currency. 
     attr_accessor :balance
 
-    # This is a multicurrency-only field. It contains a 3-digit numeric code that identifies the currency used by the issuer. 
+    # This field indicates the 3-letter [ISO Standard Currency Codes](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf) for the card currency. 
     attr_accessor :currency
 
     # Attribute mapping from ruby-style variable name to JSON key.

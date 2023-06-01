@@ -22,6 +22,6 @@ Name | Type | Description | Notes
 **tax_details** | [**Array&lt;Ptsv2paymentsOrderInformationAmountDetailsTaxDetails&gt;**](Ptsv2paymentsOrderInformationAmountDetailsTaxDetails.md) |  | [optional] 
 **service_fee_amount** | **String** | Service fee. Required for service fee transactions.  | [optional] 
 **original_currency** | **String** | Your local pricing currency code.  For the possible values, see the [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)  | [optional] 
-**cashback_amount** | **String** | Cashback amount in the acquirer’s currency. If a cashback amount is included in the request, it must be included in the &#x60;orderInformation.amountDetails.totalAmount&#x60; value.  This field is supported only on CyberSource through VisaNet.  #### Used by **Authorization** Optional. **Authorization Reversal** Optional.  #### PIN debit Required field for PIN debit purchase, PIN debit credit or PIN debit reversal.  | [optional] 
+**cashback_amount** | **String** | Cashback amount in the acquirer’s currency. If a cashback amount is included in the request, it must be included in the &#x60;orderInformation.amountDetails.totalAmount&#x60; value.  This field is supported only on CyberSource through VisaNet.  #### Used by **Authorization** Optional. **Authorization Reversal** Optional.  #### PIN debit Optional field for PIN debit purchase, PIN debit credit or PIN debit reversal.  | [optional] 
 
 
