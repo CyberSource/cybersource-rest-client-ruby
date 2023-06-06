@@ -124,6 +124,38 @@ module CyberSource
       }
     end
 
+    # Attribute mapping from JSON key to ruby-style variable name.
+    def self.json_map
+      {
+        :'acs_rendering_type' => :'acs_rendering_type',
+        :'acs_transaction_id' => :'acs_transaction_id',
+        :'authentication_result' => :'authentication_result',
+        :'authentication_status_msg' => :'authentication_status_msg',
+        :'authentication_transaction_id' => :'authentication_transaction_id',
+        :'authentication_transaction_context_id' => :'authentication_transaction_context_id',
+        :'transaction_token' => :'transaction_token',
+        :'authorization_payload' => :'authorization_payload',
+        :'cavv' => :'cavv',
+        :'cavv_algorithm' => :'cavv_algorithm',
+        :'directory_server_error_code' => :'directory_server_error_code',
+        :'directory_server_error_description' => :'directory_server_error_description',
+        :'indicator' => :'indicator',
+        :'interaction_counter' => :'interaction_counter',
+        :'eci' => :'eci',
+        :'eci_raw' => :'eci_raw',
+        :'pares_status' => :'pares_status',
+        :'sdk_transaction_id' => :'sdk_transaction_id',
+        :'specification_version' => :'specification_version',
+        :'three_ds_server_transaction_id' => :'three_ds_server_transaction_id',
+        :'ucaf_authentication_data' => :'ucaf_authentication_data',
+        :'ucaf_collection_indicator' => :'ucaf_collection_indicator',
+        :'white_list_status' => :'white_list_status',
+        :'white_list_status_source' => :'white_list_status_source',
+        :'xid' => :'xid',
+        :'directory_server_transaction_id' => :'directory_server_transaction_id'
+      }
+    end
+
     # Attribute type mapping.
     def self.swagger_types
       {
@@ -415,10 +447,10 @@ module CyberSource
           # check to ensure the input is an array given that the the attribute
           # is documented as an array but the input is not
           if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
+            self.send("#{self.class.json_map[key]}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
           end
         elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
+          self.send("#{self.class.json_map[key]}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
         end # or else data not found in attributes(hash), not an issue as the data can be optional
       end
 

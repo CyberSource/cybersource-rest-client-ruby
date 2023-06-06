@@ -36,7 +36,9 @@ module CyberSource
     attr_accessor :use_as
 
     # Hash value representing the card. 
-    attr_accessor :hash_value
+    attr_accessor :hash 
+ 	 alias :hash_value :hash 
+ 	 alias :hash_value :hash
 
     attr_accessor :tokenized_information
 
@@ -50,8 +52,23 @@ module CyberSource
         :'start_month' => :'startMonth',
         :'start_year' => :'startYear',
         :'use_as' => :'useAs',
-        :'hash_value' => :'hashValue',
+        :'hash_value' => :'hash',
         :'tokenized_information' => :'tokenizedInformation'
+      }
+    end
+
+    # Attribute mapping from JSON key to ruby-style variable name.
+    def self.json_map
+      {
+        :'expiration_month' => :'expiration_month',
+        :'expiration_year' => :'expiration_year',
+        :'type' => :'type',
+        :'issue_number' => :'issue_number',
+        :'start_month' => :'start_month',
+        :'start_year' => :'start_year',
+        :'use_as' => :'use_as',
+        :'hash_value' => :'hash',
+        :'tokenized_information' => :'tokenized_information'
       }
     end
 
@@ -202,10 +219,10 @@ module CyberSource
           # check to ensure the input is an array given that the the attribute
           # is documented as an array but the input is not
           if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
+            self.send("#{self.class.json_map[key]}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
           end
         elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
+          self.send("#{self.class.json_map[key]}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
         end # or else data not found in attributes(hash), not an issue as the data can be optional
       end
 

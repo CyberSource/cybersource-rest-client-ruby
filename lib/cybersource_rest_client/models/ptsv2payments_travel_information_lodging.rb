@@ -188,6 +188,54 @@ module CyberSource
       }
     end
 
+    # Attribute mapping from JSON key to ruby-style variable name.
+    def self.json_map
+      {
+        :'check_in_date' => :'check_in_date',
+        :'check_out_date' => :'check_out_date',
+        :'room' => :'room',
+        :'smoking_preference' => :'smoking_preference',
+        :'number_of_rooms' => :'number_of_rooms',
+        :'number_of_guests' => :'number_of_guests',
+        :'room_bed_type' => :'room_bed_type',
+        :'room_tax_type' => :'room_tax_type',
+        :'room_rate_type' => :'room_rate_type',
+        :'guest_name' => :'guest_name',
+        :'customer_service_phone_number' => :'customer_service_phone_number',
+        :'corporate_client_code' => :'corporate_client_code',
+        :'additional_discount_amount' => :'additional_discount_amount',
+        :'room_location' => :'room_location',
+        :'special_program_code' => :'special_program_code',
+        :'total_tax_amount' => :'total_tax_amount',
+        :'prepaid_cost' => :'prepaid_cost',
+        :'food_and_beverage_cost' => :'food_and_beverage_cost',
+        :'room_tax_amount' => :'room_tax_amount',
+        :'adjustment_amount' => :'adjustment_amount',
+        :'phone_cost' => :'phone_cost',
+        :'restaurant_cost' => :'restaurant_cost',
+        :'room_service_cost' => :'room_service_cost',
+        :'mini_bar_cost' => :'mini_bar_cost',
+        :'laundry_cost' => :'laundry_cost',
+        :'miscellaneous_cost' => :'miscellaneous_cost',
+        :'gift_shop_cost' => :'gift_shop_cost',
+        :'movie_cost' => :'movie_cost',
+        :'health_club_cost' => :'health_club_cost',
+        :'valet_parking_cost' => :'valet_parking_cost',
+        :'cash_disbursement_cost' => :'cash_disbursement_cost',
+        :'non_room_cost' => :'non_room_cost',
+        :'business_center_cost' => :'business_center_cost',
+        :'lounge_bar_cost' => :'lounge_bar_cost',
+        :'transportation_cost' => :'transportation_cost',
+        :'gratuity_amount' => :'gratuity_amount',
+        :'conference_room_cost' => :'conference_room_cost',
+        :'audio_visual_cost' => :'audio_visual_cost',
+        :'banquest_cost' => :'banquest_cost',
+        :'non_room_tax_amount' => :'non_room_tax_amount',
+        :'early_check_out_cost' => :'early_check_out_cost',
+        :'internet_access_cost' => :'internet_access_cost'
+      }
+    end
+
     # Attribute type mapping.
     def self.swagger_types
       {
@@ -745,10 +793,10 @@ module CyberSource
           # check to ensure the input is an array given that the the attribute
           # is documented as an array but the input is not
           if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
+            self.send("#{self.class.json_map[key]}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
           end
         elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
+          self.send("#{self.class.json_map[key]}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
         end # or else data not found in attributes(hash), not an issue as the data can be optional
       end
 

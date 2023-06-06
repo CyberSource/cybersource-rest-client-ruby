@@ -100,6 +100,32 @@ module CyberSource
       }
     end
 
+    # Attribute mapping from JSON key to ruby-style variable name.
+    def self.json_map
+      {
+        :'carrier_code' => :'carrier_code',
+        :'flight_number' => :'flight_number',
+        :'originating_airport_code' => :'originating_airport_code',
+        :'_class' => :'_class',
+        :'stopover_indicator' => :'stopover_indicator',
+        :'departure_date' => :'departure_date',
+        :'destination_airport_code' => :'destination_airport_code',
+        :'fare_basis' => :'fare_basis',
+        :'depart_tax_amount' => :'depart_tax_amount',
+        :'conjunction_ticket' => :'conjunction_ticket',
+        :'exchange_ticket_number' => :'exchange_ticket_number',
+        :'coupon_number' => :'coupon_number',
+        :'departure_time' => :'departure_time',
+        :'departure_time_meridian' => :'departure_time_meridian',
+        :'arrival_time' => :'arrival_time',
+        :'arrival_time_meridian' => :'arrival_time_meridian',
+        :'endorsements_restrictions' => :'endorsements_restrictions',
+        :'total_fare_amount' => :'total_fare_amount',
+        :'fee_amount' => :'fee_amount',
+        :'tax_amount' => :'tax_amount'
+      }
+    end
+
     # Attribute type mapping.
     def self.swagger_types
       {
@@ -373,10 +399,10 @@ module CyberSource
           # check to ensure the input is an array given that the the attribute
           # is documented as an array but the input is not
           if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
+            self.send("#{self.class.json_map[key]}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
           end
         elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
+          self.send("#{self.class.json_map[key]}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
         end # or else data not found in attributes(hash), not an issue as the data can be optional
       end
 

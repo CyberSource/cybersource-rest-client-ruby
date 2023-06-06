@@ -64,6 +64,24 @@ module CyberSource
       }
     end
 
+    # Attribute mapping from JSON key to ruby-style variable name.
+    def self.json_map
+      {
+        :'payment_solution' => :'payment_solution',
+        :'reconciliation_id' => :'reconciliation_id',
+        :'link_id' => :'link_id',
+        :'report_group' => :'report_group',
+        :'visa_checkout_id' => :'visa_checkout_id',
+        :'purchase_level' => :'purchase_level',
+        :'industry_data_type' => :'industry_data_type',
+        :'issuer' => :'issuer',
+        :'authorization_options' => :'authorization_options',
+        :'capture_options' => :'capture_options',
+        :'loan_options' => :'loan_options',
+        :'pay_by_points_indicator' => :'pay_by_points_indicator'
+      }
+    end
+
     # Attribute type mapping.
     def self.swagger_types
       {
@@ -235,10 +253,10 @@ module CyberSource
           # check to ensure the input is an array given that the the attribute
           # is documented as an array but the input is not
           if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
+            self.send("#{self.class.json_map[key]}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
           end
         elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
+          self.send("#{self.class.json_map[key]}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
         end # or else data not found in attributes(hash), not an issue as the data can be optional
       end
 

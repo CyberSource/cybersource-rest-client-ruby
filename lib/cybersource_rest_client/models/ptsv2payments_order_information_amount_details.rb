@@ -120,6 +120,38 @@ module CyberSource
       }
     end
 
+    # Attribute mapping from JSON key to ruby-style variable name.
+    def self.json_map
+      {
+        :'total_amount' => :'total_amount',
+        :'sub_total_amount' => :'sub_total_amount',
+        :'currency' => :'currency',
+        :'discount_amount' => :'discount_amount',
+        :'duty_amount' => :'duty_amount',
+        :'gratuity_amount' => :'gratuity_amount',
+        :'tax_amount' => :'tax_amount',
+        :'national_tax_included' => :'national_tax_included',
+        :'tax_applied_after_discount' => :'tax_applied_after_discount',
+        :'tax_applied_level' => :'tax_applied_level',
+        :'tax_type_code' => :'tax_type_code',
+        :'freight_amount' => :'freight_amount',
+        :'foreign_amount' => :'foreign_amount',
+        :'foreign_currency' => :'foreign_currency',
+        :'exchange_rate' => :'exchange_rate',
+        :'exchange_rate_time_stamp' => :'exchange_rate_time_stamp',
+        :'surcharge' => :'surcharge',
+        :'settlement_amount' => :'settlement_amount',
+        :'settlement_currency' => :'settlement_currency',
+        :'amex_additional_amounts' => :'amex_additional_amounts',
+        :'tax_details' => :'tax_details',
+        :'service_fee_amount' => :'service_fee_amount',
+        :'original_amount' => :'original_amount',
+        :'original_currency' => :'original_currency',
+        :'cashback_amount' => :'cashback_amount',
+        :'currency_conversion' => :'currency_conversion'
+      }
+    end
+
     # Attribute type mapping.
     def self.swagger_types
       {
@@ -469,10 +501,10 @@ module CyberSource
           # check to ensure the input is an array given that the the attribute
           # is documented as an array but the input is not
           if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
+            self.send("#{self.class.json_map[key]}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
           end
         elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
+          self.send("#{self.class.json_map[key]}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
         end # or else data not found in attributes(hash), not an issue as the data can be optional
       end
 

@@ -185,6 +185,54 @@ module CyberSource
       }
     end
 
+    # Attribute mapping from JSON key to ruby-style variable name.
+    def self.json_map
+      {
+        :'no_show_indicator' => :'no_show_indicator',
+        :'customer_name' => :'customer_name',
+        :'vehicle_class' => :'vehicle_class',
+        :'distance_travelled' => :'distance_travelled',
+        :'distance_unit' => :'distance_unit',
+        :'return_date_time' => :'return_date_time',
+        :'rental_date_time' => :'rental_date_time',
+        :'max_free_distance' => :'max_free_distance',
+        :'insurance_indicator' => :'insurance_indicator',
+        :'program_code' => :'program_code',
+        :'return_address' => :'return_address',
+        :'rental_address' => :'rental_address',
+        :'agreement_number' => :'agreement_number',
+        :'odometer_reading' => :'odometer_reading',
+        :'vehicle_identification_number' => :'vehicle_identification_number',
+        :'company_id' => :'company_id',
+        :'number_of_additional_drivers' => :'number_of_additional_drivers',
+        :'driver_age' => :'driver_age',
+        :'special_program_code' => :'special_program_code',
+        :'vehicle_make' => :'vehicle_make',
+        :'vehicle_model' => :'vehicle_model',
+        :'time_period' => :'time_period',
+        :'commodity_code' => :'commodity_code',
+        :'customer_service_phone_number' => :'customer_service_phone_number',
+        :'tax_details' => :'tax_details',
+        :'insurance_amount' => :'insurance_amount',
+        :'one_way_drop_off_amount' => :'one_way_drop_off_amount',
+        :'adjusted_amount_indicator' => :'adjusted_amount_indicator',
+        :'adjusted_amount' => :'adjusted_amount',
+        :'fuel_charges' => :'fuel_charges',
+        :'weekly_rental_rate' => :'weekly_rental_rate',
+        :'daily_rental_rate' => :'daily_rental_rate',
+        :'rate_per_mile' => :'rate_per_mile',
+        :'mileage_charge' => :'mileage_charge',
+        :'extra_mileage_charge' => :'extra_mileage_charge',
+        :'late_fee_amount' => :'late_fee_amount',
+        :'towing_charge' => :'towing_charge',
+        :'extra_charge' => :'extra_charge',
+        :'gps_charge' => :'gps_charge',
+        :'phone_charge' => :'phone_charge',
+        :'parking_violation_charge' => :'parking_violation_charge',
+        :'other_charges' => :'other_charges'
+      }
+    end
+
     # Attribute type mapping.
     def self.swagger_types
       {
@@ -716,10 +764,10 @@ module CyberSource
           # check to ensure the input is an array given that the the attribute
           # is documented as an array but the input is not
           if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
+            self.send("#{self.class.json_map[key]}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
           end
         elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
+          self.send("#{self.class.json_map[key]}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
         end # or else data not found in attributes(hash), not an issue as the data can be optional
       end
 
