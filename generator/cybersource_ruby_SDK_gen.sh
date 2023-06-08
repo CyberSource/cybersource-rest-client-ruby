@@ -1,7 +1,8 @@
 #!/bin/bash
 echo $0
-
+set -xe
 python replaceFieldNameFromRequestBody.py -i cybersource-rest-spec.json > replaceFieldLogs.log
+set +xe
 rm replaceFieldLogs.log
 
 
