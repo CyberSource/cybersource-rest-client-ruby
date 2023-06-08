@@ -173,8 +173,8 @@ git checkout spec/models/unauthorized_client_error_spec.rb
 cd ./lib/cybersource_rest_client/models
 echo "starting of replacing the hash keyword in models"
 for file in ./*.rb; do \
-    sed -i 's/attr_accessor :hash_value/attr_accessor :hash \n \t alias :hash_value :hash \n \t alias :hash_value :hash/g' "$file"
-    sed -i "s/:'hash_value' => :'hashValue'/:'hash_value' => :'hash'/g" "$file"
-    sed -i "s/:'hash_value' => :'hash_value'/:'hash_value' => :'hash'/g" "$file"
+    sed -i 's/attr_accessor :sdk_hash_value/attr_accessor :hash \n \t alias :sdk_hash_value :hash/g' "$file"
+    sed -i "s/:'sdk_hash_value' => :'sdkHashValue'/:'sdk_hash_value' => :'hash'/g" "$file"
+    sed -i "s/:'sdk_hash_value' => :'sdk_hash_value'/:'sdk_hash_value' => :'hash'/g" "$file"
 done
 echo "completed the task of replacing the hash keyword in models"

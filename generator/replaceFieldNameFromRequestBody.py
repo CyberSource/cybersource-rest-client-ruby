@@ -7,8 +7,15 @@ with open("cybersource-rest-spec.json", "r") as read_file:
 
 apis = spec_json["paths"].keys()
 
-fieldName= "hash"
-replacedFieldName= "hashValue"
+# fieldNames in request and response body structure and change with the value of it.
+# eg: fieldNames ={
+#     "fieldName" : "changed sdk field name to be used",
+#     "fieldName1" :"changed field name to be used in sdk"
+# }
+
+fieldNames = {
+    "hash": "sdkHashValue"
+}
 
 def replaceFieldNamefromJSONObject(jsonObject):
     fields= jsonObject.keys()
@@ -21,8 +28,8 @@ def replaceFieldNamefromJSONObject(jsonObject):
     
     result_json={}
     for field in fields:
-        if field == fieldName:
-            result_json[replacedFieldName]= jsonObject[field]
+        if field in fieldNames.keys():
+            result_json[fieldNames[field]]= jsonObject[field]
         else:
             result_json[field]=jsonObject[field]
     return result_json
@@ -39,8 +46,8 @@ def replaceFieldNamefromJSONObjectForResponse(jsonObject):
     
     result_json={}
     for field in fields:
-        if field == fieldName:
-            result_json[replacedFieldName]= jsonObject[field]
+        if field in fieldNames.keys():
+            result_json[fieldNames[field]]= jsonObject[field]
         else:
             result_json[field]=jsonObject[field]
     return result_json
