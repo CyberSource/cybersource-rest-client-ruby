@@ -1,11 +1,9 @@
+#this script is written for changing the hash field name from the request json in spec file for generating the ruby sdk as
+# in ruby sdk there is an issue for Hash key field name in request & response body.
+
 import json
+import sys, getopt
 
-# changing the hash field name from the request json in spec file for generating the ruby sdk as
-# in ruby sdk there is an issue for Hash key field name in request body.
-with open("cybersource-rest-spec.json", "r") as read_file:
-    spec_json = json.load(read_file)
-
-apis = spec_json["paths"].keys()
 
 # fieldNames in request and response body structure and change with the value of it.
 # eg: fieldNames ={
@@ -16,6 +14,52 @@ apis = spec_json["paths"].keys()
 fieldNames = {
     "hash": "sdkHashValue"
 }
+
+
+
+
+def getSpecJson():
+    argumentList = sys.argv[1:]
+
+    # Short Options
+    # Short Options are `-h`, `-i`
+    options = "hi:"
+
+    # Long Options
+    # Long Options are `--help`, `--inputFile = `
+    long_options = ["Help", "inputFile = "]
+    inputFile = ""
+
+    try:
+        opts, args = getopt.getopt(argumentList, options, long_options)
+
+        if not opts:
+            print("Error : Missing Arguments")
+            raise getopt.GetoptError("Usage Error")
+
+        for opt, arg in opts:
+            if opt in ("-h", "--Help"):
+                print("Command Usage : main.py [-h | -i <inputFile>]")
+                sys.exit()
+            elif opt in ("-i", "--inputFile"):
+                inputFile = arg.strip()
+                if(inputFile == ""):
+                    print("Error : Missing input file")
+                    raise getopt.GetoptError("Filename cannot be blank")
+                print(f"Using input file: {arg}")
+    except getopt.GetoptError:
+        print("Command Usage : main.py [-h | -i <inputFile>]")
+        sys.exit()
+
+    try:
+        f = open(inputFile, encoding = "utf-8")
+    except FileNotFoundError:
+        print("Error : File not found")
+        sys.exit()
+
+    spec_json = json.load(f)
+    return spec_json
+
 
 def replaceFieldNamefromJSONObject(jsonObject):
     fields= jsonObject.keys()
@@ -52,7 +96,8 @@ def replaceFieldNamefromJSONObjectForResponse(jsonObject):
             result_json[field]=jsonObject[field]
     return result_json
 
-
+spec_json= getSpecJson()
+apis = spec_json["paths"].keys()
 for api in apis:
     verbs = spec_json["paths"][api].keys()
     # print api end point to check the issue for which api it occured
@@ -97,7 +142,7 @@ for api in apis:
 
 
 
-with open("rest-api-spec-ruby.json", "w") as outfile:
+with open("cybersource-rest-spec-ruby.json", "w") as outfile:
      json.dump(spec_json, outfile,indent=4)           
 
 
