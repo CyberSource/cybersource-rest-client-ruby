@@ -19,8 +19,7 @@ module CyberSource
 
     # The unique identifier of the device that is returned in the `riskInformation.providers.fingerprint.device_fingerprint_hash` API reply field.  NOTE: For details about the value of this field, see the `decision_provider_#_field_#_value` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link).  For more details about this field, see the `device_fingerprint_hash` field description in the _Device Fingerprinting Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Device Fingerprinting Guide_ (PDF link). 
     attr_accessor :hash 
- 	 alias :hash_value :hash 
- 	 alias :hash_value :hash
+ 	 alias :sdk_hash_value :hash
 
     # The device identifier generated from attributes collected during profiling. Returned by a 3rd party when you use device fingerprinting.  For details, see the `device_fingerprint_smart_id` field description in [CyberSource Decision Manager Device Fingerprinting Guide.](https://www.cybersource.com/developers/documentation/fraud_management) 
     attr_accessor :smart_id
@@ -29,7 +28,7 @@ module CyberSource
     def self.attribute_map
       {
         :'true_ipaddress' => :'true_ipaddress',
-        :'hash_value' => :'hash',
+        :'sdk_hash_value' => :'hash',
         :'smart_id' => :'smartId'
       }
     end
@@ -38,7 +37,7 @@ module CyberSource
     def self.json_map
       {
         :'true_ipaddress' => :'true_ipaddress',
-        :'hash_value' => :'hash',
+        :'sdk_hash_value' => :'hash',
         :'smart_id' => :'smart_id'
       }
     end
@@ -47,7 +46,7 @@ module CyberSource
     def self.swagger_types
       {
         :'true_ipaddress' => :'String',
-        :'hash_value' => :'String',
+        :'sdk_hash_value' => :'String',
         :'smart_id' => :'String'
       }
     end
@@ -64,8 +63,8 @@ module CyberSource
         self.true_ipaddress = attributes[:'true_ipaddress']
       end
 
-      if attributes.has_key?(:'hashValue')
-        self.hash_value = attributes[:'hashValue']
+      if attributes.has_key?(:'sdkHashValue')
+        self.sdk_hash_value = attributes[:'sdkHashValue']
       end
 
       if attributes.has_key?(:'smartId')
@@ -93,9 +92,9 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] hash_value Value to be assigned
-    def hash_value=(hash_value)
-      @hash_value = hash_value
+    # @param [Object] sdk_hash_value Value to be assigned
+    def sdk_hash_value=(sdk_hash_value)
+      @sdk_hash_value = sdk_hash_value
     end
 
     # Custom attribute writer method with validation
@@ -110,7 +109,7 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           true_ipaddress == o.true_ipaddress &&
-          hash_value == o.hash_value &&
+          sdk_hash_value == o.sdk_hash_value &&
           smart_id == o.smart_id
     end
 
@@ -123,7 +122,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [true_ipaddress, hash_value, smart_id].hash
+      [true_ipaddress, sdk_hash_value, smart_id].hash
     end
 
     # Builds the object from hash

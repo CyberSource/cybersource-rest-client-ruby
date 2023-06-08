@@ -37,8 +37,7 @@ module CyberSource
 
     # Hash value representing the card. 
     attr_accessor :hash 
- 	 alias :hash_value :hash 
- 	 alias :hash_value :hash
+ 	 alias :sdk_hash_value :hash
 
     attr_accessor :tokenized_information
 
@@ -52,7 +51,7 @@ module CyberSource
         :'start_month' => :'startMonth',
         :'start_year' => :'startYear',
         :'use_as' => :'useAs',
-        :'hash_value' => :'hash',
+        :'sdk_hash_value' => :'hash',
         :'tokenized_information' => :'tokenizedInformation'
       }
     end
@@ -67,7 +66,7 @@ module CyberSource
         :'start_month' => :'start_month',
         :'start_year' => :'start_year',
         :'use_as' => :'use_as',
-        :'hash_value' => :'hash',
+        :'sdk_hash_value' => :'hash',
         :'tokenized_information' => :'tokenized_information'
       }
     end
@@ -82,7 +81,7 @@ module CyberSource
         :'start_month' => :'String',
         :'start_year' => :'String',
         :'use_as' => :'String',
-        :'hash_value' => :'String',
+        :'sdk_hash_value' => :'String',
         :'tokenized_information' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentCardTokenizedInformation'
       }
     end
@@ -123,8 +122,8 @@ module CyberSource
         self.use_as = attributes[:'useAs']
       end
 
-      if attributes.has_key?(:'hashValue')
-        self.hash_value = attributes[:'hashValue']
+      if attributes.has_key?(:'sdkHashValue')
+        self.sdk_hash_value = attributes[:'sdkHashValue']
       end
 
       if attributes.has_key?(:'tokenizedInformation')
@@ -176,9 +175,9 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] hash_value Value to be assigned
-    def hash_value=(hash_value)
-      @hash_value = hash_value
+    # @param [Object] sdk_hash_value Value to be assigned
+    def sdk_hash_value=(sdk_hash_value)
+      @sdk_hash_value = sdk_hash_value
     end
 
     # Checks equality by comparing each attribute.
@@ -193,7 +192,7 @@ module CyberSource
           start_month == o.start_month &&
           start_year == o.start_year &&
           use_as == o.use_as &&
-          hash_value == o.hash_value &&
+          sdk_hash_value == o.sdk_hash_value &&
           tokenized_information == o.tokenized_information
     end
 
@@ -206,7 +205,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [expiration_month, expiration_year, type, issue_number, start_month, start_year, use_as, hash_value, tokenized_information].hash
+      [expiration_month, expiration_year, type, issue_number, start_month, start_year, use_as, sdk_hash_value, tokenized_information].hash
     end
 
     # Builds the object from hash
