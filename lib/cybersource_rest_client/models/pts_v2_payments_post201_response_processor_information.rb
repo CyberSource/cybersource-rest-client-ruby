@@ -155,6 +155,7 @@ module CyberSource
         :'response_details' => :'response_details',
         :'response_category_code' => :'response_category_code',
         :'forwarded_acquirer_code' => :'forwarded_acquirer_code',
+        :'settlement_date' => :'settlement_date',
         :'avs' => :'avs',
         :'card_verification' => :'card_verification',
         :'merchant_advice' => :'merchant_advice',

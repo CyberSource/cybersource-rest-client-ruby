@@ -23,6 +23,9 @@ module CyberSource
     # Your CyberSource merchant ID.
     attr_accessor :merchant_id
 
+    # The status of the submitted transaction. Note: This field may not be returned for all transactions. 
+    attr_accessor :status
+
     attr_accessor :application_information
 
     attr_accessor :buyer_information
@@ -32,6 +35,8 @@ module CyberSource
     attr_accessor :consumer_authentication_information
 
     attr_accessor :device_information
+
+    attr_accessor :error_information
 
     attr_accessor :fraud_marking_information
 
@@ -60,11 +65,13 @@ module CyberSource
         :'id' => :'id',
         :'submit_time_utc' => :'submitTimeUtc',
         :'merchant_id' => :'merchantId',
+        :'status' => :'status',
         :'application_information' => :'applicationInformation',
         :'buyer_information' => :'buyerInformation',
         :'client_reference_information' => :'clientReferenceInformation',
         :'consumer_authentication_information' => :'consumerAuthenticationInformation',
         :'device_information' => :'deviceInformation',
+        :'error_information' => :'errorInformation',
         :'fraud_marking_information' => :'fraudMarkingInformation',
         :'merchant_defined_information' => :'merchantDefinedInformation',
         :'merchant_information' => :'merchantInformation',
@@ -84,11 +91,13 @@ module CyberSource
         :'id' => :'id',
         :'submit_time_utc' => :'submit_time_utc',
         :'merchant_id' => :'merchant_id',
+        :'status' => :'status',
         :'application_information' => :'application_information',
         :'buyer_information' => :'buyer_information',
         :'client_reference_information' => :'client_reference_information',
         :'consumer_authentication_information' => :'consumer_authentication_information',
         :'device_information' => :'device_information',
+        :'error_information' => :'error_information',
         :'fraud_marking_information' => :'fraud_marking_information',
         :'merchant_defined_information' => :'merchant_defined_information',
         :'merchant_information' => :'merchant_information',
@@ -108,11 +117,13 @@ module CyberSource
         :'id' => :'String',
         :'submit_time_utc' => :'String',
         :'merchant_id' => :'String',
+        :'status' => :'String',
         :'application_information' => :'TssV2TransactionsPost201ResponseEmbeddedApplicationInformation',
         :'buyer_information' => :'TssV2TransactionsPost201ResponseEmbeddedBuyerInformation',
         :'client_reference_information' => :'TssV2TransactionsPost201ResponseEmbeddedClientReferenceInformation',
         :'consumer_authentication_information' => :'TssV2TransactionsPost201ResponseEmbeddedConsumerAuthenticationInformation',
         :'device_information' => :'Riskv1authenticationresultsDeviceInformation',
+        :'error_information' => :'TssV2TransactionsPost201ResponseEmbeddedErrorInformation',
         :'fraud_marking_information' => :'TssV2TransactionsGet200ResponseFraudMarkingInformation',
         :'merchant_defined_information' => :'Array<Ptsv2paymentsMerchantDefinedInformation>',
         :'merchant_information' => :'TssV2TransactionsPost201ResponseEmbeddedMerchantInformation',
@@ -146,6 +157,10 @@ module CyberSource
         self.merchant_id = attributes[:'merchantId']
       end
 
+      if attributes.has_key?(:'status')
+        self.status = attributes[:'status']
+      end
+
       if attributes.has_key?(:'applicationInformation')
         self.application_information = attributes[:'applicationInformation']
       end
@@ -164,6 +179,10 @@ module CyberSource
 
       if attributes.has_key?(:'deviceInformation')
         self.device_information = attributes[:'deviceInformation']
+      end
+
+      if attributes.has_key?(:'errorInformation')
+        self.error_information = attributes[:'errorInformation']
       end
 
       if attributes.has_key?(:'fraudMarkingInformation')
@@ -236,11 +255,13 @@ module CyberSource
           id == o.id &&
           submit_time_utc == o.submit_time_utc &&
           merchant_id == o.merchant_id &&
+          status == o.status &&
           application_information == o.application_information &&
           buyer_information == o.buyer_information &&
           client_reference_information == o.client_reference_information &&
           consumer_authentication_information == o.consumer_authentication_information &&
           device_information == o.device_information &&
+          error_information == o.error_information &&
           fraud_marking_information == o.fraud_marking_information &&
           merchant_defined_information == o.merchant_defined_information &&
           merchant_information == o.merchant_information &&
@@ -262,7 +283,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, submit_time_utc, merchant_id, application_information, buyer_information, client_reference_information, consumer_authentication_information, device_information, fraud_marking_information, merchant_defined_information, merchant_information, order_information, payment_information, processing_information, processor_information, point_of_sale_information, risk_information, _links].hash
+      [id, submit_time_utc, merchant_id, status, application_information, buyer_information, client_reference_information, consumer_authentication_information, device_information, error_information, fraud_marking_information, merchant_defined_information, merchant_information, order_information, payment_information, processing_information, processor_information, point_of_sale_information, risk_information, _links].hash
     end
 
     # Builds the object from hash

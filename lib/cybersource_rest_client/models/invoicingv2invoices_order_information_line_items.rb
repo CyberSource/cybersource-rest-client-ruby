@@ -63,7 +63,12 @@ module CyberSource
         :'product_sku' => :'product_sku',
         :'product_name' => :'product_name',
         :'quantity' => :'quantity',
-        :'unit_price' => :'unit_price'
+        :'unit_price' => :'unit_price',
+        :'discount_amount' => :'discount_amount',
+        :'discount_rate' => :'discount_rate',
+        :'tax_amount' => :'tax_amount',
+        :'tax_rate' => :'tax_rate',
+        :'total_amount' => :'total_amount'
       }
     end
 

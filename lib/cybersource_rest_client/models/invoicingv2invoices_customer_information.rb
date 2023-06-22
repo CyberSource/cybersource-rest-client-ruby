@@ -41,7 +41,8 @@ module CyberSource
       {
         :'name' => :'name',
         :'email' => :'email',
-        :'merchant_customer_id' => :'merchant_customer_id'
+        :'merchant_customer_id' => :'merchant_customer_id',
+        :'company' => :'company'
       }
     end
 

@@ -60,7 +60,8 @@ module CyberSource
         :'merchant_number' => :'merchant_number',
         :'response_code' => :'response_code',
         :'ach_verification' => :'ach_verification',
-        :'network_transaction_id' => :'network_transaction_id'
+        :'network_transaction_id' => :'network_transaction_id',
+        :'settlement_date' => :'settlement_date'
       }
     end
 

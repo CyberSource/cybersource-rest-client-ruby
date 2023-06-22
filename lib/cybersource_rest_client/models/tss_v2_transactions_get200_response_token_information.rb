@@ -46,7 +46,9 @@ module CyberSource
         :'customer' => :'customer',
         :'payment_instrument' => :'payment_instrument',
         :'shipping_address' => :'shipping_address',
-        :'instrument_identifier' => :'instrument_identifier'
+        :'instrument_identifier' => :'instrument_identifier',
+        :'jti' => :'jti',
+        :'transient_token_jwt' => :'transient_token_jwt'
       }
     end
 

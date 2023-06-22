@@ -37,7 +37,6 @@ describe 'SubscriptionsApi' do
   # Activate a &#x60;CANCELLED&#x60; Or &#x60;SUSPENDED&#x60; Subscription 
   # @param id Subscription Id
   # @param [Hash] opts the optional parameters
-  # @option opts [Object] :activate_subscription_request 
   # @return [InlineResponse2009]
   describe 'activate_subscription test' do
     it 'should work' do
@@ -50,7 +49,6 @@ describe 'SubscriptionsApi' do
   # Cancel a Subscription
   # @param id Subscription Id
   # @param [Hash] opts the optional parameters
-  # @option opts [Object] :cancel_subscription_request 
   # @return [InlineResponse202]
   describe 'cancel_subscription test' do
     it 'should work' do
@@ -113,7 +111,6 @@ describe 'SubscriptionsApi' do
   # Suspend a Subscription
   # @param id Subscription Id
   # @param [Hash] opts the optional parameters
-  # @option opts [Object] :suspend_subscription_request 
   # @return [InlineResponse2021]
   describe 'suspend_subscription test' do
     it 'should work' do

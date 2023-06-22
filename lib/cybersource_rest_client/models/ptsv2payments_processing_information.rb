@@ -146,6 +146,7 @@ module CyberSource
         :'action_list' => :'action_list',
         :'enable_escrow_option' => :'enable_escrow_option',
         :'action_token_types' => :'action_token_types',
+        :'bin_source' => :'bin_source',
         :'capture' => :'capture',
         :'processor_id' => :'processor_id',
         :'business_application_id' => :'business_application_id',

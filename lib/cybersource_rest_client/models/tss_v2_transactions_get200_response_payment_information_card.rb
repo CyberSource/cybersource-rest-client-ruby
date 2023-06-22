@@ -79,6 +79,8 @@ module CyberSource
         :'start_year' => :'start_year',
         :'issue_number' => :'issue_number',
         :'type' => :'type',
+        :'brand_name' => :'brand_name',
+        :'currency' => :'currency',
         :'account_encoder_id' => :'account_encoder_id',
         :'use_as' => :'use_as'
       }

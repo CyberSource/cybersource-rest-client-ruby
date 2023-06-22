@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 
 # **activate_subscription**
-> InlineResponse2009 activate_subscription(id, opts)
+> InlineResponse2009 activate_subscription(id)
 
 Activate a Subscription
 
@@ -30,13 +30,10 @@ api_instance = CyberSource::SubscriptionsApi.new
 
 id = "id_example" # String | Subscription Id
 
-opts = { 
-  activate_subscription_request: nil # Object | 
-}
 
 begin
   #Activate a Subscription
-  result = api_instance.activate_subscription(id, opts)
+  result = api_instance.activate_subscription(id)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling SubscriptionsApi->activate_subscription: #{e}"
@@ -48,7 +45,6 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| Subscription Id | 
- **activate_subscription_request** | **Object**|  | [optional] 
 
 ### Return type
 
@@ -66,7 +62,7 @@ No authorization required
 
 
 # **cancel_subscription**
-> InlineResponse202 cancel_subscription(id, opts)
+> InlineResponse202 cancel_subscription(id)
 
 Cancel a Subscription
 
@@ -81,13 +77,10 @@ api_instance = CyberSource::SubscriptionsApi.new
 
 id = "id_example" # String | Subscription Id
 
-opts = { 
-  cancel_subscription_request: nil # Object | 
-}
 
 begin
   #Cancel a Subscription
-  result = api_instance.cancel_subscription(id, opts)
+  result = api_instance.cancel_subscription(id)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling SubscriptionsApi->cancel_subscription: #{e}"
@@ -99,7 +92,6 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| Subscription Id | 
- **cancel_subscription_request** | **Object**|  | [optional] 
 
 ### Return type
 
@@ -306,7 +298,7 @@ No authorization required
 
 
 # **suspend_subscription**
-> InlineResponse2021 suspend_subscription(id, opts)
+> InlineResponse2021 suspend_subscription(id)
 
 Suspend a Subscription
 
@@ -321,13 +313,10 @@ api_instance = CyberSource::SubscriptionsApi.new
 
 id = "id_example" # String | Subscription Id
 
-opts = { 
-  suspend_subscription_request: nil # Object | 
-}
 
 begin
   #Suspend a Subscription
-  result = api_instance.suspend_subscription(id, opts)
+  result = api_instance.suspend_subscription(id)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling SubscriptionsApi->suspend_subscription: #{e}"
@@ -339,7 +328,6 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| Subscription Id | 
- **suspend_subscription_request** | **Object**|  | [optional] 
 
 ### Return type
 

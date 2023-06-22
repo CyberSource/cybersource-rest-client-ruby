@@ -35,6 +35,7 @@ module CyberSource
     def self.json_map
       {
         :'name' => :'name',
+        :'sub_type_name' => :'sub_type_name',
         :'method' => :'method'
       }
     end

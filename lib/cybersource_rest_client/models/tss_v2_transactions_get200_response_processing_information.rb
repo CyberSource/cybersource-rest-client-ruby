@@ -56,6 +56,7 @@ module CyberSource
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
+        :'bin_source' => :'bin_source',
         :'industry_data_type' => :'industry_data_type',
         :'payment_solution' => :'payment_solution',
         :'commerce_indicator' => :'commerce_indicator',

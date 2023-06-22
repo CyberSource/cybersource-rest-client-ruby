@@ -69,7 +69,9 @@ module CyberSource
         :'header_style' => :'header_style',
         :'delivery_language' => :'delivery_language',
         :'default_currency_code' => :'default_currency_code',
-        :'payer_authentication3_ds_version' => :'payer_authentication3_ds_version'
+        :'payer_authentication3_ds_version' => :'payer_authentication3_ds_version',
+        :'show_vat_number' => :'show_vat_number',
+        :'vat_registration_number' => :'vat_registration_number'
       }
     end
 

@@ -37,7 +37,8 @@ module CyberSource
     def self.json_map
       {
         :'amount' => :'amount',
-        :'taxable' => :'taxable'
+        :'taxable' => :'taxable',
+        :'tax_rate' => :'tax_rate'
       }
     end
 

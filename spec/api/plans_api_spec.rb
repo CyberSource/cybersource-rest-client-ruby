@@ -37,7 +37,6 @@ describe 'PlansApi' do
   # Activate a Plan
   # @param id Plan Id
   # @param [Hash] opts the optional parameters
-  # @option opts [Object] :activate_plan_request 
   # @return [InlineResponse2004]
   describe 'activate_plan test' do
     it 'should work' do
@@ -62,7 +61,6 @@ describe 'PlansApi' do
   # Deactivate a Plan
   # @param id Plan Id
   # @param [Hash] opts the optional parameters
-  # @option opts [Object] :deactivate_plan_request 
   # @return [InlineResponse2004]
   describe 'deactivate_plan test' do
     it 'should work' do
