@@ -243,6 +243,68 @@ module CyberSource
       }
     end
 
+    # Attribute mapping from JSON key to ruby-style variable name.
+    def self.json_map
+      {
+        :'cavv' => :'cavv',
+        :'cavv_algorithm' => :'cavv_algorithm',
+        :'eci_raw' => :'eci_raw',
+        :'pares_status' => :'pares_status',
+        :'veres_enrolled' => :'veres_enrolled',
+        :'xid' => :'xid',
+        :'ucaf_collection_indicator' => :'ucaf_collection_indicator',
+        :'ucaf_authentication_data' => :'ucaf_authentication_data',
+        :'strong_authentication' => :'strong_authentication',
+        :'directory_server_transaction_id' => :'directory_server_transaction_id',
+        :'pa_specification_version' => :'pa_specification_version',
+        :'authentication_type' => :'authentication_type',
+        :'response_access_token' => :'response_access_token',
+        :'acs_transaction_id' => :'acs_transaction_id',
+        :'acs_window_size' => :'acs_window_size',
+        :'alternate_authentication_data' => :'alternate_authentication_data',
+        :'alternate_authentication_date' => :'alternate_authentication_date',
+        :'alternate_authentication_method' => :'alternate_authentication_method',
+        :'authentication_date' => :'authentication_date',
+        :'authentication_transaction_id' => :'authentication_transaction_id',
+        :'challenge_cancel_code' => :'challenge_cancel_code',
+        :'challenge_code' => :'challenge_code',
+        :'challenge_status' => :'challenge_status',
+        :'customer_card_alias' => :'customer_card_alias',
+        :'decoupled_authentication_indicator' => :'decoupled_authentication_indicator',
+        :'decoupled_authentication_max_time' => :'decoupled_authentication_max_time',
+        :'default_card' => :'default_card',
+        :'device_channel' => :'device_channel',
+        :'installment_total_count' => :'installment_total_count',
+        :'merchant_fraud_rate' => :'merchant_fraud_rate',
+        :'marketing_opt_in' => :'marketing_opt_in',
+        :'marketing_source' => :'marketing_source',
+        :'mcc' => :'mcc',
+        :'merchant_score' => :'merchant_score',
+        :'message_category' => :'message_category',
+        :'network_score' => :'network_score',
+        :'npa_code' => :'npa_code',
+        :'override_payment_method' => :'override_payment_method',
+        :'override_country_code' => :'override_country_code',
+        :'prior_authentication_data' => :'prior_authentication_data',
+        :'prior_authentication_method' => :'prior_authentication_method',
+        :'prior_authentication_reference_id' => :'prior_authentication_reference_id',
+        :'prior_authentication_time' => :'prior_authentication_time',
+        :'product_code' => :'product_code',
+        :'return_url' => :'return_url',
+        :'requestor_id' => :'requestor_id',
+        :'requestor_initiated_authentication_indicator' => :'requestor_initiated_authentication_indicator',
+        :'requestor_name' => :'requestor_name',
+        :'reference_id' => :'reference_id',
+        :'sdk_max_timeout' => :'sdk_max_timeout',
+        :'secure_corporate_payment_indicator' => :'secure_corporate_payment_indicator',
+        :'transaction_mode' => :'transaction_mode',
+        :'white_list_status' => :'white_list_status',
+        :'effective_authentication_type' => :'effective_authentication_type',
+        :'signed_pares_status_reason' => :'signed_pares_status_reason',
+        :'signed_pares' => :'signed_pares'
+      }
+    end
+
     # Attribute type mapping.
     def self.swagger_types
       {
@@ -900,10 +962,10 @@ module CyberSource
           # check to ensure the input is an array given that the the attribute
           # is documented as an array but the input is not
           if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
+            self.send("#{self.class.json_map[key]}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
           end
         elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
+          self.send("#{self.class.json_map[key]}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
         end # or else data not found in attributes(hash), not an issue as the data can be optional
       end
 

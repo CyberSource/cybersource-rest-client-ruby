@@ -112,6 +112,35 @@ module CyberSource
       }
     end
 
+    # Attribute mapping from JSON key to ruby-style variable name.
+    def self.json_map
+      {
+        :'processor_merchant_id' => :'processor_merchant_id',
+        :'merchant_name' => :'merchant_name',
+        :'transaction_reference_number' => :'transaction_reference_number',
+        :'merchant_reference_number' => :'merchant_reference_number',
+        :'nature_of_dispute' => :'nature_of_dispute',
+        :'alert_type' => :'alert_type',
+        :'amount' => :'amount',
+        :'sign' => :'sign',
+        :'action' => :'action',
+        :'card_type' => :'card_type',
+        :'original_settlement_time' => :'original_settlement_time',
+        :'tracking_number' => :'tracking_number',
+        :'currency_code' => :'currency_code',
+        :'request_id' => :'request_id',
+        :'response_due_time' => :'response_due_time',
+        :'time' => :'time',
+        :'action_description' => :'action_description',
+        :'customer_id' => :'customer_id',
+        :'reason_code' => :'reason_code',
+        :'representment_cp_time' => :'representment_cp_time',
+        :'applications' => :'applications',
+        :'event_requested_time' => :'event_requested_time',
+        :'pre_dispute_flag' => :'pre_dispute_flag'
+      }
+    end
+
     # Attribute type mapping.
     def self.swagger_types
       {
@@ -307,10 +336,10 @@ module CyberSource
           # check to ensure the input is an array given that the the attribute
           # is documented as an array but the input is not
           if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
+            self.send("#{self.class.json_map[key]}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
           end
         elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
+          self.send("#{self.class.json_map[key]}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
         end # or else data not found in attributes(hash), not an issue as the data can be optional
       end
 

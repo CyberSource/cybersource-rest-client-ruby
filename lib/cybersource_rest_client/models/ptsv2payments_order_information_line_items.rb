@@ -148,6 +148,45 @@ module CyberSource
       }
     end
 
+    # Attribute mapping from JSON key to ruby-style variable name.
+    def self.json_map
+      {
+        :'product_code' => :'product_code',
+        :'product_name' => :'product_name',
+        :'product_sku' => :'product_sku',
+        :'quantity' => :'quantity',
+        :'unit_price' => :'unit_price',
+        :'unit_of_measure' => :'unit_of_measure',
+        :'total_amount' => :'total_amount',
+        :'tax_amount' => :'tax_amount',
+        :'tax_rate' => :'tax_rate',
+        :'tax_applied_after_discount' => :'tax_applied_after_discount',
+        :'tax_status_indicator' => :'tax_status_indicator',
+        :'tax_type_code' => :'tax_type_code',
+        :'amount_includes_tax' => :'amount_includes_tax',
+        :'type_of_supply' => :'type_of_supply',
+        :'commodity_code' => :'commodity_code',
+        :'discount_amount' => :'discount_amount',
+        :'discount_applied' => :'discount_applied',
+        :'discount_rate' => :'discount_rate',
+        :'invoice_number' => :'invoice_number',
+        :'tax_details' => :'tax_details',
+        :'fulfillment_type' => :'fulfillment_type',
+        :'weight' => :'weight',
+        :'weight_identifier' => :'weight_identifier',
+        :'weight_unit' => :'weight_unit',
+        :'reference_data_code' => :'reference_data_code',
+        :'reference_data_number' => :'reference_data_number',
+        :'product_description' => :'product_description',
+        :'gift_card_currency' => :'gift_card_currency',
+        :'shipping_destination_types' => :'shipping_destination_types',
+        :'gift' => :'gift',
+        :'passenger' => :'passenger',
+        :'allowed_export_countries' => :'allowed_export_countries',
+        :'restricted_export_countries' => :'restricted_export_countries'
+      }
+    end
+
     # Attribute type mapping.
     def self.swagger_types
       {
@@ -547,10 +586,10 @@ module CyberSource
           # check to ensure the input is an array given that the the attribute
           # is documented as an array but the input is not
           if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
+            self.send("#{self.class.json_map[key]}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
           end
         elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
+          self.send("#{self.class.json_map[key]}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
         end # or else data not found in attributes(hash), not an issue as the data can be optional
       end
 

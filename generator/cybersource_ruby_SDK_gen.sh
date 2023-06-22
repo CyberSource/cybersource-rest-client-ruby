@@ -1,5 +1,10 @@
 #!/bin/bash
 echo $0
+set -xe
+python replaceFieldNameFromRequestBody.py -i cybersource-rest-spec.json > replaceFieldLogs.log
+set +xe
+rm replaceFieldLogs.log
+
 
 # Delete the previously generated SDK code
 
@@ -11,7 +16,7 @@ rm ../lib/cybersource_rest_client.rb
 
 # Command to generate SDK
 
-java -jar swagger-codegen-cli-2.2.3.jar generate -t cybersource-ruby-template -i cybersource-rest-spec.json -l ruby -o ../ -c cybersource-ruby-config.json
+java -jar swagger-codegen-cli-2.2.3.jar generate -t cybersource-ruby-template -i cybersource-rest-spec-ruby.json -l ruby -o ../ -c cybersource-ruby-config.json
 
 sed -i "s|select_header_content_type(\["\'"application\/json;charset=utf-8|select_header_content_type(\["\'"\*\/\*|g" ../lib/cybersource_rest_client/api/secure_file_share_api.rb
 #sed -i 's/$/\r/' ../lib/cybersource_rest_client/api/secure_file_share_api.rb
@@ -165,3 +170,13 @@ git checkout spec/models/bad_request_error_spec.rb
 git checkout spec/models/create_access_token_request_spec.rb
 git checkout spec/models/resource_not_found_error_spec.rb
 git checkout spec/models/unauthorized_client_error_spec.rb
+
+# replace hashValue fieldName to hash for supporting hash field name in request body
+cd ./lib/cybersource_rest_client/models
+echo "starting of replacing the hash keyword in models"
+for file in ./*.rb; do \
+    sed -i 's/attr_accessor :sdk_hash_value/attr_accessor :hash \n \t alias :sdk_hash_value :hash/g' "$file"
+    sed -i "s/:'sdk_hash_value' => :'sdkHashValue'/:'sdk_hash_value' => :'hash'/g" "$file"
+    sed -i "s/:'sdk_hash_value' => :'sdk_hash_value'/:'sdk_hash_value' => :'hash'/g" "$file"
+done
+echo "completed the task of replacing the hash keyword in models"

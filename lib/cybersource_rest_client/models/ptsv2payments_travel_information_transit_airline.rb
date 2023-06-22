@@ -169,6 +169,50 @@ module CyberSource
       }
     end
 
+    # Attribute mapping from JSON key to ruby-style variable name.
+    def self.json_map
+      {
+        :'booking_reference_number' => :'booking_reference_number',
+        :'carrier_name' => :'carrier_name',
+        :'ticket_issuer' => :'ticket_issuer',
+        :'ticket_number' => :'ticket_number',
+        :'check_digit' => :'check_digit',
+        :'restricted_ticket_indicator' => :'restricted_ticket_indicator',
+        :'transaction_type' => :'transaction_type',
+        :'extended_payment_code' => :'extended_payment_code',
+        :'passenger_name' => :'passenger_name',
+        :'customer_code' => :'customer_code',
+        :'document_type' => :'document_type',
+        :'document_number' => :'document_number',
+        :'document_number_of_parts' => :'document_number_of_parts',
+        :'invoice_number' => :'invoice_number',
+        :'invoice_date' => :'invoice_date',
+        :'additional_charges' => :'additional_charges',
+        :'total_fee_amount' => :'total_fee_amount',
+        :'clearing_sequence' => :'clearing_sequence',
+        :'clearing_count' => :'clearing_count',
+        :'total_clearing_amount' => :'total_clearing_amount',
+        :'number_of_passengers' => :'number_of_passengers',
+        :'reservation_system_code' => :'reservation_system_code',
+        :'process_identifier' => :'process_identifier',
+        :'ticket_issue_date' => :'ticket_issue_date',
+        :'electronic_ticket_indicator' => :'electronic_ticket_indicator',
+        :'original_ticket_number' => :'original_ticket_number',
+        :'purchase_type' => :'purchase_type',
+        :'credit_reason_indicator' => :'credit_reason_indicator',
+        :'ticket_change_indicator' => :'ticket_change_indicator',
+        :'plan_number' => :'plan_number',
+        :'arrival_date' => :'arrival_date',
+        :'restricted_ticket_desciption' => :'restricted_ticket_desciption',
+        :'exchange_ticket_amount' => :'exchange_ticket_amount',
+        :'exchange_ticket_fee_amount' => :'exchange_ticket_fee_amount',
+        :'reservation_type' => :'reservation_type',
+        :'boarding_fee_amount' => :'boarding_fee_amount',
+        :'legs' => :'legs',
+        :'ancillary_information' => :'ancillary_information'
+      }
+    end
+
     # Attribute type mapping.
     def self.swagger_types
       {
@@ -630,10 +674,10 @@ module CyberSource
           # check to ensure the input is an array given that the the attribute
           # is documented as an array but the input is not
           if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
+            self.send("#{self.class.json_map[key]}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
           end
         elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
+          self.send("#{self.class.json_map[key]}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
         end # or else data not found in attributes(hash), not an issue as the data can be optional
       end
 

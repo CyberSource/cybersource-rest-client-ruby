@@ -18,7 +18,8 @@ module CyberSource
     attr_accessor :true_ipaddress
 
     # The unique identifier of the device that is returned in the `riskInformation.providers.fingerprint.device_fingerprint_hash` API reply field.  NOTE: For details about the value of this field, see the `decision_provider_#_field_#_value` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link).  For more details about this field, see the `device_fingerprint_hash` field description in the _Device Fingerprinting Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Device Fingerprinting Guide_ (PDF link). 
-    attr_accessor :hash
+    attr_accessor :hash 
+ 	 alias :sdk_hash_value :hash
 
     # The device identifier generated from attributes collected during profiling. Returned by a 3rd party when you use device fingerprinting.  For details, see the `device_fingerprint_smart_id` field description in [CyberSource Decision Manager Device Fingerprinting Guide.](https://www.cybersource.com/developers/documentation/fraud_management) 
     attr_accessor :smart_id
@@ -27,8 +28,17 @@ module CyberSource
     def self.attribute_map
       {
         :'true_ipaddress' => :'true_ipaddress',
-        :'hash' => :'hash',
+        :'sdk_hash_value' => :'hash',
         :'smart_id' => :'smartId'
+      }
+    end
+
+    # Attribute mapping from JSON key to ruby-style variable name.
+    def self.json_map
+      {
+        :'true_ipaddress' => :'true_ipaddress',
+        :'sdk_hash_value' => :'hash',
+        :'smart_id' => :'smart_id'
       }
     end
 
@@ -36,7 +46,7 @@ module CyberSource
     def self.swagger_types
       {
         :'true_ipaddress' => :'String',
-        :'hash' => :'String',
+        :'sdk_hash_value' => :'String',
         :'smart_id' => :'String'
       }
     end
@@ -53,8 +63,8 @@ module CyberSource
         self.true_ipaddress = attributes[:'true_ipaddress']
       end
 
-      if attributes.has_key?(:'hash')
-        self.hash = attributes[:'hash']
+      if attributes.has_key?(:'sdkHashValue')
+        self.sdk_hash_value = attributes[:'sdkHashValue']
       end
 
       if attributes.has_key?(:'smartId')
@@ -82,9 +92,9 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] hash Value to be assigned
-    def hash=(hash)
-      @hash = hash
+    # @param [Object] sdk_hash_value Value to be assigned
+    def sdk_hash_value=(sdk_hash_value)
+      @sdk_hash_value = sdk_hash_value
     end
 
     # Custom attribute writer method with validation
@@ -99,7 +109,7 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           true_ipaddress == o.true_ipaddress &&
-          hash == o.hash &&
+          sdk_hash_value == o.sdk_hash_value &&
           smart_id == o.smart_id
     end
 
@@ -112,7 +122,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [true_ipaddress, hash, smart_id].hash
+      [true_ipaddress, sdk_hash_value, smart_id].hash
     end
 
     # Builds the object from hash
@@ -125,10 +135,10 @@ module CyberSource
           # check to ensure the input is an array given that the the attribute
           # is documented as an array but the input is not
           if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
+            self.send("#{self.class.json_map[key]}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
           end
         elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
+          self.send("#{self.class.json_map[key]}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
         end # or else data not found in attributes(hash), not an issue as the data can be optional
       end
 

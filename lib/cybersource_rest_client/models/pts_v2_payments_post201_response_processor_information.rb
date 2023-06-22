@@ -142,6 +142,44 @@ module CyberSource
       }
     end
 
+    # Attribute mapping from JSON key to ruby-style variable name.
+    def self.json_map
+      {
+        :'auth_indicator' => :'auth_indicator',
+        :'approval_code' => :'approval_code',
+        :'card_reference_data' => :'card_reference_data',
+        :'transaction_id' => :'transaction_id',
+        :'network_transaction_id' => :'network_transaction_id',
+        :'response_code' => :'response_code',
+        :'response_code_source' => :'response_code_source',
+        :'response_details' => :'response_details',
+        :'response_category_code' => :'response_category_code',
+        :'forwarded_acquirer_code' => :'forwarded_acquirer_code',
+        :'avs' => :'avs',
+        :'card_verification' => :'card_verification',
+        :'merchant_advice' => :'merchant_advice',
+        :'electronic_verification_results' => :'electronic_verification_results',
+        :'ach_verification' => :'ach_verification',
+        :'customer' => :'customer',
+        :'consumer_authentication_response' => :'consumer_authentication_response',
+        :'system_trace_audit_number' => :'system_trace_audit_number',
+        :'payment_account_reference_number' => :'payment_account_reference_number',
+        :'transaction_integrity_code' => :'transaction_integrity_code',
+        :'amex_verbal_auth_reference_number' => :'amex_verbal_auth_reference_number',
+        :'master_card_service_code' => :'master_card_service_code',
+        :'master_card_service_reply_code' => :'master_card_service_reply_code',
+        :'master_card_authentication_type' => :'master_card_authentication_type',
+        :'name' => :'name',
+        :'routing' => :'routing',
+        :'merchant_number' => :'merchant_number',
+        :'retrieval_reference_number' => :'retrieval_reference_number',
+        :'payment_url' => :'payment_url',
+        :'complete_url' => :'complete_url',
+        :'signature' => :'signature',
+        :'public_key' => :'public_key'
+      }
+    end
+
     # Attribute type mapping.
     def self.swagger_types
       {
@@ -529,10 +567,10 @@ module CyberSource
           # check to ensure the input is an array given that the the attribute
           # is documented as an array but the input is not
           if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
+            self.send("#{self.class.json_map[key]}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
           end
         elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
+          self.send("#{self.class.json_map[key]}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
         end # or else data not found in attributes(hash), not an issue as the data can be optional
       end
 

@@ -74,7 +74,7 @@ describe 'Tmsv2customersEmbeddedDefaultPaymentInstrumentCard' do
     end
   end
 
-  describe 'test attribute "hash"' do
+  describe 'test attribute "sdk_hash_value"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
