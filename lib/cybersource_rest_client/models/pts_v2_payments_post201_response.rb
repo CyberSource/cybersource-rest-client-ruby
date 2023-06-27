@@ -58,6 +58,8 @@ module CyberSource
 
     attr_accessor :consumer_authentication_information
 
+    attr_accessor :embedded_actions
+
     attr_accessor :watchlist_screening_information
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -83,6 +85,7 @@ module CyberSource
         :'buyer_information' => :'buyerInformation',
         :'risk_information' => :'riskInformation',
         :'consumer_authentication_information' => :'consumerAuthenticationInformation',
+        :'embedded_actions' => :'embeddedActions',
         :'watchlist_screening_information' => :'watchlistScreeningInformation'
       }
     end
@@ -110,6 +113,7 @@ module CyberSource
         :'buyer_information' => :'buyer_information',
         :'risk_information' => :'risk_information',
         :'consumer_authentication_information' => :'consumer_authentication_information',
+        :'embedded_actions' => :'embedded_actions',
         :'watchlist_screening_information' => :'watchlist_screening_information'
       }
     end
@@ -137,6 +141,7 @@ module CyberSource
         :'buyer_information' => :'PtsV2PaymentsPost201ResponseBuyerInformation',
         :'risk_information' => :'PtsV2PaymentsPost201ResponseRiskInformation',
         :'consumer_authentication_information' => :'PtsV2PaymentsPost201ResponseConsumerAuthenticationInformation',
+        :'embedded_actions' => :'PtsV2PaymentsPost201ResponseEmbeddedActions',
         :'watchlist_screening_information' => :'PtsV2PaymentsPost201ResponseWatchlistScreeningInformation'
       }
     end
@@ -229,6 +234,10 @@ module CyberSource
         self.consumer_authentication_information = attributes[:'consumerAuthenticationInformation']
       end
 
+      if attributes.has_key?(:'embeddedActions')
+        self.embedded_actions = attributes[:'embeddedActions']
+      end
+
       if attributes.has_key?(:'watchlistScreeningInformation')
         self.watchlist_screening_information = attributes[:'watchlistScreeningInformation']
       end
@@ -284,6 +293,7 @@ module CyberSource
           buyer_information == o.buyer_information &&
           risk_information == o.risk_information &&
           consumer_authentication_information == o.consumer_authentication_information &&
+          embedded_actions == o.embedded_actions &&
           watchlist_screening_information == o.watchlist_screening_information
     end
 
@@ -296,7 +306,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, submit_time_utc, status, reconciliation_id, error_information, client_reference_information, processing_information, processor_information, issuer_information, payment_account_information, payment_information, payment_insights_information, order_information, point_of_sale_information, installment_information, token_information, buyer_information, risk_information, consumer_authentication_information, watchlist_screening_information].hash
+      [_links, id, submit_time_utc, status, reconciliation_id, error_information, client_reference_information, processing_information, processor_information, issuer_information, payment_account_information, payment_information, payment_insights_information, order_information, point_of_sale_information, installment_information, token_information, buyer_information, risk_information, consumer_authentication_information, embedded_actions, watchlist_screening_information].hash
     end
 
     # Builds the object from hash
