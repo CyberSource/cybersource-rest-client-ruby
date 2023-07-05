@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsProcessingInformation
-    # Array of actions (one or more) to be included in the payment to invoke bundled services along with payment.  Possible values are one or more of follows:   - `DECISION_SKIP`: Use this when you want to skip Decision Manager service(s).   - `TOKEN_CREATE`: Use this when you want to create a token from the card/bank data in your payment request.   - `CONSUMER_AUTHENTICATION`: Use this when you want to check if a card is enrolled in Payer Authentioncation along with your payment request.   - `VALIDATE_CONSUMER_AUTHENTICATION`: Use this after you acquire a Payer Authentioncation result that needs to be included for your payment request.    - `AP_INITIATE`: Use this when Alternative Payment Initiate service is requested.   - `WATCHLIST_SCREENING` : Use this when you want to call Watchlist Screening service. 
+    # Array of actions (one or more) to be included in the payment to invoke bundled services along with payment.  Possible values are one or more of follows:   - `DECISION_SKIP`: Use this when you want to skip Decision Manager service(s).   - `TOKEN_CREATE`: Use this when you want to create a token from the card/bank data in your payment request.   - `CONSUMER_AUTHENTICATION`: Use this when you want to check if a card is enrolled in Payer Authentication along with your payment request.   - `VALIDATE_CONSUMER_AUTHENTICATION`: Use this after you acquire a Payer Authentication result that needs to be included for your payment request.    - `AP_INITIATE`: Use this when Alternative Payment Initiate service is requested.   - `WATCHLIST_SCREENING` : Use this when you want to call Watchlist Screening service. 
     attr_accessor :action_list
 
     # Indicates whether to use the customer’s escrow agreement. Possible values: - `true`: yes, use the customer’s escrow agreement. - `false`: no, do not use the customer’s escrow agreement.  
@@ -137,6 +137,44 @@ module CyberSource
         :'network_routing_order' => :'networkRoutingOrder',
         :'pay_by_points_indicator' => :'payByPointsIndicator',
         :'is_return_auth_record_enabled' => :'isReturnAuthRecordEnabled'
+      }
+    end
+
+    # Attribute mapping from JSON key to ruby-style variable name.
+    def self.json_map
+      {
+        :'action_list' => :'action_list',
+        :'enable_escrow_option' => :'enable_escrow_option',
+        :'action_token_types' => :'action_token_types',
+        :'bin_source' => :'bin_source',
+        :'capture' => :'capture',
+        :'processor_id' => :'processor_id',
+        :'business_application_id' => :'business_application_id',
+        :'commerce_indicator' => :'commerce_indicator',
+        :'commerce_indicator_label' => :'commerce_indicator_label',
+        :'payment_solution' => :'payment_solution',
+        :'reconciliation_id' => :'reconciliation_id',
+        :'link_id' => :'link_id',
+        :'purchase_level' => :'purchase_level',
+        :'payment_id' => :'payment_id',
+        :'report_group' => :'report_group',
+        :'visa_checkout_id' => :'visa_checkout_id',
+        :'industry_data_type' => :'industry_data_type',
+        :'authorization_options' => :'authorization_options',
+        :'capture_options' => :'capture_options',
+        :'recurring_options' => :'recurring_options',
+        :'bank_transfer_options' => :'bank_transfer_options',
+        :'purchase_options' => :'purchase_options',
+        :'electronic_benefits_transfer' => :'electronic_benefits_transfer',
+        :'loan_options' => :'loan_options',
+        :'wallet_type' => :'wallet_type',
+        :'national_net_domestic_data' => :'national_net_domestic_data',
+        :'japan_payment_options' => :'japan_payment_options',
+        :'mobile_remote_payment_type' => :'mobile_remote_payment_type',
+        :'extended_credit_total_count' => :'extended_credit_total_count',
+        :'network_routing_order' => :'network_routing_order',
+        :'pay_by_points_indicator' => :'pay_by_points_indicator',
+        :'is_return_auth_record_enabled' => :'is_return_auth_record_enabled'
       }
     end
 
@@ -491,10 +529,10 @@ module CyberSource
           # check to ensure the input is an array given that the the attribute
           # is documented as an array but the input is not
           if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
+            self.send("#{self.class.json_map[key]}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
           end
         elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
+          self.send("#{self.class.json_map[key]}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
         end # or else data not found in attributes(hash), not an issue as the data can be optional
       end
 

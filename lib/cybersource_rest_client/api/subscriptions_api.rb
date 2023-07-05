@@ -24,7 +24,6 @@ module CyberSource
     # Activate a `CANCELLED` Or `SUSPENDED` Subscription 
     # @param id Subscription Id
     # @param [Hash] opts the optional parameters
-    # @option opts [Object] :activate_subscription_request 
     # @return [InlineResponse2009]
     def activate_subscription(id, opts = {})
       data, status_code, headers = activate_subscription_with_http_info(id, opts)
@@ -35,7 +34,6 @@ module CyberSource
     # Activate a &#x60;CANCELLED&#x60; Or &#x60;SUSPENDED&#x60; Subscription 
     # @param id Subscription Id
     # @param [Hash] opts the optional parameters
-    # @option opts [Object] :activate_subscription_request 
     # @return [Array<(InlineResponse2009, Fixnum, Hash)>] InlineResponse2009 data, response status code and response headers
     def activate_subscription_with_http_info(id, opts = {})
 
@@ -60,7 +58,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
 
@@ -68,7 +66,11 @@ module CyberSource
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(opts[:'activate_subscription_request'])
+      if 'POST' == 'POST'
+        post_body = '{}'
+      else
+        post_body = nil
+      end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -91,7 +93,6 @@ module CyberSource
     # Cancel a Subscription
     # @param id Subscription Id
     # @param [Hash] opts the optional parameters
-    # @option opts [Object] :cancel_subscription_request 
     # @return [InlineResponse202]
     def cancel_subscription(id, opts = {})
       data, status_code, headers = cancel_subscription_with_http_info(id, opts)
@@ -102,7 +103,6 @@ module CyberSource
     # Cancel a Subscription
     # @param id Subscription Id
     # @param [Hash] opts the optional parameters
-    # @option opts [Object] :cancel_subscription_request 
     # @return [Array<(InlineResponse202, Fixnum, Hash)>] InlineResponse202 data, response status code and response headers
     def cancel_subscription_with_http_info(id, opts = {})
 
@@ -127,7 +127,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
 
@@ -135,7 +135,11 @@ module CyberSource
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(opts[:'cancel_subscription_request'])
+      if 'POST' == 'POST'
+        post_body = '{}'
+      else
+        post_body = nil
+      end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -192,7 +196,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
 
@@ -263,7 +267,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
 
@@ -332,7 +336,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
 
@@ -395,7 +399,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
 
@@ -430,7 +434,6 @@ module CyberSource
     # Suspend a Subscription
     # @param id Subscription Id
     # @param [Hash] opts the optional parameters
-    # @option opts [Object] :suspend_subscription_request 
     # @return [InlineResponse2021]
     def suspend_subscription(id, opts = {})
       data, status_code, headers = suspend_subscription_with_http_info(id, opts)
@@ -441,7 +444,6 @@ module CyberSource
     # Suspend a Subscription
     # @param id Subscription Id
     # @param [Hash] opts the optional parameters
-    # @option opts [Object] :suspend_subscription_request 
     # @return [Array<(InlineResponse2021, Fixnum, Hash)>] InlineResponse2021 data, response status code and response headers
     def suspend_subscription_with_http_info(id, opts = {})
 
@@ -466,7 +468,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
 
@@ -474,7 +476,11 @@ module CyberSource
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(opts[:'suspend_subscription_request'])
+      if 'POST' == 'POST'
+        post_body = '{}'
+      else
+        post_body = nil
+      end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -537,7 +543,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
 

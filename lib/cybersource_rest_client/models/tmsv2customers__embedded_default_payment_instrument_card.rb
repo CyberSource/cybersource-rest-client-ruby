@@ -36,9 +36,8 @@ module CyberSource
     attr_accessor :use_as
 
     # Hash value representing the card. 
-    attr_accessor :hash
-    alias :hash_value :hash
-    alias :hash_value= :hash=
+    attr_accessor :hash 
+ 	 alias :sdk_hash_value :hash
 
     attr_accessor :tokenized_information
 
@@ -52,8 +51,23 @@ module CyberSource
         :'start_month' => :'startMonth',
         :'start_year' => :'startYear',
         :'use_as' => :'useAs',
-        :'hash_value' => :'hashValue',
+        :'sdk_hash_value' => :'hash',
         :'tokenized_information' => :'tokenizedInformation'
+      }
+    end
+
+    # Attribute mapping from JSON key to ruby-style variable name.
+    def self.json_map
+      {
+        :'expiration_month' => :'expiration_month',
+        :'expiration_year' => :'expiration_year',
+        :'type' => :'type',
+        :'issue_number' => :'issue_number',
+        :'start_month' => :'start_month',
+        :'start_year' => :'start_year',
+        :'use_as' => :'use_as',
+        :'sdk_hash_value' => :'hash',
+        :'tokenized_information' => :'tokenized_information'
       }
     end
 
@@ -67,7 +81,7 @@ module CyberSource
         :'start_month' => :'String',
         :'start_year' => :'String',
         :'use_as' => :'String',
-        :'hash_value' => :'String',
+        :'sdk_hash_value' => :'String',
         :'tokenized_information' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentCardTokenizedInformation'
       }
     end
@@ -108,8 +122,8 @@ module CyberSource
         self.use_as = attributes[:'useAs']
       end
 
-      if attributes.has_key?(:'hashValue')
-        self.hash_value = attributes[:'hashValue']
+      if attributes.has_key?(:'sdkHashValue')
+        self.sdk_hash_value = attributes[:'sdkHashValue']
       end
 
       if attributes.has_key?(:'tokenizedInformation')
@@ -161,9 +175,9 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] hash Value to be assigned
-    def hash_value=(hash_value)
-      @hash_value = hash_value
+    # @param [Object] sdk_hash_value Value to be assigned
+    def sdk_hash_value=(sdk_hash_value)
+      @sdk_hash_value = sdk_hash_value
     end
 
     # Checks equality by comparing each attribute.
@@ -178,7 +192,7 @@ module CyberSource
           start_month == o.start_month &&
           start_year == o.start_year &&
           use_as == o.use_as &&
-          hash_value == o.hash_value &&
+          sdk_hash_value == o.sdk_hash_value &&
           tokenized_information == o.tokenized_information
     end
 
@@ -191,7 +205,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [expiration_month, expiration_year, type, issue_number, start_month, start_year, use_as, hash_value, tokenized_information].hash
+      [expiration_month, expiration_year, type, issue_number, start_month, start_year, use_as, sdk_hash_value, tokenized_information].hash
     end
 
     # Builds the object from hash
@@ -204,10 +218,10 @@ module CyberSource
           # check to ensure the input is an array given that the the attribute
           # is documented as an array but the input is not
           if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
+            self.send("#{self.class.json_map[key]}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
           end
         elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
+          self.send("#{self.class.json_map[key]}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
         end # or else data not found in attributes(hash), not an issue as the data can be optional
       end
 

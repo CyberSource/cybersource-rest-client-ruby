@@ -50,6 +50,12 @@ describe 'TssV2TransactionsPost201ResponseEmbeddedTransactionSummaries' do
     end
   end
 
+  describe 'test attribute "status"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "application_information"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -75,6 +81,12 @@ describe 'TssV2TransactionsPost201ResponseEmbeddedTransactionSummaries' do
   end
 
   describe 'test attribute "device_information"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "error_information"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

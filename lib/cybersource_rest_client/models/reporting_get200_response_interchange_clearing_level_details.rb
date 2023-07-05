@@ -177,6 +177,63 @@ module CyberSource
       }
     end
 
+    # Attribute mapping from JSON key to ruby-style variable name.
+    def self.json_map
+      {
+        :'request_id' => :'request_id',
+        :'organization_id' => :'organization_id',
+        :'account_id' => :'account_id',
+        :'processor_merchant_id' => :'processor_merchant_id',
+        :'transaction_reference_number' => :'transaction_reference_number',
+        :'merchant_reference_number' => :'merchant_reference_number',
+        :'account_suffix' => :'account_suffix',
+        :'payment_sub_type' => :'payment_sub_type',
+        :'payment_sub_type_description' => :'payment_sub_type_description',
+        :'transaction_time' => :'transaction_time',
+        :'processed_time' => :'processed_time',
+        :'transaction_type' => :'transaction_type',
+        :'amount' => :'amount',
+        :'currency_code' => :'currency_code',
+        :'price_type' => :'price_type',
+        :'price_amount_one' => :'price_amount_one',
+        :'price_amount_two' => :'price_amount_two',
+        :'re_class' => :'re_class',
+        :'settlement_time' => :'settlement_time',
+        :'settlement_processor' => :'settlement_processor',
+        :'merchant_batch_number' => :'merchant_batch_number',
+        :'cleared_level' => :'cleared_level',
+        :'billback_reason_code' => :'billback_reason_code',
+        :'billback_reason_description' => :'billback_reason_description',
+        :'merchant_priced_level' => :'merchant_priced_level',
+        :'discount_rate' => :'discount_rate',
+        :'discount_amount' => :'discount_amount',
+        :'clearing_rate_amount_one' => :'clearing_rate_amount_one',
+        :'clearing_rate_amount_two' => :'clearing_rate_amount_two',
+        :'clearing_rate_amount_three' => :'clearing_rate_amount_three',
+        :'clearing_rate_currency_code' => :'clearing_rate_currency_code',
+        :'interchange_amount' => :'interchange_amount',
+        :'billback_amount' => :'billback_amount',
+        :'settlement_amount' => :'settlement_amount',
+        :'settlement_currency_code' => :'settlement_currency_code',
+        :'conversion_rate' => :'conversion_rate',
+        :'delta_cost' => :'delta_cost',
+        :'surcharge_amount' => :'surcharge_amount',
+        :'percent_rate_charged' => :'percent_rate_charged',
+        :'per_transaction_charged' => :'per_transaction_charged',
+        :'downgrade_reason_code' => :'downgrade_reason_code',
+        :'process_time' => :'process_time',
+        :'auth_code' => :'auth_code',
+        :'batch_time' => :'batch_time',
+        :'processor_batch_number' => :'processor_batch_number',
+        :'card_indicator' => :'card_indicator',
+        :'minimum_unit' => :'minimum_unit',
+        :'minimum_unit_currency_code' => :'minimum_unit_currency_code',
+        :'credit_delta_indicator' => :'credit_delta_indicator',
+        :'fee_category' => :'fee_category',
+        :'application_name' => :'application_name'
+      }
+    end
+
     # Attribute type mapping.
     def self.swagger_types
       {
@@ -540,10 +597,10 @@ module CyberSource
           # check to ensure the input is an array given that the the attribute
           # is documented as an array but the input is not
           if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
+            self.send("#{self.class.json_map[key]}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
           end
         elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
+          self.send("#{self.class.json_map[key]}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
         end # or else data not found in attributes(hash), not an issue as the data can be optional
       end
 

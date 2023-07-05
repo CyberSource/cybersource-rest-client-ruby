@@ -26,13 +26,28 @@ module CyberSource
     # Partial postal code for the recipient’s address. For example, if the postal code is **NN5 7SG**, the value for this field should be the first part of the postal code: **NN5**. This field is a _pass-through_, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. If the field is not required for the transaction, CyberSource does not forward it to the processor.  For details, see the `recipient_postal_code` field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
     attr_accessor :postal_code
 
+    # Recipient’s date of birth. **Format**: `YYYYMMDD`.  This field is a `pass-through`, which means that CyberSource ensures that the value is eight numeric characters but otherwise does not verify the value or modify it in any way before sending it to the processor. If the field is not required for the transaction, CyberSource does not forward it to the processor.  For more details, see `recipient_date_of_birth` field description in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
+    attr_accessor :date_of_birth
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'account_id' => :'accountId',
         :'last_name' => :'lastName',
         :'middle_name' => :'middleName',
-        :'postal_code' => :'postalCode'
+        :'postal_code' => :'postalCode',
+        :'date_of_birth' => :'dateOfBirth'
+      }
+    end
+
+    # Attribute mapping from JSON key to ruby-style variable name.
+    def self.json_map
+      {
+        :'account_id' => :'account_id',
+        :'last_name' => :'last_name',
+        :'middle_name' => :'middle_name',
+        :'postal_code' => :'postal_code',
+        :'date_of_birth' => :'date_of_birth'
       }
     end
 
@@ -42,7 +57,8 @@ module CyberSource
         :'account_id' => :'String',
         :'last_name' => :'String',
         :'middle_name' => :'String',
-        :'postal_code' => :'String'
+        :'postal_code' => :'String',
+        :'date_of_birth' => :'String'
       }
     end
 
@@ -68,6 +84,10 @@ module CyberSource
 
       if attributes.has_key?(:'postalCode')
         self.postal_code = attributes[:'postalCode']
+      end
+
+      if attributes.has_key?(:'dateOfBirth')
+        self.date_of_birth = attributes[:'dateOfBirth']
       end
     end
 
@@ -108,6 +128,12 @@ module CyberSource
       @postal_code = postal_code
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] date_of_birth Value to be assigned
+    def date_of_birth=(date_of_birth)
+      @date_of_birth = date_of_birth
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -116,7 +142,8 @@ module CyberSource
           account_id == o.account_id &&
           last_name == o.last_name &&
           middle_name == o.middle_name &&
-          postal_code == o.postal_code
+          postal_code == o.postal_code &&
+          date_of_birth == o.date_of_birth
     end
 
     # @see the `==` method
@@ -128,7 +155,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [account_id, last_name, middle_name, postal_code].hash
+      [account_id, last_name, middle_name, postal_code, date_of_birth].hash
     end
 
     # Builds the object from hash
@@ -141,10 +168,10 @@ module CyberSource
           # check to ensure the input is an array given that the the attribute
           # is documented as an array but the input is not
           if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
+            self.send("#{self.class.json_map[key]}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
           end
         elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
+          self.send("#{self.class.json_map[key]}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
         end # or else data not found in attributes(hash), not an issue as the data can be optional
       end
 

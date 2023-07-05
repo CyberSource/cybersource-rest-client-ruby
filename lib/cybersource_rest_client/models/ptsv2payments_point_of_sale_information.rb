@@ -135,6 +135,41 @@ module CyberSource
       }
     end
 
+    # Attribute mapping from JSON key to ruby-style variable name.
+    def self.json_map
+      {
+        :'terminal_id' => :'terminal_id',
+        :'terminal_serial_number' => :'terminal_serial_number',
+        :'cardholder_verification_method_used' => :'cardholder_verification_method_used',
+        :'lane_number' => :'lane_number',
+        :'cat_level' => :'cat_level',
+        :'entry_mode' => :'entry_mode',
+        :'terminal_capability' => :'terminal_capability',
+        :'operating_environment' => :'operating_environment',
+        :'emv' => :'emv',
+        :'amex_capn_data' => :'amex_capn_data',
+        :'track_data' => :'track_data',
+        :'store_and_forward_indicator' => :'store_and_forward_indicator',
+        :'cardholder_verification_method' => :'cardholder_verification_method',
+        :'terminal_input_capability' => :'terminal_input_capability',
+        :'terminal_card_capture_capability' => :'terminal_card_capture_capability',
+        :'terminal_output_capability' => :'terminal_output_capability',
+        :'terminal_pin_capability' => :'terminal_pin_capability',
+        :'pin_entry_solution' => :'pin_entry_solution',
+        :'device_id' => :'device_id',
+        :'pin_block_encoding_format' => :'pin_block_encoding_format',
+        :'encrypted_pin' => :'encrypted_pin',
+        :'encrypted_key_serial_number' => :'encrypted_key_serial_number',
+        :'partner_sdk_version' => :'partner_sdk_version',
+        :'emv_application_identifier_and_dedicated_file_name' => :'emv_application_identifier_and_dedicated_file_name',
+        :'terminal_compliance' => :'terminal_compliance',
+        :'is_dedicated_hardware_terminal' => :'is_dedicated_hardware_terminal',
+        :'terminal_model' => :'terminal_model',
+        :'terminal_make' => :'terminal_make',
+        :'service_code' => :'service_code'
+      }
+    end
+
     # Attribute type mapping.
     def self.swagger_types
       {
@@ -502,10 +537,10 @@ module CyberSource
           # check to ensure the input is an array given that the the attribute
           # is documented as an array but the input is not
           if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
+            self.send("#{self.class.json_map[key]}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
           end
         elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
+          self.send("#{self.class.json_map[key]}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
         end # or else data not found in attributes(hash), not an issue as the data can be optional
       end
 

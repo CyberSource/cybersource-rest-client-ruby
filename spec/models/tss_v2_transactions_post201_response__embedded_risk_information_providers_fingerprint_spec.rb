@@ -38,7 +38,7 @@ describe 'TssV2TransactionsPost201ResponseEmbeddedRiskInformationProvidersFinger
     end
   end
 
-  describe 'test attribute "hash"' do
+  describe 'test attribute "sdk_hash_value"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

@@ -20,6 +20,12 @@ module CyberSource
     # 3-digit reason code that indicates why the customer profile payment succeeded or failed.
     attr_accessor :reason_code
 
+    # The status of the submitted transaction. Note: This field may not be returned for all transactions. 
+    attr_accessor :status
+
+    # Description of why a request failed. Note: This field may not be returned for all transactions. 
+    attr_accessor :reason
+
     # Indicates whether the service request was successful. Possible values:  - `-1`: An error occurred. - `0`: The request was declined. - `1`: The request was successful. 
     attr_accessor :r_code
 
@@ -40,6 +46,8 @@ module CyberSource
       {
         :'name' => :'name',
         :'reason_code' => :'reasonCode',
+        :'status' => :'status',
+        :'reason' => :'reason',
         :'r_code' => :'rCode',
         :'r_flag' => :'rFlag',
         :'reconciliation_id' => :'reconciliationId',
@@ -48,11 +56,28 @@ module CyberSource
       }
     end
 
+    # Attribute mapping from JSON key to ruby-style variable name.
+    def self.json_map
+      {
+        :'name' => :'name',
+        :'reason_code' => :'reason_code',
+        :'status' => :'status',
+        :'reason' => :'reason',
+        :'r_code' => :'r_code',
+        :'r_flag' => :'r_flag',
+        :'reconciliation_id' => :'reconciliation_id',
+        :'r_message' => :'r_message',
+        :'return_code' => :'return_code'
+      }
+    end
+
     # Attribute type mapping.
     def self.swagger_types
       {
         :'name' => :'String',
         :'reason_code' => :'String',
+        :'status' => :'String',
+        :'reason' => :'String',
         :'r_code' => :'String',
         :'r_flag' => :'String',
         :'reconciliation_id' => :'String',
@@ -75,6 +100,14 @@ module CyberSource
 
       if attributes.has_key?(:'reasonCode')
         self.reason_code = attributes[:'reasonCode']
+      end
+
+      if attributes.has_key?(:'status')
+        self.status = attributes[:'status']
+      end
+
+      if attributes.has_key?(:'reason')
+        self.reason = attributes[:'reason']
       end
 
       if attributes.has_key?(:'rCode')
@@ -118,6 +151,8 @@ module CyberSource
       self.class == o.class &&
           name == o.name &&
           reason_code == o.reason_code &&
+          status == o.status &&
+          reason == o.reason &&
           r_code == o.r_code &&
           r_flag == o.r_flag &&
           reconciliation_id == o.reconciliation_id &&
@@ -134,7 +169,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name, reason_code, r_code, r_flag, reconciliation_id, r_message, return_code].hash
+      [name, reason_code, status, reason, r_code, r_flag, reconciliation_id, r_message, return_code].hash
     end
 
     # Builds the object from hash
@@ -147,10 +182,10 @@ module CyberSource
           # check to ensure the input is an array given that the the attribute
           # is documented as an array but the input is not
           if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
+            self.send("#{self.class.json_map[key]}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
           end
         elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
+          self.send("#{self.class.json_map[key]}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
         end # or else data not found in attributes(hash), not an issue as the data can be optional
       end
 

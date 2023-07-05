@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 
 # **activate_plan**
-> InlineResponse2004 activate_plan(id, opts)
+> InlineResponse2004 activate_plan(id)
 
 Activate a Plan
 
@@ -30,13 +30,10 @@ api_instance = CyberSource::PlansApi.new
 
 id = "id_example" # String | Plan Id
 
-opts = { 
-  activate_plan_request: nil # Object | 
-}
 
 begin
   #Activate a Plan
-  result = api_instance.activate_plan(id, opts)
+  result = api_instance.activate_plan(id)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling PlansApi->activate_plan: #{e}"
@@ -48,7 +45,6 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| Plan Id | 
- **activate_plan_request** | **Object**|  | [optional] 
 
 ### Return type
 
@@ -61,7 +57,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
 
 
 
@@ -108,12 +104,12 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
 
 
 
 # **deactivate_plan**
-> InlineResponse2004 deactivate_plan(id, opts)
+> InlineResponse2004 deactivate_plan(id)
 
 Deactivate a Plan
 
@@ -128,13 +124,10 @@ api_instance = CyberSource::PlansApi.new
 
 id = "id_example" # String | Plan Id
 
-opts = { 
-  deactivate_plan_request: nil # Object | 
-}
 
 begin
   #Deactivate a Plan
-  result = api_instance.deactivate_plan(id, opts)
+  result = api_instance.deactivate_plan(id)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling PlansApi->deactivate_plan: #{e}"
@@ -146,7 +139,6 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| Plan Id | 
- **deactivate_plan_request** | **Object**|  | [optional] 
 
 ### Return type
 
@@ -159,7 +151,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
 
 
 
@@ -206,7 +198,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
 
 
 
@@ -253,7 +245,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
 
 
 
@@ -294,7 +286,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
 
 
 
@@ -350,7 +342,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
 
 
 
@@ -400,7 +392,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
 
 
 

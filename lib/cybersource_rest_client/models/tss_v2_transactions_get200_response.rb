@@ -29,6 +29,9 @@ module CyberSource
     # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC.  Returned by Cybersource for all services. 
     attr_accessor :submit_time_utc
 
+    # The status of the submitted transaction.
+    attr_accessor :status
+
     attr_accessor :application_information
 
     attr_accessor :buyer_information
@@ -82,6 +85,7 @@ module CyberSource
         :'reconciliation_id' => :'reconciliationId',
         :'merchant_id' => :'merchantId',
         :'submit_time_utc' => :'submitTimeUTC',
+        :'status' => :'status',
         :'application_information' => :'applicationInformation',
         :'buyer_information' => :'buyerInformation',
         :'client_reference_information' => :'clientReferenceInformation',
@@ -107,6 +111,40 @@ module CyberSource
       }
     end
 
+    # Attribute mapping from JSON key to ruby-style variable name.
+    def self.json_map
+      {
+        :'id' => :'id',
+        :'root_id' => :'root_id',
+        :'reconciliation_id' => :'reconciliation_id',
+        :'merchant_id' => :'merchant_id',
+        :'submit_time_utc' => :'submit_time_utc',
+        :'status' => :'status',
+        :'application_information' => :'application_information',
+        :'buyer_information' => :'buyer_information',
+        :'client_reference_information' => :'client_reference_information',
+        :'consumer_authentication_information' => :'consumer_authentication_information',
+        :'device_information' => :'device_information',
+        :'error_information' => :'error_information',
+        :'installment_information' => :'installment_information',
+        :'fraud_marking_information' => :'fraud_marking_information',
+        :'health_care_information' => :'health_care_information',
+        :'merchant_defined_information' => :'merchant_defined_information',
+        :'merchant_information' => :'merchant_information',
+        :'order_information' => :'order_information',
+        :'payment_information' => :'payment_information',
+        :'payment_insights_information' => :'payment_insights_information',
+        :'payout_options' => :'payout_options',
+        :'processing_information' => :'processing_information',
+        :'processor_information' => :'processor_information',
+        :'point_of_sale_information' => :'point_of_sale_information',
+        :'risk_information' => :'risk_information',
+        :'sender_information' => :'sender_information',
+        :'token_information' => :'token_information',
+        :'_links' => :'_links'
+      }
+    end
+
     # Attribute type mapping.
     def self.swagger_types
       {
@@ -115,6 +153,7 @@ module CyberSource
         :'reconciliation_id' => :'String',
         :'merchant_id' => :'String',
         :'submit_time_utc' => :'String',
+        :'status' => :'String',
         :'application_information' => :'TssV2TransactionsGet200ResponseApplicationInformation',
         :'buyer_information' => :'TssV2TransactionsGet200ResponseBuyerInformation',
         :'client_reference_information' => :'TssV2TransactionsGet200ResponseClientReferenceInformation',
@@ -166,6 +205,10 @@ module CyberSource
 
       if attributes.has_key?(:'submitTimeUTC')
         self.submit_time_utc = attributes[:'submitTimeUTC']
+      end
+
+      if attributes.has_key?(:'status')
+        self.status = attributes[:'status']
       end
 
       if attributes.has_key?(:'applicationInformation')
@@ -300,6 +343,7 @@ module CyberSource
           reconciliation_id == o.reconciliation_id &&
           merchant_id == o.merchant_id &&
           submit_time_utc == o.submit_time_utc &&
+          status == o.status &&
           application_information == o.application_information &&
           buyer_information == o.buyer_information &&
           client_reference_information == o.client_reference_information &&
@@ -333,7 +377,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, root_id, reconciliation_id, merchant_id, submit_time_utc, application_information, buyer_information, client_reference_information, consumer_authentication_information, device_information, error_information, installment_information, fraud_marking_information, health_care_information, merchant_defined_information, merchant_information, order_information, payment_information, payment_insights_information, payout_options, processing_information, processor_information, point_of_sale_information, risk_information, sender_information, token_information, _links].hash
+      [id, root_id, reconciliation_id, merchant_id, submit_time_utc, status, application_information, buyer_information, client_reference_information, consumer_authentication_information, device_information, error_information, installment_information, fraud_marking_information, health_care_information, merchant_defined_information, merchant_information, order_information, payment_information, payment_insights_information, payout_options, processing_information, processor_information, point_of_sale_information, risk_information, sender_information, token_information, _links].hash
     end
 
     # Builds the object from hash
@@ -346,10 +390,10 @@ module CyberSource
           # check to ensure the input is an array given that the the attribute
           # is documented as an array but the input is not
           if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
+            self.send("#{self.class.json_map[key]}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
           end
         elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
+          self.send("#{self.class.json_map[key]}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
         end # or else data not found in attributes(hash), not an issue as the data can be optional
       end
 

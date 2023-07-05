@@ -85,6 +85,29 @@ module CyberSource
       }
     end
 
+    # Attribute mapping from JSON key to ruby-style variable name.
+    def self.json_map
+      {
+        :'merchant_descriptor' => :'merchant_descriptor',
+        :'domain_name' => :'domain_name',
+        :'sales_organization_id' => :'sales_organization_id',
+        :'category_code' => :'category_code',
+        :'category_code_domestic' => :'category_code_domestic',
+        :'tax_id' => :'tax_id',
+        :'vat_registration_number' => :'vat_registration_number',
+        :'card_acceptor_reference_number' => :'card_acceptor_reference_number',
+        :'transaction_local_date_time' => :'transaction_local_date_time',
+        :'service_fee_descriptor' => :'service_fee_descriptor',
+        :'cancel_url' => :'cancel_url',
+        :'success_url' => :'success_url',
+        :'failure_url' => :'failure_url',
+        :'return_url' => :'return_url',
+        :'partner_id_code' => :'partner_id_code',
+        :'service_location' => :'service_location',
+        :'merchant_name' => :'merchant_name'
+      }
+    end
+
     # Attribute type mapping.
     def self.swagger_types
       {
@@ -328,10 +351,10 @@ module CyberSource
           # check to ensure the input is an array given that the the attribute
           # is documented as an array but the input is not
           if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
+            self.send("#{self.class.json_map[key]}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
           end
         elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
+          self.send("#{self.class.json_map[key]}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
         end # or else data not found in attributes(hash), not an issue as the data can be optional
       end
 

@@ -24,7 +24,6 @@ module CyberSource
     # Activate a Plan
     # @param id Plan Id
     # @param [Hash] opts the optional parameters
-    # @option opts [Object] :activate_plan_request 
     # @return [InlineResponse2004]
     def activate_plan(id, opts = {})
       data, status_code, headers = activate_plan_with_http_info(id, opts)
@@ -35,7 +34,6 @@ module CyberSource
     # Activate a Plan
     # @param id Plan Id
     # @param [Hash] opts the optional parameters
-    # @option opts [Object] :activate_plan_request 
     # @return [Array<(InlineResponse2004, Fixnum, Hash)>] InlineResponse2004 data, response status code and response headers
     def activate_plan_with_http_info(id, opts = {})
 
@@ -60,7 +58,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
 
@@ -68,7 +66,11 @@ module CyberSource
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(opts[:'activate_plan_request'])
+      if 'POST' == 'POST'
+        post_body = '{}'
+      else
+        post_body = nil
+      end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -125,7 +127,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
 
@@ -156,7 +158,6 @@ module CyberSource
     # Deactivate a Plan
     # @param id Plan Id
     # @param [Hash] opts the optional parameters
-    # @option opts [Object] :deactivate_plan_request 
     # @return [InlineResponse2004]
     def deactivate_plan(id, opts = {})
       data, status_code, headers = deactivate_plan_with_http_info(id, opts)
@@ -167,7 +168,6 @@ module CyberSource
     # Deactivate a Plan
     # @param id Plan Id
     # @param [Hash] opts the optional parameters
-    # @option opts [Object] :deactivate_plan_request 
     # @return [Array<(InlineResponse2004, Fixnum, Hash)>] InlineResponse2004 data, response status code and response headers
     def deactivate_plan_with_http_info(id, opts = {})
 
@@ -192,7 +192,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
 
@@ -200,7 +200,11 @@ module CyberSource
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(opts[:'deactivate_plan_request'])
+      if 'POST' == 'POST'
+        post_body = '{}'
+      else
+        post_body = nil
+      end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -257,7 +261,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
 
@@ -326,7 +330,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
 
@@ -389,7 +393,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
 
@@ -467,7 +471,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
 
@@ -542,7 +546,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
 

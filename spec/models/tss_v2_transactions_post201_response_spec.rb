@@ -92,12 +92,6 @@ describe 'TssV2TransactionsPost201Response' do
     end
   end
 
-  describe 'test attribute "status"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   describe 'test attribute "submit_time_utc"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

@@ -115,6 +115,36 @@ module CyberSource
       }
     end
 
+    # Attribute mapping from JSON key to ruby-style variable name.
+    def self.json_map
+      {
+        :'first_name' => :'first_name',
+        :'last_name' => :'last_name',
+        :'middle_name' => :'middle_name',
+        :'name_suffix' => :'name_suffix',
+        :'title' => :'title',
+        :'company' => :'company',
+        :'address1' => :'address1',
+        :'address2' => :'address2',
+        :'address3' => :'address3',
+        :'address4' => :'address4',
+        :'locality' => :'locality',
+        :'administrative_area' => :'administrative_area',
+        :'postal_code' => :'postal_code',
+        :'county' => :'county',
+        :'country' => :'country',
+        :'district' => :'district',
+        :'building_number' => :'building_number',
+        :'email' => :'email',
+        :'email_domain' => :'email_domain',
+        :'phone_number' => :'phone_number',
+        :'phone_type' => :'phone_type',
+        :'verification_status' => :'verification_status',
+        :'alternate_phone_number' => :'alternate_phone_number',
+        :'alternate_email' => :'alternate_email'
+      }
+    end
+
     # Attribute type mapping.
     def self.swagger_types
       {
@@ -442,10 +472,10 @@ module CyberSource
           # check to ensure the input is an array given that the the attribute
           # is documented as an array but the input is not
           if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
+            self.send("#{self.class.json_map[key]}=", attributes[self.class.attribute_map[key]].map { |v| _deserialize($1, v) })
           end
         elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
+          self.send("#{self.class.json_map[key]}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
         end # or else data not found in attributes(hash), not an issue as the data can be optional
       end
 
