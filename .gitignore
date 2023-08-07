@@ -4,7 +4,7 @@
 *.gem
 *.rbc
 /.config
-/coverage/
+**/coverage/
 /InstalledFiles
 /pkg/
 /spec/reports/
@@ -13,10 +13,14 @@
 /test/version_tmp/
 /tmp/
 
+
 ## Specific to RubyMotion:
 .dat*
 .repl_history
 build/
+
+##IDE Config Folder
+.idea
 
 ## Documentation cache and generated files:
 /.yardoc/

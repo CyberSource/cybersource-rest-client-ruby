@@ -35,6 +35,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'jwt', '2.7.0'
   s.add_runtime_dependency 'addressable', '~> 2.3', '>= 2.3.0'
   s.add_runtime_dependency 'time', '~> 0.2.2'
+  s.add_runtime_dependency 'jose', '~> 1.1'
 
   s.add_development_dependency 'simplecov'
   s.add_development_dependency 'rubocop', '~> 0.57.2'

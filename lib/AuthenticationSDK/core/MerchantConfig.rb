@@ -43,6 +43,8 @@ public
     @log_config = LogConfiguration.new(cybsPropertyObj['logConfiguration'])
     # Custom Default Headers
     @defaultCustomHeaders = cybsPropertyObj['defaultCustomHeaders']
+    # Path to client JWE pem file directory
+    @pemFileDirectory = cybsPropertyObj['pemFileDirectory']
     validateMerchantDetails()
     logAllProperties(cybsPropertyObj)
     end
@@ -217,6 +219,9 @@ public
       if !@proxyPort.instance_of? String
         @proxyPort=@proxyPort.to_s
       end
+      unless @pemFileDirectory.instance_of? String
+        @pemFileDirectory = @pemFileDirectory.to_s
+      end
     end
 
     def logAllProperties(propertyObj)
@@ -270,4 +275,5 @@ public
     attr_accessor :log_obj
     attr_accessor :solutionId
     attr_accessor :defaultCustomHeaders
+    attr_accessor :pemFileDirectory
   end

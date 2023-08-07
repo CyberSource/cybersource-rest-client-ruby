@@ -1044,6 +1044,7 @@ require 'cybersource_rest_client/api/void_api'
 
 # Utilities
 require 'cybersource_rest_client/utilities/flex/token_verification'
+require 'cybersource_rest_client/utilities/jwe_utility'
 
 module CyberSource
   class << self
