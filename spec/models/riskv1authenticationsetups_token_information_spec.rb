@@ -38,4 +38,10 @@ describe 'Riskv1authenticationsetupsTokenInformation' do
     end
   end
 
+  describe 'test attribute "jti"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

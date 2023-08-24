@@ -26,6 +26,8 @@ module CyberSource
 
     attr_accessor :device_information
 
+    attr_accessor :token_information
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -34,7 +36,8 @@ module CyberSource
         :'order_information' => :'orderInformation',
         :'payment_information' => :'paymentInformation',
         :'consumer_authentication_information' => :'consumerAuthenticationInformation',
-        :'device_information' => :'deviceInformation'
+        :'device_information' => :'deviceInformation',
+        :'token_information' => :'tokenInformation'
       }
     end
 
@@ -46,7 +49,8 @@ module CyberSource
         :'order_information' => :'order_information',
         :'payment_information' => :'payment_information',
         :'consumer_authentication_information' => :'consumer_authentication_information',
-        :'device_information' => :'device_information'
+        :'device_information' => :'device_information',
+        :'token_information' => :'token_information'
       }
     end
 
@@ -58,7 +62,8 @@ module CyberSource
         :'order_information' => :'Riskv1authenticationresultsOrderInformation',
         :'payment_information' => :'Riskv1authenticationresultsPaymentInformation',
         :'consumer_authentication_information' => :'Riskv1authenticationresultsConsumerAuthenticationInformation',
-        :'device_information' => :'Riskv1authenticationresultsDeviceInformation'
+        :'device_information' => :'Riskv1authenticationresultsDeviceInformation',
+        :'token_information' => :'Riskv1decisionsTokenInformation'
       }
     end
 
@@ -93,6 +98,10 @@ module CyberSource
       if attributes.has_key?(:'deviceInformation')
         self.device_information = attributes[:'deviceInformation']
       end
+
+      if attributes.has_key?(:'tokenInformation')
+        self.token_information = attributes[:'tokenInformation']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -118,7 +127,8 @@ module CyberSource
           order_information == o.order_information &&
           payment_information == o.payment_information &&
           consumer_authentication_information == o.consumer_authentication_information &&
-          device_information == o.device_information
+          device_information == o.device_information &&
+          token_information == o.token_information
     end
 
     # @see the `==` method
@@ -130,7 +140,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_reference_information, processing_information, order_information, payment_information, consumer_authentication_information, device_information].hash
+      [client_reference_information, processing_information, order_information, payment_information, consumer_authentication_information, device_information, token_information].hash
     end
 
     # Builds the object from hash

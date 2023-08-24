@@ -50,6 +50,12 @@ describe 'Riskv1decisionsOrderInformation' do
     end
   end
 
+  describe 'test attribute "cutoff_date_time"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "reordered"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

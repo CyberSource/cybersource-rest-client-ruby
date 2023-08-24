@@ -23,6 +23,9 @@ module CyberSource
     # Expected date that a pre-ordered purchase will be available. Format: YYYYMMDD 
     attr_accessor :pre_order_date
 
+    # Starting date and time for an event or a journey that is independent of which transportation mechanism, in UTC. The cutoffDateTime will supersede travelInformation.departureTime if both are supplied in the request. Format: YYYY-MM-DDThh:mm:ssZ. Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the time. The Z indicates UTC. 
+    attr_accessor :cutoff_date_time
+
     # Indicates whether the cardholder is reordering previously purchased merchandise. This field can contain one of these values: - false: First time ordered - true: Reordered 
     attr_accessor :reordered
 
@@ -47,6 +50,7 @@ module CyberSource
         :'amount_details' => :'amountDetails',
         :'pre_order' => :'preOrder',
         :'pre_order_date' => :'preOrderDate',
+        :'cutoff_date_time' => :'cutoffDateTime',
         :'reordered' => :'reordered',
         :'shipping_details' => :'shippingDetails',
         :'ship_to' => :'shipTo',
@@ -63,6 +67,7 @@ module CyberSource
         :'amount_details' => :'amount_details',
         :'pre_order' => :'pre_order',
         :'pre_order_date' => :'pre_order_date',
+        :'cutoff_date_time' => :'cutoff_date_time',
         :'reordered' => :'reordered',
         :'shipping_details' => :'shipping_details',
         :'ship_to' => :'ship_to',
@@ -79,6 +84,7 @@ module CyberSource
         :'amount_details' => :'Riskv1decisionsOrderInformationAmountDetails',
         :'pre_order' => :'String',
         :'pre_order_date' => :'String',
+        :'cutoff_date_time' => :'String',
         :'reordered' => :'BOOLEAN',
         :'shipping_details' => :'Riskv1decisionsOrderInformationShippingDetails',
         :'ship_to' => :'Riskv1decisionsOrderInformationShipTo',
@@ -107,6 +113,10 @@ module CyberSource
 
       if attributes.has_key?(:'preOrderDate')
         self.pre_order_date = attributes[:'preOrderDate']
+      end
+
+      if attributes.has_key?(:'cutoffDateTime')
+        self.cutoff_date_time = attributes[:'cutoffDateTime']
       end
 
       if attributes.has_key?(:'reordered')
@@ -173,6 +183,7 @@ module CyberSource
           amount_details == o.amount_details &&
           pre_order == o.pre_order &&
           pre_order_date == o.pre_order_date &&
+          cutoff_date_time == o.cutoff_date_time &&
           reordered == o.reordered &&
           shipping_details == o.shipping_details &&
           ship_to == o.ship_to &&
@@ -191,7 +202,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [amount_details, pre_order, pre_order_date, reordered, shipping_details, ship_to, returns_accepted, line_items, bill_to, total_offers_count].hash
+      [amount_details, pre_order, pre_order_date, cutoff_date_time, reordered, shipping_details, ship_to, returns_accepted, line_items, bill_to, total_offers_count].hash
     end
 
     # Builds the object from hash
