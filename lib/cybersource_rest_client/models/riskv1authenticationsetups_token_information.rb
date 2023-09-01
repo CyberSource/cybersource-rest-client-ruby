@@ -17,24 +17,30 @@ module CyberSource
     # A temporary ID that represents the customer's payment data (which is securely stored in Visa Data Centers). Flex Microform generates this ID and sets it to expire within 15 minutes from when the ID is generated or until the first payment authorization is carried out (whichever occurs first).  Valid value for the ID is a 64-character, alphanumeric string.  Example: 1D08M4YB968R1F7YVL4TBBKYVNRIR02VZFH9CBYSQIJJXORPI1NK5C98D7F6EB53 
     attr_accessor :transient_token
 
+    # TMS Transient Token, 64 hexadecimal id value representing captured payment credentials (including Sensitive Authentication Data, e.g. CVV). 
+    attr_accessor :jti
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'transient_token' => :'transientToken'
+        :'transient_token' => :'transientToken',
+        :'jti' => :'jti'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'transient_token' => :'transient_token'
+        :'transient_token' => :'transient_token',
+        :'jti' => :'jti'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'transient_token' => :'String'
+        :'transient_token' => :'String',
+        :'jti' => :'String'
       }
     end
 
@@ -48,6 +54,10 @@ module CyberSource
 
       if attributes.has_key?(:'transientToken')
         self.transient_token = attributes[:'transientToken']
+      end
+
+      if attributes.has_key?(:'jti')
+        self.jti = attributes[:'jti']
       end
     end
 
@@ -64,12 +74,19 @@ module CyberSource
       true
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] jti Value to be assigned
+    def jti=(jti)
+      @jti = jti
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          transient_token == o.transient_token
+          transient_token == o.transient_token &&
+          jti == o.jti
     end
 
     # @see the `==` method
@@ -81,7 +98,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [transient_token].hash
+      [transient_token, jti].hash
     end
 
     # Builds the object from hash

@@ -32,6 +32,9 @@ module CyberSource
     # #### Visa Platform Connect : This API will contain the Flag that specifies whether the payment is for the purchase of cryptocurrency. Additional values to add : This API will contain the Flag that specifies whether the payment is for the purchase of cryptocurrency. valid values are - Y/y, true - N/n, false 
     attr_accessor :is_cryptocurrency_purchase
 
+    # Starting date and time for an event or a journey that is independent of which transportation mechanism, in UTC. The cutoffDateTime will supersede travelInformation.transit.airline.legs[].departureDate and travelInformation.transit.airline.legs[].departureTime if these fields are supplied in the request. Format: YYYY-MM-DDThh:mm:ssZ. Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the time. The Z indicates UTC. 
+    attr_accessor :cutoff_date_time
+
     # Indicates whether cardholder is placing an order with a future availability or release date. This field can contain one of these values: - MERCHANDISE_AVAILABLE: Merchandise available - FUTURE_AVAILABILITY: Future availability 
     attr_accessor :pre_order
 
@@ -55,6 +58,7 @@ module CyberSource
         :'shipping_details' => :'shippingDetails',
         :'returns_accepted' => :'returnsAccepted',
         :'is_cryptocurrency_purchase' => :'isCryptocurrencyPurchase',
+        :'cutoff_date_time' => :'cutoffDateTime',
         :'pre_order' => :'preOrder',
         :'pre_order_date' => :'preOrderDate',
         :'reordered' => :'reordered',
@@ -73,6 +77,7 @@ module CyberSource
         :'shipping_details' => :'shipping_details',
         :'returns_accepted' => :'returns_accepted',
         :'is_cryptocurrency_purchase' => :'is_cryptocurrency_purchase',
+        :'cutoff_date_time' => :'cutoff_date_time',
         :'pre_order' => :'pre_order',
         :'pre_order_date' => :'pre_order_date',
         :'reordered' => :'reordered',
@@ -91,6 +96,7 @@ module CyberSource
         :'shipping_details' => :'Ptsv2paymentsOrderInformationShippingDetails',
         :'returns_accepted' => :'BOOLEAN',
         :'is_cryptocurrency_purchase' => :'String',
+        :'cutoff_date_time' => :'String',
         :'pre_order' => :'String',
         :'pre_order_date' => :'String',
         :'reordered' => :'BOOLEAN',
@@ -138,6 +144,10 @@ module CyberSource
 
       if attributes.has_key?(:'isCryptocurrencyPurchase')
         self.is_cryptocurrency_purchase = attributes[:'isCryptocurrencyPurchase']
+      end
+
+      if attributes.has_key?(:'cutoffDateTime')
+        self.cutoff_date_time = attributes[:'cutoffDateTime']
       end
 
       if attributes.has_key?(:'preOrder')
@@ -195,6 +205,7 @@ module CyberSource
           shipping_details == o.shipping_details &&
           returns_accepted == o.returns_accepted &&
           is_cryptocurrency_purchase == o.is_cryptocurrency_purchase &&
+          cutoff_date_time == o.cutoff_date_time &&
           pre_order == o.pre_order &&
           pre_order_date == o.pre_order_date &&
           reordered == o.reordered &&
@@ -210,7 +221,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [amount_details, bill_to, ship_to, line_items, invoice_details, shipping_details, returns_accepted, is_cryptocurrency_purchase, pre_order, pre_order_date, reordered, total_offers_count].hash
+      [amount_details, bill_to, ship_to, line_items, invoice_details, shipping_details, returns_accepted, is_cryptocurrency_purchase, cutoff_date_time, pre_order, pre_order_date, reordered, total_offers_count].hash
     end
 
     # Builds the object from hash
