@@ -33,4 +33,13 @@ public
       cacheObj.write('certificateLastModifiedTimeStamp', currentFileLastModifiedTime)
       return x5CertDer
     end
+
+    def fetchPEMFileForNetworkTokenization(filePath, cacheObj)
+      pem_file_cache = cacheObj.read('privateKeyFromPEMFile')
+      if pem_file_cache.nil? || pem_file_cache.to_s.empty?
+        pem_file_cache = JOSE::JWK.from_pem_file filePath
+        cacheObj.write('privateKeyFromPEMFile', pem_file_cache)
+      end
+      return cacheObj.read('privateKeyFromPEMFile')
+    end
   end
