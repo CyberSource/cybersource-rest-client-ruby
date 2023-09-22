@@ -37,7 +37,7 @@ describe 'SubscriptionsApi' do
   # Activate a &#x60;CANCELLED&#x60; Or &#x60;SUSPENDED&#x60; Subscription 
   # @param id Subscription Id
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2009]
+  # @return [ActivateSubscriptionResponse]
   describe 'activate_subscription test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -49,7 +49,7 @@ describe 'SubscriptionsApi' do
   # Cancel a Subscription
   # @param id Subscription Id
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse202]
+  # @return [CancelSubscriptionResponse]
   describe 'cancel_subscription test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -61,7 +61,7 @@ describe 'SubscriptionsApi' do
   # Create a Recurring Billing Subscription
   # @param create_subscription_request 
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2011]
+  # @return [CreateSubscriptionResponse]
   describe 'create_subscription test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -76,7 +76,7 @@ describe 'SubscriptionsApi' do
   # @option opts [Integer] :limit Number of items to be returned. Default - &#x60;20&#x60;, Max - &#x60;100&#x60; 
   # @option opts [String] :code Filter by Subscription Code
   # @option opts [String] :status Filter by Subscription Status
-  # @return [InlineResponse2006]
+  # @return [GetAllSubscriptionsResponse]
   describe 'get_all_subscriptions test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -88,7 +88,7 @@ describe 'SubscriptionsApi' do
   # Get a Subscription by Subscription Id
   # @param id Subscription Id
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2007]
+  # @return [GetSubscriptionResponse]
   describe 'get_subscription test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -99,7 +99,7 @@ describe 'SubscriptionsApi' do
   # Get a Subscription Code
   # Get a Unique Subscription Code
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse20010]
+  # @return [GetSubscriptionCodeResponse]
   describe 'get_subscription_code test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -111,7 +111,7 @@ describe 'SubscriptionsApi' do
   # Suspend a Subscription
   # @param id Subscription Id
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2021]
+  # @return [SuspendSubscriptionResponse]
   describe 'suspend_subscription test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -124,7 +124,7 @@ describe 'SubscriptionsApi' do
   # @param id Subscription Id
   # @param update_subscription Update Subscription
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2008]
+  # @return [UpdateSubscriptionResponse]
   describe 'update_subscription test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

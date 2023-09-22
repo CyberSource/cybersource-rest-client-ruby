@@ -37,7 +37,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'billing_period' => :'InlineResponse200PlanInformationBillingPeriod',
+        :'billing_period' => :'GetAllPlansResponsePlanInformationBillingPeriod',
         :'billing_cycles' => :'Rbsv1plansPlanInformationBillingCycles'
       }
     end

@@ -24,7 +24,7 @@ module CyberSource
     # **Get Batch Report**<br>This resource accepts a batch id and returns: - The batch status. - The total number of accepted, rejected, updated records. - The total number of card association responses. - The billable quantities of:   - New Account Numbers (NAN)   - New Expiry Dates (NED)   - Account Closures (ACL)   - Contact Card Holders (CCH) - Source record information including token ids, masked card number, expiration dates & card type. - Response record information including response code, reason, token ids, masked card number, expiration dates & card type. 
     # @param batch_id Unique identification number assigned to the submitted request.
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse20014]
+    # @return [InlineResponse2004]
     def get_batch_report(batch_id, opts = {})
       data, status_code, headers = get_batch_report_with_http_info(batch_id, opts)
       return data, status_code, headers
@@ -34,7 +34,7 @@ module CyberSource
     # **Get Batch Report**&lt;br&gt;This resource accepts a batch id and returns: - The batch status. - The total number of accepted, rejected, updated records. - The total number of card association responses. - The billable quantities of:   - New Account Numbers (NAN)   - New Expiry Dates (NED)   - Account Closures (ACL)   - Contact Card Holders (CCH) - Source record information including token ids, masked card number, expiration dates &amp; card type. - Response record information including response code, reason, token ids, masked card number, expiration dates &amp; card type. 
     # @param batch_id Unique identification number assigned to the submitted request.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse20014, Fixnum, Hash)>] InlineResponse20014 data, response status code and response headers
+    # @return [Array<(InlineResponse2004, Fixnum, Hash)>] InlineResponse2004 data, response status code and response headers
     def get_batch_report_with_http_info(batch_id, opts = {})
 
       if @api_client.config.debugging
@@ -86,7 +86,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20014')
+        :return_type => 'InlineResponse2004')
       if @api_client.config.debugging
         begin
         raise
@@ -101,7 +101,7 @@ module CyberSource
     # **Get Batch Status**<br>This resource accepts a batch id and returns: - The batch status. - The total number of accepted, rejected, updated records. - The total number of card association responses. - The billable quantities of:   - New Account Numbers (NAN)   - New Expiry Dates (NED)   - Account Closures (ACL)   - Contact Card Holders (CCH) 
     # @param batch_id Unique identification number assigned to the submitted request.
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse20013]
+    # @return [InlineResponse2003]
     def get_batch_status(batch_id, opts = {})
       data, status_code, headers = get_batch_status_with_http_info(batch_id, opts)
       return data, status_code, headers
@@ -111,7 +111,7 @@ module CyberSource
     # **Get Batch Status**&lt;br&gt;This resource accepts a batch id and returns: - The batch status. - The total number of accepted, rejected, updated records. - The total number of card association responses. - The billable quantities of:   - New Account Numbers (NAN)   - New Expiry Dates (NED)   - Account Closures (ACL)   - Contact Card Holders (CCH) 
     # @param batch_id Unique identification number assigned to the submitted request.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse20013, Fixnum, Hash)>] InlineResponse20013 data, response status code and response headers
+    # @return [Array<(InlineResponse2003, Fixnum, Hash)>] InlineResponse2003 data, response status code and response headers
     def get_batch_status_with_http_info(batch_id, opts = {})
 
       if @api_client.config.debugging
@@ -163,7 +163,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20013')
+        :return_type => 'InlineResponse2003')
       if @api_client.config.debugging
         begin
         raise
@@ -181,7 +181,7 @@ module CyberSource
     # @option opts [Integer] :limit The maximum number that can be returned in the array starting from the offset record in zero-based dataset. (default to 20)
     # @option opts [String] :from_date ISO-8601 format: yyyyMMddTHHmmssZ
     # @option opts [String] :to_date ISO-8601 format: yyyyMMddTHHmmssZ
-    # @return [InlineResponse20012]
+    # @return [InlineResponse2002]
     def get_batches_list(opts = {})
       data, status_code, headers = get_batches_list_with_http_info(opts)
       return data, status_code, headers
@@ -194,7 +194,7 @@ module CyberSource
     # @option opts [Integer] :limit The maximum number that can be returned in the array starting from the offset record in zero-based dataset.
     # @option opts [String] :from_date ISO-8601 format: yyyyMMddTHHmmssZ
     # @option opts [String] :to_date ISO-8601 format: yyyyMMddTHHmmssZ
-    # @return [Array<(InlineResponse20012, Fixnum, Hash)>] InlineResponse20012 data, response status code and response headers
+    # @return [Array<(InlineResponse2002, Fixnum, Hash)>] InlineResponse2002 data, response status code and response headers
     def get_batches_list_with_http_info(opts = {})
 
       if @api_client.config.debugging
@@ -250,7 +250,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20012')
+        :return_type => 'InlineResponse2002')
       if @api_client.config.debugging
         begin
         raise
@@ -265,7 +265,7 @@ module CyberSource
     # **Create a Batch**<br>This resource accepts TMS tokens ids of a Customer, Payment Instrument or Instrument Identifier. <br> The card numbers for the supplied tokens ids are then sent to the relevant card associations to check for updates.<br>The following type of batches can be submitted: -  **oneOff** batch containing tokens id for Visa or MasterCard card numbers. - **amexRegistration** batch containing tokens id for Amex card numbers.  A batch id will be returned on a successful response which can be used to get the batch status and the batch report. 
     # @param body 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2022]
+    # @return [InlineResponse202]
     def post_batch(body, opts = {})
       data, status_code, headers = post_batch_with_http_info(body, opts)
       return data, status_code, headers
@@ -275,7 +275,7 @@ module CyberSource
     # **Create a Batch**&lt;br&gt;This resource accepts TMS tokens ids of a Customer, Payment Instrument or Instrument Identifier. &lt;br&gt; The card numbers for the supplied tokens ids are then sent to the relevant card associations to check for updates.&lt;br&gt;The following type of batches can be submitted: -  **oneOff** batch containing tokens id for Visa or MasterCard card numbers. - **amexRegistration** batch containing tokens id for Amex card numbers.  A batch id will be returned on a successful response which can be used to get the batch status and the batch report. 
     # @param body 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2022, Fixnum, Hash)>] InlineResponse2022 data, response status code and response headers
+    # @return [Array<(InlineResponse202, Fixnum, Hash)>] InlineResponse202 data, response status code and response headers
     def post_batch_with_http_info(body, opts = {})
 
       if @api_client.config.debugging
@@ -315,7 +315,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2022')
+        :return_type => 'InlineResponse202')
       if @api_client.config.debugging
         begin
         raise

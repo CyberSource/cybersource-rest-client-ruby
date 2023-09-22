@@ -24,7 +24,7 @@ module CyberSource
     # Activate a `CANCELLED` Or `SUSPENDED` Subscription 
     # @param id Subscription Id
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2009]
+    # @return [ActivateSubscriptionResponse]
     def activate_subscription(id, opts = {})
       data, status_code, headers = activate_subscription_with_http_info(id, opts)
       return data, status_code, headers
@@ -34,7 +34,7 @@ module CyberSource
     # Activate a &#x60;CANCELLED&#x60; Or &#x60;SUSPENDED&#x60; Subscription 
     # @param id Subscription Id
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2009, Fixnum, Hash)>] InlineResponse2009 data, response status code and response headers
+    # @return [Array<(ActivateSubscriptionResponse, Fixnum, Hash)>] ActivateSubscriptionResponse data, response status code and response headers
     def activate_subscription_with_http_info(id, opts = {})
 
       if @api_client.config.debugging
@@ -78,7 +78,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2009')
+        :return_type => 'ActivateSubscriptionResponse')
       if @api_client.config.debugging
         begin
         raise
@@ -93,7 +93,7 @@ module CyberSource
     # Cancel a Subscription
     # @param id Subscription Id
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse202]
+    # @return [CancelSubscriptionResponse]
     def cancel_subscription(id, opts = {})
       data, status_code, headers = cancel_subscription_with_http_info(id, opts)
       return data, status_code, headers
@@ -103,7 +103,7 @@ module CyberSource
     # Cancel a Subscription
     # @param id Subscription Id
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse202, Fixnum, Hash)>] InlineResponse202 data, response status code and response headers
+    # @return [Array<(CancelSubscriptionResponse, Fixnum, Hash)>] CancelSubscriptionResponse data, response status code and response headers
     def cancel_subscription_with_http_info(id, opts = {})
 
       if @api_client.config.debugging
@@ -147,7 +147,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse202')
+        :return_type => 'CancelSubscriptionResponse')
       if @api_client.config.debugging
         begin
         raise
@@ -162,7 +162,7 @@ module CyberSource
     # Create a Recurring Billing Subscription
     # @param create_subscription_request 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2011]
+    # @return [CreateSubscriptionResponse]
     def create_subscription(create_subscription_request, opts = {})
       data, status_code, headers = create_subscription_with_http_info(create_subscription_request, opts)
       return data, status_code, headers
@@ -172,7 +172,7 @@ module CyberSource
     # Create a Recurring Billing Subscription
     # @param create_subscription_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2011, Fixnum, Hash)>] InlineResponse2011 data, response status code and response headers
+    # @return [Array<(CreateSubscriptionResponse, Fixnum, Hash)>] CreateSubscriptionResponse data, response status code and response headers
     def create_subscription_with_http_info(create_subscription_request, opts = {})
 
       if @api_client.config.debugging
@@ -212,7 +212,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2011')
+        :return_type => 'CreateSubscriptionResponse')
       if @api_client.config.debugging
         begin
         raise
@@ -230,7 +230,7 @@ module CyberSource
     # @option opts [Integer] :limit Number of items to be returned. Default - &#x60;20&#x60;, Max - &#x60;100&#x60; 
     # @option opts [String] :code Filter by Subscription Code
     # @option opts [String] :status Filter by Subscription Status
-    # @return [InlineResponse2006]
+    # @return [GetAllSubscriptionsResponse]
     def get_all_subscriptions(opts = {})
       data, status_code, headers = get_all_subscriptions_with_http_info(opts)
       return data, status_code, headers
@@ -243,7 +243,7 @@ module CyberSource
     # @option opts [Integer] :limit Number of items to be returned. Default - &#x60;20&#x60;, Max - &#x60;100&#x60; 
     # @option opts [String] :code Filter by Subscription Code
     # @option opts [String] :status Filter by Subscription Status
-    # @return [Array<(InlineResponse2006, Fixnum, Hash)>] InlineResponse2006 data, response status code and response headers
+    # @return [Array<(GetAllSubscriptionsResponse, Fixnum, Hash)>] GetAllSubscriptionsResponse data, response status code and response headers
     def get_all_subscriptions_with_http_info(opts = {})
 
       if @api_client.config.debugging
@@ -287,7 +287,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2006')
+        :return_type => 'GetAllSubscriptionsResponse')
       if @api_client.config.debugging
         begin
         raise
@@ -302,7 +302,7 @@ module CyberSource
     # Get a Subscription by Subscription Id
     # @param id Subscription Id
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2007]
+    # @return [GetSubscriptionResponse]
     def get_subscription(id, opts = {})
       data, status_code, headers = get_subscription_with_http_info(id, opts)
       return data, status_code, headers
@@ -312,7 +312,7 @@ module CyberSource
     # Get a Subscription by Subscription Id
     # @param id Subscription Id
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2007, Fixnum, Hash)>] InlineResponse2007 data, response status code and response headers
+    # @return [Array<(GetSubscriptionResponse, Fixnum, Hash)>] GetSubscriptionResponse data, response status code and response headers
     def get_subscription_with_http_info(id, opts = {})
 
       if @api_client.config.debugging
@@ -356,7 +356,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2007')
+        :return_type => 'GetSubscriptionResponse')
       if @api_client.config.debugging
         begin
         raise
@@ -370,7 +370,7 @@ module CyberSource
     # Get a Subscription Code
     # Get a Unique Subscription Code
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse20010]
+    # @return [GetSubscriptionCodeResponse]
     def get_subscription_code(opts = {})
       data, status_code, headers = get_subscription_code_with_http_info(opts)
       return data, status_code, headers
@@ -379,7 +379,7 @@ module CyberSource
     # Get a Subscription Code
     # Get a Unique Subscription Code
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse20010, Fixnum, Hash)>] InlineResponse20010 data, response status code and response headers
+    # @return [Array<(GetSubscriptionCodeResponse, Fixnum, Hash)>] GetSubscriptionCodeResponse data, response status code and response headers
     def get_subscription_code_with_http_info(opts = {})
 
       if @api_client.config.debugging
@@ -419,7 +419,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20010')
+        :return_type => 'GetSubscriptionCodeResponse')
       if @api_client.config.debugging
         begin
         raise
@@ -434,7 +434,7 @@ module CyberSource
     # Suspend a Subscription
     # @param id Subscription Id
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2021]
+    # @return [SuspendSubscriptionResponse]
     def suspend_subscription(id, opts = {})
       data, status_code, headers = suspend_subscription_with_http_info(id, opts)
       return data, status_code, headers
@@ -444,7 +444,7 @@ module CyberSource
     # Suspend a Subscription
     # @param id Subscription Id
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2021, Fixnum, Hash)>] InlineResponse2021 data, response status code and response headers
+    # @return [Array<(SuspendSubscriptionResponse, Fixnum, Hash)>] SuspendSubscriptionResponse data, response status code and response headers
     def suspend_subscription_with_http_info(id, opts = {})
 
       if @api_client.config.debugging
@@ -488,7 +488,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2021')
+        :return_type => 'SuspendSubscriptionResponse')
       if @api_client.config.debugging
         begin
         raise
@@ -504,7 +504,7 @@ module CyberSource
     # @param id Subscription Id
     # @param update_subscription Update Subscription
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2008]
+    # @return [UpdateSubscriptionResponse]
     def update_subscription(id, update_subscription, opts = {})
       data, status_code, headers = update_subscription_with_http_info(id, update_subscription, opts)
       return data, status_code, headers
@@ -515,7 +515,7 @@ module CyberSource
     # @param id Subscription Id
     # @param update_subscription Update Subscription
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2008, Fixnum, Hash)>] InlineResponse2008 data, response status code and response headers
+    # @return [Array<(UpdateSubscriptionResponse, Fixnum, Hash)>] UpdateSubscriptionResponse data, response status code and response headers
     def update_subscription_with_http_info(id, update_subscription, opts = {})
 
       if @api_client.config.debugging
@@ -559,7 +559,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2008')
+        :return_type => 'UpdateSubscriptionResponse')
       if @api_client.config.debugging
         begin
         raise

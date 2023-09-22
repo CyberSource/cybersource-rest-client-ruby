@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **search_keys**
-> InlineResponse20011 search_keys(opts)
+> InlineResponse2001 search_keys(opts)
 
 Search Keys
 
@@ -56,7 +56,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20011**](InlineResponse20011.md)
+[**InlineResponse2001**](InlineResponse2001.md)
 
 ### Authorization
 

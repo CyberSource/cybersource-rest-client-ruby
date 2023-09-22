@@ -14,43 +14,44 @@ require 'date'
 
 module CyberSource
   class InlineResponse200
-    attr_accessor :_links
+    # UUID uniquely generated for this comments. 
+    attr_accessor :id
 
     # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC.  Returned by Cybersource for all services. 
     attr_accessor :submit_time_utc
 
-    # total number of plans created
-    attr_accessor :total_count
+    # The status of the submitted transaction. Possible values are: - `ACCEPTED` - `REJECTED` 
+    attr_accessor :status
 
-    attr_accessor :plans
+    attr_accessor :_embedded
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'_links' => :'_links',
+        :'id' => :'id',
         :'submit_time_utc' => :'submitTimeUtc',
-        :'total_count' => :'totalCount',
-        :'plans' => :'plans'
+        :'status' => :'status',
+        :'_embedded' => :'_embedded'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'_links' => :'_links',
+        :'id' => :'id',
         :'submit_time_utc' => :'submit_time_utc',
-        :'total_count' => :'total_count',
-        :'plans' => :'plans'
+        :'status' => :'status',
+        :'_embedded' => :'_embedded'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'_links' => :'InlineResponse200Links',
+        :'id' => :'String',
         :'submit_time_utc' => :'String',
-        :'total_count' => :'Integer',
-        :'plans' => :'Array<InlineResponse200Plans>'
+        :'status' => :'String',
+        :'_embedded' => :'InlineResponse200Embedded'
       }
     end
 
@@ -62,22 +63,20 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'_links')
-        self._links = attributes[:'_links']
+      if attributes.has_key?(:'id')
+        self.id = attributes[:'id']
       end
 
       if attributes.has_key?(:'submitTimeUtc')
         self.submit_time_utc = attributes[:'submitTimeUtc']
       end
 
-      if attributes.has_key?(:'totalCount')
-        self.total_count = attributes[:'totalCount']
+      if attributes.has_key?(:'status')
+        self.status = attributes[:'status']
       end
 
-      if attributes.has_key?(:'plans')
-        if (value = attributes[:'plans']).is_a?(Array)
-          self.plans = value
-        end
+      if attributes.has_key?(:'_embedded')
+        self._embedded = attributes[:'_embedded']
       end
     end
 
@@ -94,15 +93,21 @@ module CyberSource
       true
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] id Value to be assigned
+    def id=(id)
+      @id = id
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          _links == o._links &&
+          id == o.id &&
           submit_time_utc == o.submit_time_utc &&
-          total_count == o.total_count &&
-          plans == o.plans
+          status == o.status &&
+          _embedded == o._embedded
     end
 
     # @see the `==` method
@@ -114,7 +119,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, submit_time_utc, total_count, plans].hash
+      [id, submit_time_utc, status, _embedded].hash
     end
 
     # Builds the object from hash

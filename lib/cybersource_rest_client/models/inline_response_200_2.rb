@@ -14,33 +14,56 @@ require 'date'
 
 module CyberSource
   class InlineResponse2002
-    # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC.  Returned by Cybersource for all services. 
-    attr_accessor :submit_time_utc
+    attr_accessor :_links
 
-    # The status of the submitted transaction.  Possible values:  - COMPLETED 
-    attr_accessor :status
+    attr_accessor :object
+
+    attr_accessor :offset
+
+    attr_accessor :limit
+
+    attr_accessor :count
+
+    attr_accessor :total
+
+    attr_accessor :_embedded
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'submit_time_utc' => :'submitTimeUtc',
-        :'status' => :'status'
+        :'_links' => :'_links',
+        :'object' => :'object',
+        :'offset' => :'offset',
+        :'limit' => :'limit',
+        :'count' => :'count',
+        :'total' => :'total',
+        :'_embedded' => :'_embedded'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'submit_time_utc' => :'submit_time_utc',
-        :'status' => :'status'
+        :'_links' => :'_links',
+        :'object' => :'object',
+        :'offset' => :'offset',
+        :'limit' => :'limit',
+        :'count' => :'count',
+        :'total' => :'total',
+        :'_embedded' => :'_embedded'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'submit_time_utc' => :'String',
-        :'status' => :'String'
+        :'_links' => :'Array<InlineResponse2002Links>',
+        :'object' => :'String',
+        :'offset' => :'Integer',
+        :'limit' => :'Integer',
+        :'count' => :'Integer',
+        :'total' => :'Integer',
+        :'_embedded' => :'InlineResponse2002Embedded'
       }
     end
 
@@ -52,12 +75,34 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'submitTimeUtc')
-        self.submit_time_utc = attributes[:'submitTimeUtc']
+      if attributes.has_key?(:'_links')
+        if (value = attributes[:'_links']).is_a?(Array)
+          self._links = value
+        end
       end
 
-      if attributes.has_key?(:'status')
-        self.status = attributes[:'status']
+      if attributes.has_key?(:'object')
+        self.object = attributes[:'object']
+      end
+
+      if attributes.has_key?(:'offset')
+        self.offset = attributes[:'offset']
+      end
+
+      if attributes.has_key?(:'limit')
+        self.limit = attributes[:'limit']
+      end
+
+      if attributes.has_key?(:'count')
+        self.count = attributes[:'count']
+      end
+
+      if attributes.has_key?(:'total')
+        self.total = attributes[:'total']
+      end
+
+      if attributes.has_key?(:'_embedded')
+        self._embedded = attributes[:'_embedded']
       end
     end
 
@@ -79,8 +124,13 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          submit_time_utc == o.submit_time_utc &&
-          status == o.status
+          _links == o._links &&
+          object == o.object &&
+          offset == o.offset &&
+          limit == o.limit &&
+          count == o.count &&
+          total == o.total &&
+          _embedded == o._embedded
     end
 
     # @see the `==` method
@@ -92,7 +142,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [submit_time_utc, status].hash
+      [_links, object, offset, limit, count, total, _embedded].hash
     end
 
     # Builds the object from hash

@@ -58,7 +58,7 @@ module CyberSource
         :'plan_information' => :'Rbsv1subscriptionsPlanInformation',
         :'subscription_information' => :'Rbsv1subscriptionsSubscriptionInformation',
         :'payment_information' => :'Rbsv1subscriptionsPaymentInformation',
-        :'order_information' => :'InlineResponse200OrderInformation'
+        :'order_information' => :'GetAllPlansResponseOrderInformation'
       }
     end
 

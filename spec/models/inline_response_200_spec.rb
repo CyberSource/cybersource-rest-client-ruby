@@ -32,7 +32,7 @@ describe 'InlineResponse200' do
       expect(@instance).to be_instance_of(CyberSource::InlineResponse200)
     end
   end
-  describe 'test attribute "_links"' do
+  describe 'test attribute "id"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -44,13 +44,13 @@ describe 'InlineResponse200' do
     end
   end
 
-  describe 'test attribute "total_count"' do
+  describe 'test attribute "status"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "plans"' do
+  describe 'test attribute "_embedded"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

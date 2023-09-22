@@ -20,13 +20,14 @@ module CyberSource
     # The status of the submitted transaction.  Possible values:  - INVALID_REQUEST 
     attr_accessor :status
 
-    # The reason of the status.  Possible values:  - MISSING_FIELD  - INVALID_DATA 
+    # The reason of the status.  Possible values:  - MISSING_FIELD 
     attr_accessor :reason
 
     # The detail message related to the status and reason listed above.
     attr_accessor :message
 
-    attr_accessor :details
+    # HTTP status code of the submitted request.  Possible values:  - 500 
+    attr_accessor :status_code
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -35,7 +36,7 @@ module CyberSource
         :'status' => :'status',
         :'reason' => :'reason',
         :'message' => :'message',
-        :'details' => :'details'
+        :'status_code' => :'statusCode'
       }
     end
 
@@ -46,7 +47,7 @@ module CyberSource
         :'status' => :'status',
         :'reason' => :'reason',
         :'message' => :'message',
-        :'details' => :'details'
+        :'status_code' => :'status_code'
       }
     end
 
@@ -57,7 +58,7 @@ module CyberSource
         :'status' => :'String',
         :'reason' => :'String',
         :'message' => :'String',
-        :'details' => :'Array<PtsV2PaymentsPost201ResponseErrorInformationDetails>'
+        :'status_code' => :'String'
       }
     end
 
@@ -85,10 +86,8 @@ module CyberSource
         self.message = attributes[:'message']
       end
 
-      if attributes.has_key?(:'details')
-        if (value = attributes[:'details']).is_a?(Array)
-          self.details = value
-        end
+      if attributes.has_key?(:'statusCode')
+        self.status_code = attributes[:'statusCode']
       end
     end
 
@@ -114,7 +113,7 @@ module CyberSource
           status == o.status &&
           reason == o.reason &&
           message == o.message &&
-          details == o.details
+          status_code == o.status_code
     end
 
     # @see the `==` method
@@ -126,7 +125,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [submit_time_utc, status, reason, message, details].hash
+      [submit_time_utc, status, reason, message, status_code].hash
     end
 
     # Builds the object from hash
