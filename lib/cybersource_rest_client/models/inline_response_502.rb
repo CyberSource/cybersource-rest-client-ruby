@@ -17,17 +17,16 @@ module CyberSource
     # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC.  Returned by Cybersource for all services. 
     attr_accessor :submit_time_utc
 
-    # The status of the submitted transaction.  Possible values:  - SERVER_ERROR 
+    # The status of the submitted transaction. Possible values: - `SERVER_ERROR` 
     attr_accessor :status
 
-    # The reason of the status.  Possible values:  - SYSTEM_ERROR  - SERVER_TIMEOUT  - SERVICE_TIMEOUT 
+    # The reason of the status. Possible Values: - `INTERNAL_SERVICE_ERROR` 
     attr_accessor :reason
 
-    # The detail message related to the status and reason listed above.
+    # Application failed.
     attr_accessor :message
 
-    # HTTP status code of the submitted request.  Possible values:  - 500 
-    attr_accessor :status_code
+    attr_accessor :details
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -36,7 +35,7 @@ module CyberSource
         :'status' => :'status',
         :'reason' => :'reason',
         :'message' => :'message',
-        :'status_code' => :'statusCode'
+        :'details' => :'details'
       }
     end
 
@@ -47,7 +46,7 @@ module CyberSource
         :'status' => :'status',
         :'reason' => :'reason',
         :'message' => :'message',
-        :'status_code' => :'status_code'
+        :'details' => :'details'
       }
     end
 
@@ -58,7 +57,7 @@ module CyberSource
         :'status' => :'String',
         :'reason' => :'String',
         :'message' => :'String',
-        :'status_code' => :'String'
+        :'details' => :'Array<PtsV2PaymentsPost201ResponseErrorInformationDetails>'
       }
     end
 
@@ -86,8 +85,10 @@ module CyberSource
         self.message = attributes[:'message']
       end
 
-      if attributes.has_key?(:'statusCode')
-        self.status_code = attributes[:'statusCode']
+      if attributes.has_key?(:'details')
+        if (value = attributes[:'details']).is_a?(Array)
+          self.details = value
+        end
       end
     end
 
@@ -113,7 +114,7 @@ module CyberSource
           status == o.status &&
           reason == o.reason &&
           message == o.message &&
-          status_code == o.status_code
+          details == o.details
     end
 
     # @see the `==` method
@@ -125,7 +126,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [submit_time_utc, status, reason, message, status_code].hash
+      [submit_time_utc, status, reason, message, details].hash
     end
 
     # Builds the object from hash

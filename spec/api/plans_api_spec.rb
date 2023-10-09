@@ -37,7 +37,7 @@ describe 'PlansApi' do
   # Activate a Plan
   # @param id Plan Id
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2004]
+  # @return [ActivateDeactivatePlanResponse]
   describe 'activate_plan test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -49,7 +49,7 @@ describe 'PlansApi' do
   # The recurring billing service enables you to manage payment plans and subscriptions for recurring payment schedules. It securely stores your customer&#39;s payment information and personal data within secure Visa data centers, reducing storage risks and PCI DSS scope through the use of *Token Management* (*TMS*).  The three key elements of *Cybersource* Recurring Billing are:  -  **Token**: stores customer billing, shipping, and payment details.  -  **Plan**: stores the billing schedule.  -  **Subscription**: combines the token and plan, and defines the subscription start date, name, and description.  The APIs in this section demonstrate the management of the Plans and Subscriptions. For Tokens please refer to [Token Management](#token-management) 
   # @param create_plan_request 
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse201]
+  # @return [CreatePlanResponse]
   describe 'create_plan test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -61,7 +61,7 @@ describe 'PlansApi' do
   # Deactivate a Plan
   # @param id Plan Id
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2004]
+  # @return [ActivateDeactivatePlanResponse]
   describe 'deactivate_plan test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -73,7 +73,7 @@ describe 'PlansApi' do
   # Delete a Plan is only allowed: - plan status is in &#x60;DRAFT&#x60; - plan status is in &#x60;ACTIVE&#x60;, and &#x60;INACTIVE&#x60; only allowed when no subscriptions attached to a plan in the lifetime of a plan 
   # @param id Plan Id
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2002]
+  # @return [DeletePlanResponse]
   describe 'delete_plan test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -85,7 +85,7 @@ describe 'PlansApi' do
   # Retrieve a Plan details by Plan Id.
   # @param id Plan Id
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2001]
+  # @return [GetPlanResponse]
   describe 'get_plan test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -96,7 +96,7 @@ describe 'PlansApi' do
   # Get a Plan Code
   # Get a Unique Plan Code
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2005]
+  # @return [GetPlanCodeResponse]
   describe 'get_plan_code test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -112,7 +112,7 @@ describe 'PlansApi' do
   # @option opts [String] :code Filter by Plan Code
   # @option opts [String] :status Filter by Plan Status
   # @option opts [String] :name Filter by Plan Name. (First sub string or full string) **[Not Recommended]** 
-  # @return [InlineResponse200]
+  # @return [GetAllPlansResponse]
   describe 'get_plans test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -125,7 +125,7 @@ describe 'PlansApi' do
   # @param id Plan Id
   # @param update_plan_request 
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2003]
+  # @return [UpdatePlanResponse]
   describe 'update_plan test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

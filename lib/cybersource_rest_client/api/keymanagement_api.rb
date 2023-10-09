@@ -31,7 +31,7 @@ module CyberSource
     # @option opts [Array<String>] :key_types Key Type, Possible values -  certificate, password, pgp and scmp_api. When Key Type is provided atleast one more filter needs to be provided
     # @option opts [DateTime] :expiration_start_date Expiry Filter Start Date. When Expiration Date filter is provided, atleast one more filter needs to be provided
     # @option opts [DateTime] :expiration_end_date Expiry Filter End Date. When Expiration Date filter is provided, atleast one more filter needs to be provided
-    # @return [InlineResponse20011]
+    # @return [InlineResponse2001]
     def search_keys(opts = {})
       data, status_code, headers = search_keys_with_http_info(opts)
       return data, status_code, headers
@@ -48,7 +48,7 @@ module CyberSource
     # @option opts [Array<String>] :key_types Key Type, Possible values -  certificate, password, pgp and scmp_api. When Key Type is provided atleast one more filter needs to be provided
     # @option opts [DateTime] :expiration_start_date Expiry Filter Start Date. When Expiration Date filter is provided, atleast one more filter needs to be provided
     # @option opts [DateTime] :expiration_end_date Expiry Filter End Date. When Expiration Date filter is provided, atleast one more filter needs to be provided
-    # @return [Array<(InlineResponse20011, Fixnum, Hash)>] InlineResponse20011 data, response status code and response headers
+    # @return [Array<(InlineResponse2001, Fixnum, Hash)>] InlineResponse2001 data, response status code and response headers
     def search_keys_with_http_info(opts = {})
 
       if @api_client.config.debugging
@@ -104,7 +104,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20011')
+        :return_type => 'InlineResponse2001')
       if @api_client.config.debugging
         begin
         raise

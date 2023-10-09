@@ -10,8 +10,8 @@ public
 #  * keyid     -- Merchant ID obtained from EBC portal
 #  * algorithm -- Should have value as "HmacSHA256"
 #  * headers   -- List of all header name passed in the Signature paramter below
-#                 String getHeaders = "host date (request-target)" + " " + "v-c-merchant-id";
-#                 String postHeaders = "host date (request-target) digest v-c-merchant-id";
+#                 String getHeaders = "host date request-target" + " " + "v-c-merchant-id";
+#                 String postHeaders = "host date request-target digest v-c-merchant-id";
 #                 Note: Digest is not passed for GET calls
 #  * signature -- Signature header has paramter called signature
 #                 Paramter 'Signature' must contain all the paramters mentioned in header above in given order
@@ -44,13 +44,13 @@ public
     def getsignatureHeader(request_type)
       headers = ''
       if request_type == Constants::POST_REQUEST_TYPE
-        headers = 'host date (request-target) digest ' + Constants::V_C_MERCHANT_ID
+        headers = 'host date request-target digest ' + Constants::V_C_MERCHANT_ID
       elsif request_type == Constants::GET_REQUEST_TYPE || request_type == Constants::DELETE_REQUEST_TYPE
-        headers = 'host date (request-target)' + ' ' + Constants::V_C_MERCHANT_ID
+        headers = 'host date request-target' + ' ' + Constants::V_C_MERCHANT_ID
       elsif request_type == Constants::PUT_REQUEST_TYPE
-        headers = 'host date (request-target) digest ' + Constants::V_C_MERCHANT_ID
+        headers = 'host date request-target digest ' + Constants::V_C_MERCHANT_ID
       elsif request_type == Constants::PATCH_REQUEST_TYPE
-        headers = 'host date (request-target) digest ' + Constants::V_C_MERCHANT_ID
+        headers = 'host date request-target digest ' + Constants::V_C_MERCHANT_ID
       else
         raise StandardError.new(Constants::ERROR_PREFIX + Constants::INVALID_REQUEST_TYPE_METHOD)
       end

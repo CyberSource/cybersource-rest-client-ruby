@@ -43,7 +43,7 @@ module CyberSource
       {
         :'plan_information' => :'Rbsv1plansidPlanInformation',
         :'processing_information' => :'Rbsv1plansidProcessingInformation',
-        :'order_information' => :'InlineResponse200OrderInformation'
+        :'order_information' => :'GetAllPlansResponseOrderInformation'
       }
     end
 

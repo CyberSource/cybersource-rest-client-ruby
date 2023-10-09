@@ -61,7 +61,7 @@ module CyberSource
         :'name' => :'String',
         :'description' => :'String',
         :'status' => :'String',
-        :'billing_period' => :'InlineResponse200PlanInformationBillingPeriod',
+        :'billing_period' => :'GetAllPlansResponsePlanInformationBillingPeriod',
         :'billing_cycles' => :'Rbsv1plansPlanInformationBillingCycles'
       }
     end

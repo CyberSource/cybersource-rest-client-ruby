@@ -292,7 +292,7 @@ module CyberSource
         :'white_list_status_source' => :'String',
         :'xid' => :'String',
         :'directory_server_transaction_id' => :'String',
-        :'acs_operator_id' => :'Integer',
+        :'acs_operator_id' => :'String',
         :'acs_reference_number' => :'String',
         :'idci_decision' => :'String',
         :'idci_reason_code1' => :'String',

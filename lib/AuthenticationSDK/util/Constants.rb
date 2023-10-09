@@ -26,7 +26,7 @@
 
       DATE = 'date' unless const_defined?(:DATE)
 
-      REQUEST_TARGET = '(request-target)' unless const_defined?(:REQUEST_TARGET)
+      REQUEST_TARGET = 'request-target' unless const_defined?(:REQUEST_TARGET)
 
       DIGEST = 'digest' unless const_defined?(:DIGEST)
 

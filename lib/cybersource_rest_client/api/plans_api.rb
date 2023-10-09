@@ -24,7 +24,7 @@ module CyberSource
     # Activate a Plan
     # @param id Plan Id
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2004]
+    # @return [ActivateDeactivatePlanResponse]
     def activate_plan(id, opts = {})
       data, status_code, headers = activate_plan_with_http_info(id, opts)
       return data, status_code, headers
@@ -34,7 +34,7 @@ module CyberSource
     # Activate a Plan
     # @param id Plan Id
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2004, Fixnum, Hash)>] InlineResponse2004 data, response status code and response headers
+    # @return [Array<(ActivateDeactivatePlanResponse, Fixnum, Hash)>] ActivateDeactivatePlanResponse data, response status code and response headers
     def activate_plan_with_http_info(id, opts = {})
 
       if @api_client.config.debugging
@@ -78,7 +78,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2004')
+        :return_type => 'ActivateDeactivatePlanResponse')
       if @api_client.config.debugging
         begin
         raise
@@ -93,7 +93,7 @@ module CyberSource
     # The recurring billing service enables you to manage payment plans and subscriptions for recurring payment schedules. It securely stores your customer's payment information and personal data within secure Visa data centers, reducing storage risks and PCI DSS scope through the use of *Token Management* (*TMS*).  The three key elements of *Cybersource* Recurring Billing are:  -  **Token**: stores customer billing, shipping, and payment details.  -  **Plan**: stores the billing schedule.  -  **Subscription**: combines the token and plan, and defines the subscription start date, name, and description.  The APIs in this section demonstrate the management of the Plans and Subscriptions. For Tokens please refer to [Token Management](#token-management) 
     # @param create_plan_request 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse201]
+    # @return [CreatePlanResponse]
     def create_plan(create_plan_request, opts = {})
       data, status_code, headers = create_plan_with_http_info(create_plan_request, opts)
       return data, status_code, headers
@@ -103,7 +103,7 @@ module CyberSource
     # The recurring billing service enables you to manage payment plans and subscriptions for recurring payment schedules. It securely stores your customer&#39;s payment information and personal data within secure Visa data centers, reducing storage risks and PCI DSS scope through the use of *Token Management* (*TMS*).  The three key elements of *Cybersource* Recurring Billing are:  -  **Token**: stores customer billing, shipping, and payment details.  -  **Plan**: stores the billing schedule.  -  **Subscription**: combines the token and plan, and defines the subscription start date, name, and description.  The APIs in this section demonstrate the management of the Plans and Subscriptions. For Tokens please refer to [Token Management](#token-management) 
     # @param create_plan_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse201, Fixnum, Hash)>] InlineResponse201 data, response status code and response headers
+    # @return [Array<(CreatePlanResponse, Fixnum, Hash)>] CreatePlanResponse data, response status code and response headers
     def create_plan_with_http_info(create_plan_request, opts = {})
 
       if @api_client.config.debugging
@@ -143,7 +143,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse201')
+        :return_type => 'CreatePlanResponse')
       if @api_client.config.debugging
         begin
         raise
@@ -158,7 +158,7 @@ module CyberSource
     # Deactivate a Plan
     # @param id Plan Id
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2004]
+    # @return [ActivateDeactivatePlanResponse]
     def deactivate_plan(id, opts = {})
       data, status_code, headers = deactivate_plan_with_http_info(id, opts)
       return data, status_code, headers
@@ -168,7 +168,7 @@ module CyberSource
     # Deactivate a Plan
     # @param id Plan Id
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2004, Fixnum, Hash)>] InlineResponse2004 data, response status code and response headers
+    # @return [Array<(ActivateDeactivatePlanResponse, Fixnum, Hash)>] ActivateDeactivatePlanResponse data, response status code and response headers
     def deactivate_plan_with_http_info(id, opts = {})
 
       if @api_client.config.debugging
@@ -212,7 +212,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2004')
+        :return_type => 'ActivateDeactivatePlanResponse')
       if @api_client.config.debugging
         begin
         raise
@@ -227,7 +227,7 @@ module CyberSource
     # Delete a Plan is only allowed: - plan status is in `DRAFT` - plan status is in `ACTIVE`, and `INACTIVE` only allowed when no subscriptions attached to a plan in the lifetime of a plan 
     # @param id Plan Id
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2002]
+    # @return [DeletePlanResponse]
     def delete_plan(id, opts = {})
       data, status_code, headers = delete_plan_with_http_info(id, opts)
       return data, status_code, headers
@@ -237,7 +237,7 @@ module CyberSource
     # Delete a Plan is only allowed: - plan status is in &#x60;DRAFT&#x60; - plan status is in &#x60;ACTIVE&#x60;, and &#x60;INACTIVE&#x60; only allowed when no subscriptions attached to a plan in the lifetime of a plan 
     # @param id Plan Id
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2002, Fixnum, Hash)>] InlineResponse2002 data, response status code and response headers
+    # @return [Array<(DeletePlanResponse, Fixnum, Hash)>] DeletePlanResponse data, response status code and response headers
     def delete_plan_with_http_info(id, opts = {})
 
       if @api_client.config.debugging
@@ -281,7 +281,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2002')
+        :return_type => 'DeletePlanResponse')
       if @api_client.config.debugging
         begin
         raise
@@ -296,7 +296,7 @@ module CyberSource
     # Retrieve a Plan details by Plan Id.
     # @param id Plan Id
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2001]
+    # @return [GetPlanResponse]
     def get_plan(id, opts = {})
       data, status_code, headers = get_plan_with_http_info(id, opts)
       return data, status_code, headers
@@ -306,7 +306,7 @@ module CyberSource
     # Retrieve a Plan details by Plan Id.
     # @param id Plan Id
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2001, Fixnum, Hash)>] InlineResponse2001 data, response status code and response headers
+    # @return [Array<(GetPlanResponse, Fixnum, Hash)>] GetPlanResponse data, response status code and response headers
     def get_plan_with_http_info(id, opts = {})
 
       if @api_client.config.debugging
@@ -350,7 +350,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2001')
+        :return_type => 'GetPlanResponse')
       if @api_client.config.debugging
         begin
         raise
@@ -364,7 +364,7 @@ module CyberSource
     # Get a Plan Code
     # Get a Unique Plan Code
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2005]
+    # @return [GetPlanCodeResponse]
     def get_plan_code(opts = {})
       data, status_code, headers = get_plan_code_with_http_info(opts)
       return data, status_code, headers
@@ -373,7 +373,7 @@ module CyberSource
     # Get a Plan Code
     # Get a Unique Plan Code
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2005, Fixnum, Hash)>] InlineResponse2005 data, response status code and response headers
+    # @return [Array<(GetPlanCodeResponse, Fixnum, Hash)>] GetPlanCodeResponse data, response status code and response headers
     def get_plan_code_with_http_info(opts = {})
 
       if @api_client.config.debugging
@@ -413,7 +413,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2005')
+        :return_type => 'GetPlanCodeResponse')
       if @api_client.config.debugging
         begin
         raise
@@ -432,7 +432,7 @@ module CyberSource
     # @option opts [String] :code Filter by Plan Code
     # @option opts [String] :status Filter by Plan Status
     # @option opts [String] :name Filter by Plan Name. (First sub string or full string) **[Not Recommended]** 
-    # @return [InlineResponse200]
+    # @return [GetAllPlansResponse]
     def get_plans(opts = {})
       data, status_code, headers = get_plans_with_http_info(opts)
       return data, status_code, headers
@@ -446,7 +446,7 @@ module CyberSource
     # @option opts [String] :code Filter by Plan Code
     # @option opts [String] :status Filter by Plan Status
     # @option opts [String] :name Filter by Plan Name. (First sub string or full string) **[Not Recommended]** 
-    # @return [Array<(InlineResponse200, Fixnum, Hash)>] InlineResponse200 data, response status code and response headers
+    # @return [Array<(GetAllPlansResponse, Fixnum, Hash)>] GetAllPlansResponse data, response status code and response headers
     def get_plans_with_http_info(opts = {})
 
       if @api_client.config.debugging
@@ -491,7 +491,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse200')
+        :return_type => 'GetAllPlansResponse')
       if @api_client.config.debugging
         begin
         raise
@@ -507,7 +507,7 @@ module CyberSource
     # @param id Plan Id
     # @param update_plan_request 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2003]
+    # @return [UpdatePlanResponse]
     def update_plan(id, update_plan_request, opts = {})
       data, status_code, headers = update_plan_with_http_info(id, update_plan_request, opts)
       return data, status_code, headers
@@ -518,7 +518,7 @@ module CyberSource
     # @param id Plan Id
     # @param update_plan_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2003, Fixnum, Hash)>] InlineResponse2003 data, response status code and response headers
+    # @return [Array<(UpdatePlanResponse, Fixnum, Hash)>] UpdatePlanResponse data, response status code and response headers
     def update_plan_with_http_info(id, update_plan_request, opts = {})
 
       if @api_client.config.debugging
@@ -562,7 +562,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2003')
+        :return_type => 'UpdatePlanResponse')
       if @api_client.config.debugging
         begin
         raise

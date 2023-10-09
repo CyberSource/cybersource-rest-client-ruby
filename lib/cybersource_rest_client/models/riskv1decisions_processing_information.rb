@@ -13,7 +13,7 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  # Decides whether to call Payer Authentication or Watchlist Screening service along with DM or not
+  # Decides whether to call Payer Authentication or Watchlist Screening service along with DM or not.
   class Riskv1decisionsProcessingInformation
     # - Use `CONSUMER_AUTHENTICATION` to use Payer Authentication along with Decision Manager. For any other value, only Decision Manager will run. - Use `WATCHLIST_SCREENING`  when you want to call Watchlist Screening service. 
     attr_accessor :action_list

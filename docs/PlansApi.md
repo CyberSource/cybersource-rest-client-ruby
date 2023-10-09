@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 
 # **activate_plan**
-> InlineResponse2004 activate_plan(id)
+> ActivateDeactivatePlanResponse activate_plan(id)
 
 Activate a Plan
 
@@ -48,7 +48,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2004**](InlineResponse2004.md)
+[**ActivateDeactivatePlanResponse**](ActivateDeactivatePlanResponse.md)
 
 ### Authorization
 
@@ -62,7 +62,7 @@ No authorization required
 
 
 # **create_plan**
-> InlineResponse201 create_plan(create_plan_request)
+> CreatePlanResponse create_plan(create_plan_request)
 
 Create a Plan
 
@@ -95,7 +95,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse201**](InlineResponse201.md)
+[**CreatePlanResponse**](CreatePlanResponse.md)
 
 ### Authorization
 
@@ -109,7 +109,7 @@ No authorization required
 
 
 # **deactivate_plan**
-> InlineResponse2004 deactivate_plan(id)
+> ActivateDeactivatePlanResponse deactivate_plan(id)
 
 Deactivate a Plan
 
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2004**](InlineResponse2004.md)
+[**ActivateDeactivatePlanResponse**](ActivateDeactivatePlanResponse.md)
 
 ### Authorization
 
@@ -156,7 +156,7 @@ No authorization required
 
 
 # **delete_plan**
-> InlineResponse2002 delete_plan(id)
+> DeletePlanResponse delete_plan(id)
 
 Delete a Plan
 
@@ -189,7 +189,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2002**](InlineResponse2002.md)
+[**DeletePlanResponse**](DeletePlanResponse.md)
 
 ### Authorization
 
@@ -203,7 +203,7 @@ No authorization required
 
 
 # **get_plan**
-> InlineResponse2001 get_plan(id)
+> GetPlanResponse get_plan(id)
 
 Get a Plan
 
@@ -236,7 +236,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2001**](InlineResponse2001.md)
+[**GetPlanResponse**](GetPlanResponse.md)
 
 ### Authorization
 
@@ -250,7 +250,7 @@ No authorization required
 
 
 # **get_plan_code**
-> InlineResponse2005 get_plan_code
+> GetPlanCodeResponse get_plan_code
 
 Get a Plan Code
 
@@ -277,7 +277,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse2005**](InlineResponse2005.md)
+[**GetPlanCodeResponse**](GetPlanCodeResponse.md)
 
 ### Authorization
 
@@ -291,7 +291,7 @@ No authorization required
 
 
 # **get_plans**
-> InlineResponse200 get_plans(opts)
+> GetAllPlansResponse get_plans(opts)
 
 Get a List of Plans
 
@@ -333,7 +333,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**GetAllPlansResponse**](GetAllPlansResponse.md)
 
 ### Authorization
 
@@ -347,7 +347,7 @@ No authorization required
 
 
 # **update_plan**
-> InlineResponse2003 update_plan(id, update_plan_request)
+> UpdatePlanResponse update_plan(id, update_plan_request)
 
 Update a Plan
 
@@ -383,7 +383,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2003**](InlineResponse2003.md)
+[**UpdatePlanResponse**](UpdatePlanResponse.md)
 
 ### Authorization
 

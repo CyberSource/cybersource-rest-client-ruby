@@ -21,7 +21,7 @@ module CyberSource
       @api_client.set_configuration(config)
     end
     # Timeout Void
-    # This is to void a previous payment, capture, refund, or credit that merchant does not receive a reply(Mostly due to timeout). This is to void a previous payment, capture, refund, or credit that merchant does not receive a reply(Mostly due to Timeout). To use this feature/API, make sure to pass unique value to field - clientReferenceInformation -> transactionId in your payment, capture, refund, or credit API call and use same transactionId in this API request payload to reverse the payment.
+    # This is to void a previous payment, capture, refund, or credit that merchant does not receive a reply(Mostly due to timeout). To use this feature/API, make sure to pass unique value to field - clientReferenceInformation -> transactionId in your payment, capture, refund, or credit API call and use same transactionId in this API request payload to reverse the payment.
     # @param mit_void_request 
     # @param [Hash] opts the optional parameters
     # @return [PtsV2PaymentsVoidsPost201Response]
@@ -31,7 +31,7 @@ module CyberSource
     end
 
     # Timeout Void
-    # This is to void a previous payment, capture, refund, or credit that merchant does not receive a reply(Mostly due to timeout). This is to void a previous payment, capture, refund, or credit that merchant does not receive a reply(Mostly due to Timeout). To use this feature/API, make sure to pass unique value to field - clientReferenceInformation -&gt; transactionId in your payment, capture, refund, or credit API call and use same transactionId in this API request payload to reverse the payment.
+    # This is to void a previous payment, capture, refund, or credit that merchant does not receive a reply(Mostly due to timeout). To use this feature/API, make sure to pass unique value to field - clientReferenceInformation -&gt; transactionId in your payment, capture, refund, or credit API call and use same transactionId in this API request payload to reverse the payment.
     # @param mit_void_request 
     # @param [Hash] opts the optional parameters
     # @return [Array<(PtsV2PaymentsVoidsPost201Response, Fixnum, Hash)>] PtsV2PaymentsVoidsPost201Response data, response status code and response headers

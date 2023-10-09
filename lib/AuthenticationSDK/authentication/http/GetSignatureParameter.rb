@@ -6,7 +6,7 @@ require 'openssl'
 # paramter 'Signature' is calucated based on below key values and then signed with SECRET KEY -
 # host: Sandbox (apitest.cybersource.com) or Production (api.cybersource.com) hostname
 # date: "HTTP-date" format as defined by RFC7231.
-# (request-target): Should be in format of httpMethod: path
+# request-target: Should be in format of httpMethod: path
 # Example: "post /pts/v2/payments"
 # Digest: Only needed for POST calls.
 # digestString = BASE64( HMAC-SHA256 ( Payload ));
@@ -23,7 +23,7 @@ require 'openssl'
 
       signatureString = Constants::HOST + ': ' + merchantconfig_obj.requestHost
       signatureString << "\n"+ Constants::DATE + ': ' + gmtdatetime
-      signatureString << "\n(request-target): "
+      signatureString << "\nrequest-target: "
 
       if request_type == Constants::GET_REQUEST_TYPE || request_type == Constants::DELETE_REQUEST_TYPE
         targetUrl=gettargetUrlForGetDelete(request_type,merchantconfig_obj)
