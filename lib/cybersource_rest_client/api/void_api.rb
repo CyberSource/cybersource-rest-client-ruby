@@ -67,6 +67,8 @@ module CyberSource
 
       # http body (model)
       post_body = @api_client.object_to_http_body(mit_void_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'MitVoidRequest', @api_client.config.host)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -138,6 +140,8 @@ module CyberSource
 
       # http body (model)
       post_body = @api_client.object_to_http_body(void_capture_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'VoidCaptureRequest', @api_client.config.host)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -209,6 +213,8 @@ module CyberSource
 
       # http body (model)
       post_body = @api_client.object_to_http_body(void_credit_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'VoidCreditRequest', @api_client.config.host)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -280,6 +286,8 @@ module CyberSource
 
       # http body (model)
       post_body = @api_client.object_to_http_body(void_payment_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'VoidPaymentRequest', @api_client.config.host)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -351,6 +359,8 @@ module CyberSource
 
       # http body (model)
       post_body = @api_client.object_to_http_body(void_refund_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'VoidRefundRequest', @api_client.config.host)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,

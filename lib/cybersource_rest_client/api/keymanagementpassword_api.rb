@@ -73,6 +73,8 @@ module CyberSource
 
       # http body (model)
       post_body = @api_client.object_to_http_body(update_password_keys_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'UpdatePasswordKeysRequest', @api_client.config.host)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:PATCH, local_var_path,
         :header_params => header_params,

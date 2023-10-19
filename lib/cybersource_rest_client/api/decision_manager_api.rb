@@ -73,6 +73,8 @@ module CyberSource
 
       # http body (model)
       post_body = @api_client.object_to_http_body(case_management_actions_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CaseManagementActionsRequest', @api_client.config.host)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -144,6 +146,8 @@ module CyberSource
 
       # http body (model)
       post_body = @api_client.object_to_http_body(add_negative_list_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'AddNegativeListRequest', @api_client.config.host)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -215,6 +219,8 @@ module CyberSource
 
       # http body (model)
       post_body = @api_client.object_to_http_body(case_management_comments_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CaseManagementCommentsRequest', @api_client.config.host)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -280,6 +286,8 @@ module CyberSource
 
       # http body (model)
       post_body = @api_client.object_to_http_body(create_bundled_decision_manager_case_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CreateBundledDecisionManagerCaseRequest', @api_client.config.host)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -351,6 +359,8 @@ module CyberSource
 
       # http body (model)
       post_body = @api_client.object_to_http_body(fraud_marking_action_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'FraudMarkingActionRequest', @api_client.config.host)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
