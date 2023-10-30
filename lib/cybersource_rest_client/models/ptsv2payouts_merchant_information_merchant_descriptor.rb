@@ -32,6 +32,9 @@ module CyberSource
     # For the descriptions, used-by information, data types, and lengths for these fields, see `merchant_descriptor_contact` field description in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html)--> Contact information for the merchant.  **Note** These are the maximum data lengths for the following payment processors: - FDCCompass (13) - Paymentech (13) 
     attr_accessor :contact
 
+    # First line of merchant's address. For the descriptions, used-by information, data types, and lengths for these fields, see `merchant_descriptor_street` field description in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
+    attr_accessor :address1
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -40,7 +43,8 @@ module CyberSource
         :'country' => :'country',
         :'administrative_area' => :'administrativeArea',
         :'postal_code' => :'postalCode',
-        :'contact' => :'contact'
+        :'contact' => :'contact',
+        :'address1' => :'address1'
       }
     end
 
@@ -52,7 +56,8 @@ module CyberSource
         :'country' => :'country',
         :'administrative_area' => :'administrative_area',
         :'postal_code' => :'postal_code',
-        :'contact' => :'contact'
+        :'contact' => :'contact',
+        :'address1' => :'address1'
       }
     end
 
@@ -64,7 +69,8 @@ module CyberSource
         :'country' => :'String',
         :'administrative_area' => :'String',
         :'postal_code' => :'String',
-        :'contact' => :'String'
+        :'contact' => :'String',
+        :'address1' => :'String'
       }
     end
 
@@ -98,6 +104,10 @@ module CyberSource
 
       if attributes.has_key?(:'contact')
         self.contact = attributes[:'contact']
+      end
+
+      if attributes.has_key?(:'address1')
+        self.address1 = attributes[:'address1']
       end
     end
 
@@ -138,6 +148,12 @@ module CyberSource
       @contact = contact
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] address1 Value to be assigned
+    def address1=(address1)
+      @address1 = address1
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -148,7 +164,8 @@ module CyberSource
           country == o.country &&
           administrative_area == o.administrative_area &&
           postal_code == o.postal_code &&
-          contact == o.contact
+          contact == o.contact &&
+          address1 == o.address1
     end
 
     # @see the `==` method
@@ -160,7 +177,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name, locality, country, administrative_area, postal_code, contact].hash
+      [name, locality, country, administrative_area, postal_code, contact, address1].hash
     end
 
     # Builds the object from hash

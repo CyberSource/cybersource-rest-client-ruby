@@ -25,6 +25,8 @@ module CyberSource
 
     attr_accessor :transit
 
+    attr_accessor :vehicle_data
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -32,7 +34,8 @@ module CyberSource
         :'agency' => :'agency',
         :'auto_rental' => :'autoRental',
         :'lodging' => :'lodging',
-        :'transit' => :'transit'
+        :'transit' => :'transit',
+        :'vehicle_data' => :'vehicleData'
       }
     end
 
@@ -43,7 +46,8 @@ module CyberSource
         :'agency' => :'agency',
         :'auto_rental' => :'auto_rental',
         :'lodging' => :'lodging',
-        :'transit' => :'transit'
+        :'transit' => :'transit',
+        :'vehicle_data' => :'vehicle_data'
       }
     end
 
@@ -54,7 +58,8 @@ module CyberSource
         :'agency' => :'Ptsv2paymentsTravelInformationAgency',
         :'auto_rental' => :'Ptsv2paymentsTravelInformationAutoRental',
         :'lodging' => :'Ptsv2paymentsTravelInformationLodging',
-        :'transit' => :'Ptsv2paymentsTravelInformationTransit'
+        :'transit' => :'Ptsv2paymentsTravelInformationTransit',
+        :'vehicle_data' => :'Ptsv2paymentsTravelInformationVehicleData'
       }
     end
 
@@ -84,6 +89,10 @@ module CyberSource
 
       if attributes.has_key?(:'transit')
         self.transit = attributes[:'transit']
+      end
+
+      if attributes.has_key?(:'vehicleData')
+        self.vehicle_data = attributes[:'vehicleData']
       end
     end
 
@@ -115,7 +124,8 @@ module CyberSource
           agency == o.agency &&
           auto_rental == o.auto_rental &&
           lodging == o.lodging &&
-          transit == o.transit
+          transit == o.transit &&
+          vehicle_data == o.vehicle_data
     end
 
     # @see the `==` method
@@ -127,7 +137,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [duration, agency, auto_rental, lodging, transit].hash
+      [duration, agency, auto_rental, lodging, transit, vehicle_data].hash
     end
 
     # Builds the object from hash

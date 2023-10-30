@@ -102,6 +102,9 @@ module CyberSource
     # Flag that indicates the functionality we are having for merchants for which auth is done through Cybersource but settlement is done by themselves. true: functionality is supported. Processor should send raw processor auth response to Merchant. false: functionality is not supported. Default: false 
     attr_accessor :is_return_auth_record_enabled
 
+    # Merchant payment gateway ID that is assigned by Mastercard and is provided by the acquirer when a registered merchant payment gateway service provider is involved in the transaction.  This field is supported for Visa Platform Connect. 
+    attr_accessor :network_partner_id
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -136,7 +139,8 @@ module CyberSource
         :'extended_credit_total_count' => :'extendedCreditTotalCount',
         :'network_routing_order' => :'networkRoutingOrder',
         :'pay_by_points_indicator' => :'payByPointsIndicator',
-        :'is_return_auth_record_enabled' => :'isReturnAuthRecordEnabled'
+        :'is_return_auth_record_enabled' => :'isReturnAuthRecordEnabled',
+        :'network_partner_id' => :'networkPartnerId'
       }
     end
 
@@ -174,7 +178,8 @@ module CyberSource
         :'extended_credit_total_count' => :'extended_credit_total_count',
         :'network_routing_order' => :'network_routing_order',
         :'pay_by_points_indicator' => :'pay_by_points_indicator',
-        :'is_return_auth_record_enabled' => :'is_return_auth_record_enabled'
+        :'is_return_auth_record_enabled' => :'is_return_auth_record_enabled',
+        :'network_partner_id' => :'network_partner_id'
       }
     end
 
@@ -212,7 +217,8 @@ module CyberSource
         :'extended_credit_total_count' => :'String',
         :'network_routing_order' => :'String',
         :'pay_by_points_indicator' => :'BOOLEAN',
-        :'is_return_auth_record_enabled' => :'BOOLEAN'
+        :'is_return_auth_record_enabled' => :'BOOLEAN',
+        :'network_partner_id' => :'String'
       }
     end
 
@@ -357,6 +363,10 @@ module CyberSource
       if attributes.has_key?(:'isReturnAuthRecordEnabled')
         self.is_return_auth_record_enabled = attributes[:'isReturnAuthRecordEnabled']
       end
+
+      if attributes.has_key?(:'networkPartnerId')
+        self.network_partner_id = attributes[:'networkPartnerId']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -468,6 +478,12 @@ module CyberSource
       @network_routing_order = network_routing_order
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] network_partner_id Value to be assigned
+    def network_partner_id=(network_partner_id)
+      @network_partner_id = network_partner_id
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -504,7 +520,8 @@ module CyberSource
           extended_credit_total_count == o.extended_credit_total_count &&
           network_routing_order == o.network_routing_order &&
           pay_by_points_indicator == o.pay_by_points_indicator &&
-          is_return_auth_record_enabled == o.is_return_auth_record_enabled
+          is_return_auth_record_enabled == o.is_return_auth_record_enabled &&
+          network_partner_id == o.network_partner_id
     end
 
     # @see the `==` method
@@ -516,7 +533,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [action_list, enable_escrow_option, action_token_types, bin_source, capture, processor_id, business_application_id, commerce_indicator, commerce_indicator_label, payment_solution, reconciliation_id, link_id, purchase_level, payment_id, report_group, visa_checkout_id, industry_data_type, authorization_options, capture_options, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, wallet_type, national_net_domestic_data, japan_payment_options, mobile_remote_payment_type, extended_credit_total_count, network_routing_order, pay_by_points_indicator, is_return_auth_record_enabled].hash
+      [action_list, enable_escrow_option, action_token_types, bin_source, capture, processor_id, business_application_id, commerce_indicator, commerce_indicator_label, payment_solution, reconciliation_id, link_id, purchase_level, payment_id, report_group, visa_checkout_id, industry_data_type, authorization_options, capture_options, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, wallet_type, national_net_domestic_data, japan_payment_options, mobile_remote_payment_type, extended_credit_total_count, network_routing_order, pay_by_points_indicator, is_return_auth_record_enabled, network_partner_id].hash
     end
 
     # Builds the object from hash

@@ -21,7 +21,7 @@ module CyberSource
       @api_client.set_configuration(config)
     end
     # Get Invoice Settings
-    # Get the invoice settings for the invoice payment page.
+    # Allows you to retrieve the invoice settings for the payment page.
     # @param [Hash] opts the optional parameters
     # @return [InvoicingV2InvoiceSettingsGet200Response]
     def get_invoice_settings(opts = {})
@@ -30,7 +30,7 @@ module CyberSource
     end
 
     # Get Invoice Settings
-    # Get the invoice settings for the invoice payment page.
+    # Allows you to retrieve the invoice settings for the payment page.
     # @param [Hash] opts the optional parameters
     # @return [Array<(InvoicingV2InvoiceSettingsGet200Response, Fixnum, Hash)>] InvoicingV2InvoiceSettingsGet200Response data, response status code and response headers
     def get_invoice_settings_with_http_info(opts = {})
@@ -84,7 +84,7 @@ module CyberSource
       return data, status_code, headers
     end
     # Update Invoice Settings
-    # Update invoice settings for the invoice payment page.
+    # Allows you to customize the payment page, the checkout experience, email communication and payer authentication. You can customize the invoice to match your brand with your business name, logo and brand colors, and a VAT Tax number. You can choose to capture the payers shipping details, phone number and email during the checkout process. You can add a custom message to all invoice emails and enable or disable payer authentication for invoice payments.
     # @param invoice_settings_request 
     # @param [Hash] opts the optional parameters
     # @return [InvoicingV2InvoiceSettingsGet200Response]
@@ -94,7 +94,7 @@ module CyberSource
     end
 
     # Update Invoice Settings
-    # Update invoice settings for the invoice payment page.
+    # Allows you to customize the payment page, the checkout experience, email communication and payer authentication. You can customize the invoice to match your brand with your business name, logo and brand colors, and a VAT Tax number. You can choose to capture the payers shipping details, phone number and email during the checkout process. You can add a custom message to all invoice emails and enable or disable payer authentication for invoice payments.
     # @param invoice_settings_request 
     # @param [Hash] opts the optional parameters
     # @return [Array<(InvoicingV2InvoiceSettingsGet200Response, Fixnum, Hash)>] InvoicingV2InvoiceSettingsGet200Response data, response status code and response headers

@@ -14,31 +14,33 @@ require 'date'
 
 module CyberSource
   class InlineResponse4007Details
-    attr_accessor :location
+    # This is the flattened JSON object field name/path that is either missing or invalid.
+    attr_accessor :field
 
-    attr_accessor :message
+    # Possible reasons for the error.
+    attr_accessor :reason
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'location' => :'location',
-        :'message' => :'message'
+        :'field' => :'field',
+        :'reason' => :'reason'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'location' => :'location',
-        :'message' => :'message'
+        :'field' => :'field',
+        :'reason' => :'reason'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'location' => :'String',
-        :'message' => :'String'
+        :'field' => :'String',
+        :'reason' => :'String'
       }
     end
 
@@ -50,12 +52,12 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'location')
-        self.location = attributes[:'location']
+      if attributes.has_key?(:'field')
+        self.field = attributes[:'field']
       end
 
-      if attributes.has_key?(:'message')
-        self.message = attributes[:'message']
+      if attributes.has_key?(:'reason')
+        self.reason = attributes[:'reason']
       end
     end
 
@@ -77,8 +79,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          location == o.location &&
-          message == o.message
+          field == o.field &&
+          reason == o.reason
     end
 
     # @see the `==` method
@@ -90,7 +92,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [location, message].hash
+      [field, reason].hash
     end
 
     # Builds the object from hash
