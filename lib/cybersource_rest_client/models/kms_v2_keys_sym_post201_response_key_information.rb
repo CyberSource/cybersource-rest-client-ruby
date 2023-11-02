@@ -144,6 +144,12 @@ module CyberSource
       true
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] external_organization_id Value to be assigned
+    def external_organization_id=(external_organization_id)
+      @external_organization_id = external_organization_id
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)

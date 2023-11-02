@@ -17,6 +17,9 @@ module CyberSource
     # Cardholder authentication verification value (CAVV).
     attr_accessor :cavv
 
+    # This field details out the type of transaction. Below are the possible values. 08:GC- Guest Checkout. 
+    attr_accessor :transaction_flow_indicator
+
     # Algorithm used to generate the CAVV for Visa Secure or the UCAF authentication data for Mastercard Identity Check. 
     attr_accessor :cavv_algorithm
 
@@ -185,6 +188,7 @@ module CyberSource
     def self.attribute_map
       {
         :'cavv' => :'cavv',
+        :'transaction_flow_indicator' => :'transactionFlowIndicator',
         :'cavv_algorithm' => :'cavvAlgorithm',
         :'eci_raw' => :'eciRaw',
         :'pares_status' => :'paresStatus',
@@ -247,6 +251,7 @@ module CyberSource
     def self.json_map
       {
         :'cavv' => :'cavv',
+        :'transaction_flow_indicator' => :'transaction_flow_indicator',
         :'cavv_algorithm' => :'cavv_algorithm',
         :'eci_raw' => :'eci_raw',
         :'pares_status' => :'pares_status',
@@ -309,6 +314,7 @@ module CyberSource
     def self.swagger_types
       {
         :'cavv' => :'String',
+        :'transaction_flow_indicator' => :'String',
         :'cavv_algorithm' => :'String',
         :'eci_raw' => :'String',
         :'pares_status' => :'String',
@@ -377,6 +383,10 @@ module CyberSource
 
       if attributes.has_key?(:'cavv')
         self.cavv = attributes[:'cavv']
+      end
+
+      if attributes.has_key?(:'transactionFlowIndicator')
+        self.transaction_flow_indicator = attributes[:'transactionFlowIndicator']
       end
 
       if attributes.has_key?(:'cavvAlgorithm')
@@ -617,6 +627,12 @@ module CyberSource
     # @param [Object] cavv Value to be assigned
     def cavv=(cavv)
       @cavv = cavv
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] transaction_flow_indicator Value to be assigned
+    def transaction_flow_indicator=(transaction_flow_indicator)
+      @transaction_flow_indicator = transaction_flow_indicator
     end
 
     # Custom attribute writer method with validation
@@ -883,6 +899,7 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           cavv == o.cavv &&
+          transaction_flow_indicator == o.transaction_flow_indicator &&
           cavv_algorithm == o.cavv_algorithm &&
           eci_raw == o.eci_raw &&
           pares_status == o.pares_status &&
@@ -949,7 +966,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [cavv, cavv_algorithm, eci_raw, pares_status, veres_enrolled, xid, ucaf_collection_indicator, ucaf_authentication_data, strong_authentication, directory_server_transaction_id, pa_specification_version, authentication_type, response_access_token, acs_transaction_id, acs_window_size, alternate_authentication_data, alternate_authentication_date, alternate_authentication_method, authentication_date, authentication_transaction_id, challenge_cancel_code, challenge_code, challenge_status, customer_card_alias, decoupled_authentication_indicator, decoupled_authentication_max_time, default_card, device_channel, installment_total_count, merchant_fraud_rate, marketing_opt_in, marketing_source, mcc, merchant_score, message_category, network_score, npa_code, override_payment_method, override_country_code, prior_authentication_data, prior_authentication_method, prior_authentication_reference_id, prior_authentication_time, product_code, return_url, requestor_id, requestor_initiated_authentication_indicator, requestor_name, reference_id, sdk_max_timeout, secure_corporate_payment_indicator, transaction_mode, white_list_status, effective_authentication_type, signed_pares_status_reason, signed_pares].hash
+      [cavv, transaction_flow_indicator, cavv_algorithm, eci_raw, pares_status, veres_enrolled, xid, ucaf_collection_indicator, ucaf_authentication_data, strong_authentication, directory_server_transaction_id, pa_specification_version, authentication_type, response_access_token, acs_transaction_id, acs_window_size, alternate_authentication_data, alternate_authentication_date, alternate_authentication_method, authentication_date, authentication_transaction_id, challenge_cancel_code, challenge_code, challenge_status, customer_card_alias, decoupled_authentication_indicator, decoupled_authentication_max_time, default_card, device_channel, installment_total_count, merchant_fraud_rate, marketing_opt_in, marketing_source, mcc, merchant_score, message_category, network_score, npa_code, override_payment_method, override_country_code, prior_authentication_data, prior_authentication_method, prior_authentication_reference_id, prior_authentication_time, product_code, return_url, requestor_id, requestor_initiated_authentication_indicator, requestor_name, reference_id, sdk_max_timeout, secure_corporate_payment_indicator, transaction_mode, white_list_status, effective_authentication_type, signed_pares_status_reason, signed_pares].hash
     end
 
     # Builds the object from hash

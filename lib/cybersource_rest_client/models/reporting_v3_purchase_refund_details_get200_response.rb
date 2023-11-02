@@ -13,6 +13,7 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
+  # PurchaseAndRefundDetails
   class ReportingV3PurchaseRefundDetailsGet200Response
     attr_accessor :offset
 

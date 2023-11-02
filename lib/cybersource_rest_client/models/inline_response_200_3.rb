@@ -14,76 +14,38 @@ require 'date'
 
 module CyberSource
   class InlineResponse2003
-    attr_accessor :_links
+    # Product ID.
+    attr_accessor :product_id
 
-    # Unique identification number assigned to the submitted request.
-    attr_accessor :batch_id
+    # Product Name.
+    attr_accessor :product_name
 
-    # ISO-8601 format: yyyy-MM-ddTHH:mm:ssZ
-    attr_accessor :batch_created_date
-
-    # Valid Values:   * SCHEDULER   * TOKEN_API   * CREDIT_CARD_FILE_UPLOAD   * AMEX_REGSITRY   * AMEX_REGISTRY_API   * AMEX_MAINTENANCE 
-    attr_accessor :batch_source
-
-    # Reference used by merchant to identify batch.
-    attr_accessor :merchant_reference
-
-    attr_accessor :batch_ca_endpoints
-
-    # Valid Values:   * REJECTED   * RECEIVED   * VALIDATED   * DECLINED   * PROCESSING   * COMPLETED 
-    attr_accessor :status
-
-    attr_accessor :totals
-
-    attr_accessor :billing
-
-    attr_accessor :description
+    attr_accessor :event_types
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'_links' => :'_links',
-        :'batch_id' => :'batchId',
-        :'batch_created_date' => :'batchCreatedDate',
-        :'batch_source' => :'batchSource',
-        :'merchant_reference' => :'merchantReference',
-        :'batch_ca_endpoints' => :'batchCaEndpoints',
-        :'status' => :'status',
-        :'totals' => :'totals',
-        :'billing' => :'billing',
-        :'description' => :'description'
+        :'product_id' => :'productId',
+        :'product_name' => :'productName',
+        :'event_types' => :'eventTypes'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'_links' => :'_links',
-        :'batch_id' => :'batch_id',
-        :'batch_created_date' => :'batch_created_date',
-        :'batch_source' => :'batch_source',
-        :'merchant_reference' => :'merchant_reference',
-        :'batch_ca_endpoints' => :'batch_ca_endpoints',
-        :'status' => :'status',
-        :'totals' => :'totals',
-        :'billing' => :'billing',
-        :'description' => :'description'
+        :'product_id' => :'product_id',
+        :'product_name' => :'product_name',
+        :'event_types' => :'event_types'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'_links' => :'InlineResponse2003Links',
-        :'batch_id' => :'String',
-        :'batch_created_date' => :'String',
-        :'batch_source' => :'String',
-        :'merchant_reference' => :'String',
-        :'batch_ca_endpoints' => :'String',
-        :'status' => :'String',
-        :'totals' => :'InlineResponse2002EmbeddedTotals',
-        :'billing' => :'InlineResponse2003Billing',
-        :'description' => :'String'
+        :'product_id' => :'String',
+        :'product_name' => :'String',
+        :'event_types' => :'Array<Notificationsubscriptionsv1productsorganizationIdEventTypes>'
       }
     end
 
@@ -95,44 +57,18 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'_links')
-        self._links = attributes[:'_links']
+      if attributes.has_key?(:'productId')
+        self.product_id = attributes[:'productId']
       end
 
-      if attributes.has_key?(:'batchId')
-        self.batch_id = attributes[:'batchId']
+      if attributes.has_key?(:'productName')
+        self.product_name = attributes[:'productName']
       end
 
-      if attributes.has_key?(:'batchCreatedDate')
-        self.batch_created_date = attributes[:'batchCreatedDate']
-      end
-
-      if attributes.has_key?(:'batchSource')
-        self.batch_source = attributes[:'batchSource']
-      end
-
-      if attributes.has_key?(:'merchantReference')
-        self.merchant_reference = attributes[:'merchantReference']
-      end
-
-      if attributes.has_key?(:'batchCaEndpoints')
-        self.batch_ca_endpoints = attributes[:'batchCaEndpoints']
-      end
-
-      if attributes.has_key?(:'status')
-        self.status = attributes[:'status']
-      end
-
-      if attributes.has_key?(:'totals')
-        self.totals = attributes[:'totals']
-      end
-
-      if attributes.has_key?(:'billing')
-        self.billing = attributes[:'billing']
-      end
-
-      if attributes.has_key?(:'description')
-        self.description = attributes[:'description']
+      if attributes.has_key?(:'eventTypes')
+        if (value = attributes[:'eventTypes']).is_a?(Array)
+          self.event_types = value
+        end
       end
     end
 
@@ -149,27 +85,14 @@ module CyberSource
       true
     end
 
-    # Custom attribute writer method with validation
-    # @param [Object] merchant_reference Value to be assigned
-    def merchant_reference=(merchant_reference)
-      @merchant_reference = merchant_reference
-    end
-
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          _links == o._links &&
-          batch_id == o.batch_id &&
-          batch_created_date == o.batch_created_date &&
-          batch_source == o.batch_source &&
-          merchant_reference == o.merchant_reference &&
-          batch_ca_endpoints == o.batch_ca_endpoints &&
-          status == o.status &&
-          totals == o.totals &&
-          billing == o.billing &&
-          description == o.description
+          product_id == o.product_id &&
+          product_name == o.product_name &&
+          event_types == o.event_types
     end
 
     # @see the `==` method
@@ -181,7 +104,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, batch_id, batch_created_date, batch_source, merchant_reference, batch_ca_endpoints, status, totals, billing, description].hash
+      [product_id, product_name, event_types].hash
     end
 
     # Builds the object from hash

@@ -41,6 +41,8 @@ module CyberSource
     # The object containing the custom data that the merchant defines. 
     attr_accessor :merchant_defined_information
 
+    attr_accessor :merchant_defined_secure_information
+
     attr_accessor :installment_information
 
     attr_accessor :travel_information
@@ -79,6 +81,7 @@ module CyberSource
         :'consumer_authentication_information' => :'consumerAuthenticationInformation',
         :'point_of_sale_information' => :'pointOfSaleInformation',
         :'merchant_defined_information' => :'merchantDefinedInformation',
+        :'merchant_defined_secure_information' => :'merchantDefinedSecureInformation',
         :'installment_information' => :'installmentInformation',
         :'travel_information' => :'travelInformation',
         :'health_care_information' => :'healthCareInformation',
@@ -109,6 +112,7 @@ module CyberSource
         :'consumer_authentication_information' => :'consumer_authentication_information',
         :'point_of_sale_information' => :'point_of_sale_information',
         :'merchant_defined_information' => :'merchant_defined_information',
+        :'merchant_defined_secure_information' => :'merchant_defined_secure_information',
         :'installment_information' => :'installment_information',
         :'travel_information' => :'travel_information',
         :'health_care_information' => :'health_care_information',
@@ -139,6 +143,7 @@ module CyberSource
         :'consumer_authentication_information' => :'Ptsv2paymentsConsumerAuthenticationInformation',
         :'point_of_sale_information' => :'Ptsv2paymentsPointOfSaleInformation',
         :'merchant_defined_information' => :'Array<Ptsv2paymentsMerchantDefinedInformation>',
+        :'merchant_defined_secure_information' => :'Ptsv2paymentsMerchantDefinedSecureInformation',
         :'installment_information' => :'Ptsv2paymentsInstallmentInformation',
         :'travel_information' => :'Ptsv2paymentsTravelInformation',
         :'health_care_information' => :'Ptsv2paymentsHealthCareInformation',
@@ -213,6 +218,10 @@ module CyberSource
         if (value = attributes[:'merchantDefinedInformation']).is_a?(Array)
           self.merchant_defined_information = value
         end
+      end
+
+      if attributes.has_key?(:'merchantDefinedSecureInformation')
+        self.merchant_defined_secure_information = attributes[:'merchantDefinedSecureInformation']
       end
 
       if attributes.has_key?(:'installmentInformation')
@@ -291,6 +300,7 @@ module CyberSource
           consumer_authentication_information == o.consumer_authentication_information &&
           point_of_sale_information == o.point_of_sale_information &&
           merchant_defined_information == o.merchant_defined_information &&
+          merchant_defined_secure_information == o.merchant_defined_secure_information &&
           installment_information == o.installment_information &&
           travel_information == o.travel_information &&
           health_care_information == o.health_care_information &&
@@ -313,7 +323,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_reference_information, processing_information, issuer_information, payment_information, order_information, buyer_information, recipient_information, device_information, merchant_information, aggregator_information, consumer_authentication_information, point_of_sale_information, merchant_defined_information, installment_information, travel_information, health_care_information, promotion_information, token_information, invoice_details, processor_information, risk_information, acquirer_information, recurring_payment_information, watchlist_screening_information].hash
+      [client_reference_information, processing_information, issuer_information, payment_information, order_information, buyer_information, recipient_information, device_information, merchant_information, aggregator_information, consumer_authentication_information, point_of_sale_information, merchant_defined_information, merchant_defined_secure_information, installment_information, travel_information, health_care_information, promotion_information, token_information, invoice_details, processor_information, risk_information, acquirer_information, recurring_payment_information, watchlist_screening_information].hash
     end
 
     # Builds the object from hash

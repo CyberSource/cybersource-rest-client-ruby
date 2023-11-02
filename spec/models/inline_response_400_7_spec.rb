@@ -32,21 +32,25 @@ describe 'InlineResponse4007' do
       expect(@instance).to be_instance_of(CyberSource::InlineResponse4007)
     end
   end
-  describe 'test attribute "correlation_id"' do
+  describe 'test attribute "submit_time_utc"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "details"' do
+  describe 'test attribute "status"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "information_link"' do
+  describe 'test attribute "reason"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["INVALID_DATA", "SYSTEM_ERROR", "RESOURCE_NOT_FOUND"])
+      # validator.allowable_values.each do |value|
+      #   expect { @instance.reason = value }.not_to raise_error
+      # end
     end
   end
 
@@ -56,13 +60,9 @@ describe 'InlineResponse4007' do
     end
   end
 
-  describe 'test attribute "reason"' do
+  describe 'test attribute "details"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["INVALID_APIKEY", "INVALID_SHIPPING_INPUT_PARAMS", "CAPTURE_CONTEXT_INVALID", "CAPTURE_CONTEXT_EXPIRED", "SDK_XHR_ERROR", "UNIFIEDPAYMENTS_VALIDATION_PARAMS", "UNIFIEDPAYMENTS_VALIDATION_FIELDS", "UNIFIEDPAYMENT_PAYMENT_PARAMITERS", "CREATE_TOKEN_TIMEOUT", "CREATE_TOKEN_XHR_ERROR", "SHOW_LOAD_CONTAINER_SELECTOR", "SHOW_LOAD_INVALID_CONTAINER", "SHOW_TOKEN_TIMEOUT", "SHOW_TOKEN_XHR_ERROR", "SHOW_PAYMENT_TIMEOUT"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.reason = value }.not_to raise_error
-      # end
     end
   end
 

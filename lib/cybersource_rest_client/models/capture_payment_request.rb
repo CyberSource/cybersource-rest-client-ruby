@@ -35,6 +35,8 @@ module CyberSource
     # The object containing the custom data that the merchant defines. 
     attr_accessor :merchant_defined_information
 
+    attr_accessor :merchant_defined_secure_information
+
     attr_accessor :installment_information
 
     attr_accessor :travel_information
@@ -54,6 +56,7 @@ module CyberSource
         :'aggregator_information' => :'aggregatorInformation',
         :'point_of_sale_information' => :'pointOfSaleInformation',
         :'merchant_defined_information' => :'merchantDefinedInformation',
+        :'merchant_defined_secure_information' => :'merchantDefinedSecureInformation',
         :'installment_information' => :'installmentInformation',
         :'travel_information' => :'travelInformation',
         :'promotion_information' => :'promotionInformation'
@@ -73,6 +76,7 @@ module CyberSource
         :'aggregator_information' => :'aggregator_information',
         :'point_of_sale_information' => :'point_of_sale_information',
         :'merchant_defined_information' => :'merchant_defined_information',
+        :'merchant_defined_secure_information' => :'merchant_defined_secure_information',
         :'installment_information' => :'installment_information',
         :'travel_information' => :'travel_information',
         :'promotion_information' => :'promotion_information'
@@ -92,6 +96,7 @@ module CyberSource
         :'aggregator_information' => :'Ptsv2paymentsidcapturesAggregatorInformation',
         :'point_of_sale_information' => :'Ptsv2paymentsidcapturesPointOfSaleInformation',
         :'merchant_defined_information' => :'Array<Ptsv2paymentsMerchantDefinedInformation>',
+        :'merchant_defined_secure_information' => :'Ptsv2paymentsMerchantDefinedSecureInformation',
         :'installment_information' => :'Ptsv2paymentsidcapturesInstallmentInformation',
         :'travel_information' => :'Ptsv2paymentsTravelInformation',
         :'promotion_information' => :'Ptsv2paymentsPromotionInformation'
@@ -148,6 +153,10 @@ module CyberSource
         end
       end
 
+      if attributes.has_key?(:'merchantDefinedSecureInformation')
+        self.merchant_defined_secure_information = attributes[:'merchantDefinedSecureInformation']
+      end
+
       if attributes.has_key?(:'installmentInformation')
         self.installment_information = attributes[:'installmentInformation']
       end
@@ -189,6 +198,7 @@ module CyberSource
           aggregator_information == o.aggregator_information &&
           point_of_sale_information == o.point_of_sale_information &&
           merchant_defined_information == o.merchant_defined_information &&
+          merchant_defined_secure_information == o.merchant_defined_secure_information &&
           installment_information == o.installment_information &&
           travel_information == o.travel_information &&
           promotion_information == o.promotion_information
@@ -203,7 +213,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_reference_information, processing_information, payment_information, order_information, buyer_information, device_information, merchant_information, aggregator_information, point_of_sale_information, merchant_defined_information, installment_information, travel_information, promotion_information].hash
+      [client_reference_information, processing_information, payment_information, order_information, buyer_information, device_information, merchant_information, aggregator_information, point_of_sale_information, merchant_defined_information, merchant_defined_secure_information, installment_information, travel_information, promotion_information].hash
     end
 
     # Builds the object from hash
