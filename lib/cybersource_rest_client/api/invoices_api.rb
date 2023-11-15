@@ -21,7 +21,7 @@ module CyberSource
       @api_client.set_configuration(config)
     end
     # Create a New Invoice
-    # Create a new invoice.
+    # The invoicing product enables you to bill any customer with an email address and accept digital payments securely from any connected device. You can either use the system generated email or use the invoice payment link in your own communication. You can add discounts and taxes for the entire invoice or for each line item. To customize the invoice to match your brand see [Invoice Settings](https://developer.cybersource.com/api-reference-assets/index.html#invoicing_invoice-settings_update-invoice-settings). The invoice payment page uses Unified Checkout to process the payments.
     # @param create_invoice_request 
     # @param [Hash] opts the optional parameters
     # @return [InvoicingV2InvoicesPost201Response]
@@ -31,7 +31,7 @@ module CyberSource
     end
 
     # Create a New Invoice
-    # Create a new invoice.
+    # The invoicing product enables you to bill any customer with an email address and accept digital payments securely from any connected device. You can either use the system generated email or use the invoice payment link in your own communication. You can add discounts and taxes for the entire invoice or for each line item. To customize the invoice to match your brand see [Invoice Settings](https://developer.cybersource.com/api-reference-assets/index.html#invoicing_invoice-settings_update-invoice-settings). The invoice payment page uses Unified Checkout to process the payments.
     # @param create_invoice_request 
     # @param [Hash] opts the optional parameters
     # @return [Array<(InvoicingV2InvoicesPost201Response, Fixnum, Hash)>] InvoicingV2InvoicesPost201Response data, response status code and response headers
@@ -67,6 +67,8 @@ module CyberSource
 
       # http body (model)
       post_body = @api_client.object_to_http_body(create_invoice_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CreateInvoiceRequest', @api_client.config.host)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -86,7 +88,7 @@ module CyberSource
       return data, status_code, headers
     end
     # Get a List of Invoices
-    # Get a list of invoices.
+    # Provides a (filtered) list of invoices that have been created in your account. You can filter the list based on Invoice Status by setting the status query parameter to one of DRAFT, CREATED, SENT, PARTIAL, PAID or CANCELED.
     # @param offset Page offset number.
     # @param limit Maximum number of items you would like returned.
     # @param [Hash] opts the optional parameters
@@ -98,7 +100,7 @@ module CyberSource
     end
 
     # Get a List of Invoices
-    # Get a list of invoices.
+    # Provides a (filtered) list of invoices that have been created in your account. You can filter the list based on Invoice Status by setting the status query parameter to one of DRAFT, CREATED, SENT, PARTIAL, PAID or CANCELED.
     # @param offset Page offset number.
     # @param limit Maximum number of items you would like returned.
     # @param [Hash] opts the optional parameters
@@ -166,7 +168,7 @@ module CyberSource
       return data, status_code, headers
     end
     # Get Invoice Details
-    # Get the details of a specific invoice.
+    # You can retrieve details of a specific invoice. This can be used to check the Invoice status and get a list of invoice payments in the invoice history section of the response. For each payment transaction you can use the Transaction Details API to get more details on the payment transaction.
     # @param id The invoice number.
     # @param [Hash] opts the optional parameters
     # @return [InvoicingV2InvoicesGet200Response]
@@ -176,7 +178,7 @@ module CyberSource
     end
 
     # Get Invoice Details
-    # Get the details of a specific invoice.
+    # You can retrieve details of a specific invoice. This can be used to check the Invoice status and get a list of invoice payments in the invoice history section of the response. For each payment transaction you can use the Transaction Details API to get more details on the payment transaction.
     # @param id The invoice number.
     # @param [Hash] opts the optional parameters
     # @return [Array<(InvoicingV2InvoicesGet200Response, Fixnum, Hash)>] InvoicingV2InvoicesGet200Response data, response status code and response headers
@@ -235,7 +237,7 @@ module CyberSource
       return data, status_code, headers
     end
     # Cancel an Invoice
-    # Cancel an invoice.
+    # You can cancel an invoice if no payment is made to it. You cannot cancel partially or fully paid invoices.
     # @param id The invoice number.
     # @param [Hash] opts the optional parameters
     # @return [InvoicingV2InvoicesPost201Response]
@@ -245,7 +247,7 @@ module CyberSource
     end
 
     # Cancel an Invoice
-    # Cancel an invoice.
+    # You can cancel an invoice if no payment is made to it. You cannot cancel partially or fully paid invoices.
     # @param id The invoice number.
     # @param [Hash] opts the optional parameters
     # @return [Array<(InvoicingV2InvoicesPost201Response, Fixnum, Hash)>] InvoicingV2InvoicesPost201Response data, response status code and response headers
@@ -304,7 +306,7 @@ module CyberSource
       return data, status_code, headers
     end
     # Send an Invoice
-    # Send an invoice.
+    # You can send an invoice in draft or created state or resend a sent or partially paid invoice. Fully paid or canceled invoices cannot be resent.
     # @param id The invoice number.
     # @param [Hash] opts the optional parameters
     # @return [InvoicingV2InvoicesPost201Response]
@@ -314,7 +316,7 @@ module CyberSource
     end
 
     # Send an Invoice
-    # Send an invoice.
+    # You can send an invoice in draft or created state or resend a sent or partially paid invoice. Fully paid or canceled invoices cannot be resent.
     # @param id The invoice number.
     # @param [Hash] opts the optional parameters
     # @return [Array<(InvoicingV2InvoicesPost201Response, Fixnum, Hash)>] InvoicingV2InvoicesPost201Response data, response status code and response headers
@@ -373,7 +375,7 @@ module CyberSource
       return data, status_code, headers
     end
     # Update an Invoice
-    # Update an invoice.
+    # You can update all information except the invoice number till any payment is received for an invoice. Invoices that are partially or fully paid or cancelled cannot be updated.
     # @param id The invoice number.
     # @param update_invoice_request Updating the invoice does not resend the invoice automatically. You must resend the invoice separately.
     # @param [Hash] opts the optional parameters
@@ -384,7 +386,7 @@ module CyberSource
     end
 
     # Update an Invoice
-    # Update an invoice.
+    # You can update all information except the invoice number till any payment is received for an invoice. Invoices that are partially or fully paid or cancelled cannot be updated.
     # @param id The invoice number.
     # @param update_invoice_request Updating the invoice does not resend the invoice automatically. You must resend the invoice separately.
     # @param [Hash] opts the optional parameters
@@ -425,6 +427,8 @@ module CyberSource
 
       # http body (model)
       post_body = @api_client.object_to_http_body(update_invoice_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'UpdateInvoiceRequest', @api_client.config.host)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:PUT, local_var_path,
         :header_params => header_params,

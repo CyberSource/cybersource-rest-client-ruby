@@ -62,4 +62,10 @@ describe 'Ptsv2paymentsTravelInformation' do
     end
   end
 
+  describe 'test attribute "vehicle_data"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

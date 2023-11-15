@@ -67,6 +67,8 @@ module CyberSource
 
       # http body (model)
       post_body = @api_client.object_to_http_body(create_shared_secret_keys_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CreateSharedSecretKeysRequest', @api_client.config.host)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -139,6 +141,8 @@ module CyberSource
 
       # http body (model)
       post_body = @api_client.object_to_http_body(create_shared_secret_keys_verifi_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CreateSharedSecretKeysVerifiRequest', @api_client.config.host)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -204,6 +208,8 @@ module CyberSource
 
       # http body (model)
       post_body = @api_client.object_to_http_body(delete_bulk_symmetric_keys_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'DeleteBulkSymmetricKeysRequest', @api_client.config.host)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,

@@ -136,6 +136,8 @@ module CyberSource
 
       # http body (model)
       post_body = @api_client.object_to_http_body(create_plan_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CreatePlanRequest', @api_client.config.host)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -555,6 +557,8 @@ module CyberSource
 
       # http body (model)
       post_body = @api_client.object_to_http_body(update_plan_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'UpdatePlanRequest', @api_client.config.host)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:PATCH, local_var_path,
         :header_params => header_params,
