@@ -22,9 +22,11 @@ module CyberSource
     end
     # Download XSD for Report
     # Used to download XSDs for reports on no-auth.
+    #
     # @param report_definition_name_version Name and version of XSD file to download. Some XSDs only have one version. In that case version name is not needed. Some example values are DecisionManagerDetailReport, DecisionManagerTypes
     # @param [Hash] opts the optional parameters
     # @return [nil]
+    #
     def get_xsdv2(report_definition_name_version, opts = {})
       data, status_code, headers = get_xsdv2_with_http_info(report_definition_name_version, opts)
       return data, status_code, headers

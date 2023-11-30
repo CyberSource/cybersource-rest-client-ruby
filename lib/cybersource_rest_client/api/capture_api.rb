@@ -22,10 +22,12 @@ module CyberSource
     end
     # Capture a Payment
     # Include the payment ID in the POST request to capture the payment amount.
+    #
     # @param capture_payment_request 
     # @param id The payment ID returned from a previous payment request. This ID links the capture to the payment. 
     # @param [Hash] opts the optional parameters
     # @return [PtsV2PaymentsCapturesPost201Response]
+    #
     def capture_payment(capture_payment_request, id, opts = {})
       data, status_code, headers = capture_payment_with_http_info(capture_payment_request, id, opts)
       return data, status_code, headers

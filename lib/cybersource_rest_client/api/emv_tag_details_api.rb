@@ -22,8 +22,10 @@ module CyberSource
     end
     # Retrieve the EMV Dictionary
     # Returns the entire EMV tag dictionary
+    #
     # @param [Hash] opts the optional parameters
     # @return [TssV2GetEmvTags200Response]
+    #
     def get_emv_tags(opts = {})
       data, status_code, headers = get_emv_tags_with_http_info(opts)
       return data, status_code, headers
@@ -85,9 +87,11 @@ module CyberSource
     end
     # Parse an EMV String
     # Pass an EMV Tag-Length-Value (TLV) string for parsing.
+    #
     # @param body 
     # @param [Hash] opts the optional parameters
     # @return [TssV2PostEmvTags200Response]
+    #
     def parse_emv_tags(body, opts = {})
       data, status_code, headers = parse_emv_tags_with_http_info(body, opts)
       return data, status_code, headers

@@ -22,12 +22,14 @@ module CyberSource
     end
     # Get Report Definition
     # View the attributes of an individual report type. For a list of values for reportDefinitionName, see the [Reporting Developer Guide](https://www.cybersource.com/developers/documentation/reporting_and_reconciliation/) 
+    #
     # @param report_definition_name Name of the Report definition to retrieve
     # @param [Hash] opts the optional parameters
     # @option opts [String] :subscription_type The subscription type for which report definition is required. By default the type will be CUSTOM. Valid Values: - CLASSIC - CUSTOM - STANDARD 
     # @option opts [String] :report_mime_type The format for which the report definition is required. By default the value will be CSV. Valid Values: - application/xml - text/csv 
     # @option opts [String] :organization_id Valid Organization Id
     # @return [ReportingV3ReportDefinitionsNameGet200Response]
+    #
     def get_resource_info_by_report_definition(report_definition_name, opts = {})
       data, status_code, headers = get_resource_info_by_report_definition_with_http_info(report_definition_name, opts)
       return data, status_code, headers
@@ -55,14 +57,6 @@ module CyberSource
       if @api_client.config.client_side_validation && report_definition_name.nil?
         fail ArgumentError, "Missing the required parameter 'report_definition_name' when calling ReportDefinitionsApi.get_resource_info_by_report_definition"
       end
-      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length > 32
-        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportDefinitionsApi.get_resource_info_by_report_definition, the character length must be smaller than or equal to 32.'
-      end
-
-      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length < 1
-        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportDefinitionsApi.get_resource_info_by_report_definition, the character length must be great than or equal to 1.'
-      end
-
       #if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
         #fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling ReportDefinitionsApi.get_resource_info_by_report_definition, must conform to the pattern /[a-zA-Z0-9-_]+/."
       #end
@@ -112,10 +106,12 @@ module CyberSource
     end
     # Get Reporting Resource Information
     # View a list of supported reports and their attributes before subscribing to them. 
+    #
     # @param [Hash] opts the optional parameters
     # @option opts [String] :subscription_type Valid Values: - CLASSIC - CUSTOM - STANDARD 
     # @option opts [String] :organization_id Valid Organization Id
     # @return [ReportingV3ReportDefinitionsGet200Response]
+    #
     def get_resource_v2_info(opts = {})
       data, status_code, headers = get_resource_v2_info_with_http_info(opts)
       return data, status_code, headers
@@ -137,14 +133,6 @@ module CyberSource
                 puts 'Cannot write to log'
             end
       end
-      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length > 32
-        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportDefinitionsApi.get_resource_v2_info, the character length must be smaller than or equal to 32.'
-      end
-
-      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length < 1
-        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportDefinitionsApi.get_resource_v2_info, the character length must be great than or equal to 1.'
-      end
-
       #if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
         #fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling ReportDefinitionsApi.get_resource_v2_info, must conform to the pattern /[a-zA-Z0-9-_]+/."
       #end

@@ -22,10 +22,12 @@ module CyberSource
     end
     # Standing Instruction Cancellation or Modification
     # Standing Instruction with or without Token
+    #
     # @param modify_billing_agreement 
     # @param id ID for de-registration or cancellation of Billing Agreement
     # @param [Hash] opts the optional parameters
     # @return [PtsV2CreditsPost201Response1]
+    #
     def billing_agreements_de_registration(modify_billing_agreement, id, opts = {})
       data, status_code, headers = billing_agreements_de_registration_with_http_info(modify_billing_agreement, id, opts)
       return data, status_code, headers
@@ -95,10 +97,12 @@ module CyberSource
     end
     # Standing Instruction intimation
     # Standing Instruction with or without Token.
+    #
     # @param intimate_billing_agreement 
     # @param id ID for intimation of Billing Agreement
     # @param [Hash] opts the optional parameters
     # @return [PtsV2CreditsPost201Response1]
+    #
     def billing_agreements_intimation(intimate_billing_agreement, id, opts = {})
       data, status_code, headers = billing_agreements_intimation_with_http_info(intimate_billing_agreement, id, opts)
       return data, status_code, headers
@@ -168,9 +172,11 @@ module CyberSource
     end
     # Standing Instruction completion registration
     # Standing Instruction with or without Token. Transaction amount in case First payment is coming along with registration. Only 2 decimal places allowed
+    #
     # @param create_billing_agreement 
     # @param [Hash] opts the optional parameters
     # @return [PtsV2CreditsPost201Response1]
+    #
     def billing_agreements_registration(create_billing_agreement, opts = {})
       data, status_code, headers = billing_agreements_registration_with_http_info(create_billing_agreement, opts)
       return data, status_code, headers

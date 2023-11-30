@@ -22,10 +22,12 @@ module CyberSource
     end
     # Activate or De-activate PGP Key
     # Activate or De-activate PGP Key 
+    #
     # @param key_id Key ID. 
     # @param update_pgp_keys_request 
     # @param [Hash] opts the optional parameters
     # @return [Object]
+    #
     def update_pgp(key_id, update_pgp_keys_request, opts = {})
       data, status_code, headers = update_pgp_with_http_info(key_id, update_pgp_keys_request, opts)
       return data, status_code, headers

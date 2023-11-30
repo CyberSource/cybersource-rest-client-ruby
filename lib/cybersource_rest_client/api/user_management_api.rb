@@ -22,12 +22,14 @@ module CyberSource
     end
     # Get User Information - Deprecated
     # This endpoint is deprecated. Please use the search end point.
+    #
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id This is the orgId of the organization which the user belongs to.
     # @option opts [String] :user_name User ID of the user you want to get details on.
     # @option opts [String] :permission_id permission that you are trying to search user on.
     # @option opts [String] :role_id role of the user you are trying to search on.
     # @return [UmsV1UsersGet200Response]
+    #
     def get_users(opts = {})
       data, status_code, headers = get_users_with_http_info(opts)
       return data, status_code, headers

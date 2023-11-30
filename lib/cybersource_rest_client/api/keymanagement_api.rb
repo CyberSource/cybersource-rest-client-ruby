@@ -22,6 +22,7 @@ module CyberSource
     end
     # Search Keys
     # Search one or more Keys
+    #
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :offset This allows you to specify the page offset from the resulting list resultset you want the records to be returned
     # @option opts [Integer] :limit This allows you to specify the total number of records to be returned off the resulting list resultset
@@ -32,6 +33,7 @@ module CyberSource
     # @option opts [DateTime] :expiration_start_date Expiry Filter Start Date. When Expiration Date filter is provided, atleast one more filter needs to be provided
     # @option opts [DateTime] :expiration_end_date Expiry Filter End Date. When Expiration Date filter is provided, atleast one more filter needs to be provided
     # @return [InlineResponse2001]
+    #
     def search_keys(opts = {})
       data, status_code, headers = search_keys_with_http_info(opts)
       return data, status_code, headers

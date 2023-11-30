@@ -22,8 +22,10 @@ module CyberSource
     end
     # Get Invoice Settings
     # Allows you to retrieve the invoice settings for the payment page.
+    #
     # @param [Hash] opts the optional parameters
     # @return [InvoicingV2InvoiceSettingsGet200Response]
+    #
     def get_invoice_settings(opts = {})
       data, status_code, headers = get_invoice_settings_with_http_info(opts)
       return data, status_code, headers
@@ -85,9 +87,11 @@ module CyberSource
     end
     # Update Invoice Settings
     # Allows you to customize the payment page, the checkout experience, email communication and payer authentication. You can customize the invoice to match your brand with your business name, logo and brand colors, and a VAT Tax number. You can choose to capture the payers shipping details, phone number and email during the checkout process. You can add a custom message to all invoice emails and enable or disable payer authentication for invoice payments.
+    #
     # @param invoice_settings_request 
     # @param [Hash] opts the optional parameters
     # @return [InvoicingV2InvoiceSettingsGet200Response]
+    #
     def update_invoice_settings(invoice_settings_request, opts = {})
       data, status_code, headers = update_invoice_settings_with_http_info(invoice_settings_request, opts)
       return data, status_code, headers

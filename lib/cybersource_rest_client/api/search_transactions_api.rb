@@ -22,9 +22,11 @@ module CyberSource
     end
     # Create a Search Request
     # Create a search request. 
+    #
     # @param create_search_request 
     # @param [Hash] opts the optional parameters
     # @return [TssV2TransactionsPost201Response]
+    #
     def create_search(create_search_request, opts = {})
       data, status_code, headers = create_search_with_http_info(create_search_request, opts)
       return data, status_code, headers
@@ -89,9 +91,11 @@ module CyberSource
     end
     # Get Search Results
     # Include the Search ID in the GET request to retrieve the search results.
+    #
     # @param search_id Search ID.
     # @param [Hash] opts the optional parameters
     # @return [TssV2TransactionsPost201Response]
+    #
     def get_search(search_id, opts = {})
       data, status_code, headers = get_search_with_http_info(search_id, opts)
       return data, status_code, headers

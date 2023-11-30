@@ -22,9 +22,11 @@ module CyberSource
     end
     # Check Payer Auth Enrollment
     # This call verifies that the card is enrolled in a card authentication program.
+    #
     # @param check_payer_auth_enrollment_request 
     # @param [Hash] opts the optional parameters
     # @return [RiskV1AuthenticationsPost201Response]
+    #
     def check_payer_auth_enrollment(check_payer_auth_enrollment_request, opts = {})
       data, status_code, headers = check_payer_auth_enrollment_with_http_info(check_payer_auth_enrollment_request, opts)
       return data, status_code, headers
@@ -89,9 +91,11 @@ module CyberSource
     end
     # Setup Payer Auth
     # A new service for Merchants to get reference_id for Digital Wallets to use in place of BIN number in Cardinal. Set up file while authenticating with Cardinal. This service should be called by Merchant when payment instrument chosen or changes. This service has to be called before enrollment check.
+    #
     # @param payer_auth_setup_request 
     # @param [Hash] opts the optional parameters
     # @return [RiskV1AuthenticationSetupsPost201Response]
+    #
     def payer_auth_setup(payer_auth_setup_request, opts = {})
       data, status_code, headers = payer_auth_setup_with_http_info(payer_auth_setup_request, opts)
       return data, status_code, headers
@@ -156,9 +160,11 @@ module CyberSource
     end
     # Validate Authentication Results
     # This call retrieves and validates the authentication results from issuer and allows the merchant to proceed with processing the payment. 
+    #
     # @param validate_request 
     # @param [Hash] opts the optional parameters
     # @return [RiskV1AuthenticationResultsPost201Response]
+    #
     def validate_authentication_results(validate_request, opts = {})
       data, status_code, headers = validate_authentication_results_with_http_info(validate_request, opts)
       return data, status_code, headers
