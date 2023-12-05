@@ -18,7 +18,7 @@ module CyberSource
     # Merchant Id 
     attr_accessor :organization_id
 
-    # Reference number is a unique identifier provided by the client along with the organization Id. This is an optional field provided solely for the client’s convenience. If client specifies value for this field in the request, it is expected to be available in the response. 
+    # Reference number is a unique identifier provided by the client along with the organization Id. This is an optional field provided solely for the client's convenience. If client specifies value for this field in the request, it is expected to be available in the response. 
     attr_accessor :reference_number
 
     # Attribute mapping from ruby-style variable name to JSON key.

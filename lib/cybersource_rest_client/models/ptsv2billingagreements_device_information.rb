@@ -14,13 +14,13 @@ require 'date'
 
 module CyberSource
   class Ptsv2billingagreementsDeviceInformation
-    # Value of the Accept header sent by the customer’s web browser. **Note** If the customer’s browser provides a value, you must include it in your request. 
+    # Value of the Accept header sent by the customer's web browser. **Note** If the customer's browser provides a value, you must include it in your request. 
     attr_accessor :http_accept_browser_value
 
     # IP address of the customer.  #### Used by **Authorization, Capture, and Credit** Optional field. 
     attr_accessor :ip_address
 
-    # Value of the User-Agent header sent by the customer’s web browser. Note If the customer’s browser provides a value, you must include it in your request. 
+    # Value of the User-Agent header sent by the customer's web browser. Note If the customer's browser provides a value, you must include it in your request. 
     attr_accessor :user_agent_browser_value
 
     # Attribute mapping from ruby-style variable name to JSON key.

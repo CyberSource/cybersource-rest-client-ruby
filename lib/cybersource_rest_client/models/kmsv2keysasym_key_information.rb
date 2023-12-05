@@ -18,7 +18,7 @@ module CyberSource
     # Merchant Id 
     attr_accessor :organization_id
 
-    # Reference number is a unique identifier provided by the client along with the organization Id. This is an optional field provided solely for the client’s convenience. If client specifies value for this field in the request, it is expected to be available in the response. 
+    # Reference number is a unique identifier provided by the client along with the organization Id. This is an optional field provided solely for the client's convenience. If client specifies value for this field in the request, it is expected to be available in the response. 
     attr_accessor :reference_number
 
     # Certificate Signing Request(csr), one needs to use the contents of the csr created for the same organizationId. Please extract string from '\\n' and '-----BEGIN CERTIFICATE REQUEST-----','-----END CERTIFICATE REQUEST-----' 

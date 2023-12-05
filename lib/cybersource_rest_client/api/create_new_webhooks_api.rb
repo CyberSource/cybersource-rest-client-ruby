@@ -24,26 +24,26 @@ module CyberSource
     # Create a new webhook subscription. Before creating a webhook, ensure that a security key has been created at the top of this developer center section. You will not need to pass us back the key during the creation of the webhook, but you will receive an error if you did not already create a key or store one on file. 
     #
     # @param [Hash] opts the optional parameters
-    # @option opts [CreateWebhook] :create_webhook The webhook payload
+    # @option opts [CreateWebhookRequest] :create_webhook_request The webhook payload
     # @return [InlineResponse2013]
     #
     # DISCLAIMER : Cybersource may allow Customer to access, use, and/or test a Cybersource product or service that may still be in development or has not been market-tested ("Beta Product") solely for the purpose of evaluating the functionality or marketability of the Beta Product (a "Beta Evaluation"). Notwithstanding any language to the contrary, the following terms shall apply with respect to Customer's participation in any Beta Evaluation (and the Beta Product(s)) accessed thereunder): The Parties will enter into a separate form agreement detailing the scope of the Beta Evaluation, requirements, pricing, the length of the beta evaluation period ("Beta Product Form"). Beta Products are not, and may not become, Transaction Services and have not yet been publicly released and are offered for the sole purpose of internal testing and non-commercial evaluation. Customer's use of the Beta Product shall be solely for the purpose of conducting the Beta Evaluation. Customer accepts all risks arising out of the access and use of the Beta Products. Cybersource may, in its sole discretion, at any time, terminate or discontinue the Beta Evaluation. Customer acknowledges and agrees that any Beta Product may still be in development and that Beta Product is provided "AS IS" and may not perform at the level of a commercially available service, may not operate as expected and may be modified prior to release. CYBERSOURCE SHALL NOT BE RESPONSIBLE OR LIABLE UNDER ANY CONTRACT, TORT (INCLUDING NEGLIGENCE), OR OTHERWISE RELATING TO A BETA PRODUCT OR THE BETA EVALUATION (A) FOR LOSS OR INACCURACY OF DATA OR COST OF PROCUREMENT OF SUBSTITUTE GOODS, SERVICES OR TECHNOLOGY, (B) ANY CLAIM, LOSSES, DAMAGES, OR CAUSE OF ACTION ARISING IN CONNECTION WITH THE BETA PRODUCT; OR (C) FOR ANY INDIRECT, INCIDENTAL OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO, LOSS OF REVENUES AND LOSS OF PROFITS.
-    def create_webhook(opts = {})
-      data, status_code, headers = create_webhook_with_http_info(opts)
+    def create_webhook_subscription(opts = {})
+      data, status_code, headers = create_webhook_subscription_with_http_info(opts)
       return data, status_code, headers
     end
 
     # Create a Webhook
     # Create a new webhook subscription. Before creating a webhook, ensure that a security key has been created at the top of this developer center section. You will not need to pass us back the key during the creation of the webhook, but you will receive an error if you did not already create a key or store one on file. 
     # @param [Hash] opts the optional parameters
-    # @option opts [CreateWebhook] :create_webhook The webhook payload
+    # @option opts [CreateWebhookRequest] :create_webhook_request The webhook payload
     # @return [Array<(InlineResponse2013, Fixnum, Hash)>] InlineResponse2013 data, response status code and response headers
-    def create_webhook_with_http_info(opts = {})
+    def create_webhook_subscription_with_http_info(opts = {})
 
       if @api_client.config.debugging
           begin
             raise
-                @api_client.config.logger.debug 'Calling API: CreateNewWebhooksApi.create_webhook ...'
+                @api_client.config.logger.debug 'Calling API: CreateNewWebhooksApi.create_webhook_subscription ...'
             rescue
                 puts 'Cannot write to log'
             end
@@ -57,7 +57,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
 
@@ -65,9 +65,9 @@ module CyberSource
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(opts[:'create_webhook'])
+      post_body = @api_client.object_to_http_body(opts[:'create_webhook_request'])
       sdk_tracker = SdkTracker.new
-      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CreateWebhook', @api_client.config.host)
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CreateWebhookRequest', @api_client.config.host)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -79,7 +79,7 @@ module CyberSource
       if @api_client.config.debugging
         begin
         raise
-            @api_client.config.logger.debug "API called: CreateNewWebhooksApi#create_webhook\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+            @api_client.config.logger.debug "API called: CreateNewWebhooksApi#create_webhook_subscription\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
         rescue
             puts 'Cannot write to log'
         end
@@ -94,8 +94,8 @@ module CyberSource
     # @return [Array<InlineResponse2003>]
     #
     # DISCLAIMER : Cybersource may allow Customer to access, use, and/or test a Cybersource product or service that may still be in development or has not been market-tested ("Beta Product") solely for the purpose of evaluating the functionality or marketability of the Beta Product (a "Beta Evaluation"). Notwithstanding any language to the contrary, the following terms shall apply with respect to Customer's participation in any Beta Evaluation (and the Beta Product(s)) accessed thereunder): The Parties will enter into a separate form agreement detailing the scope of the Beta Evaluation, requirements, pricing, the length of the beta evaluation period ("Beta Product Form"). Beta Products are not, and may not become, Transaction Services and have not yet been publicly released and are offered for the sole purpose of internal testing and non-commercial evaluation. Customer's use of the Beta Product shall be solely for the purpose of conducting the Beta Evaluation. Customer accepts all risks arising out of the access and use of the Beta Products. Cybersource may, in its sole discretion, at any time, terminate or discontinue the Beta Evaluation. Customer acknowledges and agrees that any Beta Product may still be in development and that Beta Product is provided "AS IS" and may not perform at the level of a commercially available service, may not operate as expected and may be modified prior to release. CYBERSOURCE SHALL NOT BE RESPONSIBLE OR LIABLE UNDER ANY CONTRACT, TORT (INCLUDING NEGLIGENCE), OR OTHERWISE RELATING TO A BETA PRODUCT OR THE BETA EVALUATION (A) FOR LOSS OR INACCURACY OF DATA OR COST OF PROCUREMENT OF SUBSTITUTE GOODS, SERVICES OR TECHNOLOGY, (B) ANY CLAIM, LOSSES, DAMAGES, OR CAUSE OF ACTION ARISING IN CONNECTION WITH THE BETA PRODUCT; OR (C) FOR ANY INDIRECT, INCIDENTAL OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO, LOSS OF REVENUES AND LOSS OF PROFITS.
-    def find_product_to_subscribe(organization_id, opts = {})
-      data, status_code, headers = find_product_to_subscribe_with_http_info(organization_id, opts)
+    def find_products_to_subscribe(organization_id, opts = {})
+      data, status_code, headers = find_products_to_subscribe_with_http_info(organization_id, opts)
       return data, status_code, headers
     end
 
@@ -104,19 +104,19 @@ module CyberSource
     # @param organization_id The Organization Identifier.
     # @param [Hash] opts the optional parameters
     # @return [Array<(Array<InlineResponse2003>, Fixnum, Hash)>] Array<InlineResponse2003> data, response status code and response headers
-    def find_product_to_subscribe_with_http_info(organization_id, opts = {})
+    def find_products_to_subscribe_with_http_info(organization_id, opts = {})
 
       if @api_client.config.debugging
           begin
             raise
-                @api_client.config.logger.debug 'Calling API: CreateNewWebhooksApi.find_product_to_subscribe ...'
+                @api_client.config.logger.debug 'Calling API: CreateNewWebhooksApi.find_products_to_subscribe ...'
             rescue
                 puts 'Cannot write to log'
             end
       end
       # verify the required parameter 'organization_id' is set
       if @api_client.config.client_side_validation && organization_id.nil?
-        fail ArgumentError, "Missing the required parameter 'organization_id' when calling CreateNewWebhooksApi.find_product_to_subscribe"
+        fail ArgumentError, "Missing the required parameter 'organization_id' when calling CreateNewWebhooksApi.find_products_to_subscribe"
       end
       # resource path
       local_var_path = 'notification-subscriptions/v1/products/{organizationId}'.sub('{' + 'organizationId' + '}', organization_id.to_s)
@@ -127,7 +127,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
 
@@ -151,7 +151,7 @@ module CyberSource
       if @api_client.config.debugging
         begin
         raise
-            @api_client.config.logger.debug "API called: CreateNewWebhooksApi#find_product_to_subscribe\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+            @api_client.config.logger.debug "API called: CreateNewWebhooksApi#find_products_to_subscribe\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
         rescue
             puts 'Cannot write to log'
         end
@@ -217,7 +217,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
       header_params[:'v-c-sender-organization-id'] = v_c_sender_organization_id

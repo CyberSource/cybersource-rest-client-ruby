@@ -15,7 +15,7 @@ require 'date'
 module CyberSource
   # This information is sent to the issuer as part of network token enrollment and is not stored under the Instrument Identifier. 
   class Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifierBillTo
-    # Payment card billing street address as it appears on the credit card issuer’s records. 
+    # Payment card billing street address as it appears on the credit card issuer's records. 
     attr_accessor :address1
 
     # Additional address information. 

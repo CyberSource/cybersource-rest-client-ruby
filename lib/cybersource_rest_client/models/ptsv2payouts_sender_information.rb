@@ -25,7 +25,7 @@ module CyberSource
     # Recipient middle initial (Optional). 
     attr_accessor :middle_initial
 
-    # Sender’s middle name. This field is a _passthrough_, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. If the field is not required for the transaction, CyberSource does not forward it to the processor. 
+    # Sender's middle name. This field is a _passthrough_, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. If the field is not required for the transaction, CyberSource does not forward it to the processor. 
     attr_accessor :middle_name
 
     # Recipient last name (Optional). * CTV (14) * Paymentech (30) 
@@ -40,19 +40,19 @@ module CyberSource
     # City of sender.  **Funds Disbursement**  This value is the city of the originator sending the funds disbursement. 
     attr_accessor :locality
 
-    # Sender’s state. Use the [State, Province, and Territory Codes for the United States and Canada](https://developer.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf). 
+    # Sender's state. Use the [State, Province, and Territory Codes for the United States and Canada](https://developer.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf). 
     attr_accessor :administrative_area
 
     # Country of sender. Use the [ISO Standard Country Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf). * CTV (3) 
     attr_accessor :country_code
 
-    # Sender’s postal code. Required only for FDCCompass.
+    # Sender's postal code. Required only for FDCCompass.
     attr_accessor :postal_code
 
-    # Sender’s phone number. Required only for FDCCompass.
+    # Sender's phone number. Required only for FDCCompass.
     attr_accessor :phone_number
 
-    # Sender’s date of birth in YYYYMMDD format. Required only for FDCCompass.
+    # Sender's date of birth in YYYYMMDD format. Required only for FDCCompass.
     attr_accessor :date_of_birth
 
     # Customer's government-assigned tax identification number. 

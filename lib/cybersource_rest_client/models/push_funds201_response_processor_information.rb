@@ -23,7 +23,7 @@ module CyberSource
     # Issuer-generated approval code for the transaction. 
     attr_accessor :approval_code
 
-    # System audit number. Returned by authorization and incremental authorization services.  Visa Platform Connect  System trace number that must be printed on the customer’s receipt. 
+    # System audit number. Returned by authorization and incremental authorization services.  Visa Platform Connect  System trace number that must be printed on the customer's receipt. 
     attr_accessor :system_trace_audit_number
 
     # Used by Visa only and contains the response source/reason code that identifies the source of the response decision. 

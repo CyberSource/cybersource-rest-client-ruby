@@ -4,13 +4,13 @@ All URIs are relative to *https://apitest.cybersource.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_webhook**](CreateNewWebhooksApi.md#create_webhook) | **POST** /notification-subscriptions/v1/webhooks | Create a Webhook
-[**find_product_to_subscribe**](CreateNewWebhooksApi.md#find_product_to_subscribe) | **GET** /notification-subscriptions/v1/products/{organizationId} | Find Products You Can Subscribe To
+[**create_webhook_subscription**](CreateNewWebhooksApi.md#create_webhook_subscription) | **POST** /notification-subscriptions/v1/webhooks | Create a Webhook
+[**find_products_to_subscribe**](CreateNewWebhooksApi.md#find_products_to_subscribe) | **GET** /notification-subscriptions/v1/products/{organizationId} | Find Products You Can Subscribe To
 [**save_sym_egress_key**](CreateNewWebhooksApi.md#save_sym_egress_key) | **POST** /kms/egress/v2/keys-sym | Create Webhook Security Keys
 
 
-# **create_webhook**
-> InlineResponse2013 create_webhook(opts)
+# **create_webhook_subscription**
+> InlineResponse2013 create_webhook_subscription(opts)
 
 Create a Webhook
 
@@ -24,15 +24,15 @@ require 'cybersource_rest_client'
 api_instance = CyberSource::CreateNewWebhooksApi.new
 
 opts = { 
-  create_webhook: CyberSource::CreateWebhook.new # CreateWebhook | The webhook payload
+  create_webhook_request: CyberSource::CreateWebhookRequest.new # CreateWebhookRequest | The webhook payload
 }
 
 begin
   #Create a Webhook
-  result = api_instance.create_webhook(opts)
+  result = api_instance.create_webhook_subscription(opts)
   p result
 rescue CyberSource::ApiError => e
-  puts "Exception when calling CreateNewWebhooksApi->create_webhook: #{e}"
+  puts "Exception when calling CreateNewWebhooksApi->create_webhook_subscription: #{e}"
 end
 ```
 
@@ -40,7 +40,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_webhook** | [**CreateWebhook**](CreateWebhook.md)| The webhook payload | [optional] 
+ **create_webhook_request** | [**CreateWebhookRequest**](CreateWebhookRequest.md)| The webhook payload | [optional] 
 
 ### Return type
 
@@ -53,12 +53,12 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
 
 
 
-# **find_product_to_subscribe**
-> Array&lt;InlineResponse2003&gt; find_product_to_subscribe(organization_id)
+# **find_products_to_subscribe**
+> Array&lt;InlineResponse2003&gt; find_products_to_subscribe(organization_id)
 
 Find Products You Can Subscribe To
 
@@ -76,10 +76,10 @@ organization_id = "organization_id_example" # String | The Organization Identifi
 
 begin
   #Find Products You Can Subscribe To
-  result = api_instance.find_product_to_subscribe(organization_id)
+  result = api_instance.find_products_to_subscribe(organization_id)
   p result
 rescue CyberSource::ApiError => e
-  puts "Exception when calling CreateNewWebhooksApi->find_product_to_subscribe: #{e}"
+  puts "Exception when calling CreateNewWebhooksApi->find_products_to_subscribe: #{e}"
 end
 ```
 
@@ -100,7 +100,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
 
 
 
@@ -156,7 +156,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
 
 
 

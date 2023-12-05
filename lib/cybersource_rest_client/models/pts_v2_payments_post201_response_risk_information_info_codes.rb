@@ -17,7 +17,7 @@ module CyberSource
     # List of information codes triggered by the order. These information codes were generated when you created the order and product velocity rules and are returned so that you can associate them with the rules. 
     attr_accessor :velocity
 
-    # Indicates a mismatch between the customer’s billing and shipping addresses. 
+    # Indicates a mismatch between the customer's billing and shipping addresses. 
     attr_accessor :address
 
     # Indicates that customer information is associated with transactions that are either on the negative or the positive list. 
@@ -29,10 +29,10 @@ module CyberSource
     # Indicates excessive identity changes. The threshold is variable depending on the identity elements being compared. 
     attr_accessor :identity_change
 
-    # Indicates a problem with the customer’s email address, IP address, or billing address. 
+    # Indicates a problem with the customer's email address, IP address, or billing address. 
     attr_accessor :internet
 
-    # Indicates a problem with the customer’s phone number. 
+    # Indicates a problem with the customer's phone number. 
     attr_accessor :phone
 
     # Indicates that the customer provided potentially suspicious information. 

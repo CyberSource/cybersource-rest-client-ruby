@@ -5,9 +5,9 @@ All URIs are relative to *https://apitest.cybersource.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**delete_webhook_subscription**](ManageWebhooksApi.md#delete_webhook_subscription) | **DELETE** /notification-subscriptions/v1/webhooks/{webhookId} | Delete a Webhook Subscription
-[**get_all_webhooks**](ManageWebhooksApi.md#get_all_webhooks) | **GET** /notification-subscriptions/v1/webhooks | Get Details On All Created Webhooks
-[**get_webhook_details**](ManageWebhooksApi.md#get_webhook_details) | **GET** /notification-subscriptions/v1/webhooks/{webhookId} | Get Details On a Single Webhook
-[**replay_previous_webhook**](ManageWebhooksApi.md#replay_previous_webhook) | **POST** /nrtf/v1/webhooks/{webhookId}/replays | Replay Previous Webhooks
+[**get_webhook_subscription_by_id**](ManageWebhooksApi.md#get_webhook_subscription_by_id) | **GET** /notification-subscriptions/v1/webhooks/{webhookId} | Get Details On a Single Webhook
+[**get_webhook_subscriptions_by_org**](ManageWebhooksApi.md#get_webhook_subscriptions_by_org) | **GET** /notification-subscriptions/v1/webhooks | Get Details On All Created Webhooks
+[**replay_previous_webhooks**](ManageWebhooksApi.md#replay_previous_webhooks) | **POST** /nrtf/v1/webhooks/{webhookId}/replays | Replay Previous Webhooks
 [**save_asym_egress_key**](ManageWebhooksApi.md#save_asym_egress_key) | **POST** /kms/egress/v2/keys-asym | Message Level Encryption
 [**update_webhook_subscription**](ManageWebhooksApi.md#update_webhook_subscription) | **PATCH** /notification-subscriptions/v1/webhooks/{webhookId} | Update a Webhook Subscription
 
@@ -54,12 +54,59 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
 
 
 
-# **get_all_webhooks**
-> Array&lt;InlineResponse2004&gt; get_all_webhooks(organization_id, product_id, event_type)
+# **get_webhook_subscription_by_id**
+> InlineResponse2004 get_webhook_subscription_by_id(webhook_id)
+
+Get Details On a Single Webhook
+
+Retrieve the details of a specific webhook by supplying the webhook ID in the path.
+
+### Example
+```ruby
+# load the gem
+require 'cybersource_rest_client'
+
+api_instance = CyberSource::ManageWebhooksApi.new
+
+webhook_id = "webhook_id_example" # String | The webhook Identifier
+
+
+begin
+  #Get Details On a Single Webhook
+  result = api_instance.get_webhook_subscription_by_id(webhook_id)
+  p result
+rescue CyberSource::ApiError => e
+  puts "Exception when calling ManageWebhooksApi->get_webhook_subscription_by_id: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **webhook_id** | **String**| The webhook Identifier | 
+
+### Return type
+
+[**InlineResponse2004**](InlineResponse2004.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
+
+
+
+# **get_webhook_subscriptions_by_org**
+> Array&lt;InlineResponse2004&gt; get_webhook_subscriptions_by_org(organization_id, product_id, event_type)
 
 Get Details On All Created Webhooks
 
@@ -81,10 +128,10 @@ event_type = "event_type_example" # String | The Event Type.
 
 begin
   #Get Details On All Created Webhooks
-  result = api_instance.get_all_webhooks(organization_id, product_id, event_type)
+  result = api_instance.get_webhook_subscriptions_by_org(organization_id, product_id, event_type)
   p result
 rescue CyberSource::ApiError => e
-  puts "Exception when calling ManageWebhooksApi->get_all_webhooks: #{e}"
+  puts "Exception when calling ManageWebhooksApi->get_webhook_subscriptions_by_org: #{e}"
 end
 ```
 
@@ -107,59 +154,12 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
 
 
 
-# **get_webhook_details**
-> InlineResponse2004 get_webhook_details(webhook_id)
-
-Get Details On a Single Webhook
-
-Retrieve the details of a specific webhook by supplying the webhook ID in the path.
-
-### Example
-```ruby
-# load the gem
-require 'cybersource_rest_client'
-
-api_instance = CyberSource::ManageWebhooksApi.new
-
-webhook_id = "webhook_id_example" # String | The webhook Identifier
-
-
-begin
-  #Get Details On a Single Webhook
-  result = api_instance.get_webhook_details(webhook_id)
-  p result
-rescue CyberSource::ApiError => e
-  puts "Exception when calling ManageWebhooksApi->get_webhook_details: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **webhook_id** | **String**| The webhook Identifier | 
-
-### Return type
-
-[**InlineResponse2004**](InlineResponse2004.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
-
-
-
-# **replay_previous_webhook**
-> replay_previous_webhook(webhook_id, opts)
+# **replay_previous_webhooks**
+> replay_previous_webhooks(webhook_id, opts)
 
 Replay Previous Webhooks
 
@@ -175,14 +175,14 @@ api_instance = CyberSource::ManageWebhooksApi.new
 webhook_id = "webhook_id_example" # String | The webhook uuid identifier.
 
 opts = { 
-  replay_webhooks: CyberSource::ReplayWebhooks.new # ReplayWebhooks | The request query
+  replay_webhooks_request: CyberSource::ReplayWebhooksRequest.new # ReplayWebhooksRequest | The request query
 }
 
 begin
   #Replay Previous Webhooks
-  api_instance.replay_previous_webhook(webhook_id, opts)
+  api_instance.replay_previous_webhooks(webhook_id, opts)
 rescue CyberSource::ApiError => e
-  puts "Exception when calling ManageWebhooksApi->replay_previous_webhook: #{e}"
+  puts "Exception when calling ManageWebhooksApi->replay_previous_webhooks: #{e}"
 end
 ```
 
@@ -191,7 +191,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **webhook_id** | **String**| The webhook uuid identifier. | 
- **replay_webhooks** | [**ReplayWebhooks**](ReplayWebhooks.md)| The request query | [optional] 
+ **replay_webhooks_request** | [**ReplayWebhooksRequest**](ReplayWebhooksRequest.md)| The request query | [optional] 
 
 ### Return type
 
@@ -204,7 +204,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
 
 
 
@@ -261,7 +261,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
 
 
 
@@ -282,7 +282,7 @@ api_instance = CyberSource::ManageWebhooksApi.new
 webhook_id = "webhook_id_example" # String | The Webhook Identifier.
 
 opts = { 
-  update_webhook: CyberSource::UpdateWebhook.new # UpdateWebhook | The webhook payload or changes to apply.
+  update_webhook_request: CyberSource::UpdateWebhookRequest.new # UpdateWebhookRequest | The webhook payload or changes to apply.
 }
 
 begin
@@ -298,7 +298,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **webhook_id** | **String**| The Webhook Identifier. | 
- **update_webhook** | [**UpdateWebhook**](UpdateWebhook.md)| The webhook payload or changes to apply. | [optional] 
+ **update_webhook_request** | [**UpdateWebhookRequest**](UpdateWebhookRequest.md)| The webhook payload or changes to apply. | [optional] 
 
 ### Return type
 
@@ -311,7 +311,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/hal+json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
 
 
 

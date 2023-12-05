@@ -44,7 +44,19 @@ describe 'ManageWebhooksApi' do
     end
   end
 
-  # unit tests for get_all_webhooks
+  # unit tests for get_webhook_subscription_by_id
+  # Get Details On a Single Webhook
+  # Retrieve the details of a specific webhook by supplying the webhook ID in the path.
+  # @param webhook_id The webhook Identifier
+  # @param [Hash] opts the optional parameters
+  # @return [InlineResponse2004]
+  describe 'get_webhook_subscription_by_id test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for get_webhook_subscriptions_by_org
   # Get Details On All Created Webhooks
   # Retrieve a list of all previously created webhooks.
   # @param organization_id The Organization Identifier.
@@ -52,32 +64,20 @@ describe 'ManageWebhooksApi' do
   # @param event_type The Event Type.
   # @param [Hash] opts the optional parameters
   # @return [Array<InlineResponse2004>]
-  describe 'get_all_webhooks test' do
+  describe 'get_webhook_subscriptions_by_org test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  # unit tests for get_webhook_details
-  # Get Details On a Single Webhook
-  # Retrieve the details of a specific webhook by supplying the webhook ID in the path.
-  # @param webhook_id The webhook Identifier
-  # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2004]
-  describe 'get_webhook_details test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for replay_previous_webhook
+  # unit tests for replay_previous_webhooks
   # Replay Previous Webhooks
   # Initiate a webhook replay request to replay transactions that happened in the past.  Cannot execute more than 1 replay request at a time. While one request is processing, you will not be allowed to execute another replay.  The difference between Start and End time cannot exceed a 24 hour window, and 1 month is the farthest date back that is eligible for replay. 
   # @param webhook_id The webhook uuid identifier.
   # @param [Hash] opts the optional parameters
-  # @option opts [ReplayWebhooks] :replay_webhooks The request query
+  # @option opts [ReplayWebhooksRequest] :replay_webhooks_request The request query
   # @return [nil]
-  describe 'replay_previous_webhook test' do
+  describe 'replay_previous_webhooks test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -103,7 +103,7 @@ describe 'ManageWebhooksApi' do
   # Update the webhook subscription using PATCH.
   # @param webhook_id The Webhook Identifier.
   # @param [Hash] opts the optional parameters
-  # @option opts [UpdateWebhook] :update_webhook The webhook payload or changes to apply.
+  # @option opts [UpdateWebhookRequest] :update_webhook_request The webhook payload or changes to apply.
   # @return [nil]
   describe 'update_webhook_subscription test' do
     it 'should work' do

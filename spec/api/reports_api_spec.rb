@@ -47,7 +47,7 @@ describe 'ReportsApi' do
 
   # unit tests for get_report_by_report_id
   # Get Report Based on Report Id
-  # Download a report using the reportId value. If you don’t already know this value, you can obtain it using the Retrieve available reports call. 
+  # Download a report using the reportId value. If you don&#39;t already know this value, you can obtain it using the Retrieve available reports call. 
   # @param report_id Valid Report Id
   # @param [Hash] opts the optional parameters
   # @option opts [String] :organization_id Valid Organization Id

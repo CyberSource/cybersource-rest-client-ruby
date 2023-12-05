@@ -16,7 +16,7 @@ module CyberSource
   class Riskv1decisionsMerchantInformation
     attr_accessor :merchant_descriptor
 
-    # Your company’s name as you want it to appear to the customer in the issuing bank’s authentication form. This value overrides the value specified by your merchant bank. 
+    # Your company's name as you want it to appear to the customer in the issuing bank's authentication form. This value overrides the value specified by your merchant bank. 
     attr_accessor :merchant_name
 
     # Attribute mapping from ruby-style variable name to JSON key.

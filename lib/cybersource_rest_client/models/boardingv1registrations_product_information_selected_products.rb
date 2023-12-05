@@ -45,7 +45,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'payments' => :'PaymentProducts',
+        :'payments' => :'PaymentsProducts',
         :'risk' => :'RiskProducts',
         :'commerce_solutions' => :'CommerceSolutionsProducts',
         :'value_added_services' => :'ValueAddedServicesProducts'

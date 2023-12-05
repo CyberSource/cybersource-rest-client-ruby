@@ -23,7 +23,7 @@ module CyberSource
     # Name of this search. When `save` is set to `true`, this search is saved with this name. 
     attr_accessor :name
 
-    # Merchant’s time zone in ISO standard, using the TZ database format. For example: `America/Chicago` 
+    # Merchant's time zone in ISO standard, using the TZ database format. For example: `America/Chicago` 
     attr_accessor :timezone
 
     # String that contains the filters and variables for which you want to search. For information about supported field-filters and operators, see the [Query Filters]( https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn-search-intro/txn-filtering.html) section of the Transaction Search Developer Guide. 

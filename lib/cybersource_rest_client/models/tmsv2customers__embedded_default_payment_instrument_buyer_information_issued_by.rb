@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class Tmsv2customersEmbeddedDefaultPaymentInstrumentBuyerInformationIssuedBy
-    # The State or province where the customer’s driver’s license was issued.  Use the two-character State, Province, and Territory Codes for the United States and Canada. 
+    # The State or province where the customer's driver's license was issued.  Use the two-character State, Province, and Territory Codes for the United States and Canada. 
     attr_accessor :administrative_area
 
     # Attribute mapping from ruby-style variable name to JSON key.

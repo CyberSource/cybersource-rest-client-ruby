@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class Upv1capturecontextsOrderInformationBillTo
-    # Payment card billing street address as it appears on the credit card issuer’s records. 
+    # Payment card billing street address as it appears on the credit card issuer's records. 
     attr_accessor :address1
 
     # Used for additional address information. For example: _Attention: Accounts Payable_ Optional field. 
@@ -35,7 +35,7 @@ module CyberSource
     # Payment card billing country. Use the two-character [ISO Standard Country Codes](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf). 
     attr_accessor :country
 
-    # Customer’s neighborhood, community, or region (a barrio in Brazil) within the city or municipality 
+    # Customer's neighborhood, community, or region (a barrio in Brazil) within the city or municipality 
     attr_accessor :district
 
     # Payment card billing city. 
@@ -49,22 +49,22 @@ module CyberSource
     # Customer's email address, including the full domain name. 
     attr_accessor :email
 
-    # Customer’s first name. This name must be the same as the name on the card
+    # Customer's first name. This name must be the same as the name on the card
     attr_accessor :first_name
 
-    # Customer’s last name. This name must be the same as the name on the card. 
+    # Customer's last name. This name must be the same as the name on the card. 
     attr_accessor :last_name
 
-    # Customer’s middle name. 
+    # Customer's middle name. 
     attr_accessor :middle_name
 
-    # Customer’s name suffix. 
+    # Customer's name suffix. 
     attr_accessor :name_suffix
 
     # Title. 
     attr_accessor :title
 
-    # Customer’s phone number. 
+    # Customer's phone number. 
     attr_accessor :phone_number
 
     # Customer's phone number type.  #### For Payouts: This field may be sent only for FDC Compass.  Possible Values: * day * home * night * work 

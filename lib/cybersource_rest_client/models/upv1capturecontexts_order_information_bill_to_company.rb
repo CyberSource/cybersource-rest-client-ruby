@@ -14,10 +14,10 @@ require 'date'
 
 module CyberSource
   class Upv1capturecontextsOrderInformationBillToCompany
-    # Name of the customer’s company.
+    # Name of the customer's company.
     attr_accessor :name
 
-    # Payment card billing street address as it appears on the credit card issuer’s records. 
+    # Payment card billing street address as it appears on the credit card issuer's records. 
     attr_accessor :address1
 
     # Used for additional address information. For example: _Attention: Accounts Payable_ Optional field. 
@@ -38,7 +38,7 @@ module CyberSource
     # Payment card billing country. Use the two-character [ISO Standard Country Codes](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf). 
     attr_accessor :country
 
-    # Customer’s neighborhood, community, or region (a barrio in Brazil) within the city or municipality 
+    # Customer's neighborhood, community, or region (a barrio in Brazil) within the city or municipality 
     attr_accessor :district
 
     # Payment card billing city. 

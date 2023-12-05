@@ -14,16 +14,16 @@ require 'date'
 
 module CyberSource
   class Tmsv2customersEmbeddedDefaultPaymentInstrumentBillTo
-    # Customer’s first name. This name must be the same as the name on the card. 
+    # Customer's first name. This name must be the same as the name on the card. 
     attr_accessor :first_name
 
-    # Customer’s last name. This name must be the same as the name on the card. 
+    # Customer's last name. This name must be the same as the name on the card. 
     attr_accessor :last_name
 
-    # Name of the customer’s company. 
+    # Name of the customer's company. 
     attr_accessor :company
 
-    # Payment card billing street address as it appears on the credit card issuer’s records. 
+    # Payment card billing street address as it appears on the credit card issuer's records. 
     attr_accessor :address1
 
     # Additional address information. 
@@ -44,7 +44,7 @@ module CyberSource
     # Customer's email address, including the full domain name. 
     attr_accessor :email
 
-    # Customer’s phone number. 
+    # Customer's phone number. 
     attr_accessor :phone_number
 
     # Attribute mapping from ruby-style variable name to JSON key.

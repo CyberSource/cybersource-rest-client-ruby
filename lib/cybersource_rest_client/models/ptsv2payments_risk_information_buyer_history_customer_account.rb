@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsRiskInformationBuyerHistoryCustomerAccount
-    # Date the cardholder’s account was last changed. This includes changes to the billing or shipping address, new payment accounts or new users added. Recommended for Discover ProtectBuy. 
+    # Date the cardholder's account was last changed. This includes changes to the billing or shipping address, new payment accounts or new users added. Recommended for Discover ProtectBuy. 
     attr_accessor :last_change_date
 
     # The values from the enum can be: - GUEST - NEW_ACCOUNT - EXISTING_ACCOUNT 

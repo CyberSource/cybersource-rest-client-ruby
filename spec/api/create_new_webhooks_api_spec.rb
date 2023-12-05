@@ -32,25 +32,25 @@ describe 'CreateNewWebhooksApi' do
     end
   end
 
-  # unit tests for create_webhook
+  # unit tests for create_webhook_subscription
   # Create a Webhook
   # Create a new webhook subscription. Before creating a webhook, ensure that a security key has been created at the top of this developer center section. You will not need to pass us back the key during the creation of the webhook, but you will receive an error if you did not already create a key or store one on file. 
   # @param [Hash] opts the optional parameters
-  # @option opts [CreateWebhook] :create_webhook The webhook payload
+  # @option opts [CreateWebhookRequest] :create_webhook_request The webhook payload
   # @return [InlineResponse2013]
-  describe 'create_webhook test' do
+  describe 'create_webhook_subscription test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  # unit tests for find_product_to_subscribe
+  # unit tests for find_products_to_subscribe
   # Find Products You Can Subscribe To
   # Retrieve a list of products and event types that your account is eligible for. These products and events are the ones that you may subscribe to in the next step of creating webhooks.
   # @param organization_id The Organization Identifier.
   # @param [Hash] opts the optional parameters
   # @return [Array<InlineResponse2003>]
-  describe 'find_product_to_subscribe test' do
+  describe 'find_products_to_subscribe test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
