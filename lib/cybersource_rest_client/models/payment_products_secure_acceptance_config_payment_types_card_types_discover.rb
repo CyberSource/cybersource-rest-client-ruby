@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   # Object containing supported Card Types and settings
-  class PaymentProductsSecureAcceptanceConfigurationInformationConfigurationsPaymentTypesCardTypesDiscover
+  class PaymentsProductsSecureAcceptanceConfigurationInformationConfigurationsPaymentTypesCardTypesDiscover
     # Dictates whether or Card Verification Number is supported by the card type. Usually this is set at system level.
     attr_accessor :card_verification_number_supported
 

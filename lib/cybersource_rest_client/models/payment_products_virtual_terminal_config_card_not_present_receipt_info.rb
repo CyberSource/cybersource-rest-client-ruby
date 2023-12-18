@@ -13,7 +13,7 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  class PaymentProductsVirtualTerminalConfigurationInformationConfigurationsCardNotPresentReceiptInformation
+  class PaymentsProductsVirtualTerminalConfigurationInformationConfigurationsCardNotPresentReceiptInformation
     attr_accessor :header
 
     attr_accessor :order_information
@@ -41,9 +41,9 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'header' => :'PaymentProductsVirtualTerminalConfigurationInformationConfigurationsCardNotPresentReceiptInformationHeader',
-        :'order_information' => :'PaymentProductsVirtualTerminalConfigurationInformationConfigurationsCardNotPresentReceiptInformationOrderInformation',
-        :'email_receipt' => :'PaymentProductsVirtualTerminalConfigurationInformationConfigurationsCardNotPresentReceiptInformationEmailReceipt'
+        :'header' => :'PaymentsProductsVirtualTerminalConfigurationInformationConfigurationsCardNotPresentReceiptInformationHeader',
+        :'order_information' => :'PaymentsProductsVirtualTerminalConfigurationInformationConfigurationsCardNotPresentReceiptInformationOrderInformation',
+        :'email_receipt' => :'PaymentsProductsVirtualTerminalConfigurationInformationConfigurationsCardNotPresentReceiptInformationEmailReceipt'
       }
     end
 

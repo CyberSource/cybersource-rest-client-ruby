@@ -22,10 +22,12 @@ module CyberSource
     end
     # Download a File with File Identifier
     # Download a file for the given file identifier
+    #
     # @param file_id Unique identifier for each file
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @return [nil]
+    #
     def get_file(file_id, opts = {})
       data, status_code, headers = get_file_with_http_info(file_id, opts)
       return data, status_code, headers
@@ -51,14 +53,6 @@ module CyberSource
       if @api_client.config.client_side_validation && file_id.nil?
         fail ArgumentError, "Missing the required parameter 'file_id' when calling SecureFileShareApi.get_file"
       end
-      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length > 32
-        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling SecureFileShareApi.get_file, the character length must be smaller than or equal to 32.'
-      end
-
-      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length < 1
-        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling SecureFileShareApi.get_file, the character length must be great than or equal to 1.'
-      end
-
       #if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
         #fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling SecureFileShareApi.get_file, must conform to the pattern /[a-zA-Z0-9-_]+/."
       #end
@@ -105,12 +99,14 @@ module CyberSource
     end
     # Get List of Files
     # Get list of files and it's information of them available inside the report directory
+    #
     # @param start_date Valid start date in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)   **Example date format:**   - yyyy-MM-dd 
     # @param end_date Valid end date in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)   **Example date format:**   - yyyy-MM-dd 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Cybersource Organization Id
     # @option opts [String] :name **Tailored to searches for specific files with in given Date range** example : MyTransactionDetailreport.xml 
     # @return [V1FileDetailsGet200Response]
+    #
     def get_file_detail(start_date, end_date, opts = {})
       data, status_code, headers = get_file_detail_with_http_info(start_date, end_date, opts)
       return data, status_code, headers
@@ -142,14 +138,6 @@ module CyberSource
       if @api_client.config.client_side_validation && end_date.nil?
         fail ArgumentError, "Missing the required parameter 'end_date' when calling SecureFileShareApi.get_file_detail"
       end
-      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length > 32
-        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling SecureFileShareApi.get_file_detail, the character length must be smaller than or equal to 32.'
-      end
-
-      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length < 1
-        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling SecureFileShareApi.get_file_detail, the character length must be great than or equal to 1.'
-      end
-
       #if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
         #fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling SecureFileShareApi.get_file_detail, must conform to the pattern /[a-zA-Z0-9-_]+/."
       #end

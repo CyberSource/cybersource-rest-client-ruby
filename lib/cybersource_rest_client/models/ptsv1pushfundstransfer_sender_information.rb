@@ -26,7 +26,7 @@ module CyberSource
     # Supported only for Mastercard  transactions. This field contains the  middle name of the entity funding the transaction 
     attr_accessor :middle_name
 
-    # Sender’s postal code.  For USA, this must be a valid value of 5 digits or 5 digits hyphen 4 digits, for example '63368', '63368-5555'. For other regions, this can be alphanumeric, length 1-10.  Required for FDCCompass. 
+    # Sender's postal code.  For USA, this must be a valid value of 5 digits or 5 digits hyphen 4 digits, for example '63368', '63368-5555'. For other regions, this can be alphanumeric, length 1-10.  Required for FDCCompass. 
     attr_accessor :postal_code
 
     # Street address of sender.  Funds Disbursement  This value is the address of the originator sending the funds disbursement.  Visa Platform Connect Required for transactions using business application id of AA, BI, PP, and WT. 
@@ -38,7 +38,7 @@ module CyberSource
     # The sender's city  Visa Platform Connect Required for transactions using business application id of AA, BI, PP, and WT. 
     attr_accessor :locality
 
-    # Sender’s state. Use the State, Province, and Territory Codes for the United States and Canada.The sender's province, state or territory. Conditional, required if sender's country is USA or CAN. Must be uppercase alpha 2 or 3 character country subdivision code.  See https://developer.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf 
+    # Sender's state. Use the State, Province, and Territory Codes for the United States and Canada.The sender's province, state or territory. Conditional, required if sender's country is USA or CAN. Must be uppercase alpha 2 or 3 character country subdivision code.  See https://developer.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf 
     attr_accessor :administrative_area
 
     # Sender's country code. Use ISO Standard Alpha Country Codes.  https://developer.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf  Visa Platform Connect Required for transactions using business application id of AA, BI, PP, and WT.  Required for Mastercard Send 
@@ -47,10 +47,10 @@ module CyberSource
     # Customer's government-assigned tax identification number. 
     attr_accessor :vat_registration_number
 
-    # Sender’s date of birth in YYYYMMDD format. 
+    # Sender's date of birth in YYYYMMDD format. 
     attr_accessor :date_of_birth
 
-    # Sender’s phone number. 
+    # Sender's phone number. 
     attr_accessor :phone_number
 
     attr_accessor :payment_information

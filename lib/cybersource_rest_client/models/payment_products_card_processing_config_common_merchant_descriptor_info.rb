@@ -13,8 +13,8 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  # A merchant descriptor is the line of copy that identifies transactions on a cardholder’s account activity and statement. If this information is not populated, the data will be retrieved from OMS.
-  class PaymentProductsCardProcessingConfigurationInformationConfigurationsCommonMerchantDescriptorInformation
+  # A merchant descriptor is the line of copy that identifies transactions on a cardholder's account activity and statement. If this information is not populated, the data will be retrieved from OMS.
+  class PaymentsProductsCardProcessingConfigurationInformationConfigurationsCommonMerchantDescriptorInformation
     # Applicable for TSYS (tsys), RUPAY, American Express Direct (amexdirect) and Elavon Americas (elavonamericas) processors.  Validation details (for selected processors)...  <table> <thead><tr><th>Processor</th><th>Acceptance Type</th><th>Required</th><th>Min. Length</th><th>Max. Length</th><th>Regex</th></tr></thead> <tr><td>American Express Direct</td><td>cnp, cp, hybrid</td><td>Yes</td><td>1</td><td>38</td><td>^[0-9a-zA-Z\\s]+$</td></tr> </table> 
     attr_accessor :name
 

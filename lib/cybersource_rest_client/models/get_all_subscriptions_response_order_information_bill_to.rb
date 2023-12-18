@@ -14,10 +14,10 @@ require 'date'
 
 module CyberSource
   class GetAllSubscriptionsResponseOrderInformationBillTo
-    # Customer’s first name. 
+    # Customer's first name. 
     attr_accessor :first_name
 
-    # Customer’s last name. 
+    # Customer's last name. 
     attr_accessor :last_name
 
     # Attribute mapping from ruby-style variable name to JSON key.

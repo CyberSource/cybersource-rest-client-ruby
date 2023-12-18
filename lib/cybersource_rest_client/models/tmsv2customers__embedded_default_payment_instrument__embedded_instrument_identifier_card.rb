@@ -15,7 +15,7 @@ require 'date'
 module CyberSource
   # The expirationMonth, expirationYear and securityCode is sent to the issuer as part of network token enrollment and is not stored under the Instrument Identifier. 
   class Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifierCard
-    # The customer’s payment card number, also known as the Primary Account Number (PAN). You can also use this field for encoded account numbers. 
+    # The customer's payment card number, also known as the Primary Account Number (PAN). You can also use this field for encoded account numbers. 
     attr_accessor :number
 
     # Two-digit month in which the payment card expires.  Format: `MM`.  Possible Values: `01` through `12`. 

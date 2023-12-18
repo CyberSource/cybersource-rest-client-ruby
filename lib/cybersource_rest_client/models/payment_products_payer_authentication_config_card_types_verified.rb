@@ -13,7 +13,7 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  class PaymentProductsPayerAuthenticationConfigurationInformationConfigurationsCardTypesVerifiedByVisa
+  class PaymentsProductsPayerAuthenticationConfigurationInformationConfigurationsCardTypesVerifiedByVisa
     attr_accessor :enabled
 
     attr_accessor :currencies
@@ -38,7 +38,7 @@ module CyberSource
     def self.swagger_types
       {
         :'enabled' => :'BOOLEAN',
-        :'currencies' => :'Array<PaymentProductsPayerAuthenticationConfigurationInformationConfigurationsCardTypesVerifiedByVisaCurrencies>'
+        :'currencies' => :'Array<PaymentsProductsPayerAuthenticationConfigurationInformationConfigurationsCardTypesVerifiedByVisaCurrencies>'
       }
     end
 

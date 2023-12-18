@@ -22,9 +22,11 @@ module CyberSource
     end
     # Create one or more PKCS12 keys
     # 'Create one or more PKCS12 keys' 
+    #
     # @param create_p12_keys_request 
     # @param [Hash] opts the optional parameters
     # @return [KmsV2KeysAsymPost201Response]
+    #
     def create_p12_keys(create_p12_keys_request, opts = {})
       data, status_code, headers = create_p12_keys_with_http_info(create_p12_keys_request, opts)
       return data, status_code, headers
@@ -89,9 +91,11 @@ module CyberSource
     end
     # Delete one or more PKCS12 keys
     # 'Delete one or more PKCS12 keys' 
+    #
     # @param delete_bulk_p12_keys_request 
     # @param [Hash] opts the optional parameters
     # @return [KmsV2KeysAsymDeletesPost200Response]
+    #
     def delete_bulk_p12_keys(delete_bulk_p12_keys_request, opts = {})
       data, status_code, headers = delete_bulk_p12_keys_with_http_info(delete_bulk_p12_keys_request, opts)
       return data, status_code, headers
@@ -156,9 +160,11 @@ module CyberSource
     end
     # Retrieves PKCS12 key details
     # Retrieves keys details by providing the key id.
+    #
     # @param key_id Key ID. 
     # @param [Hash] opts the optional parameters
     # @return [KmsV2KeysAsymGet200Response]
+    #
     def get_p12_key_details(key_id, opts = {})
       data, status_code, headers = get_p12_key_details_with_http_info(key_id, opts)
       return data, status_code, headers
@@ -225,10 +231,12 @@ module CyberSource
     end
     # Activate or De-activate Asymmetric Key
     # Activate or De-activate Asymmetric Key 
+    #
     # @param key_id Key ID. 
     # @param update_asym_keys_request 
     # @param [Hash] opts the optional parameters
     # @return [Object]
+    #
     def update_asym_key(key_id, update_asym_keys_request, opts = {})
       data, status_code, headers = update_asym_key_with_http_info(key_id, update_asym_keys_request, opts)
       return data, status_code, headers

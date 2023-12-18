@@ -22,9 +22,11 @@ module CyberSource
     end
     # Process a Payment
     # A payment authorizes the amount for the transaction. There are a number of supported payment features, such as E-commerce and Card Present - Credit Card/Debit Card, Echeck, e-Wallets, Level II/III Data, etc..  A payment response includes the status of the request. It also includes processor-specific information when the request is successful and errors if unsuccessful. See the [Payments Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/payments/developer/ctv/rest/payments/payments-intro.html).  Authorization can be requested with Capture, Decision Manager, Payer Authentication(3ds), and Token Creation. 
+    #
     # @param create_payment_request 
     # @param [Hash] opts the optional parameters
     # @return [PtsV2PaymentsPost201Response]
+    #
     def create_payment(create_payment_request, opts = {})
       data, status_code, headers = create_payment_with_http_info(create_payment_request, opts)
       return data, status_code, headers
@@ -89,10 +91,12 @@ module CyberSource
     end
     # Increment an Authorization
     # Use this service to authorize additional charges in a lodging or autorental transaction. Include the ID returned from the original authorization in the PATCH request to add additional charges to that authorization. 
+    #
     # @param id The ID returned from the original authorization request.
     # @param increment_auth_request 
     # @param [Hash] opts the optional parameters
     # @return [PtsV2IncrementalAuthorizationPatch201Response]
+    #
     def increment_auth(id, increment_auth_request, opts = {})
       data, status_code, headers = increment_auth_with_http_info(id, increment_auth_request, opts)
       return data, status_code, headers
@@ -162,10 +166,12 @@ module CyberSource
     end
     # Check a Payment Status
     # Checks and updates the payment status 
+    #
     # @param id The payment id whose status needs to be checked and updated.
     # @param refresh_payment_status_request 
     # @param [Hash] opts the optional parameters
     # @return [PtsV2PaymentsPost201Response1]
+    #
     def refresh_payment_status(id, refresh_payment_status_request, opts = {})
       data, status_code, headers = refresh_payment_status_with_http_info(id, refresh_payment_status_request, opts)
       return data, status_code, headers

@@ -13,7 +13,7 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  class PaymentProductsCardProcessingConfigurationInformationConfigurationsFeaturesCardNotPresentInstallment
+  class PaymentsProductsCardProcessingConfigurationInformationConfigurationsFeaturesCardNotPresentInstallment
     # This flag is to enable for installment plan programs. Applicable for Fiserv (fiserv), Vero (vero) and American Express Direct (amexdirect) processors.  Validation details (for selected processors)...  <table> <thead><tr><th>Processor</th><th>Acceptance Type</th><th>Required</th><th>Default Value</th></tr></thead> <tr><td>American Express Direct</td><td>cnp</td><td>No</td><td>No</td></tr> </table> 
     attr_accessor :enable_installment
 

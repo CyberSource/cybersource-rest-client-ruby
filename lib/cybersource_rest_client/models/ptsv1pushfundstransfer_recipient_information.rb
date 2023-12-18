@@ -37,7 +37,7 @@ module CyberSource
     # First name of recipient.  Visa Platform Connect (14) Chase Paymentech (30) Mastercard Send (40)  This field is required for Mastercard Send. 
     attr_accessor :first_name
 
-    # Sender’s middle name. This field is a passthrough, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. If the field is not required for the transaction, CyberSource does not forward it to the processor. 
+    # Sender's middle name. This field is a passthrough, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. If the field is not required for the transaction, CyberSource does not forward it to the processor. 
     attr_accessor :middle_name
 
     # Middle Initial of recipient.  This field is supported by FDC Compass. 

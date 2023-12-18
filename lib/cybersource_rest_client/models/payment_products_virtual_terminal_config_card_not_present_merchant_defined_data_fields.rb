@@ -13,7 +13,7 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  class PaymentProductsVirtualTerminalConfigurationInformationConfigurationsCardNotPresentGlobalPaymentInformationMerchantDefinedDataFields
+  class PaymentsProductsVirtualTerminalConfigurationInformationConfigurationsCardNotPresentGlobalPaymentInformationMerchantDefinedDataFields
     attr_accessor :display_merchant_defined_data1
 
     attr_accessor :display_merchant_defined_data2

@@ -22,9 +22,11 @@ module CyberSource
     end
     # Validate export compliance
     # This call checks customer data against specified watch lists to ensure export compliance. 
+    #
     # @param validate_export_compliance_request 
     # @param [Hash] opts the optional parameters
     # @return [RiskV1ExportComplianceInquiriesPost201Response]
+    #
     def validate_export_compliance(validate_export_compliance_request, opts = {})
       data, status_code, headers = validate_export_compliance_with_http_info(validate_export_compliance_request, opts)
       return data, status_code, headers
@@ -89,9 +91,11 @@ module CyberSource
     end
     # Verify customer address
     # This call verifies that the customer address submitted is valid.
+    #
     # @param verify_customer_address_request 
     # @param [Hash] opts the optional parameters
     # @return [RiskV1AddressVerificationsPost201Response]
+    #
     def verify_customer_address(verify_customer_address_request, opts = {})
       data, status_code, headers = verify_customer_address_with_http_info(verify_customer_address_request, opts)
       return data, status_code, headers

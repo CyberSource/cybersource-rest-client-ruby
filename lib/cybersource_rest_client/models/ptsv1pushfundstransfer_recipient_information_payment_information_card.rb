@@ -20,7 +20,7 @@ module CyberSource
     # 3-digit value that indicates the cardCvv2Value. Values can be 0-9. 
     attr_accessor :security_code
 
-    # The customer’s payment card number, also known as the Primary Account Number (PAN).  Conditional: this field is required if not using tokens. 
+    # The customer's payment card number, also known as the Primary Account Number (PAN).  Conditional: this field is required if not using tokens. 
     attr_accessor :number
 
     # Two-digit month in which the payment card expires.  Format: MM.  Valid values: 01 through 12. Leading 0 is required. 

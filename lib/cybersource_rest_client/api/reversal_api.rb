@@ -22,10 +22,12 @@ module CyberSource
     end
     # Process an Authorization Reversal
     # Include the payment ID in the POST request to reverse the payment amount.
+    #
     # @param id The payment ID returned from a previous payment request.
     # @param auth_reversal_request 
     # @param [Hash] opts the optional parameters
     # @return [PtsV2PaymentsReversalsPost201Response]
+    #
     def auth_reversal(id, auth_reversal_request, opts = {})
       data, status_code, headers = auth_reversal_with_http_info(id, auth_reversal_request, opts)
       return data, status_code, headers
@@ -95,9 +97,11 @@ module CyberSource
     end
     # Timeout Reversal
     # This is to reverse a previous payment that merchant does not receive a reply(Mostly due to Timeout). To use this feature/API, make sure to pass unique value to field - clientReferenceInformation -> transactionId in [/pts/v2/payments](https://developer.cybersource.com/api-reference-assets/index.html#payments_payments) API call and use same transactionId in this API request payload to reverse the payment.
+    #
     # @param mit_reversal_request 
     # @param [Hash] opts the optional parameters
     # @return [PtsV2PaymentsReversalsPost201Response]
+    #
     def mit_reversal(mit_reversal_request, opts = {})
       data, status_code, headers = mit_reversal_with_http_info(mit_reversal_request, opts)
       return data, status_code, headers

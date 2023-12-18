@@ -22,9 +22,11 @@ module CyberSource
     end
     # Process a Payout
     # Send funds from a selected funding source to a designated credit/debit card account or a prepaid card using an Original Credit Transaction (OCT). 
+    #
     # @param oct_create_payment_request 
     # @param [Hash] opts the optional parameters
     # @return [PtsV2PayoutsPost201Response]
+    #
     def oct_create_payment(oct_create_payment_request, opts = {})
       data, status_code, headers = oct_create_payment_with_http_info(oct_create_payment_request, opts)
       return data, status_code, headers

@@ -13,7 +13,7 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  class PaymentProductsSecureAcceptanceConfigurationInformationConfigurationsPaymentTypesCardTypes
+  class PaymentsProductsSecureAcceptanceConfigurationInformationConfigurationsPaymentTypesCardTypes
     attr_accessor :discover
 
     attr_accessor :amex
@@ -45,10 +45,10 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'discover' => :'PaymentProductsSecureAcceptanceConfigurationInformationConfigurationsPaymentTypesCardTypesDiscover',
-        :'amex' => :'PaymentProductsSecureAcceptanceConfigurationInformationConfigurationsPaymentTypesCardTypesDiscover',
-        :'master_card' => :'PaymentProductsSecureAcceptanceConfigurationInformationConfigurationsPaymentTypesCardTypesDiscover',
-        :'visa' => :'PaymentProductsSecureAcceptanceConfigurationInformationConfigurationsPaymentTypesCardTypesDiscover'
+        :'discover' => :'PaymentsProductsSecureAcceptanceConfigurationInformationConfigurationsPaymentTypesCardTypesDiscover',
+        :'amex' => :'PaymentsProductsSecureAcceptanceConfigurationInformationConfigurationsPaymentTypesCardTypesDiscover',
+        :'master_card' => :'PaymentsProductsSecureAcceptanceConfigurationInformationConfigurationsPaymentTypesCardTypesDiscover',
+        :'visa' => :'PaymentsProductsSecureAcceptanceConfigurationInformationConfigurationsPaymentTypesCardTypesDiscover'
       }
     end
 

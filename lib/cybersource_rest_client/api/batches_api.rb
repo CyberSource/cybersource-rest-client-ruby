@@ -22,9 +22,11 @@ module CyberSource
     end
     # Retrieve a Batch Report
     # **Get Batch Report**<br>This resource accepts a batch id and returns: - The batch status. - The total number of accepted, rejected, updated records. - The total number of card association responses. - The billable quantities of:   - New Account Numbers (NAN)   - New Expiry Dates (NED)   - Account Closures (ACL)   - Contact Card Holders (CCH) - Source record information including token ids, masked card number, expiration dates & card type. - Response record information including response code, reason, token ids, masked card number, expiration dates & card type. 
+    #
     # @param batch_id Unique identification number assigned to the submitted request.
     # @param [Hash] opts the optional parameters
     # @return [InlineResponse2007]
+    #
     def get_batch_report(batch_id, opts = {})
       data, status_code, headers = get_batch_report_with_http_info(batch_id, opts)
       return data, status_code, headers
@@ -49,14 +51,6 @@ module CyberSource
       if @api_client.config.client_side_validation && batch_id.nil?
         fail ArgumentError, "Missing the required parameter 'batch_id' when calling BatchesApi.get_batch_report"
       end
-      # if @api_client.config.client_side_validation && batch_id > 32
-      #   fail ArgumentError, 'invalid value for "batch_id" when calling BatchesApi.get_batch_report, must be smaller than or equal to 32.'
-      # end
-      #
-      # if @api_client.config.client_side_validation && batch_id < 16
-      #   fail ArgumentError, 'invalid value for "batch_id" when calling BatchesApi.get_batch_report, must be greater than or equal to 16.'
-      # end
-
       # resource path
       local_var_path = 'accountupdater/v1/batches/{batchId}/report'.sub('{' + 'batchId' + '}', batch_id.to_s)
 
@@ -99,9 +93,11 @@ module CyberSource
     end
     # Retrieve a Batch Status
     # **Get Batch Status**<br>This resource accepts a batch id and returns: - The batch status. - The total number of accepted, rejected, updated records. - The total number of card association responses. - The billable quantities of:   - New Account Numbers (NAN)   - New Expiry Dates (NED)   - Account Closures (ACL)   - Contact Card Holders (CCH) 
+    #
     # @param batch_id Unique identification number assigned to the submitted request.
     # @param [Hash] opts the optional parameters
     # @return [InlineResponse2006]
+    #
     def get_batch_status(batch_id, opts = {})
       data, status_code, headers = get_batch_status_with_http_info(batch_id, opts)
       return data, status_code, headers
@@ -126,14 +122,6 @@ module CyberSource
       if @api_client.config.client_side_validation && batch_id.nil?
         fail ArgumentError, "Missing the required parameter 'batch_id' when calling BatchesApi.get_batch_status"
       end
-      # if @api_client.config.client_side_validation && batch_id > 32
-      #   fail ArgumentError, 'invalid value for "batch_id" when calling BatchesApi.get_batch_status, must be smaller than or equal to 32.'
-      # end
-      #
-      # if @api_client.config.client_side_validation && batch_id < 16
-      #   fail ArgumentError, 'invalid value for "batch_id" when calling BatchesApi.get_batch_status, must be greater than or equal to 16.'
-      # end
-
       # resource path
       local_var_path = 'accountupdater/v1/batches/{batchId}/status'.sub('{' + 'batchId' + '}', batch_id.to_s)
 
@@ -176,12 +164,14 @@ module CyberSource
     end
     # List Batches
     # **List Batches**<br>This resource accepts a optional date range, record offset and limit, returning a paginated response of batches containing: - The batch id. - The batch status. - The batch created / modified dates. - The total number of accepted, rejected, updated records. - The total number of card association responses. 
+    #
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :offset Starting record in zero-based dataset that should be returned as the first object in the array. (default to 0)
     # @option opts [Integer] :limit The maximum number that can be returned in the array starting from the offset record in zero-based dataset. (default to 20)
     # @option opts [String] :from_date ISO-8601 format: yyyyMMddTHHmmssZ
     # @option opts [String] :to_date ISO-8601 format: yyyyMMddTHHmmssZ
     # @return [InlineResponse2005]
+    #
     def get_batches_list(opts = {})
       data, status_code, headers = get_batches_list_with_http_info(opts)
       return data, status_code, headers
@@ -205,18 +195,6 @@ module CyberSource
                 puts 'Cannot write to log'
             end
       end
-      if @api_client.config.client_side_validation && !opts[:'offset'].nil? && opts[:'offset'] < 0
-        fail ArgumentError, 'invalid value for "opts[:"offset"]" when calling BatchesApi.get_batches_list, must be greater than or equal to 0.'
-      end
-
-      if @api_client.config.client_side_validation && !opts[:'limit'].nil? && opts[:'limit'] > 500
-        fail ArgumentError, 'invalid value for "opts[:"limit"]" when calling BatchesApi.get_batches_list, must be smaller than or equal to 500.'
-      end
-
-      if @api_client.config.client_side_validation && !opts[:'limit'].nil? && opts[:'limit'] < 1
-        fail ArgumentError, 'invalid value for "opts[:"limit"]" when calling BatchesApi.get_batches_list, must be greater than or equal to 1.'
-      end
-
       # resource path
       local_var_path = 'accountupdater/v1/batches'
 
@@ -263,9 +241,11 @@ module CyberSource
     end
     # Create a Batch
     # **Create a Batch**<br>This resource accepts TMS tokens ids of a Customer, Payment Instrument or Instrument Identifier. <br> The card numbers for the supplied tokens ids are then sent to the relevant card associations to check for updates.<br>The following type of batches can be submitted: -  **oneOff** batch containing tokens id for Visa or MasterCard card numbers. - **amexRegistration** batch containing tokens id for Amex card numbers.  A batch id will be returned on a successful response which can be used to get the batch status and the batch report. 
+    #
     # @param body 
     # @param [Hash] opts the optional parameters
     # @return [InlineResponse202]
+    #
     def post_batch(body, opts = {})
       data, status_code, headers = post_batch_with_http_info(body, opts)
       return data, status_code, headers

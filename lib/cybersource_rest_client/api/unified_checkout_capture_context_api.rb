@@ -22,9 +22,11 @@ module CyberSource
     end
     # Generate Unified Checkout Capture Context
     # Generate a one-time use capture context used for the invocation of Unified Checkout. The Request wil contain all of the parameters for how Unified Checkout will operate within a client webpage. The resulting payload will be a JWT signed object that can be used to initiate Unified Checkout within a merchant web page
+    #
     # @param generate_unified_checkout_capture_context_request 
     # @param [Hash] opts the optional parameters
     # @return [String]
+    #
     def generate_unified_checkout_capture_context(generate_unified_checkout_capture_context_request, opts = {})
       data, status_code, headers = generate_unified_checkout_capture_context_with_http_info(generate_unified_checkout_capture_context_request, opts)
       return data, status_code, headers

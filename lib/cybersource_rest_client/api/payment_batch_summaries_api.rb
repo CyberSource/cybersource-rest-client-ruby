@@ -22,6 +22,7 @@ module CyberSource
     end
     # Get Payment Batch Summary Data
     # Scope can be either account/merchant or reseller.
+    #
     # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
     # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
     # @param [Hash] opts the optional parameters
@@ -30,6 +31,7 @@ module CyberSource
     # @option opts [String] :breakdown Conditional - Breakdown on account_rollup/all_merchant/selected_merchant. Required while getting breakdown data for a Merchant.
     # @option opts [Integer] :start_day_of_week Optional - Start day of week to breakdown data for weeks in a month
     # @return [ReportingV3PaymentBatchSummariesGet200Response]
+    #
     def get_payment_batch_summary(start_time, end_time, opts = {})
       data, status_code, headers = get_payment_batch_summary_with_http_info(start_time, end_time, opts)
       return data, status_code, headers
@@ -63,25 +65,9 @@ module CyberSource
       if @api_client.config.client_side_validation && end_time.nil?
         fail ArgumentError, "Missing the required parameter 'end_time' when calling PaymentBatchSummariesApi.get_payment_batch_summary"
       end
-      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length > 32
-        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling PaymentBatchSummariesApi.get_payment_batch_summary, the character length must be smaller than or equal to 32.'
-      end
-
-      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length < 1
-        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling PaymentBatchSummariesApi.get_payment_batch_summary, the character length must be great than or equal to 1.'
-      end
-
       #if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
         #fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling PaymentBatchSummariesApi.get_payment_batch_summary, must conform to the pattern /[a-zA-Z0-9-_]+/."
       #end
-
-      if @api_client.config.client_side_validation && !opts[:'start_day_of_week'].nil? && opts[:'start_day_of_week'] > 7
-        fail ArgumentError, 'invalid value for "opts[:"start_day_of_week"]" when calling PaymentBatchSummariesApi.get_payment_batch_summary, must be smaller than or equal to 7.'
-      end
-
-      if @api_client.config.client_side_validation && !opts[:'start_day_of_week'].nil? && opts[:'start_day_of_week'] < 1
-        fail ArgumentError, 'invalid value for "opts[:"start_day_of_week"]" when calling PaymentBatchSummariesApi.get_payment_batch_summary, must be greater than or equal to 1.'
-      end
 
       # resource path
       local_var_path = 'reporting/v3/payment-batch-summaries'

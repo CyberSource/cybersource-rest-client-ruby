@@ -13,7 +13,7 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  class PaymentProductsECheckConfigurationInformationConfigurationsFeaturesAccountValidationServiceInternalOnly
+  class PaymentsProductsECheckConfigurationInformationConfigurationsFeaturesAccountValidationServiceInternalOnly
     # *NEW* Payment Processing connection used to support eCheck, aka ACH, payment methods. Example * \"bofaach\" * \"wellsfargoach\" 
     attr_accessor :processors
 

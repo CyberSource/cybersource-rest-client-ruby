@@ -22,9 +22,11 @@ module CyberSource
     end
     # Get Transient Token Data
     # Retrieve the data captured by Unified Checkout. This API is used to retrieve the detailed data represented by the Transient Token. This API will not return PCI payment data (PAN). Include the Request ID in the GET request to retrieve the transaction details.
+    #
     # @param transient_token Transient Token returned by the Unified Checkout application. 
     # @param [Hash] opts the optional parameters
     # @return [nil]
+    #
     def get_transaction_for_transient_token(transient_token, opts = {})
       data, status_code, headers = get_transaction_for_transient_token_with_http_info(transient_token, opts)
       return data, status_code, headers

@@ -13,7 +13,7 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  class PaymentProductsECheckConfigurationInformationConfigurationsFeaturesAccountValidationService
+  class PaymentsProductsECheckConfigurationInformationConfigurationsFeaturesAccountValidationService
     attr_accessor :internal_only
 
     # *NEW* Payment Processing connection used to support eCheck, aka ACH, payment methods. Example * \"bofaach\" * \"wellsfargoach\" 
@@ -38,8 +38,8 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'internal_only' => :'PaymentProductsECheckConfigurationInformationConfigurationsFeaturesAccountValidationServiceInternalOnly',
-        :'processors' => :'Hash<String, PaymentProductsECheckConfigurationInformationConfigurationsFeaturesAccountValidationServiceProcessors>'
+        :'internal_only' => :'PaymentsProductsECheckConfigurationInformationConfigurationsFeaturesAccountValidationServiceInternalOnly',
+        :'processors' => :'Hash<String, PaymentsProductsECheckConfigurationInformationConfigurationsFeaturesAccountValidationServiceProcessors>'
       }
     end
 

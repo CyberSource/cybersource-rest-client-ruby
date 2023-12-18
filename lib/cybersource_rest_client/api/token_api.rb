@@ -22,10 +22,12 @@ module CyberSource
     end
     # Generate Payment Credentials for a TMS Token
     # |  |  |  |     | --- | --- | --- |     |**Token**<br>A Token can represent your tokenized Customer, Payment Instrument or Instrument Identifier information.|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|**Payment Credentials**<br>Contains payment information such as the network token, generated cryptogram for Visa & MasterCard or dynamic CVV for Amex in a JSON Web Encryption (JWE) response.<br>Your system can use this API to retrieve the Payment Credentials for an existing Customer, Payment Instrument or Instrument Identifier. 
+    #
     # @param token_id The Id of a token representing a Customer, Payment Instrument or Instrument Identifier.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
     # @return [String]
+    #
     def post_token_payment_credentials(token_id, opts = {})
       data, status_code, headers = post_token_payment_credentials_with_http_info(token_id, opts)
       return data, status_code, headers
@@ -51,22 +53,6 @@ module CyberSource
       if @api_client.config.client_side_validation && token_id.nil?
         fail ArgumentError, "Missing the required parameter 'token_id' when calling TokenApi.post_token_payment_credentials"
       end
-      if @api_client.config.client_side_validation && token_id.to_s.length > 32
-        fail ArgumentError, 'invalid value for "token_id" when calling TokenApi.post_token_payment_credentials, the character length must be smaller than or equal to 32.'
-      end
-
-      if @api_client.config.client_side_validation && token_id.to_s.length < 1
-        fail ArgumentError, 'invalid value for "token_id" when calling TokenApi.post_token_payment_credentials, the character length must be great than or equal to 1.'
-      end
-
-      if @api_client.config.client_side_validation && !opts[:'profile_id'].nil? && opts[:'profile_id'].to_s.length > 36
-        fail ArgumentError, 'invalid value for "opts[:"profile_id"]" when calling TokenApi.post_token_payment_credentials, the character length must be smaller than or equal to 36.'
-      end
-
-      if @api_client.config.client_side_validation && !opts[:'profile_id'].nil? && opts[:'profile_id'].to_s.length < 36
-        fail ArgumentError, 'invalid value for "opts[:"profile_id"]" when calling TokenApi.post_token_payment_credentials, the character length must be great than or equal to 36.'
-      end
-
       # resource path
       local_var_path = 'tms/v2/tokens/{tokenId}/payment-credentials'.sub('{' + 'tokenId' + '}', token_id.to_s)
 

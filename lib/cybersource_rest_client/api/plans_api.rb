@@ -22,9 +22,11 @@ module CyberSource
     end
     # Activate a Plan
     # Activate a Plan
+    #
     # @param id Plan Id
     # @param [Hash] opts the optional parameters
     # @return [ActivateDeactivatePlanResponse]
+    #
     def activate_plan(id, opts = {})
       data, status_code, headers = activate_plan_with_http_info(id, opts)
       return data, status_code, headers
@@ -91,9 +93,11 @@ module CyberSource
     end
     # Create a Plan
     # The recurring billing service enables you to manage payment plans and subscriptions for recurring payment schedules. It securely stores your customer's payment information and personal data within secure Visa data centers, reducing storage risks and PCI DSS scope through the use of *Token Management* (*TMS*).  The three key elements of *Cybersource* Recurring Billing are:  -  **Token**: stores customer billing, shipping, and payment details.  -  **Plan**: stores the billing schedule.  -  **Subscription**: combines the token and plan, and defines the subscription start date, name, and description.  The APIs in this section demonstrate the management of the Plans and Subscriptions. For Tokens please refer to [Token Management](#token-management) 
+    #
     # @param create_plan_request 
     # @param [Hash] opts the optional parameters
     # @return [CreatePlanResponse]
+    #
     def create_plan(create_plan_request, opts = {})
       data, status_code, headers = create_plan_with_http_info(create_plan_request, opts)
       return data, status_code, headers
@@ -158,9 +162,11 @@ module CyberSource
     end
     # Deactivate a Plan
     # Deactivate a Plan
+    #
     # @param id Plan Id
     # @param [Hash] opts the optional parameters
     # @return [ActivateDeactivatePlanResponse]
+    #
     def deactivate_plan(id, opts = {})
       data, status_code, headers = deactivate_plan_with_http_info(id, opts)
       return data, status_code, headers
@@ -227,9 +233,11 @@ module CyberSource
     end
     # Delete a Plan
     # Delete a Plan is only allowed: - plan status is in `DRAFT` - plan status is in `ACTIVE`, and `INACTIVE` only allowed when no subscriptions attached to a plan in the lifetime of a plan 
+    #
     # @param id Plan Id
     # @param [Hash] opts the optional parameters
     # @return [DeletePlanResponse]
+    #
     def delete_plan(id, opts = {})
       data, status_code, headers = delete_plan_with_http_info(id, opts)
       return data, status_code, headers
@@ -296,9 +304,11 @@ module CyberSource
     end
     # Get a Plan
     # Retrieve a Plan details by Plan Id.
+    #
     # @param id Plan Id
     # @param [Hash] opts the optional parameters
     # @return [GetPlanResponse]
+    #
     def get_plan(id, opts = {})
       data, status_code, headers = get_plan_with_http_info(id, opts)
       return data, status_code, headers
@@ -365,8 +375,10 @@ module CyberSource
     end
     # Get a Plan Code
     # Get a Unique Plan Code
+    #
     # @param [Hash] opts the optional parameters
     # @return [GetPlanCodeResponse]
+    #
     def get_plan_code(opts = {})
       data, status_code, headers = get_plan_code_with_http_info(opts)
       return data, status_code, headers
@@ -428,6 +440,7 @@ module CyberSource
     end
     # Get a List of Plans
     # Retrieve Plans by Plan Code & Plan Status. 
+    #
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :offset Page offset number.
     # @option opts [Integer] :limit Number of items to be returned. Default - &#x60;20&#x60;, Max - &#x60;100&#x60; 
@@ -435,6 +448,7 @@ module CyberSource
     # @option opts [String] :status Filter by Plan Status
     # @option opts [String] :name Filter by Plan Name. (First sub string or full string) **[Not Recommended]** 
     # @return [GetAllPlansResponse]
+    #
     def get_plans(opts = {})
       data, status_code, headers = get_plans_with_http_info(opts)
       return data, status_code, headers
@@ -506,10 +520,12 @@ module CyberSource
     end
     # Update a Plan
     # Update a Plan  Plan in `DRAFT` status - All updates are allowed on Plan with `DRAFT` status  Plan in `ACTIVE` status [Following fields are **Not Updatable**] - `planInformation.billingPeriod` - `planInformation.billingCycles` [Update is only allowed to **increase** billingCycles] - `orderInformation.amountDetails.currency` 
+    #
     # @param id Plan Id
     # @param update_plan_request 
     # @param [Hash] opts the optional parameters
     # @return [UpdatePlanResponse]
+    #
     def update_plan(id, update_plan_request, opts = {})
       data, status_code, headers = update_plan_with_http_info(id, update_plan_request, opts)
       return data, status_code, headers

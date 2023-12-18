@@ -13,7 +13,7 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  class PaymentProductsCardProcessingConfigurationInformationConfigurationsFeaturesCardNotPresent
+  class PaymentsProductsCardProcessingConfigurationInformationConfigurationsFeaturesCardNotPresent
     # e.g. * amexdirect * barclays2 * CUP * EFTPOS * fdiglobal * gpx * smartfdc * tsys * vero * VPC  For VPC, CUP and EFTPOS processors, replace the processor name from VPC or CUP or EFTPOS to the actual processor name in the sample request. e.g. replace VPC with &lt;your vpc processor&gt; 
     attr_accessor :processors
 
@@ -23,7 +23,7 @@ module CyberSource
     # Indicates if a merchant is enabled for Straight Through Processing - B2B invoice payments. Applicable for FDI Global (fdiglobal), TSYS (tsys), VPC and GPX (gpx) processors.
     attr_accessor :visa_straight_through_processing_only
 
-    # Advice addendum field. It is used to display descriptive information about a transaction on customer’s American Express card statement. Applicable for TSYS (tsys), FDI Global (fdiglobal) and American Express Direct (amexdirect) processors.
+    # Advice addendum field. It is used to display descriptive information about a transaction on customer's American Express card statement. Applicable for TSYS (tsys), FDI Global (fdiglobal) and American Express Direct (amexdirect) processors.
     attr_accessor :amex_transaction_advice_addendum1
 
     attr_accessor :installment
@@ -53,11 +53,11 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'processors' => :'Hash<String, PaymentProductsCardProcessingConfigurationInformationConfigurationsFeaturesCardNotPresentProcessors>',
+        :'processors' => :'Hash<String, PaymentsProductsCardProcessingConfigurationInformationConfigurationsFeaturesCardNotPresentProcessors>',
         :'ignore_address_verification_system' => :'BOOLEAN',
         :'visa_straight_through_processing_only' => :'BOOLEAN',
         :'amex_transaction_advice_addendum1' => :'String',
-        :'installment' => :'PaymentProductsCardProcessingConfigurationInformationConfigurationsFeaturesCardNotPresentInstallment'
+        :'installment' => :'PaymentsProductsCardProcessingConfigurationInformationConfigurationsFeaturesCardNotPresentInstallment'
       }
     end
 

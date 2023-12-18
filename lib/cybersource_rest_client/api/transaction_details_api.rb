@@ -22,9 +22,11 @@ module CyberSource
     end
     # Retrieve a Transaction
     # Include the Request ID in the GET request to retrieve the transaction details.
+    #
     # @param id Request ID. 
     # @param [Hash] opts the optional parameters
     # @return [TssV2TransactionsGet200Response]
+    #
     def get_transaction(id, opts = {})
       data, status_code, headers = get_transaction_with_http_info(id, opts)
       return data, status_code, headers

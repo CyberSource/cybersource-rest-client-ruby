@@ -21,7 +21,7 @@ module CyberSource
     # Payworks MerchantId for given organizationId. 
     attr_accessor :external_organization_id
 
-    # Reference number is a unique identifier provided by the client along with the organization Id. This is an optional field provided solely for the client’s convenience. If client specifies value for this field in the request, it is expected to be available in the response. 
+    # Reference number is a unique identifier provided by the client along with the organization Id. This is an optional field provided solely for the client's convenience. If client specifies value for this field in the request, it is expected to be available in the response. 
     attr_accessor :reference_number
 
     # Key Serial Number 

@@ -13,7 +13,7 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  class PaymentProductsVirtualTerminalConfigurationInformationConfigurationsCardNotPresentReceiptInformationHeader
+  class PaymentsProductsVirtualTerminalConfigurationInformationConfigurationsCardNotPresentReceiptInformationHeader
     attr_accessor :virtual_terminal_receipt_header
 
     # Attribute mapping from ruby-style variable name to JSON key.

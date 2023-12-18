@@ -79,7 +79,7 @@ module CyberSource
     # Code that specifies the computerized reservation system used to make the reservation and purchase the ticket. Format: English characters only. Restricted string data type that indicates a sequence of letters, numbers, and spaces; special characters are not included. Optional request field. 
     attr_accessor :reservation_system_code
 
-    # Airline process identifier. This value is the airline’s three-digit IATA1 code which is used to process extended payment airline tickets. 
+    # Airline process identifier. This value is the airline's three-digit IATA1 code which is used to process extended payment airline tickets. 
     attr_accessor :process_identifier
 
     # Date on which the transaction occurred. Format: `YYYYMMDD` Format: English characters only. Optional request field. 

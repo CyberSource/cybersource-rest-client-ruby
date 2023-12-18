@@ -22,6 +22,7 @@ module CyberSource
     end
     # Get Purchase and Refund Details
     # Download the Purchase and Refund Details report. This report report includes all purchases and refund transactions, as well as all activities related to transactions resulting in an adjustment to the net proceeds. 
+    #
     # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
     # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
     # @param [Hash] opts the optional parameters
@@ -32,6 +33,7 @@ module CyberSource
     # @option opts [Integer] :offset Offset of the Purchase and Refund Results.
     # @option opts [Integer] :limit Results count per page. Range(1-2000) (default to 2000)
     # @return [ReportingV3PurchaseRefundDetailsGet200Response]
+    #
     def get_purchase_and_refund_details(start_time, end_time, opts = {})
       data, status_code, headers = get_purchase_and_refund_details_with_http_info(start_time, end_time, opts)
       return data, status_code, headers
@@ -67,25 +69,9 @@ module CyberSource
       if @api_client.config.client_side_validation && end_time.nil?
         fail ArgumentError, "Missing the required parameter 'end_time' when calling PurchaseAndRefundDetailsApi.get_purchase_and_refund_details"
       end
-      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length > 32
-        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling PurchaseAndRefundDetailsApi.get_purchase_and_refund_details, the character length must be smaller than or equal to 32.'
-      end
-
-      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length < 1
-        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling PurchaseAndRefundDetailsApi.get_purchase_and_refund_details, the character length must be great than or equal to 1.'
-      end
-
       #if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
         #fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling PurchaseAndRefundDetailsApi.get_purchase_and_refund_details, must conform to the pattern /[a-zA-Z0-9-_]+/."
       #end
-
-      if @api_client.config.client_side_validation && !opts[:'limit'].nil? && opts[:'limit'] > 2000
-        fail ArgumentError, 'invalid value for "opts[:"limit"]" when calling PurchaseAndRefundDetailsApi.get_purchase_and_refund_details, must be smaller than or equal to 2000.'
-      end
-
-      if @api_client.config.client_side_validation && !opts[:'limit'].nil? && opts[:'limit'] < 1
-        fail ArgumentError, 'invalid value for "opts[:"limit"]" when calling PurchaseAndRefundDetailsApi.get_purchase_and_refund_details, must be greater than or equal to 1.'
-      end
 
       # resource path
       local_var_path = 'reporting/v3/purchase-refund-details'

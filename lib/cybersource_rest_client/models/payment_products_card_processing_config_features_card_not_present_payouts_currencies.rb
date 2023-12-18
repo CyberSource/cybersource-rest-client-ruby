@@ -13,7 +13,7 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  class PaymentProductsCardProcessingConfigurationInformationConfigurationsFeaturesCardNotPresentPayoutsCurrencies
+  class PaymentsProductsCardProcessingConfigurationInformationConfigurationsFeaturesCardNotPresentPayoutsCurrencies
     attr_accessor :enabled
 
     # Indicates whether the card-present transaction is activated for the selected currency. If both enabledCardPresent and enabledCardNotPresent are set to null, then enabledCardPresent will have the value of enabled. 

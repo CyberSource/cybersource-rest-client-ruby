@@ -22,9 +22,11 @@ module CyberSource
     end
     # Generate Capture Context
     # This API is used to generate the Capture Context data structure for the Microform Integration.  Microform is a browser-based acceptance solution that allows a seller to capture payment information is a secure manner from their website.  For more information about Flex Microform transactions, see the [Flex Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-flex/SAFlexibleToken.html). For examples on how to integrate Flex Microform within your webpage please see our [GitHub Flex Samples](https://github.com/CyberSource?q=flex&type=&language=) This API is a server-to-server API to generate the capture context that can be used to initiate instance of microform on a acceptance page.  The capture context is a digitally signed JWT that provides authentication, one-time keys, and the target origin to the Microform Integration application. 
+    #
     # @param generate_capture_context_request 
     # @param [Hash] opts the optional parameters
     # @return [String]
+    #
     def generate_capture_context(generate_capture_context_request, opts = {})
       data, status_code, headers = generate_capture_context_with_http_info(generate_capture_context_request, opts)
       return data, status_code, headers

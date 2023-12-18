@@ -22,9 +22,11 @@ module CyberSource
     end
     # Create Shared-Secret Keys
     # Create one or more Shared-Secret Keys 
+    #
     # @param create_shared_secret_keys_request 
     # @param [Hash] opts the optional parameters
     # @return [KmsV2KeysSymPost201Response]
+    #
     def create_v2_shared_secret_keys(create_shared_secret_keys_request, opts = {})
       data, status_code, headers = create_v2_shared_secret_keys_with_http_info(create_shared_secret_keys_request, opts)
       return data, status_code, headers
@@ -89,10 +91,12 @@ module CyberSource
     end
     # Create Shared-Secret Keys as per verifi spec
     # Create one or more Shared-Secret Keys as per Verifi spec with 32 chars, store digest algo during key generation. 
+    #
     # @param v_ic_domain domain
     # @param create_shared_secret_keys_verifi_request 
     # @param [Hash] opts the optional parameters
     # @return [KmsV2KeysSymPost201Response]
+    #
     def create_v2_shared_secret_keys_verifi(v_ic_domain, create_shared_secret_keys_verifi_request, opts = {})
       data, status_code, headers = create_v2_shared_secret_keys_verifi_with_http_info(v_ic_domain, create_shared_secret_keys_verifi_request, opts)
       return data, status_code, headers
@@ -163,9 +167,11 @@ module CyberSource
     end
     # Delete one or more Symmetric keys
     # 'Delete one or more Symmetric keys' 
+    #
     # @param delete_bulk_symmetric_keys_request 
     # @param [Hash] opts the optional parameters
     # @return [KmsV2KeysSymDeletesPost200Response]
+    #
     def delete_bulk_symmetric_keys(delete_bulk_symmetric_keys_request, opts = {})
       data, status_code, headers = delete_bulk_symmetric_keys_with_http_info(delete_bulk_symmetric_keys_request, opts)
       return data, status_code, headers
@@ -230,9 +236,11 @@ module CyberSource
     end
     # Retrieves shared secret key details
     # Retrieves keys details by providing the key id.
+    #
     # @param key_id Key ID. 
     # @param [Hash] opts the optional parameters
     # @return [KmsV2KeysSymGet200Response]
+    #
     def get_key_details(key_id, opts = {})
       data, status_code, headers = get_key_details_with_http_info(key_id, opts)
       return data, status_code, headers

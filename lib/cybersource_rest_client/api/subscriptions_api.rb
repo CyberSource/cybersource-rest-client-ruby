@@ -22,9 +22,11 @@ module CyberSource
     end
     # Activate a Subscription
     # Activate a `CANCELLED` Or `SUSPENDED` Subscription 
+    #
     # @param id Subscription Id
     # @param [Hash] opts the optional parameters
     # @return [ActivateSubscriptionResponse]
+    #
     def activate_subscription(id, opts = {})
       data, status_code, headers = activate_subscription_with_http_info(id, opts)
       return data, status_code, headers
@@ -91,9 +93,11 @@ module CyberSource
     end
     # Cancel a Subscription
     # Cancel a Subscription
+    #
     # @param id Subscription Id
     # @param [Hash] opts the optional parameters
     # @return [CancelSubscriptionResponse]
+    #
     def cancel_subscription(id, opts = {})
       data, status_code, headers = cancel_subscription_with_http_info(id, opts)
       return data, status_code, headers
@@ -160,9 +164,11 @@ module CyberSource
     end
     # Create a Subscription
     # Create a Recurring Billing Subscription
+    #
     # @param create_subscription_request 
     # @param [Hash] opts the optional parameters
     # @return [CreateSubscriptionResponse]
+    #
     def create_subscription(create_subscription_request, opts = {})
       data, status_code, headers = create_subscription_with_http_info(create_subscription_request, opts)
       return data, status_code, headers
@@ -227,12 +233,14 @@ module CyberSource
     end
     # Get a List of Subscriptions
     # Retrieve Subscriptions by Subscription Code & Subscription Status. 
+    #
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :offset Page offset number.
     # @option opts [Integer] :limit Number of items to be returned. Default - &#x60;20&#x60;, Max - &#x60;100&#x60; 
     # @option opts [String] :code Filter by Subscription Code
     # @option opts [String] :status Filter by Subscription Status
     # @return [GetAllSubscriptionsResponse]
+    #
     def get_all_subscriptions(opts = {})
       data, status_code, headers = get_all_subscriptions_with_http_info(opts)
       return data, status_code, headers
@@ -302,9 +310,11 @@ module CyberSource
     end
     # Get a Subscription
     # Get a Subscription by Subscription Id
+    #
     # @param id Subscription Id
     # @param [Hash] opts the optional parameters
     # @return [GetSubscriptionResponse]
+    #
     def get_subscription(id, opts = {})
       data, status_code, headers = get_subscription_with_http_info(id, opts)
       return data, status_code, headers
@@ -371,8 +381,10 @@ module CyberSource
     end
     # Get a Subscription Code
     # Get a Unique Subscription Code
+    #
     # @param [Hash] opts the optional parameters
     # @return [GetSubscriptionCodeResponse]
+    #
     def get_subscription_code(opts = {})
       data, status_code, headers = get_subscription_code_with_http_info(opts)
       return data, status_code, headers
@@ -434,9 +446,11 @@ module CyberSource
     end
     # Suspend a Subscription
     # Suspend a Subscription
+    #
     # @param id Subscription Id
     # @param [Hash] opts the optional parameters
     # @return [SuspendSubscriptionResponse]
+    #
     def suspend_subscription(id, opts = {})
       data, status_code, headers = suspend_subscription_with_http_info(id, opts)
       return data, status_code, headers
@@ -503,10 +517,12 @@ module CyberSource
     end
     # Update a Subscription
     # Update a Subscription by Subscription Id
+    #
     # @param id Subscription Id
     # @param update_subscription Update Subscription
     # @param [Hash] opts the optional parameters
     # @return [UpdateSubscriptionResponse]
+    #
     def update_subscription(id, update_subscription, opts = {})
       data, status_code, headers = update_subscription_with_http_info(id, update_subscription, opts)
       return data, status_code, headers

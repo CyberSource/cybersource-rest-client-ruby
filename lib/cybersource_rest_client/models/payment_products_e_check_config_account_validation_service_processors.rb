@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   # *NEW* Name of the payment processor. Example - \"wellsfargoach\"
-  class PaymentProductsECheckConfigurationInformationConfigurationsFeaturesAccountValidationServiceProcessors
+  class PaymentsProductsECheckConfigurationInformationConfigurationsFeaturesAccountValidationServiceProcessors
     # *NEW* Determined in WF eTicket if account has opted into the Account Ownership Service.
     attr_accessor :avs_account_ownership_service
 

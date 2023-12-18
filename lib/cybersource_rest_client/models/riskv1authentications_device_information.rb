@@ -19,7 +19,7 @@ module CyberSource
 
     attr_accessor :raw_data
 
-    # Value of the Accept header sent by the customer’s web browser. **Note** If the customer’s browser provides a value, you must include it in your request. 
+    # Value of the Accept header sent by the customer's web browser. **Note** If the customer's browser provides a value, you must include it in your request. 
     attr_accessor :http_accept_browser_value
 
     # The exact content of the HTTP accept header. 
@@ -46,7 +46,7 @@ module CyberSource
     # Time difference between UTC time and the cardholder browser local time, in minutes, Example:300 
     attr_accessor :http_browser_time_difference
 
-    # Value of the User-Agent header sent by the customer’s web browser. Note If the customer’s browser provides a value, you must include it in your request. 
+    # Value of the User-Agent header sent by the customer's web browser. Note If the customer's browser provides a value, you must include it in your request. 
     attr_accessor :user_agent_browser_value
 
     # Attribute mapping from ruby-style variable name to JSON key.

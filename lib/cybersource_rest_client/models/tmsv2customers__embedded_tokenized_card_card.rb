@@ -15,13 +15,13 @@ require 'date'
 module CyberSource
   # The latest card details associated with the network token
   class Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifierTokenizedCardCard
-    # The customer’s latest payment card number suffix 
+    # The customer's latest payment card number suffix 
     attr_accessor :suffix
 
-    #  Two-digit month in which the customer’s latest payment card expires.  Format: `MM`.  Possible Values: `01` through `12`. 
+    #  Two-digit month in which the customer's latest payment card expires.  Format: `MM`.  Possible Values: `01` through `12`. 
     attr_accessor :expiration_month
 
-    # Four-digit year in which the customer’s latest payment card expires.  Format: `YYYY`. 
+    # Four-digit year in which the customer's latest payment card expires.  Format: `YYYY`. 
     attr_accessor :expiration_year
 
     # Attribute mapping from ruby-style variable name to JSON key.

@@ -22,11 +22,13 @@ module CyberSource
     end
     # Get Transaction Details for a given Batch Id
     # Provides real-time detailed status information about the transactions that you previously uploaded in the Business Center or processed with the Offline Transaction File Submission service. 
+    #
     # @param id The batch id assigned for the template.
     # @param [Hash] opts the optional parameters
     # @option opts [Date] :upload_date Date in which the original batch file was uploaded. Date must be in ISO-8601 format. Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) **Example date format:**  - yyyy-MM-dd 
     # @option opts [String] :status Allows you to filter by rejected response.  Valid values: - Rejected 
     # @return [nil]
+    #
     def get_transaction_batch_details(id, opts = {})
       data, status_code, headers = get_transaction_batch_details_with_http_info(id, opts)
       return data, status_code, headers
@@ -96,9 +98,11 @@ module CyberSource
     end
     # Get Individual Batch File
     # Provide the search range
+    #
     # @param id The batch id assigned for the template.
     # @param [Hash] opts the optional parameters
     # @return [PtsV1TransactionBatchesIdGet200Response]
+    #
     def get_transaction_batch_id(id, opts = {})
       data, status_code, headers = get_transaction_batch_id_with_http_info(id, opts)
       return data, status_code, headers
@@ -165,10 +169,12 @@ module CyberSource
     end
     # Get a List of Batch Files
     # Provide the search range
+    #
     # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZZ 
     # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)   **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZZ 
     # @param [Hash] opts the optional parameters
     # @return [PtsV1TransactionBatchesGet200Response]
+    #
     def get_transaction_batches(start_time, end_time, opts = {})
       data, status_code, headers = get_transaction_batches_with_http_info(start_time, end_time, opts)
       return data, status_code, headers

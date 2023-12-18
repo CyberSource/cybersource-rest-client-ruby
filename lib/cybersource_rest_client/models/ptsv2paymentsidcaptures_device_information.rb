@@ -20,7 +20,7 @@ module CyberSource
     # IP address of the customer.  #### Used by **Authorization, Capture, and Credit** Optional field. 
     attr_accessor :ip_address
 
-    # Customer’s browser as identified from the HTTP header data. For example, `Mozilla` is the value that identifies the Netscape browser. 
+    # Customer's browser as identified from the HTTP header data. For example, `Mozilla` is the value that identifies the Netscape browser. 
     attr_accessor :user_agent
 
     # Attribute mapping from ruby-style variable name to JSON key.

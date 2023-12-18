@@ -13,7 +13,7 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  class PaymentProductsPayerAuthenticationConfigurationInformationConfigurationsCardTypesJCBJSecure
+  class PaymentsProductsPayerAuthenticationConfigurationInformationConfigurationsCardTypesJCBJSecure
     # JSecure currency password for Japan Credit Bureau
     attr_accessor :secure_password_for_jcb
 
@@ -44,7 +44,7 @@ module CyberSource
       {
         :'secure_password_for_jcb' => :'String',
         :'enabled' => :'BOOLEAN',
-        :'currencies' => :'Array<PaymentProductsPayerAuthenticationConfigurationInformationConfigurationsCardTypesVerifiedByVisaCurrencies>'
+        :'currencies' => :'Array<PaymentsProductsPayerAuthenticationConfigurationInformationConfigurationsCardTypesVerifiedByVisaCurrencies>'
       }
     end
 

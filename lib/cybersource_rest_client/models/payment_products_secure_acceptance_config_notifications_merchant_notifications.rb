@@ -13,7 +13,7 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  class PaymentProductsSecureAcceptanceConfigurationInformationConfigurationsNotificationsMerchantNotifications
+  class PaymentsProductsSecureAcceptanceConfigurationInformationConfigurationsNotificationsMerchantNotifications
     # Enables Webhook transaction confirmation messages sent to URL defined in backofficePostUrl. Usually enabled by web developers integrating to Secure Acceptance.
     attr_accessor :backoffice_post_enabled
 

@@ -22,10 +22,12 @@ module CyberSource
     end
     # Create Adhoc Report
     # Create a one-time report. You must specify the type of report in reportDefinitionName. For a list of values for reportDefinitionName, see the [Reporting Developer Guide](https://www.cybersource.com/developers/documentation/reporting_and_reconciliation) 
+    #
     # @param create_adhoc_report_request Report subscription request payload
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Organization Id
     # @return [nil]
+    #
     def create_report(create_adhoc_report_request, opts = {})
       data, status_code, headers = create_report_with_http_info(create_adhoc_report_request, opts)
       return data, status_code, headers
@@ -51,14 +53,6 @@ module CyberSource
       if @api_client.config.client_side_validation && create_adhoc_report_request.nil?
         fail ArgumentError, "Missing the required parameter 'create_adhoc_report_request' when calling ReportsApi.create_report"
       end
-      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length > 32
-        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportsApi.create_report, the character length must be smaller than or equal to 32.'
-      end
-
-      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length < 1
-        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportsApi.create_report, the character length must be great than or equal to 1.'
-      end
-
       #if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
         #fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling ReportsApi.create_report, must conform to the pattern /[a-zA-Z0-9-_]+/."
       #end
@@ -102,18 +96,20 @@ module CyberSource
       return data, status_code, headers
     end
     # Get Report Based on Report Id
-    # Download a report using the reportId value. If you don’t already know this value, you can obtain it using the Retrieve available reports call. 
+    # Download a report using the reportId value. If you don't already know this value, you can obtain it using the Retrieve available reports call. 
+    #
     # @param report_id Valid Report Id
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Organization Id
     # @return [ReportingV3ReportsIdGet200Response]
+    #
     def get_report_by_report_id(report_id, opts = {})
       data, status_code, headers = get_report_by_report_id_with_http_info(report_id, opts)
       return data, status_code, headers
     end
 
     # Get Report Based on Report Id
-    # Download a report using the reportId value. If you don’t already know this value, you can obtain it using the Retrieve available reports call. 
+    # Download a report using the reportId value. If you don&#39;t already know this value, you can obtain it using the Retrieve available reports call. 
     # @param report_id Valid Report Id
     # @param [Hash] opts the optional parameters
     # @option opts [String] :organization_id Valid Organization Id
@@ -132,14 +128,6 @@ module CyberSource
       if @api_client.config.client_side_validation && report_id.nil?
         fail ArgumentError, "Missing the required parameter 'report_id' when calling ReportsApi.get_report_by_report_id"
       end
-      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length > 32
-        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportsApi.get_report_by_report_id, the character length must be smaller than or equal to 32.'
-      end
-
-      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length < 1
-        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportsApi.get_report_by_report_id, the character length must be great than or equal to 1.'
-      end
-
       #if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
         #fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling ReportsApi.get_report_by_report_id, must conform to the pattern /[a-zA-Z0-9-_]+/."
       #end
@@ -187,6 +175,7 @@ module CyberSource
     end
     # Retrieve Available Reports
     # Retrieve a list of the available reports to which you are subscribed. This will also give you the reportId value, which you can also use to download a report. 
+    #
     # @param start_time Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
     # @param end_time Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example date format:**   - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
     # @param time_query_type Specify time you would like to search  Valid values: - reportTimeFrame - executedTime 
@@ -198,6 +187,7 @@ module CyberSource
     # @option opts [Integer] :report_definition_id Valid Report Definition Id
     # @option opts [String] :report_status Valid Report Status  Valid values: - COMPLETED - PENDING - QUEUED - RUNNING - ERROR - NO_DATA 
     # @return [ReportingV3ReportsGet200Response]
+    #
     def search_reports(start_time, end_time, time_query_type, opts = {})
       data, status_code, headers = search_reports_with_http_info(start_time, end_time, time_query_type, opts)
       return data, status_code, headers
@@ -238,14 +228,6 @@ module CyberSource
       if @api_client.config.client_side_validation && time_query_type.nil?
         fail ArgumentError, "Missing the required parameter 'time_query_type' when calling ReportsApi.search_reports"
       end
-      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length > 32
-        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportsApi.search_reports, the character length must be smaller than or equal to 32.'
-      end
-
-      if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'].to_s.length < 1
-        fail ArgumentError, 'invalid value for "opts[:"organization_id"]" when calling ReportsApi.search_reports, the character length must be great than or equal to 1.'
-      end
-
       #if @api_client.config.client_side_validation && !opts[:'organization_id'].nil? && opts[:'organization_id'] !~ Regexp.new(/[a-zA-Z0-9-_]+/)
         #fail ArgumentError, "invalid value for 'opts[:\"organization_id\"]' when calling ReportsApi.search_reports, must conform to the pattern /[a-zA-Z0-9-_]+/."
       #end

@@ -22,9 +22,11 @@ module CyberSource
     end
     # Search User Information
     # This endpoint is to get all the user information depending on the filter criteria passed in request body.
+    #
     # @param search_request 
     # @param [Hash] opts the optional parameters
     # @return [UmsV1UsersGet200Response]
+    #
     def search_users(search_request, opts = {})
       data, status_code, headers = search_users_with_http_info(search_request, opts)
       return data, status_code, headers

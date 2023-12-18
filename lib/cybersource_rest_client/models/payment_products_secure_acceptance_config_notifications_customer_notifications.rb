@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   # Features relating to notifications being sent directly to the payer using the Hosted Checkout.
-  class PaymentProductsSecureAcceptanceConfigurationInformationConfigurationsNotificationsCustomerNotifications
+  class PaymentsProductsSecureAcceptanceConfigurationInformationConfigurationsNotificationsCustomerNotifications
     # Toggles the custom receipt page, where merchants can receive the results of the transaction and display appropriate messaging. Usually set by web developers integrating to Secure Acceptance.
     attr_accessor :custom_receipt_page_enabled
 

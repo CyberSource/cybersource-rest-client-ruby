@@ -22,6 +22,7 @@ module CyberSource
     end
     # Process a Push Funds Transfer
     # Receive funds using an Original Credit Transaction (OCT). 
+    #
     # @param push_funds_request 
     # @param content_type 
     # @param x_requestid 
@@ -31,6 +32,7 @@ module CyberSource
     # @param v_c_organization_id 
     # @param [Hash] opts the optional parameters
     # @return [PushFunds201Response]
+    #
     def create_push_funds_transfer(push_funds_request, content_type, x_requestid, v_c_merchant_id, v_c_permissions, v_c_correlation_id, v_c_organization_id, opts = {})
       data, status_code, headers = create_push_funds_transfer_with_http_info(push_funds_request, content_type, x_requestid, v_c_merchant_id, v_c_permissions, v_c_correlation_id, v_c_organization_id, opts)
       return data, status_code, headers

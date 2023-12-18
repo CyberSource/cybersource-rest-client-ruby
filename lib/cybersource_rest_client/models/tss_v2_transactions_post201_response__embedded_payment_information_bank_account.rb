@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsPost201ResponseEmbeddedPaymentInformationBankAccount
-    # Last four digits of the customer’s payment account number. 
+    # Last four digits of the customer's payment account number. 
     attr_accessor :suffix
 
     # Bank Identification Number (BIN). This is the initial four to six numbers on a credit card account number. 

@@ -13,7 +13,7 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  class PaymentProductsCardProcessingConfigurationInformationConfigurationsFeaturesCardNotPresentProcessors
+  class PaymentsProductsCardProcessingConfigurationInformationConfigurationsFeaturesCardNotPresentProcessors
     # Enables you to submit the payment transaction without one or more of the fields for the billTo or card_expiration. Applicable for Elavon Americas (elavonamericas), CB2A, Six (six), CMCIC (cmcic), GPX (gpx), GPN (gpn), VPC, Vero (vero), Fiserv (fiserv), American Express Direct (amexdirect), Chase Paymentech Salem (chasepaymentechsalem), RUPAY, FDI Global (fdiglobal) and Barclays HISO (barclayshiso) processors.  Validation details (for selected processors)...  <table> <thead><tr><th>Processor</th><th>Acceptance Type</th><th>Required</th><th>Default Value</th></tr></thead> <tr><td>Barclays HISO</td><td>cp, cnp, hybrid</td><td>No</td><td>Yes</td></tr> <tr><td>American Express Direct</td><td>cnp</td><td>No</td><td>No</td></tr> <tr><td>American Express Direct</td><td>cp</td><td>No</td><td>Yes</td></tr> <tr><td>American Express Direct</td><td>hybrid</td><td>Yes</td><td>Yes</td></tr> </table> 
     attr_accessor :relax_address_verification_system
 
@@ -63,7 +63,7 @@ module CyberSource
         :'relax_address_verification_system_allow_expired_card' => :'BOOLEAN',
         :'enable_ems_transaction_risk_score' => :'BOOLEAN',
         :'prestigious_property_indicator' => :'String',
-        :'payouts' => :'PaymentProductsCardProcessingConfigurationInformationConfigurationsFeaturesCardNotPresentPayouts'
+        :'payouts' => :'PaymentsProductsCardProcessingConfigurationInformationConfigurationsFeaturesCardNotPresentPayouts'
       }
     end
 

@@ -22,9 +22,11 @@ module CyberSource
     end
     # Calculate Taxes
     # The tax calculation service provides real-time sales tax and VAT calculations for orders placed with your business worldwide.  It enhances your ability to conduct business globally and enables you to avoid the risk and complexity of managing online tax calculation.  The service supports product-based tax rules and exemptions for goods and services.  The tax rates are updated twice a month and calculations include sub-level detail (rates per taxing jurisdiction, names and types of jurisdictions). Implementation guidance, list of supported countries, and information on tax reporting are in the [Tax User Guide](https://developer.cybersource.com/docs/cybs/en-us/tax-calculation/developer/all/rest/tax-calculation/tax-overview.html). 
+    #
     # @param tax_request 
     # @param [Hash] opts the optional parameters
     # @return [VasV2PaymentsPost201Response]
+    #
     def calculate_tax(tax_request, opts = {})
       data, status_code, headers = calculate_tax_with_http_info(tax_request, opts)
       return data, status_code, headers
@@ -89,10 +91,12 @@ module CyberSource
     end
     # Void Taxes
     # Pass the Tax Request ID in the PATCH request to void the committed tax calculation.
+    #
     # @param void_tax_request 
     # @param id The tax ID returned from a previous request.
     # @param [Hash] opts the optional parameters
     # @return [VasV2TaxVoid200Response]
+    #
     def void_tax(void_tax_request, id, opts = {})
       data, status_code, headers = void_tax_with_http_info(void_tax_request, id, opts)
       return data, status_code, headers

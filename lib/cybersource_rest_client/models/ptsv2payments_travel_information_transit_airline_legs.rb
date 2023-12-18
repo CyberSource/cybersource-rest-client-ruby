@@ -26,7 +26,7 @@ module CyberSource
     # IATA code for the class of service for this leg of the trip. Format: English characters only. Restricted string data type that indicates a sequence of letters, numbers, and spaces; special characters are not included. Optional request field for travel legs. 
     attr_accessor :_class
 
-    # Code that indicates whether a stopover is allowed on this leg of the trip. Possible values: - `O` (capital letter “O”) (default): Stopover allowed - `X` (capital letter “X”): Stopover not allowed Format: English characters only. Restricted string data type that indicates a sequence of letters, numbers, and spaces; special characters are not included. Optional request field for travel legs. 
+    # Code that indicates whether a stopover is allowed on this leg of the trip. Possible values: - `O` (capital letter \"O\") (default): Stopover allowed - `X` (capital letter \"X\"): Stopover not allowed Format: English characters only. Restricted string data type that indicates a sequence of letters, numbers, and spaces; special characters are not included. Optional request field for travel legs. 
     attr_accessor :stopover_indicator
 
     # Departure date for the first leg of the trip. Format: `YYYYMMDD`. Format: English characters only. Optional request field for travel legs. 

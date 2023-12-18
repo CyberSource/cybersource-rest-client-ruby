@@ -22,10 +22,12 @@ module CyberSource
     end
     # Update or Deactivate
     # Update or Deactivate scmp api Key 
+    #
     # @param key_id Key ID. 
     # @param update_pgp_keys_request 
     # @param [Hash] opts the optional parameters
     # @return [Object]
+    #
     def update_scmp(key_id, update_pgp_keys_request, opts = {})
       data, status_code, headers = update_scmp_with_http_info(key_id, update_pgp_keys_request, opts)
       return data, status_code, headers

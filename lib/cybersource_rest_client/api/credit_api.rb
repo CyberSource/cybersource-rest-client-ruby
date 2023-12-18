@@ -22,9 +22,11 @@ module CyberSource
     end
     # Process a Credit
     # POST to the credit resource to credit funds to a specified credit card.
+    #
     # @param create_credit_request 
     # @param [Hash] opts the optional parameters
     # @return [PtsV2CreditsPost201Response]
+    #
     def create_credit(create_credit_request, opts = {})
       data, status_code, headers = create_credit_with_http_info(create_credit_request, opts)
       return data, status_code, headers

@@ -22,10 +22,12 @@ module CyberSource
     end
     # Activate or De-activate Password
     # Activate or De-activate key of type password 
+    #
     # @param key_id Key ID. 
     # @param update_password_keys_request 
     # @param [Hash] opts the optional parameters
     # @return [Object]
+    #
     def update_password(key_id, update_password_keys_request, opts = {})
       data, status_code, headers = update_password_with_http_info(key_id, update_password_keys_request, opts)
       return data, status_code, headers

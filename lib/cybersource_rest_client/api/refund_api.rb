@@ -22,10 +22,12 @@ module CyberSource
     end
     # Refund a Capture
     # Refund a capture API is only used, if you have requested Capture independenlty using [/pts/v2/payments/{id}/captures](https://developer.cybersource.com/api-reference-assets/index.html#payments_capture) API call. Include the capture ID in the POST request to refund the captured amount. 
+    #
     # @param refund_capture_request 
     # @param id The capture ID. This ID is returned from a previous capture request.
     # @param [Hash] opts the optional parameters
     # @return [PtsV2PaymentsRefundPost201Response]
+    #
     def refund_capture(refund_capture_request, id, opts = {})
       data, status_code, headers = refund_capture_with_http_info(refund_capture_request, id, opts)
       return data, status_code, headers
@@ -95,10 +97,12 @@ module CyberSource
     end
     # Refund a Payment
     # Refund a Payment API is only used, if you have requested Authorization and Capture together in [/pts/v2/payments](https://developer.cybersource.com/api-reference-assets/index.html#payments_payments) API call. Include the payment ID in the POST request to refund the payment amount. 
+    #
     # @param refund_payment_request 
     # @param id The payment ID. This ID is returned from a previous payment request.
     # @param [Hash] opts the optional parameters
     # @return [PtsV2PaymentsRefundPost201Response]
+    #
     def refund_payment(refund_payment_request, id, opts = {})
       data, status_code, headers = refund_payment_with_http_info(refund_payment_request, id, opts)
       return data, status_code, headers

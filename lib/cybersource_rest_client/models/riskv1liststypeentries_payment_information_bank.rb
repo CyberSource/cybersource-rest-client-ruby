@@ -18,7 +18,7 @@ module CyberSource
     # Customer's bank account number. You can use this field only when scoring a direct debit transaction. Use this field if you do not or are not allowed to provide the IBAN. Note Do not use the IBAN in this field. Use nly the traditional account number information. For the IBAN, use bank_iban. 
     attr_accessor :account_number
 
-    # Country-specific code used to identify the customer’s bank. Required for some countries if you do not or are not allowed to provide the IBAN instead. You can use this field only when scoring a direct debit transaction. For specific requirements, see \"Required Bank Account Information by Country,\" 
+    # Country-specific code used to identify the customer's bank. Required for some countries if you do not or are not allowed to provide the IBAN instead. You can use this field only when scoring a direct debit transaction. For specific requirements, see \"Required Bank Account Information by Country,\" 
     attr_accessor :code
 
     # Country where the bank is located. Use the two-character ISO codes. You can use this field only when scoring a direct debit transaction. 

@@ -14,16 +14,16 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsMerchantInformationServiceLocation
-    # #### Visa Platform Connect  Merchant’s service location city name. When merchant provides services from a location other than the location identified as merchant location. 
+    # #### Visa Platform Connect  Merchant's service location city name. When merchant provides services from a location other than the location identified as merchant location. 
     attr_accessor :locality
 
-    # #### Visa Platform Connect  Merchant’s service location country subdivision code. When merchant provides services from a location other than the location identified as merchant location. 
+    # #### Visa Platform Connect  Merchant's service location country subdivision code. When merchant provides services from a location other than the location identified as merchant location. 
     attr_accessor :country_subdivision_code
 
-    # #### Visa Platform Connect  Merchant’s service location country code. When merchant provides services from a location other than the location identified as merchant location. 
+    # #### Visa Platform Connect  Merchant's service location country code. When merchant provides services from a location other than the location identified as merchant location. 
     attr_accessor :country_code
 
-    # #### Visa Platform Connect  Merchant’s service location postal code. When merchant provides services from a location other than the location identified as merchant location. 
+    # #### Visa Platform Connect  Merchant's service location postal code. When merchant provides services from a location other than the location identified as merchant location. 
     attr_accessor :postal_code
 
     # Attribute mapping from ruby-style variable name to JSON key.

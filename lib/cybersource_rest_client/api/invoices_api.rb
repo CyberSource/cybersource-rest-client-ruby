@@ -22,9 +22,11 @@ module CyberSource
     end
     # Create a New Invoice
     # The invoicing product enables you to bill any customer with an email address and accept digital payments securely from any connected device. You can either use the system generated email or use the invoice payment link in your own communication. You can add discounts and taxes for the entire invoice or for each line item. To customize the invoice to match your brand see [Invoice Settings](https://developer.cybersource.com/api-reference-assets/index.html#invoicing_invoice-settings_update-invoice-settings). The invoice payment page uses Unified Checkout to process the payments.
+    #
     # @param create_invoice_request 
     # @param [Hash] opts the optional parameters
     # @return [InvoicingV2InvoicesPost201Response]
+    #
     def create_invoice(create_invoice_request, opts = {})
       data, status_code, headers = create_invoice_with_http_info(create_invoice_request, opts)
       return data, status_code, headers
@@ -89,11 +91,13 @@ module CyberSource
     end
     # Get a List of Invoices
     # Provides a (filtered) list of invoices that have been created in your account. You can filter the list based on Invoice Status by setting the status query parameter to one of DRAFT, CREATED, SENT, PARTIAL, PAID or CANCELED.
+    #
     # @param offset Page offset number.
     # @param limit Maximum number of items you would like returned.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :status The status of the invoice.  Possible values:   - DRAFT   - CREATED   - SENT   - PARTIAL   - PAID   - CANCELED 
     # @return [InvoicingV2InvoicesAllGet200Response]
+    #
     def get_all_invoices(offset, limit, opts = {})
       data, status_code, headers = get_all_invoices_with_http_info(offset, limit, opts)
       return data, status_code, headers
@@ -169,9 +173,11 @@ module CyberSource
     end
     # Get Invoice Details
     # You can retrieve details of a specific invoice. This can be used to check the Invoice status and get a list of invoice payments in the invoice history section of the response. For each payment transaction you can use the Transaction Details API to get more details on the payment transaction.
+    #
     # @param id The invoice number.
     # @param [Hash] opts the optional parameters
     # @return [InvoicingV2InvoicesGet200Response]
+    #
     def get_invoice(id, opts = {})
       data, status_code, headers = get_invoice_with_http_info(id, opts)
       return data, status_code, headers
@@ -238,9 +244,11 @@ module CyberSource
     end
     # Cancel an Invoice
     # You can cancel an invoice if no payment is made to it. You cannot cancel partially or fully paid invoices.
+    #
     # @param id The invoice number.
     # @param [Hash] opts the optional parameters
     # @return [InvoicingV2InvoicesPost201Response]
+    #
     def perform_cancel_action(id, opts = {})
       data, status_code, headers = perform_cancel_action_with_http_info(id, opts)
       return data, status_code, headers
@@ -307,9 +315,11 @@ module CyberSource
     end
     # Send an Invoice
     # You can send an invoice in draft or created state or resend a sent or partially paid invoice. Fully paid or canceled invoices cannot be resent.
+    #
     # @param id The invoice number.
     # @param [Hash] opts the optional parameters
     # @return [InvoicingV2InvoicesPost201Response]
+    #
     def perform_send_action(id, opts = {})
       data, status_code, headers = perform_send_action_with_http_info(id, opts)
       return data, status_code, headers
@@ -376,10 +386,12 @@ module CyberSource
     end
     # Update an Invoice
     # You can update all information except the invoice number till any payment is received for an invoice. Invoices that are partially or fully paid or cancelled cannot be updated.
+    #
     # @param id The invoice number.
     # @param update_invoice_request Updating the invoice does not resend the invoice automatically. You must resend the invoice separately.
     # @param [Hash] opts the optional parameters
     # @return [InvoicingV2InvoicesPost201Response]
+    #
     def update_invoice(id, update_invoice_request, opts = {})
       data, status_code, headers = update_invoice_with_http_info(id, update_invoice_request, opts)
       return data, status_code, headers

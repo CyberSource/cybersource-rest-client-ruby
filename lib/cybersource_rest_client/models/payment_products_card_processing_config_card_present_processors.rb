@@ -13,7 +13,7 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  class PaymentProductsCardProcessingConfigurationInformationConfigurationsFeaturesCardPresentProcessors
+  class PaymentsProductsCardProcessingConfigurationInformationConfigurationsFeaturesCardPresentProcessors
     # Default Terminal ID used for Card Present and Virtual Terminal transactions. Applicable for VPC, GPX (gpx), American Express Direct (amexdirect) and Chase Paymentech Salem (chasepaymentechsalem) processors.  Validation details (for selected processors)...  <table> <thead><tr><th>Processor</th><th>Acceptance Type</th><th>Required</th><th>Min. Length</th><th>Max. Length</th><th>Regex</th><th>Default Value</th></tr></thead> <tr><td>American Express Direct</td><td>cp</td><td>Yes</td><td>4</td><td>8</td><td>^[0-9a-zA-Z]+$</td><td>1111</td></tr> </table> 
     attr_accessor :default_point_of_sale_terminal_id
 

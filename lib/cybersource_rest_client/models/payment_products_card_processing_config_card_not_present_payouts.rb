@@ -13,7 +13,7 @@ Swagger Codegen version: 2.2.3
 require 'date'
 
 module CyberSource
-  class PaymentProductsCardProcessingConfigurationInformationConfigurationsFeaturesCardNotPresentPayouts
+  class PaymentsProductsCardProcessingConfigurationInformationConfigurationsFeaturesCardNotPresentPayouts
     # Applicable for VPC processors.
     attr_accessor :reimbursement_code
 
@@ -80,7 +80,7 @@ module CyberSource
         :'financial_institution_id' => :'String',
         :'merchant_aba_number' => :'String',
         :'network_order' => :'String',
-        :'currencies' => :'Hash<String, PaymentProductsCardProcessingConfigurationInformationConfigurationsFeaturesCardNotPresentPayoutsCurrencies>',
+        :'currencies' => :'Hash<String, PaymentsProductsCardProcessingConfigurationInformationConfigurationsFeaturesCardNotPresentPayoutsCurrencies>',
         :'merchant_id' => :'String',
         :'terminal_id' => :'String'
       }

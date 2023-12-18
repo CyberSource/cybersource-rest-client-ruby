@@ -26,7 +26,7 @@ module CyberSource
     # PIN Entry Capability - 0 Unknown. - 1 Indicates terminal can accept and forward online PINs. - 2 Indicates terminal cannot accept and forward online PINs. - 8 Terminal PIN pad down. - 9 Reserved for future use. 
     attr_accessor :pin_entry_capability
 
-    # integer [ 1 .. 5 ] POS terminal’s capability. Possible values:  - `1`: Terminal has a magnetic stripe reader only. - `2`: Terminal has a magnetic stripe reader and manual entry capability. - `3`: Terminal has manual entry capability only. - `4`: Terminal can read chip cards. - `5`: Terminal can read contactless chip cards; cannot use contact to read chip cards. For an EMV transaction, the value of this field must be 4 or 5.  Used by Authorization Required for the following processors: Chase Paymentech Solutions  Optional for the following processors: Visa Platform Connect 
+    # integer [ 1 .. 5 ] POS terminal's capability. Possible values:  - `1`: Terminal has a magnetic stripe reader only. - `2`: Terminal has a magnetic stripe reader and manual entry capability. - `3`: Terminal has manual entry capability only. - `4`: Terminal can read chip cards. - `5`: Terminal can read contactless chip cards; cannot use contact to read chip cards. For an EMV transaction, the value of this field must be 4 or 5.  Used by Authorization Required for the following processors: Chase Paymentech Solutions  Optional for the following processors: Visa Platform Connect 
     attr_accessor :terminal_capability
 
     # Attribute mapping from ruby-style variable name to JSON key.
