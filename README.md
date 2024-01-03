@@ -74,17 +74,6 @@ CyberSource maintains a complete sandbox environment for testing and development
 
 API credentials are different for each environment, so be sure to switch to the appropriate credentials when switching environments.
 
-### Switching between the sandbox environment and the production environment
-
-CyberSource maintains a complete sandbox environment for testing and development purposes. This sandbox environment is an exact duplicate of our production environment with the transaction authorization and settlement process simulated. By default, this SDK is configured to communicate with the sandbox environment. To switch to the production environment, set the `runEnvironment` property in the SDK Configuration.  See our sample at <https://github.com/CyberSource/cybersource-rest-samples-ruby/blob/master/data/Configuration.rb>
-
-```Ruby
-   # For TESTING use
-     runEnvironment='apitest.cybersource.com'
-   # For PRODUCTION use
-   # runEnvironment='api.cybersource.com'
-```
-
 ## Features
 
 ### MetaKey Support
