@@ -52,7 +52,7 @@ Additionally, you can find details and examples of how our API is structured in 
 
 The API Reference Guide provides examples of what information is needed for a particular request and how that information would be formatted. Using those examples, you can easily determine what methods would be necessary to include that information in a request using this SDK.
 
-## SDK Usage Examples and Sample Code
+### SDK Usage Examples and Sample Code
 
 * Install the CyberSource Ruby SDK and add the SDK to your GemFile.
 * Configure your credentials in [MerchantConfiguration](https://github.com/CyberSource/cybersource-rest-samples-ruby/blob/21be3e94c9144ce217ae20ef476425d384aadc31/data/Configuration.rb#L5C3-L67C6).
