@@ -56,7 +56,7 @@ The API Reference Guide provides examples of what information is needed for a pa
 
 * Install the CyberSource Ruby SDK and add the SDK to your GemFile.
 * Configure your credentials in [MerchantConfiguration](https://github.com/CyberSource/cybersource-rest-samples-ruby/blob/21be3e94c9144ce217ae20ef476425d384aadc31/data/Configuration.rb#L5C3-L67C6).
-* Create an instance of [ApiClient] (https://github.com/CyberSource/cybersource-rest-samples-ruby/blob/21be3e94c9144ce217ae20ef476425d384aadc31/Samples/Payments/Payments/simple-authorizationinternet.rb#L46C9-L46C48).
+* Create an instance of [ApiClient](https://github.com/CyberSource/cybersource-rest-samples-ruby/blob/21be3e94c9144ce217ae20ef476425d384aadc31/Samples/Payments/Payments/simple-authorizationinternet.rb#L46C9-L46C48).
 * Use the created ApiClient instance and MerchantConfiguration to call CyberSource APIs. For example [SimpleAuthorizationInternet](https://github.com/CyberSource/cybersource-rest-samples-ruby/blob/21be3e94c9144ce217ae20ef476425d384aadc31/Samples/Payments/Payments/simple-authorizationinternet.rb#L46C9-L46C48)
 
 For more detailed examples, refer to the [cybersource-rest-samples-ruby](https://github.com/CyberSource/cybersource-rest-samples-ruby) repository.
@@ -73,16 +73,6 @@ CyberSource maintains a complete sandbox environment for testing and development
 ```
 
 API credentials are different for each environment, so be sure to switch to the appropriate credentials when switching environments.
-
-## MetaKey Support
-
-A Meta Key is a single key that can be used by one, some, or all merchants (or accounts, if created by a Portfolio user) in the portfolio.
-
-The Portfolio or Parent Account owns the key and is considered the transaction submitter when a Meta Key is used, while the merchant owns the transaction.
-
-MIDs continue to be able to create keys for themselves, even if a Meta Key is generated.
-
-Further information on MetaKey can be found in [New Business Center User Guide](https://developer.cybersource.com/library/documentation/dev_guides/Business_Center/New_Business_Center_User_Guide.pdf).
 
 ### Switching between the sandbox environment and the production environment
 
