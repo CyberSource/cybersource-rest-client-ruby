@@ -14,11 +14,17 @@ require 'date'
 
 module CyberSource
   class Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifierTokenizedCard
-    # The network token card association brand Possible Values: - visa - mastercard 
+    # The network token card association brand Possible Values: - visa - mastercard - americanexpress 
     attr_accessor :type
 
     # State of the network token or network token provision Possible Values: - ACTIVE : Network token is active. - SUSPENDED : Network token is suspended. This state can change back to ACTIVE. - DELETED : This is a final state for a network token instance. - UNPROVISIONED : A previous network token provision was unsuccessful. 
     attr_accessor :state
+
+    # Unique Identifier for the enrolled PAN. This Id is provided by the card association when a network token is provisioned successfully. 
+    attr_accessor :enrollment_id
+
+    # Unique Identifier for the network token. This Id is provided by the card association when a network token is provisioned successfully. 
+    attr_accessor :token_reference_id
 
     # Issuers state for the network token Possible Values: - INVALID_REQUEST : The network token provision request contained invalid data. - CARD_VERIFICATION_FAILED : The network token provision request contained data that could not be verified. - CARD_NOT_ELIGIBLE : Card can currently not be used with issuer for tokenization. - CARD_NOT_ALLOWED : Card can currently not be used with card association for tokenization. - DECLINED : Card can currently not be used with issuer for tokenization. - SERVICE_UNAVAILABLE : The network token service was unavailable or timed out. - SYSTEM_ERROR : An unexpected error occurred with network token service, check configuration. 
     attr_accessor :reason
@@ -42,6 +48,8 @@ module CyberSource
       {
         :'type' => :'type',
         :'state' => :'state',
+        :'enrollment_id' => :'enrollmentId',
+        :'token_reference_id' => :'tokenReferenceId',
         :'reason' => :'reason',
         :'number' => :'number',
         :'expiration_month' => :'expirationMonth',
@@ -56,6 +64,8 @@ module CyberSource
       {
         :'type' => :'type',
         :'state' => :'state',
+        :'enrollment_id' => :'enrollment_id',
+        :'token_reference_id' => :'token_reference_id',
         :'reason' => :'reason',
         :'number' => :'number',
         :'expiration_month' => :'expiration_month',
@@ -70,6 +80,8 @@ module CyberSource
       {
         :'type' => :'String',
         :'state' => :'String',
+        :'enrollment_id' => :'String',
+        :'token_reference_id' => :'String',
         :'reason' => :'String',
         :'number' => :'String',
         :'expiration_month' => :'String',
@@ -93,6 +105,14 @@ module CyberSource
 
       if attributes.has_key?(:'state')
         self.state = attributes[:'state']
+      end
+
+      if attributes.has_key?(:'enrollmentId')
+        self.enrollment_id = attributes[:'enrollmentId']
+      end
+
+      if attributes.has_key?(:'tokenReferenceId')
+        self.token_reference_id = attributes[:'tokenReferenceId']
       end
 
       if attributes.has_key?(:'reason')
@@ -152,6 +172,8 @@ module CyberSource
       self.class == o.class &&
           type == o.type &&
           state == o.state &&
+          enrollment_id == o.enrollment_id &&
+          token_reference_id == o.token_reference_id &&
           reason == o.reason &&
           number == o.number &&
           expiration_month == o.expiration_month &&
@@ -169,7 +191,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [type, state, reason, number, expiration_month, expiration_year, cryptogram, card].hash
+      [type, state, enrollment_id, token_reference_id, reason, number, expiration_month, expiration_year, cryptogram, card].hash
     end
 
     # Builds the object from hash

@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **post_token_payment_credentials**
-> String post_token_payment_credentials(token_id, opts)
+> String post_token_payment_credentials(token_id, post_payment_credentials_request, opts)
 
 Generate Payment Credentials for a TMS Token
 
@@ -23,13 +23,15 @@ api_instance = CyberSource::TokenApi.new
 
 token_id = "token_id_example" # String | The Id of a token representing a Customer, Payment Instrument or Instrument Identifier.
 
+post_payment_credentials_request = CyberSource::PostPaymentCredentialsRequest.new # PostPaymentCredentialsRequest | 
+
 opts = { 
   profile_id: "profile_id_example" # String | The Id of a profile containing user specific TMS configuration.
 }
 
 begin
   #Generate Payment Credentials for a TMS Token
-  result = api_instance.post_token_payment_credentials(token_id, opts)
+  result = api_instance.post_token_payment_credentials(token_id, post_payment_credentials_request, opts)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling TokenApi->post_token_payment_credentials: #{e}"
@@ -41,6 +43,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token_id** | **String**| The Id of a token representing a Customer, Payment Instrument or Instrument Identifier. | 
+ **post_payment_credentials_request** | [**PostPaymentCredentialsRequest**](PostPaymentCredentialsRequest.md)|  | 
  **profile_id** | **String**| The Id of a profile containing user specific TMS configuration. | [optional] 
 
 ### Return type
