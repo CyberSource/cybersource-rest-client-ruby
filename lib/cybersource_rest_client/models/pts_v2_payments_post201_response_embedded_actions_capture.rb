@@ -14,7 +14,7 @@ require 'date'
 
 module CyberSource
   class PtsV2PaymentsPost201ResponseEmbeddedActionsCAPTURE
-    # The status of the submitted transaction.  Possible values:  - PENDING 
+    # The status of the submitted transaction.  Possible values:  - PENDING  - TRANSMITTED (Only for Online Capture enabled merchants) 
     attr_accessor :status
 
     # The reason of the status.  Possible values:  - MISSING_FIELD  - INVALID_DATA  - DUPLICATE_REQUEST  - INVALID_MERCHANT_CONFIGURATION  - EXCEEDS_AUTH_AMOUNT  - AUTH_ALREADY_REVERSED  - TRANSACTION_ALREADY_SETTLED  - INVALID_AMOUNT  - MISSING_AUTH  - TRANSACTION_ALREADY_REVERSED_OR_SETTLED  - NOT_SUPPORTED 

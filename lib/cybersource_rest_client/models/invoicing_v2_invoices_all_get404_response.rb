@@ -17,7 +17,7 @@ module CyberSource
     # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC.  Returned by Cybersource for all services. 
     attr_accessor :submit_time_utc
 
-    # The status of the invoice.  Possible values:  - NOTFOUND     
+    # The status of the invoice.  Possible values:  - NOTFOUND 
     attr_accessor :status
 
     # The reason of the status.  Possible values:  - MISSING_FIELD  - INVALID_DATA  - DUPLICATE_REQUEST  - INVALID_MERCHANT_CONFIGURATION  - PROCESSOR_UNAVAILABLE 

@@ -26,13 +26,17 @@ module CyberSource
     # Username for the visa directory server that is created when your acquirer sets up your account. This ID might be the same as your merchant ID. the username can be 15 or 23 characters. 
     attr_accessor :merchant_id
 
+    # Acquirer assigned merchant id. Check if your processor supports this field. 
+    attr_accessor :acquirer_merchant_id
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'acquirer_bin' => :'acquirerBin',
         :'country' => :'country',
         :'password' => :'password',
-        :'merchant_id' => :'merchantId'
+        :'merchant_id' => :'merchantId',
+        :'acquirer_merchant_id' => :'acquirerMerchantId'
       }
     end
 
@@ -42,7 +46,8 @@ module CyberSource
         :'acquirer_bin' => :'acquirer_bin',
         :'country' => :'country',
         :'password' => :'password',
-        :'merchant_id' => :'merchant_id'
+        :'merchant_id' => :'merchant_id',
+        :'acquirer_merchant_id' => :'acquirer_merchant_id'
       }
     end
 
@@ -52,7 +57,8 @@ module CyberSource
         :'acquirer_bin' => :'String',
         :'country' => :'String',
         :'password' => :'String',
-        :'merchant_id' => :'String'
+        :'merchant_id' => :'String',
+        :'acquirer_merchant_id' => :'String'
       }
     end
 
@@ -78,6 +84,10 @@ module CyberSource
 
       if attributes.has_key?(:'merchantId')
         self.merchant_id = attributes[:'merchantId']
+      end
+
+      if attributes.has_key?(:'acquirerMerchantId')
+        self.acquirer_merchant_id = attributes[:'acquirerMerchantId']
       end
     end
 
@@ -118,6 +128,12 @@ module CyberSource
       @merchant_id = merchant_id
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] acquirer_merchant_id Value to be assigned
+    def acquirer_merchant_id=(acquirer_merchant_id)
+      @acquirer_merchant_id = acquirer_merchant_id
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -126,7 +142,8 @@ module CyberSource
           acquirer_bin == o.acquirer_bin &&
           country == o.country &&
           password == o.password &&
-          merchant_id == o.merchant_id
+          merchant_id == o.merchant_id &&
+          acquirer_merchant_id == o.acquirer_merchant_id
     end
 
     # @see the `==` method
@@ -138,7 +155,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [acquirer_bin, country, password, merchant_id].hash
+      [acquirer_bin, country, password, merchant_id, acquirer_merchant_id].hash
     end
 
     # Builds the object from hash

@@ -16,29 +16,24 @@ module CyberSource
   class Riskv1authenticationresultsOrderInformation
     attr_accessor :amount_details
 
-    attr_accessor :line_items
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'amount_details' => :'amountDetails',
-        :'line_items' => :'lineItems'
+        :'amount_details' => :'amountDetails'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'amount_details' => :'amount_details',
-        :'line_items' => :'line_items'
+        :'amount_details' => :'amount_details'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'amount_details' => :'Riskv1authenticationresultsOrderInformationAmountDetails',
-        :'line_items' => :'Array<Riskv1authenticationresultsOrderInformationLineItems>'
+        :'amount_details' => :'Riskv1authenticationresultsOrderInformationAmountDetails'
       }
     end
 
@@ -52,12 +47,6 @@ module CyberSource
 
       if attributes.has_key?(:'amountDetails')
         self.amount_details = attributes[:'amountDetails']
-      end
-
-      if attributes.has_key?(:'lineItems')
-        if (value = attributes[:'lineItems']).is_a?(Array)
-          self.line_items = value
-        end
       end
     end
 
@@ -79,8 +68,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          amount_details == o.amount_details &&
-          line_items == o.line_items
+          amount_details == o.amount_details
     end
 
     # @see the `==` method
@@ -92,7 +80,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [amount_details, line_items].hash
+      [amount_details].hash
     end
 
     # Builds the object from hash

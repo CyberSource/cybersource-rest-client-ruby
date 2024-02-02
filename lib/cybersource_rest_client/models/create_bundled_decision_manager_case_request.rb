@@ -104,7 +104,7 @@ module CyberSource
         :'travel_information' => :'Riskv1decisionsTravelInformation',
         :'merchant_defined_information' => :'Array<Riskv1decisionsMerchantDefinedInformation>',
         :'merchant_information' => :'Riskv1decisionsMerchantInformation',
-        :'acquirer_information' => :'Ptsv2paymentsAcquirerInformation',
+        :'acquirer_information' => :'Riskv1decisionsAcquirerInformation',
         :'recurring_payment_information' => :'Ptsv2paymentsRecurringPaymentInformation',
         :'consumer_authentication_information' => :'Riskv1decisionsConsumerAuthenticationInformation',
         :'watchlist_screening_information' => :'Ptsv2paymentsWatchlistScreeningInformation',

@@ -25,7 +25,7 @@ public
             elsif authenticationType == Constants::AUTH_TYPE_OAUTH
                 token = GenerateOAuthToken.new.getToken(merchantconfig_obj, gmtdatetime)
             else
-                raise StandardError.ner(Constants::ERROR_PREFIX + Constants::AUTH_ERROR)
+                raise StandardError.new(Constants::ERROR_PREFIX + Constants::AUTH_ERROR)
             end
         rescue StandardError => err
             @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)

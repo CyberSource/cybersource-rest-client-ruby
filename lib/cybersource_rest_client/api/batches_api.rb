@@ -51,6 +51,10 @@ module CyberSource
       if @api_client.config.client_side_validation && batch_id.nil?
         fail ArgumentError, "Missing the required parameter 'batch_id' when calling BatchesApi.get_batch_report"
       end
+      #if @api_client.config.client_side_validation && batch_id !~ Regexp.new(/^[0-9]*$/)
+        #fail ArgumentError, "invalid value for 'batch_id' when calling BatchesApi.get_batch_report, must conform to the pattern /^[0-9]*$/."
+      #end
+
       # resource path
       local_var_path = 'accountupdater/v1/batches/{batchId}/report'.sub('{' + 'batchId' + '}', batch_id.to_s)
 
@@ -122,6 +126,10 @@ module CyberSource
       if @api_client.config.client_side_validation && batch_id.nil?
         fail ArgumentError, "Missing the required parameter 'batch_id' when calling BatchesApi.get_batch_status"
       end
+      #if @api_client.config.client_side_validation && batch_id !~ Regexp.new(/^[0-9]*$/)
+        #fail ArgumentError, "invalid value for 'batch_id' when calling BatchesApi.get_batch_status, must conform to the pattern /^[0-9]*$/."
+      #end
+
       # resource path
       local_var_path = 'accountupdater/v1/batches/{batchId}/status'.sub('{' + 'batchId' + '}', batch_id.to_s)
 

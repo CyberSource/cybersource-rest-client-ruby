@@ -17,24 +17,30 @@ module CyberSource
     # Processor transaction ID.  This value identifies the transaction on a host system. This value is supported only for Moneris. It contains this information:   - Terminal used to process the transaction  - Shift during which the transaction took place  - Batch number  - Transaction number within the batch  You must store this value. If you give the customer a receipt, display this value on the receipt.  Example For the value 66012345001069003:   - Terminal ID = 66012345  - Shift number = 001  - Batch number = 069  - Transaction number = 003 
     attr_accessor :transaction_id
 
+    # Network Transaction Identifier Applicable for online capture transactions only. 
+    attr_accessor :network_transaction_id
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'transaction_id' => :'transactionId'
+        :'transaction_id' => :'transactionId',
+        :'network_transaction_id' => :'networkTransactionId'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'transaction_id' => :'transaction_id'
+        :'transaction_id' => :'transaction_id',
+        :'network_transaction_id' => :'network_transaction_id'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'transaction_id' => :'String'
+        :'transaction_id' => :'String',
+        :'network_transaction_id' => :'String'
       }
     end
 
@@ -48,6 +54,10 @@ module CyberSource
 
       if attributes.has_key?(:'transactionId')
         self.transaction_id = attributes[:'transactionId']
+      end
+
+      if attributes.has_key?(:'networkTransactionId')
+        self.network_transaction_id = attributes[:'networkTransactionId']
       end
     end
 
@@ -75,7 +85,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          transaction_id == o.transaction_id
+          transaction_id == o.transaction_id &&
+          network_transaction_id == o.network_transaction_id
     end
 
     # @see the `==` method
@@ -87,7 +98,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [transaction_id].hash
+      [transaction_id, network_transaction_id].hash
     end
 
     # Builds the object from hash

@@ -24,22 +24,24 @@ module CyberSource
     # |  |  |  |     | --- | --- | --- |     |**Token**<br>A Token can represent your tokenized Customer, Payment Instrument or Instrument Identifier information.|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|**Payment Credentials**<br>Contains payment information such as the network token, generated cryptogram for Visa & MasterCard or dynamic CVV for Amex in a JSON Web Encryption (JWE) response.<br>Your system can use this API to retrieve the Payment Credentials for an existing Customer, Payment Instrument or Instrument Identifier. 
     #
     # @param token_id The Id of a token representing a Customer, Payment Instrument or Instrument Identifier.
+    # @param post_payment_credentials_request 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
     # @return [String]
     #
-    def post_token_payment_credentials(token_id, opts = {})
-      data, status_code, headers = post_token_payment_credentials_with_http_info(token_id, opts)
+    def post_token_payment_credentials(token_id, post_payment_credentials_request, opts = {})
+      data, status_code, headers = post_token_payment_credentials_with_http_info(token_id, post_payment_credentials_request, opts)
       return data, status_code, headers
     end
 
     # Generate Payment Credentials for a TMS Token
     # |  |  |  |     | --- | --- | --- |     |**Token**&lt;br&gt;A Token can represent your tokenized Customer, Payment Instrument or Instrument Identifier information.|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;|**Payment Credentials**&lt;br&gt;Contains payment information such as the network token, generated cryptogram for Visa &amp; MasterCard or dynamic CVV for Amex in a JSON Web Encryption (JWE) response.&lt;br&gt;Your system can use this API to retrieve the Payment Credentials for an existing Customer, Payment Instrument or Instrument Identifier. 
     # @param token_id The Id of a token representing a Customer, Payment Instrument or Instrument Identifier.
+    # @param post_payment_credentials_request 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
     # @return [Array<(String, Fixnum, Hash)>] String data, response status code and response headers
-    def post_token_payment_credentials_with_http_info(token_id, opts = {})
+    def post_token_payment_credentials_with_http_info(token_id, post_payment_credentials_request, opts = {})
 
       if @api_client.config.debugging
           begin
@@ -52,6 +54,10 @@ module CyberSource
       # verify the required parameter 'token_id' is set
       if @api_client.config.client_side_validation && token_id.nil?
         fail ArgumentError, "Missing the required parameter 'token_id' when calling TokenApi.post_token_payment_credentials"
+      end
+      # verify the required parameter 'post_payment_credentials_request' is set
+      if @api_client.config.client_side_validation && post_payment_credentials_request.nil?
+        fail ArgumentError, "Missing the required parameter 'post_payment_credentials_request' when calling TokenApi.post_token_payment_credentials"
       end
       # resource path
       local_var_path = 'tms/v2/tokens/{tokenId}/payment-credentials'.sub('{' + 'tokenId' + '}', token_id.to_s)
@@ -71,11 +77,9 @@ module CyberSource
       form_params = {}
 
       # http body (model)
-      if 'POST' == 'POST'
-        post_body = '{}'
-      else
-        post_body = nil
-      end
+      post_body = @api_client.object_to_http_body(post_payment_credentials_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PostPaymentCredentialsRequest', @api_client.config.host)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
