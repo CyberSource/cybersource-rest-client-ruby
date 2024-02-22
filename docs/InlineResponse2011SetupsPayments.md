@@ -19,5 +19,6 @@ Name | Type | Description | Notes
 **payouts** | [**InlineResponse2011SetupsPaymentsCardProcessing**](InlineResponse2011SetupsPaymentsCardProcessing.md) |  | [optional] 
 **pay_by_link** | [**InlineResponse2011SetupsPaymentsDigitalPayments**](InlineResponse2011SetupsPaymentsDigitalPayments.md) |  | [optional] 
 **unified_checkout** | [**InlineResponse2011SetupsPaymentsDigitalPayments**](InlineResponse2011SetupsPaymentsDigitalPayments.md) |  | [optional] 
+**receivables_manager** | [**InlineResponse2011SetupsPaymentsDigitalPayments**](InlineResponse2011SetupsPaymentsDigitalPayments.md) |  | [optional] 
 
 

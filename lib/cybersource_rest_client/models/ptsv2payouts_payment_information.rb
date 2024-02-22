@@ -18,11 +18,20 @@ module CyberSource
 
     attr_accessor :customer
 
+    attr_accessor :payment_instrument
+
+    attr_accessor :instrument_identifier
+
+    attr_accessor :tokenized_card
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'card' => :'card',
-        :'customer' => :'customer'
+        :'customer' => :'customer',
+        :'payment_instrument' => :'paymentInstrument',
+        :'instrument_identifier' => :'instrumentIdentifier',
+        :'tokenized_card' => :'tokenizedCard'
       }
     end
 
@@ -30,7 +39,10 @@ module CyberSource
     def self.json_map
       {
         :'card' => :'card',
-        :'customer' => :'customer'
+        :'customer' => :'customer',
+        :'payment_instrument' => :'payment_instrument',
+        :'instrument_identifier' => :'instrument_identifier',
+        :'tokenized_card' => :'tokenized_card'
       }
     end
 
@@ -38,7 +50,10 @@ module CyberSource
     def self.swagger_types
       {
         :'card' => :'Ptsv2payoutsPaymentInformationCard',
-        :'customer' => :'Ptsv2paymentsPaymentInformationCustomer'
+        :'customer' => :'Ptsv2paymentsPaymentInformationCustomer',
+        :'payment_instrument' => :'Ptsv2paymentsPaymentInformationPaymentInstrument',
+        :'instrument_identifier' => :'PtsV2PaymentsPost201ResponsePaymentInformationInstrumentIdentifier',
+        :'tokenized_card' => :'Ptsv2paymentsPaymentInformationTokenizedCard'
       }
     end
 
@@ -56,6 +71,18 @@ module CyberSource
 
       if attributes.has_key?(:'customer')
         self.customer = attributes[:'customer']
+      end
+
+      if attributes.has_key?(:'paymentInstrument')
+        self.payment_instrument = attributes[:'paymentInstrument']
+      end
+
+      if attributes.has_key?(:'instrumentIdentifier')
+        self.instrument_identifier = attributes[:'instrumentIdentifier']
+      end
+
+      if attributes.has_key?(:'tokenizedCard')
+        self.tokenized_card = attributes[:'tokenizedCard']
       end
     end
 
@@ -78,7 +105,10 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           card == o.card &&
-          customer == o.customer
+          customer == o.customer &&
+          payment_instrument == o.payment_instrument &&
+          instrument_identifier == o.instrument_identifier &&
+          tokenized_card == o.tokenized_card
     end
 
     # @see the `==` method
@@ -90,7 +120,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card, customer].hash
+      [card, customer, payment_instrument, instrument_identifier, tokenized_card].hash
     end
 
     # Builds the object from hash

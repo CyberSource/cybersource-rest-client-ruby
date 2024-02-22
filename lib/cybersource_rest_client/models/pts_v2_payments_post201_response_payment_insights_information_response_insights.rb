@@ -20,11 +20,15 @@ module CyberSource
     # Categorization Code of response message from processor  Possible Values: - `01` : Issuer Will Never Approve - `02` : Issuer Can't Approve at this Time - `03` : Issuer Can't Approve with these Details - `04` : Generic Error - `98` : Others - `99` : Payment Insights Response Category Match Not Found 
     attr_accessor :category_code
 
+    # Raw name of the processor used for the transaction processing, especially useful during acquirer swing to see which processor transaction settled with 
+    attr_accessor :processor_raw_name
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'category' => :'category',
-        :'category_code' => :'categoryCode'
+        :'category_code' => :'categoryCode',
+        :'processor_raw_name' => :'processorRawName'
       }
     end
 
@@ -32,7 +36,8 @@ module CyberSource
     def self.json_map
       {
         :'category' => :'category',
-        :'category_code' => :'category_code'
+        :'category_code' => :'category_code',
+        :'processor_raw_name' => :'processor_raw_name'
       }
     end
 
@@ -40,7 +45,8 @@ module CyberSource
     def self.swagger_types
       {
         :'category' => :'String',
-        :'category_code' => :'String'
+        :'category_code' => :'String',
+        :'processor_raw_name' => :'String'
       }
     end
 
@@ -58,6 +64,10 @@ module CyberSource
 
       if attributes.has_key?(:'categoryCode')
         self.category_code = attributes[:'categoryCode']
+      end
+
+      if attributes.has_key?(:'processorRawName')
+        self.processor_raw_name = attributes[:'processorRawName']
       end
     end
 
@@ -86,13 +96,20 @@ module CyberSource
       @category_code = category_code
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] processor_raw_name Value to be assigned
+    def processor_raw_name=(processor_raw_name)
+      @processor_raw_name = processor_raw_name
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           category == o.category &&
-          category_code == o.category_code
+          category_code == o.category_code &&
+          processor_raw_name == o.processor_raw_name
     end
 
     # @see the `==` method
@@ -104,7 +121,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [category, category_code].hash
+      [category, category_code, processor_raw_name].hash
     end
 
     # Builds the object from hash

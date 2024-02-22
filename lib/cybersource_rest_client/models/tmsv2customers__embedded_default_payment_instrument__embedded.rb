@@ -34,7 +34,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'instrument_identifier' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier'
+        :'instrument_identifier' => :'TmsEmbeddedInstrumentIdentifier'
       }
     end
 

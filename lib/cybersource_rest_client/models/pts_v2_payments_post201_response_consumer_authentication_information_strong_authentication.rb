@@ -33,7 +33,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'issuer_information' => :'PtsV2PaymentsPost201ResponseConsumerAuthenticationInformationStrongAuthenticationIssuerInformation'
+        :'issuer_information' => :'PaymentsStrongAuthIssuerInformation'
       }
     end
 

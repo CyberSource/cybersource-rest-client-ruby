@@ -62,6 +62,8 @@ module CyberSource
 
     attr_accessor :japan_payment_options
 
+    attr_accessor :refund_options
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -82,7 +84,8 @@ module CyberSource
         :'purchase_options' => :'purchaseOptions',
         :'electronic_benefits_transfer' => :'electronicBenefitsTransfer',
         :'loan_options' => :'loanOptions',
-        :'japan_payment_options' => :'japanPaymentOptions'
+        :'japan_payment_options' => :'japanPaymentOptions',
+        :'refund_options' => :'refundOptions'
       }
     end
 
@@ -106,7 +109,8 @@ module CyberSource
         :'purchase_options' => :'purchase_options',
         :'electronic_benefits_transfer' => :'electronic_benefits_transfer',
         :'loan_options' => :'loan_options',
-        :'japan_payment_options' => :'japan_payment_options'
+        :'japan_payment_options' => :'japan_payment_options',
+        :'refund_options' => :'refund_options'
       }
     end
 
@@ -130,7 +134,8 @@ module CyberSource
         :'purchase_options' => :'Ptsv2creditsProcessingInformationPurchaseOptions',
         :'electronic_benefits_transfer' => :'Ptsv2creditsProcessingInformationElectronicBenefitsTransfer',
         :'loan_options' => :'Ptsv2paymentsProcessingInformationLoanOptions',
-        :'japan_payment_options' => :'Ptsv2creditsProcessingInformationJapanPaymentOptions'
+        :'japan_payment_options' => :'Ptsv2creditsProcessingInformationJapanPaymentOptions',
+        :'refund_options' => :'Ptsv2creditsProcessingInformationRefundOptions'
       }
     end
 
@@ -212,6 +217,10 @@ module CyberSource
 
       if attributes.has_key?(:'japanPaymentOptions')
         self.japan_payment_options = attributes[:'japanPaymentOptions']
+      end
+
+      if attributes.has_key?(:'refundOptions')
+        self.refund_options = attributes[:'refundOptions']
       end
     end
 
@@ -322,7 +331,8 @@ module CyberSource
           purchase_options == o.purchase_options &&
           electronic_benefits_transfer == o.electronic_benefits_transfer &&
           loan_options == o.loan_options &&
-          japan_payment_options == o.japan_payment_options
+          japan_payment_options == o.japan_payment_options &&
+          refund_options == o.refund_options
     end
 
     # @see the `==` method
@@ -334,7 +344,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [commerce_indicator, processor_id, payment_solution, reconciliation_id, link_id, report_group, visa_checkout_id, purchase_level, industry_data_type, wallet_type, national_net_domestic_data, network_routing_order, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, japan_payment_options].hash
+      [commerce_indicator, processor_id, payment_solution, reconciliation_id, link_id, report_group, visa_checkout_id, purchase_level, industry_data_type, wallet_type, national_net_domestic_data, network_routing_order, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, japan_payment_options, refund_options].hash
     end
 
     # Builds the object from hash

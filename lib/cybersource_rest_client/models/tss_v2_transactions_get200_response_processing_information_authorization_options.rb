@@ -17,12 +17,24 @@ module CyberSource
     # Authorization type. Possible values:   - `AUTOCAPTURE`: automatic capture.  - `STANDARDCAPTURE`: standard capture.  - `VERBAL`: forced capture. Include it in the payment request for a forced capture. Include it in the capture request for a verbal payment.  #### Asia, Middle East, and Africa Gateway; Cielo; Comercio Latino; and CyberSource Latin American Processing Set this field to `AUTOCAPTURE` and include it in a bundled request to indicate that you are requesting an automatic capture. If your account is configured to enable automatic captures, set this field to `STANDARDCAPTURE` and include it in a standard authorization or bundled request to indicate that you are overriding an automatic capture. For more information, see the `auth_type` field description in [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  #### Forced Capture Set this field to `VERBAL` and include it in the authorization request to indicate that you are performing a forced capture; therefore, you receive the authorization code outside the CyberSource system.  #### Verbal Authorization Set this field to `VERBAL` and include it in the capture request to indicate that the request is for a verbal authorization. For more information, see \"Verbal Authorizations\" in [Credit Card Services Using the SCMP API](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html). 
     attr_accessor :auth_type
 
+    # Flag that specifies the purpose of the authorization.  Possible values:  - **0**: Preauthorization  - **1**: Final authorization  To set the default for this field, contact CyberSource Customer Support.  #### Barclays and Elavon The default for Barclays and Elavon is 1 (final authorization). To change the default for this field, contact CyberSource Customer Support.  #### CyberSource through VisaNet When the value for this field is 0, it corresponds to the following data in the TC 33 capture file:  - Record: CP01 TCR0  - Position: 164  - Field: Additional Authorization Indicators When the value for this field is 1, it does not correspond to any data in the TC 33 capture file. 
+    attr_accessor :auth_indicator
+
+    # Flag that indicates whether the transaction is an extended authorization. 
+    attr_accessor :extend_auth_indicator
+
+    # This API field will indicate whether a card verification check is being performed during the transaction  Possible values:   - `true`   - `false` (default value) 
+    attr_accessor :card_verification_indicator
+
     attr_accessor :initiator
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'auth_type' => :'authType',
+        :'auth_indicator' => :'authIndicator',
+        :'extend_auth_indicator' => :'extendAuthIndicator',
+        :'card_verification_indicator' => :'cardVerificationIndicator',
         :'initiator' => :'initiator'
       }
     end
@@ -31,6 +43,9 @@ module CyberSource
     def self.json_map
       {
         :'auth_type' => :'auth_type',
+        :'auth_indicator' => :'auth_indicator',
+        :'extend_auth_indicator' => :'extend_auth_indicator',
+        :'card_verification_indicator' => :'card_verification_indicator',
         :'initiator' => :'initiator'
       }
     end
@@ -39,6 +54,9 @@ module CyberSource
     def self.swagger_types
       {
         :'auth_type' => :'String',
+        :'auth_indicator' => :'String',
+        :'extend_auth_indicator' => :'String',
+        :'card_verification_indicator' => :'BOOLEAN',
         :'initiator' => :'TssV2TransactionsGet200ResponseProcessingInformationAuthorizationOptionsInitiator'
       }
     end
@@ -53,6 +71,18 @@ module CyberSource
 
       if attributes.has_key?(:'authType')
         self.auth_type = attributes[:'authType']
+      end
+
+      if attributes.has_key?(:'authIndicator')
+        self.auth_indicator = attributes[:'authIndicator']
+      end
+
+      if attributes.has_key?(:'extendAuthIndicator')
+        self.extend_auth_indicator = attributes[:'extendAuthIndicator']
+      end
+
+      if attributes.has_key?(:'cardVerificationIndicator')
+        self.card_verification_indicator = attributes[:'cardVerificationIndicator']
       end
 
       if attributes.has_key?(:'initiator')
@@ -79,12 +109,21 @@ module CyberSource
       @auth_type = auth_type
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] auth_indicator Value to be assigned
+    def auth_indicator=(auth_indicator)
+      @auth_indicator = auth_indicator
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           auth_type == o.auth_type &&
+          auth_indicator == o.auth_indicator &&
+          extend_auth_indicator == o.extend_auth_indicator &&
+          card_verification_indicator == o.card_verification_indicator &&
           initiator == o.initiator
     end
 
@@ -97,7 +136,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [auth_type, initiator].hash
+      [auth_type, auth_indicator, extend_auth_indicator, card_verification_indicator, initiator].hash
     end
 
     # Builds the object from hash

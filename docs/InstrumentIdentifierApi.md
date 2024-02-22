@@ -63,7 +63,7 @@ No authorization required
 
 
 # **get_instrument_identifier**
-> Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier get_instrument_identifier(instrument_identifier_id, opts)
+> TmsEmbeddedInstrumentIdentifier get_instrument_identifier(instrument_identifier_id, opts)
 
 Retrieve an Instrument Identifier
 
@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier**](Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier.md)
+[**TmsEmbeddedInstrumentIdentifier**](TmsEmbeddedInstrumentIdentifier.md)
 
 ### Authorization
 
@@ -169,7 +169,7 @@ No authorization required
 
 
 # **patch_instrument_identifier**
-> Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier patch_instrument_identifier(instrument_identifier_id, patch_instrument_identifier_request, opts)
+> TmsEmbeddedInstrumentIdentifier patch_instrument_identifier(instrument_identifier_id, patch_instrument_identifier_request, opts)
 
 Update an Instrument Identifier
 
@@ -211,7 +211,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier**](Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier.md)
+[**TmsEmbeddedInstrumentIdentifier**](TmsEmbeddedInstrumentIdentifier.md)
 
 ### Authorization
 
@@ -225,7 +225,7 @@ No authorization required
 
 
 # **post_instrument_identifier**
-> Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier post_instrument_identifier(post_instrument_identifier_request, opts)
+> TmsEmbeddedInstrumentIdentifier post_instrument_identifier(post_instrument_identifier_request, opts)
 
 Create an Instrument Identifier
 
@@ -262,7 +262,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier**](Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier.md)
+[**TmsEmbeddedInstrumentIdentifier**](TmsEmbeddedInstrumentIdentifier.md)
 
 ### Authorization
 

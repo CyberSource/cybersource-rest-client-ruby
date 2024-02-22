@@ -99,7 +99,7 @@ module CyberSource
     # @param instrument_identifier_id The Id of an Instrument Identifier.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
-    # @return [Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier]
+    # @return [TmsEmbeddedInstrumentIdentifier]
     #
     def get_instrument_identifier(instrument_identifier_id, opts = {})
       data, status_code, headers = get_instrument_identifier_with_http_info(instrument_identifier_id, opts)
@@ -111,7 +111,7 @@ module CyberSource
     # @param instrument_identifier_id The Id of an Instrument Identifier.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
-    # @return [Array<(Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier, Fixnum, Hash)>] Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier data, response status code and response headers
+    # @return [Array<(TmsEmbeddedInstrumentIdentifier, Fixnum, Hash)>] TmsEmbeddedInstrumentIdentifier data, response status code and response headers
     def get_instrument_identifier_with_http_info(instrument_identifier_id, opts = {})
 
       if @api_client.config.debugging
@@ -156,7 +156,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier')
+        :return_type => 'TmsEmbeddedInstrumentIdentifier')
       if @api_client.config.debugging
         begin
         raise
@@ -255,7 +255,7 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
     # @option opts [String] :if_match Contains an ETag value from a GET request to make the request conditional.
-    # @return [Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier]
+    # @return [TmsEmbeddedInstrumentIdentifier]
     #
     def patch_instrument_identifier(instrument_identifier_id, patch_instrument_identifier_request, opts = {})
       data, status_code, headers = patch_instrument_identifier_with_http_info(instrument_identifier_id, patch_instrument_identifier_request, opts)
@@ -269,7 +269,7 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
     # @option opts [String] :if_match Contains an ETag value from a GET request to make the request conditional.
-    # @return [Array<(Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier, Fixnum, Hash)>] Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier data, response status code and response headers
+    # @return [Array<(TmsEmbeddedInstrumentIdentifier, Fixnum, Hash)>] TmsEmbeddedInstrumentIdentifier data, response status code and response headers
     def patch_instrument_identifier_with_http_info(instrument_identifier_id, patch_instrument_identifier_request, opts = {})
 
       if @api_client.config.debugging
@@ -317,7 +317,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier')
+        :return_type => 'TmsEmbeddedInstrumentIdentifier')
       if @api_client.config.debugging
         begin
         raise
@@ -334,7 +334,7 @@ module CyberSource
     # @param post_instrument_identifier_request Specify either a Card, Bank Account or Enrollable Card
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
-    # @return [Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier]
+    # @return [TmsEmbeddedInstrumentIdentifier]
     #
     def post_instrument_identifier(post_instrument_identifier_request, opts = {})
       data, status_code, headers = post_instrument_identifier_with_http_info(post_instrument_identifier_request, opts)
@@ -346,7 +346,7 @@ module CyberSource
     # @param post_instrument_identifier_request Specify either a Card, Bank Account or Enrollable Card
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
-    # @return [Array<(Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier, Fixnum, Hash)>] Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier data, response status code and response headers
+    # @return [Array<(TmsEmbeddedInstrumentIdentifier, Fixnum, Hash)>] TmsEmbeddedInstrumentIdentifier data, response status code and response headers
     def post_instrument_identifier_with_http_info(post_instrument_identifier_request, opts = {})
 
       if @api_client.config.debugging
@@ -389,7 +389,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier')
+        :return_type => 'TmsEmbeddedInstrumentIdentifier')
       if @api_client.config.debugging
         begin
         raise

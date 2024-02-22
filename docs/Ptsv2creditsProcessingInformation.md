@@ -21,5 +21,6 @@ Name | Type | Description | Notes
 **electronic_benefits_transfer** | [**Ptsv2creditsProcessingInformationElectronicBenefitsTransfer**](Ptsv2creditsProcessingInformationElectronicBenefitsTransfer.md) |  | [optional] 
 **loan_options** | [**Ptsv2paymentsProcessingInformationLoanOptions**](Ptsv2paymentsProcessingInformationLoanOptions.md) |  | [optional] 
 **japan_payment_options** | [**Ptsv2creditsProcessingInformationJapanPaymentOptions**](Ptsv2creditsProcessingInformationJapanPaymentOptions.md) |  | [optional] 
+**refund_options** | [**Ptsv2creditsProcessingInformationRefundOptions**](Ptsv2creditsProcessingInformationRefundOptions.md) |  | [optional] 
 
 

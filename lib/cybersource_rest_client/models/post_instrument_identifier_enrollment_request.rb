@@ -81,18 +81,18 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'_links' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifierLinks',
+        :'_links' => :'TmsEmbeddedInstrumentIdentifierLinks',
         :'id' => :'String',
         :'object' => :'String',
         :'state' => :'String',
         :'type' => :'String',
-        :'card' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifierCard',
-        :'bank_account' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifierBankAccount',
-        :'tokenized_card' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifierTokenizedCard',
-        :'issuer' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifierIssuer',
-        :'processing_information' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifierProcessingInformation',
-        :'bill_to' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifierBillTo',
-        :'metadata' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifierMetadata'
+        :'card' => :'TmsEmbeddedInstrumentIdentifierCard',
+        :'bank_account' => :'TmsEmbeddedInstrumentIdentifierBankAccount',
+        :'tokenized_card' => :'TmsEmbeddedInstrumentIdentifierTokenizedCard',
+        :'issuer' => :'TmsEmbeddedInstrumentIdentifierIssuer',
+        :'processing_information' => :'TmsEmbeddedInstrumentIdentifierProcessingInformation',
+        :'bill_to' => :'TmsEmbeddedInstrumentIdentifierBillTo',
+        :'metadata' => :'TmsEmbeddedInstrumentIdentifierMetadata'
       }
     end
 

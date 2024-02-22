@@ -3,6 +3,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**issuer_information** | [**PtsV2PaymentsPost201ResponseConsumerAuthenticationInformationStrongAuthenticationIssuerInformation**](PtsV2PaymentsPost201ResponseConsumerAuthenticationInformationStrongAuthenticationIssuerInformation.md) |  | [optional] 
+**issuer_information** | [**PaymentsStrongAuthIssuerInformation**](PaymentsStrongAuthIssuerInformation.md) |  | [optional] 
 
 
