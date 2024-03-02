@@ -38,7 +38,7 @@ module CyberSource
     def self.swagger_types
       {
         :'template_id' => :'String',
-        :'configurations' => :'PaymentsProductsECheckConfigurationInformationConfigurations'
+        :'configurations' => :'ECheckConfig'
       }
     end
 

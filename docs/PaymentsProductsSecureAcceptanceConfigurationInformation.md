@@ -4,6 +4,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **template_id** | **String** |  | [optional] 
-**configurations** | [**PaymentsProductsSecureAcceptanceConfigurationInformationConfigurations**](PaymentsProductsSecureAcceptanceConfigurationInformationConfigurations.md) |  | [optional] 
+**configurations** | [**SAConfig**](SAConfig.md) |  | [optional] 
 
 

@@ -48,6 +48,8 @@ module CyberSource
 
     attr_accessor :unified_checkout
 
+    attr_accessor :receivables_manager
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -67,7 +69,8 @@ module CyberSource
         :'payouts' => :'payouts',
         :'differential_fee' => :'differentialFee',
         :'pay_by_link' => :'payByLink',
-        :'unified_checkout' => :'unifiedCheckout'
+        :'unified_checkout' => :'unifiedCheckout',
+        :'receivables_manager' => :'receivablesManager'
       }
     end
 
@@ -90,7 +93,8 @@ module CyberSource
         :'payouts' => :'payouts',
         :'differential_fee' => :'differential_fee',
         :'pay_by_link' => :'pay_by_link',
-        :'unified_checkout' => :'unified_checkout'
+        :'unified_checkout' => :'unified_checkout',
+        :'receivables_manager' => :'receivables_manager'
       }
     end
 
@@ -113,7 +117,8 @@ module CyberSource
         :'payouts' => :'PaymentsProductsPayouts',
         :'differential_fee' => :'PaymentsProductsDifferentialFee',
         :'pay_by_link' => :'PaymentsProductsTax',
-        :'unified_checkout' => :'PaymentsProductsTax'
+        :'unified_checkout' => :'PaymentsProductsTax',
+        :'receivables_manager' => :'PaymentsProductsTax'
       }
     end
 
@@ -192,6 +197,10 @@ module CyberSource
       if attributes.has_key?(:'unifiedCheckout')
         self.unified_checkout = attributes[:'unifiedCheckout']
       end
+
+      if attributes.has_key?(:'receivablesManager')
+        self.receivables_manager = attributes[:'receivablesManager']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -228,7 +237,8 @@ module CyberSource
           payouts == o.payouts &&
           differential_fee == o.differential_fee &&
           pay_by_link == o.pay_by_link &&
-          unified_checkout == o.unified_checkout
+          unified_checkout == o.unified_checkout &&
+          receivables_manager == o.receivables_manager
     end
 
     # @see the `==` method
@@ -240,7 +250,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card_processing, card_present_connect, cybs_ready_terminal, e_check, payer_authentication, digital_payments, secure_acceptance, virtual_terminal, currency_conversion, tax, customer_invoicing, recurring_billing, payment_orchestration, payouts, differential_fee, pay_by_link, unified_checkout].hash
+      [card_processing, card_present_connect, cybs_ready_terminal, e_check, payer_authentication, digital_payments, secure_acceptance, virtual_terminal, currency_conversion, tax, customer_invoicing, recurring_billing, payment_orchestration, payouts, differential_fee, pay_by_link, unified_checkout, receivables_manager].hash
     end
 
     # Builds the object from hash

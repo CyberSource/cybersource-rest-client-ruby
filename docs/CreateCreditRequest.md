@@ -16,6 +16,8 @@ Name | Type | Description | Notes
 **merchant_defined_secure_information** | [**Ptsv2paymentsMerchantDefinedSecureInformation**](Ptsv2paymentsMerchantDefinedSecureInformation.md) |  | [optional] 
 **installment_information** | [**Ptsv2creditsInstallmentInformation**](Ptsv2creditsInstallmentInformation.md) |  | [optional] 
 **travel_information** | [**Ptsv2paymentsTravelInformation**](Ptsv2paymentsTravelInformation.md) |  | [optional] 
+**recipient_information** | [**Ptsv2creditsRecipientInformation**](Ptsv2creditsRecipientInformation.md) |  | [optional] 
+**sender_information** | [**Ptsv2creditsSenderInformation**](Ptsv2creditsSenderInformation.md) |  | [optional] 
 **promotion_information** | [**Ptsv2paymentsPromotionInformation**](Ptsv2paymentsPromotionInformation.md) |  | [optional] 
 
 

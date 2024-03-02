@@ -104,4 +104,10 @@ describe 'PtsV2PayoutsPost201Response' do
     end
   end
 
+  describe 'test attribute "token_information"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

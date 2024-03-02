@@ -41,6 +41,10 @@ module CyberSource
 
     attr_accessor :travel_information
 
+    attr_accessor :recipient_information
+
+    attr_accessor :sender_information
+
     attr_accessor :promotion_information
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -59,6 +63,8 @@ module CyberSource
         :'merchant_defined_secure_information' => :'merchantDefinedSecureInformation',
         :'installment_information' => :'installmentInformation',
         :'travel_information' => :'travelInformation',
+        :'recipient_information' => :'recipientInformation',
+        :'sender_information' => :'senderInformation',
         :'promotion_information' => :'promotionInformation'
       }
     end
@@ -79,6 +85,8 @@ module CyberSource
         :'merchant_defined_secure_information' => :'merchant_defined_secure_information',
         :'installment_information' => :'installment_information',
         :'travel_information' => :'travel_information',
+        :'recipient_information' => :'recipient_information',
+        :'sender_information' => :'sender_information',
         :'promotion_information' => :'promotion_information'
       }
     end
@@ -99,6 +107,8 @@ module CyberSource
         :'merchant_defined_secure_information' => :'Ptsv2paymentsMerchantDefinedSecureInformation',
         :'installment_information' => :'Ptsv2creditsInstallmentInformation',
         :'travel_information' => :'Ptsv2paymentsTravelInformation',
+        :'recipient_information' => :'Ptsv2creditsRecipientInformation',
+        :'sender_information' => :'Ptsv2creditsSenderInformation',
         :'promotion_information' => :'Ptsv2paymentsPromotionInformation'
       }
     end
@@ -165,6 +175,14 @@ module CyberSource
         self.travel_information = attributes[:'travelInformation']
       end
 
+      if attributes.has_key?(:'recipientInformation')
+        self.recipient_information = attributes[:'recipientInformation']
+      end
+
+      if attributes.has_key?(:'senderInformation')
+        self.sender_information = attributes[:'senderInformation']
+      end
+
       if attributes.has_key?(:'promotionInformation')
         self.promotion_information = attributes[:'promotionInformation']
       end
@@ -201,6 +219,8 @@ module CyberSource
           merchant_defined_secure_information == o.merchant_defined_secure_information &&
           installment_information == o.installment_information &&
           travel_information == o.travel_information &&
+          recipient_information == o.recipient_information &&
+          sender_information == o.sender_information &&
           promotion_information == o.promotion_information
     end
 
@@ -213,7 +233,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_reference_information, processing_information, payment_information, order_information, buyer_information, device_information, merchant_information, aggregator_information, point_of_sale_information, merchant_defined_information, merchant_defined_secure_information, installment_information, travel_information, promotion_information].hash
+      [client_reference_information, processing_information, payment_information, order_information, buyer_information, device_information, merchant_information, aggregator_information, point_of_sale_information, merchant_defined_information, merchant_defined_secure_information, installment_information, travel_information, recipient_information, sender_information, promotion_information].hash
     end
 
     # Builds the object from hash

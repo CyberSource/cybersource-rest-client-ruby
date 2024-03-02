@@ -4,6 +4,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **template_id** | **String** |  | [optional] 
-**configurations** | [**PaymentsProductsVirtualTerminalConfigurationInformationConfigurations**](PaymentsProductsVirtualTerminalConfigurationInformationConfigurations.md) |  | [optional] 
+**configurations** | [**VTConfig**](VTConfig.md) |  | [optional] 
 
 

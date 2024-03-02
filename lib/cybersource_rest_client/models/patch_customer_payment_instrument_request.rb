@@ -104,7 +104,7 @@ module CyberSource
         :'card' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentCard',
         :'buyer_information' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentBuyerInformation',
         :'bill_to' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentBillTo',
-        :'processing_information' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentProcessingInformation',
+        :'processing_information' => :'TmsPaymentInstrumentProcessingInfo',
         :'merchant_information' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentMerchantInformation',
         :'instrument_identifier' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentInstrumentIdentifier',
         :'metadata' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentMetadata',

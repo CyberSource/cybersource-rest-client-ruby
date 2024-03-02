@@ -32,6 +32,9 @@ module CyberSource
     # Flag that indicates whether the transaction is enabled for partial authorization. When the request includes this field, this value overrides the information in your account. Possible values: - `true`: Enable the transaction for partial authorization. - `false`: Do not enable the transaction for partial authorization.  #### PIN debit Required field for partial authorizations that use PIN debit purchase; otherwise, not used.  #### Used by **Authorization** Optional field.  #### CyberSource through VisaNet To set the default for this field, contact CyberSource Customer Support. The value for this field corresponds to the following data in the TC 33 capture file5: - Record: CP01 TCR0 - Position: 164 - Field: Additional Authorization Indicators 
     attr_accessor :partial_auth_indicator
 
+    # Flag that indicates whether the transaction is an extended authorization. 
+    attr_accessor :extend_auth_indicator
+
     # Flag that indicates whether to return balance information.  Possible values: - `true`: Return balance information. - `false`: Do not return balance information.  #### Used by **Authorization** Required for a balance inquiry; otherwise, not used.  #### PIN debit Required for a balance inquiry request of a PIN debit purchase; otherwise, not used. 
     attr_accessor :balance_inquiry
 
@@ -85,6 +88,7 @@ module CyberSource
         :'verbal_auth_transaction_id' => :'verbalAuthTransactionId',
         :'auth_indicator' => :'authIndicator',
         :'partial_auth_indicator' => :'partialAuthIndicator',
+        :'extend_auth_indicator' => :'extendAuthIndicator',
         :'balance_inquiry' => :'balanceInquiry',
         :'ignore_avs_result' => :'ignoreAvsResult',
         :'decline_avs_flags' => :'declineAvsFlags',
@@ -112,6 +116,7 @@ module CyberSource
         :'verbal_auth_transaction_id' => :'verbal_auth_transaction_id',
         :'auth_indicator' => :'auth_indicator',
         :'partial_auth_indicator' => :'partial_auth_indicator',
+        :'extend_auth_indicator' => :'extend_auth_indicator',
         :'balance_inquiry' => :'balance_inquiry',
         :'ignore_avs_result' => :'ignore_avs_result',
         :'decline_avs_flags' => :'decline_avs_flags',
@@ -139,6 +144,7 @@ module CyberSource
         :'verbal_auth_transaction_id' => :'String',
         :'auth_indicator' => :'String',
         :'partial_auth_indicator' => :'BOOLEAN',
+        :'extend_auth_indicator' => :'String',
         :'balance_inquiry' => :'BOOLEAN',
         :'ignore_avs_result' => :'BOOLEAN',
         :'decline_avs_flags' => :'Array<String>',
@@ -187,6 +193,10 @@ module CyberSource
 
       if attributes.has_key?(:'partialAuthIndicator')
         self.partial_auth_indicator = attributes[:'partialAuthIndicator']
+      end
+
+      if attributes.has_key?(:'extendAuthIndicator')
+        self.extend_auth_indicator = attributes[:'extendAuthIndicator']
       end
 
       if attributes.has_key?(:'balanceInquiry')
@@ -310,6 +320,7 @@ module CyberSource
           verbal_auth_transaction_id == o.verbal_auth_transaction_id &&
           auth_indicator == o.auth_indicator &&
           partial_auth_indicator == o.partial_auth_indicator &&
+          extend_auth_indicator == o.extend_auth_indicator &&
           balance_inquiry == o.balance_inquiry &&
           ignore_avs_result == o.ignore_avs_result &&
           decline_avs_flags == o.decline_avs_flags &&
@@ -336,7 +347,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [auth_type, pan_return_indicator, verbal_auth_code, verbal_auth_transaction_id, auth_indicator, partial_auth_indicator, balance_inquiry, ignore_avs_result, decline_avs_flags, ignore_cv_result, initiator, bill_payment, bill_payment_type, redemption_inquiry, transportation_mode, aggregated_auth_indicator, debt_recovery_indicator, deferred_auth_indicator, cash_advance_indicator, split_payment_transaction, card_verification_indicator].hash
+      [auth_type, pan_return_indicator, verbal_auth_code, verbal_auth_transaction_id, auth_indicator, partial_auth_indicator, extend_auth_indicator, balance_inquiry, ignore_avs_result, decline_avs_flags, ignore_cv_result, initiator, bill_payment, bill_payment_type, redemption_inquiry, transportation_mode, aggregated_auth_indicator, debt_recovery_indicator, deferred_auth_indicator, cash_advance_indicator, split_payment_transaction, card_verification_indicator].hash
     end
 
     # Builds the object from hash

@@ -42,6 +42,8 @@ module CyberSource
 
     attr_accessor :issuer_information
 
+    attr_accessor :token_information
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -56,7 +58,8 @@ module CyberSource
         :'order_information' => :'orderInformation',
         :'processor_information' => :'processorInformation',
         :'recipient_information' => :'recipientInformation',
-        :'issuer_information' => :'issuerInformation'
+        :'issuer_information' => :'issuerInformation',
+        :'token_information' => :'tokenInformation'
       }
     end
 
@@ -74,7 +77,8 @@ module CyberSource
         :'order_information' => :'order_information',
         :'processor_information' => :'processor_information',
         :'recipient_information' => :'recipient_information',
-        :'issuer_information' => :'issuer_information'
+        :'issuer_information' => :'issuer_information',
+        :'token_information' => :'token_information'
       }
     end
 
@@ -92,7 +96,8 @@ module CyberSource
         :'order_information' => :'PtsV2PayoutsPost201ResponseOrderInformation',
         :'processor_information' => :'PtsV2PayoutsPost201ResponseProcessorInformation',
         :'recipient_information' => :'PtsV2PayoutsPost201ResponseRecipientInformation',
-        :'issuer_information' => :'PtsV2PayoutsPost201ResponseIssuerInformation'
+        :'issuer_information' => :'PtsV2PayoutsPost201ResponseIssuerInformation',
+        :'token_information' => :'PtsV2PaymentsPost201ResponseTokenInformation'
       }
     end
 
@@ -151,6 +156,10 @@ module CyberSource
       if attributes.has_key?(:'issuerInformation')
         self.issuer_information = attributes[:'issuerInformation']
       end
+
+      if attributes.has_key?(:'tokenInformation')
+        self.token_information = attributes[:'tokenInformation']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -194,7 +203,8 @@ module CyberSource
           order_information == o.order_information &&
           processor_information == o.processor_information &&
           recipient_information == o.recipient_information &&
-          issuer_information == o.issuer_information
+          issuer_information == o.issuer_information &&
+          token_information == o.token_information
     end
 
     # @see the `==` method
@@ -206,7 +216,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, submit_time_utc, status, reconciliation_id, error_information, client_reference_information, merchant_information, order_information, processor_information, recipient_information, issuer_information].hash
+      [_links, id, submit_time_utc, status, reconciliation_id, error_information, client_reference_information, merchant_information, order_information, processor_information, recipient_information, issuer_information, token_information].hash
     end
 
     # Builds the object from hash

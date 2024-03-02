@@ -4,6 +4,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **template_id** | **String** |  | [optional] 
-**configurations** | [**PaymentsProductsECheckConfigurationInformationConfigurations**](PaymentsProductsECheckConfigurationInformationConfigurations.md) |  | [optional] 
+**configurations** | [**ECheckConfig**](ECheckConfig.md) |  | [optional] 
 
 

@@ -51,7 +51,7 @@ describe 'InstrumentIdentifierApi' do
   # @param instrument_identifier_id The Id of an Instrument Identifier.
   # @param [Hash] opts the optional parameters
   # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
-  # @return [Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier]
+  # @return [TmsEmbeddedInstrumentIdentifier]
   describe 'get_instrument_identifier test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -81,7 +81,7 @@ describe 'InstrumentIdentifierApi' do
   # @param [Hash] opts the optional parameters
   # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
   # @option opts [String] :if_match Contains an ETag value from a GET request to make the request conditional.
-  # @return [Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier]
+  # @return [TmsEmbeddedInstrumentIdentifier]
   describe 'patch_instrument_identifier test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -94,7 +94,7 @@ describe 'InstrumentIdentifierApi' do
   # @param post_instrument_identifier_request Specify either a Card, Bank Account or Enrollable Card
   # @param [Hash] opts the optional parameters
   # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
-  # @return [Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifier]
+  # @return [TmsEmbeddedInstrumentIdentifier]
   describe 'post_instrument_identifier test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

@@ -51,7 +51,7 @@ module CyberSource
         :'type' => :'String',
         :'credential_stored_on_file' => :'String',
         :'stored_credential_used' => :'String',
-        :'merchant_initiated_transaction' => :'Ptsv2paymentsProcessingInformationAuthorizationOptionsInitiatorMerchantInitiatedTransaction'
+        :'merchant_initiated_transaction' => :'MerchantInitiatedTransactionObject'
       }
     end
 
