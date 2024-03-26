@@ -137,6 +137,12 @@ module CyberSource
     # Total amount charged for all other miscellaneous charges not previously defined. 
     attr_accessor :other_charges
 
+    # Merchant to send their auto rental company name 
+    attr_accessor :company_name
+
+    # When merchant wants to send the affiliate name. 
+    attr_accessor :affiliate_name
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -181,7 +187,9 @@ module CyberSource
         :'gps_charge' => :'gpsCharge',
         :'phone_charge' => :'phoneCharge',
         :'parking_violation_charge' => :'parkingViolationCharge',
-        :'other_charges' => :'otherCharges'
+        :'other_charges' => :'otherCharges',
+        :'company_name' => :'companyName',
+        :'affiliate_name' => :'affiliateName'
       }
     end
 
@@ -229,7 +237,9 @@ module CyberSource
         :'gps_charge' => :'gps_charge',
         :'phone_charge' => :'phone_charge',
         :'parking_violation_charge' => :'parking_violation_charge',
-        :'other_charges' => :'other_charges'
+        :'other_charges' => :'other_charges',
+        :'company_name' => :'company_name',
+        :'affiliate_name' => :'affiliate_name'
       }
     end
 
@@ -277,7 +287,9 @@ module CyberSource
         :'gps_charge' => :'String',
         :'phone_charge' => :'String',
         :'parking_violation_charge' => :'String',
-        :'other_charges' => :'String'
+        :'other_charges' => :'String',
+        :'company_name' => :'String',
+        :'affiliate_name' => :'String'
       }
     end
 
@@ -455,6 +467,14 @@ module CyberSource
 
       if attributes.has_key?(:'otherCharges')
         self.other_charges = attributes[:'otherCharges']
+      end
+
+      if attributes.has_key?(:'companyName')
+        self.company_name = attributes[:'companyName']
+      end
+
+      if attributes.has_key?(:'affiliateName')
+        self.affiliate_name = attributes[:'affiliateName']
       end
     end
 
@@ -693,6 +713,18 @@ module CyberSource
       @other_charges = other_charges
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] company_name Value to be assigned
+    def company_name=(company_name)
+      @company_name = company_name
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] affiliate_name Value to be assigned
+    def affiliate_name=(affiliate_name)
+      @affiliate_name = affiliate_name
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -739,7 +771,9 @@ module CyberSource
           gps_charge == o.gps_charge &&
           phone_charge == o.phone_charge &&
           parking_violation_charge == o.parking_violation_charge &&
-          other_charges == o.other_charges
+          other_charges == o.other_charges &&
+          company_name == o.company_name &&
+          affiliate_name == o.affiliate_name
     end
 
     # @see the `==` method
@@ -751,7 +785,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [no_show_indicator, customer_name, vehicle_class, distance_travelled, distance_unit, return_date_time, rental_date_time, max_free_distance, insurance_indicator, program_code, return_address, rental_address, agreement_number, odometer_reading, vehicle_identification_number, company_id, number_of_additional_drivers, driver_age, special_program_code, vehicle_make, vehicle_model, time_period, commodity_code, customer_service_phone_number, tax_details, insurance_amount, one_way_drop_off_amount, adjusted_amount_indicator, adjusted_amount, fuel_charges, weekly_rental_rate, daily_rental_rate, rate_per_mile, mileage_charge, extra_mileage_charge, late_fee_amount, towing_charge, extra_charge, gps_charge, phone_charge, parking_violation_charge, other_charges].hash
+      [no_show_indicator, customer_name, vehicle_class, distance_travelled, distance_unit, return_date_time, rental_date_time, max_free_distance, insurance_indicator, program_code, return_address, rental_address, agreement_number, odometer_reading, vehicle_identification_number, company_id, number_of_additional_drivers, driver_age, special_program_code, vehicle_make, vehicle_model, time_period, commodity_code, customer_service_phone_number, tax_details, insurance_amount, one_way_drop_off_amount, adjusted_amount_indicator, adjusted_amount, fuel_charges, weekly_rental_rate, daily_rental_rate, rate_per_mile, mileage_charge, extra_mileage_charge, late_fee_amount, towing_charge, extra_charge, gps_charge, phone_charge, parking_violation_charge, other_charges, company_name, affiliate_name].hash
     end
 
     # Builds the object from hash

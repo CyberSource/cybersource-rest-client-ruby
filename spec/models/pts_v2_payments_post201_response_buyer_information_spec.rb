@@ -62,4 +62,10 @@ describe 'PtsV2PaymentsPost201ResponseBuyerInformation' do
     end
   end
 
+  describe 'test attribute "login_id"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

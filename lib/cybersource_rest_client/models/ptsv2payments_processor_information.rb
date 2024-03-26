@@ -20,11 +20,14 @@ module CyberSource
 
     attr_accessor :authorization_options
 
+    attr_accessor :reversal
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'pre_approval_token' => :'preApprovalToken',
-        :'authorization_options' => :'authorizationOptions'
+        :'authorization_options' => :'authorizationOptions',
+        :'reversal' => :'reversal'
       }
     end
 
@@ -32,7 +35,8 @@ module CyberSource
     def self.json_map
       {
         :'pre_approval_token' => :'pre_approval_token',
-        :'authorization_options' => :'authorization_options'
+        :'authorization_options' => :'authorization_options',
+        :'reversal' => :'reversal'
       }
     end
 
@@ -40,7 +44,8 @@ module CyberSource
     def self.swagger_types
       {
         :'pre_approval_token' => :'String',
-        :'authorization_options' => :'Ptsv2paymentsProcessorInformationAuthorizationOptions'
+        :'authorization_options' => :'Ptsv2paymentsProcessorInformationAuthorizationOptions',
+        :'reversal' => :'Ptsv2paymentsProcessorInformationReversal'
       }
     end
 
@@ -58,6 +63,10 @@ module CyberSource
 
       if attributes.has_key?(:'authorizationOptions')
         self.authorization_options = attributes[:'authorizationOptions']
+      end
+
+      if attributes.has_key?(:'reversal')
+        self.reversal = attributes[:'reversal']
       end
     end
 
@@ -86,7 +95,8 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           pre_approval_token == o.pre_approval_token &&
-          authorization_options == o.authorization_options
+          authorization_options == o.authorization_options &&
+          reversal == o.reversal
     end
 
     # @see the `==` method
@@ -98,7 +108,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [pre_approval_token, authorization_options].hash
+      [pre_approval_token, authorization_options, reversal].hash
     end
 
     # Builds the object from hash

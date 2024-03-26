@@ -25,13 +25,25 @@ module CyberSource
     # Date and time at your physical location.  Format: `YYYYMMDDhhmmss`, where:  - `YYYY` = year  - `MM` = month  - `DD` = day  - `hh` = hour  - `mm` = minutes  - `ss` = seconds  #### Used by **Authorization** Required for these processors: - American Express Direct                                                                                                                                                                                                                                                                                                                         - American Express Direct - Credit Mutuel-CIC - FDC Nashville Global - SIX  Optional for all other processors. 
     attr_accessor :transaction_local_date_time
 
+    # URL to which the customer is directed if they fail to sign the mandate. #### SEPA Required for Create Mandate and Update Mandate #### BACS Required for Create Mandate 
+    attr_accessor :cancel_url
+
+    # URL to which the customer is directed if they fail to sign the mandate. #### SEPA Required for Create Mandate and Update Mandate #### BACS Required for Create Mandate 
+    attr_accessor :success_url
+
+    # URL to which the customer is directed if they fail to sign the mandate. #### SEPA Required for Create Mandate and Update Mandate #### BACS Required for Create Mandate 
+    attr_accessor :failure_url
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'merchant_descriptor' => :'merchantDescriptor',
         :'category_code' => :'categoryCode',
         :'administrative_area' => :'administrativeArea',
-        :'transaction_local_date_time' => :'transactionLocalDateTime'
+        :'transaction_local_date_time' => :'transactionLocalDateTime',
+        :'cancel_url' => :'cancelUrl',
+        :'success_url' => :'successUrl',
+        :'failure_url' => :'failureUrl'
       }
     end
 
@@ -41,7 +53,10 @@ module CyberSource
         :'merchant_descriptor' => :'merchant_descriptor',
         :'category_code' => :'category_code',
         :'administrative_area' => :'administrative_area',
-        :'transaction_local_date_time' => :'transaction_local_date_time'
+        :'transaction_local_date_time' => :'transaction_local_date_time',
+        :'cancel_url' => :'cancel_url',
+        :'success_url' => :'success_url',
+        :'failure_url' => :'failure_url'
       }
     end
 
@@ -51,7 +66,10 @@ module CyberSource
         :'merchant_descriptor' => :'Ptsv2billingagreementsMerchantInformationMerchantDescriptor',
         :'category_code' => :'Integer',
         :'administrative_area' => :'String',
-        :'transaction_local_date_time' => :'String'
+        :'transaction_local_date_time' => :'String',
+        :'cancel_url' => :'String',
+        :'success_url' => :'String',
+        :'failure_url' => :'String'
       }
     end
 
@@ -77,6 +95,18 @@ module CyberSource
 
       if attributes.has_key?(:'transactionLocalDateTime')
         self.transaction_local_date_time = attributes[:'transactionLocalDateTime']
+      end
+
+      if attributes.has_key?(:'cancelUrl')
+        self.cancel_url = attributes[:'cancelUrl']
+      end
+
+      if attributes.has_key?(:'successUrl')
+        self.success_url = attributes[:'successUrl']
+      end
+
+      if attributes.has_key?(:'failureUrl')
+        self.failure_url = attributes[:'failureUrl']
       end
     end
 
@@ -105,6 +135,24 @@ module CyberSource
       @transaction_local_date_time = transaction_local_date_time
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] cancel_url Value to be assigned
+    def cancel_url=(cancel_url)
+      @cancel_url = cancel_url
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] success_url Value to be assigned
+    def success_url=(success_url)
+      @success_url = success_url
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] failure_url Value to be assigned
+    def failure_url=(failure_url)
+      @failure_url = failure_url
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -113,7 +161,10 @@ module CyberSource
           merchant_descriptor == o.merchant_descriptor &&
           category_code == o.category_code &&
           administrative_area == o.administrative_area &&
-          transaction_local_date_time == o.transaction_local_date_time
+          transaction_local_date_time == o.transaction_local_date_time &&
+          cancel_url == o.cancel_url &&
+          success_url == o.success_url &&
+          failure_url == o.failure_url
     end
 
     # @see the `==` method
@@ -125,7 +176,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [merchant_descriptor, category_code, administrative_area, transaction_local_date_time].hash
+      [merchant_descriptor, category_code, administrative_area, transaction_local_date_time, cancel_url, success_url, failure_url].hash
     end
 
     # Builds the object from hash

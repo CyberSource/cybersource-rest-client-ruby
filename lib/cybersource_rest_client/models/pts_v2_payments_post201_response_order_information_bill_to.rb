@@ -14,33 +14,97 @@ require 'date'
 
 module CyberSource
   class PtsV2PaymentsPost201ResponseOrderInformationBillTo
+    attr_accessor :first_name
+
+    attr_accessor :last_name
+
+    # First line of the billing street address. 
+    attr_accessor :address1
+
+    # Second line of the billing street address. 
+    attr_accessor :address2
+
+    # City of the billing address. 
+    attr_accessor :locality
+
+    # Postal code for the billing address. The postal code must consist of 5 to 9 digits.  When the billing country is the U.S., the 9-digit postal code must follow this format: [5 digits][dash][4 digits] Example: 12345-6789 When the billing country is Canada, the 6-digit postal code must follow this format: [alpha][numeric][alpha][space] [numeric][alpha][numeric] Example: A1B 2C3 
+    attr_accessor :postal_code
+
+    # State or province of the billing address. Use the State, Province, and Territory Codes for the United States and Canada. 
+    attr_accessor :administrative_area
+
+    # Country of the billing address. Use the two-character ISO Standard Country Codes. 
+    attr_accessor :country
+
+    # Email address of the customer. 
+    attr_accessor :email
+
     # #### Visa Platform Connect Contains one of the following values that will identify the phone number result code in the account verification response message:  'VERIFIED' - Customer verified  'UNVERIFIED' - Customer not verified  'FAILED' - Customer verification failed 
     attr_accessor :alternate_phone_number_verification_status
 
     # #### Visa Platform Connect Contains one of the following values that will identify the phone number result code in the account verification response message:  'VERIFIED' - Customer verified  'UNVERIFIED' - Customer not verified  'FAILED' - Customer verification failed 
     attr_accessor :alternate_email_verification_status
 
+    # Customer's phone number.  It is recommended that you include the country code when the order is from outside the U.S.  #### Chase Paymentech Solutions Optional field.  ####  Credit Mutuel-CIC Optional field.  #### CyberSource through VisaNet Credit card networks cannot process transactions that contain non-ASCII characters. CyberSource through VisaNet accepts and stores non-ASCII characters correctly and displays them correctly in reports. However, the limitations of the credit card networks prevent CyberSource through VisaNet from transmitting non-ASCII characters to the credit card networks. Therefore, CyberSource through VisaNet replaces non-ASCII characters with meaningless ASCII characters for transmission to the credit card networks.  #### For Payouts: This field may be sent only for FDC Compass.  #### OmniPay Direct Optional field.  #### SIX Optional field.  #### TSYS Acquiring Solutions Optional field.  #### Worldpay VAP Optional field.  #### All other processors Not used. 
+    attr_accessor :phone_number
+
+    # Customer's name suffix. 
+    attr_accessor :name_suffix
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'first_name' => :'firstName',
+        :'last_name' => :'lastName',
+        :'address1' => :'address1',
+        :'address2' => :'address2',
+        :'locality' => :'locality',
+        :'postal_code' => :'postalCode',
+        :'administrative_area' => :'administrativeArea',
+        :'country' => :'country',
+        :'email' => :'email',
         :'alternate_phone_number_verification_status' => :'alternatePhoneNumberVerificationStatus',
-        :'alternate_email_verification_status' => :'alternateEmailVerificationStatus'
+        :'alternate_email_verification_status' => :'alternateEmailVerificationStatus',
+        :'phone_number' => :'phoneNumber',
+        :'name_suffix' => :'nameSuffix'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
+        :'first_name' => :'first_name',
+        :'last_name' => :'last_name',
+        :'address1' => :'address1',
+        :'address2' => :'address2',
+        :'locality' => :'locality',
+        :'postal_code' => :'postal_code',
+        :'administrative_area' => :'administrative_area',
+        :'country' => :'country',
+        :'email' => :'email',
         :'alternate_phone_number_verification_status' => :'alternate_phone_number_verification_status',
-        :'alternate_email_verification_status' => :'alternate_email_verification_status'
+        :'alternate_email_verification_status' => :'alternate_email_verification_status',
+        :'phone_number' => :'phone_number',
+        :'name_suffix' => :'name_suffix'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'first_name' => :'String',
+        :'last_name' => :'String',
+        :'address1' => :'String',
+        :'address2' => :'String',
+        :'locality' => :'String',
+        :'postal_code' => :'String',
+        :'administrative_area' => :'String',
+        :'country' => :'String',
+        :'email' => :'String',
         :'alternate_phone_number_verification_status' => :'String',
-        :'alternate_email_verification_status' => :'String'
+        :'alternate_email_verification_status' => :'String',
+        :'phone_number' => :'String',
+        :'name_suffix' => :'String'
       }
     end
 
@@ -52,12 +116,56 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
+      if attributes.has_key?(:'firstName')
+        self.first_name = attributes[:'firstName']
+      end
+
+      if attributes.has_key?(:'lastName')
+        self.last_name = attributes[:'lastName']
+      end
+
+      if attributes.has_key?(:'address1')
+        self.address1 = attributes[:'address1']
+      end
+
+      if attributes.has_key?(:'address2')
+        self.address2 = attributes[:'address2']
+      end
+
+      if attributes.has_key?(:'locality')
+        self.locality = attributes[:'locality']
+      end
+
+      if attributes.has_key?(:'postalCode')
+        self.postal_code = attributes[:'postalCode']
+      end
+
+      if attributes.has_key?(:'administrativeArea')
+        self.administrative_area = attributes[:'administrativeArea']
+      end
+
+      if attributes.has_key?(:'country')
+        self.country = attributes[:'country']
+      end
+
+      if attributes.has_key?(:'email')
+        self.email = attributes[:'email']
+      end
+
       if attributes.has_key?(:'alternatePhoneNumberVerificationStatus')
         self.alternate_phone_number_verification_status = attributes[:'alternatePhoneNumberVerificationStatus']
       end
 
       if attributes.has_key?(:'alternateEmailVerificationStatus')
         self.alternate_email_verification_status = attributes[:'alternateEmailVerificationStatus']
+      end
+
+      if attributes.has_key?(:'phoneNumber')
+        self.phone_number = attributes[:'phoneNumber']
+      end
+
+      if attributes.has_key?(:'nameSuffix')
+        self.name_suffix = attributes[:'nameSuffix']
       end
     end
 
@@ -75,6 +183,48 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] address1 Value to be assigned
+    def address1=(address1)
+      @address1 = address1
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] address2 Value to be assigned
+    def address2=(address2)
+      @address2 = address2
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] locality Value to be assigned
+    def locality=(locality)
+      @locality = locality
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] postal_code Value to be assigned
+    def postal_code=(postal_code)
+      @postal_code = postal_code
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] administrative_area Value to be assigned
+    def administrative_area=(administrative_area)
+      @administrative_area = administrative_area
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] country Value to be assigned
+    def country=(country)
+      @country = country
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] email Value to be assigned
+    def email=(email)
+      @email = email
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] alternate_phone_number_verification_status Value to be assigned
     def alternate_phone_number_verification_status=(alternate_phone_number_verification_status)
       @alternate_phone_number_verification_status = alternate_phone_number_verification_status
@@ -86,13 +236,36 @@ module CyberSource
       @alternate_email_verification_status = alternate_email_verification_status
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] phone_number Value to be assigned
+    def phone_number=(phone_number)
+      @phone_number = phone_number
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] name_suffix Value to be assigned
+    def name_suffix=(name_suffix)
+      @name_suffix = name_suffix
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          first_name == o.first_name &&
+          last_name == o.last_name &&
+          address1 == o.address1 &&
+          address2 == o.address2 &&
+          locality == o.locality &&
+          postal_code == o.postal_code &&
+          administrative_area == o.administrative_area &&
+          country == o.country &&
+          email == o.email &&
           alternate_phone_number_verification_status == o.alternate_phone_number_verification_status &&
-          alternate_email_verification_status == o.alternate_email_verification_status
+          alternate_email_verification_status == o.alternate_email_verification_status &&
+          phone_number == o.phone_number &&
+          name_suffix == o.name_suffix
     end
 
     # @see the `==` method
@@ -104,7 +277,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [alternate_phone_number_verification_status, alternate_email_verification_status].hash
+      [first_name, last_name, address1, address2, locality, postal_code, administrative_area, country, email, alternate_phone_number_verification_status, alternate_email_verification_status, phone_number, name_suffix].hash
     end
 
     # Builds the object from hash

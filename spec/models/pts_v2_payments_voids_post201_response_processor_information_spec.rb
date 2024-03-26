@@ -38,4 +38,16 @@ describe 'PtsV2PaymentsVoidsPost201ResponseProcessorInformation' do
     end
   end
 
+  describe 'test attribute "response_details"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "transaction_id"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

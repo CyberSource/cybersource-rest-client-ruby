@@ -17,24 +17,30 @@ module CyberSource
     # The ID of the customer, passed in the return_url field by PayPal after customer approval.
     attr_accessor :account_id
 
+    # Payment method for the unit purchase. Possible values: - `UNRESTRICTED (default)—this value is only available if configured by PayPal for the merchant.` - `INSTANT` 
+    attr_accessor :funding_source
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'account_id' => :'accountId'
+        :'account_id' => :'accountId',
+        :'funding_source' => :'fundingSource'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'account_id' => :'account_id'
+        :'account_id' => :'account_id',
+        :'funding_source' => :'funding_source'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'account_id' => :'String'
+        :'account_id' => :'String',
+        :'funding_source' => :'String'
       }
     end
 
@@ -48,6 +54,10 @@ module CyberSource
 
       if attributes.has_key?(:'accountId')
         self.account_id = attributes[:'accountId']
+      end
+
+      if attributes.has_key?(:'fundingSource')
+        self.funding_source = attributes[:'fundingSource']
       end
     end
 
@@ -70,12 +80,19 @@ module CyberSource
       @account_id = account_id
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] funding_source Value to be assigned
+    def funding_source=(funding_source)
+      @funding_source = funding_source
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          account_id == o.account_id
+          account_id == o.account_id &&
+          funding_source == o.funding_source
     end
 
     # @see the `==` method
@@ -87,7 +104,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [account_id].hash
+      [account_id, funding_source].hash
     end
 
     # Builds the object from hash

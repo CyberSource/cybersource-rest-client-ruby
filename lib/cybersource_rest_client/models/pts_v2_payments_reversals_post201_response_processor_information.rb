@@ -32,6 +32,12 @@ module CyberSource
     # Result of the Mastercard card-on-file token service. Mastercard provides this value to CyberSource.  Possible values:   - `C`: Service completed successfully.  - `F`: One of the following:    - Incorrect Mastercard POS entry mode. The Mastercard POS entry mode should be 81 for an authorization or      authorization reversal.    - Incorrect Mastercard POS entry mode. The Mastercard POS entry mode should be 01 for a tokenized request.    - Token requestor ID is missing or formatted incorrectly.  - `I`: One of the following:    - Invalid token requestor ID.    - Suspended or deactivated token.    - Invalid token (not in mapping table).  - `T`: Invalid combination of token requestor ID and token.  - `U`: Expired token.  - `W`: Primary account number (PAN) listed in electronic warning bulletin.  **Note** This field is returned only for **CyberSource through VisaNet**. 
     attr_accessor :master_card_service_reply_code
 
+    # This field might contain information about a decline. This field is supported only for **CyberSource through VisaNet**. 
+    attr_accessor :response_details
+
+    # Processor response to the API request. 
+    attr_accessor :provider_response
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -40,7 +46,9 @@ module CyberSource
         :'response_category_code' => :'responseCategoryCode',
         :'forwarded_acquirer_code' => :'forwardedAcquirerCode',
         :'master_card_service_code' => :'masterCardServiceCode',
-        :'master_card_service_reply_code' => :'masterCardServiceReplyCode'
+        :'master_card_service_reply_code' => :'masterCardServiceReplyCode',
+        :'response_details' => :'responseDetails',
+        :'provider_response' => :'providerResponse'
       }
     end
 
@@ -52,7 +60,9 @@ module CyberSource
         :'response_category_code' => :'response_category_code',
         :'forwarded_acquirer_code' => :'forwarded_acquirer_code',
         :'master_card_service_code' => :'master_card_service_code',
-        :'master_card_service_reply_code' => :'master_card_service_reply_code'
+        :'master_card_service_reply_code' => :'master_card_service_reply_code',
+        :'response_details' => :'response_details',
+        :'provider_response' => :'provider_response'
       }
     end
 
@@ -64,7 +74,9 @@ module CyberSource
         :'response_category_code' => :'String',
         :'forwarded_acquirer_code' => :'String',
         :'master_card_service_code' => :'String',
-        :'master_card_service_reply_code' => :'String'
+        :'master_card_service_reply_code' => :'String',
+        :'response_details' => :'String',
+        :'provider_response' => :'String'
       }
     end
 
@@ -98,6 +110,14 @@ module CyberSource
 
       if attributes.has_key?(:'masterCardServiceReplyCode')
         self.master_card_service_reply_code = attributes[:'masterCardServiceReplyCode']
+      end
+
+      if attributes.has_key?(:'responseDetails')
+        self.response_details = attributes[:'responseDetails']
+      end
+
+      if attributes.has_key?(:'providerResponse')
+        self.provider_response = attributes[:'providerResponse']
       end
     end
 
@@ -150,6 +170,12 @@ module CyberSource
       @master_card_service_reply_code = master_card_service_reply_code
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] response_details Value to be assigned
+    def response_details=(response_details)
+      @response_details = response_details
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -160,7 +186,9 @@ module CyberSource
           response_category_code == o.response_category_code &&
           forwarded_acquirer_code == o.forwarded_acquirer_code &&
           master_card_service_code == o.master_card_service_code &&
-          master_card_service_reply_code == o.master_card_service_reply_code
+          master_card_service_reply_code == o.master_card_service_reply_code &&
+          response_details == o.response_details &&
+          provider_response == o.provider_response
     end
 
     # @see the `==` method
@@ -172,7 +200,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [transaction_id, response_code, response_category_code, forwarded_acquirer_code, master_card_service_code, master_card_service_reply_code].hash
+      [transaction_id, response_code, response_category_code, forwarded_acquirer_code, master_card_service_code, master_card_service_reply_code, response_details, provider_response].hash
     end
 
     # Builds the object from hash

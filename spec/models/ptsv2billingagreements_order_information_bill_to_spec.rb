@@ -68,6 +68,12 @@ describe 'Ptsv2billingagreementsOrderInformationBillTo' do
     end
   end
 
+  describe 'test attribute "county"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "district"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -81,6 +87,12 @@ describe 'Ptsv2billingagreementsOrderInformationBillTo' do
   end
 
   describe 'test attribute "first_name"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "middle_name"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -105,6 +117,12 @@ describe 'Ptsv2billingagreementsOrderInformationBillTo' do
   end
 
   describe 'test attribute "postal_code"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "title"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

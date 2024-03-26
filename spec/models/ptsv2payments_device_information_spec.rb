@@ -32,6 +32,12 @@ describe 'Ptsv2paymentsDeviceInformation' do
       expect(@instance).to be_instance_of(CyberSource::Ptsv2paymentsDeviceInformation)
     end
   end
+  describe 'test attribute "id"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "host_name"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -69,6 +75,12 @@ describe 'Ptsv2paymentsDeviceInformation' do
   end
 
   describe 'test attribute "app_url"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "metadata"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

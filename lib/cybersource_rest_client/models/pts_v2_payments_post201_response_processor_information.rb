@@ -103,6 +103,11 @@ module CyberSource
 
     attr_accessor :public_key
 
+    attr_accessor :seller_protection
+
+    # The date on which the transaction expires and payment cannot be made. 
+    attr_accessor :transaction_expiry_date
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -138,7 +143,9 @@ module CyberSource
         :'payment_url' => :'paymentUrl',
         :'complete_url' => :'completeUrl',
         :'signature' => :'signature',
-        :'public_key' => :'publicKey'
+        :'public_key' => :'publicKey',
+        :'seller_protection' => :'sellerProtection',
+        :'transaction_expiry_date' => :'transactionExpiryDate'
       }
     end
 
@@ -177,7 +184,9 @@ module CyberSource
         :'payment_url' => :'payment_url',
         :'complete_url' => :'complete_url',
         :'signature' => :'signature',
-        :'public_key' => :'public_key'
+        :'public_key' => :'public_key',
+        :'seller_protection' => :'seller_protection',
+        :'transaction_expiry_date' => :'transaction_expiry_date'
       }
     end
 
@@ -216,7 +225,9 @@ module CyberSource
         :'payment_url' => :'String',
         :'complete_url' => :'String',
         :'signature' => :'String',
-        :'public_key' => :'String'
+        :'public_key' => :'String',
+        :'seller_protection' => :'PtsV2PaymentsPost201ResponseProcessorInformationSellerProtection',
+        :'transaction_expiry_date' => :'String'
       }
     end
 
@@ -358,6 +369,14 @@ module CyberSource
 
       if attributes.has_key?(:'publicKey')
         self.public_key = attributes[:'publicKey']
+      end
+
+      if attributes.has_key?(:'sellerProtection')
+        self.seller_protection = attributes[:'sellerProtection']
+      end
+
+      if attributes.has_key?(:'transactionExpiryDate')
+        self.transaction_expiry_date = attributes[:'transactionExpiryDate']
       end
     end
 
@@ -506,6 +525,12 @@ module CyberSource
       @complete_url = complete_url
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] transaction_expiry_date Value to be assigned
+    def transaction_expiry_date=(transaction_expiry_date)
+      @transaction_expiry_date = transaction_expiry_date
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -543,7 +568,9 @@ module CyberSource
           payment_url == o.payment_url &&
           complete_url == o.complete_url &&
           signature == o.signature &&
-          public_key == o.public_key
+          public_key == o.public_key &&
+          seller_protection == o.seller_protection &&
+          transaction_expiry_date == o.transaction_expiry_date
     end
 
     # @see the `==` method
@@ -555,7 +582,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [auth_indicator, approval_code, card_reference_data, transaction_id, network_transaction_id, response_code, response_code_source, response_details, response_category_code, forwarded_acquirer_code, settlement_date, avs, card_verification, merchant_advice, electronic_verification_results, ach_verification, customer, consumer_authentication_response, system_trace_audit_number, payment_account_reference_number, transaction_integrity_code, amex_verbal_auth_reference_number, master_card_service_code, master_card_service_reply_code, master_card_authentication_type, name, routing, merchant_number, retrieval_reference_number, payment_url, complete_url, signature, public_key].hash
+      [auth_indicator, approval_code, card_reference_data, transaction_id, network_transaction_id, response_code, response_code_source, response_details, response_category_code, forwarded_acquirer_code, settlement_date, avs, card_verification, merchant_advice, electronic_verification_results, ach_verification, customer, consumer_authentication_response, system_trace_audit_number, payment_account_reference_number, transaction_integrity_code, amex_verbal_auth_reference_number, master_card_service_code, master_card_service_reply_code, master_card_authentication_type, name, routing, merchant_number, retrieval_reference_number, payment_url, complete_url, signature, public_key, seller_protection, transaction_expiry_date].hash
     end
 
     # Builds the object from hash

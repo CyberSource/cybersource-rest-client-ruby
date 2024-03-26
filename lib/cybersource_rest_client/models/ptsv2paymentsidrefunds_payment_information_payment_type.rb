@@ -45,7 +45,7 @@ module CyberSource
       {
         :'name' => :'String',
         :'sub_type_name' => :'String',
-        :'method' => :'Ptsv2paymentsidrefundsPaymentInformationPaymentTypeMethod'
+        :'method' => :'Ptsv2paymentsidcapturesPaymentInformationPaymentTypeMethod'
       }
     end
 

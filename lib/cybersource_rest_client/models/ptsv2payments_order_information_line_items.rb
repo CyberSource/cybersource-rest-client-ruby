@@ -91,6 +91,9 @@ module CyberSource
     # Reference number.  The meaning of this value is identified by the value of the corresponding `referenceDataCode` field. See Numbered Elements.  The maximum length for this field depends on the value of the corresponding `referenceDataCode` field: - When the code is `PO`, the maximum length for the reference number is 22. - When the code is `VC`, the maximum length for the reference number is 20. - For all other codes, the maximum length for the reference number is 30.  This field is a pass-through, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. 
     attr_accessor :reference_data_number
 
+    # Per-item tax amount of the product. Note The amount value must be a non-negative number containing 2 decimal places and limited to 7 digits before the decimal point. 
+    attr_accessor :unit_tax_amount
+
     # Brief description of item.
     attr_accessor :product_description
 
@@ -138,6 +141,7 @@ module CyberSource
         :'weight_unit' => :'weightUnit',
         :'reference_data_code' => :'referenceDataCode',
         :'reference_data_number' => :'referenceDataNumber',
+        :'unit_tax_amount' => :'unitTaxAmount',
         :'product_description' => :'productDescription',
         :'gift_card_currency' => :'giftCardCurrency',
         :'shipping_destination_types' => :'shippingDestinationTypes',
@@ -177,6 +181,7 @@ module CyberSource
         :'weight_unit' => :'weight_unit',
         :'reference_data_code' => :'reference_data_code',
         :'reference_data_number' => :'reference_data_number',
+        :'unit_tax_amount' => :'unit_tax_amount',
         :'product_description' => :'product_description',
         :'gift_card_currency' => :'gift_card_currency',
         :'shipping_destination_types' => :'shipping_destination_types',
@@ -216,6 +221,7 @@ module CyberSource
         :'weight_unit' => :'String',
         :'reference_data_code' => :'String',
         :'reference_data_number' => :'String',
+        :'unit_tax_amount' => :'String',
         :'product_description' => :'String',
         :'gift_card_currency' => :'Integer',
         :'shipping_destination_types' => :'String',
@@ -338,6 +344,10 @@ module CyberSource
 
       if attributes.has_key?(:'referenceDataNumber')
         self.reference_data_number = attributes[:'referenceDataNumber']
+      end
+
+      if attributes.has_key?(:'unitTaxAmount')
+        self.unit_tax_amount = attributes[:'unitTaxAmount']
       end
 
       if attributes.has_key?(:'productDescription')
@@ -519,6 +529,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] unit_tax_amount Value to be assigned
+    def unit_tax_amount=(unit_tax_amount)
+      @unit_tax_amount = unit_tax_amount
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] shipping_destination_types Value to be assigned
     def shipping_destination_types=(shipping_destination_types)
       @shipping_destination_types = shipping_destination_types
@@ -555,6 +571,7 @@ module CyberSource
           weight_unit == o.weight_unit &&
           reference_data_code == o.reference_data_code &&
           reference_data_number == o.reference_data_number &&
+          unit_tax_amount == o.unit_tax_amount &&
           product_description == o.product_description &&
           gift_card_currency == o.gift_card_currency &&
           shipping_destination_types == o.shipping_destination_types &&
@@ -573,7 +590,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [product_code, product_name, product_sku, quantity, unit_price, unit_of_measure, total_amount, tax_amount, tax_rate, tax_applied_after_discount, tax_status_indicator, tax_type_code, amount_includes_tax, type_of_supply, commodity_code, discount_amount, discount_applied, discount_rate, invoice_number, tax_details, fulfillment_type, weight, weight_identifier, weight_unit, reference_data_code, reference_data_number, product_description, gift_card_currency, shipping_destination_types, gift, passenger, allowed_export_countries, restricted_export_countries].hash
+      [product_code, product_name, product_sku, quantity, unit_price, unit_of_measure, total_amount, tax_amount, tax_rate, tax_applied_after_discount, tax_status_indicator, tax_type_code, amount_includes_tax, type_of_supply, commodity_code, discount_amount, discount_applied, discount_rate, invoice_number, tax_details, fulfillment_type, weight, weight_identifier, weight_unit, reference_data_code, reference_data_number, unit_tax_amount, product_description, gift_card_currency, shipping_destination_types, gift, passenger, allowed_export_countries, restricted_export_countries].hash
     end
 
     # Builds the object from hash

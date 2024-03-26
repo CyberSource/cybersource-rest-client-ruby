@@ -48,7 +48,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'account' => :'Ptsv2paymentsPaymentInformationBankAccount',
+        :'account' => :'Ptsv2paymentsidrefundsPaymentInformationBankAccount',
         :'routing_number' => :'String',
         :'iban' => :'String',
         :'swift_code' => :'String'

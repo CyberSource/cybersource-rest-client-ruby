@@ -68,4 +68,10 @@ describe 'PtsV2IncrementalAuthorizationPatch201ResponseProcessorInformation' do
     end
   end
 
+  describe 'test attribute "seller_protection"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

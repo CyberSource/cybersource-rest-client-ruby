@@ -44,6 +44,12 @@ describe 'PtsV2PaymentsPost201Response' do
     end
   end
 
+  describe 'test attribute "message"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "submit_time_utc"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -135,6 +141,12 @@ describe 'PtsV2PaymentsPost201Response' do
   end
 
   describe 'test attribute "buyer_information"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "merchant_information"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

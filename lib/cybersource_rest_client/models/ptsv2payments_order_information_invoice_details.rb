@@ -64,6 +64,9 @@ module CyberSource
     # Text message from the issuer. If you give the customer a receipt, display this value on the receipt.
     attr_accessor :issuer_message
 
+    # Brief description of item.
+    attr_accessor :product_description
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -83,7 +86,8 @@ module CyberSource
         :'sales_slip_number' => :'salesSlipNumber',
         :'invoice_date' => :'invoiceDate',
         :'cost_center' => :'costCenter',
-        :'issuer_message' => :'issuerMessage'
+        :'issuer_message' => :'issuerMessage',
+        :'product_description' => :'productDescription'
       }
     end
 
@@ -106,7 +110,8 @@ module CyberSource
         :'sales_slip_number' => :'sales_slip_number',
         :'invoice_date' => :'invoice_date',
         :'cost_center' => :'cost_center',
-        :'issuer_message' => :'issuer_message'
+        :'issuer_message' => :'issuer_message',
+        :'product_description' => :'product_description'
       }
     end
 
@@ -129,7 +134,8 @@ module CyberSource
         :'sales_slip_number' => :'Integer',
         :'invoice_date' => :'String',
         :'cost_center' => :'String',
-        :'issuer_message' => :'String'
+        :'issuer_message' => :'String',
+        :'product_description' => :'String'
       }
     end
 
@@ -209,6 +215,10 @@ module CyberSource
 
       if attributes.has_key?(:'issuerMessage')
         self.issuer_message = attributes[:'issuerMessage']
+      end
+
+      if attributes.has_key?(:'productDescription')
+        self.product_description = attributes[:'productDescription']
       end
     end
 
@@ -312,7 +322,8 @@ module CyberSource
           sales_slip_number == o.sales_slip_number &&
           invoice_date == o.invoice_date &&
           cost_center == o.cost_center &&
-          issuer_message == o.issuer_message
+          issuer_message == o.issuer_message &&
+          product_description == o.product_description
     end
 
     # @see the `==` method
@@ -324,7 +335,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [invoice_number, barcode_number, expiration_date, purchase_order_number, purchase_order_date, purchase_contact_name, taxable, vat_invoice_reference_number, commodity_code, merchandise_code, transaction_advice_addendum, reference_data_code, reference_data_number, sales_slip_number, invoice_date, cost_center, issuer_message].hash
+      [invoice_number, barcode_number, expiration_date, purchase_order_number, purchase_order_date, purchase_contact_name, taxable, vat_invoice_reference_number, commodity_code, merchandise_code, transaction_advice_addendum, reference_data_code, reference_data_number, sales_slip_number, invoice_date, cost_center, issuer_message, product_description].hash
     end
 
     # Builds the object from hash
