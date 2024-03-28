@@ -29,6 +29,9 @@ module CyberSource
     # Image reference number associated with the check. You cannot include any special characters. 
     attr_accessor :check_image_reference_number
 
+    # International Bank Account Number (IBAN) for the bank account. For some countries you can provide this number instead of the traditional bank account information. You can use this field only when scoring a direct debit transaction.  For all possible values, see the `bank_iban` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
+    attr_accessor :iban
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -36,7 +39,8 @@ module CyberSource
         :'number' => :'number',
         :'encoder_id' => :'encoderId',
         :'check_number' => :'checkNumber',
-        :'check_image_reference_number' => :'checkImageReferenceNumber'
+        :'check_image_reference_number' => :'checkImageReferenceNumber',
+        :'iban' => :'iban'
       }
     end
 
@@ -47,7 +51,8 @@ module CyberSource
         :'number' => :'number',
         :'encoder_id' => :'encoder_id',
         :'check_number' => :'check_number',
-        :'check_image_reference_number' => :'check_image_reference_number'
+        :'check_image_reference_number' => :'check_image_reference_number',
+        :'iban' => :'iban'
       }
     end
 
@@ -58,7 +63,8 @@ module CyberSource
         :'number' => :'String',
         :'encoder_id' => :'String',
         :'check_number' => :'String',
-        :'check_image_reference_number' => :'String'
+        :'check_image_reference_number' => :'String',
+        :'iban' => :'String'
       }
     end
 
@@ -88,6 +94,10 @@ module CyberSource
 
       if attributes.has_key?(:'checkImageReferenceNumber')
         self.check_image_reference_number = attributes[:'checkImageReferenceNumber']
+      end
+
+      if attributes.has_key?(:'iban')
+        self.iban = attributes[:'iban']
       end
     end
 
@@ -134,6 +144,12 @@ module CyberSource
       @check_image_reference_number = check_image_reference_number
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] iban Value to be assigned
+    def iban=(iban)
+      @iban = iban
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -143,7 +159,8 @@ module CyberSource
           number == o.number &&
           encoder_id == o.encoder_id &&
           check_number == o.check_number &&
-          check_image_reference_number == o.check_image_reference_number
+          check_image_reference_number == o.check_image_reference_number &&
+          iban == o.iban
     end
 
     # @see the `==` method
@@ -155,7 +172,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [type, number, encoder_id, check_number, check_image_reference_number].hash
+      [type, number, encoder_id, check_number, check_image_reference_number, iban].hash
     end
 
     # Builds the object from hash

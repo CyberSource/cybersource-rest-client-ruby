@@ -128,6 +128,12 @@ describe 'Ptsv2paymentsMerchantInformation' do
     end
   end
 
+  describe 'test attribute "note_to_buyer"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "merchant_name"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

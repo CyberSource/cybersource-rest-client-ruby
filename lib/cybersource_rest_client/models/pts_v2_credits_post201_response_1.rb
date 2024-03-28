@@ -56,7 +56,7 @@ module CyberSource
         :'submit_time_utc' => :'String',
         :'status' => :'String',
         :'processor_information' => :'PtsV2CreditsPost201Response1ProcessorInformation',
-        :'installment_information' => :'PtsV2CreditsPost201Response1InstallmentInformation'
+        :'installment_information' => :'PtsV2CreateBillingAgreementPost201ResponseInstallmentInformation'
       }
     end
 

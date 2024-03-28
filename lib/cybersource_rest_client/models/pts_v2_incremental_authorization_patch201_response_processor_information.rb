@@ -31,6 +31,8 @@ module CyberSource
 
     attr_accessor :merchant_advice
 
+    attr_accessor :seller_protection
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -39,7 +41,8 @@ module CyberSource
         :'response_code' => :'responseCode',
         :'system_trace_audit_number' => :'systemTraceAuditNumber',
         :'response_details' => :'responseDetails',
-        :'merchant_advice' => :'merchantAdvice'
+        :'merchant_advice' => :'merchantAdvice',
+        :'seller_protection' => :'sellerProtection'
       }
     end
 
@@ -51,7 +54,8 @@ module CyberSource
         :'response_code' => :'response_code',
         :'system_trace_audit_number' => :'system_trace_audit_number',
         :'response_details' => :'response_details',
-        :'merchant_advice' => :'merchant_advice'
+        :'merchant_advice' => :'merchant_advice',
+        :'seller_protection' => :'seller_protection'
       }
     end
 
@@ -63,7 +67,8 @@ module CyberSource
         :'response_code' => :'String',
         :'system_trace_audit_number' => :'String',
         :'response_details' => :'String',
-        :'merchant_advice' => :'PtsV2PaymentsPost201ResponseProcessorInformationMerchantAdvice'
+        :'merchant_advice' => :'PtsV2PaymentsPost201ResponseProcessorInformationMerchantAdvice',
+        :'seller_protection' => :'PtsV2PaymentsPost201ResponseProcessorInformationSellerProtection'
       }
     end
 
@@ -97,6 +102,10 @@ module CyberSource
 
       if attributes.has_key?(:'merchantAdvice')
         self.merchant_advice = attributes[:'merchantAdvice']
+      end
+
+      if attributes.has_key?(:'sellerProtection')
+        self.seller_protection = attributes[:'sellerProtection']
       end
     end
 
@@ -153,7 +162,8 @@ module CyberSource
           response_code == o.response_code &&
           system_trace_audit_number == o.system_trace_audit_number &&
           response_details == o.response_details &&
-          merchant_advice == o.merchant_advice
+          merchant_advice == o.merchant_advice &&
+          seller_protection == o.seller_protection
     end
 
     # @see the `==` method
@@ -165,7 +175,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [approval_code, transaction_id, response_code, system_trace_audit_number, response_details, merchant_advice].hash
+      [approval_code, transaction_id, response_code, system_trace_audit_number, response_details, merchant_advice, seller_protection].hash
     end
 
     # Builds the object from hash

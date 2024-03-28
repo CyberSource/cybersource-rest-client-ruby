@@ -46,6 +46,9 @@ module CyberSource
     # Flag that indicates if the transaction is pay by points transaction true: Transaction uses loyalty points false: Transaction does not use loyalty points Default: false 
     attr_accessor :pay_by_points_indicator
 
+    # Array of actions (one or more) to be included in the capture to invoke bundled services along with capture.  Possible values :   - `AP_CAPTURE`: Use this when Alternative Payment Capture service is requested. 
+    attr_accessor :action_list
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -60,7 +63,8 @@ module CyberSource
         :'authorization_options' => :'authorizationOptions',
         :'capture_options' => :'captureOptions',
         :'loan_options' => :'loanOptions',
-        :'pay_by_points_indicator' => :'payByPointsIndicator'
+        :'pay_by_points_indicator' => :'payByPointsIndicator',
+        :'action_list' => :'actionList'
       }
     end
 
@@ -78,7 +82,8 @@ module CyberSource
         :'authorization_options' => :'authorization_options',
         :'capture_options' => :'capture_options',
         :'loan_options' => :'loan_options',
-        :'pay_by_points_indicator' => :'pay_by_points_indicator'
+        :'pay_by_points_indicator' => :'pay_by_points_indicator',
+        :'action_list' => :'action_list'
       }
     end
 
@@ -96,7 +101,8 @@ module CyberSource
         :'authorization_options' => :'Ptsv2paymentsidcapturesProcessingInformationAuthorizationOptions',
         :'capture_options' => :'Ptsv2paymentsidcapturesProcessingInformationCaptureOptions',
         :'loan_options' => :'Ptsv2paymentsProcessingInformationLoanOptions',
-        :'pay_by_points_indicator' => :'BOOLEAN'
+        :'pay_by_points_indicator' => :'BOOLEAN',
+        :'action_list' => :'Array<String>'
       }
     end
 
@@ -154,6 +160,12 @@ module CyberSource
 
       if attributes.has_key?(:'payByPointsIndicator')
         self.pay_by_points_indicator = attributes[:'payByPointsIndicator']
+      end
+
+      if attributes.has_key?(:'actionList')
+        if (value = attributes[:'actionList']).is_a?(Array)
+          self.action_list = value
+        end
       end
     end
 
@@ -228,7 +240,8 @@ module CyberSource
           authorization_options == o.authorization_options &&
           capture_options == o.capture_options &&
           loan_options == o.loan_options &&
-          pay_by_points_indicator == o.pay_by_points_indicator
+          pay_by_points_indicator == o.pay_by_points_indicator &&
+          action_list == o.action_list
     end
 
     # @see the `==` method
@@ -240,7 +253,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [payment_solution, reconciliation_id, link_id, report_group, visa_checkout_id, purchase_level, industry_data_type, issuer, authorization_options, capture_options, loan_options, pay_by_points_indicator].hash
+      [payment_solution, reconciliation_id, link_id, report_group, visa_checkout_id, purchase_level, industry_data_type, issuer, authorization_options, capture_options, loan_options, pay_by_points_indicator, action_list].hash
     end
 
     # Builds the object from hash

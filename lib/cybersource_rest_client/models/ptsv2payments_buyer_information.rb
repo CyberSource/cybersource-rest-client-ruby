@@ -37,6 +37,9 @@ module CyberSource
     # language setting of the user
     attr_accessor :language
 
+    # Note to the recipient of the funds in this transaction
+    attr_accessor :note_to_seller
+
     # Cardholder's mobile phone number. **Important** Required for Visa Secure transactions in Brazil. Do not use this request field for any other types of transactions. 
     attr_accessor :mobile_phone
 
@@ -51,6 +54,7 @@ module CyberSource
         :'hashed_password' => :'hashedPassword',
         :'gender' => :'gender',
         :'language' => :'language',
+        :'note_to_seller' => :'noteToSeller',
         :'mobile_phone' => :'mobilePhone'
       }
     end
@@ -66,6 +70,7 @@ module CyberSource
         :'hashed_password' => :'hashed_password',
         :'gender' => :'gender',
         :'language' => :'language',
+        :'note_to_seller' => :'note_to_seller',
         :'mobile_phone' => :'mobile_phone'
       }
     end
@@ -81,6 +86,7 @@ module CyberSource
         :'hashed_password' => :'String',
         :'gender' => :'String',
         :'language' => :'String',
+        :'note_to_seller' => :'String',
         :'mobile_phone' => :'Integer'
       }
     end
@@ -125,6 +131,10 @@ module CyberSource
 
       if attributes.has_key?(:'language')
         self.language = attributes[:'language']
+      end
+
+      if attributes.has_key?(:'noteToSeller')
+        self.note_to_seller = attributes[:'noteToSeller']
       end
 
       if attributes.has_key?(:'mobilePhone')
@@ -187,6 +197,12 @@ module CyberSource
       @language = language
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] note_to_seller Value to be assigned
+    def note_to_seller=(note_to_seller)
+      @note_to_seller = note_to_seller
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -200,6 +216,7 @@ module CyberSource
           hashed_password == o.hashed_password &&
           gender == o.gender &&
           language == o.language &&
+          note_to_seller == o.note_to_seller &&
           mobile_phone == o.mobile_phone
     end
 
@@ -212,7 +229,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [merchant_customer_id, date_of_birth, vat_registration_number, company_tax_id, personal_identification, hashed_password, gender, language, mobile_phone].hash
+      [merchant_customer_id, date_of_birth, vat_registration_number, company_tax_id, personal_identification, hashed_password, gender, language, note_to_seller, mobile_phone].hash
     end
 
     # Builds the object from hash

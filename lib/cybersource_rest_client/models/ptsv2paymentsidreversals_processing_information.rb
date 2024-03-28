@@ -31,6 +31,9 @@ module CyberSource
 
     attr_accessor :issuer
 
+    # Array of actions (one or more) to be included in the reversal Possible value: - `AP_AUTH_REVERSAL`: Use this when you want to reverse an Alternative Payment Authorization. 
+    attr_accessor :action_list
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -39,7 +42,8 @@ module CyberSource
         :'link_id' => :'linkId',
         :'report_group' => :'reportGroup',
         :'visa_checkout_id' => :'visaCheckoutId',
-        :'issuer' => :'issuer'
+        :'issuer' => :'issuer',
+        :'action_list' => :'actionList'
       }
     end
 
@@ -51,7 +55,8 @@ module CyberSource
         :'link_id' => :'link_id',
         :'report_group' => :'report_group',
         :'visa_checkout_id' => :'visa_checkout_id',
-        :'issuer' => :'issuer'
+        :'issuer' => :'issuer',
+        :'action_list' => :'action_list'
       }
     end
 
@@ -63,7 +68,8 @@ module CyberSource
         :'link_id' => :'String',
         :'report_group' => :'String',
         :'visa_checkout_id' => :'String',
-        :'issuer' => :'Ptsv2paymentsIssuerInformation'
+        :'issuer' => :'Ptsv2paymentsIssuerInformation',
+        :'action_list' => :'Array<String>'
       }
     end
 
@@ -97,6 +103,12 @@ module CyberSource
 
       if attributes.has_key?(:'issuer')
         self.issuer = attributes[:'issuer']
+      end
+
+      if attributes.has_key?(:'actionList')
+        if (value = attributes[:'actionList']).is_a?(Array)
+          self.action_list = value
+        end
       end
     end
 
@@ -153,7 +165,8 @@ module CyberSource
           link_id == o.link_id &&
           report_group == o.report_group &&
           visa_checkout_id == o.visa_checkout_id &&
-          issuer == o.issuer
+          issuer == o.issuer &&
+          action_list == o.action_list
     end
 
     # @see the `==` method
@@ -165,7 +178,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [payment_solution, reconciliation_id, link_id, report_group, visa_checkout_id, issuer].hash
+      [payment_solution, reconciliation_id, link_id, report_group, visa_checkout_id, issuer, action_list].hash
     end
 
     # Builds the object from hash

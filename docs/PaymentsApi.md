@@ -4,9 +4,62 @@ All URIs are relative to *https://apitest.cybersource.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**create_order_request**](PaymentsApi.md#create_order_request) | **POST** /pts/v2/payment-references/{id}/intents | Create a Payment Order Request
 [**create_payment**](PaymentsApi.md#create_payment) | **POST** /pts/v2/payments | Process a Payment
+[**create_session_request**](PaymentsApi.md#create_session_request) | **POST** /pts/v2/payment-references | Create Alternative Payments Sessions Request
 [**increment_auth**](PaymentsApi.md#increment_auth) | **PATCH** /pts/v2/payments/{id} | Increment an Authorization
 [**refresh_payment_status**](PaymentsApi.md#refresh_payment_status) | **POST** /pts/v2/refresh-payment-status/{id} | Check a Payment Status
+[**update_session_req**](PaymentsApi.md#update_session_req) | **PATCH** /pts/v2/payment-references/{id} | Update Alternative Payments Sessions Request
+
+
+# **create_order_request**
+> PtsV2PaymentsOrderPost201Response create_order_request(order_payment_request, id)
+
+Create a Payment Order Request
+
+Create a Payment Order Request
+
+### Example
+```ruby
+# load the gem
+require 'cybersource_rest_client'
+
+api_instance = CyberSource::PaymentsApi.new
+
+order_payment_request = CyberSource::OrderPaymentRequest.new # OrderPaymentRequest | 
+
+id = "id_example" # String | Request identifier number for the order request. 
+
+
+begin
+  #Create a Payment Order Request
+  result = api_instance.create_order_request(order_payment_request, id)
+  p result
+rescue CyberSource::ApiError => e
+  puts "Exception when calling PaymentsApi->create_order_request: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **order_payment_request** | [**OrderPaymentRequest**](OrderPaymentRequest.md)|  | 
+ **id** | **String**| Request identifier number for the order request.  | 
+
+### Return type
+
+[**PtsV2PaymentsOrderPost201Response**](PtsV2PaymentsOrderPost201Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/hal+json;charset=utf-8
+
 
 
 # **create_payment**
@@ -44,6 +97,53 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PtsV2PaymentsPost201Response**](PtsV2PaymentsPost201Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/hal+json;charset=utf-8
+
+
+
+# **create_session_request**
+> PtsV2PaymentsPost201Response2 create_session_request(create_session_req)
+
+Create Alternative Payments Sessions Request
+
+Create Alternative Payments Sessions Request
+
+### Example
+```ruby
+# load the gem
+require 'cybersource_rest_client'
+
+api_instance = CyberSource::PaymentsApi.new
+
+create_session_req = CyberSource::CreateSessionReq.new # CreateSessionReq | 
+
+
+begin
+  #Create Alternative Payments Sessions Request
+  result = api_instance.create_session_request(create_session_req)
+  p result
+rescue CyberSource::ApiError => e
+  puts "Exception when calling PaymentsApi->create_session_request: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **create_session_req** | [**CreateSessionReq**](CreateSessionReq.md)|  | 
+
+### Return type
+
+[**PtsV2PaymentsPost201Response2**](PtsV2PaymentsPost201Response2.md)
 
 ### Authorization
 
@@ -144,6 +244,56 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PtsV2PaymentsPost201Response1**](PtsV2PaymentsPost201Response1.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/hal+json;charset=utf-8
+
+
+
+# **update_session_req**
+> PtsV2PaymentsPost201Response2 update_session_req(create_session_request, id)
+
+Update Alternative Payments Sessions Request
+
+Update Alternative Payments Sessions Request
+
+### Example
+```ruby
+# load the gem
+require 'cybersource_rest_client'
+
+api_instance = CyberSource::PaymentsApi.new
+
+create_session_request = CyberSource::CreateSessionRequest.new # CreateSessionRequest | 
+
+id = "id_example" # String | The payment ID. This ID is returned from a previous payment request.
+
+
+begin
+  #Update Alternative Payments Sessions Request
+  result = api_instance.update_session_req(create_session_request, id)
+  p result
+rescue CyberSource::ApiError => e
+  puts "Exception when calling PaymentsApi->update_session_req: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **create_session_request** | [**CreateSessionRequest**](CreateSessionRequest.md)|  | 
+ **id** | **String**| The payment ID. This ID is returned from a previous payment request. | 
+
+### Return type
+
+[**PtsV2PaymentsPost201Response2**](PtsV2PaymentsPost201Response2.md)
 
 ### Authorization
 

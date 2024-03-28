@@ -45,6 +45,8 @@ module CyberSource
     # Country (two-digit country code) associated with the BIN of the customer's card used for the payment. Returned if the information is available. Use this field for additional information when reviewing orders. This information is also displayed in the details page of the CyberSource Business Center.  For all possible values, see the `bin_country` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
     attr_accessor :bin_country
 
+    attr_accessor :e_wallet
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -60,7 +62,8 @@ module CyberSource
         :'bin' => :'bin',
         :'account_type' => :'accountType',
         :'issuer' => :'issuer',
-        :'bin_country' => :'binCountry'
+        :'bin_country' => :'binCountry',
+        :'e_wallet' => :'eWallet'
       }
     end
 
@@ -79,7 +82,8 @@ module CyberSource
         :'bin' => :'bin',
         :'account_type' => :'account_type',
         :'issuer' => :'issuer',
-        :'bin_country' => :'bin_country'
+        :'bin_country' => :'bin_country',
+        :'e_wallet' => :'e_wallet'
       }
     end
 
@@ -98,7 +102,8 @@ module CyberSource
         :'bin' => :'String',
         :'account_type' => :'String',
         :'issuer' => :'String',
-        :'bin_country' => :'String'
+        :'bin_country' => :'String',
+        :'e_wallet' => :'PtsV2PaymentsPost201ResponsePaymentInformationEWallet'
       }
     end
 
@@ -160,6 +165,10 @@ module CyberSource
 
       if attributes.has_key?(:'binCountry')
         self.bin_country = attributes[:'binCountry']
+      end
+
+      if attributes.has_key?(:'eWallet')
+        self.e_wallet = attributes[:'eWallet']
       end
     end
 
@@ -223,7 +232,8 @@ module CyberSource
           bin == o.bin &&
           account_type == o.account_type &&
           issuer == o.issuer &&
-          bin_country == o.bin_country
+          bin_country == o.bin_country &&
+          e_wallet == o.e_wallet
     end
 
     # @see the `==` method
@@ -235,7 +245,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card, tokenized_card, account_features, bank, customer, payment_instrument, instrument_identifier, shipping_address, scheme, bin, account_type, issuer, bin_country].hash
+      [card, tokenized_card, account_features, bank, customer, payment_instrument, instrument_identifier, shipping_address, scheme, bin, account_type, issuer, bin_country, e_wallet].hash
     end
 
     # Builds the object from hash

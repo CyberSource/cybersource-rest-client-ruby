@@ -32,6 +32,18 @@ describe 'TransientTokenDataApi' do
     end
   end
 
+  # unit tests for get_payment_credentials_for_transient_token
+  # Get Payment Credentials
+  # Retrieve the Payment data captured by Unified Checkout. This API is used to retrieve the detailed data represented by the Transient Token. This API will return PCI payment data captured by the Unified Checkout platform.
+  # @param jti The jti field contained within the Transient token returned from a successful Unified Checkout transaction 
+  # @param [Hash] opts the optional parameters
+  # @return [String]
+  describe 'get_payment_credentials_for_transient_token test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for get_transaction_for_transient_token
   # Get Transient Token Data
   # Retrieve the data captured by Unified Checkout. This API is used to retrieve the detailed data represented by the Transient Token. This API will not return PCI payment data (PAN). Include the Request ID in the GET request to retrieve the transaction details.

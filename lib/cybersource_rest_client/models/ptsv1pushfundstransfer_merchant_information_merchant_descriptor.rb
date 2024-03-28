@@ -29,6 +29,9 @@ module CyberSource
     # Merchant's business name. This name is displayed on the cardholder's statement.  Chase Paymentech, Visa Platform Connect: length 22 
     attr_accessor :name
 
+    # The unique id of the merchant's shop which assigned by the merchant. 
+    attr_accessor :store_id
+
     # Merchant's postal code. This value might be displayed on the cardholder's statement.  If your business is domiciled in the U.S., you can use a 5-digit or 9-digit postal code. A 9-digit postal code must follow this format: [5 digits][dash][4 digits] Example: 12345-6789  If your business is domiciled in Canada, you can use a 6-digit or 9-digit postal code. A 6-digit postal code must follow this format: [alpha][numeric][alpha][space] [numeric][alpha][numeric] Example: A1B 2C3 
     attr_accessor :postal_code
 
@@ -40,6 +43,7 @@ module CyberSource
         :'country' => :'country',
         :'locality' => :'locality',
         :'name' => :'name',
+        :'store_id' => :'storeId',
         :'postal_code' => :'postalCode'
       }
     end
@@ -52,6 +56,7 @@ module CyberSource
         :'country' => :'country',
         :'locality' => :'locality',
         :'name' => :'name',
+        :'store_id' => :'store_id',
         :'postal_code' => :'postal_code'
       }
     end
@@ -64,6 +69,7 @@ module CyberSource
         :'country' => :'String',
         :'locality' => :'String',
         :'name' => :'String',
+        :'store_id' => :'String',
         :'postal_code' => :'String'
       }
     end
@@ -94,6 +100,10 @@ module CyberSource
 
       if attributes.has_key?(:'name')
         self.name = attributes[:'name']
+      end
+
+      if attributes.has_key?(:'storeId')
+        self.store_id = attributes[:'storeId']
       end
 
       if attributes.has_key?(:'postalCode')
@@ -145,6 +155,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] store_id Value to be assigned
+    def store_id=(store_id)
+      @store_id = store_id
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] postal_code Value to be assigned
     def postal_code=(postal_code)
       @postal_code = postal_code
@@ -160,6 +176,7 @@ module CyberSource
           country == o.country &&
           locality == o.locality &&
           name == o.name &&
+          store_id == o.store_id &&
           postal_code == o.postal_code
     end
 
@@ -172,7 +189,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [administrative_area, contact, country, locality, name, postal_code].hash
+      [administrative_area, contact, country, locality, name, store_id, postal_code].hash
     end
 
     # Builds the object from hash

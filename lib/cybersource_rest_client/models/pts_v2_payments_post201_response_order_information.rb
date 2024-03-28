@@ -22,13 +22,16 @@ module CyberSource
 
     attr_accessor :bill_to
 
+    attr_accessor :ship_to
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'amount_details' => :'amountDetails',
         :'invoice_details' => :'invoiceDetails',
         :'reward_points_details' => :'rewardPointsDetails',
-        :'bill_to' => :'billTo'
+        :'bill_to' => :'billTo',
+        :'ship_to' => :'shipTo'
       }
     end
 
@@ -38,7 +41,8 @@ module CyberSource
         :'amount_details' => :'amount_details',
         :'invoice_details' => :'invoice_details',
         :'reward_points_details' => :'reward_points_details',
-        :'bill_to' => :'bill_to'
+        :'bill_to' => :'bill_to',
+        :'ship_to' => :'ship_to'
       }
     end
 
@@ -48,7 +52,8 @@ module CyberSource
         :'amount_details' => :'PtsV2PaymentsPost201ResponseOrderInformationAmountDetails',
         :'invoice_details' => :'PtsV2PaymentsPost201ResponseOrderInformationInvoiceDetails',
         :'reward_points_details' => :'PtsV2PaymentsPost201ResponseOrderInformationRewardPointsDetails',
-        :'bill_to' => :'PtsV2PaymentsPost201ResponseOrderInformationBillTo'
+        :'bill_to' => :'PtsV2PaymentsPost201ResponseOrderInformationBillTo',
+        :'ship_to' => :'PtsV2PaymentsPost201ResponseOrderInformationShipTo'
       }
     end
 
@@ -75,6 +80,10 @@ module CyberSource
       if attributes.has_key?(:'billTo')
         self.bill_to = attributes[:'billTo']
       end
+
+      if attributes.has_key?(:'shipTo')
+        self.ship_to = attributes[:'shipTo']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -98,7 +107,8 @@ module CyberSource
           amount_details == o.amount_details &&
           invoice_details == o.invoice_details &&
           reward_points_details == o.reward_points_details &&
-          bill_to == o.bill_to
+          bill_to == o.bill_to &&
+          ship_to == o.ship_to
     end
 
     # @see the `==` method
@@ -110,7 +120,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [amount_details, invoice_details, reward_points_details, bill_to].hash
+      [amount_details, invoice_details, reward_points_details, bill_to, ship_to].hash
     end
 
     # Builds the object from hash

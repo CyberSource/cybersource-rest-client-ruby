@@ -68,4 +68,10 @@ describe 'Ptsv2paymentsidreversalsProcessingInformation' do
     end
   end
 
+  describe 'test attribute "action_list"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

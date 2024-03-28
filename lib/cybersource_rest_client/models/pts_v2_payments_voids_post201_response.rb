@@ -22,7 +22,7 @@ module CyberSource
     # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC.  Returned by Cybersource for all services. 
     attr_accessor :submit_time_utc
 
-    # The status of the submitted transaction.  Possible values:  - VOIDED 
+    # The status of the submitted transaction.  Possible values:  - VOIDED  - CANCELLED  - FAILED 
     attr_accessor :status
 
     attr_accessor :client_reference_information
@@ -30,6 +30,9 @@ module CyberSource
     attr_accessor :void_amount_details
 
     attr_accessor :processor_information
+
+    # Reference number that you use to reconcile CyberSource reports with your reports. 
+    attr_accessor :reconciliation_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -40,7 +43,8 @@ module CyberSource
         :'status' => :'status',
         :'client_reference_information' => :'clientReferenceInformation',
         :'void_amount_details' => :'voidAmountDetails',
-        :'processor_information' => :'processorInformation'
+        :'processor_information' => :'processorInformation',
+        :'reconciliation_id' => :'reconciliationId'
       }
     end
 
@@ -53,7 +57,8 @@ module CyberSource
         :'status' => :'status',
         :'client_reference_information' => :'client_reference_information',
         :'void_amount_details' => :'void_amount_details',
-        :'processor_information' => :'processor_information'
+        :'processor_information' => :'processor_information',
+        :'reconciliation_id' => :'reconciliation_id'
       }
     end
 
@@ -66,7 +71,8 @@ module CyberSource
         :'status' => :'String',
         :'client_reference_information' => :'PtsV2PaymentsPost201ResponseClientReferenceInformation',
         :'void_amount_details' => :'PtsV2PaymentsVoidsPost201ResponseVoidAmountDetails',
-        :'processor_information' => :'PtsV2PaymentsVoidsPost201ResponseProcessorInformation'
+        :'processor_information' => :'PtsV2PaymentsVoidsPost201ResponseProcessorInformation',
+        :'reconciliation_id' => :'String'
       }
     end
 
@@ -105,6 +111,10 @@ module CyberSource
       if attributes.has_key?(:'processorInformation')
         self.processor_information = attributes[:'processorInformation']
       end
+
+      if attributes.has_key?(:'reconciliationId')
+        self.reconciliation_id = attributes[:'reconciliationId']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -126,6 +136,12 @@ module CyberSource
       @id = id
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] reconciliation_id Value to be assigned
+    def reconciliation_id=(reconciliation_id)
+      @reconciliation_id = reconciliation_id
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -137,7 +153,8 @@ module CyberSource
           status == o.status &&
           client_reference_information == o.client_reference_information &&
           void_amount_details == o.void_amount_details &&
-          processor_information == o.processor_information
+          processor_information == o.processor_information &&
+          reconciliation_id == o.reconciliation_id
     end
 
     # @see the `==` method
@@ -149,7 +166,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, submit_time_utc, status, client_reference_information, void_amount_details, processor_information].hash
+      [_links, id, submit_time_utc, status, client_reference_information, void_amount_details, processor_information, reconciliation_id].hash
     end
 
     # Builds the object from hash

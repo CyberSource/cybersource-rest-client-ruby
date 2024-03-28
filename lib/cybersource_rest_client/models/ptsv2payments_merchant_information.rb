@@ -59,6 +59,9 @@ module CyberSource
 
     attr_accessor :service_location
 
+    # Free-form text field. 
+    attr_accessor :note_to_buyer
+
     # Use this field only if you are requesting payment with Payer Authentication service together.  Your company's name as you want it to appear to the customer in the issuing bank's authentication form. This value overrides the value specified by your merchant bank. 
     attr_accessor :merchant_name
 
@@ -81,6 +84,7 @@ module CyberSource
         :'return_url' => :'returnUrl',
         :'partner_id_code' => :'partnerIdCode',
         :'service_location' => :'serviceLocation',
+        :'note_to_buyer' => :'noteToBuyer',
         :'merchant_name' => :'merchantName'
       }
     end
@@ -104,6 +108,7 @@ module CyberSource
         :'return_url' => :'return_url',
         :'partner_id_code' => :'partner_id_code',
         :'service_location' => :'service_location',
+        :'note_to_buyer' => :'note_to_buyer',
         :'merchant_name' => :'merchant_name'
       }
     end
@@ -127,6 +132,7 @@ module CyberSource
         :'return_url' => :'String',
         :'partner_id_code' => :'String',
         :'service_location' => :'Ptsv2paymentsMerchantInformationServiceLocation',
+        :'note_to_buyer' => :'String',
         :'merchant_name' => :'String'
       }
     end
@@ -201,6 +207,10 @@ module CyberSource
 
       if attributes.has_key?(:'serviceLocation')
         self.service_location = attributes[:'serviceLocation']
+      end
+
+      if attributes.has_key?(:'noteToBuyer')
+        self.note_to_buyer = attributes[:'noteToBuyer']
       end
 
       if attributes.has_key?(:'merchantName')
@@ -300,6 +310,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] note_to_buyer Value to be assigned
+    def note_to_buyer=(note_to_buyer)
+      @note_to_buyer = note_to_buyer
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] merchant_name Value to be assigned
     def merchant_name=(merchant_name)
       @merchant_name = merchant_name
@@ -326,6 +342,7 @@ module CyberSource
           return_url == o.return_url &&
           partner_id_code == o.partner_id_code &&
           service_location == o.service_location &&
+          note_to_buyer == o.note_to_buyer &&
           merchant_name == o.merchant_name
     end
 
@@ -338,7 +355,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [merchant_descriptor, domain_name, sales_organization_id, category_code, category_code_domestic, tax_id, vat_registration_number, card_acceptor_reference_number, transaction_local_date_time, service_fee_descriptor, cancel_url, success_url, failure_url, return_url, partner_id_code, service_location, merchant_name].hash
+      [merchant_descriptor, domain_name, sales_organization_id, category_code, category_code_domestic, tax_id, vat_registration_number, card_acceptor_reference_number, transaction_local_date_time, service_fee_descriptor, cancel_url, success_url, failure_url, return_url, partner_id_code, service_location, note_to_buyer, merchant_name].hash
     end
 
     # Builds the object from hash

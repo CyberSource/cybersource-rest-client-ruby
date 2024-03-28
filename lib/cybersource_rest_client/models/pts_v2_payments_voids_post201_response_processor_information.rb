@@ -17,24 +17,36 @@ module CyberSource
     # For most processors, this is the error message sent directly from the bank. Returned only when the processor returns this value.  **Important** Do not use this field to evaluate the result of the authorization.  #### PIN debit Response value that is returned by the processor or bank. **Important** Do not use this field to evaluate the results of the transaction request.  Returned by PIN debit credit, PIN debit purchase, and PIN debit reversal.  #### AIBMS If this value is `08`, you can accept the transaction if the customer provides you with identification.  #### Atos This value is the response code sent from Atos and it might also include the response code from the bank. Format: `aa,bb` with the two values separated by a comma and where: - `aa` is the two-digit error message from Atos. - `bb` is the optional two-digit error message from the bank.  #### Comercio Latino This value is the status code and the error or response code received from the processor separated by a colon. Format: [status code]:E[error code] or [status code]:R[response code] Example `2:R06`  #### JCN Gateway Processor-defined detail error code. The associated response category code is in the `processorInformation.responseCategoryCode` field. String (3) 
     attr_accessor :response_code
 
+    # The reason for when the transaction status is Pending or Reversed. Possible values: - `PAYER_SHIPPING_UNCONFIRMED` - `MULTI_CURRENCY` - `RISK_REVIEW` - `REGULATORY_REVIEW` - `VERIFICATION_REQUIRED` - `ORDER` - `OTHER` 
+    attr_accessor :response_details
+
+    # Identifier of the order transaction. 
+    attr_accessor :transaction_id
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'response_code' => :'responseCode'
+        :'response_code' => :'responseCode',
+        :'response_details' => :'responseDetails',
+        :'transaction_id' => :'transactionId'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'response_code' => :'response_code'
+        :'response_code' => :'response_code',
+        :'response_details' => :'response_details',
+        :'transaction_id' => :'transaction_id'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'response_code' => :'String'
+        :'response_code' => :'String',
+        :'response_details' => :'String',
+        :'transaction_id' => :'String'
       }
     end
 
@@ -48,6 +60,14 @@ module CyberSource
 
       if attributes.has_key?(:'responseCode')
         self.response_code = attributes[:'responseCode']
+      end
+
+      if attributes.has_key?(:'responseDetails')
+        self.response_details = attributes[:'responseDetails']
+      end
+
+      if attributes.has_key?(:'transactionId')
+        self.transaction_id = attributes[:'transactionId']
       end
     end
 
@@ -70,12 +90,20 @@ module CyberSource
       @response_code = response_code
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] response_details Value to be assigned
+    def response_details=(response_details)
+      @response_details = response_details
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          response_code == o.response_code
+          response_code == o.response_code &&
+          response_details == o.response_details &&
+          transaction_id == o.transaction_id
     end
 
     # @see the `==` method
@@ -87,7 +115,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [response_code].hash
+      [response_code, response_details, transaction_id].hash
     end
 
     # Builds the object from hash

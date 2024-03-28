@@ -14,6 +14,8 @@ require 'date'
 
 module CyberSource
   class ModifyBillingAgreement
+    attr_accessor :agreement_information
+
     attr_accessor :client_reference_information
 
     attr_accessor :aggregator_information
@@ -32,9 +34,12 @@ module CyberSource
 
     attr_accessor :processing_information
 
+    attr_accessor :buyer_information
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'agreement_information' => :'agreementInformation',
         :'client_reference_information' => :'clientReferenceInformation',
         :'aggregator_information' => :'aggregatorInformation',
         :'consumer_authentication_information' => :'consumerAuthenticationInformation',
@@ -43,13 +48,15 @@ module CyberSource
         :'merchant_information' => :'merchantInformation',
         :'order_information' => :'orderInformation',
         :'payment_information' => :'paymentInformation',
-        :'processing_information' => :'processingInformation'
+        :'processing_information' => :'processingInformation',
+        :'buyer_information' => :'buyerInformation'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
+        :'agreement_information' => :'agreement_information',
         :'client_reference_information' => :'client_reference_information',
         :'aggregator_information' => :'aggregator_information',
         :'consumer_authentication_information' => :'consumer_authentication_information',
@@ -58,14 +65,16 @@ module CyberSource
         :'merchant_information' => :'merchant_information',
         :'order_information' => :'order_information',
         :'payment_information' => :'payment_information',
-        :'processing_information' => :'processing_information'
+        :'processing_information' => :'processing_information',
+        :'buyer_information' => :'buyer_information'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'client_reference_information' => :'Ptsv2paymentsClientReferenceInformation',
+        :'agreement_information' => :'Ptsv2billingagreementsidAgreementInformation',
+        :'client_reference_information' => :'Ptsv2billingagreementsClientReferenceInformation',
         :'aggregator_information' => :'Ptsv2billingagreementsAggregatorInformation',
         :'consumer_authentication_information' => :'Ptsv2billingagreementsConsumerAuthenticationInformation',
         :'device_information' => :'Ptsv2billingagreementsDeviceInformation',
@@ -73,7 +82,8 @@ module CyberSource
         :'merchant_information' => :'Ptsv2billingagreementsMerchantInformation',
         :'order_information' => :'Ptsv2billingagreementsOrderInformation',
         :'payment_information' => :'Ptsv2billingagreementsPaymentInformation',
-        :'processing_information' => :'Ptsv2billingagreementsProcessingInformation'
+        :'processing_information' => :'Ptsv2billingagreementsidProcessingInformation',
+        :'buyer_information' => :'Ptsv2billingagreementsidBuyerInformation'
       }
     end
 
@@ -84,6 +94,10 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'agreementInformation')
+        self.agreement_information = attributes[:'agreementInformation']
+      end
 
       if attributes.has_key?(:'clientReferenceInformation')
         self.client_reference_information = attributes[:'clientReferenceInformation']
@@ -120,6 +134,10 @@ module CyberSource
       if attributes.has_key?(:'processingInformation')
         self.processing_information = attributes[:'processingInformation']
       end
+
+      if attributes.has_key?(:'buyerInformation')
+        self.buyer_information = attributes[:'buyerInformation']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -140,6 +158,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          agreement_information == o.agreement_information &&
           client_reference_information == o.client_reference_information &&
           aggregator_information == o.aggregator_information &&
           consumer_authentication_information == o.consumer_authentication_information &&
@@ -148,7 +167,8 @@ module CyberSource
           merchant_information == o.merchant_information &&
           order_information == o.order_information &&
           payment_information == o.payment_information &&
-          processing_information == o.processing_information
+          processing_information == o.processing_information &&
+          buyer_information == o.buyer_information
     end
 
     # @see the `==` method
@@ -160,7 +180,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_reference_information, aggregator_information, consumer_authentication_information, device_information, installment_information, merchant_information, order_information, payment_information, processing_information].hash
+      [agreement_information, client_reference_information, aggregator_information, consumer_authentication_information, device_information, installment_information, merchant_information, order_information, payment_information, processing_information, buyer_information].hash
     end
 
     # Builds the object from hash

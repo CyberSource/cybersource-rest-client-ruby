@@ -28,6 +28,9 @@ module CyberSource
     # The description for this field is not available.
     attr_accessor :tax_id
 
+    # The buyer's Alipay login Id, the id might be an email or mobile number. The id is partially masked for privacy. cao***@126.com  or 186***22156 
+    attr_accessor :login_id
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -35,7 +38,8 @@ module CyberSource
         :'date_of_birth' => :'dateOfBirth',
         :'vat_registration_number' => :'vatRegistrationNumber',
         :'personal_identification' => :'personalIdentification',
-        :'tax_id' => :'taxId'
+        :'tax_id' => :'taxId',
+        :'login_id' => :'loginId'
       }
     end
 
@@ -46,7 +50,8 @@ module CyberSource
         :'date_of_birth' => :'date_of_birth',
         :'vat_registration_number' => :'vat_registration_number',
         :'personal_identification' => :'personal_identification',
-        :'tax_id' => :'tax_id'
+        :'tax_id' => :'tax_id',
+        :'login_id' => :'login_id'
       }
     end
 
@@ -57,7 +62,8 @@ module CyberSource
         :'date_of_birth' => :'String',
         :'vat_registration_number' => :'String',
         :'personal_identification' => :'Array<Ptsv2paymentsBuyerInformationPersonalIdentification>',
-        :'tax_id' => :'String'
+        :'tax_id' => :'String',
+        :'login_id' => :'String'
       }
     end
 
@@ -89,6 +95,10 @@ module CyberSource
 
       if attributes.has_key?(:'taxId')
         self.tax_id = attributes[:'taxId']
+      end
+
+      if attributes.has_key?(:'loginId')
+        self.login_id = attributes[:'loginId']
       end
     end
 
@@ -123,6 +133,12 @@ module CyberSource
       @vat_registration_number = vat_registration_number
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] login_id Value to be assigned
+    def login_id=(login_id)
+      @login_id = login_id
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -132,7 +148,8 @@ module CyberSource
           date_of_birth == o.date_of_birth &&
           vat_registration_number == o.vat_registration_number &&
           personal_identification == o.personal_identification &&
-          tax_id == o.tax_id
+          tax_id == o.tax_id &&
+          login_id == o.login_id
     end
 
     # @see the `==` method
@@ -144,7 +161,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [merchant_customer_id, date_of_birth, vat_registration_number, personal_identification, tax_id].hash
+      [merchant_customer_id, date_of_birth, vat_registration_number, personal_identification, tax_id, login_id].hash
     end
 
     # Builds the object from hash

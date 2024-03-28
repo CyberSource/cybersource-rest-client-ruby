@@ -20,11 +20,23 @@ module CyberSource
     # Network Transaction Identifier Applicable for online capture transactions only. 
     attr_accessor :network_transaction_id
 
+    # The processor code that describes why the transaction state is pending or reversed. 
+    attr_accessor :response_details
+
+    # For most processors, this is the error message sent directly from the bank. Returned only when the processor returns this value.  **Important** Do not use this field to evaluate the result of the authorization.  #### PIN debit Response value that is returned by the processor or bank. **Important** Do not use this field to evaluate the results of the transaction request.  Returned by PIN debit credit, PIN debit purchase, and PIN debit reversal.  #### AIBMS If this value is `08`, you can accept the transaction if the customer provides you with identification.  #### Atos This value is the response code sent from Atos and it might also include the response code from the bank. Format: `aa,bb` with the two values separated by a comma and where: - `aa` is the two-digit error message from Atos. - `bb` is the optional two-digit error message from the bank.  #### Comercio Latino This value is the status code and the error or response code received from the processor separated by a colon. Format: [status code]:E[error code] or [status code]:R[response code] Example `2:R06`  #### JCN Gateway Processor-defined detail error code. The associated response category code is in the `processorInformation.responseCategoryCode` field. String (3) 
+    attr_accessor :response_code
+
+    # Processor response to the API request. 
+    attr_accessor :provider_response
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'transaction_id' => :'transactionId',
-        :'network_transaction_id' => :'networkTransactionId'
+        :'network_transaction_id' => :'networkTransactionId',
+        :'response_details' => :'responseDetails',
+        :'response_code' => :'responseCode',
+        :'provider_response' => :'providerResponse'
       }
     end
 
@@ -32,7 +44,10 @@ module CyberSource
     def self.json_map
       {
         :'transaction_id' => :'transaction_id',
-        :'network_transaction_id' => :'network_transaction_id'
+        :'network_transaction_id' => :'network_transaction_id',
+        :'response_details' => :'response_details',
+        :'response_code' => :'response_code',
+        :'provider_response' => :'provider_response'
       }
     end
 
@@ -40,7 +55,10 @@ module CyberSource
     def self.swagger_types
       {
         :'transaction_id' => :'String',
-        :'network_transaction_id' => :'String'
+        :'network_transaction_id' => :'String',
+        :'response_details' => :'String',
+        :'response_code' => :'String',
+        :'provider_response' => :'String'
       }
     end
 
@@ -58,6 +76,18 @@ module CyberSource
 
       if attributes.has_key?(:'networkTransactionId')
         self.network_transaction_id = attributes[:'networkTransactionId']
+      end
+
+      if attributes.has_key?(:'responseDetails')
+        self.response_details = attributes[:'responseDetails']
+      end
+
+      if attributes.has_key?(:'responseCode')
+        self.response_code = attributes[:'responseCode']
+      end
+
+      if attributes.has_key?(:'providerResponse')
+        self.provider_response = attributes[:'providerResponse']
       end
     end
 
@@ -80,13 +110,28 @@ module CyberSource
       @transaction_id = transaction_id
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] response_details Value to be assigned
+    def response_details=(response_details)
+      @response_details = response_details
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] response_code Value to be assigned
+    def response_code=(response_code)
+      @response_code = response_code
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           transaction_id == o.transaction_id &&
-          network_transaction_id == o.network_transaction_id
+          network_transaction_id == o.network_transaction_id &&
+          response_details == o.response_details &&
+          response_code == o.response_code &&
+          provider_response == o.provider_response
     end
 
     # @see the `==` method
@@ -98,7 +143,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [transaction_id, network_transaction_id].hash
+      [transaction_id, network_transaction_id, response_details, response_code, provider_response].hash
     end
 
     # Builds the object from hash

@@ -38,6 +38,8 @@ module CyberSource
 
     attr_accessor :travel
 
+    attr_accessor :processor_results
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -50,7 +52,8 @@ module CyberSource
         :'score' => :'score',
         :'ip_address' => :'ipAddress',
         :'providers' => :'providers',
-        :'travel' => :'travel'
+        :'travel' => :'travel',
+        :'processor_results' => :'processorResults'
       }
     end
 
@@ -66,7 +69,8 @@ module CyberSource
         :'score' => :'score',
         :'ip_address' => :'ip_address',
         :'providers' => :'providers',
-        :'travel' => :'travel'
+        :'travel' => :'travel',
+        :'processor_results' => :'processor_results'
       }
     end
 
@@ -82,7 +86,8 @@ module CyberSource
         :'score' => :'PtsV2PaymentsPost201ResponseRiskInformationScore',
         :'ip_address' => :'PtsV2PaymentsPost201ResponseRiskInformationIpAddress',
         :'providers' => :'Hash<String, Hash<String, String>>',
-        :'travel' => :'PtsV2PaymentsPost201ResponseRiskInformationTravel'
+        :'travel' => :'PtsV2PaymentsPost201ResponseRiskInformationTravel',
+        :'processor_results' => :'PtsV2PaymentsPost201ResponseRiskInformationProcessorResults'
       }
     end
 
@@ -137,6 +142,10 @@ module CyberSource
       if attributes.has_key?(:'travel')
         self.travel = attributes[:'travel']
       end
+
+      if attributes.has_key?(:'processorResults')
+        self.processor_results = attributes[:'processorResults']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -172,7 +181,8 @@ module CyberSource
           score == o.score &&
           ip_address == o.ip_address &&
           providers == o.providers &&
-          travel == o.travel
+          travel == o.travel &&
+          processor_results == o.processor_results
     end
 
     # @see the `==` method
@@ -184,7 +194,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [profile, rules, info_codes, velocity, case_priority, local_time, score, ip_address, providers, travel].hash
+      [profile, rules, info_codes, velocity, case_priority, local_time, score, ip_address, providers, travel, processor_results].hash
     end
 
     # Builds the object from hash

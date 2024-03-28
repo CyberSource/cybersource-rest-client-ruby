@@ -26,6 +26,12 @@ module CyberSource
     # Code, address, phone number, etc. used to identify the location of the auto rental return. This field is supported only for MasterCard and American Express. 
     attr_accessor :location_id
 
+    # When merchant wants to send the rental address's street address. 
+    attr_accessor :address1
+
+    # When merchant wants to send the return address's postal code. 
+    attr_accessor :postal_code
+
     # This field contains the location where the taxi passenger was dropped off or where the auto rental vehicle was returned. 
     attr_accessor :location
 
@@ -36,6 +42,8 @@ module CyberSource
         :'state' => :'state',
         :'country' => :'country',
         :'location_id' => :'locationId',
+        :'address1' => :'address1',
+        :'postal_code' => :'postalCode',
         :'location' => :'location'
       }
     end
@@ -47,6 +55,8 @@ module CyberSource
         :'state' => :'state',
         :'country' => :'country',
         :'location_id' => :'location_id',
+        :'address1' => :'address1',
+        :'postal_code' => :'postal_code',
         :'location' => :'location'
       }
     end
@@ -58,6 +68,8 @@ module CyberSource
         :'state' => :'String',
         :'country' => :'String',
         :'location_id' => :'String',
+        :'address1' => :'String',
+        :'postal_code' => :'String',
         :'location' => :'String'
       }
     end
@@ -84,6 +96,14 @@ module CyberSource
 
       if attributes.has_key?(:'locationId')
         self.location_id = attributes[:'locationId']
+      end
+
+      if attributes.has_key?(:'address1')
+        self.address1 = attributes[:'address1']
+      end
+
+      if attributes.has_key?(:'postalCode')
+        self.postal_code = attributes[:'postalCode']
       end
 
       if attributes.has_key?(:'location')
@@ -129,6 +149,18 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] address1 Value to be assigned
+    def address1=(address1)
+      @address1 = address1
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] postal_code Value to be assigned
+    def postal_code=(postal_code)
+      @postal_code = postal_code
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] location Value to be assigned
     def location=(location)
       @location = location
@@ -143,6 +175,8 @@ module CyberSource
           state == o.state &&
           country == o.country &&
           location_id == o.location_id &&
+          address1 == o.address1 &&
+          postal_code == o.postal_code &&
           location == o.location
     end
 
@@ -155,7 +189,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [city, state, country, location_id, location].hash
+      [city, state, country, location_id, address1, postal_code, location].hash
     end
 
     # Builds the object from hash

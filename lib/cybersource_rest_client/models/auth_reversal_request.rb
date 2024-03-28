@@ -24,6 +24,10 @@ module CyberSource
 
     attr_accessor :point_of_sale_information
 
+    attr_accessor :payment_information
+
+    attr_accessor :processor_information
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -31,7 +35,9 @@ module CyberSource
         :'reversal_information' => :'reversalInformation',
         :'processing_information' => :'processingInformation',
         :'order_information' => :'orderInformation',
-        :'point_of_sale_information' => :'pointOfSaleInformation'
+        :'point_of_sale_information' => :'pointOfSaleInformation',
+        :'payment_information' => :'paymentInformation',
+        :'processor_information' => :'processorInformation'
       }
     end
 
@@ -42,7 +48,9 @@ module CyberSource
         :'reversal_information' => :'reversal_information',
         :'processing_information' => :'processing_information',
         :'order_information' => :'order_information',
-        :'point_of_sale_information' => :'point_of_sale_information'
+        :'point_of_sale_information' => :'point_of_sale_information',
+        :'payment_information' => :'payment_information',
+        :'processor_information' => :'processor_information'
       }
     end
 
@@ -53,7 +61,9 @@ module CyberSource
         :'reversal_information' => :'Ptsv2paymentsidreversalsReversalInformation',
         :'processing_information' => :'Ptsv2paymentsidreversalsProcessingInformation',
         :'order_information' => :'Ptsv2paymentsidreversalsOrderInformation',
-        :'point_of_sale_information' => :'Ptsv2paymentsidreversalsPointOfSaleInformation'
+        :'point_of_sale_information' => :'Ptsv2paymentsidreversalsPointOfSaleInformation',
+        :'payment_information' => :'Ptsv2paymentsidreversalsPaymentInformation',
+        :'processor_information' => :'Ptsv2paymentsProcessorInformationReversal'
       }
     end
 
@@ -84,6 +94,14 @@ module CyberSource
       if attributes.has_key?(:'pointOfSaleInformation')
         self.point_of_sale_information = attributes[:'pointOfSaleInformation']
       end
+
+      if attributes.has_key?(:'paymentInformation')
+        self.payment_information = attributes[:'paymentInformation']
+      end
+
+      if attributes.has_key?(:'processorInformation')
+        self.processor_information = attributes[:'processorInformation']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -108,7 +126,9 @@ module CyberSource
           reversal_information == o.reversal_information &&
           processing_information == o.processing_information &&
           order_information == o.order_information &&
-          point_of_sale_information == o.point_of_sale_information
+          point_of_sale_information == o.point_of_sale_information &&
+          payment_information == o.payment_information &&
+          processor_information == o.processor_information
     end
 
     # @see the `==` method
@@ -120,7 +140,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_reference_information, reversal_information, processing_information, order_information, point_of_sale_information].hash
+      [client_reference_information, reversal_information, processing_information, order_information, point_of_sale_information, payment_information, processor_information].hash
     end
 
     # Builds the object from hash

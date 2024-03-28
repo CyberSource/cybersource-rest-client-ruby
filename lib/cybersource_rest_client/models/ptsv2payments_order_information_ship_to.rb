@@ -41,6 +41,9 @@ module CyberSource
     # Postal code for the shipping address. The postal code must consist of 5 to 9 digits.  Required field for authorization if any shipping address information is included in the request and shipping to the U.S. or Canada; otherwise, optional.  When the billing country is the U.S., the 9-digit postal code must follow this format: [5 digits][dash][4 digits]  Example 12345-6789  When the billing country is Canada, the 6-digit postal code must follow this format: [alpha][numeric][alpha][space][numeric][alpha][numeric]  Example A1B 2C3  #### American Express Direct Before sending the postal code to the processor, all nonalphanumeric characters are removed and, if the remaining value is longer than nine characters, the value is truncated starting from the right side. #### Tax Calculation Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes. Billing address objects will be used to determine the cardholder's location when shipTo objects are not present. 
     attr_accessor :postal_code
 
+    # U.S. county if available.
+    attr_accessor :county
+
     # Country of the shipping address. Use the two-character [ISO Standard Country Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf)  Required field for authorization if any shipping address information is included in the request; otherwise, optional.  #### Tax Calculation Optional field for U.S., Canadian, international tax, and value added taxes. Billing address objects will be used to determine the cardholder's location when shipTo objects are not present. 
     attr_accessor :country
 
@@ -52,6 +55,9 @@ module CyberSource
 
     # Phone number associated with the shipping address.
     attr_accessor :phone_number
+
+    # Email of the recipient. 
+    attr_accessor :email
 
     # Name of the customer's company.  For processor-specific information, see the company_name field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
     attr_accessor :company
@@ -77,10 +83,12 @@ module CyberSource
         :'locality' => :'locality',
         :'administrative_area' => :'administrativeArea',
         :'postal_code' => :'postalCode',
+        :'county' => :'county',
         :'country' => :'country',
         :'district' => :'district',
         :'building_number' => :'buildingNumber',
         :'phone_number' => :'phoneNumber',
+        :'email' => :'email',
         :'company' => :'company',
         :'destination_types' => :'destinationTypes',
         :'destination_code' => :'destinationCode',
@@ -100,10 +108,12 @@ module CyberSource
         :'locality' => :'locality',
         :'administrative_area' => :'administrative_area',
         :'postal_code' => :'postal_code',
+        :'county' => :'county',
         :'country' => :'country',
         :'district' => :'district',
         :'building_number' => :'building_number',
         :'phone_number' => :'phone_number',
+        :'email' => :'email',
         :'company' => :'company',
         :'destination_types' => :'destination_types',
         :'destination_code' => :'destination_code',
@@ -123,10 +133,12 @@ module CyberSource
         :'locality' => :'String',
         :'administrative_area' => :'String',
         :'postal_code' => :'String',
+        :'county' => :'String',
         :'country' => :'String',
         :'district' => :'String',
         :'building_number' => :'String',
         :'phone_number' => :'String',
+        :'email' => :'String',
         :'company' => :'String',
         :'destination_types' => :'String',
         :'destination_code' => :'Integer',
@@ -178,6 +190,10 @@ module CyberSource
         self.postal_code = attributes[:'postalCode']
       end
 
+      if attributes.has_key?(:'county')
+        self.county = attributes[:'county']
+      end
+
       if attributes.has_key?(:'country')
         self.country = attributes[:'country']
       end
@@ -192,6 +208,10 @@ module CyberSource
 
       if attributes.has_key?(:'phoneNumber')
         self.phone_number = attributes[:'phoneNumber']
+      end
+
+      if attributes.has_key?(:'email')
+        self.email = attributes[:'email']
       end
 
       if attributes.has_key?(:'company')
@@ -279,6 +299,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] county Value to be assigned
+    def county=(county)
+      @county = county
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] country Value to be assigned
     def country=(country)
       @country = country
@@ -300,6 +326,12 @@ module CyberSource
     # @param [Object] phone_number Value to be assigned
     def phone_number=(phone_number)
       @phone_number = phone_number
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] email Value to be assigned
+    def email=(email)
+      @email = email
     end
 
     # Custom attribute writer method with validation
@@ -334,10 +366,12 @@ module CyberSource
           locality == o.locality &&
           administrative_area == o.administrative_area &&
           postal_code == o.postal_code &&
+          county == o.county &&
           country == o.country &&
           district == o.district &&
           building_number == o.building_number &&
           phone_number == o.phone_number &&
+          email == o.email &&
           company == o.company &&
           destination_types == o.destination_types &&
           destination_code == o.destination_code &&
@@ -353,7 +387,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [title, first_name, middle_name, last_name, address1, address2, locality, administrative_area, postal_code, country, district, building_number, phone_number, company, destination_types, destination_code, method].hash
+      [title, first_name, middle_name, last_name, address1, address2, locality, administrative_area, postal_code, county, country, district, building_number, phone_number, email, company, destination_types, destination_code, method].hash
     end
 
     # Builds the object from hash

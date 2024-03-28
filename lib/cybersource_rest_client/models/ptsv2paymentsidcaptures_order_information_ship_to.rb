@@ -23,12 +23,20 @@ module CyberSource
     # Postal code for the shipping address. The postal code must consist of 5 to 9 digits.  Required field for authorization if any shipping address information is included in the request and shipping to the U.S. or Canada; otherwise, optional.  When the billing country is the U.S., the 9-digit postal code must follow this format: [5 digits][dash][4 digits]  Example 12345-6789  When the billing country is Canada, the 6-digit postal code must follow this format: [alpha][numeric][alpha][space][numeric][alpha][numeric]  Example A1B 2C3  #### American Express Direct Before sending the postal code to the processor, all nonalphanumeric characters are removed and, if the remaining value is longer than nine characters, the value is truncated starting from the right side. #### Tax Calculation Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes. Billing address objects will be used to determine the cardholder's location when shipTo objects are not present. 
     attr_accessor :postal_code
 
+    # Email of the recipient.
+    attr_accessor :email
+
+    # U.S. county if available.
+    attr_accessor :county
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'administrative_area' => :'administrativeArea',
         :'country' => :'country',
-        :'postal_code' => :'postalCode'
+        :'postal_code' => :'postalCode',
+        :'email' => :'email',
+        :'county' => :'county'
       }
     end
 
@@ -37,7 +45,9 @@ module CyberSource
       {
         :'administrative_area' => :'administrative_area',
         :'country' => :'country',
-        :'postal_code' => :'postal_code'
+        :'postal_code' => :'postal_code',
+        :'email' => :'email',
+        :'county' => :'county'
       }
     end
 
@@ -46,7 +56,9 @@ module CyberSource
       {
         :'administrative_area' => :'String',
         :'country' => :'String',
-        :'postal_code' => :'String'
+        :'postal_code' => :'String',
+        :'email' => :'String',
+        :'county' => :'String'
       }
     end
 
@@ -68,6 +80,14 @@ module CyberSource
 
       if attributes.has_key?(:'postalCode')
         self.postal_code = attributes[:'postalCode']
+      end
+
+      if attributes.has_key?(:'email')
+        self.email = attributes[:'email']
+      end
+
+      if attributes.has_key?(:'county')
+        self.county = attributes[:'county']
       end
     end
 
@@ -102,6 +122,18 @@ module CyberSource
       @postal_code = postal_code
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] email Value to be assigned
+    def email=(email)
+      @email = email
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] county Value to be assigned
+    def county=(county)
+      @county = county
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -109,7 +141,9 @@ module CyberSource
       self.class == o.class &&
           administrative_area == o.administrative_area &&
           country == o.country &&
-          postal_code == o.postal_code
+          postal_code == o.postal_code &&
+          email == o.email &&
+          county == o.county
     end
 
     # @see the `==` method
@@ -121,7 +155,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [administrative_area, country, postal_code].hash
+      [administrative_area, country, postal_code, email, county].hash
     end
 
     # Builds the object from hash

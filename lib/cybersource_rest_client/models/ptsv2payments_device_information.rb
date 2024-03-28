@@ -14,6 +14,9 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsDeviceInformation
+    # Value created by the client software that uniquely identifies the POS device. CyberSource does not forward this value to the processor. Instead, the value is forwarded to the CyberSource reporting functionality.  This field is supported only for authorizations and credits on these processors: - American Express Direct - Credit Mutuel-CIC - FDC Nashville Global - OmniPay Direct - SIX  Optional field. String (32) 
+    attr_accessor :id
+
     # DNS resolved hostname from `ipAddress`.
     attr_accessor :host_name
 
@@ -34,6 +37,9 @@ module CyberSource
 
     # This field will contain the deep link that would help the Customer App to wake up. 
     attr_accessor :app_url
+
+    # Verifies that the payment is originating from a valid, user-approved application and device. Sending this field helps reduce fraud and declined transactions. Note The length is set for a hexadecimal representation of the GUID/UUID. This field accepts a 36-character string (with hyphens) or a 32-character string (without hyphens). Example 123e4567-e89b-12d3-a456-426655440000 Example 123e4567e89b12d3a456426655440000 
+    attr_accessor :metadata
 
     attr_accessor :raw_data
 
@@ -73,6 +79,7 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'id' => :'id',
         :'host_name' => :'hostName',
         :'ip_address' => :'ipAddress',
         :'user_agent' => :'userAgent',
@@ -80,6 +87,7 @@ module CyberSource
         :'use_raw_fingerprint_session_id' => :'useRawFingerprintSessionId',
         :'device_type' => :'deviceType',
         :'app_url' => :'appUrl',
+        :'metadata' => :'metadata',
         :'raw_data' => :'rawData',
         :'http_accept_browser_value' => :'httpAcceptBrowserValue',
         :'http_accept_content' => :'httpAcceptContent',
@@ -98,6 +106,7 @@ module CyberSource
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
+        :'id' => :'id',
         :'host_name' => :'host_name',
         :'ip_address' => :'ip_address',
         :'user_agent' => :'user_agent',
@@ -105,6 +114,7 @@ module CyberSource
         :'use_raw_fingerprint_session_id' => :'use_raw_fingerprint_session_id',
         :'device_type' => :'device_type',
         :'app_url' => :'app_url',
+        :'metadata' => :'metadata',
         :'raw_data' => :'raw_data',
         :'http_accept_browser_value' => :'http_accept_browser_value',
         :'http_accept_content' => :'http_accept_content',
@@ -123,6 +133,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'id' => :'String',
         :'host_name' => :'String',
         :'ip_address' => :'String',
         :'user_agent' => :'String',
@@ -130,6 +141,7 @@ module CyberSource
         :'use_raw_fingerprint_session_id' => :'BOOLEAN',
         :'device_type' => :'String',
         :'app_url' => :'String',
+        :'metadata' => :'String',
         :'raw_data' => :'Array<Ptsv2paymentsDeviceInformationRawData>',
         :'http_accept_browser_value' => :'String',
         :'http_accept_content' => :'String',
@@ -152,6 +164,10 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'id')
+        self.id = attributes[:'id']
+      end
 
       if attributes.has_key?(:'hostName')
         self.host_name = attributes[:'hostName']
@@ -179,6 +195,10 @@ module CyberSource
 
       if attributes.has_key?(:'appUrl')
         self.app_url = attributes[:'appUrl']
+      end
+
+      if attributes.has_key?(:'metadata')
+        self.metadata = attributes[:'metadata']
       end
 
       if attributes.has_key?(:'rawData')
@@ -270,6 +290,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] metadata Value to be assigned
+    def metadata=(metadata)
+      @metadata = metadata
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] http_accept_browser_value Value to be assigned
     def http_accept_browser_value=(http_accept_browser_value)
       @http_accept_browser_value = http_accept_browser_value
@@ -322,6 +348,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          id == o.id &&
           host_name == o.host_name &&
           ip_address == o.ip_address &&
           user_agent == o.user_agent &&
@@ -329,6 +356,7 @@ module CyberSource
           use_raw_fingerprint_session_id == o.use_raw_fingerprint_session_id &&
           device_type == o.device_type &&
           app_url == o.app_url &&
+          metadata == o.metadata &&
           raw_data == o.raw_data &&
           http_accept_browser_value == o.http_accept_browser_value &&
           http_accept_content == o.http_accept_content &&
@@ -352,7 +380,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [host_name, ip_address, user_agent, fingerprint_session_id, use_raw_fingerprint_session_id, device_type, app_url, raw_data, http_accept_browser_value, http_accept_content, http_browser_email, http_browser_language, http_browser_java_enabled, http_browser_java_script_enabled, http_browser_color_depth, http_browser_screen_height, http_browser_screen_width, http_browser_time_difference, user_agent_browser_value].hash
+      [id, host_name, ip_address, user_agent, fingerprint_session_id, use_raw_fingerprint_session_id, device_type, app_url, metadata, raw_data, http_accept_browser_value, http_accept_content, http_browser_email, http_browser_language, http_browser_java_enabled, http_browser_java_script_enabled, http_browser_color_depth, http_browser_screen_height, http_browser_screen_width, http_browser_time_difference, user_agent_browser_value].hash
     end
 
     # Builds the object from hash

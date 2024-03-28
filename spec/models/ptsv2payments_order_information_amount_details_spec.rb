@@ -32,6 +32,12 @@ describe 'Ptsv2paymentsOrderInformationAmountDetails' do
       expect(@instance).to be_instance_of(CyberSource::Ptsv2paymentsOrderInformationAmountDetails)
     end
   end
+  describe 'test attribute "gift_wrap_amount"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "total_amount"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -183,6 +189,12 @@ describe 'Ptsv2paymentsOrderInformationAmountDetails' do
   end
 
   describe 'test attribute "currency_conversion"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "order"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

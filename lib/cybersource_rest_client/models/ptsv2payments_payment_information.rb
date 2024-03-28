@@ -18,6 +18,8 @@ module CyberSource
 
     attr_accessor :tokenized_card
 
+    attr_accessor :direct_debit
+
     attr_accessor :fluid_data
 
     attr_accessor :customer
@@ -32,6 +34,8 @@ module CyberSource
 
     attr_accessor :bank
 
+    attr_accessor :options
+
     attr_accessor :payment_type
 
     # Mastercard-defined code that indicates how the account information was obtained.  - `00`: Card - `01`: Mobile Network Operator (MNO) controlled removable secure element (SIM or UICC) personalized for use with a mobile phone or smartphone - `02`: Key fob - `03`: Watch using a contactless chip or a fixed (non-removable) secure element not controlled by the MNO - `04`: Mobile tag - `05`: Wristband - `06`: Mobile phone case or sleeve - `07`: Mobile phone or smartphone with a fixed (non-removable) secure element controlled by the MNO,for example, code division multiple access (CDMA) - `08`: Removable secure element not controlled by the MNO, for example, memory card personalized forused with a mobile phone or smartphone - `09`: Mobile Phone or smartphone with a fixed (non-removable) secure element not controlled by the MNO - `10`: MNO controlled removable secure element (SIM or UICC) personalized for use with a tablet or e-book - `11`: Tablet or e-book with a fixed (non-removable) secure element controlled by the MNO - `12`: Removable secure element not controlled by the MNO, for example, memory card personalized foruse with a tablet or e-book - `13`: Tablet or e-book with fixed (non-removable) secure element not controlled by the MNO - `14`: Mobile phone or smartphone with a payment application running in a host processor - `15`: Tablet or e-book with a payment application running in a host processor - `16`: Mobile phone or smartphone with a payment application running in the Trusted ExecutionEnvironment (TEE) of a host processor - `17`: Tablet or e-book with a payment application running in the TEE of a host processor - `18`: Watch with a payment application running in the TEE of a host processor - `19`: Watch with a payment application running in a host processor  Values from 20–99 exclusively indicate the form factor only without also indicating the storage technology  - `20`: Card - `21`: Phone e.g. Mobile Phone - `22`: Tablet/e-reader - `23`: Watch/Wristband e.g. Watch or wristband, including a fitness band, smart strap, disposable band, watch add-on, and security/ID band - `24`: Sticker - `25`: PC - `26`: Device Peripheral e.g. mobile phone case or sleeve - `27`: Tag e.g. key fob or mobile tag - `28`: Jewelry e.g. ring, bracelet, necklace and cuff links - `29`: Fashion Accessory e.g. handbag, bag charm and glasses - `30`: Garment e.g. dress - `31`: Domestic Appliance e.g refrigerator, washing machine - `32`: Vehicle e.g. vehicle, including vehicle attached devices - `33`: Media/Gaming Device e.g. media or gaming device, including a set top box, media player and television  34–99 are reserved for future form factors. Any value in this range may occur within form factor and transaction data without prior notice.  This field is supported only for Mastercard on CyberSource through VisaNet. When initiation channel is not provided via this API field, the value is extracted from EMV tag 9F6E for Mastercard transactions. To enable this feature please call support.  #### Used by **Authorization** Optional field. 
@@ -44,6 +48,7 @@ module CyberSource
       {
         :'card' => :'card',
         :'tokenized_card' => :'tokenizedCard',
+        :'direct_debit' => :'directDebit',
         :'fluid_data' => :'fluidData',
         :'customer' => :'customer',
         :'payment_instrument' => :'paymentInstrument',
@@ -51,6 +56,7 @@ module CyberSource
         :'shipping_address' => :'shippingAddress',
         :'legacy_token' => :'legacyToken',
         :'bank' => :'bank',
+        :'options' => :'options',
         :'payment_type' => :'paymentType',
         :'initiation_channel' => :'initiationChannel',
         :'e_wallet' => :'eWallet'
@@ -62,6 +68,7 @@ module CyberSource
       {
         :'card' => :'card',
         :'tokenized_card' => :'tokenized_card',
+        :'direct_debit' => :'direct_debit',
         :'fluid_data' => :'fluid_data',
         :'customer' => :'customer',
         :'payment_instrument' => :'payment_instrument',
@@ -69,6 +76,7 @@ module CyberSource
         :'shipping_address' => :'shipping_address',
         :'legacy_token' => :'legacy_token',
         :'bank' => :'bank',
+        :'options' => :'options',
         :'payment_type' => :'payment_type',
         :'initiation_channel' => :'initiation_channel',
         :'e_wallet' => :'e_wallet'
@@ -80,6 +88,7 @@ module CyberSource
       {
         :'card' => :'Ptsv2paymentsPaymentInformationCard',
         :'tokenized_card' => :'Ptsv2paymentsPaymentInformationTokenizedCard',
+        :'direct_debit' => :'Ptsv2paymentsPaymentInformationDirectDebit',
         :'fluid_data' => :'Ptsv2paymentsPaymentInformationFluidData',
         :'customer' => :'Ptsv2paymentsPaymentInformationCustomer',
         :'payment_instrument' => :'Ptsv2paymentsPaymentInformationPaymentInstrument',
@@ -87,6 +96,7 @@ module CyberSource
         :'shipping_address' => :'Ptsv2paymentsPaymentInformationShippingAddress',
         :'legacy_token' => :'Ptsv2paymentsPaymentInformationLegacyToken',
         :'bank' => :'Ptsv2paymentsPaymentInformationBank',
+        :'options' => :'Ptsv2paymentsPaymentInformationOptions',
         :'payment_type' => :'Ptsv2paymentsPaymentInformationPaymentType',
         :'initiation_channel' => :'String',
         :'e_wallet' => :'Ptsv2paymentsPaymentInformationEWallet'
@@ -107,6 +117,10 @@ module CyberSource
 
       if attributes.has_key?(:'tokenizedCard')
         self.tokenized_card = attributes[:'tokenizedCard']
+      end
+
+      if attributes.has_key?(:'directDebit')
+        self.direct_debit = attributes[:'directDebit']
       end
 
       if attributes.has_key?(:'fluidData')
@@ -135,6 +149,10 @@ module CyberSource
 
       if attributes.has_key?(:'bank')
         self.bank = attributes[:'bank']
+      end
+
+      if attributes.has_key?(:'options')
+        self.options = attributes[:'options']
       end
 
       if attributes.has_key?(:'paymentType')
@@ -176,6 +194,7 @@ module CyberSource
       self.class == o.class &&
           card == o.card &&
           tokenized_card == o.tokenized_card &&
+          direct_debit == o.direct_debit &&
           fluid_data == o.fluid_data &&
           customer == o.customer &&
           payment_instrument == o.payment_instrument &&
@@ -183,6 +202,7 @@ module CyberSource
           shipping_address == o.shipping_address &&
           legacy_token == o.legacy_token &&
           bank == o.bank &&
+          options == o.options &&
           payment_type == o.payment_type &&
           initiation_channel == o.initiation_channel &&
           e_wallet == o.e_wallet
@@ -197,7 +217,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card, tokenized_card, fluid_data, customer, payment_instrument, instrument_identifier, shipping_address, legacy_token, bank, payment_type, initiation_channel, e_wallet].hash
+      [card, tokenized_card, direct_debit, fluid_data, customer, payment_instrument, instrument_identifier, shipping_address, legacy_token, bank, options, payment_type, initiation_channel, e_wallet].hash
     end
 
     # Builds the object from hash
