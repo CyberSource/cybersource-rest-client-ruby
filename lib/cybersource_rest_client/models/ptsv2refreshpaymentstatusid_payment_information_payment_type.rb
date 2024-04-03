@@ -39,7 +39,7 @@ module CyberSource
     def self.swagger_types
       {
         :'name' => :'String',
-        :'method' => :'Ptsv2paymentsidrefundsPaymentInformationPaymentTypeMethod'
+        :'method' => :'Ptsv2paymentsidcapturesPaymentInformationPaymentTypeMethod'
       }
     end
 

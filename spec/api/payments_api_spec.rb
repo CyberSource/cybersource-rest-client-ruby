@@ -32,6 +32,19 @@ describe 'PaymentsApi' do
     end
   end
 
+  # unit tests for create_order_request
+  # Create a Payment Order Request
+  # Create a Payment Order Request
+  # @param order_payment_request 
+  # @param id Request identifier number for the order request. 
+  # @param [Hash] opts the optional parameters
+  # @return [PtsV2PaymentsOrderPost201Response]
+  describe 'create_order_request test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for create_payment
   # Process a Payment
   # A payment authorizes the amount for the transaction. There are a number of supported payment features, such as E-commerce and Card Present - Credit Card/Debit Card, Echeck, e-Wallets, Level II/III Data, etc..  A payment response includes the status of the request. It also includes processor-specific information when the request is successful and errors if unsuccessful. See the [Payments Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/payments/developer/ctv/rest/payments/payments-intro.html).  Authorization can be requested with Capture, Decision Manager, Payer Authentication(3ds), and Token Creation. 
@@ -39,6 +52,18 @@ describe 'PaymentsApi' do
   # @param [Hash] opts the optional parameters
   # @return [PtsV2PaymentsPost201Response]
   describe 'create_payment test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for create_session_request
+  # Create Alternative Payments Sessions Request
+  # Create Alternative Payments Sessions Request
+  # @param create_session_req 
+  # @param [Hash] opts the optional parameters
+  # @return [PtsV2PaymentsPost201Response2]
+  describe 'create_session_request test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -65,6 +90,19 @@ describe 'PaymentsApi' do
   # @param [Hash] opts the optional parameters
   # @return [PtsV2PaymentsPost201Response1]
   describe 'refresh_payment_status test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for update_session_req
+  # Update Alternative Payments Sessions Request
+  # Update Alternative Payments Sessions Request
+  # @param create_session_request 
+  # @param id The payment ID. This ID is returned from a previous payment request.
+  # @param [Hash] opts the optional parameters
+  # @return [PtsV2PaymentsPost201Response2]
+  describe 'update_session_req test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

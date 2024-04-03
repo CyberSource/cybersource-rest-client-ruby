@@ -20,11 +20,15 @@ module CyberSource
     # Total number of captures when requesting multiple partial captures for one payment. Used along with `captureSequenceNumber` field to track which capture is being processed.  For example, the second of five captures would be passed to CyberSource as:   - `captureSequenceNumber = 2`, and   - `totalCaptureCount = 5` 
     attr_accessor :total_capture_count
 
+    # Indicates whether to release the authorization hold on the remaining funds.   Possible Values: - `true` - `false` 
+    attr_accessor :is_final
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'capture_sequence_number' => :'captureSequenceNumber',
-        :'total_capture_count' => :'totalCaptureCount'
+        :'total_capture_count' => :'totalCaptureCount',
+        :'is_final' => :'isFinal'
       }
     end
 
@@ -32,7 +36,8 @@ module CyberSource
     def self.json_map
       {
         :'capture_sequence_number' => :'capture_sequence_number',
-        :'total_capture_count' => :'total_capture_count'
+        :'total_capture_count' => :'total_capture_count',
+        :'is_final' => :'is_final'
       }
     end
 
@@ -40,7 +45,8 @@ module CyberSource
     def self.swagger_types
       {
         :'capture_sequence_number' => :'Integer',
-        :'total_capture_count' => :'Integer'
+        :'total_capture_count' => :'Integer',
+        :'is_final' => :'String'
       }
     end
 
@@ -58,6 +64,10 @@ module CyberSource
 
       if attributes.has_key?(:'totalCaptureCount')
         self.total_capture_count = attributes[:'totalCaptureCount']
+      end
+
+      if attributes.has_key?(:'isFinal')
+        self.is_final = attributes[:'isFinal']
       end
     end
 
@@ -86,13 +96,20 @@ module CyberSource
       @total_capture_count = total_capture_count
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] is_final Value to be assigned
+    def is_final=(is_final)
+      @is_final = is_final
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           capture_sequence_number == o.capture_sequence_number &&
-          total_capture_count == o.total_capture_count
+          total_capture_count == o.total_capture_count &&
+          is_final == o.is_final
     end
 
     # @see the `==` method
@@ -104,7 +121,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [capture_sequence_number, total_capture_count].hash
+      [capture_sequence_number, total_capture_count, is_final].hash
     end
 
     # Builds the object from hash

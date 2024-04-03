@@ -20,6 +20,77 @@ module CyberSource
       @api_client = api_client
       @api_client.set_configuration(config)
     end
+    # Get Payment Credentials
+    # Retrieve the Payment data captured by Unified Checkout. This API is used to retrieve the detailed data represented by the Transient Token. This API will return PCI payment data captured by the Unified Checkout platform.
+    #
+    # @param jti The jti field contained within the Transient token returned from a successful Unified Checkout transaction 
+    # @param [Hash] opts the optional parameters
+    # @return [String]
+    #
+    def get_payment_credentials_for_transient_token(jti, opts = {})
+      data, status_code, headers = get_payment_credentials_for_transient_token_with_http_info(jti, opts)
+      return data, status_code, headers
+    end
+
+    # Get Payment Credentials
+    # Retrieve the Payment data captured by Unified Checkout. This API is used to retrieve the detailed data represented by the Transient Token. This API will return PCI payment data captured by the Unified Checkout platform.
+    # @param jti The jti field contained within the Transient token returned from a successful Unified Checkout transaction 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(String, Fixnum, Hash)>] String data, response status code and response headers
+    def get_payment_credentials_for_transient_token_with_http_info(jti, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: TransientTokenDataApi.get_payment_credentials_for_transient_token ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'jti' is set
+      if @api_client.config.client_side_validation && jti.nil?
+        fail ArgumentError, "Missing the required parameter 'jti' when calling TransientTokenDataApi.get_payment_credentials_for_transient_token"
+      end
+      # resource path
+      local_var_path = 'up/v1/payment-credentials/{jti}'.sub('{' + 'jti' + '}', jti.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      if 'GET' == 'POST'
+        post_body = '{}'
+      else
+        post_body = nil
+      end
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'String')
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: TransientTokenDataApi#get_payment_credentials_for_transient_token\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
     # Get Transient Token Data
     # Retrieve the data captured by Unified Checkout. This API is used to retrieve the detailed data represented by the Transient Token. This API will not return PCI payment data (PAN). Include the Request ID in the GET request to retrieve the transaction details.
     #

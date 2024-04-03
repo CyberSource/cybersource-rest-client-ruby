@@ -23,12 +23,16 @@ module CyberSource
     # Date on which you want the capture to occur. This field is supported only for CyberSource through VisaNet. Format: `MMDD`  #### Used by **Authorization** Optional field. 
     attr_accessor :date_to_capture
 
+    # Indicates whether to release the authorization hold on the remaining funds.   Possible Values: - `true` - `false` 
+    attr_accessor :is_final
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'capture_sequence_number' => :'captureSequenceNumber',
         :'total_capture_count' => :'totalCaptureCount',
-        :'date_to_capture' => :'dateToCapture'
+        :'date_to_capture' => :'dateToCapture',
+        :'is_final' => :'isFinal'
       }
     end
 
@@ -37,7 +41,8 @@ module CyberSource
       {
         :'capture_sequence_number' => :'capture_sequence_number',
         :'total_capture_count' => :'total_capture_count',
-        :'date_to_capture' => :'date_to_capture'
+        :'date_to_capture' => :'date_to_capture',
+        :'is_final' => :'is_final'
       }
     end
 
@@ -46,7 +51,8 @@ module CyberSource
       {
         :'capture_sequence_number' => :'Integer',
         :'total_capture_count' => :'Integer',
-        :'date_to_capture' => :'String'
+        :'date_to_capture' => :'String',
+        :'is_final' => :'String'
       }
     end
 
@@ -68,6 +74,10 @@ module CyberSource
 
       if attributes.has_key?(:'dateToCapture')
         self.date_to_capture = attributes[:'dateToCapture']
+      end
+
+      if attributes.has_key?(:'isFinal')
+        self.is_final = attributes[:'isFinal']
       end
     end
 
@@ -102,6 +112,12 @@ module CyberSource
       @date_to_capture = date_to_capture
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] is_final Value to be assigned
+    def is_final=(is_final)
+      @is_final = is_final
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -109,7 +125,8 @@ module CyberSource
       self.class == o.class &&
           capture_sequence_number == o.capture_sequence_number &&
           total_capture_count == o.total_capture_count &&
-          date_to_capture == o.date_to_capture
+          date_to_capture == o.date_to_capture &&
+          is_final == o.is_final
     end
 
     # @see the `==` method
@@ -121,7 +138,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [capture_sequence_number, total_capture_count, date_to_capture].hash
+      [capture_sequence_number, total_capture_count, date_to_capture, is_final].hash
     end
 
     # Builds the object from hash

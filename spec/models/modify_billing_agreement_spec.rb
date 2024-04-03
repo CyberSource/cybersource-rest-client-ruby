@@ -32,6 +32,12 @@ describe 'ModifyBillingAgreement' do
       expect(@instance).to be_instance_of(CyberSource::ModifyBillingAgreement)
     end
   end
+  describe 'test attribute "agreement_information"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "client_reference_information"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -81,6 +87,12 @@ describe 'ModifyBillingAgreement' do
   end
 
   describe 'test attribute "processing_information"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "buyer_information"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

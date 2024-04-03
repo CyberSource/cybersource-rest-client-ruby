@@ -18,11 +18,17 @@ module CyberSource
 
     attr_accessor :tokenized_card
 
+    attr_accessor :payment_type
+
+    attr_accessor :bank
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'card' => :'card',
-        :'tokenized_card' => :'tokenizedCard'
+        :'tokenized_card' => :'tokenizedCard',
+        :'payment_type' => :'paymentType',
+        :'bank' => :'bank'
       }
     end
 
@@ -30,7 +36,9 @@ module CyberSource
     def self.json_map
       {
         :'card' => :'card',
-        :'tokenized_card' => :'tokenized_card'
+        :'tokenized_card' => :'tokenized_card',
+        :'payment_type' => :'payment_type',
+        :'bank' => :'bank'
       }
     end
 
@@ -38,7 +46,9 @@ module CyberSource
     def self.swagger_types
       {
         :'card' => :'Ptsv2billingagreementsPaymentInformationCard',
-        :'tokenized_card' => :'Ptsv2billingagreementsPaymentInformationTokenizedCard'
+        :'tokenized_card' => :'Ptsv2billingagreementsPaymentInformationTokenizedCard',
+        :'payment_type' => :'Ptsv2billingagreementsPaymentInformationPaymentType',
+        :'bank' => :'Ptsv2billingagreementsPaymentInformationBank'
       }
     end
 
@@ -56,6 +66,14 @@ module CyberSource
 
       if attributes.has_key?(:'tokenizedCard')
         self.tokenized_card = attributes[:'tokenizedCard']
+      end
+
+      if attributes.has_key?(:'paymentType')
+        self.payment_type = attributes[:'paymentType']
+      end
+
+      if attributes.has_key?(:'bank')
+        self.bank = attributes[:'bank']
       end
     end
 
@@ -78,7 +96,9 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           card == o.card &&
-          tokenized_card == o.tokenized_card
+          tokenized_card == o.tokenized_card &&
+          payment_type == o.payment_type &&
+          bank == o.bank
     end
 
     # @see the `==` method
@@ -90,7 +110,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card, tokenized_card].hash
+      [card, tokenized_card, payment_type, bank].hash
     end
 
     # Builds the object from hash
