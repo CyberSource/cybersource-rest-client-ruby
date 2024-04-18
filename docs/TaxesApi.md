@@ -71,7 +71,7 @@ api_instance = CyberSource::TaxesApi.new
 
 void_tax_request = CyberSource::VoidTaxRequest.new # VoidTaxRequest | 
 
-id = "id_example" # String | The tax ID returned from a previous request.
+id = 'id_example' # String | The tax ID returned from a previous request.
 
 
 begin

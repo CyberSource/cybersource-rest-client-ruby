@@ -22,7 +22,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::MerchantBoardingApi.new
 
-registration_id = "registration_id_example" # String | Identifies the boarding registration to be updated
+registration_id = 'registration_id_example' # String | Identifies the boarding registration to be updated
 
 
 begin
@@ -72,7 +72,7 @@ api_instance = CyberSource::MerchantBoardingApi.new
 post_registration_body = CyberSource::PostRegistrationBody.new # PostRegistrationBody | Boarding registration data
 
 opts = { 
-  v_c_idempotency_id: "v_c_idempotency_id_example" # String | defines idempotency of the request
+  v_c_idempotency_id: 'v_c_idempotency_id_example' # String | defines idempotency of the request
 }
 
 begin

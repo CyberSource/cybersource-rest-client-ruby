@@ -78,7 +78,7 @@ offset = 56 # Integer | Page offset number.
 limit = 56 # Integer | Maximum number of items you would like returned.
 
 opts = { 
-  status: "status_example" # String | The status of the invoice.  Possible values:   - DRAFT   - CREATED   - SENT   - PARTIAL   - PAID   - CANCELED 
+  status: 'status_example' # String | The status of the invoice.  Possible values:   - DRAFT   - CREATED   - SENT   - PARTIAL   - PAID   - CANCELED 
 }
 
 begin
@@ -127,7 +127,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::InvoicesApi.new
 
-id = "id_example" # String | The invoice number.
+id = 'id_example' # String | The invoice number.
 
 
 begin
@@ -174,7 +174,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::InvoicesApi.new
 
-id = "id_example" # String | The invoice number.
+id = 'id_example' # String | The invoice number.
 
 
 begin
@@ -221,7 +221,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::InvoicesApi.new
 
-id = "id_example" # String | The invoice number.
+id = 'id_example' # String | The invoice number.
 
 
 begin
@@ -268,7 +268,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::InvoicesApi.new
 
-id = "id_example" # String | The invoice number.
+id = 'id_example' # String | The invoice number.
 
 update_invoice_request = CyberSource::UpdateInvoiceRequest.new # UpdateInvoiceRequest | Updating the invoice does not resend the invoice automatically. You must resend the invoice separately.
 

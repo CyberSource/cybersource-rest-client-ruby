@@ -26,7 +26,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::ManageWebhooksApi.new
 
-webhook_id = "webhook_id_example" # String | The webhook identifier.
+webhook_id = 'webhook_id_example' # String | The webhook identifier.
 
 
 begin
@@ -59,7 +59,7 @@ No authorization required
 
 
 # **get_webhook_subscription_by_id**
-> InlineResponse2004 get_webhook_subscription_by_id(webhook_id)
+> InlineResponse2005 get_webhook_subscription_by_id(webhook_id)
 
 Get Details On a Single Webhook
 
@@ -72,7 +72,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::ManageWebhooksApi.new
 
-webhook_id = "webhook_id_example" # String | The webhook Identifier
+webhook_id = 'webhook_id_example' # String | The webhook Identifier
 
 
 begin
@@ -92,7 +92,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2004**](InlineResponse2004.md)
+[**InlineResponse2005**](InlineResponse2005.md)
 
 ### Authorization
 
@@ -119,11 +119,11 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::ManageWebhooksApi.new
 
-organization_id = "organization_id_example" # String | The Organization Identifier.
+organization_id = 'organization_id_example' # String | The Organization Identifier.
 
-product_id = "product_id_example" # String | The Product Identifier.
+product_id = 'product_id_example' # String | The Product Identifier.
 
-event_type = "event_type_example" # String | The Event Type.
+event_type = 'event_type_example' # String | The Event Type.
 
 
 begin
@@ -172,7 +172,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::ManageWebhooksApi.new
 
-webhook_id = "webhook_id_example" # String | The webhook uuid identifier.
+webhook_id = 'webhook_id_example' # String | The webhook uuid identifier.
 
 opts = { 
   replay_webhooks_request: CyberSource::ReplayWebhooksRequest.new # ReplayWebhooksRequest | The request query
@@ -222,14 +222,14 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::ManageWebhooksApi.new
 
-v_c_sender_organization_id = "v_c_sender_organization_id_example" # String | Sender organization id
+v_c_sender_organization_id = 'v_c_sender_organization_id_example' # String | Sender organization id
 
-v_c_permissions = "v_c_permissions_example" # String | Encoded user permissions returned by the CGK, for the entity user who initiated the boarding
+v_c_permissions = 'v_c_permissions_example' # String | Encoded user permissions returned by the CGK, for the entity user who initiated the boarding
 
 save_asym_egress_key = CyberSource::SaveAsymEgressKey.new # SaveAsymEgressKey | Provide egress Asymmetric key information to save (create or store)
 
 opts = { 
-  v_c_correlation_id: "v_c_correlation_id_example" # String | A globally unique id associated with your request
+  v_c_correlation_id: 'v_c_correlation_id_example' # String | A globally unique id associated with your request
 }
 
 begin
@@ -279,7 +279,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::ManageWebhooksApi.new
 
-webhook_id = "webhook_id_example" # String | The Webhook Identifier.
+webhook_id = 'webhook_id_example' # String | The Webhook Identifier.
 
 opts = { 
   update_webhook_request: CyberSource::UpdateWebhookRequest.new # UpdateWebhookRequest | The webhook payload or changes to apply.

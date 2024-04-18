@@ -26,10 +26,10 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::InstrumentIdentifierApi.new
 
-instrument_identifier_id = "instrument_identifier_id_example" # String | The Id of an Instrument Identifier.
+instrument_identifier_id = 'instrument_identifier_id_example' # String | The Id of an Instrument Identifier.
 
 opts = { 
-  profile_id: "profile_id_example" # String | The Id of a profile containing user specific TMS configuration.
+  profile_id: 'profile_id_example' # String | The Id of a profile containing user specific TMS configuration.
 }
 
 begin
@@ -63,7 +63,7 @@ No authorization required
 
 
 # **get_instrument_identifier**
-> TmsEmbeddedInstrumentIdentifier get_instrument_identifier(instrument_identifier_id, opts)
+> PostInstrumentIdentifierRequest get_instrument_identifier(instrument_identifier_id, opts)
 
 Retrieve an Instrument Identifier
 
@@ -76,10 +76,10 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::InstrumentIdentifierApi.new
 
-instrument_identifier_id = "instrument_identifier_id_example" # String | The Id of an Instrument Identifier.
+instrument_identifier_id = 'instrument_identifier_id_example' # String | The Id of an Instrument Identifier.
 
 opts = { 
-  profile_id: "profile_id_example" # String | The Id of a profile containing user specific TMS configuration.
+  profile_id: 'profile_id_example' # String | The Id of a profile containing user specific TMS configuration.
 }
 
 begin
@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TmsEmbeddedInstrumentIdentifier**](TmsEmbeddedInstrumentIdentifier.md)
+[**PostInstrumentIdentifierRequest**](PostInstrumentIdentifierRequest.md)
 
 ### Authorization
 
@@ -114,7 +114,7 @@ No authorization required
 
 
 # **get_instrument_identifier_payment_instruments_list**
-> PaymentInstrumentList get_instrument_identifier_payment_instruments_list(instrument_identifier_id, opts)
+> PaymentInstrumentList1 get_instrument_identifier_payment_instruments_list(instrument_identifier_id, opts)
 
 List Payment Instruments for an Instrument Identifier
 
@@ -127,10 +127,10 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::InstrumentIdentifierApi.new
 
-instrument_identifier_id = "instrument_identifier_id_example" # String | The Id of an Instrument Identifier.
+instrument_identifier_id = 'instrument_identifier_id_example' # String | The Id of an Instrument Identifier.
 
 opts = { 
-  profile_id: "profile_id_example", # String | The Id of a profile containing user specific TMS configuration.
+  profile_id: 'profile_id_example', # String | The Id of a profile containing user specific TMS configuration.
   offset: 0, # Integer | Starting record in zero-based dataset that should be returned as the first object in the array. Default is 0.
   limit: 20 # Integer | The maximum number that can be returned in the array starting from the offset record in zero-based dataset. Default is 20, maximum is 100.
 }
@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaymentInstrumentList**](PaymentInstrumentList.md)
+[**PaymentInstrumentList1**](PaymentInstrumentList1.md)
 
 ### Authorization
 
@@ -169,7 +169,7 @@ No authorization required
 
 
 # **patch_instrument_identifier**
-> TmsEmbeddedInstrumentIdentifier patch_instrument_identifier(instrument_identifier_id, patch_instrument_identifier_request, opts)
+> PatchInstrumentIdentifierRequest patch_instrument_identifier(instrument_identifier_id, patch_instrument_identifier_request, opts)
 
 Update an Instrument Identifier
 
@@ -182,13 +182,13 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::InstrumentIdentifierApi.new
 
-instrument_identifier_id = "instrument_identifier_id_example" # String | The Id of an Instrument Identifier.
+instrument_identifier_id = 'instrument_identifier_id_example' # String | The Id of an Instrument Identifier.
 
 patch_instrument_identifier_request = CyberSource::PatchInstrumentIdentifierRequest.new # PatchInstrumentIdentifierRequest | Specify the previous transaction Id to update.
 
 opts = { 
-  profile_id: "profile_id_example", # String | The Id of a profile containing user specific TMS configuration.
-  if_match: "if_match_example" # String | Contains an ETag value from a GET request to make the request conditional.
+  profile_id: 'profile_id_example', # String | The Id of a profile containing user specific TMS configuration.
+  if_match: 'if_match_example' # String | Contains an ETag value from a GET request to make the request conditional.
 }
 
 begin
@@ -211,7 +211,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TmsEmbeddedInstrumentIdentifier**](TmsEmbeddedInstrumentIdentifier.md)
+[**PatchInstrumentIdentifierRequest**](PatchInstrumentIdentifierRequest.md)
 
 ### Authorization
 
@@ -225,7 +225,7 @@ No authorization required
 
 
 # **post_instrument_identifier**
-> TmsEmbeddedInstrumentIdentifier post_instrument_identifier(post_instrument_identifier_request, opts)
+> PostInstrumentIdentifierRequest post_instrument_identifier(post_instrument_identifier_request, opts)
 
 Create an Instrument Identifier
 
@@ -241,7 +241,7 @@ api_instance = CyberSource::InstrumentIdentifierApi.new
 post_instrument_identifier_request = CyberSource::PostInstrumentIdentifierRequest.new # PostInstrumentIdentifierRequest | Specify either a Card, Bank Account or Enrollable Card
 
 opts = { 
-  profile_id: "profile_id_example" # String | The Id of a profile containing user specific TMS configuration.
+  profile_id: 'profile_id_example' # String | The Id of a profile containing user specific TMS configuration.
 }
 
 begin
@@ -262,7 +262,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TmsEmbeddedInstrumentIdentifier**](TmsEmbeddedInstrumentIdentifier.md)
+[**PostInstrumentIdentifierRequest**](PostInstrumentIdentifierRequest.md)
 
 ### Authorization
 
@@ -289,12 +289,12 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::InstrumentIdentifierApi.new
 
-instrument_identifier_id = "instrument_identifier_id_example" # String | The Id of an Instrument Identifier.
+instrument_identifier_id = 'instrument_identifier_id_example' # String | The Id of an Instrument Identifier.
 
 post_instrument_identifier_enrollment_request = CyberSource::PostInstrumentIdentifierEnrollmentRequest.new # PostInstrumentIdentifierEnrollmentRequest | Specify Enrollable Card details
 
 opts = { 
-  profile_id: "profile_id_example" # String | The Id of a profile containing user specific TMS configuration.
+  profile_id: 'profile_id_example' # String | The Id of a profile containing user specific TMS configuration.
 }
 
 begin

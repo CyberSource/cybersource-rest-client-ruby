@@ -74,7 +74,7 @@ api_instance = CyberSource::VoidApi.new
 
 void_capture_request = CyberSource::VoidCaptureRequest.new # VoidCaptureRequest | 
 
-id = "id_example" # String | The capture ID returned from a previous capture request.
+id = 'id_example' # String | The capture ID returned from a previous capture request.
 
 
 begin
@@ -124,7 +124,7 @@ api_instance = CyberSource::VoidApi.new
 
 void_credit_request = CyberSource::VoidCreditRequest.new # VoidCreditRequest | 
 
-id = "id_example" # String | The credit ID returned from a previous credit request.
+id = 'id_example' # String | The credit ID returned from a previous credit request.
 
 
 begin
@@ -174,7 +174,7 @@ api_instance = CyberSource::VoidApi.new
 
 void_payment_request = CyberSource::VoidPaymentRequest.new # VoidPaymentRequest | 
 
-id = "id_example" # String | The payment ID returned from a previous payment request.
+id = 'id_example' # String | The payment ID returned from a previous payment request.
 
 
 begin
@@ -224,7 +224,7 @@ api_instance = CyberSource::VoidApi.new
 
 void_refund_request = CyberSource::VoidRefundRequest.new # VoidRefundRequest | 
 
-id = "id_example" # String | The refund ID returned from a previous refund request.
+id = 'id_example' # String | The refund ID returned from a previous refund request.
 
 
 begin

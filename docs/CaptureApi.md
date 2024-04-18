@@ -23,7 +23,7 @@ api_instance = CyberSource::CaptureApi.new
 
 capture_payment_request = CyberSource::CapturePaymentRequest.new # CapturePaymentRequest | 
 
-id = "id_example" # String | The payment ID returned from a previous payment request. This ID links the capture to the payment. 
+id = 'id_example' # String | The payment ID returned from a previous payment request. This ID links the capture to the payment. 
 
 
 begin

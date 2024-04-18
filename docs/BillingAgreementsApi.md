@@ -25,7 +25,7 @@ api_instance = CyberSource::BillingAgreementsApi.new
 
 modify_billing_agreement = CyberSource::ModifyBillingAgreement.new # ModifyBillingAgreement | 
 
-id = "id_example" # String | ID for de-registration or cancellation of Billing Agreement
+id = 'id_example' # String | ID for de-registration or cancellation of Billing Agreement
 
 
 begin
@@ -75,7 +75,7 @@ api_instance = CyberSource::BillingAgreementsApi.new
 
 intimate_billing_agreement = CyberSource::IntimateBillingAgreement.new # IntimateBillingAgreement | 
 
-id = "id_example" # String | ID for intimation of Billing Agreement
+id = 'id_example' # String | ID for intimation of Billing Agreement
 
 
 begin

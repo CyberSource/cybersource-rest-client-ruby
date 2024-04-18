@@ -28,7 +28,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::PlansApi.new
 
-id = "id_example" # String | Plan Id
+id = 'id_example' # String | Plan Id
 
 
 begin
@@ -122,7 +122,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::PlansApi.new
 
-id = "id_example" # String | Plan Id
+id = 'id_example' # String | Plan Id
 
 
 begin
@@ -169,7 +169,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::PlansApi.new
 
-id = "id_example" # String | Plan Id
+id = 'id_example' # String | Plan Id
 
 
 begin
@@ -216,7 +216,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::PlansApi.new
 
-id = "id_example" # String | Plan Id
+id = 'id_example' # String | Plan Id
 
 
 begin
@@ -307,9 +307,9 @@ api_instance = CyberSource::PlansApi.new
 opts = { 
   offset: 56, # Integer | Page offset number.
   limit: 56, # Integer | Number of items to be returned. Default - `20`, Max - `100` 
-  code: "code_example", # String | Filter by Plan Code
-  status: "status_example", # String | Filter by Plan Status
-  name: "name_example" # String | Filter by Plan Name. (First sub string or full string) **[Not Recommended]** 
+  code: 'code_example', # String | Filter by Plan Code
+  status: 'status_example', # String | Filter by Plan Status
+  name: 'name_example' # String | Filter by Plan Name. (First sub string or full string) **[Not Recommended]** 
 }
 
 begin
@@ -360,7 +360,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::PlansApi.new
 
-id = "id_example" # String | Plan Id
+id = 'id_example' # String | Plan Id
 
 update_plan_request = CyberSource::UpdatePlanRequest.new # UpdatePlanRequest | 
 

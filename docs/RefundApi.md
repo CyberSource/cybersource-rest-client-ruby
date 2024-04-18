@@ -24,7 +24,7 @@ api_instance = CyberSource::RefundApi.new
 
 refund_capture_request = CyberSource::RefundCaptureRequest.new # RefundCaptureRequest | 
 
-id = "id_example" # String | The capture ID. This ID is returned from a previous capture request.
+id = 'id_example' # String | The capture ID. This ID is returned from a previous capture request.
 
 
 begin
@@ -74,7 +74,7 @@ api_instance = CyberSource::RefundApi.new
 
 refund_payment_request = CyberSource::RefundPaymentRequest.new # RefundPaymentRequest | 
 
-id = "id_example" # String | The payment ID. This ID is returned from a previous payment request.
+id = 'id_example' # String | The payment ID. This ID is returned from a previous payment request.
 
 
 begin

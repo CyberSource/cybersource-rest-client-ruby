@@ -21,12 +21,12 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::TokenApi.new
 
-token_id = "token_id_example" # String | The Id of a token representing a Customer, Payment Instrument or Instrument Identifier.
+token_id = 'token_id_example' # String | The Id of a token representing a Customer, Payment Instrument or Instrument Identifier.
 
 post_payment_credentials_request = CyberSource::PostPaymentCredentialsRequest.new # PostPaymentCredentialsRequest | 
 
 opts = { 
-  profile_id: "profile_id_example" # String | The Id of a profile containing user specific TMS configuration.
+  profile_id: 'profile_id_example' # String | The Id of a profile containing user specific TMS configuration.
 }
 
 begin

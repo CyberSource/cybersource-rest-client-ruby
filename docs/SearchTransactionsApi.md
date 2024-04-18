@@ -69,7 +69,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::SearchTransactionsApi.new
 
-search_id = "search_id_example" # String | Search ID.
+search_id = 'search_id_example' # String | Search ID.
 
 
 begin

@@ -23,11 +23,11 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::TransactionBatchesApi.new
 
-id = "id_example" # String | The batch id assigned for the template.
+id = 'id_example' # String | The batch id assigned for the template.
 
 opts = { 
-  upload_date: Date.parse("2013-10-20"), # Date | Date in which the original batch file was uploaded. Date must be in ISO-8601 format. Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) **Example date format:**  - yyyy-MM-dd 
-  status: "status_example" # String | Allows you to filter by rejected response.  Valid values: - Rejected 
+  upload_date: Date.parse('2013-10-20'), # Date | Date in which the original batch file was uploaded. Date must be in ISO-8601 format. Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) **Example date format:**  - yyyy-MM-dd 
+  status: 'status_example' # String | Allows you to filter by rejected response.  Valid values: - Rejected 
 }
 
 begin
@@ -75,7 +75,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::TransactionBatchesApi.new
 
-id = "id_example" # String | The batch id assigned for the template.
+id = 'id_example' # String | The batch id assigned for the template.
 
 
 begin
@@ -122,9 +122,9 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::TransactionBatchesApi.new
 
-start_time = DateTime.parse("2013-10-20T19:20:30+01:00") # DateTime | Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)   **Example date format:**   - yyyy-MM-dd'T'HH:mm:ss.SSSZZ 
+start_time = DateTime.parse('2013-10-20T19:20:30+01:00') # DateTime | Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)   **Example date format:**   - yyyy-MM-dd'T'HH:mm:ss.SSSZZ 
 
-end_time = DateTime.parse("2013-10-20T19:20:30+01:00") # DateTime | Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)   **Example date format:**   - yyyy-MM-dd'T'HH:mm:ss.SSSZZ 
+end_time = DateTime.parse('2013-10-20T19:20:30+01:00') # DateTime | Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)   **Example date format:**   - yyyy-MM-dd'T'HH:mm:ss.SSSZZ 
 
 
 begin

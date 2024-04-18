@@ -71,7 +71,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::CreateNewWebhooksApi.new
 
-organization_id = "organization_id_example" # String | The Organization Identifier.
+organization_id = 'organization_id_example' # String | The Organization Identifier.
 
 
 begin
@@ -118,12 +118,12 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::CreateNewWebhooksApi.new
 
-v_c_sender_organization_id = "v_c_sender_organization_id_example" # String | Sender organization id
+v_c_sender_organization_id = 'v_c_sender_organization_id_example' # String | Sender organization id
 
-v_c_permissions = "v_c_permissions_example" # String | Encoded user permissions returned by the CGK, for the entity user who initiated the boarding
+v_c_permissions = 'v_c_permissions_example' # String | Encoded user permissions returned by the CGK, for the entity user who initiated the boarding
 
 opts = { 
-  v_c_correlation_id: "v_c_correlation_id_example", # String | A globally unique id associated with your request
+  v_c_correlation_id: 'v_c_correlation_id_example', # String | A globally unique id associated with your request
   save_sym_egress_key: CyberSource::SaveSymEgressKey.new # SaveSymEgressKey | Provide egress Symmetric key information to save (create or store or refresh)
 }
 

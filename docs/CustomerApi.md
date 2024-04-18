@@ -24,10 +24,10 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::CustomerApi.new
 
-customer_id = "customer_id_example" # String | The Id of a Customer.
+customer_id = 'customer_id_example' # String | The Id of a Customer.
 
 opts = { 
-  profile_id: "profile_id_example" # String | The Id of a profile containing user specific TMS configuration.
+  profile_id: 'profile_id_example' # String | The Id of a profile containing user specific TMS configuration.
 }
 
 begin
@@ -61,7 +61,7 @@ No authorization required
 
 
 # **get_customer**
-> TmsV2CustomersResponse get_customer(customer_id, opts)
+> PostCustomerRequest get_customer(customer_id, opts)
 
 Retrieve a Customer
 
@@ -74,10 +74,10 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::CustomerApi.new
 
-customer_id = "customer_id_example" # String | The Id of a Customer.
+customer_id = 'customer_id_example' # String | The Id of a Customer.
 
 opts = { 
-  profile_id: "profile_id_example" # String | The Id of a profile containing user specific TMS configuration.
+  profile_id: 'profile_id_example' # String | The Id of a profile containing user specific TMS configuration.
 }
 
 begin
@@ -98,7 +98,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TmsV2CustomersResponse**](TmsV2CustomersResponse.md)
+[**PostCustomerRequest**](PostCustomerRequest.md)
 
 ### Authorization
 
@@ -112,7 +112,7 @@ No authorization required
 
 
 # **patch_customer**
-> TmsV2CustomersResponse patch_customer(customer_id, patch_customer_request, opts)
+> PatchCustomerRequest patch_customer(customer_id, patch_customer_request, opts)
 
 Update a Customer
 
@@ -125,13 +125,13 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::CustomerApi.new
 
-customer_id = "customer_id_example" # String | The Id of a Customer.
+customer_id = 'customer_id_example' # String | The Id of a Customer.
 
 patch_customer_request = CyberSource::PatchCustomerRequest.new # PatchCustomerRequest | 
 
 opts = { 
-  profile_id: "profile_id_example", # String | The Id of a profile containing user specific TMS configuration.
-  if_match: "if_match_example" # String | Contains an ETag value from a GET request to make the request conditional.
+  profile_id: 'profile_id_example', # String | The Id of a profile containing user specific TMS configuration.
+  if_match: 'if_match_example' # String | Contains an ETag value from a GET request to make the request conditional.
 }
 
 begin
@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TmsV2CustomersResponse**](TmsV2CustomersResponse.md)
+[**PatchCustomerRequest**](PatchCustomerRequest.md)
 
 ### Authorization
 
@@ -168,7 +168,7 @@ No authorization required
 
 
 # **post_customer**
-> TmsV2CustomersResponse post_customer(post_customer_request, opts)
+> PostCustomerRequest post_customer(post_customer_request, opts)
 
 Create a Customer
 
@@ -184,7 +184,7 @@ api_instance = CyberSource::CustomerApi.new
 post_customer_request = CyberSource::PostCustomerRequest.new # PostCustomerRequest | 
 
 opts = { 
-  profile_id: "profile_id_example" # String | The Id of a profile containing user specific TMS configuration.
+  profile_id: 'profile_id_example' # String | The Id of a profile containing user specific TMS configuration.
 }
 
 begin
@@ -205,7 +205,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TmsV2CustomersResponse**](TmsV2CustomersResponse.md)
+[**PostCustomerRequest**](PostCustomerRequest.md)
 
 ### Authorization
 
