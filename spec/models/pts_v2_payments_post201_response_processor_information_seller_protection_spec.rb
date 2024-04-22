@@ -37,7 +37,7 @@ describe 'PtsV2PaymentsPost201ResponseProcessorInformationSellerProtection' do
     end
   end
 
-  describe 'test attribute "eligibilty"' do
+  describe 'test attribute "eligibility"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

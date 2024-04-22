@@ -229,6 +229,12 @@ describe 'Ptsv2paymentsProcessingInformation' do
     end
   end
 
+  describe 'test attribute "timeout"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "is_return_auth_record_enabled"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

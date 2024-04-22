@@ -42,6 +42,9 @@ module CyberSource
     # Cardholder's mobile phone number. **Important** Required for Visa Secure transactions in Brazil. Do not use this request field for any other types of transactions. 
     attr_accessor :mobile_phone
 
+    # The one-time identification code of the Alipay wallet user.  It is scanned from the barcode that is shown by the mobile application. 
+    attr_accessor :wallet_id
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -54,7 +57,8 @@ module CyberSource
         :'gender' => :'gender',
         :'language' => :'language',
         :'note_to_seller' => :'noteToSeller',
-        :'mobile_phone' => :'mobilePhone'
+        :'mobile_phone' => :'mobilePhone',
+        :'wallet_id' => :'walletId'
       }
     end
 
@@ -70,7 +74,8 @@ module CyberSource
         :'gender' => :'gender',
         :'language' => :'language',
         :'note_to_seller' => :'note_to_seller',
-        :'mobile_phone' => :'mobile_phone'
+        :'mobile_phone' => :'mobile_phone',
+        :'wallet_id' => :'wallet_id'
       }
     end
 
@@ -86,7 +91,8 @@ module CyberSource
         :'gender' => :'String',
         :'language' => :'String',
         :'note_to_seller' => :'String',
-        :'mobile_phone' => :'Integer'
+        :'mobile_phone' => :'Integer',
+        :'wallet_id' => :'String'
       }
     end
 
@@ -138,6 +144,10 @@ module CyberSource
 
       if attributes.has_key?(:'mobilePhone')
         self.mobile_phone = attributes[:'mobilePhone']
+      end
+
+      if attributes.has_key?(:'walletId')
+        self.wallet_id = attributes[:'walletId']
       end
     end
 
@@ -202,6 +212,12 @@ module CyberSource
       @note_to_seller = note_to_seller
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] wallet_id Value to be assigned
+    def wallet_id=(wallet_id)
+      @wallet_id = wallet_id
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -216,7 +232,8 @@ module CyberSource
           gender == o.gender &&
           language == o.language &&
           note_to_seller == o.note_to_seller &&
-          mobile_phone == o.mobile_phone
+          mobile_phone == o.mobile_phone &&
+          wallet_id == o.wallet_id
     end
 
     # @see the `==` method
@@ -228,7 +245,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [merchant_customer_id, date_of_birth, vat_registration_number, company_tax_id, personal_identification, hashed_password, gender, language, note_to_seller, mobile_phone].hash
+      [merchant_customer_id, date_of_birth, vat_registration_number, company_tax_id, personal_identification, hashed_password, gender, language, note_to_seller, mobile_phone, wallet_id].hash
     end
 
     # Builds the object from hash

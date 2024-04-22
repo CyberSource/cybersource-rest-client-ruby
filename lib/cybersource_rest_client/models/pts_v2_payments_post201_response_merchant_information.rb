@@ -13,12 +13,19 @@ require 'date'
 
 module CyberSource
   class PtsV2PaymentsPost201ResponseMerchantInformation
+    # Use this field only if you are requesting payment with Payer Authentication serice together.  Your company's name as you want it to appear to the customer in the issuing bank's authentication form. This value overrides the value specified by your merchant bank. 
+    attr_accessor :merchant_name
+
+    attr_accessor :merchant_descriptor
+
     # URL for displaying payment results to the consumer (notifications) after the transaction is processed. Usually this URL belongs to merchant and its behavior is defined by merchant 
     attr_accessor :return_url
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'merchant_name' => :'merchantName',
+        :'merchant_descriptor' => :'merchantDescriptor',
         :'return_url' => :'returnUrl'
       }
     end
@@ -26,6 +33,8 @@ module CyberSource
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
+        :'merchant_name' => :'merchant_name',
+        :'merchant_descriptor' => :'merchant_descriptor',
         :'return_url' => :'return_url'
       }
     end
@@ -33,6 +42,8 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'merchant_name' => :'String',
+        :'merchant_descriptor' => :'PtsV2PaymentsPost201ResponseMerchantInformationMerchantDescriptor',
         :'return_url' => :'String'
       }
     end
@@ -44,6 +55,14 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'merchantName')
+        self.merchant_name = attributes[:'merchantName']
+      end
+
+      if attributes.has_key?(:'merchantDescriptor')
+        self.merchant_descriptor = attributes[:'merchantDescriptor']
+      end
 
       if attributes.has_key?(:'returnUrl')
         self.return_url = attributes[:'returnUrl']
@@ -64,6 +83,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] merchant_name Value to be assigned
+    def merchant_name=(merchant_name)
+      @merchant_name = merchant_name
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] return_url Value to be assigned
     def return_url=(return_url)
       @return_url = return_url
@@ -74,6 +99,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          merchant_name == o.merchant_name &&
+          merchant_descriptor == o.merchant_descriptor &&
           return_url == o.return_url
     end
 
@@ -86,7 +113,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [return_url].hash
+      [merchant_name, merchant_descriptor, return_url].hash
     end
 
     # Builds the object from hash

@@ -28,6 +28,15 @@ module CyberSource
     # Recipient's date of birth. **Format**: `YYYYMMDD`.  This field is a `pass-through`, which means that CyberSource ensures that the value is eight numeric characters but otherwise does not verify the value or modify it in any way before sending it to the processor. If the field is not required for the transaction, CyberSource does not forward it to the processor.  For more details, see `recipient_date_of_birth` field description in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
     attr_accessor :date_of_birth
 
+    # Only for e-wallets: ID, username, hash or anything uniquely identifying the ultimate beneficiary. 
+    attr_accessor :beneficiary_id
+
+    # Only for e-wallets: The ultimate beneficiary's full name. 
+    attr_accessor :beneficiary_name
+
+    # Only for e-wallets: The ultimate beneficiary's street address (street, zip code, city), excluding the country. Example: \"Main street 1, 12345, Barcelona 
+    attr_accessor :beneficiary_address
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -35,7 +44,10 @@ module CyberSource
         :'last_name' => :'lastName',
         :'middle_name' => :'middleName',
         :'postal_code' => :'postalCode',
-        :'date_of_birth' => :'dateOfBirth'
+        :'date_of_birth' => :'dateOfBirth',
+        :'beneficiary_id' => :'beneficiaryId',
+        :'beneficiary_name' => :'beneficiaryName',
+        :'beneficiary_address' => :'beneficiaryAddress'
       }
     end
 
@@ -46,7 +58,10 @@ module CyberSource
         :'last_name' => :'last_name',
         :'middle_name' => :'middle_name',
         :'postal_code' => :'postal_code',
-        :'date_of_birth' => :'date_of_birth'
+        :'date_of_birth' => :'date_of_birth',
+        :'beneficiary_id' => :'beneficiary_id',
+        :'beneficiary_name' => :'beneficiary_name',
+        :'beneficiary_address' => :'beneficiary_address'
       }
     end
 
@@ -57,7 +72,10 @@ module CyberSource
         :'last_name' => :'String',
         :'middle_name' => :'String',
         :'postal_code' => :'String',
-        :'date_of_birth' => :'String'
+        :'date_of_birth' => :'String',
+        :'beneficiary_id' => :'String',
+        :'beneficiary_name' => :'String',
+        :'beneficiary_address' => :'String'
       }
     end
 
@@ -87,6 +105,18 @@ module CyberSource
 
       if attributes.has_key?(:'dateOfBirth')
         self.date_of_birth = attributes[:'dateOfBirth']
+      end
+
+      if attributes.has_key?(:'beneficiaryId')
+        self.beneficiary_id = attributes[:'beneficiaryId']
+      end
+
+      if attributes.has_key?(:'beneficiaryName')
+        self.beneficiary_name = attributes[:'beneficiaryName']
+      end
+
+      if attributes.has_key?(:'beneficiaryAddress')
+        self.beneficiary_address = attributes[:'beneficiaryAddress']
       end
     end
 
@@ -133,6 +163,24 @@ module CyberSource
       @date_of_birth = date_of_birth
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] beneficiary_id Value to be assigned
+    def beneficiary_id=(beneficiary_id)
+      @beneficiary_id = beneficiary_id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] beneficiary_name Value to be assigned
+    def beneficiary_name=(beneficiary_name)
+      @beneficiary_name = beneficiary_name
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] beneficiary_address Value to be assigned
+    def beneficiary_address=(beneficiary_address)
+      @beneficiary_address = beneficiary_address
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -142,7 +190,10 @@ module CyberSource
           last_name == o.last_name &&
           middle_name == o.middle_name &&
           postal_code == o.postal_code &&
-          date_of_birth == o.date_of_birth
+          date_of_birth == o.date_of_birth &&
+          beneficiary_id == o.beneficiary_id &&
+          beneficiary_name == o.beneficiary_name &&
+          beneficiary_address == o.beneficiary_address
     end
 
     # @see the `==` method
@@ -154,7 +205,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [account_id, last_name, middle_name, postal_code, date_of_birth].hash
+      [account_id, last_name, middle_name, postal_code, date_of_birth, beneficiary_id, beneficiary_name, beneficiary_address].hash
     end
 
     # Builds the object from hash

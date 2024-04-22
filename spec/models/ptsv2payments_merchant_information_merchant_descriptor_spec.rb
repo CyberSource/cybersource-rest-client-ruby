@@ -97,13 +97,19 @@ describe 'Ptsv2paymentsMerchantInformationMerchantDescriptor' do
     end
   end
 
-  describe 'test attribute "customer_service_phone_number"' do
+  describe 'test attribute "store_id"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "store_id"' do
+  describe 'test attribute "store_name"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "customer_service_phone_number"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

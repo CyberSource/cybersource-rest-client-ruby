@@ -145,12 +145,6 @@ describe 'PtsV2PaymentsPost201Response' do
     end
   end
 
-  describe 'test attribute "merchant_information"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   describe 'test attribute "risk_information"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -158,6 +152,12 @@ describe 'PtsV2PaymentsPost201Response' do
   end
 
   describe 'test attribute "consumer_authentication_information"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "merchant_information"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

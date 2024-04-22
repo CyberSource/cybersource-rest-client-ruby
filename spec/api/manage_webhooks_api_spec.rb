@@ -69,19 +69,6 @@ describe 'ManageWebhooksApi' do
     end
   end
 
-  # unit tests for replay_previous_webhooks
-  # Replay Previous Webhooks
-  # Initiate a webhook replay request to replay transactions that happened in the past.  Cannot execute more than 1 replay request at a time. While one request is processing, you will not be allowed to execute another replay.  The difference between Start and End time cannot exceed a 24 hour window, and 1 month is the farthest date back that is eligible for replay. 
-  # @param webhook_id The webhook uuid identifier.
-  # @param [Hash] opts the optional parameters
-  # @option opts [ReplayWebhooksRequest] :replay_webhooks_request The request query
-  # @return [nil]
-  describe 'replay_previous_webhooks test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   # unit tests for save_asym_egress_key
   # Message Level Encryption
   # Store and manage certificates that will be used to preform Message Level Encryption (MLE). Each new webhook will need its own unique asymmetric certificate. You can either use a digital certificate issued/signed by a CA or self-sign your own using the documentation available on the Developer Guide. 

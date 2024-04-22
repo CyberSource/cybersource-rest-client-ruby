@@ -17,7 +17,7 @@ module CyberSource
     attr_accessor :type
 
     # The level of seller protection in force for the transaction. Possible values: - `ELIGIBLE` - `PARTIALLY_ELIGIBLE` - `INELIGIBLE` 
-    attr_accessor :eligibilty
+    attr_accessor :eligibility
 
     # The kind of seller protection in force for the transaction. This field is returned only when the protection_eligibility property is set to ELIGIBLE or PARTIALLY_ELIGIBLE. Possible values: - `ITEM_NOT_RECEIVED_ELIGIBLE: Sellers are protected against claims for items not received.` - `UNAUTHORIZED_PAYMENT_ELIGIBLE: Sellers are protected against claims for unauthorized payments.` One or both values can be returned. 
     attr_accessor :eligibility_type
@@ -26,7 +26,7 @@ module CyberSource
     def self.attribute_map
       {
         :'type' => :'type',
-        :'eligibilty' => :'eligibilty',
+        :'eligibility' => :'eligibility',
         :'eligibility_type' => :'eligibilityType'
       }
     end
@@ -35,7 +35,7 @@ module CyberSource
     def self.json_map
       {
         :'type' => :'type',
-        :'eligibilty' => :'eligibilty',
+        :'eligibility' => :'eligibility',
         :'eligibility_type' => :'eligibility_type'
       }
     end
@@ -44,7 +44,7 @@ module CyberSource
     def self.swagger_types
       {
         :'type' => :'String',
-        :'eligibilty' => :'String',
+        :'eligibility' => :'String',
         :'eligibility_type' => :'String'
       }
     end
@@ -61,8 +61,8 @@ module CyberSource
         self.type = attributes[:'type']
       end
 
-      if attributes.has_key?(:'eligibilty')
-        self.eligibilty = attributes[:'eligibilty']
+      if attributes.has_key?(:'eligibility')
+        self.eligibility = attributes[:'eligibility']
       end
 
       if attributes.has_key?(:'eligibilityType')
@@ -95,7 +95,7 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           type == o.type &&
-          eligibilty == o.eligibilty &&
+          eligibility == o.eligibility &&
           eligibility_type == o.eligibility_type
     end
 
@@ -108,7 +108,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [type, eligibilty, eligibility_type].hash
+      [type, eligibility, eligibility_type].hash
     end
 
     # Builds the object from hash

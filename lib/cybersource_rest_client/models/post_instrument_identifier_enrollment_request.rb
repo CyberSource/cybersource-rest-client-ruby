@@ -27,6 +27,8 @@ module CyberSource
     # The type of Instrument Identifier. Possible Values: - enrollable card 
     attr_accessor :type
 
+    attr_accessor :token_provisioning_information
+
     attr_accessor :card
 
     attr_accessor :bank_account
@@ -49,6 +51,7 @@ module CyberSource
         :'object' => :'object',
         :'state' => :'state',
         :'type' => :'type',
+        :'token_provisioning_information' => :'tokenProvisioningInformation',
         :'card' => :'card',
         :'bank_account' => :'bankAccount',
         :'tokenized_card' => :'tokenizedCard',
@@ -67,6 +70,7 @@ module CyberSource
         :'object' => :'object',
         :'state' => :'state',
         :'type' => :'type',
+        :'token_provisioning_information' => :'token_provisioning_information',
         :'card' => :'card',
         :'bank_account' => :'bank_account',
         :'tokenized_card' => :'tokenized_card',
@@ -85,6 +89,7 @@ module CyberSource
         :'object' => :'String',
         :'state' => :'String',
         :'type' => :'String',
+        :'token_provisioning_information' => :'TmsEmbeddedInstrumentIdentifierTokenProvisioningInformation',
         :'card' => :'TmsEmbeddedInstrumentIdentifierCard',
         :'bank_account' => :'TmsEmbeddedInstrumentIdentifierBankAccount',
         :'tokenized_card' => :'TmsEmbeddedInstrumentIdentifierTokenizedCard',
@@ -121,6 +126,10 @@ module CyberSource
 
       if attributes.has_key?(:'type')
         self.type = attributes[:'type']
+      end
+
+      if attributes.has_key?(:'tokenProvisioningInformation')
+        self.token_provisioning_information = attributes[:'tokenProvisioningInformation']
       end
 
       if attributes.has_key?(:'card')
@@ -175,6 +184,7 @@ module CyberSource
           object == o.object &&
           state == o.state &&
           type == o.type &&
+          token_provisioning_information == o.token_provisioning_information &&
           card == o.card &&
           bank_account == o.bank_account &&
           tokenized_card == o.tokenized_card &&
@@ -193,7 +203,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, object, state, type, card, bank_account, tokenized_card, issuer, processing_information, bill_to, metadata].hash
+      [_links, id, object, state, type, token_provisioning_information, card, bank_account, tokenized_card, issuer, processing_information, bill_to, metadata].hash
     end
 
     # Builds the object from hash

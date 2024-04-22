@@ -22,6 +22,18 @@ module CyberSource
     # Currency used for the order. Use the three-character [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)  #### Used by **Authorization** Required field.  **Authorization Reversal** For an authorization reversal (`reversalInformation`) or a capture (`processingOptions.capture` is set to `true`), you must use the same currency that you used in your payment authorization request.  #### PIN Debit Currency for the amount you requested for the PIN debit purchase. This value is returned for partial authorizations. The issuing bank can approve a partial amount if the balance on the debit card is less than the requested transaction amount. For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf). Returned by PIN debit purchase.  For PIN debit reversal requests, you must use the same currency that was used for the PIN debit purchase or PIN debit credit that you are reversing. For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).  Required field for PIN Debit purchase and PIN Debit credit requests. Optional field for PIN Debit reversal requests.  #### GPX This field is optional for reversing an authorization or credit.  #### DCC for First Data Your local currency. For details, see the `currency` field description in [Dynamic Currency Conversion For First Data Using the SCMP API](http://apps.cybersource.com/library/documentation/dev_guides/DCC_FirstData_SCMP/DCC_FirstData_SCMP_API.pdf).  #### Tax Calculation Required for international tax and value added tax only. Optional for U.S. and Canadian taxes. Your local currency. 
     attr_accessor :currency
 
+    # This is a multicurrency field. It contains the transaction amount (field 4), converted to the Currency used to bill the cardholder's account. This field is returned for OCT transactions. 
+    attr_accessor :settlement_amount
+
+    # This is a multicurrency-only field. It contains a 3-digit numeric code that identifies the currency used by the issuer to bill the cardholder's account. This field is returned for OCT transactions. 
+    attr_accessor :settlement_currency
+
+    # Amount in your original local pricing currency.  This value cannot be negative. You can include a decimal point (.) in this field to denote the currency exponent, but you cannot include any other special characters.  If needed, CyberSource truncates the amount to the correct number of decimal places. 
+    attr_accessor :original_amount
+
+    # Your local pricing currency code.  For the possible values, see the [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf) 
+    attr_accessor :original_currency
+
     # Amount up to N digit after the decimals separator as defined in ISO 4217 for the appropriate currency code. 
     attr_accessor :processor_transaction_fee
 
@@ -43,6 +55,10 @@ module CyberSource
         :'total_amount' => :'totalAmount',
         :'authorized_amount' => :'authorizedAmount',
         :'currency' => :'currency',
+        :'settlement_amount' => :'settlementAmount',
+        :'settlement_currency' => :'settlementCurrency',
+        :'original_amount' => :'originalAmount',
+        :'original_currency' => :'originalCurrency',
         :'processor_transaction_fee' => :'processorTransactionFee',
         :'exchange_rate' => :'exchangeRate',
         :'foreign_currency' => :'foreignCurrency',
@@ -57,6 +73,10 @@ module CyberSource
         :'total_amount' => :'total_amount',
         :'authorized_amount' => :'authorized_amount',
         :'currency' => :'currency',
+        :'settlement_amount' => :'settlement_amount',
+        :'settlement_currency' => :'settlement_currency',
+        :'original_amount' => :'original_amount',
+        :'original_currency' => :'original_currency',
         :'processor_transaction_fee' => :'processor_transaction_fee',
         :'exchange_rate' => :'exchange_rate',
         :'foreign_currency' => :'foreign_currency',
@@ -71,6 +91,10 @@ module CyberSource
         :'total_amount' => :'String',
         :'authorized_amount' => :'String',
         :'currency' => :'String',
+        :'settlement_amount' => :'String',
+        :'settlement_currency' => :'String',
+        :'original_amount' => :'String',
+        :'original_currency' => :'String',
         :'processor_transaction_fee' => :'String',
         :'exchange_rate' => :'String',
         :'foreign_currency' => :'String',
@@ -97,6 +121,22 @@ module CyberSource
 
       if attributes.has_key?(:'currency')
         self.currency = attributes[:'currency']
+      end
+
+      if attributes.has_key?(:'settlementAmount')
+        self.settlement_amount = attributes[:'settlementAmount']
+      end
+
+      if attributes.has_key?(:'settlementCurrency')
+        self.settlement_currency = attributes[:'settlementCurrency']
+      end
+
+      if attributes.has_key?(:'originalAmount')
+        self.original_amount = attributes[:'originalAmount']
+      end
+
+      if attributes.has_key?(:'originalCurrency')
+        self.original_currency = attributes[:'originalCurrency']
       end
 
       if attributes.has_key?(:'processorTransactionFee')
@@ -152,6 +192,30 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] settlement_amount Value to be assigned
+    def settlement_amount=(settlement_amount)
+      @settlement_amount = settlement_amount
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] settlement_currency Value to be assigned
+    def settlement_currency=(settlement_currency)
+      @settlement_currency = settlement_currency
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] original_amount Value to be assigned
+    def original_amount=(original_amount)
+      @original_amount = original_amount
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] original_currency Value to be assigned
+    def original_currency=(original_currency)
+      @original_currency = original_currency
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] processor_transaction_fee Value to be assigned
     def processor_transaction_fee=(processor_transaction_fee)
       @processor_transaction_fee = processor_transaction_fee
@@ -189,6 +253,10 @@ module CyberSource
           total_amount == o.total_amount &&
           authorized_amount == o.authorized_amount &&
           currency == o.currency &&
+          settlement_amount == o.settlement_amount &&
+          settlement_currency == o.settlement_currency &&
+          original_amount == o.original_amount &&
+          original_currency == o.original_currency &&
           processor_transaction_fee == o.processor_transaction_fee &&
           exchange_rate == o.exchange_rate &&
           foreign_currency == o.foreign_currency &&
@@ -205,7 +273,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [total_amount, authorized_amount, currency, processor_transaction_fee, exchange_rate, foreign_currency, foreign_amount, discount_amount].hash
+      [total_amount, authorized_amount, currency, settlement_amount, settlement_currency, original_amount, original_currency, processor_transaction_fee, exchange_rate, foreign_currency, foreign_amount, discount_amount].hash
     end
 
     # Builds the object from hash

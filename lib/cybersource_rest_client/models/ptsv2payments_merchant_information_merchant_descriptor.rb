@@ -46,11 +46,14 @@ module CyberSource
     # #### Visa Platform Connect This field will indicate merchant country of origin 
     attr_accessor :country_of_origin
 
+    # The identifier of the store. 
+    attr_accessor :store_id
+
+    # The name of the store. 
+    attr_accessor :store_name
+
     # #### Visa Platform Connect Indicates customer service phone number of Merchant. 
     attr_accessor :customer_service_phone_number
-
-    # The unique id of the merchant's shop which assigned by the merchant 
-    attr_accessor :store_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -66,8 +69,9 @@ module CyberSource
         :'phone' => :'phone',
         :'url' => :'url',
         :'country_of_origin' => :'countryOfOrigin',
-        :'customer_service_phone_number' => :'customerServicePhoneNumber',
-        :'store_id' => :'storeId'
+        :'store_id' => :'storeId',
+        :'store_name' => :'storeName',
+        :'customer_service_phone_number' => :'customerServicePhoneNumber'
       }
     end
 
@@ -85,8 +89,9 @@ module CyberSource
         :'phone' => :'phone',
         :'url' => :'url',
         :'country_of_origin' => :'country_of_origin',
-        :'customer_service_phone_number' => :'customer_service_phone_number',
-        :'store_id' => :'store_id'
+        :'store_id' => :'store_id',
+        :'store_name' => :'store_name',
+        :'customer_service_phone_number' => :'customer_service_phone_number'
       }
     end
 
@@ -104,8 +109,9 @@ module CyberSource
         :'phone' => :'String',
         :'url' => :'String',
         :'country_of_origin' => :'String',
-        :'customer_service_phone_number' => :'String',
-        :'store_id' => :'String'
+        :'store_id' => :'String',
+        :'store_name' => :'String',
+        :'customer_service_phone_number' => :'String'
       }
     end
 
@@ -161,12 +167,16 @@ module CyberSource
         self.country_of_origin = attributes[:'countryOfOrigin']
       end
 
-      if attributes.has_key?(:'customerServicePhoneNumber')
-        self.customer_service_phone_number = attributes[:'customerServicePhoneNumber']
-      end
-
       if attributes.has_key?(:'storeId')
         self.store_id = attributes[:'storeId']
+      end
+
+      if attributes.has_key?(:'storeName')
+        self.store_name = attributes[:'storeName']
+      end
+
+      if attributes.has_key?(:'customerServicePhoneNumber')
+        self.customer_service_phone_number = attributes[:'customerServicePhoneNumber']
       end
     end
 
@@ -238,15 +248,21 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] customer_service_phone_number Value to be assigned
-    def customer_service_phone_number=(customer_service_phone_number)
-      @customer_service_phone_number = customer_service_phone_number
-    end
-
-    # Custom attribute writer method with validation
     # @param [Object] store_id Value to be assigned
     def store_id=(store_id)
       @store_id = store_id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] store_name Value to be assigned
+    def store_name=(store_name)
+      @store_name = store_name
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] customer_service_phone_number Value to be assigned
+    def customer_service_phone_number=(customer_service_phone_number)
+      @customer_service_phone_number = customer_service_phone_number
     end
 
     # Checks equality by comparing each attribute.
@@ -265,8 +281,9 @@ module CyberSource
           phone == o.phone &&
           url == o.url &&
           country_of_origin == o.country_of_origin &&
-          customer_service_phone_number == o.customer_service_phone_number &&
-          store_id == o.store_id
+          store_id == o.store_id &&
+          store_name == o.store_name &&
+          customer_service_phone_number == o.customer_service_phone_number
     end
 
     # @see the `==` method
@@ -278,7 +295,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name, alternate_name, contact, address1, locality, country, postal_code, administrative_area, phone, url, country_of_origin, customer_service_phone_number, store_id].hash
+      [name, alternate_name, contact, address1, locality, country, postal_code, administrative_area, phone, url, country_of_origin, store_id, store_name, customer_service_phone_number].hash
     end
 
     # Builds the object from hash
