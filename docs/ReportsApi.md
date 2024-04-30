@@ -26,7 +26,7 @@ api_instance = CyberSource::ReportsApi.new
 create_adhoc_report_request = CyberSource::CreateAdhocReportRequest.new # CreateAdhocReportRequest | Report subscription request payload
 
 opts = { 
-  organization_id: "organization_id_example" # String | Valid Organization Id
+  organization_id: 'organization_id_example' # String | Valid Organization Id
 }
 
 begin
@@ -73,10 +73,10 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::ReportsApi.new
 
-report_id = "report_id_example" # String | Valid Report Id
+report_id = 'report_id_example' # String | Valid Report Id
 
 opts = { 
-  organization_id: "organization_id_example" # String | Valid Organization Id
+  organization_id: 'organization_id_example' # String | Valid Organization Id
 }
 
 begin
@@ -124,19 +124,19 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::ReportsApi.new
 
-start_time = DateTime.parse("2013-10-20T19:20:30+01:00") # DateTime | Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example date format:**   - yyyy-MM-dd'T'HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
+start_time = DateTime.parse('2013-10-20T19:20:30+01:00') # DateTime | Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example date format:**   - yyyy-MM-dd'T'HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
 
-end_time = DateTime.parse("2013-10-20T19:20:30+01:00") # DateTime | Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example date format:**   - yyyy-MM-dd'T'HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
+end_time = DateTime.parse('2013-10-20T19:20:30+01:00') # DateTime | Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)  **Example date format:**   - yyyy-MM-dd'T'HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z) 
 
-time_query_type = "time_query_type_example" # String | Specify time you would like to search  Valid values: - reportTimeFrame - executedTime 
+time_query_type = 'time_query_type_example' # String | Specify time you would like to search  Valid values: - reportTimeFrame - executedTime 
 
 opts = { 
-  organization_id: "organization_id_example", # String | Valid Organization Id
-  report_mime_type: "report_mime_type_example", # String | Valid Report Format  Valid values: - application/xml - text/csv 
-  report_frequency: "report_frequency_example", # String | Valid Report Frequency  Valid values: - DAILY - WEEKLY - MONTHLY - USER_DEFINED - ADHOC 
-  report_name: "report_name_example", # String | Valid Report Name
+  organization_id: 'organization_id_example', # String | Valid Organization Id
+  report_mime_type: 'report_mime_type_example', # String | Valid Report Format  Valid values: - application/xml - text/csv 
+  report_frequency: 'report_frequency_example', # String | Valid Report Frequency  Valid values: - DAILY - WEEKLY - MONTHLY - USER_DEFINED - ADHOC 
+  report_name: 'report_name_example', # String | Valid Report Name
   report_definition_id: 56, # Integer | Valid Report Definition Id
-  report_status: "report_status_example" # String | Valid Report Status  Valid values: - COMPLETED - PENDING - QUEUED - RUNNING - ERROR - NO_DATA 
+  report_status: 'report_status_example' # String | Valid Report Status  Valid values: - COMPLETED - PENDING - QUEUED - RUNNING - ERROR - NO_DATA 
 }
 
 begin

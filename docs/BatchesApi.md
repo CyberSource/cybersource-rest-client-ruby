@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **get_batch_report**
-> InlineResponse2007 get_batch_report(batch_id)
+> InlineResponse2008 get_batch_report(batch_id)
 
 Retrieve a Batch Report
 
@@ -24,7 +24,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::BatchesApi.new
 
-batch_id = "batch_id_example" # String | Unique identification number assigned to the submitted request.
+batch_id = 'batch_id_example' # String | Unique identification number assigned to the submitted request.
 
 
 begin
@@ -33,6 +33,53 @@ begin
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling BatchesApi->get_batch_report: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **batch_id** | **String**| Unique identification number assigned to the submitted request. | 
+
+### Return type
+
+[**InlineResponse2008**](InlineResponse2008.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
+
+
+
+# **get_batch_status**
+> InlineResponse2007 get_batch_status(batch_id)
+
+Retrieve a Batch Status
+
+**Get Batch Status**<br>This resource accepts a batch id and returns: - The batch status. - The total number of accepted, rejected, updated records. - The total number of card association responses. - The billable quantities of:   - New Account Numbers (NAN)   - New Expiry Dates (NED)   - Account Closures (ACL)   - Contact Card Holders (CCH) 
+
+### Example
+```ruby
+# load the gem
+require 'cybersource_rest_client'
+
+api_instance = CyberSource::BatchesApi.new
+
+batch_id = 'batch_id_example' # String | Unique identification number assigned to the submitted request.
+
+
+begin
+  #Retrieve a Batch Status
+  result = api_instance.get_batch_status(batch_id)
+  p result
+rescue CyberSource::ApiError => e
+  puts "Exception when calling BatchesApi->get_batch_status: #{e}"
 end
 ```
 
@@ -57,55 +104,8 @@ No authorization required
 
 
 
-# **get_batch_status**
-> InlineResponse2006 get_batch_status(batch_id)
-
-Retrieve a Batch Status
-
-**Get Batch Status**<br>This resource accepts a batch id and returns: - The batch status. - The total number of accepted, rejected, updated records. - The total number of card association responses. - The billable quantities of:   - New Account Numbers (NAN)   - New Expiry Dates (NED)   - Account Closures (ACL)   - Contact Card Holders (CCH) 
-
-### Example
-```ruby
-# load the gem
-require 'cybersource_rest_client'
-
-api_instance = CyberSource::BatchesApi.new
-
-batch_id = "batch_id_example" # String | Unique identification number assigned to the submitted request.
-
-
-begin
-  #Retrieve a Batch Status
-  result = api_instance.get_batch_status(batch_id)
-  p result
-rescue CyberSource::ApiError => e
-  puts "Exception when calling BatchesApi->get_batch_status: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **batch_id** | **String**| Unique identification number assigned to the submitted request. | 
-
-### Return type
-
-[**InlineResponse2006**](InlineResponse2006.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/json;charset=utf-8
-
-
-
 # **get_batches_list**
-> InlineResponse2005 get_batches_list(opts)
+> InlineResponse2006 get_batches_list(opts)
 
 List Batches
 
@@ -121,8 +121,8 @@ api_instance = CyberSource::BatchesApi.new
 opts = { 
   offset: 0, # Integer | Starting record in zero-based dataset that should be returned as the first object in the array.
   limit: 20, # Integer | The maximum number that can be returned in the array starting from the offset record in zero-based dataset.
-  from_date: "from_date_example", # String | ISO-8601 format: yyyyMMddTHHmmssZ
-  to_date: "to_date_example" # String | ISO-8601 format: yyyyMMddTHHmmssZ
+  from_date: 'from_date_example', # String | ISO-8601 format: yyyyMMddTHHmmssZ
+  to_date: 'to_date_example' # String | ISO-8601 format: yyyyMMddTHHmmssZ
 }
 
 begin
@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2005**](InlineResponse2005.md)
+[**InlineResponse2006**](InlineResponse2006.md)
 
 ### Authorization
 

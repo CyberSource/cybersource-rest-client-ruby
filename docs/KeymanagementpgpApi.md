@@ -1,10 +1,10 @@
-# CyberSource::KeymanagementpgpApi
+# CyberSource::KeyManagementPgpApi
 
 All URIs are relative to *https://apitest.cybersource.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**update_pgp**](KeymanagementpgpApi.md#update_pgp) | **PATCH** /kms/v2/keys-pgp/{keyId} | Activate or De-activate PGP Key
+[**update_pgp**](KeyManagementPgpApi.md#update_pgp) | **PATCH** /kms/v2/keys-pgp/{keyId} | Activate or De-activate PGP Key
 
 
 # **update_pgp**
@@ -19,9 +19,9 @@ Activate or De-activate PGP Key
 # load the gem
 require 'cybersource_rest_client'
 
-api_instance = CyberSource::KeymanagementpgpApi.new
+api_instance = CyberSource::KeyManagementPgpApi.new
 
-key_id = "key_id_example" # String | Key ID. 
+key_id = 'key_id_example' # String | Key ID. 
 
 update_pgp_keys_request = CyberSource::UpdatePGPKeysRequest.new # UpdatePGPKeysRequest | 
 
@@ -31,7 +31,7 @@ begin
   result = api_instance.update_pgp(key_id, update_pgp_keys_request)
   p result
 rescue CyberSource::ApiError => e
-  puts "Exception when calling KeymanagementpgpApi->update_pgp: #{e}"
+  puts "Exception when calling KeyManagementPgpApi->update_pgp: #{e}"
 end
 ```
 

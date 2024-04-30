@@ -28,7 +28,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::SubscriptionsApi.new
 
-id = "id_example" # String | Subscription Id
+id = 'id_example' # String | Subscription Id
 
 
 begin
@@ -75,7 +75,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::SubscriptionsApi.new
 
-id = "id_example" # String | Subscription Id
+id = 'id_example' # String | Subscription Id
 
 
 begin
@@ -172,8 +172,8 @@ api_instance = CyberSource::SubscriptionsApi.new
 opts = { 
   offset: 56, # Integer | Page offset number.
   limit: 56, # Integer | Number of items to be returned. Default - `20`, Max - `100` 
-  code: "code_example", # String | Filter by Subscription Code
-  status: "status_example" # String | Filter by Subscription Status
+  code: 'code_example', # String | Filter by Subscription Code
+  status: 'status_example' # String | Filter by Subscription Status
 }
 
 begin
@@ -223,7 +223,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::SubscriptionsApi.new
 
-id = "id_example" # String | Subscription Id
+id = 'id_example' # String | Subscription Id
 
 
 begin
@@ -311,7 +311,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::SubscriptionsApi.new
 
-id = "id_example" # String | Subscription Id
+id = 'id_example' # String | Subscription Id
 
 
 begin
@@ -358,7 +358,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::SubscriptionsApi.new
 
-id = "id_example" # String | Subscription Id
+id = 'id_example' # String | Subscription Id
 
 update_subscription = CyberSource::UpdateSubscription.new # UpdateSubscription | Update Subscription
 

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **webhook_url** | **String** | The client&#39;s endpoint (URL) to receive webhooks. | [optional] 
 **health_check_url** | **String** | The client&#39;s health check endpoint (URL). This should be as close as possible to the actual webhookUrl. | [optional] 
 **notification_scope** | [**Notificationsubscriptionsv1webhooksNotificationScope**](Notificationsubscriptionsv1webhooksNotificationScope.md) |  | [optional] 
-**status** | **String** | Webhook status. | [optional] [default to &quot;INACTIVE&quot;]
+**status** | **String** | Webhook status. | [optional] [default to &#39;INACTIVE&#39;]
 **name** | **String** | Client friendly webhook name. | [optional] 
 **description** | **String** | Client friendly webhook description. | [optional] 
 **retry_policy** | [**Notificationsubscriptionsv1webhooksRetryPolicy**](Notificationsubscriptionsv1webhooksRetryPolicy.md) |  | [optional] 

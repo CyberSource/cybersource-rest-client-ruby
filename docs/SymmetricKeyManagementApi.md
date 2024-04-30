@@ -71,7 +71,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::SymmetricKeyManagementApi.new
 
-v_ic_domain = "v_ic_domain_example" # String | domain
+v_ic_domain = 'v_ic_domain_example' # String | domain
 
 create_shared_secret_keys_verifi_request = CyberSource::CreateSharedSecretKeysVerifiRequest.new # CreateSharedSecretKeysVerifiRequest | 
 
@@ -168,7 +168,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::SymmetricKeyManagementApi.new
 
-key_id = "key_id_example" # String | Key ID. 
+key_id = 'key_id_example' # String | Key ID. 
 
 
 begin

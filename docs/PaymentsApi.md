@@ -28,7 +28,7 @@ api_instance = CyberSource::PaymentsApi.new
 
 order_payment_request = CyberSource::OrderPaymentRequest.new # OrderPaymentRequest | 
 
-id = "id_example" # String | Request identifier number for the order request. 
+id = 'id_example' # String | Request identifier number for the order request. 
 
 
 begin
@@ -170,7 +170,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::PaymentsApi.new
 
-id = "id_example" # String | The ID returned from the original authorization request.
+id = 'id_example' # String | The ID returned from the original authorization request.
 
 increment_auth_request = CyberSource::IncrementAuthRequest.new # IncrementAuthRequest | 
 
@@ -220,7 +220,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::PaymentsApi.new
 
-id = "id_example" # String | The payment id whose status needs to be checked and updated.
+id = 'id_example' # String | The payment id whose status needs to be checked and updated.
 
 refresh_payment_status_request = CyberSource::RefreshPaymentStatusRequest.new # RefreshPaymentStatusRequest | 
 
@@ -272,7 +272,7 @@ api_instance = CyberSource::PaymentsApi.new
 
 create_session_request = CyberSource::CreateSessionRequest.new # CreateSessionRequest | 
 
-id = "id_example" # String | The payment ID. This ID is returned from a previous payment request.
+id = 'id_example' # String | The payment ID. This ID is returned from a previous payment request.
 
 
 begin

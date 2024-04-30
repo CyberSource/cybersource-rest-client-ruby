@@ -1,10 +1,10 @@
-# CyberSource::KeymanagementpasswordApi
+# CyberSource::KeyManagementPasswordApi
 
 All URIs are relative to *https://apitest.cybersource.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**update_password**](KeymanagementpasswordApi.md#update_password) | **PATCH** /kms/v2/keys-password/{keyId} | Activate or De-activate Password
+[**update_password**](KeyManagementPasswordApi.md#update_password) | **PATCH** /kms/v2/keys-password/{keyId} | Activate or De-activate Password
 
 
 # **update_password**
@@ -19,9 +19,9 @@ Activate or De-activate key of type password
 # load the gem
 require 'cybersource_rest_client'
 
-api_instance = CyberSource::KeymanagementpasswordApi.new
+api_instance = CyberSource::KeyManagementPasswordApi.new
 
-key_id = "key_id_example" # String | Key ID. 
+key_id = 'key_id_example' # String | Key ID. 
 
 update_password_keys_request = CyberSource::UpdatePasswordKeysRequest.new # UpdatePasswordKeysRequest | 
 
@@ -31,7 +31,7 @@ begin
   result = api_instance.update_password(key_id, update_password_keys_request)
   p result
 rescue CyberSource::ApiError => e
-  puts "Exception when calling KeymanagementpasswordApi->update_password: #{e}"
+  puts "Exception when calling KeyManagementPasswordApi->update_password: #{e}"
 end
 ```
 

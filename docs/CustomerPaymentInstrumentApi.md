@@ -25,12 +25,12 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::CustomerPaymentInstrumentApi.new
 
-customer_id = "customer_id_example" # String | The Id of a Customer.
+customer_id = 'customer_id_example' # String | The Id of a Customer.
 
-payment_instrument_id = "payment_instrument_id_example" # String | The Id of a payment instrument.
+payment_instrument_id = 'payment_instrument_id_example' # String | The Id of a payment instrument.
 
 opts = { 
-  profile_id: "profile_id_example" # String | The Id of a profile containing user specific TMS configuration.
+  profile_id: 'profile_id_example' # String | The Id of a profile containing user specific TMS configuration.
 }
 
 begin
@@ -65,7 +65,7 @@ No authorization required
 
 
 # **get_customer_payment_instrument**
-> Tmsv2customersEmbeddedDefaultPaymentInstrument get_customer_payment_instrument(customer_id, payment_instrument_id, opts)
+> PostCustomerPaymentInstrumentRequest get_customer_payment_instrument(customer_id, payment_instrument_id, opts)
 
 Retrieve a Customer Payment Instrument
 
@@ -78,12 +78,12 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::CustomerPaymentInstrumentApi.new
 
-customer_id = "customer_id_example" # String | The Id of a Customer.
+customer_id = 'customer_id_example' # String | The Id of a Customer.
 
-payment_instrument_id = "payment_instrument_id_example" # String | The Id of a payment instrument.
+payment_instrument_id = 'payment_instrument_id_example' # String | The Id of a payment instrument.
 
 opts = { 
-  profile_id: "profile_id_example" # String | The Id of a profile containing user specific TMS configuration.
+  profile_id: 'profile_id_example' # String | The Id of a profile containing user specific TMS configuration.
 }
 
 begin
@@ -105,7 +105,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Tmsv2customersEmbeddedDefaultPaymentInstrument**](Tmsv2customersEmbeddedDefaultPaymentInstrument.md)
+[**PostCustomerPaymentInstrumentRequest**](PostCustomerPaymentInstrumentRequest.md)
 
 ### Authorization
 
@@ -132,10 +132,10 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::CustomerPaymentInstrumentApi.new
 
-customer_id = "customer_id_example" # String | The Id of a Customer.
+customer_id = 'customer_id_example' # String | The Id of a Customer.
 
 opts = { 
-  profile_id: "profile_id_example", # String | The Id of a profile containing user specific TMS configuration.
+  profile_id: 'profile_id_example', # String | The Id of a profile containing user specific TMS configuration.
   offset: 0, # Integer | Starting record in zero-based dataset that should be returned as the first object in the array. Default is 0.
   limit: 20 # Integer | The maximum number that can be returned in the array starting from the offset record in zero-based dataset. Default is 20, maximum is 100.
 }
@@ -174,7 +174,7 @@ No authorization required
 
 
 # **patch_customers_payment_instrument**
-> Tmsv2customersEmbeddedDefaultPaymentInstrument patch_customers_payment_instrument(customer_id, payment_instrument_id, patch_customer_payment_instrument_request, opts)
+> PatchCustomerPaymentInstrumentRequest patch_customers_payment_instrument(customer_id, payment_instrument_id, patch_customer_payment_instrument_request, opts)
 
 Update a Customer Payment Instrument
 
@@ -187,15 +187,15 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::CustomerPaymentInstrumentApi.new
 
-customer_id = "customer_id_example" # String | The Id of a Customer.
+customer_id = 'customer_id_example' # String | The Id of a Customer.
 
-payment_instrument_id = "payment_instrument_id_example" # String | The Id of a payment instrument.
+payment_instrument_id = 'payment_instrument_id_example' # String | The Id of a payment instrument.
 
 patch_customer_payment_instrument_request = CyberSource::PatchCustomerPaymentInstrumentRequest.new # PatchCustomerPaymentInstrumentRequest | 
 
 opts = { 
-  profile_id: "profile_id_example", # String | The Id of a profile containing user specific TMS configuration.
-  if_match: "if_match_example" # String | Contains an ETag value from a GET request to make the request conditional.
+  profile_id: 'profile_id_example', # String | The Id of a profile containing user specific TMS configuration.
+  if_match: 'if_match_example' # String | Contains an ETag value from a GET request to make the request conditional.
 }
 
 begin
@@ -219,7 +219,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Tmsv2customersEmbeddedDefaultPaymentInstrument**](Tmsv2customersEmbeddedDefaultPaymentInstrument.md)
+[**PatchCustomerPaymentInstrumentRequest**](PatchCustomerPaymentInstrumentRequest.md)
 
 ### Authorization
 
@@ -233,7 +233,7 @@ No authorization required
 
 
 # **post_customer_payment_instrument**
-> Tmsv2customersEmbeddedDefaultPaymentInstrument post_customer_payment_instrument(customer_id, post_customer_payment_instrument_request, opts)
+> PostCustomerPaymentInstrumentRequest post_customer_payment_instrument(customer_id, post_customer_payment_instrument_request, opts)
 
 Create a Customer Payment Instrument
 
@@ -246,12 +246,12 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::CustomerPaymentInstrumentApi.new
 
-customer_id = "customer_id_example" # String | The Id of a Customer.
+customer_id = 'customer_id_example' # String | The Id of a Customer.
 
 post_customer_payment_instrument_request = CyberSource::PostCustomerPaymentInstrumentRequest.new # PostCustomerPaymentInstrumentRequest | 
 
 opts = { 
-  profile_id: "profile_id_example" # String | The Id of a profile containing user specific TMS configuration.
+  profile_id: 'profile_id_example' # String | The Id of a profile containing user specific TMS configuration.
 }
 
 begin
@@ -273,7 +273,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Tmsv2customersEmbeddedDefaultPaymentInstrument**](Tmsv2customersEmbeddedDefaultPaymentInstrument.md)
+[**PostCustomerPaymentInstrumentRequest**](PostCustomerPaymentInstrumentRequest.md)
 
 ### Authorization
 

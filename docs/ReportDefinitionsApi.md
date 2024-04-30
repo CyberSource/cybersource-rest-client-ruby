@@ -22,12 +22,12 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::ReportDefinitionsApi.new
 
-report_definition_name = "report_definition_name_example" # String | Name of the Report definition to retrieve
+report_definition_name = 'report_definition_name_example' # String | Name of the Report definition to retrieve
 
 opts = { 
-  subscription_type: "subscription_type_example", # String | The subscription type for which report definition is required. By default the type will be CUSTOM. Valid Values: - CLASSIC - CUSTOM - STANDARD 
-  report_mime_type: "report_mime_type_example", # String | The format for which the report definition is required. By default the value will be CSV. Valid Values: - application/xml - text/csv 
-  organization_id: "organization_id_example" # String | Valid Organization Id
+  subscription_type: 'subscription_type_example', # String | The subscription type for which report definition is required. By default the type will be CUSTOM. Valid Values: - CLASSIC - CUSTOM - STANDARD 
+  report_mime_type: 'report_mime_type_example', # String | The format for which the report definition is required. By default the value will be CSV. Valid Values: - application/xml - text/csv 
+  organization_id: 'organization_id_example' # String | Valid Organization Id
 }
 
 begin
@@ -78,8 +78,8 @@ require 'cybersource_rest_client'
 api_instance = CyberSource::ReportDefinitionsApi.new
 
 opts = { 
-  subscription_type: "subscription_type_example", # String | Valid Values: - CLASSIC - CUSTOM - STANDARD 
-  organization_id: "organization_id_example" # String | Valid Organization Id
+  subscription_type: 'subscription_type_example', # String | Valid Values: - CLASSIC - CUSTOM - STANDARD 
+  organization_id: 'organization_id_example' # String | Valid Organization Id
 }
 
 begin

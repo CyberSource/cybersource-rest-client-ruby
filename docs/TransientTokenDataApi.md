@@ -22,7 +22,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::TransientTokenDataApi.new
 
-jti = "jti_example" # String | The jti field contained within the Transient token returned from a successful Unified Checkout transaction 
+jti = 'jti_example' # String | The jti field contained within the Transient token returned from a successful Unified Checkout transaction 
 
 
 begin
@@ -69,7 +69,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::TransientTokenDataApi.new
 
-transient_token = "transient_token_example" # String | Transient Token returned by the Unified Checkout application. 
+transient_token = 'transient_token_example' # String | Transient Token returned by the Unified Checkout application. 
 
 
 begin

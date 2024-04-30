@@ -118,7 +118,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::AsymmetricKeyManagementApi.new
 
-key_id = "key_id_example" # String | Key ID. 
+key_id = 'key_id_example' # String | Key ID. 
 
 
 begin
@@ -165,7 +165,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::AsymmetricKeyManagementApi.new
 
-key_id = "key_id_example" # String | Key ID. 
+key_id = 'key_id_example' # String | Key ID. 
 
 update_asym_keys_request = CyberSource::UpdateAsymKeysRequest.new # UpdateAsymKeysRequest | 
 

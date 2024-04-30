@@ -7,7 +7,6 @@ Method | HTTP request | Description
 [**delete_webhook_subscription**](ManageWebhooksApi.md#delete_webhook_subscription) | **DELETE** /notification-subscriptions/v1/webhooks/{webhookId} | Delete a Webhook Subscription
 [**get_webhook_subscription_by_id**](ManageWebhooksApi.md#get_webhook_subscription_by_id) | **GET** /notification-subscriptions/v1/webhooks/{webhookId} | Get Details On a Single Webhook
 [**get_webhook_subscriptions_by_org**](ManageWebhooksApi.md#get_webhook_subscriptions_by_org) | **GET** /notification-subscriptions/v1/webhooks | Get Details On All Created Webhooks
-[**replay_previous_webhooks**](ManageWebhooksApi.md#replay_previous_webhooks) | **POST** /nrtf/v1/webhooks/{webhookId}/replays | Replay Previous Webhooks
 [**save_asym_egress_key**](ManageWebhooksApi.md#save_asym_egress_key) | **POST** /kms/egress/v2/keys-asym | Message Level Encryption
 [**update_webhook_subscription**](ManageWebhooksApi.md#update_webhook_subscription) | **PATCH** /notification-subscriptions/v1/webhooks/{webhookId} | Update a Webhook Subscription
 
@@ -26,7 +25,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::ManageWebhooksApi.new
 
-webhook_id = "webhook_id_example" # String | The webhook identifier.
+webhook_id = 'webhook_id_example' # String | The webhook identifier.
 
 
 begin
@@ -59,7 +58,7 @@ No authorization required
 
 
 # **get_webhook_subscription_by_id**
-> InlineResponse2004 get_webhook_subscription_by_id(webhook_id)
+> InlineResponse2005 get_webhook_subscription_by_id(webhook_id)
 
 Get Details On a Single Webhook
 
@@ -72,7 +71,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::ManageWebhooksApi.new
 
-webhook_id = "webhook_id_example" # String | The webhook Identifier
+webhook_id = 'webhook_id_example' # String | The webhook Identifier
 
 
 begin
@@ -92,7 +91,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2004**](InlineResponse2004.md)
+[**InlineResponse2005**](InlineResponse2005.md)
 
 ### Authorization
 
@@ -119,11 +118,11 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::ManageWebhooksApi.new
 
-organization_id = "organization_id_example" # String | The Organization Identifier.
+organization_id = 'organization_id_example' # String | The Organization Identifier.
 
-product_id = "product_id_example" # String | The Product Identifier.
+product_id = 'product_id_example' # String | The Product Identifier.
 
-event_type = "event_type_example" # String | The Event Type.
+event_type = 'event_type_example' # String | The Event Type.
 
 
 begin
@@ -158,56 +157,6 @@ No authorization required
 
 
 
-# **replay_previous_webhooks**
-> replay_previous_webhooks(webhook_id, opts)
-
-Replay Previous Webhooks
-
-Initiate a webhook replay request to replay transactions that happened in the past.  Cannot execute more than 1 replay request at a time. While one request is processing, you will not be allowed to execute another replay.  The difference between Start and End time cannot exceed a 24 hour window, and 1 month is the farthest date back that is eligible for replay. 
-
-### Example
-```ruby
-# load the gem
-require 'cybersource_rest_client'
-
-api_instance = CyberSource::ManageWebhooksApi.new
-
-webhook_id = "webhook_id_example" # String | The webhook uuid identifier.
-
-opts = { 
-  replay_webhooks_request: CyberSource::ReplayWebhooksRequest.new # ReplayWebhooksRequest | The request query
-}
-
-begin
-  #Replay Previous Webhooks
-  api_instance.replay_previous_webhooks(webhook_id, opts)
-rescue CyberSource::ApiError => e
-  puts "Exception when calling ManageWebhooksApi->replay_previous_webhooks: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **webhook_id** | **String**| The webhook uuid identifier. | 
- **replay_webhooks_request** | [**ReplayWebhooksRequest**](ReplayWebhooksRequest.md)| The request query | [optional] 
-
-### Return type
-
-nil (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/json;charset=utf-8
-
-
-
 # **save_asym_egress_key**
 > InlineResponse2014 save_asym_egress_key(v_c_sender_organization_id, v_c_permissions, save_asym_egress_key, opts)
 
@@ -222,14 +171,14 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::ManageWebhooksApi.new
 
-v_c_sender_organization_id = "v_c_sender_organization_id_example" # String | Sender organization id
+v_c_sender_organization_id = 'v_c_sender_organization_id_example' # String | Sender organization id
 
-v_c_permissions = "v_c_permissions_example" # String | Encoded user permissions returned by the CGK, for the entity user who initiated the boarding
+v_c_permissions = 'v_c_permissions_example' # String | Encoded user permissions returned by the CGK, for the entity user who initiated the boarding
 
 save_asym_egress_key = CyberSource::SaveAsymEgressKey.new # SaveAsymEgressKey | Provide egress Asymmetric key information to save (create or store)
 
 opts = { 
-  v_c_correlation_id: "v_c_correlation_id_example" # String | A globally unique id associated with your request
+  v_c_correlation_id: 'v_c_correlation_id_example' # String | A globally unique id associated with your request
 }
 
 begin
@@ -279,7 +228,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::ManageWebhooksApi.new
 
-webhook_id = "webhook_id_example" # String | The Webhook Identifier.
+webhook_id = 'webhook_id_example' # String | The Webhook Identifier.
 
 opts = { 
   update_webhook_request: CyberSource::UpdateWebhookRequest.new # UpdateWebhookRequest | The webhook payload or changes to apply.
