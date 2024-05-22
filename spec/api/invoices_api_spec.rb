@@ -49,7 +49,7 @@ describe 'InvoicesApi' do
   # @param offset Page offset number.
   # @param limit Maximum number of items you would like returned.
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :status The status of the invoice.  Possible values:   - DRAFT   - CREATED   - SENT   - PARTIAL   - PAID   - CANCELED 
+  # @option opts [String] :status The status of the invoice.  Possible values:   - DRAFT   - CREATED   - SENT   - PARTIAL   - PAID   - CANCELED   - PENDING 
   # @return [InvoicingV2InvoicesAllGet200Response]
   describe 'get_all_invoices test' do
     it 'should work' do

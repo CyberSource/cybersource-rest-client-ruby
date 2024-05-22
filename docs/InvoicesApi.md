@@ -78,7 +78,7 @@ offset = 56 # Integer | Page offset number.
 limit = 56 # Integer | Maximum number of items you would like returned.
 
 opts = { 
-  status: 'status_example' # String | The status of the invoice.  Possible values:   - DRAFT   - CREATED   - SENT   - PARTIAL   - PAID   - CANCELED 
+  status: 'status_example' # String | The status of the invoice.  Possible values:   - DRAFT   - CREATED   - SENT   - PARTIAL   - PAID   - CANCELED   - PENDING 
 }
 
 begin
@@ -96,7 +96,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **offset** | **Integer**| Page offset number. | 
  **limit** | **Integer**| Maximum number of items you would like returned. | 
- **status** | **String**| The status of the invoice.  Possible values:   - DRAFT   - CREATED   - SENT   - PARTIAL   - PAID   - CANCELED  | [optional] 
+ **status** | **String**| The status of the invoice.  Possible values:   - DRAFT   - CREATED   - SENT   - PARTIAL   - PAID   - CANCELED   - PENDING  | [optional] 
 
 ### Return type
 

@@ -163,6 +163,12 @@ describe 'RiskV1DecisionsPost201ResponseConsumerAuthenticationInformation' do
     end
   end
 
+  describe 'test attribute "exemption_data_raw"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "ivr"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

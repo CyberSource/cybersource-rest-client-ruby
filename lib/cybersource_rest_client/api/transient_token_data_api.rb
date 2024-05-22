@@ -22,21 +22,21 @@ module CyberSource
     # Get Payment Credentials
     # Retrieve the Payment data captured by Unified Checkout. This API is used to retrieve the detailed data represented by the Transient Token. This API will return PCI payment data captured by the Unified Checkout platform.
     #
-    # @param jti The jti field contained within the Transient token returned from a successful Unified Checkout transaction 
+    # @param payment_credentials_reference The paymentCredentialsReference field contained within the Transient token returned from a successful Unified Checkout transaction 
     # @param [Hash] opts the optional parameters
     # @return [String]
     #
-    def get_payment_credentials_for_transient_token(jti, opts = {})
-      data, status_code, headers = get_payment_credentials_for_transient_token_with_http_info(jti, opts)
+    def get_payment_credentials_for_transient_token(payment_credentials_reference, opts = {})
+      data, status_code, headers = get_payment_credentials_for_transient_token_with_http_info(payment_credentials_reference, opts)
       return data, status_code, headers
     end
 
     # Get Payment Credentials
     # Retrieve the Payment data captured by Unified Checkout. This API is used to retrieve the detailed data represented by the Transient Token. This API will return PCI payment data captured by the Unified Checkout platform.
-    # @param jti The jti field contained within the Transient token returned from a successful Unified Checkout transaction 
+    # @param payment_credentials_reference The paymentCredentialsReference field contained within the Transient token returned from a successful Unified Checkout transaction 
     # @param [Hash] opts the optional parameters
     # @return [Array<(String, Fixnum, Hash)>] String data, response status code and response headers
-    def get_payment_credentials_for_transient_token_with_http_info(jti, opts = {})
+    def get_payment_credentials_for_transient_token_with_http_info(payment_credentials_reference, opts = {})
 
       if @api_client.config.debugging
           begin
@@ -46,12 +46,12 @@ module CyberSource
                 puts 'Cannot write to log'
             end
       end
-      # verify the required parameter 'jti' is set
-      if @api_client.config.client_side_validation && jti.nil?
-        fail ArgumentError, "Missing the required parameter 'jti' when calling TransientTokenDataApi.get_payment_credentials_for_transient_token"
+      # verify the required parameter 'payment_credentials_reference' is set
+      if @api_client.config.client_side_validation && payment_credentials_reference.nil?
+        fail ArgumentError, "Missing the required parameter 'payment_credentials_reference' when calling TransientTokenDataApi.get_payment_credentials_for_transient_token"
       end
       # resource path
-      local_var_path = 'up/v1/payment-credentials/{jti}'.sub('{' + 'jti' + '}', jti.to_s)
+      local_var_path = 'flex/v2/payment-credentials/{paymentCredentialsReference}'.sub('{' + 'paymentCredentialsReference' + '}', payment_credentials_reference.to_s)
 
       # query parameters
       query_params = {}

@@ -34,7 +34,7 @@ describe 'TransientTokenDataApi' do
   # unit tests for get_payment_credentials_for_transient_token
   # Get Payment Credentials
   # Retrieve the Payment data captured by Unified Checkout. This API is used to retrieve the detailed data represented by the Transient Token. This API will return PCI payment data captured by the Unified Checkout platform.
-  # @param jti The jti field contained within the Transient token returned from a successful Unified Checkout transaction 
+  # @param payment_credentials_reference The paymentCredentialsReference field contained within the Transient token returned from a successful Unified Checkout transaction 
   # @param [Hash] opts the optional parameters
   # @return [String]
   describe 'get_payment_credentials_for_transient_token test' do

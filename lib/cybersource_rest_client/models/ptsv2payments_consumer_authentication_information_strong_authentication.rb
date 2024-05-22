@@ -13,6 +13,8 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsConsumerAuthenticationInformationStrongAuthentication
+    attr_accessor :issuer_information
+
     # This field will contain the low value exemption indicator with one of the following values: Possible values: - `0`  ( low value exemption does not apply to the transaction) - `1` (Transaction exempt from SCA as the merchant/acquirer has determined it to be a low value payment) 
     attr_accessor :low_value_exemption_indicator
 
@@ -37,6 +39,7 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'issuer_information' => :'issuerInformation',
         :'low_value_exemption_indicator' => :'lowValueExemptionIndicator',
         :'risk_analysis_exemption_indicator' => :'riskAnalysisExemptionIndicator',
         :'trusted_merchant_exemption_indicator' => :'trustedMerchantExemptionIndicator',
@@ -50,6 +53,7 @@ module CyberSource
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
+        :'issuer_information' => :'issuer_information',
         :'low_value_exemption_indicator' => :'low_value_exemption_indicator',
         :'risk_analysis_exemption_indicator' => :'risk_analysis_exemption_indicator',
         :'trusted_merchant_exemption_indicator' => :'trusted_merchant_exemption_indicator',
@@ -63,6 +67,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'issuer_information' => :'Ptsv2paymentsConsumerAuthenticationInformationStrongAuthenticationIssuerInformation',
         :'low_value_exemption_indicator' => :'String',
         :'risk_analysis_exemption_indicator' => :'String',
         :'trusted_merchant_exemption_indicator' => :'String',
@@ -80,6 +85,10 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'issuerInformation')
+        self.issuer_information = attributes[:'issuerInformation']
+      end
 
       if attributes.has_key?(:'lowValueExemptionIndicator')
         self.low_value_exemption_indicator = attributes[:'lowValueExemptionIndicator']
@@ -170,6 +179,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          issuer_information == o.issuer_information &&
           low_value_exemption_indicator == o.low_value_exemption_indicator &&
           risk_analysis_exemption_indicator == o.risk_analysis_exemption_indicator &&
           trusted_merchant_exemption_indicator == o.trusted_merchant_exemption_indicator &&
@@ -188,7 +198,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [low_value_exemption_indicator, risk_analysis_exemption_indicator, trusted_merchant_exemption_indicator, secure_corporate_payment_indicator, delegated_authentication_exemption_indicator, outage_exemption_indicator, authentication_indicator].hash
+      [issuer_information, low_value_exemption_indicator, risk_analysis_exemption_indicator, trusted_merchant_exemption_indicator, secure_corporate_payment_indicator, delegated_authentication_exemption_indicator, outage_exemption_indicator, authentication_indicator].hash
     end
 
     # Builds the object from hash

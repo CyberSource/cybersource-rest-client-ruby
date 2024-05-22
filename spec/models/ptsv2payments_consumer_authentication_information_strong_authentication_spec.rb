@@ -31,6 +31,12 @@ describe 'Ptsv2paymentsConsumerAuthenticationInformationStrongAuthentication' do
       expect(@instance).to be_instance_of(CyberSource::Ptsv2paymentsConsumerAuthenticationInformationStrongAuthentication)
     end
   end
+  describe 'test attribute "issuer_information"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "low_value_exemption_indicator"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
