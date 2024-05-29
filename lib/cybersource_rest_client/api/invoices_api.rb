@@ -94,7 +94,7 @@ module CyberSource
     # @param offset Page offset number.
     # @param limit Maximum number of items you would like returned.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :status The status of the invoice.  Possible values:   - DRAFT   - CREATED   - SENT   - PARTIAL   - PAID   - CANCELED 
+    # @option opts [String] :status The status of the invoice.  Possible values:   - DRAFT   - CREATED   - SENT   - PARTIAL   - PAID   - CANCELED   - PENDING 
     # @return [InvoicingV2InvoicesAllGet200Response]
     #
     def get_all_invoices(offset, limit, opts = {})
@@ -107,7 +107,7 @@ module CyberSource
     # @param offset Page offset number.
     # @param limit Maximum number of items you would like returned.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :status The status of the invoice.  Possible values:   - DRAFT   - CREATED   - SENT   - PARTIAL   - PAID   - CANCELED 
+    # @option opts [String] :status The status of the invoice.  Possible values:   - DRAFT   - CREATED   - SENT   - PARTIAL   - PAID   - CANCELED   - PENDING 
     # @return [Array<(InvoicingV2InvoicesAllGet200Response, Fixnum, Hash)>] InvoicingV2InvoicesAllGet200Response data, response status code and response headers
     def get_all_invoices_with_http_info(offset, limit, opts = {})
 
