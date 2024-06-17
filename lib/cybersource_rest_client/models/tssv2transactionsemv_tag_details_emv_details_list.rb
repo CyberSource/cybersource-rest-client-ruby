@@ -86,9 +86,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] request_id Value to be assigned
     def request_id=(request_id)
-      if request_id.nil?
-        fail ArgumentError, 'request_id cannot be nil'
-      end
+      #if request_id.nil?
+        #fail ArgumentError, 'request_id cannot be nil'
+      #end
 
       @request_id = request_id
     end
@@ -96,9 +96,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] emv_request_combined_tags Value to be assigned
     def emv_request_combined_tags=(emv_request_combined_tags)
-      if emv_request_combined_tags.nil?
-        fail ArgumentError, 'emv_request_combined_tags cannot be nil'
-      end
+      #if emv_request_combined_tags.nil?
+        #fail ArgumentError, 'emv_request_combined_tags cannot be nil'
+      #end
 
       @emv_request_combined_tags = emv_request_combined_tags
     end

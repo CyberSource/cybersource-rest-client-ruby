@@ -158,9 +158,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] country Value to be assigned
     def country=(country)
-      if country.nil?
-        fail ArgumentError, 'country cannot be nil'
-      end
+      #if country.nil?
+        #fail ArgumentError, 'country cannot be nil'
+      #end
 
       #if country !~ Regexp.new(/^[À-ÖØ-öø-ǿa-zA-Z0-9().\\-_#,;\/@$:!% ]{1,}$/)
         #fail ArgumentError, 'invalid value for "country", must conform to the pattern /^[À-ÖØ-öø-ǿa-zA-Z0-9().\\-_#,;\/@$:!% ]{1,}$/.'
@@ -172,9 +172,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] address1 Value to be assigned
     def address1=(address1)
-      if address1.nil?
-        fail ArgumentError, 'address1 cannot be nil'
-      end
+      #if address1.nil?
+        #fail ArgumentError, 'address1 cannot be nil'
+      #end
 
       #if address1 !~ Regexp.new(/^[À-ÖØ-öø-ǿa-zA-Z0-9().\\-_#,;\/@$:!% ]{1,}$/)
         #fail ArgumentError, 'invalid value for "address1", must conform to the pattern /^[À-ÖØ-öø-ǿa-zA-Z0-9().\\-_#,;\/@$:!% ]{1,}$/.'
@@ -196,9 +196,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] locality Value to be assigned
     def locality=(locality)
-      if locality.nil?
-        fail ArgumentError, 'locality cannot be nil'
-      end
+      #if locality.nil?
+        #fail ArgumentError, 'locality cannot be nil'
+      #end
 
       #if locality !~ Regexp.new(/^[0-9a-zA-Z _\\-¡-￿]+$/)
         #fail ArgumentError, 'invalid value for "locality", must conform to the pattern /^[0-9a-zA-Z _\\-¡-￿]+$/.'

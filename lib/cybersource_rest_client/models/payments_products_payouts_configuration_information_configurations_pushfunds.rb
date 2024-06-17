@@ -187,9 +187,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] originator_business_application_id Value to be assigned
     def originator_business_application_id=(originator_business_application_id)
-      if originator_business_application_id.nil?
-        fail ArgumentError, 'originator_business_application_id cannot be nil'
-      end
+      #if originator_business_application_id.nil?
+        #fail ArgumentError, 'originator_business_application_id cannot be nil'
+      #end
 
       @originator_business_application_id = originator_business_application_id
     end

@@ -200,9 +200,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] address1 Value to be assigned
     def address1=(address1)
-      if address1.nil?
-        fail ArgumentError, 'address1 cannot be nil'
-      end
+      #if address1.nil?
+        #fail ArgumentError, 'address1 cannot be nil'
+      #end
 
       @address1 = address1
     end
@@ -234,9 +234,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] country Value to be assigned
     def country=(country)
-      if country.nil?
-        fail ArgumentError, 'country cannot be nil'
-      end
+      #if country.nil?
+        #fail ArgumentError, 'country cannot be nil'
+      #end
 
       @country = country
     end
@@ -244,9 +244,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] locality Value to be assigned
     def locality=(locality)
-      if locality.nil?
-        fail ArgumentError, 'locality cannot be nil'
-      end
+      #if locality.nil?
+        #fail ArgumentError, 'locality cannot be nil'
+      #end
 
       @locality = locality
     end
@@ -254,9 +254,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] postal_code Value to be assigned
     def postal_code=(postal_code)
-      if postal_code.nil?
-        fail ArgumentError, 'postal_code cannot be nil'
-      end
+      #if postal_code.nil?
+        #fail ArgumentError, 'postal_code cannot be nil'
+      #end
 
       @postal_code = postal_code
     end
@@ -276,9 +276,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] email Value to be assigned
     def email=(email)
-      if email.nil?
-        fail ArgumentError, 'email cannot be nil'
-      end
+      #if email.nil?
+        #fail ArgumentError, 'email cannot be nil'
+      #end
 
       @email = email
     end

@@ -126,9 +126,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] company_entry_description Value to be assigned
     def company_entry_description=(company_entry_description)
-      if company_entry_description.nil?
-        fail ArgumentError, 'company_entry_description cannot be nil'
-      end
+      #if company_entry_description.nil?
+        #fail ArgumentError, 'company_entry_description cannot be nil'
+      #end
 
       @company_entry_description = company_entry_description
     end

@@ -256,9 +256,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] report_definition_name Value to be assigned
     def report_definition_name=(report_definition_name)
-      if report_definition_name.nil?
-        fail ArgumentError, 'report_definition_name cannot be nil'
-      end
+      #if report_definition_name.nil?
+        #fail ArgumentError, 'report_definition_name cannot be nil'
+      #end
 
       #if report_definition_name !~ Regexp.new(/[a-zA-Z0-9-]+/)
         #fail ArgumentError, 'invalid value for "report_definition_name", must conform to the pattern /[a-zA-Z0-9-]+/.'
@@ -280,9 +280,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] report_name Value to be assigned
     def report_name=(report_name)
-      if report_name.nil?
-        fail ArgumentError, 'report_name cannot be nil'
-      end
+      #if report_name.nil?
+        #fail ArgumentError, 'report_name cannot be nil'
+      #end
 
       #if report_name !~ Regexp.new(/[a-zA-Z0-9-_ ]+/)
         #fail ArgumentError, 'invalid value for "report_name", must conform to the pattern /[a-zA-Z0-9-_ ]+/.'

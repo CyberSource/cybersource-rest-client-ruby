@@ -136,9 +136,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] account_holder_name Value to be assigned
     def account_holder_name=(account_holder_name)
-      if account_holder_name.nil?
-        fail ArgumentError, 'account_holder_name cannot be nil'
-      end
+      #if account_holder_name.nil?
+        #fail ArgumentError, 'account_holder_name cannot be nil'
+      #end
 
       @account_holder_name = account_holder_name
     end
@@ -146,9 +146,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] account_routing_number Value to be assigned
     def account_routing_number=(account_routing_number)
-      if account_routing_number.nil?
-        fail ArgumentError, 'account_routing_number cannot be nil'
-      end
+      #if account_routing_number.nil?
+        #fail ArgumentError, 'account_routing_number cannot be nil'
+      #end
 
       @account_routing_number = account_routing_number
     end
@@ -156,9 +156,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] account_number Value to be assigned
     def account_number=(account_number)
-      if account_number.nil?
-        fail ArgumentError, 'account_number cannot be nil'
-      end
+      #if account_number.nil?
+        #fail ArgumentError, 'account_number cannot be nil'
+      #end
 
       @account_number = account_number
     end

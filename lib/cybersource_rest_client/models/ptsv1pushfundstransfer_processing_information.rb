@@ -145,9 +145,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] commerce_indicator Value to be assigned
     def commerce_indicator=(commerce_indicator)
-      if commerce_indicator.nil?
-        fail ArgumentError, 'commerce_indicator cannot be nil'
-      end
+      #if commerce_indicator.nil?
+        #fail ArgumentError, 'commerce_indicator cannot be nil'
+      #end
 
       @commerce_indicator = commerce_indicator
     end

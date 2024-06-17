@@ -71,9 +71,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] comments Value to be assigned
     def comments=(comments)
-      if comments.nil?
-        fail ArgumentError, 'comments cannot be nil'
-      end
+      #if comments.nil?
+        #fail ArgumentError, 'comments cannot be nil'
+      #end
 
       @comments = comments
     end

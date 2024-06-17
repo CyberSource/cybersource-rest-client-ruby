@@ -87,9 +87,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] currency Value to be assigned
     def currency=(currency)
-      if currency.nil?
-        fail ArgumentError, 'currency cannot be nil'
-      end
+      #if currency.nil?
+        #fail ArgumentError, 'currency cannot be nil'
+      #end
 
       @currency = currency
     end
@@ -97,9 +97,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] total_amount Value to be assigned
     def total_amount=(total_amount)
-      if total_amount.nil?
-        fail ArgumentError, 'total_amount cannot be nil'
-      end
+      #if total_amount.nil?
+        #fail ArgumentError, 'total_amount cannot be nil'
+      #end
 
       @total_amount = total_amount
     end

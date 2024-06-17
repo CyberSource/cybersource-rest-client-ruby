@@ -148,9 +148,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] card_acceptor_id Value to be assigned
     def card_acceptor_id=(card_acceptor_id)
-      if card_acceptor_id.nil?
-        fail ArgumentError, 'card_acceptor_id cannot be nil'
-      end
+      #if card_acceptor_id.nil?
+        #fail ArgumentError, 'card_acceptor_id cannot be nil'
+      #end
 
       @card_acceptor_id = card_acceptor_id
     end
@@ -170,9 +170,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] card_terminal_id Value to be assigned
     def card_terminal_id=(card_terminal_id)
-      if card_terminal_id.nil?
-        fail ArgumentError, 'card_terminal_id cannot be nil'
-      end
+      #if card_terminal_id.nil?
+        #fail ArgumentError, 'card_terminal_id cannot be nil'
+      #end
 
       @card_terminal_id = card_terminal_id
     end
