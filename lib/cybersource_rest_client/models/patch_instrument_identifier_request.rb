@@ -24,7 +24,7 @@ module CyberSource
     # Issuers state for the card number. Possible Values: - ACTIVE - CLOSED : The account has been closed. 
     attr_accessor :state
 
-    # The type of Instrument Identifier. Possible Values: - enrollable card 
+    # The type of Instrument Identifier. Possible Values: - enrollable card - enrollable token 
     attr_accessor :type
 
     attr_accessor :token_provisioning_information
@@ -89,7 +89,7 @@ module CyberSource
         :'object' => :'String',
         :'state' => :'String',
         :'type' => :'String',
-        :'token_provisioning_information' => :'TmsEmbeddedInstrumentIdentifierTokenProvisioningInformation',
+        :'token_provisioning_information' => :'Ptsv2paymentsTokenInformationTokenProvisioningInformation',
         :'card' => :'TmsEmbeddedInstrumentIdentifierCard',
         :'bank_account' => :'TmsEmbeddedInstrumentIdentifierBankAccount',
         :'tokenized_card' => :'TmsEmbeddedInstrumentIdentifierTokenizedCard',

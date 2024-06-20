@@ -12,39 +12,34 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  class Ptsv1pushfundstransferAggregatorInformation
-    # Value that identifies you as a payment aggregator. Get this value from the processor.  FDC Compass This value must consist of uppercase letters.  Visa Platform Connect The value for this field corresponds to the following data in the TC 33 capture file: - `Record`: CP01 TCR6 - `Position`: 95-105 - `Field`: Market Identifier / Payment Facilitator ID 
-    attr_accessor :aggregator_id
+  class Ptsv2paymentsTokenInformationTokenProvisioningInformation
+    # Flag that indicates whether the user consented to the tokenization of their credentials. Required for card network tokenization in certain markets, such as India. Possible Values: - `true`: Consumer has consented to tokenization of their credentials. - `false`: Consumer has not consented to tokenization of their credentials. 
+    attr_accessor :consumer_consent_obtained
 
-    # Your payment aggregator business name.  Visa Platform COnnect With American Express, the maximum length of the aggregator name depends on the length of the sub-merchant name. The combined length for both values must not exceed 36 characters. The value for this field does not map to the TC 33 capture file5.  FDC Compass This value must consist of uppercase characters.  For processor-specific information, see the aggregator_name field in Credit Card Services Using the SCMP API. 
-    attr_accessor :name
-
-    attr_accessor :sub_merchant
+    # Flag that indicates whether AFA (Additional Factor of Authentication) for the PAN was completed. Required for card network tokenization in certain markets, such as India. Possible Values: - `true`: Consumer has been authenticated by the issuer. - `false`: Consumer has not been authenticated by the issuer. 
+    attr_accessor :multi_factor_authenticated
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'aggregator_id' => :'aggregatorId',
-        :'name' => :'name',
-        :'sub_merchant' => :'subMerchant'
+        :'consumer_consent_obtained' => :'consumerConsentObtained',
+        :'multi_factor_authenticated' => :'multiFactorAuthenticated'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'aggregator_id' => :'aggregator_id',
-        :'name' => :'name',
-        :'sub_merchant' => :'sub_merchant'
+        :'consumer_consent_obtained' => :'consumer_consent_obtained',
+        :'multi_factor_authenticated' => :'multi_factor_authenticated'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'aggregator_id' => :'String',
-        :'name' => :'String',
-        :'sub_merchant' => :'Ptsv1pushfundstransferAggregatorInformationSubMerchant'
+        :'consumer_consent_obtained' => :'BOOLEAN',
+        :'multi_factor_authenticated' => :'BOOLEAN'
       }
     end
 
@@ -56,16 +51,12 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'aggregatorId')
-        self.aggregator_id = attributes[:'aggregatorId']
+      if attributes.has_key?(:'consumerConsentObtained')
+        self.consumer_consent_obtained = attributes[:'consumerConsentObtained']
       end
 
-      if attributes.has_key?(:'name')
-        self.name = attributes[:'name']
-      end
-
-      if attributes.has_key?(:'subMerchant')
-        self.sub_merchant = attributes[:'subMerchant']
+      if attributes.has_key?(:'multiFactorAuthenticated')
+        self.multi_factor_authenticated = attributes[:'multiFactorAuthenticated']
       end
     end
 
@@ -82,26 +73,13 @@ module CyberSource
       true
     end
 
-    # Custom attribute writer method with validation
-    # @param [Object] aggregator_id Value to be assigned
-    def aggregator_id=(aggregator_id)
-      @aggregator_id = aggregator_id
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] name Value to be assigned
-    def name=(name)
-      @name = name
-    end
-
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          aggregator_id == o.aggregator_id &&
-          name == o.name &&
-          sub_merchant == o.sub_merchant
+          consumer_consent_obtained == o.consumer_consent_obtained &&
+          multi_factor_authenticated == o.multi_factor_authenticated
     end
 
     # @see the `==` method
@@ -113,7 +91,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [aggregator_id, name, sub_merchant].hash
+      [consumer_consent_obtained, multi_factor_authenticated].hash
     end
 
     # Builds the object from hash

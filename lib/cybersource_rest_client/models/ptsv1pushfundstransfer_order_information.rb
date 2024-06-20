@@ -15,35 +15,24 @@ module CyberSource
   class Ptsv1pushfundstransferOrderInformation
     attr_accessor :amount_details
 
-    # This indicates that the funds transfer is for a crypto currency transaction. Optional Y/y, true N/n, false 
-    attr_accessor :is_cryptocurrency_purchase
-
-    attr_accessor :surcharge
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'amount_details' => :'amountDetails',
-        :'is_cryptocurrency_purchase' => :'isCryptocurrencyPurchase',
-        :'surcharge' => :'surcharge'
+        :'amount_details' => :'amountDetails'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'amount_details' => :'amount_details',
-        :'is_cryptocurrency_purchase' => :'is_cryptocurrency_purchase',
-        :'surcharge' => :'surcharge'
+        :'amount_details' => :'amount_details'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'amount_details' => :'Ptsv1pushfundstransferOrderInformationAmountDetails',
-        :'is_cryptocurrency_purchase' => :'String',
-        :'surcharge' => :'Ptsv1pushfundstransferOrderInformationSurcharge'
+        :'amount_details' => :'Ptsv1pushfundstransferOrderInformationAmountDetails'
       }
     end
 
@@ -57,14 +46,6 @@ module CyberSource
 
       if attributes.has_key?(:'amountDetails')
         self.amount_details = attributes[:'amountDetails']
-      end
-
-      if attributes.has_key?(:'isCryptocurrencyPurchase')
-        self.is_cryptocurrency_purchase = attributes[:'isCryptocurrencyPurchase']
-      end
-
-      if attributes.has_key?(:'surcharge')
-        self.surcharge = attributes[:'surcharge']
       end
     end
 
@@ -86,20 +67,12 @@ module CyberSource
       true
     end
 
-    # Custom attribute writer method with validation
-    # @param [Object] is_cryptocurrency_purchase Value to be assigned
-    def is_cryptocurrency_purchase=(is_cryptocurrency_purchase)
-      @is_cryptocurrency_purchase = is_cryptocurrency_purchase
-    end
-
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          amount_details == o.amount_details &&
-          is_cryptocurrency_purchase == o.is_cryptocurrency_purchase &&
-          surcharge == o.surcharge
+          amount_details == o.amount_details
     end
 
     # @see the `==` method
@@ -111,7 +84,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [amount_details, is_cryptocurrency_purchase, surcharge].hash
+      [amount_details].hash
     end
 
     # Builds the object from hash

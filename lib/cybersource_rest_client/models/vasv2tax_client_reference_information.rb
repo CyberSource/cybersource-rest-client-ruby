@@ -18,7 +18,7 @@ module CyberSource
 
     attr_accessor :partner
 
-    # Comments
+    # Brief description of the order or any comment you wish to add to the order.
     attr_accessor :comments
 
     # Attribute mapping from ruby-style variable name to JSON key.

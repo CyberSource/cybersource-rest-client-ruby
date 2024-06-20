@@ -16,9 +16,6 @@ module CyberSource
     # First name of recipient. characters. * CTV (14) * Paymentech (30) 
     attr_accessor :first_name
 
-    # Middle Initial of recipient. Required only for FDCCompass. 
-    attr_accessor :middle_initial
-
     # Recipient's middle name. This field is a _passthrough_, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. If the field is not required for the transaction, CyberSource does not forward it to the processor. 
     attr_accessor :middle_name
 
@@ -43,14 +40,10 @@ module CyberSource
     # Recipient phone number. Required only for FDCCompass.
     attr_accessor :phone_number
 
-    # Recipient date of birth in YYYYMMDD format. Required only for FDCCompass.
-    attr_accessor :date_of_birth
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'first_name' => :'firstName',
-        :'middle_initial' => :'middleInitial',
         :'middle_name' => :'middleName',
         :'last_name' => :'lastName',
         :'address1' => :'address1',
@@ -58,8 +51,7 @@ module CyberSource
         :'administrative_area' => :'administrativeArea',
         :'country' => :'country',
         :'postal_code' => :'postalCode',
-        :'phone_number' => :'phoneNumber',
-        :'date_of_birth' => :'dateOfBirth'
+        :'phone_number' => :'phoneNumber'
       }
     end
 
@@ -67,7 +59,6 @@ module CyberSource
     def self.json_map
       {
         :'first_name' => :'first_name',
-        :'middle_initial' => :'middle_initial',
         :'middle_name' => :'middle_name',
         :'last_name' => :'last_name',
         :'address1' => :'address1',
@@ -75,8 +66,7 @@ module CyberSource
         :'administrative_area' => :'administrative_area',
         :'country' => :'country',
         :'postal_code' => :'postal_code',
-        :'phone_number' => :'phone_number',
-        :'date_of_birth' => :'date_of_birth'
+        :'phone_number' => :'phone_number'
       }
     end
 
@@ -84,7 +74,6 @@ module CyberSource
     def self.swagger_types
       {
         :'first_name' => :'String',
-        :'middle_initial' => :'String',
         :'middle_name' => :'String',
         :'last_name' => :'String',
         :'address1' => :'String',
@@ -92,8 +81,7 @@ module CyberSource
         :'administrative_area' => :'String',
         :'country' => :'String',
         :'postal_code' => :'String',
-        :'phone_number' => :'String',
-        :'date_of_birth' => :'String'
+        :'phone_number' => :'String'
       }
     end
 
@@ -107,10 +95,6 @@ module CyberSource
 
       if attributes.has_key?(:'firstName')
         self.first_name = attributes[:'firstName']
-      end
-
-      if attributes.has_key?(:'middleInitial')
-        self.middle_initial = attributes[:'middleInitial']
       end
 
       if attributes.has_key?(:'middleName')
@@ -144,10 +128,6 @@ module CyberSource
       if attributes.has_key?(:'phoneNumber')
         self.phone_number = attributes[:'phoneNumber']
       end
-
-      if attributes.has_key?(:'dateOfBirth')
-        self.date_of_birth = attributes[:'dateOfBirth']
-      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -167,12 +147,6 @@ module CyberSource
     # @param [Object] first_name Value to be assigned
     def first_name=(first_name)
       @first_name = first_name
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] middle_initial Value to be assigned
-    def middle_initial=(middle_initial)
-      @middle_initial = middle_initial
     end
 
     # Custom attribute writer method with validation
@@ -223,19 +197,12 @@ module CyberSource
       @phone_number = phone_number
     end
 
-    # Custom attribute writer method with validation
-    # @param [Object] date_of_birth Value to be assigned
-    def date_of_birth=(date_of_birth)
-      @date_of_birth = date_of_birth
-    end
-
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           first_name == o.first_name &&
-          middle_initial == o.middle_initial &&
           middle_name == o.middle_name &&
           last_name == o.last_name &&
           address1 == o.address1 &&
@@ -243,8 +210,7 @@ module CyberSource
           administrative_area == o.administrative_area &&
           country == o.country &&
           postal_code == o.postal_code &&
-          phone_number == o.phone_number &&
-          date_of_birth == o.date_of_birth
+          phone_number == o.phone_number
     end
 
     # @see the `==` method
@@ -256,7 +222,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [first_name, middle_initial, middle_name, last_name, address1, locality, administrative_area, country, postal_code, phone_number, date_of_birth].hash
+      [first_name, middle_name, last_name, address1, locality, administrative_area, country, postal_code, phone_number].hash
     end
 
     # Builds the object from hash

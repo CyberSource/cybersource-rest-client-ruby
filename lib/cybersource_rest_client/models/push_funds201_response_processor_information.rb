@@ -19,16 +19,10 @@ module CyberSource
     # Transaction status from the processor. 
     attr_accessor :response_code
 
-    # Issuer-generated approval code for the transaction. 
-    attr_accessor :approval_code
-
-    # System audit number. Returned by authorization and incremental authorization services.  Visa Platform Connect  System trace number that must be printed on the customer's receipt. 
+    # System audit number. Returned by authorization and incremental authorization services. 
     attr_accessor :system_trace_audit_number
 
-    # Used by Visa only and contains the response source/reason code that identifies the source of the response decision. 
-    attr_accessor :response_code_source
-
-    # Unique reference number returned by the processor that identifies the transaction at the network.  Supported by Mastercard Send 
+    # Unique reference number returned by the processor that identifies the transaction at the network. 
     attr_accessor :retrieval_reference_number
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -36,9 +30,7 @@ module CyberSource
       {
         :'transaction_id' => :'transactionId',
         :'response_code' => :'responseCode',
-        :'approval_code' => :'approvalCode',
         :'system_trace_audit_number' => :'systemTraceAuditNumber',
-        :'response_code_source' => :'responseCodeSource',
         :'retrieval_reference_number' => :'retrievalReferenceNumber'
       }
     end
@@ -48,9 +40,7 @@ module CyberSource
       {
         :'transaction_id' => :'transaction_id',
         :'response_code' => :'response_code',
-        :'approval_code' => :'approval_code',
         :'system_trace_audit_number' => :'system_trace_audit_number',
-        :'response_code_source' => :'response_code_source',
         :'retrieval_reference_number' => :'retrieval_reference_number'
       }
     end
@@ -60,9 +50,7 @@ module CyberSource
       {
         :'transaction_id' => :'Integer',
         :'response_code' => :'String',
-        :'approval_code' => :'String',
         :'system_trace_audit_number' => :'String',
-        :'response_code_source' => :'String',
         :'retrieval_reference_number' => :'String'
       }
     end
@@ -83,16 +71,8 @@ module CyberSource
         self.response_code = attributes[:'responseCode']
       end
 
-      if attributes.has_key?(:'approvalCode')
-        self.approval_code = attributes[:'approvalCode']
-      end
-
       if attributes.has_key?(:'systemTraceAuditNumber')
         self.system_trace_audit_number = attributes[:'systemTraceAuditNumber']
-      end
-
-      if attributes.has_key?(:'responseCodeSource')
-        self.response_code_source = attributes[:'responseCodeSource']
       end
 
       if attributes.has_key?(:'retrievalReferenceNumber')
@@ -120,21 +100,9 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] approval_code Value to be assigned
-    def approval_code=(approval_code)
-      @approval_code = approval_code
-    end
-
-    # Custom attribute writer method with validation
     # @param [Object] system_trace_audit_number Value to be assigned
     def system_trace_audit_number=(system_trace_audit_number)
       @system_trace_audit_number = system_trace_audit_number
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] response_code_source Value to be assigned
-    def response_code_source=(response_code_source)
-      @response_code_source = response_code_source
     end
 
     # Custom attribute writer method with validation
@@ -150,9 +118,7 @@ module CyberSource
       self.class == o.class &&
           transaction_id == o.transaction_id &&
           response_code == o.response_code &&
-          approval_code == o.approval_code &&
           system_trace_audit_number == o.system_trace_audit_number &&
-          response_code_source == o.response_code_source &&
           retrieval_reference_number == o.retrieval_reference_number
     end
 
@@ -165,7 +131,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [transaction_id, response_code, approval_code, system_trace_audit_number, response_code_source, retrieval_reference_number].hash
+      [transaction_id, response_code, system_trace_audit_number, retrieval_reference_number].hash
     end
 
     # Builds the object from hash

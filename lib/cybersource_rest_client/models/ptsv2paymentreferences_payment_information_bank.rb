@@ -13,7 +13,7 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentreferencesPaymentInformationBank
-    # Bank's SWIFT code. You can use this field only when scoring a direct debit transaction. Required only for crossborder transactions.  For all possible values, see the `bank_swiftcode` field description in the _Decision Manager Using the SCMP API Developer Guide_ on the [CyberSource Business Center.](https://ebc2.cybersource.com/ebc2/) Click **Decision Manager** > **Documentation** > **Guides** > _Decision Manager Using the SCMP API Developer Guide_ (PDF link). 
+    # Bank's SWIFT code. You can use this field only when scoring a direct debit transaction. Required only for crossborder transactions. 
     attr_accessor :swift_code
 
     attr_accessor :account

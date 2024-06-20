@@ -13,17 +13,25 @@ require 'date'
 
 module CyberSource
   class Ptsv1pushfundstransferOrderInformationAmountDetails
-    # Grand total for the order. This value cannot be negative. You can include a decimal point (.), but no other special characters. CyberSource truncates the amount to the correct number of decimal places.  The disbursement amount. Numeric integer, 1-999999999999. The decimal point is implied based on the relevant currency exponent. For example, a US Dollar $53 amount is a value of 5300.  Processor Amount Ranges: Visa Platform Connect: .01-9999999999.99  Mastercard Send: 1-9999999999.99  FDC Compass: .01- 9999999999.99  Chase Paymentech: .01-9999999999.99 
+    # Grand total for the order. This value cannot be negative. You can include a decimal point (.), but no other special characters. CyberSource truncates the amount to the correct number of decimal places. 
     attr_accessor :total_amount
 
-    # Use a 3-character alpha currency code for currency of the sender.  ISO standard currencies: http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf  Currency must be supported by the processor. 
+    # Use a 3-character alpha currency code for currency of the funds transfer.  ISO standard currencies: http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf  Currency must be supported by the processor. 
     attr_accessor :currency
+
+    # Use a 3-character alpha currency code for source currency of the funds transfer. Supported for card and bank account based cross border funds transfers.  ISO standard currencies: http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf 
+    attr_accessor :source_currency
+
+    # Use a 3-character alpha currency code for destination currency of the funds transfer. Supported for card and bank account based cross border funds transfers.  ISO standard currencies: http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf NOTE: This field is supported only for Visa Platform Connect 
+    attr_accessor :destination_currency
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'total_amount' => :'totalAmount',
-        :'currency' => :'currency'
+        :'currency' => :'currency',
+        :'source_currency' => :'sourceCurrency',
+        :'destination_currency' => :'destinationCurrency'
       }
     end
 
@@ -31,7 +39,9 @@ module CyberSource
     def self.json_map
       {
         :'total_amount' => :'total_amount',
-        :'currency' => :'currency'
+        :'currency' => :'currency',
+        :'source_currency' => :'source_currency',
+        :'destination_currency' => :'destination_currency'
       }
     end
 
@@ -39,7 +49,9 @@ module CyberSource
     def self.swagger_types
       {
         :'total_amount' => :'String',
-        :'currency' => :'String'
+        :'currency' => :'String',
+        :'source_currency' => :'String',
+        :'destination_currency' => :'String'
       }
     end
 
@@ -58,6 +70,14 @@ module CyberSource
       if attributes.has_key?(:'currency')
         self.currency = attributes[:'currency']
       end
+
+      if attributes.has_key?(:'sourceCurrency')
+        self.source_currency = attributes[:'sourceCurrency']
+      end
+
+      if attributes.has_key?(:'destinationCurrency')
+        self.destination_currency = attributes[:'destinationCurrency']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -72,6 +92,18 @@ module CyberSource
         invalid_properties.push('invalid value for "currency", currency cannot be nil.')
       end
 
+      #if @currency !~ Regexp.new(/^(\\s{0,3}|.{3})$/)
+        #invalid_properties.push('invalid value for "currency", must conform to the pattern /^(\\s{0,3}|.{3})$/.')
+      #end
+
+      #if !@source_currency.nil? && @source_currency !~ Regexp.new(/^(\\s{0,3}|.{3})$/)
+        #invalid_properties.push('invalid value for "source_currency", must conform to the pattern /^(\\s{0,3}|.{3})$/.')
+      #end
+
+      #if !@destination_currency.nil? && @destination_currency !~ Regexp.new(/^(\\s{0,3}|.{3})$/)
+        #invalid_properties.push('invalid value for "destination_currency", must conform to the pattern /^(\\s{0,3}|.{3})$/.')
+      #end
+
       invalid_properties
     end
 
@@ -80,6 +112,9 @@ module CyberSource
     def valid?
       return false if @total_amount.nil?
       return false if @currency.nil?
+      #return false if @currency !~ Regexp.new(/^(\\s{0,3}|.{3})$/)
+      #return false if !@source_currency.nil? && @source_currency !~ Regexp.new(/^(\\s{0,3}|.{3})$/)
+      #return false if !@destination_currency.nil? && @destination_currency !~ Regexp.new(/^(\\s{0,3}|.{3})$/)
       true
     end
 
@@ -100,7 +135,31 @@ module CyberSource
         #fail ArgumentError, 'currency cannot be nil'
       #end
 
+      #if currency !~ Regexp.new(/^(\\s{0,3}|.{3})$/)
+        #fail ArgumentError, 'invalid value for "currency", must conform to the pattern /^(\\s{0,3}|.{3})$/.'
+      #end
+
       @currency = currency
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] source_currency Value to be assigned
+    def source_currency=(source_currency)
+      #if !source_currency.nil? && source_currency !~ Regexp.new(/^(\\s{0,3}|.{3})$/)
+        #fail ArgumentError, 'invalid value for "source_currency", must conform to the pattern /^(\\s{0,3}|.{3})$/.'
+      #end
+
+      @source_currency = source_currency
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] destination_currency Value to be assigned
+    def destination_currency=(destination_currency)
+      #if !destination_currency.nil? && destination_currency !~ Regexp.new(/^(\\s{0,3}|.{3})$/)
+        #fail ArgumentError, 'invalid value for "destination_currency", must conform to the pattern /^(\\s{0,3}|.{3})$/.'
+      #end
+
+      @destination_currency = destination_currency
     end
 
     # Checks equality by comparing each attribute.
@@ -109,7 +168,9 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           total_amount == o.total_amount &&
-          currency == o.currency
+          currency == o.currency &&
+          source_currency == o.source_currency &&
+          destination_currency == o.destination_currency
     end
 
     # @see the `==` method
@@ -121,7 +182,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [total_amount, currency].hash
+      [total_amount, currency, source_currency, destination_currency].hash
     end
 
     # Builds the object from hash

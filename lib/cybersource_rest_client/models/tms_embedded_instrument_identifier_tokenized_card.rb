@@ -16,6 +16,9 @@ module CyberSource
     # The network token card association brand Possible Values: - visa - mastercard - americanexpress 
     attr_accessor :type
 
+    # This enumeration value indicates the origin of the payment instrument (PAN) and the technique employed to supply the payment instrument data. Possible Values: - TOKEN - ISSUER - ONFILE 
+    attr_accessor :source
+
     # State of the network token or network token provision Possible Values: - ACTIVE : Network token is active. - SUSPENDED : Network token is suspended. This state can change back to ACTIVE. - DELETED : This is a final state for a network token instance. - UNPROVISIONED : A previous network token provision was unsuccessful. 
     attr_accessor :state
 
@@ -46,6 +49,7 @@ module CyberSource
     def self.attribute_map
       {
         :'type' => :'type',
+        :'source' => :'source',
         :'state' => :'state',
         :'enrollment_id' => :'enrollmentId',
         :'token_reference_id' => :'tokenReferenceId',
@@ -62,6 +66,7 @@ module CyberSource
     def self.json_map
       {
         :'type' => :'type',
+        :'source' => :'source',
         :'state' => :'state',
         :'enrollment_id' => :'enrollment_id',
         :'token_reference_id' => :'token_reference_id',
@@ -78,6 +83,7 @@ module CyberSource
     def self.swagger_types
       {
         :'type' => :'String',
+        :'source' => :'String',
         :'state' => :'String',
         :'enrollment_id' => :'String',
         :'token_reference_id' => :'String',
@@ -100,6 +106,10 @@ module CyberSource
 
       if attributes.has_key?(:'type')
         self.type = attributes[:'type']
+      end
+
+      if attributes.has_key?(:'source')
+        self.source = attributes[:'source']
       end
 
       if attributes.has_key?(:'state')
@@ -170,6 +180,7 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           type == o.type &&
+          source == o.source &&
           state == o.state &&
           enrollment_id == o.enrollment_id &&
           token_reference_id == o.token_reference_id &&
@@ -190,7 +201,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [type, state, enrollment_id, token_reference_id, reason, number, expiration_month, expiration_year, cryptogram, card].hash
+      [type, source, state, enrollment_id, token_reference_id, reason, number, expiration_month, expiration_year, cryptogram, card].hash
     end
 
     # Builds the object from hash

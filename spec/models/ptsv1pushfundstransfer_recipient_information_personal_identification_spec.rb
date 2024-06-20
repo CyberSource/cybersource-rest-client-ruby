@@ -43,4 +43,10 @@ describe 'Ptsv1pushfundstransferRecipientInformationPersonalIdentification' do
     end
   end
 
+  describe 'test attribute "issuing_country"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

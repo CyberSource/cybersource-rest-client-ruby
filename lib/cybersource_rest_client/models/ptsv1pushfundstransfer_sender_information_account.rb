@@ -16,7 +16,7 @@ module CyberSource
     # Source of funds. Possible values:  Chase Paymentech, FDC Compass, Visa Platform Connect:  - `01`: Credit card - `02`: Debit card - `03`: Prepaid card  Chase Paymentech, Visa Platform Connect:  - `04`: Cash - `05`: Debit or deposit account that is not linked to a Visa card. Includes checking accounts, savings accounts, and proprietary debit or ATM cards. - `06`: Credit account that is not linked to a Visa card. Includes credit cards and proprietary lines of credit.  FDC Compass: - `04`: Deposit Account  Funds Disbursement This value is most likely 05 to identify that the originator used a deposit account to fund the disbursement.  Credit Card Bill Payment This value must be 02, 03, 04, or 05. 
     attr_accessor :funds_source
 
-    # The account number of the entity funding the transaction. It is the sender's account number. It can be a debit/credit card account number or bank account number.  Funds disbursements  This field is optional.  All other transactions  This field is required when the sender funds the transaction with a financial instrument, for example debit card. Length:  FDC Compass (<= 19) Chase Paymentech (<= 16) 
+    # The account number of the entity funding the transaction. It is the sender's account number. It can be a debit/credit card account number or bank account number.  Funds disbursements  This field is optional.  All other transactions  This field is required when the sender funds the transaction with a financial instrument, for example debit card. Length: 
     attr_accessor :number
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -64,18 +64,27 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      #if !@funds_source.nil? && @funds_source !~ Regexp.new(/^(\\s{0,2}|.{2})$/)
+        #invalid_properties.push('invalid value for "funds_source", must conform to the pattern /^(\\s{0,2}|.{2})$/.')
+      #end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      #return false if !@funds_source.nil? && @funds_source !~ Regexp.new(/^(\\s{0,2}|.{2})$/)
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] funds_source Value to be assigned
     def funds_source=(funds_source)
+      #if !funds_source.nil? && funds_source !~ Regexp.new(/^(\\s{0,2}|.{2})$/)
+        #fail ArgumentError, 'invalid value for "funds_source", must conform to the pattern /^(\\s{0,2}|.{2})$/.'
+      #end
+
       @funds_source = funds_source
     end
 

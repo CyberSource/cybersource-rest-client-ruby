@@ -13,7 +13,7 @@ require 'date'
 
 module CyberSource
   class Ptsv1pushfundstransferRecipientInformationPaymentInformationCard
-    # Three-digit value that indicates the card type. Mandatory if not present in a token.  Possible values:  Visa Platform Connect - `001`: Visa - `002`: Mastercard, Eurocard, which is a European regional brand of Mastercard. - `033`: Visa Electron - `024`: Maestro  Mastercard Send: - `002`: Mastercard, Eurocard, which is a European regional brand of Mastercard.  FDC Compass: - `001`: Visa - `002`: Mastercard, Eurocard, which is a European regional brand of Mastercard.  Chase Paymentech: - `001`: Visa - `002`: Mastercard, Eurocard, which is a European regional brand of Mastercard. 
+    # Three-digit value that indicates the card type.  Possible values:  Visa Platform Connect - `001`: Visa - `002`: Mastercard, Eurocard, which is a European regional brand of Mastercard. - `033`: Visa Electron - `024`: Maestro  Mastercard Send: - `002`: Mastercard, Eurocard, which is a European regional brand of Mastercard.  FDC Compass: - `001`: Visa - `002`: Mastercard, Eurocard, which is a European regional brand of Mastercard.  Chase Paymentech: - `001`: Visa - `002`: Mastercard, Eurocard, which is a European regional brand of Mastercard.  Yellow Pepper: - `001`: Visa - `002`: Mastercard, Eurocard, which is a European regional brand of Mastercard. - `005`: Diners Club - `033`: Visa Electron - `024`: Intl Maestro 
     attr_accessor :type
 
     # 3-digit value that indicates the cardCvv2Value. Values can be 0-9. 
@@ -121,30 +121,57 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      #if !@type.nil? && @type !~ Regexp.new(/^(\\s{0,3}|.{3})$/)
+        #invalid_properties.push('invalid value for "type", must conform to the pattern /^(\\s{0,3}|.{3})$/.')
+      #end
+
+      #if !@security_code.nil? && @security_code !~ Regexp.new(/^(\\s{0,3}|.{3})$/)
+        #invalid_properties.push('invalid value for "security_code", must conform to the pattern /^(\\s{0,3}|.{3})$/.')
+      #end
+
+      #if !@number.nil? && @number !~ Regexp.new(/^(\\s{0,19}|.{13,19})$/)
+        #invalid_properties.push('invalid value for "number", must conform to the pattern /^(\\s{0,19}|.{13,19})$/.')
+      #end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      #return false if !@type.nil? && @type !~ Regexp.new(/^(\\s{0,3}|.{3})$/)
+      #return false if !@security_code.nil? && @security_code !~ Regexp.new(/^(\\s{0,3}|.{3})$/)
+      #return false if !@number.nil? && @number !~ Regexp.new(/^(\\s{0,19}|.{13,19})$/)
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] type Value to be assigned
     def type=(type)
+      #if !type.nil? && type !~ Regexp.new(/^(\\s{0,3}|.{3})$/)
+        #fail ArgumentError, 'invalid value for "type", must conform to the pattern /^(\\s{0,3}|.{3})$/.'
+      #end
+
       @type = type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] security_code Value to be assigned
     def security_code=(security_code)
+      #if !security_code.nil? && security_code !~ Regexp.new(/^(\\s{0,3}|.{3})$/)
+        #fail ArgumentError, 'invalid value for "security_code", must conform to the pattern /^(\\s{0,3}|.{3})$/.'
+      #end
+
       @security_code = security_code
     end
 
     # Custom attribute writer method with validation
     # @param [Object] number Value to be assigned
     def number=(number)
+      #if !number.nil? && number !~ Regexp.new(/^(\\s{0,19}|.{13,19})$/)
+        #fail ArgumentError, 'invalid value for "number", must conform to the pattern /^(\\s{0,19}|.{13,19})$/.'
+      #end
+
       @number = number
     end
 

@@ -13,13 +13,13 @@ require 'date'
 
 module CyberSource
   class TssV2TransactionsPost201ResponseEmbeddedConsumerAuthenticationInformation
-    # Transaction identifier.  For details, see `xid` request field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
+    # Transaction identifier. 
     attr_accessor :xid
 
     # Payer auth Transaction identifier.
     attr_accessor :transaction_id
 
-    # Raw electronic commerce indicator (ECI).  For details, see `eci_raw` request field description in [Credit Card Services Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/) 
+    # Raw electronic commerce indicator (ECI). 
     attr_accessor :eci_raw
 
     # Attribute mapping from ruby-style variable name to JSON key.

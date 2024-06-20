@@ -16,19 +16,19 @@ module CyberSource
     # Three-digit value that indicates the card type.  IMPORTANT It is strongly recommended that you include the card type field in request messages even if it is optional for your processor and card type. Omitting the card type can cause the transaction to be processed with the wrong card type.  Possible values:  - `001`: Visa. For card-present transactions on all processors except SIX, the Visa Electron card type is processed the same way that the Visa debit card is processed. Use card type value 001 for Visa Electron. - `002`: Mastercard, Eurocard[^1], which is a European regional brand of Mastercard. 
     attr_accessor :type
 
-    # 3-digit value that indicates the card Cvv2Value. Values can be 0-9.  This field is supported in Mastercard Send. 
+    # 3-digit value that indicates the card Cvv2Value. Values can be 0-9. 
     attr_accessor :security_code
 
-    # Flag that specifies the type of account associated with the card. The cardholder provides this information during the payment process.  Valid values for Visa Platform Connect: - `CHECKING`: Checking account - `CREDIT`: Credit card account - `SAVING`: Saving account - `LINE_OF_CREDIT`: Line of credit or credit portion of combo card - `PREPAID`: Prepaid card account or prepaid portion of combo card - `UNIVERSAL`: Universal account  Valid values for Mastercard Send: - `00`: Other, - `01`: RTN + Bank Account, - `02`: IBAN, - `03`: Card Account, - `04`: Email, - `05`: Phone Number, - `06`: Bank account number (BAN) + Bank Identification Сode (BIC), - `07`: Wallet ID, - `08`: Social Network ID. Numeric, 2 characters.  This field is supported in Mastercard Send. 
+    # Flag that specifies the type of account associated with the card. The cardholder provides this information during the payment process. 
     attr_accessor :source_account_type
 
-    # The customer's payment card number, also known as the Primary Account Number (PAN).  This field is supported in Mastercard Send. 
+    # The customer's payment card number, also known as the Primary Account Number (PAN). 
     attr_accessor :number
 
-    # Two-digit month in which the payment card expires.  Format: MM.  Valid values: 01 through 12. Leading 0 is required.  This field is supported for Mastercard Send. 
+    # Two-digit month in which the payment card expires.  Format: MM.  Valid values: 01 through 12. Leading 0 is required. 
     attr_accessor :expiration_month
 
-    # Four-digit year in which the payment card expires.  This field is supported for Mastercard Send. 
+    # Four-digit year in which the payment card expires. 
     attr_accessor :expiration_year
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -104,24 +104,52 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      #if !@type.nil? && @type !~ Regexp.new(/^(\\s{0,3}|.{3})$/)
+        #invalid_properties.push('invalid value for "type", must conform to the pattern /^(\\s{0,3}|.{3})$/.')
+      #end
+
+      #if !@security_code.nil? && @security_code !~ Regexp.new(/^(\\s{0,3}|.{3})$/)
+        #invalid_properties.push('invalid value for "security_code", must conform to the pattern /^(\\s{0,3}|.{3})$/.')
+      #end
+
+      #if !@expiration_month.nil? && @expiration_month !~ Regexp.new(/^(\\s{0,2}|.{2})$/)
+        #invalid_properties.push('invalid value for "expiration_month", must conform to the pattern /^(\\s{0,2}|.{2})$/.')
+      #end
+
+      #if !@expiration_year.nil? && @expiration_year !~ Regexp.new(/^(\\s{0,4}|.{4})$/)
+        #invalid_properties.push('invalid value for "expiration_year", must conform to the pattern /^(\\s{0,4}|.{4})$/.')
+      #end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      #return false if !@type.nil? && @type !~ Regexp.new(/^(\\s{0,3}|.{3})$/)
+      #return false if !@security_code.nil? && @security_code !~ Regexp.new(/^(\\s{0,3}|.{3})$/)
+      #return false if !@expiration_month.nil? && @expiration_month !~ Regexp.new(/^(\\s{0,2}|.{2})$/)
+      #return false if !@expiration_year.nil? && @expiration_year !~ Regexp.new(/^(\\s{0,4}|.{4})$/)
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] type Value to be assigned
     def type=(type)
+      #if !type.nil? && type !~ Regexp.new(/^(\\s{0,3}|.{3})$/)
+        #fail ArgumentError, 'invalid value for "type", must conform to the pattern /^(\\s{0,3}|.{3})$/.'
+      #end
+
       @type = type
     end
 
     # Custom attribute writer method with validation
     # @param [Object] security_code Value to be assigned
     def security_code=(security_code)
+      #if !security_code.nil? && security_code !~ Regexp.new(/^(\\s{0,3}|.{3})$/)
+        #fail ArgumentError, 'invalid value for "security_code", must conform to the pattern /^(\\s{0,3}|.{3})$/.'
+      #end
+
       @security_code = security_code
     end
 
@@ -140,12 +168,20 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] expiration_month Value to be assigned
     def expiration_month=(expiration_month)
+      #if !expiration_month.nil? && expiration_month !~ Regexp.new(/^(\\s{0,2}|.{2})$/)
+        #fail ArgumentError, 'invalid value for "expiration_month", must conform to the pattern /^(\\s{0,2}|.{2})$/.'
+      #end
+
       @expiration_month = expiration_month
     end
 
     # Custom attribute writer method with validation
     # @param [Object] expiration_year Value to be assigned
     def expiration_year=(expiration_year)
+      #if !expiration_year.nil? && expiration_year !~ Regexp.new(/^(\\s{0,4}|.{4})$/)
+        #fail ArgumentError, 'invalid value for "expiration_year", must conform to the pattern /^(\\s{0,4}|.{4})$/.'
+      #end
+
       @expiration_year = expiration_year
     end
 

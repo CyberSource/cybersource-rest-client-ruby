@@ -15,38 +15,32 @@ module CyberSource
   class Ptsv1pushfundstransferRecipientInformation
     attr_accessor :payment_information
 
-    # First line of the recipient's address.  Required for Mastercard Send. This field is not supported for Visa Platform Connect. 
+    # First line of the recipient's address. Required for card payments 
     attr_accessor :address1
 
-    # Second line of the recipient's address  Optional for Mastercard Send. This field is not supported for Visa Platform Connect. 
+    # Second line of the recipient's address 
     attr_accessor :address2
 
-    # Recipient city.  Required for Mastercard Send. 
+    # Recipient city. 
     attr_accessor :locality
 
-    # Recipient postal code.  For USA, this must be a valid value of 5 digits or 5 digits hyphen 4 digits, for example '63368', '63368-5555'. For other regions, this can be alphanumeric, length 1-10.  Mastercard Send: Required for recipients in Canada and Canadian issued cards. 
+    # Recipient postal code.   For USA, this must be a valid value of 5 digits or 5 digits hyphen 4 digits, for example '63368', '63368-5555'. For other regions, this can be alphanumeric, length 1-10.  Mandatory for card payments. 
     attr_accessor :postal_code
 
-    # The recipient's province, state or territory. Conditional, required if recipient's country is USA or CAN. Must be an ISO 3166-2 uppercase alpha 2 or 3 character country subdivision code. For example, Missouri is MO.  Required only for FDCCompass.  This field is not supported for Visa Platform Connect. 
+    # The recipient's province, state or territory. Conditional, required if recipient's country is USA or CAN. Must be an ISO 3166-2 uppercase alpha 2 or 3 character country subdivision code. For example, Missouri is MO.  See https://developer.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf  Required for card payments. 
     attr_accessor :administrative_area
 
-    # Recipient country code. Use the ISO Standard Alpha Country Codes.  https://developer.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf  Required for Mastercard Send. 
+    # Recipient country code. Use the ISO Standard Alpha Country Codes.  https://developer.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf 
     attr_accessor :country
 
-    # First name of recipient.  Visa Platform Connect (14) Chase Paymentech (30) Mastercard Send (40)  This field is required for Mastercard Send. 
+    # First name of recipient. 
     attr_accessor :first_name
 
     # Sender's middle name. This field is a passthrough, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. If the field is not required for the transaction, CyberSource does not forward it to the processor. 
     attr_accessor :middle_name
 
-    # Middle Initial of recipient.  This field is supported by FDC Compass. 
-    attr_accessor :middle_initial
-
-    # Last name of recipient.  Visa Platform Connect (14) Paymentech (30) Mastercard Send (40)  This field is required for Mastercard Send. 
+    # Last name of recipient. 
     attr_accessor :last_name
-
-    # Recipient date of birth in YYYYMMDD format. 
-    attr_accessor :date_of_birth
 
     # Recipient phone number.  This field is supported by FDC Compass.  Mastercard Send: Max length is 15 with no dashes or spaces. 
     attr_accessor :phone_number
@@ -65,9 +59,7 @@ module CyberSource
         :'country' => :'country',
         :'first_name' => :'firstName',
         :'middle_name' => :'middleName',
-        :'middle_initial' => :'middleInitial',
         :'last_name' => :'lastName',
-        :'date_of_birth' => :'dateOfBirth',
         :'phone_number' => :'phoneNumber',
         :'personal_identification' => :'personalIdentification'
       }
@@ -85,9 +77,7 @@ module CyberSource
         :'country' => :'country',
         :'first_name' => :'first_name',
         :'middle_name' => :'middle_name',
-        :'middle_initial' => :'middle_initial',
         :'last_name' => :'last_name',
-        :'date_of_birth' => :'date_of_birth',
         :'phone_number' => :'phone_number',
         :'personal_identification' => :'personal_identification'
       }
@@ -105,9 +95,7 @@ module CyberSource
         :'country' => :'String',
         :'first_name' => :'String',
         :'middle_name' => :'String',
-        :'middle_initial' => :'String',
         :'last_name' => :'String',
-        :'date_of_birth' => :'String',
         :'phone_number' => :'String',
         :'personal_identification' => :'Ptsv1pushfundstransferRecipientInformationPersonalIdentification'
       }
@@ -157,16 +145,8 @@ module CyberSource
         self.middle_name = attributes[:'middleName']
       end
 
-      if attributes.has_key?(:'middleInitial')
-        self.middle_initial = attributes[:'middleInitial']
-      end
-
       if attributes.has_key?(:'lastName')
         self.last_name = attributes[:'lastName']
-      end
-
-      if attributes.has_key?(:'dateOfBirth')
-        self.date_of_birth = attributes[:'dateOfBirth']
       end
 
       if attributes.has_key?(:'phoneNumber')
@@ -182,12 +162,17 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      #if !@country.nil? && @country !~ Regexp.new(/^(\\s{0,2}|.{2})$/)
+        #invalid_properties.push('invalid value for "country", must conform to the pattern /^(\\s{0,2}|.{2})$/.')
+      #end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      #return false if !@country.nil? && @country !~ Regexp.new(/^(\\s{0,2}|.{2})$/)
       true
     end
 
@@ -224,6 +209,10 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] country Value to be assigned
     def country=(country)
+      #if !country.nil? && country !~ Regexp.new(/^(\\s{0,2}|.{2})$/)
+        #fail ArgumentError, 'invalid value for "country", must conform to the pattern /^(\\s{0,2}|.{2})$/.'
+      #end
+
       @country = country
     end
 
@@ -240,21 +229,9 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] middle_initial Value to be assigned
-    def middle_initial=(middle_initial)
-      @middle_initial = middle_initial
-    end
-
-    # Custom attribute writer method with validation
     # @param [Object] last_name Value to be assigned
     def last_name=(last_name)
       @last_name = last_name
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] date_of_birth Value to be assigned
-    def date_of_birth=(date_of_birth)
-      @date_of_birth = date_of_birth
     end
 
     # Custom attribute writer method with validation
@@ -277,9 +254,7 @@ module CyberSource
           country == o.country &&
           first_name == o.first_name &&
           middle_name == o.middle_name &&
-          middle_initial == o.middle_initial &&
           last_name == o.last_name &&
-          date_of_birth == o.date_of_birth &&
           phone_number == o.phone_number &&
           personal_identification == o.personal_identification
     end
@@ -293,7 +268,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [payment_information, address1, address2, locality, postal_code, administrative_area, country, first_name, middle_name, middle_initial, last_name, date_of_birth, phone_number, personal_identification].hash
+      [payment_information, address1, address2, locality, postal_code, administrative_area, country, first_name, middle_name, last_name, phone_number, personal_identification].hash
     end
 
     # Builds the object from hash
