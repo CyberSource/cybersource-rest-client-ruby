@@ -101,9 +101,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] value Value to be assigned
     def value=(value)
-      if value.nil?
-        fail ArgumentError, 'value cannot be nil'
-      end
+      #if value.nil?
+        #fail ArgumentError, 'value cannot be nil'
+      #end
 
       @value = value
     end

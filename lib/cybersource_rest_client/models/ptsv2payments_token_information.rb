@@ -26,6 +26,8 @@ module CyberSource
     # Indicates whether a payment network token associated with a TMS token should be used for authorization. This field can contain one of following values:  - `ignore`: Use a tokenized card number for an authorization, even if the TMS token has an associated payment network token. - `prefer`: (Default) Use an associated payment network token for an authorization if the TMS token has one; otherwise, use the tokenized card number. 
     attr_accessor :network_token_option
 
+    attr_accessor :token_provisioning_information
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -33,7 +35,8 @@ module CyberSource
         :'transient_token_jwt' => :'transientTokenJwt',
         :'payment_instrument' => :'paymentInstrument',
         :'shipping_address' => :'shippingAddress',
-        :'network_token_option' => :'networkTokenOption'
+        :'network_token_option' => :'networkTokenOption',
+        :'token_provisioning_information' => :'tokenProvisioningInformation'
       }
     end
 
@@ -44,7 +47,8 @@ module CyberSource
         :'transient_token_jwt' => :'transient_token_jwt',
         :'payment_instrument' => :'payment_instrument',
         :'shipping_address' => :'shipping_address',
-        :'network_token_option' => :'network_token_option'
+        :'network_token_option' => :'network_token_option',
+        :'token_provisioning_information' => :'token_provisioning_information'
       }
     end
 
@@ -55,7 +59,8 @@ module CyberSource
         :'transient_token_jwt' => :'String',
         :'payment_instrument' => :'Ptsv2paymentsTokenInformationPaymentInstrument',
         :'shipping_address' => :'Ptsv2paymentsTokenInformationShippingAddress',
-        :'network_token_option' => :'String'
+        :'network_token_option' => :'String',
+        :'token_provisioning_information' => :'Ptsv2paymentsTokenInformationTokenProvisioningInformation'
       }
     end
 
@@ -85,6 +90,10 @@ module CyberSource
 
       if attributes.has_key?(:'networkTokenOption')
         self.network_token_option = attributes[:'networkTokenOption']
+      end
+
+      if attributes.has_key?(:'tokenProvisioningInformation')
+        self.token_provisioning_information = attributes[:'tokenProvisioningInformation']
       end
     end
 
@@ -116,7 +125,8 @@ module CyberSource
           transient_token_jwt == o.transient_token_jwt &&
           payment_instrument == o.payment_instrument &&
           shipping_address == o.shipping_address &&
-          network_token_option == o.network_token_option
+          network_token_option == o.network_token_option &&
+          token_provisioning_information == o.token_provisioning_information
     end
 
     # @see the `==` method
@@ -128,7 +138,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [jti, transient_token_jwt, payment_instrument, shipping_address, network_token_option].hash
+      [jti, transient_token_jwt, payment_instrument, shipping_address, network_token_option, token_provisioning_information].hash
     end
 
     # Builds the object from hash

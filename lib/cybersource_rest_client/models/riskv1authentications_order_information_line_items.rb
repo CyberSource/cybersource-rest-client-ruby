@@ -266,9 +266,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] unit_price Value to be assigned
     def unit_price=(unit_price)
-      if unit_price.nil?
-        fail ArgumentError, 'unit_price cannot be nil'
-      end
+      #if unit_price.nil?
+        #fail ArgumentError, 'unit_price cannot be nil'
+      #end
 
       @unit_price = unit_price
     end

@@ -31,13 +31,13 @@ describe 'Ptsv1pushfundstransferProcessingInformationPayoutsOptions' do
       expect(@instance).to be_instance_of(CyberSource::Ptsv1pushfundstransferProcessingInformationPayoutsOptions)
     end
   end
-  describe 'test attribute "account_funding_reference_id"' do
+  describe 'test attribute "source_currency"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "retrieval_reference_number"' do
+  describe 'test attribute "destination_currency"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

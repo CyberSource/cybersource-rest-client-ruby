@@ -252,9 +252,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] name Value to be assigned
     def name=(name)
-      if name.nil?
-        fail ArgumentError, 'name cannot be nil'
-      end
+      #if name.nil?
+        #fail ArgumentError, 'name cannot be nil'
+      #end
 
       #if name !~ Regexp.new(/^[0-9a-zA-Z _\\-\\+\\.\\*\\\"\/'&\\,\\(\\)!$;:?@\\#¡-￿]+$/)
         #fail ArgumentError, 'invalid value for "name", must conform to the pattern /^[0-9a-zA-Z _\\-\\+\\.\\*\\\"\/'&\\,\\(\\)!$;:?@\\#¡-￿]+$/.'

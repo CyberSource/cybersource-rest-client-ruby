@@ -43,4 +43,16 @@ describe 'Ptsv1pushfundstransferOrderInformationAmountDetails' do
     end
   end
 
+  describe 'test attribute "source_currency"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "destination_currency"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

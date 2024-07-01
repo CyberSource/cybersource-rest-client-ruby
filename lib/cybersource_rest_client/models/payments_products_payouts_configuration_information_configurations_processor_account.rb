@@ -100,9 +100,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] originator_merchant_id Value to be assigned
     def originator_merchant_id=(originator_merchant_id)
-      if originator_merchant_id.nil?
-        fail ArgumentError, 'originator_merchant_id cannot be nil'
-      end
+      #if originator_merchant_id.nil?
+        #fail ArgumentError, 'originator_merchant_id cannot be nil'
+      #end
 
       @originator_merchant_id = originator_merchant_id
     end

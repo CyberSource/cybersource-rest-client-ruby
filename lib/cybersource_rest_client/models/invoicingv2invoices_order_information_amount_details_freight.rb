@@ -14,7 +14,7 @@ require 'date'
 module CyberSource
   # Contains all of the shipping-related fields for the invoice.
   class Invoicingv2invoicesOrderInformationAmountDetailsFreight
-    # Total freight or shipping and handling charges for the order. When you include this field in your request, you must also include the **totalAmount** field.  For processor-specific information, see the freight_amount field in [Level II and Level III Processing Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/Level_2_3_SCMP_API/html) 
+    # Total freight or shipping and handling charges for the order. When you include this field in your request, you must also include the **totalAmount** field. 
     attr_accessor :amount
 
     # Flag that indicates whether an order is taxable. This value must be true if the sum of all _lineItems[].taxAmount_ values > 0.  If you do not include any `lineItems[].taxAmount` values in your request, CyberSource does not include `invoiceDetails.taxable` in the data it sends to the processor.  For processor-specific information, see the `tax_indicator` field in [Level II and Level III Processing Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/Level_2_3_SCMP_API/html)  Possible values:  - **true**  - **false** 

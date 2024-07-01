@@ -19,19 +19,9 @@ module CyberSource
 
     attr_accessor :processing_information
 
-    attr_accessor :processing_options
-
     attr_accessor :recipient_information
 
     attr_accessor :sender_information
-
-    attr_accessor :aggregator_information
-
-    attr_accessor :merchant_defined_information
-
-    attr_accessor :merchant_information
-
-    attr_accessor :point_of_service_information
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -39,13 +29,8 @@ module CyberSource
         :'client_reference_information' => :'clientReferenceInformation',
         :'order_information' => :'orderInformation',
         :'processing_information' => :'processingInformation',
-        :'processing_options' => :'processingOptions',
         :'recipient_information' => :'recipientInformation',
-        :'sender_information' => :'senderInformation',
-        :'aggregator_information' => :'aggregatorInformation',
-        :'merchant_defined_information' => :'merchantDefinedInformation',
-        :'merchant_information' => :'merchantInformation',
-        :'point_of_service_information' => :'pointOfServiceInformation'
+        :'sender_information' => :'senderInformation'
       }
     end
 
@@ -55,13 +40,8 @@ module CyberSource
         :'client_reference_information' => :'client_reference_information',
         :'order_information' => :'order_information',
         :'processing_information' => :'processing_information',
-        :'processing_options' => :'processing_options',
         :'recipient_information' => :'recipient_information',
-        :'sender_information' => :'sender_information',
-        :'aggregator_information' => :'aggregator_information',
-        :'merchant_defined_information' => :'merchant_defined_information',
-        :'merchant_information' => :'merchant_information',
-        :'point_of_service_information' => :'point_of_service_information'
+        :'sender_information' => :'sender_information'
       }
     end
 
@@ -71,13 +51,8 @@ module CyberSource
         :'client_reference_information' => :'Ptsv1pushfundstransferClientReferenceInformation',
         :'order_information' => :'Ptsv1pushfundstransferOrderInformation',
         :'processing_information' => :'Ptsv1pushfundstransferProcessingInformation',
-        :'processing_options' => :'Ptsv1pushfundstransferProcessingOptions',
         :'recipient_information' => :'Ptsv1pushfundstransferRecipientInformation',
-        :'sender_information' => :'Ptsv1pushfundstransferSenderInformation',
-        :'aggregator_information' => :'Ptsv1pushfundstransferAggregatorInformation',
-        :'merchant_defined_information' => :'Ptsv1pushfundstransferMerchantDefinedInformation',
-        :'merchant_information' => :'Ptsv1pushfundstransferMerchantInformation',
-        :'point_of_service_information' => :'Ptsv1pushfundstransferPointOfServiceInformation'
+        :'sender_information' => :'Ptsv1pushfundstransferSenderInformation'
       }
     end
 
@@ -101,32 +76,12 @@ module CyberSource
         self.processing_information = attributes[:'processingInformation']
       end
 
-      if attributes.has_key?(:'processingOptions')
-        self.processing_options = attributes[:'processingOptions']
-      end
-
       if attributes.has_key?(:'recipientInformation')
         self.recipient_information = attributes[:'recipientInformation']
       end
 
       if attributes.has_key?(:'senderInformation')
         self.sender_information = attributes[:'senderInformation']
-      end
-
-      if attributes.has_key?(:'aggregatorInformation')
-        self.aggregator_information = attributes[:'aggregatorInformation']
-      end
-
-      if attributes.has_key?(:'merchantDefinedInformation')
-        self.merchant_defined_information = attributes[:'merchantDefinedInformation']
-      end
-
-      if attributes.has_key?(:'merchantInformation')
-        self.merchant_information = attributes[:'merchantInformation']
-      end
-
-      if attributes.has_key?(:'pointOfServiceInformation')
-        self.point_of_service_information = attributes[:'pointOfServiceInformation']
       end
     end
 
@@ -142,10 +97,6 @@ module CyberSource
         invalid_properties.push('invalid value for "processing_information", processing_information cannot be nil.')
       end
 
-      if @sender_information.nil?
-        invalid_properties.push('invalid value for "sender_information", sender_information cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -154,7 +105,6 @@ module CyberSource
     def valid?
       return false if @order_information.nil?
       return false if @processing_information.nil?
-      return false if @sender_information.nil?
       true
     end
 
@@ -166,13 +116,8 @@ module CyberSource
           client_reference_information == o.client_reference_information &&
           order_information == o.order_information &&
           processing_information == o.processing_information &&
-          processing_options == o.processing_options &&
           recipient_information == o.recipient_information &&
-          sender_information == o.sender_information &&
-          aggregator_information == o.aggregator_information &&
-          merchant_defined_information == o.merchant_defined_information &&
-          merchant_information == o.merchant_information &&
-          point_of_service_information == o.point_of_service_information
+          sender_information == o.sender_information
     end
 
     # @see the `==` method
@@ -184,7 +129,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_reference_information, order_information, processing_information, processing_options, recipient_information, sender_information, aggregator_information, merchant_defined_information, merchant_information, point_of_service_information].hash
+      [client_reference_information, order_information, processing_information, recipient_information, sender_information].hash
     end
 
     # Builds the object from hash

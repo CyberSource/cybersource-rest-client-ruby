@@ -16,35 +16,32 @@ module CyberSource
     # Name of sender.  Funds Disbursement  This value is the name of the originator sending the funds disbursement. 
     attr_accessor :name
 
-    # This field contains the first name of the entity funding the transaction. 
+    # This field contains the first name of the entity funding the transaction Mandatory for card payments 
     attr_accessor :first_name
 
-    # This field contains the last name of the entity funding the transaction. 
+    # This field contains the last name of the entity funding the transaction Mandatory for card payments 
     attr_accessor :last_name
 
-    # Supported only for Mastercard  transactions. This field contains the  middle name of the entity funding the transaction 
+    # This field contains the  middle name of the entity funding the transaction 
     attr_accessor :middle_name
 
     # Sender's postal code.  For USA, this must be a valid value of 5 digits or 5 digits hyphen 4 digits, for example '63368', '63368-5555'. For other regions, this can be alphanumeric, length 1-10.  Required for FDCCompass. 
     attr_accessor :postal_code
 
-    # Street address of sender.  Funds Disbursement  This value is the address of the originator sending the funds disbursement.  Visa Platform Connect Required for transactions using business application id of AA, BI, PP, and WT. 
+    # Street address of sender.  Funds Disbursement  This value is the address of the originator sending the funds disbursement.  Required for card transactions 
     attr_accessor :address1
 
-    # Used for additional address information. For example: Attention: Accounts Payable Optional field.  This field is supported for only Mastercard Send. 
+    # Used for additional address information. For example: Attention: Accounts Payable  Optional field. 
     attr_accessor :address2
 
-    # The sender's city  Visa Platform Connect Required for transactions using business application id of AA, BI, PP, and WT. 
+    # The sender's city Mandatory for card payments 
     attr_accessor :locality
 
-    # Sender's state. Use the State, Province, and Territory Codes for the United States and Canada.The sender's province, state or territory. Conditional, required if sender's country is USA or CAN. Must be uppercase alpha 2 or 3 character country subdivision code.  See https://developer.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf 
+    # Sender's state. Use the State, Province, and Territory Codes for the United States and Canada.The sender's province, state or territory. Conditional, required if sender's country is USA or CAN. Must be uppercase alpha 2 or 3 character country subdivision code.  See https://developer.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf  Mandatory for card payments 
     attr_accessor :administrative_area
 
-    # Sender's country code. Use ISO Standard Alpha Country Codes.  https://developer.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf  Visa Platform Connect Required for transactions using business application id of AA, BI, PP, and WT.  Required for Mastercard Send 
+    # Sender's country code. Use ISO Standard Alpha Country Codes.  https://developer.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf 
     attr_accessor :country
-
-    # Customer's government-assigned tax identification number. 
-    attr_accessor :vat_registration_number
 
     # Sender's date of birth in YYYYMMDD format. 
     attr_accessor :date_of_birth
@@ -74,7 +71,6 @@ module CyberSource
         :'locality' => :'locality',
         :'administrative_area' => :'administrativeArea',
         :'country' => :'country',
-        :'vat_registration_number' => :'vatRegistrationNumber',
         :'date_of_birth' => :'dateOfBirth',
         :'phone_number' => :'phoneNumber',
         :'payment_information' => :'paymentInformation',
@@ -97,7 +93,6 @@ module CyberSource
         :'locality' => :'locality',
         :'administrative_area' => :'administrative_area',
         :'country' => :'country',
-        :'vat_registration_number' => :'vat_registration_number',
         :'date_of_birth' => :'date_of_birth',
         :'phone_number' => :'phone_number',
         :'payment_information' => :'payment_information',
@@ -120,7 +115,6 @@ module CyberSource
         :'locality' => :'String',
         :'administrative_area' => :'String',
         :'country' => :'String',
-        :'vat_registration_number' => :'String',
         :'date_of_birth' => :'String',
         :'phone_number' => :'String',
         :'payment_information' => :'Ptsv1pushfundstransferSenderInformationPaymentInformation',
@@ -178,10 +172,6 @@ module CyberSource
         self.country = attributes[:'country']
       end
 
-      if attributes.has_key?(:'vatRegistrationNumber')
-        self.vat_registration_number = attributes[:'vatRegistrationNumber']
-      end
-
       if attributes.has_key?(:'dateOfBirth')
         self.date_of_birth = attributes[:'dateOfBirth']
       end
@@ -211,12 +201,22 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      #if !@country.nil? && @country !~ Regexp.new(/^(\\s{0,2}|.{2})$/)
+        #invalid_properties.push('invalid value for "country", must conform to the pattern /^(\\s{0,2}|.{2})$/.')
+      #end
+
+      #if !@date_of_birth.nil? && @date_of_birth !~ Regexp.new(/^(\\s{0,8}|.{8})$/)
+        #invalid_properties.push('invalid value for "date_of_birth", must conform to the pattern /^(\\s{0,8}|.{8})$/.')
+      #end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      #return false if !@country.nil? && @country !~ Regexp.new(/^(\\s{0,2}|.{2})$/)
+      #return false if !@date_of_birth.nil? && @date_of_birth !~ Regexp.new(/^(\\s{0,8}|.{8})$/)
       true
     end
 
@@ -277,18 +277,20 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] country Value to be assigned
     def country=(country)
-      @country = country
-    end
+      #if !country.nil? && country !~ Regexp.new(/^(\\s{0,2}|.{2})$/)
+        #fail ArgumentError, 'invalid value for "country", must conform to the pattern /^(\\s{0,2}|.{2})$/.'
+      #end
 
-    # Custom attribute writer method with validation
-    # @param [Object] vat_registration_number Value to be assigned
-    def vat_registration_number=(vat_registration_number)
-      @vat_registration_number = vat_registration_number
+      @country = country
     end
 
     # Custom attribute writer method with validation
     # @param [Object] date_of_birth Value to be assigned
     def date_of_birth=(date_of_birth)
+      #if !date_of_birth.nil? && date_of_birth !~ Regexp.new(/^(\\s{0,8}|.{8})$/)
+        #fail ArgumentError, 'invalid value for "date_of_birth", must conform to the pattern /^(\\s{0,8}|.{8})$/.'
+      #end
+
       @date_of_birth = date_of_birth
     end
 
@@ -319,7 +321,6 @@ module CyberSource
           locality == o.locality &&
           administrative_area == o.administrative_area &&
           country == o.country &&
-          vat_registration_number == o.vat_registration_number &&
           date_of_birth == o.date_of_birth &&
           phone_number == o.phone_number &&
           payment_information == o.payment_information &&
@@ -337,7 +338,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name, first_name, last_name, middle_name, postal_code, address1, address2, locality, administrative_area, country, vat_registration_number, date_of_birth, phone_number, payment_information, reference_number, account, personal_identification].hash
+      [name, first_name, last_name, middle_name, postal_code, address1, address2, locality, administrative_area, country, date_of_birth, phone_number, payment_information, reference_number, account, personal_identification].hash
     end
 
     # Builds the object from hash

@@ -146,9 +146,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] first_name Value to be assigned
     def first_name=(first_name)
-      if first_name.nil?
-        fail ArgumentError, 'first_name cannot be nil'
-      end
+      #if first_name.nil?
+        #fail ArgumentError, 'first_name cannot be nil'
+      #end
 
       #if first_name !~ Regexp.new(/^[0-9a-zA-Z _\\-\\+\\.\\*\\\"\/'&\\,\\(\\)!$;:?@\\#¡-￿]+$/)
         #fail ArgumentError, 'invalid value for "first_name", must conform to the pattern /^[0-9a-zA-Z _\\-\\+\\.\\*\\\"\/'&\\,\\(\\)!$;:?@\\#¡-￿]+$/.'
@@ -170,9 +170,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] last_name Value to be assigned
     def last_name=(last_name)
-      if last_name.nil?
-        fail ArgumentError, 'last_name cannot be nil'
-      end
+      #if last_name.nil?
+        #fail ArgumentError, 'last_name cannot be nil'
+      #end
 
       #if last_name !~ Regexp.new(/^[0-9a-zA-Z _\\-\\+\\.\\*\\\"\/'&\\,\\(\\)!$;:?@\\#¡-￿]+$/)
         #fail ArgumentError, 'invalid value for "last_name", must conform to the pattern /^[0-9a-zA-Z _\\-\\+\\.\\*\\\"\/'&\\,\\(\\)!$;:?@\\#¡-￿]+$/.'
@@ -184,9 +184,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] phone_number Value to be assigned
     def phone_number=(phone_number)
-      if phone_number.nil?
-        fail ArgumentError, 'phone_number cannot be nil'
-      end
+      #if phone_number.nil?
+        #fail ArgumentError, 'phone_number cannot be nil'
+      #end
 
       #if phone_number !~ Regexp.new(/^[0-9a-zA-Z\\\\+\\\\-]+$/)
         #fail ArgumentError, 'invalid value for "phone_number", must conform to the pattern /^[0-9a-zA-Z\\\\+\\\\-]+$/.'
@@ -198,9 +198,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] email Value to be assigned
     def email=(email)
-      if email.nil?
-        fail ArgumentError, 'email cannot be nil'
-      end
+      #if email.nil?
+        #fail ArgumentError, 'email cannot be nil'
+      #end
 
       #if email !~ Regexp.new(/^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,50}|[0-9]{1,3})(\\]?)$/)
         #fail ArgumentError, 'invalid value for "email", must conform to the pattern /^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,50}|[0-9]{1,3})(\\]?)$/.'

@@ -19,7 +19,7 @@ module CyberSource
     # Used to resume a transaction that was paused for an order modification rule to allow for payer authentication to complete. To resume and continue with the authorization/decision service flow, call the services and include the request id from the prior decision call. 
     attr_accessor :paused_request_id
 
-    # Comments
+    # Brief description of the order or any comment you wish to add to the order.
     attr_accessor :comments
 
     attr_accessor :partner

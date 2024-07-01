@@ -16,7 +16,7 @@ module CyberSource
     # Client-generated order reference or tracking number. CyberSource recommends that you send a unique value. 
     attr_accessor :code
 
-    # Comments
+    # Brief description of the order or any comment you wish to add to the order.
     attr_accessor :comments
 
     attr_accessor :partner

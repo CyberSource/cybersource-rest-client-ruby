@@ -13,17 +13,21 @@ require 'date'
 
 module CyberSource
   class Ptsv1pushfundstransferRecipientInformationPersonalIdentification
-    # The ID number/value.  Visa Platform Connect This tag will contain an acquirer-populated value associated with the API : senderInformation.personalIdType which will identify the personal ID type of the sender.  Mastercard Send(80) 
+    # The ID number/value. Processor(35) 
     attr_accessor :id
 
-    # This tag will contain the type of sender identification. The valid values are:  Visa Platform Connect: - `BTHD`: (Date of birth) - `CUID`: (Customer identification (unspecified)) - `NTID`: (National identification) - `PASN`: (Passport number) - `DRLN`: (Driver license) - `TXIN`: (Tax identification) - `CPNY`: (Company registration number) - `PRXY`: (Proxy identification) - `SSNB`: (Social security number) - `ARNB`: (Alien registration number) - `LAWE`: (Law enforcement identification) - `MILI`: (Military identification) - `TRVL`: (Travel identification (non-passport)) - `EMAL`: (Email) - `PHON`: (Phone number)  Mastercard Send: - `CUID`: (Customer identification (unspecified)) - `NTID`: (National identification) - `PASN`: (Passport number) - `DRLN`: (Driver license) - `TXIN`: (Tax identification) - `SSNB`: (Social security number) - `ARNB`: (Alien registration number) - `EIDN`: (Employer Identification Number) - `IDNB`: (Identity Card Number) 
+    # This tag will contain the type of sender identification. 
     attr_accessor :type
+
+    # Issuing country of the identification. The field format should be a 2 character ISO 3166-1 alpha-2 country code. 
+    attr_accessor :issuing_country
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'id' => :'id',
-        :'type' => :'type'
+        :'type' => :'type',
+        :'issuing_country' => :'issuingCountry'
       }
     end
 
@@ -31,7 +35,8 @@ module CyberSource
     def self.json_map
       {
         :'id' => :'id',
-        :'type' => :'type'
+        :'type' => :'type',
+        :'issuing_country' => :'issuing_country'
       }
     end
 
@@ -39,7 +44,8 @@ module CyberSource
     def self.swagger_types
       {
         :'id' => :'String',
-        :'type' => :'String'
+        :'type' => :'String',
+        :'issuing_country' => :'String'
       }
     end
 
@@ -58,18 +64,27 @@ module CyberSource
       if attributes.has_key?(:'type')
         self.type = attributes[:'type']
       end
+
+      if attributes.has_key?(:'issuingCountry')
+        self.issuing_country = attributes[:'issuingCountry']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      #if !@issuing_country.nil? && @issuing_country !~ Regexp.new(/^(\\s{0,2}|.{2})$/)
+        #invalid_properties.push('invalid value for "issuing_country", must conform to the pattern /^(\\s{0,2}|.{2})$/.')
+      #end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      #return false if !@issuing_country.nil? && @issuing_country !~ Regexp.new(/^(\\s{0,2}|.{2})$/)
       true
     end
 
@@ -85,13 +100,24 @@ module CyberSource
       @type = type
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] issuing_country Value to be assigned
+    def issuing_country=(issuing_country)
+      #if !issuing_country.nil? && issuing_country !~ Regexp.new(/^(\\s{0,2}|.{2})$/)
+        #fail ArgumentError, 'invalid value for "issuing_country", must conform to the pattern /^(\\s{0,2}|.{2})$/.'
+      #end
+
+      @issuing_country = issuing_country
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           id == o.id &&
-          type == o.type
+          type == o.type &&
+          issuing_country == o.issuing_country
     end
 
     # @see the `==` method
@@ -103,7 +129,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, type].hash
+      [id, type, issuing_country].hash
     end
 
     # Builds the object from hash

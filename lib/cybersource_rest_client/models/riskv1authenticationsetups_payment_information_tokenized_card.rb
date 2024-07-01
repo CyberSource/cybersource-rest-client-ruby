@@ -131,9 +131,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] transaction_type Value to be assigned
     def transaction_type=(transaction_type)
-      if transaction_type.nil?
-        fail ArgumentError, 'transaction_type cannot be nil'
-      end
+      #if transaction_type.nil?
+        #fail ArgumentError, 'transaction_type cannot be nil'
+      #end
 
       @transaction_type = transaction_type
     end
@@ -141,9 +141,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] expiration_month Value to be assigned
     def expiration_month=(expiration_month)
-      if expiration_month.nil?
-        fail ArgumentError, 'expiration_month cannot be nil'
-      end
+      #if expiration_month.nil?
+        #fail ArgumentError, 'expiration_month cannot be nil'
+      #end
 
       @expiration_month = expiration_month
     end
@@ -151,9 +151,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] expiration_year Value to be assigned
     def expiration_year=(expiration_year)
-      if expiration_year.nil?
-        fail ArgumentError, 'expiration_year cannot be nil'
-      end
+      #if expiration_year.nil?
+        #fail ArgumentError, 'expiration_year cannot be nil'
+      #end
 
       @expiration_year = expiration_year
     end
@@ -161,9 +161,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] number Value to be assigned
     def number=(number)
-      if number.nil?
-        fail ArgumentError, 'number cannot be nil'
-      end
+      #if number.nil?
+        #fail ArgumentError, 'number cannot be nil'
+      #end
 
       @number = number
     end

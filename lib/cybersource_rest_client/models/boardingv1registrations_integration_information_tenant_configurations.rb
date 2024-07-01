@@ -85,9 +85,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] solution_id Value to be assigned
     def solution_id=(solution_id)
-      if solution_id.nil?
-        fail ArgumentError, 'solution_id cannot be nil'
-      end
+      #if solution_id.nil?
+        #fail ArgumentError, 'solution_id cannot be nil'
+      #end
 
       #if solution_id !~ Regexp.new(/^[0-9a-zA-Z_]+$/)
         #fail ArgumentError, 'invalid value for "solution_id", must conform to the pattern /^[0-9a-zA-Z_]+$/.'

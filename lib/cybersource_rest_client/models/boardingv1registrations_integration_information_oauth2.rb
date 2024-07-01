@@ -79,9 +79,9 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] client_id Value to be assigned
     def client_id=(client_id)
-      if client_id.nil?
-        fail ArgumentError, 'client_id cannot be nil'
-      end
+      #if client_id.nil?
+        #fail ArgumentError, 'client_id cannot be nil'
+      #end
 
       @client_id = client_id
     end
