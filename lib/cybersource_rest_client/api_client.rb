@@ -20,6 +20,8 @@ module CyberSource
   class ApiClient
     # The Configuration object holding settings to be used in the API client.
     attr_accessor :config
+	
+	attr_accessor :merchantconfig
 
     # Defines the headers to be used in HTTP requests of all API calls by default.
     #
@@ -115,13 +117,13 @@ module CyberSource
       end
 
       headers = opts[:header_params]
-      if $merchantconfig_obj.authenticationType.upcase != Constants::AUTH_TYPE_MUTUAL_AUTH
+      if @merchantconfig.authenticationType.upcase != Constants::AUTH_TYPE_MUTUAL_AUTH
         headers = CallAuthenticationHeader(http_method, path, body_params, headers, query_params)
       end
       http_method = http_method.to_sym.downcase
       header_params = headers.merge(@default_headers)
-      if $merchantconfig_obj.defaultCustomHeaders
-        header_params = header_params.merge($merchantconfig_obj.defaultCustomHeaders)
+      if @merchantconfig.defaultCustomHeaders
+        header_params = header_params.merge(@merchantconfig.defaultCustomHeaders)
       end
       form_params = opts[:form_params] || {}
 
@@ -130,9 +132,9 @@ module CyberSource
       _verify_ssl_host = @config.verify_ssl_host ? 2 : 0
 
       # client cert
-      if $merchantconfig_obj.enableClientCert
-        @config.cert_file = File.join($merchantconfig_obj.clientCertDirectory, $merchantconfig_obj.sslClientCert)
-        @config.key_file = File.join($merchantconfig_obj.clientCertDirectory, $merchantconfig_obj.privateKey)
+      if @merchantconfig.enableClientCert
+        @config.cert_file = File.join(@merchantconfig.clientCertDirectory, @merchantconfig.sslClientCert)
+        @config.key_file = File.join(@merchantconfig.clientCertDirectory, @merchantconfig.privateKey)
       end
 
       req_opts = {
@@ -144,7 +146,7 @@ module CyberSource
         :ssl_verifypeer => @config.verify_ssl,
         :ssl_verifyhost => _verify_ssl_host,
         :sslcert => @config.cert_file,
-        :sslkeypasswd => $merchantconfig_obj.sslKeyPassword || "",
+        :sslkeypasswd => @merchantconfig.sslKeyPassword || "",
         :sslkey => @config.key_file,
         :verbose => @config.debugging
       }
@@ -172,13 +174,13 @@ module CyberSource
     # set merchantConfig
     def set_configuration(config)
        require_relative '../AuthenticationSDK/core/MerchantConfig.rb'
-       $merchantconfig_obj = Merchantconfig.new(config)
-       @config.host = $merchantconfig_obj.requestHost
-       if $merchantconfig_obj.intermediateHost
-        @config.host =  $merchantconfig_obj.intermediateHost
-        if $merchantconfig_obj.intermediateHost.start_with?(Constants::HTTPS_URI_PREFIX)
+       @merchantconfig = Merchantconfig.new(config)
+       @config.host = @merchantconfig.requestHost
+       if @merchantconfig.intermediateHost
+        @config.host =  @merchantconfig.intermediateHost
+        if @merchantconfig.intermediateHost.start_with?(Constants::HTTPS_URI_PREFIX)
           @config.scheme =  'https'
-        elsif $merchantconfig_obj.intermediateHost.start_with?(Constants::HTTP_URI_PREFIX)
+        elsif @merchantconfig.intermediateHost.start_with?(Constants::HTTP_URI_PREFIX)
           @config.scheme = 'http'
         end
        end
@@ -190,32 +192,32 @@ module CyberSource
       request_target = get_query_param(path, query_params)
       # Request Type. [Non-Editable]
       request_type = http_method.to_s
-      log_obj = Log.new $merchantconfig_obj.log_config, "ApiClient"
+      log_obj = Log.new @merchantconfig.log_config, "ApiClient"
       # Set Request Type into the merchant config object.
-      $merchantconfig_obj.requestType = request_type
+      @merchantconfig.requestType = request_type
       # Set Request Target into the merchant config object.
-      $merchantconfig_obj.requestTarget = request_target
+      @merchantconfig.requestTarget = request_target
       # Construct the URL.
-      url = Constants::HTTPS_URI_PREFIX + $merchantconfig_obj.requestHost + $merchantconfig_obj.requestTarget
+      url = Constants::HTTPS_URI_PREFIX + @merchantconfig.requestHost + @merchantconfig.requestTarget
       # set Request Json to Merchant config object
-      $merchantconfig_obj.requestJsonData = body_params
+      @merchantconfig.requestJsonData = body_params
       # Set URL into the merchant config object.
-      $merchantconfig_obj.requestUrl = url
+      @merchantconfig.requestUrl = url
       # Calling APISDK, Apisdk.controller.
       gmtDateTime = DateTime.now.httpdate
-      token = Authorization.new.getToken($merchantconfig_obj, gmtDateTime)
+      token = Authorization.new.getToken(@merchantconfig, gmtDateTime)
 
       # Adding client ID header
       header_params['v-c-client-id'] = @client_id
 
       # Adding solution ID header
-      # header_params['v-c-solution-id'] = $merchantconfig_obj.solutionId if !$merchantconfig_obj.solutionId.nil? && !$merchantconfig_obj.solutionId.empty?
+      # header_params['v-c-solution-id'] = @merchantconfig.solutionId if !@merchantconfig.solutionId.nil? && !@merchantconfig.solutionId.empty?
       # HTTP header 'Accept' (if needed)
-      if $merchantconfig_obj.authenticationType.upcase == Constants::AUTH_TYPE_HTTP
+      if @merchantconfig.authenticationType.upcase == Constants::AUTH_TYPE_HTTP
         # Appending headers for Get Connection
-        header_params['v-c-merchant-id'] = $merchantconfig_obj.merchantId
+        header_params['v-c-merchant-id'] = @merchantconfig.merchantId
         header_params['Date'] = gmtDateTime
-        header_params['Host'] = $merchantconfig_obj.requestHost
+        header_params['Host'] = @merchantconfig.requestHost
         header_params['Signature'] = token
         if request_type == Constants::POST_REQUEST_TYPE || request_type == Constants::PUT_REQUEST_TYPE || request_type == Constants::PATCH_REQUEST_TYPE
           digest = DigestGeneration.new.generateDigest(body_params)
@@ -223,11 +225,11 @@ module CyberSource
           header_params['Digest'] = digest_payload
         end
       end
-      if $merchantconfig_obj.authenticationType.upcase == Constants::AUTH_TYPE_JWT
+      if @merchantconfig.authenticationType.upcase == Constants::AUTH_TYPE_JWT
         token = "Bearer " + token
         header_params['Authorization'] = token
       end
-      if $merchantconfig_obj.authenticationType.upcase == Constants::AUTH_TYPE_OAUTH
+      if @merchantconfig.authenticationType.upcase == Constants::AUTH_TYPE_OAUTH
         token = "Bearer " + token
         header_params['Authorization'] = token
       end
