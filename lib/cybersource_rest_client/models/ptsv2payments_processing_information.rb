@@ -40,7 +40,7 @@ module CyberSource
     # Type of transaction. Some payment card companies use this information when determining discount rates.  #### Used by **Authorization** Required payer authentication transactions; otherwise, optional. **Credit** Required for standalone credits on Chase Paymentech solutions; otherwise, optional.  The list of valid values in this field depends on your processor.  #### Ingenico ePayments When you omit this field for Ingenico ePayments, the processor uses the default transaction type they have on file for you instead of the default value   #### Card Present You must set this field to `retail`. This field is required for a card-present transaction. Note that this should ONLY be used when the cardholder and card are present at the time of the transaction. For all keyed transactions originated from a POS terminal where the cardholder and card are not present, commerceIndicator should be submitted as `moto` 
     attr_accessor :commerce_indicator_label
 
-    # Type of digital payment solution for the transaction. Possible Values:   - `visacheckout`: Visa Checkout. This value is required for Visa Checkout transactions. For details, see `payment_solution` field description in [Visa Checkout Using the SCMP API.](https://apps.cybersource.com/library/documentation/dev_guides/VCO_SCMP_API/html/)  - `001`: Apple Pay.  - `004`: Cybersource In-App Solution.  - `005`: Masterpass. This value is required for Masterpass transactions on OmniPay Direct. For details, see \"Masterpass\" in the [Credit Card Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html/)  - `006`: Android Pay.  - `007`: Chase Pay.  - `008`: Samsung Pay.  - `012`: Google Pay.  - `013`: Cybersource P2PE Decryption  - `014`: Mastercard credential on file (COF) payment network token. Returned in authorizations that use a payment network token associated with a TMS token.  - `015`: Visa credential on file (COF) payment network token. Returned in authorizations that use a payment network token associated with a TMS token.  - `027`: Click to Pay. 
+    # Type of digital payment solution for the transaction. Possible Values:   - `visacheckout`: Visa Checkout. This value is required for Visa Checkout transactions. For details, see `payment_solution` field description in [Visa Checkout Using the REST API.](https://developer.cybersource.com/content/dam/docs/cybs/en-us/apifields/reference/all/rest/api-fields.pdf)  - `001`: Apple Pay.  - `004`: Cybersource In-App Solution.  - `005`: Masterpass. This value is required for Masterpass transactions on OmniPay Direct.   - `006`: Android Pay.  - `007`: Chase Pay.  - `008`: Samsung Pay.  - `012`: Google Pay.  - `013`: Cybersource P2PE Decryption  - `014`: Mastercard credential on file (COF) payment network token. Returned in authorizations that use a payment network token associated with a TMS token.  - `015`: Visa credential on file (COF) payment network token. Returned in authorizations that use a payment network token associated with a TMS token.  - `027`: Click to Pay. 
     attr_accessor :payment_solution
 
     # Please check with Cybersource customer support to see if your merchant account is configured correctly so you can include this field in your request. * For Payouts: max length for FDCCompass is String (22). 
@@ -57,9 +57,6 @@ module CyberSource
 
     # Set to the value of the requestID field returned in the order service response.
     attr_accessor :intents_id
-
-    # This field is to accept the id of credit/capture in the body of L1 requests so the type of void can be identified and processed correctly downstream.
-    attr_accessor :payment_id
 
     # Attribute that lets you define custom grouping for your processor reports. This field is supported only for **Worldpay VAP**. 
     attr_accessor :report_group
@@ -116,6 +113,9 @@ module CyberSource
     # Identifier for the payment type. 
     attr_accessor :payment_type
 
+    # Enablers are payment processing entities that are not acquiring members and are often the primary relationship owner with merchants and originators. Enablers own technical solutions through which the merchant or originator will access acceptance. The Enabler ID is a five-character hexadecimal identifier that will be used by Visa to identify enablers. Enabler ID assignment will be determined by Visa. Visa will communicate Enablers assignments to enablers. 
+    attr_accessor :enabler_id
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -134,7 +134,6 @@ module CyberSource
         :'purchase_level' => :'purchaseLevel',
         :'transaction_timeout' => :'transactionTimeout',
         :'intents_id' => :'intentsId',
-        :'payment_id' => :'paymentId',
         :'report_group' => :'reportGroup',
         :'visa_checkout_id' => :'visaCheckoutId',
         :'industry_data_type' => :'industryDataType',
@@ -155,7 +154,8 @@ module CyberSource
         :'timeout' => :'timeout',
         :'is_return_auth_record_enabled' => :'isReturnAuthRecordEnabled',
         :'network_partner_id' => :'networkPartnerId',
-        :'payment_type' => :'paymentType'
+        :'payment_type' => :'paymentType',
+        :'enabler_id' => :'enablerId'
       }
     end
 
@@ -177,7 +177,6 @@ module CyberSource
         :'purchase_level' => :'purchase_level',
         :'transaction_timeout' => :'transaction_timeout',
         :'intents_id' => :'intents_id',
-        :'payment_id' => :'payment_id',
         :'report_group' => :'report_group',
         :'visa_checkout_id' => :'visa_checkout_id',
         :'industry_data_type' => :'industry_data_type',
@@ -198,7 +197,8 @@ module CyberSource
         :'timeout' => :'timeout',
         :'is_return_auth_record_enabled' => :'is_return_auth_record_enabled',
         :'network_partner_id' => :'network_partner_id',
-        :'payment_type' => :'payment_type'
+        :'payment_type' => :'payment_type',
+        :'enabler_id' => :'enabler_id'
       }
     end
 
@@ -220,7 +220,6 @@ module CyberSource
         :'purchase_level' => :'String',
         :'transaction_timeout' => :'Integer',
         :'intents_id' => :'String',
-        :'payment_id' => :'String',
         :'report_group' => :'String',
         :'visa_checkout_id' => :'String',
         :'industry_data_type' => :'String',
@@ -241,7 +240,8 @@ module CyberSource
         :'timeout' => :'Integer',
         :'is_return_auth_record_enabled' => :'BOOLEAN',
         :'network_partner_id' => :'String',
-        :'payment_type' => :'String'
+        :'payment_type' => :'String',
+        :'enabler_id' => :'String'
       }
     end
 
@@ -317,10 +317,6 @@ module CyberSource
 
       if attributes.has_key?(:'intentsId')
         self.intents_id = attributes[:'intentsId']
-      end
-
-      if attributes.has_key?(:'paymentId')
-        self.payment_id = attributes[:'paymentId']
       end
 
       if attributes.has_key?(:'reportGroup')
@@ -406,6 +402,10 @@ module CyberSource
       if attributes.has_key?(:'paymentType')
         self.payment_type = attributes[:'paymentType']
       end
+
+      if attributes.has_key?(:'enablerId')
+        self.enabler_id = attributes[:'enablerId']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -476,12 +476,6 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] payment_id Value to be assigned
-    def payment_id=(payment_id)
-      @payment_id = payment_id
-    end
-
-    # Custom attribute writer method with validation
     # @param [Object] report_group Value to be assigned
     def report_group=(report_group)
       @report_group = report_group
@@ -541,6 +535,12 @@ module CyberSource
       @payment_type = payment_type
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] enabler_id Value to be assigned
+    def enabler_id=(enabler_id)
+      @enabler_id = enabler_id
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -561,7 +561,6 @@ module CyberSource
           purchase_level == o.purchase_level &&
           transaction_timeout == o.transaction_timeout &&
           intents_id == o.intents_id &&
-          payment_id == o.payment_id &&
           report_group == o.report_group &&
           visa_checkout_id == o.visa_checkout_id &&
           industry_data_type == o.industry_data_type &&
@@ -582,7 +581,8 @@ module CyberSource
           timeout == o.timeout &&
           is_return_auth_record_enabled == o.is_return_auth_record_enabled &&
           network_partner_id == o.network_partner_id &&
-          payment_type == o.payment_type
+          payment_type == o.payment_type &&
+          enabler_id == o.enabler_id
     end
 
     # @see the `==` method
@@ -594,7 +594,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [action_list, enable_escrow_option, action_token_types, bin_source, capture, processor_id, business_application_id, commerce_indicator, commerce_indicator_label, payment_solution, reconciliation_id, link_id, purchase_level, transaction_timeout, intents_id, payment_id, report_group, visa_checkout_id, industry_data_type, authorization_options, capture_options, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, wallet_type, national_net_domestic_data, japan_payment_options, mobile_remote_payment_type, extended_credit_total_count, network_routing_order, pay_by_points_indicator, timeout, is_return_auth_record_enabled, network_partner_id, payment_type].hash
+      [action_list, enable_escrow_option, action_token_types, bin_source, capture, processor_id, business_application_id, commerce_indicator, commerce_indicator_label, payment_solution, reconciliation_id, link_id, purchase_level, transaction_timeout, intents_id, report_group, visa_checkout_id, industry_data_type, authorization_options, capture_options, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, wallet_type, national_net_domestic_data, japan_payment_options, mobile_remote_payment_type, extended_credit_total_count, network_routing_order, pay_by_points_indicator, timeout, is_return_auth_record_enabled, network_partner_id, payment_type, enabler_id].hash
     end
 
     # Builds the object from hash

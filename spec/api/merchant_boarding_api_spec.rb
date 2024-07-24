@@ -49,7 +49,7 @@ describe 'MerchantBoardingApi' do
   # @param post_registration_body Boarding registration data
   # @param [Hash] opts the optional parameters
   # @option opts [String] :v_c_idempotency_id defines idempotency of the request
-  # @return [InlineResponse2011]
+  # @return [InlineResponse2012]
   describe 'post_registration test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

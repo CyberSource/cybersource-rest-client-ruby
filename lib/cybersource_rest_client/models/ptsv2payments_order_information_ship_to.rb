@@ -58,7 +58,7 @@ module CyberSource
     # Email of the recipient. 
     attr_accessor :email
 
-    # Name of the customer's company.  For processor-specific information, see the company_name field in [Credit Card Services Using the SCMP API.](http://apps.cybersource.com/library/documentation/dev_guides/CC_Svcs_SCMP_API/html) 
+    # Name of the customer's company. 
     attr_accessor :company
 
     # Shipping destination of item. Example: Commercial, Residential, Store 

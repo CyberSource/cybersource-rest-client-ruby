@@ -13,7 +13,7 @@ require 'date'
 
 module CyberSource
   class Ptsv2voidsProcessingInformation
-    # This field is to accept the id of credit/capture in the body of L1 requests so the type of void can be identified and processed correctly downstream.
+    # This field is to accept the id of credit/capture in the body of the requests so the type of void can be identified and processed correctly.
     attr_accessor :payment_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -33,7 +33,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'payment_id' => :'String'
+        :'payment_id' => :'Object'
       }
     end
 
@@ -61,12 +61,6 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] payment_id Value to be assigned
-    def payment_id=(payment_id)
-      @payment_id = payment_id
     end
 
     # Checks equality by comparing each attribute.

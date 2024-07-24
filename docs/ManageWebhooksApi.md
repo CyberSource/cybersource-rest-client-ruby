@@ -158,7 +158,7 @@ No authorization required
 
 
 # **save_asym_egress_key**
-> InlineResponse2014 save_asym_egress_key(v_c_sender_organization_id, v_c_permissions, save_asym_egress_key, opts)
+> InlineResponse2015 save_asym_egress_key(v_c_sender_organization_id, v_c_permissions, save_asym_egress_key, opts)
 
 Message Level Encryption
 
@@ -201,7 +201,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2014**](InlineResponse2014.md)
+[**InlineResponse2015**](InlineResponse2015.md)
 
 ### Authorization
 

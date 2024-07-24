@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **create_webhook_subscription**
-> InlineResponse2013 create_webhook_subscription(opts)
+> InlineResponse2014 create_webhook_subscription(opts)
 
 Create a Webhook
 
@@ -44,7 +44,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2013**](InlineResponse2013.md)
+[**InlineResponse2014**](InlineResponse2014.md)
 
 ### Authorization
 
@@ -105,7 +105,7 @@ No authorization required
 
 
 # **save_sym_egress_key**
-> InlineResponse2012 save_sym_egress_key(v_c_sender_organization_id, v_c_permissions, opts)
+> InlineResponse2013 save_sym_egress_key(v_c_sender_organization_id, v_c_permissions, opts)
 
 Create Webhook Security Keys
 
@@ -147,7 +147,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2012**](InlineResponse2012.md)
+[**InlineResponse2013**](InlineResponse2013.md)
 
 ### Authorization
 

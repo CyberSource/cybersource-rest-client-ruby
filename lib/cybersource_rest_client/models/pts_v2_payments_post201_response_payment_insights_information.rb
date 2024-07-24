@@ -15,24 +15,29 @@ module CyberSource
   class PtsV2PaymentsPost201ResponsePaymentInsightsInformation
     attr_accessor :response_insights
 
+    attr_accessor :orchestration
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'response_insights' => :'responseInsights'
+        :'response_insights' => :'responseInsights',
+        :'orchestration' => :'orchestration'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'response_insights' => :'response_insights'
+        :'response_insights' => :'response_insights',
+        :'orchestration' => :'orchestration'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'response_insights' => :'PtsV2PaymentsPost201ResponsePaymentInsightsInformationResponseInsights'
+        :'response_insights' => :'PtsV2PaymentsPost201ResponsePaymentInsightsInformationResponseInsights',
+        :'orchestration' => :'PtsV2PaymentsPost201ResponsePaymentInsightsInformationOrchestration'
       }
     end
 
@@ -46,6 +51,10 @@ module CyberSource
 
       if attributes.has_key?(:'responseInsights')
         self.response_insights = attributes[:'responseInsights']
+      end
+
+      if attributes.has_key?(:'orchestration')
+        self.orchestration = attributes[:'orchestration']
       end
     end
 
@@ -67,7 +76,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          response_insights == o.response_insights
+          response_insights == o.response_insights &&
+          orchestration == o.orchestration
     end
 
     # @see the `==` method
@@ -79,7 +89,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [response_insights].hash
+      [response_insights, orchestration].hash
     end
 
     # Builds the object from hash

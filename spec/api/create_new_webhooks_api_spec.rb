@@ -36,7 +36,7 @@ describe 'CreateNewWebhooksApi' do
   # Create a new webhook subscription. Before creating a webhook, ensure that a security key has been created at the top of this developer center section. You will not need to pass us back the key during the creation of the webhook, but you will receive an error if you did not already create a key or store one on file. 
   # @param [Hash] opts the optional parameters
   # @option opts [CreateWebhookRequest] :create_webhook_request The webhook payload
-  # @return [InlineResponse2013]
+  # @return [InlineResponse2014]
   describe 'create_webhook_subscription test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -63,7 +63,7 @@ describe 'CreateNewWebhooksApi' do
   # @param [Hash] opts the optional parameters
   # @option opts [String] :v_c_correlation_id A globally unique id associated with your request
   # @option opts [SaveSymEgressKey] :save_sym_egress_key Provide egress Symmetric key information to save (create or store or refresh)
-  # @return [InlineResponse2012]
+  # @return [InlineResponse2013]
   describe 'save_sym_egress_key test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
