@@ -18,11 +18,15 @@ module CyberSource
 
     attr_accessor :payouts_options
 
+    # Enablers are payment processing entities that are not acquiring members and are often the primary relationship owner with merchants and originators. Enablers own technical solutions through which the merchant or originator will access acceptance. The Enabler ID is a five-character hexadecimal identifier that will be used by Visa to identify enablers. Enabler ID assignment will be determined by Visa. Visa will communicate Enablers assignments to enablers. 
+    attr_accessor :enabler_id
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'business_application_id' => :'businessApplicationId',
-        :'payouts_options' => :'payoutsOptions'
+        :'payouts_options' => :'payoutsOptions',
+        :'enabler_id' => :'enablerId'
       }
     end
 
@@ -30,7 +34,8 @@ module CyberSource
     def self.json_map
       {
         :'business_application_id' => :'business_application_id',
-        :'payouts_options' => :'payouts_options'
+        :'payouts_options' => :'payouts_options',
+        :'enabler_id' => :'enabler_id'
       }
     end
 
@@ -38,7 +43,8 @@ module CyberSource
     def self.swagger_types
       {
         :'business_application_id' => :'String',
-        :'payouts_options' => :'Ptsv1pushfundstransferProcessingInformationPayoutsOptions'
+        :'payouts_options' => :'Ptsv1pushfundstransferProcessingInformationPayoutsOptions',
+        :'enabler_id' => :'String'
       }
     end
 
@@ -56,6 +62,10 @@ module CyberSource
 
       if attributes.has_key?(:'payoutsOptions')
         self.payouts_options = attributes[:'payoutsOptions']
+      end
+
+      if attributes.has_key?(:'enablerId')
+        self.enabler_id = attributes[:'enablerId']
       end
     end
 
@@ -87,13 +97,20 @@ module CyberSource
       @business_application_id = business_application_id
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] enabler_id Value to be assigned
+    def enabler_id=(enabler_id)
+      @enabler_id = enabler_id
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           business_application_id == o.business_application_id &&
-          payouts_options == o.payouts_options
+          payouts_options == o.payouts_options &&
+          enabler_id == o.enabler_id
     end
 
     # @see the `==` method
@@ -105,7 +122,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [business_application_id, payouts_options].hash
+      [business_application_id, payouts_options, enabler_id].hash
     end
 
     # Builds the object from hash

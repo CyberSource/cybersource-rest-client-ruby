@@ -20,8 +20,8 @@ module CyberSource
   class ApiClient
     # The Configuration object holding settings to be used in the API client.
     attr_accessor :config
-	
-	attr_accessor :merchantconfig
+
+    attr_accessor :merchantconfig
 
     # Defines the headers to be used in HTTP requests of all API calls by default.
     #

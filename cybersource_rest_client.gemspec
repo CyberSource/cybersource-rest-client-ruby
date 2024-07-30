@@ -17,7 +17,7 @@ require "cybersource_rest_client/version"
 
 Gem::Specification.new do |s|
   s.name        = "cybersource_rest_client"
-  s.version     = "0.0.63"
+  s.version     = "0.0.64"
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["CyberSource"]
   s.email       = ["cybersourcedev@gmail.com"]

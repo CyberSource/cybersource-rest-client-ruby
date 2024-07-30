@@ -44,6 +44,8 @@ module CyberSource
 
     attr_accessor :e_wallet
 
+    attr_accessor :payment_account_reference
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -61,7 +63,8 @@ module CyberSource
         :'payment_type' => :'paymentType',
         :'initiation_channel' => :'initiationChannel',
         :'sepa' => :'sepa',
-        :'e_wallet' => :'eWallet'
+        :'e_wallet' => :'eWallet',
+        :'payment_account_reference' => :'paymentAccountReference'
       }
     end
 
@@ -82,7 +85,8 @@ module CyberSource
         :'payment_type' => :'payment_type',
         :'initiation_channel' => :'initiation_channel',
         :'sepa' => :'sepa',
-        :'e_wallet' => :'e_wallet'
+        :'e_wallet' => :'e_wallet',
+        :'payment_account_reference' => :'payment_account_reference'
       }
     end
 
@@ -103,7 +107,8 @@ module CyberSource
         :'payment_type' => :'Ptsv2paymentsPaymentInformationPaymentType',
         :'initiation_channel' => :'String',
         :'sepa' => :'Ptsv2paymentsPaymentInformationSepa',
-        :'e_wallet' => :'Ptsv2paymentsPaymentInformationEWallet'
+        :'e_wallet' => :'Ptsv2paymentsPaymentInformationEWallet',
+        :'payment_account_reference' => :'Ptsv2paymentsPaymentInformationPaymentAccountReference'
       }
     end
 
@@ -174,6 +179,10 @@ module CyberSource
       if attributes.has_key?(:'eWallet')
         self.e_wallet = attributes[:'eWallet']
       end
+
+      if attributes.has_key?(:'paymentAccountReference')
+        self.payment_account_reference = attributes[:'paymentAccountReference']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -214,7 +223,8 @@ module CyberSource
           payment_type == o.payment_type &&
           initiation_channel == o.initiation_channel &&
           sepa == o.sepa &&
-          e_wallet == o.e_wallet
+          e_wallet == o.e_wallet &&
+          payment_account_reference == o.payment_account_reference
     end
 
     # @see the `==` method
@@ -226,7 +236,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card, tokenized_card, direct_debit, fluid_data, customer, payment_instrument, instrument_identifier, shipping_address, legacy_token, bank, options, payment_type, initiation_channel, sepa, e_wallet].hash
+      [card, tokenized_card, direct_debit, fluid_data, customer, payment_instrument, instrument_identifier, shipping_address, legacy_token, bank, options, payment_type, initiation_channel, sepa, e_wallet, payment_account_reference].hash
     end
 
     # Builds the object from hash

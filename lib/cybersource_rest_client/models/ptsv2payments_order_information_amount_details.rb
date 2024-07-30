@@ -92,6 +92,9 @@ module CyberSource
 
     attr_accessor :order
 
+    # This API Field contains the anticipated amount details. This supports use cases where the Merchant does not wish to have funds held against the account, but needs to confirm an amount prior to authorization, such as for a trial subscription, reservation service, or loyalty program. In an account verification, the anticipated amount is used to confirm the account has availability to accept purchases. 
+    attr_accessor :anticipated_amount
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -122,7 +125,8 @@ module CyberSource
         :'original_currency' => :'originalCurrency',
         :'cashback_amount' => :'cashbackAmount',
         :'currency_conversion' => :'currencyConversion',
-        :'order' => :'order'
+        :'order' => :'order',
+        :'anticipated_amount' => :'anticipatedAmount'
       }
     end
 
@@ -156,7 +160,8 @@ module CyberSource
         :'original_currency' => :'original_currency',
         :'cashback_amount' => :'cashback_amount',
         :'currency_conversion' => :'currency_conversion',
-        :'order' => :'order'
+        :'order' => :'order',
+        :'anticipated_amount' => :'anticipated_amount'
       }
     end
 
@@ -190,7 +195,8 @@ module CyberSource
         :'original_currency' => :'String',
         :'cashback_amount' => :'String',
         :'currency_conversion' => :'Ptsv2paymentsOrderInformationAmountDetailsCurrencyConversion',
-        :'order' => :'Ptsv2paymentsOrderInformationAmountDetailsOrder'
+        :'order' => :'Ptsv2paymentsOrderInformationAmountDetailsOrder',
+        :'anticipated_amount' => :'String'
       }
     end
 
@@ -316,6 +322,10 @@ module CyberSource
 
       if attributes.has_key?(:'order')
         self.order = attributes[:'order']
+      end
+
+      if attributes.has_key?(:'anticipatedAmount')
+        self.anticipated_amount = attributes[:'anticipatedAmount']
       end
     end
 
@@ -470,6 +480,12 @@ module CyberSource
       @cashback_amount = cashback_amount
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] anticipated_amount Value to be assigned
+    def anticipated_amount=(anticipated_amount)
+      @anticipated_amount = anticipated_amount
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -502,7 +518,8 @@ module CyberSource
           original_currency == o.original_currency &&
           cashback_amount == o.cashback_amount &&
           currency_conversion == o.currency_conversion &&
-          order == o.order
+          order == o.order &&
+          anticipated_amount == o.anticipated_amount
     end
 
     # @see the `==` method
@@ -514,7 +531,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [gift_wrap_amount, total_amount, sub_total_amount, currency, discount_amount, duty_amount, gratuity_amount, tax_amount, national_tax_included, tax_applied_after_discount, tax_applied_level, tax_type_code, freight_amount, foreign_amount, foreign_currency, exchange_rate, exchange_rate_time_stamp, surcharge, settlement_amount, settlement_currency, amex_additional_amounts, tax_details, service_fee_amount, original_amount, original_currency, cashback_amount, currency_conversion, order].hash
+      [gift_wrap_amount, total_amount, sub_total_amount, currency, discount_amount, duty_amount, gratuity_amount, tax_amount, national_tax_included, tax_applied_after_discount, tax_applied_level, tax_type_code, freight_amount, foreign_amount, foreign_currency, exchange_rate, exchange_rate_time_stamp, surcharge, settlement_amount, settlement_currency, amex_additional_amounts, tax_details, service_fee_amount, original_amount, original_currency, cashback_amount, currency_conversion, order, anticipated_amount].hash
     end
 
     # Builds the object from hash

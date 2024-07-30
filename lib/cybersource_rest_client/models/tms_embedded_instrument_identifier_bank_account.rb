@@ -16,7 +16,7 @@ module CyberSource
     # Account number.  When processing encoded account numbers, use this field for the encoded account number. 
     attr_accessor :number
 
-    # Bank routing number. This is also called the transit number.  For details, see `ecp_rdfi` field description in the [Electronic Check Services Using the SCMP API Guide.](https://apps.cybersource.com/library/documentation/dev_guides/EChecks_SCMP_API/html/) 
+    # Bank routing number. This is also called the transit number. 
     attr_accessor :routing_number
 
     # Attribute mapping from ruby-style variable name to JSON key.

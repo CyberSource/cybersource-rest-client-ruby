@@ -95,7 +95,7 @@ module CyberSource
     # Provides additional information as to why the PAResStatus has a specific value. 
     attr_accessor :signed_pares_status_reason
 
-    # This field contains the 3D Secure version that was used to process the transaction. For example, 1.0.2 or 2.0.0. 
+    # This field contains the 3D Secure version that was used to process the transaction. For example: 2.2.0 
     attr_accessor :specification_version
 
     # The fully qualified URL that the merchant uses to post a form to the cardholder in order to complete the Consumer Authentication transaction for the Cardinal Cruise API integration. 

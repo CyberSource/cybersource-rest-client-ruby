@@ -31,7 +31,7 @@ module CyberSource
     # Shipping discount amount for the transaction. If this amount has changed since the initial sessions request, you must include the new value in the order request. You must also include all additional amount fields that apply to the order and ensure the total amount equals the purchaseTotals_grandTotalAmount value. 
     attr_accessor :shipping_discount_amount
 
-    # Total tax amount. When the purchaseTotals_ taxAmount and ap_subtotalAmount fields are included in the request, do not include the tax amount as part of the subtotal amount calculation.  
+    # Total tax amount. When the purchaseTotals_ taxAmount and ap_subtotalAmount fields are included in the request, do not include the tax amount as part of the subtotal amount calculation. 
     attr_accessor :tax_amount
 
     # Amount being charged for the insurance fee. Only supported when the payment_method is set to paypal. 

@@ -77,7 +77,7 @@ describe 'ManageWebhooksApi' do
   # @param save_asym_egress_key Provide egress Asymmetric key information to save (create or store)
   # @param [Hash] opts the optional parameters
   # @option opts [String] :v_c_correlation_id A globally unique id associated with your request
-  # @return [InlineResponse2014]
+  # @return [InlineResponse2015]
   describe 'save_asym_egress_key test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
