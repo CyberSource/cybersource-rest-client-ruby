@@ -3,8 +3,6 @@ module CyberSource
     public
     class SdkTracker
         @@inclusion_list = [
-            "CreateP12KeysRequest",
-            "DeleteBulkP12KeysRequest",
             "CapturePaymentRequest",
             "CreateCreditRequest",
             "AddNegativeListRequest",
@@ -22,9 +20,6 @@ module CyberSource
             "MitReversalRequest",
             "CreateSubscriptionRequest",
             "UpdateSubscription",
-            "CreateSharedSecretKeysRequest",
-            "CreateSharedSecretKeysVerifiRequest",
-            "DeleteBulkSymmetricKeysRequest",
             "TaxRequest",
             "VoidTaxRequest",
             "ValidateExportComplianceRequest",
