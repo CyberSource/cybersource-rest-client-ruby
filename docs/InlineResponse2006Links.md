@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**rel** | **String** | Valid Values:   * self   * first   * last   * prev   * next  | [optional] 
-**href** | **String** |  | [optional] 
+**_self** | [**InlineResponse202LinksStatus**](InlineResponse202LinksStatus.md) |  | [optional] 
+**report** | [**Array&lt;InlineResponse2006LinksReport&gt;**](InlineResponse2006LinksReport.md) |  | [optional] 
 
 

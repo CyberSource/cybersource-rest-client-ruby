@@ -78,6 +78,9 @@ module CyberSource
     # This API field will indicate whether a card verification check is being performed during the transaction  Possible values:   - `true`   - `false` (default value) 
     attr_accessor :card_verification_indicator
 
+    # Indicates whether the transaction is an Account Funding Transaction (AFT).  This field is mandatory for Account Funding Transactions (AFT).   Possible values:   - `true` (This is an AFT transaction)   - `false` (default value) (This is not an AFT transaction) 
+    attr_accessor :aft_indicator
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -102,7 +105,8 @@ module CyberSource
         :'deferred_auth_indicator' => :'deferredAuthIndicator',
         :'cash_advance_indicator' => :'cashAdvanceIndicator',
         :'split_payment_transaction' => :'splitPaymentTransaction',
-        :'card_verification_indicator' => :'cardVerificationIndicator'
+        :'card_verification_indicator' => :'cardVerificationIndicator',
+        :'aft_indicator' => :'aftIndicator'
       }
     end
 
@@ -130,7 +134,8 @@ module CyberSource
         :'deferred_auth_indicator' => :'deferred_auth_indicator',
         :'cash_advance_indicator' => :'cash_advance_indicator',
         :'split_payment_transaction' => :'split_payment_transaction',
-        :'card_verification_indicator' => :'card_verification_indicator'
+        :'card_verification_indicator' => :'card_verification_indicator',
+        :'aft_indicator' => :'aft_indicator'
       }
     end
 
@@ -158,7 +163,8 @@ module CyberSource
         :'deferred_auth_indicator' => :'BOOLEAN',
         :'cash_advance_indicator' => :'BOOLEAN',
         :'split_payment_transaction' => :'BOOLEAN',
-        :'card_verification_indicator' => :'BOOLEAN'
+        :'card_verification_indicator' => :'BOOLEAN',
+        :'aft_indicator' => :'BOOLEAN'
       }
     end
 
@@ -263,6 +269,10 @@ module CyberSource
       if attributes.has_key?(:'cardVerificationIndicator')
         self.card_verification_indicator = attributes[:'cardVerificationIndicator']
       end
+
+      if attributes.has_key?(:'aftIndicator')
+        self.aft_indicator = attributes[:'aftIndicator']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -334,7 +344,8 @@ module CyberSource
           deferred_auth_indicator == o.deferred_auth_indicator &&
           cash_advance_indicator == o.cash_advance_indicator &&
           split_payment_transaction == o.split_payment_transaction &&
-          card_verification_indicator == o.card_verification_indicator
+          card_verification_indicator == o.card_verification_indicator &&
+          aft_indicator == o.aft_indicator
     end
 
     # @see the `==` method
@@ -346,7 +357,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [auth_type, pan_return_indicator, verbal_auth_code, verbal_auth_transaction_id, auth_indicator, partial_auth_indicator, extend_auth_indicator, balance_inquiry, ignore_avs_result, decline_avs_flags, ignore_cv_result, initiator, bill_payment, bill_payment_type, redemption_inquiry, transportation_mode, aggregated_auth_indicator, debt_recovery_indicator, deferred_auth_indicator, cash_advance_indicator, split_payment_transaction, card_verification_indicator].hash
+      [auth_type, pan_return_indicator, verbal_auth_code, verbal_auth_transaction_id, auth_indicator, partial_auth_indicator, extend_auth_indicator, balance_inquiry, ignore_avs_result, decline_avs_flags, ignore_cv_result, initiator, bill_payment, bill_payment_type, redemption_inquiry, transportation_mode, aggregated_auth_indicator, debt_recovery_indicator, deferred_auth_indicator, cash_advance_indicator, split_payment_transaction, card_verification_indicator, aft_indicator].hash
     end
 
     # Builds the object from hash

@@ -165,12 +165,52 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @http_accept_content.nil?
+        invalid_properties.push('invalid value for "http_accept_content", http_accept_content cannot be nil.')
+      end
+
+      if @http_browser_language.nil?
+        invalid_properties.push('invalid value for "http_browser_language", http_browser_language cannot be nil.')
+      end
+
+      if @http_browser_java_enabled.nil?
+        invalid_properties.push('invalid value for "http_browser_java_enabled", http_browser_java_enabled cannot be nil.')
+      end
+
+      if @http_browser_color_depth.nil?
+        invalid_properties.push('invalid value for "http_browser_color_depth", http_browser_color_depth cannot be nil.')
+      end
+
+      if @http_browser_screen_height.nil?
+        invalid_properties.push('invalid value for "http_browser_screen_height", http_browser_screen_height cannot be nil.')
+      end
+
+      if @http_browser_screen_width.nil?
+        invalid_properties.push('invalid value for "http_browser_screen_width", http_browser_screen_width cannot be nil.')
+      end
+
+      if @http_browser_time_difference.nil?
+        invalid_properties.push('invalid value for "http_browser_time_difference", http_browser_time_difference cannot be nil.')
+      end
+
+      if @user_agent_browser_value.nil?
+        invalid_properties.push('invalid value for "user_agent_browser_value", user_agent_browser_value cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @http_accept_content.nil?
+      return false if @http_browser_language.nil?
+      return false if @http_browser_java_enabled.nil?
+      return false if @http_browser_color_depth.nil?
+      return false if @http_browser_screen_height.nil?
+      return false if @http_browser_screen_width.nil?
+      return false if @http_browser_time_difference.nil?
+      return false if @user_agent_browser_value.nil?
       true
     end
 
@@ -189,42 +229,70 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] http_accept_content Value to be assigned
     def http_accept_content=(http_accept_content)
+      #if http_accept_content.nil?
+        #fail ArgumentError, 'http_accept_content cannot be nil'
+      #end
+
       @http_accept_content = http_accept_content
     end
 
     # Custom attribute writer method with validation
     # @param [Object] http_browser_language Value to be assigned
     def http_browser_language=(http_browser_language)
+      #if http_browser_language.nil?
+        #fail ArgumentError, 'http_browser_language cannot be nil'
+      #end
+
       @http_browser_language = http_browser_language
     end
 
     # Custom attribute writer method with validation
     # @param [Object] http_browser_color_depth Value to be assigned
     def http_browser_color_depth=(http_browser_color_depth)
+      #if http_browser_color_depth.nil?
+        #fail ArgumentError, 'http_browser_color_depth cannot be nil'
+      #end
+
       @http_browser_color_depth = http_browser_color_depth
     end
 
     # Custom attribute writer method with validation
     # @param [Object] http_browser_screen_height Value to be assigned
     def http_browser_screen_height=(http_browser_screen_height)
+      #if http_browser_screen_height.nil?
+        #fail ArgumentError, 'http_browser_screen_height cannot be nil'
+      #end
+
       @http_browser_screen_height = http_browser_screen_height
     end
 
     # Custom attribute writer method with validation
     # @param [Object] http_browser_screen_width Value to be assigned
     def http_browser_screen_width=(http_browser_screen_width)
+      #if http_browser_screen_width.nil?
+        #fail ArgumentError, 'http_browser_screen_width cannot be nil'
+      #end
+
       @http_browser_screen_width = http_browser_screen_width
     end
 
     # Custom attribute writer method with validation
     # @param [Object] http_browser_time_difference Value to be assigned
     def http_browser_time_difference=(http_browser_time_difference)
+      #if http_browser_time_difference.nil?
+        #fail ArgumentError, 'http_browser_time_difference cannot be nil'
+      #end
+
       @http_browser_time_difference = http_browser_time_difference
     end
 
     # Custom attribute writer method with validation
     # @param [Object] user_agent_browser_value Value to be assigned
     def user_agent_browser_value=(user_agent_browser_value)
+      #if user_agent_browser_value.nil?
+        #fail ArgumentError, 'user_agent_browser_value cannot be nil'
+      #end
+
       @user_agent_browser_value = user_agent_browser_value
     end
 

@@ -31,7 +31,13 @@ describe 'InlineResponse2007' do
       expect(@instance).to be_instance_of(CyberSource::InlineResponse2007)
     end
   end
-  describe 'test attribute "_links"' do
+  describe 'test attribute "version"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "report_created_date"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -43,19 +49,7 @@ describe 'InlineResponse2007' do
     end
   end
 
-  describe 'test attribute "batch_created_date"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   describe 'test attribute "batch_source"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe 'test attribute "merchant_reference"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -67,7 +61,13 @@ describe 'InlineResponse2007' do
     end
   end
 
-  describe 'test attribute "status"' do
+  describe 'test attribute "batch_created_date"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "merchant_reference"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -85,7 +85,7 @@ describe 'InlineResponse2007' do
     end
   end
 
-  describe 'test attribute "description"' do
+  describe 'test attribute "records"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

@@ -24,7 +24,7 @@ module CyberSource
     #
     # @param batch_id Unique identification number assigned to the submitted request.
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2008]
+    # @return [InlineResponse2007]
     #
     def get_batch_report(batch_id, opts = {})
       data, status_code, headers = get_batch_report_with_http_info(batch_id, opts)
@@ -35,7 +35,7 @@ module CyberSource
     # **Get Batch Report**&lt;br&gt;This resource accepts a batch id and returns: - The batch status. - The total number of accepted, rejected, updated records. - The total number of card association responses. - The billable quantities of:   - New Account Numbers (NAN)   - New Expiry Dates (NED)   - Account Closures (ACL)   - Contact Card Holders (CCH) - Source record information including token ids, masked card number, expiration dates &amp; card type. - Response record information including response code, reason, token ids, masked card number, expiration dates &amp; card type. 
     # @param batch_id Unique identification number assigned to the submitted request.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2008, Fixnum, Hash)>] InlineResponse2008 data, response status code and response headers
+    # @return [Array<(InlineResponse2007, Fixnum, Hash)>] InlineResponse2007 data, response status code and response headers
     def get_batch_report_with_http_info(batch_id, opts = {})
 
       if @api_client.config.debugging
@@ -83,7 +83,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2008')
+        :return_type => 'InlineResponse2007')
       if @api_client.config.debugging
         begin
         raise
@@ -99,7 +99,7 @@ module CyberSource
     #
     # @param batch_id Unique identification number assigned to the submitted request.
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2007]
+    # @return [InlineResponse2006]
     #
     def get_batch_status(batch_id, opts = {})
       data, status_code, headers = get_batch_status_with_http_info(batch_id, opts)
@@ -110,7 +110,7 @@ module CyberSource
     # **Get Batch Status**&lt;br&gt;This resource accepts a batch id and returns: - The batch status. - The total number of accepted, rejected, updated records. - The total number of card association responses. - The billable quantities of:   - New Account Numbers (NAN)   - New Expiry Dates (NED)   - Account Closures (ACL)   - Contact Card Holders (CCH) 
     # @param batch_id Unique identification number assigned to the submitted request.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2007, Fixnum, Hash)>] InlineResponse2007 data, response status code and response headers
+    # @return [Array<(InlineResponse2006, Fixnum, Hash)>] InlineResponse2006 data, response status code and response headers
     def get_batch_status_with_http_info(batch_id, opts = {})
 
       if @api_client.config.debugging
@@ -158,7 +158,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2007')
+        :return_type => 'InlineResponse2006')
       if @api_client.config.debugging
         begin
         raise
@@ -177,7 +177,7 @@ module CyberSource
     # @option opts [Integer] :limit The maximum number that can be returned in the array starting from the offset record in zero-based dataset. (default to 20)
     # @option opts [String] :from_date ISO-8601 format: yyyyMMddTHHmmssZ
     # @option opts [String] :to_date ISO-8601 format: yyyyMMddTHHmmssZ
-    # @return [InlineResponse2006]
+    # @return [InlineResponse2005]
     #
     def get_batches_list(opts = {})
       data, status_code, headers = get_batches_list_with_http_info(opts)
@@ -191,7 +191,7 @@ module CyberSource
     # @option opts [Integer] :limit The maximum number that can be returned in the array starting from the offset record in zero-based dataset.
     # @option opts [String] :from_date ISO-8601 format: yyyyMMddTHHmmssZ
     # @option opts [String] :to_date ISO-8601 format: yyyyMMddTHHmmssZ
-    # @return [Array<(InlineResponse2006, Fixnum, Hash)>] InlineResponse2006 data, response status code and response headers
+    # @return [Array<(InlineResponse2005, Fixnum, Hash)>] InlineResponse2005 data, response status code and response headers
     def get_batches_list_with_http_info(opts = {})
 
       if @api_client.config.debugging
@@ -235,7 +235,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2006')
+        :return_type => 'InlineResponse2005')
       if @api_client.config.debugging
         begin
         raise

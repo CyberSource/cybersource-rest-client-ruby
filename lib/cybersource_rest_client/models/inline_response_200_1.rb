@@ -12,58 +12,57 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # Successful searchKeysResponse
   class InlineResponse2001
-    # Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the time. The Z indicates UTC. 
-    attr_accessor :submit_time_utc
+    attr_accessor :registration_information
 
-    # Specifies the total number of items found based on the request
-    attr_accessor :total_count
+    attr_accessor :integration_information
 
-    # Specifies the record offset from the records are returned part of the response
-    attr_accessor :offset
+    attr_accessor :organization_information
 
-    # Specifies the maximum number of records requested part of the response
-    attr_accessor :limit
+    attr_accessor :product_information
 
-    # Specifies a comma separated list of field names based on which the result is sorted.
-    attr_accessor :sort
+    attr_accessor :product_information_setups
 
-    attr_accessor :keys
+    attr_accessor :document_information
+
+    attr_accessor :details
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'submit_time_utc' => :'submitTimeUtc',
-        :'total_count' => :'totalCount',
-        :'offset' => :'offset',
-        :'limit' => :'limit',
-        :'sort' => :'sort',
-        :'keys' => :'keys'
+        :'registration_information' => :'registrationInformation',
+        :'integration_information' => :'integrationInformation',
+        :'organization_information' => :'organizationInformation',
+        :'product_information' => :'productInformation',
+        :'product_information_setups' => :'productInformationSetups',
+        :'document_information' => :'documentInformation',
+        :'details' => :'details'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'submit_time_utc' => :'submit_time_utc',
-        :'total_count' => :'total_count',
-        :'offset' => :'offset',
-        :'limit' => :'limit',
-        :'sort' => :'sort',
-        :'keys' => :'keys'
+        :'registration_information' => :'registration_information',
+        :'integration_information' => :'integration_information',
+        :'organization_information' => :'organization_information',
+        :'product_information' => :'product_information',
+        :'product_information_setups' => :'product_information_setups',
+        :'document_information' => :'document_information',
+        :'details' => :'details'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'submit_time_utc' => :'String',
-        :'total_count' => :'Integer',
-        :'offset' => :'Integer',
-        :'limit' => :'Integer',
-        :'sort' => :'String',
-        :'keys' => :'Array<InlineResponse2001Keys>'
+        :'registration_information' => :'Boardingv1registrationsRegistrationInformation',
+        :'integration_information' => :'InlineResponse2001IntegrationInformation',
+        :'organization_information' => :'Boardingv1registrationsOrganizationInformation',
+        :'product_information' => :'Boardingv1registrationsProductInformation',
+        :'product_information_setups' => :'Array<InlineResponse2012ProductInformationSetups>',
+        :'document_information' => :'Boardingv1registrationsDocumentInformation',
+        :'details' => :'Hash<String, Array<Object>>'
       }
     end
 
@@ -75,29 +74,35 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'submitTimeUtc')
-        self.submit_time_utc = attributes[:'submitTimeUtc']
+      if attributes.has_key?(:'registrationInformation')
+        self.registration_information = attributes[:'registrationInformation']
       end
 
-      if attributes.has_key?(:'totalCount')
-        self.total_count = attributes[:'totalCount']
+      if attributes.has_key?(:'integrationInformation')
+        self.integration_information = attributes[:'integrationInformation']
       end
 
-      if attributes.has_key?(:'offset')
-        self.offset = attributes[:'offset']
+      if attributes.has_key?(:'organizationInformation')
+        self.organization_information = attributes[:'organizationInformation']
       end
 
-      if attributes.has_key?(:'limit')
-        self.limit = attributes[:'limit']
+      if attributes.has_key?(:'productInformation')
+        self.product_information = attributes[:'productInformation']
       end
 
-      if attributes.has_key?(:'sort')
-        self.sort = attributes[:'sort']
+      if attributes.has_key?(:'productInformationSetups')
+        if (value = attributes[:'productInformationSetups']).is_a?(Array)
+          self.product_information_setups = value
+        end
       end
 
-      if attributes.has_key?(:'keys')
-        if (value = attributes[:'keys']).is_a?(Array)
-          self.keys = value
+      if attributes.has_key?(:'documentInformation')
+        self.document_information = attributes[:'documentInformation']
+      end
+
+      if attributes.has_key?(:'details')
+        if (value = attributes[:'details']).is_a?(Hash)
+          self.details = value
         end
       end
     end
@@ -120,12 +125,13 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          submit_time_utc == o.submit_time_utc &&
-          total_count == o.total_count &&
-          offset == o.offset &&
-          limit == o.limit &&
-          sort == o.sort &&
-          keys == o.keys
+          registration_information == o.registration_information &&
+          integration_information == o.integration_information &&
+          organization_information == o.organization_information &&
+          product_information == o.product_information &&
+          product_information_setups == o.product_information_setups &&
+          document_information == o.document_information &&
+          details == o.details
     end
 
     # @see the `==` method
@@ -137,7 +143,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [submit_time_utc, total_count, offset, limit, sort, keys].hash
+      [registration_information, integration_information, organization_information, product_information, product_information_setups, document_information, details].hash
     end
 
     # Builds the object from hash
