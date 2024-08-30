@@ -13,32 +13,31 @@ require 'date'
 
 module CyberSource
   class InlineResponse2006Links
-    # Valid Values:   * self   * first   * last   * prev   * next 
-    attr_accessor :rel
+    attr_accessor :_self
 
-    attr_accessor :href
+    attr_accessor :report
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'rel' => :'rel',
-        :'href' => :'href'
+        :'_self' => :'self',
+        :'report' => :'report'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'rel' => :'rel',
-        :'href' => :'href'
+        :'_self' => :'_self',
+        :'report' => :'report'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'rel' => :'String',
-        :'href' => :'String'
+        :'_self' => :'InlineResponse202LinksStatus',
+        :'report' => :'Array<InlineResponse2006LinksReport>'
       }
     end
 
@@ -50,12 +49,14 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'rel')
-        self.rel = attributes[:'rel']
+      if attributes.has_key?(:'self')
+        self._self = attributes[:'self']
       end
 
-      if attributes.has_key?(:'href')
-        self.href = attributes[:'href']
+      if attributes.has_key?(:'report')
+        if (value = attributes[:'report']).is_a?(Array)
+          self.report = value
+        end
       end
     end
 
@@ -77,8 +78,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          rel == o.rel &&
-          href == o.href
+          _self == o._self &&
+          report == o.report
     end
 
     # @see the `==` method
@@ -90,7 +91,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [rel, href].hash
+      [_self, report].hash
     end
 
     # Builds the object from hash

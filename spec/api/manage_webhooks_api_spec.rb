@@ -48,7 +48,7 @@ describe 'ManageWebhooksApi' do
   # Retrieve the details of a specific webhook by supplying the webhook ID in the path.
   # @param webhook_id The webhook Identifier
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2005]
+  # @return [InlineResponse2004]
   describe 'get_webhook_subscription_by_id test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -62,7 +62,7 @@ describe 'ManageWebhooksApi' do
   # @param product_id The Product Identifier.
   # @param event_type The Event Type.
   # @param [Hash] opts the optional parameters
-  # @return [Array<InlineResponse2004>]
+  # @return [Array<InlineResponse2003>]
   describe 'get_webhook_subscriptions_by_org test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

@@ -36,7 +36,7 @@ describe 'MerchantBoardingApi' do
   # This end point will get all information of a boarding registration 
   # @param registration_id Identifies the boarding registration to be updated
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2002]
+  # @return [InlineResponse2001]
   describe 'get_registration test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

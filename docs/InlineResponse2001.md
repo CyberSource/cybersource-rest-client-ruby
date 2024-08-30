@@ -3,11 +3,12 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**submit_time_utc** | **String** | Time of request in UTC. &#x60;Format: YYYY-MM-DDThh:mm:ssZ&#x60;  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the time. The Z indicates UTC.  | [optional] 
-**total_count** | **Integer** | Specifies the total number of items found based on the request | [optional] 
-**offset** | **Integer** | Specifies the record offset from the records are returned part of the response | [optional] 
-**limit** | **Integer** | Specifies the maximum number of records requested part of the response | [optional] 
-**sort** | **String** | Specifies a comma separated list of field names based on which the result is sorted. | [optional] 
-**keys** | [**Array&lt;InlineResponse2001Keys&gt;**](InlineResponse2001Keys.md) |  | [optional] 
+**registration_information** | [**Boardingv1registrationsRegistrationInformation**](Boardingv1registrationsRegistrationInformation.md) |  | [optional] 
+**integration_information** | [**InlineResponse2001IntegrationInformation**](InlineResponse2001IntegrationInformation.md) |  | [optional] 
+**organization_information** | [**Boardingv1registrationsOrganizationInformation**](Boardingv1registrationsOrganizationInformation.md) |  | [optional] 
+**product_information** | [**Boardingv1registrationsProductInformation**](Boardingv1registrationsProductInformation.md) |  | [optional] 
+**product_information_setups** | [**Array&lt;InlineResponse2012ProductInformationSetups&gt;**](InlineResponse2012ProductInformationSetups.md) |  | [optional] 
+**document_information** | [**Boardingv1registrationsDocumentInformation**](Boardingv1registrationsDocumentInformation.md) |  | [optional] 
+**details** | **Hash&lt;String, Array&lt;Object&gt;&gt;** |  | [optional] 
 
 

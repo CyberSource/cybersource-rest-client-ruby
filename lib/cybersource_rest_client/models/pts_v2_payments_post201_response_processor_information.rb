@@ -46,6 +46,9 @@ module CyberSource
     # Field contains a settlement date. The date is in mmdd format, where: mm = month and dd = day. 
     attr_accessor :settlement_date
 
+    # This field serves as a unique identifier for initial and subsequent recurring transactions, specific to the payment brand, and is crucial for transaction tracking and recurrence management. Not all processors provide this value. Returned by the authorization service. 
+    attr_accessor :sequence_number
+
     attr_accessor :avs
 
     attr_accessor :card_verification
@@ -130,6 +133,7 @@ module CyberSource
         :'response_category_code' => :'responseCategoryCode',
         :'forwarded_acquirer_code' => :'forwardedAcquirerCode',
         :'settlement_date' => :'settlementDate',
+        :'sequence_number' => :'sequenceNumber',
         :'avs' => :'avs',
         :'card_verification' => :'cardVerification',
         :'merchant_advice' => :'merchantAdvice',
@@ -174,6 +178,7 @@ module CyberSource
         :'response_category_code' => :'response_category_code',
         :'forwarded_acquirer_code' => :'forwarded_acquirer_code',
         :'settlement_date' => :'settlement_date',
+        :'sequence_number' => :'sequence_number',
         :'avs' => :'avs',
         :'card_verification' => :'card_verification',
         :'merchant_advice' => :'merchant_advice',
@@ -218,6 +223,7 @@ module CyberSource
         :'response_category_code' => :'String',
         :'forwarded_acquirer_code' => :'String',
         :'settlement_date' => :'String',
+        :'sequence_number' => :'String',
         :'avs' => :'PtsV2PaymentsPost201ResponseProcessorInformationAvs',
         :'card_verification' => :'PtsV2PaymentsPost201ResponseProcessorInformationCardVerification',
         :'merchant_advice' => :'PtsV2PaymentsPost201ResponseProcessorInformationMerchantAdvice',
@@ -298,6 +304,10 @@ module CyberSource
 
       if attributes.has_key?(:'settlementDate')
         self.settlement_date = attributes[:'settlementDate']
+      end
+
+      if attributes.has_key?(:'sequenceNumber')
+        self.sequence_number = attributes[:'sequenceNumber']
       end
 
       if attributes.has_key?(:'avs')
@@ -483,6 +493,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] sequence_number Value to be assigned
+    def sequence_number=(sequence_number)
+      @sequence_number = sequence_number
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] system_trace_audit_number Value to be assigned
     def system_trace_audit_number=(system_trace_audit_number)
       @system_trace_audit_number = system_trace_audit_number
@@ -588,6 +604,7 @@ module CyberSource
           response_category_code == o.response_category_code &&
           forwarded_acquirer_code == o.forwarded_acquirer_code &&
           settlement_date == o.settlement_date &&
+          sequence_number == o.sequence_number &&
           avs == o.avs &&
           card_verification == o.card_verification &&
           merchant_advice == o.merchant_advice &&
@@ -626,7 +643,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [auth_indicator, approval_code, card_reference_data, transaction_id, network_transaction_id, response_code, response_code_source, response_details, response_category_code, forwarded_acquirer_code, settlement_date, avs, card_verification, merchant_advice, electronic_verification_results, ach_verification, customer, consumer_authentication_response, system_trace_audit_number, payment_account_reference_number, transaction_integrity_code, amex_verbal_auth_reference_number, master_card_service_code, master_card_service_reply_code, master_card_authentication_type, name, routing, merchant_number, retrieval_reference_number, payment_url, complete_url, signature, public_key, seller_protection, transaction_expiry_date, custom_url, scheme_assigned_id, device_url].hash
+      [auth_indicator, approval_code, card_reference_data, transaction_id, network_transaction_id, response_code, response_code_source, response_details, response_category_code, forwarded_acquirer_code, settlement_date, sequence_number, avs, card_verification, merchant_advice, electronic_verification_results, ach_verification, customer, consumer_authentication_response, system_trace_audit_number, payment_account_reference_number, transaction_integrity_code, amex_verbal_auth_reference_number, master_card_service_code, master_card_service_reply_code, master_card_authentication_type, name, routing, merchant_number, retrieval_reference_number, payment_url, complete_url, signature, public_key, seller_protection, transaction_expiry_date, custom_url, scheme_assigned_id, device_url].hash
     end
 
     # Builds the object from hash

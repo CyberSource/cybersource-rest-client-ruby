@@ -15,9 +15,6 @@ module CyberSource
   class Riskv1decisionsConsumerAuthenticationInformation
     attr_accessor :strong_authentication
 
-    # Indicates the type of authentication that will be used to challenge the card holder.  Possible Values:  01 - Static  02 - Dynamic  03 - OOB (Out of Band)  04 - Decoupled  20 - OTP hosted at merchant end. (Rupay S2S flow) **NOTE**:  EMV 3-D Secure version 2.1.0 supports values 01-03.  Version 2.2.0 supports values 01-04.  Decoupled authentication is not supported at this time. 
-    attr_accessor :authentication_type
-
     # An override field that a merchant can pass in to set the challenge window size to display to the end cardholder.  The ACS (Active Control Server) will reply with content that is formatted appropriately to this window size to allow for the best user experience.  The sizes are width x height in pixels of the window displayed in the cardholder browser window.  01 - 250x400  02 - 390x400  03 - 500x600  04 - 600x400  05 - Full page 
     attr_accessor :acs_window_size
 
@@ -142,7 +139,6 @@ module CyberSource
     def self.attribute_map
       {
         :'strong_authentication' => :'strongAuthentication',
-        :'authentication_type' => :'authenticationType',
         :'acs_window_size' => :'acsWindowSize',
         :'alternate_authentication_data' => :'alternateAuthenticationData',
         :'alternate_authentication_date' => :'alternateAuthenticationDate',
@@ -190,7 +186,6 @@ module CyberSource
     def self.json_map
       {
         :'strong_authentication' => :'strong_authentication',
-        :'authentication_type' => :'authentication_type',
         :'acs_window_size' => :'acs_window_size',
         :'alternate_authentication_data' => :'alternate_authentication_data',
         :'alternate_authentication_date' => :'alternate_authentication_date',
@@ -238,7 +233,6 @@ module CyberSource
     def self.swagger_types
       {
         :'strong_authentication' => :'Riskv1decisionsConsumerAuthenticationInformationStrongAuthentication',
-        :'authentication_type' => :'String',
         :'acs_window_size' => :'String',
         :'alternate_authentication_data' => :'String',
         :'alternate_authentication_date' => :'String',
@@ -292,10 +286,6 @@ module CyberSource
 
       if attributes.has_key?(:'strongAuthentication')
         self.strong_authentication = attributes[:'strongAuthentication']
-      end
-
-      if attributes.has_key?(:'authenticationType')
-        self.authentication_type = attributes[:'authenticationType']
       end
 
       if attributes.has_key?(:'acsWindowSize')
@@ -463,19 +453,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @device_channel.nil?
+        invalid_properties.push('invalid value for "device_channel", device_channel cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @device_channel.nil?
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] authentication_type Value to be assigned
-    def authentication_type=(authentication_type)
-      @authentication_type = authentication_type
     end
 
     # Custom attribute writer method with validation
@@ -541,6 +530,10 @@ module CyberSource
     # Custom attribute writer method with validation
     # @param [Object] device_channel Value to be assigned
     def device_channel=(device_channel)
+      #if device_channel.nil?
+        #fail ArgumentError, 'device_channel cannot be nil'
+      #end
+
       @device_channel = device_channel
     end
 
@@ -658,7 +651,6 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           strong_authentication == o.strong_authentication &&
-          authentication_type == o.authentication_type &&
           acs_window_size == o.acs_window_size &&
           alternate_authentication_data == o.alternate_authentication_data &&
           alternate_authentication_date == o.alternate_authentication_date &&
@@ -710,7 +702,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [strong_authentication, authentication_type, acs_window_size, alternate_authentication_data, alternate_authentication_date, alternate_authentication_method, authentication_date, authentication_transaction_id, transaction_flow_indicator, challenge_cancel_code, challenge_code, challenge_status, customer_card_alias, decoupled_authentication_indicator, decoupled_authentication_max_time, default_card, device_channel, installment_total_count, merchant_fraud_rate, marketing_opt_in, marketing_source, mcc, merchant_score, message_category, npa_code, override_payment_method, override_country_code, prior_authentication_data, prior_authentication_method, prior_authentication_reference_id, prior_authentication_time, product_code, return_url, requestor_id, requestor_initiated_authentication_indicator, requestor_name, reference_id, sdk_max_timeout, secure_corporate_payment_indicator, transaction_mode, white_list_status, score_request].hash
+      [strong_authentication, acs_window_size, alternate_authentication_data, alternate_authentication_date, alternate_authentication_method, authentication_date, authentication_transaction_id, transaction_flow_indicator, challenge_cancel_code, challenge_code, challenge_status, customer_card_alias, decoupled_authentication_indicator, decoupled_authentication_max_time, default_card, device_channel, installment_total_count, merchant_fraud_rate, marketing_opt_in, marketing_source, mcc, merchant_score, message_category, npa_code, override_payment_method, override_country_code, prior_authentication_data, prior_authentication_method, prior_authentication_reference_id, prior_authentication_time, product_code, return_url, requestor_id, requestor_initiated_authentication_indicator, requestor_name, reference_id, sdk_max_timeout, secure_corporate_payment_indicator, transaction_mode, white_list_status, score_request].hash
     end
 
     # Builds the object from hash

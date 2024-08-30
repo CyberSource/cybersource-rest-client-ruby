@@ -58,7 +58,7 @@ No authorization required
 
 
 # **get_webhook_subscription_by_id**
-> InlineResponse2005 get_webhook_subscription_by_id(webhook_id)
+> InlineResponse2004 get_webhook_subscription_by_id(webhook_id)
 
 Get Details On a Single Webhook
 
@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2005**](InlineResponse2005.md)
+[**InlineResponse2004**](InlineResponse2004.md)
 
 ### Authorization
 
@@ -105,7 +105,7 @@ No authorization required
 
 
 # **get_webhook_subscriptions_by_org**
-> Array&lt;InlineResponse2004&gt; get_webhook_subscriptions_by_org(organization_id, product_id, event_type)
+> Array&lt;InlineResponse2003&gt; get_webhook_subscriptions_by_org(organization_id, product_id, event_type)
 
 Get Details On All Created Webhooks
 
@@ -144,7 +144,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Array&lt;InlineResponse2004&gt;**](InlineResponse2004.md)
+[**Array&lt;InlineResponse2003&gt;**](InlineResponse2003.md)
 
 ### Authorization
 

@@ -47,6 +47,8 @@ module CyberSource
 
     attr_accessor :receivables_manager
 
+    attr_accessor :service_fee
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -66,7 +68,8 @@ module CyberSource
         :'payouts' => :'payouts',
         :'pay_by_link' => :'payByLink',
         :'unified_checkout' => :'unifiedCheckout',
-        :'receivables_manager' => :'receivablesManager'
+        :'receivables_manager' => :'receivablesManager',
+        :'service_fee' => :'serviceFee'
       }
     end
 
@@ -89,7 +92,8 @@ module CyberSource
         :'payouts' => :'payouts',
         :'pay_by_link' => :'pay_by_link',
         :'unified_checkout' => :'unified_checkout',
-        :'receivables_manager' => :'receivables_manager'
+        :'receivables_manager' => :'receivables_manager',
+        :'service_fee' => :'service_fee'
       }
     end
 
@@ -112,7 +116,8 @@ module CyberSource
         :'payouts' => :'InlineResponse2012SetupsPaymentsCardProcessing',
         :'pay_by_link' => :'InlineResponse2012SetupsPaymentsDigitalPayments',
         :'unified_checkout' => :'InlineResponse2012SetupsPaymentsDigitalPayments',
-        :'receivables_manager' => :'InlineResponse2012SetupsPaymentsDigitalPayments'
+        :'receivables_manager' => :'InlineResponse2012SetupsPaymentsDigitalPayments',
+        :'service_fee' => :'InlineResponse2012SetupsPaymentsCardProcessing'
       }
     end
 
@@ -191,6 +196,10 @@ module CyberSource
       if attributes.has_key?(:'receivablesManager')
         self.receivables_manager = attributes[:'receivablesManager']
       end
+
+      if attributes.has_key?(:'serviceFee')
+        self.service_fee = attributes[:'serviceFee']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -227,7 +236,8 @@ module CyberSource
           payouts == o.payouts &&
           pay_by_link == o.pay_by_link &&
           unified_checkout == o.unified_checkout &&
-          receivables_manager == o.receivables_manager
+          receivables_manager == o.receivables_manager &&
+          service_fee == o.service_fee
     end
 
     # @see the `==` method
@@ -239,7 +249,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card_processing, card_present_connect, e_check, payer_authentication, digital_payments, secure_acceptance, virtual_terminal, currency_conversion, tax, customer_invoicing, recurring_billing, cybs_ready_terminal, payment_orchestration, payouts, pay_by_link, unified_checkout, receivables_manager].hash
+      [card_processing, card_present_connect, e_check, payer_authentication, digital_payments, secure_acceptance, virtual_terminal, currency_conversion, tax, customer_invoicing, recurring_billing, cybs_ready_terminal, payment_orchestration, payouts, pay_by_link, unified_checkout, receivables_manager, service_fee].hash
     end
 
     # Builds the object from hash

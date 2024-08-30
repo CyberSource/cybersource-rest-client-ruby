@@ -58,7 +58,7 @@ No authorization required
 
 
 # **find_products_to_subscribe**
-> Array&lt;InlineResponse2003&gt; find_products_to_subscribe(organization_id)
+> Array&lt;InlineResponse2002&gt; find_products_to_subscribe(organization_id)
 
 Find Products You Can Subscribe To
 
@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Array&lt;InlineResponse2003&gt;**](InlineResponse2003.md)
+[**Array&lt;InlineResponse2002&gt;**](InlineResponse2002.md)
 
 ### Authorization
 
