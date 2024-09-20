@@ -89,7 +89,7 @@ module CyberSource
     def self.swagger_types
       {
         :'id' => :'String',
-        :'submit_time_utc' => :'Date',
+        :'submit_time_utc' => :'DateTime',
         :'status' => :'String',
         :'registration_information' => :'InlineResponse2012RegistrationInformation',
         :'integration_information' => :'InlineResponse2012IntegrationInformation',
