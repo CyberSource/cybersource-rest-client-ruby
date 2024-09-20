@@ -54,18 +54,27 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @customer_id.nil?
+        invalid_properties.push('invalid value for "customer_id", customer_id cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @customer_id.nil?
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] customer_id Value to be assigned
     def customer_id=(customer_id)
+      #if customer_id.nil?
+        #fail ArgumentError, 'customer_id cannot be nil'
+      #end
+
       @customer_id = customer_id
     end
 

@@ -38,6 +38,9 @@ module CyberSource
     # Applicable for RUPAY and American Express Direct (amexdirect) processors.  Validation details (for selected processors)...  <table> <thead><tr><th>Processor</th><th>Acceptance Type</th><th>Required</th><th>Min. Length</th><th>Max. Length</th><th>Regex</th></tr></thead> <tr><td>American Express Direct</td><td>cnp, hybrid</td><td>Yes</td><td>1</td><td>40</td><td>URL</td></tr> <tr><td>American Express Direct</td><td>cp</td><td>No</td><td>1</td><td>40</td><td>URL</td></tr> </table> 
     attr_accessor :url
 
+    # Country Cf Origin of merchant is applicable for VPC Processors and is dependent on governmentControlled attribute.
+    attr_accessor :country_of_origin
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -48,7 +51,8 @@ module CyberSource
         :'state' => :'state',
         :'street' => :'street',
         :'zip' => :'zip',
-        :'url' => :'url'
+        :'url' => :'url',
+        :'country_of_origin' => :'countryOfOrigin'
       }
     end
 
@@ -62,7 +66,8 @@ module CyberSource
         :'state' => :'state',
         :'street' => :'street',
         :'zip' => :'zip',
-        :'url' => :'url'
+        :'url' => :'url',
+        :'country_of_origin' => :'country_of_origin'
       }
     end
 
@@ -76,7 +81,8 @@ module CyberSource
         :'state' => :'String',
         :'street' => :'String',
         :'zip' => :'String',
-        :'url' => :'String'
+        :'url' => :'String',
+        :'country_of_origin' => :'String'
       }
     end
 
@@ -119,6 +125,10 @@ module CyberSource
       if attributes.has_key?(:'url')
         self.url = attributes[:'url']
       end
+
+      if attributes.has_key?(:'countryOfOrigin')
+        self.country_of_origin = attributes[:'countryOfOrigin']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -146,7 +156,8 @@ module CyberSource
           state == o.state &&
           street == o.street &&
           zip == o.zip &&
-          url == o.url
+          url == o.url &&
+          country_of_origin == o.country_of_origin
     end
 
     # @see the `==` method
@@ -158,7 +169,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name, city, country, phone, state, street, zip, url].hash
+      [name, city, country, phone, state, street, zip, url, country_of_origin].hash
     end
 
     # Builds the object from hash

@@ -36,9 +36,6 @@ module CyberSource
     # This  field is only applicable to Rupay and is optional. Merchant will have to pass a valid value from 01 through 07 which indicates the transaction flow. Below are the possible values. 01:NW- Transaction performed at domestic merchant. 02:TW- Transaction performed at domestic merchant along with Token provisioning. 03:IT- Transaction performed at International merchant. 04:AT- Authentication Transaction Only. 05:AW- Authentication transaction for provisioning. 06:DI- Domestic InApp Transaction. 07:II- International InApp transaction. 08:GC- Guest Checkout 09:ST- SI Authentication Transaction only 10:SW- SI Authorization along with token provisioning 
     attr_accessor :transaction_flow_indicator
 
-    # An indicator as to why the transaction was canceled. Possible Values:  - `01`: Cardholder selected Cancel. - `02`: Reserved for future EMVCo use (values invalid until defined by EMVCo). - `03`: Transaction Timed Out—Decoupled Authentication - `04`: Transaction timed out at ACS—other timeouts - `05`: Transaction Timed out at ACS - First CReq not received by ACS - `06`: Transaction Error - `07`: Unknown - `08`: Transaction Timed Out at SDK 
-    attr_accessor :challenge_cancel_code
-
     # Possible values: - `01`: No preference - `02`: No challenge request - `03`: Challenge requested (3D Secure requestor preference) - `04`: Challenge requested (mandate) - `05`: No challenge requested (transactional risk analysis is already performed) - `06`: No challenge requested (Data share only) - `07`: No challenge requested (strong consumer authentication is already performed) - `08`: No challenge requested (utilize whitelist exemption if no challenge required) - `09`: Challenge requested (whitelist prompt requested if challenge required) **Note** This field will default to `01` on merchant configuration and can be overridden by the merchant. EMV 3D Secure version 2.1.0 supports values `01-04`. Version 2.2.0 supports values `01-09`. 
     attr_accessor :challenge_code
 
@@ -146,7 +143,6 @@ module CyberSource
         :'authentication_date' => :'authenticationDate',
         :'authentication_transaction_id' => :'authenticationTransactionId',
         :'transaction_flow_indicator' => :'transactionFlowIndicator',
-        :'challenge_cancel_code' => :'challengeCancelCode',
         :'challenge_code' => :'challengeCode',
         :'challenge_status' => :'challengeStatus',
         :'customer_card_alias' => :'customerCardAlias',
@@ -193,7 +189,6 @@ module CyberSource
         :'authentication_date' => :'authentication_date',
         :'authentication_transaction_id' => :'authentication_transaction_id',
         :'transaction_flow_indicator' => :'transaction_flow_indicator',
-        :'challenge_cancel_code' => :'challenge_cancel_code',
         :'challenge_code' => :'challenge_code',
         :'challenge_status' => :'challenge_status',
         :'customer_card_alias' => :'customer_card_alias',
@@ -240,7 +235,6 @@ module CyberSource
         :'authentication_date' => :'String',
         :'authentication_transaction_id' => :'String',
         :'transaction_flow_indicator' => :'Integer',
-        :'challenge_cancel_code' => :'String',
         :'challenge_code' => :'String',
         :'challenge_status' => :'String',
         :'customer_card_alias' => :'String',
@@ -314,10 +308,6 @@ module CyberSource
 
       if attributes.has_key?(:'transactionFlowIndicator')
         self.transaction_flow_indicator = attributes[:'transactionFlowIndicator']
-      end
-
-      if attributes.has_key?(:'challengeCancelCode')
-        self.challenge_cancel_code = attributes[:'challengeCancelCode']
       end
 
       if attributes.has_key?(:'challengeCode')
@@ -498,12 +488,6 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] challenge_cancel_code Value to be assigned
-    def challenge_cancel_code=(challenge_cancel_code)
-      @challenge_cancel_code = challenge_cancel_code
-    end
-
-    # Custom attribute writer method with validation
     # @param [Object] challenge_status Value to be assigned
     def challenge_status=(challenge_status)
       @challenge_status = challenge_status
@@ -658,7 +642,6 @@ module CyberSource
           authentication_date == o.authentication_date &&
           authentication_transaction_id == o.authentication_transaction_id &&
           transaction_flow_indicator == o.transaction_flow_indicator &&
-          challenge_cancel_code == o.challenge_cancel_code &&
           challenge_code == o.challenge_code &&
           challenge_status == o.challenge_status &&
           customer_card_alias == o.customer_card_alias &&
@@ -702,7 +685,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [strong_authentication, acs_window_size, alternate_authentication_data, alternate_authentication_date, alternate_authentication_method, authentication_date, authentication_transaction_id, transaction_flow_indicator, challenge_cancel_code, challenge_code, challenge_status, customer_card_alias, decoupled_authentication_indicator, decoupled_authentication_max_time, default_card, device_channel, installment_total_count, merchant_fraud_rate, marketing_opt_in, marketing_source, mcc, merchant_score, message_category, npa_code, override_payment_method, override_country_code, prior_authentication_data, prior_authentication_method, prior_authentication_reference_id, prior_authentication_time, product_code, return_url, requestor_id, requestor_initiated_authentication_indicator, requestor_name, reference_id, sdk_max_timeout, secure_corporate_payment_indicator, transaction_mode, white_list_status, score_request].hash
+      [strong_authentication, acs_window_size, alternate_authentication_data, alternate_authentication_date, alternate_authentication_method, authentication_date, authentication_transaction_id, transaction_flow_indicator, challenge_code, challenge_status, customer_card_alias, decoupled_authentication_indicator, decoupled_authentication_max_time, default_card, device_channel, installment_total_count, merchant_fraud_rate, marketing_opt_in, marketing_source, mcc, merchant_score, message_category, npa_code, override_payment_method, override_country_code, prior_authentication_data, prior_authentication_method, prior_authentication_reference_id, prior_authentication_time, product_code, return_url, requestor_id, requestor_initiated_authentication_indicator, requestor_name, reference_id, sdk_max_timeout, secure_corporate_payment_indicator, transaction_mode, white_list_status, score_request].hash
     end
 
     # Builds the object from hash

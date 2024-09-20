@@ -39,6 +39,15 @@ module CyberSource
     # Three-character [ISO 4217 ALPHA-3 Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)
     attr_accessor :currencies
 
+    # This field is used as aggregator Id when Visa payment type is selected
+    attr_accessor :visa_aggregator_id
+
+    # This field is used as aggregator Id when Amex payment type is selected
+    attr_accessor :amex_aggregator_id
+
+    # This field is used as aggregator Id when Master Card payment type is selected
+    attr_accessor :master_card_aggregator_id
+
     # The Standard Industrial Classification (SIC) are four-digit codes that categorize the industries that companies belong to based on their business activities. Standard Industrial Classification codes were mostly replaced by the six-digit North American Industry Classification System (NAICS). Applicable for VPC and GPX (gpx) processors.
     attr_accessor :sic_code
 
@@ -178,6 +187,9 @@ module CyberSource
         :'terminal_id' => :'terminalId',
         :'payment_types' => :'paymentTypes',
         :'currencies' => :'currencies',
+        :'visa_aggregator_id' => :'visaAggregatorId',
+        :'amex_aggregator_id' => :'amexAggregatorId',
+        :'master_card_aggregator_id' => :'masterCardAggregatorId',
         :'sic_code' => :'sicCode',
         :'allow_multiple_bills' => :'allowMultipleBills',
         :'allow_merchant_descriptor_override' => :'allowMerchantDescriptorOverride',
@@ -228,6 +240,9 @@ module CyberSource
         :'terminal_id' => :'terminal_id',
         :'payment_types' => :'payment_types',
         :'currencies' => :'currencies',
+        :'visa_aggregator_id' => :'visa_aggregator_id',
+        :'amex_aggregator_id' => :'amex_aggregator_id',
+        :'master_card_aggregator_id' => :'master_card_aggregator_id',
         :'sic_code' => :'sic_code',
         :'allow_multiple_bills' => :'allow_multiple_bills',
         :'allow_merchant_descriptor_override' => :'allow_merchant_descriptor_override',
@@ -278,6 +293,9 @@ module CyberSource
         :'terminal_id' => :'String',
         :'payment_types' => :'Hash<String, CardProcessingConfigCommonPaymentTypes>',
         :'currencies' => :'Hash<String, CardProcessingConfigCommonCurrencies1>',
+        :'visa_aggregator_id' => :'String',
+        :'amex_aggregator_id' => :'String',
+        :'master_card_aggregator_id' => :'String',
         :'sic_code' => :'String',
         :'allow_multiple_bills' => :'BOOLEAN',
         :'allow_merchant_descriptor_override' => :'BOOLEAN',
@@ -362,6 +380,18 @@ module CyberSource
         if (value = attributes[:'currencies']).is_a?(Hash)
           self.currencies = value
         end
+      end
+
+      if attributes.has_key?(:'visaAggregatorId')
+        self.visa_aggregator_id = attributes[:'visaAggregatorId']
+      end
+
+      if attributes.has_key?(:'amexAggregatorId')
+        self.amex_aggregator_id = attributes[:'amexAggregatorId']
+      end
+
+      if attributes.has_key?(:'masterCardAggregatorId')
+        self.master_card_aggregator_id = attributes[:'masterCardAggregatorId']
       end
 
       if attributes.has_key?(:'sicCode')
@@ -564,6 +594,9 @@ module CyberSource
           terminal_id == o.terminal_id &&
           payment_types == o.payment_types &&
           currencies == o.currencies &&
+          visa_aggregator_id == o.visa_aggregator_id &&
+          amex_aggregator_id == o.amex_aggregator_id &&
+          master_card_aggregator_id == o.master_card_aggregator_id &&
           sic_code == o.sic_code &&
           allow_multiple_bills == o.allow_multiple_bills &&
           allow_merchant_descriptor_override == o.allow_merchant_descriptor_override &&
@@ -610,7 +643,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [batch_group, business_application_id, merchant_verification_value, aba_number, acquirer, merchant_id, terminal_id, payment_types, currencies, sic_code, allow_multiple_bills, allow_merchant_descriptor_override, enhanced_data, fire_safety_indicator, quasi_cash, acquirer_merchant_id, avs_format, enable_long_trans_ref_no, enable_level2, enable_multiple_transaction_advice_addendum, amex_transaction_advice_addendum1, enable_multi_line_items, enable_transaction_reference_number, enable_auto_auth_reversal_after_void, enable_expresspay_pan_translation, enable_credit_auth, industry_code, send_amex_level2_data, soft_descriptor_type, vital_number, bank_number, chain_number, merchant_bin_number, merchant_location_number, store_id, travel_agency_code, travel_agency_name, settlement_currency, enable_least_cost_routing, enable_cvv_response_indicator, enable_multi_currency_processing, enable_pos_network_switching, enable_dynamic_currency_conversion, merchant_tier].hash
+      [batch_group, business_application_id, merchant_verification_value, aba_number, acquirer, merchant_id, terminal_id, payment_types, currencies, visa_aggregator_id, amex_aggregator_id, master_card_aggregator_id, sic_code, allow_multiple_bills, allow_merchant_descriptor_override, enhanced_data, fire_safety_indicator, quasi_cash, acquirer_merchant_id, avs_format, enable_long_trans_ref_no, enable_level2, enable_multiple_transaction_advice_addendum, amex_transaction_advice_addendum1, enable_multi_line_items, enable_transaction_reference_number, enable_auto_auth_reversal_after_void, enable_expresspay_pan_translation, enable_credit_auth, industry_code, send_amex_level2_data, soft_descriptor_type, vital_number, bank_number, chain_number, merchant_bin_number, merchant_location_number, store_id, travel_agency_code, travel_agency_name, settlement_currency, enable_least_cost_routing, enable_cvv_response_indicator, enable_multi_currency_processing, enable_pos_network_switching, enable_dynamic_currency_conversion, merchant_tier].hash
     end
 
     # Builds the object from hash
