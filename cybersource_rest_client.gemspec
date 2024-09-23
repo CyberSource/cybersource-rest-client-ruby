@@ -40,7 +40,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rubocop', '~> 0.57.2'
   s.add_development_dependency 'rspec', '~> 3.12', '>= 3.12.0'
   s.add_development_dependency 'vcr', '~> 5.0', '>= 5.0.0'
-  s.add_development_dependency 'webmock', '~> 3.19', '>= 3.19.0'
   s.add_development_dependency 'autotest', '~> 4.4', '>= 4.4.6'
   s.add_development_dependency 'autotest-rails-pure', '~> 4.1', '>= 4.1.2'
   s.add_development_dependency 'autotest-growl', '~> 0.2', '>= 0.2.16'
