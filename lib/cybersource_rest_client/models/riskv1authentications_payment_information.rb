@@ -47,7 +47,7 @@ module CyberSource
         :'card' => :'Riskv1authenticationsetupsPaymentInformationCard',
         :'tokenized_card' => :'Riskv1authenticationsPaymentInformationTokenizedCard',
         :'fluid_data' => :'Riskv1authenticationsetupsPaymentInformationFluidData',
-        :'customer' => :'Ptsv2paymentsPaymentInformationCustomer'
+        :'customer' => :'Riskv1authenticationsPaymentInformationCustomer'
       }
     end
 

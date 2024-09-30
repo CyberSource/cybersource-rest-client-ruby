@@ -78,7 +78,7 @@ module CyberSource
         :'status' => :'String',
         :'reason' => :'String',
         :'message' => :'String',
-        :'details' => :'Array<InlineResponse4005Details>'
+        :'details' => :'Array<InlineResponse4006Details>'
       }
     end
 

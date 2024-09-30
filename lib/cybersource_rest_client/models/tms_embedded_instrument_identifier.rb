@@ -92,7 +92,7 @@ module CyberSource
         :'token_provisioning_information' => :'Ptsv2paymentsTokenInformationTokenProvisioningInformation',
         :'card' => :'TmsEmbeddedInstrumentIdentifierCard',
         :'bank_account' => :'TmsEmbeddedInstrumentIdentifierBankAccount',
-        :'tokenized_card' => :'TmsEmbeddedInstrumentIdentifierTokenizedCard',
+        :'tokenized_card' => :'Tmsv2TokenizedCard',
         :'issuer' => :'TmsEmbeddedInstrumentIdentifierIssuer',
         :'processing_information' => :'TmsEmbeddedInstrumentIdentifierProcessingInformation',
         :'bill_to' => :'TmsEmbeddedInstrumentIdentifierBillTo',
