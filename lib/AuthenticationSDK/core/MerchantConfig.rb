@@ -11,6 +11,7 @@ public
     @merchantId = cybsPropertyObj['merchantID']
     @runEnvironment = cybsPropertyObj['runEnvironment']
     @intermediateHost = cybsPropertyObj['intermediateHost']
+    @defaultDeveloperId = cybsPropertyObj['defaultDeveloperId']
     @authenticationType = cybsPropertyObj['authenticationType']
     @proxyAddress = cybsPropertyObj['proxyAddress']
     @proxyPort = cybsPropertyObj['proxyPort']
@@ -249,6 +250,7 @@ public
     attr_accessor :keysDirectory
     attr_accessor :requestHost
     attr_accessor :intermediateHost
+    attr_accessor :defaultDeveloperId
     attr_accessor :keyAlias
     attr_accessor :keyPass
     attr_accessor :keyFilename

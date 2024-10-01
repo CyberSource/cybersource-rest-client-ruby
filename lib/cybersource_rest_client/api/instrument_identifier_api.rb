@@ -308,7 +308,7 @@ module CyberSource
       # http body (model)
       post_body = @api_client.object_to_http_body(patch_instrument_identifier_request)
       sdk_tracker = SdkTracker.new
-      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PatchInstrumentIdentifierRequest', @api_client.config.host)
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PatchInstrumentIdentifierRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:PATCH, local_var_path,
         :header_params => header_params,
@@ -380,7 +380,7 @@ module CyberSource
       # http body (model)
       post_body = @api_client.object_to_http_body(post_instrument_identifier_request)
       sdk_tracker = SdkTracker.new
-      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PostInstrumentIdentifierRequest', @api_client.config.host)
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PostInstrumentIdentifierRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -458,7 +458,7 @@ module CyberSource
       # http body (model)
       post_body = @api_client.object_to_http_body(post_instrument_identifier_enrollment_request)
       sdk_tracker = SdkTracker.new
-      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PostInstrumentIdentifierEnrollmentRequest', @api_client.config.host)
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PostInstrumentIdentifierEnrollmentRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,

@@ -75,7 +75,7 @@ module CyberSource
       # http body (model)
       post_body = @api_client.object_to_http_body(modify_billing_agreement)
       sdk_tracker = SdkTracker.new
-      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'ModifyBillingAgreement', @api_client.config.host)
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'ModifyBillingAgreement', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:PATCH, local_var_path,
         :header_params => header_params,
@@ -150,7 +150,7 @@ module CyberSource
       # http body (model)
       post_body = @api_client.object_to_http_body(intimate_billing_agreement)
       sdk_tracker = SdkTracker.new
-      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'IntimateBillingAgreement', @api_client.config.host)
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'IntimateBillingAgreement', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -219,7 +219,7 @@ module CyberSource
       # http body (model)
       post_body = @api_client.object_to_http_body(create_billing_agreement)
       sdk_tracker = SdkTracker.new
-      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CreateBillingAgreement', @api_client.config.host)
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CreateBillingAgreement', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
