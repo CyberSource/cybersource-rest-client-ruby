@@ -23,6 +23,12 @@ module CyberSource
     # Assigned by Discover to identify the acquirer. Applicable for VPC and GPX (gpx) processors.
     attr_accessor :discover_institution_id
 
+    # Assigned by China Union Pay to identify the acquirer. Applicable for VPC processors.
+    attr_accessor :union_pay_institution_id
+
+    # Assigned by Diners Club to identify the acquirer. Applicable for VPC processors.
+    attr_accessor :diners_club_institution_id
+
     # ISO 4217 format. Applicable for VPC, GPX (gpx), EFTPOS, RUPAY, Prisma (prisma) and CUP processors.
     attr_accessor :country_code
 
@@ -35,6 +41,8 @@ module CyberSource
         :'institution_id' => :'institutionId',
         :'interbank_card_association_id' => :'interbankCardAssociationId',
         :'discover_institution_id' => :'discoverInstitutionId',
+        :'union_pay_institution_id' => :'unionPayInstitutionId',
+        :'diners_club_institution_id' => :'dinersClubInstitutionId',
         :'country_code' => :'countryCode',
         :'file_destination_bin' => :'fileDestinationBin'
       }
@@ -46,6 +54,8 @@ module CyberSource
         :'institution_id' => :'institution_id',
         :'interbank_card_association_id' => :'interbank_card_association_id',
         :'discover_institution_id' => :'discover_institution_id',
+        :'union_pay_institution_id' => :'union_pay_institution_id',
+        :'diners_club_institution_id' => :'diners_club_institution_id',
         :'country_code' => :'country_code',
         :'file_destination_bin' => :'file_destination_bin'
       }
@@ -57,6 +67,8 @@ module CyberSource
         :'institution_id' => :'String',
         :'interbank_card_association_id' => :'String',
         :'discover_institution_id' => :'String',
+        :'union_pay_institution_id' => :'String',
+        :'diners_club_institution_id' => :'String',
         :'country_code' => :'String',
         :'file_destination_bin' => :'String'
       }
@@ -80,6 +92,14 @@ module CyberSource
 
       if attributes.has_key?(:'discoverInstitutionId')
         self.discover_institution_id = attributes[:'discoverInstitutionId']
+      end
+
+      if attributes.has_key?(:'unionPayInstitutionId')
+        self.union_pay_institution_id = attributes[:'unionPayInstitutionId']
+      end
+
+      if attributes.has_key?(:'dinersClubInstitutionId')
+        self.diners_club_institution_id = attributes[:'dinersClubInstitutionId']
       end
 
       if attributes.has_key?(:'countryCode')
@@ -112,6 +132,8 @@ module CyberSource
           institution_id == o.institution_id &&
           interbank_card_association_id == o.interbank_card_association_id &&
           discover_institution_id == o.discover_institution_id &&
+          union_pay_institution_id == o.union_pay_institution_id &&
+          diners_club_institution_id == o.diners_club_institution_id &&
           country_code == o.country_code &&
           file_destination_bin == o.file_destination_bin
     end
@@ -125,7 +147,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [institution_id, interbank_card_association_id, discover_institution_id, country_code, file_destination_bin].hash
+      [institution_id, interbank_card_association_id, discover_institution_id, union_pay_institution_id, diners_club_institution_id, country_code, file_destination_bin].hash
     end
 
     # Builds the object from hash

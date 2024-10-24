@@ -155,18 +155,32 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @end_date.nil?
+        invalid_properties.push('invalid value for "end_date", end_date cannot be nil.')
+      end
+
+      if @frequency.nil?
+        invalid_properties.push('invalid value for "frequency", frequency cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @end_date.nil?
+      return false if @frequency.nil?
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] end_date Value to be assigned
     def end_date=(end_date)
+      #if end_date.nil?
+        #fail ArgumentError, 'end_date cannot be nil'
+      #end
+
       @end_date = end_date
     end
 

@@ -75,6 +75,12 @@ module CyberSource
 
     attr_accessor :merchant_descriptor_information
 
+    # Indicates whether the merchant is government controlled. Applicable for VPC processors.
+    attr_accessor :government_controlled
+
+    # This field is used to indicate whether the merchant wants to drop the billing information from the request. If this field is set to true, then the billing information will be dropped from the request. If this field is set to false, then the billing information will be sent in the request.
+    attr_accessor :drop_billing_info
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -120,7 +126,9 @@ module CyberSource
         :'sub_merchant_id' => :'subMerchantId',
         :'sub_merchant_business_name' => :'subMerchantBusinessName',
         :'prefer_cobadged_secondary_brand' => :'preferCobadgedSecondaryBrand',
-        :'merchant_descriptor_information' => :'merchantDescriptorInformation'
+        :'merchant_descriptor_information' => :'merchantDescriptorInformation',
+        :'government_controlled' => :'governmentControlled',
+        :'drop_billing_info' => :'dropBillingInfo'
       }
     end
 
@@ -147,7 +155,9 @@ module CyberSource
         :'sub_merchant_id' => :'sub_merchant_id',
         :'sub_merchant_business_name' => :'sub_merchant_business_name',
         :'prefer_cobadged_secondary_brand' => :'prefer_cobadged_secondary_brand',
-        :'merchant_descriptor_information' => :'merchant_descriptor_information'
+        :'merchant_descriptor_information' => :'merchant_descriptor_information',
+        :'government_controlled' => :'government_controlled',
+        :'drop_billing_info' => :'drop_billing_info'
       }
     end
 
@@ -174,7 +184,9 @@ module CyberSource
         :'sub_merchant_id' => :'String',
         :'sub_merchant_business_name' => :'String',
         :'prefer_cobadged_secondary_brand' => :'BOOLEAN',
-        :'merchant_descriptor_information' => :'CardProcessingConfigCommonMerchantDescriptorInformation'
+        :'merchant_descriptor_information' => :'CardProcessingConfigCommonMerchantDescriptorInformation',
+        :'government_controlled' => :'BOOLEAN',
+        :'drop_billing_info' => :'BOOLEAN'
       }
     end
 
@@ -271,6 +283,14 @@ module CyberSource
       if attributes.has_key?(:'merchantDescriptorInformation')
         self.merchant_descriptor_information = attributes[:'merchantDescriptorInformation']
       end
+
+      if attributes.has_key?(:'governmentControlled')
+        self.government_controlled = attributes[:'governmentControlled']
+      end
+
+      if attributes.has_key?(:'dropBillingInfo')
+        self.drop_billing_info = attributes[:'dropBillingInfo']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -323,7 +343,9 @@ module CyberSource
           sub_merchant_id == o.sub_merchant_id &&
           sub_merchant_business_name == o.sub_merchant_business_name &&
           prefer_cobadged_secondary_brand == o.prefer_cobadged_secondary_brand &&
-          merchant_descriptor_information == o.merchant_descriptor_information
+          merchant_descriptor_information == o.merchant_descriptor_information &&
+          government_controlled == o.government_controlled &&
+          drop_billing_info == o.drop_billing_info
     end
 
     # @see the `==` method
@@ -335,7 +357,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [processors, amex_vendor_code, default_auth_type_code, master_card_assigned_id, enable_partial_auth, merchant_category_code, sic_code, food_and_consumer_service_id, enable_split_shipment, enable_interchange_optimization, visa_delegated_authentication_id, credit_card_refund_limit_percent, business_center_credit_card_refund_limit_percent, allow_captures_greater_than_authorizations, enable_duplicate_merchant_reference_number_blocking, domestic_merchant_id, process_level3_data, sub_merchant_id, sub_merchant_business_name, prefer_cobadged_secondary_brand, merchant_descriptor_information].hash
+      [processors, amex_vendor_code, default_auth_type_code, master_card_assigned_id, enable_partial_auth, merchant_category_code, sic_code, food_and_consumer_service_id, enable_split_shipment, enable_interchange_optimization, visa_delegated_authentication_id, credit_card_refund_limit_percent, business_center_credit_card_refund_limit_percent, allow_captures_greater_than_authorizations, enable_duplicate_merchant_reference_number_blocking, domestic_merchant_id, process_level3_data, sub_merchant_id, sub_merchant_business_name, prefer_cobadged_secondary_brand, merchant_descriptor_information, government_controlled, drop_billing_info].hash
     end
 
     # Builds the object from hash
