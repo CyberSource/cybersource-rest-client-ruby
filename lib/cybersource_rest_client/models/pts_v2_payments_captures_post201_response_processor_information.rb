@@ -22,11 +22,14 @@ module CyberSource
     # The processor code that describes why the transaction state is pending or reversed. 
     attr_accessor :response_details
 
-    # For most processors, this is the error message sent directly from the bank. Returned only when the processor returns this value.  **Important** Do not use this field to evaluate the result of the authorization.  #### PIN debit Response value that is returned by the processor or bank. **Important** Do not use this field to evaluate the results of the transaction request.  Returned by PIN debit credit, PIN debit purchase, and PIN debit reversal.  #### AIBMS If this value is `08`, you can accept the transaction if the customer provides you with identification.  #### Atos This value is the response code sent from Atos and it might also include the response code from the bank. Format: `aa,bb` with the two values separated by a comma and where: - `aa` is the two-digit error message from Atos. - `bb` is the optional two-digit error message from the bank.  #### Comercio Latino This value is the status code and the error or response code received from the processor separated by a colon. Format: [status code]:E[error code] or [status code]:R[response code] Example `2:R06`  #### JCN Gateway Processor-defined detail error code. The associated response category code is in the `processorInformation.responseCategoryCode` field. String (3) 
+    # For most processors, this is the error message sent directly from the bank. Returned only when the processor returns this value.  **Important** Do not use this field to evaluate the result of the authorization.  #### PIN debit Response value that is returned by the processor or bank. **Important** Do not use this field to evaluate the results of the transaction request.  Returned by PIN debit credit, PIN debit purchase, and PIN debit reversal.  #### AIBMS If this value is `08`, you can accept the transaction if the customer provides you with identification.  #### Atos This value is the response code sent from Atos and it might also include the response code from the bank. Format: `aa,bb` with the two values separated by a comma and where: - `aa` is the two-digit error message from Atos. - `bb` is the optional two-digit error message from the bank.  #### Comercio Latino This value is the status code and the error or response code received from the processor separated by a colon. Format: [status code]:E[error code] or [status code]:R[response code] Example `2:R06`  #### JCN Gateway Processor-defined detail error code. The associated response category code is in the `processorInformation.responseCategoryCode` field. String (3)  #### paypalgateway Processor generated ID for the itemized detail. 
     attr_accessor :response_code
 
     # Processor response to the API request. 
     attr_accessor :provider_response
+
+    # The date and time when the transaction was last updated, in Internet date and time format. 
+    attr_accessor :update_time_utc
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -35,7 +38,8 @@ module CyberSource
         :'network_transaction_id' => :'networkTransactionId',
         :'response_details' => :'responseDetails',
         :'response_code' => :'responseCode',
-        :'provider_response' => :'providerResponse'
+        :'provider_response' => :'providerResponse',
+        :'update_time_utc' => :'updateTimeUtc'
       }
     end
 
@@ -46,7 +50,8 @@ module CyberSource
         :'network_transaction_id' => :'network_transaction_id',
         :'response_details' => :'response_details',
         :'response_code' => :'response_code',
-        :'provider_response' => :'provider_response'
+        :'provider_response' => :'provider_response',
+        :'update_time_utc' => :'update_time_utc'
       }
     end
 
@@ -57,7 +62,8 @@ module CyberSource
         :'network_transaction_id' => :'String',
         :'response_details' => :'String',
         :'response_code' => :'String',
-        :'provider_response' => :'String'
+        :'provider_response' => :'String',
+        :'update_time_utc' => :'String'
       }
     end
 
@@ -87,6 +93,10 @@ module CyberSource
 
       if attributes.has_key?(:'providerResponse')
         self.provider_response = attributes[:'providerResponse']
+      end
+
+      if attributes.has_key?(:'updateTimeUtc')
+        self.update_time_utc = attributes[:'updateTimeUtc']
       end
     end
 
@@ -130,7 +140,8 @@ module CyberSource
           network_transaction_id == o.network_transaction_id &&
           response_details == o.response_details &&
           response_code == o.response_code &&
-          provider_response == o.provider_response
+          provider_response == o.provider_response &&
+          update_time_utc == o.update_time_utc
     end
 
     # @see the `==` method
@@ -142,7 +153,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [transaction_id, network_transaction_id, response_details, response_code, provider_response].hash
+      [transaction_id, network_transaction_id, response_details, response_code, provider_response, update_time_utc].hash
     end
 
     # Builds the object from hash

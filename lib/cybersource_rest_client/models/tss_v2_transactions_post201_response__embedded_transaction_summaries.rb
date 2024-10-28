@@ -118,7 +118,7 @@ module CyberSource
         :'merchant_id' => :'String',
         :'status' => :'String',
         :'application_information' => :'TssV2TransactionsPost201ResponseEmbeddedApplicationInformation',
-        :'buyer_information' => :'TssV2TransactionsPost201ResponseEmbeddedBuyerInformation',
+        :'buyer_information' => :'PtsV2CreateOrderPost201ResponseBuyerInformation',
         :'client_reference_information' => :'TssV2TransactionsPost201ResponseEmbeddedClientReferenceInformation',
         :'consumer_authentication_information' => :'TssV2TransactionsPost201ResponseEmbeddedConsumerAuthenticationInformation',
         :'device_information' => :'Riskv1authenticationresultsDeviceInformation',

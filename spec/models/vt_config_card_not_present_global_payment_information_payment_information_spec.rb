@@ -34,30 +34,18 @@ describe 'VTConfigCardNotPresentGlobalPaymentInformationPaymentInformation' do
   describe 'test attribute "display_card_verification_value"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('Array<String>', ["VISA", "MASTER_CARD", "AMEX", "DISCOVER", "DINERS_CLUB", "CARTE_BLANCHE", "JCB", "ENROUTE", "JAL", "SWITCH_SOLO", "DELTA", "VISA_ELECTRON", "DANKORT", "LASER", "CARTE_SBANCAIRES", "CARTASI", "MAESTRO_INTERNATIONAL", "GE_MONEY_UK_CARD", "HIPER_CARD", "ELO"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.display_card_verification_value = value }.not_to raise_error
-      # end
     end
   end
 
   describe 'test attribute "require_card_verification_value"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('Array<String>', ["VISA", "MASTER_CARD", "AMEX", "DISCOVER", "DINERS_CLUB", "CARTE_BLANCHE", "JCB", "ENROUTE", "JAL", "SWITCH_SOLO", "DELTA", "VISA_ELECTRON", "DANKORT", "LASER", "CARTE_SBANCAIRES", "CARTASI", "MAESTRO_INTERNATIONAL", "GE_MONEY_UK_CARD", "HIPER_CARD", "ELO"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.require_card_verification_value = value }.not_to raise_error
-      # end
     end
   end
 
   describe 'test attribute "accepted_card_types"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('Array<String>', ["VISA", "MASTER_CARD", "AMEX", "DISCOVER", "DINERS_CLUB", "CARTE_BLANCHE", "JCB", "ENROUTE", "JAL", "SWITCH_SOLO", "DELTA", "VISA_ELECTRON", "DANKORT", "LASER", "CARTE_SBANCAIRES", "CARTASI", "MAESTRO_INTERNATIONAL", "GE_MONEY_UK_CARD", "HIPER_CARD", "ELO"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.accepted_card_types = value }.not_to raise_error
-      # end
     end
   end
 

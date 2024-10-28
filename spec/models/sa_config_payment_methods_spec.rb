@@ -34,10 +34,6 @@ describe 'SAConfigPaymentMethods' do
   describe 'test attribute "enabled_payment_methods"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('Array<String>', ["CARD", "ECHECK", "VISACHECKOUT", "PAYPAL"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.enabled_payment_methods = value }.not_to raise_error
-      # end
     end
   end
 

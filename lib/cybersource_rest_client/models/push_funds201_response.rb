@@ -37,6 +37,10 @@ module CyberSource
 
     attr_accessor :order_information
 
+    attr_accessor :payment_information
+
+    attr_accessor :processing_information
+
     attr_accessor :_links
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -52,6 +56,8 @@ module CyberSource
         :'error_information' => :'errorInformation',
         :'processor_information' => :'processorInformation',
         :'order_information' => :'orderInformation',
+        :'payment_information' => :'paymentInformation',
+        :'processing_information' => :'processingInformation',
         :'_links' => :'_links'
       }
     end
@@ -69,6 +75,8 @@ module CyberSource
         :'error_information' => :'error_information',
         :'processor_information' => :'processor_information',
         :'order_information' => :'order_information',
+        :'payment_information' => :'payment_information',
+        :'processing_information' => :'processing_information',
         :'_links' => :'_links'
       }
     end
@@ -86,6 +94,8 @@ module CyberSource
         :'error_information' => :'PushFunds201ResponseErrorInformation',
         :'processor_information' => :'PushFunds201ResponseProcessorInformation',
         :'order_information' => :'PushFunds201ResponseOrderInformation',
+        :'payment_information' => :'PushFunds201ResponsePaymentInformation',
+        :'processing_information' => :'PushFunds201ResponseProcessingInformation',
         :'_links' => :'PushFunds201ResponseLinks'
       }
     end
@@ -136,6 +146,14 @@ module CyberSource
 
       if attributes.has_key?(:'orderInformation')
         self.order_information = attributes[:'orderInformation']
+      end
+
+      if attributes.has_key?(:'paymentInformation')
+        self.payment_information = attributes[:'paymentInformation']
+      end
+
+      if attributes.has_key?(:'processingInformation')
+        self.processing_information = attributes[:'processingInformation']
       end
 
       if attributes.has_key?(:'_links')
@@ -195,6 +213,8 @@ module CyberSource
           error_information == o.error_information &&
           processor_information == o.processor_information &&
           order_information == o.order_information &&
+          payment_information == o.payment_information &&
+          processing_information == o.processing_information &&
           _links == o._links
     end
 
@@ -207,7 +227,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, submit_time_utc, status, reconciliation_id, client_reference_information, recipient_information, merchant_information, error_information, processor_information, order_information, _links].hash
+      [id, submit_time_utc, status, reconciliation_id, client_reference_information, recipient_information, merchant_information, error_information, processor_information, order_information, payment_information, processing_information, _links].hash
     end
 
     # Builds the object from hash

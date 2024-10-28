@@ -13,8 +13,10 @@ require 'date'
 
 module CyberSource
   class Upv1capturecontextsOrderInformationAmountDetails
+    # This field defines the total order amount. 
     attr_accessor :total_amount
 
+    # This field defines the currency applicable to the order. 
     attr_accessor :currency
 
     # Attribute mapping from ruby-style variable name to JSON key.

@@ -20,28 +20,6 @@ module CyberSource
 
     attr_accessor :sales_rep_id
 
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -100,8 +78,6 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      mode_validator = EnumAttributeValidator.new('String', ['COMPLETE', 'PARTIAL'])
-      return false unless mode_validator.valid?(@mode)
       true
     end
 
@@ -109,16 +85,6 @@ module CyberSource
     # @param [Object] boarding_package_id Value to be assigned
     def boarding_package_id=(boarding_package_id)
       @boarding_package_id = boarding_package_id
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] mode Object to be assigned
-    def mode=(mode)
-      validator = EnumAttributeValidator.new('String', ['COMPLETE', 'PARTIAL'])
-      unless validator.valid?(mode)
-        fail ArgumentError, 'invalid value for "mode", must be one of #{validator.allowable_values}.'
-      end
-      @mode = mode
     end
 
     # Custom attribute writer method with validation

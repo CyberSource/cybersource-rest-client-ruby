@@ -13,10 +13,10 @@ require 'date'
 
 module CyberSource
   class PaymentsProductsServiceFeeConfigurationInformationConfigurationsPaymentInformation
-    # Payment types accepted by this merchant. The supported values are: MASTERDEBIT, MASTERCREDIT, VISACREDIT, VISADEBIT, DISCOVERCREDIT, AMEXCREDIT, ECHECK
+    # Payment types accepted by this merchant. The supported values are: MASTERDEBIT, MASTERCREDIT, VISACREDIT, VISADEBIT, DISCOVERCREDIT, AMEXCREDIT, ECHECK  Possible values: - MASTERDEBIT - MASTERCREDIT - VISACREDIT - VISADEBIT - DISCOVERCREDIT - AMEXCREDIT - ECHECK
     attr_accessor :payment_type
 
-    # Fee type for the selected payment type. Supported values are: Flat or Percentage. 
+    # Fee type for the selected payment type. Supported values are: Flat or Percentage.   Possible values: - FLAT - PERCENTAGE
     attr_accessor :fee_type
 
     # Fee Amount of the selected payment type if you chose Flat fee type. 
@@ -27,28 +27,6 @@ module CyberSource
 
     # Fee cap for the selected payment type. Supported values use numbers with decimals. For example, 1.0 
     attr_accessor :fee_cap
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -122,31 +100,7 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      payment_type_validator = EnumAttributeValidator.new('String', ['MASTERDEBIT', 'MASTERCREDIT', 'VISACREDIT', 'VISADEBIT', 'DISCOVERCREDIT', 'AMEXCREDIT', 'ECHECK'])
-      return false unless payment_type_validator.valid?(@payment_type)
-      fee_type_validator = EnumAttributeValidator.new('String', ['FLAT', 'PERCENTAGE'])
-      return false unless fee_type_validator.valid?(@fee_type)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] payment_type Object to be assigned
-    def payment_type=(payment_type)
-      validator = EnumAttributeValidator.new('String', ['MASTERDEBIT', 'MASTERCREDIT', 'VISACREDIT', 'VISADEBIT', 'DISCOVERCREDIT', 'AMEXCREDIT', 'ECHECK'])
-      unless validator.valid?(payment_type)
-        fail ArgumentError, 'invalid value for "payment_type", must be one of #{validator.allowable_values}.'
-      end
-      @payment_type = payment_type
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] fee_type Object to be assigned
-    def fee_type=(fee_type)
-      validator = EnumAttributeValidator.new('String', ['FLAT', 'PERCENTAGE'])
-      unless validator.valid?(fee_type)
-        fail ArgumentError, 'invalid value for "fee_type", must be one of #{validator.allowable_values}.'
-      end
-      @fee_type = fee_type
     end
 
     # Checks equality by comparing each attribute.

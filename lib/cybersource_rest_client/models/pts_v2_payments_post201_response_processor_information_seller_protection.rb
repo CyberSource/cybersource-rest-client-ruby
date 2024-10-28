@@ -16,8 +16,11 @@ module CyberSource
     # The kind of seller protection in force for the transaction. This field is returned only when the protection eligibility value is set to ELIGIBLE or PARTIALLY_ELIGIBLE. Possible values - ITEM_NOT_RECEIVED_ELIGIBLE: Sellers are protected against claims for items not received. - UNAUTHORIZED_PAYMENT_ELIGIBLE: Sellers are protected against claims for unauthorized payments. One or both values can be returned. 
     attr_accessor :type
 
-    # The level of seller protection in force for the transaction. Possible values: - `ELIGIBLE` - `PARTIALLY_ELIGIBLE` - `INELIGIBLE` 
+    # Indicates whether the transaction is eligible for seller protection. The values returned are described below. Possible values: - `ELIGIBLE` - `PARTIALLY_ELIGIBLE` - `INELIGIBLE` - `NOT_ELIGIBLE` 
     attr_accessor :eligibility
+
+    # An array of conditions that are covered for the transaction. 
+    attr_accessor :dispute_categories
 
     # The kind of seller protection in force for the transaction. This field is returned only when the protection_eligibility property is set to ELIGIBLE or PARTIALLY_ELIGIBLE. Possible values: - `ITEM_NOT_RECEIVED_ELIGIBLE: Sellers are protected against claims for items not received.` - `UNAUTHORIZED_PAYMENT_ELIGIBLE: Sellers are protected against claims for unauthorized payments.` One or both values can be returned. 
     attr_accessor :eligibility_type
@@ -27,6 +30,7 @@ module CyberSource
       {
         :'type' => :'type',
         :'eligibility' => :'eligibility',
+        :'dispute_categories' => :'disputeCategories',
         :'eligibility_type' => :'eligibilityType'
       }
     end
@@ -36,6 +40,7 @@ module CyberSource
       {
         :'type' => :'type',
         :'eligibility' => :'eligibility',
+        :'dispute_categories' => :'dispute_categories',
         :'eligibility_type' => :'eligibility_type'
       }
     end
@@ -45,6 +50,7 @@ module CyberSource
       {
         :'type' => :'String',
         :'eligibility' => :'String',
+        :'dispute_categories' => :'Array<String>',
         :'eligibility_type' => :'String'
       }
     end
@@ -63,6 +69,12 @@ module CyberSource
 
       if attributes.has_key?(:'eligibility')
         self.eligibility = attributes[:'eligibility']
+      end
+
+      if attributes.has_key?(:'disputeCategories')
+        if (value = attributes[:'disputeCategories']).is_a?(Array)
+          self.dispute_categories = value
+        end
       end
 
       if attributes.has_key?(:'eligibilityType')
@@ -84,6 +96,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] eligibility Value to be assigned
+    def eligibility=(eligibility)
+      @eligibility = eligibility
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] eligibility_type Value to be assigned
     def eligibility_type=(eligibility_type)
       @eligibility_type = eligibility_type
@@ -96,6 +114,7 @@ module CyberSource
       self.class == o.class &&
           type == o.type &&
           eligibility == o.eligibility &&
+          dispute_categories == o.dispute_categories &&
           eligibility_type == o.eligibility_type
     end
 
@@ -108,7 +127,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [type, eligibility, eligibility_type].hash
+      [type, eligibility, dispute_categories, eligibility_type].hash
     end
 
     # Builds the object from hash

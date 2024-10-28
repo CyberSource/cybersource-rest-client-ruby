@@ -13,7 +13,7 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsProcessingInformation
-    # Array of actions (one or more) to be included in the payment to invoke bundled services along with payment.  Possible values are one or more of follows:   - `DECISION_SKIP`: Use this when you want to skip Decision Manager service(s).   - `TOKEN_CREATE`: Use this when you want to create a token from the card/bank data in your payment request.   - `CONSUMER_AUTHENTICATION`: Use this when you want to check if a card is enrolled in Payer Authentication along with your payment request.   - `VALIDATE_CONSUMER_AUTHENTICATION`: Use this after you acquire a Payer Authentication result that needs to be included for your payment request.    - `AP_INITIATE`: Use this when Alternative Payment Initiate service is requested.   - `WATCHLIST_SCREENING` : Use this when you want to call Watchlist Screening service.   - `AP_SALE` : Use this when Alternative Payment Sale service is requested.    - `AP_AUTH` : Use this when Alternative Payment Authorize service is requested. 
+    # Array of actions (one or more) to be included in the payment to invoke bundled services along with payment.  Possible values are one or more of follows:   - `DECISION_SKIP`: Use this when you want to skip Decision Manager service(s).   - `TOKEN_CREATE`: Use this when you want to create a token from the card/bank data in your payment request.   - `CONSUMER_AUTHENTICATION`: Use this when you want to check if a card is enrolled in Payer Authentication along with your payment request.   - `VALIDATE_CONSUMER_AUTHENTICATION`: Use this after you acquire a Payer Authentication result that needs to be included for your payment request.    - `AP_INITIATE`: Use this when Alternative Payment Initiate service is requested.   - `WATCHLIST_SCREENING` : Use this when you want to call Watchlist Screening service.   - `AP_SALE` : Use this when Alternative Payment Sale service is requested.    - `AP_AUTH` : Use this when Alternative Payment Authorize service is requested.   - `AP_REAUTH` : Use this when Alternative Payment Reauthorize service is requested. 
     attr_accessor :action_list
 
     # Indicates whether to use the customer's escrow agreement. Possible values: - `true`: yes, use the customer's escrow agreement. - `false`: no, do not use the customer's escrow agreement.  
@@ -116,6 +116,9 @@ module CyberSource
     # Enablers are payment processing entities that are not acquiring members and are often the primary relationship owner with merchants and originators. Enablers own technical solutions through which the merchant or originator will access acceptance. The Enabler ID is a five-character hexadecimal identifier that will be used by Visa to identify enablers. Enabler ID assignment will be determined by Visa. Visa will communicate Enablers assignments to enablers. 
     attr_accessor :enabler_id
 
+    # The instruction to process an order. - default value: 'NO_INSTRUCTION' - 'ORDER_SAVED_EXPLICITLY' 
+    attr_accessor :processing_instruction
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -155,7 +158,8 @@ module CyberSource
         :'is_return_auth_record_enabled' => :'isReturnAuthRecordEnabled',
         :'network_partner_id' => :'networkPartnerId',
         :'payment_type' => :'paymentType',
-        :'enabler_id' => :'enablerId'
+        :'enabler_id' => :'enablerId',
+        :'processing_instruction' => :'processingInstruction'
       }
     end
 
@@ -198,7 +202,8 @@ module CyberSource
         :'is_return_auth_record_enabled' => :'is_return_auth_record_enabled',
         :'network_partner_id' => :'network_partner_id',
         :'payment_type' => :'payment_type',
-        :'enabler_id' => :'enabler_id'
+        :'enabler_id' => :'enabler_id',
+        :'processing_instruction' => :'processing_instruction'
       }
     end
 
@@ -241,7 +246,8 @@ module CyberSource
         :'is_return_auth_record_enabled' => :'BOOLEAN',
         :'network_partner_id' => :'String',
         :'payment_type' => :'String',
-        :'enabler_id' => :'String'
+        :'enabler_id' => :'String',
+        :'processing_instruction' => :'String'
       }
     end
 
@@ -406,6 +412,10 @@ module CyberSource
       if attributes.has_key?(:'enablerId')
         self.enabler_id = attributes[:'enablerId']
       end
+
+      if attributes.has_key?(:'processingInstruction')
+        self.processing_instruction = attributes[:'processingInstruction']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -541,6 +551,12 @@ module CyberSource
       @enabler_id = enabler_id
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] processing_instruction Value to be assigned
+    def processing_instruction=(processing_instruction)
+      @processing_instruction = processing_instruction
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -582,7 +598,8 @@ module CyberSource
           is_return_auth_record_enabled == o.is_return_auth_record_enabled &&
           network_partner_id == o.network_partner_id &&
           payment_type == o.payment_type &&
-          enabler_id == o.enabler_id
+          enabler_id == o.enabler_id &&
+          processing_instruction == o.processing_instruction
     end
 
     # @see the `==` method
@@ -594,7 +611,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [action_list, enable_escrow_option, action_token_types, bin_source, capture, processor_id, business_application_id, commerce_indicator, commerce_indicator_label, payment_solution, reconciliation_id, link_id, purchase_level, transaction_timeout, intents_id, report_group, visa_checkout_id, industry_data_type, authorization_options, capture_options, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, wallet_type, national_net_domestic_data, japan_payment_options, mobile_remote_payment_type, extended_credit_total_count, network_routing_order, pay_by_points_indicator, timeout, is_return_auth_record_enabled, network_partner_id, payment_type, enabler_id].hash
+      [action_list, enable_escrow_option, action_token_types, bin_source, capture, processor_id, business_application_id, commerce_indicator, commerce_indicator_label, payment_solution, reconciliation_id, link_id, purchase_level, transaction_timeout, intents_id, report_group, visa_checkout_id, industry_data_type, authorization_options, capture_options, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, wallet_type, national_net_domestic_data, japan_payment_options, mobile_remote_payment_type, extended_credit_total_count, network_routing_order, pay_by_points_indicator, timeout, is_return_auth_record_enabled, network_partner_id, payment_type, enabler_id, processing_instruction].hash
     end
 
     # Builds the object from hash

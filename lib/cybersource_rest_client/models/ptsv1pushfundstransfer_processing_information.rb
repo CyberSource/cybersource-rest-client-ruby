@@ -13,20 +13,36 @@ require 'date'
 
 module CyberSource
   class Ptsv1pushfundstransferProcessingInformation
-    # Payouts transaction type.  Business Application ID: - `PP`: Person to person. - `FD`: Funds disbursement (general) 
+    # Money Transfer (MT) - `AA`: Account to Account - `BI`: Bank-Initiated Money Transfer - `CD`: Cash Deposit - `FT`: Funds Transfer - `TU`: Prepaid Card Loan - `WT`: Wallet Transfer-Staged Digital Wallet (SDW) Transfer - `PP`: P2P Money Transfer  Funds Disbursement (FD) - `BB`: Business-to-business Supplier Payments - `BP`: Non-Card Bill Pay  - `CP`: Credit Card Bill Pay - `FD`: General Funds Disbursements - `GD`: Government Disbursements and Government Initiated Tax Refunds - `GP`: Gambling/Gaming Payouts (other than online gaming) - `LO`: Loyalty Payments - `MD`: Merchant Settlement - `MI`: Faster Refunds - `OG`: Online Gambling Payouts - `PD`: Payroll and Pension Disbursements - `RP`: Request-to-Pay Service 
     attr_accessor :business_application_id
 
     attr_accessor :payouts_options
 
-    # Enablers are payment processing entities that are not acquiring members and are often the primary relationship owner with merchants and originators. Enablers own technical solutions through which the merchant or originator will access acceptance. The Enabler ID is a five-character hexadecimal identifier that will be used by Visa to identify enablers. Enabler ID assignment will be determined by Visa. Visa will communicate Enablers assignments to enablers. 
-    attr_accessor :enabler_id
+    # Fee Program Indicator. This field identifies the interchange fee program applicable to each financial transaction. Fee program indicator (FPI) values correspond to the fee descriptor and rate for each existing fee program. 
+    attr_accessor :fee_program_id
+
+    # Merchant payment gateway ID that is assigned by Mastercard and is provided by the acquirer when a registered merchant payment gateway service provider is involved in the transaction. 
+    attr_accessor :network_partner_id
+
+    # This field contains coding that identifies (1) the customer transaction type and (2) the customer account types affected by the transaction.  Default: 5402 (Original Credit Transaction)  Contains codes that combined with some other fields such as the BAI (Business Application Id) identify some unique use cases. For Sales Tax rebates this field should be populated with the value 5120 (Value-added tax/Sales Tax) along with the businessApplicationId field set to the value 'FD' which indicates this push funds transfer is being conducted in order to facilitate a sales tax refund. 
+    attr_accessor :processing_code
+
+    # This U.S.-only field is optionally used by PIN Debit Gateway Service participants (merchants and acquirers) to specify the network access priority. VisaNet checks to determine if there are issuer routing preferences for a network specified by the sharing group code. If an issuer preference exists for one of the specified debit networks, VisaNet makes a routing selection based on issuer preference. If an preference exists for multiple specified debit networks, or if no issuer preference exists, VisaNet makes a selection based on acquirer routing priorities.  Valid Values:  ACCEL_EXCHANGE_E  CU24_C  INTERLINK_G  MAESTRO_8  NYCE_Y  NYCE_F  PULSE_S  PULSE_L  PULSE_H  STAR_N  STAR_W  STAR_Z  STAR_Q  STAR_M  VISA_V 
+    attr_accessor :sharing_group_code
+
+    # This will send purpose of funds code for original credit transactions (OCTs). 
+    attr_accessor :purpose_of_payment
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'business_application_id' => :'businessApplicationId',
         :'payouts_options' => :'payoutsOptions',
-        :'enabler_id' => :'enablerId'
+        :'fee_program_id' => :'feeProgramId',
+        :'network_partner_id' => :'networkPartnerId',
+        :'processing_code' => :'processingCode',
+        :'sharing_group_code' => :'sharingGroupCode',
+        :'purpose_of_payment' => :'purposeOfPayment'
       }
     end
 
@@ -35,7 +51,11 @@ module CyberSource
       {
         :'business_application_id' => :'business_application_id',
         :'payouts_options' => :'payouts_options',
-        :'enabler_id' => :'enabler_id'
+        :'fee_program_id' => :'fee_program_id',
+        :'network_partner_id' => :'network_partner_id',
+        :'processing_code' => :'processing_code',
+        :'sharing_group_code' => :'sharing_group_code',
+        :'purpose_of_payment' => :'purpose_of_payment'
       }
     end
 
@@ -44,7 +64,11 @@ module CyberSource
       {
         :'business_application_id' => :'String',
         :'payouts_options' => :'Ptsv1pushfundstransferProcessingInformationPayoutsOptions',
-        :'enabler_id' => :'String'
+        :'fee_program_id' => :'String',
+        :'network_partner_id' => :'String',
+        :'processing_code' => :'String',
+        :'sharing_group_code' => :'String',
+        :'purpose_of_payment' => :'String'
       }
     end
 
@@ -64,8 +88,24 @@ module CyberSource
         self.payouts_options = attributes[:'payoutsOptions']
       end
 
-      if attributes.has_key?(:'enablerId')
-        self.enabler_id = attributes[:'enablerId']
+      if attributes.has_key?(:'feeProgramId')
+        self.fee_program_id = attributes[:'feeProgramId']
+      end
+
+      if attributes.has_key?(:'networkPartnerId')
+        self.network_partner_id = attributes[:'networkPartnerId']
+      end
+
+      if attributes.has_key?(:'processingCode')
+        self.processing_code = attributes[:'processingCode']
+      end
+
+      if attributes.has_key?(:'sharingGroupCode')
+        self.sharing_group_code = attributes[:'sharingGroupCode']
+      end
+
+      if attributes.has_key?(:'purposeOfPayment')
+        self.purpose_of_payment = attributes[:'purposeOfPayment']
       end
     end
 
@@ -77,6 +117,14 @@ module CyberSource
         #invalid_properties.push('invalid value for "business_application_id", must conform to the pattern /^(\\s{0,2}|.{2})$/.')
       #end
 
+      #if !@fee_program_id.nil? && @fee_program_id !~ Regexp.new(/^(\\s{0,3}|[a-zA-Z0-9]{3})$/)
+        #invalid_properties.push('invalid value for "fee_program_id", must conform to the pattern /^(\\s{0,3}|[a-zA-Z0-9]{3})$/.')
+      #end
+
+      #if !@processing_code.nil? && @processing_code !~ Regexp.new(/^(\\s{0,4}|\\d{4})$/)
+        #invalid_properties.push('invalid value for "processing_code", must conform to the pattern /^(\\s{0,4}|\\d{4})$/.')
+      #end
+
       invalid_properties
     end
 
@@ -84,6 +132,8 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       #return false if !@business_application_id.nil? && @business_application_id !~ Regexp.new(/^(\\s{0,2}|.{2})$/)
+      #return false if !@fee_program_id.nil? && @fee_program_id !~ Regexp.new(/^(\\s{0,3}|[a-zA-Z0-9]{3})$/)
+      #return false if !@processing_code.nil? && @processing_code !~ Regexp.new(/^(\\s{0,4}|\\d{4})$/)
       true
     end
 
@@ -98,9 +148,41 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] enabler_id Value to be assigned
-    def enabler_id=(enabler_id)
-      @enabler_id = enabler_id
+    # @param [Object] fee_program_id Value to be assigned
+    def fee_program_id=(fee_program_id)
+      #if !fee_program_id.nil? && fee_program_id !~ Regexp.new(/^(\\s{0,3}|[a-zA-Z0-9]{3})$/)
+        #fail ArgumentError, 'invalid value for "fee_program_id", must conform to the pattern /^(\\s{0,3}|[a-zA-Z0-9]{3})$/.'
+      #end
+
+      @fee_program_id = fee_program_id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] network_partner_id Value to be assigned
+    def network_partner_id=(network_partner_id)
+      @network_partner_id = network_partner_id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] processing_code Value to be assigned
+    def processing_code=(processing_code)
+      #if !processing_code.nil? && processing_code !~ Regexp.new(/^(\\s{0,4}|\\d{4})$/)
+        #fail ArgumentError, 'invalid value for "processing_code", must conform to the pattern /^(\\s{0,4}|\\d{4})$/.'
+      #end
+
+      @processing_code = processing_code
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] sharing_group_code Value to be assigned
+    def sharing_group_code=(sharing_group_code)
+      @sharing_group_code = sharing_group_code
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] purpose_of_payment Value to be assigned
+    def purpose_of_payment=(purpose_of_payment)
+      @purpose_of_payment = purpose_of_payment
     end
 
     # Checks equality by comparing each attribute.
@@ -110,7 +192,11 @@ module CyberSource
       self.class == o.class &&
           business_application_id == o.business_application_id &&
           payouts_options == o.payouts_options &&
-          enabler_id == o.enabler_id
+          fee_program_id == o.fee_program_id &&
+          network_partner_id == o.network_partner_id &&
+          processing_code == o.processing_code &&
+          sharing_group_code == o.sharing_group_code &&
+          purpose_of_payment == o.purpose_of_payment
     end
 
     # @see the `==` method
@@ -122,7 +208,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [business_application_id, payouts_options, enabler_id].hash
+      [business_application_id, payouts_options, fee_program_id, network_partner_id, processing_code, sharing_group_code, purpose_of_payment].hash
     end
 
     # Builds the object from hash

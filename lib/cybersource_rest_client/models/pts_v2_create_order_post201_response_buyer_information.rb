@@ -12,45 +12,28 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  class BinLookupv400Response
-    # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC.  Returned by Cybersource for all services. 
-    attr_accessor :submit_time_utc
-
-    # The status of the submitted transaction.  Possible values:  - INVALID_REQUEST 
-    attr_accessor :status
-
-    # The detail message related to the status and reason listed above.
-    attr_accessor :message
-
-    attr_accessor :details
+  class PtsV2CreateOrderPost201ResponseBuyerInformation
+    # Your identifier for the customer.  When a subscription or customer profile is being created, the maximum length for this field for most processors is 30. Otherwise, the maximum length is 100.  #### Comercio Latino For recurring payments in Mexico, the value is the customer's contract number. Note Before you request the authorization, you must inform the issuer of the customer contract numbers that will be used for recurring transactions.  #### Worldpay VAP For a follow-on credit with Worldpay VAP, CyberSource checks the following locations, in the order given, for a customer account ID value and uses the first value it finds: 1. `customer_account_id` value in the follow-on credit request 2. Customer account ID value that was used for the capture that is being credited 3. Customer account ID value that was used for the original authorization If a customer account ID value cannot be found in any of these locations, then no value is used. 
+    attr_accessor :merchant_customer_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'submit_time_utc' => :'submitTimeUtc',
-        :'status' => :'status',
-        :'message' => :'message',
-        :'details' => :'details'
+        :'merchant_customer_id' => :'merchantCustomerId'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'submit_time_utc' => :'submit_time_utc',
-        :'status' => :'status',
-        :'message' => :'message',
-        :'details' => :'details'
+        :'merchant_customer_id' => :'merchant_customer_id'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'submit_time_utc' => :'String',
-        :'status' => :'String',
-        :'message' => :'String',
-        :'details' => :'Array<PtsV2PaymentsPost201ResponseErrorInformationDetails>'
+        :'merchant_customer_id' => :'String'
       }
     end
 
@@ -62,22 +45,8 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'submitTimeUtc')
-        self.submit_time_utc = attributes[:'submitTimeUtc']
-      end
-
-      if attributes.has_key?(:'status')
-        self.status = attributes[:'status']
-      end
-
-      if attributes.has_key?(:'message')
-        self.message = attributes[:'message']
-      end
-
-      if attributes.has_key?(:'details')
-        if (value = attributes[:'details']).is_a?(Array)
-          self.details = value
-        end
+      if attributes.has_key?(:'merchantCustomerId')
+        self.merchant_customer_id = attributes[:'merchantCustomerId']
       end
     end
 
@@ -94,15 +63,18 @@ module CyberSource
       true
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] merchant_customer_id Value to be assigned
+    def merchant_customer_id=(merchant_customer_id)
+      @merchant_customer_id = merchant_customer_id
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          submit_time_utc == o.submit_time_utc &&
-          status == o.status &&
-          message == o.message &&
-          details == o.details
+          merchant_customer_id == o.merchant_customer_id
     end
 
     # @see the `==` method
@@ -114,7 +86,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [submit_time_utc, status, message, details].hash
+      [merchant_customer_id].hash
     end
 
     # Builds the object from hash

@@ -79,4 +79,10 @@ describe 'PtsV2PaymentsRefundPost201ResponseProcessorInformation' do
     end
   end
 
+  describe 'test attribute "update_time_utc"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

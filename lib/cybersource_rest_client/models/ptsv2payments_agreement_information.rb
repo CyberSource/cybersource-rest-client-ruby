@@ -13,27 +13,33 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsAgreementInformation
-    # Identifier for the mandate being signed for. This mandate id is required for all the subsequent transactions.  
+    # Identifier for the mandate being signed for. This mandate id is required for all the subsequent transactions. 
     attr_accessor :agreement_id
+
+    # The processor specific billing agreement ID. References an approved recurring payment for goods or services. This value is sent by merchant via Cybersource to processor. The value sent in this field is procured by the merchant from the processor. 
+    attr_accessor :id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'agreement_id' => :'agreementId'
+        :'agreement_id' => :'agreementId',
+        :'id' => :'id'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'agreement_id' => :'agreement_id'
+        :'agreement_id' => :'agreement_id',
+        :'id' => :'id'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'agreement_id' => :'String'
+        :'agreement_id' => :'String',
+        :'id' => :'String'
       }
     end
 
@@ -47,6 +53,10 @@ module CyberSource
 
       if attributes.has_key?(:'agreementId')
         self.agreement_id = attributes[:'agreementId']
+      end
+
+      if attributes.has_key?(:'id')
+        self.id = attributes[:'id']
       end
     end
 
@@ -63,12 +73,19 @@ module CyberSource
       true
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] id Value to be assigned
+    def id=(id)
+      @id = id
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          agreement_id == o.agreement_id
+          agreement_id == o.agreement_id &&
+          id == o.id
     end
 
     # @see the `==` method
@@ -80,7 +97,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [agreement_id].hash
+      [agreement_id, id].hash
     end
 
     # Builds the object from hash

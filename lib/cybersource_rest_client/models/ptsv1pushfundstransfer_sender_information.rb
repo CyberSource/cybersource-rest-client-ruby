@@ -13,8 +13,11 @@ require 'date'
 
 module CyberSource
   class Ptsv1pushfundstransferSenderInformation
-    # Name of sender.  Funds Disbursement  This value is the name of the originator sending the funds disbursement. 
+    # Name of sender.  Funds Disbursement  This value is the name of the originator sending the funds disbursement.  Government entities should use this field 
     attr_accessor :name
+
+    # Customer's email address, including the full domain name. 
+    attr_accessor :email
 
     # This field contains the first name of the entity funding the transaction Mandatory for card payments 
     attr_accessor :first_name
@@ -27,6 +30,12 @@ module CyberSource
 
     # Sender's postal code.  For USA, this must be a valid value of 5 digits or 5 digits hyphen 4 digits, for example '63368', '63368-5555'. For other regions, this can be alphanumeric, length 1-10.  Required for FDCCompass. 
     attr_accessor :postal_code
+
+    # Building number in the street address.  For example, if the street address is: Rua da Quitanda 187 then the building number is 187.  Applicable to domestic Colombia transactions only. 
+    attr_accessor :building_number
+
+    # This field contains the street name of the recipient's address.  Applicable to domestic Colombia transactions only. 
+    attr_accessor :street_name
 
     # Street address of sender.  Funds Disbursement  This value is the address of the originator sending the funds disbursement.  Required for card transactions 
     attr_accessor :address1
@@ -46,7 +55,7 @@ module CyberSource
     # Sender's date of birth in YYYYMMDD format. 
     attr_accessor :date_of_birth
 
-    # Sender's phone number. 
+    # Customer's phone number.  It is recommended that you include the country code when the order is from outside the U.S. 
     attr_accessor :phone_number
 
     attr_accessor :payment_information
@@ -58,14 +67,23 @@ module CyberSource
 
     attr_accessor :personal_identification
 
+    # `B` for Business or `I` for individual. 
+    attr_accessor :type
+
+    # Customer's government-assigned tax identification number. 
+    attr_accessor :vat_registration_number
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'name' => :'name',
+        :'email' => :'email',
         :'first_name' => :'firstName',
         :'last_name' => :'lastName',
         :'middle_name' => :'middleName',
         :'postal_code' => :'postalCode',
+        :'building_number' => :'buildingNumber',
+        :'street_name' => :'streetName',
         :'address1' => :'address1',
         :'address2' => :'address2',
         :'locality' => :'locality',
@@ -76,7 +94,9 @@ module CyberSource
         :'payment_information' => :'paymentInformation',
         :'reference_number' => :'referenceNumber',
         :'account' => :'account',
-        :'personal_identification' => :'personalIdentification'
+        :'personal_identification' => :'personalIdentification',
+        :'type' => :'type',
+        :'vat_registration_number' => :'vatRegistrationNumber'
       }
     end
 
@@ -84,10 +104,13 @@ module CyberSource
     def self.json_map
       {
         :'name' => :'name',
+        :'email' => :'email',
         :'first_name' => :'first_name',
         :'last_name' => :'last_name',
         :'middle_name' => :'middle_name',
         :'postal_code' => :'postal_code',
+        :'building_number' => :'building_number',
+        :'street_name' => :'street_name',
         :'address1' => :'address1',
         :'address2' => :'address2',
         :'locality' => :'locality',
@@ -98,7 +121,9 @@ module CyberSource
         :'payment_information' => :'payment_information',
         :'reference_number' => :'reference_number',
         :'account' => :'account',
-        :'personal_identification' => :'personal_identification'
+        :'personal_identification' => :'personal_identification',
+        :'type' => :'type',
+        :'vat_registration_number' => :'vat_registration_number'
       }
     end
 
@@ -106,10 +131,13 @@ module CyberSource
     def self.swagger_types
       {
         :'name' => :'String',
+        :'email' => :'String',
         :'first_name' => :'String',
         :'last_name' => :'String',
         :'middle_name' => :'String',
         :'postal_code' => :'String',
+        :'building_number' => :'String',
+        :'street_name' => :'String',
         :'address1' => :'String',
         :'address2' => :'String',
         :'locality' => :'String',
@@ -120,7 +148,9 @@ module CyberSource
         :'payment_information' => :'Ptsv1pushfundstransferSenderInformationPaymentInformation',
         :'reference_number' => :'String',
         :'account' => :'Ptsv1pushfundstransferSenderInformationAccount',
-        :'personal_identification' => :'Ptsv1pushfundstransferSenderInformationPersonalIdentification'
+        :'personal_identification' => :'Ptsv1pushfundstransferSenderInformationPersonalIdentification',
+        :'type' => :'String',
+        :'vat_registration_number' => :'String'
       }
     end
 
@@ -134,6 +164,10 @@ module CyberSource
 
       if attributes.has_key?(:'name')
         self.name = attributes[:'name']
+      end
+
+      if attributes.has_key?(:'email')
+        self.email = attributes[:'email']
       end
 
       if attributes.has_key?(:'firstName')
@@ -150,6 +184,14 @@ module CyberSource
 
       if attributes.has_key?(:'postalCode')
         self.postal_code = attributes[:'postalCode']
+      end
+
+      if attributes.has_key?(:'buildingNumber')
+        self.building_number = attributes[:'buildingNumber']
+      end
+
+      if attributes.has_key?(:'streetName')
+        self.street_name = attributes[:'streetName']
       end
 
       if attributes.has_key?(:'address1')
@@ -195,6 +237,14 @@ module CyberSource
       if attributes.has_key?(:'personalIdentification')
         self.personal_identification = attributes[:'personalIdentification']
       end
+
+      if attributes.has_key?(:'type')
+        self.type = attributes[:'type']
+      end
+
+      if attributes.has_key?(:'vatRegistrationNumber')
+        self.vat_registration_number = attributes[:'vatRegistrationNumber']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -227,6 +277,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] email Value to be assigned
+    def email=(email)
+      @email = email
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] first_name Value to be assigned
     def first_name=(first_name)
       @first_name = first_name
@@ -248,6 +304,18 @@ module CyberSource
     # @param [Object] postal_code Value to be assigned
     def postal_code=(postal_code)
       @postal_code = postal_code
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] building_number Value to be assigned
+    def building_number=(building_number)
+      @building_number = building_number
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] street_name Value to be assigned
+    def street_name=(street_name)
+      @street_name = street_name
     end
 
     # Custom attribute writer method with validation
@@ -306,16 +374,31 @@ module CyberSource
       @reference_number = reference_number
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] type Value to be assigned
+    def type=(type)
+      @type = type
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] vat_registration_number Value to be assigned
+    def vat_registration_number=(vat_registration_number)
+      @vat_registration_number = vat_registration_number
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           name == o.name &&
+          email == o.email &&
           first_name == o.first_name &&
           last_name == o.last_name &&
           middle_name == o.middle_name &&
           postal_code == o.postal_code &&
+          building_number == o.building_number &&
+          street_name == o.street_name &&
           address1 == o.address1 &&
           address2 == o.address2 &&
           locality == o.locality &&
@@ -326,7 +409,9 @@ module CyberSource
           payment_information == o.payment_information &&
           reference_number == o.reference_number &&
           account == o.account &&
-          personal_identification == o.personal_identification
+          personal_identification == o.personal_identification &&
+          type == o.type &&
+          vat_registration_number == o.vat_registration_number
     end
 
     # @see the `==` method
@@ -338,7 +423,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name, first_name, last_name, middle_name, postal_code, address1, address2, locality, administrative_area, country, date_of_birth, phone_number, payment_information, reference_number, account, personal_identification].hash
+      [name, email, first_name, last_name, middle_name, postal_code, building_number, street_name, address1, address2, locality, administrative_area, country, date_of_birth, phone_number, payment_information, reference_number, account, personal_identification, type, vat_registration_number].hash
     end
 
     # Builds the object from hash

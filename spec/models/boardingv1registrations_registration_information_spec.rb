@@ -46,10 +46,6 @@ describe 'Boardingv1registrationsRegistrationInformation' do
   describe 'test attribute "status"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["PROCESSING", "SUCCESS", "FAILURE", "PARTIAL"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.status = value }.not_to raise_error
-      # end
     end
   end
 
@@ -62,20 +58,12 @@ describe 'Boardingv1registrationsRegistrationInformation' do
   describe 'test attribute "boarding_flow"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["ENTERPRISE", "SMB", "ADDPRODUCT"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.boarding_flow = value }.not_to raise_error
-      # end
     end
   end
 
   describe 'test attribute "mode"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["COMPLETE", "PARTIAL"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.mode = value }.not_to raise_error
-      # end
     end
   end
 

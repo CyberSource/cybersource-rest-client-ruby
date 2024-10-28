@@ -21,8 +21,10 @@ module CyberSource
     # Three-character [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)
     attr_accessor :default_currency_code
 
+    # Possible values: - AUTHORIZATION - SALE
     attr_accessor :default_transaction_type
 
+    # Possible values: - CREDIT_CARD - ECHECK
     attr_accessor :default_payment_type
 
     attr_accessor :default_transaction_source
@@ -32,28 +34,6 @@ module CyberSource
     attr_accessor :display_moto
 
     attr_accessor :display_internet
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -155,31 +135,7 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      default_transaction_type_validator = EnumAttributeValidator.new('String', ['AUTHORIZATION', 'SALE'])
-      return false unless default_transaction_type_validator.valid?(@default_transaction_type)
-      default_payment_type_validator = EnumAttributeValidator.new('String', ['CREDIT_CARD', 'ECHECK'])
-      return false unless default_payment_type_validator.valid?(@default_payment_type)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] default_transaction_type Object to be assigned
-    def default_transaction_type=(default_transaction_type)
-      validator = EnumAttributeValidator.new('String', ['AUTHORIZATION', 'SALE'])
-      unless validator.valid?(default_transaction_type)
-        fail ArgumentError, 'invalid value for "default_transaction_type", must be one of #{validator.allowable_values}.'
-      end
-      @default_transaction_type = default_transaction_type
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] default_payment_type Object to be assigned
-    def default_payment_type=(default_payment_type)
-      validator = EnumAttributeValidator.new('String', ['CREDIT_CARD', 'ECHECK'])
-      unless validator.valid?(default_payment_type)
-        fail ArgumentError, 'invalid value for "default_payment_type", must be one of #{validator.allowable_values}.'
-      end
-      @default_payment_type = default_payment_type
     end
 
     # Checks equality by comparing each attribute.

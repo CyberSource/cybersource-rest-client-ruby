@@ -13,6 +13,8 @@ require 'date'
 
 module CyberSource
   class PushFundsRequest
+    attr_accessor :aggregator_information
+
     attr_accessor :client_reference_information
 
     attr_accessor :order_information
@@ -23,36 +25,49 @@ module CyberSource
 
     attr_accessor :sender_information
 
+    attr_accessor :merchant_information
+
+    attr_accessor :point_of_service_information
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'aggregator_information' => :'aggregatorInformation',
         :'client_reference_information' => :'clientReferenceInformation',
         :'order_information' => :'orderInformation',
         :'processing_information' => :'processingInformation',
         :'recipient_information' => :'recipientInformation',
-        :'sender_information' => :'senderInformation'
+        :'sender_information' => :'senderInformation',
+        :'merchant_information' => :'merchantInformation',
+        :'point_of_service_information' => :'pointOfServiceInformation'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
+        :'aggregator_information' => :'aggregator_information',
         :'client_reference_information' => :'client_reference_information',
         :'order_information' => :'order_information',
         :'processing_information' => :'processing_information',
         :'recipient_information' => :'recipient_information',
-        :'sender_information' => :'sender_information'
+        :'sender_information' => :'sender_information',
+        :'merchant_information' => :'merchant_information',
+        :'point_of_service_information' => :'point_of_service_information'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'aggregator_information' => :'Ptsv1pushfundstransferAggregatorInformation',
         :'client_reference_information' => :'Ptsv1pushfundstransferClientReferenceInformation',
         :'order_information' => :'Ptsv1pushfundstransferOrderInformation',
         :'processing_information' => :'Ptsv1pushfundstransferProcessingInformation',
         :'recipient_information' => :'Ptsv1pushfundstransferRecipientInformation',
-        :'sender_information' => :'Ptsv1pushfundstransferSenderInformation'
+        :'sender_information' => :'Ptsv1pushfundstransferSenderInformation',
+        :'merchant_information' => :'Ptsv1pushfundstransferMerchantInformation',
+        :'point_of_service_information' => :'Ptsv1pushfundstransferPointOfServiceInformation'
       }
     end
 
@@ -63,6 +78,10 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'aggregatorInformation')
+        self.aggregator_information = attributes[:'aggregatorInformation']
+      end
 
       if attributes.has_key?(:'clientReferenceInformation')
         self.client_reference_information = attributes[:'clientReferenceInformation']
@@ -83,6 +102,14 @@ module CyberSource
       if attributes.has_key?(:'senderInformation')
         self.sender_information = attributes[:'senderInformation']
       end
+
+      if attributes.has_key?(:'merchantInformation')
+        self.merchant_information = attributes[:'merchantInformation']
+      end
+
+      if attributes.has_key?(:'pointOfServiceInformation')
+        self.point_of_service_information = attributes[:'pointOfServiceInformation']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -93,10 +120,6 @@ module CyberSource
         invalid_properties.push('invalid value for "order_information", order_information cannot be nil.')
       end
 
-      if @processing_information.nil?
-        invalid_properties.push('invalid value for "processing_information", processing_information cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -104,7 +127,6 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if @order_information.nil?
-      return false if @processing_information.nil?
       true
     end
 
@@ -113,11 +135,14 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          aggregator_information == o.aggregator_information &&
           client_reference_information == o.client_reference_information &&
           order_information == o.order_information &&
           processing_information == o.processing_information &&
           recipient_information == o.recipient_information &&
-          sender_information == o.sender_information
+          sender_information == o.sender_information &&
+          merchant_information == o.merchant_information &&
+          point_of_service_information == o.point_of_service_information
     end
 
     # @see the `==` method
@@ -129,7 +154,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_reference_information, order_information, processing_information, recipient_information, sender_information].hash
+      [aggregator_information, client_reference_information, order_information, processing_information, recipient_information, sender_information, merchant_information, point_of_service_information].hash
     end
 
     # Builds the object from hash

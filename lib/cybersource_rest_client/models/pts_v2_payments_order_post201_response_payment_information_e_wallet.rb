@@ -22,12 +22,16 @@ module CyberSource
     # Payment method for the unit purchase. Possible values: - `UNRESTRICTED (default)—this value is only available if configured by PayPal for the merchant.` - `INSTANT` 
     attr_accessor :funding_source_sale
 
+    # The Venmo user name chosen by the user, also know as a Venmo handle. 
+    attr_accessor :user_name
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'account_id' => :'accountId',
         :'funding_source' => :'fundingSource',
-        :'funding_source_sale' => :'fundingSourceSale'
+        :'funding_source_sale' => :'fundingSourceSale',
+        :'user_name' => :'userName'
       }
     end
 
@@ -36,7 +40,8 @@ module CyberSource
       {
         :'account_id' => :'account_id',
         :'funding_source' => :'funding_source',
-        :'funding_source_sale' => :'funding_source_sale'
+        :'funding_source_sale' => :'funding_source_sale',
+        :'user_name' => :'user_name'
       }
     end
 
@@ -45,7 +50,8 @@ module CyberSource
       {
         :'account_id' => :'String',
         :'funding_source' => :'String',
-        :'funding_source_sale' => :'String'
+        :'funding_source_sale' => :'String',
+        :'user_name' => :'String'
       }
     end
 
@@ -67,6 +73,10 @@ module CyberSource
 
       if attributes.has_key?(:'fundingSourceSale')
         self.funding_source_sale = attributes[:'fundingSourceSale']
+      end
+
+      if attributes.has_key?(:'userName')
+        self.user_name = attributes[:'userName']
       end
     end
 
@@ -108,7 +118,8 @@ module CyberSource
       self.class == o.class &&
           account_id == o.account_id &&
           funding_source == o.funding_source &&
-          funding_source_sale == o.funding_source_sale
+          funding_source_sale == o.funding_source_sale &&
+          user_name == o.user_name
     end
 
     # @see the `==` method
@@ -120,7 +131,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [account_id, funding_source, funding_source_sale].hash
+      [account_id, funding_source, funding_source_sale, user_name].hash
     end
 
     # Builds the object from hash

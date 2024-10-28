@@ -90,6 +90,8 @@ module CyberSource
 
     attr_accessor :currency_conversion
 
+    attr_accessor :oct_surcharge
+
     attr_accessor :order
 
     # This API Field contains the anticipated amount details. This supports use cases where the Merchant does not wish to have funds held against the account, but needs to confirm an amount prior to authorization, such as for a trial subscription, reservation service, or loyalty program. In an account verification, the anticipated amount is used to confirm the account has availability to accept purchases. 
@@ -125,6 +127,7 @@ module CyberSource
         :'original_currency' => :'originalCurrency',
         :'cashback_amount' => :'cashbackAmount',
         :'currency_conversion' => :'currencyConversion',
+        :'oct_surcharge' => :'oct-surcharge',
         :'order' => :'order',
         :'anticipated_amount' => :'anticipatedAmount'
       }
@@ -160,6 +163,7 @@ module CyberSource
         :'original_currency' => :'original_currency',
         :'cashback_amount' => :'cashback_amount',
         :'currency_conversion' => :'currency_conversion',
+        :'oct_surcharge' => :'oct_surcharge',
         :'order' => :'order',
         :'anticipated_amount' => :'anticipated_amount'
       }
@@ -195,6 +199,7 @@ module CyberSource
         :'original_currency' => :'String',
         :'cashback_amount' => :'String',
         :'currency_conversion' => :'Ptsv2paymentsOrderInformationAmountDetailsCurrencyConversion',
+        :'oct_surcharge' => :'Ptsv2paymentsOrderInformationAmountDetailsOctsurcharge',
         :'order' => :'Ptsv2paymentsOrderInformationAmountDetailsOrder',
         :'anticipated_amount' => :'String'
       }
@@ -318,6 +323,10 @@ module CyberSource
 
       if attributes.has_key?(:'currencyConversion')
         self.currency_conversion = attributes[:'currencyConversion']
+      end
+
+      if attributes.has_key?(:'oct-surcharge')
+        self.oct_surcharge = attributes[:'oct-surcharge']
       end
 
       if attributes.has_key?(:'order')
@@ -518,6 +527,7 @@ module CyberSource
           original_currency == o.original_currency &&
           cashback_amount == o.cashback_amount &&
           currency_conversion == o.currency_conversion &&
+          oct_surcharge == o.oct_surcharge &&
           order == o.order &&
           anticipated_amount == o.anticipated_amount
     end
@@ -531,7 +541,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [gift_wrap_amount, total_amount, sub_total_amount, currency, discount_amount, duty_amount, gratuity_amount, tax_amount, national_tax_included, tax_applied_after_discount, tax_applied_level, tax_type_code, freight_amount, foreign_amount, foreign_currency, exchange_rate, exchange_rate_time_stamp, surcharge, settlement_amount, settlement_currency, amex_additional_amounts, tax_details, service_fee_amount, original_amount, original_currency, cashback_amount, currency_conversion, order, anticipated_amount].hash
+      [gift_wrap_amount, total_amount, sub_total_amount, currency, discount_amount, duty_amount, gratuity_amount, tax_amount, national_tax_included, tax_applied_after_discount, tax_applied_level, tax_type_code, freight_amount, foreign_amount, foreign_currency, exchange_rate, exchange_rate_time_stamp, surcharge, settlement_amount, settlement_currency, amex_additional_amounts, tax_details, service_fee_amount, original_amount, original_currency, cashback_amount, currency_conversion, oct_surcharge, order, anticipated_amount].hash
     end
 
     # Builds the object from hash
