@@ -34,10 +34,6 @@ describe 'Boardingv1registrationsOrganizationInformationKYC' do
   describe 'test attribute "when_is_customer_charged"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["ONETIMEBEFORE", "ONETIMEAFTER", "OTHER"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.when_is_customer_charged = value }.not_to raise_error
-      # end
     end
   end
 
@@ -80,10 +76,6 @@ describe 'Boardingv1registrationsOrganizationInformationKYC' do
   describe 'test attribute "time_to_product_delivery"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["INSTANT", "UPTO2", "UPTO5", "UPTO10", "GREATERTHAN10"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.time_to_product_delivery = value }.not_to raise_error
-      # end
     end
   end
 

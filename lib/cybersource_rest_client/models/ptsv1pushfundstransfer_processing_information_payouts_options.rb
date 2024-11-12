@@ -13,17 +13,29 @@ require 'date'
 
 module CyberSource
   class Ptsv1pushfundstransferProcessingInformationPayoutsOptions
-    # Use a 3-character alpha currency code for source currency of the funds transfer.  Yellow Pepper Supported for cross border funds transfers.  ISO standard currencies: http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf 
+    # Use a 3-character alpha currency code for source currency of the funds transfer.  Required if sending processingInformation.payoutsOptions.sourceAmount.  ISO standard currencies: http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf 
     attr_accessor :source_currency
 
-    # Use a 3-character alpha currency code for destination currency of the funds transfer.  Yellow Pepper Supported for cross border funds transfers.  ISO standard currencies: http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf 
+    # Use a 3-character alpha currency code for destination currency of the funds transfer.  Yellow Pepper  Supported for cross border funds transfers.  ISO standard currencies: http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf 
     attr_accessor :destination_currency
+
+    # Source Amount is required in certain markets to identify the transaction amount entered in the sender's currency code prior to FX conversion by the originating entity.  Format:  Minimum Value: 0  Maximum value: 999999999.99  Allowed fractional digits: 2 
+    attr_accessor :source_amount
+
+    # Unique reference number returned by the processor that identifies the transaction at the network. 
+    attr_accessor :retrieval_reference_number
+
+    # Visa-generated transaction identifier (TID) that is unique for each original authorization and financial request. 
+    attr_accessor :account_funding_reference_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'source_currency' => :'sourceCurrency',
-        :'destination_currency' => :'destinationCurrency'
+        :'destination_currency' => :'destinationCurrency',
+        :'source_amount' => :'sourceAmount',
+        :'retrieval_reference_number' => :'retrievalReferenceNumber',
+        :'account_funding_reference_id' => :'accountFundingReferenceId'
       }
     end
 
@@ -31,7 +43,10 @@ module CyberSource
     def self.json_map
       {
         :'source_currency' => :'source_currency',
-        :'destination_currency' => :'destination_currency'
+        :'destination_currency' => :'destination_currency',
+        :'source_amount' => :'source_amount',
+        :'retrieval_reference_number' => :'retrieval_reference_number',
+        :'account_funding_reference_id' => :'account_funding_reference_id'
       }
     end
 
@@ -39,7 +54,10 @@ module CyberSource
     def self.swagger_types
       {
         :'source_currency' => :'String',
-        :'destination_currency' => :'String'
+        :'destination_currency' => :'String',
+        :'source_amount' => :'String',
+        :'retrieval_reference_number' => :'String',
+        :'account_funding_reference_id' => :'String'
       }
     end
 
@@ -57,6 +75,18 @@ module CyberSource
 
       if attributes.has_key?(:'destinationCurrency')
         self.destination_currency = attributes[:'destinationCurrency']
+      end
+
+      if attributes.has_key?(:'sourceAmount')
+        self.source_amount = attributes[:'sourceAmount']
+      end
+
+      if attributes.has_key?(:'retrievalReferenceNumber')
+        self.retrieval_reference_number = attributes[:'retrievalReferenceNumber']
+      end
+
+      if attributes.has_key?(:'accountFundingReferenceId')
+        self.account_funding_reference_id = attributes[:'accountFundingReferenceId']
       end
     end
 
@@ -103,13 +133,34 @@ module CyberSource
       @destination_currency = destination_currency
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] source_amount Value to be assigned
+    def source_amount=(source_amount)
+      @source_amount = source_amount
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] retrieval_reference_number Value to be assigned
+    def retrieval_reference_number=(retrieval_reference_number)
+      @retrieval_reference_number = retrieval_reference_number
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] account_funding_reference_id Value to be assigned
+    def account_funding_reference_id=(account_funding_reference_id)
+      @account_funding_reference_id = account_funding_reference_id
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           source_currency == o.source_currency &&
-          destination_currency == o.destination_currency
+          destination_currency == o.destination_currency &&
+          source_amount == o.source_amount &&
+          retrieval_reference_number == o.retrieval_reference_number &&
+          account_funding_reference_id == o.account_funding_reference_id
     end
 
     # @see the `==` method
@@ -121,7 +172,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [source_currency, destination_currency].hash
+      [source_currency, destination_currency, source_amount, retrieval_reference_number, account_funding_reference_id].hash
     end
 
     # Builds the object from hash

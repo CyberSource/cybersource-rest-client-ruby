@@ -15,33 +15,11 @@ module CyberSource
   class PaymentsProductsDigitalPaymentsSubscriptionInformation
     attr_accessor :enabled
 
-    # Indicates if the organization can enable this product using self service.
+    # Indicates if the organization can enable this product using self service.  Possible values: - SELF_SERVICEABLE - NOT_SELF_SERVICEABLE - SELF_SERVICE_ONLY
     attr_accessor :self_serviceability
 
     # Allowed values are; <table>    <tr>       <td>visaCheckout</td>    </tr>    <tr>       <td>applePay</td>    </tr>    <tr>       <td>samsungPay</td>    </tr>    <tr>        <td>googlePay</td>     </tr> </table> 
     attr_accessor :features
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -105,19 +83,7 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      self_serviceability_validator = EnumAttributeValidator.new('String', ['SELF_SERVICEABLE', 'NOT_SELF_SERVICEABLE', 'SELF_SERVICE_ONLY'])
-      return false unless self_serviceability_validator.valid?(@self_serviceability)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] self_serviceability Object to be assigned
-    def self_serviceability=(self_serviceability)
-      validator = EnumAttributeValidator.new('String', ['SELF_SERVICEABLE', 'NOT_SELF_SERVICEABLE', 'SELF_SERVICE_ONLY'])
-      unless validator.valid?(self_serviceability)
-        fail ArgumentError, 'invalid value for "self_serviceability", must be one of #{validator.allowable_values}.'
-      end
-      @self_serviceability = self_serviceability
     end
 
     # Checks equality by comparing each attribute.

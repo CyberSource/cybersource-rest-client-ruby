@@ -21,35 +21,15 @@ module CyberSource
     # Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the time. The Z indicates UTC. 
     attr_accessor :submit_time_utc
 
+    # Possible values: - SUCCESS - PARTIAL - PENDING - NOT_SETUP
     attr_accessor :status
 
+    # Possible values: - PENDING_PROVISIONING_PROCESS - MISSING_DATA - INVALID_DATA - DUPLICATE_FIELD - NOT_APPLICABLE
     attr_accessor :reason
 
     attr_accessor :details
 
     attr_accessor :message
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -139,31 +119,7 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      status_validator = EnumAttributeValidator.new('String', ['SUCCESS', 'PARTIAL', 'PENDING', 'NOT_SETUP'])
-      return false unless status_validator.valid?(@status)
-      reason_validator = EnumAttributeValidator.new('String', ['PENDING_PROVISIONING_PROCESS', 'MISSING_DATA', 'INVALID_DATA', 'DUPLICATE_FIELD', 'NOT_APPLICABLE'])
-      return false unless reason_validator.valid?(@reason)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] status Object to be assigned
-    def status=(status)
-      validator = EnumAttributeValidator.new('String', ['SUCCESS', 'PARTIAL', 'PENDING', 'NOT_SETUP'])
-      unless validator.valid?(status)
-        fail ArgumentError, 'invalid value for "status", must be one of #{validator.allowable_values}.'
-      end
-      @status = status
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] reason Object to be assigned
-    def reason=(reason)
-      validator = EnumAttributeValidator.new('String', ['PENDING_PROVISIONING_PROCESS', 'MISSING_DATA', 'INVALID_DATA', 'DUPLICATE_FIELD', 'NOT_APPLICABLE'])
-      unless validator.valid?(reason)
-        fail ArgumentError, 'invalid value for "reason", must be one of #{validator.allowable_values}.'
-      end
-      @reason = reason
     end
 
     # Checks equality by comparing each attribute.

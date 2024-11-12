@@ -42,10 +42,22 @@ module CyberSource
     # Last name of recipient. 
     attr_accessor :last_name
 
-    # Recipient phone number.  This field is supported by FDC Compass.  Mastercard Send: Max length is 15 with no dashes or spaces. 
+    # Customer's phone number.  It is recommended that you include the country code when the order is from outside the U.S. 
     attr_accessor :phone_number
 
+    # Customer's email address, including the full domain name. 
+    attr_accessor :email
+
     attr_accessor :personal_identification
+
+    # Building number in the street address.  For example, if the street address is: Rua da Quitanda 187 then the building number is 187.  Applicable to domestic Colombia transactions only. 
+    attr_accessor :building_number
+
+    # This field contains the street name of the recipient's address.  Applicable to domestic Colombia transactions only. 
+    attr_accessor :street_name
+
+    # `B` for Business or `I` for individual. 
+    attr_accessor :type
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -61,7 +73,11 @@ module CyberSource
         :'middle_name' => :'middleName',
         :'last_name' => :'lastName',
         :'phone_number' => :'phoneNumber',
-        :'personal_identification' => :'personalIdentification'
+        :'email' => :'email',
+        :'personal_identification' => :'personalIdentification',
+        :'building_number' => :'buildingNumber',
+        :'street_name' => :'streetName',
+        :'type' => :'type'
       }
     end
 
@@ -79,7 +95,11 @@ module CyberSource
         :'middle_name' => :'middle_name',
         :'last_name' => :'last_name',
         :'phone_number' => :'phone_number',
-        :'personal_identification' => :'personal_identification'
+        :'email' => :'email',
+        :'personal_identification' => :'personal_identification',
+        :'building_number' => :'building_number',
+        :'street_name' => :'street_name',
+        :'type' => :'type'
       }
     end
 
@@ -97,7 +117,11 @@ module CyberSource
         :'middle_name' => :'String',
         :'last_name' => :'String',
         :'phone_number' => :'String',
-        :'personal_identification' => :'Ptsv1pushfundstransferRecipientInformationPersonalIdentification'
+        :'email' => :'String',
+        :'personal_identification' => :'Ptsv1pushfundstransferRecipientInformationPersonalIdentification',
+        :'building_number' => :'String',
+        :'street_name' => :'String',
+        :'type' => :'String'
       }
     end
 
@@ -153,8 +177,24 @@ module CyberSource
         self.phone_number = attributes[:'phoneNumber']
       end
 
+      if attributes.has_key?(:'email')
+        self.email = attributes[:'email']
+      end
+
       if attributes.has_key?(:'personalIdentification')
         self.personal_identification = attributes[:'personalIdentification']
+      end
+
+      if attributes.has_key?(:'buildingNumber')
+        self.building_number = attributes[:'buildingNumber']
+      end
+
+      if attributes.has_key?(:'streetName')
+        self.street_name = attributes[:'streetName']
+      end
+
+      if attributes.has_key?(:'type')
+        self.type = attributes[:'type']
       end
     end
 
@@ -240,6 +280,30 @@ module CyberSource
       @phone_number = phone_number
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] email Value to be assigned
+    def email=(email)
+      @email = email
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] building_number Value to be assigned
+    def building_number=(building_number)
+      @building_number = building_number
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] street_name Value to be assigned
+    def street_name=(street_name)
+      @street_name = street_name
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] type Value to be assigned
+    def type=(type)
+      @type = type
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -256,7 +320,11 @@ module CyberSource
           middle_name == o.middle_name &&
           last_name == o.last_name &&
           phone_number == o.phone_number &&
-          personal_identification == o.personal_identification
+          email == o.email &&
+          personal_identification == o.personal_identification &&
+          building_number == o.building_number &&
+          street_name == o.street_name &&
+          type == o.type
     end
 
     # @see the `==` method
@@ -268,7 +336,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [payment_information, address1, address2, locality, postal_code, administrative_area, country, first_name, middle_name, last_name, phone_number, personal_identification].hash
+      [payment_information, address1, address2, locality, postal_code, administrative_area, country, first_name, middle_name, last_name, phone_number, email, personal_identification, building_number, street_name, type].hash
     end
 
     # Builds the object from hash

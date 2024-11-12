@@ -19,32 +19,11 @@ module CyberSource
     # The tenantConfigurationId is the unique identifier for this system resource. You will see various places where it must be referenced in the URI path, or when querying the hierarchy for ancestors or descendants. 
     attr_accessor :tenant_configuration_id
 
+    # Possible values: - LIVE - INACTIVE - TEST
     attr_accessor :status
 
     # Time of request in UTC.
     attr_accessor :submit_time_utc
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -121,8 +100,6 @@ module CyberSource
     def valid?
       #return false if !@solution_id.nil? && @solution_id !~ Regexp.new(/^[0-9a-zA-Z_]+$/)
       #return false if !@tenant_configuration_id.nil? && @tenant_configuration_id !~ Regexp.new(/^[0-9a-zA-Z_]+$/)
-      status_validator = EnumAttributeValidator.new('String', ['LIVE', 'INACTIVE', 'TEST'])
-      return false unless status_validator.valid?(@status)
       true
     end
 
@@ -144,16 +121,6 @@ module CyberSource
       #end
 
       @tenant_configuration_id = tenant_configuration_id
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] status Object to be assigned
-    def status=(status)
-      validator = EnumAttributeValidator.new('String', ['LIVE', 'INACTIVE', 'TEST'])
-      unless validator.valid?(status)
-        fail ArgumentError, 'invalid value for "status", must be one of #{validator.allowable_values}.'
-      end
-      @status = status
     end
 
     # Checks equality by comparing each attribute.

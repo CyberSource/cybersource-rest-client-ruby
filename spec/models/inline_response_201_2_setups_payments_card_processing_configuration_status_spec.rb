@@ -52,20 +52,12 @@ describe 'InlineResponse2012SetupsPaymentsCardProcessingConfigurationStatus' do
   describe 'test attribute "status"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["SUCCESS", "PARTIAL", "PENDING", "NOT_SETUP"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.status = value }.not_to raise_error
-      # end
     end
   end
 
   describe 'test attribute "reason"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["PENDING_PROVISIONING_PROCESS", "MISSING_DATA", "INVALID_DATA", "DUPLICATE_FIELD", "NOT_APPLICABLE"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.reason = value }.not_to raise_error
-      # end
     end
   end
 

@@ -208,10 +208,6 @@ describe 'CardProcessingConfigCommonProcessors' do
   describe 'test attribute "industry_code"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["0", "A", "B", "D", "F", "G", "H", "L", "O", "P", "R"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.industry_code = value }.not_to raise_error
-      # end
     end
   end
 

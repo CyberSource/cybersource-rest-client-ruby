@@ -21,12 +21,15 @@ module CyberSource
     # The possible values for the reply field are: - `true` : the airline data was included in the request to the processor. - `false` : the airline data was not included in the request to the processor.  Returned by authorization, capture, or credit services. 
     attr_accessor :enhanced_data_enabled
 
+    attr_accessor :capture_options
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'bank_transfer_options' => :'bankTransferOptions',
         :'payment_solution' => :'paymentSolution',
-        :'enhanced_data_enabled' => :'enhancedDataEnabled'
+        :'enhanced_data_enabled' => :'enhancedDataEnabled',
+        :'capture_options' => :'captureOptions'
       }
     end
 
@@ -35,7 +38,8 @@ module CyberSource
       {
         :'bank_transfer_options' => :'bank_transfer_options',
         :'payment_solution' => :'payment_solution',
-        :'enhanced_data_enabled' => :'enhanced_data_enabled'
+        :'enhanced_data_enabled' => :'enhanced_data_enabled',
+        :'capture_options' => :'capture_options'
       }
     end
 
@@ -44,7 +48,8 @@ module CyberSource
       {
         :'bank_transfer_options' => :'PtsV2PaymentsPost201ResponseProcessingInformationBankTransferOptions',
         :'payment_solution' => :'String',
-        :'enhanced_data_enabled' => :'BOOLEAN'
+        :'enhanced_data_enabled' => :'BOOLEAN',
+        :'capture_options' => :'PtsV2PaymentsPost201ResponseProcessingInformationCaptureOptions'
       }
     end
 
@@ -66,6 +71,10 @@ module CyberSource
 
       if attributes.has_key?(:'enhancedDataEnabled')
         self.enhanced_data_enabled = attributes[:'enhancedDataEnabled']
+      end
+
+      if attributes.has_key?(:'captureOptions')
+        self.capture_options = attributes[:'captureOptions']
       end
     end
 
@@ -95,7 +104,8 @@ module CyberSource
       self.class == o.class &&
           bank_transfer_options == o.bank_transfer_options &&
           payment_solution == o.payment_solution &&
-          enhanced_data_enabled == o.enhanced_data_enabled
+          enhanced_data_enabled == o.enhanced_data_enabled &&
+          capture_options == o.capture_options
     end
 
     # @see the `==` method
@@ -107,7 +117,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [bank_transfer_options, payment_solution, enhanced_data_enabled].hash
+      [bank_transfer_options, payment_solution, enhanced_data_enabled, capture_options].hash
     end
 
     # Builds the object from hash

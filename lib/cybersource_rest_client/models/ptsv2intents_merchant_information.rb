@@ -12,28 +12,39 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  class TssV2TransactionsPost201ResponseEmbeddedBuyerInformation
-    # Your identifier for the customer.  When a subscription or customer profile is being created, the maximum length for this field for most processors is 30. Otherwise, the maximum length is 100.  #### Comercio Latino For recurring payments in Mexico, the value is the customer's contract number. Note Before you request the authorization, you must inform the issuer of the customer contract numbers that will be used for recurring transactions.  #### Worldpay VAP For a follow-on credit with Worldpay VAP, CyberSource checks the following locations, in the order given, for a customer account ID value and uses the first value it finds: 1. `customer_account_id` value in the follow-on credit request 2. Customer account ID value that was used for the capture that is being credited 3. Customer account ID value that was used for the original authorization If a customer account ID value cannot be found in any of these locations, then no value is used. 
-    attr_accessor :merchant_customer_id
+  class Ptsv2intentsMerchantInformation
+    attr_accessor :merchant_descriptor
+
+    # customer would be redirected to this url based on the decision of the transaction
+    attr_accessor :cancel_url
+
+    # customer would be redirected to this url based on the decision of the transaction
+    attr_accessor :success_url
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'merchant_customer_id' => :'merchantCustomerId'
+        :'merchant_descriptor' => :'merchantDescriptor',
+        :'cancel_url' => :'cancelUrl',
+        :'success_url' => :'successUrl'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'merchant_customer_id' => :'merchant_customer_id'
+        :'merchant_descriptor' => :'merchant_descriptor',
+        :'cancel_url' => :'cancel_url',
+        :'success_url' => :'success_url'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'merchant_customer_id' => :'String'
+        :'merchant_descriptor' => :'Ptsv2intentsMerchantInformationMerchantDescriptor',
+        :'cancel_url' => :'String',
+        :'success_url' => :'String'
       }
     end
 
@@ -45,8 +56,16 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'merchantCustomerId')
-        self.merchant_customer_id = attributes[:'merchantCustomerId']
+      if attributes.has_key?(:'merchantDescriptor')
+        self.merchant_descriptor = attributes[:'merchantDescriptor']
+      end
+
+      if attributes.has_key?(:'cancelUrl')
+        self.cancel_url = attributes[:'cancelUrl']
+      end
+
+      if attributes.has_key?(:'successUrl')
+        self.success_url = attributes[:'successUrl']
       end
     end
 
@@ -64,9 +83,15 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] merchant_customer_id Value to be assigned
-    def merchant_customer_id=(merchant_customer_id)
-      @merchant_customer_id = merchant_customer_id
+    # @param [Object] cancel_url Value to be assigned
+    def cancel_url=(cancel_url)
+      @cancel_url = cancel_url
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] success_url Value to be assigned
+    def success_url=(success_url)
+      @success_url = success_url
     end
 
     # Checks equality by comparing each attribute.
@@ -74,7 +99,9 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          merchant_customer_id == o.merchant_customer_id
+          merchant_descriptor == o.merchant_descriptor &&
+          cancel_url == o.cancel_url &&
+          success_url == o.success_url
     end
 
     # @see the `==` method
@@ -86,7 +113,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [merchant_customer_id].hash
+      [merchant_descriptor, cancel_url, success_url].hash
     end
 
     # Builds the object from hash

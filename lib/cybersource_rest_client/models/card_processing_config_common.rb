@@ -19,7 +19,7 @@ module CyberSource
     # Vendor code assigned by American Express. Applicable for TSYS (tsys) processor.
     attr_accessor :amex_vendor_code
 
-    # Authorization Finality indicator. Please note that the input can be in small case or capitals but response is in small case as of now. It will be made capitals everywhere in the next version. Applicable for Elavon Americas (elavonamericas), TSYS (tsys), Barclays (barclays2), Streamline (streamline2), Six (six), Barclays HISO (barclayshiso), GPN (gpn), FDI Global (fdiglobal), GPX (gpx), Paymentech Tampa (paymentechtampa), FDC Nashville (smartfdc), VPC and Chase Paymentech Salem (chasepaymentechsalem) processors.  Validation details (for selected processors)...  <table> <thead><tr><th>Processor</th><th>Acceptance Type</th><th>Required</th><th>Default Value</th></tr></thead> <tr><td>Barclays</td><td>cnp, cp, hybrid</td><td>No</td><td>FINAL</td></tr> <tr><td>Barclays HISO</td><td>cnp, cp, hybrid</td><td>Yes</td><td>FINAL</td></tr> </table> 
+    # Authorization Finality indicator. Please note that the input can be in small case or capitals but response is in small case as of now. It will be made capitals everywhere in the next version. Applicable for Elavon Americas (elavonamericas), TSYS (tsys), Barclays (barclays2), Streamline (streamline2), Six (six), Barclays HISO (barclayshiso), GPN (gpn), FDI Global (fdiglobal), GPX (gpx), Paymentech Tampa (paymentechtampa), FDC Nashville (smartfdc), VPC and Chase Paymentech Salem (chasepaymentechsalem) processors.  Validation details (for selected processors)...  <table> <thead><tr><th>Processor</th><th>Acceptance Type</th><th>Required</th><th>Default Value</th></tr></thead> <tr><td>Barclays</td><td>cnp, cp, hybrid</td><td>No</td><td>FINAL</td></tr> <tr><td>Barclays HISO</td><td>cnp, cp, hybrid</td><td>Yes</td><td>FINAL</td></tr> </table>   Possible values: - PRE - FINAL - UNDEFINED
     attr_accessor :default_auth_type_code
 
     # MAID aka MasterCard assigned ID, MasterCard equivalent of Merchant Verification Value by Visa. Applicable for VPC, GPX (gpx) and FDI Global (fdiglobal) processors.
@@ -80,28 +80,6 @@ module CyberSource
 
     # This field is used to indicate whether the merchant wants to drop the billing information from the request. If this field is set to true, then the billing information will be dropped from the request. If this field is set to false, then the billing information will be sent in the request.
     attr_accessor :drop_billing_info
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -303,19 +281,7 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      default_auth_type_code_validator = EnumAttributeValidator.new('String', ['PRE', 'FINAL', 'UNDEFINED'])
-      return false unless default_auth_type_code_validator.valid?(@default_auth_type_code)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] default_auth_type_code Object to be assigned
-    def default_auth_type_code=(default_auth_type_code)
-      validator = EnumAttributeValidator.new('String', ['PRE', 'FINAL', 'UNDEFINED'])
-      unless validator.valid?(default_auth_type_code)
-        fail ArgumentError, 'invalid value for "default_auth_type_code", must be one of #{validator.allowable_values}.'
-      end
-      @default_auth_type_code = default_auth_type_code
     end
 
     # Checks equality by comparing each attribute.

@@ -45,28 +45,6 @@ module CyberSource
     # Industry standard Merchant Category Code (MCC)
     attr_accessor :merchant_category_code
 
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -238,11 +216,7 @@ module CyberSource
       #return false if @name !~ Regexp.new(/^[0-9a-zA-Z _\\-\\+\\.\\*\\\"\/'&\\,\\(\\)!$;:?@\\#¡-￿]+$/)
       #return false if !@doing_business_as.nil? && @doing_business_as !~ Regexp.new(/^[0-9a-zA-Z _\\-\\+\\.\\*\\\"\/'&\\,\\(\\)!$;:?@\\#¡-￿]+$/)
       #return false if !@description.nil? && @description !~ Regexp.new(/[À-ÖØ-öø-ǿÀ-ÖØ-öø-ǿ\\n\\ra-zA-Z0-9().\\-_#,;\/\\\\@$:&amp;!?%«»€₣«»€₣ ]{1,}$/)
-      time_zone_validator = EnumAttributeValidator.new('String', ['Pacific/Pago_Pago', 'Pacific/Honolulu', 'America/Anchorage', 'America/Vancouver', 'America/Los_Angeles', 'America/Phoenix', 'America/Edmonton', 'America/Denver', 'America/Winnipeg', 'America/Mexico_City', 'America/Chicago', 'America/Bogota', 'America/Indianapolis', 'America/New_York', 'America/La_Paz', 'America/Halifax', 'America/St_Johns', 'America/Buenos_Aires', 'America/Godthab', 'America/Sao_Paulo', 'America/Noronha', 'Atlantic/Cape_Verde', 'GMT', 'Europe/Dublin', 'Europe/Lisbon', 'Europe/London', 'Africa/Tunis', 'Europe/Vienna', 'Europe/Brussels', 'Europe/Zurich', 'Europe/Prague', 'Europe/Berlin', 'Europe/Copenhagen', 'Europe/Madrid', 'Europe/Budapest', 'Europe/Rome', 'Africa/Tripoli', 'Europe/Monaco', 'Europe/Malta', 'Europe/Amsterdam', 'Europe/Oslo', 'Europe/Warsaw', 'Europe/Stockholm', 'Europe/Belgrade', 'Europe/Paris', 'Africa/Johannesburg', 'Europe/Minsk', 'Africa/Cairo', 'Europe/Helsinki', 'Europe/Athens', 'Asia/Jerusalem', 'Europe/Riga', 'Europe/Bucharest', 'Europe/Istanbul', 'Asia/Riyadh', 'Europe/Moscow', 'Asia/Dubai', 'Asia/Baku', 'Asia/Tbilisi', 'Asia/Calcutta', 'Asia/Katmandu', 'Asia/Dacca', 'Asia/Rangoon', 'Asia/Jakarta', 'Asia/Saigon', 'Asia/Bangkok', 'Australia/Perth', 'Asia/Hong_Kong', 'Asia/Macao', 'Asia/Kuala_Lumpur', 'Asia/Manila', 'Asia/Singapore', 'Asia/Taipei', 'Asia/Shanghai', 'Asia/Seoul', 'Asia/Tokyo', 'Asia/Yakutsk', 'Australia/Adelaide', 'Australia/Brisbane', 'Australia/Broken_Hill', 'Australia/Darwin', 'Australia/Eucla', 'Australia/Hobart', 'Australia/Lindeman', 'Australia/Sydney', 'Australia/Lord_Howe', 'Australia/Melbourne', 'Asia/Magadan', 'Pacific/Norfolk', 'Pacific/Auckland'])
-      return false unless time_zone_validator.valid?(@time_zone)
       #return false if !@website_url.nil? && @website_url !~ Regexp.new(/\\b((?:https?:\/\/|www\\d{0,3}[.]|[a-z0-9.\\-]+[.][a-z]{2,4}\/)(?:[^\\s()<>]+|\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\))+(?:\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\)|[^\\s`!()\\[\\]{};:'\".,<>?Â«Â»â€œâ€â€˜â€™]))/)
-      type_validator = EnumAttributeValidator.new('String', ['PARTNERSHIP', 'SOLE_PROPRIETORSHIP', 'CORPORATION', 'LLC', 'NON_PROFIT', 'TRUST'])
-      return false unless type_validator.valid?(@type)
       #return false if !@tax_id.nil? && @tax_id !~ Regexp.new(/\\d{9}/)
       #return false if !@phone_number.nil? && @phone_number !~ Regexp.new(/^[0-9a-zA-Z\\\\+\\\\-]+$/)
       #return false if !@merchant_category_code.nil? && @merchant_category_code !~ Regexp.new(/^\\d{3,4}$/)
@@ -283,16 +257,6 @@ module CyberSource
       @description = description
     end
 
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] time_zone Object to be assigned
-    def time_zone=(time_zone)
-      validator = EnumAttributeValidator.new('String', ['Pacific/Pago_Pago', 'Pacific/Honolulu', 'America/Anchorage', 'America/Vancouver', 'America/Los_Angeles', 'America/Phoenix', 'America/Edmonton', 'America/Denver', 'America/Winnipeg', 'America/Mexico_City', 'America/Chicago', 'America/Bogota', 'America/Indianapolis', 'America/New_York', 'America/La_Paz', 'America/Halifax', 'America/St_Johns', 'America/Buenos_Aires', 'America/Godthab', 'America/Sao_Paulo', 'America/Noronha', 'Atlantic/Cape_Verde', 'GMT', 'Europe/Dublin', 'Europe/Lisbon', 'Europe/London', 'Africa/Tunis', 'Europe/Vienna', 'Europe/Brussels', 'Europe/Zurich', 'Europe/Prague', 'Europe/Berlin', 'Europe/Copenhagen', 'Europe/Madrid', 'Europe/Budapest', 'Europe/Rome', 'Africa/Tripoli', 'Europe/Monaco', 'Europe/Malta', 'Europe/Amsterdam', 'Europe/Oslo', 'Europe/Warsaw', 'Europe/Stockholm', 'Europe/Belgrade', 'Europe/Paris', 'Africa/Johannesburg', 'Europe/Minsk', 'Africa/Cairo', 'Europe/Helsinki', 'Europe/Athens', 'Asia/Jerusalem', 'Europe/Riga', 'Europe/Bucharest', 'Europe/Istanbul', 'Asia/Riyadh', 'Europe/Moscow', 'Asia/Dubai', 'Asia/Baku', 'Asia/Tbilisi', 'Asia/Calcutta', 'Asia/Katmandu', 'Asia/Dacca', 'Asia/Rangoon', 'Asia/Jakarta', 'Asia/Saigon', 'Asia/Bangkok', 'Australia/Perth', 'Asia/Hong_Kong', 'Asia/Macao', 'Asia/Kuala_Lumpur', 'Asia/Manila', 'Asia/Singapore', 'Asia/Taipei', 'Asia/Shanghai', 'Asia/Seoul', 'Asia/Tokyo', 'Asia/Yakutsk', 'Australia/Adelaide', 'Australia/Brisbane', 'Australia/Broken_Hill', 'Australia/Darwin', 'Australia/Eucla', 'Australia/Hobart', 'Australia/Lindeman', 'Australia/Sydney', 'Australia/Lord_Howe', 'Australia/Melbourne', 'Asia/Magadan', 'Pacific/Norfolk', 'Pacific/Auckland'])
-      unless validator.valid?(time_zone)
-        fail ArgumentError, 'invalid value for "time_zone", must be one of #{validator.allowable_values}.'
-      end
-      @time_zone = time_zone
-    end
-
     # Custom attribute writer method with validation
     # @param [Object] website_url Value to be assigned
     def website_url=(website_url)
@@ -301,16 +265,6 @@ module CyberSource
       #end
 
       @website_url = website_url
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] type Object to be assigned
-    def type=(type)
-      validator = EnumAttributeValidator.new('String', ['PARTNERSHIP', 'SOLE_PROPRIETORSHIP', 'CORPORATION', 'LLC', 'NON_PROFIT', 'TRUST'])
-      unless validator.valid?(type)
-        fail ArgumentError, 'invalid value for "type", must be one of #{validator.allowable_values}.'
-      end
-      @type = type
     end
 
     # Custom attribute writer method with validation

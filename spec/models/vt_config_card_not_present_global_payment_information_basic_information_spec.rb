@@ -52,20 +52,12 @@ describe 'VTConfigCardNotPresentGlobalPaymentInformationBasicInformation' do
   describe 'test attribute "default_transaction_type"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["AUTHORIZATION", "SALE"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.default_transaction_type = value }.not_to raise_error
-      # end
     end
   end
 
   describe 'test attribute "default_payment_type"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["CREDIT_CARD", "ECHECK"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.default_payment_type = value }.not_to raise_error
-      # end
     end
   end
 

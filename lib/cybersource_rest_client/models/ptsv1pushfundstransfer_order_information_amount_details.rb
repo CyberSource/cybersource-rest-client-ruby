@@ -22,8 +22,10 @@ module CyberSource
     # Use a 3-character alpha currency code for source currency of the funds transfer. Supported for card and bank account based cross border funds transfers.  ISO standard currencies: http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf 
     attr_accessor :source_currency
 
-    # Use a 3-character alpha currency code for destination currency of the funds transfer. Supported for card and bank account based cross border funds transfers.  ISO standard currencies: http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf NOTE: This field is supported only for Visa Platform Connect 
+    # Use a 3-character alpha currency code for destination currency of the funds transfer. Supported for card and bank account based cross border funds transfers.  ISO standard currencies: http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf 
     attr_accessor :destination_currency
+
+    attr_accessor :surcharge
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -31,7 +33,8 @@ module CyberSource
         :'total_amount' => :'totalAmount',
         :'currency' => :'currency',
         :'source_currency' => :'sourceCurrency',
-        :'destination_currency' => :'destinationCurrency'
+        :'destination_currency' => :'destinationCurrency',
+        :'surcharge' => :'surcharge'
       }
     end
 
@@ -41,7 +44,8 @@ module CyberSource
         :'total_amount' => :'total_amount',
         :'currency' => :'currency',
         :'source_currency' => :'source_currency',
-        :'destination_currency' => :'destination_currency'
+        :'destination_currency' => :'destination_currency',
+        :'surcharge' => :'surcharge'
       }
     end
 
@@ -51,7 +55,8 @@ module CyberSource
         :'total_amount' => :'String',
         :'currency' => :'String',
         :'source_currency' => :'String',
-        :'destination_currency' => :'String'
+        :'destination_currency' => :'String',
+        :'surcharge' => :'Ptsv2paymentsOrderInformationAmountDetailsOctsurcharge'
       }
     end
 
@@ -77,6 +82,10 @@ module CyberSource
 
       if attributes.has_key?(:'destinationCurrency')
         self.destination_currency = attributes[:'destinationCurrency']
+      end
+
+      if attributes.has_key?(:'surcharge')
+        self.surcharge = attributes[:'surcharge']
       end
     end
 
@@ -170,7 +179,8 @@ module CyberSource
           total_amount == o.total_amount &&
           currency == o.currency &&
           source_currency == o.source_currency &&
-          destination_currency == o.destination_currency
+          destination_currency == o.destination_currency &&
+          surcharge == o.surcharge
     end
 
     # @see the `==` method
@@ -182,7 +192,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [total_amount, currency, source_currency, destination_currency].hash
+      [total_amount, currency, source_currency, destination_currency, surcharge].hash
     end
 
     # Builds the object from hash

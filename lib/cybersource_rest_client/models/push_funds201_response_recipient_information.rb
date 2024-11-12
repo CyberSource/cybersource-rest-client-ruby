@@ -15,24 +15,30 @@ module CyberSource
   class PushFunds201ResponseRecipientInformation
     attr_accessor :card
 
+    # Customer's email address, including the full domain name. 
+    attr_accessor :email
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'card' => :'card'
+        :'card' => :'card',
+        :'email' => :'email'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'card' => :'card'
+        :'card' => :'card',
+        :'email' => :'email'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'card' => :'PushFunds201ResponseRecipientInformationCard'
+        :'card' => :'PushFunds201ResponseRecipientInformationCard',
+        :'email' => :'String'
       }
     end
 
@@ -46,6 +52,10 @@ module CyberSource
 
       if attributes.has_key?(:'card')
         self.card = attributes[:'card']
+      end
+
+      if attributes.has_key?(:'email')
+        self.email = attributes[:'email']
       end
     end
 
@@ -62,12 +72,19 @@ module CyberSource
       true
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] email Value to be assigned
+    def email=(email)
+      @email = email
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          card == o.card
+          card == o.card &&
+          email == o.email
     end
 
     # @see the `==` method
@@ -79,7 +96,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card].hash
+      [card, email].hash
     end
 
     # Builds the object from hash

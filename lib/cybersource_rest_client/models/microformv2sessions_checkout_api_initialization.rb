@@ -12,6 +12,7 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
+  # Use the [Digital Accept Checkout API](https://developer.cybersource.com/library/documentation/dev_guides/Secure_Acceptance_Checkout_API/Secure_Acceptance_Checkout_API.pdf) in conjunction with Microform to provide a cohesive PCI SAQ A embedded payment application within your merchant e-commerce page.   The Digital Accept Checkout API provides access to payment processing and additional value-added services directly from the browser. 
   class Microformv2sessionsCheckoutApiInitialization
     attr_accessor :profile_id
 
@@ -27,6 +28,7 @@ module CyberSource
 
     attr_accessor :amount
 
+    # Locale where application is being used.  This field controls aspects of the application such as the language it will be rendered in. 
     attr_accessor :locale
 
     attr_accessor :override_custom_receipt_page

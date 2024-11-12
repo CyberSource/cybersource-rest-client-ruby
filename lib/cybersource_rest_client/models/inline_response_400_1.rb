@@ -21,29 +21,8 @@ module CyberSource
 
     attr_accessor :message
 
+    # Possible values: - INVALID_APIKEY - INVALID_SHIPPING_INPUT_PARAMS - CAPTURE_CONTEXT_INVALID - CAPTURE_CONTEXT_EXPIRED - SDK_XHR_ERROR - UNIFIEDPAYMENTS_VALIDATION_PARAMS - UNIFIEDPAYMENTS_VALIDATION_FIELDS - UNIFIEDPAYMENT_PAYMENT_PARAMITERS - CREATE_TOKEN_TIMEOUT - CREATE_TOKEN_XHR_ERROR - SHOW_LOAD_CONTAINER_SELECTOR - SHOW_LOAD_INVALID_CONTAINER - SHOW_TOKEN_TIMEOUT - SHOW_TOKEN_XHR_ERROR - SHOW_PAYMENT_TIMEOUT
     attr_accessor :reason
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -129,19 +108,7 @@ module CyberSource
     def valid?
       return false if @message.nil?
       return false if @reason.nil?
-      reason_validator = EnumAttributeValidator.new('String', ['INVALID_APIKEY', 'INVALID_SHIPPING_INPUT_PARAMS', 'CAPTURE_CONTEXT_INVALID', 'CAPTURE_CONTEXT_EXPIRED', 'SDK_XHR_ERROR', 'UNIFIEDPAYMENTS_VALIDATION_PARAMS', 'UNIFIEDPAYMENTS_VALIDATION_FIELDS', 'UNIFIEDPAYMENT_PAYMENT_PARAMITERS', 'CREATE_TOKEN_TIMEOUT', 'CREATE_TOKEN_XHR_ERROR', 'SHOW_LOAD_CONTAINER_SELECTOR', 'SHOW_LOAD_INVALID_CONTAINER', 'SHOW_TOKEN_TIMEOUT', 'SHOW_TOKEN_XHR_ERROR', 'SHOW_PAYMENT_TIMEOUT'])
-      return false unless reason_validator.valid?(@reason)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] reason Object to be assigned
-    def reason=(reason)
-      validator = EnumAttributeValidator.new('String', ['INVALID_APIKEY', 'INVALID_SHIPPING_INPUT_PARAMS', 'CAPTURE_CONTEXT_INVALID', 'CAPTURE_CONTEXT_EXPIRED', 'SDK_XHR_ERROR', 'UNIFIEDPAYMENTS_VALIDATION_PARAMS', 'UNIFIEDPAYMENTS_VALIDATION_FIELDS', 'UNIFIEDPAYMENT_PAYMENT_PARAMITERS', 'CREATE_TOKEN_TIMEOUT', 'CREATE_TOKEN_XHR_ERROR', 'SHOW_LOAD_CONTAINER_SELECTOR', 'SHOW_LOAD_INVALID_CONTAINER', 'SHOW_TOKEN_TIMEOUT', 'SHOW_TOKEN_XHR_ERROR', 'SHOW_PAYMENT_TIMEOUT'])
-      unless validator.valid?(reason)
-        fail ArgumentError, 'invalid value for "reason", must be one of #{validator.allowable_values}.'
-      end
-      @reason = reason
     end
 
     # Checks equality by comparing each attribute.

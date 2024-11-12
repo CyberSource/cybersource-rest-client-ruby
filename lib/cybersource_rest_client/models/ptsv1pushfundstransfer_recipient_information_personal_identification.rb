@@ -16,18 +16,22 @@ module CyberSource
     # The ID number/value. Processor(35) 
     attr_accessor :id
 
-    # This tag will contain the type of sender identification. 
+    # This tag will contain the type of sender identification. The valid values are: - `BTHD`: (Date of birth) - `CUID`: (Customer identification (unspecified)) - `NTID`: (National identification) - `PASN`: (Passport number) - `DRLN`: (Driver license) - `TXIN`: (Tax identification) - `CPNY`: (Company registration number) - `PRXY`: (Proxy identification) - `SSNB`: (Social security number) - `ARNB`: (Alien registration number) - `LAWE`: (Law enforcement identification) - `MILI`: (Military identification) - `TRVL`: (Travel identification (non-passport)) - `EMAL`: (Email) - `PHON`: (Phone number) 
     attr_accessor :type
 
     # Issuing country of the identification. The field format should be a 2 character ISO 3166-1 alpha-2 country code. 
     attr_accessor :issuing_country
+
+    # This tag will denote whether the tax ID is a business or individual tax ID when personal ID Type contains the value of TXIN (Tax identification).  The valid values are:  - `B` (Business) - `I` (Individual) 
+    attr_accessor :personal_id_type
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'id' => :'id',
         :'type' => :'type',
-        :'issuing_country' => :'issuingCountry'
+        :'issuing_country' => :'issuingCountry',
+        :'personal_id_type' => :'personalIdType'
       }
     end
 
@@ -36,7 +40,8 @@ module CyberSource
       {
         :'id' => :'id',
         :'type' => :'type',
-        :'issuing_country' => :'issuing_country'
+        :'issuing_country' => :'issuing_country',
+        :'personal_id_type' => :'personal_id_type'
       }
     end
 
@@ -45,7 +50,8 @@ module CyberSource
       {
         :'id' => :'String',
         :'type' => :'String',
-        :'issuing_country' => :'String'
+        :'issuing_country' => :'String',
+        :'personal_id_type' => :'String'
       }
     end
 
@@ -67,6 +73,10 @@ module CyberSource
 
       if attributes.has_key?(:'issuingCountry')
         self.issuing_country = attributes[:'issuingCountry']
+      end
+
+      if attributes.has_key?(:'personalIdType')
+        self.personal_id_type = attributes[:'personalIdType']
       end
     end
 
@@ -110,6 +120,12 @@ module CyberSource
       @issuing_country = issuing_country
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] personal_id_type Value to be assigned
+    def personal_id_type=(personal_id_type)
+      @personal_id_type = personal_id_type
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -117,7 +133,8 @@ module CyberSource
       self.class == o.class &&
           id == o.id &&
           type == o.type &&
-          issuing_country == o.issuing_country
+          issuing_country == o.issuing_country &&
+          personal_id_type == o.personal_id_type
     end
 
     # @see the `==` method
@@ -129,7 +146,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, type, issuing_country].hash
+      [id, type, issuing_country, personal_id_type].hash
     end
 
     # Builds the object from hash

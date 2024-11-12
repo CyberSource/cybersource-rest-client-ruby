@@ -13,5 +13,6 @@ Name | Type | Description | Notes
 **order_information** | [**PtsV2PaymentsCapturesPost201ResponseOrderInformation**](PtsV2PaymentsCapturesPost201ResponseOrderInformation.md) |  | [optional] 
 **point_of_sale_information** | [**PtsV2PaymentsCapturesPost201ResponsePointOfSaleInformation**](PtsV2PaymentsCapturesPost201ResponsePointOfSaleInformation.md) |  | [optional] 
 **processing_information** | [**PtsV2PaymentsCapturesPost201ResponseProcessingInformation**](PtsV2PaymentsCapturesPost201ResponseProcessingInformation.md) |  | [optional] 
+**embedded_actions** | [**PtsV2PaymentsCapturesPost201ResponseEmbeddedActions**](PtsV2PaymentsCapturesPost201ResponseEmbeddedActions.md) |  | [optional] 
 
 

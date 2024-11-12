@@ -13,6 +13,7 @@ require 'date'
 
 module CyberSource
   class Boardingv1registrationsOrganizationInformationKYC
+    # Possible values: - ONETIMEBEFORE - ONETIMEAFTER - OTHER
     attr_accessor :when_is_customer_charged
 
     attr_accessor :when_is_customer_charged_description
@@ -27,6 +28,7 @@ module CyberSource
 
     attr_accessor :annual_subscription_percent
 
+    # Possible values: - INSTANT - UPTO2 - UPTO5 - UPTO10 - GREATERTHAN10
     attr_accessor :time_to_product_delivery
 
     attr_accessor :estimated_monthly_sales
@@ -36,28 +38,6 @@ module CyberSource
     attr_accessor :largest_expected_order_amount
 
     attr_accessor :deposit_bank_account
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -205,42 +185,18 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if @when_is_customer_charged.nil?
-      when_is_customer_charged_validator = EnumAttributeValidator.new('String', ['ONETIMEBEFORE', 'ONETIMEAFTER', 'OTHER'])
-      return false unless when_is_customer_charged_validator.valid?(@when_is_customer_charged)
       return false if @offer_subscriptions.nil?
       return false if @time_to_product_delivery.nil?
-      time_to_product_delivery_validator = EnumAttributeValidator.new('String', ['INSTANT', 'UPTO2', 'UPTO5', 'UPTO10', 'GREATERTHAN10'])
-      return false unless time_to_product_delivery_validator.valid?(@time_to_product_delivery)
       return false if @estimated_monthly_sales.nil?
       return false if @average_order_amount.nil?
       return false if @largest_expected_order_amount.nil?
       true
     end
 
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] when_is_customer_charged Object to be assigned
-    def when_is_customer_charged=(when_is_customer_charged)
-      validator = EnumAttributeValidator.new('String', ['ONETIMEBEFORE', 'ONETIMEAFTER', 'OTHER'])
-      unless validator.valid?(when_is_customer_charged)
-        fail ArgumentError, 'invalid value for "when_is_customer_charged", must be one of #{validator.allowable_values}.'
-      end
-      @when_is_customer_charged = when_is_customer_charged
-    end
-
     # Custom attribute writer method with validation
     # @param [Object] when_is_customer_charged_description Value to be assigned
     def when_is_customer_charged_description=(when_is_customer_charged_description)
       @when_is_customer_charged_description = when_is_customer_charged_description
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] time_to_product_delivery Object to be assigned
-    def time_to_product_delivery=(time_to_product_delivery)
-      validator = EnumAttributeValidator.new('String', ['INSTANT', 'UPTO2', 'UPTO5', 'UPTO10', 'GREATERTHAN10'])
-      unless validator.valid?(time_to_product_delivery)
-        fail ArgumentError, 'invalid value for "time_to_product_delivery", must be one of #{validator.allowable_values}.'
-      end
-      @time_to_product_delivery = time_to_product_delivery
     end
 
     # Checks equality by comparing each attribute.

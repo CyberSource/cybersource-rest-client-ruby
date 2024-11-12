@@ -37,6 +37,8 @@ module CyberSource
 
     attr_accessor :processing_information
 
+    attr_accessor :embedded_actions
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -49,7 +51,8 @@ module CyberSource
         :'processor_information' => :'processorInformation',
         :'order_information' => :'orderInformation',
         :'point_of_sale_information' => :'pointOfSaleInformation',
-        :'processing_information' => :'processingInformation'
+        :'processing_information' => :'processingInformation',
+        :'embedded_actions' => :'embeddedActions'
       }
     end
 
@@ -65,7 +68,8 @@ module CyberSource
         :'processor_information' => :'processor_information',
         :'order_information' => :'order_information',
         :'point_of_sale_information' => :'point_of_sale_information',
-        :'processing_information' => :'processing_information'
+        :'processing_information' => :'processing_information',
+        :'embedded_actions' => :'embedded_actions'
       }
     end
 
@@ -81,7 +85,8 @@ module CyberSource
         :'processor_information' => :'PtsV2PaymentsCapturesPost201ResponseProcessorInformation',
         :'order_information' => :'PtsV2PaymentsCapturesPost201ResponseOrderInformation',
         :'point_of_sale_information' => :'PtsV2PaymentsCapturesPost201ResponsePointOfSaleInformation',
-        :'processing_information' => :'PtsV2PaymentsCapturesPost201ResponseProcessingInformation'
+        :'processing_information' => :'PtsV2PaymentsCapturesPost201ResponseProcessingInformation',
+        :'embedded_actions' => :'PtsV2PaymentsCapturesPost201ResponseEmbeddedActions'
       }
     end
 
@@ -132,6 +137,10 @@ module CyberSource
       if attributes.has_key?(:'processingInformation')
         self.processing_information = attributes[:'processingInformation']
       end
+
+      if attributes.has_key?(:'embeddedActions')
+        self.embedded_actions = attributes[:'embeddedActions']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -173,7 +182,8 @@ module CyberSource
           processor_information == o.processor_information &&
           order_information == o.order_information &&
           point_of_sale_information == o.point_of_sale_information &&
-          processing_information == o.processing_information
+          processing_information == o.processing_information &&
+          embedded_actions == o.embedded_actions
     end
 
     # @see the `==` method
@@ -185,7 +195,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, submit_time_utc, status, reconciliation_id, client_reference_information, processor_information, order_information, point_of_sale_information, processing_information].hash
+      [_links, id, submit_time_utc, status, reconciliation_id, client_reference_information, processor_information, order_information, point_of_sale_information, processing_information, embedded_actions].hash
     end
 
     # Builds the object from hash

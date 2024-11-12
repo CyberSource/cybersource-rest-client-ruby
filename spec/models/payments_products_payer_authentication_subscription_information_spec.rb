@@ -40,10 +40,6 @@ describe 'PaymentsProductsPayerAuthenticationSubscriptionInformation' do
   describe 'test attribute "self_serviceability"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["SELF_SERVICEABLE", "NOT_SELF_SERVICEABLE", "SELF_SERVICE_ONLY"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.self_serviceability = value }.not_to raise_error
-      # end
     end
   end
 

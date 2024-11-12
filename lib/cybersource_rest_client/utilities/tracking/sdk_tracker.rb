@@ -31,7 +31,7 @@ module CyberSource
             "VoidRefundRequest"
         ]
 
-        def insert_developer_id_tracker(requestObj, requestClass, runEnvironment)
+        def insert_developer_id_tracker(requestObj, requestClass, runEnvironment, merchantConfigDeveloperId)
             if @@inclusion_list.include? requestClass
                 developer_id_value = ''
 
@@ -39,6 +39,10 @@ module CyberSource
                     developer_id_value = '0KFKGFGT'
                 else
                     developer_id_value = 'YDZP7DRQ'
+                end
+
+                if merchantConfigDeveloperId && !merchantConfigDeveloperId.strip.empty?
+                    developer_id_value=merchantConfigDeveloperId.strip
                 end
 
                 tester = JSON.parse requestObj

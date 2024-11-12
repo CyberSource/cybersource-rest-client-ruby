@@ -18,11 +18,15 @@ module CyberSource
     # Authorization code. Returned only when the processor returns this value.  The length of this value depends on your processor.  Returned by authorization service.  #### PIN debit Authorization code that is returned by the processor.  Returned by PIN debit credit.  #### Elavon Encrypted Account Number Program The returned value is OFFLINE.  #### TSYS Acquiring Solutions The returned value for a successful zero amount authorization is 000000. 
     attr_accessor :approval_code
 
+    # #### Ingenico ePayments Unique number that CyberSource generates to identify the transaction. You can use this value to identify transactions in the Ingenico ePayments Collections Report, which provides settlement information. Contact customer support for information about the report.  ### CyberSource through VisaNet Retrieval request number. 
+    attr_accessor :retrieval_reference_number
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'processor' => :'processor',
-        :'approval_code' => :'approvalCode'
+        :'approval_code' => :'approvalCode',
+        :'retrieval_reference_number' => :'retrievalReferenceNumber'
       }
     end
 
@@ -30,7 +34,8 @@ module CyberSource
     def self.json_map
       {
         :'processor' => :'processor',
-        :'approval_code' => :'approval_code'
+        :'approval_code' => :'approval_code',
+        :'retrieval_reference_number' => :'retrieval_reference_number'
       }
     end
 
@@ -38,7 +43,8 @@ module CyberSource
     def self.swagger_types
       {
         :'processor' => :'TssV2TransactionsGet200ResponseProcessorInformationProcessor',
-        :'approval_code' => :'String'
+        :'approval_code' => :'String',
+        :'retrieval_reference_number' => :'String'
       }
     end
 
@@ -56,6 +62,10 @@ module CyberSource
 
       if attributes.has_key?(:'approvalCode')
         self.approval_code = attributes[:'approvalCode']
+      end
+
+      if attributes.has_key?(:'retrievalReferenceNumber')
+        self.retrieval_reference_number = attributes[:'retrievalReferenceNumber']
       end
     end
 
@@ -78,13 +88,20 @@ module CyberSource
       @approval_code = approval_code
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] retrieval_reference_number Value to be assigned
+    def retrieval_reference_number=(retrieval_reference_number)
+      @retrieval_reference_number = retrieval_reference_number
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           processor == o.processor &&
-          approval_code == o.approval_code
+          approval_code == o.approval_code &&
+          retrieval_reference_number == o.retrieval_reference_number
     end
 
     # @see the `==` method
@@ -96,7 +113,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [processor, approval_code].hash
+      [processor, approval_code, retrieval_reference_number].hash
     end
 
     # Builds the object from hash

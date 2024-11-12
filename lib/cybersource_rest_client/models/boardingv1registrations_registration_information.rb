@@ -31,28 +31,6 @@ module CyberSource
 
     attr_accessor :sales_rep_id
 
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -83,7 +61,7 @@ module CyberSource
     def self.swagger_types
       {
         :'boarding_registration_id' => :'String',
-        :'submit_time_utc' => :'Date',
+        :'submit_time_utc' => :'DateTime',
         :'status' => :'String',
         :'boarding_package_id' => :'String',
         :'boarding_flow' => :'String',
@@ -139,12 +117,6 @@ module CyberSource
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      status_validator = EnumAttributeValidator.new('String', ['PROCESSING', 'SUCCESS', 'FAILURE', 'PARTIAL'])
-      return false unless status_validator.valid?(@status)
-      boarding_flow_validator = EnumAttributeValidator.new('String', ['ENTERPRISE', 'SMB', 'ADDPRODUCT'])
-      return false unless boarding_flow_validator.valid?(@boarding_flow)
-      mode_validator = EnumAttributeValidator.new('String', ['COMPLETE', 'PARTIAL'])
-      return false unless mode_validator.valid?(@mode)
       true
     end
 
@@ -154,40 +126,10 @@ module CyberSource
       @boarding_registration_id = boarding_registration_id
     end
 
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] status Object to be assigned
-    def status=(status)
-      validator = EnumAttributeValidator.new('String', ['PROCESSING', 'SUCCESS', 'FAILURE', 'PARTIAL'])
-      unless validator.valid?(status)
-        fail ArgumentError, 'invalid value for "status", must be one of #{validator.allowable_values}.'
-      end
-      @status = status
-    end
-
     # Custom attribute writer method with validation
     # @param [Object] boarding_package_id Value to be assigned
     def boarding_package_id=(boarding_package_id)
       @boarding_package_id = boarding_package_id
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] boarding_flow Object to be assigned
-    def boarding_flow=(boarding_flow)
-      validator = EnumAttributeValidator.new('String', ['ENTERPRISE', 'SMB', 'ADDPRODUCT'])
-      unless validator.valid?(boarding_flow)
-        fail ArgumentError, 'invalid value for "boarding_flow", must be one of #{validator.allowable_values}.'
-      end
-      @boarding_flow = boarding_flow
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] mode Object to be assigned
-    def mode=(mode)
-      validator = EnumAttributeValidator.new('String', ['COMPLETE', 'PARTIAL'])
-      unless validator.valid?(mode)
-        fail ArgumentError, 'invalid value for "mode", must be one of #{validator.allowable_values}.'
-      end
-      @mode = mode
     end
 
     # Custom attribute writer method with validation

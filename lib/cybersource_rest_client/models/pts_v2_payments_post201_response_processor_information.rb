@@ -28,7 +28,7 @@ module CyberSource
     # Same value as `processorInformation.transactionId`
     attr_accessor :network_transaction_id
 
-    # For most processors, this is the error message sent directly from the bank. Returned only when the processor returns this value.  **Important** Do not use this field to evaluate the result of the authorization.  #### PIN debit Response value that is returned by the processor or bank. **Important** Do not use this field to evaluate the results of the transaction request.  Returned by PIN debit credit, PIN debit purchase, and PIN debit reversal.  #### AIBMS If this value is `08`, you can accept the transaction if the customer provides you with identification.  #### Atos This value is the response code sent from Atos and it might also include the response code from the bank. Format: `aa,bb` with the two values separated by a comma and where: - `aa` is the two-digit error message from Atos. - `bb` is the optional two-digit error message from the bank.  #### Comercio Latino This value is the status code and the error or response code received from the processor separated by a colon. Format: [status code]:E[error code] or [status code]:R[response code] Example `2:R06`  #### JCN Gateway Processor-defined detail error code. The associated response category code is in the `processorInformation.responseCategoryCode` field. String (3) 
+    # For most processors, this is the error message sent directly from the bank. Returned only when the processor returns this value.  **Important** Do not use this field to evaluate the result of the authorization.  #### PIN debit Response value that is returned by the processor or bank. **Important** Do not use this field to evaluate the results of the transaction request.  Returned by PIN debit credit, PIN debit purchase, and PIN debit reversal.  #### AIBMS If this value is `08`, you can accept the transaction if the customer provides you with identification.  #### Atos This value is the response code sent from Atos and it might also include the response code from the bank. Format: `aa,bb` with the two values separated by a comma and where: - `aa` is the two-digit error message from Atos. - `bb` is the optional two-digit error message from the bank.  #### Comercio Latino This value is the status code and the error or response code received from the processor separated by a colon. Format: [status code]:E[error code] or [status code]:R[response code] Example `2:R06`  #### JCN Gateway Processor-defined detail error code. The associated response category code is in the `processorInformation.responseCategoryCode` field. String (3)  #### paypalgateway Processor generated ID for the itemized detail. 
     attr_accessor :response_code
 
     # Used by Visa only and contains the response source/reason code that identifies the source of the response decision. 
@@ -119,6 +119,21 @@ module CyberSource
     # The QR code value. Convert this value into an image and send it to the POS terminal to be displayed. The terminal can also perform the conversion. The value is a URL like in the example below: https://qr.alipay.com/pmxabcka1ts5grar12. 
     attr_accessor :device_url
 
+    # The funds are released to the merchant immediately. INSTANT The funds are released to the merchant immediately. DELAYED The funds are held for a finite number of days. The actual duration depends on the region and type of integration. You can release the funds through a referenced payout. Otherwise, the funds disbursed automatically after the specified duration. 
+    attr_accessor :disbursement_mode
+
+    # The date and time when the transaction was last updated, in Internet date and time format. 
+    attr_accessor :update_time_utc
+
+    # The date and time when the authorized payment expires, in Internet date and time format. 
+    attr_accessor :expiration_time_utc
+
+    # The id of the order 
+    attr_accessor :order_id
+
+    # The order status.  Possible values: - `CREATED` - `VOIDED` - `COMPLETED` - `PAYER_ACTION_REQUIRED` 
+    attr_accessor :order_status
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -160,7 +175,12 @@ module CyberSource
         :'transaction_expiry_date' => :'transactionExpiryDate',
         :'custom_url' => :'customUrl',
         :'scheme_assigned_id' => :'schemeAssignedId',
-        :'device_url' => :'deviceUrl'
+        :'device_url' => :'deviceUrl',
+        :'disbursement_mode' => :'disbursementMode',
+        :'update_time_utc' => :'updateTimeUtc',
+        :'expiration_time_utc' => :'expirationTimeUtc',
+        :'order_id' => :'orderId',
+        :'order_status' => :'orderStatus'
       }
     end
 
@@ -205,7 +225,12 @@ module CyberSource
         :'transaction_expiry_date' => :'transaction_expiry_date',
         :'custom_url' => :'custom_url',
         :'scheme_assigned_id' => :'scheme_assigned_id',
-        :'device_url' => :'device_url'
+        :'device_url' => :'device_url',
+        :'disbursement_mode' => :'disbursement_mode',
+        :'update_time_utc' => :'update_time_utc',
+        :'expiration_time_utc' => :'expiration_time_utc',
+        :'order_id' => :'order_id',
+        :'order_status' => :'order_status'
       }
     end
 
@@ -250,7 +275,12 @@ module CyberSource
         :'transaction_expiry_date' => :'String',
         :'custom_url' => :'String',
         :'scheme_assigned_id' => :'String',
-        :'device_url' => :'String'
+        :'device_url' => :'String',
+        :'disbursement_mode' => :'String',
+        :'update_time_utc' => :'String',
+        :'expiration_time_utc' => :'String',
+        :'order_id' => :'String',
+        :'order_status' => :'String'
       }
     end
 
@@ -416,6 +446,26 @@ module CyberSource
 
       if attributes.has_key?(:'deviceUrl')
         self.device_url = attributes[:'deviceUrl']
+      end
+
+      if attributes.has_key?(:'disbursementMode')
+        self.disbursement_mode = attributes[:'disbursementMode']
+      end
+
+      if attributes.has_key?(:'updateTimeUtc')
+        self.update_time_utc = attributes[:'updateTimeUtc']
+      end
+
+      if attributes.has_key?(:'expirationTimeUtc')
+        self.expiration_time_utc = attributes[:'expirationTimeUtc']
+      end
+
+      if attributes.has_key?(:'orderId')
+        self.order_id = attributes[:'orderId']
+      end
+
+      if attributes.has_key?(:'orderStatus')
+        self.order_status = attributes[:'orderStatus']
       end
     end
 
@@ -588,6 +638,12 @@ module CyberSource
       @device_url = device_url
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] order_status Value to be assigned
+    def order_status=(order_status)
+      @order_status = order_status
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -631,7 +687,12 @@ module CyberSource
           transaction_expiry_date == o.transaction_expiry_date &&
           custom_url == o.custom_url &&
           scheme_assigned_id == o.scheme_assigned_id &&
-          device_url == o.device_url
+          device_url == o.device_url &&
+          disbursement_mode == o.disbursement_mode &&
+          update_time_utc == o.update_time_utc &&
+          expiration_time_utc == o.expiration_time_utc &&
+          order_id == o.order_id &&
+          order_status == o.order_status
     end
 
     # @see the `==` method
@@ -643,7 +704,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [auth_indicator, approval_code, card_reference_data, transaction_id, network_transaction_id, response_code, response_code_source, response_details, response_category_code, forwarded_acquirer_code, settlement_date, sequence_number, avs, card_verification, merchant_advice, electronic_verification_results, ach_verification, customer, consumer_authentication_response, system_trace_audit_number, payment_account_reference_number, transaction_integrity_code, amex_verbal_auth_reference_number, master_card_service_code, master_card_service_reply_code, master_card_authentication_type, name, routing, merchant_number, retrieval_reference_number, payment_url, complete_url, signature, public_key, seller_protection, transaction_expiry_date, custom_url, scheme_assigned_id, device_url].hash
+      [auth_indicator, approval_code, card_reference_data, transaction_id, network_transaction_id, response_code, response_code_source, response_details, response_category_code, forwarded_acquirer_code, settlement_date, sequence_number, avs, card_verification, merchant_advice, electronic_verification_results, ach_verification, customer, consumer_authentication_response, system_trace_audit_number, payment_account_reference_number, transaction_integrity_code, amex_verbal_auth_reference_number, master_card_service_code, master_card_service_reply_code, master_card_authentication_type, name, routing, merchant_number, retrieval_reference_number, payment_url, complete_url, signature, public_key, seller_protection, transaction_expiry_date, custom_url, scheme_assigned_id, device_url, disbursement_mode, update_time_utc, expiration_time_utc, order_id, order_status].hash
     end
 
     # Builds the object from hash

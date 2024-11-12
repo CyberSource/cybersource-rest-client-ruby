@@ -22,10 +22,10 @@ module CyberSource
     # Possible values: - SERVER_ERROR 
     attr_accessor :status
 
-    # The reason of the status.  Possible values: - SYSTEM_ERROR 
+    # The reason of the status.  Possible values: - SYSTEM_ERROR - SERVICE_TIMEOUT 
     attr_accessor :reason
 
-    # The detail message related to the status and reason listed above.  Possible values: - Error - General system failure. 
+    # The detail message related to the status and reason listed above.  Possible values: - Error - General system failure. - The request was received, but a service did not finish running in time. 
     attr_accessor :message
 
     # Attribute mapping from ruby-style variable name to JSON key.

@@ -99,7 +99,7 @@ module CyberSource
     # Authorizes a credit. Reduces refund chargebacks and prevents customers from seeing the online update for credits which are otherwise offline settlements.
     attr_accessor :enable_credit_auth
 
-    # Field used to identify the industry type of the merchant submitting the authorization request.  Valid values: `0` – unknown or unsure `A` – auto rental (EMV supported) `B` – bank/financial institution (EMV supported) `D` – direct marketing `F` – food/restaurant (EMV supported) `G` – grocery store/super market (EMV supported) `H` – hotel (EMV supported) `L` – limited amount terminal (EMV supported) `O` – oil company/automated fueling system (EMV supported) `P` – passenger transport (EMV supported) `R` – retail (EMV supported) Applicable for TSYS (tsys), RUPAY and Elavon Americas (elavonamericas) processors. 
+    # Field used to identify the industry type of the merchant submitting the authorization request.  Valid values: `0` – unknown or unsure `A` – auto rental (EMV supported) `B` – bank/financial institution (EMV supported) `D` – direct marketing `F` – food/restaurant (EMV supported) `G` – grocery store/super market (EMV supported) `H` – hotel (EMV supported) `L` – limited amount terminal (EMV supported) `O` – oil company/automated fueling system (EMV supported) `P` – passenger transport (EMV supported) `R` – retail (EMV supported) Applicable for TSYS (tsys), RUPAY and Elavon Americas (elavonamericas) processors.   Possible values: - 0 - A - B - D - F - G - H - L - O - P - R
     attr_accessor :industry_code
 
     # Field that indicates whether merchant will send level 2 data for Amex cards. Applicable for TSYS (tsys) processor.
@@ -152,28 +152,6 @@ module CyberSource
 
     # Merchant Tier defines the type of merchant, the numeric Merchant Tier value is allocated by EFTPOS. Applicable for EFTPOS processors.
     attr_accessor :merchant_tier
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -554,20 +532,8 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       return false if @merchant_id.nil?
-      industry_code_validator = EnumAttributeValidator.new('String', ['0', 'A', 'B', 'D', 'F', 'G', 'H', 'L', 'O', 'P', 'R'])
-      return false unless industry_code_validator.valid?(@industry_code)
       #return false if !@merchant_tier.nil? && @merchant_tier !~ Regexp.new(/^[0-9]+$/)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] industry_code Object to be assigned
-    def industry_code=(industry_code)
-      validator = EnumAttributeValidator.new('String', ['0', 'A', 'B', 'D', 'F', 'G', 'H', 'L', 'O', 'P', 'R'])
-      unless validator.valid?(industry_code)
-        fail ArgumentError, 'invalid value for "industry_code", must be one of #{validator.allowable_values}.'
-      end
-      @industry_code = industry_code
     end
 
     # Custom attribute writer method with validation

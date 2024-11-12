@@ -40,10 +40,6 @@ describe 'Boardingv1registrationsOrganizationInformationKYCDepositBankAccount' d
   describe 'test attribute "account_type"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["checking", "savings", "corporatechecking", "corporatesavings"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.account_type = value }.not_to raise_error
-      # end
     end
   end
 

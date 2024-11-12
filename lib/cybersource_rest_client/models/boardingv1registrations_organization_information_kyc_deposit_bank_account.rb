@@ -15,33 +15,12 @@ module CyberSource
   class Boardingv1registrationsOrganizationInformationKYCDepositBankAccount
     attr_accessor :account_holder_name
 
+    # Possible values: - checking - savings - corporatechecking - corporatesavings
     attr_accessor :account_type
 
     attr_accessor :account_routing_number
 
     attr_accessor :account_number
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -139,8 +118,6 @@ module CyberSource
       return false if @account_holder_name.nil?
       #return false if @account_holder_name !~ Regexp.new(/^[À-ÖØ-öø-ǿÀ-ÖØ-öø-ǿa-zA-Z0-9().\\-_#,;\/\\\\@$:&amp;!?%«»€₣«»€₣ ]{1,}$/)
       return false if @account_type.nil?
-      account_type_validator = EnumAttributeValidator.new('String', ['checking', 'savings', 'corporatechecking', 'corporatesavings'])
-      return false unless account_type_validator.valid?(@account_type)
       return false if @account_routing_number.nil?
       #return false if @account_routing_number !~ Regexp.new(/\\d{9}/)
       return false if @account_number.nil?
@@ -160,16 +137,6 @@ module CyberSource
       #end
 
       @account_holder_name = account_holder_name
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] account_type Object to be assigned
-    def account_type=(account_type)
-      validator = EnumAttributeValidator.new('String', ['checking', 'savings', 'corporatechecking', 'corporatesavings'])
-      unless validator.valid?(account_type)
-        fail ArgumentError, 'invalid value for "account_type", must be one of #{validator.allowable_values}.'
-      end
-      @account_type = account_type
     end
 
     # Custom attribute writer method with validation

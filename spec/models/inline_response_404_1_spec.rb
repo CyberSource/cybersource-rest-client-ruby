@@ -46,10 +46,6 @@ describe 'InlineResponse4041' do
   describe 'test attribute "reason"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["RESOURCE_NOT_FOUND"])
-      # validator.allowable_values.each do |value|
-      #   expect { @instance.reason = value }.not_to raise_error
-      # end
     end
   end
 

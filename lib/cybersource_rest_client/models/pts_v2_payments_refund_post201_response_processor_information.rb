@@ -25,7 +25,7 @@ module CyberSource
     # Identifier that was assigned to you by your acquirer. This value must be printed on the receipt.  #### Returned by Authorizations and Credits.  This reply field is only supported by merchants who have installed client software on their POS terminals and use these processors: - American Express Direct - Credit Mutuel-CIC - FDC Nashville Global - OmniPay Direct - SIX 
     attr_accessor :merchant_number
 
-    # For most processors, this is the error message sent directly from the bank. Returned only when the processor returns this value.  **Important** Do not use this field to evaluate the result of the authorization.  #### PIN debit Response value that is returned by the processor or bank. **Important** Do not use this field to evaluate the results of the transaction request.  Returned by PIN debit credit, PIN debit purchase, and PIN debit reversal.  #### AIBMS If this value is `08`, you can accept the transaction if the customer provides you with identification.  #### Atos This value is the response code sent from Atos and it might also include the response code from the bank. Format: `aa,bb` with the two values separated by a comma and where: - `aa` is the two-digit error message from Atos. - `bb` is the optional two-digit error message from the bank.  #### Comercio Latino This value is the status code and the error or response code received from the processor separated by a colon. Format: [status code]:E[error code] or [status code]:R[response code] Example `2:R06`  #### JCN Gateway Processor-defined detail error code. The associated response category code is in the `processorInformation.responseCategoryCode` field. String (3) 
+    # For most processors, this is the error message sent directly from the bank. Returned only when the processor returns this value.  **Important** Do not use this field to evaluate the result of the authorization.  #### PIN debit Response value that is returned by the processor or bank. **Important** Do not use this field to evaluate the results of the transaction request.  Returned by PIN debit credit, PIN debit purchase, and PIN debit reversal.  #### AIBMS If this value is `08`, you can accept the transaction if the customer provides you with identification.  #### Atos This value is the response code sent from Atos and it might also include the response code from the bank. Format: `aa,bb` with the two values separated by a comma and where: - `aa` is the two-digit error message from Atos. - `bb` is the optional two-digit error message from the bank.  #### Comercio Latino This value is the status code and the error or response code received from the processor separated by a colon. Format: [status code]:E[error code] or [status code]:R[response code] Example `2:R06`  #### JCN Gateway Processor-defined detail error code. The associated response category code is in the `processorInformation.responseCategoryCode` field. String (3)  #### paypalgateway Processor generated ID for the itemized detail. 
     attr_accessor :response_code
 
     attr_accessor :ach_verification
@@ -35,6 +35,9 @@ module CyberSource
 
     # Field contains a settlement date. The date is in mmdd format, where: mm = month and dd = day. 
     attr_accessor :settlement_date
+
+    # The date and time when the transaction was last updated, in Internet date and time format. 
+    attr_accessor :update_time_utc
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -46,7 +49,8 @@ module CyberSource
         :'response_code' => :'responseCode',
         :'ach_verification' => :'achVerification',
         :'network_transaction_id' => :'networkTransactionId',
-        :'settlement_date' => :'settlementDate'
+        :'settlement_date' => :'settlementDate',
+        :'update_time_utc' => :'updateTimeUtc'
       }
     end
 
@@ -60,7 +64,8 @@ module CyberSource
         :'response_code' => :'response_code',
         :'ach_verification' => :'ach_verification',
         :'network_transaction_id' => :'network_transaction_id',
-        :'settlement_date' => :'settlement_date'
+        :'settlement_date' => :'settlement_date',
+        :'update_time_utc' => :'update_time_utc'
       }
     end
 
@@ -74,7 +79,8 @@ module CyberSource
         :'response_code' => :'String',
         :'ach_verification' => :'PtsV2PaymentsPost201ResponseProcessorInformationAchVerification',
         :'network_transaction_id' => :'String',
-        :'settlement_date' => :'String'
+        :'settlement_date' => :'String',
+        :'update_time_utc' => :'String'
       }
     end
 
@@ -116,6 +122,10 @@ module CyberSource
 
       if attributes.has_key?(:'settlementDate')
         self.settlement_date = attributes[:'settlementDate']
+      end
+
+      if attributes.has_key?(:'updateTimeUtc')
+        self.update_time_utc = attributes[:'updateTimeUtc']
       end
     end
 
@@ -180,7 +190,8 @@ module CyberSource
           response_code == o.response_code &&
           ach_verification == o.ach_verification &&
           network_transaction_id == o.network_transaction_id &&
-          settlement_date == o.settlement_date
+          settlement_date == o.settlement_date &&
+          update_time_utc == o.update_time_utc
     end
 
     # @see the `==` method
@@ -192,7 +203,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [approval_code, transaction_id, forwarded_acquirer_code, merchant_number, response_code, ach_verification, network_transaction_id, settlement_date].hash
+      [approval_code, transaction_id, forwarded_acquirer_code, merchant_number, response_code, ach_verification, network_transaction_id, settlement_date, update_time_utc].hash
     end
 
     # Builds the object from hash
