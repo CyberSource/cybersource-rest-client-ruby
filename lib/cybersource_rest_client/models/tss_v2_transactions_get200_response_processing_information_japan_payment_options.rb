@@ -25,13 +25,33 @@ module CyberSource
     # Business name in Katakana characters. This field is supported only on JCN Gateway and for the Sumitomo Mitsui Card Co. acquirer on CyberSource through VisaNet. 
     attr_accessor :business_name_katakana
 
+    # Business name in English characters. This field is supported only on JCN Gateway and for the Sumitomo Mitsui Card Co. acquirer on CyberSource through VisaNet. 
+    attr_accessor :business_name_english
+
+    # An array of objects, each of which contains a bonus month and bonus amount.  Length of bonuses array is equal to the number of bonuses.  Max length = 6.  In case of bonus month and amount not specified, null objects to be returned in the array. Example: bonuses : [ {\"month\": \"1\",\"amount\": \"200\"}, {\"month\": \"3\",\"amount\": \"2500\"}, null] 
+    attr_accessor :bonuses
+
+    # Billing month in MM format. 
+    attr_accessor :first_billing_month
+
+    # Number of Installments. 
+    attr_accessor :number_of_installments
+
+    # This will contain the details of the kind of transaction that has been processe. Used only for Japan. Possible Values: - 0 = Normal (authorization with amount and clearing/settlement; data capture or paper draft) - 1 = Negative card authorization (authorization-only with 0 or 1 amount) - 2 = Reservation of authorization (authorization-only with amount) - 3 = Cancel transaction - 4 = Merchant-initiated reversal/refund transactions - 5 = Cancel reservation of authorization - 6 = Post authorization 
+    attr_accessor :pre_approval_type
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'payment_method' => :'paymentMethod',
         :'terminal_id' => :'terminalId',
         :'business_name' => :'businessName',
-        :'business_name_katakana' => :'businessNameKatakana'
+        :'business_name_katakana' => :'businessNameKatakana',
+        :'business_name_english' => :'businessNameEnglish',
+        :'bonuses' => :'bonuses',
+        :'first_billing_month' => :'firstBillingMonth',
+        :'number_of_installments' => :'numberOfInstallments',
+        :'pre_approval_type' => :'preApprovalType'
       }
     end
 
@@ -41,7 +61,12 @@ module CyberSource
         :'payment_method' => :'payment_method',
         :'terminal_id' => :'terminal_id',
         :'business_name' => :'business_name',
-        :'business_name_katakana' => :'business_name_katakana'
+        :'business_name_katakana' => :'business_name_katakana',
+        :'business_name_english' => :'business_name_english',
+        :'bonuses' => :'bonuses',
+        :'first_billing_month' => :'first_billing_month',
+        :'number_of_installments' => :'number_of_installments',
+        :'pre_approval_type' => :'pre_approval_type'
       }
     end
 
@@ -51,7 +76,12 @@ module CyberSource
         :'payment_method' => :'String',
         :'terminal_id' => :'String',
         :'business_name' => :'String',
-        :'business_name_katakana' => :'String'
+        :'business_name_katakana' => :'String',
+        :'business_name_english' => :'String',
+        :'bonuses' => :'Array<Ptsv2paymentsProcessingInformationJapanPaymentOptionsBonuses>',
+        :'first_billing_month' => :'String',
+        :'number_of_installments' => :'String',
+        :'pre_approval_type' => :'String'
       }
     end
 
@@ -77,6 +107,28 @@ module CyberSource
 
       if attributes.has_key?(:'businessNameKatakana')
         self.business_name_katakana = attributes[:'businessNameKatakana']
+      end
+
+      if attributes.has_key?(:'businessNameEnglish')
+        self.business_name_english = attributes[:'businessNameEnglish']
+      end
+
+      if attributes.has_key?(:'bonuses')
+        if (value = attributes[:'bonuses']).is_a?(Array)
+          self.bonuses = value
+        end
+      end
+
+      if attributes.has_key?(:'firstBillingMonth')
+        self.first_billing_month = attributes[:'firstBillingMonth']
+      end
+
+      if attributes.has_key?(:'numberOfInstallments')
+        self.number_of_installments = attributes[:'numberOfInstallments']
+      end
+
+      if attributes.has_key?(:'preApprovalType')
+        self.pre_approval_type = attributes[:'preApprovalType']
       end
     end
 
@@ -117,6 +169,24 @@ module CyberSource
       @business_name_katakana = business_name_katakana
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] business_name_english Value to be assigned
+    def business_name_english=(business_name_english)
+      @business_name_english = business_name_english
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] first_billing_month Value to be assigned
+    def first_billing_month=(first_billing_month)
+      @first_billing_month = first_billing_month
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] pre_approval_type Value to be assigned
+    def pre_approval_type=(pre_approval_type)
+      @pre_approval_type = pre_approval_type
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -125,7 +195,12 @@ module CyberSource
           payment_method == o.payment_method &&
           terminal_id == o.terminal_id &&
           business_name == o.business_name &&
-          business_name_katakana == o.business_name_katakana
+          business_name_katakana == o.business_name_katakana &&
+          business_name_english == o.business_name_english &&
+          bonuses == o.bonuses &&
+          first_billing_month == o.first_billing_month &&
+          number_of_installments == o.number_of_installments &&
+          pre_approval_type == o.pre_approval_type
     end
 
     # @see the `==` method
@@ -137,7 +212,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [payment_method, terminal_id, business_name, business_name_katakana].hash
+      [payment_method, terminal_id, business_name, business_name_katakana, business_name_english, bonuses, first_billing_month, number_of_installments, pre_approval_type].hash
     end
 
     # Builds the object from hash

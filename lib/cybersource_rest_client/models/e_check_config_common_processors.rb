@@ -26,7 +26,7 @@ module CyberSource
     # *NEW* Accuity is the original validation service that checks the account/routing number for formatting issues. Used by WF and set to \"Yes\" unless told otherwise
     attr_accessor :enable_accuity_for_avs
 
-    # *NEW*
+    # *NEW*  Possible values: - ALWAYS
     attr_accessor :accuity_check_type
 
     # *Moved* When set to Yes we will automatically update transactions to a completed status X-number of days after the transaction comes through; if no failure notification is received. When set to No means we will not update transaction status in this manner. For BAMS/Bank of America merchants, they should be set to No unless we are explicitly asked to set a merchant to YES.
@@ -63,7 +63,7 @@ module CyberSource
         :'company_id' => :'String',
         :'batch_group' => :'String',
         :'enable_accuity_for_avs' => :'BOOLEAN',
-        :'accuity_check_type' => :'Object',
+        :'accuity_check_type' => :'String',
         :'set_completed_state' => :'BOOLEAN'
       }
     end
@@ -96,6 +96,8 @@ module CyberSource
 
       if attributes.has_key?(:'accuityCheckType')
         self.accuity_check_type = attributes[:'accuityCheckType']
+      else
+        self.accuity_check_type = 'ALWAYS'
       end
 
       if attributes.has_key?(:'setCompletedState')

@@ -13,33 +13,33 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsSenderInformation
-    # First name of the sender.  **Applicable for Barclays AFT transactions only.** The field is mandatory for Visa and not applicable for Mastercard AFT.   Only alpha numeric values are supported.  Special characters not in the standard ASCII character set, are not supported and will be stripped before being sent to Barclays.  For Visa, the maximum length of First Name, Middle Name and Last Name is 30 characters.         Values exceeding the above limits will be truncated. 
+    # First name of the sender. This field is applicable for AFT and OCT transactions.   Only alpha numeric values are supported.Special characters not in the standard ASCII character set, are not supported and will be stripped before being sent to the processor. 
     attr_accessor :first_name
 
-    # Last name of the sender.  **Applicable for Barclays AFT transactions only.** This field is optional for Visa and not applicable for Mastercard AFT.  Only alpha numeric values are supported.  Special characters not in the standard ASCII character set, are not supported and will be stripped before being sent to Barclays.  For Visa, the maximum length of First Name, Middle Name and Last Name is 30 characters.  Values exceeding these limits will be truncated. 
-    attr_accessor :last_name
-
-    # Middle name of the sender.  **Applicable for Barclays AFT transactions only.** The field is mandatory for Visa and not applicable for Mastercard AFT.   Only alpha numeric values are supported.  Special characters not in the standard ASCII character set, are not supported and will be stripped before being sent to Barclays.  For Visa, the maximum length of First Name, Middle Name and Last Name is 30 characters.        Values exceeding these limits will be truncated. 
+    # Middle name of the sender. This field is applicable for AFT and OCT transactions.   Only alpha numeric values are supported. Special characters not in the standard ASCII character set, are not supported and will be stripped before being sent to sent to the processor. 
     attr_accessor :middle_name
 
-    # The street address of the sender.    **Applicable for Barclays AFT transactions only.** The field is mandatory for Visa and not applicable for Mastercard AFT.     Only alpha numeric values are supported.  Special characters not in the standard ASCII character set are not supported and will be stripped before being sent to Barclays.             The field has a maximum length of 35 characters.  Values exceeding these limits will be truncated. 
+    # Last name of the sender. This field is applicable for AFT and OCT transactions.  Only alpha numeric values are supported. Special characters not in the standard ASCII character set, are not supported and will be stripped before being sent to sent to the processor. 
+    attr_accessor :last_name
+
+    # The street address of the sender. This field is applicable for AFT transactions.     Only alpha numeric values are supported.  Special characters not in the standard ASCII character set are not supported and will be stripped before being sent to sent to the processor. 
     attr_accessor :address1
 
-    # The city or locality of the sender.in  **Applicable for Barclays AFT transactions only.** The field is optional for Visa and not applicable for Mastercard AFT.   Only alpha numeric values are supported.  Special characters not in the standard ASCII character set are not supported and will be stripped before being sent to Barclays.  The field has a maximum length of 25 characters.  Values exceeding these limits will be truncated. 
+    # The city or locality of the sender. This field is applicable for AFT transactions.  Only alpha numeric values are supported.  Special characters not in the standard ASCII character set are not supported and will be stripped before being sent to sent to the processor. 
     attr_accessor :locality
 
-    # The state or province of the sender.  **Applicable for Barclays AFT transactions only.** The field is mandatory for Visa AFT when the sender country is US or CA else it is optional for Visa AFT. This field is not applicable for Mastercard AFT.  Must be a two character value 
+    # The state or province of the sender. This field is applicable for AFT transactions when the sender country is US or CA. Else it is optional.  Must be a two character value 
     attr_accessor :administrative_area
 
-    # The country associated with the address of the sender.  **Applicable for Barclays AFT transactions only.** The field is mandatory for Visa and not applicable for Mastercard AFT.   Must be a two character ISO country code.  For example, see [ISO Country Code](https://developer.cybersource.com/docs/cybs/en-us/country-codes/reference/all/na/country-codes/country-codes.html) 
+    # The country associated with the address of the sender. This field is applicable for AFT transactions.   Must be a two character ISO country code.  For example, see [ISO Country Code](https://developer.cybersource.com/docs/cybs/en-us/country-codes/reference/all/na/country-codes/country-codes.html) 
     attr_accessor :country_code
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'first_name' => :'firstName',
-        :'last_name' => :'lastName',
         :'middle_name' => :'middleName',
+        :'last_name' => :'lastName',
         :'address1' => :'address1',
         :'locality' => :'locality',
         :'administrative_area' => :'administrativeArea',
@@ -51,8 +51,8 @@ module CyberSource
     def self.json_map
       {
         :'first_name' => :'first_name',
-        :'last_name' => :'last_name',
         :'middle_name' => :'middle_name',
+        :'last_name' => :'last_name',
         :'address1' => :'address1',
         :'locality' => :'locality',
         :'administrative_area' => :'administrative_area',
@@ -64,8 +64,8 @@ module CyberSource
     def self.swagger_types
       {
         :'first_name' => :'String',
-        :'last_name' => :'String',
         :'middle_name' => :'String',
+        :'last_name' => :'String',
         :'address1' => :'String',
         :'locality' => :'String',
         :'administrative_area' => :'String',
@@ -85,12 +85,12 @@ module CyberSource
         self.first_name = attributes[:'firstName']
       end
 
-      if attributes.has_key?(:'lastName')
-        self.last_name = attributes[:'lastName']
-      end
-
       if attributes.has_key?(:'middleName')
         self.middle_name = attributes[:'middleName']
+      end
+
+      if attributes.has_key?(:'lastName')
+        self.last_name = attributes[:'lastName']
       end
 
       if attributes.has_key?(:'address1')
@@ -130,15 +130,15 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] last_name Value to be assigned
-    def last_name=(last_name)
-      @last_name = last_name
-    end
-
-    # Custom attribute writer method with validation
     # @param [Object] middle_name Value to be assigned
     def middle_name=(middle_name)
       @middle_name = middle_name
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] last_name Value to be assigned
+    def last_name=(last_name)
+      @last_name = last_name
     end
 
     # Custom attribute writer method with validation
@@ -171,8 +171,8 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           first_name == o.first_name &&
-          last_name == o.last_name &&
           middle_name == o.middle_name &&
+          last_name == o.last_name &&
           address1 == o.address1 &&
           locality == o.locality &&
           administrative_area == o.administrative_area &&
@@ -188,7 +188,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [first_name, last_name, middle_name, address1, locality, administrative_area, country_code].hash
+      [first_name, middle_name, last_name, address1, locality, administrative_area, country_code].hash
     end
 
     # Builds the object from hash

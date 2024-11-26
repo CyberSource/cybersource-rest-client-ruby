@@ -3,6 +3,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**avs_version** | **Object** | *NEW* | [optional] 
+**avs_version** | **String** | *NEW*  Possible values: - 2 | [optional] [default to &#39;2&#39;]
 
 
