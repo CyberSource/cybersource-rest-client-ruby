@@ -26,10 +26,10 @@ module CyberSource
     # *NEW* This is used by the EBC2 application
     attr_accessor :portal_supported_paytypes
 
-    # *NEW*
+    # *NEW*  Possible values: - BEST_GUESS
     attr_accessor :settlement_method
 
-    # *NEW*
+    # *NEW*  Possible values: - VALIDATION
     attr_accessor :verification_level
 
     # *Moved* When set to Yes we will automatically update transactions to a completed status X-number of days after the transaction comes through; if no failure notification is received. When set to No means we will not update transaction status in this manner. For BAMS/Bank of America merchants, they should be set to No unless we are explicitly asked to set a merchant to YES.
@@ -68,8 +68,8 @@ module CyberSource
         :'terminal_id' => :'String',
         :'enable15an_transaction_reference_number' => :'BOOLEAN',
         :'portal_supported_paytypes' => :'String',
-        :'settlement_method' => :'Object',
-        :'verification_level' => :'Object',
+        :'settlement_method' => :'String',
+        :'verification_level' => :'String',
         :'set_completed_state' => :'BOOLEAN'
       }
     end
@@ -104,10 +104,14 @@ module CyberSource
 
       if attributes.has_key?(:'settlementMethod')
         self.settlement_method = attributes[:'settlementMethod']
+      else
+        self.settlement_method = 'BEST_GUESS'
       end
 
       if attributes.has_key?(:'verificationLevel')
         self.verification_level = attributes[:'verificationLevel']
+      else
+        self.verification_level = 'VALIDATION'
       end
 
       if attributes.has_key?(:'setCompletedState')

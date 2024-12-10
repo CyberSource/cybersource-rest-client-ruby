@@ -115,6 +115,12 @@ describe 'Ptsv2paymentsPaymentInformationCard' do
     end
   end
 
+  describe 'test attribute "product_subtype"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "type_selection_indicator"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

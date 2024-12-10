@@ -13,28 +13,28 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsRecipientInformation
-    # Identifier for the recipient's account.  **Applicable for Barclays AFT transactions only.** It is mandatory for both Visa and Mastercard AFT.  For Visa, the field has a maximum length of 34 character.        For Mastercard, the field has a maximum length of 50 character. 
+    # Identifier for the recipient's account. This field is applicable for AFT transactions. 
     attr_accessor :account_id
 
-    # Identifies the recipient's account type.  **Applicable for Barclays AFT transactions only.** This field is mandatory for Mastercard and not applicable for Visa AFT.  Valid values are:   - `00` for Other   - `01` for Routing Transit Number (RTN) + Bank Account Number (BAN)   - `02` for International Bank Account Number (IBAN)   - `03` for Card Account   - `06` for Bank Account Number (BAN) + Bank Identification Code (BIC), also known as a SWIFT code 
+    # Identifies the recipient's account type. This field is applicable for AFT transactions.  Valid values are:   - `00` for Other   - `01` for Routing Transit Number (RTN) + Bank Account Number (BAN)   - `02` for International Bank Account Number (IBAN)   - `03` for Card Account   - `06` for Bank Account Number (BAN) + Bank Identification Code (BIC), also known as a SWIFT code 
     attr_accessor :account_type
 
-    # First name of the recipient.  **Applicable for Barclays AFT transactions only.** The field is mandatory for both Visa and Mastercard AFT.   Only alpha numeric values are supported.  Special characters not in the standard ASCII character set, are not supported and will be stripped before being sent to Barclays.  For Visa, the maximum length of First Name, Middle Name and Last Name is 30 characters.         For Mastercard, the field has a maximum length of 35 characters.  Values exceeding the above limits will be truncated. 
+    # First name of the recipient. This field is applicable for AFT transactions.    Only alpha numeric values are supported. Special characters not in the standard ASCII character set, are not supported and will be stripped before being sent to sent to the processor. 
     attr_accessor :first_name
 
-    # Last name of the recipient.  **Applicable for Barclays AFT transactions only.** This field is optional for both Visa and Mastercard AFT.  Only alpha numeric values are supported.  Special characters not in the standard ASCII character set, are not supported and will be stripped before being sent to Barclays.  For Visa, the maximum length of First Name, Middle Name and Last Name is 30 characters.  For Mastercard, the field has a maximum length of 35 characters.  Values exceeding these limits will be truncated. 
-    attr_accessor :last_name
-
-    # Middle name of the recipient.  **Applicable for Barclays AFT transactions only.** This field is optional for both Visa and Mastercard AFT.   Only alpha numeric values are supported.  Special characters not in the standard ASCII character set, are not supported and will be stripped before being sent to Barclays.  For Visa, the maximum length of First Name, Middle Name and Last Name is 30 characters.        For Mastercard, the field has a maximum length of 1 character.  Values exceeding these limits will be truncated. 
+    # Middle name of the recipient. This field is applicable for AFT transactions.  Only alpha numeric values are supported. Special characters not in the standard ASCII character set, are not supported and will be stripped before being sent to sent to the processor. 
     attr_accessor :middle_name
 
-    # The street address of the recipient    **Applicable for Barclays AFT transactions only.** This field is mandatory for Mastercard and not applicable for Visa AFT.    Only alpha numeric values are supported.  Special characters not in the standard ASCII character set are not supported and will be stripped before being sent to Barclays.             The field has a maximum length of 50 characters.  Values exceeding these limits will be truncated. 
+    # Last name of the recipient. This field is applicable for AFT transactions.  Only alpha numeric values are supported. Special characters not in the standard ASCII character set, are not supported and will be stripped before being sent to sent to the processor. 
+    attr_accessor :last_name
+
+    # The street address of the recipient This field is applicable for AFT and OCT transactions.  Only alpha numeric values are supported. Special characters not in the standard ASCII character set are not supported and will be stripped before being sent to sent to the processor.          
     attr_accessor :address1
 
     # Partial postal code for the recipient's address. For example, if the postal code is **NN5 7SG**, the value for this field should be the first part of the postal code: **NN5**. This field is a _pass-through_, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. If the field is not required for the transaction, CyberSource does not forward it to the processor. 
     attr_accessor :postal_code
 
-    # The country associated with the address of the recipient.  **Applicable for Barclays AFT transactions only.** This field is mandatory for Mastercard and not applicable for Visa AFT.  Must be a two character ISO country code.  For example, see [ISO Country Code](https://developer.cybersource.com/docs/cybs/en-us/country-codes/reference/all/na/country-codes/country-codes.html) 
+    # The country associated with the address of the recipient. This field is applicable for AFT and OCT transactions.  Must be a two character ISO country code.  For example, see [ISO Country Code](https://developer.cybersource.com/docs/cybs/en-us/country-codes/reference/all/na/country-codes/country-codes.html) 
     attr_accessor :country
 
     # Recipient's date of birth. **Format**: `YYYYMMDD`.  This field is a `pass-through`, which means that CyberSource ensures that the value is eight numeric characters but otherwise does not verify the value or modify it in any way before sending it to the processor. If the field is not required for the transaction, CyberSource does not forward it to the processor. 
@@ -55,8 +55,8 @@ module CyberSource
         :'account_id' => :'accountId',
         :'account_type' => :'accountType',
         :'first_name' => :'firstName',
-        :'last_name' => :'lastName',
         :'middle_name' => :'middleName',
+        :'last_name' => :'lastName',
         :'address1' => :'address1',
         :'postal_code' => :'postalCode',
         :'country' => :'country',
@@ -73,8 +73,8 @@ module CyberSource
         :'account_id' => :'account_id',
         :'account_type' => :'account_type',
         :'first_name' => :'first_name',
-        :'last_name' => :'last_name',
         :'middle_name' => :'middle_name',
+        :'last_name' => :'last_name',
         :'address1' => :'address1',
         :'postal_code' => :'postal_code',
         :'country' => :'country',
@@ -91,8 +91,8 @@ module CyberSource
         :'account_id' => :'String',
         :'account_type' => :'String',
         :'first_name' => :'String',
-        :'last_name' => :'String',
         :'middle_name' => :'String',
+        :'last_name' => :'String',
         :'address1' => :'String',
         :'postal_code' => :'String',
         :'country' => :'String',
@@ -123,12 +123,12 @@ module CyberSource
         self.first_name = attributes[:'firstName']
       end
 
-      if attributes.has_key?(:'lastName')
-        self.last_name = attributes[:'lastName']
-      end
-
       if attributes.has_key?(:'middleName')
         self.middle_name = attributes[:'middleName']
+      end
+
+      if attributes.has_key?(:'lastName')
+        self.last_name = attributes[:'lastName']
       end
 
       if attributes.has_key?(:'address1')
@@ -192,15 +192,15 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] last_name Value to be assigned
-    def last_name=(last_name)
-      @last_name = last_name
-    end
-
-    # Custom attribute writer method with validation
     # @param [Object] middle_name Value to be assigned
     def middle_name=(middle_name)
       @middle_name = middle_name
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] last_name Value to be assigned
+    def last_name=(last_name)
+      @last_name = last_name
     end
 
     # Custom attribute writer method with validation
@@ -253,8 +253,8 @@ module CyberSource
           account_id == o.account_id &&
           account_type == o.account_type &&
           first_name == o.first_name &&
-          last_name == o.last_name &&
           middle_name == o.middle_name &&
+          last_name == o.last_name &&
           address1 == o.address1 &&
           postal_code == o.postal_code &&
           country == o.country &&
@@ -273,7 +273,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [account_id, account_type, first_name, last_name, middle_name, address1, postal_code, country, date_of_birth, beneficiary_id, beneficiary_name, beneficiary_address].hash
+      [account_id, account_type, first_name, middle_name, last_name, address1, postal_code, country, date_of_birth, beneficiary_id, beneficiary_name, beneficiary_address].hash
     end
 
     # Builds the object from hash

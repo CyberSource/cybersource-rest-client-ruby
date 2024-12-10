@@ -14,7 +14,7 @@ require 'date'
 module CyberSource
   # Name of the payment processor. Example - \"wellsfargoach\"
   class ECheckConfigFeaturesAccountValidationServiceInternalOnlyProcessors
-    # *NEW*
+    # *NEW*  Possible values: - 2
     attr_accessor :avs_version
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -34,7 +34,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'avs_version' => :'Object'
+        :'avs_version' => :'String'
       }
     end
 
@@ -48,6 +48,8 @@ module CyberSource
 
       if attributes.has_key?(:'avsVersion')
         self.avs_version = attributes[:'avsVersion']
+      else
+        self.avs_version = '2'
       end
     end
 

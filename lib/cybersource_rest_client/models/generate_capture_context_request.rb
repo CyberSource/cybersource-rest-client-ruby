@@ -14,23 +14,23 @@ require 'date'
 module CyberSource
   # This is a server-to-server API request to generate the capture context that can be used to initiate instance of microform on a acceptance page.   The capture context is a digitally signed JWT that provides authentication, one-time keys, and the target origin to the Microform Integration application. 
   class GenerateCaptureContextRequest
+    # Specify the version of Microform that you want to use. 
+    attr_accessor :client_version
+
     # The [target origin](https://developer.mozilla.org/en-US/docs/Glossary/Origin) of the website on which you will be launching Microform is defined by the scheme (protocol), hostname (domain) and port number (if used).    You must use https://hostname (unless you use http://localhost) Wildcards are NOT supported.  Ensure that subdomains are included. Any valid top-level domain is supported (e.g. .com, .co.uk, .gov.br etc)  Examples:   - https://example.com   - https://subdomain.example.com   - https://example.com:8080<br><br>  If you are embedding within multiple nested iframes you need to specify the origins of all the browser contexts used, for example:    targetOrigins: [     \"https://example.com\",     \"https://basket.example.com\",     \"https://ecom.example.com\"   ] 
     attr_accessor :target_origins
 
-    # The list of card networks you want to use for this Microform transaction.  Microform currently supports the following card networks: - VISA - MAESTRO - MASTERCARD - AMEX - DISCOVER - DINERSCLUB - JCB - CUP - CARTESBANCAIRES - CARNET 
+    # The list of card networks you want to use for this Microform transaction.  Microform currently supports the following card networks: - VISA - MASTERCARD - AMEX - CARNET - CARTESBANCAIRES - CUP - DINERSCLUB - DISCOVER - EFTPOS - ELO - JCB - JCREW - MADA - MAESTRO - MEEZA 
     attr_accessor :allowed_card_networks
-
-    # Specify the version of Microform that you want to use. 
-    attr_accessor :client_version
 
     attr_accessor :checkout_api_initialization
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'client_version' => :'clientVersion',
         :'target_origins' => :'targetOrigins',
         :'allowed_card_networks' => :'allowedCardNetworks',
-        :'client_version' => :'clientVersion',
         :'checkout_api_initialization' => :'checkoutApiInitialization'
       }
     end
@@ -38,9 +38,9 @@ module CyberSource
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
+        :'client_version' => :'client_version',
         :'target_origins' => :'target_origins',
         :'allowed_card_networks' => :'allowed_card_networks',
-        :'client_version' => :'client_version',
         :'checkout_api_initialization' => :'checkout_api_initialization'
       }
     end
@@ -48,9 +48,9 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'client_version' => :'String',
         :'target_origins' => :'Array<String>',
         :'allowed_card_networks' => :'Array<String>',
-        :'client_version' => :'String',
         :'checkout_api_initialization' => :'Microformv2sessionsCheckoutApiInitialization'
       }
     end
@@ -63,6 +63,10 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
+      if attributes.has_key?(:'clientVersion')
+        self.client_version = attributes[:'clientVersion']
+      end
+
       if attributes.has_key?(:'targetOrigins')
         if (value = attributes[:'targetOrigins']).is_a?(Array)
           self.target_origins = value
@@ -73,10 +77,6 @@ module CyberSource
         if (value = attributes[:'allowedCardNetworks']).is_a?(Array)
           self.allowed_card_networks = value
         end
-      end
-
-      if attributes.has_key?(:'clientVersion')
-        self.client_version = attributes[:'clientVersion']
       end
 
       if attributes.has_key?(:'checkoutApiInitialization')
@@ -102,9 +102,9 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          client_version == o.client_version &&
           target_origins == o.target_origins &&
           allowed_card_networks == o.allowed_card_networks &&
-          client_version == o.client_version &&
           checkout_api_initialization == o.checkout_api_initialization
     end
 
@@ -117,7 +117,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [target_origins, allowed_card_networks, client_version, checkout_api_initialization].hash
+      [client_version, target_origins, allowed_card_networks, checkout_api_initialization].hash
     end
 
     # Builds the object from hash

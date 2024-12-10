@@ -13,7 +13,7 @@ require 'date'
 
 module CyberSource
   class Riskv1exportcomplianceinquiriesOrderInformationLineItems
-    # Per-item price of the product. This value for this field cannot be negative.  You must include either this field or the request-level field `orderInformation.amountDetails.totalAmount` in your request.  You can include a decimal point (.), but you cannot include any other special characters. The value is truncated to the correct number of decimal places.  #### DCC with a Third-Party Provider Set this field to the converted amount that was returned by the DCC provider. You must include either the 1st line item in the order and this field, or the request-level field `orderInformation.amountDetails.totalAmount` in your request.  #### Tax Calculation Required field for U.S., Canadian, international and value added taxes.  #### Zero Amount Authorizations If your processor supports zero amount authorizations, you can set this field to 0 for the authorization to check if the card is lost or stolen.  #### Maximum Field Lengths For GPN and JCN Gateway: Decimal (10) All other processors: Decimal (15) 
+    # Per-item price of the product. If line items are present in the request, the unit price is a mandatory field. 
     attr_accessor :unit_price
 
     attr_accessor :allowed_export_countries
@@ -126,27 +126,18 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @unit_price.nil?
-        invalid_properties.push('invalid value for "unit_price", unit_price cannot be nil.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @unit_price.nil?
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] unit_price Value to be assigned
     def unit_price=(unit_price)
-      #if unit_price.nil?
-        #fail ArgumentError, 'unit_price cannot be nil'
-      #end
-
       @unit_price = unit_price
     end
 

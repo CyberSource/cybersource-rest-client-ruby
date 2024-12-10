@@ -23,7 +23,7 @@ module CyberSource
     # *NEW* Taken from Addendum Agreement Column in boarding form.
     attr_accessor :avs_signed_agreement
 
-    # *NEW*
+    # *NEW*  Possible values: - continue
     attr_accessor :avs_calculated_response_behavior
 
     # *NEW* Also known as the Additional ID. Taken from the boarding form.
@@ -35,7 +35,7 @@ module CyberSource
     # *NEW* Also known as the AVS Gateway Entity ID.
     attr_accessor :avs_entity_id
 
-    # *NEW*
+    # *NEW*  Possible values: - FULL_RESPONSE - LOGIC_BOX
     attr_accessor :avs_result_mode
 
     # *NEW* Applicable if the merchant wants to run AVS on token creation requests only.
@@ -77,11 +77,11 @@ module CyberSource
         :'avs_account_ownership_service' => :'BOOLEAN',
         :'avs_account_status_service' => :'BOOLEAN',
         :'avs_signed_agreement' => :'BOOLEAN',
-        :'avs_calculated_response_behavior' => :'Object',
+        :'avs_calculated_response_behavior' => :'String',
         :'avs_additional_id' => :'String',
         :'enable_avs' => :'BOOLEAN',
         :'avs_entity_id' => :'String',
-        :'avs_result_mode' => :'Object',
+        :'avs_result_mode' => :'String',
         :'enable_avs_token_creation' => :'BOOLEAN'
       }
     end
@@ -108,6 +108,8 @@ module CyberSource
 
       if attributes.has_key?(:'avsCalculatedResponseBehavior')
         self.avs_calculated_response_behavior = attributes[:'avsCalculatedResponseBehavior']
+      else
+        self.avs_calculated_response_behavior = 'continue'
       end
 
       if attributes.has_key?(:'avsAdditionalId')

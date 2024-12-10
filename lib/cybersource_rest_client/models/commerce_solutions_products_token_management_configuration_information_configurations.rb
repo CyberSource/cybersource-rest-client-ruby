@@ -16,24 +16,29 @@ module CyberSource
     # Specify the Vault ID to which transacting MID needs to be assigned.Provide Vault ID as seen on EBC Vault management page. If not provided , transacting MID will be assigned to the existing default Vault at merchant's level. If there are no Vaults at merchant level , a new Vault will be created and transacting MID will be assigned to it.
     attr_accessor :parent_profile_id
 
+    attr_accessor :vault
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'parent_profile_id' => :'parentProfileId'
+        :'parent_profile_id' => :'parentProfileId',
+        :'vault' => :'vault'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'parent_profile_id' => :'parent_profile_id'
+        :'parent_profile_id' => :'parent_profile_id',
+        :'vault' => :'vault'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'parent_profile_id' => :'String'
+        :'parent_profile_id' => :'String',
+        :'vault' => :'CommerceSolutionsProductsTokenManagementConfigurationInformationConfigurationsVault'
       }
     end
 
@@ -47,6 +52,10 @@ module CyberSource
 
       if attributes.has_key?(:'parentProfileId')
         self.parent_profile_id = attributes[:'parentProfileId']
+      end
+
+      if attributes.has_key?(:'vault')
+        self.vault = attributes[:'vault']
       end
     end
 
@@ -68,7 +77,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          parent_profile_id == o.parent_profile_id
+          parent_profile_id == o.parent_profile_id &&
+          vault == o.vault
     end
 
     # @see the `==` method
@@ -80,7 +90,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [parent_profile_id].hash
+      [parent_profile_id, vault].hash
     end
 
     # Builds the object from hash
