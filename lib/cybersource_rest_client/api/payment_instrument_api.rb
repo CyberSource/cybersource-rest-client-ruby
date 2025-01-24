@@ -98,6 +98,7 @@ module CyberSource
     # @param payment_instrument_id The Id of a payment instrument.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
+    # @option opts [BOOLEAN] :retrieve_bin_details Retrieve the Bin Details of PAN or network token
     # @return [PostPaymentInstrumentRequest]
     #
     def get_payment_instrument(payment_instrument_id, opts = {})
@@ -110,6 +111,7 @@ module CyberSource
     # @param payment_instrument_id The Id of a payment instrument.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
+    # @option opts [BOOLEAN] :retrieve_bin_details Retrieve the Bin Details of PAN or network token
     # @return [Array<(PostPaymentInstrumentRequest, Fixnum, Hash)>] PostPaymentInstrumentRequest data, response status code and response headers
     def get_payment_instrument_with_http_info(payment_instrument_id, opts = {})
 
@@ -130,6 +132,7 @@ module CyberSource
 
       # query parameters
       query_params = {}
+      query_params[:'retrieveBinDetails'] = opts[:'retrieve_bin_details'] if !opts[:'retrieve_bin_details'].nil?
 
       # header parameters
       header_params = {}
@@ -173,6 +176,7 @@ module CyberSource
     # @param patch_payment_instrument_request 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
+    # @option opts [BOOLEAN] :retrieve_bin_details Retrieve the Bin Details of PAN or network token
     # @option opts [String] :if_match Contains an ETag value from a GET request to make the request conditional.
     # @return [PatchPaymentInstrumentRequest]
     #
@@ -187,6 +191,7 @@ module CyberSource
     # @param patch_payment_instrument_request 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
+    # @option opts [BOOLEAN] :retrieve_bin_details Retrieve the Bin Details of PAN or network token
     # @option opts [String] :if_match Contains an ETag value from a GET request to make the request conditional.
     # @return [Array<(PatchPaymentInstrumentRequest, Fixnum, Hash)>] PatchPaymentInstrumentRequest data, response status code and response headers
     def patch_payment_instrument_with_http_info(payment_instrument_id, patch_payment_instrument_request, opts = {})
@@ -212,6 +217,7 @@ module CyberSource
 
       # query parameters
       query_params = {}
+      query_params[:'retrieveBinDetails'] = opts[:'retrieve_bin_details'] if !opts[:'retrieve_bin_details'].nil?
 
       # header parameters
       header_params = {}
@@ -253,6 +259,7 @@ module CyberSource
     # @param post_payment_instrument_request 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
+    # @option opts [BOOLEAN] :retrieve_bin_details Retrieve the Bin Details of PAN or network token
     # @return [PostPaymentInstrumentRequest]
     #
     def post_payment_instrument(post_payment_instrument_request, opts = {})
@@ -265,6 +272,7 @@ module CyberSource
     # @param post_payment_instrument_request 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
+    # @option opts [BOOLEAN] :retrieve_bin_details Retrieve the Bin Details of PAN or network token
     # @return [Array<(PostPaymentInstrumentRequest, Fixnum, Hash)>] PostPaymentInstrumentRequest data, response status code and response headers
     def post_payment_instrument_with_http_info(post_payment_instrument_request, opts = {})
 
@@ -285,6 +293,7 @@ module CyberSource
 
       # query parameters
       query_params = {}
+      query_params[:'retrieveBinDetails'] = opts[:'retrieve_bin_details'] if !opts[:'retrieve_bin_details'].nil?
 
       # header parameters
       header_params = {}

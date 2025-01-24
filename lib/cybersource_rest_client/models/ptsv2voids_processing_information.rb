@@ -33,7 +33,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'payment_id' => :'Object'
+        :'payment_id' => :'String'
       }
     end
 
@@ -61,6 +61,12 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] payment_id Value to be assigned
+    def payment_id=(payment_id)
+      @payment_id = payment_id
     end
 
     # Checks equality by comparing each attribute.

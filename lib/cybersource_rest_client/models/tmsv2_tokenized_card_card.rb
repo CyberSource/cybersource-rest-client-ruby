@@ -12,41 +12,53 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # The latest card details associated with the network token
+  # Card object used to create a network token 
   class Tmsv2TokenizedCardCard
-    # The customer's latest payment card number suffix 
-    attr_accessor :suffix
+    # The customer's payment card number, also known as the Primary Account Number (PAN). 
+    attr_accessor :number
 
-    #  Two-digit month in which the customer's latest payment card expires.  Format: `MM`.  Possible Values: `01` through `12`. 
+    # Two-digit month in which the payment card expires.  Format: `MM`.  Possible Values: `01` through `12`. 
     attr_accessor :expiration_month
 
-    # Four-digit year in which the customer's latest payment card expires.  Format: `YYYY`. 
+    # Four-digit year in which the credit card expires.  Format: `YYYY`. 
     attr_accessor :expiration_year
+
+    # The type of card(Card network). Possible Values: 001: visa 
+    attr_accessor :type
+
+    # The customer's latest payment card number suffix. 
+    attr_accessor :suffix
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'suffix' => :'suffix',
+        :'number' => :'number',
         :'expiration_month' => :'expirationMonth',
-        :'expiration_year' => :'expirationYear'
+        :'expiration_year' => :'expirationYear',
+        :'type' => :'type',
+        :'suffix' => :'suffix'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'suffix' => :'suffix',
+        :'number' => :'number',
         :'expiration_month' => :'expiration_month',
-        :'expiration_year' => :'expiration_year'
+        :'expiration_year' => :'expiration_year',
+        :'type' => :'type',
+        :'suffix' => :'suffix'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'suffix' => :'String',
+        :'number' => :'String',
         :'expiration_month' => :'String',
-        :'expiration_year' => :'String'
+        :'expiration_year' => :'String',
+        :'type' => :'String',
+        :'suffix' => :'String'
       }
     end
 
@@ -58,8 +70,8 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'suffix')
-        self.suffix = attributes[:'suffix']
+      if attributes.has_key?(:'number')
+        self.number = attributes[:'number']
       end
 
       if attributes.has_key?(:'expirationMonth')
@@ -68,6 +80,14 @@ module CyberSource
 
       if attributes.has_key?(:'expirationYear')
         self.expiration_year = attributes[:'expirationYear']
+      end
+
+      if attributes.has_key?(:'type')
+        self.type = attributes[:'type']
+      end
+
+      if attributes.has_key?(:'suffix')
+        self.suffix = attributes[:'suffix']
       end
     end
 
@@ -82,6 +102,12 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] number Value to be assigned
+    def number=(number)
+      @number = number
     end
 
     # Custom attribute writer method with validation
@@ -101,9 +127,11 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          suffix == o.suffix &&
+          number == o.number &&
           expiration_month == o.expiration_month &&
-          expiration_year == o.expiration_year
+          expiration_year == o.expiration_year &&
+          type == o.type &&
+          suffix == o.suffix
     end
 
     # @see the `==` method
@@ -115,7 +143,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [suffix, expiration_month, expiration_year].hash
+      [number, expiration_month, expiration_year, type, suffix].hash
     end
 
     # Builds the object from hash

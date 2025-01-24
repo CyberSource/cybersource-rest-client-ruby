@@ -25,13 +25,17 @@ module CyberSource
     # An informational note about this settlement. Appears in both the payer's transaction history and the emails that the payer receives. 
     attr_accessor :notes
 
+    # Used by Nike merchant to send 12 digit order number
+    attr_accessor :reconciliation_id_alternate
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'capture_sequence_number' => :'captureSequenceNumber',
         :'total_capture_count' => :'totalCaptureCount',
         :'is_final' => :'isFinal',
-        :'notes' => :'notes'
+        :'notes' => :'notes',
+        :'reconciliation_id_alternate' => :'reconciliationIdAlternate'
       }
     end
 
@@ -41,7 +45,8 @@ module CyberSource
         :'capture_sequence_number' => :'capture_sequence_number',
         :'total_capture_count' => :'total_capture_count',
         :'is_final' => :'is_final',
-        :'notes' => :'notes'
+        :'notes' => :'notes',
+        :'reconciliation_id_alternate' => :'reconciliation_id_alternate'
       }
     end
 
@@ -51,7 +56,8 @@ module CyberSource
         :'capture_sequence_number' => :'Integer',
         :'total_capture_count' => :'Integer',
         :'is_final' => :'String',
-        :'notes' => :'String'
+        :'notes' => :'String',
+        :'reconciliation_id_alternate' => :'String'
       }
     end
 
@@ -77,6 +83,10 @@ module CyberSource
 
       if attributes.has_key?(:'notes')
         self.notes = attributes[:'notes']
+      end
+
+      if attributes.has_key?(:'reconciliationIdAlternate')
+        self.reconciliation_id_alternate = attributes[:'reconciliationIdAlternate']
       end
     end
 
@@ -117,6 +127,12 @@ module CyberSource
       @notes = notes
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] reconciliation_id_alternate Value to be assigned
+    def reconciliation_id_alternate=(reconciliation_id_alternate)
+      @reconciliation_id_alternate = reconciliation_id_alternate
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -125,7 +141,8 @@ module CyberSource
           capture_sequence_number == o.capture_sequence_number &&
           total_capture_count == o.total_capture_count &&
           is_final == o.is_final &&
-          notes == o.notes
+          notes == o.notes &&
+          reconciliation_id_alternate == o.reconciliation_id_alternate
     end
 
     # @see the `==` method
@@ -137,7 +154,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [capture_sequence_number, total_capture_count, is_final, notes].hash
+      [capture_sequence_number, total_capture_count, is_final, notes, reconciliation_id_alternate].hash
     end
 
     # Builds the object from hash

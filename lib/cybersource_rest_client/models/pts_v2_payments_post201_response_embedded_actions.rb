@@ -24,6 +24,10 @@ module CyberSource
 
     attr_accessor :watchlist_screening
 
+    attr_accessor :token_create
+
+    attr_accessor :token_update
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -31,7 +35,9 @@ module CyberSource
         :'decision' => :'DECISION',
         :'consumer_authentication' => :'CONSUMER_AUTHENTICATION',
         :'validate_consumer_authentication' => :'VALIDATE_CONSUMER_AUTHENTICATION',
-        :'watchlist_screening' => :'WATCHLIST_SCREENING'
+        :'watchlist_screening' => :'WATCHLIST_SCREENING',
+        :'token_create' => :'TOKEN_CREATE',
+        :'token_update' => :'TOKEN_UPDATE'
       }
     end
 
@@ -42,7 +48,9 @@ module CyberSource
         :'decision' => :'decision',
         :'consumer_authentication' => :'consumer_authentication',
         :'validate_consumer_authentication' => :'validate_consumer_authentication',
-        :'watchlist_screening' => :'watchlist_screening'
+        :'watchlist_screening' => :'watchlist_screening',
+        :'token_create' => :'token_create',
+        :'token_update' => :'token_update'
       }
     end
 
@@ -53,7 +61,9 @@ module CyberSource
         :'decision' => :'PtsV2PaymentsPost201ResponseEmbeddedActionsDECISION',
         :'consumer_authentication' => :'PtsV2PaymentsPost201ResponseEmbeddedActionsCONSUMERAUTHENTICATION',
         :'validate_consumer_authentication' => :'PtsV2PaymentsPost201ResponseEmbeddedActionsCONSUMERAUTHENTICATION',
-        :'watchlist_screening' => :'PtsV2PaymentsPost201ResponseEmbeddedActionsWATCHLISTSCREENING'
+        :'watchlist_screening' => :'PtsV2PaymentsPost201ResponseEmbeddedActionsWATCHLISTSCREENING',
+        :'token_create' => :'PtsV2PaymentsPost201ResponseEmbeddedActionsTOKENCREATE',
+        :'token_update' => :'PtsV2PaymentsPost201ResponseEmbeddedActionsTOKENUPDATE'
       }
     end
 
@@ -84,6 +94,14 @@ module CyberSource
       if attributes.has_key?(:'WATCHLIST_SCREENING')
         self.watchlist_screening = attributes[:'WATCHLIST_SCREENING']
       end
+
+      if attributes.has_key?(:'TOKEN_CREATE')
+        self.token_create = attributes[:'TOKEN_CREATE']
+      end
+
+      if attributes.has_key?(:'TOKEN_UPDATE')
+        self.token_update = attributes[:'TOKEN_UPDATE']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -108,7 +126,9 @@ module CyberSource
           decision == o.decision &&
           consumer_authentication == o.consumer_authentication &&
           validate_consumer_authentication == o.validate_consumer_authentication &&
-          watchlist_screening == o.watchlist_screening
+          watchlist_screening == o.watchlist_screening &&
+          token_create == o.token_create &&
+          token_update == o.token_update
     end
 
     # @see the `==` method
@@ -120,7 +140,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [capture, decision, consumer_authentication, validate_consumer_authentication, watchlist_screening].hash
+      [capture, decision, consumer_authentication, validate_consumer_authentication, watchlist_screening, token_create, token_update].hash
     end
 
     # Builds the object from hash

@@ -15,24 +15,30 @@ module CyberSource
   class Ptsv2paymentsidrefundsPointOfSaleInformation
     attr_accessor :emv
 
+    # Indicates the type of terminal.   Possible values: - `AFD`: Automated Fuel Dispenser 
+    attr_accessor :terminal_category
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'emv' => :'emv'
+        :'emv' => :'emv',
+        :'terminal_category' => :'terminalCategory'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'emv' => :'emv'
+        :'emv' => :'emv',
+        :'terminal_category' => :'terminal_category'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'emv' => :'Ptsv2paymentsidcapturesPointOfSaleInformationEmv'
+        :'emv' => :'Ptsv2paymentsidcapturesPointOfSaleInformationEmv',
+        :'terminal_category' => :'String'
       }
     end
 
@@ -46,6 +52,10 @@ module CyberSource
 
       if attributes.has_key?(:'emv')
         self.emv = attributes[:'emv']
+      end
+
+      if attributes.has_key?(:'terminalCategory')
+        self.terminal_category = attributes[:'terminalCategory']
       end
     end
 
@@ -62,12 +72,19 @@ module CyberSource
       true
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] terminal_category Value to be assigned
+    def terminal_category=(terminal_category)
+      @terminal_category = terminal_category
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          emv == o.emv
+          emv == o.emv &&
+          terminal_category == o.terminal_category
     end
 
     # @see the `==` method
@@ -79,7 +96,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [emv].hash
+      [emv, terminal_category].hash
     end
 
     # Builds the object from hash

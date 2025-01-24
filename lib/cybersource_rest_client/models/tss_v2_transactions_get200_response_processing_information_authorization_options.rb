@@ -19,7 +19,7 @@ module CyberSource
     # Flag that specifies the purpose of the authorization.  Possible values:  - **0**: Preauthorization  - **1**: Final authorization  To set the default for this field, contact CyberSource Customer Support.  #### Barclays and Elavon The default for Barclays and Elavon is 1 (final authorization). To change the default for this field, contact CyberSource Customer Support.  #### CyberSource through VisaNet When the value for this field is 0, it corresponds to the following data in the TC 33 capture file:  - Record: CP01 TCR0  - Position: 164  - Field: Additional Authorization Indicators When the value for this field is 1, it does not correspond to any data in the TC 33 capture file. 
     attr_accessor :auth_indicator
 
-    # Flag that indicates whether the transaction is an extended authorization. 
+    # Indicates Authorization extension transaction. Extension transaction is used to prolong the settlement period by one additional settlement cycle period.  Possible values: - true: Transaction is an Authorization Extension transaction.  - false: Transaction is not an Authorization Extension transaction. 
     attr_accessor :extend_auth_indicator
 
     # This API field will indicate whether a card verification check is being performed during the transaction  Possible values:   - `true`   - `false` (default value) 
@@ -112,6 +112,12 @@ module CyberSource
     # @param [Object] auth_indicator Value to be assigned
     def auth_indicator=(auth_indicator)
       @auth_indicator = auth_indicator
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] extend_auth_indicator Value to be assigned
+    def extend_auth_indicator=(extend_auth_indicator)
+      @extend_auth_indicator = extend_auth_indicator
     end
 
     # Checks equality by comparing each attribute.

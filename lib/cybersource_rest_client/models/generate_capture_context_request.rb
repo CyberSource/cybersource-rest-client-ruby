@@ -12,7 +12,7 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # This is a server-to-server API request to generate the capture context that can be used to initiate instance of microform on a acceptance page.   The capture context is a digitally signed JWT that provides authentication, one-time keys, and the target origin to the Microform Integration application. 
+  # This is a server-to-server API request to generate the capture context that can be used to initiate an instance of Microform on an acceptance page.   The capture context is a digitally signed JWT that provides authentication, one-time keys, and the target origin to the Microform Integration application. 
   class GenerateCaptureContextRequest
     # Specify the version of Microform that you want to use. 
     attr_accessor :client_version
@@ -20,10 +20,11 @@ module CyberSource
     # The [target origin](https://developer.mozilla.org/en-US/docs/Glossary/Origin) of the website on which you will be launching Microform is defined by the scheme (protocol), hostname (domain) and port number (if used).    You must use https://hostname (unless you use http://localhost) Wildcards are NOT supported.  Ensure that subdomains are included. Any valid top-level domain is supported (e.g. .com, .co.uk, .gov.br etc)  Examples:   - https://example.com   - https://subdomain.example.com   - https://example.com:8080<br><br>  If you are embedding within multiple nested iframes you need to specify the origins of all the browser contexts used, for example:    targetOrigins: [     \"https://example.com\",     \"https://basket.example.com\",     \"https://ecom.example.com\"   ] 
     attr_accessor :target_origins
 
-    # The list of card networks you want to use for this Microform transaction.  Microform currently supports the following card networks: - VISA - MASTERCARD - AMEX - CARNET - CARTESBANCAIRES - CUP - DINERSCLUB - DISCOVER - EFTPOS - ELO - JCB - JCREW - MADA - MAESTRO - MEEZA 
+    # The list of card networks you want to use for this Microform transaction.  Microform currently supports the following card networks: - VISA - MASTERCARD - AMEX - CARNET - CARTESBANCAIRES - CUP - DINERSCLUB - DISCOVER - EFTPOS - ELO - JCB - JCREW - MADA - MAESTRO - MEEZA  **Important:**    - When integrating Microform (Accept Card) at least one card network should be specified in the allowedCardNetworks field in the capture context request.   - When integrating Microform (Accept Check) the allowedCardNetworks field is not required in the capture context request.   - When integrating both Microform (Accept Card) and Microform (Accept Check) at least one card network should be specified in the allowedCardNetworks field in the capture context request. 
     attr_accessor :allowed_card_networks
 
-    attr_accessor :checkout_api_initialization
+    # The payment types that are allowed for the merchant.    Possible values when launching Microform: - CARD - CHECK <br><br> 
+    attr_accessor :allowed_payment_types
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -31,7 +32,7 @@ module CyberSource
         :'client_version' => :'clientVersion',
         :'target_origins' => :'targetOrigins',
         :'allowed_card_networks' => :'allowedCardNetworks',
-        :'checkout_api_initialization' => :'checkoutApiInitialization'
+        :'allowed_payment_types' => :'allowedPaymentTypes'
       }
     end
 
@@ -41,7 +42,7 @@ module CyberSource
         :'client_version' => :'client_version',
         :'target_origins' => :'target_origins',
         :'allowed_card_networks' => :'allowed_card_networks',
-        :'checkout_api_initialization' => :'checkout_api_initialization'
+        :'allowed_payment_types' => :'allowed_payment_types'
       }
     end
 
@@ -51,7 +52,7 @@ module CyberSource
         :'client_version' => :'String',
         :'target_origins' => :'Array<String>',
         :'allowed_card_networks' => :'Array<String>',
-        :'checkout_api_initialization' => :'Microformv2sessionsCheckoutApiInitialization'
+        :'allowed_payment_types' => :'Array<String>'
       }
     end
 
@@ -79,8 +80,10 @@ module CyberSource
         end
       end
 
-      if attributes.has_key?(:'checkoutApiInitialization')
-        self.checkout_api_initialization = attributes[:'checkoutApiInitialization']
+      if attributes.has_key?(:'allowedPaymentTypes')
+        if (value = attributes[:'allowedPaymentTypes']).is_a?(Array)
+          self.allowed_payment_types = value
+        end
       end
     end
 
@@ -105,7 +108,7 @@ module CyberSource
           client_version == o.client_version &&
           target_origins == o.target_origins &&
           allowed_card_networks == o.allowed_card_networks &&
-          checkout_api_initialization == o.checkout_api_initialization
+          allowed_payment_types == o.allowed_payment_types
     end
 
     # @see the `==` method
@@ -117,7 +120,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_version, target_origins, allowed_card_networks, checkout_api_initialization].hash
+      [client_version, target_origins, allowed_card_networks, allowed_payment_types].hash
     end
 
     # Builds the object from hash

@@ -35,6 +35,11 @@ module CyberSource
 
     attr_accessor :funding_options
 
+    # Contains the ISO 639-2 defined language Code 
+    attr_accessor :language_code
+
+    attr_accessor :purchase_options
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -45,7 +50,9 @@ module CyberSource
         :'payouts_options' => :'payoutsOptions',
         :'transaction_reason' => :'transactionReason',
         :'purpose_of_payment' => :'purposeOfPayment',
-        :'funding_options' => :'fundingOptions'
+        :'funding_options' => :'fundingOptions',
+        :'language_code' => :'languageCode',
+        :'purchase_options' => :'purchaseOptions'
       }
     end
 
@@ -59,7 +66,9 @@ module CyberSource
         :'payouts_options' => :'payouts_options',
         :'transaction_reason' => :'transaction_reason',
         :'purpose_of_payment' => :'purpose_of_payment',
-        :'funding_options' => :'funding_options'
+        :'funding_options' => :'funding_options',
+        :'language_code' => :'language_code',
+        :'purchase_options' => :'purchase_options'
       }
     end
 
@@ -73,7 +82,9 @@ module CyberSource
         :'payouts_options' => :'Ptsv2payoutsProcessingInformationPayoutsOptions',
         :'transaction_reason' => :'String',
         :'purpose_of_payment' => :'String',
-        :'funding_options' => :'Ptsv2payoutsProcessingInformationFundingOptions'
+        :'funding_options' => :'Ptsv2payoutsProcessingInformationFundingOptions',
+        :'language_code' => :'String',
+        :'purchase_options' => :'Ptsv2payoutsProcessingInformationPurchaseOptions'
       }
     end
 
@@ -115,6 +126,14 @@ module CyberSource
 
       if attributes.has_key?(:'fundingOptions')
         self.funding_options = attributes[:'fundingOptions']
+      end
+
+      if attributes.has_key?(:'languageCode')
+        self.language_code = attributes[:'languageCode']
+      end
+
+      if attributes.has_key?(:'purchaseOptions')
+        self.purchase_options = attributes[:'purchaseOptions']
       end
     end
 
@@ -167,6 +186,12 @@ module CyberSource
       @purpose_of_payment = purpose_of_payment
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] language_code Value to be assigned
+    def language_code=(language_code)
+      @language_code = language_code
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -179,7 +204,9 @@ module CyberSource
           payouts_options == o.payouts_options &&
           transaction_reason == o.transaction_reason &&
           purpose_of_payment == o.purpose_of_payment &&
-          funding_options == o.funding_options
+          funding_options == o.funding_options &&
+          language_code == o.language_code &&
+          purchase_options == o.purchase_options
     end
 
     # @see the `==` method
@@ -191,7 +218,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [business_application_id, network_routing_order, commerce_indicator, reconciliation_id, payouts_options, transaction_reason, purpose_of_payment, funding_options].hash
+      [business_application_id, network_routing_order, commerce_indicator, reconciliation_id, payouts_options, transaction_reason, purpose_of_payment, funding_options, language_code, purchase_options].hash
     end
 
     # Builds the object from hash

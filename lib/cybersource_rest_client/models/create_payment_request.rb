@@ -66,6 +66,8 @@ module CyberSource
 
     attr_accessor :recurring_payment_information
 
+    attr_accessor :unscheduled_payment_information
+
     attr_accessor :hosted_payment_information
 
     attr_accessor :watchlist_screening_information
@@ -99,6 +101,7 @@ module CyberSource
         :'risk_information' => :'riskInformation',
         :'acquirer_information' => :'acquirerInformation',
         :'recurring_payment_information' => :'recurringPaymentInformation',
+        :'unscheduled_payment_information' => :'unscheduledPaymentInformation',
         :'hosted_payment_information' => :'hostedPaymentInformation',
         :'watchlist_screening_information' => :'watchlistScreeningInformation'
       }
@@ -133,6 +136,7 @@ module CyberSource
         :'risk_information' => :'risk_information',
         :'acquirer_information' => :'acquirer_information',
         :'recurring_payment_information' => :'recurring_payment_information',
+        :'unscheduled_payment_information' => :'unscheduled_payment_information',
         :'hosted_payment_information' => :'hosted_payment_information',
         :'watchlist_screening_information' => :'watchlist_screening_information'
       }
@@ -167,6 +171,7 @@ module CyberSource
         :'risk_information' => :'Ptsv2paymentsRiskInformation',
         :'acquirer_information' => :'Ptsv2paymentsAcquirerInformation',
         :'recurring_payment_information' => :'Ptsv2paymentsRecurringPaymentInformation',
+        :'unscheduled_payment_information' => :'Ptsv2paymentsUnscheduledPaymentInformation',
         :'hosted_payment_information' => :'Ptsv2paymentsHostedPaymentInformation',
         :'watchlist_screening_information' => :'Ptsv2paymentsWatchlistScreeningInformation'
       }
@@ -286,6 +291,10 @@ module CyberSource
         self.recurring_payment_information = attributes[:'recurringPaymentInformation']
       end
 
+      if attributes.has_key?(:'unscheduledPaymentInformation')
+        self.unscheduled_payment_information = attributes[:'unscheduledPaymentInformation']
+      end
+
       if attributes.has_key?(:'hostedPaymentInformation')
         self.hosted_payment_information = attributes[:'hostedPaymentInformation']
       end
@@ -339,6 +348,7 @@ module CyberSource
           risk_information == o.risk_information &&
           acquirer_information == o.acquirer_information &&
           recurring_payment_information == o.recurring_payment_information &&
+          unscheduled_payment_information == o.unscheduled_payment_information &&
           hosted_payment_information == o.hosted_payment_information &&
           watchlist_screening_information == o.watchlist_screening_information
     end
@@ -352,7 +362,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_reference_information, processing_information, issuer_information, payment_information, order_information, buyer_information, sender_information, recipient_information, device_information, merchant_information, aggregator_information, consumer_authentication_information, point_of_sale_information, merchant_defined_information, merchant_defined_secure_information, installment_information, travel_information, health_care_information, promotion_information, token_information, invoice_details, processor_information, agreement_information, risk_information, acquirer_information, recurring_payment_information, hosted_payment_information, watchlist_screening_information].hash
+      [client_reference_information, processing_information, issuer_information, payment_information, order_information, buyer_information, sender_information, recipient_information, device_information, merchant_information, aggregator_information, consumer_authentication_information, point_of_sale_information, merchant_defined_information, merchant_defined_secure_information, installment_information, travel_information, health_care_information, promotion_information, token_information, invoice_details, processor_information, agreement_information, risk_information, acquirer_information, recurring_payment_information, unscheduled_payment_information, hosted_payment_information, watchlist_screening_information].hash
     end
 
     # Builds the object from hash

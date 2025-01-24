@@ -253,6 +253,12 @@ describe 'PtsV2PaymentsPost201ResponseConsumerAuthenticationInformation' do
     end
   end
 
+  describe 'test attribute "data_quality_indicator"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "authentication_result"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
