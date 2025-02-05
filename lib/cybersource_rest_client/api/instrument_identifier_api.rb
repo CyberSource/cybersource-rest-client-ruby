@@ -98,6 +98,7 @@ module CyberSource
     # @param instrument_identifier_id The Id of an Instrument Identifier.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
+    # @option opts [BOOLEAN] :retrieve_bin_details Retrieve the Bin Details of PAN or network token
     # @return [PostInstrumentIdentifierRequest]
     #
     def get_instrument_identifier(instrument_identifier_id, opts = {})
@@ -110,6 +111,7 @@ module CyberSource
     # @param instrument_identifier_id The Id of an Instrument Identifier.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
+    # @option opts [BOOLEAN] :retrieve_bin_details Retrieve the Bin Details of PAN or network token
     # @return [Array<(PostInstrumentIdentifierRequest, Fixnum, Hash)>] PostInstrumentIdentifierRequest data, response status code and response headers
     def get_instrument_identifier_with_http_info(instrument_identifier_id, opts = {})
 
@@ -130,6 +132,7 @@ module CyberSource
 
       # query parameters
       query_params = {}
+      query_params[:'retrieveBinDetails'] = opts[:'retrieve_bin_details'] if !opts[:'retrieve_bin_details'].nil?
 
       # header parameters
       header_params = {}
@@ -172,6 +175,7 @@ module CyberSource
     # @param instrument_identifier_id The Id of an Instrument Identifier.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
+    # @option opts [BOOLEAN] :retrieve_bin_details Retrieve the Bin Details of PAN or network token
     # @option opts [Integer] :offset Starting record in zero-based dataset that should be returned as the first object in the array. Default is 0. (default to 0)
     # @option opts [Integer] :limit The maximum number that can be returned in the array starting from the offset record in zero-based dataset. Default is 20, maximum is 100. (default to 20)
     # @return [PaymentInstrumentList1]
@@ -186,6 +190,7 @@ module CyberSource
     # @param instrument_identifier_id The Id of an Instrument Identifier.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
+    # @option opts [BOOLEAN] :retrieve_bin_details Retrieve the Bin Details of PAN or network token
     # @option opts [Integer] :offset Starting record in zero-based dataset that should be returned as the first object in the array. Default is 0.
     # @option opts [Integer] :limit The maximum number that can be returned in the array starting from the offset record in zero-based dataset. Default is 20, maximum is 100.
     # @return [Array<(PaymentInstrumentList1, Fixnum, Hash)>] PaymentInstrumentList1 data, response status code and response headers
@@ -208,6 +213,7 @@ module CyberSource
 
       # query parameters
       query_params = {}
+      query_params[:'retrieveBinDetails'] = opts[:'retrieve_bin_details'] if !opts[:'retrieve_bin_details'].nil?
       query_params[:'offset'] = opts[:'offset'] if !opts[:'offset'].nil?
       query_params[:'limit'] = opts[:'limit'] if !opts[:'limit'].nil?
 
@@ -253,6 +259,7 @@ module CyberSource
     # @param patch_instrument_identifier_request Specify the previous transaction Id to update.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
+    # @option opts [BOOLEAN] :retrieve_bin_details Retrieve the Bin Details of PAN or network token
     # @option opts [String] :if_match Contains an ETag value from a GET request to make the request conditional.
     # @return [PatchInstrumentIdentifierRequest]
     #
@@ -267,6 +274,7 @@ module CyberSource
     # @param patch_instrument_identifier_request Specify the previous transaction Id to update.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
+    # @option opts [BOOLEAN] :retrieve_bin_details Retrieve the Bin Details of PAN or network token
     # @option opts [String] :if_match Contains an ETag value from a GET request to make the request conditional.
     # @return [Array<(PatchInstrumentIdentifierRequest, Fixnum, Hash)>] PatchInstrumentIdentifierRequest data, response status code and response headers
     def patch_instrument_identifier_with_http_info(instrument_identifier_id, patch_instrument_identifier_request, opts = {})
@@ -292,6 +300,7 @@ module CyberSource
 
       # query parameters
       query_params = {}
+      query_params[:'retrieveBinDetails'] = opts[:'retrieve_bin_details'] if !opts[:'retrieve_bin_details'].nil?
 
       # header parameters
       header_params = {}
@@ -333,6 +342,7 @@ module CyberSource
     # @param post_instrument_identifier_request Specify either a Card, Bank Account or Enrollable Card
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
+    # @option opts [BOOLEAN] :retrieve_bin_details Retrieve the Bin Details of PAN or network token
     # @return [PostInstrumentIdentifierRequest]
     #
     def post_instrument_identifier(post_instrument_identifier_request, opts = {})
@@ -345,6 +355,7 @@ module CyberSource
     # @param post_instrument_identifier_request Specify either a Card, Bank Account or Enrollable Card
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
+    # @option opts [BOOLEAN] :retrieve_bin_details Retrieve the Bin Details of PAN or network token
     # @return [Array<(PostInstrumentIdentifierRequest, Fixnum, Hash)>] PostInstrumentIdentifierRequest data, response status code and response headers
     def post_instrument_identifier_with_http_info(post_instrument_identifier_request, opts = {})
 
@@ -365,6 +376,7 @@ module CyberSource
 
       # query parameters
       query_params = {}
+      query_params[:'retrieveBinDetails'] = opts[:'retrieve_bin_details'] if !opts[:'retrieve_bin_details'].nil?
 
       # header parameters
       header_params = {}

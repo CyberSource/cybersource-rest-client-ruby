@@ -3,6 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**card_art** | [**Tmsv2TokenizedCardMetadataCardArt**](Tmsv2TokenizedCardMetadataCardArt.md) |  | [optional] 
+**card_art** | [**TmsCardArt**](TmsCardArt.md) |  | [optional] 
+**issuer** | [**Tmsv2TokenizedCardMetadataIssuer**](Tmsv2TokenizedCardMetadataIssuer.md) |  | [optional] 
 
 

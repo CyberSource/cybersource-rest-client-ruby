@@ -50,6 +50,7 @@ describe 'PaymentInstrumentApi' do
   # @param payment_instrument_id The Id of a payment instrument.
   # @param [Hash] opts the optional parameters
   # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
+  # @option opts [BOOLEAN] :retrieve_bin_details Retrieve the Bin Details of PAN or network token
   # @return [PostPaymentInstrumentRequest]
   describe 'get_payment_instrument test' do
     it 'should work' do
@@ -64,6 +65,7 @@ describe 'PaymentInstrumentApi' do
   # @param patch_payment_instrument_request 
   # @param [Hash] opts the optional parameters
   # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
+  # @option opts [BOOLEAN] :retrieve_bin_details Retrieve the Bin Details of PAN or network token
   # @option opts [String] :if_match Contains an ETag value from a GET request to make the request conditional.
   # @return [PatchPaymentInstrumentRequest]
   describe 'patch_payment_instrument test' do
@@ -78,6 +80,7 @@ describe 'PaymentInstrumentApi' do
   # @param post_payment_instrument_request 
   # @param [Hash] opts the optional parameters
   # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
+  # @option opts [BOOLEAN] :retrieve_bin_details Retrieve the Bin Details of PAN or network token
   # @return [PostPaymentInstrumentRequest]
   describe 'post_payment_instrument test' do
     it 'should work' do

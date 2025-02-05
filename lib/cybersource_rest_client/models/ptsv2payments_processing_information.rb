@@ -119,6 +119,18 @@ module CyberSource
     # The instruction to process an order. - default value: 'NO_INSTRUCTION' - 'ORDER_SAVED_EXPLICITLY' 
     attr_accessor :processing_instruction
 
+    # This field is used identify the type of payment transaction taking place. This field is applicable for MasterCard transactions only. Possible values: - 201- Mastercard Rebate - 202- rePower Load Value - 203- Gaming Re-pay - 204- General Person-to-Person - 205- General Transfer to Own Account - 206- Agent Cash Out - 207- Payment of Own Credit Card Bill - 208- Business Disbursement - 209- Government/Non-Profit Disbursement - 210- Rapid Merchant Settlement - 211- Cash in at ATM (Usage limited to specific countries) - 212- Cash in at Point of Sale (Usage limited to specific countries) - 213- General Business to Business Transfer - 214- Mastercard Merchant Presented QR - 215- Mastercard Merchant Presented QR Refund Payment - 216- Utility Payments (for Brazil domestic use only) - 217- Government Services (for Brazil domestic use only) - 218- Mobile phone top-ups (for Brazil domestic use only) - 219- Coupon booklet payments (for Brazil domestic use only) - 220- General Person-to-Person Transfer - 221- Person-to-Person Transfer to Card Account - 222- General Transfer to Own Account - 223- Agent Cash Out - 224- Payment of Own Credit Card Bill - 225- Business Disbursement - 226- Transfer to Own Staged Digital Wallet Account - 227- Transfer to Own Debit or Prepaid Account - 228- General Business-to-Business Transfer - 229- Installment-based repayment - 230- Mastercard ATM Cash Pick-Up Transaction - 231- Cryptocurrency - 232- High-risk Securities 
+    attr_accessor :transaction_type_indicator
+
+    #  Possible values: - `16` :  High Risk Security  Other values can also be accommodated in future for different transactions.  Currently this field is only used in OCT, we could not find any existing valid values for the past 30 days in production. Issuer may decline invalid purpose of payment code with response code 93.  This field is also applicable for AFT transactions. For list of supported values, please refer to Developer Guide. 
+    attr_accessor :purpose_of_payment
+
+    # Contains the ISO 639-2 defined language Code 
+    attr_accessor :language_code
+
+    # This value is used for linking Authorization extension transaction to the original Authorization transaction  and for linking MIT (Merchant initiated transaction) with the respective CIT (Customer initiated transaction). 
+    attr_accessor :original_payment_id
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -159,7 +171,11 @@ module CyberSource
         :'network_partner_id' => :'networkPartnerId',
         :'payment_type' => :'paymentType',
         :'enabler_id' => :'enablerId',
-        :'processing_instruction' => :'processingInstruction'
+        :'processing_instruction' => :'processingInstruction',
+        :'transaction_type_indicator' => :'transactionTypeIndicator',
+        :'purpose_of_payment' => :'purposeOfPayment',
+        :'language_code' => :'languageCode',
+        :'original_payment_id' => :'originalPaymentId'
       }
     end
 
@@ -203,7 +219,11 @@ module CyberSource
         :'network_partner_id' => :'network_partner_id',
         :'payment_type' => :'payment_type',
         :'enabler_id' => :'enabler_id',
-        :'processing_instruction' => :'processing_instruction'
+        :'processing_instruction' => :'processing_instruction',
+        :'transaction_type_indicator' => :'transaction_type_indicator',
+        :'purpose_of_payment' => :'purpose_of_payment',
+        :'language_code' => :'language_code',
+        :'original_payment_id' => :'original_payment_id'
       }
     end
 
@@ -247,7 +267,11 @@ module CyberSource
         :'network_partner_id' => :'String',
         :'payment_type' => :'String',
         :'enabler_id' => :'String',
-        :'processing_instruction' => :'String'
+        :'processing_instruction' => :'String',
+        :'transaction_type_indicator' => :'String',
+        :'purpose_of_payment' => :'String',
+        :'language_code' => :'String',
+        :'original_payment_id' => :'String'
       }
     end
 
@@ -416,6 +440,22 @@ module CyberSource
       if attributes.has_key?(:'processingInstruction')
         self.processing_instruction = attributes[:'processingInstruction']
       end
+
+      if attributes.has_key?(:'transactionTypeIndicator')
+        self.transaction_type_indicator = attributes[:'transactionTypeIndicator']
+      end
+
+      if attributes.has_key?(:'purposeOfPayment')
+        self.purpose_of_payment = attributes[:'purposeOfPayment']
+      end
+
+      if attributes.has_key?(:'languageCode')
+        self.language_code = attributes[:'languageCode']
+      end
+
+      if attributes.has_key?(:'originalPaymentId')
+        self.original_payment_id = attributes[:'originalPaymentId']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -557,6 +597,30 @@ module CyberSource
       @processing_instruction = processing_instruction
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] transaction_type_indicator Value to be assigned
+    def transaction_type_indicator=(transaction_type_indicator)
+      @transaction_type_indicator = transaction_type_indicator
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] purpose_of_payment Value to be assigned
+    def purpose_of_payment=(purpose_of_payment)
+      @purpose_of_payment = purpose_of_payment
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] language_code Value to be assigned
+    def language_code=(language_code)
+      @language_code = language_code
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] original_payment_id Value to be assigned
+    def original_payment_id=(original_payment_id)
+      @original_payment_id = original_payment_id
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -599,7 +663,11 @@ module CyberSource
           network_partner_id == o.network_partner_id &&
           payment_type == o.payment_type &&
           enabler_id == o.enabler_id &&
-          processing_instruction == o.processing_instruction
+          processing_instruction == o.processing_instruction &&
+          transaction_type_indicator == o.transaction_type_indicator &&
+          purpose_of_payment == o.purpose_of_payment &&
+          language_code == o.language_code &&
+          original_payment_id == o.original_payment_id
     end
 
     # @see the `==` method
@@ -611,7 +679,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [action_list, enable_escrow_option, action_token_types, bin_source, capture, processor_id, business_application_id, commerce_indicator, commerce_indicator_label, payment_solution, reconciliation_id, link_id, purchase_level, transaction_timeout, intents_id, report_group, visa_checkout_id, industry_data_type, authorization_options, capture_options, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, wallet_type, national_net_domestic_data, japan_payment_options, mobile_remote_payment_type, extended_credit_total_count, network_routing_order, pay_by_points_indicator, timeout, is_return_auth_record_enabled, network_partner_id, payment_type, enabler_id, processing_instruction].hash
+      [action_list, enable_escrow_option, action_token_types, bin_source, capture, processor_id, business_application_id, commerce_indicator, commerce_indicator_label, payment_solution, reconciliation_id, link_id, purchase_level, transaction_timeout, intents_id, report_group, visa_checkout_id, industry_data_type, authorization_options, capture_options, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, wallet_type, national_net_domestic_data, japan_payment_options, mobile_remote_payment_type, extended_credit_total_count, network_routing_order, pay_by_points_indicator, timeout, is_return_auth_record_enabled, network_partner_id, payment_type, enabler_id, processing_instruction, transaction_type_indicator, purpose_of_payment, language_code, original_payment_id].hash
     end
 
     # Builds the object from hash

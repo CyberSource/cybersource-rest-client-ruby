@@ -50,6 +50,7 @@ describe 'InstrumentIdentifierApi' do
   # @param instrument_identifier_id The Id of an Instrument Identifier.
   # @param [Hash] opts the optional parameters
   # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
+  # @option opts [BOOLEAN] :retrieve_bin_details Retrieve the Bin Details of PAN or network token
   # @return [PostInstrumentIdentifierRequest]
   describe 'get_instrument_identifier test' do
     it 'should work' do
@@ -63,6 +64,7 @@ describe 'InstrumentIdentifierApi' do
   # @param instrument_identifier_id The Id of an Instrument Identifier.
   # @param [Hash] opts the optional parameters
   # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
+  # @option opts [BOOLEAN] :retrieve_bin_details Retrieve the Bin Details of PAN or network token
   # @option opts [Integer] :offset Starting record in zero-based dataset that should be returned as the first object in the array. Default is 0.
   # @option opts [Integer] :limit The maximum number that can be returned in the array starting from the offset record in zero-based dataset. Default is 20, maximum is 100.
   # @return [PaymentInstrumentList1]
@@ -79,6 +81,7 @@ describe 'InstrumentIdentifierApi' do
   # @param patch_instrument_identifier_request Specify the previous transaction Id to update.
   # @param [Hash] opts the optional parameters
   # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
+  # @option opts [BOOLEAN] :retrieve_bin_details Retrieve the Bin Details of PAN or network token
   # @option opts [String] :if_match Contains an ETag value from a GET request to make the request conditional.
   # @return [PatchInstrumentIdentifierRequest]
   describe 'patch_instrument_identifier test' do
@@ -93,6 +96,7 @@ describe 'InstrumentIdentifierApi' do
   # @param post_instrument_identifier_request Specify either a Card, Bank Account or Enrollable Card
   # @param [Hash] opts the optional parameters
   # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
+  # @option opts [BOOLEAN] :retrieve_bin_details Retrieve the Bin Details of PAN or network token
   # @return [PostInstrumentIdentifierRequest]
   describe 'post_instrument_identifier test' do
     it 'should work' do

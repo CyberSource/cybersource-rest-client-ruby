@@ -31,7 +31,7 @@ describe 'Tmsv2TokenizedCardCard' do
       expect(@instance).to be_instance_of(CyberSource::Tmsv2TokenizedCardCard)
     end
   end
-  describe 'test attribute "suffix"' do
+  describe 'test attribute "number"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -44,6 +44,18 @@ describe 'Tmsv2TokenizedCardCard' do
   end
 
   describe 'test attribute "expiration_year"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "type"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "suffix"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

@@ -34,6 +34,17 @@ module CyberSource
     # The country associated with the address of the sender. This field is applicable for AFT transactions.   Must be a two character ISO country code.  For example, see [ISO Country Code](https://developer.cybersource.com/docs/cybs/en-us/country-codes/reference/all/na/country-codes/country-codes.html) 
     attr_accessor :country_code
 
+    # Sender's alias name.
+    attr_accessor :alias_name
+
+    # This field is applicable for AFT transactions.   Contains a transaction reference number provided by the Merchant. Only alpha numeric values are supported. 
+    attr_accessor :reference_number
+
+    attr_accessor :account
+
+    # Postal code of sender. 
+    attr_accessor :postal_code
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -43,7 +54,11 @@ module CyberSource
         :'address1' => :'address1',
         :'locality' => :'locality',
         :'administrative_area' => :'administrativeArea',
-        :'country_code' => :'countryCode'
+        :'country_code' => :'countryCode',
+        :'alias_name' => :'aliasName',
+        :'reference_number' => :'referenceNumber',
+        :'account' => :'account',
+        :'postal_code' => :'postalCode'
       }
     end
 
@@ -56,7 +71,11 @@ module CyberSource
         :'address1' => :'address1',
         :'locality' => :'locality',
         :'administrative_area' => :'administrative_area',
-        :'country_code' => :'country_code'
+        :'country_code' => :'country_code',
+        :'alias_name' => :'alias_name',
+        :'reference_number' => :'reference_number',
+        :'account' => :'account',
+        :'postal_code' => :'postal_code'
       }
     end
 
@@ -69,7 +88,11 @@ module CyberSource
         :'address1' => :'String',
         :'locality' => :'String',
         :'administrative_area' => :'String',
-        :'country_code' => :'String'
+        :'country_code' => :'String',
+        :'alias_name' => :'String',
+        :'reference_number' => :'String',
+        :'account' => :'Ptsv2paymentsSenderInformationAccount',
+        :'postal_code' => :'String'
       }
     end
 
@@ -107,6 +130,22 @@ module CyberSource
 
       if attributes.has_key?(:'countryCode')
         self.country_code = attributes[:'countryCode']
+      end
+
+      if attributes.has_key?(:'aliasName')
+        self.alias_name = attributes[:'aliasName']
+      end
+
+      if attributes.has_key?(:'referenceNumber')
+        self.reference_number = attributes[:'referenceNumber']
+      end
+
+      if attributes.has_key?(:'account')
+        self.account = attributes[:'account']
+      end
+
+      if attributes.has_key?(:'postalCode')
+        self.postal_code = attributes[:'postalCode']
       end
     end
 
@@ -165,6 +204,24 @@ module CyberSource
       @country_code = country_code
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] alias_name Value to be assigned
+    def alias_name=(alias_name)
+      @alias_name = alias_name
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] reference_number Value to be assigned
+    def reference_number=(reference_number)
+      @reference_number = reference_number
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] postal_code Value to be assigned
+    def postal_code=(postal_code)
+      @postal_code = postal_code
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -176,7 +233,11 @@ module CyberSource
           address1 == o.address1 &&
           locality == o.locality &&
           administrative_area == o.administrative_area &&
-          country_code == o.country_code
+          country_code == o.country_code &&
+          alias_name == o.alias_name &&
+          reference_number == o.reference_number &&
+          account == o.account &&
+          postal_code == o.postal_code
     end
 
     # @see the `==` method
@@ -188,7 +249,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [first_name, middle_name, last_name, address1, locality, administrative_area, country_code].hash
+      [first_name, middle_name, last_name, address1, locality, administrative_area, country_code, alias_name, reference_number, account, postal_code].hash
     end
 
     # Builds the object from hash

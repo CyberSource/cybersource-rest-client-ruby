@@ -61,4 +61,16 @@ describe 'PtsV2PaymentsPost201ResponseEmbeddedActions' do
     end
   end
 
+  describe 'test attribute "token_create"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "token_update"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

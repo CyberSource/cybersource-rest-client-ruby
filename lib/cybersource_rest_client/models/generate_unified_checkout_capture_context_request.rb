@@ -22,7 +22,7 @@ module CyberSource
     # The list of card networks you want to use for this Unified Checkout transaction.  Unified Checkout currently supports the following card networks:     - VISA     - MASTERCARD     - AMEX     - CARNET     - CARTESBANCAIRES     - CUP     - DINERSCLUB     - DISCOVER     - EFTPOS     - ELO     - JCB     - JCREW     - MADA     - MAESTRO     - MEEZA 
     attr_accessor :allowed_card_networks
 
-    # The payment types that are allowed for the merchant.    Possible values when launching Unified Checkout:   - PANENTRY                 - GOOGLEPAY   - SRC   - CHECK <br><br>  Possible values when launching Unified Checkout with Checkout API: - PANENTRY               - SRC <br><br>  Possible values when launching Click To Pay Drop-In UI: - CLICKTOPAY <br><br>  **Important:**    - SRC and CLICKTOPAY are only available for Visa, Mastercard and AMEX. 
+    # The payment types that are allowed for the merchant.    Possible values when launching Unified Checkout:   - APPLEPAY   - CHECK   - CLICKTOPAY   - GOOGLEPAY   - PANENTRY                 - PAZE <br><br>  Possible values when launching Click To Pay Drop-In UI: - CLICKTOPAY <br><br>  **Important:**    - CLICKTOPAY only available for Visa, Mastercard and AMEX for saved cards.   - Visa and Mastercard will look to tokenize using network tokenization for all Click to Pay requests.  Click to Pay uses Click to Pay token requester IDs and not the merchant's existing token requester.   - Apple Pay, Google Pay, Check, and Paze can be used independently without requiring PAN entry in the allowedPaymentTypes field. 
     attr_accessor :allowed_payment_types
 
     # Country the purchase is originating from (e.g. country of the merchant).  Use the two-character ISO Standard 
@@ -35,8 +35,6 @@ module CyberSource
 
     attr_accessor :order_information
 
-    attr_accessor :checkout_api_initialization
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -47,8 +45,7 @@ module CyberSource
         :'country' => :'country',
         :'locale' => :'locale',
         :'capture_mandate' => :'captureMandate',
-        :'order_information' => :'orderInformation',
-        :'checkout_api_initialization' => :'checkoutApiInitialization'
+        :'order_information' => :'orderInformation'
       }
     end
 
@@ -62,8 +59,7 @@ module CyberSource
         :'country' => :'country',
         :'locale' => :'locale',
         :'capture_mandate' => :'capture_mandate',
-        :'order_information' => :'order_information',
-        :'checkout_api_initialization' => :'checkout_api_initialization'
+        :'order_information' => :'order_information'
       }
     end
 
@@ -77,8 +73,7 @@ module CyberSource
         :'country' => :'String',
         :'locale' => :'String',
         :'capture_mandate' => :'Upv1capturecontextsCaptureMandate',
-        :'order_information' => :'Upv1capturecontextsOrderInformation',
-        :'checkout_api_initialization' => :'Upv1capturecontextsCheckoutApiInitialization'
+        :'order_information' => :'Upv1capturecontextsOrderInformation'
       }
     end
 
@@ -127,10 +122,6 @@ module CyberSource
       if attributes.has_key?(:'orderInformation')
         self.order_information = attributes[:'orderInformation']
       end
-
-      if attributes.has_key?(:'checkoutApiInitialization')
-        self.checkout_api_initialization = attributes[:'checkoutApiInitialization']
-      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -170,8 +161,7 @@ module CyberSource
           country == o.country &&
           locale == o.locale &&
           capture_mandate == o.capture_mandate &&
-          order_information == o.order_information &&
-          checkout_api_initialization == o.checkout_api_initialization
+          order_information == o.order_information
     end
 
     # @see the `==` method
@@ -183,7 +173,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_version, target_origins, allowed_card_networks, allowed_payment_types, country, locale, capture_mandate, order_information, checkout_api_initialization].hash
+      [client_version, target_origins, allowed_card_networks, allowed_payment_types, country, locale, capture_mandate, order_information].hash
     end
 
     # Builds the object from hash

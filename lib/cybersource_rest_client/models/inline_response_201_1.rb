@@ -58,8 +58,8 @@ module CyberSource
         :'id' => :'String',
         :'submit_time_utc' => :'String',
         :'status' => :'String',
-        :'payment_account_information' => :'InlineResponse2011PaymentAccountInformation',
-        :'issuer_information' => :'InlineResponse2011IssuerInformation',
+        :'payment_account_information' => :'TmsBinLookupPaymentAccountInformation',
+        :'issuer_information' => :'TmsBinLookupIssuerInformation',
         :'payout_information' => :'InlineResponse2011PayoutInformation'
       }
     end

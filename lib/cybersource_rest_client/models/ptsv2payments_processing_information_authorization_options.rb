@@ -31,7 +31,7 @@ module CyberSource
     # Flag that indicates whether the transaction is enabled for partial authorization. When the request includes this field, this value overrides the information in your account. Possible values: - `true`: Enable the transaction for partial authorization. - `false`: Do not enable the transaction for partial authorization.  #### PIN debit Required field for partial authorizations that use PIN debit purchase; otherwise, not used.  #### Used by **Authorization** Optional field.  #### CyberSource through VisaNet To set the default for this field, contact CyberSource Customer Support. The value for this field corresponds to the following data in the TC 33 capture file5: - Record: CP01 TCR0 - Position: 164 - Field: Additional Authorization Indicators 
     attr_accessor :partial_auth_indicator
 
-    # Flag that indicates whether the transaction is an extended authorization. 
+    # Indicates Authorization extension transaction. Extension transaction is used to prolong the settlement period by one additional settlement cycle period.  Possible values: - true: Transaction is an Authorization Extension transaction.  - false: Transaction is not an Authorization Extension transaction. 
     attr_accessor :extend_auth_indicator
 
     # Flag that indicates whether to return balance information.  Possible values: - `true`: Return balance information. - `false`: Do not return balance information.  #### Used by **Authorization** Required for a balance inquiry; otherwise, not used.  #### PIN debit Required for a balance inquiry request of a PIN debit purchase; otherwise, not used. 
@@ -51,7 +51,7 @@ module CyberSource
     # Indicates payment for bill or payment towards existing contractual loan.  Possible values: - `true`: Bill payment or loan payment. - `false` (default): Not a bill payment or loan payment.  Optional request field. 
     attr_accessor :bill_payment
 
-    # Reason for the payment.  Possible values: - 001: Utility payment - 002: Government services - 003: Mobile phone top-up - 004: Coupon payment - 005: Installment based repayment  The value for this field corresponds to the following data in the TC 33A capture file (applicable to Brazil): - Record: CP07 TCR0 - Position: 48-50 - Field: Bill Payment Transaction Type Identifier  The value for this field corresponds to the following data in the TC 33A capture file (applicable to Installment) based Repayment): - Record: CP01 TCR6 - Position: 154-156 - Field: Bill Payment Transaction Type Identifier   This field is supported for 1. Bill payments in Brazil with Mastercard on CyberSource through VisaNet. 2. Installment based repayment transactions on Cybersource through VisaNet. 
+    # Reason for the payment.  Possible values: - 001: Public utilities / Utility payment - 002: Government services - 003: Cellular / Mobile phone top-up - 004: Coupon payment - 005: Installment based repayment - 006: Billing payment - 007: Tax payment - 008: Tax payment refunds  The value for this field corresponds to the following data in the TC 33A capture file (applicable to Brazil): - Record: CP07 TCR0 - Position: 48-50 - Field: Bill Payment Transaction Type Identifier  The value for this field corresponds to the following data in the TC 33A capture file (applicable to Installment) based Repayment): - Record: CP01 TCR6 - Position: 154-156 - Field: Bill Payment Transaction Type Identifier   This field is supported for 1. Bill payments in Brazil with Mastercard on CyberSource through VisaNet. 2. Installment based repayment transactions on Cybersource through VisaNet. 
     attr_accessor :bill_payment_type
 
     # Flag that indicates the payment request is a redemption inquiry.  Possible values:   - `true`   - `false` 
@@ -78,8 +78,20 @@ module CyberSource
     # This API field will indicate whether a card verification check is being performed during the transaction  Possible values:   - `true`   - `false` (default value) 
     attr_accessor :card_verification_indicator
 
+    # Transaction mode identifier. Identifies the specific channel from which the transaction originates.  Possible values: - M – Mobile Order - T – Telephone Order 
+    attr_accessor :transaction_mode
+
     # Indicates whether the transaction is an Account Funding Transaction (AFT).  This field is mandatory for Account Funding Transactions (AFT).   Possible values:   - `true` (This is an AFT transaction)   - `false` (default value) (This is not an AFT transaction) 
     attr_accessor :aft_indicator
+
+    # Field is used for back-to-back funding transaction and can be defined as a payment flow that automatically transfers funds through a real-time  funding or a live-load. This type of transaction can also be connected to a purchase.  In back-to-back funding of general purpose card that is used to make a purchase, two separate accounts are involved:  - account one is used to make the purchase - account two is used to automatically fund or reimburse account one  Possible values: - 0B = back to back funding transaction - 00 = normal transaction - 01 = originator hold - 02 = Visa deferred OCT hold, default interval - 03 = Visa deferred OCT hold, user-defined interval - 09 = Cancel pending deferred OCT request - 0I = Visa Direct custom program 1 - 0Q = uery the status of the deferred OCT - A0 = Alias Directory 2 
+    attr_accessor :service_type
+
+    # Merchant to inform Cybersource whether a transaction is Money load with Balance Update.  Possible values:   - `true` (This is a Money load with balance update transaction)   - `false` (default value) (This is not a Money load with balance update transaction) 
+    attr_accessor :balance_update
+
+    # Merchant to inform Cybersource whether a transaction is Money load with Money load only.  Possible values:   - `true` (This is a money load transaction)   - `false` (default value) (This is not a money load transaction) 
+    attr_accessor :money_load
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -106,7 +118,11 @@ module CyberSource
         :'cash_advance_indicator' => :'cashAdvanceIndicator',
         :'split_payment_transaction' => :'splitPaymentTransaction',
         :'card_verification_indicator' => :'cardVerificationIndicator',
-        :'aft_indicator' => :'aftIndicator'
+        :'transaction_mode' => :'transactionMode',
+        :'aft_indicator' => :'aftIndicator',
+        :'service_type' => :'serviceType',
+        :'balance_update' => :'balanceUpdate',
+        :'money_load' => :'moneyLoad'
       }
     end
 
@@ -135,7 +151,11 @@ module CyberSource
         :'cash_advance_indicator' => :'cash_advance_indicator',
         :'split_payment_transaction' => :'split_payment_transaction',
         :'card_verification_indicator' => :'card_verification_indicator',
-        :'aft_indicator' => :'aft_indicator'
+        :'transaction_mode' => :'transaction_mode',
+        :'aft_indicator' => :'aft_indicator',
+        :'service_type' => :'service_type',
+        :'balance_update' => :'balance_update',
+        :'money_load' => :'money_load'
       }
     end
 
@@ -164,7 +184,11 @@ module CyberSource
         :'cash_advance_indicator' => :'BOOLEAN',
         :'split_payment_transaction' => :'BOOLEAN',
         :'card_verification_indicator' => :'BOOLEAN',
-        :'aft_indicator' => :'BOOLEAN'
+        :'transaction_mode' => :'String',
+        :'aft_indicator' => :'BOOLEAN',
+        :'service_type' => :'String',
+        :'balance_update' => :'BOOLEAN',
+        :'money_load' => :'BOOLEAN'
       }
     end
 
@@ -270,8 +294,24 @@ module CyberSource
         self.card_verification_indicator = attributes[:'cardVerificationIndicator']
       end
 
+      if attributes.has_key?(:'transactionMode')
+        self.transaction_mode = attributes[:'transactionMode']
+      end
+
       if attributes.has_key?(:'aftIndicator')
         self.aft_indicator = attributes[:'aftIndicator']
+      end
+
+      if attributes.has_key?(:'serviceType')
+        self.service_type = attributes[:'serviceType']
+      end
+
+      if attributes.has_key?(:'balanceUpdate')
+        self.balance_update = attributes[:'balanceUpdate']
+      end
+
+      if attributes.has_key?(:'moneyLoad')
+        self.money_load = attributes[:'moneyLoad']
       end
     end
 
@@ -318,6 +358,24 @@ module CyberSource
       @auth_indicator = auth_indicator
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] extend_auth_indicator Value to be assigned
+    def extend_auth_indicator=(extend_auth_indicator)
+      @extend_auth_indicator = extend_auth_indicator
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] transaction_mode Value to be assigned
+    def transaction_mode=(transaction_mode)
+      @transaction_mode = transaction_mode
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] service_type Value to be assigned
+    def service_type=(service_type)
+      @service_type = service_type
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -345,7 +403,11 @@ module CyberSource
           cash_advance_indicator == o.cash_advance_indicator &&
           split_payment_transaction == o.split_payment_transaction &&
           card_verification_indicator == o.card_verification_indicator &&
-          aft_indicator == o.aft_indicator
+          transaction_mode == o.transaction_mode &&
+          aft_indicator == o.aft_indicator &&
+          service_type == o.service_type &&
+          balance_update == o.balance_update &&
+          money_load == o.money_load
     end
 
     # @see the `==` method
@@ -357,7 +419,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [auth_type, pan_return_indicator, verbal_auth_code, verbal_auth_transaction_id, auth_indicator, partial_auth_indicator, extend_auth_indicator, balance_inquiry, ignore_avs_result, decline_avs_flags, ignore_cv_result, initiator, bill_payment, bill_payment_type, redemption_inquiry, transportation_mode, aggregated_auth_indicator, debt_recovery_indicator, deferred_auth_indicator, cash_advance_indicator, split_payment_transaction, card_verification_indicator, aft_indicator].hash
+      [auth_type, pan_return_indicator, verbal_auth_code, verbal_auth_transaction_id, auth_indicator, partial_auth_indicator, extend_auth_indicator, balance_inquiry, ignore_avs_result, decline_avs_flags, ignore_cv_result, initiator, bill_payment, bill_payment_type, redemption_inquiry, transportation_mode, aggregated_auth_indicator, debt_recovery_indicator, deferred_auth_indicator, cash_advance_indicator, split_payment_transaction, card_verification_indicator, transaction_mode, aft_indicator, service_type, balance_update, money_load].hash
     end
 
     # Builds the object from hash

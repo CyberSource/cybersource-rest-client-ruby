@@ -67,6 +67,9 @@ module CyberSource
     # Indicates whether the card is regulated according to the Durbin Amendment. If the card is regulated, the card issuer is subject to price caps and interchange rules. This field is supported for Visa, Mastercard, Discover, Diners Club, and JCB on Chase Paymentech Solutions. Possible values:   - `Y`: Yes  - `N`: No  - `X`: Not applicable / Unknown 
     attr_accessor :regulated
 
+    # This is the account owner information, valid values are: - `01` : primary account holder - `02` : secondary account holder This is returned in the response of an account verification transaction by the Issuer.  
+    attr_accessor :account_holder_type
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -87,7 +90,8 @@ module CyberSource
         :'pinless_debit' => :'pinlessDebit',
         :'signature_debit' => :'signatureDebit',
         :'prepaid' => :'prepaid',
-        :'regulated' => :'regulated'
+        :'regulated' => :'regulated',
+        :'account_holder_type' => :'accountHolderType'
       }
     end
 
@@ -111,7 +115,8 @@ module CyberSource
         :'pinless_debit' => :'pinless_debit',
         :'signature_debit' => :'signature_debit',
         :'prepaid' => :'prepaid',
-        :'regulated' => :'regulated'
+        :'regulated' => :'regulated',
+        :'account_holder_type' => :'account_holder_type'
       }
     end
 
@@ -135,7 +140,8 @@ module CyberSource
         :'pinless_debit' => :'String',
         :'signature_debit' => :'String',
         :'prepaid' => :'String',
-        :'regulated' => :'String'
+        :'regulated' => :'String',
+        :'account_holder_type' => :'String'
       }
     end
 
@@ -219,6 +225,10 @@ module CyberSource
 
       if attributes.has_key?(:'regulated')
         self.regulated = attributes[:'regulated']
+      end
+
+      if attributes.has_key?(:'accountHolderType')
+        self.account_holder_type = attributes[:'accountHolderType']
       end
     end
 
@@ -337,6 +347,12 @@ module CyberSource
       @regulated = regulated
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] account_holder_type Value to be assigned
+    def account_holder_type=(account_holder_type)
+      @account_holder_type = account_holder_type
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -359,7 +375,8 @@ module CyberSource
           pinless_debit == o.pinless_debit &&
           signature_debit == o.signature_debit &&
           prepaid == o.prepaid &&
-          regulated == o.regulated
+          regulated == o.regulated &&
+          account_holder_type == o.account_holder_type
     end
 
     # @see the `==` method
@@ -371,7 +388,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [account_type, account_status, balances, balance_amount, balance_amount_type, currency, balance_sign, affluence_indicator, category, commercial, group, health_care, payroll, level3_eligible, pinless_debit, signature_debit, prepaid, regulated].hash
+      [account_type, account_status, balances, balance_amount, balance_amount_type, currency, balance_sign, affluence_indicator, category, commercial, group, health_care, payroll, level3_eligible, pinless_debit, signature_debit, prepaid, regulated, account_holder_type].hash
     end
 
     # Builds the object from hash

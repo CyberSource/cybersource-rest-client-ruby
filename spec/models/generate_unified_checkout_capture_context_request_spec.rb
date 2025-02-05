@@ -79,10 +79,4 @@ describe 'GenerateUnifiedCheckoutCaptureContextRequest' do
     end
   end
 
-  describe 'test attribute "checkout_api_initialization"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
 end

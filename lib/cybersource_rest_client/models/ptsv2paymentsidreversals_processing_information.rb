@@ -33,6 +33,9 @@ module CyberSource
     # Array of actions (one or more) to be included in the reversal Possible value: - `AP_AUTH_REVERSAL`: Use this when you want to reverse an Alternative Payment Authorization. 
     attr_accessor :action_list
 
+    # This field is used identify the type of payment transaction taking place. This field is applicable for MasterCard transactions only. Possible values: - 201- Mastercard Rebate - 202- rePower Load Value - 203- Gaming Re-pay - 204- General Person-to-Person - 205- General Transfer to Own Account - 206- Agent Cash Out - 207- Payment of Own Credit Card Bill - 208- Business Disbursement - 209- Government/Non-Profit Disbursement - 210- Rapid Merchant Settlement - 211- Cash in at ATM (Usage limited to specific countries) - 212- Cash in at Point of Sale (Usage limited to specific countries) - 213- General Business to Business Transfer - 214- Mastercard Merchant Presented QR - 215- Mastercard Merchant Presented QR Refund Payment - 216- Utility Payments (for Brazil domestic use only) - 217- Government Services (for Brazil domestic use only) - 218- Mobile phone top-ups (for Brazil domestic use only) - 219- Coupon booklet payments (for Brazil domestic use only) - 220- General Person-to-Person Transfer - 221- Person-to-Person Transfer to Card Account - 222- General Transfer to Own Account - 223- Agent Cash Out - 224- Payment of Own Credit Card Bill - 225- Business Disbursement - 226- Transfer to Own Staged Digital Wallet Account - 227- Transfer to Own Debit or Prepaid Account - 228- General Business-to-Business Transfer - 229- Installment-based repayment - 230- Mastercard ATM Cash Pick-Up Transaction - 231- Cryptocurrency - 232- High-risk Securities 
+    attr_accessor :transaction_type_indicator
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -42,7 +45,8 @@ module CyberSource
         :'report_group' => :'reportGroup',
         :'visa_checkout_id' => :'visaCheckoutId',
         :'issuer' => :'issuer',
-        :'action_list' => :'actionList'
+        :'action_list' => :'actionList',
+        :'transaction_type_indicator' => :'transactionTypeIndicator'
       }
     end
 
@@ -55,7 +59,8 @@ module CyberSource
         :'report_group' => :'report_group',
         :'visa_checkout_id' => :'visa_checkout_id',
         :'issuer' => :'issuer',
-        :'action_list' => :'action_list'
+        :'action_list' => :'action_list',
+        :'transaction_type_indicator' => :'transaction_type_indicator'
       }
     end
 
@@ -68,7 +73,8 @@ module CyberSource
         :'report_group' => :'String',
         :'visa_checkout_id' => :'String',
         :'issuer' => :'Ptsv2paymentsIssuerInformation',
-        :'action_list' => :'Array<String>'
+        :'action_list' => :'Array<String>',
+        :'transaction_type_indicator' => :'String'
       }
     end
 
@@ -108,6 +114,10 @@ module CyberSource
         if (value = attributes[:'actionList']).is_a?(Array)
           self.action_list = value
         end
+      end
+
+      if attributes.has_key?(:'transactionTypeIndicator')
+        self.transaction_type_indicator = attributes[:'transactionTypeIndicator']
       end
     end
 
@@ -154,6 +164,12 @@ module CyberSource
       @visa_checkout_id = visa_checkout_id
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] transaction_type_indicator Value to be assigned
+    def transaction_type_indicator=(transaction_type_indicator)
+      @transaction_type_indicator = transaction_type_indicator
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -165,7 +181,8 @@ module CyberSource
           report_group == o.report_group &&
           visa_checkout_id == o.visa_checkout_id &&
           issuer == o.issuer &&
-          action_list == o.action_list
+          action_list == o.action_list &&
+          transaction_type_indicator == o.transaction_type_indicator
     end
 
     # @see the `==` method
@@ -177,7 +194,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [payment_solution, reconciliation_id, link_id, report_group, visa_checkout_id, issuer, action_list].hash
+      [payment_solution, reconciliation_id, link_id, report_group, visa_checkout_id, issuer, action_list, transaction_type_indicator].hash
     end
 
     # Builds the object from hash

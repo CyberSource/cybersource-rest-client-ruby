@@ -40,6 +40,21 @@ module CyberSource
     # Recipient phone number. Required only for FDCCompass.
     attr_accessor :phone_number
 
+    # Account owner alias name. 
+    attr_accessor :alias_name
+
+    # Account Owner Nationality
+    attr_accessor :nationality
+
+    # Account Owner Country of Birth
+    attr_accessor :country_of_birth
+
+    # Account Owner Occupation
+    attr_accessor :occupation
+
+    # Account Owner email address
+    attr_accessor :email
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -51,7 +66,12 @@ module CyberSource
         :'administrative_area' => :'administrativeArea',
         :'country' => :'country',
         :'postal_code' => :'postalCode',
-        :'phone_number' => :'phoneNumber'
+        :'phone_number' => :'phoneNumber',
+        :'alias_name' => :'aliasName',
+        :'nationality' => :'nationality',
+        :'country_of_birth' => :'countryOfBirth',
+        :'occupation' => :'occupation',
+        :'email' => :'email'
       }
     end
 
@@ -66,7 +86,12 @@ module CyberSource
         :'administrative_area' => :'administrative_area',
         :'country' => :'country',
         :'postal_code' => :'postal_code',
-        :'phone_number' => :'phone_number'
+        :'phone_number' => :'phone_number',
+        :'alias_name' => :'alias_name',
+        :'nationality' => :'nationality',
+        :'country_of_birth' => :'country_of_birth',
+        :'occupation' => :'occupation',
+        :'email' => :'email'
       }
     end
 
@@ -81,7 +106,12 @@ module CyberSource
         :'administrative_area' => :'String',
         :'country' => :'String',
         :'postal_code' => :'String',
-        :'phone_number' => :'String'
+        :'phone_number' => :'String',
+        :'alias_name' => :'String',
+        :'nationality' => :'String',
+        :'country_of_birth' => :'String',
+        :'occupation' => :'String',
+        :'email' => :'String'
       }
     end
 
@@ -127,6 +157,26 @@ module CyberSource
 
       if attributes.has_key?(:'phoneNumber')
         self.phone_number = attributes[:'phoneNumber']
+      end
+
+      if attributes.has_key?(:'aliasName')
+        self.alias_name = attributes[:'aliasName']
+      end
+
+      if attributes.has_key?(:'nationality')
+        self.nationality = attributes[:'nationality']
+      end
+
+      if attributes.has_key?(:'countryOfBirth')
+        self.country_of_birth = attributes[:'countryOfBirth']
+      end
+
+      if attributes.has_key?(:'occupation')
+        self.occupation = attributes[:'occupation']
+      end
+
+      if attributes.has_key?(:'email')
+        self.email = attributes[:'email']
       end
     end
 
@@ -197,6 +247,36 @@ module CyberSource
       @phone_number = phone_number
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] alias_name Value to be assigned
+    def alias_name=(alias_name)
+      @alias_name = alias_name
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] nationality Value to be assigned
+    def nationality=(nationality)
+      @nationality = nationality
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] country_of_birth Value to be assigned
+    def country_of_birth=(country_of_birth)
+      @country_of_birth = country_of_birth
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] occupation Value to be assigned
+    def occupation=(occupation)
+      @occupation = occupation
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] email Value to be assigned
+    def email=(email)
+      @email = email
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -210,7 +290,12 @@ module CyberSource
           administrative_area == o.administrative_area &&
           country == o.country &&
           postal_code == o.postal_code &&
-          phone_number == o.phone_number
+          phone_number == o.phone_number &&
+          alias_name == o.alias_name &&
+          nationality == o.nationality &&
+          country_of_birth == o.country_of_birth &&
+          occupation == o.occupation &&
+          email == o.email
     end
 
     # @see the `==` method
@@ -222,7 +307,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [first_name, middle_name, last_name, address1, locality, administrative_area, country, postal_code, phone_number].hash
+      [first_name, middle_name, last_name, address1, locality, administrative_area, country, postal_code, phone_number, alias_name, nationality, country_of_birth, occupation, email].hash
     end
 
     # Builds the object from hash

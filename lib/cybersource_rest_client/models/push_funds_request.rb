@@ -60,7 +60,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'aggregator_information' => :'Ptsv1pushfundstransferAggregatorInformation',
+        :'aggregator_information' => :'Ptsv2payoutsAggregatorInformation',
         :'client_reference_information' => :'Ptsv1pushfundstransferClientReferenceInformation',
         :'order_information' => :'Ptsv1pushfundstransferOrderInformation',
         :'processing_information' => :'Ptsv1pushfundstransferProcessingInformation',

@@ -66,6 +66,9 @@ module CyberSource
     # #### Visa Platform Connect This tag will contain an acquirer-populated value associated with the API : senderInformation.personalIdType which will identify the personal ID type of the sender. 
     attr_accessor :identification_number
 
+    # Sender's alias name.
+    attr_accessor :alias_name
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -86,7 +89,8 @@ module CyberSource
         :'vat_registration_number' => :'vatRegistrationNumber',
         :'personal_id_type' => :'personalIdType',
         :'type' => :'type',
-        :'identification_number' => :'identificationNumber'
+        :'identification_number' => :'identificationNumber',
+        :'alias_name' => :'aliasName'
       }
     end
 
@@ -110,7 +114,8 @@ module CyberSource
         :'vat_registration_number' => :'vat_registration_number',
         :'personal_id_type' => :'personal_id_type',
         :'type' => :'type',
-        :'identification_number' => :'identification_number'
+        :'identification_number' => :'identification_number',
+        :'alias_name' => :'alias_name'
       }
     end
 
@@ -134,7 +139,8 @@ module CyberSource
         :'vat_registration_number' => :'String',
         :'personal_id_type' => :'String',
         :'type' => :'String',
-        :'identification_number' => :'String'
+        :'identification_number' => :'String',
+        :'alias_name' => :'String'
       }
     end
 
@@ -216,6 +222,10 @@ module CyberSource
 
       if attributes.has_key?(:'identificationNumber')
         self.identification_number = attributes[:'identificationNumber']
+      end
+
+      if attributes.has_key?(:'aliasName')
+        self.alias_name = attributes[:'aliasName']
       end
     end
 
@@ -334,6 +344,12 @@ module CyberSource
       @identification_number = identification_number
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] alias_name Value to be assigned
+    def alias_name=(alias_name)
+      @alias_name = alias_name
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -356,7 +372,8 @@ module CyberSource
           vat_registration_number == o.vat_registration_number &&
           personal_id_type == o.personal_id_type &&
           type == o.type &&
-          identification_number == o.identification_number
+          identification_number == o.identification_number &&
+          alias_name == o.alias_name
     end
 
     # @see the `==` method
@@ -368,7 +385,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [reference_number, account, first_name, middle_initial, middle_name, last_name, name, address1, locality, administrative_area, country_code, postal_code, phone_number, date_of_birth, vat_registration_number, personal_id_type, type, identification_number].hash
+      [reference_number, account, first_name, middle_initial, middle_name, last_name, name, address1, locality, administrative_area, country_code, postal_code, phone_number, date_of_birth, vat_registration_number, personal_id_type, type, identification_number, alias_name].hash
     end
 
     # Builds the object from hash
