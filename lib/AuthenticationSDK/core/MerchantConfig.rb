@@ -46,9 +46,14 @@ public
     @defaultCustomHeaders = cybsPropertyObj['defaultCustomHeaders']
     # Path to client JWE pem file directory
     @pemFileDirectory = cybsPropertyObj['pemFileDirectory']
-    validateMerchantDetails()
+    @mleKeyAlias = cybsPropertyObj['mleKeyAlias']
+    @useMLEGlobally = cybsPropertyObj['useMLEGlobally']
+    @mapToControlMLEonAPI = cybsPropertyObj['mapToControlMLEonAPI']
+    validateMerchantDetails
     logAllProperties(cybsPropertyObj)
+    validateMLEConfiguration
     end
+
     #fall back logic
     def validateMerchantDetails()
       logmessage=''
@@ -225,6 +230,44 @@ public
       end
     end
 
+    def validateMLEConfiguration
+      unless [true, false].include?(@useMLEGlobally)
+        err = StandardError.new(Constants::ERROR_PREFIX + "useMLEGlobally must be a boolean")
+        @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+        raise err
+      end
+      if !@mapToControlMLEonAPI.nil? && !@mapToControlMLEonAPI.is_a?(Hash)
+        err = StandardError.new(Constants::ERROR_PREFIX + "mapToControlMLEonAPI must be a map")
+        @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+        raise err
+      end
+
+      !@mleKeyAlias.nil? && unless @mleKeyAlias.instance_of? String
+                              (err = StandardError.new(Constants::ERROR_PREFIX + "mleKeyAlias must be a string"))
+                              @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+                              raise err
+                            end
+      if @mleKeyAlias.to_s.empty?
+        @mleKeyAlias = Constants::DEFAULT_ALIAS_FOR_MLE_CERT
+      end
+
+      mle_configured = @useMLEGlobally
+      if !@mapToControlMLEonAPI.nil? && !@mapToControlMLEonAPI.empty?
+        @mapToControlMLEonAPI.each do |_, value|
+          unless [true, false].include?(value) && value
+            mle_configured = true
+            break
+          end
+        end
+      end
+
+      if mle_configured && !Constants::AUTH_TYPE_JWT.eql?(@authenticationType)
+        err = StandardError.new(Constants::ERROR_PREFIX + "MLE can only be used with JWT authentication")
+        @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+        raise
+      end
+    end
+
     def logAllProperties(propertyObj)
       merchantConfig = ''
       hiddenProperties = (Constants::HIDDEN_MERCHANT_PROPERTIES).split(',')
@@ -278,4 +321,7 @@ public
     attr_accessor :solutionId
     attr_accessor :defaultCustomHeaders
     attr_accessor :pemFileDirectory
+    attr_accessor :useMLEGlobally
+    attr_accessor :mapToControlMLEonAPI
+    attr_accessor :mleKeyAlias
   end

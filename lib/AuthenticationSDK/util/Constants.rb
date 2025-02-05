@@ -165,4 +165,8 @@
       REFRESH_TOKEN_EMPTY = 'RefreshToken is Empty/Null' unless const_defined?(:REFRESH_TOKEN_REQ)
 
       DEPRECATED_ENVIRONMENT = 'The value provided for this field `RunEnvironment` has been deprecated and will not be used anymore.\n\nPlease refer to the README file [ https://github.com/CyberSource/cybersource-rest-samples-node/blob/master/README.md ] for information about the new values that are accepted.'
+
+      DEFAULT_ALIAS_FOR_MLE_CERT = 'CyberSource_SJC_US' unless const_defined?(:DEFAULT_ALIAS_FOR_MLE_CERT)
+
+      CERTIFICATE_EXPIRY_DATE_WARNING_DAYS = 90 unless const_defined?(:CERTIFICATE_EXPIRY_DATE_WARNING_DAYS)
   end
