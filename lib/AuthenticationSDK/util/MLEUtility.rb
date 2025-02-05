@@ -53,7 +53,7 @@ public
 
         compact_jwe = jwe.compact
         @log_obj.logger.debug('LOG_REQUEST_AFTER_MLE: ' + compact_jwe)
-        return "{ \"encryptedRequest\": \"#{compact_jwe}\" }"
+        return create_request_payload compact_jwe
       rescue StandardError => e
         @log_obj.logger.error("An error occurred during encryption: #{e.message}")
         raise e
@@ -107,5 +107,9 @@ public
         return attribute[1] if attribute[0].include?('serialNumber')
       end
       nil
+    end
+
+    def create_request_payload(compact_jwe)
+      "{ \"encryptedRequest\": \"#{compact_jwe}\" }"
     end
   end
