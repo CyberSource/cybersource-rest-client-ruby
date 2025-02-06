@@ -33,6 +33,9 @@ module CyberSource
 
     attr_accessor :merchant_advice
 
+    # Mastercard is introducing the Merchant Risk Predict Service in the middle East/Africa Region. A newly launched service comprised of seven independent artificial intelligence (AI)-powered scores intended to augment existing merchant risk management practices. 
+    attr_accessor :merchant_risk_prediction
+
     attr_accessor :seller_protection
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -45,6 +48,7 @@ module CyberSource
         :'system_trace_audit_number' => :'systemTraceAuditNumber',
         :'response_details' => :'responseDetails',
         :'merchant_advice' => :'merchantAdvice',
+        :'merchant_risk_prediction' => :'merchantRiskPrediction',
         :'seller_protection' => :'sellerProtection'
       }
     end
@@ -59,6 +63,7 @@ module CyberSource
         :'system_trace_audit_number' => :'system_trace_audit_number',
         :'response_details' => :'response_details',
         :'merchant_advice' => :'merchant_advice',
+        :'merchant_risk_prediction' => :'merchant_risk_prediction',
         :'seller_protection' => :'seller_protection'
       }
     end
@@ -73,6 +78,7 @@ module CyberSource
         :'system_trace_audit_number' => :'String',
         :'response_details' => :'String',
         :'merchant_advice' => :'PtsV2PaymentsPost201ResponseProcessorInformationMerchantAdvice',
+        :'merchant_risk_prediction' => :'String',
         :'seller_protection' => :'PtsV2PaymentsPost201ResponseProcessorInformationSellerProtection'
       }
     end
@@ -111,6 +117,10 @@ module CyberSource
 
       if attributes.has_key?(:'merchantAdvice')
         self.merchant_advice = attributes[:'merchantAdvice']
+      end
+
+      if attributes.has_key?(:'merchantRiskPrediction')
+        self.merchant_risk_prediction = attributes[:'merchantRiskPrediction']
       end
 
       if attributes.has_key?(:'sellerProtection')
@@ -161,6 +171,12 @@ module CyberSource
       @response_details = response_details
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] merchant_risk_prediction Value to be assigned
+    def merchant_risk_prediction=(merchant_risk_prediction)
+      @merchant_risk_prediction = merchant_risk_prediction
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -173,6 +189,7 @@ module CyberSource
           system_trace_audit_number == o.system_trace_audit_number &&
           response_details == o.response_details &&
           merchant_advice == o.merchant_advice &&
+          merchant_risk_prediction == o.merchant_risk_prediction &&
           seller_protection == o.seller_protection
     end
 
@@ -185,7 +202,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [approval_code, transaction_id, network_transaction_id, response_code, system_trace_audit_number, response_details, merchant_advice, seller_protection].hash
+      [approval_code, transaction_id, network_transaction_id, response_code, system_trace_audit_number, response_details, merchant_advice, merchant_risk_prediction, seller_protection].hash
     end
 
     # Builds the object from hash

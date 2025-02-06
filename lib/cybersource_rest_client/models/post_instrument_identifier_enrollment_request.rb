@@ -43,6 +43,8 @@ module CyberSource
 
     attr_accessor :metadata
 
+    attr_accessor :_embedded
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -58,7 +60,8 @@ module CyberSource
         :'issuer' => :'issuer',
         :'processing_information' => :'processingInformation',
         :'bill_to' => :'billTo',
-        :'metadata' => :'metadata'
+        :'metadata' => :'metadata',
+        :'_embedded' => :'_embedded'
       }
     end
 
@@ -77,7 +80,8 @@ module CyberSource
         :'issuer' => :'issuer',
         :'processing_information' => :'processing_information',
         :'bill_to' => :'bill_to',
-        :'metadata' => :'metadata'
+        :'metadata' => :'metadata',
+        :'_embedded' => :'_embedded'
       }
     end
 
@@ -96,7 +100,8 @@ module CyberSource
         :'issuer' => :'TmsEmbeddedInstrumentIdentifierIssuer',
         :'processing_information' => :'TmsEmbeddedInstrumentIdentifierProcessingInformation',
         :'bill_to' => :'TmsEmbeddedInstrumentIdentifierBillTo',
-        :'metadata' => :'TmsEmbeddedInstrumentIdentifierMetadata'
+        :'metadata' => :'TmsEmbeddedInstrumentIdentifierMetadata',
+        :'_embedded' => :'TmsEmbeddedInstrumentIdentifierEmbedded'
       }
     end
 
@@ -159,6 +164,10 @@ module CyberSource
       if attributes.has_key?(:'metadata')
         self.metadata = attributes[:'metadata']
       end
+
+      if attributes.has_key?(:'_embedded')
+        self._embedded = attributes[:'_embedded']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -191,7 +200,8 @@ module CyberSource
           issuer == o.issuer &&
           processing_information == o.processing_information &&
           bill_to == o.bill_to &&
-          metadata == o.metadata
+          metadata == o.metadata &&
+          _embedded == o._embedded
     end
 
     # @see the `==` method
@@ -203,7 +213,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, object, state, type, token_provisioning_information, card, bank_account, tokenized_card, issuer, processing_information, bill_to, metadata].hash
+      [_links, id, object, state, type, token_provisioning_information, card, bank_account, tokenized_card, issuer, processing_information, bill_to, metadata, _embedded].hash
     end
 
     # Builds the object from hash

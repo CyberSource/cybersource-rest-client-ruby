@@ -28,6 +28,12 @@ module CyberSource
     # An informational note about this settlement. Appears in both the payer's transaction history and the emails that the payer receives. 
     attr_accessor :notes
 
+    # Used for authbill request when capture field equals true
+    attr_accessor :reconciliation_id
+
+    # Used by Nike merchant to send 12 digit order number
+    attr_accessor :reconciliation_id_alternate
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -35,7 +41,9 @@ module CyberSource
         :'total_capture_count' => :'totalCaptureCount',
         :'date_to_capture' => :'dateToCapture',
         :'is_final' => :'isFinal',
-        :'notes' => :'notes'
+        :'notes' => :'notes',
+        :'reconciliation_id' => :'reconciliationId',
+        :'reconciliation_id_alternate' => :'reconciliationIdAlternate'
       }
     end
 
@@ -46,7 +54,9 @@ module CyberSource
         :'total_capture_count' => :'total_capture_count',
         :'date_to_capture' => :'date_to_capture',
         :'is_final' => :'is_final',
-        :'notes' => :'notes'
+        :'notes' => :'notes',
+        :'reconciliation_id' => :'reconciliation_id',
+        :'reconciliation_id_alternate' => :'reconciliation_id_alternate'
       }
     end
 
@@ -57,7 +67,9 @@ module CyberSource
         :'total_capture_count' => :'Integer',
         :'date_to_capture' => :'String',
         :'is_final' => :'String',
-        :'notes' => :'String'
+        :'notes' => :'String',
+        :'reconciliation_id' => :'String',
+        :'reconciliation_id_alternate' => :'String'
       }
     end
 
@@ -87,6 +99,14 @@ module CyberSource
 
       if attributes.has_key?(:'notes')
         self.notes = attributes[:'notes']
+      end
+
+      if attributes.has_key?(:'reconciliationId')
+        self.reconciliation_id = attributes[:'reconciliationId']
+      end
+
+      if attributes.has_key?(:'reconciliationIdAlternate')
+        self.reconciliation_id_alternate = attributes[:'reconciliationIdAlternate']
       end
     end
 
@@ -133,6 +153,18 @@ module CyberSource
       @notes = notes
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] reconciliation_id Value to be assigned
+    def reconciliation_id=(reconciliation_id)
+      @reconciliation_id = reconciliation_id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] reconciliation_id_alternate Value to be assigned
+    def reconciliation_id_alternate=(reconciliation_id_alternate)
+      @reconciliation_id_alternate = reconciliation_id_alternate
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -142,7 +174,9 @@ module CyberSource
           total_capture_count == o.total_capture_count &&
           date_to_capture == o.date_to_capture &&
           is_final == o.is_final &&
-          notes == o.notes
+          notes == o.notes &&
+          reconciliation_id == o.reconciliation_id &&
+          reconciliation_id_alternate == o.reconciliation_id_alternate
     end
 
     # @see the `==` method
@@ -154,7 +188,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [capture_sequence_number, total_capture_count, date_to_capture, is_final, notes].hash
+      [capture_sequence_number, total_capture_count, date_to_capture, is_final, notes, reconciliation_id, reconciliation_id_alternate].hash
     end
 
     # Builds the object from hash

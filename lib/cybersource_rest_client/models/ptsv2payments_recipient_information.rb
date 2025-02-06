@@ -31,6 +31,9 @@ module CyberSource
     # The street address of the recipient This field is applicable for AFT and OCT transactions.  Only alpha numeric values are supported. Special characters not in the standard ASCII character set are not supported and will be stripped before being sent to sent to the processor.          
     attr_accessor :address1
 
+    # The state or province of the recipient. This field is applicable for AFT transactions when the recipient country is US or CA. Else it is optional.  Must be a two character value 
+    attr_accessor :administrative_area
+
     # Partial postal code for the recipient's address. For example, if the postal code is **NN5 7SG**, the value for this field should be the first part of the postal code: **NN5**. This field is a _pass-through_, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. If the field is not required for the transaction, CyberSource does not forward it to the processor. 
     attr_accessor :postal_code
 
@@ -49,6 +52,24 @@ module CyberSource
     # Only for e-wallets: The ultimate beneficiary's street address (street, zip code, city), excluding the country. Example: \"Main street 1, 12345, Barcelona 
     attr_accessor :beneficiary_address
 
+    # Account owner alias name. 
+    attr_accessor :alias_name
+
+    # Account Owner Nationality
+    attr_accessor :nationality
+
+    # Account Owner Country of Birth
+    attr_accessor :country_of_birth
+
+    # Account Owner Occupation
+    attr_accessor :occupation
+
+    # Account Owner email address
+    attr_accessor :email
+
+    # The city of the recipient. This field is applicable for AFT transactions.  Only alpha numeric values are supported. Special characters not in the standard ASCII character set are not supported and will be stripped before being sent to sent to the processor. 
+    attr_accessor :locality
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -58,12 +79,19 @@ module CyberSource
         :'middle_name' => :'middleName',
         :'last_name' => :'lastName',
         :'address1' => :'address1',
+        :'administrative_area' => :'administrativeArea',
         :'postal_code' => :'postalCode',
         :'country' => :'country',
         :'date_of_birth' => :'dateOfBirth',
         :'beneficiary_id' => :'beneficiaryId',
         :'beneficiary_name' => :'beneficiaryName',
-        :'beneficiary_address' => :'beneficiaryAddress'
+        :'beneficiary_address' => :'beneficiaryAddress',
+        :'alias_name' => :'aliasName',
+        :'nationality' => :'nationality',
+        :'country_of_birth' => :'countryOfBirth',
+        :'occupation' => :'occupation',
+        :'email' => :'email',
+        :'locality' => :'locality'
       }
     end
 
@@ -76,12 +104,19 @@ module CyberSource
         :'middle_name' => :'middle_name',
         :'last_name' => :'last_name',
         :'address1' => :'address1',
+        :'administrative_area' => :'administrative_area',
         :'postal_code' => :'postal_code',
         :'country' => :'country',
         :'date_of_birth' => :'date_of_birth',
         :'beneficiary_id' => :'beneficiary_id',
         :'beneficiary_name' => :'beneficiary_name',
-        :'beneficiary_address' => :'beneficiary_address'
+        :'beneficiary_address' => :'beneficiary_address',
+        :'alias_name' => :'alias_name',
+        :'nationality' => :'nationality',
+        :'country_of_birth' => :'country_of_birth',
+        :'occupation' => :'occupation',
+        :'email' => :'email',
+        :'locality' => :'locality'
       }
     end
 
@@ -94,12 +129,19 @@ module CyberSource
         :'middle_name' => :'String',
         :'last_name' => :'String',
         :'address1' => :'String',
+        :'administrative_area' => :'String',
         :'postal_code' => :'String',
         :'country' => :'String',
         :'date_of_birth' => :'String',
         :'beneficiary_id' => :'String',
         :'beneficiary_name' => :'String',
-        :'beneficiary_address' => :'String'
+        :'beneficiary_address' => :'String',
+        :'alias_name' => :'String',
+        :'nationality' => :'String',
+        :'country_of_birth' => :'String',
+        :'occupation' => :'String',
+        :'email' => :'String',
+        :'locality' => :'String'
       }
     end
 
@@ -135,6 +177,10 @@ module CyberSource
         self.address1 = attributes[:'address1']
       end
 
+      if attributes.has_key?(:'administrativeArea')
+        self.administrative_area = attributes[:'administrativeArea']
+      end
+
       if attributes.has_key?(:'postalCode')
         self.postal_code = attributes[:'postalCode']
       end
@@ -157,6 +203,30 @@ module CyberSource
 
       if attributes.has_key?(:'beneficiaryAddress')
         self.beneficiary_address = attributes[:'beneficiaryAddress']
+      end
+
+      if attributes.has_key?(:'aliasName')
+        self.alias_name = attributes[:'aliasName']
+      end
+
+      if attributes.has_key?(:'nationality')
+        self.nationality = attributes[:'nationality']
+      end
+
+      if attributes.has_key?(:'countryOfBirth')
+        self.country_of_birth = attributes[:'countryOfBirth']
+      end
+
+      if attributes.has_key?(:'occupation')
+        self.occupation = attributes[:'occupation']
+      end
+
+      if attributes.has_key?(:'email')
+        self.email = attributes[:'email']
+      end
+
+      if attributes.has_key?(:'locality')
+        self.locality = attributes[:'locality']
       end
     end
 
@@ -210,6 +280,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] administrative_area Value to be assigned
+    def administrative_area=(administrative_area)
+      @administrative_area = administrative_area
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] postal_code Value to be assigned
     def postal_code=(postal_code)
       @postal_code = postal_code
@@ -245,6 +321,42 @@ module CyberSource
       @beneficiary_address = beneficiary_address
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] alias_name Value to be assigned
+    def alias_name=(alias_name)
+      @alias_name = alias_name
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] nationality Value to be assigned
+    def nationality=(nationality)
+      @nationality = nationality
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] country_of_birth Value to be assigned
+    def country_of_birth=(country_of_birth)
+      @country_of_birth = country_of_birth
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] occupation Value to be assigned
+    def occupation=(occupation)
+      @occupation = occupation
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] email Value to be assigned
+    def email=(email)
+      @email = email
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] locality Value to be assigned
+    def locality=(locality)
+      @locality = locality
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -256,12 +368,19 @@ module CyberSource
           middle_name == o.middle_name &&
           last_name == o.last_name &&
           address1 == o.address1 &&
+          administrative_area == o.administrative_area &&
           postal_code == o.postal_code &&
           country == o.country &&
           date_of_birth == o.date_of_birth &&
           beneficiary_id == o.beneficiary_id &&
           beneficiary_name == o.beneficiary_name &&
-          beneficiary_address == o.beneficiary_address
+          beneficiary_address == o.beneficiary_address &&
+          alias_name == o.alias_name &&
+          nationality == o.nationality &&
+          country_of_birth == o.country_of_birth &&
+          occupation == o.occupation &&
+          email == o.email &&
+          locality == o.locality
     end
 
     # @see the `==` method
@@ -273,7 +392,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [account_id, account_type, first_name, middle_name, last_name, address1, postal_code, country, date_of_birth, beneficiary_id, beneficiary_name, beneficiary_address].hash
+      [account_id, account_type, first_name, middle_name, last_name, address1, administrative_area, postal_code, country, date_of_birth, beneficiary_id, beneficiary_name, beneficiary_address, alias_name, nationality, country_of_birth, occupation, email, locality].hash
     end
 
     # Builds the object from hash

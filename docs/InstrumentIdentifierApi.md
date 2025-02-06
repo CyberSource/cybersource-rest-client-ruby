@@ -79,7 +79,8 @@ api_instance = CyberSource::InstrumentIdentifierApi.new
 instrument_identifier_id = 'instrument_identifier_id_example' # String | The Id of an Instrument Identifier.
 
 opts = { 
-  profile_id: 'profile_id_example' # String | The Id of a profile containing user specific TMS configuration.
+  profile_id: 'profile_id_example', # String | The Id of a profile containing user specific TMS configuration.
+  retrieve_bin_details: true # BOOLEAN | Retrieve the Bin Details of PAN or network token
 }
 
 begin
@@ -97,6 +98,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **instrument_identifier_id** | **String**| The Id of an Instrument Identifier. | 
  **profile_id** | **String**| The Id of a profile containing user specific TMS configuration. | [optional] 
+ **retrieve_bin_details** | **BOOLEAN**| Retrieve the Bin Details of PAN or network token | [optional] 
 
 ### Return type
 
@@ -131,6 +133,7 @@ instrument_identifier_id = 'instrument_identifier_id_example' # String | The Id 
 
 opts = { 
   profile_id: 'profile_id_example', # String | The Id of a profile containing user specific TMS configuration.
+  retrieve_bin_details: true, # BOOLEAN | Retrieve the Bin Details of PAN or network token
   offset: 0, # Integer | Starting record in zero-based dataset that should be returned as the first object in the array. Default is 0.
   limit: 20 # Integer | The maximum number that can be returned in the array starting from the offset record in zero-based dataset. Default is 20, maximum is 100.
 }
@@ -150,6 +153,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **instrument_identifier_id** | **String**| The Id of an Instrument Identifier. | 
  **profile_id** | **String**| The Id of a profile containing user specific TMS configuration. | [optional] 
+ **retrieve_bin_details** | **BOOLEAN**| Retrieve the Bin Details of PAN or network token | [optional] 
  **offset** | **Integer**| Starting record in zero-based dataset that should be returned as the first object in the array. Default is 0. | [optional] [default to 0]
  **limit** | **Integer**| The maximum number that can be returned in the array starting from the offset record in zero-based dataset. Default is 20, maximum is 100. | [optional] [default to 20]
 
@@ -188,6 +192,7 @@ patch_instrument_identifier_request = CyberSource::PatchInstrumentIdentifierRequ
 
 opts = { 
   profile_id: 'profile_id_example', # String | The Id of a profile containing user specific TMS configuration.
+  retrieve_bin_details: true, # BOOLEAN | Retrieve the Bin Details of PAN or network token
   if_match: 'if_match_example' # String | Contains an ETag value from a GET request to make the request conditional.
 }
 
@@ -207,6 +212,7 @@ Name | Type | Description  | Notes
  **instrument_identifier_id** | **String**| The Id of an Instrument Identifier. | 
  **patch_instrument_identifier_request** | [**PatchInstrumentIdentifierRequest**](PatchInstrumentIdentifierRequest.md)| Specify the previous transaction Id to update. | 
  **profile_id** | **String**| The Id of a profile containing user specific TMS configuration. | [optional] 
+ **retrieve_bin_details** | **BOOLEAN**| Retrieve the Bin Details of PAN or network token | [optional] 
  **if_match** | **String**| Contains an ETag value from a GET request to make the request conditional. | [optional] 
 
 ### Return type
@@ -241,7 +247,8 @@ api_instance = CyberSource::InstrumentIdentifierApi.new
 post_instrument_identifier_request = CyberSource::PostInstrumentIdentifierRequest.new # PostInstrumentIdentifierRequest | Specify either a Card, Bank Account or Enrollable Card
 
 opts = { 
-  profile_id: 'profile_id_example' # String | The Id of a profile containing user specific TMS configuration.
+  profile_id: 'profile_id_example', # String | The Id of a profile containing user specific TMS configuration.
+  retrieve_bin_details: true # BOOLEAN | Retrieve the Bin Details of PAN or network token
 }
 
 begin
@@ -259,6 +266,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **post_instrument_identifier_request** | [**PostInstrumentIdentifierRequest**](PostInstrumentIdentifierRequest.md)| Specify either a Card, Bank Account or Enrollable Card | 
  **profile_id** | **String**| The Id of a profile containing user specific TMS configuration. | [optional] 
+ **retrieve_bin_details** | **BOOLEAN**| Retrieve the Bin Details of PAN or network token | [optional] 
 
 ### Return type
 

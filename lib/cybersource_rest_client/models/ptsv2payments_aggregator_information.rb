@@ -21,12 +21,32 @@ module CyberSource
 
     attr_accessor :sub_merchant
 
+    # Acquirer street name.
+    attr_accessor :street_address
+
+    # Acquirer city.
+    attr_accessor :city
+
+    # Acquirer state.
+    attr_accessor :state
+
+    # Acquirer postal code.
+    attr_accessor :postal_code
+
+    # Acquirer country.
+    attr_accessor :country
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'aggregator_id' => :'aggregatorId',
         :'name' => :'name',
-        :'sub_merchant' => :'subMerchant'
+        :'sub_merchant' => :'subMerchant',
+        :'street_address' => :'streetAddress',
+        :'city' => :'city',
+        :'state' => :'state',
+        :'postal_code' => :'postalCode',
+        :'country' => :'country'
       }
     end
 
@@ -35,7 +55,12 @@ module CyberSource
       {
         :'aggregator_id' => :'aggregator_id',
         :'name' => :'name',
-        :'sub_merchant' => :'sub_merchant'
+        :'sub_merchant' => :'sub_merchant',
+        :'street_address' => :'street_address',
+        :'city' => :'city',
+        :'state' => :'state',
+        :'postal_code' => :'postal_code',
+        :'country' => :'country'
       }
     end
 
@@ -44,7 +69,12 @@ module CyberSource
       {
         :'aggregator_id' => :'String',
         :'name' => :'String',
-        :'sub_merchant' => :'Ptsv2paymentsAggregatorInformationSubMerchant'
+        :'sub_merchant' => :'Ptsv2paymentsAggregatorInformationSubMerchant',
+        :'street_address' => :'String',
+        :'city' => :'String',
+        :'state' => :'String',
+        :'postal_code' => :'String',
+        :'country' => :'String'
       }
     end
 
@@ -66,6 +96,26 @@ module CyberSource
 
       if attributes.has_key?(:'subMerchant')
         self.sub_merchant = attributes[:'subMerchant']
+      end
+
+      if attributes.has_key?(:'streetAddress')
+        self.street_address = attributes[:'streetAddress']
+      end
+
+      if attributes.has_key?(:'city')
+        self.city = attributes[:'city']
+      end
+
+      if attributes.has_key?(:'state')
+        self.state = attributes[:'state']
+      end
+
+      if attributes.has_key?(:'postalCode')
+        self.postal_code = attributes[:'postalCode']
+      end
+
+      if attributes.has_key?(:'country')
+        self.country = attributes[:'country']
       end
     end
 
@@ -94,6 +144,36 @@ module CyberSource
       @name = name
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] street_address Value to be assigned
+    def street_address=(street_address)
+      @street_address = street_address
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] city Value to be assigned
+    def city=(city)
+      @city = city
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] state Value to be assigned
+    def state=(state)
+      @state = state
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] postal_code Value to be assigned
+    def postal_code=(postal_code)
+      @postal_code = postal_code
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] country Value to be assigned
+    def country=(country)
+      @country = country
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -101,7 +181,12 @@ module CyberSource
       self.class == o.class &&
           aggregator_id == o.aggregator_id &&
           name == o.name &&
-          sub_merchant == o.sub_merchant
+          sub_merchant == o.sub_merchant &&
+          street_address == o.street_address &&
+          city == o.city &&
+          state == o.state &&
+          postal_code == o.postal_code &&
+          country == o.country
     end
 
     # @see the `==` method
@@ -113,7 +198,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [aggregator_id, name, sub_merchant].hash
+      [aggregator_id, name, sub_merchant, street_address, city, state, postal_code, country].hash
     end
 
     # Builds the object from hash

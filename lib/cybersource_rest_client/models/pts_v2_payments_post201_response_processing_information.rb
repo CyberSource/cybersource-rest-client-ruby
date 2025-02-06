@@ -23,13 +23,19 @@ module CyberSource
 
     attr_accessor :capture_options
 
+    attr_accessor :authorization_options
+
+    attr_accessor :purchase_options
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'bank_transfer_options' => :'bankTransferOptions',
         :'payment_solution' => :'paymentSolution',
         :'enhanced_data_enabled' => :'enhancedDataEnabled',
-        :'capture_options' => :'captureOptions'
+        :'capture_options' => :'captureOptions',
+        :'authorization_options' => :'authorizationOptions',
+        :'purchase_options' => :'purchaseOptions'
       }
     end
 
@@ -39,7 +45,9 @@ module CyberSource
         :'bank_transfer_options' => :'bank_transfer_options',
         :'payment_solution' => :'payment_solution',
         :'enhanced_data_enabled' => :'enhanced_data_enabled',
-        :'capture_options' => :'capture_options'
+        :'capture_options' => :'capture_options',
+        :'authorization_options' => :'authorization_options',
+        :'purchase_options' => :'purchase_options'
       }
     end
 
@@ -49,7 +57,9 @@ module CyberSource
         :'bank_transfer_options' => :'PtsV2PaymentsPost201ResponseProcessingInformationBankTransferOptions',
         :'payment_solution' => :'String',
         :'enhanced_data_enabled' => :'BOOLEAN',
-        :'capture_options' => :'PtsV2PaymentsPost201ResponseProcessingInformationCaptureOptions'
+        :'capture_options' => :'PtsV2PaymentsPost201ResponseProcessingInformationCaptureOptions',
+        :'authorization_options' => :'PtsV2PaymentsPost201ResponseProcessingInformationAuthorizationOptions',
+        :'purchase_options' => :'PtsV2PaymentsPost201ResponseProcessingInformationPurchaseOptions'
       }
     end
 
@@ -75,6 +85,14 @@ module CyberSource
 
       if attributes.has_key?(:'captureOptions')
         self.capture_options = attributes[:'captureOptions']
+      end
+
+      if attributes.has_key?(:'authorizationOptions')
+        self.authorization_options = attributes[:'authorizationOptions']
+      end
+
+      if attributes.has_key?(:'purchaseOptions')
+        self.purchase_options = attributes[:'purchaseOptions']
       end
     end
 
@@ -105,7 +123,9 @@ module CyberSource
           bank_transfer_options == o.bank_transfer_options &&
           payment_solution == o.payment_solution &&
           enhanced_data_enabled == o.enhanced_data_enabled &&
-          capture_options == o.capture_options
+          capture_options == o.capture_options &&
+          authorization_options == o.authorization_options &&
+          purchase_options == o.purchase_options
     end
 
     # @see the `==` method
@@ -117,7 +137,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [bank_transfer_options, payment_solution, enhanced_data_enabled, capture_options].hash
+      [bank_transfer_options, payment_solution, enhanced_data_enabled, capture_options, authorization_options, purchase_options].hash
     end
 
     # Builds the object from hash

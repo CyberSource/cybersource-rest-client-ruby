@@ -19,6 +19,9 @@ module CyberSource
     # For most processors, this is the error message sent directly from the bank. Returned only when the processor returns this value.  **Important** Do not use this field to evaluate the result of the authorization.  #### PIN debit Response value that is returned by the processor or bank. **Important** Do not use this field to evaluate the results of the transaction request.  Returned by PIN debit credit, PIN debit purchase, and PIN debit reversal.  #### AIBMS If this value is `08`, you can accept the transaction if the customer provides you with identification.  #### Atos This value is the response code sent from Atos and it might also include the response code from the bank. Format: `aa,bb` with the two values separated by a comma and where: - `aa` is the two-digit error message from Atos. - `bb` is the optional two-digit error message from the bank.  #### Comercio Latino This value is the status code and the error or response code received from the processor separated by a colon. Format: [status code]:E[error code] or [status code]:R[response code] Example `2:R06`  #### JCN Gateway Processor-defined detail error code. The associated response category code is in the `processorInformation.responseCategoryCode` field. String (3)  #### paypalgateway Processor generated ID for the itemized detail. 
     attr_accessor :response_code
 
+    # Same value as `processorInformation.transactionId`
+    attr_accessor :network_transaction_id
+
     # Processor-defined response category code. The associated detail error code is in the `processorInformation.responseCode` or `issuerInformation.responseCode` field of the service you requested.  This field is supported only for:   - Japanese issuers  - Domestic transactions in Japan  - Comercio Latino—processor transaction ID required for troubleshooting  #### Maximum length for processors   - Comercio Latino: 36  - All other processors: 3 
     attr_accessor :response_category_code
 
@@ -42,6 +45,7 @@ module CyberSource
       {
         :'transaction_id' => :'transactionId',
         :'response_code' => :'responseCode',
+        :'network_transaction_id' => :'networkTransactionId',
         :'response_category_code' => :'responseCategoryCode',
         :'forwarded_acquirer_code' => :'forwardedAcquirerCode',
         :'master_card_service_code' => :'masterCardServiceCode',
@@ -56,6 +60,7 @@ module CyberSource
       {
         :'transaction_id' => :'transaction_id',
         :'response_code' => :'response_code',
+        :'network_transaction_id' => :'network_transaction_id',
         :'response_category_code' => :'response_category_code',
         :'forwarded_acquirer_code' => :'forwarded_acquirer_code',
         :'master_card_service_code' => :'master_card_service_code',
@@ -70,6 +75,7 @@ module CyberSource
       {
         :'transaction_id' => :'String',
         :'response_code' => :'String',
+        :'network_transaction_id' => :'String',
         :'response_category_code' => :'String',
         :'forwarded_acquirer_code' => :'String',
         :'master_card_service_code' => :'String',
@@ -93,6 +99,10 @@ module CyberSource
 
       if attributes.has_key?(:'responseCode')
         self.response_code = attributes[:'responseCode']
+      end
+
+      if attributes.has_key?(:'networkTransactionId')
+        self.network_transaction_id = attributes[:'networkTransactionId']
       end
 
       if attributes.has_key?(:'responseCategoryCode')
@@ -182,6 +192,7 @@ module CyberSource
       self.class == o.class &&
           transaction_id == o.transaction_id &&
           response_code == o.response_code &&
+          network_transaction_id == o.network_transaction_id &&
           response_category_code == o.response_category_code &&
           forwarded_acquirer_code == o.forwarded_acquirer_code &&
           master_card_service_code == o.master_card_service_code &&
@@ -199,7 +210,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [transaction_id, response_code, response_category_code, forwarded_acquirer_code, master_card_service_code, master_card_service_reply_code, response_details, provider_response].hash
+      [transaction_id, response_code, network_transaction_id, response_category_code, forwarded_acquirer_code, master_card_service_code, master_card_service_reply_code, response_details, provider_response].hash
     end
 
     # Builds the object from hash

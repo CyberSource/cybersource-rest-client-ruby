@@ -22,12 +22,16 @@ module CyberSource
     # Amount of the original authorization.  This field is supported only for Apple Pay, Google Pay, and Samsung Pay transactions with Discover on FDC Nashville Global and Chase Paymentech. 
     attr_accessor :original_authorized_amount
 
+    # An API to carry the agreement ID generated for recurring and unscheduled Card on file transaction. the merchant generates this per card holder or per payment agreement and shares the generated unique ID in the subsequent transactions. This can contain foreign/arabic character set also. Cybersource forwards this value to the Saudi Payment processor. 
+    attr_accessor :agreement_id
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'reason' => :'reason',
         :'previous_transaction_id' => :'previousTransactionId',
-        :'original_authorized_amount' => :'originalAuthorizedAmount'
+        :'original_authorized_amount' => :'originalAuthorizedAmount',
+        :'agreement_id' => :'agreementId'
       }
     end
 
@@ -36,7 +40,8 @@ module CyberSource
       {
         :'reason' => :'reason',
         :'previous_transaction_id' => :'previous_transaction_id',
-        :'original_authorized_amount' => :'original_authorized_amount'
+        :'original_authorized_amount' => :'original_authorized_amount',
+        :'agreement_id' => :'agreement_id'
       }
     end
 
@@ -45,7 +50,8 @@ module CyberSource
       {
         :'reason' => :'String',
         :'previous_transaction_id' => :'String',
-        :'original_authorized_amount' => :'String'
+        :'original_authorized_amount' => :'String',
+        :'agreement_id' => :'String'
       }
     end
 
@@ -67,6 +73,10 @@ module CyberSource
 
       if attributes.has_key?(:'originalAuthorizedAmount')
         self.original_authorized_amount = attributes[:'originalAuthorizedAmount']
+      end
+
+      if attributes.has_key?(:'agreementId')
+        self.agreement_id = attributes[:'agreementId']
       end
     end
 
@@ -101,6 +111,12 @@ module CyberSource
       @original_authorized_amount = original_authorized_amount
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] agreement_id Value to be assigned
+    def agreement_id=(agreement_id)
+      @agreement_id = agreement_id
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -108,7 +124,8 @@ module CyberSource
       self.class == o.class &&
           reason == o.reason &&
           previous_transaction_id == o.previous_transaction_id &&
-          original_authorized_amount == o.original_authorized_amount
+          original_authorized_amount == o.original_authorized_amount &&
+          agreement_id == o.agreement_id
     end
 
     # @see the `==` method
@@ -120,7 +137,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [reason, previous_transaction_id, original_authorized_amount].hash
+      [reason, previous_transaction_id, original_authorized_amount, agreement_id].hash
     end
 
     # Builds the object from hash

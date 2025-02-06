@@ -19,11 +19,23 @@ module CyberSource
     # Flag that indicates an EBT voucher transaction. Possible value: - `EBT_VOUCHER`: Indicates the PIN debit transaction is an EBT voucher. - `BUY` - `RENT` - `BOOK` - `SUBSCRIBE` - `DOWNLOAD` - `ORDER` - `CONTINUE`  #### PIN debit Required field for EBT voucher transactions that use PIN debit purchase; otherwise, not used. 
     attr_accessor :type
 
+    # This field contains installment data defined by MasterCard. Possible values:   - Y = eligible   - N = not eligile 
+    attr_accessor :eligibility_indicator
+
+    # Workplace benefit amount.
+    attr_accessor :benefit_amount
+
+    # Workplace benefit type. Possible values: - 70 = employee benefit - 4T = transportation / transit - 52 = general benefit - 53 = meal voucher - 54 = fuel - 55 = ecological / sustainability - 58 = philanthropy / patronage / consumption - 59 = gift - 5S = sport / culture - 5T = book / education 
+    attr_accessor :benefit_type
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'is_electronic_benefits_transfer' => :'isElectronicBenefitsTransfer',
-        :'type' => :'type'
+        :'type' => :'type',
+        :'eligibility_indicator' => :'eligibilityIndicator',
+        :'benefit_amount' => :'benefitAmount',
+        :'benefit_type' => :'benefitType'
       }
     end
 
@@ -31,7 +43,10 @@ module CyberSource
     def self.json_map
       {
         :'is_electronic_benefits_transfer' => :'is_electronic_benefits_transfer',
-        :'type' => :'type'
+        :'type' => :'type',
+        :'eligibility_indicator' => :'eligibility_indicator',
+        :'benefit_amount' => :'benefit_amount',
+        :'benefit_type' => :'benefit_type'
       }
     end
 
@@ -39,7 +54,10 @@ module CyberSource
     def self.swagger_types
       {
         :'is_electronic_benefits_transfer' => :'BOOLEAN',
-        :'type' => :'String'
+        :'type' => :'String',
+        :'eligibility_indicator' => :'String',
+        :'benefit_amount' => :'String',
+        :'benefit_type' => :'String'
       }
     end
 
@@ -57,6 +75,18 @@ module CyberSource
 
       if attributes.has_key?(:'type')
         self.type = attributes[:'type']
+      end
+
+      if attributes.has_key?(:'eligibilityIndicator')
+        self.eligibility_indicator = attributes[:'eligibilityIndicator']
+      end
+
+      if attributes.has_key?(:'benefitAmount')
+        self.benefit_amount = attributes[:'benefitAmount']
+      end
+
+      if attributes.has_key?(:'benefitType')
+        self.benefit_type = attributes[:'benefitType']
       end
     end
 
@@ -79,13 +109,34 @@ module CyberSource
       @type = type
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] eligibility_indicator Value to be assigned
+    def eligibility_indicator=(eligibility_indicator)
+      @eligibility_indicator = eligibility_indicator
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] benefit_amount Value to be assigned
+    def benefit_amount=(benefit_amount)
+      @benefit_amount = benefit_amount
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] benefit_type Value to be assigned
+    def benefit_type=(benefit_type)
+      @benefit_type = benefit_type
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           is_electronic_benefits_transfer == o.is_electronic_benefits_transfer &&
-          type == o.type
+          type == o.type &&
+          eligibility_indicator == o.eligibility_indicator &&
+          benefit_amount == o.benefit_amount &&
+          benefit_type == o.benefit_type
     end
 
     # @see the `==` method
@@ -97,7 +148,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [is_electronic_benefits_transfer, type].hash
+      [is_electronic_benefits_transfer, type, eligibility_indicator, benefit_amount, benefit_type].hash
     end
 
     # Builds the object from hash

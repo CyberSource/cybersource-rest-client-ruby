@@ -8,5 +8,7 @@ Name | Type | Description | Notes
 **date_to_capture** | **String** | Date on which you want the capture to occur. This field is supported only for CyberSource through VisaNet. Format: &#x60;MMDD&#x60;  #### Used by **Authorization** Optional field.  | [optional] 
 **is_final** | **String** | Indicates whether to release the authorization hold on the remaining funds.   Possible Values: - &#x60;true&#x60; - &#x60;false&#x60;  | [optional] 
 **notes** | **String** | An informational note about this settlement. Appears in both the payer&#39;s transaction history and the emails that the payer receives.  | [optional] 
+**reconciliation_id** | **String** | Used for authbill request when capture field equals true | [optional] 
+**reconciliation_id_alternate** | **String** | Used by Nike merchant to send 12 digit order number | [optional] 
 
 

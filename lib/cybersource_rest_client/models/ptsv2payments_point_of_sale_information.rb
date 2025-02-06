@@ -19,7 +19,7 @@ module CyberSource
     # Terminal serial number assigned by the hardware manufacturer. This value is provided by the client software that is installed on the POS terminal.  This value is not forwarded to the processor. Instead, the value is forwarded to the reporting functionality.  #### Used by **Authorization and Credit** Optional. This field is supported only by client software that is installed on your POS terminals for the following processors: - American Express Direct - Credit Mutuel-CIC - FDC Nashville Global - OmniPay Direct - SIX 
     attr_accessor :terminal_serial_number
 
-    # Method that was used to verify the cardholder's identity. Possible values:    - `0`: No verification   - `1`: Signature   - `2`: PIN   - `3`: Cardholder device CVM 
+    # Method that was used to verify the cardholder's identity. Possible values:    - `0`: No verification   - `1`: Signature   - `2`: PIN   - `3`: Cardholder device CVM   - `4`: Biometric   - `5`: OTP 
     attr_accessor :cardholder_verification_method_used
 
     # Identifier for an alternate terminal at your retail location. You define the value for this field.  This field is supported only for MasterCard transactions on FDC Nashville Global. Otherwise, this field is not used by all other processors. Use the `terminalId` field to identify the main terminal at your retail location. If your retail location has multiple terminals, use this `laneNumber` field to identify the terminal used for the transaction.  This field is a pass-through, which means that the value is not checked or modified in any way before sending it to the processor.  Optional field.  #### Card present reply messaging Identifier for an alternate terminal at your retail location. You defined the value for this field in the request message. This value must be printed on the receipt.  This field is supported only for MasterCard transactions on FDC Nashville Global. 
@@ -50,6 +50,9 @@ module CyberSource
 
     # Complete list of cardholder verification methods (CVMs) supported by the terminal. Optional field. Possible values: - `PIN`: For terminals with a PIN Pad - `Signature`: For terminals capable of receiving a signature - `pinOnGlass`: For terminals where PIN is entered on a glass-based capture mechanism  **EXAMPLE**: [\"PIN\",\"Signature\"]; [\"pinOnGlass\",\"Signature\"] 
     attr_accessor :cardholder_verification_method
+
+    # Indicates the type of terminal.   Possible values: - `AFD`: Automated Fuel Dispenser 
+    attr_accessor :terminal_category
 
     # Complete list of card input methods supported by the terminal.  Possible values: - `Keyed`: Terminal can accept card data that is entered manually. - `Swiped`: Terminal can accept card data from a magnetic stripe reader. - `Contact`: Terminal can accept card data in EMV contact mode (\"dipping a card\"). - `Contactless`: Terminal can accept card data in EMV contactless mode (\"tapping a card\"). - `BarCode`: Terminal can read bar codes. - `QRcode`: Terminal can read or scan QR codes. - `OCR`: Terminal can perform optical character recognition (OCT) on the card.  **EXAMPLE**: [\"Keyed\",\"Swiped\",\"Contact\",\"Contactless\"]  #### Used by **Authorization and Credit** Optional. This field is supported only by client software that is installed on your POS terminals for the following processors: - American Express Direct - Credit Mutuel-CIC - FDC Nashville Global - OmniPay Direct - SIX 
     attr_accessor :terminal_input_capability
@@ -115,6 +118,7 @@ module CyberSource
         :'track_data' => :'trackData',
         :'store_and_forward_indicator' => :'storeAndForwardIndicator',
         :'cardholder_verification_method' => :'cardholderVerificationMethod',
+        :'terminal_category' => :'terminalCategory',
         :'terminal_input_capability' => :'terminalInputCapability',
         :'terminal_card_capture_capability' => :'terminalCardCaptureCapability',
         :'terminal_output_capability' => :'terminalOutputCapability',
@@ -150,6 +154,7 @@ module CyberSource
         :'track_data' => :'track_data',
         :'store_and_forward_indicator' => :'store_and_forward_indicator',
         :'cardholder_verification_method' => :'cardholder_verification_method',
+        :'terminal_category' => :'terminal_category',
         :'terminal_input_capability' => :'terminal_input_capability',
         :'terminal_card_capture_capability' => :'terminal_card_capture_capability',
         :'terminal_output_capability' => :'terminal_output_capability',
@@ -185,6 +190,7 @@ module CyberSource
         :'track_data' => :'String',
         :'store_and_forward_indicator' => :'String',
         :'cardholder_verification_method' => :'Array<String>',
+        :'terminal_category' => :'String',
         :'terminal_input_capability' => :'Array<String>',
         :'terminal_card_capture_capability' => :'String',
         :'terminal_output_capability' => :'String',
@@ -264,6 +270,10 @@ module CyberSource
         if (value = attributes[:'cardholderVerificationMethod']).is_a?(Array)
           self.cardholder_verification_method = value
         end
+      end
+
+      if attributes.has_key?(:'terminalCategory')
+        self.terminal_category = attributes[:'terminalCategory']
       end
 
       if attributes.has_key?(:'terminalInputCapability')
@@ -401,6 +411,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] terminal_category Value to be assigned
+    def terminal_category=(terminal_category)
+      @terminal_category = terminal_category
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] terminal_card_capture_capability Value to be assigned
     def terminal_card_capture_capability=(terminal_card_capture_capability)
       @terminal_card_capture_capability = terminal_card_capture_capability
@@ -496,6 +512,7 @@ module CyberSource
           track_data == o.track_data &&
           store_and_forward_indicator == o.store_and_forward_indicator &&
           cardholder_verification_method == o.cardholder_verification_method &&
+          terminal_category == o.terminal_category &&
           terminal_input_capability == o.terminal_input_capability &&
           terminal_card_capture_capability == o.terminal_card_capture_capability &&
           terminal_output_capability == o.terminal_output_capability &&
@@ -523,7 +540,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [terminal_id, terminal_serial_number, cardholder_verification_method_used, lane_number, cat_level, entry_mode, terminal_capability, operating_environment, emv, amex_capn_data, track_data, store_and_forward_indicator, cardholder_verification_method, terminal_input_capability, terminal_card_capture_capability, terminal_output_capability, terminal_pin_capability, pin_entry_solution, device_id, pin_block_encoding_format, encrypted_pin, encrypted_key_serial_number, partner_sdk_version, emv_application_identifier_and_dedicated_file_name, terminal_compliance, is_dedicated_hardware_terminal, terminal_model, terminal_make, service_code].hash
+      [terminal_id, terminal_serial_number, cardholder_verification_method_used, lane_number, cat_level, entry_mode, terminal_capability, operating_environment, emv, amex_capn_data, track_data, store_and_forward_indicator, cardholder_verification_method, terminal_category, terminal_input_capability, terminal_card_capture_capability, terminal_output_capability, terminal_pin_capability, pin_entry_solution, device_id, pin_block_encoding_format, encrypted_pin, encrypted_key_serial_number, partner_sdk_version, emv_application_identifier_and_dedicated_file_name, terminal_compliance, is_dedicated_hardware_terminal, terminal_model, terminal_make, service_code].hash
     end
 
     # Builds the object from hash

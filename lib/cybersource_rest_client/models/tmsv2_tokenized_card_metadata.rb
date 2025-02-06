@@ -12,27 +12,33 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
+  # Metadata associated with the tokenized card. 
   class Tmsv2TokenizedCardMetadata
     attr_accessor :card_art
+
+    attr_accessor :issuer
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'card_art' => :'cardArt'
+        :'card_art' => :'cardArt',
+        :'issuer' => :'issuer'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'card_art' => :'card_art'
+        :'card_art' => :'card_art',
+        :'issuer' => :'issuer'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'card_art' => :'Tmsv2TokenizedCardMetadataCardArt'
+        :'card_art' => :'TmsCardArt',
+        :'issuer' => :'Tmsv2TokenizedCardMetadataIssuer'
       }
     end
 
@@ -46,6 +52,10 @@ module CyberSource
 
       if attributes.has_key?(:'cardArt')
         self.card_art = attributes[:'cardArt']
+      end
+
+      if attributes.has_key?(:'issuer')
+        self.issuer = attributes[:'issuer']
       end
     end
 
@@ -67,7 +77,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          card_art == o.card_art
+          card_art == o.card_art &&
+          issuer == o.issuer
     end
 
     # @see the `==` method
@@ -79,7 +90,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card_art].hash
+      [card_art, issuer].hash
     end
 
     # Builds the object from hash
