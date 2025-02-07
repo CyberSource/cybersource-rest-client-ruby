@@ -3,7 +3,7 @@ require 'jose'
 public
   class MLEUtility
     @log_obj
-    def check_is_mle_for_API(merchant_config, is_mle_supported_by_cybs_for_api, operation_ids)
+    def self.check_is_mle_for_API(merchant_config, is_mle_supported_by_cybs_for_api, operation_ids)
       is_mle_for_api = false
       if is_mle_supported_by_cybs_for_api && merchant_config.useMLEGlobally
         is_mle_for_api = true
