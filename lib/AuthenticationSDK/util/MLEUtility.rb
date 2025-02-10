@@ -2,13 +2,13 @@ require_relative '../logging/log_factory.rb'
 require 'jose'
 public
   class MLEUtility
-    @log_obj
+    @log_obj = nil
     def self.check_is_mle_for_API(merchant_config, is_mle_supported_by_cybs_for_api, operation_ids)
       is_mle_for_api = false
       if is_mle_supported_by_cybs_for_api && merchant_config.useMLEGlobally
         is_mle_for_api = true
       end
-      if merchant_config.mapToControlMLEonAPI.nil? && merchant_config.mapToControlMLEonAPI.nil?
+      if merchant_config.mapToControlMLEonAPI.nil? && !operation_ids.nil?
         operation_ids.each do |operation_id|
           if merchant_config.mapToControlMLEonAPI.key?(operation_id)
             is_mle_for_api = merchant_config.mapToControlMLEonAPI[operation_id]
@@ -19,18 +19,18 @@ public
       is_mle_for_api
     end
 
-    def encrypt_request_payload(merchant_config, request_payload)
+    def self.encrypt_request_payload(merchant_config, request_payload)
       if request_payload.nil?
         return nil
       end
-      @log_obj = Log.new(merchant_config.log_config, 'MLEUtility')
+      @log_obj ||= Log.new(merchant_config.log_config, 'MLEUtility')
       @log_obj.logger.info('Encrypting request payload')
       @log_obj.logger.debug('LOG_REQUEST_BEFORE_MLE: ' + request_payload)
 
 
       begin
         certificate = get_certificate(merchant_config, @log_obj)
-        validate_certificate(certificate, merchant_config, @log_obj)
+        validate_certificate(certificate, merchant_config.mleKeyAlias, @log_obj)
         serial_number = extract_serial_number_from_certificate(certificate)
         if serial_number.nil?
           @log_obj.logger.error('Serial number not found in certificate for MLE')
@@ -61,7 +61,7 @@ public
     end
 
 
-    def get_certificate(merchant_config, log_obj)
+    def self.get_certificate(merchant_config, log_obj)
       begin
         p12_file_path = File.join(merchant_config.keysDirectory, merchant_config.keyFilename + '.p12')
         file = File.binread(p12_file_path)
@@ -87,29 +87,29 @@ public
       end
     end
 
-    def validate_certificate(certificate, merchant_config, log_obj)
+    def self.validate_certificate(certificate, mle_key_alias, log_obj)
       if certificate.not_after.nil?
         log_obj.logger.warn("Certificate for MLE don't have expiry date.")
       end
       if certificate.not_after < Time.now
-        log_obj.logger.error('Certificate with MLE alias ' + merchant_config.mleKeyAlias + ' is expired as of ' + certificate.not_after.to_s + ". Please update p12 file.")
+        log_obj.logger.error('Certificate with MLE alias ' + mle_key_alias + ' is expired as of ' + certificate.not_after.to_s + ". Please update p12 file.")
       else
         time_to_expire = certificate.not_after - Time.now
         if time_to_expire < Constants::CERTIFICATE_EXPIRY_DATE_WARNING_DAYS * 24 * 60 * 60
-          log_obj.logger.warn('Certificate with MLE alias ' + merchant_config.mleKeyAlias + ' is going to expired on ' + certificate.not_after.to_s + ". Please update p12 file before that.")
+          log_obj.logger.warn('Certificate with MLE alias ' + mle_key_alias + ' is going to expired on ' + certificate.not_after.to_s + ". Please update p12 file before that.")
         end
       end
     end
 
-    def extract_serial_number_from_certificate(certificate)
+    def self.extract_serial_number_from_certificate(certificate)
       return nil if certificate.subject.to_s.empty? && certificate.issuer.to_s.empty?
       certificate.subject.to_a.each do |attribute|
         return attribute[1] if attribute[0].include?('serialNumber')
       end
-      nil
+      certificate.serial.nil? ? nil : certificate.serial.to_s
     end
 
-    def create_request_payload(compact_jwe)
+    def self.create_request_payload(compact_jwe)
       "{ \"encryptedRequest\": \"#{compact_jwe}\" }"
     end
   end

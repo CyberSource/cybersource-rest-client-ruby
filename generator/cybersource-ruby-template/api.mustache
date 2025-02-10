@@ -167,7 +167,7 @@ module {{moduleName}}
       {{/bodyParam}}
       is_mle_supported_by_cybs_for_api = {{#vendorExtensions.x-devcenter-metaData.isMLEsupported}}true{{/vendorExtensions.x-devcenter-metaData.isMLEsupported}}{{^vendorExtensions.x-devcenter-metaData.isMLEsupported}}false{{/vendorExtensions.x-devcenter-metaData.isMLEsupported}}
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, "{{operationId}},{{operationId}}_with_http_info")
-        post_body = MLEUtility.new.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = [{{#authMethods}}'{{name}}'{{#hasMore}}, {{/hasMore}}{{/authMethods}}]
       data, status_code, headers = @api_client.call_api(:{{httpMethod}}, local_var_path,

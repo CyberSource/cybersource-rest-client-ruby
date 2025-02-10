@@ -236,10 +236,12 @@ public
         @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
         raise err
       end
-      if !@mapToControlMLEonAPI.nil? && !@mapToControlMLEonAPI.is_a?(Hash)
-        err = StandardError.new(Constants::ERROR_PREFIX + "mapToControlMLEonAPI must be a map")
-        @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
-        raise err
+      unless @mapToControlMLEonAPI.nil?
+        unless @mapToControlMLEonAPI.is_a?(Hash) && @mapToControlMLEonAPI.values.all? { |v| [true, false].include?(v) }
+          err = StandardError.new(Constants::ERROR_PREFIX + "mapToControlMLEonAPI must be a map with boolean values")
+          @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+          raise err
+        end
       end
 
       !@mleKeyAlias.nil? && unless @mleKeyAlias.instance_of? String
