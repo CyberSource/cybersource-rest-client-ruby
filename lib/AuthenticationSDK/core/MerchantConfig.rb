@@ -237,7 +237,7 @@ public
         raise err
       end
       unless @mapToControlMLEonAPI.nil?
-        unless @mapToControlMLEonAPI.is_a?(Hash) && @mapToControlMLEonAPI.values.all? { |v| [true, false].include?(v) }
+        unless @mapToControlMLEonAPI.is_a?(Hash) && @mapToControlMLEonAPI.keys.all? {|k| k.is_a?(String)} && @mapToControlMLEonAPI.values.all? { |v| [true, false].include?(v) }
           err = StandardError.new(Constants::ERROR_PREFIX + "mapToControlMLEonAPI must be a map with boolean values")
           @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
           raise err
