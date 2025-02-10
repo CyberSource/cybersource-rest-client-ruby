@@ -1,5 +1,8 @@
 require_relative '../logging/log_factory.rb'
 require 'jose'
+require_relative './Cache'
+require 'active_support'
+
 public
   class MLEUtility
     @log_obj = nil
@@ -27,9 +30,16 @@ public
       @log_obj.logger.info('Encrypting request payload')
       @log_obj.logger.debug('LOG_REQUEST_BEFORE_MLE: ' + request_payload)
 
-
       begin
-        certificate = get_certificate(merchant_config, @log_obj)
+        file_path = merchant_config.keysDirectory + '/' + merchant_config.keyFilename + '.p12'
+        p12_file = File.binread(file_path)
+        cache_obj = ActiveSupport::Cache::MemoryStore.new
+        cert_der = Cache.new.fetchCachedCertificate(merchant_config.keysDirectory, p12_file,  merchant_config.keyPass, merchant_config.mleKeyAlias, cache_obj)
+        if cert_der.nil?
+          @log_obj.logger.error('Failed to get certificate for MLE')
+          raise StandardError.new('Failed to get certificate for MLE')
+        end
+        certificate = OpenSSL::X509::Certificate.new(Base64.decode64(cert_der))
         validate_certificate(certificate, merchant_config.mleKeyAlias, @log_obj)
         serial_number = extract_serial_number_from_certificate(certificate)
         if serial_number.nil?
