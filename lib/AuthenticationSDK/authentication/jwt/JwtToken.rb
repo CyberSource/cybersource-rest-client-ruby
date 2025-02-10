@@ -34,7 +34,7 @@ public
 
       # Generating certificate.
       cacheObj = ActiveSupport::Cache::MemoryStore.new
-      x5Cert = Cache.new.fetchCachedCertificate(filePath, p12File, merchantconfig_obj.keyPass, cacheObj)
+      x5Cert = Cache.new.fetchCachedCertificate(filePath, p12File, merchantconfig_obj.keyPass, merchantconfig_obj.keyAlias, cacheObj)
 
       # Generating Public key.
       publicKey = OpenSSL::PKey::RSA.new(p12FilePath.key.public_key)

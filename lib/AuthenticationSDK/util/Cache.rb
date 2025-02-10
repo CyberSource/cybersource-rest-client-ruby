@@ -3,35 +3,31 @@ require 'base64'
 public
 # P12 file certificate Cache
   class Cache
-    def fetchCachedCertificate(filePath, p12File, keyPass, cacheObj)
-      certCache = cacheObj.read('certiFromP12File')
-      cachedLastModifiedTimeStamp = cacheObj.read('certificateLastModifiedTimeStamp')
+    def fetchCachedCertificate(filePath, p12File, keyPass, keyAlias, cacheObj)
+      certCache = cacheObj.read(keyAlias.to_s.upcase)
+      cachedLastModifiedTimeStamp = cacheObj.read(keyAlias.to_s.upcase + '_LastModifiedTime')
       if File.exist?(filePath)
         currentFileLastModifiedTime = File.mtime(filePath)
         if certCache.to_s.empty? || cachedLastModifiedTimeStamp.to_s.empty?
-        certificateFromP12File = getCertificate(p12File, keyPass, cacheObj, currentFileLastModifiedTime)
-        return certificateFromP12File
+          certificateFromP12File = getCertificate(p12File, keyPass, keyAlias, cacheObj, currentFileLastModifiedTime)
+          return certificateFromP12File
         elsif currentFileLastModifiedTime > cachedLastModifiedTimeStamp
         # Function call to read the file and put values to new cache
-        certificateFromP12File = getCertificate(p12File, keyPass, cacheObj, currentFileLastModifiedTime)
-        return certificateFromP12File
-      else
-        return certCache
-      end
+          certificateFromP12File = getCertificate(p12File, keyPass, keyAlias, cacheObj, currentFileLastModifiedTime)
+          return certificateFromP12File
+        else
+          return certCache
+        end
       else
         raise Constants::ERROR_PREFIX + Constants::FILE_NOT_FOUND + filePath
       end
     end
 
-    def getCertificate(p12File, keyPass, cacheObj, currentFileLastModifiedTime)
-      p12FilePath = OpenSSL::PKCS12.new(p12File, keyPass)
-      # Generating certificate from p12File.
-      x5CertPem = OpenSSL::X509::Certificate.new(p12FilePath.certificate)
-      # Converting Certificate format from PEM TO DER to remove header and footer of the certificate.
-      x5CertDer = Base64.strict_encode64(x5CertPem.to_der)
-      cacheObj.write('certiFromP12File', x5CertDer)
-      cacheObj.write('certificateLastModifiedTimeStamp', currentFileLastModifiedTime)
-      return x5CertDer
+    def getCertificate(p12File, keyPass, keyAlias, cacheObj, currentFileLastModifiedTime)
+      x5CertDer = Utility.new.fetchCert(keyPass, p12File, keyAlias)
+      cacheObj.write(keyAlias.to_s.upcase, x5CertDer)
+      cacheObj.write(keyAlias.to_s.upcase + '_LastModifiedTime', currentFileLastModifiedTime)
+      x5CertDer
     end
 
     def fetchPEMFileForNetworkTokenization(filePath, cacheObj)
