@@ -62,7 +62,8 @@ public
         jwe = JOSE::JWE.block_encrypt(jwk, request_payload, headers)
 
         compact_jwe = jwe.compact
-        @log_obj.logger.debug('LOG_REQUEST_AFTER_MLE: ' + compact_jwe)
+        mle_request_body = create_request_payload(compact_jwe)
+        @log_obj.logger.debug('LOG_REQUEST_AFTER_MLE: ' + mle_request_body)
         return create_request_payload compact_jwe
       rescue StandardError => e
         @log_obj.logger.error("An error occurred during encryption: #{e.message}")
@@ -102,7 +103,7 @@ public
         log_obj.logger.warn("Certificate for MLE don't have expiry date.")
       end
       if certificate.not_after < Time.now
-        log_obj.logger.error('Certificate with MLE alias ' + mle_key_alias + ' is expired as of ' + certificate.not_after.to_s + ". Please update p12 file.")
+        log_obj.logger.warn('Certificate with MLE alias ' + mle_key_alias + ' is expired as of ' + certificate.not_after.to_s + ". Please update p12 file.")
       else
         time_to_expire = certificate.not_after - Time.now
         if time_to_expire < Constants::CERTIFICATE_EXPIRY_DATE_WARNING_DAYS * 24 * 60 * 60
