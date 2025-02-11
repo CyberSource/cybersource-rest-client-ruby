@@ -23,9 +23,8 @@ public
     end
 
     def self.encrypt_request_payload(merchant_config, request_payload)
-      if request_payload.nil?
-        return nil
-      end
+      return nil if request_payload.nil?
+      return request_payload if request_payload == '{}'
       @log_obj ||= Log.new(merchant_config.log_config, 'MLEUtility')
       @log_obj.logger.info('Encrypting request payload')
       @log_obj.logger.debug('LOG_REQUEST_BEFORE_MLE: ' + request_payload)
