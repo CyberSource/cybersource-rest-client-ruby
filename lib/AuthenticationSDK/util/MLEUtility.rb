@@ -11,7 +11,7 @@ public
       if is_mle_supported_by_cybs_for_api && merchant_config.useMLEGlobally
         is_mle_for_api = true
       end
-      if merchant_config.mapToControlMLEonAPI.nil? && !operation_ids.nil?
+      if merchant_config.mapToControlMLEonAPI && operation_ids
         operation_ids.each do |operation_id|
           if merchant_config.mapToControlMLEonAPI.key?(operation_id)
             is_mle_for_api = merchant_config.mapToControlMLEonAPI[operation_id]
