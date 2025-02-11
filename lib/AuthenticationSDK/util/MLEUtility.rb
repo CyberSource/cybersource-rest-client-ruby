@@ -64,7 +64,7 @@ public
         compact_jwe = jwe.compact
         mle_request_body = create_request_payload(compact_jwe)
         @log_obj.logger.debug('LOG_REQUEST_AFTER_MLE: ' + mle_request_body)
-        return create_request_payload compact_jwe
+        return mle_request_body
       rescue StandardError => e
         @log_obj.logger.error("An error occurred during encryption: #{e.message}")
         raise e
