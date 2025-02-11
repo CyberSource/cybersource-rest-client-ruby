@@ -5,8 +5,8 @@ public
         def new_api_exception(err)
             @exception_message = err.message
 
-            if !err.backtrace.to_s.empty?
-                @exception_message += "\n" + err.backtrace
+            unless err.backtrace.to_s.empty?
+                @exception_message += "\n" + err.backtrace.join("\n")
             end
 
             @exception_message += '\nEND> ======================================='
