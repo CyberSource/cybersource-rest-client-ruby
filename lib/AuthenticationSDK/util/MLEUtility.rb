@@ -70,39 +70,12 @@ public
       end
     end
 
-
-    def self.get_certificate(merchant_config, log_obj)
-      begin
-        p12_file_path = File.join(merchant_config.keysDirectory, merchant_config.keyFilename + '.p12')
-        file = File.binread(p12_file_path)
-        p12_file = OpenSSL::PKCS12.new(file, merchant_config.keyPass)
-        x5_cert_pem = OpenSSL::X509::Certificate.new(p12_file.certificate)
-        x5_cert_pem.subject.to_a.each do |attribute|
-          return x5_cert_pem if attribute[1].include?(merchant_config.mleKeyAlias)
-        end
-        p12_file.ca_certs.each do |cert|
-          cert.subject.to_a.each do |attribute|
-            return cert if attribute[1].include?(merchant_config.mleKeyAlias)
-          end
-        end
-      rescue OpenSSL::PKCS12::PKCS12Error => e
-        log_obj.logger.error("Failed to load PKCS12 file: #{e.message}")
-        raise e
-      rescue OpenSSL::X509::CertificateError => e
-        log_obj.logger.error("Failed to create X509 certificate: #{e.message}")
-        raise e
-      rescue StandardError => e
-        log_obj.logger.error("An error occurred while getting the certificate: #{e.message}")
-        raise e
-      end
-    end
-
     def self.validate_certificate(certificate, mle_key_alias, log_obj)
       if certificate.not_after.nil?
         log_obj.logger.warn("Certificate for MLE don't have expiry date.")
-      end
-      if certificate.not_after < Time.now
+      elsif certificate.not_after < Time.now
         log_obj.logger.warn('Certificate with MLE alias ' + mle_key_alias + ' is expired as of ' + certificate.not_after.to_s + ". Please update p12 file.")
+        # raise StandardError.new('Certificate required for MLE has been expired on : ' + certificate.not_after.to_s)
       else
         time_to_expire = certificate.not_after - Time.now
         if time_to_expire < Constants::CERTIFICATE_EXPIRY_DATE_WARNING_DAYS * 24 * 60 * 60
