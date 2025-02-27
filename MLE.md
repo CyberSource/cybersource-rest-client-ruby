@@ -86,7 +86,7 @@ In the above examples:
 - `apiFunctionName2` will have MLE enabled.
 - `mleKeyAlias` is set to `Custom_Key_Alias`, overriding the default value.
 
-Please refer to the given link for sample codes with MLE:
+Please refer to the given link for sample codes with MLE: [MLE Samples](https://github.com/CyberSource/cybersource-rest-samples-ruby/tree/master/Samples/MLEFeature)
 
 
 ## Additional Information
