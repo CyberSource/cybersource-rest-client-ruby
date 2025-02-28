@@ -56,7 +56,7 @@ public
 
     #fall back logic
     def validateMerchantDetails()
-      logmessage=''
+      logmessage = ''
       @log_config.validate(logmessage)
       @log_obj = Log.new @log_config, "MerchantConfig"
       @log_obj.logger.info('START> =======================================')
@@ -231,6 +231,10 @@ public
     end
 
     def validateMLEConfiguration
+      if @useMLEGlobally.nil?
+        @useMLEGlobally = false
+      end
+
       unless [true, false].include?(@useMLEGlobally)
         err = StandardError.new(Constants::ERROR_PREFIX + "useMLEGlobally must be a boolean")
         @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)

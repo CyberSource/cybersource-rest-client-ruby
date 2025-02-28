@@ -30,7 +30,9 @@ public
       x5CertDer
     end
 
+    # <b>DEPRECATED:</b> This method has been marked as Deprecated and will be removed in coming releases.
     def fetchPEMFileForNetworkTokenization(filePath, cacheObj)
+      warn("[DEPRECATED] 'fetchPEMFileForNetworkTokenization' method is deprecated and will be removed in coming releases.")
       pem_file_cache = cacheObj.read('privateKeyFromPEMFile')
       cached_pem_file_last_updated_time = cacheObj.read('cachedLastModifiedTimeOfPEMFile')
       if File.exist?(filePath)
