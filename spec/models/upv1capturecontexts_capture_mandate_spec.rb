@@ -67,4 +67,16 @@ describe 'Upv1capturecontextsCaptureMandate' do
     end
   end
 
+  describe 'test attribute "request_save_card"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "combo_card"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

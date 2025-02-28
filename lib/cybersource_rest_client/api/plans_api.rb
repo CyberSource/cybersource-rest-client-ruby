@@ -10,7 +10,7 @@ Swagger Codegen version: 2.4.38
 =end
 
 require 'uri'
-
+require 'AuthenticationSDK/util/MLEUtility'
 module CyberSource
   class PlansApi
     attr_accessor :api_client
@@ -71,6 +71,10 @@ module CyberSource
         post_body = '{}'
       else
         post_body = nil
+      end
+      is_mle_supported_by_cybs_for_api = false
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["activate_plan","activate_plan_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
@@ -141,6 +145,10 @@ module CyberSource
       post_body = @api_client.object_to_http_body(create_plan_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CreatePlanRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      is_mle_supported_by_cybs_for_api = false
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["create_plan","create_plan_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+      end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -211,6 +219,10 @@ module CyberSource
         post_body = '{}'
       else
         post_body = nil
+      end
+      is_mle_supported_by_cybs_for_api = false
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["deactivate_plan","deactivate_plan_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
@@ -283,6 +295,10 @@ module CyberSource
       else
         post_body = nil
       end
+      is_mle_supported_by_cybs_for_api = false
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["delete_plan","delete_plan_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+      end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:DELETE, local_var_path,
         :header_params => header_params,
@@ -354,6 +370,10 @@ module CyberSource
       else
         post_body = nil
       end
+      is_mle_supported_by_cybs_for_api = false
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["get_plan","get_plan_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+      end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,
         :header_params => header_params,
@@ -418,6 +438,10 @@ module CyberSource
         post_body = '{}'
       else
         post_body = nil
+      end
+      is_mle_supported_by_cybs_for_api = false
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["get_plan_code","get_plan_code_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,
@@ -499,6 +523,10 @@ module CyberSource
       else
         post_body = nil
       end
+      is_mle_supported_by_cybs_for_api = false
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["get_plans","get_plans_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+      end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,
         :header_params => header_params,
@@ -574,6 +602,10 @@ module CyberSource
       post_body = @api_client.object_to_http_body(update_plan_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'UpdatePlanRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      is_mle_supported_by_cybs_for_api = false
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["update_plan","update_plan_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+      end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:PATCH, local_var_path,
         :header_params => header_params,

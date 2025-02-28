@@ -31,6 +31,12 @@ module CyberSource
     # Configure Unified Checkout to display the list of accepted card networks beneath the payment button  Possible values: - True - False 
     attr_accessor :show_accepted_network_icons
 
+    # Configure Unified Checkout to display the \"Save card for future use\" checkbox.<br>  Configurable check box that will show in a Manual card entry flow to allow a Cardholder to give consent to store their manually entered credential with the Merchant that they are paying.<br>  Applicable when manually entering the details and not enrolling in Click to Pay.  Possible values:  - True   - False<br><br>  **Use Cases:**  **Offer consumers option to save their card in Unified Checkout:**  - Include the captureMandate.requestSaveCard field in the capture context request and set it to true. - When set to true, this will show a checkbox with the message 'Save card for future use' in Unified Checkout. - When selected this provides a response in both the Transient Token and Get Credentials API response.<br><br>  **Do not offer consumers the option to save their card in Unified Checkout:**  - Include the captureMandate.requestSaveCard field in the capture context request and set it to false OR omit the field from the capture context request. - When set to false, the save card option is not shown to consumers when manually entering card details. 
+    attr_accessor :request_save_card
+
+    # Configure Unified Checkout to display combo card at checkout.<br>  A combo debit/credit card is a single card that functions both as a Debit/Credit card.  Unified Checkout / Click to Pay Drop-in UI allows the Cardholder to choose whether they would like the transaction to be paid for using either debit or credit card. **Important:** This is applicable to Visa cards only.  Possible values: - True  - False<br><br>  **Use Cases:**  **Offer Combo Card at Checkout:**  - Include the captureMandate.comboCard field in the capture context request and set it to true. - When set to true, Combo Card selection is shown at checkout <br><br>  **Do not offer Combo Card at Checkout:**  - Include the captureMandate.comboCard field in the capture context request and set it to false OR omit the field from the capture context request. - The Combo Card selection is not shown at checkout. 
+    attr_accessor :combo_card
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -39,7 +45,9 @@ module CyberSource
         :'request_phone' => :'requestPhone',
         :'request_shipping' => :'requestShipping',
         :'ship_to_countries' => :'shipToCountries',
-        :'show_accepted_network_icons' => :'showAcceptedNetworkIcons'
+        :'show_accepted_network_icons' => :'showAcceptedNetworkIcons',
+        :'request_save_card' => :'requestSaveCard',
+        :'combo_card' => :'comboCard'
       }
     end
 
@@ -51,7 +59,9 @@ module CyberSource
         :'request_phone' => :'request_phone',
         :'request_shipping' => :'request_shipping',
         :'ship_to_countries' => :'ship_to_countries',
-        :'show_accepted_network_icons' => :'show_accepted_network_icons'
+        :'show_accepted_network_icons' => :'show_accepted_network_icons',
+        :'request_save_card' => :'request_save_card',
+        :'combo_card' => :'combo_card'
       }
     end
 
@@ -63,7 +73,9 @@ module CyberSource
         :'request_phone' => :'BOOLEAN',
         :'request_shipping' => :'BOOLEAN',
         :'ship_to_countries' => :'Array<String>',
-        :'show_accepted_network_icons' => :'BOOLEAN'
+        :'show_accepted_network_icons' => :'BOOLEAN',
+        :'request_save_card' => :'BOOLEAN',
+        :'combo_card' => :'BOOLEAN'
       }
     end
 
@@ -100,6 +112,14 @@ module CyberSource
       if attributes.has_key?(:'showAcceptedNetworkIcons')
         self.show_accepted_network_icons = attributes[:'showAcceptedNetworkIcons']
       end
+
+      if attributes.has_key?(:'requestSaveCard')
+        self.request_save_card = attributes[:'requestSaveCard']
+      end
+
+      if attributes.has_key?(:'comboCard')
+        self.combo_card = attributes[:'comboCard']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -131,7 +151,9 @@ module CyberSource
           request_phone == o.request_phone &&
           request_shipping == o.request_shipping &&
           ship_to_countries == o.ship_to_countries &&
-          show_accepted_network_icons == o.show_accepted_network_icons
+          show_accepted_network_icons == o.show_accepted_network_icons &&
+          request_save_card == o.request_save_card &&
+          combo_card == o.combo_card
     end
 
     # @see the `==` method
@@ -143,7 +165,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [billing_type, request_email, request_phone, request_shipping, ship_to_countries, show_accepted_network_icons].hash
+      [billing_type, request_email, request_phone, request_shipping, ship_to_countries, show_accepted_network_icons, request_save_card, combo_card].hash
     end
 
     # Builds the object from hash

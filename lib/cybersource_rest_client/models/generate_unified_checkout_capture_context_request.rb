@@ -35,6 +35,8 @@ module CyberSource
 
     attr_accessor :order_information
 
+    attr_accessor :transient_token_response_options
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -45,7 +47,8 @@ module CyberSource
         :'country' => :'country',
         :'locale' => :'locale',
         :'capture_mandate' => :'captureMandate',
-        :'order_information' => :'orderInformation'
+        :'order_information' => :'orderInformation',
+        :'transient_token_response_options' => :'transientTokenResponseOptions'
       }
     end
 
@@ -59,7 +62,8 @@ module CyberSource
         :'country' => :'country',
         :'locale' => :'locale',
         :'capture_mandate' => :'capture_mandate',
-        :'order_information' => :'order_information'
+        :'order_information' => :'order_information',
+        :'transient_token_response_options' => :'transient_token_response_options'
       }
     end
 
@@ -73,7 +77,8 @@ module CyberSource
         :'country' => :'String',
         :'locale' => :'String',
         :'capture_mandate' => :'Upv1capturecontextsCaptureMandate',
-        :'order_information' => :'Upv1capturecontextsOrderInformation'
+        :'order_information' => :'Upv1capturecontextsOrderInformation',
+        :'transient_token_response_options' => :'Microformv2sessionsTransientTokenResponseOptions'
       }
     end
 
@@ -122,6 +127,10 @@ module CyberSource
       if attributes.has_key?(:'orderInformation')
         self.order_information = attributes[:'orderInformation']
       end
+
+      if attributes.has_key?(:'transientTokenResponseOptions')
+        self.transient_token_response_options = attributes[:'transientTokenResponseOptions']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -161,7 +170,8 @@ module CyberSource
           country == o.country &&
           locale == o.locale &&
           capture_mandate == o.capture_mandate &&
-          order_information == o.order_information
+          order_information == o.order_information &&
+          transient_token_response_options == o.transient_token_response_options
     end
 
     # @see the `==` method
@@ -173,7 +183,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_version, target_origins, allowed_card_networks, allowed_payment_types, country, locale, capture_mandate, order_information].hash
+      [client_version, target_origins, allowed_card_networks, allowed_payment_types, country, locale, capture_mandate, order_information, transient_token_response_options].hash
     end
 
     # Builds the object from hash
