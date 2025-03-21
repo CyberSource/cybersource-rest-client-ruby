@@ -1,4 +1,5 @@
 require 'logger'
+require 'json'
 
 class SensitiveTag
     attr_accessor :tagName, :pattern, :replacement, :disableMask
@@ -72,10 +73,23 @@ class SensitiveDataFilter < Logger::Formatter
         end
     end
 
+    def maskSensitiveDataInJson(input)
+        parts = input.split(":", 2)
+        json_data = JSON.parse(parts[1].strip)
+        encrypted_request = json_data["encryptedRequest"]
+        json_data["encryptedRequest"] = 'X' * encrypted_request.length
+        return parts[0] + ":" + JSON.generate(json_data)
+    end
+
     def call(severity, time, progname, msg)
         maskedMessage = maskSensitiveString(msg)
         ccMasked = maskCreditCards(maskedMessage)
-        return formatLogEntry(severity, time, progname, ccMasked)
+        if ccMasked.include?("encryptedRequest")
+            mleMasked = maskSensitiveDataInJson(ccMasked)
+            return formatLogEntry(severity, time, progname, mleMasked)
+        else
+            return formatLogEntry(severity, time, progname, ccMasked)
+        end
     end
 
     def maskCreditCards(input)
