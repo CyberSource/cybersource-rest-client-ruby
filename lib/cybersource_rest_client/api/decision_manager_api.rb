@@ -10,7 +10,7 @@ Swagger Codegen version: 2.4.38
 =end
 
 require 'uri'
-
+require 'AuthenticationSDK/util/MLEUtility'
 module CyberSource
   class DecisionManagerApi
     attr_accessor :api_client
@@ -76,6 +76,10 @@ module CyberSource
       post_body = @api_client.object_to_http_body(case_management_actions_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CaseManagementActionsRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      is_mle_supported_by_cybs_for_api = false
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["action_decision_manager_case","action_decision_manager_case_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+      end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -151,6 +155,10 @@ module CyberSource
       post_body = @api_client.object_to_http_body(add_negative_list_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'AddNegativeListRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      is_mle_supported_by_cybs_for_api = false
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["add_negative","add_negative_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+      end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -226,6 +234,10 @@ module CyberSource
       post_body = @api_client.object_to_http_body(case_management_comments_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CaseManagementCommentsRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      is_mle_supported_by_cybs_for_api = false
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["comment_decision_manager_case","comment_decision_manager_case_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+      end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -295,6 +307,10 @@ module CyberSource
       post_body = @api_client.object_to_http_body(create_bundled_decision_manager_case_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CreateBundledDecisionManagerCaseRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      is_mle_supported_by_cybs_for_api = false
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["create_bundled_decision_manager_case","create_bundled_decision_manager_case_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+      end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -370,6 +386,10 @@ module CyberSource
       post_body = @api_client.object_to_http_body(fraud_marking_action_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'FraudMarkingActionRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      is_mle_supported_by_cybs_for_api = false
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["fraud_update","fraud_update_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+      end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,

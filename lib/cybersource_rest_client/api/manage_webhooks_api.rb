@@ -10,7 +10,7 @@ Swagger Codegen version: 2.4.38
 =end
 
 require 'uri'
-
+require 'AuthenticationSDK/util/MLEUtility'
 module CyberSource
   class ManageWebhooksApi
     attr_accessor :api_client
@@ -72,6 +72,10 @@ module CyberSource
         post_body = '{}'
       else
         post_body = nil
+      end
+      is_mle_supported_by_cybs_for_api = false
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["delete_webhook_subscription","delete_webhook_subscription_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:DELETE, local_var_path,
@@ -143,6 +147,10 @@ module CyberSource
         post_body = '{}'
       else
         post_body = nil
+      end
+      is_mle_supported_by_cybs_for_api = false
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["get_webhook_subscription_by_id","get_webhook_subscription_by_id_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,
@@ -230,6 +238,10 @@ module CyberSource
         post_body = '{}'
       else
         post_body = nil
+      end
+      is_mle_supported_by_cybs_for_api = false
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["get_webhook_subscriptions_by_org","get_webhook_subscriptions_by_org_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,
@@ -326,6 +338,10 @@ module CyberSource
       post_body = @api_client.object_to_http_body(save_asym_egress_key)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'SaveAsymEgressKey', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      is_mle_supported_by_cybs_for_api = false
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["save_asym_egress_key","save_asym_egress_key_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+      end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -398,6 +414,10 @@ module CyberSource
       post_body = @api_client.object_to_http_body(opts[:'update_webhook_request'])
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'UpdateWebhookRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      is_mle_supported_by_cybs_for_api = false
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["update_webhook_subscription","update_webhook_subscription_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+      end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:PATCH, local_var_path,
         :header_params => header_params,

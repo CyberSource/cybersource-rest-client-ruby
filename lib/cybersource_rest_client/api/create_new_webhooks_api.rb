@@ -10,7 +10,7 @@ Swagger Codegen version: 2.4.38
 =end
 
 require 'uri'
-
+require 'AuthenticationSDK/util/MLEUtility'
 module CyberSource
   class CreateNewWebhooksApi
     attr_accessor :api_client
@@ -67,6 +67,10 @@ module CyberSource
       post_body = @api_client.object_to_http_body(opts[:'create_webhook_request'])
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CreateWebhookRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      is_mle_supported_by_cybs_for_api = false
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["create_webhook_subscription","create_webhook_subscription_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+      end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -138,6 +142,10 @@ module CyberSource
         post_body = '{}'
       else
         post_body = nil
+      end
+      is_mle_supported_by_cybs_for_api = false
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["find_products_to_subscribe","find_products_to_subscribe_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,
@@ -230,6 +238,10 @@ module CyberSource
       post_body = @api_client.object_to_http_body(opts[:'save_sym_egress_key'])
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'SaveSymEgressKey', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      is_mle_supported_by_cybs_for_api = false
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["save_sym_egress_key","save_sym_egress_key_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+      end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,

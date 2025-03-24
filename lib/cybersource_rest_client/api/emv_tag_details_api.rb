@@ -10,7 +10,7 @@ Swagger Codegen version: 2.4.38
 =end
 
 require 'uri'
-
+require 'AuthenticationSDK/util/MLEUtility'
 module CyberSource
   class EMVTagDetailsApi
     attr_accessor :api_client
@@ -65,6 +65,10 @@ module CyberSource
         post_body = '{}'
       else
         post_body = nil
+      end
+      is_mle_supported_by_cybs_for_api = false
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["get_emv_tags","get_emv_tags_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,
@@ -135,6 +139,10 @@ module CyberSource
       post_body = @api_client.object_to_http_body(body)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'Body', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      is_mle_supported_by_cybs_for_api = false
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["parse_emv_tags","parse_emv_tags_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+      end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,

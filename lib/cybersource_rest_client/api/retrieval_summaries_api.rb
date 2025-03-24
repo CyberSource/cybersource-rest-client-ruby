@@ -10,7 +10,7 @@ Swagger Codegen version: 2.4.38
 =end
 
 require 'uri'
-
+require 'AuthenticationSDK/util/MLEUtility'
 module CyberSource
   class RetrievalSummariesApi
     attr_accessor :api_client
@@ -86,6 +86,10 @@ module CyberSource
         post_body = '{}'
       else
         post_body = nil
+      end
+      is_mle_supported_by_cybs_for_api = false
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["get_retrieval_summary","get_retrieval_summary_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,

@@ -18,11 +18,14 @@ module CyberSource
 
     attr_accessor :vault
 
+    attr_accessor :network_token_enrollment
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'parent_profile_id' => :'parentProfileId',
-        :'vault' => :'vault'
+        :'vault' => :'vault',
+        :'network_token_enrollment' => :'networkTokenEnrollment'
       }
     end
 
@@ -30,7 +33,8 @@ module CyberSource
     def self.json_map
       {
         :'parent_profile_id' => :'parent_profile_id',
-        :'vault' => :'vault'
+        :'vault' => :'vault',
+        :'network_token_enrollment' => :'network_token_enrollment'
       }
     end
 
@@ -38,7 +42,8 @@ module CyberSource
     def self.swagger_types
       {
         :'parent_profile_id' => :'String',
-        :'vault' => :'CommerceSolutionsProductsTokenManagementConfigurationInformationConfigurationsVault'
+        :'vault' => :'CommerceSolutionsProductsTokenManagementConfigurationInformationConfigurationsVault',
+        :'network_token_enrollment' => :'NetworkTokenEnrollment'
       }
     end
 
@@ -56,6 +61,10 @@ module CyberSource
 
       if attributes.has_key?(:'vault')
         self.vault = attributes[:'vault']
+      end
+
+      if attributes.has_key?(:'networkTokenEnrollment')
+        self.network_token_enrollment = attributes[:'networkTokenEnrollment']
       end
     end
 
@@ -78,7 +87,8 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           parent_profile_id == o.parent_profile_id &&
-          vault == o.vault
+          vault == o.vault &&
+          network_token_enrollment == o.network_token_enrollment
     end
 
     # @see the `==` method
@@ -90,7 +100,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [parent_profile_id, vault].hash
+      [parent_profile_id, vault, network_token_enrollment].hash
     end
 
     # Builds the object from hash

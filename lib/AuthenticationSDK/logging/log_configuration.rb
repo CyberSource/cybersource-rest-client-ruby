@@ -62,7 +62,7 @@ public
                 elsif @enableMasking == true
                     @enableMasking = true
                 else
-                    @enableMasking = false
+                    @enableMasking = true
                 end
             end
             return log_message
