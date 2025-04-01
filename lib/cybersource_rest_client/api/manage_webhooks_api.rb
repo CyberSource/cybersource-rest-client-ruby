@@ -19,37 +19,37 @@ module CyberSource
       @api_client = api_client
       @api_client.set_configuration(config)
     end
-    # Delete a Webhook Subscription
-    # Delete the webhook. Please note that deleting a particular webhook does not delete the history of the webhook notifications.
+    # Test a Webhook Configuration
+    # Test the webhook configuration by sending a sample webhook. Calling this endpoint sends a sample webhook to the endpoint identified in the user's subscription.   It will contain sample values for the product & eventType based on values present in your subscription along with a sample message in the payload.   Based on the webhook response users can make any necessary modifications or rest assured knowing their setup is configured correctly. 
     #
-    # @param webhook_id The webhook identifier.
+    # @param webhook_id The Webhook Identifier.
     # @param [Hash] opts the optional parameters
-    # @return [nil]
+    # @return [InlineResponse2014]
     #
     # DISCLAIMER : Cybersource may allow Customer to access, use, and/or test a Cybersource product or service that may still be in development or has not been market-tested ("Beta Product") solely for the purpose of evaluating the functionality or marketability of the Beta Product (a "Beta Evaluation"). Notwithstanding any language to the contrary, the following terms shall apply with respect to Customer's participation in any Beta Evaluation (and the Beta Product(s)) accessed thereunder): The Parties will enter into a separate form agreement detailing the scope of the Beta Evaluation, requirements, pricing, the length of the beta evaluation period ("Beta Product Form"). Beta Products are not, and may not become, Transaction Services and have not yet been publicly released and are offered for the sole purpose of internal testing and non-commercial evaluation. Customer's use of the Beta Product shall be solely for the purpose of conducting the Beta Evaluation. Customer accepts all risks arising out of the access and use of the Beta Products. Cybersource may, in its sole discretion, at any time, terminate or discontinue the Beta Evaluation. Customer acknowledges and agrees that any Beta Product may still be in development and that Beta Product is provided "AS IS" and may not perform at the level of a commercially available service, may not operate as expected and may be modified prior to release. CYBERSOURCE SHALL NOT BE RESPONSIBLE OR LIABLE UNDER ANY CONTRACT, TORT (INCLUDING NEGLIGENCE), OR OTHERWISE RELATING TO A BETA PRODUCT OR THE BETA EVALUATION (A) FOR LOSS OR INACCURACY OF DATA OR COST OF PROCUREMENT OF SUBSTITUTE GOODS, SERVICES OR TECHNOLOGY, (B) ANY CLAIM, LOSSES, DAMAGES, OR CAUSE OF ACTION ARISING IN CONNECTION WITH THE BETA PRODUCT; OR (C) FOR ANY INDIRECT, INCIDENTAL OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO, LOSS OF REVENUES AND LOSS OF PROFITS.
-    def delete_webhook_subscription(webhook_id, opts = {})
-      data, status_code, headers = delete_webhook_subscription_with_http_info(webhook_id, opts)
+    def notification_subscriptions_v1_webhooks_webhook_id_post(webhook_id, opts = {})
+      data, status_code, headers = notification_subscriptions_v1_webhooks_webhook_id_post_with_http_info(webhook_id, opts)
       return data, status_code, headers
     end
 
-    # Delete a Webhook Subscription
-    # Delete the webhook. Please note that deleting a particular webhook does not delete the history of the webhook notifications.
-    # @param webhook_id The webhook identifier.
+    # Test a Webhook Configuration
+    # Test the webhook configuration by sending a sample webhook. Calling this endpoint sends a sample webhook to the endpoint identified in the user&#39;s subscription.   It will contain sample values for the product &amp; eventType based on values present in your subscription along with a sample message in the payload.   Based on the webhook response users can make any necessary modifications or rest assured knowing their setup is configured correctly. 
+    # @param webhook_id The Webhook Identifier.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
-    def delete_webhook_subscription_with_http_info(webhook_id, opts = {})
+    # @return [Array<(InlineResponse2014, Fixnum, Hash)>] InlineResponse2014 data, response status code and response headers
+    def notification_subscriptions_v1_webhooks_webhook_id_post_with_http_info(webhook_id, opts = {})
 
       if @api_client.config.debugging
           begin
             raise
-                @api_client.config.logger.debug 'Calling API: ManageWebhooksApi.delete_webhook_subscription ...'
+                @api_client.config.logger.debug 'Calling API: ManageWebhooksApi.notification_subscriptions_v1_webhooks_webhook_id_post ...'
             rescue
                 puts 'Cannot write to log'
             end
       end
       # verify the required parameter 'webhook_id' is set
       if @api_client.config.client_side_validation && webhook_id.nil?
-        fail ArgumentError, "Missing the required parameter 'webhook_id' when calling ManageWebhooksApi.delete_webhook_subscription"
+        fail ArgumentError, "Missing the required parameter 'webhook_id' when calling ManageWebhooksApi.notification_subscriptions_v1_webhooks_webhook_id_post"
       end
       # resource path
       local_var_path = 'notification-subscriptions/v1/webhooks/{webhookId}'.sub('{' + 'webhookId' + '}', webhook_id.to_s)
@@ -60,7 +60,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
 
@@ -68,193 +68,27 @@ module CyberSource
       form_params = {}
 
       # http body (model)
-      if 'DELETE' == 'POST'
+      if 'POST' == 'POST'
         post_body = '{}'
       else
         post_body = nil
       end
       is_mle_supported_by_cybs_for_api = false
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["delete_webhook_subscription","delete_webhook_subscription_with_http_info"])
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["notification_subscriptions_v1_webhooks_webhook_id_post","notification_subscriptions_v1_webhooks_webhook_id_post_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
-      data, status_code, headers = @api_client.call_api(:DELETE, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names)
-      if @api_client.config.debugging
-        begin
-        raise
-            @api_client.config.logger.debug "API called: ManageWebhooksApi#delete_webhook_subscription\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-        rescue
-            puts 'Cannot write to log'
-        end
-      end
-      return data, status_code, headers
-    end
-    # Get Details On a Single Webhook
-    # Retrieve the details of a specific webhook by supplying the webhook ID in the path.
-    #
-    # @param webhook_id The webhook Identifier
-    # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2004]
-    #
-    # DISCLAIMER : Cybersource may allow Customer to access, use, and/or test a Cybersource product or service that may still be in development or has not been market-tested ("Beta Product") solely for the purpose of evaluating the functionality or marketability of the Beta Product (a "Beta Evaluation"). Notwithstanding any language to the contrary, the following terms shall apply with respect to Customer's participation in any Beta Evaluation (and the Beta Product(s)) accessed thereunder): The Parties will enter into a separate form agreement detailing the scope of the Beta Evaluation, requirements, pricing, the length of the beta evaluation period ("Beta Product Form"). Beta Products are not, and may not become, Transaction Services and have not yet been publicly released and are offered for the sole purpose of internal testing and non-commercial evaluation. Customer's use of the Beta Product shall be solely for the purpose of conducting the Beta Evaluation. Customer accepts all risks arising out of the access and use of the Beta Products. Cybersource may, in its sole discretion, at any time, terminate or discontinue the Beta Evaluation. Customer acknowledges and agrees that any Beta Product may still be in development and that Beta Product is provided "AS IS" and may not perform at the level of a commercially available service, may not operate as expected and may be modified prior to release. CYBERSOURCE SHALL NOT BE RESPONSIBLE OR LIABLE UNDER ANY CONTRACT, TORT (INCLUDING NEGLIGENCE), OR OTHERWISE RELATING TO A BETA PRODUCT OR THE BETA EVALUATION (A) FOR LOSS OR INACCURACY OF DATA OR COST OF PROCUREMENT OF SUBSTITUTE GOODS, SERVICES OR TECHNOLOGY, (B) ANY CLAIM, LOSSES, DAMAGES, OR CAUSE OF ACTION ARISING IN CONNECTION WITH THE BETA PRODUCT; OR (C) FOR ANY INDIRECT, INCIDENTAL OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO, LOSS OF REVENUES AND LOSS OF PROFITS.
-    def get_webhook_subscription_by_id(webhook_id, opts = {})
-      data, status_code, headers = get_webhook_subscription_by_id_with_http_info(webhook_id, opts)
-      return data, status_code, headers
-    end
-
-    # Get Details On a Single Webhook
-    # Retrieve the details of a specific webhook by supplying the webhook ID in the path.
-    # @param webhook_id The webhook Identifier
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2004, Fixnum, Hash)>] InlineResponse2004 data, response status code and response headers
-    def get_webhook_subscription_by_id_with_http_info(webhook_id, opts = {})
-
-      if @api_client.config.debugging
-          begin
-            raise
-                @api_client.config.logger.debug 'Calling API: ManageWebhooksApi.get_webhook_subscription_by_id ...'
-            rescue
-                puts 'Cannot write to log'
-            end
-      end
-      # verify the required parameter 'webhook_id' is set
-      if @api_client.config.client_side_validation && webhook_id.nil?
-        fail ArgumentError, "Missing the required parameter 'webhook_id' when calling ManageWebhooksApi.get_webhook_subscription_by_id"
-      end
-      # resource path
-      local_var_path = 'notification-subscriptions/v1/webhooks/{webhookId}'.sub('{' + 'webhookId' + '}', webhook_id.to_s)
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
-
-      # form parameters
-      form_params = {}
-
-      # http body (model)
-      if 'GET' == 'POST'
-        post_body = '{}'
-      else
-        post_body = nil
-      end
-      is_mle_supported_by_cybs_for_api = false
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["get_webhook_subscription_by_id","get_webhook_subscription_by_id_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
-      end
-      auth_names = []
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2004')
+        :return_type => 'InlineResponse2014')
       if @api_client.config.debugging
         begin
         raise
-            @api_client.config.logger.debug "API called: ManageWebhooksApi#get_webhook_subscription_by_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-        rescue
-            puts 'Cannot write to log'
-        end
-      end
-      return data, status_code, headers
-    end
-    # Get Details On All Created Webhooks
-    # Retrieve a list of all previously created webhooks.
-    #
-    # @param organization_id The Organization Identifier.
-    # @param product_id The Product Identifier.
-    # @param event_type The Event Type.
-    # @param [Hash] opts the optional parameters
-    # @return [Array<InlineResponse2003>]
-    #
-    # DISCLAIMER : Cybersource may allow Customer to access, use, and/or test a Cybersource product or service that may still be in development or has not been market-tested ("Beta Product") solely for the purpose of evaluating the functionality or marketability of the Beta Product (a "Beta Evaluation"). Notwithstanding any language to the contrary, the following terms shall apply with respect to Customer's participation in any Beta Evaluation (and the Beta Product(s)) accessed thereunder): The Parties will enter into a separate form agreement detailing the scope of the Beta Evaluation, requirements, pricing, the length of the beta evaluation period ("Beta Product Form"). Beta Products are not, and may not become, Transaction Services and have not yet been publicly released and are offered for the sole purpose of internal testing and non-commercial evaluation. Customer's use of the Beta Product shall be solely for the purpose of conducting the Beta Evaluation. Customer accepts all risks arising out of the access and use of the Beta Products. Cybersource may, in its sole discretion, at any time, terminate or discontinue the Beta Evaluation. Customer acknowledges and agrees that any Beta Product may still be in development and that Beta Product is provided "AS IS" and may not perform at the level of a commercially available service, may not operate as expected and may be modified prior to release. CYBERSOURCE SHALL NOT BE RESPONSIBLE OR LIABLE UNDER ANY CONTRACT, TORT (INCLUDING NEGLIGENCE), OR OTHERWISE RELATING TO A BETA PRODUCT OR THE BETA EVALUATION (A) FOR LOSS OR INACCURACY OF DATA OR COST OF PROCUREMENT OF SUBSTITUTE GOODS, SERVICES OR TECHNOLOGY, (B) ANY CLAIM, LOSSES, DAMAGES, OR CAUSE OF ACTION ARISING IN CONNECTION WITH THE BETA PRODUCT; OR (C) FOR ANY INDIRECT, INCIDENTAL OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO, LOSS OF REVENUES AND LOSS OF PROFITS.
-    def get_webhook_subscriptions_by_org(organization_id, product_id, event_type, opts = {})
-      data, status_code, headers = get_webhook_subscriptions_by_org_with_http_info(organization_id, product_id, event_type, opts)
-      return data, status_code, headers
-    end
-
-    # Get Details On All Created Webhooks
-    # Retrieve a list of all previously created webhooks.
-    # @param organization_id The Organization Identifier.
-    # @param product_id The Product Identifier.
-    # @param event_type The Event Type.
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(Array<InlineResponse2003>, Fixnum, Hash)>] Array<InlineResponse2003> data, response status code and response headers
-    def get_webhook_subscriptions_by_org_with_http_info(organization_id, product_id, event_type, opts = {})
-
-      if @api_client.config.debugging
-          begin
-            raise
-                @api_client.config.logger.debug 'Calling API: ManageWebhooksApi.get_webhook_subscriptions_by_org ...'
-            rescue
-                puts 'Cannot write to log'
-            end
-      end
-      # verify the required parameter 'organization_id' is set
-      if @api_client.config.client_side_validation && organization_id.nil?
-        fail ArgumentError, "Missing the required parameter 'organization_id' when calling ManageWebhooksApi.get_webhook_subscriptions_by_org"
-      end
-      # verify the required parameter 'product_id' is set
-      if @api_client.config.client_side_validation && product_id.nil?
-        fail ArgumentError, "Missing the required parameter 'product_id' when calling ManageWebhooksApi.get_webhook_subscriptions_by_org"
-      end
-      # verify the required parameter 'event_type' is set
-      if @api_client.config.client_side_validation && event_type.nil?
-        fail ArgumentError, "Missing the required parameter 'event_type' when calling ManageWebhooksApi.get_webhook_subscriptions_by_org"
-      end
-      # resource path
-      local_var_path = 'notification-subscriptions/v1/webhooks'
-
-      # query parameters
-      query_params = {}
-      query_params[:'organizationId'] = organization_id
-      query_params[:'productId'] = product_id
-      query_params[:'eventType'] = event_type
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
-
-      # form parameters
-      form_params = {}
-
-      # http body (model)
-      if 'GET' == 'POST'
-        post_body = '{}'
-      else
-        post_body = nil
-      end
-      is_mle_supported_by_cybs_for_api = false
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["get_webhook_subscriptions_by_org","get_webhook_subscriptions_by_org_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
-      end
-      auth_names = []
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'Array<InlineResponse2003>')
-      if @api_client.config.debugging
-        begin
-        raise
-            @api_client.config.logger.debug "API called: ManageWebhooksApi#get_webhook_subscriptions_by_org\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+            @api_client.config.logger.debug "API called: ManageWebhooksApi#notification_subscriptions_v1_webhooks_webhook_id_post\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
         rescue
             puts 'Cannot write to log'
         end
@@ -324,7 +158,7 @@ module CyberSource
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
       header_params[:'v-c-sender-organization-id'] = v_c_sender_organization_id
@@ -354,81 +188,6 @@ module CyberSource
         begin
         raise
             @api_client.config.logger.debug "API called: ManageWebhooksApi#save_asym_egress_key\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-        rescue
-            puts 'Cannot write to log'
-        end
-      end
-      return data, status_code, headers
-    end
-    # Update a Webhook Subscription
-    # Update the webhook subscription using PATCH.
-    #
-    # @param webhook_id The Webhook Identifier.
-    # @param [Hash] opts the optional parameters
-    # @option opts [UpdateWebhookRequest] :update_webhook_request The webhook payload or changes to apply.
-    # @return [nil]
-    #
-    # DISCLAIMER : Cybersource may allow Customer to access, use, and/or test a Cybersource product or service that may still be in development or has not been market-tested ("Beta Product") solely for the purpose of evaluating the functionality or marketability of the Beta Product (a "Beta Evaluation"). Notwithstanding any language to the contrary, the following terms shall apply with respect to Customer's participation in any Beta Evaluation (and the Beta Product(s)) accessed thereunder): The Parties will enter into a separate form agreement detailing the scope of the Beta Evaluation, requirements, pricing, the length of the beta evaluation period ("Beta Product Form"). Beta Products are not, and may not become, Transaction Services and have not yet been publicly released and are offered for the sole purpose of internal testing and non-commercial evaluation. Customer's use of the Beta Product shall be solely for the purpose of conducting the Beta Evaluation. Customer accepts all risks arising out of the access and use of the Beta Products. Cybersource may, in its sole discretion, at any time, terminate or discontinue the Beta Evaluation. Customer acknowledges and agrees that any Beta Product may still be in development and that Beta Product is provided "AS IS" and may not perform at the level of a commercially available service, may not operate as expected and may be modified prior to release. CYBERSOURCE SHALL NOT BE RESPONSIBLE OR LIABLE UNDER ANY CONTRACT, TORT (INCLUDING NEGLIGENCE), OR OTHERWISE RELATING TO A BETA PRODUCT OR THE BETA EVALUATION (A) FOR LOSS OR INACCURACY OF DATA OR COST OF PROCUREMENT OF SUBSTITUTE GOODS, SERVICES OR TECHNOLOGY, (B) ANY CLAIM, LOSSES, DAMAGES, OR CAUSE OF ACTION ARISING IN CONNECTION WITH THE BETA PRODUCT; OR (C) FOR ANY INDIRECT, INCIDENTAL OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO, LOSS OF REVENUES AND LOSS OF PROFITS.
-    def update_webhook_subscription(webhook_id, opts = {})
-      data, status_code, headers = update_webhook_subscription_with_http_info(webhook_id, opts)
-      return data, status_code, headers
-    end
-
-    # Update a Webhook Subscription
-    # Update the webhook subscription using PATCH.
-    # @param webhook_id The Webhook Identifier.
-    # @param [Hash] opts the optional parameters
-    # @option opts [UpdateWebhookRequest] :update_webhook_request The webhook payload or changes to apply.
-    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
-    def update_webhook_subscription_with_http_info(webhook_id, opts = {})
-
-      if @api_client.config.debugging
-          begin
-            raise
-                @api_client.config.logger.debug 'Calling API: ManageWebhooksApi.update_webhook_subscription ...'
-            rescue
-                puts 'Cannot write to log'
-            end
-      end
-      # verify the required parameter 'webhook_id' is set
-      if @api_client.config.client_side_validation && webhook_id.nil?
-        fail ArgumentError, "Missing the required parameter 'webhook_id' when calling ManageWebhooksApi.update_webhook_subscription"
-      end
-      # resource path
-      local_var_path = 'notification-subscriptions/v1/webhooks/{webhookId}'.sub('{' + 'webhookId' + '}', webhook_id.to_s)
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
-
-      # form parameters
-      form_params = {}
-
-      # http body (model)
-      post_body = @api_client.object_to_http_body(opts[:'update_webhook_request'])
-      sdk_tracker = SdkTracker.new
-      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'UpdateWebhookRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      is_mle_supported_by_cybs_for_api = false
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["update_webhook_subscription","update_webhook_subscription_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
-      end
-      auth_names = []
-      data, status_code, headers = @api_client.call_api(:PATCH, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names)
-      if @api_client.config.debugging
-        begin
-        raise
-            @api_client.config.logger.debug "API called: ManageWebhooksApi#update_webhook_subscription\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
         rescue
             puts 'Cannot write to log'
         end

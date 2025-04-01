@@ -37,6 +37,12 @@ describe 'TssV2TransactionsPost201ResponseEmbeddedProcessorInformation' do
     end
   end
 
+  describe 'test attribute "provider_transaction_id"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "approval_code"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

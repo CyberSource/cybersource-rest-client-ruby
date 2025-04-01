@@ -22,6 +22,12 @@ module CyberSource
     # This field is set to the value of failure reason returned by the processor. 
     attr_accessor :raw_response
 
+    # This field is set to the value of failure reason returned by the processor in the local language of the processor. 
+    attr_accessor :raw_response_local
+
+    # This field might contain information about a decline. 
+    attr_accessor :response_details
+
     # This field is set to the value of response code returned by the processor. 
     attr_accessor :response_code
 
@@ -35,6 +41,8 @@ module CyberSource
         :'transaction_id' => :'transactionId',
         :'trade_number' => :'tradeNumber',
         :'raw_response' => :'rawResponse',
+        :'raw_response_local' => :'rawResponseLocal',
+        :'response_details' => :'responseDetails',
         :'response_code' => :'responseCode',
         :'seller_protection' => :'sellerProtection',
         :'avs' => :'avs'
@@ -47,6 +55,8 @@ module CyberSource
         :'transaction_id' => :'transaction_id',
         :'trade_number' => :'trade_number',
         :'raw_response' => :'raw_response',
+        :'raw_response_local' => :'raw_response_local',
+        :'response_details' => :'response_details',
         :'response_code' => :'response_code',
         :'seller_protection' => :'seller_protection',
         :'avs' => :'avs'
@@ -59,6 +69,8 @@ module CyberSource
         :'transaction_id' => :'String',
         :'trade_number' => :'String',
         :'raw_response' => :'String',
+        :'raw_response_local' => :'String',
+        :'response_details' => :'String',
         :'response_code' => :'String',
         :'seller_protection' => :'PtsV2PaymentsPost201ResponseProcessorInformationSellerProtection',
         :'avs' => :'PtsV2PaymentsPost201Response1ProcessorInformationAvs'
@@ -83,6 +95,14 @@ module CyberSource
 
       if attributes.has_key?(:'rawResponse')
         self.raw_response = attributes[:'rawResponse']
+      end
+
+      if attributes.has_key?(:'rawResponseLocal')
+        self.raw_response_local = attributes[:'rawResponseLocal']
+      end
+
+      if attributes.has_key?(:'responseDetails')
+        self.response_details = attributes[:'responseDetails']
       end
 
       if attributes.has_key?(:'responseCode')
@@ -117,6 +137,24 @@ module CyberSource
       @transaction_id = transaction_id
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] raw_response Value to be assigned
+    def raw_response=(raw_response)
+      @raw_response = raw_response
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] raw_response_local Value to be assigned
+    def raw_response_local=(raw_response_local)
+      @raw_response_local = raw_response_local
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] response_details Value to be assigned
+    def response_details=(response_details)
+      @response_details = response_details
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -125,6 +163,8 @@ module CyberSource
           transaction_id == o.transaction_id &&
           trade_number == o.trade_number &&
           raw_response == o.raw_response &&
+          raw_response_local == o.raw_response_local &&
+          response_details == o.response_details &&
           response_code == o.response_code &&
           seller_protection == o.seller_protection &&
           avs == o.avs
@@ -139,7 +179,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [transaction_id, trade_number, raw_response, response_code, seller_protection, avs].hash
+      [transaction_id, trade_number, raw_response, raw_response_local, response_details, response_code, seller_protection, avs].hash
     end
 
     # Builds the object from hash

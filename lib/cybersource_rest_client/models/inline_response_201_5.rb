@@ -20,17 +20,11 @@ module CyberSource
     # The status of the submitted transaction. Possible values:  - ACCEPTED 
     attr_accessor :status
 
-    attr_accessor :client_reference_information
-
-    attr_accessor :key_information
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'submit_time_utc' => :'submitTimeUtc',
-        :'status' => :'status',
-        :'client_reference_information' => :'clientReferenceInformation',
-        :'key_information' => :'keyInformation'
+        :'status' => :'status'
       }
     end
 
@@ -38,9 +32,7 @@ module CyberSource
     def self.json_map
       {
         :'submit_time_utc' => :'submit_time_utc',
-        :'status' => :'status',
-        :'client_reference_information' => :'client_reference_information',
-        :'key_information' => :'key_information'
+        :'status' => :'status'
       }
     end
 
@@ -48,9 +40,7 @@ module CyberSource
     def self.swagger_types
       {
         :'submit_time_utc' => :'String',
-        :'status' => :'String',
-        :'client_reference_information' => :'Kmsegressv2keyssymClientReferenceInformation',
-        :'key_information' => :'Kmsegressv2keysasymKeyInformation'
+        :'status' => :'String'
       }
     end
 
@@ -68,14 +58,6 @@ module CyberSource
 
       if attributes.has_key?(:'status')
         self.status = attributes[:'status']
-      end
-
-      if attributes.has_key?(:'clientReferenceInformation')
-        self.client_reference_information = attributes[:'clientReferenceInformation']
-      end
-
-      if attributes.has_key?(:'keyInformation')
-        self.key_information = attributes[:'keyInformation']
       end
     end
 
@@ -98,9 +80,7 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           submit_time_utc == o.submit_time_utc &&
-          status == o.status &&
-          client_reference_information == o.client_reference_information &&
-          key_information == o.key_information
+          status == o.status
     end
 
     # @see the `==` method
@@ -112,7 +92,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [submit_time_utc, status, client_reference_information, key_information].hash
+      [submit_time_utc, status].hash
     end
 
     # Builds the object from hash

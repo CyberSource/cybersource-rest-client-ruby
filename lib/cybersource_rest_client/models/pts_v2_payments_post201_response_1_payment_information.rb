@@ -15,6 +15,8 @@ module CyberSource
   class PtsV2PaymentsPost201Response1PaymentInformation
     attr_accessor :payment_type
 
+    attr_accessor :e_wallet
+
     attr_accessor :customer
 
     attr_accessor :bank
@@ -23,6 +25,7 @@ module CyberSource
     def self.attribute_map
       {
         :'payment_type' => :'paymentType',
+        :'e_wallet' => :'eWallet',
         :'customer' => :'customer',
         :'bank' => :'bank'
       }
@@ -32,6 +35,7 @@ module CyberSource
     def self.json_map
       {
         :'payment_type' => :'payment_type',
+        :'e_wallet' => :'e_wallet',
         :'customer' => :'customer',
         :'bank' => :'bank'
       }
@@ -41,6 +45,7 @@ module CyberSource
     def self.swagger_types
       {
         :'payment_type' => :'PtsV2PaymentsPost201Response1PaymentInformationPaymentType',
+        :'e_wallet' => :'PtsV2PaymentsPost201Response1PaymentInformationEWallet',
         :'customer' => :'Ptsv2refreshpaymentstatusidPaymentInformationCustomer',
         :'bank' => :'PtsV2PaymentsPost201Response1PaymentInformationBank'
       }
@@ -56,6 +61,10 @@ module CyberSource
 
       if attributes.has_key?(:'paymentType')
         self.payment_type = attributes[:'paymentType']
+      end
+
+      if attributes.has_key?(:'eWallet')
+        self.e_wallet = attributes[:'eWallet']
       end
 
       if attributes.has_key?(:'customer')
@@ -86,6 +95,7 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           payment_type == o.payment_type &&
+          e_wallet == o.e_wallet &&
           customer == o.customer &&
           bank == o.bank
     end
@@ -99,7 +109,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [payment_type, customer, bank].hash
+      [payment_type, e_wallet, customer, bank].hash
     end
 
     # Builds the object from hash

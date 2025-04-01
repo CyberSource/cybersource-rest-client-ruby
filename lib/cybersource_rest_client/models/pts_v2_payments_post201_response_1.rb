@@ -33,6 +33,10 @@ module CyberSource
 
     attr_accessor :client_reference_information
 
+    attr_accessor :issuer_information
+
+    attr_accessor :error_information
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -43,7 +47,9 @@ module CyberSource
         :'reconciliation_id' => :'reconciliationId',
         :'payment_information' => :'paymentInformation',
         :'order_information' => :'orderInformation',
-        :'client_reference_information' => :'clientReferenceInformation'
+        :'client_reference_information' => :'clientReferenceInformation',
+        :'issuer_information' => :'issuerInformation',
+        :'error_information' => :'errorInformation'
       }
     end
 
@@ -57,7 +63,9 @@ module CyberSource
         :'reconciliation_id' => :'reconciliation_id',
         :'payment_information' => :'payment_information',
         :'order_information' => :'order_information',
-        :'client_reference_information' => :'client_reference_information'
+        :'client_reference_information' => :'client_reference_information',
+        :'issuer_information' => :'issuer_information',
+        :'error_information' => :'error_information'
       }
     end
 
@@ -71,7 +79,9 @@ module CyberSource
         :'reconciliation_id' => :'String',
         :'payment_information' => :'PtsV2PaymentsPost201Response1PaymentInformation',
         :'order_information' => :'PtsV2PaymentsPost201Response1OrderInformation',
-        :'client_reference_information' => :'PtsV2IncrementalAuthorizationPatch201ResponseClientReferenceInformation'
+        :'client_reference_information' => :'PtsV2IncrementalAuthorizationPatch201ResponseClientReferenceInformation',
+        :'issuer_information' => :'PtsV2PaymentsPost201Response1IssuerInformation',
+        :'error_information' => :'PtsV2PaymentsPost201Response1ErrorInformation'
       }
     end
 
@@ -114,6 +124,14 @@ module CyberSource
       if attributes.has_key?(:'clientReferenceInformation')
         self.client_reference_information = attributes[:'clientReferenceInformation']
       end
+
+      if attributes.has_key?(:'issuerInformation')
+        self.issuer_information = attributes[:'issuerInformation']
+      end
+
+      if attributes.has_key?(:'errorInformation')
+        self.error_information = attributes[:'errorInformation']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -153,7 +171,9 @@ module CyberSource
           reconciliation_id == o.reconciliation_id &&
           payment_information == o.payment_information &&
           order_information == o.order_information &&
-          client_reference_information == o.client_reference_information
+          client_reference_information == o.client_reference_information &&
+          issuer_information == o.issuer_information &&
+          error_information == o.error_information
     end
 
     # @see the `==` method
@@ -165,7 +185,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, status, submit_time_utc, processor_information, reconciliation_id, payment_information, order_information, client_reference_information].hash
+      [id, status, submit_time_utc, processor_information, reconciliation_id, payment_information, order_information, client_reference_information, issuer_information, error_information].hash
     end
 
     # Builds the object from hash

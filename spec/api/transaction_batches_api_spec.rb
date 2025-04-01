@@ -70,4 +70,16 @@ describe 'TransactionBatchesApi' do
     end
   end
 
+  # unit tests for upload_transaction_batch
+  # Upload a Batch File
+  # This endpoint enables the upload of a batch file containing transactions for processing.
+  # @param file The file to upload.
+  # @param [Hash] opts the optional parameters
+  # @return [nil]
+  describe 'upload_transaction_batch test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

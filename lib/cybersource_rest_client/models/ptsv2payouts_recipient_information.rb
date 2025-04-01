@@ -13,25 +13,25 @@ require 'date'
 
 module CyberSource
   class Ptsv2payoutsRecipientInformation
-    # First name of recipient. characters. * CTV (14) * Paymentech (30) 
+    # First name of the recipient.    This field is applicable for AFT & OCT transactions.  Only alpha numeric values are supported. Special characters not in the standard ASCII character set, are not supported and will be stripped before being sent to sent to the processor. 
     attr_accessor :first_name
 
-    # Recipient's middle name. This field is a _passthrough_, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. If the field is not required for the transaction, CyberSource does not forward it to the processor. 
+    # Middle name of the recipient.    This field is applicable for AFT & OCT transactions.  Only alpha numeric values are supported. Special characters not in the standard ASCII character set, are not supported and will be stripped before being sent to sent to the processor. 
     attr_accessor :middle_name
 
-    # Last name of recipient. characters. * CTV (14) * Paymentech (30) 
+    # Last name of the recipient.  This field is applicable for AFT & OCT transactions.  Only alpha numeric values are supported. Special characters not in the standard ASCII character set, are not supported and will be stripped before being sent to sent to the processor. 
     attr_accessor :last_name
 
-    # Recipient address information. Required only for FDCCompass.
+    # The street address of the recipient This field is applicable for AFT and OCT transactions.  Only alpha numeric values are supported. Special characters not in the standard ASCII character set are not supported and will be stripped before being sent to sent to the processor. 
     attr_accessor :address1
 
-    # Recipient city. Required only for FDCCompass.
+    # The city of the recipient. This field is applicable for AFT and OCT transactions.  Only alpha numeric values are supported. Special characters not in the standard ASCII character set are not supported and will be stripped before being sent to sent to the processor. 
     attr_accessor :locality
 
-    # Recipient State. Required only for FDCCompass.
+    # The state or province of the recipient. This field is applicable for AFT and OCT transactions when the recipient country is US or CA. Else it is optional.  Must be a two character value 
     attr_accessor :administrative_area
 
-    # Recipient country code. Required only for FDCCompass.
+    # The country associated with the address of the recipient. This field is applicable for AFT and OCT transactions.  Must be a two character ISO country code.  For example, see [ISO Country Code](https://developer.cybersource.com/docs/cybs/en-us/country-codes/reference/all/na/country-codes/country-codes.html) 
     attr_accessor :country
 
     # Recipient postal code. Required only for FDCCompass.

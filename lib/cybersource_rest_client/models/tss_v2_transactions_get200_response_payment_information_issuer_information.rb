@@ -25,13 +25,17 @@ module CyberSource
     # This field contains the customer service phone number for the issuer. 
     attr_accessor :phone_number
 
+    # In a Mastercard Transaction, this field contains the unique identifier (Transaction Link ID) for the first transaction in a transaction life cycle.  This ID is crucial for maintaining continuity and linking subsequent operations to the original transaction. 
+    attr_accessor :transaction_information
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'name' => :'name',
         :'country' => :'country',
         :'bin_length' => :'binLength',
-        :'phone_number' => :'phoneNumber'
+        :'phone_number' => :'phoneNumber',
+        :'transaction_information' => :'transactionInformation'
       }
     end
 
@@ -41,7 +45,8 @@ module CyberSource
         :'name' => :'name',
         :'country' => :'country',
         :'bin_length' => :'bin_length',
-        :'phone_number' => :'phone_number'
+        :'phone_number' => :'phone_number',
+        :'transaction_information' => :'transaction_information'
       }
     end
 
@@ -51,7 +56,8 @@ module CyberSource
         :'name' => :'String',
         :'country' => :'String',
         :'bin_length' => :'String',
-        :'phone_number' => :'String'
+        :'phone_number' => :'String',
+        :'transaction_information' => :'String'
       }
     end
 
@@ -77,6 +83,10 @@ module CyberSource
 
       if attributes.has_key?(:'phoneNumber')
         self.phone_number = attributes[:'phoneNumber']
+      end
+
+      if attributes.has_key?(:'transactionInformation')
+        self.transaction_information = attributes[:'transactionInformation']
       end
     end
 
@@ -117,6 +127,12 @@ module CyberSource
       @phone_number = phone_number
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] transaction_information Value to be assigned
+    def transaction_information=(transaction_information)
+      @transaction_information = transaction_information
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -125,7 +141,8 @@ module CyberSource
           name == o.name &&
           country == o.country &&
           bin_length == o.bin_length &&
-          phone_number == o.phone_number
+          phone_number == o.phone_number &&
+          transaction_information == o.transaction_information
     end
 
     # @see the `==` method
@@ -137,7 +154,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name, country, bin_length, phone_number].hash
+      [name, country, bin_length, phone_number, transaction_information].hash
     end
 
     # Builds the object from hash
