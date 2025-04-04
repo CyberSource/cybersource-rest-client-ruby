@@ -13,38 +13,56 @@ require 'date'
 
 module CyberSource
   class InlineResponse2002
-    # Product ID.
-    attr_accessor :product_id
+    attr_accessor :_links
 
-    # Product Name.
-    attr_accessor :product_name
+    attr_accessor :object
 
-    attr_accessor :event_types
+    attr_accessor :offset
+
+    attr_accessor :limit
+
+    attr_accessor :count
+
+    attr_accessor :total
+
+    attr_accessor :_embedded
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'product_id' => :'productId',
-        :'product_name' => :'productName',
-        :'event_types' => :'eventTypes'
+        :'_links' => :'_links',
+        :'object' => :'object',
+        :'offset' => :'offset',
+        :'limit' => :'limit',
+        :'count' => :'count',
+        :'total' => :'total',
+        :'_embedded' => :'_embedded'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'product_id' => :'product_id',
-        :'product_name' => :'product_name',
-        :'event_types' => :'event_types'
+        :'_links' => :'_links',
+        :'object' => :'object',
+        :'offset' => :'offset',
+        :'limit' => :'limit',
+        :'count' => :'count',
+        :'total' => :'total',
+        :'_embedded' => :'_embedded'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'product_id' => :'String',
-        :'product_name' => :'String',
-        :'event_types' => :'Array<Notificationsubscriptionsv1productsorganizationIdEventTypes>'
+        :'_links' => :'Array<InlineResponse2002Links>',
+        :'object' => :'String',
+        :'offset' => :'Integer',
+        :'limit' => :'Integer',
+        :'count' => :'Integer',
+        :'total' => :'Integer',
+        :'_embedded' => :'InlineResponse2002Embedded'
       }
     end
 
@@ -56,18 +74,34 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'productId')
-        self.product_id = attributes[:'productId']
-      end
-
-      if attributes.has_key?(:'productName')
-        self.product_name = attributes[:'productName']
-      end
-
-      if attributes.has_key?(:'eventTypes')
-        if (value = attributes[:'eventTypes']).is_a?(Array)
-          self.event_types = value
+      if attributes.has_key?(:'_links')
+        if (value = attributes[:'_links']).is_a?(Array)
+          self._links = value
         end
+      end
+
+      if attributes.has_key?(:'object')
+        self.object = attributes[:'object']
+      end
+
+      if attributes.has_key?(:'offset')
+        self.offset = attributes[:'offset']
+      end
+
+      if attributes.has_key?(:'limit')
+        self.limit = attributes[:'limit']
+      end
+
+      if attributes.has_key?(:'count')
+        self.count = attributes[:'count']
+      end
+
+      if attributes.has_key?(:'total')
+        self.total = attributes[:'total']
+      end
+
+      if attributes.has_key?(:'_embedded')
+        self._embedded = attributes[:'_embedded']
       end
     end
 
@@ -89,9 +123,13 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          product_id == o.product_id &&
-          product_name == o.product_name &&
-          event_types == o.event_types
+          _links == o._links &&
+          object == o.object &&
+          offset == o.offset &&
+          limit == o.limit &&
+          count == o.count &&
+          total == o.total &&
+          _embedded == o._embedded
     end
 
     # @see the `==` method
@@ -103,7 +141,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [product_id, product_name, event_types].hash
+      [_links, object, offset, limit, count, total, _embedded].hash
     end
 
     # Builds the object from hash

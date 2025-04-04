@@ -30,7 +30,7 @@ module CyberSource
     # Transaction reason code. 
     attr_accessor :transaction_reason
 
-    # This will send purpose of funds code for original credit transactions (OCTs). 
+    # This field is applicable for AFT and OCT transactions. For list of supported values, please refer to Developer Guide. 
     attr_accessor :purpose_of_payment
 
     attr_accessor :funding_options

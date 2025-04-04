@@ -43,4 +43,10 @@ describe 'PtsV2PaymentsPost201Response1OrderInformation' do
     end
   end
 
+  describe 'test attribute "amount_details"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

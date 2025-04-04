@@ -28,6 +28,9 @@ module CyberSource
     # This will be the value returned by Visanet when transaction risk analysis (TRA) exemption has been requested.    Valid values: Visa Platform Connect   - `2` transaction risk analysis (TRA) exemption validated/honored   - `3` transaction risk analysis (TRA) exemption failed validation/not honored 
     attr_accessor :transaction_risk_analysis_exemption_result
 
+    # This will be the value returned by Visanet when delegated authentication has been requested. 
+    attr_accessor :delegated_authentication_result
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -35,7 +38,8 @@ module CyberSource
         :'trusted_merchant_exemption_result' => :'trustedMerchantExemptionResult',
         :'low_value_exemption_result' => :'lowValueExemptionResult',
         :'secure_corporate_payment_result' => :'secureCorporatePaymentResult',
-        :'transaction_risk_analysis_exemption_result' => :'transactionRiskAnalysisExemptionResult'
+        :'transaction_risk_analysis_exemption_result' => :'transactionRiskAnalysisExemptionResult',
+        :'delegated_authentication_result' => :'delegatedAuthenticationResult'
       }
     end
 
@@ -46,7 +50,8 @@ module CyberSource
         :'trusted_merchant_exemption_result' => :'trusted_merchant_exemption_result',
         :'low_value_exemption_result' => :'low_value_exemption_result',
         :'secure_corporate_payment_result' => :'secure_corporate_payment_result',
-        :'transaction_risk_analysis_exemption_result' => :'transaction_risk_analysis_exemption_result'
+        :'transaction_risk_analysis_exemption_result' => :'transaction_risk_analysis_exemption_result',
+        :'delegated_authentication_result' => :'delegated_authentication_result'
       }
     end
 
@@ -57,7 +62,8 @@ module CyberSource
         :'trusted_merchant_exemption_result' => :'String',
         :'low_value_exemption_result' => :'String',
         :'secure_corporate_payment_result' => :'String',
-        :'transaction_risk_analysis_exemption_result' => :'String'
+        :'transaction_risk_analysis_exemption_result' => :'String',
+        :'delegated_authentication_result' => :'String'
       }
     end
 
@@ -87,6 +93,10 @@ module CyberSource
 
       if attributes.has_key?(:'transactionRiskAnalysisExemptionResult')
         self.transaction_risk_analysis_exemption_result = attributes[:'transactionRiskAnalysisExemptionResult']
+      end
+
+      if attributes.has_key?(:'delegatedAuthenticationResult')
+        self.delegated_authentication_result = attributes[:'delegatedAuthenticationResult']
       end
     end
 
@@ -133,6 +143,12 @@ module CyberSource
       @transaction_risk_analysis_exemption_result = transaction_risk_analysis_exemption_result
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] delegated_authentication_result Value to be assigned
+    def delegated_authentication_result=(delegated_authentication_result)
+      @delegated_authentication_result = delegated_authentication_result
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -142,7 +158,8 @@ module CyberSource
           trusted_merchant_exemption_result == o.trusted_merchant_exemption_result &&
           low_value_exemption_result == o.low_value_exemption_result &&
           secure_corporate_payment_result == o.secure_corporate_payment_result &&
-          transaction_risk_analysis_exemption_result == o.transaction_risk_analysis_exemption_result
+          transaction_risk_analysis_exemption_result == o.transaction_risk_analysis_exemption_result &&
+          delegated_authentication_result == o.delegated_authentication_result
     end
 
     # @see the `==` method
@@ -154,7 +171,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [risk_analysis_exemption_result, trusted_merchant_exemption_result, low_value_exemption_result, secure_corporate_payment_result, transaction_risk_analysis_exemption_result].hash
+      [risk_analysis_exemption_result, trusted_merchant_exemption_result, low_value_exemption_result, secure_corporate_payment_result, transaction_risk_analysis_exemption_result, delegated_authentication_result].hash
     end
 
     # Builds the object from hash

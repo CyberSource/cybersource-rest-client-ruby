@@ -31,6 +31,8 @@ module CyberSource
 
     attr_accessor :refund_amount_details
 
+    attr_accessor :processing_information
+
     attr_accessor :processor_information
 
     attr_accessor :order_information
@@ -47,6 +49,7 @@ module CyberSource
         :'reconciliation_id' => :'reconciliationId',
         :'client_reference_information' => :'clientReferenceInformation',
         :'refund_amount_details' => :'refundAmountDetails',
+        :'processing_information' => :'processingInformation',
         :'processor_information' => :'processorInformation',
         :'order_information' => :'orderInformation',
         :'point_of_sale_information' => :'pointOfSaleInformation'
@@ -63,6 +66,7 @@ module CyberSource
         :'reconciliation_id' => :'reconciliation_id',
         :'client_reference_information' => :'client_reference_information',
         :'refund_amount_details' => :'refund_amount_details',
+        :'processing_information' => :'processing_information',
         :'processor_information' => :'processor_information',
         :'order_information' => :'order_information',
         :'point_of_sale_information' => :'point_of_sale_information'
@@ -79,6 +83,7 @@ module CyberSource
         :'reconciliation_id' => :'String',
         :'client_reference_information' => :'PtsV2PaymentsRefundPost201ResponseClientReferenceInformation',
         :'refund_amount_details' => :'PtsV2PaymentsRefundPost201ResponseRefundAmountDetails',
+        :'processing_information' => :'PtsV2PaymentsCapturesPost201ResponseProcessingInformation',
         :'processor_information' => :'PtsV2PaymentsRefundPost201ResponseProcessorInformation',
         :'order_information' => :'PtsV2PaymentsRefundPost201ResponseOrderInformation',
         :'point_of_sale_information' => :'PtsV2PaymentsCapturesPost201ResponsePointOfSaleInformation'
@@ -119,6 +124,10 @@ module CyberSource
 
       if attributes.has_key?(:'refundAmountDetails')
         self.refund_amount_details = attributes[:'refundAmountDetails']
+      end
+
+      if attributes.has_key?(:'processingInformation')
+        self.processing_information = attributes[:'processingInformation']
       end
 
       if attributes.has_key?(:'processorInformation')
@@ -171,6 +180,7 @@ module CyberSource
           reconciliation_id == o.reconciliation_id &&
           client_reference_information == o.client_reference_information &&
           refund_amount_details == o.refund_amount_details &&
+          processing_information == o.processing_information &&
           processor_information == o.processor_information &&
           order_information == o.order_information &&
           point_of_sale_information == o.point_of_sale_information
@@ -185,7 +195,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, submit_time_utc, status, reconciliation_id, client_reference_information, refund_amount_details, processor_information, order_information, point_of_sale_information].hash
+      [_links, id, submit_time_utc, status, reconciliation_id, client_reference_information, refund_amount_details, processing_information, processor_information, order_information, point_of_sale_information].hash
     end
 
     # Builds the object from hash

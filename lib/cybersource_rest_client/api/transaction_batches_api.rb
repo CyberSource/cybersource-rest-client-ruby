@@ -257,5 +257,80 @@ module CyberSource
       end
       return data, status_code, headers
     end
+    # Upload a Batch File
+    # This endpoint enables the upload of a batch file containing transactions for processing.
+    #
+    # @param file The file to upload.
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    #
+    def upload_transaction_batch(file, opts = {})
+      data, status_code, headers = upload_transaction_batch_with_http_info(file, opts)
+      return data, status_code, headers
+    end
+
+    # Upload a Batch File
+    # This endpoint enables the upload of a batch file containing transactions for processing.
+    # @param file The file to upload.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
+    def upload_transaction_batch_with_http_info(file, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: TransactionBatchesApi.upload_transaction_batch ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'file' is set
+      if @api_client.config.client_side_validation && file.nil?
+        fail ArgumentError, "Missing the required parameter 'file' when calling TransactionBatchesApi.upload_transaction_batch"
+      end
+      # resource path
+      local_var_path = 'pts/v1/transaction-batch-upload'
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['multipart/form-data'])
+
+      # form parameters
+      form_params = {}
+      form_params['file'] = file
+
+      # http body (model)
+      if 'POST' == 'POST'
+        post_body = '{}'
+      else
+        post_body = nil
+      end
+      is_mle_supported_by_cybs_for_api = false
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["upload_transaction_batch","upload_transaction_batch_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+      end
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names)
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: TransactionBatchesApi#upload_transaction_batch\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
   end
 end

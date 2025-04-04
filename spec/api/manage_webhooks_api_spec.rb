@@ -31,39 +31,13 @@ describe 'ManageWebhooksApi' do
     end
   end
 
-  # unit tests for delete_webhook_subscription
-  # Delete a Webhook Subscription
-  # Delete the webhook. Please note that deleting a particular webhook does not delete the history of the webhook notifications.
-  # @param webhook_id The webhook identifier.
+  # unit tests for notification_subscriptions_v1_webhooks_webhook_id_post
+  # Test a Webhook Configuration
+  # Test the webhook configuration by sending a sample webhook. Calling this endpoint sends a sample webhook to the endpoint identified in the user&#39;s subscription.   It will contain sample values for the product &amp; eventType based on values present in your subscription along with a sample message in the payload.   Based on the webhook response users can make any necessary modifications or rest assured knowing their setup is configured correctly. 
+  # @param webhook_id The Webhook Identifier.
   # @param [Hash] opts the optional parameters
-  # @return [nil]
-  describe 'delete_webhook_subscription test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for get_webhook_subscription_by_id
-  # Get Details On a Single Webhook
-  # Retrieve the details of a specific webhook by supplying the webhook ID in the path.
-  # @param webhook_id The webhook Identifier
-  # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2004]
-  describe 'get_webhook_subscription_by_id test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for get_webhook_subscriptions_by_org
-  # Get Details On All Created Webhooks
-  # Retrieve a list of all previously created webhooks.
-  # @param organization_id The Organization Identifier.
-  # @param product_id The Product Identifier.
-  # @param event_type The Event Type.
-  # @param [Hash] opts the optional parameters
-  # @return [Array<InlineResponse2003>]
-  describe 'get_webhook_subscriptions_by_org test' do
+  # @return [InlineResponse2014]
+  describe 'notification_subscriptions_v1_webhooks_webhook_id_post test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -79,19 +53,6 @@ describe 'ManageWebhooksApi' do
   # @option opts [String] :v_c_correlation_id A globally unique id associated with your request
   # @return [InlineResponse2015]
   describe 'save_asym_egress_key test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for update_webhook_subscription
-  # Update a Webhook Subscription
-  # Update the webhook subscription using PATCH.
-  # @param webhook_id The Webhook Identifier.
-  # @param [Hash] opts the optional parameters
-  # @option opts [UpdateWebhookRequest] :update_webhook_request The webhook payload or changes to apply.
-  # @return [nil]
-  describe 'update_webhook_subscription test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

@@ -17,11 +17,14 @@ module CyberSource
 
     attr_accessor :ship_to
 
+    attr_accessor :amount_details
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'bill_to' => :'billTo',
-        :'ship_to' => :'shipTo'
+        :'ship_to' => :'shipTo',
+        :'amount_details' => :'amountDetails'
       }
     end
 
@@ -29,7 +32,8 @@ module CyberSource
     def self.json_map
       {
         :'bill_to' => :'bill_to',
-        :'ship_to' => :'ship_to'
+        :'ship_to' => :'ship_to',
+        :'amount_details' => :'amount_details'
       }
     end
 
@@ -37,7 +41,8 @@ module CyberSource
     def self.swagger_types
       {
         :'bill_to' => :'PtsV2PaymentsPost201Response1OrderInformationBillTo',
-        :'ship_to' => :'PtsV2PaymentsPost201Response1OrderInformationShipTo'
+        :'ship_to' => :'PtsV2PaymentsPost201Response1OrderInformationShipTo',
+        :'amount_details' => :'PtsV2PaymentsPost201Response1OrderInformationAmountDetails'
       }
     end
 
@@ -55,6 +60,10 @@ module CyberSource
 
       if attributes.has_key?(:'shipTo')
         self.ship_to = attributes[:'shipTo']
+      end
+
+      if attributes.has_key?(:'amountDetails')
+        self.amount_details = attributes[:'amountDetails']
       end
     end
 
@@ -77,7 +86,8 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           bill_to == o.bill_to &&
-          ship_to == o.ship_to
+          ship_to == o.ship_to &&
+          amount_details == o.amount_details
     end
 
     # @see the `==` method
@@ -89,7 +99,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [bill_to, ship_to].hash
+      [bill_to, ship_to, amount_details].hash
     end
 
     # Builds the object from hash
