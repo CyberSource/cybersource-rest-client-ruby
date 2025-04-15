@@ -117,16 +117,12 @@ module CyberSource
       end
 
       headers = opts[:header_params]
-      if @merchantconfig.authenticationType.upcase != Constants::AUTH_TYPE_MUTUAL_AUTH
-        headers = CallAuthenticationHeader(http_method, path, body_params, headers, query_params)
-      end
-      http_method = http_method.to_sym.downcase
       header_params = headers.merge(@default_headers)
       if @merchantconfig.defaultCustomHeaders
         header_params = header_params.merge(@merchantconfig.defaultCustomHeaders)
       end
-      form_params = opts[:form_params] || {}
 
+      form_params = opts[:form_params] || {}
 
       # set ssl_verifyhosts option based on @config.verify_ssl_host (true/false)
       _verify_ssl_host = @config.verify_ssl_host ? 2 : 0
@@ -138,8 +134,6 @@ module CyberSource
       end
 
       req_opts = {
-        :method => http_method,
-        :headers => header_params,
         :params => query_params,
         :params_encoding => @config.params_encoding,
         :timeout => @config.timeout,
@@ -154,6 +148,7 @@ module CyberSource
       # set custom cert, if provided
       req_opts[:cainfo] = @config.ssl_ca_cert if @config.ssl_ca_cert
 
+
       if [:post, :patch, :put, :delete].include?(http_method)
         req_body = build_request_body(header_params, form_params, opts[:body])
         req_opts.update :body => req_body
@@ -166,11 +161,25 @@ module CyberSource
             end
         end
       end
+      puts "req_opts: #{req_opts}"
 
+      headers = []
+      if @merchantconfig.authenticationType.upcase != Constants::AUTH_TYPE_MUTUAL_AUTH
+        headers = CallAuthenticationHeader(http_method, path, body_params, headers, query_params)
+        puts "headers: #{headers}"
+      end
+
+      http_method = http_method.to_sym.downcase
+      header_params = header_params.merge(headers) #headers.merge(@default_headers) 
+    
+      req_opts[:headers] = header_params
+      req_opts[:method] = http_method
+      
       request = Typhoeus::Request.new(url, req_opts)
       download_file(request) if opts[:return_type] == 'File'
       request
     end
+
     # set merchantConfig
     def set_configuration(config)
        require_relative '../AuthenticationSDK/core/MerchantConfig.rb'
@@ -206,9 +215,10 @@ module CyberSource
       # Calling APISDK, Apisdk.controller.
       gmtDateTime = DateTime.now.httpdate
       token = Authorization.new.getToken(@merchantconfig, gmtDateTime)
+      puts "header_params: #{header_params}"
 
       # Adding client ID header
-      header_params['v-c-client-id'] = @client_id
+      # header_params['v-c-client-id'] = @client_id
 
       # Adding solution ID header
       # header_params['v-c-solution-id'] = @merchantconfig.solutionId if !@merchantconfig.solutionId.nil? && !@merchantconfig.solutionId.empty?
@@ -219,15 +229,21 @@ module CyberSource
         header_params['Date'] = gmtDateTime
         header_params['Host'] = @merchantconfig.requestHost
         header_params['Signature'] = token
+
         if request_type == Constants::POST_REQUEST_TYPE || request_type == Constants::PUT_REQUEST_TYPE || request_type == Constants::PATCH_REQUEST_TYPE
           digest = DigestGeneration.new.generateDigest(body_params)
           digest_payload = Constants::SHA256 + digest
+          puts("digest_payload: #{digest_payload}")
+
           header_params['Digest'] = digest_payload
         end
       end
       if @merchantconfig.authenticationType.upcase == Constants::AUTH_TYPE_JWT
+        puts "m here 23"
         token = "Bearer " + token
         header_params['Authorization'] = token
+        puts("Token: #{token}")
+
       end
       if @merchantconfig.authenticationType.upcase == Constants::AUTH_TYPE_OAUTH
         token = "Bearer " + token
