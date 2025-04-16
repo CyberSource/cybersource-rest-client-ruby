@@ -148,6 +148,8 @@ module CyberSource
       # set custom cert, if provided
       req_opts[:cainfo] = @config.ssl_ca_cert if @config.ssl_ca_cert
 
+      http_method_caps = http_method.to_sym.upcase
+      http_method = http_method.to_sym.downcase
 
       if [:post, :patch, :put, :delete].include?(http_method)
         req_body = build_request_body(header_params, form_params, opts[:body])
@@ -165,12 +167,12 @@ module CyberSource
 
       headers = {}
       if @merchantconfig.authenticationType.upcase != Constants::AUTH_TYPE_MUTUAL_AUTH
-        headers = CallAuthenticationHeader(http_method, path, body_params, headers, query_params)
+        headers = CallAuthenticationHeader(http_method_caps, path, body_params, headers, query_params)
         puts "headers: #{headers}"
       end
 
       http_method = http_method.to_sym.downcase
-      header_params = header_params.merge(headers) #headers.merge(@default_headers) 
+      header_params = header_params.merge(headers) #headers.merge(@default_headers)
     
       req_opts[:headers] = header_params
       req_opts[:method] = http_method
