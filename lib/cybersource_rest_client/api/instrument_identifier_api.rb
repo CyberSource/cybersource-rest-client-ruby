@@ -362,7 +362,12 @@ module CyberSource
     # @return [PostInstrumentIdentifierRequest]
     #
     def post_instrument_identifier(post_instrument_identifier_request, opts = {})
+      puts "Calling post_instrument_identifier with request: #{post_instrument_identifier_request.inspect}"
+      puts "Options: #{opts.inspect}"
       data, status_code, headers = post_instrument_identifier_with_http_info(post_instrument_identifier_request, opts)
+      puts "Response data: #{data.inspect}"
+      puts "Status code: #{status_code}"
+      puts "Headers: #{headers.inspect}"
       return data, status_code, headers
     end
 
@@ -414,6 +419,11 @@ module CyberSource
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
+      puts "About to make API call to #{local_var_path}"
+      puts "Headers: #{header_params.inspect}"
+      puts "Query params: #{query_params.inspect}"
+      puts "Request body: #{post_body}"
+      
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
         :query_params => query_params,
@@ -421,6 +431,10 @@ module CyberSource
         :body => post_body,
         :auth_names => auth_names,
         :return_type => 'PostInstrumentIdentifierRequest')
+      
+      puts "API call completed with status: #{status_code}"
+      puts "Response data: #{data.inspect}"
+      puts "Response headers: #{headers.inspect}"
       if @api_client.config.debugging
         begin
         raise

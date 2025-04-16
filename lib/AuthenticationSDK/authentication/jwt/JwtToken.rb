@@ -29,7 +29,10 @@ public
 
       p12File = File.binread(filePath)
       jwtBody=getJwtBody(request_type, gmtDatetime, merchantconfig_obj)
+      puts "JWT Body: #{jwtBody}"
       claimSet = JSON.parse(jwtBody)
+      puts "claimSet: #{claimSet}"
+
       p12FilePath = OpenSSL::PKCS12.new(p12File, merchantconfig_obj.keyPass)
 
       # Generating certificate.
@@ -65,9 +68,10 @@ public
     def getJwtBody(request_type, gmtDatetime, merchantconfig_obj)
       if request_type == Constants::POST_REQUEST_TYPE || request_type == Constants::PUT_REQUEST_TYPE || request_type == Constants::PATCH_REQUEST_TYPE
         payload = merchantconfig_obj.requestJsonData
-
+        puts "payload: #{payload}"
         # Note: Digest is not passed for GET calls
         digest = DigestGeneration.new.generateDigest(payload)
+        puts "digest: #{digest}"
         jwtBody = "{\n \"digest\":\"" + digest + "\", \"digestAlgorithm\":\"SHA-256\", \"iat\":" + Time.parse(gmtDatetime).to_i.to_s + "}"
       elsif request_type == Constants::GET_REQUEST_TYPE || request_type == Constants::DELETE_REQUEST_TYPE
         jwtBody = "{\n \"iat\":" + Time.parse(gmtDatetime).to_i.to_s + "\n} \n\n"
