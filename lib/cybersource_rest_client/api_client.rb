@@ -163,7 +163,7 @@ module CyberSource
       end
       puts "req_opts: #{req_opts}"
 
-      headers = []
+      headers = {}
       if @merchantconfig.authenticationType.upcase != Constants::AUTH_TYPE_MUTUAL_AUTH
         headers = CallAuthenticationHeader(http_method, path, body_params, headers, query_params)
         puts "headers: #{headers}"
@@ -218,7 +218,7 @@ module CyberSource
       puts "header_params: #{header_params}"
 
       # Adding client ID header
-      # header_params['v-c-client-id'] = @client_id
+      header_params['v-c-client-id'] = @client_id
 
       # Adding solution ID header
       # header_params['v-c-solution-id'] = @merchantconfig.solutionId if !@merchantconfig.solutionId.nil? && !@merchantconfig.solutionId.empty?
