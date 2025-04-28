@@ -13,7 +13,11 @@ require 'date'
 
 module CyberSource
   class CreateInvoiceRequest
+    attr_accessor :client_reference_information
+
     attr_accessor :customer_information
+
+    attr_accessor :processing_information
 
     attr_accessor :invoice_information
 
@@ -22,7 +26,9 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'client_reference_information' => :'clientReferenceInformation',
         :'customer_information' => :'customerInformation',
+        :'processing_information' => :'processingInformation',
         :'invoice_information' => :'invoiceInformation',
         :'order_information' => :'orderInformation'
       }
@@ -31,7 +37,9 @@ module CyberSource
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
+        :'client_reference_information' => :'client_reference_information',
         :'customer_information' => :'customer_information',
+        :'processing_information' => :'processing_information',
         :'invoice_information' => :'invoice_information',
         :'order_information' => :'order_information'
       }
@@ -40,7 +48,9 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'client_reference_information' => :'Invoicingv2invoicesClientReferenceInformation',
         :'customer_information' => :'Invoicingv2invoicesCustomerInformation',
+        :'processing_information' => :'Invoicingv2invoicesProcessingInformation',
         :'invoice_information' => :'Invoicingv2invoicesInvoiceInformation',
         :'order_information' => :'Invoicingv2invoicesOrderInformation'
       }
@@ -54,8 +64,16 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
+      if attributes.has_key?(:'clientReferenceInformation')
+        self.client_reference_information = attributes[:'clientReferenceInformation']
+      end
+
       if attributes.has_key?(:'customerInformation')
         self.customer_information = attributes[:'customerInformation']
+      end
+
+      if attributes.has_key?(:'processingInformation')
+        self.processing_information = attributes[:'processingInformation']
       end
 
       if attributes.has_key?(:'invoiceInformation')
@@ -71,12 +89,22 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @invoice_information.nil?
+        invalid_properties.push('invalid value for "invoice_information", invoice_information cannot be nil.')
+      end
+
+      if @order_information.nil?
+        invalid_properties.push('invalid value for "order_information", order_information cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @invoice_information.nil?
+      return false if @order_information.nil?
       true
     end
 
@@ -85,7 +113,9 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          client_reference_information == o.client_reference_information &&
           customer_information == o.customer_information &&
+          processing_information == o.processing_information &&
           invoice_information == o.invoice_information &&
           order_information == o.order_information
     end
@@ -99,7 +129,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [customer_information, invoice_information, order_information].hash
+      [client_reference_information, customer_information, processing_information, invoice_information, order_information].hash
     end
 
     # Builds the object from hash

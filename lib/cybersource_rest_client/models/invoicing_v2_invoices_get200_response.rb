@@ -26,6 +26,8 @@ module CyberSource
 
     attr_accessor :customer_information
 
+    attr_accessor :processing_information
+
     attr_accessor :invoice_information
 
     attr_accessor :order_information
@@ -40,6 +42,7 @@ module CyberSource
         :'submit_time_utc' => :'submitTimeUtc',
         :'status' => :'status',
         :'customer_information' => :'customerInformation',
+        :'processing_information' => :'processingInformation',
         :'invoice_information' => :'invoiceInformation',
         :'order_information' => :'orderInformation',
         :'invoice_history' => :'invoiceHistory'
@@ -54,6 +57,7 @@ module CyberSource
         :'submit_time_utc' => :'submit_time_utc',
         :'status' => :'status',
         :'customer_information' => :'customer_information',
+        :'processing_information' => :'processing_information',
         :'invoice_information' => :'invoice_information',
         :'order_information' => :'order_information',
         :'invoice_history' => :'invoice_history'
@@ -68,6 +72,7 @@ module CyberSource
         :'submit_time_utc' => :'String',
         :'status' => :'String',
         :'customer_information' => :'Invoicingv2invoicesCustomerInformation',
+        :'processing_information' => :'Invoicingv2invoicesProcessingInformation',
         :'invoice_information' => :'InvoicingV2InvoicesPost201ResponseInvoiceInformation',
         :'order_information' => :'InvoicingV2InvoicesPost201ResponseOrderInformation',
         :'invoice_history' => :'Array<InvoicingV2InvoicesGet200ResponseInvoiceHistory>'
@@ -100,6 +105,10 @@ module CyberSource
 
       if attributes.has_key?(:'customerInformation')
         self.customer_information = attributes[:'customerInformation']
+      end
+
+      if attributes.has_key?(:'processingInformation')
+        self.processing_information = attributes[:'processingInformation']
       end
 
       if attributes.has_key?(:'invoiceInformation')
@@ -146,6 +155,7 @@ module CyberSource
           submit_time_utc == o.submit_time_utc &&
           status == o.status &&
           customer_information == o.customer_information &&
+          processing_information == o.processing_information &&
           invoice_information == o.invoice_information &&
           order_information == o.order_information &&
           invoice_history == o.invoice_history
@@ -160,7 +170,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, submit_time_utc, status, customer_information, invoice_information, order_information, invoice_history].hash
+      [_links, id, submit_time_utc, status, customer_information, processing_information, invoice_information, order_information, invoice_history].hash
     end
 
     # Builds the object from hash

@@ -16,24 +16,30 @@ module CyberSource
     # The type of payment credentials to be returned. By default, payment credentials include network token and cryptogram or dynamic CVV. If \"NETWORK_TOKEN\" is supplied then only network token card number will be returned and no cryptogram or dynamic CVV will be requested. If \"SECURITY_CODE\" is supplied then dynamic CVV will be requested and returned with the network token card number. Dynamic CVV is only supported for Amex and SCOF. If \"CRYPTOGRAM\" is supplied then cryptogram will be requested and returned with the network token card number. Cryptogram is NOT supported for Amex.  Possible Values:   - NETWORK_TOKEN   - SECURITY_CODE   - CRYPTOGRAM 
     attr_accessor :payment_credential_type
 
+    # Specifies the type of transaction for which the network token credentials are required. Possible Values:   - ECOM: Ecommerce transaction. If transactionType is not provided, ECOM is set as the default.   - AFT: Account Funding Transaction. This is only supported for VISA and paymentCredentialType of CRYPTOGRAM. 
+    attr_accessor :transaction_type
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'payment_credential_type' => :'paymentCredentialType'
+        :'payment_credential_type' => :'paymentCredentialType',
+        :'transaction_type' => :'transactionType'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'payment_credential_type' => :'payment_credential_type'
+        :'payment_credential_type' => :'payment_credential_type',
+        :'transaction_type' => :'transaction_type'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'payment_credential_type' => :'String'
+        :'payment_credential_type' => :'String',
+        :'transaction_type' => :'String'
       }
     end
 
@@ -47,6 +53,10 @@ module CyberSource
 
       if attributes.has_key?(:'paymentCredentialType')
         self.payment_credential_type = attributes[:'paymentCredentialType']
+      end
+
+      if attributes.has_key?(:'transactionType')
+        self.transaction_type = attributes[:'transactionType']
       end
     end
 
@@ -68,7 +78,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          payment_credential_type == o.payment_credential_type
+          payment_credential_type == o.payment_credential_type &&
+          transaction_type == o.transaction_type
     end
 
     # @see the `==` method
@@ -80,7 +91,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [payment_credential_type].hash
+      [payment_credential_type, transaction_type].hash
     end
 
     # Builds the object from hash

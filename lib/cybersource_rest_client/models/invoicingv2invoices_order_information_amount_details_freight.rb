@@ -12,7 +12,7 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # Contains all of the shipping-related fields for the invoice.
+  # Contains all of the shipping-related fields for the order.
   class Invoicingv2invoicesOrderInformationAmountDetailsFreight
     # Total freight or shipping and handling charges for the order. When you include this field in your request, you must also include the **totalAmount** field. 
     attr_accessor :amount

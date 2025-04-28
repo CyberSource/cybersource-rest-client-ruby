@@ -28,17 +28,47 @@ module CyberSource
     # This field contains the acceptance level of the PAN. Possible values:   - `0` : Normal   - `1` : Monitor   - `2` : Refuse   - `3` : Not Allowed   - `4` : Private   - `5` : Test 
     attr_accessor :acceptance_level
 
-    # This field contains the type of card platform. Possible values:   - `BUSINESS`   - `CONSUMER`   - `COMMERCIAL`   - `GOVERNMENT` 
+    # This field contains the type of card platform. Possible values:   - `BUSINESS`   - `CONSUMER`   - `CORPORATE`   - `COMMERCIAL`   - `GOVERNMENT` 
     attr_accessor :card_platform
 
     # This field indicates the type of combo card. Possible values:   - 0 (Not a combo card)   - 1 (Credit and Prepaid Combo card)   - 2 (Credit and Debit Combo card) 
     attr_accessor :combo_card
 
-    # This field indicates whether the card can be used for corporate purchasing. This field is only applicable for American Express cards. Possible values:   - `true`   - `false` 
+    # This field indicates if the instrument can be used for corporate purchasing. This field is only applicable for American Express cards. Possible values:   - `true`   - `false` 
     attr_accessor :corporate_purchase
 
-    # This field indicates if the entered card is a healthcare BIN. Currently, this field is only supported for Visa BINs. Possible values:     - `true`     - `false`       
+    # This field indicates if the BIN is for healthcare (HSA/FSA). Currently, this field is only supported for Visa BINs. Possible values:     - `true`     - `false` 
     attr_accessor :health_card
+
+    # This field indicates if the BIN is shared by multiple issuers Possible values:     - `true`     - `false` 
+    attr_accessor :shared_bin
+
+    # This field indicates if the BIN is valid only for POS domestic usage. Possible values:     - `true`     - `false` 
+    attr_accessor :pos_domestic_only
+
+    # This field indicates if gambling transactions are allowed on the BIN. Possible values:     - `true`     - `false` 
+    attr_accessor :gambling_allowed
+
+    # This field indicates if a transaction on the instrument qualifies for level 2 interchange rates. Possible values:     - `true`     - `false` 
+    attr_accessor :commercial_card_level2
+
+    # This field indicates if a transaction on the instrument qualifies for level 3 interchange rates. Possible values:     - `true`     - `false` 
+    attr_accessor :commercial_card_level3
+
+    # This field indicates if a transaction on the instrument qualifies for government exempt interchange fee. Possible values:     - `true`     - `false` 
+    attr_accessor :exempt_bin
+
+    # This field indicates if the BIN participates in Account Level Management (ALM). Possible values:     - `true`     - `false` 
+    attr_accessor :account_level_management
+
+    # This field indicates if online gambling is blocked on the BIN. Possible values:     - `true`     - `false` 
+    attr_accessor :online_gambling_block
+
+    # This field indicates if auto-substantiation is enabled on the BIN. Possible values:     - `true`     - `false` 
+    attr_accessor :auto_substantiation
+
+    # This field indicates if the instrument is a flex credential. Possible values:     - `true`     - `false` 
+    attr_accessor :flex_credential
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -51,7 +81,17 @@ module CyberSource
         :'card_platform' => :'cardPlatform',
         :'combo_card' => :'comboCard',
         :'corporate_purchase' => :'corporatePurchase',
-        :'health_card' => :'healthCard'
+        :'health_card' => :'healthCard',
+        :'shared_bin' => :'sharedBIN',
+        :'pos_domestic_only' => :'posDomesticOnly',
+        :'gambling_allowed' => :'gamblingAllowed',
+        :'commercial_card_level2' => :'commercialCardLevel2',
+        :'commercial_card_level3' => :'commercialCardLevel3',
+        :'exempt_bin' => :'exemptBIN',
+        :'account_level_management' => :'accountLevelManagement',
+        :'online_gambling_block' => :'onlineGamblingBlock',
+        :'auto_substantiation' => :'autoSubstantiation',
+        :'flex_credential' => :'flexCredential'
       }
     end
 
@@ -66,7 +106,17 @@ module CyberSource
         :'card_platform' => :'card_platform',
         :'combo_card' => :'combo_card',
         :'corporate_purchase' => :'corporate_purchase',
-        :'health_card' => :'health_card'
+        :'health_card' => :'health_card',
+        :'shared_bin' => :'shared_bin',
+        :'pos_domestic_only' => :'pos_domestic_only',
+        :'gambling_allowed' => :'gambling_allowed',
+        :'commercial_card_level2' => :'commercial_card_level2',
+        :'commercial_card_level3' => :'commercial_card_level3',
+        :'exempt_bin' => :'exempt_bin',
+        :'account_level_management' => :'account_level_management',
+        :'online_gambling_block' => :'online_gambling_block',
+        :'auto_substantiation' => :'auto_substantiation',
+        :'flex_credential' => :'flex_credential'
       }
     end
 
@@ -81,7 +131,17 @@ module CyberSource
         :'card_platform' => :'String',
         :'combo_card' => :'String',
         :'corporate_purchase' => :'BOOLEAN',
-        :'health_card' => :'BOOLEAN'
+        :'health_card' => :'BOOLEAN',
+        :'shared_bin' => :'BOOLEAN',
+        :'pos_domestic_only' => :'BOOLEAN',
+        :'gambling_allowed' => :'BOOLEAN',
+        :'commercial_card_level2' => :'BOOLEAN',
+        :'commercial_card_level3' => :'BOOLEAN',
+        :'exempt_bin' => :'BOOLEAN',
+        :'account_level_management' => :'BOOLEAN',
+        :'online_gambling_block' => :'BOOLEAN',
+        :'auto_substantiation' => :'BOOLEAN',
+        :'flex_credential' => :'BOOLEAN'
       }
     end
 
@@ -127,6 +187,46 @@ module CyberSource
 
       if attributes.has_key?(:'healthCard')
         self.health_card = attributes[:'healthCard']
+      end
+
+      if attributes.has_key?(:'sharedBIN')
+        self.shared_bin = attributes[:'sharedBIN']
+      end
+
+      if attributes.has_key?(:'posDomesticOnly')
+        self.pos_domestic_only = attributes[:'posDomesticOnly']
+      end
+
+      if attributes.has_key?(:'gamblingAllowed')
+        self.gambling_allowed = attributes[:'gamblingAllowed']
+      end
+
+      if attributes.has_key?(:'commercialCardLevel2')
+        self.commercial_card_level2 = attributes[:'commercialCardLevel2']
+      end
+
+      if attributes.has_key?(:'commercialCardLevel3')
+        self.commercial_card_level3 = attributes[:'commercialCardLevel3']
+      end
+
+      if attributes.has_key?(:'exemptBIN')
+        self.exempt_bin = attributes[:'exemptBIN']
+      end
+
+      if attributes.has_key?(:'accountLevelManagement')
+        self.account_level_management = attributes[:'accountLevelManagement']
+      end
+
+      if attributes.has_key?(:'onlineGamblingBlock')
+        self.online_gambling_block = attributes[:'onlineGamblingBlock']
+      end
+
+      if attributes.has_key?(:'autoSubstantiation')
+        self.auto_substantiation = attributes[:'autoSubstantiation']
+      end
+
+      if attributes.has_key?(:'flexCredential')
+        self.flex_credential = attributes[:'flexCredential']
       end
     end
 
@@ -198,7 +298,17 @@ module CyberSource
           card_platform == o.card_platform &&
           combo_card == o.combo_card &&
           corporate_purchase == o.corporate_purchase &&
-          health_card == o.health_card
+          health_card == o.health_card &&
+          shared_bin == o.shared_bin &&
+          pos_domestic_only == o.pos_domestic_only &&
+          gambling_allowed == o.gambling_allowed &&
+          commercial_card_level2 == o.commercial_card_level2 &&
+          commercial_card_level3 == o.commercial_card_level3 &&
+          exempt_bin == o.exempt_bin &&
+          account_level_management == o.account_level_management &&
+          online_gambling_block == o.online_gambling_block &&
+          auto_substantiation == o.auto_substantiation &&
+          flex_credential == o.flex_credential
     end
 
     # @see the `==` method
@@ -210,7 +320,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [account_funding_source, account_funding_source_sub_type, card_product, message_type, acceptance_level, card_platform, combo_card, corporate_purchase, health_card].hash
+      [account_funding_source, account_funding_source_sub_type, card_product, message_type, acceptance_level, card_platform, combo_card, corporate_purchase, health_card, shared_bin, pos_domestic_only, gambling_allowed, commercial_card_level2, commercial_card_level3, exempt_bin, account_level_management, online_gambling_block, auto_substantiation, flex_credential].hash
     end
 
     # Builds the object from hash

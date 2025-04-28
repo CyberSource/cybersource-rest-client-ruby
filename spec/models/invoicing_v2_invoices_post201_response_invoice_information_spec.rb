@@ -49,6 +49,12 @@ describe 'InvoicingV2InvoicesPost201ResponseInvoiceInformation' do
     end
   end
 
+  describe 'test attribute "expiration_date"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "allow_partial_payments"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

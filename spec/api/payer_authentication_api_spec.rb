@@ -45,7 +45,7 @@ describe 'PayerAuthenticationApi' do
 
   # unit tests for payer_auth_setup
   # Setup Payer Auth
-  # A new service for Merchants to get reference_id for Digital Wallets to use in place of BIN number in Cardinal. Set up file while authenticating with Cardinal. This service should be called by Merchant when payment instrument chosen or changes. This service has to be called before enrollment check.
+  # A new service for Merchants to get reference_id for Digital Wallets to use in place of BIN number in Cardinal. Set up file while authenticating with Cardinal. This service should be called by Merchant when payment instrument chosen or changes. This service has to be called before enrollment check. The availability of API features for a merchant may depend on the portfolio configuration and may need to be enabled at the portfolio level before they can be added to merchant accounts.
   # @param payer_auth_setup_request 
   # @param [Hash] opts the optional parameters
   # @return [RiskV1AuthenticationSetupsPost201Response]

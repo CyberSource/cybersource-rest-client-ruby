@@ -13,56 +13,56 @@ require 'date'
 
 module CyberSource
   class InlineResponse2002
-    attr_accessor :_links
+    attr_accessor :registration_information
 
-    attr_accessor :object
+    attr_accessor :integration_information
 
-    attr_accessor :offset
+    attr_accessor :organization_information
 
-    attr_accessor :limit
+    attr_accessor :product_information
 
-    attr_accessor :count
+    attr_accessor :product_information_setups
 
-    attr_accessor :total
+    attr_accessor :document_information
 
-    attr_accessor :_embedded
+    attr_accessor :details
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'_links' => :'_links',
-        :'object' => :'object',
-        :'offset' => :'offset',
-        :'limit' => :'limit',
-        :'count' => :'count',
-        :'total' => :'total',
-        :'_embedded' => :'_embedded'
+        :'registration_information' => :'registrationInformation',
+        :'integration_information' => :'integrationInformation',
+        :'organization_information' => :'organizationInformation',
+        :'product_information' => :'productInformation',
+        :'product_information_setups' => :'productInformationSetups',
+        :'document_information' => :'documentInformation',
+        :'details' => :'details'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'_links' => :'_links',
-        :'object' => :'object',
-        :'offset' => :'offset',
-        :'limit' => :'limit',
-        :'count' => :'count',
-        :'total' => :'total',
-        :'_embedded' => :'_embedded'
+        :'registration_information' => :'registration_information',
+        :'integration_information' => :'integration_information',
+        :'organization_information' => :'organization_information',
+        :'product_information' => :'product_information',
+        :'product_information_setups' => :'product_information_setups',
+        :'document_information' => :'document_information',
+        :'details' => :'details'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'_links' => :'Array<InlineResponse2002Links>',
-        :'object' => :'String',
-        :'offset' => :'Integer',
-        :'limit' => :'Integer',
-        :'count' => :'Integer',
-        :'total' => :'Integer',
-        :'_embedded' => :'InlineResponse2002Embedded'
+        :'registration_information' => :'Boardingv1registrationsRegistrationInformation',
+        :'integration_information' => :'InlineResponse2002IntegrationInformation',
+        :'organization_information' => :'Boardingv1registrationsOrganizationInformation',
+        :'product_information' => :'Boardingv1registrationsProductInformation',
+        :'product_information_setups' => :'Array<InlineResponse2012ProductInformationSetups>',
+        :'document_information' => :'Boardingv1registrationsDocumentInformation',
+        :'details' => :'Hash<String, Array<Object>>'
       }
     end
 
@@ -74,34 +74,36 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'_links')
-        if (value = attributes[:'_links']).is_a?(Array)
-          self._links = value
+      if attributes.has_key?(:'registrationInformation')
+        self.registration_information = attributes[:'registrationInformation']
+      end
+
+      if attributes.has_key?(:'integrationInformation')
+        self.integration_information = attributes[:'integrationInformation']
+      end
+
+      if attributes.has_key?(:'organizationInformation')
+        self.organization_information = attributes[:'organizationInformation']
+      end
+
+      if attributes.has_key?(:'productInformation')
+        self.product_information = attributes[:'productInformation']
+      end
+
+      if attributes.has_key?(:'productInformationSetups')
+        if (value = attributes[:'productInformationSetups']).is_a?(Array)
+          self.product_information_setups = value
         end
       end
 
-      if attributes.has_key?(:'object')
-        self.object = attributes[:'object']
+      if attributes.has_key?(:'documentInformation')
+        self.document_information = attributes[:'documentInformation']
       end
 
-      if attributes.has_key?(:'offset')
-        self.offset = attributes[:'offset']
-      end
-
-      if attributes.has_key?(:'limit')
-        self.limit = attributes[:'limit']
-      end
-
-      if attributes.has_key?(:'count')
-        self.count = attributes[:'count']
-      end
-
-      if attributes.has_key?(:'total')
-        self.total = attributes[:'total']
-      end
-
-      if attributes.has_key?(:'_embedded')
-        self._embedded = attributes[:'_embedded']
+      if attributes.has_key?(:'details')
+        if (value = attributes[:'details']).is_a?(Hash)
+          self.details = value
+        end
       end
     end
 
@@ -123,13 +125,13 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          _links == o._links &&
-          object == o.object &&
-          offset == o.offset &&
-          limit == o.limit &&
-          count == o.count &&
-          total == o.total &&
-          _embedded == o._embedded
+          registration_information == o.registration_information &&
+          integration_information == o.integration_information &&
+          organization_information == o.organization_information &&
+          product_information == o.product_information &&
+          product_information_setups == o.product_information_setups &&
+          document_information == o.document_information &&
+          details == o.details
     end
 
     # @see the `==` method
@@ -141,7 +143,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, object, offset, limit, count, total, _embedded].hash
+      [registration_information, integration_information, organization_information, product_information, product_information_setups, document_information, details].hash
     end
 
     # Builds the object from hash

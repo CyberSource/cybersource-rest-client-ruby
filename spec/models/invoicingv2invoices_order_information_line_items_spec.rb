@@ -61,7 +61,7 @@ describe 'Invoicingv2invoicesOrderInformationLineItems' do
     end
   end
 
-  describe 'test attribute "discount_rate"' do
+  describe 'test attribute "discount_percent"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

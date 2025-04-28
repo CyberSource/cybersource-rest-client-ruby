@@ -23,13 +23,16 @@ module CyberSource
     # The invoice due date. This field is required for creating an invoice. Format: `YYYY-MM-DD`, where `YYYY` = year, `MM` = month, and `DD` = day 
     attr_accessor :due_date
 
+    # Define an expiration date for the link.  Format: `YYYY-MM-DD`, where `YYYY` = year, `MM` = month, and `DD` = day 
+    attr_accessor :expiration_date
+
     # If set to `true`, the payer can make a partial invoice payment.
     attr_accessor :allow_partial_payments
 
     # Returns the payment link to an invoice when the invoice status is `SENT`, `CREATED`, `PARTIAL`, or `PAID`.
     attr_accessor :payment_link
 
-    # If set to `None`, the invoice is created, and its status is set to 'CREATED', but no email is sent.    Possible values:        - `None`   - `Email`  
+    # If this field is set to 'None', an invoice will be generated with the status 'CREATED', but no email will be dispatched.    Possible values:        - `None`   - `Email`    
     attr_accessor :delivery_mode
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -38,6 +41,7 @@ module CyberSource
         :'invoice_number' => :'invoiceNumber',
         :'description' => :'description',
         :'due_date' => :'dueDate',
+        :'expiration_date' => :'expirationDate',
         :'allow_partial_payments' => :'allowPartialPayments',
         :'payment_link' => :'paymentLink',
         :'delivery_mode' => :'deliveryMode'
@@ -50,6 +54,7 @@ module CyberSource
         :'invoice_number' => :'invoice_number',
         :'description' => :'description',
         :'due_date' => :'due_date',
+        :'expiration_date' => :'expiration_date',
         :'allow_partial_payments' => :'allow_partial_payments',
         :'payment_link' => :'payment_link',
         :'delivery_mode' => :'delivery_mode'
@@ -62,6 +67,7 @@ module CyberSource
         :'invoice_number' => :'String',
         :'description' => :'String',
         :'due_date' => :'Date',
+        :'expiration_date' => :'Date',
         :'allow_partial_payments' => :'BOOLEAN',
         :'payment_link' => :'String',
         :'delivery_mode' => :'String'
@@ -88,8 +94,14 @@ module CyberSource
         self.due_date = attributes[:'dueDate']
       end
 
+      if attributes.has_key?(:'expirationDate')
+        self.expiration_date = attributes[:'expirationDate']
+      end
+
       if attributes.has_key?(:'allowPartialPayments')
         self.allow_partial_payments = attributes[:'allowPartialPayments']
+      else
+        self.allow_partial_payments = false
       end
 
       if attributes.has_key?(:'paymentLink')
@@ -128,6 +140,7 @@ module CyberSource
           invoice_number == o.invoice_number &&
           description == o.description &&
           due_date == o.due_date &&
+          expiration_date == o.expiration_date &&
           allow_partial_payments == o.allow_partial_payments &&
           payment_link == o.payment_link &&
           delivery_mode == o.delivery_mode
@@ -142,7 +155,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [invoice_number, description, due_date, allow_partial_payments, payment_link, delivery_mode].hash
+      [invoice_number, description, due_date, expiration_date, allow_partial_payments, payment_link, delivery_mode].hash
     end
 
     # Builds the object from hash

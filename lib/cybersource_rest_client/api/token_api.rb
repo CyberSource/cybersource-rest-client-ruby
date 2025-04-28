@@ -19,6 +19,101 @@ module CyberSource
       @api_client = api_client
       @api_client.set_configuration(config)
     end
+    # Retrieve Card Art
+    # Retrieves Card Art for a specific Instrument Identifier. The Card Art is a visual representation of the cardholder's payment card. Card Art is only available if a Network Token is successfully provisioned. 
+    #
+    # @param instrument_identifier_id The Id of an Instrument Identifier.
+    # @param token_provider The token provider.
+    # @param asset_type The type of asset.
+    # @param [Hash] opts the optional parameters
+    # @return [InlineResponse200]
+    #
+    def get_card_art_asset(instrument_identifier_id, token_provider, asset_type, opts = {})
+      data, status_code, headers = get_card_art_asset_with_http_info(instrument_identifier_id, token_provider, asset_type, opts)
+      return data, status_code, headers
+    end
+
+    # Retrieve Card Art
+    # Retrieves Card Art for a specific Instrument Identifier. The Card Art is a visual representation of the cardholder&#39;s payment card. Card Art is only available if a Network Token is successfully provisioned. 
+    # @param instrument_identifier_id The Id of an Instrument Identifier.
+    # @param token_provider The token provider.
+    # @param asset_type The type of asset.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(InlineResponse200, Fixnum, Hash)>] InlineResponse200 data, response status code and response headers
+    def get_card_art_asset_with_http_info(instrument_identifier_id, token_provider, asset_type, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: TokenApi.get_card_art_asset ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'instrument_identifier_id' is set
+      if @api_client.config.client_side_validation && instrument_identifier_id.nil?
+        fail ArgumentError, "Missing the required parameter 'instrument_identifier_id' when calling TokenApi.get_card_art_asset"
+      end
+      # verify the required parameter 'token_provider' is set
+      if @api_client.config.client_side_validation && token_provider.nil?
+        fail ArgumentError, "Missing the required parameter 'token_provider' when calling TokenApi.get_card_art_asset"
+      end
+      # verify enum value
+      if @api_client.config.client_side_validation && !['vts', 'mdes', 'amex', 'mscof'].include?(token_provider)
+        fail ArgumentError, "invalid value for 'token_provider', must be one of vts, mdes, amex, mscof"
+      end
+      # verify the required parameter 'asset_type' is set
+      if @api_client.config.client_side_validation && asset_type.nil?
+        fail ArgumentError, "Missing the required parameter 'asset_type' when calling TokenApi.get_card_art_asset"
+      end
+      # verify enum value
+      if @api_client.config.client_side_validation && !['card-art-combined', 'brand-logo', 'issuer-logo', 'icon-logo'].include?(asset_type)
+        fail ArgumentError, "invalid value for 'asset_type', must be one of card-art-combined, brand-logo, issuer-logo, icon-logo"
+      end
+      # resource path
+      local_var_path = 'tms/v2/tokens/{instrumentIdentifierId}/{tokenProvider}/assets/{assetType}'.sub('{' + 'instrumentIdentifierId' + '}', instrument_identifier_id.to_s).sub('{' + 'tokenProvider' + '}', token_provider.to_s).sub('{' + 'assetType' + '}', asset_type.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      if 'GET' == 'POST'
+        post_body = '{}'
+      else
+        post_body = nil
+      end
+      is_mle_supported_by_cybs_for_api = false
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["get_card_art_asset","get_card_art_asset_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+      end
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'InlineResponse200')
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: TokenApi#get_card_art_asset\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
     # Generate Payment Credentials for a TMS Token
     # |  |  |  |     | --- | --- | --- |     |**Token**<br>A Token can represent your tokenized Customer, Payment Instrument or Instrument Identifier information.|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|**Payment Credentials**<br>Contains payment information such as the network token, generated cryptogram for Visa & MasterCard or dynamic CVV for Amex in a JSON Web Encryption (JWE) response.<br>Your system can use this API to retrieve the Payment Credentials for an existing Customer, Payment Instrument or Instrument Identifier. 
     #

@@ -24,7 +24,7 @@ module CyberSource
     #
     # @param registration_id Identifies the boarding registration to be updated
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2001]
+    # @return [InlineResponse2002]
     #
     def get_registration(registration_id, opts = {})
       data, status_code, headers = get_registration_with_http_info(registration_id, opts)
@@ -35,7 +35,7 @@ module CyberSource
     # This end point will get all information of a boarding registration 
     # @param registration_id Identifies the boarding registration to be updated
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2001, Fixnum, Hash)>] InlineResponse2001 data, response status code and response headers
+    # @return [Array<(InlineResponse2002, Fixnum, Hash)>] InlineResponse2002 data, response status code and response headers
     def get_registration_with_http_info(registration_id, opts = {})
 
       if @api_client.config.debugging
@@ -83,7 +83,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2001')
+        :return_type => 'InlineResponse2002')
       if @api_client.config.debugging
         begin
         raise
@@ -95,7 +95,7 @@ module CyberSource
       return data, status_code, headers
     end
     # Create a boarding registration
-    # Create a registration to board merchant  If you have  Card Processing product enabled in your boarding request, select payment processor from Configuration -> Sample Request. You may unselect attributes from the Request Builder tree which you do not need in the request. For VPC, CUP and EFTPOS processors, replace the processor name from VPC or CUP or EFTPOS to the actual processor name in the sample request. e.g. replace VPC with &lt;your vpc processor&gt; 
+    # Boarding Product is specifically for resellers who onboard merchants to resell their services to merchants and help integrate REST API into their systems.  The Boarding API is designed to simplify and streamline the onboarding process of merchants by enabling administrators and developers to: 1. Enable and Configure Products: The API helps in adding new products to an existing organization and configuring them to suit specific needs. 2. Update Merchant Information: The API allows for updating an organization's information efficiently. 3. Manage Payment Integration: It provides templates for secure payment integration and management. 
     #
     # @param post_registration_body Boarding registration data
     # @param [Hash] opts the optional parameters
@@ -108,7 +108,7 @@ module CyberSource
     end
 
     # Create a boarding registration
-    # Create a registration to board merchant  If you have  Card Processing product enabled in your boarding request, select payment processor from Configuration -&gt; Sample Request. You may unselect attributes from the Request Builder tree which you do not need in the request. For VPC, CUP and EFTPOS processors, replace the processor name from VPC or CUP or EFTPOS to the actual processor name in the sample request. e.g. replace VPC with &amp;lt;your vpc processor&amp;gt; 
+    # Boarding Product is specifically for resellers who onboard merchants to resell their services to merchants and help integrate REST API into their systems.  The Boarding API is designed to simplify and streamline the onboarding process of merchants by enabling administrators and developers to: 1. Enable and Configure Products: The API helps in adding new products to an existing organization and configuring them to suit specific needs. 2. Update Merchant Information: The API allows for updating an organization&#39;s information efficiently. 3. Manage Payment Integration: It provides templates for secure payment integration and management. 
     # @param post_registration_body Boarding registration data
     # @param [Hash] opts the optional parameters
     # @option opts [String] :v_c_idempotency_id defines idempotency of the request

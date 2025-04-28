@@ -49,6 +49,12 @@ describe 'InvoicingV2InvoicesAllGet200ResponseInvoices' do
     end
   end
 
+  describe 'test attribute "created_date"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "customer_information"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

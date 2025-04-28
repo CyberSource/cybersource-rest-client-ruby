@@ -15,6 +15,8 @@ module CyberSource
   class UpdateInvoiceRequest
     attr_accessor :customer_information
 
+    attr_accessor :processing_information
+
     attr_accessor :invoice_information
 
     attr_accessor :order_information
@@ -23,6 +25,7 @@ module CyberSource
     def self.attribute_map
       {
         :'customer_information' => :'customerInformation',
+        :'processing_information' => :'processingInformation',
         :'invoice_information' => :'invoiceInformation',
         :'order_information' => :'orderInformation'
       }
@@ -32,6 +35,7 @@ module CyberSource
     def self.json_map
       {
         :'customer_information' => :'customer_information',
+        :'processing_information' => :'processing_information',
         :'invoice_information' => :'invoice_information',
         :'order_information' => :'order_information'
       }
@@ -41,6 +45,7 @@ module CyberSource
     def self.swagger_types
       {
         :'customer_information' => :'Invoicingv2invoicesCustomerInformation',
+        :'processing_information' => :'Invoicingv2invoicesProcessingInformation',
         :'invoice_information' => :'Invoicingv2invoicesidInvoiceInformation',
         :'order_information' => :'Invoicingv2invoicesOrderInformation'
       }
@@ -58,6 +63,10 @@ module CyberSource
         self.customer_information = attributes[:'customerInformation']
       end
 
+      if attributes.has_key?(:'processingInformation')
+        self.processing_information = attributes[:'processingInformation']
+      end
+
       if attributes.has_key?(:'invoiceInformation')
         self.invoice_information = attributes[:'invoiceInformation']
       end
@@ -71,12 +80,22 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @invoice_information.nil?
+        invalid_properties.push('invalid value for "invoice_information", invoice_information cannot be nil.')
+      end
+
+      if @order_information.nil?
+        invalid_properties.push('invalid value for "order_information", order_information cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @invoice_information.nil?
+      return false if @order_information.nil?
       true
     end
 
@@ -86,6 +105,7 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           customer_information == o.customer_information &&
+          processing_information == o.processing_information &&
           invoice_information == o.invoice_information &&
           order_information == o.order_information
     end
@@ -99,7 +119,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [customer_information, invoice_information, order_information].hash
+      [customer_information, processing_information, invoice_information, order_information].hash
     end
 
     # Builds the object from hash

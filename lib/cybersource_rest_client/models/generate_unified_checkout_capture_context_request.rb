@@ -33,6 +33,8 @@ module CyberSource
 
     attr_accessor :capture_mandate
 
+    attr_accessor :complete_mandate
+
     attr_accessor :order_information
 
     attr_accessor :transient_token_response_options
@@ -47,6 +49,7 @@ module CyberSource
         :'country' => :'country',
         :'locale' => :'locale',
         :'capture_mandate' => :'captureMandate',
+        :'complete_mandate' => :'completeMandate',
         :'order_information' => :'orderInformation',
         :'transient_token_response_options' => :'transientTokenResponseOptions'
       }
@@ -62,6 +65,7 @@ module CyberSource
         :'country' => :'country',
         :'locale' => :'locale',
         :'capture_mandate' => :'capture_mandate',
+        :'complete_mandate' => :'complete_mandate',
         :'order_information' => :'order_information',
         :'transient_token_response_options' => :'transient_token_response_options'
       }
@@ -77,6 +81,7 @@ module CyberSource
         :'country' => :'String',
         :'locale' => :'String',
         :'capture_mandate' => :'Upv1capturecontextsCaptureMandate',
+        :'complete_mandate' => :'Upv1capturecontextsCompleteMandate',
         :'order_information' => :'Upv1capturecontextsOrderInformation',
         :'transient_token_response_options' => :'Microformv2sessionsTransientTokenResponseOptions'
       }
@@ -122,6 +127,10 @@ module CyberSource
 
       if attributes.has_key?(:'captureMandate')
         self.capture_mandate = attributes[:'captureMandate']
+      end
+
+      if attributes.has_key?(:'completeMandate')
+        self.complete_mandate = attributes[:'completeMandate']
       end
 
       if attributes.has_key?(:'orderInformation')
@@ -170,6 +179,7 @@ module CyberSource
           country == o.country &&
           locale == o.locale &&
           capture_mandate == o.capture_mandate &&
+          complete_mandate == o.complete_mandate &&
           order_information == o.order_information &&
           transient_token_response_options == o.transient_token_response_options
     end
@@ -183,7 +193,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_version, target_origins, allowed_card_networks, allowed_payment_types, country, locale, capture_mandate, order_information, transient_token_response_options].hash
+      [client_version, target_origins, allowed_card_networks, allowed_payment_types, country, locale, capture_mandate, complete_mandate, order_information, transient_token_response_options].hash
     end
 
     # Builds the object from hash
