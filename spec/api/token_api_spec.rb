@@ -31,6 +31,20 @@ describe 'TokenApi' do
     end
   end
 
+  # unit tests for get_card_art_asset
+  # Retrieve Card Art
+  # Retrieves Card Art for a specific Instrument Identifier. The Card Art is a visual representation of the cardholder&#39;s payment card. Card Art is only available if a Network Token is successfully provisioned. 
+  # @param instrument_identifier_id The Id of an Instrument Identifier.
+  # @param token_provider The token provider.
+  # @param asset_type The type of asset.
+  # @param [Hash] opts the optional parameters
+  # @return [InlineResponse200]
+  describe 'get_card_art_asset test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for post_token_payment_credentials
   # Generate Payment Credentials for a TMS Token
   # |  |  |  |     | --- | --- | --- |     |**Token**&lt;br&gt;A Token can represent your tokenized Customer, Payment Instrument or Instrument Identifier information.|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;|**Payment Credentials**&lt;br&gt;Contains payment information such as the network token, generated cryptogram for Visa &amp; MasterCard or dynamic CVV for Amex in a JSON Web Encryption (JWE) response.&lt;br&gt;Your system can use this API to retrieve the Payment Credentials for an existing Customer, Payment Instrument or Instrument Identifier. 

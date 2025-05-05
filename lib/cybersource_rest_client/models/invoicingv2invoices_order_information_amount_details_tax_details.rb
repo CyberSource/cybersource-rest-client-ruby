@@ -12,7 +12,7 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # Contains all of the tax-related fields for the invoice.
+  # Contains all of the tax-related fields for the order.
   class Invoicingv2invoicesOrderInformationAmountDetailsTaxDetails
     # Indicates the type of tax data for the _taxDetails_ object.  Possible values:  - `alternate` - `local` - `national` - `vat` - `other` - `green` 
     attr_accessor :type

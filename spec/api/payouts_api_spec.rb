@@ -33,7 +33,7 @@ describe 'PayoutsApi' do
 
   # unit tests for oct_create_payment
   # Process a Payout
-  # Send funds from a selected funding source to a designated credit/debit card account or a prepaid card using an Original Credit Transaction (OCT). 
+  # Send funds from a selected funding source to a designated credit/debit card account or a prepaid card using an Original Credit Transaction (OCT). The availability of API features for a merchant can depend on the portfolio configuration and may need to be enabled at the portfolio level before they can be added to merchant accounts. 
   # @param oct_create_payment_request 
   # @param [Hash] opts the optional parameters
   # @return [PtsV2PayoutsPost201Response]

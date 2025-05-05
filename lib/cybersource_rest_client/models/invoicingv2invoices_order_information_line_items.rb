@@ -12,7 +12,7 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # List of the line items from the order, which are included in an invoice.
+  # Line item from the order.
   class Invoicingv2invoicesOrderInformationLineItems
     # Product identifier code. Also known as the Stock Keeping Unit (SKU) code for the product.  For an authorization or capture transaction (`processingOptions.capture` is set to `true` or `false`), this field is required when `orderInformation.lineItems[].productCode` is not set to **default** or one of the other values that are related to shipping and/or handling.  #### Tax Calculation Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes. For an authorization or capture transaction (`processingOptions.capture` is set to `true` or `false`), this field is required when `orderInformation.lineItems[].productCode` is not `default` or one of the values related to shipping and/or handling. 
     attr_accessor :product_sku
@@ -30,12 +30,12 @@ module CyberSource
     attr_accessor :discount_amount
 
     # Rate the item is discounted. Maximum of 2 decimal places.  Example 5.25 (=5.25%) 
-    attr_accessor :discount_rate
+    attr_accessor :discount_percent
 
     # Total tax to apply to the product. This value cannot be negative. The tax amount and the offer amount must be in the same currency. The tax amount field is additive.  The following example uses a two-exponent currency such as USD:   1. You include each line item in your request.  ..- 1st line item has amount=10.00, quantity=1, and taxAmount=0.80  ..- 2nd line item has amount=20.00, quantity=1, and taxAmount=1.60  2. The total amount authorized will be 32.40, not 30.00 with 2.40 of tax included.  Optional field.  #### Airlines processing Tax portion of the order amount. This value cannot exceed 99999999999999 (fourteen 9s). Format: English characters only. Optional request field for a line item.  #### Tax Calculation Optional field for U.S., Canadian, international tax, and value added taxes.  Note if you send this field in your tax request, the value in the field will override the tax engine 
     attr_accessor :tax_amount
 
-    # Tax rate applied to the item.  **Visa**: Valid range is 0.01 to 0.99 (1% to 99%, with only whole percentage values accepted; values with additional decimal places will be truncated).  **Mastercard**: Valid range is 0.00001 to 0.99999 (0.001% to 99.999%). 
+    # Valid range: 1% to 99%, with only whole percentage values accepted; values with additional  decimal places will be truncated  For processor-specific details, see the alternate_tax_amount, vat_rate, vat_tax_rate, local_tax, national_tax, vat_tax_amount or other_tax#_rate field descriptions in the Level II and Level III Processing Using the SCMP API Guide. 
     attr_accessor :tax_rate
 
     # Total amount for the item. Normally calculated as the unit price times quantity.  When `orderInformation.lineItems[].productCode` is \"gift_card\", this is the purchase amount total for prepaid gift cards in major units.  Example: 123.45 USD = 123 
@@ -49,7 +49,7 @@ module CyberSource
         :'quantity' => :'quantity',
         :'unit_price' => :'unitPrice',
         :'discount_amount' => :'discountAmount',
-        :'discount_rate' => :'discountRate',
+        :'discount_percent' => :'discountPercent',
         :'tax_amount' => :'taxAmount',
         :'tax_rate' => :'taxRate',
         :'total_amount' => :'totalAmount'
@@ -64,7 +64,7 @@ module CyberSource
         :'quantity' => :'quantity',
         :'unit_price' => :'unit_price',
         :'discount_amount' => :'discount_amount',
-        :'discount_rate' => :'discount_rate',
+        :'discount_percent' => :'discount_percent',
         :'tax_amount' => :'tax_amount',
         :'tax_rate' => :'tax_rate',
         :'total_amount' => :'total_amount'
@@ -79,7 +79,7 @@ module CyberSource
         :'quantity' => :'Integer',
         :'unit_price' => :'String',
         :'discount_amount' => :'String',
-        :'discount_rate' => :'String',
+        :'discount_percent' => :'String',
         :'tax_amount' => :'String',
         :'tax_rate' => :'String',
         :'total_amount' => :'String'
@@ -114,8 +114,8 @@ module CyberSource
         self.discount_amount = attributes[:'discountAmount']
       end
 
-      if attributes.has_key?(:'discountRate')
-        self.discount_rate = attributes[:'discountRate']
+      if attributes.has_key?(:'discountPercent')
+        self.discount_percent = attributes[:'discountPercent']
       end
 
       if attributes.has_key?(:'taxAmount')
@@ -175,9 +175,9 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] discount_rate Value to be assigned
-    def discount_rate=(discount_rate)
-      @discount_rate = discount_rate
+    # @param [Object] discount_percent Value to be assigned
+    def discount_percent=(discount_percent)
+      @discount_percent = discount_percent
     end
 
     # Custom attribute writer method with validation
@@ -208,7 +208,7 @@ module CyberSource
           quantity == o.quantity &&
           unit_price == o.unit_price &&
           discount_amount == o.discount_amount &&
-          discount_rate == o.discount_rate &&
+          discount_percent == o.discount_percent &&
           tax_amount == o.tax_amount &&
           tax_rate == o.tax_rate &&
           total_amount == o.total_amount
@@ -223,7 +223,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [product_sku, product_name, quantity, unit_price, discount_amount, discount_rate, tax_amount, tax_rate, total_amount].hash
+      [product_sku, product_name, quantity, unit_price, discount_amount, discount_percent, tax_amount, tax_rate, total_amount].hash
     end
 
     # Builds the object from hash

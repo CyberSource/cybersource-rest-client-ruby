@@ -12,25 +12,27 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
+  # Represents the Card Art Asset associated to the Network Token. 
   class InlineResponse200
-    # UUID uniquely generated for this comments. 
+    # Unique identifier for the Card Art Asset. 
     attr_accessor :id
 
-    # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC.  Returned by Cybersource for all services. 
-    attr_accessor :submit_time_utc
+    # The type of Card Art Asset. 
+    attr_accessor :type
 
-    # The status of the submitted transaction. Possible values are: - `ACCEPTED` - `REJECTED` 
-    attr_accessor :status
+    # The provider of the Card Art Asset. 
+    attr_accessor :provider
 
-    attr_accessor :_embedded
+    # Array of content objects representing the Card Art Asset. 
+    attr_accessor :content
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'id' => :'id',
-        :'submit_time_utc' => :'submitTimeUtc',
-        :'status' => :'status',
-        :'_embedded' => :'_embedded'
+        :'type' => :'type',
+        :'provider' => :'provider',
+        :'content' => :'content'
       }
     end
 
@@ -38,9 +40,9 @@ module CyberSource
     def self.json_map
       {
         :'id' => :'id',
-        :'submit_time_utc' => :'submit_time_utc',
-        :'status' => :'status',
-        :'_embedded' => :'_embedded'
+        :'type' => :'type',
+        :'provider' => :'provider',
+        :'content' => :'content'
       }
     end
 
@@ -48,9 +50,9 @@ module CyberSource
     def self.swagger_types
       {
         :'id' => :'String',
-        :'submit_time_utc' => :'String',
-        :'status' => :'String',
-        :'_embedded' => :'InlineResponse200Embedded'
+        :'type' => :'String',
+        :'provider' => :'String',
+        :'content' => :'Array<InlineResponse200Content>'
       }
     end
 
@@ -66,16 +68,18 @@ module CyberSource
         self.id = attributes[:'id']
       end
 
-      if attributes.has_key?(:'submitTimeUtc')
-        self.submit_time_utc = attributes[:'submitTimeUtc']
+      if attributes.has_key?(:'type')
+        self.type = attributes[:'type']
       end
 
-      if attributes.has_key?(:'status')
-        self.status = attributes[:'status']
+      if attributes.has_key?(:'provider')
+        self.provider = attributes[:'provider']
       end
 
-      if attributes.has_key?(:'_embedded')
-        self._embedded = attributes[:'_embedded']
+      if attributes.has_key?(:'content')
+        if (value = attributes[:'content']).is_a?(Array)
+          self.content = value
+        end
       end
     end
 
@@ -92,21 +96,15 @@ module CyberSource
       true
     end
 
-    # Custom attribute writer method with validation
-    # @param [Object] id Value to be assigned
-    def id=(id)
-      @id = id
-    end
-
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           id == o.id &&
-          submit_time_utc == o.submit_time_utc &&
-          status == o.status &&
-          _embedded == o._embedded
+          type == o.type &&
+          provider == o.provider &&
+          content == o.content
     end
 
     # @see the `==` method
@@ -118,7 +116,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, submit_time_utc, status, _embedded].hash
+      [id, type, provider, content].hash
     end
 
     # Builds the object from hash

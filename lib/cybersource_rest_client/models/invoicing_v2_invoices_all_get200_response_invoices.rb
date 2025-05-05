@@ -22,6 +22,9 @@ module CyberSource
     # The status of the invoice.  Possible values: - DRAFT - CREATED - SENT - PARTIAL - PAID - CANCELED - PENDING 
     attr_accessor :status
 
+    # Date and time (UTC) the invoice was created.  Format: YYYY-MM-DDThh:mm:ssZ Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the time. The Z indicates UTC. 
+    attr_accessor :created_date
+
     attr_accessor :customer_information
 
     attr_accessor :invoice_information
@@ -34,6 +37,7 @@ module CyberSource
         :'_links' => :'_links',
         :'id' => :'id',
         :'status' => :'status',
+        :'created_date' => :'createdDate',
         :'customer_information' => :'customerInformation',
         :'invoice_information' => :'invoiceInformation',
         :'order_information' => :'orderInformation'
@@ -46,6 +50,7 @@ module CyberSource
         :'_links' => :'_links',
         :'id' => :'id',
         :'status' => :'status',
+        :'created_date' => :'created_date',
         :'customer_information' => :'customer_information',
         :'invoice_information' => :'invoice_information',
         :'order_information' => :'order_information'
@@ -58,6 +63,7 @@ module CyberSource
         :'_links' => :'InvoicingV2InvoicesAllGet200ResponseLinks',
         :'id' => :'String',
         :'status' => :'String',
+        :'created_date' => :'String',
         :'customer_information' => :'InvoicingV2InvoicesAllGet200ResponseCustomerInformation',
         :'invoice_information' => :'InvoicingV2InvoicesAllGet200ResponseInvoiceInformation',
         :'order_information' => :'InvoicingV2InvoicesAllGet200ResponseOrderInformation'
@@ -82,6 +88,10 @@ module CyberSource
 
       if attributes.has_key?(:'status')
         self.status = attributes[:'status']
+      end
+
+      if attributes.has_key?(:'createdDate')
+        self.created_date = attributes[:'createdDate']
       end
 
       if attributes.has_key?(:'customerInformation')
@@ -124,6 +134,7 @@ module CyberSource
           _links == o._links &&
           id == o.id &&
           status == o.status &&
+          created_date == o.created_date &&
           customer_information == o.customer_information &&
           invoice_information == o.invoice_information &&
           order_information == o.order_information
@@ -138,7 +149,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, status, customer_information, invoice_information, order_information].hash
+      [_links, id, status, created_date, customer_information, invoice_information, order_information].hash
     end
 
     # Builds the object from hash

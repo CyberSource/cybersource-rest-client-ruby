@@ -12,6 +12,7 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
+  # Contains all of the order-related fields, such as the amount and line item details.
   class InvoicingV2InvoicesAllGet200ResponseOrderInformation
     attr_accessor :amount_details
 

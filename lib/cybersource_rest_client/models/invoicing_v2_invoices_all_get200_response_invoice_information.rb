@@ -16,24 +16,30 @@ module CyberSource
     # The invoice due date. This field is required for creating an invoice. Format: `YYYY-MM-DD`, where `YYYY` = year, `MM` = month, and `DD` = day 
     attr_accessor :due_date
 
+    # Define an expiration date for the link.  Format: `YYYY-MM-DD`, where `YYYY` = year, `MM` = month, and `DD` = day 
+    attr_accessor :expiration_date
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'due_date' => :'dueDate'
+        :'due_date' => :'dueDate',
+        :'expiration_date' => :'expirationDate'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'due_date' => :'due_date'
+        :'due_date' => :'due_date',
+        :'expiration_date' => :'expiration_date'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'due_date' => :'Date'
+        :'due_date' => :'Date',
+        :'expiration_date' => :'Date'
       }
     end
 
@@ -47,6 +53,10 @@ module CyberSource
 
       if attributes.has_key?(:'dueDate')
         self.due_date = attributes[:'dueDate']
+      end
+
+      if attributes.has_key?(:'expirationDate')
+        self.expiration_date = attributes[:'expirationDate']
       end
     end
 
@@ -68,7 +78,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          due_date == o.due_date
+          due_date == o.due_date &&
+          expiration_date == o.expiration_date
     end
 
     # @see the `==` method
@@ -80,7 +91,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [due_date].hash
+      [due_date, expiration_date].hash
     end
 
     # Builds the object from hash

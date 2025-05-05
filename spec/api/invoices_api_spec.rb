@@ -33,7 +33,7 @@ describe 'InvoicesApi' do
 
   # unit tests for create_invoice
   # Create a New Invoice
-  # The invoicing product enables you to bill any customer with an email address and accept digital payments securely from any connected device. You can either use the system generated email or use the invoice payment link in your own communication. You can add discounts and taxes for the entire invoice or for each line item. To customize the invoice to match your brand see [Invoice Settings](https://developer.cybersource.com/api-reference-assets/index.html#invoicing_invoice-settings_update-invoice-settings). The invoice payment page uses Unified Checkout to process the payments.
+  # The invoicing product enables you to bill any customer with an email address and accept digital payments securely from any connected device. You can either use the system generated email or use the invoice payment link in your own communication. You can add discounts and taxes for the entire invoice or for each line item. To customize the invoice to match your brand see [Invoice Settings](https://developer.cybersource.com/api-reference-assets/index.html#invoicing_invoice-settings_update-invoice-settings). The invoice payment page uses Unified Checkout to process the payments. The availability of API features for a merchant can depend on the portfolio configuration and may need to be enabled at the portfolio level before they can be added to merchant accounts.
   # @param create_invoice_request 
   # @param [Hash] opts the optional parameters
   # @return [InvoicingV2InvoicesPost201Response]
@@ -49,7 +49,7 @@ describe 'InvoicesApi' do
   # @param offset Page offset number.
   # @param limit Maximum number of items you would like returned.
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :status The status of the invoice.  Possible values:   - DRAFT   - CREATED   - SENT   - PARTIAL   - PAID   - CANCELED   - PENDING 
+  # @option opts [String] :status The status of the invoice.  Possible values:   - DRAFT   - CREATED   - SENT   - PARTIAL   - PAID   - CANCELED 
   # @return [InvoicingV2InvoicesAllGet200Response]
   describe 'get_all_invoices test' do
     it 'should work' do
@@ -74,7 +74,7 @@ describe 'InvoicesApi' do
   # You can cancel an invoice if no payment is made to it. You cannot cancel partially or fully paid invoices.
   # @param id The invoice number.
   # @param [Hash] opts the optional parameters
-  # @return [InvoicingV2InvoicesPost201Response]
+  # @return [InvoicingV2InvoicesCancel200Response]
   describe 'perform_cancel_action test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -86,7 +86,7 @@ describe 'InvoicesApi' do
   # You can send an invoice in draft or created state or resend a sent or partially paid invoice. Fully paid or canceled invoices cannot be resent.
   # @param id The invoice number.
   # @param [Hash] opts the optional parameters
-  # @return [InvoicingV2InvoicesPost201Response]
+  # @return [InvoicingV2InvoicesSend200Response]
   describe 'perform_send_action test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -99,7 +99,7 @@ describe 'InvoicesApi' do
   # @param id The invoice number.
   # @param update_invoice_request Updating the invoice does not resend the invoice automatically. You must resend the invoice separately.
   # @param [Hash] opts the optional parameters
-  # @return [InvoicingV2InvoicesPost201Response]
+  # @return [InvoicingV2InvoicesPut200Response]
   describe 'update_invoice test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

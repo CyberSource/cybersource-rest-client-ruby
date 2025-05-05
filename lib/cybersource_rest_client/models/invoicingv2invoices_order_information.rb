@@ -12,10 +12,11 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # Contains all of the order-related fields for the invoice, such as the amount and line item details.
+  # Contains all of the order-related fields, such as the amount and line item details.
   class Invoicingv2invoicesOrderInformation
     attr_accessor :amount_details
 
+    # List of the line items from the order.
     attr_accessor :line_items
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -65,12 +66,17 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @amount_details.nil?
+        invalid_properties.push('invalid value for "amount_details", amount_details cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @amount_details.nil?
       true
     end
 

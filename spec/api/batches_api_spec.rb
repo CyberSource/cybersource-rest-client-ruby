@@ -36,7 +36,7 @@ describe 'BatchesApi' do
   # **Get Batch Report**&lt;br&gt;This resource accepts a batch id and returns: - The batch status. - The total number of accepted, rejected, updated records. - The total number of card association responses. - The billable quantities of:   - New Account Numbers (NAN)   - New Expiry Dates (NED)   - Account Closures (ACL)   - Contact Card Holders (CCH) - Source record information including token ids, masked card number, expiration dates &amp; card type. - Response record information including response code, reason, token ids, masked card number, expiration dates &amp; card type. 
   # @param batch_id Unique identification number assigned to the submitted request.
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2004]
+  # @return [InlineResponse2007]
   describe 'get_batch_report test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -48,7 +48,7 @@ describe 'BatchesApi' do
   # **Get Batch Status**&lt;br&gt;This resource accepts a batch id and returns: - The batch status. - The total number of accepted, rejected, updated records. - The total number of card association responses. - The billable quantities of:   - New Account Numbers (NAN)   - New Expiry Dates (NED)   - Account Closures (ACL)   - Contact Card Holders (CCH) 
   # @param batch_id Unique identification number assigned to the submitted request.
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2003]
+  # @return [InlineResponse2006]
   describe 'get_batch_status test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -63,7 +63,7 @@ describe 'BatchesApi' do
   # @option opts [Integer] :limit The maximum number that can be returned in the array starting from the offset record in zero-based dataset.
   # @option opts [String] :from_date ISO-8601 format: yyyyMMddTHHmmssZ
   # @option opts [String] :to_date ISO-8601 format: yyyyMMddTHHmmssZ
-  # @return [InlineResponse2002]
+  # @return [InlineResponse2005]
   describe 'get_batches_list test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -72,7 +72,7 @@ describe 'BatchesApi' do
 
   # unit tests for post_batch
   # Create a Batch
-  # **Create a Batch**&lt;br&gt;This resource accepts TMS tokens ids of a Customer, Payment Instrument or Instrument Identifier. &lt;br&gt; The card numbers for the supplied tokens ids are then sent to the relevant card associations to check for updates.&lt;br&gt;The following type of batches can be submitted: -  **oneOff** batch containing tokens id for Visa or MasterCard card numbers. - **amexRegistration** batch containing tokens id for Amex card numbers.  A batch id will be returned on a successful response which can be used to get the batch status and the batch report. 
+  # **Create a Batch**&lt;br&gt;This resource accepts TMS tokens ids of a Customer, Payment Instrument or Instrument Identifier. &lt;br&gt; The card numbers for the supplied tokens ids are then sent to the relevant card associations to check for updates.&lt;br&gt;The following type of batches can be submitted: -  **oneOff** batch containing tokens id for Visa or MasterCard card numbers. - **amexRegistration** batch containing tokens id for Amex card numbers.  A batch id will be returned on a successful response which can be used to get the batch status and the batch report. The availability of API features for a merchant may depend on the portfolio configuration and may need to be enabled at the portfolio level before they can be added to merchant accounts. 
   # @param body 
   # @param [Hash] opts the optional parameters
   # @return [InlineResponse202]

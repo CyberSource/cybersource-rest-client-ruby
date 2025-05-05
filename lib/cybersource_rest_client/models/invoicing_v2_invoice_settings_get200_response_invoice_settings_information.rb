@@ -39,8 +39,20 @@ module CyberSource
     # Display VAT number on Invoice.
     attr_accessor :show_vat_number
 
-    # Your government-assigned tax identification number.  #### Tax Calculation Required field for value added tax only. Not applicable to U.S. and Canadian taxes.       
+    # Your government-assigned tax identification number.  #### Tax Calculation Required field for value added tax only. Not applicable to U.S. and Canadian taxes.  
     attr_accessor :vat_registration_number
+
+    # Collect the payers shipping address.
+    attr_accessor :ship_to
+
+    # Collect the payers phone number.
+    attr_accessor :phone_number
+
+    # Collect the payers email address when the email address is not known or confirm it if it is known at the time of invoice creation.
+    attr_accessor :email
+
+    # Whether you would like to receive payment notification for successful transaction
+    attr_accessor :enable_merchant_email_notifications
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -54,7 +66,11 @@ module CyberSource
         :'default_currency_code' => :'defaultCurrencyCode',
         :'payer_authentication3_ds_version' => :'payerAuthentication3DSVersion',
         :'show_vat_number' => :'showVatNumber',
-        :'vat_registration_number' => :'vatRegistrationNumber'
+        :'vat_registration_number' => :'vatRegistrationNumber',
+        :'ship_to' => :'shipTo',
+        :'phone_number' => :'phoneNumber',
+        :'email' => :'email',
+        :'enable_merchant_email_notifications' => :'enableMerchantEmailNotifications'
       }
     end
 
@@ -70,7 +86,11 @@ module CyberSource
         :'default_currency_code' => :'default_currency_code',
         :'payer_authentication3_ds_version' => :'payer_authentication3_ds_version',
         :'show_vat_number' => :'show_vat_number',
-        :'vat_registration_number' => :'vat_registration_number'
+        :'vat_registration_number' => :'vat_registration_number',
+        :'ship_to' => :'ship_to',
+        :'phone_number' => :'phone_number',
+        :'email' => :'email',
+        :'enable_merchant_email_notifications' => :'enable_merchant_email_notifications'
       }
     end
 
@@ -86,7 +106,11 @@ module CyberSource
         :'default_currency_code' => :'String',
         :'payer_authentication3_ds_version' => :'BOOLEAN',
         :'show_vat_number' => :'BOOLEAN',
-        :'vat_registration_number' => :'String'
+        :'vat_registration_number' => :'String',
+        :'ship_to' => :'BOOLEAN',
+        :'phone_number' => :'BOOLEAN',
+        :'email' => :'BOOLEAN',
+        :'enable_merchant_email_notifications' => :'BOOLEAN'
       }
     end
 
@@ -140,6 +164,30 @@ module CyberSource
 
       if attributes.has_key?(:'vatRegistrationNumber')
         self.vat_registration_number = attributes[:'vatRegistrationNumber']
+      end
+
+      if attributes.has_key?(:'shipTo')
+        self.ship_to = attributes[:'shipTo']
+      else
+        self.ship_to = false
+      end
+
+      if attributes.has_key?(:'phoneNumber')
+        self.phone_number = attributes[:'phoneNumber']
+      else
+        self.phone_number = false
+      end
+
+      if attributes.has_key?(:'email')
+        self.email = attributes[:'email']
+      else
+        self.email = false
+      end
+
+      if attributes.has_key?(:'enableMerchantEmailNotifications')
+        self.enable_merchant_email_notifications = attributes[:'enableMerchantEmailNotifications']
+      else
+        self.enable_merchant_email_notifications = false
       end
     end
 
@@ -206,7 +254,11 @@ module CyberSource
           default_currency_code == o.default_currency_code &&
           payer_authentication3_ds_version == o.payer_authentication3_ds_version &&
           show_vat_number == o.show_vat_number &&
-          vat_registration_number == o.vat_registration_number
+          vat_registration_number == o.vat_registration_number &&
+          ship_to == o.ship_to &&
+          phone_number == o.phone_number &&
+          email == o.email &&
+          enable_merchant_email_notifications == o.enable_merchant_email_notifications
     end
 
     # @see the `==` method
@@ -218,7 +270,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [merchant_logo, merchant_display_name, custom_email_message, enable_reminders, header_style, delivery_language, default_currency_code, payer_authentication3_ds_version, show_vat_number, vat_registration_number].hash
+      [merchant_logo, merchant_display_name, custom_email_message, enable_reminders, header_style, delivery_language, default_currency_code, payer_authentication3_ds_version, show_vat_number, vat_registration_number, ship_to, phone_number, email, enable_merchant_email_notifications].hash
     end
 
     # Builds the object from hash

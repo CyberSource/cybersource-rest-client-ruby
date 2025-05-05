@@ -12,35 +12,75 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # Egress Asymmetric Key Information Response. 
   class InlineResponse2015
-    # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` Example `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC. 
-    attr_accessor :submit_time_utc
+    # Date that the webhook was delivered
+    attr_accessor :event_date
 
-    # The status of the submitted transaction. Possible values:  - ACCEPTED 
-    attr_accessor :status
+    # The event name the webhook was delivered for
+    attr_accessor :event_type
+
+    # The Organization Identifier.
+    attr_accessor :organization_id
+
+    attr_accessor :payloads
+
+    # The product the webhook was delivered for
+    attr_accessor :product_id
+
+    # Identifies the the type of request
+    attr_accessor :request_type
+
+    # The number of retry attempts for a given webhook
+    attr_accessor :retry_number
+
+    # The identifier for the webhook
+    attr_accessor :transaction_trace_id
+
+    # The identifier of the subscription
+    attr_accessor :webhook_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'submit_time_utc' => :'submitTimeUtc',
-        :'status' => :'status'
+        :'event_date' => :'eventDate',
+        :'event_type' => :'eventType',
+        :'organization_id' => :'organizationId',
+        :'payloads' => :'payloads',
+        :'product_id' => :'productId',
+        :'request_type' => :'requestType',
+        :'retry_number' => :'retryNumber',
+        :'transaction_trace_id' => :'transactionTraceId',
+        :'webhook_id' => :'webhookId'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'submit_time_utc' => :'submit_time_utc',
-        :'status' => :'status'
+        :'event_date' => :'event_date',
+        :'event_type' => :'event_type',
+        :'organization_id' => :'organization_id',
+        :'payloads' => :'payloads',
+        :'product_id' => :'product_id',
+        :'request_type' => :'request_type',
+        :'retry_number' => :'retry_number',
+        :'transaction_trace_id' => :'transaction_trace_id',
+        :'webhook_id' => :'webhook_id'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'submit_time_utc' => :'String',
-        :'status' => :'String'
+        :'event_date' => :'String',
+        :'event_type' => :'String',
+        :'organization_id' => :'String',
+        :'payloads' => :'InlineResponse2015Payloads',
+        :'product_id' => :'String',
+        :'request_type' => :'String',
+        :'retry_number' => :'Integer',
+        :'transaction_trace_id' => :'String',
+        :'webhook_id' => :'String'
       }
     end
 
@@ -52,12 +92,40 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'submitTimeUtc')
-        self.submit_time_utc = attributes[:'submitTimeUtc']
+      if attributes.has_key?(:'eventDate')
+        self.event_date = attributes[:'eventDate']
       end
 
-      if attributes.has_key?(:'status')
-        self.status = attributes[:'status']
+      if attributes.has_key?(:'eventType')
+        self.event_type = attributes[:'eventType']
+      end
+
+      if attributes.has_key?(:'organizationId')
+        self.organization_id = attributes[:'organizationId']
+      end
+
+      if attributes.has_key?(:'payloads')
+        self.payloads = attributes[:'payloads']
+      end
+
+      if attributes.has_key?(:'productId')
+        self.product_id = attributes[:'productId']
+      end
+
+      if attributes.has_key?(:'requestType')
+        self.request_type = attributes[:'requestType']
+      end
+
+      if attributes.has_key?(:'retryNumber')
+        self.retry_number = attributes[:'retryNumber']
+      end
+
+      if attributes.has_key?(:'transactionTraceId')
+        self.transaction_trace_id = attributes[:'transactionTraceId']
+      end
+
+      if attributes.has_key?(:'webhookId')
+        self.webhook_id = attributes[:'webhookId']
       end
     end
 
@@ -79,8 +147,15 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          submit_time_utc == o.submit_time_utc &&
-          status == o.status
+          event_date == o.event_date &&
+          event_type == o.event_type &&
+          organization_id == o.organization_id &&
+          payloads == o.payloads &&
+          product_id == o.product_id &&
+          request_type == o.request_type &&
+          retry_number == o.retry_number &&
+          transaction_trace_id == o.transaction_trace_id &&
+          webhook_id == o.webhook_id
     end
 
     # @see the `==` method
@@ -92,7 +167,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [submit_time_utc, status].hash
+      [event_date, event_type, organization_id, payloads, product_id, request_type, retry_number, transaction_trace_id, webhook_id].hash
     end
 
     # Builds the object from hash
