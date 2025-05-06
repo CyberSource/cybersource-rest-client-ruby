@@ -294,20 +294,25 @@ module CyberSource
       # query parameters
       query_params = {}
 
+      boundary = SecureRandom.hex
+      delimiter = "-------------" + boundary
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['multipart/form-data'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['multipart/form-data; boundary=' + delimiter])
 
       # form parameters
       form_params = {}
-      form_params['file'] = file
+      form_params[File.basename(file)] = File.read(file)
 
       # http body (model)
       if 'POST' == 'POST'
         post_body = '{}'
+        require_relative '../utilities/multipart/multipart_helper'
+        multipart_helper = MultipartHelper.new
+        post_body = multipart_helper.build_data_files(boundary, form_params)
       else
         post_body = nil
       end
