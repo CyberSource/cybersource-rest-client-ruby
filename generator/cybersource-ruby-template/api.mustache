@@ -118,6 +118,10 @@ module {{moduleName}}
       {{/required}}
       {{/queryParams}}
 
+      {{#formParams}}
+      boundary = SecureRandom.hex
+      delimiter = "-------------" + boundary
+      {{/formParams}}
       # header parameters
       header_params = {}
       {{#hasProduces}}
@@ -125,8 +129,14 @@ module {{moduleName}}
       header_params['Accept'] = @api_client.select_header_accept([{{#produces}}'{{{mediaType}}}'{{#hasMore}}, {{/hasMore}}{{/produces}}])
       {{/hasProduces}}
       {{#hasConsumes}}
+      {{#formParams}}
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['multipart/form-data; boundary=' + delimiter])
+      {{/formParams}}
+      {{^formParams}}
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type([{{#consumes}}'{{{mediaType}}}'{{#hasMore}}, {{/hasMore}}{{/consumes}}])
+      {{/formParams}}
       {{/hasConsumes}}
       {{#headerParams}}
       {{#required}}
@@ -143,7 +153,7 @@ module {{moduleName}}
       form_params = {}
       {{#formParams}}
       {{#required}}
-      form_params['{{baseName}}'] = {{#collectionFormat}}@api_client.build_collection_param({{{paramName}}}, :{{{collectionFormat}}}){{/collectionFormat}}{{^collectionFormat}}{{{paramName}}}{{/collectionFormat}}
+      form_params[File.basename({{baseName}})] = {{#collectionFormat}}@api_client.build_collection_param({{{paramName}}}, :{{{collectionFormat}}}){{/collectionFormat}}{{^collectionFormat}}File.read({{{paramName}}}){{/collectionFormat}}
       {{/required}}
       {{/formParams}}
       {{#formParams}}
@@ -156,6 +166,11 @@ module {{moduleName}}
       {{^bodyParam}}
       if '{{httpMethod}}' == 'POST'
         post_body = '{}'
+        {{#formParams}}
+        require_relative '../utilities/multipart/multipart_helper'
+        multipart_helper = MultipartHelper.new
+        post_body = multipart_helper.build_data_files(boundary, form_params)
+        {{/formParams}}
       else
         post_body = nil
       end
