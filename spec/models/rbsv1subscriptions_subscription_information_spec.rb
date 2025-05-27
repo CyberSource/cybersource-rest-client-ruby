@@ -55,4 +55,16 @@ describe 'Rbsv1subscriptionsSubscriptionInformation' do
     end
   end
 
+  describe 'test attribute "original_transaction_id"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "original_transaction_authorized_amount"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

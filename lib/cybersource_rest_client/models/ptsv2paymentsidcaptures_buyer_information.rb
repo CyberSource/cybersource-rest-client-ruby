@@ -25,7 +25,7 @@ module CyberSource
     # Customer's gender. Possible values are F (female), M (male),O (other).
     attr_accessor :gender
 
-    # language setting of the user
+    # language setting of the user.  Supports 2-character language codes (e.g., en, fr) and 5-character locale values (e.g., en-US, fr-CA). 
     attr_accessor :language
 
     attr_accessor :personal_identification

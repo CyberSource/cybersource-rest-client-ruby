@@ -15,6 +15,8 @@ module CyberSource
   class PaymentsProducts
     attr_accessor :card_processing
 
+    attr_accessor :alternative_payment_methods
+
     attr_accessor :card_present_connect
 
     attr_accessor :cybs_ready_terminal
@@ -55,6 +57,7 @@ module CyberSource
     def self.attribute_map
       {
         :'card_processing' => :'cardProcessing',
+        :'alternative_payment_methods' => :'alternativePaymentMethods',
         :'card_present_connect' => :'cardPresentConnect',
         :'cybs_ready_terminal' => :'cybsReadyTerminal',
         :'e_check' => :'eCheck',
@@ -80,6 +83,7 @@ module CyberSource
     def self.json_map
       {
         :'card_processing' => :'card_processing',
+        :'alternative_payment_methods' => :'alternative_payment_methods',
         :'card_present_connect' => :'card_present_connect',
         :'cybs_ready_terminal' => :'cybs_ready_terminal',
         :'e_check' => :'e_check',
@@ -105,6 +109,7 @@ module CyberSource
     def self.swagger_types
       {
         :'card_processing' => :'PaymentsProductsCardProcessing',
+        :'alternative_payment_methods' => :'PaymentsProductsAlternativePaymentMethods',
         :'card_present_connect' => :'PaymentsProductsCardPresentConnect',
         :'cybs_ready_terminal' => :'PaymentsProductsCybsReadyTerminal',
         :'e_check' => :'PaymentsProductsECheck',
@@ -136,6 +141,10 @@ module CyberSource
 
       if attributes.has_key?(:'cardProcessing')
         self.card_processing = attributes[:'cardProcessing']
+      end
+
+      if attributes.has_key?(:'alternativePaymentMethods')
+        self.alternative_payment_methods = attributes[:'alternativePaymentMethods']
       end
 
       if attributes.has_key?(:'cardPresentConnect')
@@ -230,6 +239,7 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           card_processing == o.card_processing &&
+          alternative_payment_methods == o.alternative_payment_methods &&
           card_present_connect == o.card_present_connect &&
           cybs_ready_terminal == o.cybs_ready_terminal &&
           e_check == o.e_check &&
@@ -259,7 +269,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card_processing, card_present_connect, cybs_ready_terminal, e_check, payer_authentication, digital_payments, secure_acceptance, virtual_terminal, currency_conversion, tax, customer_invoicing, recurring_billing, payment_orchestration, payouts, differential_fee, pay_by_link, unified_checkout, receivables_manager, service_fee].hash
+      [card_processing, alternative_payment_methods, card_present_connect, cybs_ready_terminal, e_check, payer_authentication, digital_payments, secure_acceptance, virtual_terminal, currency_conversion, tax, customer_invoicing, recurring_billing, payment_orchestration, payouts, differential_fee, pay_by_link, unified_checkout, receivables_manager, service_fee].hash
     end
 
     # Builds the object from hash

@@ -17,11 +17,14 @@ module CyberSource
 
     attr_accessor :decision_manager
 
+    attr_accessor :portfolio_risk_controls
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'fraud_management_essentials' => :'fraudManagementEssentials',
-        :'decision_manager' => :'decisionManager'
+        :'decision_manager' => :'decisionManager',
+        :'portfolio_risk_controls' => :'portfolioRiskControls'
       }
     end
 
@@ -29,7 +32,8 @@ module CyberSource
     def self.json_map
       {
         :'fraud_management_essentials' => :'fraud_management_essentials',
-        :'decision_manager' => :'decision_manager'
+        :'decision_manager' => :'decision_manager',
+        :'portfolio_risk_controls' => :'portfolio_risk_controls'
       }
     end
 
@@ -37,7 +41,8 @@ module CyberSource
     def self.swagger_types
       {
         :'fraud_management_essentials' => :'RiskProductsFraudManagementEssentials',
-        :'decision_manager' => :'RiskProductsDecisionManager'
+        :'decision_manager' => :'RiskProductsDecisionManager',
+        :'portfolio_risk_controls' => :'RiskProductsPortfolioRiskControls'
       }
     end
 
@@ -55,6 +60,10 @@ module CyberSource
 
       if attributes.has_key?(:'decisionManager')
         self.decision_manager = attributes[:'decisionManager']
+      end
+
+      if attributes.has_key?(:'portfolioRiskControls')
+        self.portfolio_risk_controls = attributes[:'portfolioRiskControls']
       end
     end
 
@@ -77,7 +86,8 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           fraud_management_essentials == o.fraud_management_essentials &&
-          decision_manager == o.decision_manager
+          decision_manager == o.decision_manager &&
+          portfolio_risk_controls == o.portfolio_risk_controls
     end
 
     # @see the `==` method
@@ -89,7 +99,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [fraud_management_essentials, decision_manager].hash
+      [fraud_management_essentials, decision_manager, portfolio_risk_controls].hash
     end
 
     # Builds the object from hash

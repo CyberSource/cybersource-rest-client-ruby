@@ -13,58 +13,45 @@ require 'date'
 
 module CyberSource
   class InlineResponse401
-    attr_accessor :_links
+    # The status of the submitted request.   Possible values: - UNAUTHORIZED
+    attr_accessor :status
 
-    # Valid Values:   * FORBIDDEN_RESPONSE   * VALIDATION_ERROR   * UNSUPPORTED_MEDIA_TYPE   * MALFORMED_PAYLOAD_ERROR   * SERVER_ERROR 
+    # The detail message related to the status and reason listed above.
+    attr_accessor :message
+
+    # An optional short string which identifies the exact error.
     attr_accessor :code
 
-    attr_accessor :correlation_id
-
-    attr_accessor :detail
-
-    attr_accessor :fields
-
-    # Valid Values:   * cybsapi.forbidden.response   * cybsapi.validation.error   * cybsapi.media.notsupported 
-    attr_accessor :localization_key
-
-    attr_accessor :message
+    # Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the time. The Z indicates UTC. 
+    attr_accessor :submit_time_utc
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'_links' => :'_links',
+        :'status' => :'status',
+        :'message' => :'message',
         :'code' => :'code',
-        :'correlation_id' => :'correlationId',
-        :'detail' => :'detail',
-        :'fields' => :'fields',
-        :'localization_key' => :'localizationKey',
-        :'message' => :'message'
+        :'submit_time_utc' => :'submitTimeUtc'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'_links' => :'_links',
+        :'status' => :'status',
+        :'message' => :'message',
         :'code' => :'code',
-        :'correlation_id' => :'correlation_id',
-        :'detail' => :'detail',
-        :'fields' => :'fields',
-        :'localization_key' => :'localization_key',
-        :'message' => :'message'
+        :'submit_time_utc' => :'submit_time_utc'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'_links' => :'InlineResponse401Links',
+        :'status' => :'String',
+        :'message' => :'String',
         :'code' => :'String',
-        :'correlation_id' => :'String',
-        :'detail' => :'String',
-        :'fields' => :'Array<InlineResponse401Fields>',
-        :'localization_key' => :'String',
-        :'message' => :'String'
+        :'submit_time_utc' => :'String'
       }
     end
 
@@ -76,34 +63,20 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'_links')
-        self._links = attributes[:'_links']
+      if attributes.has_key?(:'status')
+        self.status = attributes[:'status']
+      end
+
+      if attributes.has_key?(:'message')
+        self.message = attributes[:'message']
       end
 
       if attributes.has_key?(:'code')
         self.code = attributes[:'code']
       end
 
-      if attributes.has_key?(:'correlationId')
-        self.correlation_id = attributes[:'correlationId']
-      end
-
-      if attributes.has_key?(:'detail')
-        self.detail = attributes[:'detail']
-      end
-
-      if attributes.has_key?(:'fields')
-        if (value = attributes[:'fields']).is_a?(Array)
-          self.fields = value
-        end
-      end
-
-      if attributes.has_key?(:'localizationKey')
-        self.localization_key = attributes[:'localizationKey']
-      end
-
-      if attributes.has_key?(:'message')
-        self.message = attributes[:'message']
+      if attributes.has_key?(:'submitTimeUtc')
+        self.submit_time_utc = attributes[:'submitTimeUtc']
       end
     end
 
@@ -125,13 +98,10 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          _links == o._links &&
+          status == o.status &&
+          message == o.message &&
           code == o.code &&
-          correlation_id == o.correlation_id &&
-          detail == o.detail &&
-          fields == o.fields &&
-          localization_key == o.localization_key &&
-          message == o.message
+          submit_time_utc == o.submit_time_utc
     end
 
     # @see the `==` method
@@ -143,7 +113,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, code, correlation_id, detail, fields, localization_key, message].hash
+      [status, message, code, submit_time_utc].hash
     end
 
     # Builds the object from hash

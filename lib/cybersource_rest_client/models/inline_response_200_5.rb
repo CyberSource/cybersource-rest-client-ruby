@@ -13,56 +13,32 @@ require 'date'
 
 module CyberSource
   class InlineResponse2005
-    attr_accessor :_links
+    # Possible values: - OK
+    attr_accessor :status
 
-    attr_accessor :object
-
-    attr_accessor :offset
-
-    attr_accessor :limit
-
-    attr_accessor :count
-
-    attr_accessor :total
-
-    attr_accessor :_embedded
+    attr_accessor :devices
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'_links' => :'_links',
-        :'object' => :'object',
-        :'offset' => :'offset',
-        :'limit' => :'limit',
-        :'count' => :'count',
-        :'total' => :'total',
-        :'_embedded' => :'_embedded'
+        :'status' => :'status',
+        :'devices' => :'devices'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'_links' => :'_links',
-        :'object' => :'object',
-        :'offset' => :'offset',
-        :'limit' => :'limit',
-        :'count' => :'count',
-        :'total' => :'total',
-        :'_embedded' => :'_embedded'
+        :'status' => :'status',
+        :'devices' => :'devices'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'_links' => :'Array<InlineResponse2005Links>',
-        :'object' => :'String',
-        :'offset' => :'Integer',
-        :'limit' => :'Integer',
-        :'count' => :'Integer',
-        :'total' => :'Integer',
-        :'_embedded' => :'InlineResponse2005Embedded'
+        :'status' => :'String',
+        :'devices' => :'Array<Dmsv3devicesdeassociateDevices>'
       }
     end
 
@@ -74,34 +50,14 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'_links')
-        if (value = attributes[:'_links']).is_a?(Array)
-          self._links = value
+      if attributes.has_key?(:'status')
+        self.status = attributes[:'status']
+      end
+
+      if attributes.has_key?(:'devices')
+        if (value = attributes[:'devices']).is_a?(Array)
+          self.devices = value
         end
-      end
-
-      if attributes.has_key?(:'object')
-        self.object = attributes[:'object']
-      end
-
-      if attributes.has_key?(:'offset')
-        self.offset = attributes[:'offset']
-      end
-
-      if attributes.has_key?(:'limit')
-        self.limit = attributes[:'limit']
-      end
-
-      if attributes.has_key?(:'count')
-        self.count = attributes[:'count']
-      end
-
-      if attributes.has_key?(:'total')
-        self.total = attributes[:'total']
-      end
-
-      if attributes.has_key?(:'_embedded')
-        self._embedded = attributes[:'_embedded']
       end
     end
 
@@ -123,13 +79,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          _links == o._links &&
-          object == o.object &&
-          offset == o.offset &&
-          limit == o.limit &&
-          count == o.count &&
-          total == o.total &&
-          _embedded == o._embedded
+          status == o.status &&
+          devices == o.devices
     end
 
     # @see the `==` method
@@ -141,7 +92,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, object, offset, limit, count, total, _embedded].hash
+      [status, devices].hash
     end
 
     # Builds the object from hash
