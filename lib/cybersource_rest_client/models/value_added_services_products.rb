@@ -17,11 +17,14 @@ module CyberSource
 
     attr_accessor :transaction_search
 
+    attr_accessor :bank_account_validation
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'reporting' => :'reporting',
-        :'transaction_search' => :'transactionSearch'
+        :'transaction_search' => :'transactionSearch',
+        :'bank_account_validation' => :'bankAccountValidation'
       }
     end
 
@@ -29,7 +32,8 @@ module CyberSource
     def self.json_map
       {
         :'reporting' => :'reporting',
-        :'transaction_search' => :'transaction_search'
+        :'transaction_search' => :'transaction_search',
+        :'bank_account_validation' => :'bank_account_validation'
       }
     end
 
@@ -37,7 +41,8 @@ module CyberSource
     def self.swagger_types
       {
         :'reporting' => :'PaymentsProductsTax',
-        :'transaction_search' => :'PaymentsProductsTax'
+        :'transaction_search' => :'PaymentsProductsTax',
+        :'bank_account_validation' => :'PaymentsProductsTax'
       }
     end
 
@@ -55,6 +60,10 @@ module CyberSource
 
       if attributes.has_key?(:'transactionSearch')
         self.transaction_search = attributes[:'transactionSearch']
+      end
+
+      if attributes.has_key?(:'bankAccountValidation')
+        self.bank_account_validation = attributes[:'bankAccountValidation']
       end
     end
 
@@ -77,7 +86,8 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           reporting == o.reporting &&
-          transaction_search == o.transaction_search
+          transaction_search == o.transaction_search &&
+          bank_account_validation == o.bank_account_validation
     end
 
     # @see the `==` method
@@ -89,7 +99,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [reporting, transaction_search].hash
+      [reporting, transaction_search, bank_account_validation].hash
     end
 
     # Builds the object from hash

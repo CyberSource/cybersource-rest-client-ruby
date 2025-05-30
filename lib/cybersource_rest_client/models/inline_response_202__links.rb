@@ -36,7 +36,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'_self' => :'InlineResponse401LinksSelf',
+        :'_self' => :'InlineResponse4011LinksSelf',
         :'status' => :'Array<InlineResponse202LinksStatus>'
       }
     end

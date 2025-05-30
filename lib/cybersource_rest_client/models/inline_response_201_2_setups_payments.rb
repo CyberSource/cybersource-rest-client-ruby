@@ -15,6 +15,8 @@ module CyberSource
   class InlineResponse2012SetupsPayments
     attr_accessor :card_processing
 
+    attr_accessor :alternative_payment_methods
+
     attr_accessor :card_present_connect
 
     attr_accessor :e_check
@@ -53,6 +55,7 @@ module CyberSource
     def self.attribute_map
       {
         :'card_processing' => :'cardProcessing',
+        :'alternative_payment_methods' => :'alternativePaymentMethods',
         :'card_present_connect' => :'cardPresentConnect',
         :'e_check' => :'eCheck',
         :'payer_authentication' => :'payerAuthentication',
@@ -77,6 +80,7 @@ module CyberSource
     def self.json_map
       {
         :'card_processing' => :'card_processing',
+        :'alternative_payment_methods' => :'alternative_payment_methods',
         :'card_present_connect' => :'card_present_connect',
         :'e_check' => :'e_check',
         :'payer_authentication' => :'payer_authentication',
@@ -101,6 +105,7 @@ module CyberSource
     def self.swagger_types
       {
         :'card_processing' => :'InlineResponse2012SetupsPaymentsCardProcessing',
+        :'alternative_payment_methods' => :'InlineResponse2012SetupsPaymentsAlternativePaymentMethods',
         :'card_present_connect' => :'InlineResponse2012SetupsPaymentsCardProcessing',
         :'e_check' => :'InlineResponse2012SetupsPaymentsCardProcessing',
         :'payer_authentication' => :'InlineResponse2012SetupsPaymentsCardProcessing',
@@ -131,6 +136,10 @@ module CyberSource
 
       if attributes.has_key?(:'cardProcessing')
         self.card_processing = attributes[:'cardProcessing']
+      end
+
+      if attributes.has_key?(:'alternativePaymentMethods')
+        self.alternative_payment_methods = attributes[:'alternativePaymentMethods']
       end
 
       if attributes.has_key?(:'cardPresentConnect')
@@ -221,6 +230,7 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           card_processing == o.card_processing &&
+          alternative_payment_methods == o.alternative_payment_methods &&
           card_present_connect == o.card_present_connect &&
           e_check == o.e_check &&
           payer_authentication == o.payer_authentication &&
@@ -249,7 +259,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card_processing, card_present_connect, e_check, payer_authentication, digital_payments, secure_acceptance, virtual_terminal, currency_conversion, tax, customer_invoicing, recurring_billing, cybs_ready_terminal, payment_orchestration, payouts, pay_by_link, unified_checkout, receivables_manager, service_fee].hash
+      [card_processing, alternative_payment_methods, card_present_connect, e_check, payer_authentication, digital_payments, secure_acceptance, virtual_terminal, currency_conversion, tax, customer_invoicing, recurring_billing, cybs_ready_terminal, payment_orchestration, payouts, pay_by_link, unified_checkout, receivables_manager, service_fee].hash
     end
 
     # Builds the object from hash
