@@ -37,6 +37,12 @@ describe 'PaymentsProducts' do
     end
   end
 
+  describe 'test attribute "alternative_payment_methods"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "card_present_connect"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

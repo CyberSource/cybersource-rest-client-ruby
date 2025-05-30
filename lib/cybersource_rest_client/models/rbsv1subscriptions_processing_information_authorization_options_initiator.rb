@@ -13,7 +13,7 @@ require 'date'
 
 module CyberSource
   class Rbsv1subscriptionsProcessingInformationAuthorizationOptionsInitiator
-    # This field indicates whether the transaction is a merchant-initiated transaction or customer-initiated transaction.  Valid values: - **customer** - **merchant** 
+    # > This field is ignored when you provide the `subscriptionInformation.originalTransactionId` or update the subscription.  This field indicates whether the transaction is a merchant-initiated transaction or customer-initiated transaction.  Valid values: - **customer** - **merchant** 
     attr_accessor :type
 
     # Attribute mapping from ruby-style variable name to JSON key.

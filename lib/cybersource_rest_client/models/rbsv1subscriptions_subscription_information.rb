@@ -25,13 +25,21 @@ module CyberSource
     # Start date of the Subscription  Start date must be in UTC. Format: YYYY-MM-DDThh:mm:ssZ The T separates the date and the time. The Z indicates UTC.  Note: Subscription starts on the day provided in UTC.  **Example** 2022-08-11T22:47:57Z equals August 11, 2022, at 22:47:57 (10:47:57 p.m.). Subscription will start on August 11,2022. 
     attr_accessor :start_date
 
+    # Network transaction identifier that was returned in the payment response field _processorInformation.transactionId_ in the reply message for the original subscription-initializing payment. 
+    attr_accessor :original_transaction_id
+
+    # Amount of the original subscription-initializing payment.  *Required when using a Diners or Discover card*. 
+    attr_accessor :original_transaction_authorized_amount
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'code' => :'code',
         :'plan_id' => :'planId',
         :'name' => :'name',
-        :'start_date' => :'startDate'
+        :'start_date' => :'startDate',
+        :'original_transaction_id' => :'originalTransactionId',
+        :'original_transaction_authorized_amount' => :'originalTransactionAuthorizedAmount'
       }
     end
 
@@ -41,7 +49,9 @@ module CyberSource
         :'code' => :'code',
         :'plan_id' => :'plan_id',
         :'name' => :'name',
-        :'start_date' => :'start_date'
+        :'start_date' => :'start_date',
+        :'original_transaction_id' => :'original_transaction_id',
+        :'original_transaction_authorized_amount' => :'original_transaction_authorized_amount'
       }
     end
 
@@ -51,7 +61,9 @@ module CyberSource
         :'code' => :'String',
         :'plan_id' => :'String',
         :'name' => :'String',
-        :'start_date' => :'String'
+        :'start_date' => :'String',
+        :'original_transaction_id' => :'String',
+        :'original_transaction_authorized_amount' => :'String'
       }
     end
 
@@ -77,6 +89,14 @@ module CyberSource
 
       if attributes.has_key?(:'startDate')
         self.start_date = attributes[:'startDate']
+      end
+
+      if attributes.has_key?(:'originalTransactionId')
+        self.original_transaction_id = attributes[:'originalTransactionId']
+      end
+
+      if attributes.has_key?(:'originalTransactionAuthorizedAmount')
+        self.original_transaction_authorized_amount = attributes[:'originalTransactionAuthorizedAmount']
       end
     end
 
@@ -125,6 +145,18 @@ module CyberSource
       @name = name
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] original_transaction_id Value to be assigned
+    def original_transaction_id=(original_transaction_id)
+      @original_transaction_id = original_transaction_id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] original_transaction_authorized_amount Value to be assigned
+    def original_transaction_authorized_amount=(original_transaction_authorized_amount)
+      @original_transaction_authorized_amount = original_transaction_authorized_amount
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -133,7 +165,9 @@ module CyberSource
           code == o.code &&
           plan_id == o.plan_id &&
           name == o.name &&
-          start_date == o.start_date
+          start_date == o.start_date &&
+          original_transaction_id == o.original_transaction_id &&
+          original_transaction_authorized_amount == o.original_transaction_authorized_amount
     end
 
     # @see the `==` method
@@ -145,7 +179,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [code, plan_id, name, start_date].hash
+      [code, plan_id, name, start_date, original_transaction_id, original_transaction_authorized_amount].hash
     end
 
     # Builds the object from hash
