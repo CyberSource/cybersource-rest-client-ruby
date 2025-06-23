@@ -33,9 +33,10 @@ describe 'SubscriptionsApi' do
 
   # unit tests for activate_subscription
   # Activate a Subscription
-  # Activate a &#x60;CANCELLED&#x60; Or &#x60;SUSPENDED&#x60; Subscription 
+  # Activate a &#x60;SUSPENDED&#x60; Subscription 
   # @param id Subscription Id
   # @param [Hash] opts the optional parameters
+  # @option opts [BOOLEAN] :process_skipped_payments Indicates if skipped payments should be processed from the period when the subscription was suspended. By default, this is set to true.
   # @return [ActivateSubscriptionResponse]
   describe 'activate_subscription test' do
     it 'should work' do

@@ -25,13 +25,17 @@ module CyberSource
     # Departure date for the first leg of the trip. Format: YYYYMMDD. Required for American Express SafeKey (U.S.) for travel-related requests. 
     attr_accessor :departure_date
 
+    # Time of departure for this leg of the trip. The format is military time and HHMM: If not all zeros, then the hours must be `00-23` and the minutes must be `00-59`. Format: English characters only. Optional request field for travel legs. 
+    attr_accessor :departure_time
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'origination' => :'origination',
         :'destination' => :'destination',
         :'carrier_code' => :'carrierCode',
-        :'departure_date' => :'departureDate'
+        :'departure_date' => :'departureDate',
+        :'departure_time' => :'departureTime'
       }
     end
 
@@ -41,7 +45,8 @@ module CyberSource
         :'origination' => :'origination',
         :'destination' => :'destination',
         :'carrier_code' => :'carrier_code',
-        :'departure_date' => :'departure_date'
+        :'departure_date' => :'departure_date',
+        :'departure_time' => :'departure_time'
       }
     end
 
@@ -51,7 +56,8 @@ module CyberSource
         :'origination' => :'String',
         :'destination' => :'String',
         :'carrier_code' => :'String',
-        :'departure_date' => :'String'
+        :'departure_date' => :'String',
+        :'departure_time' => :'Integer'
       }
     end
 
@@ -77,6 +83,10 @@ module CyberSource
 
       if attributes.has_key?(:'departureDate')
         self.departure_date = attributes[:'departureDate']
+      end
+
+      if attributes.has_key?(:'departureTime')
+        self.departure_time = attributes[:'departureTime']
       end
     end
 
@@ -119,7 +129,8 @@ module CyberSource
           origination == o.origination &&
           destination == o.destination &&
           carrier_code == o.carrier_code &&
-          departure_date == o.departure_date
+          departure_date == o.departure_date &&
+          departure_time == o.departure_time
     end
 
     # @see the `==` method
@@ -131,7 +142,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [origination, destination, carrier_code, departure_date].hash
+      [origination, destination, carrier_code, departure_date, departure_time].hash
     end
 
     # Builds the object from hash

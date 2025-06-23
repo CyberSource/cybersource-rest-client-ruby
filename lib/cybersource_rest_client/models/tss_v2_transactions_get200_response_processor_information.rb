@@ -44,6 +44,9 @@ module CyberSource
 
     attr_accessor :electronic_verification_results
 
+    # The event status. 
+    attr_accessor :event_status
+
     # This field is returned only for **American Express Direct** and **CyberSource through VisaNet**. Returned by authorization and incremental authorization services.  #### American Express Direct  System trace audit number (STAN). This value identifies the transaction and is useful when investigating a chargeback dispute.  #### CyberSource through VisaNet  System trace number that must be printed on the customer's receipt. 
     attr_accessor :system_trace_audit_number
 
@@ -68,6 +71,7 @@ module CyberSource
         :'card_verification' => :'cardVerification',
         :'ach_verification' => :'achVerification',
         :'electronic_verification_results' => :'electronicVerificationResults',
+        :'event_status' => :'eventStatus',
         :'system_trace_audit_number' => :'systemTraceAuditNumber',
         :'response_code_source' => :'responseCodeSource',
         :'payment_account_reference_number' => :'paymentAccountReferenceNumber'
@@ -89,6 +93,7 @@ module CyberSource
         :'card_verification' => :'card_verification',
         :'ach_verification' => :'ach_verification',
         :'electronic_verification_results' => :'electronic_verification_results',
+        :'event_status' => :'event_status',
         :'system_trace_audit_number' => :'system_trace_audit_number',
         :'response_code_source' => :'response_code_source',
         :'payment_account_reference_number' => :'payment_account_reference_number'
@@ -110,6 +115,7 @@ module CyberSource
         :'card_verification' => :'Riskv1decisionsProcessorInformationCardVerification',
         :'ach_verification' => :'PtsV2PaymentsPost201ResponseProcessorInformationAchVerification',
         :'electronic_verification_results' => :'TssV2TransactionsGet200ResponseProcessorInformationElectronicVerificationResults',
+        :'event_status' => :'String',
         :'system_trace_audit_number' => :'String',
         :'response_code_source' => :'String',
         :'payment_account_reference_number' => :'String'
@@ -172,6 +178,10 @@ module CyberSource
 
       if attributes.has_key?(:'electronicVerificationResults')
         self.electronic_verification_results = attributes[:'electronicVerificationResults']
+      end
+
+      if attributes.has_key?(:'eventStatus')
+        self.event_status = attributes[:'eventStatus']
       end
 
       if attributes.has_key?(:'systemTraceAuditNumber')
@@ -259,6 +269,7 @@ module CyberSource
           card_verification == o.card_verification &&
           ach_verification == o.ach_verification &&
           electronic_verification_results == o.electronic_verification_results &&
+          event_status == o.event_status &&
           system_trace_audit_number == o.system_trace_audit_number &&
           response_code_source == o.response_code_source &&
           payment_account_reference_number == o.payment_account_reference_number
@@ -273,7 +284,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [processor, multi_processor_routing, transaction_id, network_transaction_id, retrieval_reference_number, response_id, approval_code, response_code, avs, card_verification, ach_verification, electronic_verification_results, system_trace_audit_number, response_code_source, payment_account_reference_number].hash
+      [processor, multi_processor_routing, transaction_id, network_transaction_id, retrieval_reference_number, response_id, approval_code, response_code, avs, card_verification, ach_verification, electronic_verification_results, event_status, system_trace_audit_number, response_code_source, payment_account_reference_number].hash
     end
 
     # Builds the object from hash

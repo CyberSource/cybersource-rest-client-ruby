@@ -55,4 +55,10 @@ describe 'Riskv1decisionsTravelInformationLegs' do
     end
   end
 
+  describe 'test attribute "departure_time"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end
