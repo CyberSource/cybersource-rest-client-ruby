@@ -31,12 +31,24 @@ describe 'DeviceSearchApi' do
     end
   end
 
+  # unit tests for post_search_query
+  # Retrieve List of Devices for a given search query V2
+  # Retrieves list of terminals in paginated format.
+  # @param post_device_search_request 
+  # @param [Hash] opts the optional parameters
+  # @return [InlineResponse2005]
+  describe 'post_search_query test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for post_search_query_v3
-  # Retrieve List of Devices for a given search query V3
+  # Retrieve List of Devices for a given search query
   # Search for devices matching a given search query.  The search query supports serialNumber, readerId, terminalId, status, statusChangeReason or organizationId  Matching results are paginated. 
   # @param post_device_search_request_v3 
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2006]
+  # @return [InlineResponse2007]
   describe 'post_search_query_v3 test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

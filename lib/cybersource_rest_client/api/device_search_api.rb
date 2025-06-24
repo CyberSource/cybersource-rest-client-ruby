@@ -19,23 +19,96 @@ module CyberSource
       @api_client = api_client
       @api_client.set_configuration(config)
     end
-    # Retrieve List of Devices for a given search query V3
+    # Retrieve List of Devices for a given search query V2
+    # Retrieves list of terminals in paginated format.
+    #
+    # @param post_device_search_request 
+    # @param [Hash] opts the optional parameters
+    # @return [InlineResponse2005]
+    #
+    def post_search_query(post_device_search_request, opts = {})
+      data, status_code, headers = post_search_query_with_http_info(post_device_search_request, opts)
+      return data, status_code, headers
+    end
+
+    # Retrieve List of Devices for a given search query V2
+    # Retrieves list of terminals in paginated format.
+    # @param post_device_search_request 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(InlineResponse2005, Fixnum, Hash)>] InlineResponse2005 data, response status code and response headers
+    def post_search_query_with_http_info(post_device_search_request, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: DeviceSearchApi.post_search_query ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'post_device_search_request' is set
+      if @api_client.config.client_side_validation && post_device_search_request.nil?
+        fail ArgumentError, "Missing the required parameter 'post_device_search_request' when calling DeviceSearchApi.post_search_query"
+      end
+      # resource path
+      local_var_path = 'dms/v2/devices/search'
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=UTF-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=UTF-8'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(post_device_search_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PostDeviceSearchRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      is_mle_supported_by_cybs_for_api = false
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["post_search_query","post_search_query_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+      end
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'InlineResponse2005')
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: DeviceSearchApi#post_search_query\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
+    # Retrieve List of Devices for a given search query
     # Search for devices matching a given search query.  The search query supports serialNumber, readerId, terminalId, status, statusChangeReason or organizationId  Matching results are paginated. 
     #
     # @param post_device_search_request_v3 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2006]
+    # @return [InlineResponse2007]
     #
     def post_search_query_v3(post_device_search_request_v3, opts = {})
       data, status_code, headers = post_search_query_v3_with_http_info(post_device_search_request_v3, opts)
       return data, status_code, headers
     end
 
-    # Retrieve List of Devices for a given search query V3
+    # Retrieve List of Devices for a given search query
     # Search for devices matching a given search query.  The search query supports serialNumber, readerId, terminalId, status, statusChangeReason or organizationId  Matching results are paginated. 
     # @param post_device_search_request_v3 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2006, Fixnum, Hash)>] InlineResponse2006 data, response status code and response headers
+    # @return [Array<(InlineResponse2007, Fixnum, Hash)>] InlineResponse2007 data, response status code and response headers
     def post_search_query_v3_with_http_info(post_device_search_request_v3, opts = {})
 
       if @api_client.config.debugging
@@ -81,7 +154,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2006')
+        :return_type => 'InlineResponse2007')
       if @api_client.config.debugging
         begin
         raise

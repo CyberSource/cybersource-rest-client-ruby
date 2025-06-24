@@ -15,11 +15,11 @@ Method | HTTP request | Description
 
 
 # **activate_subscription**
-> ActivateSubscriptionResponse activate_subscription(id)
+> ActivateSubscriptionResponse activate_subscription(id, opts)
 
 Activate a Subscription
 
-Activate a `CANCELLED` Or `SUSPENDED` Subscription 
+Activate a `SUSPENDED` Subscription 
 
 ### Example
 ```ruby
@@ -30,10 +30,13 @@ api_instance = CyberSource::SubscriptionsApi.new
 
 id = 'id_example' # String | Subscription Id
 
+opts = { 
+  process_skipped_payments: true # BOOLEAN | Indicates if skipped payments should be processed from the period when the subscription was suspended. By default, this is set to true.
+}
 
 begin
   #Activate a Subscription
-  result = api_instance.activate_subscription(id)
+  result = api_instance.activate_subscription(id, opts)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling SubscriptionsApi->activate_subscription: #{e}"
@@ -45,6 +48,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| Subscription Id | 
+ **process_skipped_payments** | **BOOLEAN**| Indicates if skipped payments should be processed from the period when the subscription was suspended. By default, this is set to true. | [optional] [default to true]
 
 ### Return type
 

@@ -29,6 +29,8 @@ module CyberSource
 
     attr_accessor :order_information
 
+    attr_accessor :reactivation_information
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -38,7 +40,8 @@ module CyberSource
         :'plan_information' => :'planInformation',
         :'subscription_information' => :'subscriptionInformation',
         :'payment_information' => :'paymentInformation',
-        :'order_information' => :'orderInformation'
+        :'order_information' => :'orderInformation',
+        :'reactivation_information' => :'reactivationInformation'
       }
     end
 
@@ -51,7 +54,8 @@ module CyberSource
         :'plan_information' => :'plan_information',
         :'subscription_information' => :'subscription_information',
         :'payment_information' => :'payment_information',
-        :'order_information' => :'order_information'
+        :'order_information' => :'order_information',
+        :'reactivation_information' => :'reactivation_information'
       }
     end
 
@@ -64,7 +68,8 @@ module CyberSource
         :'plan_information' => :'GetAllSubscriptionsResponsePlanInformation',
         :'subscription_information' => :'GetAllSubscriptionsResponseSubscriptionInformation',
         :'payment_information' => :'GetAllSubscriptionsResponsePaymentInformation',
-        :'order_information' => :'GetAllSubscriptionsResponseOrderInformation'
+        :'order_information' => :'GetAllSubscriptionsResponseOrderInformation',
+        :'reactivation_information' => :'GetSubscriptionResponseReactivationInformation'
       }
     end
 
@@ -103,6 +108,10 @@ module CyberSource
       if attributes.has_key?(:'orderInformation')
         self.order_information = attributes[:'orderInformation']
       end
+
+      if attributes.has_key?(:'reactivationInformation')
+        self.reactivation_information = attributes[:'reactivationInformation']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -135,7 +144,8 @@ module CyberSource
           plan_information == o.plan_information &&
           subscription_information == o.subscription_information &&
           payment_information == o.payment_information &&
-          order_information == o.order_information
+          order_information == o.order_information &&
+          reactivation_information == o.reactivation_information
     end
 
     # @see the `==` method
@@ -147,7 +157,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, submit_time_utc, plan_information, subscription_information, payment_information, order_information].hash
+      [_links, id, submit_time_utc, plan_information, subscription_information, payment_information, order_information, reactivation_information].hash
     end
 
     # Builds the object from hash
