@@ -20,10 +20,11 @@ module CyberSource
       @api_client.set_configuration(config)
     end
     # Activate a Subscription
-    # Activate a `CANCELLED` Or `SUSPENDED` Subscription 
+    # Activate a `SUSPENDED` Subscription 
     #
     # @param id Subscription Id
     # @param [Hash] opts the optional parameters
+    # @option opts [BOOLEAN] :process_skipped_payments Indicates if skipped payments should be processed from the period when the subscription was suspended. By default, this is set to true. (default to true)
     # @return [ActivateSubscriptionResponse]
     #
     def activate_subscription(id, opts = {})
@@ -32,9 +33,10 @@ module CyberSource
     end
 
     # Activate a Subscription
-    # Activate a &#x60;CANCELLED&#x60; Or &#x60;SUSPENDED&#x60; Subscription 
+    # Activate a &#x60;SUSPENDED&#x60; Subscription 
     # @param id Subscription Id
     # @param [Hash] opts the optional parameters
+    # @option opts [BOOLEAN] :process_skipped_payments Indicates if skipped payments should be processed from the period when the subscription was suspended. By default, this is set to true.
     # @return [Array<(ActivateSubscriptionResponse, Fixnum, Hash)>] ActivateSubscriptionResponse data, response status code and response headers
     def activate_subscription_with_http_info(id, opts = {})
 
@@ -55,6 +57,7 @@ module CyberSource
 
       # query parameters
       query_params = {}
+      query_params[:'processSkippedPayments'] = opts[:'process_skipped_payments'] if !opts[:'process_skipped_payments'].nil?
 
       # header parameters
       header_params = {}

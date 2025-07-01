@@ -125,7 +125,7 @@ module CyberSource
         :'payouts' => :'PaymentsProductsPayouts',
         :'differential_fee' => :'PaymentsProductsDifferentialFee',
         :'pay_by_link' => :'PaymentsProductsTax',
-        :'unified_checkout' => :'PaymentsProductsTax',
+        :'unified_checkout' => :'PaymentsProductsUnifiedCheckout',
         :'receivables_manager' => :'PaymentsProductsTax',
         :'service_fee' => :'PaymentsProductsServiceFee'
       }

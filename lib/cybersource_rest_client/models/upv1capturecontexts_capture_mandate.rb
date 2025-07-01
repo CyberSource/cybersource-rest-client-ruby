@@ -31,6 +31,9 @@ module CyberSource
     # Configure Unified Checkout to display the list of accepted card networks beneath the payment button  Possible values: - True - False 
     attr_accessor :show_accepted_network_icons
 
+    # Configure Unified Checkout to display the final confirmation screen when using Click to Pay.<br> Where 'BillingType'= NONE and 'requestShipping'= FALSE and the customer is using an existing Click to Pay card as their chosen payment method, a final confirmation screen can be removed allowing the customer to check out as soon as they have selected their payment method from within their Click to Pay card tray.  Possible values: - True - False 
+    attr_accessor :show_confirmation_step
+
     # Configure Unified Checkout to display the \"Save card for future use\" checkbox.<br>  Configurable check box that will show in a Manual card entry flow to allow a Cardholder to give consent to store their manually entered credential with the Merchant that they are paying.<br>  Applicable when manually entering the details and not enrolling in Click to Pay.  Possible values:  - True   - False<br><br>  **Use Cases:**  **Offer consumers option to save their card in Unified Checkout:**  - Include the captureMandate.requestSaveCard field in the capture context request and set it to true. - When set to true, this will show a checkbox with the message 'Save card for future use' in Unified Checkout. - When selected this provides a response in both the Transient Token and Get Credentials API response.<br><br>  **Do not offer consumers the option to save their card in Unified Checkout:**  - Include the captureMandate.requestSaveCard field in the capture context request and set it to false OR omit the field from the capture context request. - When set to false, the save card option is not shown to consumers when manually entering card details. 
     attr_accessor :request_save_card
 
@@ -49,6 +52,7 @@ module CyberSource
         :'request_shipping' => :'requestShipping',
         :'ship_to_countries' => :'shipToCountries',
         :'show_accepted_network_icons' => :'showAcceptedNetworkIcons',
+        :'show_confirmation_step' => :'showConfirmationStep',
         :'request_save_card' => :'requestSaveCard',
         :'combo_card' => :'comboCard',
         :'cpf' => :'CPF'
@@ -64,6 +68,7 @@ module CyberSource
         :'request_shipping' => :'request_shipping',
         :'ship_to_countries' => :'ship_to_countries',
         :'show_accepted_network_icons' => :'show_accepted_network_icons',
+        :'show_confirmation_step' => :'show_confirmation_step',
         :'request_save_card' => :'request_save_card',
         :'combo_card' => :'combo_card',
         :'cpf' => :'cpf'
@@ -79,6 +84,7 @@ module CyberSource
         :'request_shipping' => :'BOOLEAN',
         :'ship_to_countries' => :'Array<String>',
         :'show_accepted_network_icons' => :'BOOLEAN',
+        :'show_confirmation_step' => :'BOOLEAN',
         :'request_save_card' => :'BOOLEAN',
         :'combo_card' => :'BOOLEAN',
         :'cpf' => :'BOOLEAN'
@@ -117,6 +123,10 @@ module CyberSource
 
       if attributes.has_key?(:'showAcceptedNetworkIcons')
         self.show_accepted_network_icons = attributes[:'showAcceptedNetworkIcons']
+      end
+
+      if attributes.has_key?(:'showConfirmationStep')
+        self.show_confirmation_step = attributes[:'showConfirmationStep']
       end
 
       if attributes.has_key?(:'requestSaveCard')
@@ -162,6 +172,7 @@ module CyberSource
           request_shipping == o.request_shipping &&
           ship_to_countries == o.ship_to_countries &&
           show_accepted_network_icons == o.show_accepted_network_icons &&
+          show_confirmation_step == o.show_confirmation_step &&
           request_save_card == o.request_save_card &&
           combo_card == o.combo_card &&
           cpf == o.cpf
@@ -176,7 +187,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [billing_type, request_email, request_phone, request_shipping, ship_to_countries, show_accepted_network_icons, request_save_card, combo_card, cpf].hash
+      [billing_type, request_email, request_phone, request_shipping, ship_to_countries, show_accepted_network_icons, show_confirmation_step, request_save_card, combo_card, cpf].hash
     end
 
     # Builds the object from hash
