@@ -126,6 +126,27 @@ module CyberSource
 
     attr_accessor :force_ending_format
 
+    # Connection pooling settings
+    # Set this to true to enable connection pooling using Typhoeus::Hydra
+    # Default to false for backward compatibility
+    attr_accessor :enable_connection_pooling
+
+    # Maximum number of concurrent connections in the pool
+    # Default to 200
+    attr_accessor :max_concurrency
+
+    # Maximum number of connections per host
+    # Default to 6
+    attr_accessor :max_connections_per_host
+
+    # Maximum time to wait for a connection from the pool (in seconds)
+    # Default to 30
+    attr_accessor :connection_timeout
+
+    # Maximum time to keep idle connections alive (in seconds)
+    # Default to 60
+    attr_accessor :keepalive_timeout
+
     def initialize
       @scheme = 'https'
       @host = 'apitest.cybersource.com'
@@ -143,6 +164,13 @@ module CyberSource
       @inject_format = false
       @force_ending_format = false
       @logger = defined?(Rails) ? Rails.logger : Logger.new(STDOUT)
+
+      # Connection pooling defaults
+      @enable_connection_pooling = false
+      @max_concurrency = 200
+      @max_connections_per_host = 6
+      @connection_timeout = 30
+      @keepalive_timeout = 60
 
       yield(self) if block_given?
     end

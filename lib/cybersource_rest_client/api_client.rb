@@ -34,6 +34,9 @@ module CyberSource
     # Defines the user-defined Accept Header Type
     attr_accessor :accept_header
 
+    # Typhoeus Hydra instance for connection pooling
+    attr_accessor :hydra
+
     # Initializes the ApiClient
     # @option config [Configuration] Configuration for initializing the object, default to Configuration.default
     def initialize(config = Configuration.default)
@@ -43,7 +46,17 @@ module CyberSource
         'User-Agent' => @user_agent
       }
 
-      @client_id = 'cybs-rest-sdk-ruby-' + Gem.loaded_specs["cybersource_rest_client"].version.to_s
+      @client_id = 'cybs-rest-sdk-ruby-' + (Gem.loaded_specs["cybersource_rest_client"]&.version&.to_s || "0.0.74")
+      
+      # Initialize connection pooling if enabled
+      initialize_hydra if @config.enable_connection_pooling
+    end    # Initialize Typhoeus::Hydra for connection pooling
+    def initialize_hydra
+      if @config.enable_connection_pooling
+        @hydra = Typhoeus::Hydra.new(
+          max_concurrency: @config.max_concurrency
+        )
+      end
     end
 
     def set_user_defined_accept_header(accept_type)
@@ -66,7 +79,13 @@ module CyberSource
       end
 
       request = build_request(http_method, path, opts)
-      response = request.run
+      
+      # Use connection pooling if enabled
+      if @config.enable_connection_pooling && @hydra
+        response = execute_with_hydra(request)
+      else
+        response = request.run
+      end
 
       if @config.debugging
         begin
@@ -97,6 +116,84 @@ module CyberSource
         data = nil
       end
       return response.body, response.code, response.headers
+    end
+
+    # Execute request using Typhoeus::Hydra for connection pooling
+    def execute_with_hydra(request)
+      @hydra.queue(request)
+      @hydra.run
+      request.response
+    end
+
+    # Execute multiple requests concurrently using connection pooling
+    # @param requests [Array<Typhoeus::Request>] Array of requests to execute
+    # @return [Array<Typhoeus::Response>] Array of responses
+    def execute_concurrent_requests(requests)
+      return [] if requests.empty?
+      
+      unless @config.enable_connection_pooling && @hydra
+        raise RuntimeError, "Connection pooling is not enabled. Set config.enable_connection_pooling = true"
+      end
+
+      # Queue all requests
+      requests.each { |request| @hydra.queue(request) }
+      
+      # Execute all queued requests
+      @hydra.run
+      
+      # Return responses
+      requests.map(&:response)
+    end    # Call multiple APIs concurrently
+    # @param api_calls [Array<Hash>] Array of API call configurations
+    # @return [Array<Array>] Array of [response_body, status_code, headers] arrays
+    def call_apis_concurrent(api_calls)
+      unless @config.enable_connection_pooling && @hydra
+        raise RuntimeError, "Connection pooling is not enabled. Set config.enable_connection_pooling = true"
+      end
+      
+      unless @merchantconfig
+        raise RuntimeError, "Merchant configuration is not set. Call set_configuration first"
+      end
+      
+      requests = api_calls.map do |call|
+        build_request(call[:http_method], call[:path], call[:opts] || {})
+      end
+      
+      responses = execute_concurrent_requests(requests)
+      
+      # Process responses similar to call_api
+      responses.map.with_index do |response, index|
+        opts = api_calls[index][:opts] || {}
+        
+        if @config.debugging
+          begin
+          raise
+              @config.logger.debug "HTTP response body ~BEGIN~\n#{response.body}\n~END~\n"
+          rescue
+              puts 'Cannot write to log'
+          end
+        end
+
+        unless response.success?
+          if response.timed_out?
+            fail ApiError.new('Connection timed out')
+          elsif response.code == 0
+            fail ApiError.new(:code => 0, :message => response.return_message)
+          else
+            fail ApiError.new(:code => response.code,
+                              :response_headers => response.headers,
+                              :response_body => response.body)
+          end
+        end
+
+        if opts[:return_type]
+          data = deserialize(response, opts[:return_type])
+        else
+          data = nil
+        end
+        
+        [response.body, response.code, response.headers]
+      end
     end
 
     # Builds the HTTP request
@@ -151,6 +248,12 @@ module CyberSource
         :verbose => @config.debugging
       }
 
+      # Add connection pooling specific options
+      if @config.enable_connection_pooling
+        req_opts[:connecttimeout] = @config.connection_timeout
+        req_opts[:timeout] = @config.keepalive_timeout if @config.keepalive_timeout > 0
+      end
+
       # set custom cert, if provided
       req_opts[:cainfo] = @config.ssl_ca_cert if @config.ssl_ca_cert
 
@@ -184,6 +287,9 @@ module CyberSource
           @config.scheme = 'http'
         end
        end
+       
+       # Reinitialize Hydra if connection pooling is enabled
+       initialize_hydra if @config.enable_connection_pooling
     end
     # Calling Authentication
     def CallAuthenticationHeader(http_method, path, body_params, header_params, query_params)
@@ -238,6 +344,35 @@ module CyberSource
       # end
       return header_params
     end
+
+    # Connection pool management methods
+    
+    # Check if connection pooling is enabled
+    def connection_pooling_enabled?
+      @config.enable_connection_pooling && !@hydra.nil?
+    end
+
+    # Get connection pool statistics
+    def connection_pool_stats
+      return nil unless connection_pooling_enabled?
+      
+      {
+        max_concurrency: @config.max_concurrency,
+        max_connections_per_host: @config.max_connections_per_host,
+        connection_timeout: @config.connection_timeout,
+        keepalive_timeout: @config.keepalive_timeout,
+        pooling_enabled: true
+      }
+    end
+
+    # Reset connection pool
+    def reset_connection_pool
+      if connection_pooling_enabled?
+        @hydra = nil
+        initialize_hydra
+      end
+    end
+
     def get_query_param(path, query_params)
       request_target = ''
       if !query_params.empty?
