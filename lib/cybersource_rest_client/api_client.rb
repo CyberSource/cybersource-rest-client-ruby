@@ -34,10 +34,14 @@ module CyberSource
     # Defines the user-defined Accept Header Type
     attr_accessor :accept_header
 
-    # Typhoeus Hydra instance for connection pooling
-    attr_accessor :hydra
+    # Class-level Hydra instance for shared connection pooling across all ApiClient instances
+    @@shared_hydra = nil
+    @@hydra_config = nil
 
-    # Initializes the ApiClient
+    # Access to the shared Hydra instance
+    def hydra
+      @@shared_hydra
+    end    # Initializes the ApiClient
     # @option config [Configuration] Configuration for initializing the object, default to Configuration.default
     def initialize(config = Configuration.default)
       @config = config
@@ -48,15 +52,54 @@ module CyberSource
 
       @client_id = 'cybs-rest-sdk-ruby-' + (Gem.loaded_specs["cybersource_rest_client"]&.version&.to_s || "0.0.74")
       
-      # Initialize connection pooling if enabled
-      initialize_hydra if @config.enable_connection_pooling
-    end    # Initialize Typhoeus::Hydra for connection pooling
-    def initialize_hydra
+      # Initialize or update shared connection pooling if enabled
+      initialize_shared_hydra if @config.enable_connection_pooling
+    end
+
+    # Initialize or update shared Typhoeus::Hydra for connection pooling
+    # This creates a single shared Hydra instance used by all ApiClient instances
+    def initialize_shared_hydra
       if @config.enable_connection_pooling
-        @hydra = Typhoeus::Hydra.new(
-          max_concurrency: @config.max_concurrency
-        )
+        current_config = {
+          max_concurrency: @config.max_concurrency,
+          max_connections_per_host: @config.max_connections_per_host,
+          connection_timeout: @config.connection_timeout,
+          keepalive_timeout: @config.keepalive_timeout
+        }
+        
+        # Create new Hydra if it doesn't exist or if configuration changed
+        if @@shared_hydra.nil? || @@hydra_config != current_config
+          @@shared_hydra = Typhoeus::Hydra.new(
+            max_concurrency: @config.max_concurrency
+          )
+          @@hydra_config = current_config
+        end
       end
+    end
+
+    # Class method to get the shared Hydra instance
+    def self.shared_hydra
+      @@shared_hydra
+    end
+
+    # Class method to reset the shared connection pool
+    def self.reset_shared_connection_pool
+      @@shared_hydra = nil
+      @@hydra_config = nil
+    end
+
+    # Class method to get shared connection pool statistics
+    def self.shared_connection_pool_stats
+      return nil if @@shared_hydra.nil? || @@hydra_config.nil?
+      
+      {
+        max_concurrency: @@hydra_config[:max_concurrency],
+        max_connections_per_host: @@hydra_config[:max_connections_per_host],
+        connection_timeout: @@hydra_config[:connection_timeout],
+        keepalive_timeout: @@hydra_config[:keepalive_timeout],
+        pooling_enabled: true,
+        shared_across_instances: true
+      }
     end
 
     def set_user_defined_accept_header(accept_type)
@@ -79,9 +122,8 @@ module CyberSource
       end
 
       request = build_request(http_method, path, opts)
-      
-      # Use connection pooling if enabled
-      if @config.enable_connection_pooling && @hydra
+        # Use connection pooling if enabled
+      if @config.enable_connection_pooling && @@shared_hydra
         response = execute_with_hydra(request)
       else
         response = request.run
@@ -116,38 +158,34 @@ module CyberSource
         data = nil
       end
       return response.body, response.code, response.headers
-    end
-
-    # Execute request using Typhoeus::Hydra for connection pooling
+    end    # Execute request using shared Typhoeus::Hydra for connection pooling
     def execute_with_hydra(request)
-      @hydra.queue(request)
-      @hydra.run
+      @@shared_hydra.queue(request)
+      @@shared_hydra.run
       request.response
-    end
-
-    # Execute multiple requests concurrently using connection pooling
+    end    # Execute multiple requests concurrently using shared connection pooling
     # @param requests [Array<Typhoeus::Request>] Array of requests to execute
     # @return [Array<Typhoeus::Response>] Array of responses
     def execute_concurrent_requests(requests)
       return [] if requests.empty?
       
-      unless @config.enable_connection_pooling && @hydra
+      unless @config.enable_connection_pooling && @@shared_hydra
         raise RuntimeError, "Connection pooling is not enabled. Set config.enable_connection_pooling = true"
       end
 
       # Queue all requests
-      requests.each { |request| @hydra.queue(request) }
+      requests.each { |request| @@shared_hydra.queue(request) }
       
       # Execute all queued requests
-      @hydra.run
+      @@shared_hydra.run
       
       # Return responses
       requests.map(&:response)
-    end    # Call multiple APIs concurrently
+    end    # Call multiple APIs concurrently using shared connection pooling
     # @param api_calls [Array<Hash>] Array of API call configurations
     # @return [Array<Array>] Array of [response_body, status_code, headers] arrays
     def call_apis_concurrent(api_calls)
-      unless @config.enable_connection_pooling && @hydra
+      unless @config.enable_connection_pooling && @@shared_hydra
         raise RuntimeError, "Connection pooling is not enabled. Set config.enable_connection_pooling = true"
       end
       
@@ -287,9 +325,8 @@ module CyberSource
           @config.scheme = 'http'
         end
        end
-       
-       # Reinitialize Hydra if connection pooling is enabled
-       initialize_hydra if @config.enable_connection_pooling
+         # Reinitialize shared Hydra if connection pooling is enabled
+       initialize_shared_hydra if @config.enable_connection_pooling
     end
     # Calling Authentication
     def CallAuthenticationHeader(http_method, path, body_params, header_params, query_params)
@@ -343,13 +380,11 @@ module CyberSource
       #  log_obj.logger.info("#{key} : #{value}")
       # end
       return header_params
-    end
-
-    # Connection pool management methods
+    end    # Connection pool management methods
     
     # Check if connection pooling is enabled
     def connection_pooling_enabled?
-      @config.enable_connection_pooling && !@hydra.nil?
+      @config.enable_connection_pooling && !@@shared_hydra.nil?
     end
 
     # Get connection pool statistics
@@ -357,20 +392,41 @@ module CyberSource
       return nil unless connection_pooling_enabled?
       
       {
-        max_concurrency: @config.max_concurrency,
-        max_connections_per_host: @config.max_connections_per_host,
-        connection_timeout: @config.connection_timeout,
-        keepalive_timeout: @config.keepalive_timeout,
-        pooling_enabled: true
+        max_concurrency: @@hydra_config[:max_concurrency],
+        max_connections_per_host: @@hydra_config[:max_connections_per_host],
+        connection_timeout: @@hydra_config[:connection_timeout],
+        keepalive_timeout: @@hydra_config[:keepalive_timeout],
+        pooling_enabled: true,
+        shared_across_instances: true
       }
     end
 
-    # Reset connection pool
+    # Reset connection pool (resets the shared pool for all instances)
     def reset_connection_pool
       if connection_pooling_enabled?
-        @hydra = nil
-        initialize_hydra
+        self.class.reset_shared_connection_pool
+        initialize_shared_hydra
       end
+    end
+
+    # Get shared connection pool statistics (instance method for convenience)
+    def shared_connection_pool_stats
+      self.class.shared_connection_pool_stats
+    end
+
+    # Check if shared hydra is available
+    def shared_hydra_available?
+      !@@shared_hydra.nil?
+    end
+
+    # Get current shared hydra configuration
+    def shared_hydra_config
+      @@hydra_config
+    end
+
+    # Instance method to access shared hydra (same as class method)
+    def shared_hydra
+      @@shared_hydra
     end
 
     def get_query_param(path, query_params)
