@@ -58,6 +58,9 @@ module CyberSource
     # Standing Instruction/Installment identifier. 
     attr_accessor :identifier
 
+    # Annual interest rate.  This field is returned only for two kinds of installment payments on Visa Platform Connect: - Crediario with Visa in Brazil: this field is included in the authorization response for the Crediario eligibility request when the issuer approves the customer's request for Crediario installment payments. - Mastercard in all countries except Brazil, Croatia, Georgia, and Greece.   Example: A value of 1.0 specifies 1%.  Example: A value of 4.0 specifies 4%.  #### Brazil The value for this field corresponds to the following data in the TC 33 capture file: - Record: CP01 TCR9 - Position: 151-157 - Field: Annual Interest Rate   #### Other Countries The value for this field corresponds to the following data in the TC 33 capture file: - Record: CP01 TCR5 - Position: 58-62 SCMP API Fields| 216 - Field: Mastercard Annual Percentage Rate 
+    attr_accessor :annual_interest_rate
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -75,7 +78,8 @@ module CyberSource
         :'grace_period_duration_type' => :'gracePeriodDurationType',
         :'first_installment_amount' => :'firstInstallmentAmount',
         :'validation_indicator' => :'validationIndicator',
-        :'identifier' => :'identifier'
+        :'identifier' => :'identifier',
+        :'annual_interest_rate' => :'annualInterestRate'
       }
     end
 
@@ -96,7 +100,8 @@ module CyberSource
         :'grace_period_duration_type' => :'grace_period_duration_type',
         :'first_installment_amount' => :'first_installment_amount',
         :'validation_indicator' => :'validation_indicator',
-        :'identifier' => :'identifier'
+        :'identifier' => :'identifier',
+        :'annual_interest_rate' => :'annual_interest_rate'
       }
     end
 
@@ -117,7 +122,8 @@ module CyberSource
         :'grace_period_duration_type' => :'String',
         :'first_installment_amount' => :'String',
         :'validation_indicator' => :'String',
-        :'identifier' => :'String'
+        :'identifier' => :'String',
+        :'annual_interest_rate' => :'String'
       }
     end
 
@@ -187,6 +193,10 @@ module CyberSource
 
       if attributes.has_key?(:'identifier')
         self.identifier = attributes[:'identifier']
+      end
+
+      if attributes.has_key?(:'annualInterestRate')
+        self.annual_interest_rate = attributes[:'annualInterestRate']
       end
     end
 
@@ -275,6 +285,12 @@ module CyberSource
       @first_installment_amount = first_installment_amount
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] annual_interest_rate Value to be assigned
+    def annual_interest_rate=(annual_interest_rate)
+      @annual_interest_rate = annual_interest_rate
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -294,7 +310,8 @@ module CyberSource
           grace_period_duration_type == o.grace_period_duration_type &&
           first_installment_amount == o.first_installment_amount &&
           validation_indicator == o.validation_indicator &&
-          identifier == o.identifier
+          identifier == o.identifier &&
+          annual_interest_rate == o.annual_interest_rate
     end
 
     # @see the `==` method
@@ -306,7 +323,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [amount, frequency, plan_type, sequence, total_amount, total_count, first_installment_date, invoice_data, payment_type, eligibility_inquiry, grace_period_duration, grace_period_duration_type, first_installment_amount, validation_indicator, identifier].hash
+      [amount, frequency, plan_type, sequence, total_amount, total_count, first_installment_date, invoice_data, payment_type, eligibility_inquiry, grace_period_duration, grace_period_duration_type, first_installment_amount, validation_indicator, identifier, annual_interest_rate].hash
     end
 
     # Builds the object from hash

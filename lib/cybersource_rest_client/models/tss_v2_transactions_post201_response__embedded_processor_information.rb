@@ -21,6 +21,9 @@ module CyberSource
     # Authorization code. Returned only when the processor returns this value.  The length of this value depends on your processor.  Returned by authorization service.  #### PIN debit Authorization code that is returned by the processor.  Returned by PIN debit credit.  #### Elavon Encrypted Account Number Program The returned value is OFFLINE.  #### TSYS Acquiring Solutions The returned value for a successful zero amount authorization is 000000. 
     attr_accessor :approval_code
 
+    # The event status. 
+    attr_accessor :event_status
+
     # #### Ingenico ePayments Unique number that CyberSource generates to identify the transaction. You can use this value to identify transactions in the Ingenico ePayments Collections Report, which provides settlement information. Contact customer support for information about the report.  ### CyberSource through VisaNet Retrieval request number. 
     attr_accessor :retrieval_reference_number
 
@@ -30,6 +33,7 @@ module CyberSource
         :'processor' => :'processor',
         :'provider_transaction_id' => :'providerTransactionId',
         :'approval_code' => :'approvalCode',
+        :'event_status' => :'eventStatus',
         :'retrieval_reference_number' => :'retrievalReferenceNumber'
       }
     end
@@ -40,6 +44,7 @@ module CyberSource
         :'processor' => :'processor',
         :'provider_transaction_id' => :'provider_transaction_id',
         :'approval_code' => :'approval_code',
+        :'event_status' => :'event_status',
         :'retrieval_reference_number' => :'retrieval_reference_number'
       }
     end
@@ -50,6 +55,7 @@ module CyberSource
         :'processor' => :'TssV2TransactionsGet200ResponseProcessorInformationProcessor',
         :'provider_transaction_id' => :'String',
         :'approval_code' => :'String',
+        :'event_status' => :'String',
         :'retrieval_reference_number' => :'String'
       }
     end
@@ -72,6 +78,10 @@ module CyberSource
 
       if attributes.has_key?(:'approvalCode')
         self.approval_code = attributes[:'approvalCode']
+      end
+
+      if attributes.has_key?(:'eventStatus')
+        self.event_status = attributes[:'eventStatus']
       end
 
       if attributes.has_key?(:'retrievalReferenceNumber')
@@ -112,6 +122,7 @@ module CyberSource
           processor == o.processor &&
           provider_transaction_id == o.provider_transaction_id &&
           approval_code == o.approval_code &&
+          event_status == o.event_status &&
           retrieval_reference_number == o.retrieval_reference_number
     end
 
@@ -124,7 +135,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [processor, provider_transaction_id, approval_code, retrieval_reference_number].hash
+      [processor, provider_transaction_id, approval_code, event_status, retrieval_reference_number].hash
     end
 
     # Builds the object from hash

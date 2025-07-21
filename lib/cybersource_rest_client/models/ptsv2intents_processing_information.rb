@@ -21,12 +21,60 @@ module CyberSource
     # Array of actions (one or more) to be included in the order to invoke bundled services along with order. Possible values: - `AP_ORDER`: Use this when Alternative Payment Order service is requested. 
     attr_accessor :action_list
 
+    # Indicates if the transaction is flagged as high risk. 
+    attr_accessor :high_risk_transaction_flag
+
+    # Indicates if the transaction is a retry. 
+    attr_accessor :transaction_retry
+
+    # The number of transactions in the last one hour. 
+    attr_accessor :last_one_hr_transaction_count
+
+    # The number of transactions in the last one day. 
+    attr_accessor :last_one_day_transaction_count
+
+    # The number of transactions in the last three months. 
+    attr_accessor :last_three_months_txn_count
+
+    # The total number of transactions. 
+    attr_accessor :total_transaction_count
+
+    # Indicates if PIN verification is required. 
+    attr_accessor :pin_verification
+
+    # Indicates if face ID verification is required. 
+    attr_accessor :face_id_verification
+
+    # Indicates if the user passed verification. 
+    attr_accessor :user_passed_verification
+
+    # The IP address of the user. 
+    attr_accessor :ip_address
+
+    # The date of the transaction. 
+    attr_accessor :transaction_date
+
+    # Indicates if the transaction involves tangible goods. 
+    attr_accessor :tangible
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'processing_instruction' => :'processingInstruction',
         :'authorization_options' => :'authorizationOptions',
-        :'action_list' => :'actionList'
+        :'action_list' => :'actionList',
+        :'high_risk_transaction_flag' => :'highRiskTransactionFlag',
+        :'transaction_retry' => :'transactionRetry',
+        :'last_one_hr_transaction_count' => :'lastOneHrTransactionCount',
+        :'last_one_day_transaction_count' => :'lastOneDayTransactionCount',
+        :'last_three_months_txn_count' => :'lastThreeMonthsTxnCount',
+        :'total_transaction_count' => :'totalTransactionCount',
+        :'pin_verification' => :'pinVerification',
+        :'face_id_verification' => :'faceIdVerification',
+        :'user_passed_verification' => :'userPassedVerification',
+        :'ip_address' => :'ipAddress',
+        :'transaction_date' => :'transactionDate',
+        :'tangible' => :'tangible'
       }
     end
 
@@ -35,7 +83,19 @@ module CyberSource
       {
         :'processing_instruction' => :'processing_instruction',
         :'authorization_options' => :'authorization_options',
-        :'action_list' => :'action_list'
+        :'action_list' => :'action_list',
+        :'high_risk_transaction_flag' => :'high_risk_transaction_flag',
+        :'transaction_retry' => :'transaction_retry',
+        :'last_one_hr_transaction_count' => :'last_one_hr_transaction_count',
+        :'last_one_day_transaction_count' => :'last_one_day_transaction_count',
+        :'last_three_months_txn_count' => :'last_three_months_txn_count',
+        :'total_transaction_count' => :'total_transaction_count',
+        :'pin_verification' => :'pin_verification',
+        :'face_id_verification' => :'face_id_verification',
+        :'user_passed_verification' => :'user_passed_verification',
+        :'ip_address' => :'ip_address',
+        :'transaction_date' => :'transaction_date',
+        :'tangible' => :'tangible'
       }
     end
 
@@ -44,7 +104,19 @@ module CyberSource
       {
         :'processing_instruction' => :'String',
         :'authorization_options' => :'Ptsv2intentsProcessingInformationAuthorizationOptions',
-        :'action_list' => :'Array<String>'
+        :'action_list' => :'Array<String>',
+        :'high_risk_transaction_flag' => :'String',
+        :'transaction_retry' => :'String',
+        :'last_one_hr_transaction_count' => :'String',
+        :'last_one_day_transaction_count' => :'String',
+        :'last_three_months_txn_count' => :'String',
+        :'total_transaction_count' => :'String',
+        :'pin_verification' => :'String',
+        :'face_id_verification' => :'String',
+        :'user_passed_verification' => :'String',
+        :'ip_address' => :'String',
+        :'transaction_date' => :'String',
+        :'tangible' => :'String'
       }
     end
 
@@ -68,6 +140,54 @@ module CyberSource
         if (value = attributes[:'actionList']).is_a?(Array)
           self.action_list = value
         end
+      end
+
+      if attributes.has_key?(:'highRiskTransactionFlag')
+        self.high_risk_transaction_flag = attributes[:'highRiskTransactionFlag']
+      end
+
+      if attributes.has_key?(:'transactionRetry')
+        self.transaction_retry = attributes[:'transactionRetry']
+      end
+
+      if attributes.has_key?(:'lastOneHrTransactionCount')
+        self.last_one_hr_transaction_count = attributes[:'lastOneHrTransactionCount']
+      end
+
+      if attributes.has_key?(:'lastOneDayTransactionCount')
+        self.last_one_day_transaction_count = attributes[:'lastOneDayTransactionCount']
+      end
+
+      if attributes.has_key?(:'lastThreeMonthsTxnCount')
+        self.last_three_months_txn_count = attributes[:'lastThreeMonthsTxnCount']
+      end
+
+      if attributes.has_key?(:'totalTransactionCount')
+        self.total_transaction_count = attributes[:'totalTransactionCount']
+      end
+
+      if attributes.has_key?(:'pinVerification')
+        self.pin_verification = attributes[:'pinVerification']
+      end
+
+      if attributes.has_key?(:'faceIdVerification')
+        self.face_id_verification = attributes[:'faceIdVerification']
+      end
+
+      if attributes.has_key?(:'userPassedVerification')
+        self.user_passed_verification = attributes[:'userPassedVerification']
+      end
+
+      if attributes.has_key?(:'ipAddress')
+        self.ip_address = attributes[:'ipAddress']
+      end
+
+      if attributes.has_key?(:'transactionDate')
+        self.transaction_date = attributes[:'transactionDate']
+      end
+
+      if attributes.has_key?(:'tangible')
+        self.tangible = attributes[:'tangible']
       end
     end
 
@@ -97,7 +217,19 @@ module CyberSource
       self.class == o.class &&
           processing_instruction == o.processing_instruction &&
           authorization_options == o.authorization_options &&
-          action_list == o.action_list
+          action_list == o.action_list &&
+          high_risk_transaction_flag == o.high_risk_transaction_flag &&
+          transaction_retry == o.transaction_retry &&
+          last_one_hr_transaction_count == o.last_one_hr_transaction_count &&
+          last_one_day_transaction_count == o.last_one_day_transaction_count &&
+          last_three_months_txn_count == o.last_three_months_txn_count &&
+          total_transaction_count == o.total_transaction_count &&
+          pin_verification == o.pin_verification &&
+          face_id_verification == o.face_id_verification &&
+          user_passed_verification == o.user_passed_verification &&
+          ip_address == o.ip_address &&
+          transaction_date == o.transaction_date &&
+          tangible == o.tangible
     end
 
     # @see the `==` method
@@ -109,7 +241,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [processing_instruction, authorization_options, action_list].hash
+      [processing_instruction, authorization_options, action_list, high_risk_transaction_flag, transaction_retry, last_one_hr_transaction_count, last_one_day_transaction_count, last_three_months_txn_count, total_transaction_count, pin_verification, face_id_verification, user_passed_verification, ip_address, transaction_date, tangible].hash
     end
 
     # Builds the object from hash
