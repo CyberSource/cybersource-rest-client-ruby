@@ -16,6 +16,9 @@ module CyberSource
     # Amount being charged as gift wrap fee. 
     attr_accessor :gift_wrap_amount
 
+    # Invoice amount.  The invoice amount issued by the Merchant to the Cardholder, which includes VAT (excluding items such as TIPS or CASHBACK). For transactions that do not have applicable Benefit Laws, the field may be entered as zeros.  This field is only applicable for Uruguay market.  Example: 100.00  Uruguay  The value for this field corresponds to the following data in the TC 33 capture file:  - Record: CP01 TCR9 - Position: 7-18 - Field: Invoice Amount 
+    attr_accessor :invoice_amount
+
     # Grand total for the order. This value cannot be negative. You can include a decimal point (.), but no other special characters. CyberSource truncates the amount to the correct number of decimal places.  **Note** For CTV, FDCCompass, Paymentech processors, the maximum length for this field is 12.  **Important** Some processors have specific requirements and limitations, such as maximum amounts and maximum field lengths.  If your processor supports zero amount authorizations, you can set this field to 0 for the authorization to check if the card is lost or stolen.   #### Card Present Required to include either this field or `orderInformation.lineItems[].unitPrice` for the order.  #### Invoicing / Pay By Link Required for creating a new invoice or payment link.  #### PIN Debit Amount you requested for the PIN debit purchase. This value is returned for partial authorizations. The issuing bank can approve a partial amount if the balance on the debit card is less than the requested transaction amount.  Required field for PIN Debit purchase and PIN Debit credit requests. Optional field for PIN Debit reversal requests.  #### GPX This field is optional for reversing an authorization or credit; however, for all other processors, these fields are required.  #### DCC with a Third-Party Provider Set this field to the converted amount that was returned by the DCC provider. You must include either this field or the 1st line item in the order and the specific line-order amount in your request.   #### DCC for First Data Not used. 
     attr_accessor :total_amount
 
@@ -101,6 +104,7 @@ module CyberSource
     def self.attribute_map
       {
         :'gift_wrap_amount' => :'giftWrapAmount',
+        :'invoice_amount' => :'invoiceAmount',
         :'total_amount' => :'totalAmount',
         :'sub_total_amount' => :'subTotalAmount',
         :'currency' => :'currency',
@@ -137,6 +141,7 @@ module CyberSource
     def self.json_map
       {
         :'gift_wrap_amount' => :'gift_wrap_amount',
+        :'invoice_amount' => :'invoice_amount',
         :'total_amount' => :'total_amount',
         :'sub_total_amount' => :'sub_total_amount',
         :'currency' => :'currency',
@@ -173,6 +178,7 @@ module CyberSource
     def self.swagger_types
       {
         :'gift_wrap_amount' => :'String',
+        :'invoice_amount' => :'String',
         :'total_amount' => :'String',
         :'sub_total_amount' => :'String',
         :'currency' => :'String',
@@ -215,6 +221,10 @@ module CyberSource
 
       if attributes.has_key?(:'giftWrapAmount')
         self.gift_wrap_amount = attributes[:'giftWrapAmount']
+      end
+
+      if attributes.has_key?(:'invoiceAmount')
+        self.invoice_amount = attributes[:'invoiceAmount']
       end
 
       if attributes.has_key?(:'totalAmount')
@@ -355,6 +365,12 @@ module CyberSource
     # @param [Object] gift_wrap_amount Value to be assigned
     def gift_wrap_amount=(gift_wrap_amount)
       @gift_wrap_amount = gift_wrap_amount
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] invoice_amount Value to be assigned
+    def invoice_amount=(invoice_amount)
+      @invoice_amount = invoice_amount
     end
 
     # Custom attribute writer method with validation
@@ -501,6 +517,7 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           gift_wrap_amount == o.gift_wrap_amount &&
+          invoice_amount == o.invoice_amount &&
           total_amount == o.total_amount &&
           sub_total_amount == o.sub_total_amount &&
           currency == o.currency &&
@@ -541,7 +558,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [gift_wrap_amount, total_amount, sub_total_amount, currency, discount_amount, duty_amount, gratuity_amount, tax_amount, national_tax_included, tax_applied_after_discount, tax_applied_level, tax_type_code, freight_amount, foreign_amount, foreign_currency, exchange_rate, exchange_rate_time_stamp, surcharge, settlement_amount, settlement_currency, amex_additional_amounts, tax_details, service_fee_amount, original_amount, original_currency, cashback_amount, currency_conversion, oct_surcharge, order, anticipated_amount].hash
+      [gift_wrap_amount, invoice_amount, total_amount, sub_total_amount, currency, discount_amount, duty_amount, gratuity_amount, tax_amount, national_tax_included, tax_applied_after_discount, tax_applied_level, tax_type_code, freight_amount, foreign_amount, foreign_currency, exchange_rate, exchange_rate_time_stamp, surcharge, settlement_amount, settlement_currency, amex_additional_amounts, tax_details, service_fee_amount, original_amount, original_currency, cashback_amount, currency_conversion, oct_surcharge, order, anticipated_amount].hash
     end
 
     # Builds the object from hash

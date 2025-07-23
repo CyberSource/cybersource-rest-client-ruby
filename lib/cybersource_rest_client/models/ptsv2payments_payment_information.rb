@@ -17,6 +17,8 @@ module CyberSource
 
     attr_accessor :tokenized_card
 
+    attr_accessor :tokenized_payment_method
+
     attr_accessor :direct_debit
 
     attr_accessor :fluid_data
@@ -51,6 +53,7 @@ module CyberSource
       {
         :'card' => :'card',
         :'tokenized_card' => :'tokenizedCard',
+        :'tokenized_payment_method' => :'tokenizedPaymentMethod',
         :'direct_debit' => :'directDebit',
         :'fluid_data' => :'fluidData',
         :'customer' => :'customer',
@@ -73,6 +76,7 @@ module CyberSource
       {
         :'card' => :'card',
         :'tokenized_card' => :'tokenized_card',
+        :'tokenized_payment_method' => :'tokenized_payment_method',
         :'direct_debit' => :'direct_debit',
         :'fluid_data' => :'fluid_data',
         :'customer' => :'customer',
@@ -95,6 +99,7 @@ module CyberSource
       {
         :'card' => :'Ptsv2paymentsPaymentInformationCard',
         :'tokenized_card' => :'Ptsv2paymentsPaymentInformationTokenizedCard',
+        :'tokenized_payment_method' => :'Ptsv2paymentsPaymentInformationTokenizedPaymentMethod',
         :'direct_debit' => :'Ptsv2paymentsPaymentInformationDirectDebit',
         :'fluid_data' => :'Ptsv2paymentsPaymentInformationFluidData',
         :'customer' => :'Ptsv2paymentsPaymentInformationCustomer',
@@ -126,6 +131,10 @@ module CyberSource
 
       if attributes.has_key?(:'tokenizedCard')
         self.tokenized_card = attributes[:'tokenizedCard']
+      end
+
+      if attributes.has_key?(:'tokenizedPaymentMethod')
+        self.tokenized_payment_method = attributes[:'tokenizedPaymentMethod']
       end
 
       if attributes.has_key?(:'directDebit')
@@ -211,6 +220,7 @@ module CyberSource
       self.class == o.class &&
           card == o.card &&
           tokenized_card == o.tokenized_card &&
+          tokenized_payment_method == o.tokenized_payment_method &&
           direct_debit == o.direct_debit &&
           fluid_data == o.fluid_data &&
           customer == o.customer &&
@@ -236,7 +246,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card, tokenized_card, direct_debit, fluid_data, customer, payment_instrument, instrument_identifier, shipping_address, legacy_token, bank, options, payment_type, initiation_channel, sepa, e_wallet, payment_account_reference].hash
+      [card, tokenized_card, tokenized_payment_method, direct_debit, fluid_data, customer, payment_instrument, instrument_identifier, shipping_address, legacy_token, bank, options, payment_type, initiation_channel, sepa, e_wallet, payment_account_reference].hash
     end
 
     # Builds the object from hash

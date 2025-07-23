@@ -121,4 +121,10 @@ describe 'Ptsv2paymentsInstallmentInformation' do
     end
   end
 
+  describe 'test attribute "annual_interest_rate"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

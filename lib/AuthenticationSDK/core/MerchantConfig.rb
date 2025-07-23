@@ -274,7 +274,8 @@ public
       end
     end
 
-    def logAllProperties(propertyObj)
+    def logAllProperties(merchantPropertyObj)
+      propertyObj = Marshal.load(Marshal.dump(merchantPropertyObj))      
       merchantConfig = ''
       hiddenProperties = (Constants::HIDDEN_MERCHANT_PROPERTIES).split(',')
       hiddenPropArray = Array.new

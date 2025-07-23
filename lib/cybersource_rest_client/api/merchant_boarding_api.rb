@@ -100,7 +100,7 @@ module CyberSource
     # @param post_registration_body Boarding registration data
     # @param [Hash] opts the optional parameters
     # @option opts [String] :v_c_idempotency_id defines idempotency of the request
-    # @return [InlineResponse2012]
+    # @return [InlineResponse2013]
     #
     def post_registration(post_registration_body, opts = {})
       data, status_code, headers = post_registration_with_http_info(post_registration_body, opts)
@@ -112,7 +112,7 @@ module CyberSource
     # @param post_registration_body Boarding registration data
     # @param [Hash] opts the optional parameters
     # @option opts [String] :v_c_idempotency_id defines idempotency of the request
-    # @return [Array<(InlineResponse2012, Fixnum, Hash)>] InlineResponse2012 data, response status code and response headers
+    # @return [Array<(InlineResponse2013, Fixnum, Hash)>] InlineResponse2013 data, response status code and response headers
     def post_registration_with_http_info(post_registration_body, opts = {})
 
       if @api_client.config.debugging
@@ -159,7 +159,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2012')
+        :return_type => 'InlineResponse2013')
       if @api_client.config.debugging
         begin
         raise
