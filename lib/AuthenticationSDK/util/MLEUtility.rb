@@ -1,7 +1,6 @@
 require_relative '../logging/log_factory.rb'
 require 'jose'
 require_relative './Cache'
-require 'active_support'
 
 public
   class MLEUtility
@@ -32,8 +31,7 @@ public
       begin
         file_path = merchant_config.keysDirectory + '/' + merchant_config.keyFilename + '.p12'
         p12_file = File.binread(file_path)
-        cache_obj = ActiveSupport::Cache::MemoryStore.new
-        cert_der = Cache.new.fetchCachedCertificate(merchant_config.keysDirectory, p12_file,  merchant_config.keyPass, merchant_config.mleKeyAlias, cache_obj)
+        cert_der = Cache.new.fetchCachedCertificate(merchant_config.keysDirectory, p12_file,  merchant_config.keyPass, merchant_config.mleKeyAlias)
         if cert_der.nil?
           @log_obj.logger.error('Failed to get certificate for MLE')
           raise StandardError.new('Failed to get certificate for MLE')
