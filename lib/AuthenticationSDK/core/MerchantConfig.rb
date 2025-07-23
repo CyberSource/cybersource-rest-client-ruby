@@ -48,10 +48,15 @@ public
     @pemFileDirectory = cybsPropertyObj['pemFileDirectory']
     @mleKeyAlias = cybsPropertyObj['mleKeyAlias']
     @useMLEGlobally = cybsPropertyObj['useMLEGlobally']
+    
+    if !cybsPropertyObj['mleForRequestPublicCertPath'].nil? && !cybsPropertyObj['mleForRequestPublicCertPath'].to_s.strip.empty?
+        @mleForRequestPublicCertPath = cybsPropertyObj['mleForRequestPublicCertPath'].to_s.strip
+    end
+
     @mapToControlMLEonAPI = cybsPropertyObj['mapToControlMLEonAPI']
     validateMerchantDetails
-    logAllProperties(cybsPropertyObj)
     validateMLEConfiguration
+    logAllProperties(cybsPropertyObj)
     end
 
     #fall back logic
@@ -257,21 +262,30 @@ public
         @mleKeyAlias = Constants::DEFAULT_ALIAS_FOR_MLE_CERT
       end
 
-      mle_configured = @useMLEGlobally
-      if !@mapToControlMLEonAPI.nil? && !@mapToControlMLEonAPI.empty?
-        @mapToControlMLEonAPI.each do |_, value|
-          unless [true, false].include?(value) && value
-            mle_configured = true
-            break
-          end
+      # verify the input path for mle Cert should be correct else throw error in both case mle=true/false
+      if @mleForRequestPublicCertPath && !@mleForRequestPublicCertPath.to_s.strip.empty?
+        unless File.exist?(@mleForRequestPublicCertPath) && File.readable?(@mleForRequestPublicCertPath)
+          err = StandardError.new(Constants::ERROR_PREFIX + "Invalid mleForRequestPublicCertPath: file does not exist or is not readable")
+          @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+          raise err
         end
       end
 
-      if mle_configured && !Constants::AUTH_TYPE_JWT.eql?(@authenticationType)
-        err = StandardError.new(Constants::ERROR_PREFIX + "MLE can only be used with JWT authentication")
-        @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
-        raise err
-      end
+      # mle_configured = @useMLEGlobally
+      # if !@mapToControlMLEonAPI.nil? && !@mapToControlMLEonAPI.empty?
+      #   @mapToControlMLEonAPI.each do |_, value|
+      #     unless [true, false].include?(value) && value
+      #       mle_configured = true
+      #       break
+      #     end
+      #   end
+      # end
+
+      # if mle_configured && !Constants::AUTH_TYPE_JWT.eql?(@authenticationType)
+      #   err = StandardError.new(Constants::ERROR_PREFIX + "MLE can only be used with JWT authentication")
+      #   @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+      #   raise err
+      # end
     end
 
     def logAllProperties(merchantPropertyObj)
@@ -329,6 +343,7 @@ public
     attr_accessor :defaultCustomHeaders
     attr_accessor :pemFileDirectory
     attr_accessor :useMLEGlobally
+    attr_accessor :mleForRequestPublicCertPath
     attr_accessor :mapToControlMLEonAPI
     attr_accessor :mleKeyAlias
   end
