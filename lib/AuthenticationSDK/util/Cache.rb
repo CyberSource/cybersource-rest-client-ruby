@@ -69,7 +69,6 @@ public
         @@cache_obj.write(cacheKey, cache_value)
       end
       if(cacheKey.end_with?("_MLE"))
-        puts "MLE cache setup"
         private_key, certs = getCertsAndKeysFromP12(filePath, merchantConfig)
         mle_cert = Utility.getCertBasedOnKeyAlias(certs, merchantConfig.mleKeyAlias)
         currentFileLastModifiedTime = File.mtime(filePath)
@@ -120,4 +119,5 @@ public
         return @@cache_obj.read('privateKeyFromPEMFile')
       end
     end
+    
   end
