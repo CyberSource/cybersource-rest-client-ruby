@@ -1,37 +1,97 @@
 require 'openssl'
 require 'base64'
 require 'active_support'
+require_relative 'CacheValue'
 
 public
 # P12 file certificate Cache
   class Cache
     @@cache_obj = ActiveSupport::Cache::MemoryStore.new
 
-    def fetchCachedCertificate(filePath, p12File, keyPass, keyAlias)
-      certCache = @@cache_obj.read(keyAlias.to_s.upcase)
-      cachedLastModifiedTimeStamp = @@cache_obj.read(keyAlias.to_s.upcase + '_LastModifiedTime')
-      if File.exist?(filePath)
-        currentFileLastModifiedTime = File.mtime(filePath)
-        if certCache.to_s.empty? || cachedLastModifiedTimeStamp.to_s.empty?
-          certificateFromP12File = getCertificate(p12File, keyPass, keyAlias, currentFileLastModifiedTime)
-          return certificateFromP12File
-        elsif currentFileLastModifiedTime > cachedLastModifiedTimeStamp
-        # Function call to read the file and put values to new cache
-          certificateFromP12File = getCertificate(p12File, keyPass, keyAlias, currentFileLastModifiedTime)
-          return certificateFromP12File
-        else
-          return certCache
-        end
-      else
-        raise Constants::ERROR_PREFIX + Constants::FILE_NOT_FOUND + filePath
+
+    def fetchJwtCertsAndKeys(merchantConfig)
+      merchantId = merchantConfig.merchantId
+      filePath = merchantConfig.keysDirectory + '/' + merchantConfig.keyFilename + '.p12'
+      if (!File.exist?(filePath))
+        raise Constants::ERROR_PREFIX + Constants::FILE_NOT_FOUND + File.expand_path(filePath)
       end
+
+      cacheKey = merchantId.to_s + '_JWT'
+      certCache = @@cache_obj.read(cacheKey)
+
+      if !certCache || certCache.empty?
+        setupCache(cacheKey, filePath, merchantConfig)
+        certCache = @@cache_obj.read(cacheKey)
+      elsif certCache.file_modified_time !=  File.mtime(filePath)
+        setupCache(cacheKey, filePath, merchantConfig)
+        certCache = @@cache_obj.read(cacheKey)
+      end
+      
+      return certCache
     end
 
-    def getCertificate(p12File, keyPass, keyAlias, currentFileLastModifiedTime)
-      x5CertDer = Utility.new.fetchCert(keyPass, p12File, keyAlias)
-      @@cache_obj.write(keyAlias.to_s.upcase, x5CertDer)
-      @@cache_obj.write(keyAlias.to_s.upcase + '_LastModifiedTime', currentFileLastModifiedTime)
-      x5CertDer
+    def fetchMLECert(merchantConfig)
+      merchantId = merchantConfig.merchantId
+      filePath = merchantConfig.keysDirectory + '/' + merchantConfig.keyFilename + '.p12'
+      if (!File.exist?(filePath))
+        raise Constants::ERROR_PREFIX + Constants::FILE_NOT_FOUND + File.expand_path(filePath)
+      end
+
+      cacheKey = merchantId.to_s + '_MLE'
+      certCache = @@cache_obj.read(cacheKey)
+
+      if !certCache || certCache.empty?
+        setupCache(cacheKey, filePath, merchantConfig)
+        certCache = @@cache_obj.read(cacheKey)
+      elsif certCache.file_modified_time !=  File.mtime(filePath)
+        setupCache(cacheKey, filePath, merchantConfig)
+        certCache = @@cache_obj.read(cacheKey)
+      end
+      
+      return certCache
+    end
+
+    def setupCache(cacheKey, filePath, merchantConfig)
+      if(cacheKey.end_with?("_JWT"))
+        private_key, certs = getCertsAndKeysFromP12(filePath, merchantConfig)
+        jwt_cert = Utility.getCertBasedOnKeyAlias(certs, merchantConfig.keyAlias)
+        currentFileLastModifiedTime = File.mtime(filePath)
+        
+        # Create CacheValue object with all 3 parameters
+        cache_value = CacheValue.new(private_key, jwt_cert, currentFileLastModifiedTime)
+        
+        # Store the cache value object in cache
+        @@cache_obj.write(cacheKey, cache_value)
+      end
+      if(cacheKey.end_with?("_MLE"))
+        puts "MLE cache setup"
+        private_key, certs = getCertsAndKeysFromP12(filePath, merchantConfig)
+        mle_cert = Utility.getCertBasedOnKeyAlias(certs, merchantConfig.mleKeyAlias)
+        currentFileLastModifiedTime = File.mtime(filePath)
+        
+        # Create CacheValue object with all 3 parameters
+        cache_value = CacheValue.new(nil, mle_cert, currentFileLastModifiedTime)
+        
+        # Store the cache value object in cache
+        @@cache_obj.write(cacheKey, cache_value)
+      end
+
+    end
+
+    def getCertsAndKeysFromP12(filePath, merchantConfig)
+      p12File = File.binread(filePath)
+      p12Object = OpenSSL::PKCS12.new(p12File, merchantConfig.keyPass)
+      #Generating Private Key
+      private_key = OpenSSL::PKey::RSA.new(p12Object.key)
+      # Generating Public key.
+      # publicKey = OpenSSL::PKey::RSA.new(p12Object.key.public_key)
+
+      # Get all certs from p12
+      x5_cert_primary = p12Object.certificate
+      x5_certs_others = p12Object.ca_certs
+      certs = [x5_cert_primary]
+      certs.concat(x5_certs_others) if x5_certs_others
+      return [private_key, certs]
     end
 
     # <b>DEPRECATED:</b> This method has been marked as Deprecated and will be removed in coming releases.

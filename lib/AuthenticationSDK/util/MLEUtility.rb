@@ -29,22 +29,22 @@ public
       @log_obj.logger.debug('LOG_REQUEST_BEFORE_MLE: ' + request_payload)
 
       begin
-        file_path = merchant_config.keysDirectory + '/' + merchant_config.keyFilename + '.p12'
-        p12_file = File.binread(file_path)
-        cert_der = Cache.new.fetchCachedCertificate(merchant_config.keysDirectory, p12_file,  merchant_config.keyPass, merchant_config.mleKeyAlias)
-        if cert_der.nil?
+        cache_value = Cache.new.fetchMLECert(merchant_config)
+        if cache_value.nil? || cache_value.cert.nil?
           @log_obj.logger.error('Failed to get certificate for MLE')
           raise StandardError.new('Failed to get certificate for MLE')
         end
-        certificate = OpenSSL::X509::Certificate.new(Base64.decode64(cert_der))
-        validate_certificate(certificate, merchant_config.mleKeyAlias, @log_obj)
-        serial_number = extract_serial_number_from_certificate(certificate)
+        mle_cert_obj = cache_value.cert
+
+        # certificate = OpenSSL::X509::Certificate.new(Base64.decode64(cert_der))
+        validate_certificate(mle_cert_obj, merchant_config.mleKeyAlias, @log_obj)
+        serial_number = extract_serial_number_from_certificate(mle_cert_obj)
         if serial_number.nil?
           @log_obj.logger.error('Serial number not found in certificate for MLE')
           raise StandardError.new('Serial number not found in MLE certificate')
         end
 
-        jwk = JOSE::JWK.from_key(certificate.public_key)
+        jwk = JOSE::JWK.from_key(mle_cert_obj.public_key)
         if jwk.nil?
           @log_obj.logger.error('Failed to create JWK object from public key')
           raise StandardError.new('Failed to create JWK object from public key')

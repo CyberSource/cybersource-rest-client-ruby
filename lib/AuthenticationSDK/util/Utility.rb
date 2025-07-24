@@ -33,27 +33,11 @@ public
       return tempResponseCodeMessage
     end
 
-    def fetchCert(key_pass, file, key_alias)
-      p12_file = OpenSSL::PKCS12.new(file, key_pass)
-      x5_cert_pem = p12_file.certificate
-      x5_cert_pem.subject.to_a.each do |attribute|
-        return  Base64.strict_encode64(x5_cert_pem.to_der) if attribute[1].include?(key_alias)
-      end
-      unless p12_file.ca_certs.nil?
-        p12_file.ca_certs.each do |cert|
-          cert.subject.to_a.each do |attribute|
-            return  Base64.strict_encode64(cert.to_der) if attribute[1].include?(key_alias)
-          end
-        end
-      end
-      nil
-    end
-
-     def getCertBasedOnKeyAlias(x5_certs, key_alias)
+     def self.getCertBasedOnKeyAlias(x5_certs, key_alias)
       unless x5_certs.nil?
         x5_certs.each do |cert|
           cert.subject.to_a.each do |attribute|
-            return  Base64.strict_encode64(cert.to_der) if attribute[1].include?(key_alias)
+            return  cert if attribute[1].include?(key_alias)
           end
         end
       end

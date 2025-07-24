@@ -21,28 +21,18 @@ public
 
       jwtBody = ''
       request_type = merchantconfig_obj.requestType.upcase
-      filePath = merchantconfig_obj.keysDirectory + '/' + merchantconfig_obj.keyFilename + '.p12'
-
-      if (!File.exist?(filePath))
-        raise Constants::ERROR_PREFIX + Constants::FILE_NOT_FOUND + File.expand_path(filePath)
-      end
-
-      p12File = File.binread(filePath)
+      
       jwtBody=getJwtBody(request_type, gmtDatetime, merchantconfig_obj)
       claimSet = JSON.parse(jwtBody)
-      p12FilePath = OpenSSL::PKCS12.new(p12File, merchantconfig_obj.keyPass)
 
-      # Generating certificate.
-      x5Cert = Cache.new.fetchCachedCertificate(filePath, p12File, merchantconfig_obj.keyPass, merchantconfig_obj.keyAlias)
+      cache_value = Cache.new.fetchJwtCertsAndKeys(merchantconfig_obj)
+      privateKey = cache_value.private_key
+      jwt_cert_obj = cache_value.cert
+      jwt_cert_in_der= Base64.strict_encode64(jwt_cert_obj.to_der)
 
-      # Generating Public key.
-      publicKey = OpenSSL::PKey::RSA.new(p12FilePath.key.public_key)
-
-      #Generating Private Key
-      privateKey = OpenSSL::PKey::RSA.new(p12FilePath.key)
 
       # JWT token-Generates using RS256 algorithm only
-      x5clist = [x5Cert]
+      x5clist = [jwt_cert_in_der]
       customHeaders = {}
       customHeaders['v-c-merchant-id'] = merchantconfig_obj.keyAlias
       customHeaders['x5c'] = x5clist
