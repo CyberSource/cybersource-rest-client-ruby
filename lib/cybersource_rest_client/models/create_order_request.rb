@@ -23,6 +23,14 @@ module CyberSource
 
     attr_accessor :order_information
 
+    attr_accessor :sender_information
+
+    attr_accessor :event_information
+
+    attr_accessor :travel_information
+
+    attr_accessor :recipient_information
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -30,7 +38,11 @@ module CyberSource
         :'processing_information' => :'processingInformation',
         :'merchant_information' => :'merchantInformation',
         :'payment_information' => :'paymentInformation',
-        :'order_information' => :'orderInformation'
+        :'order_information' => :'orderInformation',
+        :'sender_information' => :'senderInformation',
+        :'event_information' => :'eventInformation',
+        :'travel_information' => :'travelInformation',
+        :'recipient_information' => :'recipientInformation'
       }
     end
 
@@ -41,7 +53,11 @@ module CyberSource
         :'processing_information' => :'processing_information',
         :'merchant_information' => :'merchant_information',
         :'payment_information' => :'payment_information',
-        :'order_information' => :'order_information'
+        :'order_information' => :'order_information',
+        :'sender_information' => :'sender_information',
+        :'event_information' => :'event_information',
+        :'travel_information' => :'travel_information',
+        :'recipient_information' => :'recipient_information'
       }
     end
 
@@ -52,7 +68,11 @@ module CyberSource
         :'processing_information' => :'Ptsv2intentsProcessingInformation',
         :'merchant_information' => :'Ptsv2intentsMerchantInformation',
         :'payment_information' => :'Ptsv2intentsPaymentInformation',
-        :'order_information' => :'Ptsv2intentsOrderInformation'
+        :'order_information' => :'Ptsv2intentsOrderInformation',
+        :'sender_information' => :'Ptsv2intentsSenderInformation',
+        :'event_information' => :'Ptsv2intentsEventInformation',
+        :'travel_information' => :'Ptsv2intentsTravelInformation',
+        :'recipient_information' => :'Ptsv2intentsRecipientInformation'
       }
     end
 
@@ -83,6 +103,22 @@ module CyberSource
       if attributes.has_key?(:'orderInformation')
         self.order_information = attributes[:'orderInformation']
       end
+
+      if attributes.has_key?(:'senderInformation')
+        self.sender_information = attributes[:'senderInformation']
+      end
+
+      if attributes.has_key?(:'eventInformation')
+        self.event_information = attributes[:'eventInformation']
+      end
+
+      if attributes.has_key?(:'travelInformation')
+        self.travel_information = attributes[:'travelInformation']
+      end
+
+      if attributes.has_key?(:'recipientInformation')
+        self.recipient_information = attributes[:'recipientInformation']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -107,7 +143,11 @@ module CyberSource
           processing_information == o.processing_information &&
           merchant_information == o.merchant_information &&
           payment_information == o.payment_information &&
-          order_information == o.order_information
+          order_information == o.order_information &&
+          sender_information == o.sender_information &&
+          event_information == o.event_information &&
+          travel_information == o.travel_information &&
+          recipient_information == o.recipient_information
     end
 
     # @see the `==` method
@@ -119,7 +159,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_reference_information, processing_information, merchant_information, payment_information, order_information].hash
+      [client_reference_information, processing_information, merchant_information, payment_information, order_information, sender_information, event_information, travel_information, recipient_information].hash
     end
 
     # Builds the object from hash

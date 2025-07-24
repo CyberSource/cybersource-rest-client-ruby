@@ -37,6 +37,9 @@ module CyberSource
     # This is a multicurrency-only field. It contains a 3-digit numeric code that identifies the currency used by the issuer to bill the cardholder's account. This field is returned for OCT transactions. 
     attr_accessor :settlement_currency
 
+    # Invoice amount.  The invoice amount issued by the Merchant to the Cardholder, which includes VAT (excluding items such as TIPS or CASHBACK). For transactions that do not have applicable Benefit Laws, the field may be entered as zeros.  This field is only applicable for Uruguay market.  Example: 100.00  Uruguay  The value for this field corresponds to the following data in the TC 33 capture file:  - Record: CP01 TCR9 - Position: 7-18 - Field: Invoice Amount 
+    attr_accessor :invoice_amount
+
     # giftwrap amount (RFU).
     attr_accessor :giftwrap_amount
 
@@ -63,6 +66,7 @@ module CyberSource
         :'exchange_rate' => :'exchangeRate',
         :'exchange_rate_time_stamp' => :'exchangeRateTimeStamp',
         :'settlement_currency' => :'settlementCurrency',
+        :'invoice_amount' => :'invoiceAmount',
         :'giftwrap_amount' => :'giftwrapAmount',
         :'handling_amount' => :'handlingAmount',
         :'shipping_amount' => :'shippingAmount',
@@ -82,6 +86,7 @@ module CyberSource
         :'exchange_rate' => :'exchange_rate',
         :'exchange_rate_time_stamp' => :'exchange_rate_time_stamp',
         :'settlement_currency' => :'settlement_currency',
+        :'invoice_amount' => :'invoice_amount',
         :'giftwrap_amount' => :'giftwrap_amount',
         :'handling_amount' => :'handling_amount',
         :'shipping_amount' => :'shipping_amount',
@@ -101,6 +106,7 @@ module CyberSource
         :'exchange_rate' => :'String',
         :'exchange_rate_time_stamp' => :'String',
         :'settlement_currency' => :'String',
+        :'invoice_amount' => :'String',
         :'giftwrap_amount' => :'String',
         :'handling_amount' => :'String',
         :'shipping_amount' => :'String',
@@ -147,6 +153,10 @@ module CyberSource
 
       if attributes.has_key?(:'settlementCurrency')
         self.settlement_currency = attributes[:'settlementCurrency']
+      end
+
+      if attributes.has_key?(:'invoiceAmount')
+        self.invoice_amount = attributes[:'invoiceAmount']
       end
 
       if attributes.has_key?(:'giftwrapAmount')
@@ -232,6 +242,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] invoice_amount Value to be assigned
+    def invoice_amount=(invoice_amount)
+      @invoice_amount = invoice_amount
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] giftwrap_amount Value to be assigned
     def giftwrap_amount=(giftwrap_amount)
       @giftwrap_amount = giftwrap_amount
@@ -274,6 +290,7 @@ module CyberSource
           exchange_rate == o.exchange_rate &&
           exchange_rate_time_stamp == o.exchange_rate_time_stamp &&
           settlement_currency == o.settlement_currency &&
+          invoice_amount == o.invoice_amount &&
           giftwrap_amount == o.giftwrap_amount &&
           handling_amount == o.handling_amount &&
           shipping_amount == o.shipping_amount &&
@@ -290,7 +307,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [total_amount, currency, discount_amount, tax_amount, duty_amount, exchange_rate, exchange_rate_time_stamp, settlement_currency, giftwrap_amount, handling_amount, shipping_amount, shipping_discount_amount, insurance_amount].hash
+      [total_amount, currency, discount_amount, tax_amount, duty_amount, exchange_rate, exchange_rate_time_stamp, settlement_currency, invoice_amount, giftwrap_amount, handling_amount, shipping_amount, shipping_discount_amount, insurance_amount].hash
     end
 
     # Builds the object from hash

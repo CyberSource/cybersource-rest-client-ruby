@@ -17,6 +17,8 @@ module CyberSource
 
     attr_accessor :tokenized_card
 
+    attr_accessor :tokenized_payment_method
+
     attr_accessor :account_features
 
     attr_accessor :bank
@@ -51,6 +53,7 @@ module CyberSource
       {
         :'card' => :'card',
         :'tokenized_card' => :'tokenizedCard',
+        :'tokenized_payment_method' => :'tokenizedPaymentMethod',
         :'account_features' => :'accountFeatures',
         :'bank' => :'bank',
         :'customer' => :'customer',
@@ -71,6 +74,7 @@ module CyberSource
       {
         :'card' => :'card',
         :'tokenized_card' => :'tokenized_card',
+        :'tokenized_payment_method' => :'tokenized_payment_method',
         :'account_features' => :'account_features',
         :'bank' => :'bank',
         :'customer' => :'customer',
@@ -91,6 +95,7 @@ module CyberSource
       {
         :'card' => :'PtsV2PaymentsPost201ResponsePaymentAccountInformationCard',
         :'tokenized_card' => :'PtsV2PaymentsPost201ResponsePaymentInformationTokenizedCard',
+        :'tokenized_payment_method' => :'PtsV2PaymentsPost201ResponsePaymentInformationTokenizedPaymentMethod',
         :'account_features' => :'PtsV2PaymentsPost201ResponsePaymentInformationAccountFeatures',
         :'bank' => :'PtsV2PaymentsPost201ResponsePaymentInformationBank',
         :'customer' => :'Ptsv2paymentsPaymentInformationCustomer',
@@ -120,6 +125,10 @@ module CyberSource
 
       if attributes.has_key?(:'tokenizedCard')
         self.tokenized_card = attributes[:'tokenizedCard']
+      end
+
+      if attributes.has_key?(:'tokenizedPaymentMethod')
+        self.tokenized_payment_method = attributes[:'tokenizedPaymentMethod']
       end
 
       if attributes.has_key?(:'accountFeatures')
@@ -221,6 +230,7 @@ module CyberSource
       self.class == o.class &&
           card == o.card &&
           tokenized_card == o.tokenized_card &&
+          tokenized_payment_method == o.tokenized_payment_method &&
           account_features == o.account_features &&
           bank == o.bank &&
           customer == o.customer &&
@@ -244,7 +254,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card, tokenized_card, account_features, bank, customer, payment_instrument, instrument_identifier, shipping_address, scheme, bin, account_type, issuer, bin_country, e_wallet].hash
+      [card, tokenized_card, tokenized_payment_method, account_features, bank, customer, payment_instrument, instrument_identifier, shipping_address, scheme, bin, account_type, issuer, bin_country, e_wallet].hash
     end
 
     # Builds the object from hash

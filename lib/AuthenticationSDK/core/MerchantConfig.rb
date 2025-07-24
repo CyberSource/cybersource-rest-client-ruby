@@ -267,14 +267,15 @@ public
         end
       end
 
-      if mle_configured && !Constants::AUTH_TYPE_JWT.eql?(@authenticationType)
+      if mle_configured && !Constants::AUTH_TYPE_JWT.eql?(@authenticationType.upcase)
         err = StandardError.new(Constants::ERROR_PREFIX + "MLE can only be used with JWT authentication")
         @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
         raise err
       end
     end
 
-    def logAllProperties(propertyObj)
+    def logAllProperties(merchantPropertyObj)
+      propertyObj = Marshal.load(Marshal.dump(merchantPropertyObj))      
       merchantConfig = ''
       hiddenProperties = (Constants::HIDDEN_MERCHANT_PROPERTIES).split(',')
       hiddenPropArray = Array.new

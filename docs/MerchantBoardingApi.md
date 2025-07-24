@@ -56,7 +56,7 @@ No authorization required
 
 
 # **post_registration**
-> InlineResponse2012 post_registration(post_registration_body, opts)
+> InlineResponse2013 post_registration(post_registration_body, opts)
 
 Create a boarding registration
 
@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2012**](InlineResponse2012.md)
+[**InlineResponse2013**](InlineResponse2013.md)
 
 ### Authorization
 
