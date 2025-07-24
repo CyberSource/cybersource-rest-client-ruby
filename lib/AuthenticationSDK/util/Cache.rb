@@ -1,13 +1,14 @@
 require 'openssl'
 require 'base64'
 require 'active_support'
+require 'thread'
 require_relative 'CacheValue'
 
 public
 # P12 file certificate Cache
   class Cache
     @@cache_obj = ActiveSupport::Cache::MemoryStore.new
-
+    @@mutex = Mutex.new
 
     def fetchJwtCertsAndKeys(merchantConfig)
       merchantId = merchantConfig.merchantId
@@ -17,19 +18,21 @@ public
       end
 
       cacheKey = merchantId.to_s + '_JWT'
-      certCache = @@cache_obj.read(cacheKey)
-
-      if !certCache || certCache.empty?
-        setupCache(cacheKey, filePath, merchantConfig)
-        certCache = @@cache_obj.read(cacheKey)
-      elsif certCache.file_modified_time !=  File.mtime(filePath)
-        setupCache(cacheKey, filePath, merchantConfig)
-        certCache = @@cache_obj.read(cacheKey)
-      end
       
-      return certCache
-    end
+      # Thread-safe cache access with race condition protection
+      @@mutex.synchronize do
+        certCache = @@cache_obj.read(cacheKey)
+        fileModTime = File.mtime(filePath)
 
+        if !certCache || certCache.empty? || certCache.file_modified_time != fileModTime
+          setupCache(cacheKey, filePath, merchantConfig)
+          certCache = @@cache_obj.read(cacheKey)
+        end
+        
+        return certCache
+      end
+    end    
+    
     def fetchMLECert(merchantConfig)
       merchantId = merchantConfig.merchantId
       filePath = merchantConfig.keysDirectory + '/' + merchantConfig.keyFilename + '.p12'
@@ -38,17 +41,19 @@ public
       end
 
       cacheKey = merchantId.to_s + '_MLE'
-      certCache = @@cache_obj.read(cacheKey)
-
-      if !certCache || certCache.empty?
-        setupCache(cacheKey, filePath, merchantConfig)
-        certCache = @@cache_obj.read(cacheKey)
-      elsif certCache.file_modified_time !=  File.mtime(filePath)
-        setupCache(cacheKey, filePath, merchantConfig)
-        certCache = @@cache_obj.read(cacheKey)
-      end
       
-      return certCache
+      # Thread-safe cache access with race condition protection
+      @@mutex.synchronize do
+        certCache = @@cache_obj.read(cacheKey)
+        fileModTime = File.mtime(filePath)
+
+        if !certCache || certCache.empty? || certCache.file_modified_time != fileModTime
+          setupCache(cacheKey, filePath, merchantConfig)
+          certCache = @@cache_obj.read(cacheKey)
+        end
+        
+        return certCache
+      end
     end
 
     def setupCache(cacheKey, filePath, merchantConfig)
@@ -97,16 +102,22 @@ public
     # <b>DEPRECATED:</b> This method has been marked as Deprecated and will be removed in coming releases.
     def fetchPEMFileForNetworkTokenization(filePath)
       warn("[DEPRECATED] 'fetchPEMFileForNetworkTokenization' method is deprecated and will be removed in coming releases.")
-      pem_file_cache = @@cache_obj.read('privateKeyFromPEMFile')
-      cached_pem_file_last_updated_time = @@cache_obj.read('cachedLastModifiedTimeOfPEMFile')
-      if File.exist?(filePath)
-        current_last_modified_time_of_PEM_file = File.mtime(filePath)
-        if pem_file_cache.nil? || pem_file_cache.to_s.empty? || current_last_modified_time_of_PEM_file > cached_pem_file_last_updated_time
-          private_key = JOSE::JWK.from_pem_file filePath
-          @@cache_obj.write('privateKeyFromPEMFile', private_key)
-          @@cache_obj.write('cachedLastModifiedTimeOfPEMFile', current_last_modified_time_of_PEM_file)
+      
+      # Thread-safe cache access for deprecated method
+      @@mutex.synchronize do
+        pem_file_cache = @@cache_obj.read('privateKeyFromPEMFile')
+        cached_pem_file_last_updated_time = @@cache_obj.read('cachedLastModifiedTimeOfPEMFile')
+        
+        if File.exist?(filePath)
+          current_last_modified_time_of_PEM_file = File.mtime(filePath)
+          if pem_file_cache.nil? || pem_file_cache.to_s.empty? || current_last_modified_time_of_PEM_file > cached_pem_file_last_updated_time
+            private_key = JOSE::JWK.from_pem_file filePath
+            @@cache_obj.write('privateKeyFromPEMFile', private_key)
+            @@cache_obj.write('cachedLastModifiedTimeOfPEMFile', current_last_modified_time_of_PEM_file)
+          end
         end
+        
+        return @@cache_obj.read('privateKeyFromPEMFile')
       end
-      return @@cache_obj.read('privateKeyFromPEMFile')
     end
   end
