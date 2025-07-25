@@ -25,7 +25,7 @@ public
       jwtBody=getJwtBody(request_type, gmtDatetime, merchantconfig_obj)
       claimSet = JSON.parse(jwtBody)
 
-      cache_value = Cache.new.fetchJwtCertsAndKeys(merchantconfig_obj)
+      cache_value = Cache.new.fetchCachedP12Certificate(merchantconfig_obj)
       privateKey = cache_value.private_key
       jwt_cert_obj = cache_value.cert
       jwt_cert_in_der= Base64.strict_encode64(jwt_cert_obj.to_der)

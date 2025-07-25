@@ -169,4 +169,10 @@
       DEFAULT_ALIAS_FOR_MLE_CERT = 'CyberSource_SJC_US' unless const_defined?(:DEFAULT_ALIAS_FOR_MLE_CERT)
 
       CERTIFICATE_EXPIRY_DATE_WARNING_DAYS = 90 unless const_defined?(:CERTIFICATE_EXPIRY_DATE_WARNING_DAYS)
+
+      MLE_CACHE_IDENTIFIER_FOR_CONFIG_CERT = "mleCertFromMerchantConfig"
+
+      MLE_CACHE_IDENTIFIER_FOR_P12_CERT = "mleCertFromP12"
+
+      DEFAULT_KEY_FILE_PATH = File.join(Dir.pwd, "resources")
   end
