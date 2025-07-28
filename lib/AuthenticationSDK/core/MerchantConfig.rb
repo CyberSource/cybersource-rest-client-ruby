@@ -48,6 +48,8 @@ public
     @pemFileDirectory = cybsPropertyObj['pemFileDirectory']
     @mleKeyAlias = cybsPropertyObj['mleKeyAlias']
     @useMLEGlobally = cybsPropertyObj['useMLEGlobally']
+    @enableRequestMLEForOptionalApisGlobally = !!(cybsPropertyObj['enableRequestMLEForOptionalApisGlobally'] || cybsPropertyObj['useMLEGlobally'])
+    @disableRequestMLEForMandatoryApisGlobally = cybsPropertyObj['disableRequestMLEForMandatoryApisGlobally']
     @mapToControlMLEonAPI = cybsPropertyObj['mapToControlMLEonAPI']
     validateMerchantDetails
     logAllProperties(cybsPropertyObj)
@@ -231,15 +233,29 @@ public
     end
 
     def validateMLEConfiguration
-      if @useMLEGlobally.nil?
-        @useMLEGlobally = false
+
+      if !cybsPropertyObj['useMLEGlobally'].nil? && !cybsPropertyObj['enableRequestMLEForOptionalApisGlobally'].nil?
+        if cybsPropertyObj['useMLEGlobally'] != cybsPropertyObj['enableRequestMLEForOptionalApisGlobally']
+          raise StandardError.new(Constants::ERROR_PREFIX + "useMLEGlobally and enableRequestMLEForOptionalApisGlobally must have the same value if both are set")
+        end
       end
 
-      unless [true, false].include?(@useMLEGlobally)
-        err = StandardError.new(Constants::ERROR_PREFIX + "useMLEGlobally must be a boolean")
+      if @disableRequestMLEForMandatoryApisGlobally.nil?
+        @disableRequestMLEForMandatoryApisGlobally = false
+      end
+
+      unless [true, false].include?(@disableRequestMLEForMandatoryApisGlobally)
+        err = StandardError.new(Constants::ERROR_PREFIX + "disableRequestMLEForMandatoryApisGlobally must be a boolean")
         @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
         raise err
       end
+
+      unless [true, false].include?(@enableRequestMLEForOptionalApisGlobally)
+        err = StandardError.new(Constants::ERROR_PREFIX + "enableRequestMLEForOptionalApisGlobally must be a boolean")
+        @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+        raise err
+      end
+
       unless @mapToControlMLEonAPI.nil?
         unless @mapToControlMLEonAPI.is_a?(Hash) && @mapToControlMLEonAPI.keys.all? {|k| k.is_a?(String)} && @mapToControlMLEonAPI.values.all? { |v| [true, false].include?(v) }
           err = StandardError.new(Constants::ERROR_PREFIX + "mapToControlMLEonAPI must be a map with boolean values")
@@ -257,7 +273,7 @@ public
         @mleKeyAlias = Constants::DEFAULT_ALIAS_FOR_MLE_CERT
       end
 
-      mle_configured = @useMLEGlobally
+      mle_configured = @enableRequestMLEForOptionalApisGlobally
       if !@mapToControlMLEonAPI.nil? && !@mapToControlMLEonAPI.empty?
         @mapToControlMLEonAPI.each do |_, value|
           unless [true, false].include?(value) && value
@@ -328,6 +344,8 @@ public
     attr_accessor :defaultCustomHeaders
     attr_accessor :pemFileDirectory
     attr_accessor :useMLEGlobally
+    attr_accessor :enableRequestMLEForOptionalApisGlobally
+    attr_accessor :disableRequestMLEForMandatoryApisGlobally
     attr_accessor :mapToControlMLEonAPI
     attr_accessor :mleKeyAlias
   end

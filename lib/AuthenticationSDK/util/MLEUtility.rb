@@ -6,11 +6,17 @@ require 'active_support'
 public
   class MLEUtility
     @log_obj = nil
-    def self.check_is_mle_for_API(merchant_config, is_mle_supported_by_cybs_for_api, operation_ids)
+    def self.check_is_mle_for_API(merchant_config, inbound_mle_status, operation_ids)
       is_mle_for_api = false
-      if is_mle_supported_by_cybs_for_api && merchant_config.useMLEGlobally
+
+      if inbound_mle_status&.casecmp('optional') == 0 && merchant_config.enableRequestMLEForOptionalApisGlobally
         is_mle_for_api = true
       end
+    
+      if inbound_mle_status&.casecmp('mandatory') == 0
+        is_mle_for_api = !merchant_config.disableRequestMLEForMandatoryApisGlobally
+      end
+
       if merchant_config.mapToControlMLEonAPI && operation_ids
         operation_ids.each do |operation_id|
           if merchant_config.mapToControlMLEonAPI.key?(operation_id)
