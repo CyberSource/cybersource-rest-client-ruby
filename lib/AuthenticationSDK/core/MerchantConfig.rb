@@ -53,7 +53,7 @@ public
     @mapToControlMLEonAPI = cybsPropertyObj['mapToControlMLEonAPI']
     validateMerchantDetails
     logAllProperties(cybsPropertyObj)
-    validateMLEConfiguration
+    validateMLEConfiguration(cybsPropertyObj)
     end
 
     #fall back logic
@@ -232,10 +232,10 @@ public
       end
     end
 
-    def validateMLEConfiguration
+    def validateMLEConfiguration(cybsPropertyObj)
 
-      if !cybsPropertyObj['useMLEGlobally'].nil? && !cybsPropertyObj['enableRequestMLEForOptionalApisGlobally'].nil?
-        if cybsPropertyObj['useMLEGlobally'] != cybsPropertyObj['enableRequestMLEForOptionalApisGlobally']
+      if !@useMLEGlobally.nil? && !cybsPropertyObj['enableRequestMLEForOptionalApisGlobally'].nil?
+        if @useMLEGlobally != cybsPropertyObj['enableRequestMLEForOptionalApisGlobally']
           raise StandardError.new(Constants::ERROR_PREFIX + "useMLEGlobally and enableRequestMLEForOptionalApisGlobally must have the same value if both are set")
         end
       end
