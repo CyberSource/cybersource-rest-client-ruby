@@ -15,24 +15,40 @@ module CyberSource
   class Ptsv2intentsPaymentInformation
     attr_accessor :payment_type
 
+    attr_accessor :tokenized_payment_method
+
+    # Indicates the industry type. Possible Values: - \"Events\" - \"Ticketing\" - \"Fuel\" - \"GAMING\" - \"DIGITAL GOODS\" - \"TELCO\" - \"Token Service Providers\" - \"Gambling\" - \"CFDs\" - \"car rental\" - \"hotel\" - \"transportation\" - \"travel package\" - \"Cruise Line\" - \"P2P\" - \"Retail\" - \"Food\" - \"Groceries\" - \"Ride Sharing\" - \"Taxi\" - \"Remittance\" - \"Crypto\" - \"Marketplaces\" 
+    attr_accessor :industry_type
+
+    attr_accessor :e_wallet
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'payment_type' => :'paymentType'
+        :'payment_type' => :'paymentType',
+        :'tokenized_payment_method' => :'tokenizedPaymentMethod',
+        :'industry_type' => :'industryType',
+        :'e_wallet' => :'eWallet'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'payment_type' => :'payment_type'
+        :'payment_type' => :'payment_type',
+        :'tokenized_payment_method' => :'tokenized_payment_method',
+        :'industry_type' => :'industry_type',
+        :'e_wallet' => :'e_wallet'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'payment_type' => :'Ptsv2intentsPaymentInformationPaymentType'
+        :'payment_type' => :'Ptsv2intentsPaymentInformationPaymentType',
+        :'tokenized_payment_method' => :'Ptsv2intentsPaymentInformationTokenizedPaymentMethod',
+        :'industry_type' => :'String',
+        :'e_wallet' => :'Ptsv2intentsPaymentInformationEWallet'
       }
     end
 
@@ -46,6 +62,18 @@ module CyberSource
 
       if attributes.has_key?(:'paymentType')
         self.payment_type = attributes[:'paymentType']
+      end
+
+      if attributes.has_key?(:'tokenizedPaymentMethod')
+        self.tokenized_payment_method = attributes[:'tokenizedPaymentMethod']
+      end
+
+      if attributes.has_key?(:'industryType')
+        self.industry_type = attributes[:'industryType']
+      end
+
+      if attributes.has_key?(:'eWallet')
+        self.e_wallet = attributes[:'eWallet']
       end
     end
 
@@ -67,7 +95,10 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          payment_type == o.payment_type
+          payment_type == o.payment_type &&
+          tokenized_payment_method == o.tokenized_payment_method &&
+          industry_type == o.industry_type &&
+          e_wallet == o.e_wallet
     end
 
     # @see the `==` method
@@ -79,7 +110,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [payment_type].hash
+      [payment_type, tokenized_payment_method, industry_type, e_wallet].hash
     end
 
     # Builds the object from hash
