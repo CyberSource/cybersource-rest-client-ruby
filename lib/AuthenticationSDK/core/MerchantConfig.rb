@@ -267,7 +267,7 @@ public
         end
       end
 
-      if mle_configured && !Constants::AUTH_TYPE_JWT.eql?(@authenticationType)
+      if mle_configured && !Constants::AUTH_TYPE_JWT.eql?(@authenticationType.upcase)
         err = StandardError.new(Constants::ERROR_PREFIX + "MLE can only be used with JWT authentication")
         @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
         raise err
