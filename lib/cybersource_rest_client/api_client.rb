@@ -150,7 +150,7 @@ module CyberSource
         :sslkeypasswd => @merchantconfig.sslKeyPassword || "",
         :sslkey => @config.key_file,
         :verbose => @config.debugging,
-        :maxage_conn => 10 # Default to 30 seconds
+        :maxage_conn => @merchantconfig.keepAliveTime || 118 # Default to 118 seconds as same as default of libcurl
       }
       # set custom cert, if provided
       req_opts[:cainfo] = @config.ssl_ca_cert if @config.ssl_ca_cert
