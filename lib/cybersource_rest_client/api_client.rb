@@ -152,7 +152,6 @@ module CyberSource
         :verbose => @config.debugging,
         :maxage_conn => 10 # Default to 30 seconds
       }
-      puts "################################################################################"
       # set custom cert, if provided
       req_opts[:cainfo] = @config.ssl_ca_cert if @config.ssl_ca_cert
 
