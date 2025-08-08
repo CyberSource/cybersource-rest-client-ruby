@@ -1,48 +1,123 @@
 require 'openssl'
 require 'base64'
+require 'active_support'
+require 'thread'
+require_relative 'CacheValue'
+
 public
 # P12 file certificate Cache
   class Cache
-    def fetchCachedCertificate(filePath, p12File, keyPass, keyAlias, cacheObj)
-      certCache = cacheObj.read(keyAlias.to_s.upcase)
-      cachedLastModifiedTimeStamp = cacheObj.read(keyAlias.to_s.upcase + '_LastModifiedTime')
-      if File.exist?(filePath)
-        currentFileLastModifiedTime = File.mtime(filePath)
-        if certCache.to_s.empty? || cachedLastModifiedTimeStamp.to_s.empty?
-          certificateFromP12File = getCertificate(p12File, keyPass, keyAlias, cacheObj, currentFileLastModifiedTime)
-          return certificateFromP12File
-        elsif currentFileLastModifiedTime > cachedLastModifiedTimeStamp
-        # Function call to read the file and put values to new cache
-          certificateFromP12File = getCertificate(p12File, keyPass, keyAlias, cacheObj, currentFileLastModifiedTime)
-          return certificateFromP12File
-        else
-          return certCache
+    @@cache_obj = ActiveSupport::Cache::MemoryStore.new
+    @@mutex = Mutex.new
+
+    def fetchJwtCertsAndKeys(merchantConfig)
+      merchantId = merchantConfig.merchantId
+      filePath = merchantConfig.keysDirectory + '/' + merchantConfig.keyFilename + '.p12'
+      if (!File.exist?(filePath))
+        raise Constants::ERROR_PREFIX + Constants::FILE_NOT_FOUND + File.expand_path(filePath)
+      end
+
+      cacheKey = merchantId.to_s + '_JWT'
+      
+      # Thread-safe cache access with race condition protection
+      @@mutex.synchronize do
+        certCache = @@cache_obj.read(cacheKey)
+        fileModTime = File.mtime(filePath)
+
+        if !certCache || certCache.empty? || certCache.file_modified_time != fileModTime
+          setupCache(cacheKey, filePath, merchantConfig)
+          certCache = @@cache_obj.read(cacheKey)
         end
-      else
-        raise Constants::ERROR_PREFIX + Constants::FILE_NOT_FOUND + filePath
+        
+        return certCache
+      end
+    end    
+    
+    def fetchMLECert(merchantConfig)
+      merchantId = merchantConfig.merchantId
+      filePath = merchantConfig.keysDirectory + '/' + merchantConfig.keyFilename + '.p12'
+      if (!File.exist?(filePath))
+        raise Constants::ERROR_PREFIX + Constants::FILE_NOT_FOUND + File.expand_path(filePath)
+      end
+
+      cacheKey = merchantId.to_s + '_MLE'
+      
+      # Thread-safe cache access with race condition protection
+      @@mutex.synchronize do
+        certCache = @@cache_obj.read(cacheKey)
+        fileModTime = File.mtime(filePath)
+
+        if !certCache || certCache.empty? || certCache.file_modified_time != fileModTime
+          setupCache(cacheKey, filePath, merchantConfig)
+          certCache = @@cache_obj.read(cacheKey)
+        end
+        
+        return certCache
       end
     end
 
-    def getCertificate(p12File, keyPass, keyAlias, cacheObj, currentFileLastModifiedTime)
-      x5CertDer = Utility.new.fetchCert(keyPass, p12File, keyAlias)
-      cacheObj.write(keyAlias.to_s.upcase, x5CertDer)
-      cacheObj.write(keyAlias.to_s.upcase + '_LastModifiedTime', currentFileLastModifiedTime)
-      x5CertDer
+    def setupCache(cacheKey, filePath, merchantConfig)
+      if(cacheKey.end_with?("_JWT"))
+        private_key, certs = getCertsAndKeysFromP12(filePath, merchantConfig)
+        jwt_cert = Utility.getCertBasedOnKeyAlias(certs, merchantConfig.keyAlias)
+        currentFileLastModifiedTime = File.mtime(filePath)
+        
+        # Create CacheValue object with all 3 parameters
+        cache_value = CacheValue.new(private_key, jwt_cert, currentFileLastModifiedTime)
+        
+        # Store the cache value object in cache
+        @@cache_obj.write(cacheKey, cache_value)
+      end
+      if(cacheKey.end_with?("_MLE"))
+        private_key, certs = getCertsAndKeysFromP12(filePath, merchantConfig)
+        mle_cert = Utility.getCertBasedOnKeyAlias(certs, merchantConfig.mleKeyAlias)
+        currentFileLastModifiedTime = File.mtime(filePath)
+        
+        # Create CacheValue object with all 3 parameters
+        cache_value = CacheValue.new(nil, mle_cert, currentFileLastModifiedTime)
+        
+        # Store the cache value object in cache
+        @@cache_obj.write(cacheKey, cache_value)
+      end
+
+    end
+
+    def getCertsAndKeysFromP12(filePath, merchantConfig)
+      p12File = File.binread(filePath)
+      p12Object = OpenSSL::PKCS12.new(p12File, merchantConfig.keyPass)
+      #Generating Private Key
+      private_key = OpenSSL::PKey::RSA.new(p12Object.key)
+      # Generating Public key.
+      # publicKey = OpenSSL::PKey::RSA.new(p12Object.key.public_key)
+
+      # Get all certs from p12
+      x5_cert_primary = p12Object.certificate
+      x5_certs_others = p12Object.ca_certs
+      certs = [x5_cert_primary]
+      certs.concat(x5_certs_others) if x5_certs_others
+      return [private_key, certs]
     end
 
     # <b>DEPRECATED:</b> This method has been marked as Deprecated and will be removed in coming releases.
-    def fetchPEMFileForNetworkTokenization(filePath, cacheObj)
+    def fetchPEMFileForNetworkTokenization(filePath)
       warn("[DEPRECATED] 'fetchPEMFileForNetworkTokenization' method is deprecated and will be removed in coming releases.")
-      pem_file_cache = cacheObj.read('privateKeyFromPEMFile')
-      cached_pem_file_last_updated_time = cacheObj.read('cachedLastModifiedTimeOfPEMFile')
-      if File.exist?(filePath)
-        current_last_modified_time_of_PEM_file = File.mtime(filePath)
-        if pem_file_cache.nil? || pem_file_cache.to_s.empty? || current_last_modified_time_of_PEM_file > cached_pem_file_last_updated_time
-          private_key = JOSE::JWK.from_pem_file filePath
-          cacheObj.write('privateKeyFromPEMFile', private_key)
-          cacheObj.write('cachedLastModifiedTimeOfPEMFile', current_last_modified_time_of_PEM_file)
+      
+      # Thread-safe cache access for deprecated method
+      @@mutex.synchronize do
+        pem_file_cache = @@cache_obj.read('privateKeyFromPEMFile')
+        cached_pem_file_last_updated_time = @@cache_obj.read('cachedLastModifiedTimeOfPEMFile')
+        
+        if File.exist?(filePath)
+          current_last_modified_time_of_PEM_file = File.mtime(filePath)
+          if pem_file_cache.nil? || pem_file_cache.to_s.empty? || current_last_modified_time_of_PEM_file > cached_pem_file_last_updated_time
+            private_key = JOSE::JWK.from_pem_file filePath
+            @@cache_obj.write('privateKeyFromPEMFile', private_key)
+            @@cache_obj.write('cachedLastModifiedTimeOfPEMFile', current_last_modified_time_of_PEM_file)
+          end
         end
+        
+        return @@cache_obj.read('privateKeyFromPEMFile')
       end
-      return cacheObj.read('privateKeyFromPEMFile')
     end
+    
   end

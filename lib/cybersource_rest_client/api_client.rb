@@ -15,6 +15,7 @@ require 'logger'
 require 'tempfile'
 require 'typhoeus'
 require 'addressable/uri'
+require_relative 'ethon_extensions'
 
 module CyberSource
   class ApiClient
@@ -148,7 +149,8 @@ module CyberSource
         :sslcert => @config.cert_file,
         :sslkeypasswd => @merchantconfig.sslKeyPassword || "",
         :sslkey => @config.key_file,
-        :verbose => @config.debugging
+        :verbose => @config.debugging,
+        :maxage_conn => @merchantconfig.keepAliveTime || 118 # Default to 118 seconds as same as default of libcurl
       }
 
       # set custom cert, if provided
