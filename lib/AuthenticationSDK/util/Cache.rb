@@ -3,110 +3,141 @@ require 'base64'
 require 'active_support'
 require 'thread'
 require_relative 'CacheValue'
+require_relative 'CertificateUtility'
+require_relative '../util/Constants.rb'
+require_relative '../logging/log_factory.rb'
+require_relative '../logging/log_configuration.rb'
 
 public
 # P12 file certificate Cache
   class Cache
     @@cache_obj = ActiveSupport::Cache::MemoryStore.new
     @@mutex = Mutex.new
+    @@logger
 
-    def fetchJwtCertsAndKeys(merchantConfig)
+    def fetchCachedP12Certificate(merchantConfig)
       merchantId = merchantConfig.merchantId
-      filePath = merchantConfig.keysDirectory + '/' + merchantConfig.keyFilename + '.p12'
-      if (!File.exist?(filePath))
-        raise Constants::ERROR_PREFIX + Constants::FILE_NOT_FOUND + File.expand_path(filePath)
-      end
+      certificateFilePath = merchantConfig.p12KeyFilePath
 
-      cacheKey = merchantId.to_s + '_JWT'
-      
-      # Thread-safe cache access with race condition protection
+      cacheKey = merchantConfig.keyFilename + "_JWT"
+
       @@mutex.synchronize do
-        certCache = @@cache_obj.read(cacheKey)
-        fileModTime = File.mtime(filePath)
+        cachedCertificateInfo = @@cache_obj.read(cacheKey)
+        fileModifiedTime = File.mtime(certificateFilePath)
 
-        if !certCache || certCache.empty? || certCache.file_modified_time != fileModTime
-          setupCache(cacheKey, filePath, merchantConfig)
-          certCache = @@cache_obj.read(cacheKey)
+        if !cachedCertificateInfo || cachedCertificateInfo.empty? || fileModifiedTime != cachedCertificateInfo.file_modified_time
+          setupCache(cacheKey, certificateFilePath, merchantConfig)
+          cachedCertificateInfo = @@cache_obj.read(cacheKey)
         end
-        
-        return certCache
-      end
-    end    
-    
-    def fetchMLECert(merchantConfig)
-      merchantId = merchantConfig.merchantId
-      filePath = merchantConfig.keysDirectory + '/' + merchantConfig.keyFilename + '.p12'
-      if (!File.exist?(filePath))
-        raise Constants::ERROR_PREFIX + Constants::FILE_NOT_FOUND + File.expand_path(filePath)
-      end
 
-      cacheKey = merchantId.to_s + '_MLE'
-      
-      # Thread-safe cache access with race condition protection
-      @@mutex.synchronize do
-        certCache = @@cache_obj.read(cacheKey)
-        fileModTime = File.mtime(filePath)
-
-        if !certCache || certCache.empty? || certCache.file_modified_time != fileModTime
-          setupCache(cacheKey, filePath, merchantConfig)
-          certCache = @@cache_obj.read(cacheKey)
-        end
-        
-        return certCache
+        return cachedCertificateInfo
       end
     end
 
-    def setupCache(cacheKey, filePath, merchantConfig)
-      if(cacheKey.end_with?("_JWT"))
-        private_key, certs = getCertsAndKeysFromP12(filePath, merchantConfig)
-        jwt_cert = Utility.getCertBasedOnKeyAlias(certs, merchantConfig.keyAlias)
-        currentFileLastModifiedTime = File.mtime(filePath)
-        
-        # Create CacheValue object with all 3 parameters
-        cache_value = CacheValue.new(private_key, jwt_cert, currentFileLastModifiedTime)
-        
-        # Store the cache value object in cache
-        @@cache_obj.write(cacheKey, cache_value)
+    def setupCache(cacheKey, certificateFilePath, merchantConfig)
+      if !Cache.class_variable_defined?(:@@logger) || @@logger.nil?
+        @@logger = Log.new merchantConfig.log_config, "Cache"
       end
-      if(cacheKey.end_with?("_MLE"))
-        private_key, certs = getCertsAndKeysFromP12(filePath, merchantConfig)
-        mle_cert = Utility.getCertBasedOnKeyAlias(certs, merchantConfig.mleKeyAlias)
-        currentFileLastModifiedTime = File.mtime(filePath)
-        
-        # Create CacheValue object with all 3 parameters
-        cache_value = CacheValue.new(nil, mle_cert, currentFileLastModifiedTime)
-        
-        # Store the cache value object in cache
-        @@cache_obj.write(cacheKey, cache_value)
+      logger = @@logger.logger
+      fileModifiedTime = File.mtime(certificateFilePath)
+
+      if (cacheKey.end_with?("_JWT"))
+        privateKey, certificateList = CertificateUtility.getCertificateCollectionAndPrivateKeyFromP12(certificateFilePath, merchantConfig)
+        jwtCertificate = CertificateUtility.getCertificateBasedOnKeyAlias(certificateList, merchantConfig.keyAlias)
+
+        cacheValue = CacheValue.new(privateKey, jwtCertificate, fileModifiedTime)
+
+        @@cache_obj.write(cacheKey, cacheValue)
+        return
       end
 
+      if (cacheKey.end_with?(Constants::MLE_CACHE_IDENTIFIER_FOR_CONFIG_CERT))
+        certificateList = CertificateUtility.getCertificatesFromPemFile(certificateFilePath)
+        mleCertificate = CertificateUtility.getCertificateBasedOnKeyAlias(certificateList, merchantConfig.mleKeyAlias)
+        if (!mleCertificate)
+          fileName = File.basename(certificateFilePath)
+          logger.warn("No certificate found for the specified mle_key_alias '#{merchantConfig.mleKeyAlias}'. Using the first certificate from file #{fileName} as the MLE request certificate.")
+          mleCertificate = certificateList[0]
+        end
+
+        cacheValue = CacheValue.new(nil, mleCertificate, fileModifiedTime)
+
+        @@cache_obj.write(cacheKey, cacheValue)
+        return
+      end
+
+      if (cacheKey.end_with?(Constants::MLE_CACHE_IDENTIFIER_FOR_P12_CERT))
+        privateKey, certificateList = CertificateUtility.getCertificateCollectionAndPrivateKeyFromP12(certificateFilePath, merchantConfig)
+        mleCertificate = CertificateUtility.getCertificateBasedOnKeyAlias(certificateList, merchantConfig.mleKeyAlias)
+        if (!mleCertificate)
+          fileName = File.basename(certificateFilePath)
+          logger.error("No certificate found for the specified mle_key_alias '#{merchantConfig.mleKeyAlias}' in file #{fileName}.")
+          raise ArgumentError, "No certificate found for the specified mle_key_alias '#{merchantConfig.mleKeyAlias}' in file #{fileName}."
+        end
+
+        cacheValue = CacheValue.new(privateKey, mleCertificate, fileModifiedTime)
+
+        @@cache_obj.write(cacheKey, cacheValue)
+        return
+      end
     end
 
-    def getCertsAndKeysFromP12(filePath, merchantConfig)
-      p12File = File.binread(filePath)
-      p12Object = OpenSSL::PKCS12.new(p12File, merchantConfig.keyPass)
-      #Generating Private Key
-      private_key = OpenSSL::PKey::RSA.new(p12Object.key)
-      # Generating Public key.
-      # publicKey = OpenSSL::PKey::RSA.new(p12Object.key.public_key)
+    def getRequestMLECertificateFromCache(merchantConfig)
+      if !Cache.class_variable_defined?(:@@logger) || @@logger.nil?
+        @@logger = Log.new merchantConfig.log_config, "Cache"
+      end
 
-      # Get all certs from p12
-      x5_cert_primary = p12Object.certificate
-      x5_certs_others = p12Object.ca_certs
-      certs = [x5_cert_primary]
-      certs.concat(x5_certs_others) if x5_certs_others
-      return [private_key, certs]
+      logger = @@logger.logger
+      merchantId = merchantConfig.merchantId
+      certificate_identifier = nil
+      certificate_file_path = nil
+
+      # Priority #1: Get cert from merchantConfig.mleForRequestPublicCertPath if certPath is provided
+      if merchantConfig.mleForRequestPublicCertPath && !merchantConfig.mleForRequestPublicCertPath.strip.empty?
+        certificate_identifier = Constants::MLE_CACHE_IDENTIFIER_FOR_CONFIG_CERT
+        certificate_file_path = merchantConfig.mleForRequestPublicCertPath
+      # Priority #2: If mleForRequestPublicCertPath not provided, get mlecert from p12 if provided and jwt auth type
+      elsif Constants::AUTH_TYPE_JWT.downcase == merchantConfig.authenticationType.downcase && merchantConfig.p12KeyFilePath
+        certificate_identifier = Constants::MLE_CACHE_IDENTIFIER_FOR_P12_CERT
+        certificate_file_path = merchantConfig.p12KeyFilePath
+      # Priority #3: Get mlecert from default cert in SDK as per CAS or PROD env.
+      else
+        logger.debug("The certificate to use for MLE for requests is not provided in the merchant configuration. Please ensure that the certificate path is provided.")
+        return nil
+      end
+
+      cache_key = "#{merchantId}_#{certificate_identifier}"
+      mle_certificate = getMLECertificateBasedOnCacheKey(merchantConfig, cache_key, certificate_file_path)
+
+      CertificateUtility.validateCertificateExpiry(mle_certificate, merchantConfig.keyAlias, certificate_identifier, merchantConfig.log_config)
+
+      mle_certificate
+    end
+
+    def getMLECertificateBasedOnCacheKey(merchantConfig, cacheKey, certificateFilePath)
+      cachedCertificateInfo = nil
+      @@mutex.synchronize do
+        cachedCertificateInfo = @@cache_obj.read(cacheKey)
+        fileTimestamp = File.mtime(certificateFilePath)
+
+        if cachedCertificateInfo.nil? || cachedCertificateInfo.file_modified_time != fileTimestamp
+          setupCache(cacheKey, certificateFilePath, merchantConfig)
+          cachedCertificateInfo = @@cache_obj.read(cacheKey)
+        end
+      end
+
+      cachedCertificateInfo ? cachedCertificateInfo.cert : nil
     end
 
     # <b>DEPRECATED:</b> This method has been marked as Deprecated and will be removed in coming releases.
     def fetchPEMFileForNetworkTokenization(filePath)
       warn("[DEPRECATED] 'fetchPEMFileForNetworkTokenization' method is deprecated and will be removed in coming releases.")
-      
+
       # Thread-safe cache access for deprecated method
       @@mutex.synchronize do
         pem_file_cache = @@cache_obj.read('privateKeyFromPEMFile')
         cached_pem_file_last_updated_time = @@cache_obj.read('cachedLastModifiedTimeOfPEMFile')
-        
+
         if File.exist?(filePath)
           current_last_modified_time_of_PEM_file = File.mtime(filePath)
           if pem_file_cache.nil? || pem_file_cache.to_s.empty? || current_last_modified_time_of_PEM_file > cached_pem_file_last_updated_time
@@ -115,9 +146,8 @@ public
             @@cache_obj.write('cachedLastModifiedTimeOfPEMFile', current_last_modified_time_of_PEM_file)
           end
         end
-        
+
         return @@cache_obj.read('privateKeyFromPEMFile')
       end
     end
-    
   end
