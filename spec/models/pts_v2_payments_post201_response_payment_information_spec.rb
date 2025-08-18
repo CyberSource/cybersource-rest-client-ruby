@@ -43,6 +43,12 @@ describe 'PtsV2PaymentsPost201ResponsePaymentInformation' do
     end
   end
 
+  describe 'test attribute "tokenized_payment_method"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "account_features"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

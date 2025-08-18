@@ -31,7 +31,7 @@ module CyberSource
     # This field contains the type of card platform. Possible values:   - `BUSINESS`   - `CONSUMER`   - `CORPORATE`   - `COMMERCIAL`   - `GOVERNMENT` 
     attr_accessor :card_platform
 
-    # This field indicates the type of combo card. Possible values:   - 0 (Not a combo card)   - 1 (Credit and Prepaid Combo card)   - 2 (Credit and Debit Combo card) 
+    # This field indicates the type of combo card. Possible values:   - 0 (Not a combo card)   - 1 (Credit and Prepaid Combo card)   - 2 (Credit and Debit Combo card)   - 3 (Prepaid Credit and Prepaid Debit combo card) 
     attr_accessor :combo_card
 
     # This field indicates if the instrument can be used for corporate purchasing. This field is only applicable for American Express cards. Possible values:   - `true`   - `false` 

@@ -40,6 +40,12 @@ module CyberSource
     # Shipping method for the product. Possible values: - lowcost: Lowest-cost service - sameday: Courier or same-day service - oneday: Next-day or overnight service - twoday: Two-day service - threeday: Three-day service - pickup: Store pick-up - other: Other shipping method - none: No shipping method because product is a service or subscription Required for American Express SafeKey (U.S.). 
     attr_accessor :method
 
+    # Customer's email address, including the full domain name. 
+    attr_accessor :email
+
+    # Phone number associated with the shipping address. 
+    attr_accessor :phone_number
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -51,7 +57,9 @@ module CyberSource
         :'administrative_area' => :'administrativeArea',
         :'postal_code' => :'postalCode',
         :'country' => :'country',
-        :'method' => :'method'
+        :'method' => :'method',
+        :'email' => :'email',
+        :'phone_number' => :'phoneNumber'
       }
     end
 
@@ -66,7 +74,9 @@ module CyberSource
         :'administrative_area' => :'administrative_area',
         :'postal_code' => :'postal_code',
         :'country' => :'country',
-        :'method' => :'method'
+        :'method' => :'method',
+        :'email' => :'email',
+        :'phone_number' => :'phone_number'
       }
     end
 
@@ -81,7 +91,9 @@ module CyberSource
         :'administrative_area' => :'String',
         :'postal_code' => :'String',
         :'country' => :'String',
-        :'method' => :'String'
+        :'method' => :'String',
+        :'email' => :'String',
+        :'phone_number' => :'String'
       }
     end
 
@@ -127,6 +139,14 @@ module CyberSource
 
       if attributes.has_key?(:'method')
         self.method = attributes[:'method']
+      end
+
+      if attributes.has_key?(:'email')
+        self.email = attributes[:'email']
+      end
+
+      if attributes.has_key?(:'phoneNumber')
+        self.phone_number = attributes[:'phoneNumber']
       end
     end
 
@@ -210,7 +230,9 @@ module CyberSource
           administrative_area == o.administrative_area &&
           postal_code == o.postal_code &&
           country == o.country &&
-          method == o.method
+          method == o.method &&
+          email == o.email &&
+          phone_number == o.phone_number
     end
 
     # @see the `==` method
@@ -222,7 +244,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [first_name, last_name, address1, address2, locality, administrative_area, postal_code, country, method].hash
+      [first_name, last_name, address1, address2, locality, administrative_area, postal_code, country, method, email, phone_number].hash
     end
 
     # Builds the object from hash

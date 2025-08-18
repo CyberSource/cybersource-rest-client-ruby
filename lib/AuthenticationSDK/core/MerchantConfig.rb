@@ -44,6 +44,8 @@ public
     @log_config = LogConfiguration.new(cybsPropertyObj['logConfiguration'])
     # Custom Default Headers
     @defaultCustomHeaders = cybsPropertyObj['defaultCustomHeaders']
+    # Keep Alive Time for Connection Pooling
+    @keepAliveTime = cybsPropertyObj['keepAliveTime'] || 118 # Default to 118 seconds as same as default of libcurl
     # Path to client JWE pem file directory
     @pemFileDirectory = cybsPropertyObj['pemFileDirectory']
     @mleKeyAlias = cybsPropertyObj['mleKeyAlias']
@@ -58,6 +60,11 @@ public
 
     #fall back logic
     def validateMerchantDetails()
+      if !@keepAliveTime.is_a?(Integer)
+        err = StandardError.new(Constants::ERROR_PREFIX + "keepAliveTime must be an integer and in seconds")
+        raise err
+      end
+      
       logmessage = ''
       @log_config.validate(logmessage)
       @log_obj = Log.new @log_config, "MerchantConfig"
@@ -283,14 +290,15 @@ public
         end
       end
 
-      if mle_configured && !Constants::AUTH_TYPE_JWT.eql?(@authenticationType)
+      if mle_configured && !Constants::AUTH_TYPE_JWT.eql?(@authenticationType.upcase)
         err = StandardError.new(Constants::ERROR_PREFIX + "MLE can only be used with JWT authentication")
         @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
         raise err
       end
     end
 
-    def logAllProperties(propertyObj)
+    def logAllProperties(merchantPropertyObj)
+      propertyObj = Marshal.load(Marshal.dump(merchantPropertyObj))      
       merchantConfig = ''
       hiddenProperties = (Constants::HIDDEN_MERCHANT_PROPERTIES).split(',')
       hiddenPropArray = Array.new
@@ -321,6 +329,7 @@ public
     attr_accessor :keyFilename
     attr_accessor :useMetaKey
     attr_accessor :portfolioID
+    attr_accessor :keepAliveTime
     attr_accessor :enableClientCert
     attr_accessor :clientCertDirectory
     attr_accessor :sslClientCert

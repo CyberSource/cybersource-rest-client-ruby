@@ -51,7 +51,7 @@ module CyberSource
         :'client_reference_information' => :'Ptsv2intentsClientReferenceInformation',
         :'order_information' => :'Ptsv2intentsidOrderInformation',
         :'merchant_information' => :'Ptsv2intentsidMerchantInformation',
-        :'payment_information' => :'Ptsv2intentsPaymentInformation',
+        :'payment_information' => :'Ptsv2intentsidPaymentInformation',
         :'processing_information' => :'Ptsv2intentsidProcessingInformation'
       }
     end

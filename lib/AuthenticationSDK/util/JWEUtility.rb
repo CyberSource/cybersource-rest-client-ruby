@@ -8,8 +8,7 @@ class AuthJWEUtility
   # <b>DEPRECATED:</b> This method has been marked as Deprecated and will be removed in coming releases. Use <tt>decrypt_jwe_using_private_key()</tt> instead.
   def self.decrypt_jwe_using_pem(merchant_config, encoded_response)
     warn("[DEPRECATED] `decrypt_jwe_using_pem()` method is deprecated and will be removed in coming releases. Use `decrypt_jwe_using_private_key()` instead.")
-    cache_obj = ActiveSupport::Cache::MemoryStore.new
-    key = Cache.new.fetchPEMFileForNetworkTokenization(merchant_config.pemFileDirectory, cache_obj)
+    key = Cache.new.fetchPEMFileForNetworkTokenization(merchant_config.pemFileDirectory)
     return JOSE::JWE.block_decrypt(key, encoded_response).first
   end
 

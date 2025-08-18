@@ -93,6 +93,9 @@ module CyberSource
     # Per-item tax amount of the product. Note The amount value must be a non-negative number containing 2 decimal places and limited to 7 digits before the decimal point. 
     attr_accessor :unit_tax_amount
 
+    # This field would contain measurement of a line item. 
+    attr_accessor :measurement
+
     # Brief description of item.
     attr_accessor :product_description
 
@@ -141,6 +144,7 @@ module CyberSource
         :'reference_data_code' => :'referenceDataCode',
         :'reference_data_number' => :'referenceDataNumber',
         :'unit_tax_amount' => :'unitTaxAmount',
+        :'measurement' => :'measurement',
         :'product_description' => :'productDescription',
         :'gift_card_currency' => :'giftCardCurrency',
         :'shipping_destination_types' => :'shippingDestinationTypes',
@@ -181,6 +185,7 @@ module CyberSource
         :'reference_data_code' => :'reference_data_code',
         :'reference_data_number' => :'reference_data_number',
         :'unit_tax_amount' => :'unit_tax_amount',
+        :'measurement' => :'measurement',
         :'product_description' => :'product_description',
         :'gift_card_currency' => :'gift_card_currency',
         :'shipping_destination_types' => :'shipping_destination_types',
@@ -221,6 +226,7 @@ module CyberSource
         :'reference_data_code' => :'String',
         :'reference_data_number' => :'String',
         :'unit_tax_amount' => :'String',
+        :'measurement' => :'String',
         :'product_description' => :'String',
         :'gift_card_currency' => :'Integer',
         :'shipping_destination_types' => :'String',
@@ -347,6 +353,10 @@ module CyberSource
 
       if attributes.has_key?(:'unitTaxAmount')
         self.unit_tax_amount = attributes[:'unitTaxAmount']
+      end
+
+      if attributes.has_key?(:'measurement')
+        self.measurement = attributes[:'measurement']
       end
 
       if attributes.has_key?(:'productDescription')
@@ -534,6 +544,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] measurement Value to be assigned
+    def measurement=(measurement)
+      @measurement = measurement
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] shipping_destination_types Value to be assigned
     def shipping_destination_types=(shipping_destination_types)
       @shipping_destination_types = shipping_destination_types
@@ -571,6 +587,7 @@ module CyberSource
           reference_data_code == o.reference_data_code &&
           reference_data_number == o.reference_data_number &&
           unit_tax_amount == o.unit_tax_amount &&
+          measurement == o.measurement &&
           product_description == o.product_description &&
           gift_card_currency == o.gift_card_currency &&
           shipping_destination_types == o.shipping_destination_types &&
@@ -589,7 +606,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [product_code, product_name, product_sku, quantity, unit_price, unit_of_measure, total_amount, tax_amount, tax_rate, tax_applied_after_discount, tax_status_indicator, tax_type_code, amount_includes_tax, type_of_supply, commodity_code, discount_amount, discount_applied, discount_rate, invoice_number, tax_details, fulfillment_type, weight, weight_identifier, weight_unit, reference_data_code, reference_data_number, unit_tax_amount, product_description, gift_card_currency, shipping_destination_types, gift, passenger, allowed_export_countries, restricted_export_countries].hash
+      [product_code, product_name, product_sku, quantity, unit_price, unit_of_measure, total_amount, tax_amount, tax_rate, tax_applied_after_discount, tax_status_indicator, tax_type_code, amount_includes_tax, type_of_supply, commodity_code, discount_amount, discount_applied, discount_rate, invoice_number, tax_details, fulfillment_type, weight, weight_identifier, weight_unit, reference_data_code, reference_data_number, unit_tax_amount, measurement, product_description, gift_card_currency, shipping_destination_types, gift, passenger, allowed_export_countries, restricted_export_countries].hash
     end
 
     # Builds the object from hash
