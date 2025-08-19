@@ -2,58 +2,69 @@ require_relative '../util/Constants.rb'
 require_relative '../util/ExceptionHandler.rb'
 require_relative '../logging/log_factory.rb'
 require_relative '../logging/log_configuration.rb'
+require_relative '../util/CertificateUtility.rb'
 
 public
 # This fuction has all the merchantConfig properties getters and setters methods
   class Merchantconfig
     def initialize(cybsPropertyObj)
-    # Common Parameters
-    @merchantId = cybsPropertyObj['merchantID']
-    @runEnvironment = cybsPropertyObj['runEnvironment']
-    @intermediateHost = cybsPropertyObj['intermediateHost']
-    @defaultDeveloperId = cybsPropertyObj['defaultDeveloperId']
-    @authenticationType = cybsPropertyObj['authenticationType']
-    @proxyAddress = cybsPropertyObj['proxyAddress']
-    @proxyPort = cybsPropertyObj['proxyPort']
-    @getId = ''
-    @requestHost = ''
-    @requestTarget = ''
-    @requestJsonData = ''
-    # HTTP Parameters
-    @merchantSecretKey = cybsPropertyObj['merchantsecretKey']
-    @merchantKeyId = cybsPropertyObj['merchantKeyId']
-    # JWT Parameters
-    @keysDirectory = cybsPropertyObj['keysDirectory']
-    @keyAlias = cybsPropertyObj['keyAlias']
-    @keyPass = cybsPropertyObj['keyPass']
-    @keyFilename = cybsPropertyObj['keyFilename']
-    @useMetaKey = cybsPropertyObj['useMetaKey']
-    @portfolioID = cybsPropertyObj['portfolioID']
-    @solutionId = cybsPropertyObj['solutionId']
-    # MutualAuth & OAuth Parameters
-    @enableClientCert = cybsPropertyObj['enableClientCert']
-    @clientCertDirectory = cybsPropertyObj['clientCertDirectory']
-    @sslClientCert = cybsPropertyObj['sslClientCert']
-    @privateKey = cybsPropertyObj['privateKey']
-    @sslKeyPassword = cybsPropertyObj['sslKeyPassword']
-    @clientId = cybsPropertyObj['clientId']
-    @clientSecret = cybsPropertyObj['clientSecret']
-    @accessToken = cybsPropertyObj['accessToken']
-    @refreshToken = cybsPropertyObj['refreshToken']
-    # LogConfiguration
-    @log_config = LogConfiguration.new(cybsPropertyObj['logConfiguration'])
-    # Custom Default Headers
-    @defaultCustomHeaders = cybsPropertyObj['defaultCustomHeaders']
-    # Keep Alive Time for Connection Pooling
-    @keepAliveTime = cybsPropertyObj['keepAliveTime'] || 118 # Default to 118 seconds as same as default of libcurl
-    # Path to client JWE pem file directory
-    @pemFileDirectory = cybsPropertyObj['pemFileDirectory']
-    @mleKeyAlias = cybsPropertyObj['mleKeyAlias']
-    @useMLEGlobally = cybsPropertyObj['useMLEGlobally']
-    @mapToControlMLEonAPI = cybsPropertyObj['mapToControlMLEonAPI']
-    validateMerchantDetails
-    logAllProperties(cybsPropertyObj)
-    validateMLEConfiguration
+      # Common Parameters
+      @merchantId = cybsPropertyObj['merchantID']
+      @runEnvironment = cybsPropertyObj['runEnvironment']
+      @intermediateHost = cybsPropertyObj['intermediateHost']
+      @defaultDeveloperId = cybsPropertyObj['defaultDeveloperId']
+      @authenticationType = cybsPropertyObj['authenticationType']
+      @proxyAddress = cybsPropertyObj['proxyAddress']
+      @proxyPort = cybsPropertyObj['proxyPort']
+      @getId = ''
+      @requestHost = ''
+      @requestTarget = ''
+      @requestJsonData = ''
+      # HTTP Parameters
+      @merchantSecretKey = cybsPropertyObj['merchantsecretKey']
+      @merchantKeyId = cybsPropertyObj['merchantKeyId']
+      # JWT Parameters
+      @keysDirectory = cybsPropertyObj['keysDirectory']
+      @keyAlias = cybsPropertyObj['keyAlias']
+      @keyPass = cybsPropertyObj['keyPass']
+      @keyFilename = cybsPropertyObj['keyFilename']
+      @useMetaKey = cybsPropertyObj['useMetaKey']
+      @portfolioID = cybsPropertyObj['portfolioID']
+      @solutionId = cybsPropertyObj['solutionId']
+      @p12KeyFilePath = nil
+      # MutualAuth & OAuth Parameters
+      @enableClientCert = cybsPropertyObj['enableClientCert']
+      @clientCertDirectory = cybsPropertyObj['clientCertDirectory']
+      @sslClientCert = cybsPropertyObj['sslClientCert']
+      @privateKey = cybsPropertyObj['privateKey']
+      @sslKeyPassword = cybsPropertyObj['sslKeyPassword']
+      @clientId = cybsPropertyObj['clientId']
+      @clientSecret = cybsPropertyObj['clientSecret']
+      @accessToken = cybsPropertyObj['accessToken']
+      @refreshToken = cybsPropertyObj['refreshToken']
+      # LogConfiguration
+      @log_config = LogConfiguration.new(cybsPropertyObj['logConfiguration'])
+      # Custom Default Headers
+      @defaultCustomHeaders = cybsPropertyObj['defaultCustomHeaders']
+      # Keep Alive Time for Connection Pooling
+      @keepAliveTime = cybsPropertyObj['keepAliveTime'] || 118 # Default to 118 seconds as same as default of libcurl
+      # Path to client JWE pem file directory
+      @pemFileDirectory = cybsPropertyObj['pemFileDirectory']
+      @mleKeyAlias = cybsPropertyObj['mleKeyAlias']
+      @useMLEGlobally = cybsPropertyObj['useMLEGlobally']
+      @enableRequestMLEForOptionalApisGlobally = !!(cybsPropertyObj['enableRequestMLEForOptionalApisGlobally'] || cybsPropertyObj['useMLEGlobally'])
+      @disableRequestMLEForMandatoryApisGlobally = cybsPropertyObj['disableRequestMLEForMandatoryApisGlobally']
+
+      
+      if !cybsPropertyObj['mleForRequestPublicCertPath'].nil? && !cybsPropertyObj['mleForRequestPublicCertPath'].to_s.strip.empty?
+          @mleForRequestPublicCertPath = cybsPropertyObj['mleForRequestPublicCertPath'].to_s.strip
+      end
+
+      @mapToControlMLEonAPI = cybsPropertyObj['mapToControlMLEonAPI']
+      validateMerchantDetails
+      validateMLEConfiguration(cybsPropertyObj)
+      @p12KeyFilePath = File.join(@keysDirectory, @keyFilename + ".p12")
+      logAllProperties(cybsPropertyObj)
     end
 
     #fall back logic
@@ -164,6 +175,9 @@ public
         elsif !@keyFilename.instance_of? String
           @keyFilename=@keyFilename.to_s
         end
+        if !check_key_file
+          @log_obj.logger.error(ExceptionHandler.new.new_custom_error "Error finding or accessing the Key Directory or Key File. Please review the values in the merchant configuration.")
+        end
       end
       if @authenticationType.upcase == Constants::AUTH_TYPE_MUTUAL_AUTH
         if @clientId.to_s.empty?
@@ -237,16 +251,30 @@ public
       end
     end
 
-    def validateMLEConfiguration
-      if @useMLEGlobally.nil?
-        @useMLEGlobally = false
+    def validateMLEConfiguration(cybsPropertyObj)
+
+      if !@useMLEGlobally.nil? && !cybsPropertyObj['enableRequestMLEForOptionalApisGlobally'].nil?
+        if @useMLEGlobally != cybsPropertyObj['enableRequestMLEForOptionalApisGlobally']
+          raise StandardError.new(Constants::ERROR_PREFIX + "useMLEGlobally and enableRequestMLEForOptionalApisGlobally must have the same value if both are set")
+        end
       end
 
-      unless [true, false].include?(@useMLEGlobally)
-        err = StandardError.new(Constants::ERROR_PREFIX + "useMLEGlobally must be a boolean")
+      if @disableRequestMLEForMandatoryApisGlobally.nil?
+        @disableRequestMLEForMandatoryApisGlobally = false
+      end
+
+      unless [true, false].include?(@disableRequestMLEForMandatoryApisGlobally)
+        err = StandardError.new(Constants::ERROR_PREFIX + "disableRequestMLEForMandatoryApisGlobally must be a boolean")
         @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
         raise err
       end
+
+      unless [true, false].include?(@enableRequestMLEForOptionalApisGlobally)
+        err = StandardError.new(Constants::ERROR_PREFIX + "enableRequestMLEForOptionalApisGlobally must be a boolean")
+        @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+        raise err
+      end
+
       unless @mapToControlMLEonAPI.nil?
         unless @mapToControlMLEonAPI.is_a?(Hash) && @mapToControlMLEonAPI.keys.all? {|k| k.is_a?(String)} && @mapToControlMLEonAPI.values.all? { |v| [true, false].include?(v) }
           err = StandardError.new(Constants::ERROR_PREFIX + "mapToControlMLEonAPI must be a map with boolean values")
@@ -264,21 +292,39 @@ public
         @mleKeyAlias = Constants::DEFAULT_ALIAS_FOR_MLE_CERT
       end
 
-      mle_configured = @useMLEGlobally
-      if !@mapToControlMLEonAPI.nil? && !@mapToControlMLEonAPI.empty?
-        @mapToControlMLEonAPI.each do |_, value|
-          unless [true, false].include?(value) && value
-            mle_configured = true
-            break
-          end
+      if @mleForRequestPublicCertPath && !@mleForRequestPublicCertPath.to_s.strip.empty?
+        begin
+          CertificateUtility.validatePathAndFile(@mleForRequestPublicCertPath, "mleForRequestPublicCertPath", @log_config)
+        rescue => err
+          @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+          raise err
         end
       end
 
-      if mle_configured && !Constants::AUTH_TYPE_JWT.eql?(@authenticationType.upcase)
-        err = StandardError.new(Constants::ERROR_PREFIX + "MLE can only be used with JWT authentication")
-        @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
-        raise err
-      end
+      # # verify the input path for mle Cert should be correct else throw error in both case mle=true/false
+      # if @mleForRequestPublicCertPath && !@mleForRequestPublicCertPath.to_s.strip.empty?
+      #   unless File.exist?(@mleForRequestPublicCertPath) && File.readable?(@mleForRequestPublicCertPath)
+      #     err = StandardError.new(Constants::ERROR_PREFIX + "Invalid mleForRequestPublicCertPath: file does not exist or is not readable")
+      #     @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+      #     raise err
+      #   end
+      # end
+
+      # mle_configured = @enableRequestMLEForOptionalApisGlobally
+      # if !@mapToControlMLEonAPI.nil? && !@mapToControlMLEonAPI.empty?
+      #   @mapToControlMLEonAPI.each do |_, value|
+      #     unless [true, false].include?(value) && value
+      #       mle_configured = true
+      #       break
+      #     end
+      #   end
+      # end
+
+      # if mle_configured && !Constants::AUTH_TYPE_JWT.eql?(@authenticationType.upcase)
+      #   err = StandardError.new(Constants::ERROR_PREFIX + "MLE can only be used with JWT authentication")
+      #   @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+      #   raise err
+      # end
     end
 
     def logAllProperties(merchantPropertyObj)
@@ -297,6 +343,35 @@ public
         end
       end
       @log_obj.logger.info('Merchant Configuration :\n' + propertyObj.to_s)
+    end
+
+    def check_key_file
+      # Directory exists?
+      unless Dir.exist?(@keysDirectory)
+        @log_obj.logger.error("Keys Directory not found. Entered directory : #{@keysDirectory}")
+        return false
+      end
+
+      key_file_pathname = File.join(@keysDirectory, @keyFilename + ".p12")
+
+      # File exists?
+      unless File.exist?(key_file_pathname)
+        @log_obj.logger.error("Key File not found. Check path/filename entered. Entered path/filename : #{key_file_pathname}")
+        return false
+      end
+
+      @log_obj.logger.info("Entered value for Key File Path : #{key_file_pathname}")
+
+      # Can file be opened for reading?
+      begin
+        File.open(key_file_pathname, 'rb') do |f|
+          # Just open and close
+        end
+        return true
+      rescue => e
+        @log_obj.logger.info("File cannot be accessed. Permission denied : #{key_file_pathname}")
+        return false
+      end
     end
 
     # getter and setter methods
@@ -337,6 +412,10 @@ public
     attr_accessor :defaultCustomHeaders
     attr_accessor :pemFileDirectory
     attr_accessor :useMLEGlobally
+    attr_accessor :enableRequestMLEForOptionalApisGlobally
+    attr_accessor :disableRequestMLEForMandatoryApisGlobally
+    attr_accessor :mleForRequestPublicCertPath
     attr_accessor :mapToControlMLEonAPI
     attr_accessor :mleKeyAlias
+    attr_accessor :p12KeyFilePath
   end
