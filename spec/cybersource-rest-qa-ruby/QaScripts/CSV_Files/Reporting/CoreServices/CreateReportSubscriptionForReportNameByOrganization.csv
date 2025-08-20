@@ -1,0 +1,3 @@
+testCaseId,reportDefName,repName,repFrequency,message
+CRSFRNO_01,TransactionRequestClass,QA_test_reporting_org,WEEKLY,Success
+CRSFRNO_02,TransactionRes,subscriptionAutomation2,DAILY,Fails due to invalid reportDefinitionName
