@@ -301,30 +301,21 @@ public
         end
       end
 
-      # # verify the input path for mle Cert should be correct else throw error in both case mle=true/false
-      # if @mleForRequestPublicCertPath && !@mleForRequestPublicCertPath.to_s.strip.empty?
-      #   unless File.exist?(@mleForRequestPublicCertPath) && File.readable?(@mleForRequestPublicCertPath)
-      #     err = StandardError.new(Constants::ERROR_PREFIX + "Invalid mleForRequestPublicCertPath: file does not exist or is not readable")
-      #     @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
-      #     raise err
-      #   end
-      # end
+      request_mle_configured = @enableRequestMLEForOptionalApisGlobally
+      if !@mapToControlMLEonAPI.nil? && !@mapToControlMLEonAPI.empty?
+        @mapToControlMLEonAPI.each do |_, value|
+          unless [true, false].include?(value) && value
+            request_mle_configured = true
+            break
+          end
+        end
+      end
 
-      # mle_configured = @enableRequestMLEForOptionalApisGlobally
-      # if !@mapToControlMLEonAPI.nil? && !@mapToControlMLEonAPI.empty?
-      #   @mapToControlMLEonAPI.each do |_, value|
-      #     unless [true, false].include?(value) && value
-      #       mle_configured = true
-      #       break
-      #     end
-      #   end
-      # end
-
-      # if mle_configured && !Constants::AUTH_TYPE_JWT.eql?(@authenticationType.upcase)
-      #   err = StandardError.new(Constants::ERROR_PREFIX + "MLE can only be used with JWT authentication")
-      #   @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
-      #   raise err
-      # end
+      if request_mle_configured && !Constants::AUTH_TYPE_JWT.eql?(@authenticationType.upcase)
+        err = StandardError.new(Constants::ERROR_PREFIX + "Request MLE can only be used with JWT authentication")
+        @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+        raise err
+      end
     end
 
     def logAllProperties(merchantPropertyObj)
