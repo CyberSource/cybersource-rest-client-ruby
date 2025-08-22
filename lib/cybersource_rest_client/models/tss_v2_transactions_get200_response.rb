@@ -33,6 +33,8 @@ module CyberSource
 
     attr_accessor :application_information
 
+    attr_accessor :bank_account_validation
+
     attr_accessor :buyer_information
 
     attr_accessor :client_reference_information
@@ -90,6 +92,7 @@ module CyberSource
         :'submit_time_utc' => :'submitTimeUTC',
         :'status' => :'status',
         :'application_information' => :'applicationInformation',
+        :'bank_account_validation' => :'bankAccountValidation',
         :'buyer_information' => :'buyerInformation',
         :'client_reference_information' => :'clientReferenceInformation',
         :'consumer_authentication_information' => :'consumerAuthenticationInformation',
@@ -126,6 +129,7 @@ module CyberSource
         :'submit_time_utc' => :'submit_time_utc',
         :'status' => :'status',
         :'application_information' => :'application_information',
+        :'bank_account_validation' => :'bank_account_validation',
         :'buyer_information' => :'buyer_information',
         :'client_reference_information' => :'client_reference_information',
         :'consumer_authentication_information' => :'consumer_authentication_information',
@@ -162,6 +166,7 @@ module CyberSource
         :'submit_time_utc' => :'String',
         :'status' => :'String',
         :'application_information' => :'TssV2TransactionsGet200ResponseApplicationInformation',
+        :'bank_account_validation' => :'TssV2TransactionsGet200ResponseBankAccountValidation',
         :'buyer_information' => :'TssV2TransactionsGet200ResponseBuyerInformation',
         :'client_reference_information' => :'TssV2TransactionsGet200ResponseClientReferenceInformation',
         :'consumer_authentication_information' => :'TssV2TransactionsGet200ResponseConsumerAuthenticationInformation',
@@ -222,6 +227,10 @@ module CyberSource
 
       if attributes.has_key?(:'applicationInformation')
         self.application_information = attributes[:'applicationInformation']
+      end
+
+      if attributes.has_key?(:'bankAccountValidation')
+        self.bank_account_validation = attributes[:'bankAccountValidation']
       end
 
       if attributes.has_key?(:'buyerInformation')
@@ -362,6 +371,7 @@ module CyberSource
           submit_time_utc == o.submit_time_utc &&
           status == o.status &&
           application_information == o.application_information &&
+          bank_account_validation == o.bank_account_validation &&
           buyer_information == o.buyer_information &&
           client_reference_information == o.client_reference_information &&
           consumer_authentication_information == o.consumer_authentication_information &&
@@ -396,7 +406,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, root_id, reconciliation_id, merchant_id, submit_time_utc, status, application_information, buyer_information, client_reference_information, consumer_authentication_information, device_information, error_information, installment_information, fraud_marking_information, health_care_information, merchant_defined_information, merchant_information, order_information, payment_information, payment_insights_information, payout_options, unscheduled_payment_information, processing_information, processor_information, recurring_payment_information, point_of_sale_information, risk_information, sender_information, token_information, _links].hash
+      [id, root_id, reconciliation_id, merchant_id, submit_time_utc, status, application_information, bank_account_validation, buyer_information, client_reference_information, consumer_authentication_information, device_information, error_information, installment_information, fraud_marking_information, health_care_information, merchant_defined_information, merchant_information, order_information, payment_information, payment_insights_information, payout_options, unscheduled_payment_information, processing_information, processor_information, recurring_payment_information, point_of_sale_information, risk_information, sender_information, token_information, _links].hash
     end
 
     # Builds the object from hash

@@ -13,7 +13,7 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsidcapturesPaymentInformationPaymentTypeMethod
-    # A Payment Type is enabled through a Method. Examples: Visa, Master Card, ApplePay, iDeal, 7Eleven, alfamart, etc  For Japan Payment Processing Valid Values: - 1 Banking Data - 2 Authorization Data  #### Via KCP - `KCP` : Local Card, Bank Transfer and Carrier Billing. - `PAYCO` - `KAKAOPAY` - `NAVERPAY` 
+    # A Payment Type is enabled through a Method. Examples: Visa, Master Card, ApplePay, iDeal, 7Eleven, alfamart, bofaPayByBank, payToPayByBank, etc  For Japan Payment Processing Valid Values: - 1 Banking Data - 2 Authorization Data  #### Via KCP - `KCP` : Local Card, Bank Transfer and Carrier Billing. - `PAYCO` - `KAKAOPAY` - `NAVERPAY` 
     attr_accessor :name
 
     # Attribute mapping from ruby-style variable name to JSON key.

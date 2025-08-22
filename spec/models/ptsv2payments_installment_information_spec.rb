@@ -127,4 +127,16 @@ describe 'Ptsv2paymentsInstallmentInformation' do
     end
   end
 
+  describe 'test attribute "interest_indicator"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "is_government_plan"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

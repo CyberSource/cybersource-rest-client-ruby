@@ -207,7 +207,7 @@ No authorization required
 
 
 # **notification_subscriptions_v2_webhooks_webhook_id_patch**
-> notification_subscriptions_v2_webhooks_webhook_id_patch(webhook_id, opts)
+> InlineResponse2005 notification_subscriptions_v2_webhooks_webhook_id_patch(webhook_id, opts)
 
 Update a Webhook Subscription
 
@@ -228,7 +228,8 @@ opts = {
 
 begin
   #Update a Webhook Subscription
-  api_instance.notification_subscriptions_v2_webhooks_webhook_id_patch(webhook_id, opts)
+  result = api_instance.notification_subscriptions_v2_webhooks_webhook_id_patch(webhook_id, opts)
+  p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling ManageWebhooksApi->notification_subscriptions_v2_webhooks_webhook_id_patch: #{e}"
 end
@@ -243,7 +244,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-nil (empty response body)
+[**InlineResponse2005**](InlineResponse2005.md)
 
 ### Authorization
 

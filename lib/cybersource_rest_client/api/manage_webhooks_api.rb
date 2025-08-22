@@ -331,7 +331,7 @@ module CyberSource
     # @param webhook_id The Webhook Identifier.
     # @param [Hash] opts the optional parameters
     # @option opts [UpdateWebhook] :update_webhook The webhook payload or changes to apply.
-    # @return [nil]
+    # @return [InlineResponse2005]
     #
     def notification_subscriptions_v2_webhooks_webhook_id_patch(webhook_id, opts = {})
       data, status_code, headers = notification_subscriptions_v2_webhooks_webhook_id_patch_with_http_info(webhook_id, opts)
@@ -343,7 +343,7 @@ module CyberSource
     # @param webhook_id The Webhook Identifier.
     # @param [Hash] opts the optional parameters
     # @option opts [UpdateWebhook] :update_webhook The webhook payload or changes to apply.
-    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
+    # @return [Array<(InlineResponse2005, Fixnum, Hash)>] InlineResponse2005 data, response status code and response headers
     def notification_subscriptions_v2_webhooks_webhook_id_patch_with_http_info(webhook_id, opts = {})
 
       if @api_client.config.debugging
@@ -388,7 +388,8 @@ module CyberSource
         :query_params => query_params,
         :form_params => form_params,
         :body => post_body,
-        :auth_names => auth_names)
+        :auth_names => auth_names,
+        :return_type => 'InlineResponse2005')
       if @api_client.config.debugging
         begin
         raise

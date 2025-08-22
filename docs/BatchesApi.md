@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **get_batch_report**
-> InlineResponse20010 get_batch_report(batch_id)
+> InlineResponse20011 get_batch_report(batch_id)
 
 Retrieve a Batch Report
 
@@ -44,7 +44,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20010**](InlineResponse20010.md)
+[**InlineResponse20011**](InlineResponse20011.md)
 
 ### Authorization
 
@@ -58,7 +58,7 @@ No authorization required
 
 
 # **get_batch_status**
-> InlineResponse2009 get_batch_status(batch_id)
+> InlineResponse20010 get_batch_status(batch_id)
 
 Retrieve a Batch Status
 
@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2009**](InlineResponse2009.md)
+[**InlineResponse20010**](InlineResponse20010.md)
 
 ### Authorization
 
@@ -105,7 +105,7 @@ No authorization required
 
 
 # **get_batches_list**
-> InlineResponse2008 get_batches_list(opts)
+> InlineResponse2009 get_batches_list(opts)
 
 List Batches
 
@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2008**](InlineResponse2008.md)
+[**InlineResponse2009**](InlineResponse2009.md)
 
 ### Authorization
 

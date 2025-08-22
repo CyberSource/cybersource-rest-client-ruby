@@ -76,7 +76,7 @@ module CyberSource
       post_body = @api_client.object_to_http_body(modify_billing_agreement)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'ModifyBillingAgreement', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      inbound_mle_status = "false"      
+      inbound_mle_status = "optional"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["billing_agreements_de_registration","billing_agreements_de_registration_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
@@ -155,7 +155,7 @@ module CyberSource
       post_body = @api_client.object_to_http_body(intimate_billing_agreement)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'IntimateBillingAgreement', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      inbound_mle_status = "false"      
+      inbound_mle_status = "optional"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["billing_agreements_intimation","billing_agreements_intimation_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
@@ -228,7 +228,7 @@ module CyberSource
       post_body = @api_client.object_to_http_body(create_billing_agreement)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CreateBillingAgreement', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      inbound_mle_status = "false"      
+      inbound_mle_status = "optional"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["billing_agreements_registration","billing_agreements_registration_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end

@@ -70,7 +70,7 @@ module CyberSource
       post_body = @api_client.object_to_http_body(create_credit_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CreateCreditRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      inbound_mle_status = "false"      
+      inbound_mle_status = "optional"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["create_credit","create_credit_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
