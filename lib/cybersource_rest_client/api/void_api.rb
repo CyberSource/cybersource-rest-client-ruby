@@ -70,8 +70,8 @@ module CyberSource
       post_body = @api_client.object_to_http_body(mit_void_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'MitVoidRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      is_mle_supported_by_cybs_for_api = true
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["mit_void","mit_void_with_http_info"])
+      inbound_mle_status = "optional"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["mit_void","mit_void_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
@@ -149,8 +149,8 @@ module CyberSource
       post_body = @api_client.object_to_http_body(void_capture_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'VoidCaptureRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      is_mle_supported_by_cybs_for_api = true
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["void_capture","void_capture_with_http_info"])
+      inbound_mle_status = "optional"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["void_capture","void_capture_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
@@ -228,8 +228,8 @@ module CyberSource
       post_body = @api_client.object_to_http_body(void_credit_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'VoidCreditRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      is_mle_supported_by_cybs_for_api = true
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["void_credit","void_credit_with_http_info"])
+      inbound_mle_status = "optional"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["void_credit","void_credit_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
@@ -307,8 +307,8 @@ module CyberSource
       post_body = @api_client.object_to_http_body(void_payment_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'VoidPaymentRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      is_mle_supported_by_cybs_for_api = true
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["void_payment","void_payment_with_http_info"])
+      inbound_mle_status = "optional"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["void_payment","void_payment_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
@@ -386,8 +386,8 @@ module CyberSource
       post_body = @api_client.object_to_http_body(void_refund_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'VoidRefundRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      is_mle_supported_by_cybs_for_api = true
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["void_refund","void_refund_with_http_info"])
+      inbound_mle_status = "optional"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["void_refund","void_refund_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []

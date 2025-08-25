@@ -70,8 +70,8 @@ module CyberSource
       post_body = @api_client.object_to_http_body(de_association_request_body)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'DeAssociationRequestBody', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      is_mle_supported_by_cybs_for_api = false
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["delete_terminal_association","delete_terminal_association_with_http_info"])
+      inbound_mle_status = "false"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["delete_terminal_association","delete_terminal_association_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
@@ -96,7 +96,7 @@ module CyberSource
     #
     # @param device_de_associate_v3_request deviceId that has to be de-associated to the destination organizationId.
     # @param [Hash] opts the optional parameters
-    # @return [Array<InlineResponse2006>]
+    # @return [Array<InlineResponse2007>]
     #
     def post_de_associate_v3_terminal(device_de_associate_v3_request, opts = {})
       data, status_code, headers = post_de_associate_v3_terminal_with_http_info(device_de_associate_v3_request, opts)
@@ -107,7 +107,7 @@ module CyberSource
     # A device will be de-associated from its current organization and moved up in the hierarchy. The device&#39;s new position will be determined by a specified destination, either an account or a portfolio. If no destination is provided, the device will default to the currently logged-in user. 
     # @param device_de_associate_v3_request deviceId that has to be de-associated to the destination organizationId.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Array<InlineResponse2006>, Fixnum, Hash)>] Array<InlineResponse2006> data, response status code and response headers
+    # @return [Array<(Array<InlineResponse2007>, Fixnum, Hash)>] Array<InlineResponse2007> data, response status code and response headers
     def post_de_associate_v3_terminal_with_http_info(device_de_associate_v3_request, opts = {})
 
       if @api_client.config.debugging
@@ -142,8 +142,8 @@ module CyberSource
       post_body = @api_client.object_to_http_body(device_de_associate_v3_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'Array&lt;DeviceDeAssociateV3Request&gt;', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      is_mle_supported_by_cybs_for_api = false
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["post_de_associate_v3_terminal","post_de_associate_v3_terminal_with_http_info"])
+      inbound_mle_status = "false"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["post_de_associate_v3_terminal","post_de_associate_v3_terminal_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
@@ -153,7 +153,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Array<InlineResponse2006>')
+        :return_type => 'Array<InlineResponse2007>')
       if @api_client.config.debugging
         begin
         raise

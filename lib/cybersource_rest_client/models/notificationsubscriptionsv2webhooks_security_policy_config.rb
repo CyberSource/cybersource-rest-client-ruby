@@ -14,39 +14,38 @@ require 'date'
 module CyberSource
   # Optional configuration object for if your API or server requires oAuth for an incoming webhook.
   class Notificationsubscriptionsv2webhooksSecurityPolicyConfig
-    # Token expiration for the oAuth server.
-    attr_accessor :o_auth_token_expiry
-
     # Client direct endpoint to the oAuth server.
     attr_accessor :o_auth_url
 
-    # Token type for the oAuth config.
+    # Token type for the oAuth config.  Possible values: - Bearer
     attr_accessor :o_auth_token_type
+
+    attr_accessor :additional_config
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'o_auth_token_expiry' => :'oAuthTokenExpiry',
         :'o_auth_url' => :'oAuthURL',
-        :'o_auth_token_type' => :'oAuthTokenType'
+        :'o_auth_token_type' => :'oAuthTokenType',
+        :'additional_config' => :'additionalConfig'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'o_auth_token_expiry' => :'o_auth_token_expiry',
         :'o_auth_url' => :'o_auth_url',
-        :'o_auth_token_type' => :'o_auth_token_type'
+        :'o_auth_token_type' => :'o_auth_token_type',
+        :'additional_config' => :'additional_config'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'o_auth_token_expiry' => :'String',
         :'o_auth_url' => :'String',
-        :'o_auth_token_type' => :'String'
+        :'o_auth_token_type' => :'String',
+        :'additional_config' => :'Notificationsubscriptionsv2webhooksSecurityPolicyConfigAdditionalConfig'
       }
     end
 
@@ -58,16 +57,16 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'oAuthTokenExpiry')
-        self.o_auth_token_expiry = attributes[:'oAuthTokenExpiry']
-      end
-
       if attributes.has_key?(:'oAuthURL')
         self.o_auth_url = attributes[:'oAuthURL']
       end
 
       if attributes.has_key?(:'oAuthTokenType')
         self.o_auth_token_type = attributes[:'oAuthTokenType']
+      end
+
+      if attributes.has_key?(:'additionalConfig')
+        self.additional_config = attributes[:'additionalConfig']
       end
     end
 
@@ -89,9 +88,9 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          o_auth_token_expiry == o.o_auth_token_expiry &&
           o_auth_url == o.o_auth_url &&
-          o_auth_token_type == o.o_auth_token_type
+          o_auth_token_type == o.o_auth_token_type &&
+          additional_config == o.additional_config
     end
 
     # @see the `==` method
@@ -103,7 +102,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [o_auth_token_expiry, o_auth_url, o_auth_token_type].hash
+      [o_auth_url, o_auth_token_type, additional_config].hash
     end
 
     # Builds the object from hash

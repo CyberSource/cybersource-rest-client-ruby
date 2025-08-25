@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**get_all_invoices**](InvoicesApi.md#get_all_invoices) | **GET** /invoicing/v2/invoices | Get a List of Invoices
 [**get_invoice**](InvoicesApi.md#get_invoice) | **GET** /invoicing/v2/invoices/{id} | Get Invoice Details
 [**perform_cancel_action**](InvoicesApi.md#perform_cancel_action) | **POST** /invoicing/v2/invoices/{id}/cancelation | Cancel an Invoice
+[**perform_publish_action**](InvoicesApi.md#perform_publish_action) | **POST** /invoicing/v2/invoices/{id}/publication | Publish an Invoice
 [**perform_send_action**](InvoicesApi.md#perform_send_action) | **POST** /invoicing/v2/invoices/{id}/delivery | Send an Invoice
 [**update_invoice**](InvoicesApi.md#update_invoice) | **PUT** /invoicing/v2/invoices/{id} | Update an Invoice
 
@@ -195,6 +196,53 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**InvoicingV2InvoicesCancel200Response**](InvoicingV2InvoicesCancel200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/json, application/hal+json, application/json;charset=utf-8, application/hal+json;charset=utf-8
+
+
+
+# **perform_publish_action**
+> InvoicingV2InvoicesPublish200Response perform_publish_action(id)
+
+Publish an Invoice
+
+You can publish an invoice in DRAFT status. After invoking this method, the invoice status is changed to CREATED.
+
+### Example
+```ruby
+# load the gem
+require 'cybersource_rest_client'
+
+api_instance = CyberSource::InvoicesApi.new
+
+id = 'id_example' # String | The invoice number.
+
+
+begin
+  #Publish an Invoice
+  result = api_instance.perform_publish_action(id)
+  p result
+rescue CyberSource::ApiError => e
+  puts "Exception when calling InvoicesApi->perform_publish_action: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| The invoice number. | 
+
+### Return type
+
+[**InvoicingV2InvoicesPublish200Response**](InvoicingV2InvoicesPublish200Response.md)
 
 ### Authorization
 

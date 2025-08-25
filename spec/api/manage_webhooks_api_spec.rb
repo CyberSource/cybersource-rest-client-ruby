@@ -87,7 +87,7 @@ describe 'ManageWebhooksApi' do
   # @param webhook_id The Webhook Identifier.
   # @param [Hash] opts the optional parameters
   # @option opts [UpdateWebhook] :update_webhook The webhook payload or changes to apply.
-  # @return [nil]
+  # @return [InlineResponse2005]
   describe 'notification_subscriptions_v2_webhooks_webhook_id_patch test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

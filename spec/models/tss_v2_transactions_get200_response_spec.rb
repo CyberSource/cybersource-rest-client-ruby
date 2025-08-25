@@ -73,6 +73,12 @@ describe 'TssV2TransactionsGet200Response' do
     end
   end
 
+  describe 'test attribute "bank_account_validation"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "buyer_information"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

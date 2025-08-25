@@ -61,6 +61,12 @@ module CyberSource
     # Annual interest rate.  This field is returned only for two kinds of installment payments on Visa Platform Connect: - Crediario with Visa in Brazil: this field is included in the authorization response for the Crediario eligibility request when the issuer approves the customer's request for Crediario installment payments. - Mastercard in all countries except Brazil, Croatia, Georgia, and Greece.   Example: A value of 1.0 specifies 1%.  Example: A value of 4.0 specifies 4%.  #### Brazil The value for this field corresponds to the following data in the TC 33 capture file: - Record: CP01 TCR9 - Position: 151-157 - Field: Annual Interest Rate   #### Other Countries The value for this field corresponds to the following data in the TC 33 capture file: - Record: CP01 TCR5 - Position: 58-62 SCMP API Fields| 216 - Field: Mastercard Annual Percentage Rate 
     attr_accessor :annual_interest_rate
 
+    # Indicates if the installment plan has interest.  Possible values: -Y - with interest -N - without interest -NULL - Do not send the field if no information available 
+    attr_accessor :interest_indicator
+
+    # Indicates if an installment plan is a government sponsored or part of a government program.  Possible values:  -true -false  This field defaults to false when no value is provided. 
+    attr_accessor :is_government_plan
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -79,7 +85,9 @@ module CyberSource
         :'first_installment_amount' => :'firstInstallmentAmount',
         :'validation_indicator' => :'validationIndicator',
         :'identifier' => :'identifier',
-        :'annual_interest_rate' => :'annualInterestRate'
+        :'annual_interest_rate' => :'annualInterestRate',
+        :'interest_indicator' => :'interestIndicator',
+        :'is_government_plan' => :'isGovernmentPlan'
       }
     end
 
@@ -101,7 +109,9 @@ module CyberSource
         :'first_installment_amount' => :'first_installment_amount',
         :'validation_indicator' => :'validation_indicator',
         :'identifier' => :'identifier',
-        :'annual_interest_rate' => :'annual_interest_rate'
+        :'annual_interest_rate' => :'annual_interest_rate',
+        :'interest_indicator' => :'interest_indicator',
+        :'is_government_plan' => :'is_government_plan'
       }
     end
 
@@ -123,7 +133,9 @@ module CyberSource
         :'first_installment_amount' => :'String',
         :'validation_indicator' => :'String',
         :'identifier' => :'String',
-        :'annual_interest_rate' => :'String'
+        :'annual_interest_rate' => :'String',
+        :'interest_indicator' => :'String',
+        :'is_government_plan' => :'BOOLEAN'
       }
     end
 
@@ -197,6 +209,14 @@ module CyberSource
 
       if attributes.has_key?(:'annualInterestRate')
         self.annual_interest_rate = attributes[:'annualInterestRate']
+      end
+
+      if attributes.has_key?(:'interestIndicator')
+        self.interest_indicator = attributes[:'interestIndicator']
+      end
+
+      if attributes.has_key?(:'isGovernmentPlan')
+        self.is_government_plan = attributes[:'isGovernmentPlan']
       end
     end
 
@@ -291,6 +311,12 @@ module CyberSource
       @annual_interest_rate = annual_interest_rate
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] interest_indicator Value to be assigned
+    def interest_indicator=(interest_indicator)
+      @interest_indicator = interest_indicator
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -311,7 +337,9 @@ module CyberSource
           first_installment_amount == o.first_installment_amount &&
           validation_indicator == o.validation_indicator &&
           identifier == o.identifier &&
-          annual_interest_rate == o.annual_interest_rate
+          annual_interest_rate == o.annual_interest_rate &&
+          interest_indicator == o.interest_indicator &&
+          is_government_plan == o.is_government_plan
     end
 
     # @see the `==` method
@@ -323,7 +351,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [amount, frequency, plan_type, sequence, total_amount, total_count, first_installment_date, invoice_data, payment_type, eligibility_inquiry, grace_period_duration, grace_period_duration_type, first_installment_amount, validation_indicator, identifier, annual_interest_rate].hash
+      [amount, frequency, plan_type, sequence, total_amount, total_count, first_installment_date, invoice_data, payment_type, eligibility_inquiry, grace_period_duration, grace_period_duration_type, first_installment_amount, validation_indicator, identifier, annual_interest_rate, interest_indicator, is_government_plan].hash
     end
 
     # Builds the object from hash

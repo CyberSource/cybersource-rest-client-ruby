@@ -81,6 +81,18 @@ describe 'InvoicesApi' do
     end
   end
 
+  # unit tests for perform_publish_action
+  # Publish an Invoice
+  # You can publish an invoice in DRAFT status. After invoking this method, the invoice status is changed to CREATED.
+  # @param id The invoice number.
+  # @param [Hash] opts the optional parameters
+  # @return [InvoicingV2InvoicesPublish200Response]
+  describe 'perform_publish_action test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for perform_send_action
   # Send an Invoice
   # You can send an invoice in draft or created state or resend a sent or partially paid invoice. Fully paid or canceled invoices cannot be resent.

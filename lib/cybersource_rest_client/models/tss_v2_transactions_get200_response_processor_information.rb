@@ -56,6 +56,8 @@ module CyberSource
     # Payment Account Reference (PAR) is a non-financial reference assigned to each unique payment account and used to link a payment account to associated network tokens, i.e. the same PAR is returned for PAN-based and tokenized transactions, such as from digital wallets. PAR can be returned in authorisation responses for requests initiated with both real PANs and tokenized PANs. PAR can be used by merchants for fraud detection and regulatory compliance across different channels and digital wallets. PAR allows all participants in the payments chain to have a single, non-sensitive value assigned to a consumer. This value can be used in place of sensitive card holder identification fields, and transmitted across the payments ecosystem to facilitate card holder identification.  **Note** On CyberSource through VisaNet, the value for this field corresponds to the following data in the TC 33 capture file: - Record: CP01 TCR8 - Position: 79-110 - Field: Payment Account Reference  The TC 33 Capture file contains information about the purchases and refunds that a merchant submits to CyberSource. CyberSource through VisaNet creates the TC 33 Capture file at the end of the day and sends it to the merchant's acquirer, who uses this information to facilitate end-of-day clearing processing with payment networks. 
     attr_accessor :payment_account_reference_number
 
+    attr_accessor :routing
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -74,7 +76,8 @@ module CyberSource
         :'event_status' => :'eventStatus',
         :'system_trace_audit_number' => :'systemTraceAuditNumber',
         :'response_code_source' => :'responseCodeSource',
-        :'payment_account_reference_number' => :'paymentAccountReferenceNumber'
+        :'payment_account_reference_number' => :'paymentAccountReferenceNumber',
+        :'routing' => :'routing'
       }
     end
 
@@ -96,7 +99,8 @@ module CyberSource
         :'event_status' => :'event_status',
         :'system_trace_audit_number' => :'system_trace_audit_number',
         :'response_code_source' => :'response_code_source',
-        :'payment_account_reference_number' => :'payment_account_reference_number'
+        :'payment_account_reference_number' => :'payment_account_reference_number',
+        :'routing' => :'routing'
       }
     end
 
@@ -118,7 +122,8 @@ module CyberSource
         :'event_status' => :'String',
         :'system_trace_audit_number' => :'String',
         :'response_code_source' => :'String',
-        :'payment_account_reference_number' => :'String'
+        :'payment_account_reference_number' => :'String',
+        :'routing' => :'PtsV2PaymentsPost201ResponseProcessorInformationRouting'
       }
     end
 
@@ -194,6 +199,10 @@ module CyberSource
 
       if attributes.has_key?(:'paymentAccountReferenceNumber')
         self.payment_account_reference_number = attributes[:'paymentAccountReferenceNumber']
+      end
+
+      if attributes.has_key?(:'routing')
+        self.routing = attributes[:'routing']
       end
     end
 
@@ -272,7 +281,8 @@ module CyberSource
           event_status == o.event_status &&
           system_trace_audit_number == o.system_trace_audit_number &&
           response_code_source == o.response_code_source &&
-          payment_account_reference_number == o.payment_account_reference_number
+          payment_account_reference_number == o.payment_account_reference_number &&
+          routing == o.routing
     end
 
     # @see the `==` method
@@ -284,7 +294,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [processor, multi_processor_routing, transaction_id, network_transaction_id, retrieval_reference_number, response_id, approval_code, response_code, avs, card_verification, ach_verification, electronic_verification_results, event_status, system_trace_audit_number, response_code_source, payment_account_reference_number].hash
+      [processor, multi_processor_routing, transaction_id, network_transaction_id, retrieval_reference_number, response_id, approval_code, response_code, avs, card_verification, ach_verification, electronic_verification_results, event_status, system_trace_audit_number, response_code_source, payment_account_reference_number, routing].hash
     end
 
     # Builds the object from hash

@@ -14,7 +14,7 @@ require 'date'
 module CyberSource
   # The security option to authenticate with your API or client server.
   class Notificationsubscriptionsv2webhooksSecurityPolicy
-    # Security Policy of the client server.
+    # Security Policy of the client server.  Possible values: - key - oAuth - oAuth_JWT
     attr_accessor :security_type
 
     attr_accessor :config

@@ -24,7 +24,7 @@ module CyberSource
     #
     # @param post_device_search_request 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2005]
+    # @return [InlineResponse2006]
     #
     def post_search_query(post_device_search_request, opts = {})
       data, status_code, headers = post_search_query_with_http_info(post_device_search_request, opts)
@@ -35,7 +35,7 @@ module CyberSource
     # Retrieves list of terminals in paginated format.
     # @param post_device_search_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2005, Fixnum, Hash)>] InlineResponse2005 data, response status code and response headers
+    # @return [Array<(InlineResponse2006, Fixnum, Hash)>] InlineResponse2006 data, response status code and response headers
     def post_search_query_with_http_info(post_device_search_request, opts = {})
 
       if @api_client.config.debugging
@@ -70,8 +70,8 @@ module CyberSource
       post_body = @api_client.object_to_http_body(post_device_search_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PostDeviceSearchRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      is_mle_supported_by_cybs_for_api = false
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["post_search_query","post_search_query_with_http_info"])
+      inbound_mle_status = "false"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["post_search_query","post_search_query_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
@@ -81,7 +81,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2005')
+        :return_type => 'InlineResponse2006')
       if @api_client.config.debugging
         begin
         raise
@@ -97,7 +97,7 @@ module CyberSource
     #
     # @param post_device_search_request_v3 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2007]
+    # @return [InlineResponse2008]
     #
     def post_search_query_v3(post_device_search_request_v3, opts = {})
       data, status_code, headers = post_search_query_v3_with_http_info(post_device_search_request_v3, opts)
@@ -108,7 +108,7 @@ module CyberSource
     # Search for devices matching a given search query.  The search query supports serialNumber, readerId, terminalId, status, statusChangeReason or organizationId  Matching results are paginated. 
     # @param post_device_search_request_v3 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2007, Fixnum, Hash)>] InlineResponse2007 data, response status code and response headers
+    # @return [Array<(InlineResponse2008, Fixnum, Hash)>] InlineResponse2008 data, response status code and response headers
     def post_search_query_v3_with_http_info(post_device_search_request_v3, opts = {})
 
       if @api_client.config.debugging
@@ -143,8 +143,8 @@ module CyberSource
       post_body = @api_client.object_to_http_body(post_device_search_request_v3)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PostDeviceSearchRequestV3', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      is_mle_supported_by_cybs_for_api = false
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["post_search_query_v3","post_search_query_v3_with_http_info"])
+      inbound_mle_status = "false"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["post_search_query_v3","post_search_query_v3_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
@@ -154,7 +154,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2007')
+        :return_type => 'InlineResponse2008')
       if @api_client.config.debugging
         begin
         raise

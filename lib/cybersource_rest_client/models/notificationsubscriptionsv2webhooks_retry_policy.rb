@@ -90,6 +90,8 @@ module CyberSource
 
       if attributes.has_key?(:'algorithm')
         self.algorithm = attributes[:'algorithm']
+      else
+        self.algorithm = 'ARITHMETIC'
       end
 
       if attributes.has_key?(:'firstRetry')

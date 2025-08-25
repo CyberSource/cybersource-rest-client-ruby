@@ -42,6 +42,9 @@ module CyberSource
 
     attr_accessor :japan_payment_options
 
+    # Enter 1 for routing and account number validation. 
+    attr_accessor :validation_level
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -55,7 +58,8 @@ module CyberSource
         :'bank_transfer_options' => :'bankTransferOptions',
         :'capture_options' => :'captureOptions',
         :'reconciliation_id' => :'reconciliationId',
-        :'japan_payment_options' => :'japanPaymentOptions'
+        :'japan_payment_options' => :'japanPaymentOptions',
+        :'validation_level' => :'validationLevel'
       }
     end
 
@@ -72,7 +76,8 @@ module CyberSource
         :'bank_transfer_options' => :'bank_transfer_options',
         :'capture_options' => :'capture_options',
         :'reconciliation_id' => :'reconciliation_id',
-        :'japan_payment_options' => :'japan_payment_options'
+        :'japan_payment_options' => :'japan_payment_options',
+        :'validation_level' => :'validation_level'
       }
     end
 
@@ -89,7 +94,8 @@ module CyberSource
         :'bank_transfer_options' => :'TssV2TransactionsGet200ResponseProcessingInformationBankTransferOptions',
         :'capture_options' => :'TssV2TransactionsGet200ResponseProcessingInformationCaptureOptions',
         :'reconciliation_id' => :'String',
-        :'japan_payment_options' => :'TssV2TransactionsGet200ResponseProcessingInformationJapanPaymentOptions'
+        :'japan_payment_options' => :'TssV2TransactionsGet200ResponseProcessingInformationJapanPaymentOptions',
+        :'validation_level' => :'Integer'
       }
     end
 
@@ -143,6 +149,10 @@ module CyberSource
 
       if attributes.has_key?(:'japanPaymentOptions')
         self.japan_payment_options = attributes[:'japanPaymentOptions']
+      end
+
+      if attributes.has_key?(:'validationLevel')
+        self.validation_level = attributes[:'validationLevel']
       end
     end
 
@@ -204,7 +214,8 @@ module CyberSource
           bank_transfer_options == o.bank_transfer_options &&
           capture_options == o.capture_options &&
           reconciliation_id == o.reconciliation_id &&
-          japan_payment_options == o.japan_payment_options
+          japan_payment_options == o.japan_payment_options &&
+          validation_level == o.validation_level
     end
 
     # @see the `==` method
@@ -216,7 +227,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [bin_source, industry_data_type, payment_solution, commerce_indicator, commerce_indicator_label, business_application_id, authorization_options, bank_transfer_options, capture_options, reconciliation_id, japan_payment_options].hash
+      [bin_source, industry_data_type, payment_solution, commerce_indicator, commerce_indicator_label, business_application_id, authorization_options, bank_transfer_options, capture_options, reconciliation_id, japan_payment_options, validation_level].hash
     end
 
     # Builds the object from hash
