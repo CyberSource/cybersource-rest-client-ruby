@@ -28,10 +28,13 @@ module CyberSource
     # The client's endpoint (URL) to receive webhooks.
     attr_accessor :webhook_url
 
-    # The client's health check endpoint (URL). This should be as close as possible to the actual webhookUrl. If the user does not provide the health check URL, it is the user's responsibility to re-activate the webhook if it is deactivated by calling the test endpoint. 
+    # The client's health check endpoint (URL). If the user does not provide the health check URL, it is the user's responsibility to re-activate the webhook if it is deactivated by calling the test endpoint. 
     attr_accessor :health_check_url
 
     attr_accessor :retry_policy
+
+    # The webhook scope. 1. SELF The Webhook is used to deliver webhooks for only this Organization (or Merchant). 2. DESCENDANTS The Webhook is used to deliver webhooks for this Organization and its children. This field is optional.    Possible values: - SELF - DESCENDANTS
+    attr_accessor :notification_scope
 
     attr_accessor :security_policy
 
@@ -45,6 +48,7 @@ module CyberSource
         :'webhook_url' => :'webhookUrl',
         :'health_check_url' => :'healthCheckUrl',
         :'retry_policy' => :'retryPolicy',
+        :'notification_scope' => :'notificationScope',
         :'security_policy' => :'securityPolicy'
       }
     end
@@ -59,6 +63,7 @@ module CyberSource
         :'webhook_url' => :'webhook_url',
         :'health_check_url' => :'health_check_url',
         :'retry_policy' => :'retry_policy',
+        :'notification_scope' => :'notification_scope',
         :'security_policy' => :'security_policy'
       }
     end
@@ -73,7 +78,8 @@ module CyberSource
         :'webhook_url' => :'String',
         :'health_check_url' => :'String',
         :'retry_policy' => :'Notificationsubscriptionsv2webhooksRetryPolicy',
-        :'security_policy' => :'Notificationsubscriptionsv2webhooksSecurityPolicy1'
+        :'notification_scope' => :'String',
+        :'security_policy' => :'Notificationsubscriptionsv2webhooksSecurityPolicy'
       }
     end
 
@@ -115,6 +121,12 @@ module CyberSource
         self.retry_policy = attributes[:'retryPolicy']
       end
 
+      if attributes.has_key?(:'notificationScope')
+        self.notification_scope = attributes[:'notificationScope']
+      else
+        self.notification_scope = 'DESCENDANTS'
+      end
+
       if attributes.has_key?(:'securityPolicy')
         self.security_policy = attributes[:'securityPolicy']
       end
@@ -145,6 +157,7 @@ module CyberSource
           webhook_url == o.webhook_url &&
           health_check_url == o.health_check_url &&
           retry_policy == o.retry_policy &&
+          notification_scope == o.notification_scope &&
           security_policy == o.security_policy
     end
 
@@ -157,7 +170,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name, description, organization_id, products, webhook_url, health_check_url, retry_policy, security_policy].hash
+      [name, description, organization_id, products, webhook_url, health_check_url, retry_policy, notification_scope, security_policy].hash
     end
 
     # Builds the object from hash

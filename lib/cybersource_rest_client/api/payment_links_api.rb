@@ -20,7 +20,7 @@ module CyberSource
       @api_client.set_configuration(config)
     end
     # Create a Payment Link
-    # Create a new payment link.
+    # Pay by Link is an easy and fast way to securely sell products or receive donations online. This solution is ideal for distributing the same payment link to multiple customers.   Links for making purchases are referred to as fixed-price links, and links for making donations are referred to as customer-set price links. 
     #
     # @param create_payment_link_request 
     # @param [Hash] opts the optional parameters
@@ -32,7 +32,7 @@ module CyberSource
     end
 
     # Create a Payment Link
-    # Create a new payment link.
+    # Pay by Link is an easy and fast way to securely sell products or receive donations online. This solution is ideal for distributing the same payment link to multiple customers.   Links for making purchases are referred to as fixed-price links, and links for making donations are referred to as customer-set price links. 
     # @param create_payment_link_request 
     # @param [Hash] opts the optional parameters
     # @return [Array<(PblPaymentLinksPost201Response, Fixnum, Hash)>] PblPaymentLinksPost201Response data, response status code and response headers
@@ -70,8 +70,8 @@ module CyberSource
       post_body = @api_client.object_to_http_body(create_payment_link_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CreatePaymentLinkRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      is_mle_supported_by_cybs_for_api = false
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["create_payment_link","create_payment_link_with_http_info"])
+      inbound_mle_status = "false"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["create_payment_link","create_payment_link_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
@@ -156,8 +156,8 @@ module CyberSource
       else
         post_body = nil
       end
-      is_mle_supported_by_cybs_for_api = false
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["get_all_payment_links","get_all_payment_links_with_http_info"])
+      inbound_mle_status = "false"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_all_payment_links","get_all_payment_links_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
@@ -231,8 +231,8 @@ module CyberSource
       else
         post_body = nil
       end
-      is_mle_supported_by_cybs_for_api = false
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["get_payment_link","get_payment_link_with_http_info"])
+      inbound_mle_status = "false"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_payment_link","get_payment_link_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
@@ -254,7 +254,7 @@ module CyberSource
       return data, status_code, headers
     end
     # Update a Payment Link
-    # You can update all information except the payment link number until any payment is received for a payment link.
+    # You can update all information except the payment link number for a payment link. Changes made to amount/price will apply to new payments made using the payment link. 
     #
     # @param id The purchase number.
     # @param update_payment_link_request Updating the purchase or donation link does not resend the link automatically. You must resend the purchase or donation link separately.
@@ -267,7 +267,7 @@ module CyberSource
     end
 
     # Update a Payment Link
-    # You can update all information except the payment link number until any payment is received for a payment link.
+    # You can update all information except the payment link number for a payment link. Changes made to amount/price will apply to new payments made using the payment link. 
     # @param id The purchase number.
     # @param update_payment_link_request Updating the purchase or donation link does not resend the link automatically. You must resend the purchase or donation link separately.
     # @param [Hash] opts the optional parameters
@@ -310,8 +310,8 @@ module CyberSource
       post_body = @api_client.object_to_http_body(update_payment_link_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'UpdatePaymentLinkRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      is_mle_supported_by_cybs_for_api = false
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["update_payment_link","update_payment_link_with_http_info"])
+      inbound_mle_status = "false"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["update_payment_link","update_payment_link_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []

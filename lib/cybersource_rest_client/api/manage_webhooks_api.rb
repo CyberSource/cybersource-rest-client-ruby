@@ -72,8 +72,8 @@ module CyberSource
       else
         post_body = nil
       end
-      is_mle_supported_by_cybs_for_api = false
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["delete_webhook_subscription","delete_webhook_subscription_with_http_info"])
+      inbound_mle_status = "false"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["delete_webhook_subscription","delete_webhook_subscription_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
@@ -146,8 +146,8 @@ module CyberSource
       else
         post_body = nil
       end
-      is_mle_supported_by_cybs_for_api = false
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["get_webhook_subscription_by_id","get_webhook_subscription_by_id_with_http_info"])
+      inbound_mle_status = "false"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_webhook_subscription_by_id","get_webhook_subscription_by_id_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
@@ -228,8 +228,8 @@ module CyberSource
       else
         post_body = nil
       end
-      is_mle_supported_by_cybs_for_api = false
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["get_webhook_subscriptions_by_org","get_webhook_subscriptions_by_org_with_http_info"])
+      inbound_mle_status = "false"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_webhook_subscriptions_by_org","get_webhook_subscriptions_by_org_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
@@ -303,8 +303,8 @@ module CyberSource
       else
         post_body = nil
       end
-      is_mle_supported_by_cybs_for_api = false
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["notification_subscriptions_v1_webhooks_webhook_id_post","notification_subscriptions_v1_webhooks_webhook_id_post_with_http_info"])
+      inbound_mle_status = "false"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["notification_subscriptions_v1_webhooks_webhook_id_post","notification_subscriptions_v1_webhooks_webhook_id_post_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
@@ -331,7 +331,7 @@ module CyberSource
     # @param webhook_id The Webhook Identifier.
     # @param [Hash] opts the optional parameters
     # @option opts [UpdateWebhook] :update_webhook The webhook payload or changes to apply.
-    # @return [nil]
+    # @return [InlineResponse2005]
     #
     def notification_subscriptions_v2_webhooks_webhook_id_patch(webhook_id, opts = {})
       data, status_code, headers = notification_subscriptions_v2_webhooks_webhook_id_patch_with_http_info(webhook_id, opts)
@@ -343,7 +343,7 @@ module CyberSource
     # @param webhook_id The Webhook Identifier.
     # @param [Hash] opts the optional parameters
     # @option opts [UpdateWebhook] :update_webhook The webhook payload or changes to apply.
-    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
+    # @return [Array<(InlineResponse2005, Fixnum, Hash)>] InlineResponse2005 data, response status code and response headers
     def notification_subscriptions_v2_webhooks_webhook_id_patch_with_http_info(webhook_id, opts = {})
 
       if @api_client.config.debugging
@@ -378,8 +378,8 @@ module CyberSource
       post_body = @api_client.object_to_http_body(opts[:'update_webhook'])
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'UpdateWebhook', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      is_mle_supported_by_cybs_for_api = false
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["notification_subscriptions_v2_webhooks_webhook_id_patch","notification_subscriptions_v2_webhooks_webhook_id_patch_with_http_info"])
+      inbound_mle_status = "false"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["notification_subscriptions_v2_webhooks_webhook_id_patch","notification_subscriptions_v2_webhooks_webhook_id_patch_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
@@ -388,7 +388,8 @@ module CyberSource
         :query_params => query_params,
         :form_params => form_params,
         :body => post_body,
-        :auth_names => auth_names)
+        :auth_names => auth_names,
+        :return_type => 'InlineResponse2005')
       if @api_client.config.debugging
         begin
         raise
@@ -452,8 +453,8 @@ module CyberSource
       post_body = @api_client.object_to_http_body(opts[:'update_status'])
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'UpdateStatus', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      is_mle_supported_by_cybs_for_api = false
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["notification_subscriptions_v2_webhooks_webhook_id_status_put","notification_subscriptions_v2_webhooks_webhook_id_status_put_with_http_info"])
+      inbound_mle_status = "false"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["notification_subscriptions_v2_webhooks_webhook_id_status_put","notification_subscriptions_v2_webhooks_webhook_id_status_put_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
@@ -549,8 +550,8 @@ module CyberSource
       post_body = @api_client.object_to_http_body(save_asym_egress_key)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'SaveAsymEgressKey', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      is_mle_supported_by_cybs_for_api = false
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["save_asym_egress_key","save_asym_egress_key_with_http_info"])
+      inbound_mle_status = "false"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["save_asym_egress_key","save_asym_egress_key_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []

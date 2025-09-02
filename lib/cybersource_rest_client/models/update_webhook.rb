@@ -27,13 +27,13 @@ module CyberSource
     # The client's endpoint (URL) to receive webhooks.
     attr_accessor :webhook_url
 
-    # The client's health check endpoint (URL). This should be as close as possible to the actual webhookUrl.
+    # The webhook scope. 1. SELF The Webhook is used to deliver webhooks for only this Organization (or Merchant). 2. DESCENDANTS The Webhook is used to deliver webhooks for this Organization and its children. This field is optional.    Possible values: - SELF - DESCENDANTS
+    attr_accessor :notification_scope
+
+    # The client's health check endpoint (URL).
     attr_accessor :health_check_url
 
     attr_accessor :security_policy
-
-    # Additional, free form configuration data.
-    attr_accessor :additional_attributes
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -43,9 +43,9 @@ module CyberSource
         :'description' => :'description',
         :'products' => :'products',
         :'webhook_url' => :'webhookUrl',
+        :'notification_scope' => :'notificationScope',
         :'health_check_url' => :'healthCheckUrl',
-        :'security_policy' => :'securityPolicy',
-        :'additional_attributes' => :'additionalAttributes'
+        :'security_policy' => :'securityPolicy'
       }
     end
 
@@ -57,9 +57,9 @@ module CyberSource
         :'description' => :'description',
         :'products' => :'products',
         :'webhook_url' => :'webhook_url',
+        :'notification_scope' => :'notification_scope',
         :'health_check_url' => :'health_check_url',
-        :'security_policy' => :'security_policy',
-        :'additional_attributes' => :'additional_attributes'
+        :'security_policy' => :'security_policy'
       }
     end
 
@@ -71,9 +71,9 @@ module CyberSource
         :'description' => :'String',
         :'products' => :'Array<Notificationsubscriptionsv2webhooksProducts>',
         :'webhook_url' => :'String',
+        :'notification_scope' => :'String',
         :'health_check_url' => :'String',
-        :'security_policy' => :'Notificationsubscriptionsv2webhooksSecurityPolicy',
-        :'additional_attributes' => :'Array<Hash<String, String>>'
+        :'security_policy' => :'Notificationsubscriptionsv2webhooksSecurityPolicy'
       }
     end
 
@@ -107,18 +107,18 @@ module CyberSource
         self.webhook_url = attributes[:'webhookUrl']
       end
 
+      if attributes.has_key?(:'notificationScope')
+        self.notification_scope = attributes[:'notificationScope']
+      else
+        self.notification_scope = 'DESCENDANTS'
+      end
+
       if attributes.has_key?(:'healthCheckUrl')
         self.health_check_url = attributes[:'healthCheckUrl']
       end
 
       if attributes.has_key?(:'securityPolicy')
         self.security_policy = attributes[:'securityPolicy']
-      end
-
-      if attributes.has_key?(:'additionalAttributes')
-        if (value = attributes[:'additionalAttributes']).is_a?(Array)
-          self.additional_attributes = value
-        end
       end
     end
 
@@ -145,9 +145,9 @@ module CyberSource
           description == o.description &&
           products == o.products &&
           webhook_url == o.webhook_url &&
+          notification_scope == o.notification_scope &&
           health_check_url == o.health_check_url &&
-          security_policy == o.security_policy &&
-          additional_attributes == o.additional_attributes
+          security_policy == o.security_policy
     end
 
     # @see the `==` method
@@ -159,7 +159,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name, organization_id, description, products, webhook_url, health_check_url, security_policy, additional_attributes].hash
+      [name, organization_id, description, products, webhook_url, notification_scope, health_check_url, security_policy].hash
     end
 
     # Builds the object from hash

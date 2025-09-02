@@ -70,8 +70,8 @@ module CyberSource
       post_body = @api_client.object_to_http_body(check_payer_auth_enrollment_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CheckPayerAuthEnrollmentRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      is_mle_supported_by_cybs_for_api = true
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["check_payer_auth_enrollment","check_payer_auth_enrollment_with_http_info"])
+      inbound_mle_status = "optional"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["check_payer_auth_enrollment","check_payer_auth_enrollment_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
@@ -143,8 +143,8 @@ module CyberSource
       post_body = @api_client.object_to_http_body(payer_auth_setup_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PayerAuthSetupRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      is_mle_supported_by_cybs_for_api = true
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["payer_auth_setup","payer_auth_setup_with_http_info"])
+      inbound_mle_status = "optional"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["payer_auth_setup","payer_auth_setup_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
@@ -216,8 +216,8 @@ module CyberSource
       post_body = @api_client.object_to_http_body(validate_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'ValidateRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      is_mle_supported_by_cybs_for_api = true
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["validate_authentication_results","validate_authentication_results_with_http_info"])
+      inbound_mle_status = "optional"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["validate_authentication_results","validate_authentication_results_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []

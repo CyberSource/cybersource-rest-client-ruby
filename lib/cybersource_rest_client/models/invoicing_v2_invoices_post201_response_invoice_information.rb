@@ -35,6 +35,9 @@ module CyberSource
     # If this field is set to 'None', an invoice will be generated with the status 'CREATED', but no email will be dispatched.    Possible values:        - `None`   - `Email`    
     attr_accessor :delivery_mode
 
+    # A list of custom labels that allows you to override (rename) default field names and control the visibility of specific fields on invoices and items. If the list is empty, the labels will not be overwritten. 
+    attr_accessor :custom_labels
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -44,7 +47,8 @@ module CyberSource
         :'expiration_date' => :'expirationDate',
         :'allow_partial_payments' => :'allowPartialPayments',
         :'payment_link' => :'paymentLink',
-        :'delivery_mode' => :'deliveryMode'
+        :'delivery_mode' => :'deliveryMode',
+        :'custom_labels' => :'customLabels'
       }
     end
 
@@ -57,7 +61,8 @@ module CyberSource
         :'expiration_date' => :'expiration_date',
         :'allow_partial_payments' => :'allow_partial_payments',
         :'payment_link' => :'payment_link',
-        :'delivery_mode' => :'delivery_mode'
+        :'delivery_mode' => :'delivery_mode',
+        :'custom_labels' => :'custom_labels'
       }
     end
 
@@ -70,7 +75,8 @@ module CyberSource
         :'expiration_date' => :'Date',
         :'allow_partial_payments' => :'BOOLEAN',
         :'payment_link' => :'String',
-        :'delivery_mode' => :'String'
+        :'delivery_mode' => :'String',
+        :'custom_labels' => :'Array<InvoicingV2InvoicesPost201ResponseInvoiceInformationCustomLabels>'
       }
     end
 
@@ -111,6 +117,12 @@ module CyberSource
       if attributes.has_key?(:'deliveryMode')
         self.delivery_mode = attributes[:'deliveryMode']
       end
+
+      if attributes.has_key?(:'customLabels')
+        if (value = attributes[:'customLabels']).is_a?(Array)
+          self.custom_labels = value
+        end
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -143,7 +155,8 @@ module CyberSource
           expiration_date == o.expiration_date &&
           allow_partial_payments == o.allow_partial_payments &&
           payment_link == o.payment_link &&
-          delivery_mode == o.delivery_mode
+          delivery_mode == o.delivery_mode &&
+          custom_labels == o.custom_labels
     end
 
     # @see the `==` method
@@ -155,7 +168,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [invoice_number, description, due_date, expiration_date, allow_partial_payments, payment_link, delivery_mode].hash
+      [invoice_number, description, due_date, expiration_date, allow_partial_payments, payment_link, delivery_mode, custom_labels].hash
     end
 
     # Builds the object from hash

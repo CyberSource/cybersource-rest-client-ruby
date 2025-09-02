@@ -32,16 +32,5 @@ public
       end
       return tempResponseCodeMessage
     end
-
-     def self.getCertBasedOnKeyAlias(x5_certs, key_alias)
-      unless x5_certs.nil?
-        x5_certs.each do |cert|
-          cert.subject.to_a.each do |attribute|
-            return  cert if attribute[1].include?(key_alias)
-          end
-        end
-      end
-      nil
-    end
   end
 

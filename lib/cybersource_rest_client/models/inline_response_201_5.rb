@@ -24,7 +24,7 @@ module CyberSource
     # The client's endpoint (URL) to receive webhooks.
     attr_accessor :webhook_url
 
-    # The client's health check endpoint (URL). This should be as close as possible to the actual webhookUrl.
+    # The client's health check endpoint (URL).
     attr_accessor :health_check_url
 
     # Webhook status.
@@ -43,8 +43,8 @@ module CyberSource
     # Date on which webhook was created/registered.
     attr_accessor :created_on
 
-    # Date on which webhook was most recently updated.
-    attr_accessor :updated_on
+    # The webhook scope. 1. SELF The Webhook is used to deliver webhooks for only this Organization (or Merchant). 2. DESCENDANTS The Webhook is used to deliver webhooks for this Organization and its children. This field is optional.    Possible values: - SELF - DESCENDANTS
+    attr_accessor :notification_scope
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -60,7 +60,7 @@ module CyberSource
         :'retry_policy' => :'retryPolicy',
         :'security_policy' => :'securityPolicy',
         :'created_on' => :'createdOn',
-        :'updated_on' => :'updatedOn'
+        :'notification_scope' => :'notificationScope'
       }
     end
 
@@ -78,7 +78,7 @@ module CyberSource
         :'retry_policy' => :'retry_policy',
         :'security_policy' => :'security_policy',
         :'created_on' => :'created_on',
-        :'updated_on' => :'updated_on'
+        :'notification_scope' => :'notification_scope'
       }
     end
 
@@ -96,7 +96,7 @@ module CyberSource
         :'retry_policy' => :'Notificationsubscriptionsv2webhooksRetryPolicy',
         :'security_policy' => :'Notificationsubscriptionsv2webhooksSecurityPolicy',
         :'created_on' => :'String',
-        :'updated_on' => :'String'
+        :'notification_scope' => :'String'
       }
     end
 
@@ -156,8 +156,10 @@ module CyberSource
         self.created_on = attributes[:'createdOn']
       end
 
-      if attributes.has_key?(:'updatedOn')
-        self.updated_on = attributes[:'updatedOn']
+      if attributes.has_key?(:'notificationScope')
+        self.notification_scope = attributes[:'notificationScope']
+      else
+        self.notification_scope = 'DESCENDANTS'
       end
     end
 
@@ -190,7 +192,7 @@ module CyberSource
           retry_policy == o.retry_policy &&
           security_policy == o.security_policy &&
           created_on == o.created_on &&
-          updated_on == o.updated_on
+          notification_scope == o.notification_scope
     end
 
     # @see the `==` method
@@ -202,7 +204,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [webhook_id, organization_id, products, webhook_url, health_check_url, status, name, description, retry_policy, security_policy, created_on, updated_on].hash
+      [webhook_id, organization_id, products, webhook_url, health_check_url, status, name, description, retry_policy, security_policy, created_on, notification_scope].hash
     end
 
     # Builds the object from hash

@@ -24,7 +24,7 @@ module CyberSource
     #
     # @param batch_id Unique identification number assigned to the submitted request.
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse20010]
+    # @return [InlineResponse20011]
     #
     def get_batch_report(batch_id, opts = {})
       data, status_code, headers = get_batch_report_with_http_info(batch_id, opts)
@@ -35,7 +35,7 @@ module CyberSource
     # **Get Batch Report**&lt;br&gt;This resource accepts a batch id and returns: - The batch status. - The total number of accepted, rejected, updated records. - The total number of card association responses. - The billable quantities of:   - New Account Numbers (NAN)   - New Expiry Dates (NED)   - Account Closures (ACL)   - Contact Card Holders (CCH) - Source record information including token ids, masked card number, expiration dates &amp; card type. - Response record information including response code, reason, token ids, masked card number, expiration dates &amp; card type. 
     # @param batch_id Unique identification number assigned to the submitted request.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse20010, Fixnum, Hash)>] InlineResponse20010 data, response status code and response headers
+    # @return [Array<(InlineResponse20011, Fixnum, Hash)>] InlineResponse20011 data, response status code and response headers
     def get_batch_report_with_http_info(batch_id, opts = {})
 
       if @api_client.config.debugging
@@ -76,8 +76,8 @@ module CyberSource
       else
         post_body = nil
       end
-      is_mle_supported_by_cybs_for_api = false
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["get_batch_report","get_batch_report_with_http_info"])
+      inbound_mle_status = "false"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_batch_report","get_batch_report_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
@@ -87,7 +87,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20010')
+        :return_type => 'InlineResponse20011')
       if @api_client.config.debugging
         begin
         raise
@@ -103,7 +103,7 @@ module CyberSource
     #
     # @param batch_id Unique identification number assigned to the submitted request.
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2009]
+    # @return [InlineResponse20010]
     #
     def get_batch_status(batch_id, opts = {})
       data, status_code, headers = get_batch_status_with_http_info(batch_id, opts)
@@ -114,7 +114,7 @@ module CyberSource
     # **Get Batch Status**&lt;br&gt;This resource accepts a batch id and returns: - The batch status. - The total number of accepted, rejected, updated records. - The total number of card association responses. - The billable quantities of:   - New Account Numbers (NAN)   - New Expiry Dates (NED)   - Account Closures (ACL)   - Contact Card Holders (CCH) 
     # @param batch_id Unique identification number assigned to the submitted request.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2009, Fixnum, Hash)>] InlineResponse2009 data, response status code and response headers
+    # @return [Array<(InlineResponse20010, Fixnum, Hash)>] InlineResponse20010 data, response status code and response headers
     def get_batch_status_with_http_info(batch_id, opts = {})
 
       if @api_client.config.debugging
@@ -155,8 +155,8 @@ module CyberSource
       else
         post_body = nil
       end
-      is_mle_supported_by_cybs_for_api = false
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["get_batch_status","get_batch_status_with_http_info"])
+      inbound_mle_status = "false"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_batch_status","get_batch_status_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
@@ -166,7 +166,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2009')
+        :return_type => 'InlineResponse20010')
       if @api_client.config.debugging
         begin
         raise
@@ -185,7 +185,7 @@ module CyberSource
     # @option opts [Integer] :limit The maximum number that can be returned in the array starting from the offset record in zero-based dataset. (default to 20)
     # @option opts [String] :from_date ISO-8601 format: yyyyMMddTHHmmssZ
     # @option opts [String] :to_date ISO-8601 format: yyyyMMddTHHmmssZ
-    # @return [InlineResponse2008]
+    # @return [InlineResponse2009]
     #
     def get_batches_list(opts = {})
       data, status_code, headers = get_batches_list_with_http_info(opts)
@@ -199,7 +199,7 @@ module CyberSource
     # @option opts [Integer] :limit The maximum number that can be returned in the array starting from the offset record in zero-based dataset.
     # @option opts [String] :from_date ISO-8601 format: yyyyMMddTHHmmssZ
     # @option opts [String] :to_date ISO-8601 format: yyyyMMddTHHmmssZ
-    # @return [Array<(InlineResponse2008, Fixnum, Hash)>] InlineResponse2008 data, response status code and response headers
+    # @return [Array<(InlineResponse2009, Fixnum, Hash)>] InlineResponse2009 data, response status code and response headers
     def get_batches_list_with_http_info(opts = {})
 
       if @api_client.config.debugging
@@ -236,8 +236,8 @@ module CyberSource
       else
         post_body = nil
       end
-      is_mle_supported_by_cybs_for_api = false
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["get_batches_list","get_batches_list_with_http_info"])
+      inbound_mle_status = "false"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_batches_list","get_batches_list_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
@@ -247,7 +247,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2008')
+        :return_type => 'InlineResponse2009')
       if @api_client.config.debugging
         begin
         raise
@@ -309,8 +309,8 @@ module CyberSource
       post_body = @api_client.object_to_http_body(body)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'Body', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      is_mle_supported_by_cybs_for_api = false
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["post_batch","post_batch_with_http_info"])
+      inbound_mle_status = "false"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["post_batch","post_batch_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []

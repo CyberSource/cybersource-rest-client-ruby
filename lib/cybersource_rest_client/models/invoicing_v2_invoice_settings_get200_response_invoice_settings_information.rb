@@ -54,6 +54,9 @@ module CyberSource
     # Whether you would like to receive payment notification for successful transaction
     attr_accessor :enable_merchant_email_notifications
 
+    # A list of custom labels that allows you to override (rename) default field names and control the visibility of specific fields on invoices and items. If the list is empty, the labels will not be overwritten. 
+    attr_accessor :custom_labels
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -70,7 +73,8 @@ module CyberSource
         :'ship_to' => :'shipTo',
         :'phone_number' => :'phoneNumber',
         :'email' => :'email',
-        :'enable_merchant_email_notifications' => :'enableMerchantEmailNotifications'
+        :'enable_merchant_email_notifications' => :'enableMerchantEmailNotifications',
+        :'custom_labels' => :'customLabels'
       }
     end
 
@@ -90,7 +94,8 @@ module CyberSource
         :'ship_to' => :'ship_to',
         :'phone_number' => :'phone_number',
         :'email' => :'email',
-        :'enable_merchant_email_notifications' => :'enable_merchant_email_notifications'
+        :'enable_merchant_email_notifications' => :'enable_merchant_email_notifications',
+        :'custom_labels' => :'custom_labels'
       }
     end
 
@@ -110,7 +115,8 @@ module CyberSource
         :'ship_to' => :'BOOLEAN',
         :'phone_number' => :'BOOLEAN',
         :'email' => :'BOOLEAN',
-        :'enable_merchant_email_notifications' => :'BOOLEAN'
+        :'enable_merchant_email_notifications' => :'BOOLEAN',
+        :'custom_labels' => :'Array<InvoicingV2InvoicesPost201ResponseInvoiceInformationCustomLabels>'
       }
     end
 
@@ -189,6 +195,12 @@ module CyberSource
       else
         self.enable_merchant_email_notifications = false
       end
+
+      if attributes.has_key?(:'customLabels')
+        if (value = attributes[:'customLabels']).is_a?(Array)
+          self.custom_labels = value
+        end
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -258,7 +270,8 @@ module CyberSource
           ship_to == o.ship_to &&
           phone_number == o.phone_number &&
           email == o.email &&
-          enable_merchant_email_notifications == o.enable_merchant_email_notifications
+          enable_merchant_email_notifications == o.enable_merchant_email_notifications &&
+          custom_labels == o.custom_labels
     end
 
     # @see the `==` method
@@ -270,7 +283,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [merchant_logo, merchant_display_name, custom_email_message, enable_reminders, header_style, delivery_language, default_currency_code, payer_authentication3_ds_version, show_vat_number, vat_registration_number, ship_to, phone_number, email, enable_merchant_email_notifications].hash
+      [merchant_logo, merchant_display_name, custom_email_message, enable_reminders, header_style, delivery_language, default_currency_code, payer_authentication3_ds_version, show_vat_number, vat_registration_number, ship_to, phone_number, email, enable_merchant_email_notifications, custom_labels].hash
     end
 
     # Builds the object from hash

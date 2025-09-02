@@ -70,8 +70,8 @@ module CyberSource
       post_body = @api_client.object_to_http_body(create_invoice_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CreateInvoiceRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      is_mle_supported_by_cybs_for_api = false
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["create_invoice","create_invoice_with_http_info"])
+      inbound_mle_status = "false"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["create_invoice","create_invoice_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
@@ -156,8 +156,8 @@ module CyberSource
       else
         post_body = nil
       end
-      is_mle_supported_by_cybs_for_api = false
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["get_all_invoices","get_all_invoices_with_http_info"])
+      inbound_mle_status = "false"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_all_invoices","get_all_invoices_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
@@ -231,8 +231,8 @@ module CyberSource
       else
         post_body = nil
       end
-      is_mle_supported_by_cybs_for_api = false
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["get_invoice","get_invoice_with_http_info"])
+      inbound_mle_status = "false"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_invoice","get_invoice_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
@@ -306,8 +306,8 @@ module CyberSource
       else
         post_body = nil
       end
-      is_mle_supported_by_cybs_for_api = false
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["perform_cancel_action","perform_cancel_action_with_http_info"])
+      inbound_mle_status = "false"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["perform_cancel_action","perform_cancel_action_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
@@ -322,6 +322,81 @@ module CyberSource
         begin
         raise
             @api_client.config.logger.debug "API called: InvoicesApi#perform_cancel_action\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
+    # Publish an Invoice
+    # You can publish an invoice in DRAFT status. After invoking this method, the invoice status is changed to CREATED.
+    #
+    # @param id The invoice number.
+    # @param [Hash] opts the optional parameters
+    # @return [InvoicingV2InvoicesPublish200Response]
+    #
+    def perform_publish_action(id, opts = {})
+      data, status_code, headers = perform_publish_action_with_http_info(id, opts)
+      return data, status_code, headers
+    end
+
+    # Publish an Invoice
+    # You can publish an invoice in DRAFT status. After invoking this method, the invoice status is changed to CREATED.
+    # @param id The invoice number.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(InvoicingV2InvoicesPublish200Response, Fixnum, Hash)>] InvoicingV2InvoicesPublish200Response data, response status code and response headers
+    def perform_publish_action_with_http_info(id, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: InvoicesApi.perform_publish_action ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling InvoicesApi.perform_publish_action"
+      end
+      # resource path
+      local_var_path = 'invoicing/v2/invoices/{id}/publication'.sub('{' + 'id' + '}', id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json', 'application/hal+json', 'application/json;charset=utf-8', 'application/hal+json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      if 'POST' == 'POST'
+        post_body = '{}'
+      else
+        post_body = nil
+      end
+      inbound_mle_status = "false"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["perform_publish_action","perform_publish_action_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+      end
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'InvoicingV2InvoicesPublish200Response')
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: InvoicesApi#perform_publish_action\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
         rescue
             puts 'Cannot write to log'
         end
@@ -381,8 +456,8 @@ module CyberSource
       else
         post_body = nil
       end
-      is_mle_supported_by_cybs_for_api = false
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["perform_send_action","perform_send_action_with_http_info"])
+      inbound_mle_status = "false"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["perform_send_action","perform_send_action_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
@@ -460,8 +535,8 @@ module CyberSource
       post_body = @api_client.object_to_http_body(update_invoice_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'UpdateInvoiceRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      is_mle_supported_by_cybs_for_api = false
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, is_mle_supported_by_cybs_for_api, ["update_invoice","update_invoice_with_http_info"])
+      inbound_mle_status = "false"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["update_invoice","update_invoice_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
