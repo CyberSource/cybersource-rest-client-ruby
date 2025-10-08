@@ -13,7 +13,7 @@ require 'date'
 
 module CyberSource
   class PtsV2PaymentsCapturesPost201ResponseOrderInformationInvoiceDetails
-    # Indicates whether CyberSource sent the Level III information to the processor. The possible values are:  If your account is not enabled for Level III data or if you did not include the purchasing level field in your request, CyberSource does not include the Level III data in the request sent to the processor.  Possible values: - **true** - **false** 
+    # Indicates whether CyberSource sent the Level III information to the processor. The possible values are:  If your account is not enabled for Level III data or if you did not include the purchasing level field in your request, CyberSource does not include the Level III data in the request sent to the processor.  Possible values: - **Y** for true - **N** for false 
     attr_accessor :level3_transmission_status
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -33,7 +33,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'level3_transmission_status' => :'BOOLEAN'
+        :'level3_transmission_status' => :'String'
       }
     end
 

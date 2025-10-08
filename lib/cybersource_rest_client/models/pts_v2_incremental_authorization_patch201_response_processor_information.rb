@@ -28,7 +28,7 @@ module CyberSource
     # This field is returned only for **American Express Direct** and **CyberSource through VisaNet**. Returned by authorization and incremental authorization services.  #### American Express Direct  System trace audit number (STAN). This value identifies the transaction and is useful when investigating a chargeback dispute.  #### CyberSource through VisaNet  System trace number that must be printed on the customer's receipt. 
     attr_accessor :system_trace_audit_number
 
-    # This field might contain information about a decline. This field is supported only for **CyberSource through VisaNet**. 
+    # This field might contain information about a decline. 
     attr_accessor :response_details
 
     attr_accessor :merchant_advice
@@ -37,6 +37,8 @@ module CyberSource
     attr_accessor :merchant_risk_prediction
 
     attr_accessor :seller_protection
+
+    attr_accessor :network
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -49,7 +51,8 @@ module CyberSource
         :'response_details' => :'responseDetails',
         :'merchant_advice' => :'merchantAdvice',
         :'merchant_risk_prediction' => :'merchantRiskPrediction',
-        :'seller_protection' => :'sellerProtection'
+        :'seller_protection' => :'sellerProtection',
+        :'network' => :'network'
       }
     end
 
@@ -64,7 +67,8 @@ module CyberSource
         :'response_details' => :'response_details',
         :'merchant_advice' => :'merchant_advice',
         :'merchant_risk_prediction' => :'merchant_risk_prediction',
-        :'seller_protection' => :'seller_protection'
+        :'seller_protection' => :'seller_protection',
+        :'network' => :'network'
       }
     end
 
@@ -79,7 +83,8 @@ module CyberSource
         :'response_details' => :'String',
         :'merchant_advice' => :'PtsV2PaymentsPost201ResponseProcessorInformationMerchantAdvice',
         :'merchant_risk_prediction' => :'String',
-        :'seller_protection' => :'PtsV2PaymentsPost201ResponseProcessorInformationSellerProtection'
+        :'seller_protection' => :'PtsV2PaymentsPost201ResponseProcessorInformationSellerProtection',
+        :'network' => :'Ptsv2paymentsProcessorInformationReversalNetwork'
       }
     end
 
@@ -125,6 +130,10 @@ module CyberSource
 
       if attributes.has_key?(:'sellerProtection')
         self.seller_protection = attributes[:'sellerProtection']
+      end
+
+      if attributes.has_key?(:'network')
+        self.network = attributes[:'network']
       end
     end
 
@@ -190,7 +199,8 @@ module CyberSource
           response_details == o.response_details &&
           merchant_advice == o.merchant_advice &&
           merchant_risk_prediction == o.merchant_risk_prediction &&
-          seller_protection == o.seller_protection
+          seller_protection == o.seller_protection &&
+          network == o.network
     end
 
     # @see the `==` method
@@ -202,7 +212,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [approval_code, transaction_id, network_transaction_id, response_code, system_trace_audit_number, response_details, merchant_advice, merchant_risk_prediction, seller_protection].hash
+      [approval_code, transaction_id, network_transaction_id, response_code, system_trace_audit_number, response_details, merchant_advice, merchant_risk_prediction, seller_protection, network].hash
     end
 
     # Builds the object from hash

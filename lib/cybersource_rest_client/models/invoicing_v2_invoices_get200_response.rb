@@ -32,6 +32,8 @@ module CyberSource
 
     attr_accessor :order_information
 
+    attr_accessor :merchant_defined_field_values_with_definition
+
     attr_accessor :invoice_history
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -45,6 +47,7 @@ module CyberSource
         :'processing_information' => :'processingInformation',
         :'invoice_information' => :'invoiceInformation',
         :'order_information' => :'orderInformation',
+        :'merchant_defined_field_values_with_definition' => :'merchantDefinedFieldValuesWithDefinition',
         :'invoice_history' => :'invoiceHistory'
       }
     end
@@ -60,6 +63,7 @@ module CyberSource
         :'processing_information' => :'processing_information',
         :'invoice_information' => :'invoice_information',
         :'order_information' => :'order_information',
+        :'merchant_defined_field_values_with_definition' => :'merchant_defined_field_values_with_definition',
         :'invoice_history' => :'invoice_history'
       }
     end
@@ -75,6 +79,7 @@ module CyberSource
         :'processing_information' => :'Invoicingv2invoicesProcessingInformation',
         :'invoice_information' => :'InvoicingV2InvoicesPost201ResponseInvoiceInformation',
         :'order_information' => :'InvoicingV2InvoicesPost201ResponseOrderInformation',
+        :'merchant_defined_field_values_with_definition' => :'Array<InvoicingV2InvoicesPost201ResponseMerchantDefinedFieldValuesWithDefinition>',
         :'invoice_history' => :'Array<InvoicingV2InvoicesGet200ResponseInvoiceHistory>'
       }
     end
@@ -119,6 +124,12 @@ module CyberSource
         self.order_information = attributes[:'orderInformation']
       end
 
+      if attributes.has_key?(:'merchantDefinedFieldValuesWithDefinition')
+        if (value = attributes[:'merchantDefinedFieldValuesWithDefinition']).is_a?(Array)
+          self.merchant_defined_field_values_with_definition = value
+        end
+      end
+
       if attributes.has_key?(:'invoiceHistory')
         if (value = attributes[:'invoiceHistory']).is_a?(Array)
           self.invoice_history = value
@@ -158,6 +169,7 @@ module CyberSource
           processing_information == o.processing_information &&
           invoice_information == o.invoice_information &&
           order_information == o.order_information &&
+          merchant_defined_field_values_with_definition == o.merchant_defined_field_values_with_definition &&
           invoice_history == o.invoice_history
     end
 
@@ -170,7 +182,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, submit_time_utc, status, customer_information, processing_information, invoice_information, order_information, invoice_history].hash
+      [_links, id, submit_time_utc, status, customer_information, processing_information, invoice_information, order_information, merchant_defined_field_values_with_definition, invoice_history].hash
     end
 
     # Builds the object from hash

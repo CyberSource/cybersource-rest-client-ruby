@@ -15,30 +15,24 @@ module CyberSource
   class PaymentsProductsAlternativePaymentMethodsSubscriptionInformation
     attr_accessor :enabled
 
-    # Indicates if the organization can enable this product using self service.  Possible values: - SELF_SERVICEABLE - NOT_SELF_SERVICEABLE - SELF_SERVICE_ONLY
-    attr_accessor :self_serviceability
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'enabled' => :'enabled',
-        :'self_serviceability' => :'selfServiceability'
+        :'enabled' => :'enabled'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'enabled' => :'enabled',
-        :'self_serviceability' => :'self_serviceability'
+        :'enabled' => :'enabled'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'enabled' => :'BOOLEAN',
-        :'self_serviceability' => :'String'
+        :'enabled' => :'BOOLEAN'
       }
     end
 
@@ -52,12 +46,6 @@ module CyberSource
 
       if attributes.has_key?(:'enabled')
         self.enabled = attributes[:'enabled']
-      end
-
-      if attributes.has_key?(:'selfServiceability')
-        self.self_serviceability = attributes[:'selfServiceability']
-      else
-        self.self_serviceability = 'NOT_SELF_SERVICEABLE'
       end
     end
 
@@ -79,8 +67,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          enabled == o.enabled &&
-          self_serviceability == o.self_serviceability
+          enabled == o.enabled
     end
 
     # @see the `==` method
@@ -92,7 +79,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [enabled, self_serviceability].hash
+      [enabled].hash
     end
 
     # Builds the object from hash

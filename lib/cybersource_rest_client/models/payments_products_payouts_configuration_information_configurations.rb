@@ -13,31 +13,31 @@ require 'date'
 
 module CyberSource
   class PaymentsProductsPayoutsConfigurationInformationConfigurations
-    attr_accessor :pullfunds
+    attr_accessor :common
 
-    attr_accessor :pushfunds
+    attr_accessor :processors
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'pullfunds' => :'pullfunds',
-        :'pushfunds' => :'pushfunds'
+        :'common' => :'common',
+        :'processors' => :'processors'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'pullfunds' => :'pullfunds',
-        :'pushfunds' => :'pushfunds'
+        :'common' => :'common',
+        :'processors' => :'processors'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'pullfunds' => :'Hash<String, PaymentsProductsPayoutsConfigurationInformationConfigurationsPullfunds>',
-        :'pushfunds' => :'Hash<String, PaymentsProductsPayoutsConfigurationInformationConfigurationsPushfunds>'
+        :'common' => :'PaymentsProductsPayoutsConfigurationInformationConfigurationsCommon',
+        :'processors' => :'Hash<String, Object>'
       }
     end
 
@@ -49,15 +49,13 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'pullfunds')
-        if (value = attributes[:'pullfunds']).is_a?(Hash)
-          self.pullfunds = value
-        end
+      if attributes.has_key?(:'common')
+        self.common = attributes[:'common']
       end
 
-      if attributes.has_key?(:'pushfunds')
-        if (value = attributes[:'pushfunds']).is_a?(Hash)
-          self.pushfunds = value
+      if attributes.has_key?(:'processors')
+        if (value = attributes[:'processors']).is_a?(Hash)
+          self.processors = value
         end
       end
     end
@@ -80,8 +78,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          pullfunds == o.pullfunds &&
-          pushfunds == o.pushfunds
+          common == o.common &&
+          processors == o.processors
     end
 
     # @see the `==` method
@@ -93,7 +91,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [pullfunds, pushfunds].hash
+      [common, processors].hash
     end
 
     # Builds the object from hash

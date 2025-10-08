@@ -19,10 +19,10 @@ module CyberSource
     # The description for this field is not available.
     attr_accessor :trade_number
 
-    # This field is set to the value of failure reason returned by the processor. 
+    # Failure reason returned by the processor.
     attr_accessor :raw_response
 
-    # This field is set to the value of failure reason returned by the processor in the local language of the processor. 
+    # Failure reason returned by the processor in the local language of the processor.
     attr_accessor :raw_response_local
 
     # This field might contain information about a decline. 

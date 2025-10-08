@@ -13,56 +13,57 @@ require 'date'
 
 module CyberSource
   class InlineResponse2009
-    attr_accessor :_links
+    # Total number of results.
+    attr_accessor :total_count
 
-    attr_accessor :object
-
+    # Controls the starting point within the collection of results, which defaults to 0. The first item in the collection is retrieved by setting a zero offset.  For example, if you have a collection of 15 items to be retrieved from a resource and you specify limit=5, you can retrieve the entire set of results in 3 successive requests by varying the offset value like this:  `offset=0` `offset=5` `offset=10`  **Note:** If an offset larger than the number of results is provided, this will result in no embedded object being returned. 
     attr_accessor :offset
 
+    # Controls the maximum number of items that may be returned for a single request. The default is 20, the maximum is 2500. 
     attr_accessor :limit
 
+    # A comma separated list of the following form:  `terminalCreationDate:desc or serialNumber or terminalUpdationDate` 
+    attr_accessor :sort
+
+    # Results for this page, this could be below the limit.
     attr_accessor :count
 
-    attr_accessor :total
-
-    attr_accessor :_embedded
+    # A collection of devices
+    attr_accessor :devices
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'_links' => :'_links',
-        :'object' => :'object',
+        :'total_count' => :'totalCount',
         :'offset' => :'offset',
         :'limit' => :'limit',
+        :'sort' => :'sort',
         :'count' => :'count',
-        :'total' => :'total',
-        :'_embedded' => :'_embedded'
+        :'devices' => :'devices'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'_links' => :'_links',
-        :'object' => :'object',
+        :'total_count' => :'total_count',
         :'offset' => :'offset',
         :'limit' => :'limit',
+        :'sort' => :'sort',
         :'count' => :'count',
-        :'total' => :'total',
-        :'_embedded' => :'_embedded'
+        :'devices' => :'devices'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'_links' => :'Array<InlineResponse2009Links>',
-        :'object' => :'String',
+        :'total_count' => :'Integer',
         :'offset' => :'Integer',
         :'limit' => :'Integer',
+        :'sort' => :'String',
         :'count' => :'Integer',
-        :'total' => :'Integer',
-        :'_embedded' => :'InlineResponse2009Embedded'
+        :'devices' => :'Array<InlineResponse2009Devices>'
       }
     end
 
@@ -74,14 +75,8 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'_links')
-        if (value = attributes[:'_links']).is_a?(Array)
-          self._links = value
-        end
-      end
-
-      if attributes.has_key?(:'object')
-        self.object = attributes[:'object']
+      if attributes.has_key?(:'totalCount')
+        self.total_count = attributes[:'totalCount']
       end
 
       if attributes.has_key?(:'offset')
@@ -92,16 +87,18 @@ module CyberSource
         self.limit = attributes[:'limit']
       end
 
+      if attributes.has_key?(:'sort')
+        self.sort = attributes[:'sort']
+      end
+
       if attributes.has_key?(:'count')
         self.count = attributes[:'count']
       end
 
-      if attributes.has_key?(:'total')
-        self.total = attributes[:'total']
-      end
-
-      if attributes.has_key?(:'_embedded')
-        self._embedded = attributes[:'_embedded']
+      if attributes.has_key?(:'devices')
+        if (value = attributes[:'devices']).is_a?(Array)
+          self.devices = value
+        end
       end
     end
 
@@ -123,13 +120,12 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          _links == o._links &&
-          object == o.object &&
+          total_count == o.total_count &&
           offset == o.offset &&
           limit == o.limit &&
+          sort == o.sort &&
           count == o.count &&
-          total == o.total &&
-          _embedded == o._embedded
+          devices == o.devices
     end
 
     # @see the `==` method
@@ -141,7 +137,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, object, offset, limit, count, total, _embedded].hash
+      [total_count, offset, limit, sort, count, devices].hash
     end
 
     # Builds the object from hash

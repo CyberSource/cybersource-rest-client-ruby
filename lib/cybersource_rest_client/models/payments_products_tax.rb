@@ -32,7 +32,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'subscription_information' => :'PaymentsProductsAlternativePaymentMethodsSubscriptionInformation'
+        :'subscription_information' => :'PaymentsProductsPayerAuthenticationSubscriptionInformation'
       }
     end
 

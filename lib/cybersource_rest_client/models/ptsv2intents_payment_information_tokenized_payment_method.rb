@@ -51,7 +51,7 @@ module CyberSource
         :'description' => :'String',
         :'usage_pattern' => :'String',
         :'usage_type' => :'String',
-        :'allow_multiple_tokens' => :'BOOLEAN'
+        :'allow_multiple_tokens' => :'String'
       }
     end
 

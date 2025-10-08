@@ -24,7 +24,7 @@ module CyberSource
     #
     # @param registration_id Identifies the boarding registration to be updated
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2002]
+    # @return [InlineResponse2003]
     #
     def get_registration(registration_id, opts = {})
       data, status_code, headers = get_registration_with_http_info(registration_id, opts)
@@ -35,7 +35,7 @@ module CyberSource
     # This end point will get all information of a boarding registration 
     # @param registration_id Identifies the boarding registration to be updated
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2002, Fixnum, Hash)>] InlineResponse2002 data, response status code and response headers
+    # @return [Array<(InlineResponse2003, Fixnum, Hash)>] InlineResponse2003 data, response status code and response headers
     def get_registration_with_http_info(registration_id, opts = {})
 
       if @api_client.config.debugging
@@ -83,7 +83,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2002')
+        :return_type => 'InlineResponse2003')
       if @api_client.config.debugging
         begin
         raise

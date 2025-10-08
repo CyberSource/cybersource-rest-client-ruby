@@ -31,6 +31,8 @@ module CyberSource
     # The date and time when the transaction was last updated, in Internet date and time format. 
     attr_accessor :update_time_utc
 
+    attr_accessor :network
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -39,7 +41,8 @@ module CyberSource
         :'response_details' => :'responseDetails',
         :'response_code' => :'responseCode',
         :'provider_response' => :'providerResponse',
-        :'update_time_utc' => :'updateTimeUtc'
+        :'update_time_utc' => :'updateTimeUtc',
+        :'network' => :'network'
       }
     end
 
@@ -51,7 +54,8 @@ module CyberSource
         :'response_details' => :'response_details',
         :'response_code' => :'response_code',
         :'provider_response' => :'provider_response',
-        :'update_time_utc' => :'update_time_utc'
+        :'update_time_utc' => :'update_time_utc',
+        :'network' => :'network'
       }
     end
 
@@ -63,7 +67,8 @@ module CyberSource
         :'response_details' => :'String',
         :'response_code' => :'String',
         :'provider_response' => :'String',
-        :'update_time_utc' => :'String'
+        :'update_time_utc' => :'String',
+        :'network' => :'Ptsv2paymentsProcessorInformationReversalNetwork'
       }
     end
 
@@ -97,6 +102,10 @@ module CyberSource
 
       if attributes.has_key?(:'updateTimeUtc')
         self.update_time_utc = attributes[:'updateTimeUtc']
+      end
+
+      if attributes.has_key?(:'network')
+        self.network = attributes[:'network']
       end
     end
 
@@ -141,7 +150,8 @@ module CyberSource
           response_details == o.response_details &&
           response_code == o.response_code &&
           provider_response == o.provider_response &&
-          update_time_utc == o.update_time_utc
+          update_time_utc == o.update_time_utc &&
+          network == o.network
     end
 
     # @see the `==` method
@@ -153,7 +163,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [transaction_id, network_transaction_id, response_details, response_code, provider_response, update_time_utc].hash
+      [transaction_id, network_transaction_id, response_details, response_code, provider_response, update_time_utc, network].hash
     end
 
     # Builds the object from hash
