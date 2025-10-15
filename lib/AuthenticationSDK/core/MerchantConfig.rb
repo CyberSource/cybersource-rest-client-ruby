@@ -7,7 +7,7 @@ require_relative '../util/CertificateUtility.rb'
 public
 # This fuction has all the merchantConfig properties getters and setters methods
   class Merchantconfig
-    def initialize(cybsPropertyObj)
+    def initialize(cybsPropertyObj, responseMlePrivateKeyValue = nil)
       # Common Parameters
       @merchantId = cybsPropertyObj['merchantID']
       @runEnvironment = cybsPropertyObj['runEnvironment']
@@ -50,18 +50,69 @@ public
       @keepAliveTime = cybsPropertyObj['keepAliveTime'] || 118 # Default to 118 seconds as same as default of libcurl
       # Path to client JWE pem file directory
       @pemFileDirectory = cybsPropertyObj['pemFileDirectory']
-      @mleKeyAlias = cybsPropertyObj['mleKeyAlias']
+
+      # Optional parameter. User can pass a custom requestMleKeyAlias to fetch from the certificate.
+      # Older flag "mleKeyAlias" is deprecated and will be used as alias/another name for requestMleKeyAlias.
+      if cybsPropertyObj.has_key?('mleKeyAlias')
+        @requestMleKeyAlias = cybsPropertyObj['mleKeyAlias']
+      elsif cybsPropertyObj.has_key?('requestMleKeyAlias')
+        @requestMleKeyAlias = cybsPropertyObj['requestMleKeyAlias']
+      end
+
+      # Deprecated flag to enable MLE for request. This flag is now known as "enableRequestMLEForOptionalApisGlobally"
       @useMLEGlobally = cybsPropertyObj['useMLEGlobally']
+
+      # Flag to enable MLE (Message Level Encryption) for request body to all APIs in SDK which have optional support for MLE.
+      # This means the API can send both non-encrypted and encrypted requests.
+      # Older flag "useMLEGlobally" is deprecated and will be used as alias/another name for enableRequestMLEForOptionalApisGlobally.
       @enableRequestMLEForOptionalApisGlobally = !!(cybsPropertyObj['enableRequestMLEForOptionalApisGlobally'] || cybsPropertyObj['useMLEGlobally'])
+      # Flag to disable MLE (Message Level Encryption) for request body to APIs in SDK which have mandatory MLE requirement when sending calls.
       @disableRequestMLEForMandatoryApisGlobally = cybsPropertyObj['disableRequestMLEForMandatoryApisGlobally']
 
-      
+      # Parameter to pass the request MLE public certificate path.
       if !cybsPropertyObj['mleForRequestPublicCertPath'].nil? && !cybsPropertyObj['mleForRequestPublicCertPath'].to_s.strip.empty?
           @mleForRequestPublicCertPath = cybsPropertyObj['mleForRequestPublicCertPath'].to_s.strip
       end
 
+      # Map to control MLE (Message Level Encryption) settings for individual API functions. This overrides global MLE configuration for specific APIs.
+      # The key is the function name of the API in the SDK, and the value is a String in the format "requestMLE::responseMLE" separated by "::",
+      # where the first boolean value controls MLE for the request and the second boolean value controls MLE for the response.
+      # Use "true" to enable or "false" to disable MLE for that specific component.
+
+      # Valid Examples:
+      # mapToControlMLEonAPI.put("apiFunctionName1", "true::true") - enables MLE for both request and response for apiFunctionName1
+      # mapToControlMLEonAPI.put("apiFunctionName2", "false::false") - disables MLE for both request and response for apiFunctionName2
+      # mapToControlMLEonAPI.put("apiFunctionName3", "true::false") - enables request MLE only, disables response MLE for apiFunctionName3
+      # mapToControlMLEonAPI.put("apiFunctionName4", "false::true") - disables request MLE, enables response MLE only for apiFunctionName4
+      # mapToControlMLEonAPI.put("apiFunctionName5", "false") - disables request MLE only. Since the "::" separator is not included, mleForResponse will use the default value set by the global flag
+      # mapToControlMLEonAPI.put("apiFunctionName6", "true") - enables request MLE only. Since the "::" separator is not included, mleForResponse will use the default value set by the global flag
+      # mapToControlMLEonAPI.put("apiFunctionName7", "::true") - enables response MLE only. Because the value before "::" is missing, the SDK will use the default request MLE value from the global flag
+      # mapToControlMLEonAPI.put("apiFunctionName8", "true::") - enables request MLE only. Since the value after the "::" separator is missing, mleForResponse will use the default value
+
+      # Invalid Examples (will be ignored or cause errors):
+      # mapToControlMLEonAPI.put("apiFunctionName9", "::") - both values empty, will use global defaults
+      # mapToControlMLEonAPI.put("apiFunctionName10", "invalid::true") - invalid first value, may cause parsing error
+      # mapToControlMLEonAPI.put("apiFunctionName11", "true::invalid") - invalid second value, may cause parsing error
+      # mapToControlMLEonAPI.put("apiFunctionName12", "true::true::false") - multiple separators not allowed
+      # mapToControlMLEonAPI.put("apiFunctionName13", "") - empty string not allowed
       @mapToControlMLEonAPI = cybsPropertyObj['mapToControlMLEonAPI']
-      validateMerchantDetails
+
+      # Both fields used for internal purpose only not exposed for merchants to set. Both sets from mapToControlMLEonAPI internally.
+      @internalMapToControlRequestMLEonAPI = {}
+      @internalMapToControlResponseMLEonAPI = {}
+
+      @responseMlePrivateKey = responseMlePrivateKeyValue
+
+      @enableResponseMleGlobally = false
+      if !cybsPropertyObj['enableResponseMleGlobally'].nil?
+        @enableResponseMleGlobally = cybsPropertyObj['enableResponseMleGlobally']
+      end
+
+      @responseMleKID = cybsPropertyObj['responseMleKID']
+      @responseMlePrivateKeyFilePath = cybsPropertyObj['responseMlePrivateKeyFilePath']
+      @responseMlePrivateKeyFilePassword = cybsPropertyObj['responseMlePrivateKeyFilePassword']
+
+      validateMerchantDetails()
       validateMLEConfiguration(cybsPropertyObj)
       @p12KeyFilePath = File.join(@keysDirectory, @keyFilename + ".p12")
       logAllProperties(cybsPropertyObj)
@@ -252,7 +303,6 @@ public
     end
 
     def validateMLEConfiguration(cybsPropertyObj)
-
       if !@useMLEGlobally.nil? && !cybsPropertyObj['enableRequestMLEForOptionalApisGlobally'].nil?
         if @useMLEGlobally != cybsPropertyObj['enableRequestMLEForOptionalApisGlobally']
           raise StandardError.new(Constants::ERROR_PREFIX + "useMLEGlobally and enableRequestMLEForOptionalApisGlobally must have the same value if both are set")
@@ -276,20 +326,28 @@ public
       end
 
       unless @mapToControlMLEonAPI.nil?
-        unless @mapToControlMLEonAPI.is_a?(Hash) && @mapToControlMLEonAPI.keys.all? {|k| k.is_a?(String)} && @mapToControlMLEonAPI.values.all? { |v| [true, false].include?(v) }
-          err = StandardError.new(Constants::ERROR_PREFIX + "mapToControlMLEonAPI must be a map with boolean values")
-          @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
-          raise err
+        begin
+          @mapToControlMLEonAPI = convertBooleanToStringMapType(@mapToControlMLEonAPI)
+          setMapToControlMLEOnAPI(@mapToControlMLEonAPI)
+        rescue => err
+          error = StandardError.new(Constants::WARNING_PREFIX + "Unable to initialise MLE control Map from config: #{err.message}")
+          @log_obj.logger.warn(ExceptionHandler.new.new_api_exception error)
+          raise error
         end
+        # unless @mapToControlMLEonAPI.is_a?(Hash) && @mapToControlMLEonAPI.keys.all? {|k| k.is_a?(String)} && @mapToControlMLEonAPI.values.all? { |v| [true, false].include?(v) }
+        #   err = StandardError.new(Constants::ERROR_PREFIX + "mapToControlMLEonAPI must be a map with boolean values")
+        #   @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+        #   raise err
+        # end
       end
 
-      !@mleKeyAlias.nil? && unless @mleKeyAlias.instance_of? String
-                              (err = StandardError.new(Constants::ERROR_PREFIX + "mleKeyAlias must be a string"))
-                              @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
-                              raise err
-                            end
-      if @mleKeyAlias.to_s.empty?
-        @mleKeyAlias = Constants::DEFAULT_ALIAS_FOR_MLE_CERT
+      !@requestMleKeyAlias.nil? && unless @requestMleKeyAlias.instance_of? String
+        err = StandardError.new(Constants::ERROR_PREFIX + "requestMleKeyAlias must be a string")
+        @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+        raise err
+      end
+      if @requestMleKeyAlias.to_s.empty?
+        @requestMleKeyAlias = Constants::DEFAULT_ALIAS_FOR_MLE_CERT
       end
 
       if @mleForRequestPublicCertPath && !@mleForRequestPublicCertPath.to_s.strip.empty?
@@ -302,9 +360,9 @@ public
       end
 
       request_mle_configured = @enableRequestMLEForOptionalApisGlobally
-      if !@mapToControlMLEonAPI.nil? && !@mapToControlMLEonAPI.empty?
-        @mapToControlMLEonAPI.each do |_, value|
-          unless [true, false].include?(value) && value
+      if !@internalMapToControlRequestMLEonAPI.nil? && !@internalMapToControlRequestMLEonAPI.empty?
+        @internalMapToControlRequestMLEonAPI.each do |_, value|
+          if value
             request_mle_configured = true
             break
           end
@@ -316,10 +374,174 @@ public
         @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
         raise err
       end
+
+      is_response_mle_configured = @enableResponseMleGlobally
+
+      if !@internalMapToControlResponseMLEonAPI.nil? && !@internalMapToControlResponseMLEonAPI.empty?
+        @internalMapToControlResponseMLEonAPI.values.each do |value|
+          if value == true
+            is_response_mle_configured = true
+            break
+          end
+        end
+      end
+
+      if is_response_mle_configured
+        # Validate for Auth type- Currently responseMLE feature will be enabled for JWT auth type only
+        if !Constants::AUTH_TYPE_JWT.eql?(@authenticationType.upcase)
+          err = StandardError.new(Constants::ERROR_PREFIX + "Response MLE can only be used with JWT authentication type")
+          @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+          raise err
+        end
+
+        # Check if either private key object or private key file path is provided
+        if @responseMlePrivateKey.nil? || @responseMlePrivateKey.to_s.strip.empty?
+          if @responseMlePrivateKeyFilePath.nil? || @responseMlePrivateKeyFilePath.to_s.strip.empty?
+            err = StandardError.new(Constants::ERROR_PREFIX + "Response MLE is enabled but no private key provided. Either set responseMlePrivateKey object or provide responseMlePrivateKeyFilePath.")
+            @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+            raise err
+          end
+        end
+
+        # Check that both private key object or private key file path should not be provided
+        if !@responseMlePrivateKey.nil? && !@responseMlePrivateKey.to_s.strip.empty? 
+            && !@responseMlePrivateKeyFilePath.nil? && !@responseMlePrivateKeyFilePath.to_s.strip.empty?
+            err = StandardError.new(Constants::ERROR_PREFIX + "Both responseMlePrivateKey object and responseMlePrivateKeyFilePath are provided. Please provide only one of them for response mle private key.")
+            @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+            raise err
+        end
+
+        # If private key file path is provided, validate the file exists
+        if !@responseMlePrivateKeyFilePath.nil? && !@responseMlePrivateKeyFilePath.to_s.strip.empty?
+          begin
+            CertificateUtility.validatePathAndFile(@responseMlePrivateKeyFilePath, "responseMlePrivateKeyFilePath", @log_config)
+          rescue => err
+            error = StandardError.new(Constants::ERROR_PREFIX + "Invalid responseMlePrivateKeyFilePath : #{err.message}")
+            @log_obj.logger.error(ExceptionHandler.new.new_api_exception error)
+            raise error
+          end
+        end
+
+        # Validate responseMleKID is provided when response MLE is enabled
+        if @responseMleKID.nil? || @responseMleKID.to_s.strip.empty?
+          err = StandardError.new(Constants::ERROR_PREFIX + "Response MLE is enabled but responseMleKID is not provided.")
+          @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+          raise err
+        end
+    end
+
+    def setMapToControlMLEOnAPI(inputMap)
+      # validate the map value format
+      validateMapToControlMleOnApiValues(inputMap) if inputMap
+
+      # @mapToControlMLEonAPI = inputMap
+
+      if inputMap
+        internalRequest = {}
+        internalResponse = {}
+
+        inputMap.each do |apiName, rawValue|
+          value = rawValue.to_s
+
+          if value.include?("::")
+            # Format: "requestMLE::responseMLE"
+            requestMLE, responseMLE = value.split("::", 2)
+
+            # Set request MLE value when present
+            unless requestMLE.nil? || requestMLE.empty?
+              internalRequest[apiName] = requestMLE.to_s.strip.casecmp?("true")
+            end
+
+            # Set response MLE value when present
+            unless responseMLE.nil? || responseMLE.empty?
+              internalResponse[apiName] = responseMLE.to_s.strip.casecmp?("true")
+            end
+          else
+            # Format: "true" or "false" - applies to request MLE only
+            internalRequest[apiName] = value.to_s.strip.casecmp?("true")
+          end
+        end
+
+        @internalMapToControlRequestMLEonAPI = internalRequest
+        @internalMapToControlResponseMLEonAPI = internalResponse
+      end
+    end
+
+    # Validates the map values for MLE control API configuration.
+    # Allowed formats: "true::true", "false::false", "::true", "true::", "::false", "false::", "true", "false"
+    def validateMapToControlMLEonAPIValues(inputMap)
+      inputMap.each do |key, value|
+        if value.nil? || value == ""
+          err = StandardError.new(Constants::ERROR_PREFIX + "Invalid MLE control map value for key '#{key}'. Value cannot be null or empty.")
+          @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+          raise err
+        end
+
+        str = value.to_s
+        if str.include?("::")
+          parts = str.split("::", -1)
+
+          unless parts.length == 2
+            err = StandardError.new(Constants::ERROR_PREFIX + "Invalid MLE control map value format for key '#{key}'. Expected format: true/false for 'requestMLE::responseMLE' but got: '#{str}'")
+            @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+            raise err
+          end
+
+          requestMLE, responseMLE = parts
+
+          if !requestMLE.empty? && !isValidBooleanString?(requestMLE)
+            err = StandardError.new(Constants::ERROR_PREFIX + "Invalid request MLE value for key '#{key}'. Expected 'true', 'false', or empty but got: '#{requestMLE}'")
+            @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+            raise err
+          end
+
+          if !responseMLE.empty? && !isValidBooleanString?(responseMLE)
+            err = StandardError.new(Constants::ERROR_PREFIX + "Invalid response MLE value for key '#{key}'. Expected 'true', 'false', or empty but got: '#{responseMLE}'")
+            @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+            raise err
+          end
+        else
+          unless isValidBooleanString?(str)
+            err = StandardError.new(Constants::ERROR_PREFIX + "Invalid MLE control map value for key '#{key}'. Expected 'true' or 'false' for requestMLE but got: '#{str}'")
+            @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+            raise err
+          end
+        end
+      end
+    end
+
+    def isValidBooleanString?(s)
+      s.casecmp?("true") || s.casecmp?("false")
+    end
+
+    def convertBooleanToStringMapType(inputMap)
+      if inputMap.nil? || inputMap.empty?
+        raise StandardError.new(Constants::ERROR_PREFIX + "Unsupported null value to mapToControlMLEonAPI in merchantConfig. Expected Map<String, String> which corresponds to <'apiFunctionName','flagForRequestMLE::flagForResponseMLE'> as dataType for field.")
+      end
+
+      unless map.is_a?(Hash)
+        raise TypeError.new(Constants::ERROR_PREFIX + "Unsupported datatype for field mapToControlMLEonAPI. Expected Hash<String, String> which corresponds to <'apiFunctionName','flagForRequestMLE::flagForResponseMLE'> as dataType for field but got: #{map.class}")
+      end
+
+      keys_all_strings   = map.keys.all? { |k| k.is_a?(String) }
+      values_all_strings = map.values.all? { |v| v.is_a?(String) }
+      values_all_bools   = map.values.all? { |v| v.is_a?(TrueClass) || v.is_a?(FalseClass) }
+
+      if keys_all_strings && values_all_strings
+        # Already Hash<String, String>
+        map
+      elsif keys_all_strings && values_all_bools
+        # Convert Hash<String, Boolean> -> Hash<String, String>
+        map.transform_values { |v| v.to_s }
+      else
+        err = StandardError.new("Unsupported map type combination for mapToControlMLEonAPI in merchantConfig. Expected Hash<String, String> which corresponds to <'apiFunctionName','flagForRequestMLE::flagForResponseMLE'> as dataType for field.")
+        @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+        raise err
+      end
     end
 
     def logAllProperties(merchantPropertyObj)
-      propertyObj = Marshal.load(Marshal.dump(merchantPropertyObj))      
+      propertyObj = Marshal.load(Marshal.dump(merchantPropertyObj))
       merchantConfig = ''
       hiddenProperties = (Constants::HIDDEN_MERCHANT_PROPERTIES).split(',')
       hiddenPropArray = Array.new
@@ -407,6 +629,11 @@ public
     attr_accessor :disableRequestMLEForMandatoryApisGlobally
     attr_accessor :mleForRequestPublicCertPath
     attr_accessor :mapToControlMLEonAPI
-    attr_accessor :mleKeyAlias
+    attr_accessor :requestMleKeyAlias
     attr_accessor :p12KeyFilePath
+    attr_accessor :enableResponseMleGlobally
+    attr_accessor :responseMleKID
+    attr_accessor :responseMlePrivateKeyFilePath
+    attr_accessor :responseMlePrivateKeyFilePassword
+    attr_accessor :responseMlePrivateKey
   end

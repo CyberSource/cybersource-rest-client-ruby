@@ -121,4 +121,51 @@ public
         raise IOError, "#{pathType} is not readable: #{path}"
       end
     end
+
+    def self.read_private_key_from_p12(p12_file_path, password)
+      begin
+        # `password` should be a String in Ruby
+        raise ArgumentError, "password must be a String" unless password.is_a?(String)
+
+        data = File.binread(p12_file_path)
+        pkcs12 = OpenSSL::PKCS12.new(data, password)
+
+        key = pkcs12.key
+        raise "No private key found in the P12 file" if key.nil?
+
+        key
+      rescue OpenSSL::PKCS12::PKCS12Error => e
+        raise "Could not recover key from P12: #{e.message}"
+      rescue Errno::ENOENT => e
+        raise "P12 file not found: #{p12_file_path}"
+      end
+    end
+
+    def self.load_private_key_from_pem_file(key_file_path, password = nil)
+      begin
+        pem_data = File.binread(key_file_path)
+
+        # OpenSSL::PKey.read supports:
+        # - "BEGIN RSA/EC/PRIVATE KEY" (PKCS#1), encrypted or not (Proc-Type/DEK-Info)
+        # - "BEGIN PRIVATE KEY" (PKCS#8 unencrypted)
+        # - "BEGIN ENCRYPTED PRIVATE KEY" (PKCS#8 encrypted)
+        OpenSSL::PKey.read(pem_data, password)
+      rescue OpenSSL::PKey::PKeyError => e
+        # Missing password for an encrypted PEM
+        if pem =~ /(BEGIN ENCRYPTED PRIVATE KEY|Proc-Type:\s*4,ENCRYPTED)/ && (password.nil? || password.to_s.empty?)
+          raise ArgumentError, "Private key is password protected, but no password was provided."
+        end
+
+        # Wrong password (common OpenSSL messages)
+        if password && e.message =~ /(bad decrypt|bad password|mac verify failure)/i
+          logger&.error("Failed to decrypt PKCS#8 private key - incorrect password provided")
+          raise ArgumentError, "Password is incorrect for the encrypted private key. Error: #{e.message}"
+        end
+
+        # Unsupported/invalid PEM contents
+        raise ArgumentError, "Unsupported PEM object or invalid key: #{e.message}"
+      rescue Errno::ENOENT
+        raise ArgumentError, "PEM file not found: #{key_file_path}"
+      end
+    end
   end

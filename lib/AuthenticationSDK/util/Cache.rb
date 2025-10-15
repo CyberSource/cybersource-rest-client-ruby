@@ -41,6 +41,34 @@ public
       logger = @@logger.logger
       fileModifiedTime = File.mtime(certificateFilePath)
 
+      if cache_key.end_with?(Constants::MLE_CACHE_KEY_IDENTIFIER_FOR_RESPONSE_PRIVATE_KEY)
+        password = merchantConfig.responseMlePrivateKeyPassword
+        mlePrivateKey = nil
+
+        begin
+          fileExtension = File.extname(certificateFilePath).delete_prefix('.').downcase
+
+          if fileExtension == 'p12' || fileExtension == 'pfx'
+            mlePrivateKey = CertificateUtility.read_private_key_from_p12(certificateFilePath, password)
+          elsif fileExtension == 'pem' || fileExtension == 'key' || fileExtension == 'p8'
+            mlePrivateKey = CertificateUtility.load_private_key_from_pem_file(certificateFilePath, password)
+          else
+            err = StandardError.new(Constants::ERROR_PREFIX + "Unsupported Response MLE Private Key file format: `" + fileExtension + "`. Supported formats are: .p12, .pfx, .pem, .key, .p8")
+            logger.error(ExceptionHandler.new.new_api_exception err)
+            raise err
+          end
+
+          cacheValue = CacheValue.new(mlePrivateKey, nil, fileModifiedTime)
+
+          @@cache_obj.write(cacheKey, cacheValue)
+        rescue StandardError => e
+          err = StandardError.new(Constants::ERROR_PREFIX + "Error loading MLE response private key from: " + filePath + ". Error: " + e.message)
+          logger.error(ExceptionHandler.new.new_api_exception err)
+          raise err
+        end
+        return
+      end
+
       if (cacheKey.end_with?("_JWT"))
         privateKey, certificateList = CertificateUtility.getCertificateCollectionAndPrivateKeyFromP12(certificateFilePath, merchantConfig)
         jwtCertificate = CertificateUtility.getCertificateBasedOnKeyAlias(certificateList, merchantConfig.keyAlias)
@@ -53,10 +81,10 @@ public
 
       if (cacheKey.end_with?(Constants::MLE_CACHE_IDENTIFIER_FOR_CONFIG_CERT))
         certificateList = CertificateUtility.getCertificatesFromPemFile(certificateFilePath)
-        mleCertificate = CertificateUtility.getCertificateBasedOnKeyAlias(certificateList, merchantConfig.mleKeyAlias)
+        mleCertificate = CertificateUtility.getCertificateBasedOnKeyAlias(certificateList, merchantConfig.requestMleKeyAlias)
         if (!mleCertificate)
           fileName = File.basename(certificateFilePath)
-          logger.warn("No certificate found for the specified mle_key_alias '#{merchantConfig.mleKeyAlias}'. Using the first certificate from file #{fileName} as the MLE request certificate.")
+          logger.warn("No certificate found for the specified mle_key_alias '#{merchantConfig.requestMleKeyAlias}'. Using the first certificate from file #{fileName} as the MLE request certificate.")
           mleCertificate = certificateList[0]
         end
 
@@ -68,11 +96,11 @@ public
 
       if (cacheKey.end_with?(Constants::MLE_CACHE_IDENTIFIER_FOR_P12_CERT))
         privateKey, certificateList = CertificateUtility.getCertificateCollectionAndPrivateKeyFromP12(certificateFilePath, merchantConfig)
-        mleCertificate = CertificateUtility.getCertificateBasedOnKeyAlias(certificateList, merchantConfig.mleKeyAlias)
+        mleCertificate = CertificateUtility.getCertificateBasedOnKeyAlias(certificateList, merchantConfig.requestMleKeyAlias)
         if (!mleCertificate)
           fileName = File.basename(certificateFilePath)
-          logger.error("No certificate found for the specified mle_key_alias '#{merchantConfig.mleKeyAlias}' in file #{fileName}.")
-          raise ArgumentError, "No certificate found for the specified mle_key_alias '#{merchantConfig.mleKeyAlias}' in file #{fileName}."
+          logger.error("No certificate found for the specified mle_key_alias '#{merchantConfig.requestMleKeyAlias}' in file #{fileName}.")
+          raise ArgumentError, "No certificate found for the specified mle_key_alias '#{merchantConfig.requestMleKeyAlias}' in file #{fileName}."
         end
 
         cacheValue = CacheValue.new(privateKey, mleCertificate, fileModifiedTime)
@@ -127,6 +155,24 @@ public
       end
 
       cachedCertificateInfo ? cachedCertificateInfo.cert : nil
+    end
+
+    def getMLEResponsePrivateKeyFromFilePath(merchantConfig)
+      merchantId = merchantConfig.merchantId
+      keyIdentifier = Constants::MLE_CACHE_KEY_IDENTIFIER_FOR_RESPONSE_PRIVATE_KEY
+      cacheIdentifier = "#{merchantId}_#{keyIdentifier}"
+      mleResponsePrivateKeyFilePath = merchantConfig.responseMlePrivateKeyFilePath
+
+      @@mutex.synchronize do
+        cachedCertificateInfo = @@cache_obj.read(cacheIdentifier)
+
+        if cachedCertificateInfo.nil? || cachedCertificateInfo.file_modified_time != File.mtime(mleResponsePrivateKeyFilePath)
+          setupCache(cacheIdentifier, mleResponsePrivateKeyFilePath, merchantConfig)
+          cachedCertificateInfo = @@cache_obj.read(cacheIdentifier)
+        end
+      end
+
+      cachedCertificateInfo ? cachedCertificateInfo.private_key : nil
     end
 
     # <b>DEPRECATED:</b> This method has been marked as Deprecated and will be removed in coming releases.

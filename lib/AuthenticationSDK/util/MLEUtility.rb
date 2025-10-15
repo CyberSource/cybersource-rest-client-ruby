@@ -1,5 +1,6 @@
 require_relative '../logging/log_factory.rb'
 require 'jose'
+require 'json'
 require_relative './Cache'
 
 public
@@ -16,10 +17,10 @@ public
         is_mle_for_api = !merchant_config.disableRequestMLEForMandatoryApisGlobally
       end
 
-      if merchant_config.mapToControlMLEonAPI && operation_ids
+      if merchant_config.internalMapToControlRequestMLEonAPI && operation_ids
         operation_ids.each do |operation_id|
-          if merchant_config.mapToControlMLEonAPI.key?(operation_id)
-            is_mle_for_api = merchant_config.mapToControlMLEonAPI[operation_id]
+          if merchant_config.internalMapToControlRequestMLEonAPI.key?(operation_id)
+            is_mle_for_api = merchant_config.internalMapToControlRequestMLEonAPI[operation_id]
             break
           end
         end
@@ -86,4 +87,101 @@ public
     def self.create_request_payload(compact_jwe)
       "{ \"encryptedRequest\": \"#{compact_jwe}\" }"
     end
+
+    def self.check_is_response_mle_for_api(merchant_config, operation_ids)
+      isResponseMLEForApi = false
+
+      if merchant_config.enableResponseMLEGlobally
+        isResponseMLEForApi = true
+      end
+
+      # operation_ids is a comma-separated string that can be split into an array
+      # as there are multiple public function for apiCallFunction such as apiCall, apiCallAsync
+      operation_array = operation_ids.split(',').map(&:strip)
+
+      # Control the Response MLE only from map
+      # Special Note: If API expect MLE Response mandatory and map is saying to receive non MLE response then API might throw an error from CyberSource
+      if merchant_config.internalMapToControlResponseMLEonAPI
+        operation_array.each do |operation_id|
+          if merchant_config.internalMapToControlResponseMLEonAPI.key?(operation_id)
+            isResponseMLEForApi = merchant_config.internalMapToControlResponseMLEonAPI[operation_id]
+            break
+          end
+        end
+      end
+
+      isResponseMLEForApi
+    end
+
+    def self.check_is_mle_encrypted_response(responseBody)
+      return false if responseBody.nil? || responseBody.strip.empty?
+
+      begin
+        jsonObject = JSON.parse(responseBody)
+        return false unless jsonObject.is_a?(Hash) && jsonObject.size == 1
+
+        jsonObject.key?('encryptedResponse') && jsonObject['encryptedResponse'].is_a?(String)
+      rescue JSON::ParserError, TypeError
+        false
+      end
+    end
+
+    def self.decrypt_mle_response_payload(merchantConfig, responseBody)
+      @log_obj ||= Log.new(merchantConfig.log_config, 'MLEUtility')
+
+      if !self.check_is_mle_encrypted_response(responseBody)
+        raise StandardError.new('Response body is not MLE encrypted.')
+      end
+
+      mlePrivateKey = get_mle_response_private_key(merchantConfig)
+      jweResponseToken = get_response_mle_token(responseBody)
+
+      # When mle token is empty or null then fall back to non mle encrypted response
+      if jweResponseToken.nil? || jweResponseToken.strip.empty?
+        return responseBody
+      end
+
+      begin
+        @log_obj.logger.info("LOG_NETWORK_RESPONSE_BEFORE_MLE_DECRYPTION: #{responseBody}")
+
+        decryptedResponse = JWEUtility.decrypt_jwe_using_private_key(mlePrivateKey, jweResponseToken)
+
+        @log_obj.logger.info("LOG_NETWORK_RESPONSE_AFTER_MLE_DECRYPTION: #{decryptedResponse}")
+
+        return decryptedResponse
+      rescue e
+        raise StandardError.new(Constants::ERROR_PREFIX + "An error occurred during MLE decryption: #{e.message}")
+      end
+    end
+
+    def get_response_mle_token(responseBody)
+      @log_obj ||= Log.new(merchantConfig.log_config, 'MLEUtility')
+
+      begin
+        jsonObject = JSON.parse(responseBody)
+        token = jsonObject['encryptedResponse']
+        token.is_a?(String) ? token : nil
+      rescue JSON::ParserError, TypeError => e
+        err = StandardError.new(Constants::ERROR_PREFIX + "Failed to extract Response MLE token: #{e.message}")
+        @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
+        raise err
+      end
+    end
+
+    private :get_response_mle_token
+
+    def get_mle_response_private_key(merchantConfig)
+      @log_obj ||= Log.new(merchantConfig.log_config, 'MLEUtility')
+
+      # First priority - Return private key provided in merchant config, if any
+      if !merchantConfig.responseMlePrivateKey.nil? && !merchantConfig.responseMlePrivateKey.to_s.strip.empty?
+        return merchantConfig.responseMlePrivateKey
+      end
+
+      # Second priority - Return private key loaded from merchantConfig.responseMlePrivateKeyFilePath
+      responseMlePrivateKey = Cache.new.getMLEResponsePrivateKeyFromFilePath(merchantConfig)
+      return responseMlePrivateKey
+    end
+
+    private :get_mle_response_private_key
   end
