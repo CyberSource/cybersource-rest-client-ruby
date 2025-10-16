@@ -117,9 +117,11 @@ module CyberSource
         query_params = Addressable::URI.form_encode(query_params)
       end
 
+      isResponseMLEForApi = opts[:isResponseMLEForApi] || false
+
       headers = opts[:header_params]
       if @merchantconfig.authenticationType.upcase != Constants::AUTH_TYPE_MUTUAL_AUTH
-        headers = CallAuthenticationHeader(http_method, path, body_params, headers, query_params)
+        headers = CallAuthenticationHeader(http_method, path, body_params, headers, query_params, isResponseMLEForApi)
       end
       http_method = http_method.to_sym.downcase
       header_params = headers.merge(@default_headers)
@@ -188,7 +190,7 @@ module CyberSource
        end
     end
     # Calling Authentication
-    def CallAuthenticationHeader(http_method, path, body_params, header_params, query_params)
+    def CallAuthenticationHeader(http_method, path, body_params, header_params, query_params, isResponseMLEForApi)
       require_relative '../AuthenticationSDK/core/Authorization.rb'
       require_relative '../AuthenticationSDK/authentication/payloadDigest/digest.rb'
       request_target = get_query_param(path, query_params)
@@ -207,7 +209,7 @@ module CyberSource
       @merchantconfig.requestUrl = url
       # Calling APISDK, Apisdk.controller.
       gmtDateTime = DateTime.now.httpdate
-      token = Authorization.new.getToken(@merchantconfig, gmtDateTime)
+      token = Authorization.new.getToken(@merchantconfig, gmtDateTime, isResponseMLEForApi)
 
       # Adding client ID header
       header_params['v-c-client-id'] = @client_id
@@ -267,6 +269,8 @@ module CyberSource
     # @param [Response] response HTTP response
     # @param [String] return_type some examples: "User", "Array[User]", "Hash[String,Integer]"
     def deserialize(response, return_type)
+      require_relative '../AuthenticationSDK/mle/MLEUtility.rb'
+
       body = response.body
 
       # handle file downloading - return the File instance processed in request callbacks
@@ -282,6 +286,18 @@ module CyberSource
       content_type = response.headers['Content-Type'] || 'application/json'
 
       fail "Content-Type is not supported: #{content_type}" unless json_mime?(content_type)
+
+      # Check the response body first if it is mle encrypted then do deserialize
+      if MLEUtility.check_is_mle_encrypted_response(body)
+        begin
+          body = MLEUtility.decrypt_mle_response_payload(@merchantconfig, body)
+        rescue e
+          raise ApiError.new(:message => "MLE Encrypted Response Decryption Error Occurred. Error: #{e.message}",
+                            :code => response.code,
+                            :response_headers => response.headers,
+                            :body => body)
+        end
+      end
 
       begin
         data = JSON.parse("[#{body}]", :symbolize_names => true)[0]
