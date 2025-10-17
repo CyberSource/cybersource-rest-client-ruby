@@ -13,10 +13,10 @@ require 'date'
 
 module CyberSource
   class InlineResponse2012PayoutInformationPullFunds
-    # This field indicates if domestic AFTs (pull funds) are allowed. Note: Supported only in US for domestic transactions involving Push Payments Gateway Service(PPGS). Possible values:   - `true`   - `false` 
+    # This field indicates if domestic AFTs (pull funds) are allowed. Possible values:   - `true`   - `false` 
     attr_accessor :domestic_participant
 
-    # This field indicates if cross-border AFTs (pull funds) are allowed. Note: Supported only in US for cross-border transactions involving Push Payments Gateway Service(PPGS). Possible values:   - `true`   - `false` 
+    # This field indicates if cross-border AFTs (pull funds) are allowed. Possible values:   - `true`   - `false` 
     attr_accessor :cross_border_participant
 
     # Attribute mapping from ruby-style variable name to JSON key.

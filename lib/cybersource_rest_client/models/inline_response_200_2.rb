@@ -13,56 +13,81 @@ require 'date'
 
 module CyberSource
   class InlineResponse2002
-    attr_accessor :registration_information
+    attr_accessor :id
 
-    attr_accessor :integration_information
+    attr_accessor :field_type
 
-    attr_accessor :organization_information
+    attr_accessor :label
 
-    attr_accessor :product_information
+    attr_accessor :customer_visible
 
-    attr_accessor :product_information_setups
+    attr_accessor :text_min_length
 
-    attr_accessor :document_information
+    attr_accessor :text_max_length
 
-    attr_accessor :details
+    attr_accessor :possible_values
+
+    attr_accessor :text_default_value
+
+    attr_accessor :merchant_id
+
+    attr_accessor :reference_type
+
+    attr_accessor :read_only
+
+    attr_accessor :merchant_defined_data_index
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'registration_information' => :'registrationInformation',
-        :'integration_information' => :'integrationInformation',
-        :'organization_information' => :'organizationInformation',
-        :'product_information' => :'productInformation',
-        :'product_information_setups' => :'productInformationSetups',
-        :'document_information' => :'documentInformation',
-        :'details' => :'details'
+        :'id' => :'id',
+        :'field_type' => :'fieldType',
+        :'label' => :'label',
+        :'customer_visible' => :'customerVisible',
+        :'text_min_length' => :'textMinLength',
+        :'text_max_length' => :'textMaxLength',
+        :'possible_values' => :'possibleValues',
+        :'text_default_value' => :'textDefaultValue',
+        :'merchant_id' => :'merchantId',
+        :'reference_type' => :'referenceType',
+        :'read_only' => :'readOnly',
+        :'merchant_defined_data_index' => :'merchantDefinedDataIndex'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'registration_information' => :'registration_information',
-        :'integration_information' => :'integration_information',
-        :'organization_information' => :'organization_information',
-        :'product_information' => :'product_information',
-        :'product_information_setups' => :'product_information_setups',
-        :'document_information' => :'document_information',
-        :'details' => :'details'
+        :'id' => :'id',
+        :'field_type' => :'field_type',
+        :'label' => :'label',
+        :'customer_visible' => :'customer_visible',
+        :'text_min_length' => :'text_min_length',
+        :'text_max_length' => :'text_max_length',
+        :'possible_values' => :'possible_values',
+        :'text_default_value' => :'text_default_value',
+        :'merchant_id' => :'merchant_id',
+        :'reference_type' => :'reference_type',
+        :'read_only' => :'read_only',
+        :'merchant_defined_data_index' => :'merchant_defined_data_index'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'registration_information' => :'Boardingv1registrationsRegistrationInformation',
-        :'integration_information' => :'InlineResponse2002IntegrationInformation',
-        :'organization_information' => :'Boardingv1registrationsOrganizationInformation',
-        :'product_information' => :'Boardingv1registrationsProductInformation',
-        :'product_information_setups' => :'Array<InlineResponse2013ProductInformationSetups>',
-        :'document_information' => :'Boardingv1registrationsDocumentInformation',
-        :'details' => :'Hash<String, Array<Object>>'
+        :'id' => :'Integer',
+        :'field_type' => :'String',
+        :'label' => :'String',
+        :'customer_visible' => :'BOOLEAN',
+        :'text_min_length' => :'Integer',
+        :'text_max_length' => :'Integer',
+        :'possible_values' => :'String',
+        :'text_default_value' => :'String',
+        :'merchant_id' => :'String',
+        :'reference_type' => :'String',
+        :'read_only' => :'BOOLEAN',
+        :'merchant_defined_data_index' => :'Integer'
       }
     end
 
@@ -74,36 +99,52 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'registrationInformation')
-        self.registration_information = attributes[:'registrationInformation']
+      if attributes.has_key?(:'id')
+        self.id = attributes[:'id']
       end
 
-      if attributes.has_key?(:'integrationInformation')
-        self.integration_information = attributes[:'integrationInformation']
+      if attributes.has_key?(:'fieldType')
+        self.field_type = attributes[:'fieldType']
       end
 
-      if attributes.has_key?(:'organizationInformation')
-        self.organization_information = attributes[:'organizationInformation']
+      if attributes.has_key?(:'label')
+        self.label = attributes[:'label']
       end
 
-      if attributes.has_key?(:'productInformation')
-        self.product_information = attributes[:'productInformation']
+      if attributes.has_key?(:'customerVisible')
+        self.customer_visible = attributes[:'customerVisible']
       end
 
-      if attributes.has_key?(:'productInformationSetups')
-        if (value = attributes[:'productInformationSetups']).is_a?(Array)
-          self.product_information_setups = value
-        end
+      if attributes.has_key?(:'textMinLength')
+        self.text_min_length = attributes[:'textMinLength']
       end
 
-      if attributes.has_key?(:'documentInformation')
-        self.document_information = attributes[:'documentInformation']
+      if attributes.has_key?(:'textMaxLength')
+        self.text_max_length = attributes[:'textMaxLength']
       end
 
-      if attributes.has_key?(:'details')
-        if (value = attributes[:'details']).is_a?(Hash)
-          self.details = value
-        end
+      if attributes.has_key?(:'possibleValues')
+        self.possible_values = attributes[:'possibleValues']
+      end
+
+      if attributes.has_key?(:'textDefaultValue')
+        self.text_default_value = attributes[:'textDefaultValue']
+      end
+
+      if attributes.has_key?(:'merchantId')
+        self.merchant_id = attributes[:'merchantId']
+      end
+
+      if attributes.has_key?(:'referenceType')
+        self.reference_type = attributes[:'referenceType']
+      end
+
+      if attributes.has_key?(:'readOnly')
+        self.read_only = attributes[:'readOnly']
+      end
+
+      if attributes.has_key?(:'merchantDefinedDataIndex')
+        self.merchant_defined_data_index = attributes[:'merchantDefinedDataIndex']
       end
     end
 
@@ -125,13 +166,18 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          registration_information == o.registration_information &&
-          integration_information == o.integration_information &&
-          organization_information == o.organization_information &&
-          product_information == o.product_information &&
-          product_information_setups == o.product_information_setups &&
-          document_information == o.document_information &&
-          details == o.details
+          id == o.id &&
+          field_type == o.field_type &&
+          label == o.label &&
+          customer_visible == o.customer_visible &&
+          text_min_length == o.text_min_length &&
+          text_max_length == o.text_max_length &&
+          possible_values == o.possible_values &&
+          text_default_value == o.text_default_value &&
+          merchant_id == o.merchant_id &&
+          reference_type == o.reference_type &&
+          read_only == o.read_only &&
+          merchant_defined_data_index == o.merchant_defined_data_index
     end
 
     # @see the `==` method
@@ -143,7 +189,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [registration_information, integration_information, organization_information, product_information, product_information_setups, document_information, details].hash
+      [id, field_type, label, customer_visible, text_min_length, text_max_length, possible_values, text_default_value, merchant_id, reference_type, read_only, merchant_defined_data_index].hash
     end
 
     # Builds the object from hash

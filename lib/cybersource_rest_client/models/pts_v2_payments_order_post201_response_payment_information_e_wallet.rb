@@ -22,7 +22,7 @@ module CyberSource
     # Payment method for the unit purchase. Possible values: - `UNRESTRICTED (default)—this value is only available if configured by PayPal for the merchant.` - `INSTANT` 
     attr_accessor :funding_source_sale
 
-    # The Venmo user name chosen by the user, also know as a Venmo handle. 
+    # The Venmo user name chosen by the user, also known as a Venmo handle. 
     attr_accessor :user_name
 
     # Attribute mapping from ruby-style variable name to JSON key.

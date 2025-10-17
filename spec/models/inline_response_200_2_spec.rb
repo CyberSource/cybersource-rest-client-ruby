@@ -31,43 +31,73 @@ describe 'InlineResponse2002' do
       expect(@instance).to be_instance_of(CyberSource::InlineResponse2002)
     end
   end
-  describe 'test attribute "registration_information"' do
+  describe 'test attribute "id"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "integration_information"' do
+  describe 'test attribute "field_type"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "organization_information"' do
+  describe 'test attribute "label"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "product_information"' do
+  describe 'test attribute "customer_visible"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "product_information_setups"' do
+  describe 'test attribute "text_min_length"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "document_information"' do
+  describe 'test attribute "text_max_length"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "details"' do
+  describe 'test attribute "possible_values"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "text_default_value"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "merchant_id"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "reference_type"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "read_only"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "merchant_defined_data_index"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

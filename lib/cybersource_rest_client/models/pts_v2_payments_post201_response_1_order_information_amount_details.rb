@@ -13,7 +13,7 @@ require 'date'
 
 module CyberSource
   class PtsV2PaymentsPost201Response1OrderInformationAmountDetails
-    # This field will carry the remaning amount which can be refunded. 
+    # The remaining amount which can be refunded.
     attr_accessor :refund_balance
 
     # Attribute mapping from ruby-style variable name to JSON key.

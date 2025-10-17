@@ -31,13 +31,13 @@ describe 'PaymentsProductsPayoutsConfigurationInformationConfigurations' do
       expect(@instance).to be_instance_of(CyberSource::PaymentsProductsPayoutsConfigurationInformationConfigurations)
     end
   end
-  describe 'test attribute "pullfunds"' do
+  describe 'test attribute "common"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "pushfunds"' do
+  describe 'test attribute "processors"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

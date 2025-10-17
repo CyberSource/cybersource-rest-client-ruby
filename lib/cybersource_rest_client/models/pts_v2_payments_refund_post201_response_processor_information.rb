@@ -39,6 +39,8 @@ module CyberSource
     # The date and time when the transaction was last updated, in Internet date and time format. 
     attr_accessor :update_time_utc
 
+    attr_accessor :network
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -50,7 +52,8 @@ module CyberSource
         :'ach_verification' => :'achVerification',
         :'network_transaction_id' => :'networkTransactionId',
         :'settlement_date' => :'settlementDate',
-        :'update_time_utc' => :'updateTimeUtc'
+        :'update_time_utc' => :'updateTimeUtc',
+        :'network' => :'network'
       }
     end
 
@@ -65,7 +68,8 @@ module CyberSource
         :'ach_verification' => :'ach_verification',
         :'network_transaction_id' => :'network_transaction_id',
         :'settlement_date' => :'settlement_date',
-        :'update_time_utc' => :'update_time_utc'
+        :'update_time_utc' => :'update_time_utc',
+        :'network' => :'network'
       }
     end
 
@@ -80,7 +84,8 @@ module CyberSource
         :'ach_verification' => :'PtsV2PaymentsPost201ResponseProcessorInformationAchVerification',
         :'network_transaction_id' => :'String',
         :'settlement_date' => :'String',
-        :'update_time_utc' => :'String'
+        :'update_time_utc' => :'String',
+        :'network' => :'Ptsv2paymentsProcessorInformationReversalNetwork'
       }
     end
 
@@ -126,6 +131,10 @@ module CyberSource
 
       if attributes.has_key?(:'updateTimeUtc')
         self.update_time_utc = attributes[:'updateTimeUtc']
+      end
+
+      if attributes.has_key?(:'network')
+        self.network = attributes[:'network']
       end
     end
 
@@ -191,7 +200,8 @@ module CyberSource
           ach_verification == o.ach_verification &&
           network_transaction_id == o.network_transaction_id &&
           settlement_date == o.settlement_date &&
-          update_time_utc == o.update_time_utc
+          update_time_utc == o.update_time_utc &&
+          network == o.network
     end
 
     # @see the `==` method
@@ -203,7 +213,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [approval_code, transaction_id, forwarded_acquirer_code, merchant_number, response_code, ach_verification, network_transaction_id, settlement_date, update_time_utc].hash
+      [approval_code, transaction_id, forwarded_acquirer_code, merchant_number, response_code, ach_verification, network_transaction_id, settlement_date, update_time_utc, network].hash
     end
 
     # Builds the object from hash

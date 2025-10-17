@@ -40,7 +40,6 @@ module CyberSource
     # Configure Unified Checkout to display combo card at checkout.<br>  A combo debit/credit card is a single card that functions both as a Debit/Credit card.  Unified Checkout / Click to Pay Drop-in UI allows the Cardholder to choose whether they would like the transaction to be paid for using either debit or credit card. **Important:** This is applicable to Visa cards only.  Possible values: - True  - False<br><br>  **Use Cases:**  **Offer Combo Card at Checkout:**  - Include the captureMandate.comboCard field in the capture context request and set it to true. - When set to true, Combo Card selection is shown at checkout <br><br>  **Do not offer Combo Card at Checkout:**  - Include the captureMandate.comboCard field in the capture context request and set it to false OR omit the field from the capture context request. - The Combo Card selection is not shown at checkout. 
     attr_accessor :combo_card
 
-    # Configure Unified Checkout to display and capture the CPF number (Cadastro de Pessoas Físicas).  The CPF number is a unique 11-digit identifier issued to Brazilian citizens and residents for tax purposes.  Possible values: - True - False<br><br>  This field is optional.   If set to true the field is required. If set to false the field is optional. If the field is not included in the capture context then it is not captured.<br><br>  **Important:**  - If PANENTRY is specified in the allowedPaymentTypes field, the CPF number will be displayed in Unified Checkout regardless of what card number is entered.  - If CLICKTOPAY is specified in the allowedPaymentTypes field, the CPF number will be displayed in Unified Checkout only when a Visa Click To Pay card is entered. 
     attr_accessor :cpf
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -87,7 +86,7 @@ module CyberSource
         :'show_confirmation_step' => :'BOOLEAN',
         :'request_save_card' => :'BOOLEAN',
         :'combo_card' => :'BOOLEAN',
-        :'cpf' => :'BOOLEAN'
+        :'cpf' => :'Upv1capturecontextsCaptureMandateCPF'
       }
     end
 

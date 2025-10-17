@@ -34,7 +34,7 @@ module CyberSource
     # Used by Visa only and contains the response source/reason code that identifies the source of the response decision. 
     attr_accessor :response_code_source
 
-    # This field might contain information about a decline. This field is supported only for **CyberSource through VisaNet**. 
+    # This field might contain information about a decline. 
     attr_accessor :response_details
 
     # Processor-defined response category code. The associated detail error code is in the `processorInformation.responseCode` or `issuerInformation.responseCode` field of the service you requested.  This field is supported only for:   - Japanese issuers  - Domestic transactions in Japan  - Comercio Latino—processor transaction ID required for troubleshooting  #### Maximum length for processors   - Comercio Latino: 36  - All other processors: 3 
@@ -137,6 +137,8 @@ module CyberSource
     # Mastercard is introducing the Merchant Risk Predict Service in the middle East/Africa Region. A newly launched service comprised of seven independent artificial intelligence (AI)-powered scores intended to augment existing merchant risk management practices. 
     attr_accessor :merchant_risk_prediction
 
+    attr_accessor :network
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -184,7 +186,8 @@ module CyberSource
         :'expiration_time_utc' => :'expirationTimeUtc',
         :'order_id' => :'orderId',
         :'order_status' => :'orderStatus',
-        :'merchant_risk_prediction' => :'merchantRiskPrediction'
+        :'merchant_risk_prediction' => :'merchantRiskPrediction',
+        :'network' => :'network'
       }
     end
 
@@ -235,7 +238,8 @@ module CyberSource
         :'expiration_time_utc' => :'expiration_time_utc',
         :'order_id' => :'order_id',
         :'order_status' => :'order_status',
-        :'merchant_risk_prediction' => :'merchant_risk_prediction'
+        :'merchant_risk_prediction' => :'merchant_risk_prediction',
+        :'network' => :'network'
       }
     end
 
@@ -286,7 +290,8 @@ module CyberSource
         :'expiration_time_utc' => :'String',
         :'order_id' => :'String',
         :'order_status' => :'String',
-        :'merchant_risk_prediction' => :'String'
+        :'merchant_risk_prediction' => :'String',
+        :'network' => :'Ptsv2paymentsProcessorInformationReversalNetwork'
       }
     end
 
@@ -476,6 +481,10 @@ module CyberSource
 
       if attributes.has_key?(:'merchantRiskPrediction')
         self.merchant_risk_prediction = attributes[:'merchantRiskPrediction']
+      end
+
+      if attributes.has_key?(:'network')
+        self.network = attributes[:'network']
       end
     end
 
@@ -709,7 +718,8 @@ module CyberSource
           expiration_time_utc == o.expiration_time_utc &&
           order_id == o.order_id &&
           order_status == o.order_status &&
-          merchant_risk_prediction == o.merchant_risk_prediction
+          merchant_risk_prediction == o.merchant_risk_prediction &&
+          network == o.network
     end
 
     # @see the `==` method
@@ -721,7 +731,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [auth_indicator, approval_code, card_reference_data, transaction_id, network_transaction_id, response_code, response_code_source, response_details, response_category_code, forwarded_acquirer_code, settlement_date, sequence_number, avs, card_verification, merchant_advice, electronic_verification_results, ach_verification, customer, consumer_authentication_response, system_trace_audit_number, payment_account_reference_number, transaction_integrity_code, amex_verbal_auth_reference_number, master_card_service_code, master_card_service_reply_code, master_card_authentication_type, name, routing, merchant_number, retrieval_reference_number, payment_url, complete_url, signature, public_key, seller_protection, transaction_expiry_date, custom_url, scheme_assigned_id, device_url, disbursement_mode, update_time_utc, expiration_time_utc, order_id, order_status, merchant_risk_prediction].hash
+      [auth_indicator, approval_code, card_reference_data, transaction_id, network_transaction_id, response_code, response_code_source, response_details, response_category_code, forwarded_acquirer_code, settlement_date, sequence_number, avs, card_verification, merchant_advice, electronic_verification_results, ach_verification, customer, consumer_authentication_response, system_trace_audit_number, payment_account_reference_number, transaction_integrity_code, amex_verbal_auth_reference_number, master_card_service_code, master_card_service_reply_code, master_card_authentication_type, name, routing, merchant_number, retrieval_reference_number, payment_url, complete_url, signature, public_key, seller_protection, transaction_expiry_date, custom_url, scheme_assigned_id, device_url, disbursement_mode, update_time_utc, expiration_time_utc, order_id, order_status, merchant_risk_prediction, network].hash
     end
 
     # Builds the object from hash
