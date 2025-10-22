@@ -97,12 +97,6 @@ describe 'InlineResponse2005' do
     end
   end
 
-  describe 'test attribute "updated_on"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   describe 'test attribute "notification_scope"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

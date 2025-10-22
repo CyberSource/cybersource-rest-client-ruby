@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **authorized_amount** | **String** | Amount that was authorized.  Returned by authorization service.  #### PIN debit Amount of the purchase.  Returned by PIN debit purchase.  | [optional] 
 **settlement_amount** | **String** | This is a multicurrency field. It contains the transaction amount (field 4), converted to the Currency used to bill the cardholder&#39;s account. This field is returned for OCT transactions.  | [optional] 
 **settlement_currency** | **String** | This is a multicurrency-only field. It contains a 3-digit numeric code that identifies the currency used by the issuer to bill the cardholder&#39;s account. This field is returned for OCT transactions.  | [optional] 
+**refund_balance** | **String** | The remaining amount which can be refunded. | [optional] 
 **surcharge** | [**Ptsv2payoutsOrderInformationAmountDetailsSurcharge**](Ptsv2payoutsOrderInformationAmountDetailsSurcharge.md) |  | [optional] 
 
 

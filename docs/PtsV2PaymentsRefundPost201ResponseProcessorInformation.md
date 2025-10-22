@@ -12,5 +12,6 @@ Name | Type | Description | Notes
 **network_transaction_id** | **String** | Same value as &#x60;processorInformation.transactionId&#x60; | [optional] 
 **settlement_date** | **String** | Field contains a settlement date. The date is in mmdd format, where: mm &#x3D; month and dd &#x3D; day.  | [optional] 
 **update_time_utc** | **String** | The date and time when the transaction was last updated, in Internet date and time format.  | [optional] 
+**network** | [**Ptsv2paymentsProcessorInformationReversalNetwork**](Ptsv2paymentsProcessorInformationReversalNetwork.md) |  | [optional] 
 
 

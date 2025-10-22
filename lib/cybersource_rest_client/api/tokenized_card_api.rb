@@ -182,6 +182,91 @@ module CyberSource
       end
       return data, status_code, headers
     end
+    # Simulate Issuer Life Cycle Management Events
+    # **Lifecycle Management Events**<br>Simulates an issuer life cycle manegement event for updates on the tokenized card. The events that can be simulated are: - Token status changes (e.g. active, suspended, deleted) - Updates to the underlying card, including card art changes, expiration date changes, and card number suffix. **Note:** This is only available in CAS environment. 
+    #
+    # @param profile_id The Id of a profile containing user specific TMS configuration.
+    # @param tokenized_card_id The Id of a tokenized card.
+    # @param post_issuer_life_cycle_simulation_request 
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    #
+    def post_issuer_life_cycle_simulation(profile_id, tokenized_card_id, post_issuer_life_cycle_simulation_request, opts = {})
+      data, status_code, headers = post_issuer_life_cycle_simulation_with_http_info(profile_id, tokenized_card_id, post_issuer_life_cycle_simulation_request, opts)
+      return data, status_code, headers
+    end
+
+    # Simulate Issuer Life Cycle Management Events
+    # **Lifecycle Management Events**&lt;br&gt;Simulates an issuer life cycle manegement event for updates on the tokenized card. The events that can be simulated are: - Token status changes (e.g. active, suspended, deleted) - Updates to the underlying card, including card art changes, expiration date changes, and card number suffix. **Note:** This is only available in CAS environment. 
+    # @param profile_id The Id of a profile containing user specific TMS configuration.
+    # @param tokenized_card_id The Id of a tokenized card.
+    # @param post_issuer_life_cycle_simulation_request 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
+    def post_issuer_life_cycle_simulation_with_http_info(profile_id, tokenized_card_id, post_issuer_life_cycle_simulation_request, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: TokenizedCardApi.post_issuer_life_cycle_simulation ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'profile_id' is set
+      if @api_client.config.client_side_validation && profile_id.nil?
+        fail ArgumentError, "Missing the required parameter 'profile_id' when calling TokenizedCardApi.post_issuer_life_cycle_simulation"
+      end
+      # verify the required parameter 'tokenized_card_id' is set
+      if @api_client.config.client_side_validation && tokenized_card_id.nil?
+        fail ArgumentError, "Missing the required parameter 'tokenized_card_id' when calling TokenizedCardApi.post_issuer_life_cycle_simulation"
+      end
+      # verify the required parameter 'post_issuer_life_cycle_simulation_request' is set
+      if @api_client.config.client_side_validation && post_issuer_life_cycle_simulation_request.nil?
+        fail ArgumentError, "Missing the required parameter 'post_issuer_life_cycle_simulation_request' when calling TokenizedCardApi.post_issuer_life_cycle_simulation"
+      end
+      # resource path
+      local_var_path = 'tms/v2/tokenized-cards/{tokenizedCardId}/issuer-life-cycle-event-simulations'.sub('{' + 'tokenizedCardId' + '}', tokenized_card_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params[:'profile-id'] = profile_id
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(post_issuer_life_cycle_simulation_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PostIssuerLifeCycleSimulationRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      inbound_mle_status = "false"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["post_issuer_life_cycle_simulation","post_issuer_life_cycle_simulation_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+      end
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names)
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: TokenizedCardApi#post_issuer_life_cycle_simulation\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
     # Create a Tokenized Card
     # |  |  |  | | --- | --- | --- | |**Tokenized cards**<br>A Tokenized card represents a network token. Network tokens perform better than regular card numbers and they are not necessarily invalidated when a cardholder loses their card, or it expires. 
     #

@@ -19,7 +19,7 @@ module CyberSource
     # Direct the customer to this URL to complete the payment.
     attr_accessor :payment_url
 
-    # This field might contain information about a decline. This field is supported only for **CyberSource through VisaNet**. 
+    # This field might contain information about a decline. 
     attr_accessor :response_details
 
     # Payment gateway/processor assigned session token. 

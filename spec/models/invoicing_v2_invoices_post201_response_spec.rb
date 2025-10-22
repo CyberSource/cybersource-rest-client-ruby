@@ -79,4 +79,10 @@ describe 'InvoicingV2InvoicesPost201Response' do
     end
   end
 
+  describe 'test attribute "merchant_defined_field_values_with_definition"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

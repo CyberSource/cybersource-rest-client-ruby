@@ -24,7 +24,7 @@ module CyberSource
     #
     # @param organization_id The Organization Identifier.
     # @param [Hash] opts the optional parameters
-    # @return [Array<InlineResponse2003>]
+    # @return [Array<InlineResponse2004>]
     #
     def find_products_to_subscribe(organization_id, opts = {})
       data, status_code, headers = find_products_to_subscribe_with_http_info(organization_id, opts)
@@ -35,7 +35,7 @@ module CyberSource
     # Retrieve a list of products and event types that your account is eligible for. These products and events are the ones that you may subscribe to in the next step of creating webhooks.
     # @param organization_id The Organization Identifier.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Array<InlineResponse2003>, Fixnum, Hash)>] Array<InlineResponse2003> data, response status code and response headers
+    # @return [Array<(Array<InlineResponse2004>, Fixnum, Hash)>] Array<InlineResponse2004> data, response status code and response headers
     def find_products_to_subscribe_with_http_info(organization_id, opts = {})
 
       if @api_client.config.debugging
@@ -86,7 +86,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Array<InlineResponse2003>',
+        :return_type => 'Array<InlineResponse2004>',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin

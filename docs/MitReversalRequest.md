@@ -8,5 +8,6 @@ Name | Type | Description | Notes
 **processing_information** | [**Ptsv2paymentsidreversalsProcessingInformation**](Ptsv2paymentsidreversalsProcessingInformation.md) |  | [optional] 
 **order_information** | [**Ptsv2paymentsidreversalsOrderInformation**](Ptsv2paymentsidreversalsOrderInformation.md) |  | [optional] 
 **point_of_sale_information** | [**Ptsv2paymentsidreversalsPointOfSaleInformation**](Ptsv2paymentsidreversalsPointOfSaleInformation.md) |  | [optional] 
+**processor_information** | [**Ptsv2reversalsProcessorInformation**](Ptsv2reversalsProcessorInformation.md) |  | [optional] 
 
 

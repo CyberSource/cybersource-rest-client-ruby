@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**pullfunds** | [**Hash&lt;String, PaymentsProductsPayoutsConfigurationInformationConfigurationsPullfunds&gt;**](PaymentsProductsPayoutsConfigurationInformationConfigurationsPullfunds.md) |  | [optional] 
-**pushfunds** | [**Hash&lt;String, PaymentsProductsPayoutsConfigurationInformationConfigurationsPushfunds&gt;**](PaymentsProductsPayoutsConfigurationInformationConfigurationsPushfunds.md) |  | [optional] 
+**common** | [**PaymentsProductsPayoutsConfigurationInformationConfigurationsCommon**](PaymentsProductsPayoutsConfigurationInformationConfigurationsCommon.md) |  | [optional] 
+**processors** | **Hash&lt;String, Object&gt;** |  | [optional] 
 
 
