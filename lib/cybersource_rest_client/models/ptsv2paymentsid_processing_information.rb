@@ -15,24 +15,29 @@ module CyberSource
   class Ptsv2paymentsidProcessingInformation
     attr_accessor :authorization_options
 
+    attr_accessor :network
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'authorization_options' => :'authorizationOptions'
+        :'authorization_options' => :'authorizationOptions',
+        :'network' => :'network'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'authorization_options' => :'authorization_options'
+        :'authorization_options' => :'authorization_options',
+        :'network' => :'network'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'authorization_options' => :'Ptsv2paymentsidProcessingInformationAuthorizationOptions'
+        :'authorization_options' => :'Ptsv2paymentsidProcessingInformationAuthorizationOptions',
+        :'network' => :'Ptsv2paymentsProcessorInformationReversalNetwork'
       }
     end
 
@@ -46,6 +51,10 @@ module CyberSource
 
       if attributes.has_key?(:'authorizationOptions')
         self.authorization_options = attributes[:'authorizationOptions']
+      end
+
+      if attributes.has_key?(:'network')
+        self.network = attributes[:'network']
       end
     end
 
@@ -67,7 +76,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          authorization_options == o.authorization_options
+          authorization_options == o.authorization_options &&
+          network == o.network
     end
 
     # @see the `==` method
@@ -79,7 +89,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [authorization_options].hash
+      [authorization_options, network].hash
     end
 
     # Builds the object from hash

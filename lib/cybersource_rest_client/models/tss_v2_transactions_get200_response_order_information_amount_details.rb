@@ -31,6 +31,9 @@ module CyberSource
     # This is a multicurrency-only field. It contains a 3-digit numeric code that identifies the currency used by the issuer to bill the cardholder's account. This field is returned for OCT transactions. 
     attr_accessor :settlement_currency
 
+    # The remaining amount which can be refunded.
+    attr_accessor :refund_balance
+
     attr_accessor :surcharge
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -42,6 +45,7 @@ module CyberSource
         :'authorized_amount' => :'authorizedAmount',
         :'settlement_amount' => :'settlementAmount',
         :'settlement_currency' => :'settlementCurrency',
+        :'refund_balance' => :'refundBalance',
         :'surcharge' => :'surcharge'
       }
     end
@@ -55,6 +59,7 @@ module CyberSource
         :'authorized_amount' => :'authorized_amount',
         :'settlement_amount' => :'settlement_amount',
         :'settlement_currency' => :'settlement_currency',
+        :'refund_balance' => :'refund_balance',
         :'surcharge' => :'surcharge'
       }
     end
@@ -68,6 +73,7 @@ module CyberSource
         :'authorized_amount' => :'String',
         :'settlement_amount' => :'String',
         :'settlement_currency' => :'String',
+        :'refund_balance' => :'String',
         :'surcharge' => :'Ptsv2payoutsOrderInformationAmountDetailsSurcharge'
       }
     end
@@ -102,6 +108,10 @@ module CyberSource
 
       if attributes.has_key?(:'settlementCurrency')
         self.settlement_currency = attributes[:'settlementCurrency']
+      end
+
+      if attributes.has_key?(:'refundBalance')
+        self.refund_balance = attributes[:'refundBalance']
       end
 
       if attributes.has_key?(:'surcharge')
@@ -158,6 +168,12 @@ module CyberSource
       @settlement_currency = settlement_currency
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] refund_balance Value to be assigned
+    def refund_balance=(refund_balance)
+      @refund_balance = refund_balance
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -169,6 +185,7 @@ module CyberSource
           authorized_amount == o.authorized_amount &&
           settlement_amount == o.settlement_amount &&
           settlement_currency == o.settlement_currency &&
+          refund_balance == o.refund_balance &&
           surcharge == o.surcharge
     end
 
@@ -181,7 +198,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [total_amount, currency, tax_amount, authorized_amount, settlement_amount, settlement_currency, surcharge].hash
+      [total_amount, currency, tax_amount, authorized_amount, settlement_amount, settlement_currency, refund_balance, surcharge].hash
     end
 
     # Builds the object from hash

@@ -49,10 +49,10 @@ module CyberSource
     # This field indicates if domestic gambling OCTs (push funds) are allowed. Possible values:   - `Y`   - `N` 
     attr_accessor :online_gambling_domestic
 
-    # This field indicates if domestic OCTs (push funds) are allowed. Note: Supported only in US for domestic transactions involving Push Payments Gateway Service(PPGS). Possible values:   - `true`   - `false` 
+    # This field indicates if domestic OCTs (push funds) are allowed. Possible values:   - `true`   - `false` 
     attr_accessor :domestic_participant
 
-    # This field indicates if cross-border OCTs (push funds) are allowed. Note: Supported only in US for cross-border transactions involving Push Payments Gateway Service(PPGS). Possible values:   - `true`   - `false` 
+    # This field indicates if cross-border OCTs (push funds) are allowed. Possible values:   - `true`   - `false` 
     attr_accessor :cross_border_participant
 
     # Attribute mapping from ruby-style variable name to JSON key.

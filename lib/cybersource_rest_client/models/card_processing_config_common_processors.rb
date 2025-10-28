@@ -27,6 +27,9 @@ module CyberSource
 
     attr_accessor :acquirer
 
+    # Identifies the financial institution acting as the acquirer of this customer transaction. The acquirer is the member or system user that signed the merchant.
+    attr_accessor :acquirers
+
     # Merchant ID assigned by an acquirer or a processor. Should not be overriden by any other party.  Validation details (for selected processors)...  <table> <thead><tr><th>Processor</th><th>Acceptance Type</th><th>Required</th><th>Min. Length</th><th>Max. Length</th><th>Regex</th></tr></thead> <tr><td>Barclays HISO</td><td>cp, cnp, hybrid</td><td>Yes</td><td>1</td><td>15</td><td>^[0-9a-zA-Z]+$</td></tr> <tr><td>Barclays</td><td>cp, cnp, hybrid</td><td>Yes</td><td>1</td><td>11</td><td>^[0-9a-zA-Z]+$</td></tr> </table> 
     attr_accessor :merchant_id
 
@@ -161,6 +164,7 @@ module CyberSource
         :'merchant_verification_value' => :'merchantVerificationValue',
         :'aba_number' => :'abaNumber',
         :'acquirer' => :'acquirer',
+        :'acquirers' => :'acquirers',
         :'merchant_id' => :'merchantId',
         :'terminal_id' => :'terminalId',
         :'payment_types' => :'paymentTypes',
@@ -214,6 +218,7 @@ module CyberSource
         :'merchant_verification_value' => :'merchant_verification_value',
         :'aba_number' => :'aba_number',
         :'acquirer' => :'acquirer',
+        :'acquirers' => :'acquirers',
         :'merchant_id' => :'merchant_id',
         :'terminal_id' => :'terminal_id',
         :'payment_types' => :'payment_types',
@@ -267,6 +272,7 @@ module CyberSource
         :'merchant_verification_value' => :'String',
         :'aba_number' => :'String',
         :'acquirer' => :'CardProcessingConfigCommonAcquirer',
+        :'acquirers' => :'Hash<String, CardProcessingConfigCommonAcquirers>',
         :'merchant_id' => :'String',
         :'terminal_id' => :'String',
         :'payment_types' => :'Hash<String, CardProcessingConfigCommonPaymentTypes>',
@@ -338,6 +344,12 @@ module CyberSource
 
       if attributes.has_key?(:'acquirer')
         self.acquirer = attributes[:'acquirer']
+      end
+
+      if attributes.has_key?(:'acquirers')
+        if (value = attributes[:'acquirers']).is_a?(Hash)
+          self.acquirers = value
+        end
       end
 
       if attributes.has_key?(:'merchantId')
@@ -556,6 +568,7 @@ module CyberSource
           merchant_verification_value == o.merchant_verification_value &&
           aba_number == o.aba_number &&
           acquirer == o.acquirer &&
+          acquirers == o.acquirers &&
           merchant_id == o.merchant_id &&
           terminal_id == o.terminal_id &&
           payment_types == o.payment_types &&
@@ -609,7 +622,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [batch_group, business_application_id, merchant_verification_value, aba_number, acquirer, merchant_id, terminal_id, payment_types, currencies, visa_aggregator_id, amex_aggregator_id, master_card_aggregator_id, sic_code, allow_multiple_bills, allow_merchant_descriptor_override, enhanced_data, fire_safety_indicator, quasi_cash, acquirer_merchant_id, avs_format, enable_long_trans_ref_no, enable_level2, enable_multiple_transaction_advice_addendum, amex_transaction_advice_addendum1, enable_multi_line_items, enable_transaction_reference_number, enable_auto_auth_reversal_after_void, enable_expresspay_pan_translation, enable_credit_auth, industry_code, send_amex_level2_data, soft_descriptor_type, vital_number, bank_number, chain_number, merchant_bin_number, merchant_location_number, store_id, travel_agency_code, travel_agency_name, settlement_currency, enable_least_cost_routing, enable_cvv_response_indicator, enable_multi_currency_processing, enable_pos_network_switching, enable_dynamic_currency_conversion, merchant_tier].hash
+      [batch_group, business_application_id, merchant_verification_value, aba_number, acquirer, acquirers, merchant_id, terminal_id, payment_types, currencies, visa_aggregator_id, amex_aggregator_id, master_card_aggregator_id, sic_code, allow_multiple_bills, allow_merchant_descriptor_override, enhanced_data, fire_safety_indicator, quasi_cash, acquirer_merchant_id, avs_format, enable_long_trans_ref_no, enable_level2, enable_multiple_transaction_advice_addendum, amex_transaction_advice_addendum1, enable_multi_line_items, enable_transaction_reference_number, enable_auto_auth_reversal_after_void, enable_expresspay_pan_translation, enable_credit_auth, industry_code, send_amex_level2_data, soft_descriptor_type, vital_number, bank_number, chain_number, merchant_bin_number, merchant_location_number, store_id, travel_agency_code, travel_agency_name, settlement_currency, enable_least_cost_routing, enable_cvv_response_indicator, enable_multi_currency_processing, enable_pos_network_switching, enable_dynamic_currency_conversion, merchant_tier].hash
     end
 
     # Builds the object from hash

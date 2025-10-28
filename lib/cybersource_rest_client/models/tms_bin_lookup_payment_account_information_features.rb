@@ -70,6 +70,21 @@ module CyberSource
     # This field indicates if the instrument is a flex credential. Possible values:     - `true`     - `false` 
     attr_accessor :flex_credential
 
+    # This field contains the Visa-assigned product identifier associated with the BIN. This field is only supported for Visa BINs. Example values:   - Q4   - P   - AX 
+    attr_accessor :product_id
+
+    # This field contains the Visa-assigned product subtype identifier associated with the BIN. This field is only supported for Visa BINs. Example values:   - BB   - EX   - L2   - C2 
+    attr_accessor :product_id_subtype
+
+    # This field indicates if the payment instrument supports 3D Secure authentication. Possible values:     - `true`     - `false` 
+    attr_accessor :three_ds_support
+
+    # This field indicates if the payment instrument is eligible for Standing Instructions (recurring payments). Possible values:     - `true`     - `false` 
+    attr_accessor :si_eligible
+
+    # This field indicates if the card is eligible for Equated Monthly Installments (EMI). Possible values:     - `true`     - `false` 
+    attr_accessor :emi_eligible
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -91,7 +106,12 @@ module CyberSource
         :'account_level_management' => :'accountLevelManagement',
         :'online_gambling_block' => :'onlineGamblingBlock',
         :'auto_substantiation' => :'autoSubstantiation',
-        :'flex_credential' => :'flexCredential'
+        :'flex_credential' => :'flexCredential',
+        :'product_id' => :'productId',
+        :'product_id_subtype' => :'productIdSubtype',
+        :'three_ds_support' => :'threeDSSupport',
+        :'si_eligible' => :'siEligible',
+        :'emi_eligible' => :'emiEligible'
       }
     end
 
@@ -116,7 +136,12 @@ module CyberSource
         :'account_level_management' => :'account_level_management',
         :'online_gambling_block' => :'online_gambling_block',
         :'auto_substantiation' => :'auto_substantiation',
-        :'flex_credential' => :'flex_credential'
+        :'flex_credential' => :'flex_credential',
+        :'product_id' => :'product_id',
+        :'product_id_subtype' => :'product_id_subtype',
+        :'three_ds_support' => :'three_ds_support',
+        :'si_eligible' => :'si_eligible',
+        :'emi_eligible' => :'emi_eligible'
       }
     end
 
@@ -141,7 +166,12 @@ module CyberSource
         :'account_level_management' => :'BOOLEAN',
         :'online_gambling_block' => :'BOOLEAN',
         :'auto_substantiation' => :'BOOLEAN',
-        :'flex_credential' => :'BOOLEAN'
+        :'flex_credential' => :'BOOLEAN',
+        :'product_id' => :'String',
+        :'product_id_subtype' => :'String',
+        :'three_ds_support' => :'BOOLEAN',
+        :'si_eligible' => :'BOOLEAN',
+        :'emi_eligible' => :'BOOLEAN'
       }
     end
 
@@ -228,6 +258,26 @@ module CyberSource
       if attributes.has_key?(:'flexCredential')
         self.flex_credential = attributes[:'flexCredential']
       end
+
+      if attributes.has_key?(:'productId')
+        self.product_id = attributes[:'productId']
+      end
+
+      if attributes.has_key?(:'productIdSubtype')
+        self.product_id_subtype = attributes[:'productIdSubtype']
+      end
+
+      if attributes.has_key?(:'threeDSSupport')
+        self.three_ds_support = attributes[:'threeDSSupport']
+      end
+
+      if attributes.has_key?(:'siEligible')
+        self.si_eligible = attributes[:'siEligible']
+      end
+
+      if attributes.has_key?(:'emiEligible')
+        self.emi_eligible = attributes[:'emiEligible']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -308,7 +358,12 @@ module CyberSource
           account_level_management == o.account_level_management &&
           online_gambling_block == o.online_gambling_block &&
           auto_substantiation == o.auto_substantiation &&
-          flex_credential == o.flex_credential
+          flex_credential == o.flex_credential &&
+          product_id == o.product_id &&
+          product_id_subtype == o.product_id_subtype &&
+          three_ds_support == o.three_ds_support &&
+          si_eligible == o.si_eligible &&
+          emi_eligible == o.emi_eligible
     end
 
     # @see the `==` method
@@ -320,7 +375,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [account_funding_source, account_funding_source_sub_type, card_product, message_type, acceptance_level, card_platform, combo_card, corporate_purchase, health_card, shared_bin, pos_domestic_only, gambling_allowed, commercial_card_level2, commercial_card_level3, exempt_bin, account_level_management, online_gambling_block, auto_substantiation, flex_credential].hash
+      [account_funding_source, account_funding_source_sub_type, card_product, message_type, acceptance_level, card_platform, combo_card, corporate_purchase, health_card, shared_bin, pos_domestic_only, gambling_allowed, commercial_card_level2, commercial_card_level3, exempt_bin, account_level_management, online_gambling_block, auto_substantiation, flex_credential, product_id, product_id_subtype, three_ds_support, si_eligible, emi_eligible].hash
     end
 
     # Builds the object from hash

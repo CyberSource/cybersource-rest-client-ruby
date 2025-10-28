@@ -21,13 +21,16 @@ module CyberSource
 
     attr_accessor :order_information
 
+    attr_accessor :merchant_defined_field_values
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'customer_information' => :'customerInformation',
         :'processing_information' => :'processingInformation',
         :'invoice_information' => :'invoiceInformation',
-        :'order_information' => :'orderInformation'
+        :'order_information' => :'orderInformation',
+        :'merchant_defined_field_values' => :'merchantDefinedFieldValues'
       }
     end
 
@@ -37,7 +40,8 @@ module CyberSource
         :'customer_information' => :'customer_information',
         :'processing_information' => :'processing_information',
         :'invoice_information' => :'invoice_information',
-        :'order_information' => :'order_information'
+        :'order_information' => :'order_information',
+        :'merchant_defined_field_values' => :'merchant_defined_field_values'
       }
     end
 
@@ -47,7 +51,8 @@ module CyberSource
         :'customer_information' => :'Invoicingv2invoicesCustomerInformation',
         :'processing_information' => :'Invoicingv2invoicesProcessingInformation',
         :'invoice_information' => :'Invoicingv2invoicesidInvoiceInformation',
-        :'order_information' => :'Invoicingv2invoicesOrderInformation'
+        :'order_information' => :'Invoicingv2invoicesOrderInformation',
+        :'merchant_defined_field_values' => :'Array<Invoicingv2invoicesMerchantDefinedFieldValues>'
       }
     end
 
@@ -73,6 +78,12 @@ module CyberSource
 
       if attributes.has_key?(:'orderInformation')
         self.order_information = attributes[:'orderInformation']
+      end
+
+      if attributes.has_key?(:'merchantDefinedFieldValues')
+        if (value = attributes[:'merchantDefinedFieldValues']).is_a?(Array)
+          self.merchant_defined_field_values = value
+        end
       end
     end
 
@@ -107,7 +118,8 @@ module CyberSource
           customer_information == o.customer_information &&
           processing_information == o.processing_information &&
           invoice_information == o.invoice_information &&
-          order_information == o.order_information
+          order_information == o.order_information &&
+          merchant_defined_field_values == o.merchant_defined_field_values
     end
 
     # @see the `==` method
@@ -119,7 +131,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [customer_information, processing_information, invoice_information, order_information].hash
+      [customer_information, processing_information, invoice_information, order_information, merchant_defined_field_values].hash
     end
 
     # Builds the object from hash

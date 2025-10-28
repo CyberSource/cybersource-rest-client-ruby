@@ -13,38 +13,56 @@ require 'date'
 
 module CyberSource
   class InlineResponse2003
-    # Product ID.
-    attr_accessor :product_id
+    attr_accessor :registration_information
 
-    # Product Name.
-    attr_accessor :product_name
+    attr_accessor :integration_information
 
-    attr_accessor :event_types
+    attr_accessor :organization_information
+
+    attr_accessor :product_information
+
+    attr_accessor :product_information_setups
+
+    attr_accessor :document_information
+
+    attr_accessor :details
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'product_id' => :'productId',
-        :'product_name' => :'productName',
-        :'event_types' => :'eventTypes'
+        :'registration_information' => :'registrationInformation',
+        :'integration_information' => :'integrationInformation',
+        :'organization_information' => :'organizationInformation',
+        :'product_information' => :'productInformation',
+        :'product_information_setups' => :'productInformationSetups',
+        :'document_information' => :'documentInformation',
+        :'details' => :'details'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'product_id' => :'product_id',
-        :'product_name' => :'product_name',
-        :'event_types' => :'event_types'
+        :'registration_information' => :'registration_information',
+        :'integration_information' => :'integration_information',
+        :'organization_information' => :'organization_information',
+        :'product_information' => :'product_information',
+        :'product_information_setups' => :'product_information_setups',
+        :'document_information' => :'document_information',
+        :'details' => :'details'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'product_id' => :'String',
-        :'product_name' => :'String',
-        :'event_types' => :'Array<Notificationsubscriptionsv2productsorganizationIdEventTypes>'
+        :'registration_information' => :'Boardingv1registrationsRegistrationInformation',
+        :'integration_information' => :'InlineResponse2003IntegrationInformation',
+        :'organization_information' => :'Boardingv1registrationsOrganizationInformation',
+        :'product_information' => :'Boardingv1registrationsProductInformation',
+        :'product_information_setups' => :'Array<InlineResponse2013ProductInformationSetups>',
+        :'document_information' => :'Boardingv1registrationsDocumentInformation',
+        :'details' => :'Hash<String, Array<Object>>'
       }
     end
 
@@ -56,17 +74,35 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'productId')
-        self.product_id = attributes[:'productId']
+      if attributes.has_key?(:'registrationInformation')
+        self.registration_information = attributes[:'registrationInformation']
       end
 
-      if attributes.has_key?(:'productName')
-        self.product_name = attributes[:'productName']
+      if attributes.has_key?(:'integrationInformation')
+        self.integration_information = attributes[:'integrationInformation']
       end
 
-      if attributes.has_key?(:'eventTypes')
-        if (value = attributes[:'eventTypes']).is_a?(Array)
-          self.event_types = value
+      if attributes.has_key?(:'organizationInformation')
+        self.organization_information = attributes[:'organizationInformation']
+      end
+
+      if attributes.has_key?(:'productInformation')
+        self.product_information = attributes[:'productInformation']
+      end
+
+      if attributes.has_key?(:'productInformationSetups')
+        if (value = attributes[:'productInformationSetups']).is_a?(Array)
+          self.product_information_setups = value
+        end
+      end
+
+      if attributes.has_key?(:'documentInformation')
+        self.document_information = attributes[:'documentInformation']
+      end
+
+      if attributes.has_key?(:'details')
+        if (value = attributes[:'details']).is_a?(Hash)
+          self.details = value
         end
       end
     end
@@ -89,9 +125,13 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          product_id == o.product_id &&
-          product_name == o.product_name &&
-          event_types == o.event_types
+          registration_information == o.registration_information &&
+          integration_information == o.integration_information &&
+          organization_information == o.organization_information &&
+          product_information == o.product_information &&
+          product_information_setups == o.product_information_setups &&
+          document_information == o.document_information &&
+          details == o.details
     end
 
     # @see the `==` method
@@ -103,7 +143,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [product_id, product_name, event_types].hash
+      [registration_information, integration_information, organization_information, product_information, product_information_setups, document_information, details].hash
     end
 
     # Builds the object from hash

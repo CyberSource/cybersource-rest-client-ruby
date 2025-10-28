@@ -38,6 +38,8 @@ module CyberSource
 
     attr_accessor :promotion_information
 
+    attr_accessor :processor_information
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -52,7 +54,8 @@ module CyberSource
         :'point_of_sale_information' => :'pointOfSaleInformation',
         :'merchant_defined_information' => :'merchantDefinedInformation',
         :'travel_information' => :'travelInformation',
-        :'promotion_information' => :'promotionInformation'
+        :'promotion_information' => :'promotionInformation',
+        :'processor_information' => :'processorInformation'
       }
     end
 
@@ -70,7 +73,8 @@ module CyberSource
         :'point_of_sale_information' => :'point_of_sale_information',
         :'merchant_defined_information' => :'merchant_defined_information',
         :'travel_information' => :'travel_information',
-        :'promotion_information' => :'promotion_information'
+        :'promotion_information' => :'promotion_information',
+        :'processor_information' => :'processor_information'
       }
     end
 
@@ -88,7 +92,8 @@ module CyberSource
         :'point_of_sale_information' => :'Ptsv2paymentsidrefundsPointOfSaleInformation',
         :'merchant_defined_information' => :'Array<Ptsv2paymentsMerchantDefinedInformation>',
         :'travel_information' => :'Ptsv2paymentsTravelInformation',
-        :'promotion_information' => :'Ptsv2paymentsPromotionInformation'
+        :'promotion_information' => :'Ptsv2paymentsPromotionInformation',
+        :'processor_information' => :'Ptsv2reversalsProcessorInformation'
       }
     end
 
@@ -149,6 +154,10 @@ module CyberSource
       if attributes.has_key?(:'promotionInformation')
         self.promotion_information = attributes[:'promotionInformation']
       end
+
+      if attributes.has_key?(:'processorInformation')
+        self.processor_information = attributes[:'processorInformation']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -180,7 +189,8 @@ module CyberSource
           point_of_sale_information == o.point_of_sale_information &&
           merchant_defined_information == o.merchant_defined_information &&
           travel_information == o.travel_information &&
-          promotion_information == o.promotion_information
+          promotion_information == o.promotion_information &&
+          processor_information == o.processor_information
     end
 
     # @see the `==` method
@@ -192,7 +202,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_reference_information, processing_information, payment_information, order_information, buyer_information, device_information, merchant_information, aggregator_information, point_of_sale_information, merchant_defined_information, travel_information, promotion_information].hash
+      [client_reference_information, processing_information, payment_information, order_information, buyer_information, device_information, merchant_information, aggregator_information, point_of_sale_information, merchant_defined_information, travel_information, promotion_information, processor_information].hash
     end
 
     # Builds the object from hash

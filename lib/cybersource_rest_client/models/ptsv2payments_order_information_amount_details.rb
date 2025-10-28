@@ -13,6 +13,9 @@ require 'date'
 
 module CyberSource
   class Ptsv2paymentsOrderInformationAmountDetails
+    # The remaining amount which can be refunded.
+    attr_accessor :refund_balance
+
     # Amount being charged as gift wrap fee. 
     attr_accessor :gift_wrap_amount
 
@@ -103,6 +106,7 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'refund_balance' => :'refundBalance',
         :'gift_wrap_amount' => :'giftWrapAmount',
         :'invoice_amount' => :'invoiceAmount',
         :'total_amount' => :'totalAmount',
@@ -140,6 +144,7 @@ module CyberSource
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
+        :'refund_balance' => :'refund_balance',
         :'gift_wrap_amount' => :'gift_wrap_amount',
         :'invoice_amount' => :'invoice_amount',
         :'total_amount' => :'total_amount',
@@ -177,6 +182,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'refund_balance' => :'String',
         :'gift_wrap_amount' => :'String',
         :'invoice_amount' => :'String',
         :'total_amount' => :'String',
@@ -218,6 +224,10 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'refundBalance')
+        self.refund_balance = attributes[:'refundBalance']
+      end
 
       if attributes.has_key?(:'giftWrapAmount')
         self.gift_wrap_amount = attributes[:'giftWrapAmount']
@@ -359,6 +369,12 @@ module CyberSource
     # @return true if the model is valid
     def valid?
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] refund_balance Value to be assigned
+    def refund_balance=(refund_balance)
+      @refund_balance = refund_balance
     end
 
     # Custom attribute writer method with validation
@@ -516,6 +532,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          refund_balance == o.refund_balance &&
           gift_wrap_amount == o.gift_wrap_amount &&
           invoice_amount == o.invoice_amount &&
           total_amount == o.total_amount &&
@@ -558,7 +575,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [gift_wrap_amount, invoice_amount, total_amount, sub_total_amount, currency, discount_amount, duty_amount, gratuity_amount, tax_amount, national_tax_included, tax_applied_after_discount, tax_applied_level, tax_type_code, freight_amount, foreign_amount, foreign_currency, exchange_rate, exchange_rate_time_stamp, surcharge, settlement_amount, settlement_currency, amex_additional_amounts, tax_details, service_fee_amount, original_amount, original_currency, cashback_amount, currency_conversion, oct_surcharge, order, anticipated_amount].hash
+      [refund_balance, gift_wrap_amount, invoice_amount, total_amount, sub_total_amount, currency, discount_amount, duty_amount, gratuity_amount, tax_amount, national_tax_included, tax_applied_after_discount, tax_applied_level, tax_type_code, freight_amount, foreign_amount, foreign_currency, exchange_rate, exchange_rate_time_stamp, surcharge, settlement_amount, settlement_currency, amex_additional_amounts, tax_details, service_fee_amount, original_amount, original_currency, cashback_amount, currency_conversion, oct_surcharge, order, anticipated_amount].hash
     end
 
     # Builds the object from hash

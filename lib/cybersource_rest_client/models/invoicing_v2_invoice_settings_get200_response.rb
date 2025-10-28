@@ -18,11 +18,14 @@ module CyberSource
 
     attr_accessor :invoice_settings_information
 
+    attr_accessor :merchant_information
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'submit_time_utc' => :'submitTimeUtc',
-        :'invoice_settings_information' => :'invoiceSettingsInformation'
+        :'invoice_settings_information' => :'invoiceSettingsInformation',
+        :'merchant_information' => :'merchantInformation'
       }
     end
 
@@ -30,7 +33,8 @@ module CyberSource
     def self.json_map
       {
         :'submit_time_utc' => :'submit_time_utc',
-        :'invoice_settings_information' => :'invoice_settings_information'
+        :'invoice_settings_information' => :'invoice_settings_information',
+        :'merchant_information' => :'merchant_information'
       }
     end
 
@@ -38,7 +42,8 @@ module CyberSource
     def self.swagger_types
       {
         :'submit_time_utc' => :'String',
-        :'invoice_settings_information' => :'InvoicingV2InvoiceSettingsGet200ResponseInvoiceSettingsInformation'
+        :'invoice_settings_information' => :'InvoicingV2InvoiceSettingsGet200ResponseInvoiceSettingsInformation',
+        :'merchant_information' => :'InvoicingV2InvoiceSettingsGet200ResponseMerchantInformation'
       }
     end
 
@@ -56,6 +61,10 @@ module CyberSource
 
       if attributes.has_key?(:'invoiceSettingsInformation')
         self.invoice_settings_information = attributes[:'invoiceSettingsInformation']
+      end
+
+      if attributes.has_key?(:'merchantInformation')
+        self.merchant_information = attributes[:'merchantInformation']
       end
     end
 
@@ -78,7 +87,8 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           submit_time_utc == o.submit_time_utc &&
-          invoice_settings_information == o.invoice_settings_information
+          invoice_settings_information == o.invoice_settings_information &&
+          merchant_information == o.merchant_information
     end
 
     # @see the `==` method
@@ -90,7 +100,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [submit_time_utc, invoice_settings_information].hash
+      [submit_time_utc, invoice_settings_information, merchant_information].hash
     end
 
     # Builds the object from hash

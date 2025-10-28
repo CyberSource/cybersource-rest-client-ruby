@@ -29,6 +29,8 @@ module CyberSource
     # URL to redirect to if the transaction fails. This is where the user will be sent if there is an error during the payment process. example: http://www.test.com/failure 
     attr_accessor :redirect_failure_url
 
+    attr_accessor :underwriting
+
     # Additional configurations for the payment method. This can include various settings specific to the payment method. 
     attr_accessor :additional_configurations
 
@@ -40,6 +42,7 @@ module CyberSource
         :'redirect_success_url' => :'redirectSuccessUrl',
         :'redirect_cancel_url' => :'redirectCancelUrl',
         :'redirect_failure_url' => :'redirectFailureUrl',
+        :'underwriting' => :'underwriting',
         :'additional_configurations' => :'additionalConfigurations'
       }
     end
@@ -52,6 +55,7 @@ module CyberSource
         :'redirect_success_url' => :'redirect_success_url',
         :'redirect_cancel_url' => :'redirect_cancel_url',
         :'redirect_failure_url' => :'redirect_failure_url',
+        :'underwriting' => :'underwriting',
         :'additional_configurations' => :'additional_configurations'
       }
     end
@@ -64,6 +68,7 @@ module CyberSource
         :'redirect_success_url' => :'String',
         :'redirect_cancel_url' => :'String',
         :'redirect_failure_url' => :'String',
+        :'underwriting' => :'UnderwritingConfiguration',
         :'additional_configurations' => :'Array<PaymentsProductsAlternativePaymentMethodsConfigurationInformationConfigurationsAdditionalConfigurations>'
       }
     end
@@ -96,6 +101,10 @@ module CyberSource
         self.redirect_failure_url = attributes[:'redirectFailureUrl']
       end
 
+      if attributes.has_key?(:'underwriting')
+        self.underwriting = attributes[:'underwriting']
+      end
+
       if attributes.has_key?(:'additionalConfigurations')
         if (value = attributes[:'additionalConfigurations']).is_a?(Array)
           self.additional_configurations = value
@@ -126,6 +135,7 @@ module CyberSource
           redirect_success_url == o.redirect_success_url &&
           redirect_cancel_url == o.redirect_cancel_url &&
           redirect_failure_url == o.redirect_failure_url &&
+          underwriting == o.underwriting &&
           additional_configurations == o.additional_configurations
     end
 
@@ -138,7 +148,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [merchant_id, logo_url, redirect_success_url, redirect_cancel_url, redirect_failure_url, additional_configurations].hash
+      [merchant_id, logo_url, redirect_success_url, redirect_cancel_url, redirect_failure_url, underwriting, additional_configurations].hash
     end
 
     # Builds the object from hash

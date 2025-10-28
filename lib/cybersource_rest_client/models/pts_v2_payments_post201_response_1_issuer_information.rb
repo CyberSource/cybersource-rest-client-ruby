@@ -16,7 +16,7 @@ module CyberSource
     # Name of the card issuer provided by the processor. 
     attr_accessor :name
 
-    # Unique code for card issuer provided by the processor. 
+    # Unique code for card issuer provided by the processor.
     attr_accessor :code
 
     # Attribute mapping from ruby-style variable name to JSON key.

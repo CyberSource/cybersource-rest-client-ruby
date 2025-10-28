@@ -3,12 +3,17 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**registration_information** | [**Boardingv1registrationsRegistrationInformation**](Boardingv1registrationsRegistrationInformation.md) |  | [optional] 
-**integration_information** | [**InlineResponse2002IntegrationInformation**](InlineResponse2002IntegrationInformation.md) |  | [optional] 
-**organization_information** | [**Boardingv1registrationsOrganizationInformation**](Boardingv1registrationsOrganizationInformation.md) |  | [optional] 
-**product_information** | [**Boardingv1registrationsProductInformation**](Boardingv1registrationsProductInformation.md) |  | [optional] 
-**product_information_setups** | [**Array&lt;InlineResponse2013ProductInformationSetups&gt;**](InlineResponse2013ProductInformationSetups.md) |  | [optional] 
-**document_information** | [**Boardingv1registrationsDocumentInformation**](Boardingv1registrationsDocumentInformation.md) |  | [optional] 
-**details** | **Hash&lt;String, Array&lt;Object&gt;&gt;** |  | [optional] 
+**id** | **Integer** |  | [optional] 
+**field_type** | **String** |  | [optional] 
+**label** | **String** |  | [optional] 
+**customer_visible** | **BOOLEAN** |  | [optional] 
+**text_min_length** | **Integer** |  | [optional] 
+**text_max_length** | **Integer** |  | [optional] 
+**possible_values** | **String** |  | [optional] 
+**text_default_value** | **String** |  | [optional] 
+**merchant_id** | **String** |  | [optional] 
+**reference_type** | **String** |  | [optional] 
+**read_only** | **BOOLEAN** |  | [optional] 
+**merchant_defined_data_index** | **Integer** |  | [optional] 
 
 

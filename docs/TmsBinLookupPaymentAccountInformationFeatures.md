@@ -22,5 +22,10 @@ Name | Type | Description | Notes
 **online_gambling_block** | **BOOLEAN** | This field indicates if online gambling is blocked on the BIN. Possible values:     - &#x60;true&#x60;     - &#x60;false&#x60;  | [optional] 
 **auto_substantiation** | **BOOLEAN** | This field indicates if auto-substantiation is enabled on the BIN. Possible values:     - &#x60;true&#x60;     - &#x60;false&#x60;  | [optional] 
 **flex_credential** | **BOOLEAN** | This field indicates if the instrument is a flex credential. Possible values:     - &#x60;true&#x60;     - &#x60;false&#x60;  | [optional] 
+**product_id** | **String** | This field contains the Visa-assigned product identifier associated with the BIN. This field is only supported for Visa BINs. Example values:   - Q4   - P   - AX  | [optional] 
+**product_id_subtype** | **String** | This field contains the Visa-assigned product subtype identifier associated with the BIN. This field is only supported for Visa BINs. Example values:   - BB   - EX   - L2   - C2  | [optional] 
+**three_ds_support** | **BOOLEAN** | This field indicates if the payment instrument supports 3D Secure authentication. Possible values:     - &#x60;true&#x60;     - &#x60;false&#x60;  | [optional] 
+**si_eligible** | **BOOLEAN** | This field indicates if the payment instrument is eligible for Standing Instructions (recurring payments). Possible values:     - &#x60;true&#x60;     - &#x60;false&#x60;  | [optional] 
+**emi_eligible** | **BOOLEAN** | This field indicates if the card is eligible for Equated Monthly Installments (EMI). Possible values:     - &#x60;true&#x60;     - &#x60;false&#x60;  | [optional] 
 
 

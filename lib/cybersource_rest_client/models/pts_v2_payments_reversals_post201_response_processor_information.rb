@@ -34,11 +34,13 @@ module CyberSource
     # Result of the Mastercard card-on-file token service. Mastercard provides this value to CyberSource.  Possible values:   - `C`: Service completed successfully.  - `F`: One of the following:    - Incorrect Mastercard POS entry mode. The Mastercard POS entry mode should be 81 for an authorization or      authorization reversal.    - Incorrect Mastercard POS entry mode. The Mastercard POS entry mode should be 01 for a tokenized request.    - Token requestor ID is missing or formatted incorrectly.  - `I`: One of the following:    - Invalid token requestor ID.    - Suspended or deactivated token.    - Invalid token (not in mapping table).  - `T`: Invalid combination of token requestor ID and token.  - `U`: Expired token.  - `W`: Primary account number (PAN) listed in electronic warning bulletin.  **Note** This field is returned only for **CyberSource through VisaNet**. 
     attr_accessor :master_card_service_reply_code
 
-    # This field might contain information about a decline. This field is supported only for **CyberSource through VisaNet**. 
+    # This field might contain information about a decline. 
     attr_accessor :response_details
 
     # Processor response to the API request. 
     attr_accessor :provider_response
+
+    attr_accessor :network
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -51,7 +53,8 @@ module CyberSource
         :'master_card_service_code' => :'masterCardServiceCode',
         :'master_card_service_reply_code' => :'masterCardServiceReplyCode',
         :'response_details' => :'responseDetails',
-        :'provider_response' => :'providerResponse'
+        :'provider_response' => :'providerResponse',
+        :'network' => :'network'
       }
     end
 
@@ -66,7 +69,8 @@ module CyberSource
         :'master_card_service_code' => :'master_card_service_code',
         :'master_card_service_reply_code' => :'master_card_service_reply_code',
         :'response_details' => :'response_details',
-        :'provider_response' => :'provider_response'
+        :'provider_response' => :'provider_response',
+        :'network' => :'network'
       }
     end
 
@@ -81,7 +85,8 @@ module CyberSource
         :'master_card_service_code' => :'String',
         :'master_card_service_reply_code' => :'String',
         :'response_details' => :'String',
-        :'provider_response' => :'String'
+        :'provider_response' => :'String',
+        :'network' => :'Ptsv2paymentsProcessorInformationReversalNetwork'
       }
     end
 
@@ -127,6 +132,10 @@ module CyberSource
 
       if attributes.has_key?(:'providerResponse')
         self.provider_response = attributes[:'providerResponse']
+      end
+
+      if attributes.has_key?(:'network')
+        self.network = attributes[:'network']
       end
     end
 
@@ -198,7 +207,8 @@ module CyberSource
           master_card_service_code == o.master_card_service_code &&
           master_card_service_reply_code == o.master_card_service_reply_code &&
           response_details == o.response_details &&
-          provider_response == o.provider_response
+          provider_response == o.provider_response &&
+          network == o.network
     end
 
     # @see the `==` method
@@ -210,7 +220,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [transaction_id, response_code, network_transaction_id, response_category_code, forwarded_acquirer_code, master_card_service_code, master_card_service_reply_code, response_details, provider_response].hash
+      [transaction_id, response_code, network_transaction_id, response_category_code, forwarded_acquirer_code, master_card_service_code, master_card_service_reply_code, response_details, provider_response, network].hash
     end
 
     # Builds the object from hash

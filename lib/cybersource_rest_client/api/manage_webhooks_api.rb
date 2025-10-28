@@ -175,7 +175,7 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @option opts [String] :product_id The Product Identifier.
     # @option opts [String] :event_type The Event Type.
-    # @return [Array<InlineResponse2004>]
+    # @return [Array<InlineResponse2005>]
     #
     def get_webhook_subscriptions_by_org(organization_id, opts = {})
       data, status_code, headers = get_webhook_subscriptions_by_org_with_http_info(organization_id, opts)
@@ -188,7 +188,7 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @option opts [String] :product_id The Product Identifier.
     # @option opts [String] :event_type The Event Type.
-    # @return [Array<(Array<InlineResponse2004>, Fixnum, Hash)>] Array<InlineResponse2004> data, response status code and response headers
+    # @return [Array<(Array<InlineResponse2005>, Fixnum, Hash)>] Array<InlineResponse2005> data, response status code and response headers
     def get_webhook_subscriptions_by_org_with_http_info(organization_id, opts = {})
 
       if @api_client.config.debugging
@@ -239,7 +239,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Array<InlineResponse2004>')
+        :return_type => 'Array<InlineResponse2005>')
       if @api_client.config.debugging
         begin
         raise
@@ -331,7 +331,7 @@ module CyberSource
     # @param webhook_id The Webhook Identifier.
     # @param [Hash] opts the optional parameters
     # @option opts [UpdateWebhook] :update_webhook The webhook payload or changes to apply.
-    # @return [InlineResponse2005]
+    # @return [InlineResponse2006]
     #
     def notification_subscriptions_v2_webhooks_webhook_id_patch(webhook_id, opts = {})
       data, status_code, headers = notification_subscriptions_v2_webhooks_webhook_id_patch_with_http_info(webhook_id, opts)
@@ -343,7 +343,7 @@ module CyberSource
     # @param webhook_id The Webhook Identifier.
     # @param [Hash] opts the optional parameters
     # @option opts [UpdateWebhook] :update_webhook The webhook payload or changes to apply.
-    # @return [Array<(InlineResponse2005, Fixnum, Hash)>] InlineResponse2005 data, response status code and response headers
+    # @return [Array<(InlineResponse2006, Fixnum, Hash)>] InlineResponse2006 data, response status code and response headers
     def notification_subscriptions_v2_webhooks_webhook_id_patch_with_http_info(webhook_id, opts = {})
 
       if @api_client.config.debugging
@@ -389,7 +389,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2005')
+        :return_type => 'InlineResponse2006')
       if @api_client.config.debugging
         begin
         raise
