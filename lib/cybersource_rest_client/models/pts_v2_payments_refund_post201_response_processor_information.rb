@@ -41,6 +41,8 @@ module CyberSource
 
     attr_accessor :network
 
+    attr_accessor :merchant_advice
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -53,7 +55,8 @@ module CyberSource
         :'network_transaction_id' => :'networkTransactionId',
         :'settlement_date' => :'settlementDate',
         :'update_time_utc' => :'updateTimeUtc',
-        :'network' => :'network'
+        :'network' => :'network',
+        :'merchant_advice' => :'merchantAdvice'
       }
     end
 
@@ -69,7 +72,8 @@ module CyberSource
         :'network_transaction_id' => :'network_transaction_id',
         :'settlement_date' => :'settlement_date',
         :'update_time_utc' => :'update_time_utc',
-        :'network' => :'network'
+        :'network' => :'network',
+        :'merchant_advice' => :'merchant_advice'
       }
     end
 
@@ -85,7 +89,8 @@ module CyberSource
         :'network_transaction_id' => :'String',
         :'settlement_date' => :'String',
         :'update_time_utc' => :'String',
-        :'network' => :'Ptsv2paymentsProcessorInformationReversalNetwork'
+        :'network' => :'Ptsv2paymentsProcessorInformationReversalNetwork',
+        :'merchant_advice' => :'PtsV2PaymentsRefundPost201ResponseProcessorInformationMerchantAdvice'
       }
     end
 
@@ -135,6 +140,10 @@ module CyberSource
 
       if attributes.has_key?(:'network')
         self.network = attributes[:'network']
+      end
+
+      if attributes.has_key?(:'merchantAdvice')
+        self.merchant_advice = attributes[:'merchantAdvice']
       end
     end
 
@@ -201,7 +210,8 @@ module CyberSource
           network_transaction_id == o.network_transaction_id &&
           settlement_date == o.settlement_date &&
           update_time_utc == o.update_time_utc &&
-          network == o.network
+          network == o.network &&
+          merchant_advice == o.merchant_advice
     end
 
     # @see the `==` method
@@ -213,7 +223,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [approval_code, transaction_id, forwarded_acquirer_code, merchant_number, response_code, ach_verification, network_transaction_id, settlement_date, update_time_utc, network].hash
+      [approval_code, transaction_id, forwarded_acquirer_code, merchant_number, response_code, ach_verification, network_transaction_id, settlement_date, update_time_utc, network, merchant_advice].hash
     end
 
     # Builds the object from hash

@@ -55,6 +55,12 @@ describe 'Riskv1decisionsDeviceInformation' do
     end
   end
 
+  describe 'test attribute "use_raw_fingerprint_session_id"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "http_browser_email"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

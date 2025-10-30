@@ -30,7 +30,7 @@ module CyberSource
     # Specifies whether the InstrumentId should be created (true) or not (false). Possible Values: - `true`: The InstrumentId should be created. - `false`: The InstrumentId should be created. 
     attr_accessor :create_instrument_identifier
 
-    # Source of the payment instrument. Possible Values: - ONFILE - TOKEN - ISSUER 
+    # Source of the card details. Possible Values: - ONFILE - TOKEN - ISSUER 
     attr_accessor :source
 
     # State of the network token or network token provision. Possible Values:   ACTIVE : Network token is active.   SUSPENDED : Network token is suspended. This state can change back to ACTIVE.   DELETED : This is a final state for a network token instance.   UNPROVISIONED : A previous network token. 

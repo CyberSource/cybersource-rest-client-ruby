@@ -19,10 +19,10 @@ module CyberSource
     # The [target origin](https://developer.mozilla.org/en-US/docs/Glossary/Origin) of the website on which you will be launching Unified Checkout is defined by the scheme (protocol), hostname (domain) and port number (if used).    You must use https://hostname (unless you use http://localhost) Wildcards are NOT supported.  Ensure that subdomains are included. Any valid top-level domain is supported (e.g. .com, .co.uk, .gov.br etc)  Examples:   - https://example.com   - https://subdomain.example.com   - https://example.com:8080<br><br>  If you are embedding within multiple nested iframes you need to specify the origins of all the browser contexts used, for example:    targetOrigins: [     \"https://example.com\",     \"https://basket.example.com\",     \"https://ecom.example.com\"   ] 
     attr_accessor :target_origins
 
-    # The list of card networks you want to use for this Unified Checkout transaction.  Unified Checkout currently supports the following card networks:     - VISA     - MASTERCARD     - AMEX     - CARNET     - CARTESBANCAIRES     - CUP     - DINERSCLUB     - DISCOVER     - EFTPOS     - ELO     - JCB     - JCREW     - MADA     - MAESTRO     - MEEZA     - PAYPAK 
+    # The list of card networks you want to use for this Unified Checkout transaction.  Unified Checkout currently supports the following card networks:     - VISA     - MASTERCARD     - AMEX     - CARNET     - CARTESBANCAIRES     - CUP     - DINERSCLUB     - DISCOVER     - EFTPOS     - ELO     - JAYWAN     - JCB     - JCREW     - KCP     - MADA     - MAESTRO     - MEEZA     - PAYPAK     - UATP 
     attr_accessor :allowed_card_networks
 
-    # The payment types that are allowed for the merchant.    Possible values when launching Unified Checkout:   - APPLEPAY   - CHECK   - CLICKTOPAY   - GOOGLEPAY   - PANENTRY                 - PAZE <br><br>  Unified Checkout also supports the following Alternative Payments:   - AFTERPAY<br><br>  Possible values when launching Click To Pay Drop-In UI: - CLICKTOPAY <br><br>  **Important:**    - CLICKTOPAY only available for Visa, Mastercard and AMEX for saved cards.   - Visa and Mastercard will look to tokenize using network tokenization for all Click to Pay requests.  Click to Pay uses Click to Pay token requester IDs and not the merchant's existing token requester.   - Apple Pay, Google Pay, Check, and Paze can be used independently without requiring PAN entry in the allowedPaymentTypes field.<br><br>  **Managing Google Pay Authentication Types** When you enable Google Pay on Unified Checkout you can specify optional parameters that define the types of card authentication you receive from Google Pay.<br><br>  **Managing Google Pay Authentication Types** Where Click to Pay is the payment type selected by the customer and the customer manually enters their card, the option to enroll their card in Click to Pay will be auto-checked if this field is set to \"true\".   This is only available where the merchant and cardholder are based in the following countries and the billing type is set to \"FULL\" or \"PARTIAL\".   - UAE   - Argentina   - Brazil   - Chile   - Colombia   - Kuwait   - Mexico   - Peru   - Qatar   - Saudi Arabia   - Ukraine   - South Africa<br><br>  If false, this is not present or not supported in the market.  Enrollment in Click to Pay is not checked for the customer when completing manual card entry. 
+    # The payment types that are allowed for the merchant.    Possible values when launching Unified Checkout:   - APPLEPAY   - CHECK   - CLICKTOPAY   - GOOGLEPAY   - PANENTRY                 - PAZE <br><br>  Unified Checkout supports the following Buy Now, Pay Later (BNPL) payment methods:   - AFTERPAY<br><br>  Unified Checkout supports the following Online Bank Transfer payment methods:   - Bancontact (BE)   - DragonPay (PH)   - iDEAL (NL)   - Multibanco (PT)   - MyBank (IT, BE, PT, ES)   - Przelewy24|P24 (PL)   - Tink Pay By Bank (GB)  Possible values when launching Click To Pay Drop-In UI: - CLICKTOPAY <br><br>  **Important:**    - CLICKTOPAY only available for Visa, Mastercard and AMEX for saved cards.   - Visa and Mastercard will look to tokenize using network tokenization for all Click to Pay requests.  Click to Pay uses Click to Pay token requester IDs and not the merchant's existing token requester.   - Apple Pay, Google Pay, Check, and Paze can be used independently without requiring PAN entry in the allowedPaymentTypes field.<br><br>  **Managing Google Pay Authentication Types** When you enable Google Pay on Unified Checkout you can specify optional parameters that define the types of card authentication you receive from Google Pay.<br><br>  **Managing Google Pay Authentication Types** Where Click to Pay is the payment type selected by the customer and the customer manually enters their card, the option to enroll their card in Click to Pay will be auto-checked if this field is set to \"true\".   This is only available where the merchant and cardholder are based in the following countries and the billing type is set to \"FULL\" or \"PARTIAL\".   - UAE   - Argentina   - Brazil   - Chile   - Colombia   - Kuwait   - Mexico   - Peru   - Qatar   - Saudi Arabia   - Ukraine   - South Africa<br><br>  If false, this is not present or not supported in the market.  Enrollment in Click to Pay is not checked for the customer when completing manual card entry. 
     attr_accessor :allowed_payment_types
 
     # Country the purchase is originating from (e.g. country of the merchant).  Use the two-character ISO Standard 
@@ -35,9 +35,11 @@ module CyberSource
 
     attr_accessor :complete_mandate
 
-    attr_accessor :order_information
-
     attr_accessor :transient_token_response_options
+
+    attr_accessor :data
+
+    attr_accessor :order_information
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -50,8 +52,9 @@ module CyberSource
         :'locale' => :'locale',
         :'capture_mandate' => :'captureMandate',
         :'complete_mandate' => :'completeMandate',
-        :'order_information' => :'orderInformation',
-        :'transient_token_response_options' => :'transientTokenResponseOptions'
+        :'transient_token_response_options' => :'transientTokenResponseOptions',
+        :'data' => :'data',
+        :'order_information' => :'orderInformation'
       }
     end
 
@@ -66,8 +69,9 @@ module CyberSource
         :'locale' => :'locale',
         :'capture_mandate' => :'capture_mandate',
         :'complete_mandate' => :'complete_mandate',
-        :'order_information' => :'order_information',
-        :'transient_token_response_options' => :'transient_token_response_options'
+        :'transient_token_response_options' => :'transient_token_response_options',
+        :'data' => :'data',
+        :'order_information' => :'order_information'
       }
     end
 
@@ -82,8 +86,9 @@ module CyberSource
         :'locale' => :'String',
         :'capture_mandate' => :'Upv1capturecontextsCaptureMandate',
         :'complete_mandate' => :'Upv1capturecontextsCompleteMandate',
-        :'order_information' => :'Upv1capturecontextsOrderInformation',
-        :'transient_token_response_options' => :'Microformv2sessionsTransientTokenResponseOptions'
+        :'transient_token_response_options' => :'Microformv2sessionsTransientTokenResponseOptions',
+        :'data' => :'Upv1capturecontextsData',
+        :'order_information' => :'Upv1capturecontextsOrderInformation'
       }
     end
 
@@ -133,12 +138,16 @@ module CyberSource
         self.complete_mandate = attributes[:'completeMandate']
       end
 
-      if attributes.has_key?(:'orderInformation')
-        self.order_information = attributes[:'orderInformation']
-      end
-
       if attributes.has_key?(:'transientTokenResponseOptions')
         self.transient_token_response_options = attributes[:'transientTokenResponseOptions']
+      end
+
+      if attributes.has_key?(:'data')
+        self.data = attributes[:'data']
+      end
+
+      if attributes.has_key?(:'orderInformation')
+        self.order_information = attributes[:'orderInformation']
       end
     end
 
@@ -180,8 +189,9 @@ module CyberSource
           locale == o.locale &&
           capture_mandate == o.capture_mandate &&
           complete_mandate == o.complete_mandate &&
-          order_information == o.order_information &&
-          transient_token_response_options == o.transient_token_response_options
+          transient_token_response_options == o.transient_token_response_options &&
+          data == o.data &&
+          order_information == o.order_information
     end
 
     # @see the `==` method
@@ -193,7 +203,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_version, target_origins, allowed_card_networks, allowed_payment_types, country, locale, capture_mandate, complete_mandate, order_information, transient_token_response_options].hash
+      [client_version, target_origins, allowed_card_networks, allowed_payment_types, country, locale, capture_mandate, complete_mandate, transient_token_response_options, data, order_information].hash
     end
 
     # Builds the object from hash

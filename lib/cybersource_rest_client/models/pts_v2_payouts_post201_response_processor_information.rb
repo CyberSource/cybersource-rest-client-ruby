@@ -28,6 +28,8 @@ module CyberSource
     # Used by Visa only and contains the response source/reason code that identifies the source of the response decision. 
     attr_accessor :response_code_source
 
+    attr_accessor :merchant_advice
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -35,7 +37,8 @@ module CyberSource
         :'response_code' => :'responseCode',
         :'transaction_id' => :'transactionId',
         :'system_trace_audit_number' => :'systemTraceAuditNumber',
-        :'response_code_source' => :'responseCodeSource'
+        :'response_code_source' => :'responseCodeSource',
+        :'merchant_advice' => :'merchantAdvice'
       }
     end
 
@@ -46,7 +49,8 @@ module CyberSource
         :'response_code' => :'response_code',
         :'transaction_id' => :'transaction_id',
         :'system_trace_audit_number' => :'system_trace_audit_number',
-        :'response_code_source' => :'response_code_source'
+        :'response_code_source' => :'response_code_source',
+        :'merchant_advice' => :'merchant_advice'
       }
     end
 
@@ -57,7 +61,8 @@ module CyberSource
         :'response_code' => :'String',
         :'transaction_id' => :'String',
         :'system_trace_audit_number' => :'String',
-        :'response_code_source' => :'String'
+        :'response_code_source' => :'String',
+        :'merchant_advice' => :'PtsV2PaymentsRefundPost201ResponseProcessorInformationMerchantAdvice'
       }
     end
 
@@ -87,6 +92,10 @@ module CyberSource
 
       if attributes.has_key?(:'responseCodeSource')
         self.response_code_source = attributes[:'responseCodeSource']
+      end
+
+      if attributes.has_key?(:'merchantAdvice')
+        self.merchant_advice = attributes[:'merchantAdvice']
       end
     end
 
@@ -142,7 +151,8 @@ module CyberSource
           response_code == o.response_code &&
           transaction_id == o.transaction_id &&
           system_trace_audit_number == o.system_trace_audit_number &&
-          response_code_source == o.response_code_source
+          response_code_source == o.response_code_source &&
+          merchant_advice == o.merchant_advice
     end
 
     # @see the `==` method
@@ -154,7 +164,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [approval_code, response_code, transaction_id, system_trace_audit_number, response_code_source].hash
+      [approval_code, response_code, transaction_id, system_trace_audit_number, response_code_source, merchant_advice].hash
     end
 
     # Builds the object from hash

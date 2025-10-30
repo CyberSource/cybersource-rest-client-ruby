@@ -17,6 +17,6 @@ Name | Type | Description | Notes
 **installment_information** | [**Ptsv2paymentsidcapturesInstallmentInformation**](Ptsv2paymentsidcapturesInstallmentInformation.md) |  | [optional] 
 **travel_information** | [**Ptsv2paymentsTravelInformation**](Ptsv2paymentsTravelInformation.md) |  | [optional] 
 **promotion_information** | [**Ptsv2paymentsPromotionInformation**](Ptsv2paymentsPromotionInformation.md) |  | [optional] 
-**processor_information** | [**Ptsv2reversalsProcessorInformation**](Ptsv2reversalsProcessorInformation.md) |  | [optional] 
+**processor_information** | [**Ptsv2paymentsidcapturesProcessorInformation**](Ptsv2paymentsidcapturesProcessorInformation.md) |  | [optional] 
 
 

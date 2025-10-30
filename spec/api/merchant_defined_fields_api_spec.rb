@@ -43,6 +43,18 @@ describe 'MerchantDefinedFieldsApi' do
     end
   end
 
+  # unit tests for delete_merchant_defined_fields_definitions
+  # Delete a MerchantDefinedField by ID
+  # @param reference_type 
+  # @param id 
+  # @param [Hash] opts the optional parameters
+  # @return [nil]
+  describe 'delete_merchant_defined_fields_definitions test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for get_merchant_defined_fields_definitions
   # Get all merchant defined fields for a given reference type
   # @param reference_type The reference type for which merchant defined fields are to be fetched. Available values are Invoice, Purchase, Donation
@@ -54,26 +66,14 @@ describe 'MerchantDefinedFieldsApi' do
     end
   end
 
-  # unit tests for invoicing_v2_reference_type_merchant_defined_fields_id_delete
-  # Delete a MerchantDefinedField by ID
-  # @param reference_type 
-  # @param id 
-  # @param [Hash] opts the optional parameters
-  # @return [nil]
-  describe 'invoicing_v2_reference_type_merchant_defined_fields_id_delete test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for invoicing_v2_reference_type_merchant_defined_fields_id_put
+  # unit tests for put_merchant_defined_fields_definitions
   # Update a MerchantDefinedField by ID
   # @param reference_type 
   # @param id 
   # @param merchant_defined_field_core 
   # @param [Hash] opts the optional parameters
   # @return [Array<InlineResponse2002>]
-  describe 'invoicing_v2_reference_type_merchant_defined_fields_id_put test' do
+  describe 'put_merchant_defined_fields_definitions test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
