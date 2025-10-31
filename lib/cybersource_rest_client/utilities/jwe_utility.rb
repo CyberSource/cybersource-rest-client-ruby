@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../../AuthenticationSDK/util/JWEUtility'
+require_relative '../../AuthenticationSDK/util/AuthJWEUtility'
 module CyberSource
 
   public
