@@ -92,6 +92,19 @@ module CyberSource
         end
       end
 
+      # Check the response body first if it is mle encrypted then do deserialize
+      if MLEUtility.check_is_mle_encrypted_response(response.body)
+        begin
+          body = MLEUtility.decrypt_mle_response_payload(@merchantconfig, response.body)
+          response = Typhoeus::Response.new(:code => response.code, :headers => response.headers.to_hash, :body => body)
+        rescue => e
+          raise ApiError.new(:message => "MLE Encrypted Response Decryption Error Occurred. Error: #{e.message}",
+                            :code => response.code,
+                            :response_headers => response.headers,
+                            :body => response.body)
+        end
+      end
+
       if opts[:return_type]
         data = deserialize(response, opts[:return_type])
       else
@@ -269,7 +282,7 @@ module CyberSource
     # @param [Response] response HTTP response
     # @param [String] return_type some examples: "User", "Array[User]", "Hash[String,Integer]"
     def deserialize(response, return_type)
-      require_relative '../AuthenticationSDK/mle/MLEUtility.rb'
+      require_relative '../AuthenticationSDK/util/MLEUtility.rb'
 
       body = response.body
 
@@ -286,18 +299,6 @@ module CyberSource
       content_type = response.headers['Content-Type'] || 'application/json'
 
       fail "Content-Type is not supported: #{content_type}" unless json_mime?(content_type)
-
-      # Check the response body first if it is mle encrypted then do deserialize
-      if MLEUtility.check_is_mle_encrypted_response(body)
-        begin
-          body = MLEUtility.decrypt_mle_response_payload(@merchantconfig, body)
-        rescue e
-          raise ApiError.new(:message => "MLE Encrypted Response Decryption Error Occurred. Error: #{e.message}",
-                            :code => response.code,
-                            :response_headers => response.headers,
-                            :body => body)
-        end
-      end
 
       begin
         data = JSON.parse("[#{body}]", :symbolize_names => true)[0]

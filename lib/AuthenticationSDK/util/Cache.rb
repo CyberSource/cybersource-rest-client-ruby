@@ -41,8 +41,8 @@ public
       logger = @@logger.logger
       fileModifiedTime = File.mtime(certificateFilePath)
 
-      if cache_key.end_with?(Constants::MLE_CACHE_KEY_IDENTIFIER_FOR_RESPONSE_PRIVATE_KEY)
-        password = merchantConfig.responseMlePrivateKeyPassword
+      if cacheKey.end_with?(Constants::MLE_CACHE_KEY_IDENTIFIER_FOR_RESPONSE_PRIVATE_KEY)
+        password = merchantConfig.responseMlePrivateKeyFilePassword
         mlePrivateKey = nil
 
         begin
@@ -62,7 +62,7 @@ public
 
           @@cache_obj.write(cacheKey, cacheValue)
         rescue StandardError => e
-          err = StandardError.new(Constants::ERROR_PREFIX + "Error loading MLE response private key from: " + filePath + ". Error: " + e.message)
+          err = StandardError.new(Constants::ERROR_PREFIX + "Error loading MLE response private key from: " + certificateFilePath + ". Error: " + e.message)
           logger.error(ExceptionHandler.new.new_api_exception err)
           raise err
         end
@@ -162,6 +162,7 @@ public
       keyIdentifier = Constants::MLE_CACHE_KEY_IDENTIFIER_FOR_RESPONSE_PRIVATE_KEY
       cacheIdentifier = "#{merchantId}_#{keyIdentifier}"
       mleResponsePrivateKeyFilePath = merchantConfig.responseMlePrivateKeyFilePath
+      cachedCertificateInfo = nil
 
       @@mutex.synchronize do
         cachedCertificateInfo = @@cache_obj.read(cacheIdentifier)

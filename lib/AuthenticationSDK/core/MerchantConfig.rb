@@ -97,9 +97,34 @@ public
       # mapToControlMLEonAPI.put("apiFunctionName13", "") - empty string not allowed
       @mapToControlMLEonAPI = cybsPropertyObj['mapToControlMLEonAPI']
 
-      # Both fields used for internal purpose only not exposed for merchants to set. Both sets from mapToControlMLEonAPI internally.
+      # Initialize internal maps before validation
+      # Both fields used for internal purpose only not exposed for merchants to set
       @internalMapToControlRequestMLEonAPI = {}
       @internalMapToControlResponseMLEonAPI = {}
+
+      # Set up MLE configuration first since validation depends on it
+      if @mapToControlMLEonAPI
+        begin
+          @mapToControlMLEonAPI = convertBooleanToStringMapType(@mapToControlMLEonAPI)
+          setMapToControlMLEOnAPI(@mapToControlMLEonAPI)
+        rescue => err
+          error = StandardError.new(Constants::WARNING_PREFIX + "Unable to initialise MLE control Map from config: #{err.message}")
+          raise error
+        end
+      end
+
+      if responseMlePrivateKeyValue.nil?
+        responseMlePrivateKeyValue = cybsPropertyObj['responseMlePrivateKey']
+      end
+
+      if !responseMlePrivateKeyValue.nil?
+        case responseMlePrivateKeyValue
+        when OpenSSL::PKey::RSA
+          responseMlePrivateKeyValue = JOSE::JWK.from_pem(responseMlePrivateKeyValue.to_pem)
+        else
+          responseMlePrivateKeyValue = JOSE::JWK.from_key(responseMlePrivateKeyValue)
+        end
+      end
 
       @responseMlePrivateKey = responseMlePrivateKeyValue
 
@@ -325,21 +350,11 @@ public
         raise err
       end
 
-      unless @mapToControlMLEonAPI.nil?
-        begin
-          @mapToControlMLEonAPI = convertBooleanToStringMapType(@mapToControlMLEonAPI)
-          setMapToControlMLEOnAPI(@mapToControlMLEonAPI)
-        rescue => err
-          error = StandardError.new(Constants::WARNING_PREFIX + "Unable to initialise MLE control Map from config: #{err.message}")
-          @log_obj.logger.warn(ExceptionHandler.new.new_api_exception error)
-          raise error
-        end
         # unless @mapToControlMLEonAPI.is_a?(Hash) && @mapToControlMLEonAPI.keys.all? {|k| k.is_a?(String)} && @mapToControlMLEonAPI.values.all? { |v| [true, false].include?(v) }
         #   err = StandardError.new(Constants::ERROR_PREFIX + "mapToControlMLEonAPI must be a map with boolean values")
         #   @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
         #   raise err
         # end
-      end
 
       !@requestMleKeyAlias.nil? && unless @requestMleKeyAlias.instance_of? String
         err = StandardError.new(Constants::ERROR_PREFIX + "requestMleKeyAlias must be a string")
@@ -404,8 +419,7 @@ public
         end
 
         # Check that both private key object or private key file path should not be provided
-        if !@responseMlePrivateKey.nil? && !@responseMlePrivateKey.to_s.strip.empty? 
-            && !@responseMlePrivateKeyFilePath.nil? && !@responseMlePrivateKeyFilePath.to_s.strip.empty?
+        if !@responseMlePrivateKey.nil? && !@responseMlePrivateKey.to_s.strip.empty? && !@responseMlePrivateKeyFilePath.nil? && !@responseMlePrivateKeyFilePath.to_s.strip.empty?
             err = StandardError.new(Constants::ERROR_PREFIX + "Both responseMlePrivateKey object and responseMlePrivateKeyFilePath are provided. Please provide only one of them for response mle private key.")
             @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
             raise err
@@ -428,11 +442,12 @@ public
           @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
           raise err
         end
+      end
     end
 
     def setMapToControlMLEOnAPI(inputMap)
       # validate the map value format
-      validateMapToControlMleOnApiValues(inputMap) if inputMap
+      validateMapToControlMLEonAPIValues(inputMap) if inputMap
 
       # @mapToControlMLEonAPI = inputMap
 
@@ -519,20 +534,20 @@ public
         raise StandardError.new(Constants::ERROR_PREFIX + "Unsupported null value to mapToControlMLEonAPI in merchantConfig. Expected Map<String, String> which corresponds to <'apiFunctionName','flagForRequestMLE::flagForResponseMLE'> as dataType for field.")
       end
 
-      unless map.is_a?(Hash)
-        raise TypeError.new(Constants::ERROR_PREFIX + "Unsupported datatype for field mapToControlMLEonAPI. Expected Hash<String, String> which corresponds to <'apiFunctionName','flagForRequestMLE::flagForResponseMLE'> as dataType for field but got: #{map.class}")
+      unless inputMap.is_a?(Hash)
+        raise TypeError.new(Constants::ERROR_PREFIX + "Unsupported datatype for field mapToControlMLEonAPI. Expected Hash<String, String> which corresponds to <'apiFunctionName','flagForRequestMLE::flagForResponseMLE'> as dataType for field but got: #{inputMap.class}")
       end
 
-      keys_all_strings   = map.keys.all? { |k| k.is_a?(String) }
-      values_all_strings = map.values.all? { |v| v.is_a?(String) }
-      values_all_bools   = map.values.all? { |v| v.is_a?(TrueClass) || v.is_a?(FalseClass) }
+      keys_all_strings   = inputMap.keys.all? { |k| k.is_a?(String) }
+      values_all_strings = inputMap.values.all? { |v| v.is_a?(String) }
+      values_all_bools   = inputMap.values.all? { |v| v.is_a?(TrueClass) || v.is_a?(FalseClass) }
 
       if keys_all_strings && values_all_strings
         # Already Hash<String, String>
-        map
+        inputMap
       elsif keys_all_strings && values_all_bools
         # Convert Hash<String, Boolean> -> Hash<String, String>
-        map.transform_values { |v| v.to_s }
+        inputMap.transform_values { |v| v.to_s }
       else
         err = StandardError.new("Unsupported map type combination for mapToControlMLEonAPI in merchantConfig. Expected Hash<String, String> which corresponds to <'apiFunctionName','flagForRequestMLE::flagForResponseMLE'> as dataType for field.")
         @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
@@ -636,4 +651,6 @@ public
     attr_accessor :responseMlePrivateKeyFilePath
     attr_accessor :responseMlePrivateKeyFilePassword
     attr_accessor :responseMlePrivateKey
+    attr_accessor :internalMapToControlRequestMLEonAPI
+    attr_accessor :internalMapToControlResponseMLEonAPI
   end
