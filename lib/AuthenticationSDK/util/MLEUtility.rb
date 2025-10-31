@@ -4,7 +4,7 @@ require 'json'
 require_relative './Cache'
 require_relative './Constants'
 require_relative './ExceptionHandler'
-require_relative './JWEUtility'
+require_relative './AuthJWEUtility'
 
 public
   class MLEUtility
@@ -144,7 +144,7 @@ public
       begin
         @log_obj.logger.info("LOG_NETWORK_RESPONSE_BEFORE_MLE_DECRYPTION: #{responseBody}")
 
-        decryptedResponse = JWEUtility.decrypt_jwe_using_private_key(mlePrivateKey, jweResponseToken)
+        decryptedResponse = AuthJWEUtility.decrypt_jwe_using_private_key(mlePrivateKey, jweResponseToken)
 
         @log_obj.logger.info("LOG_NETWORK_RESPONSE_AFTER_MLE_DECRYPTION: #{decryptedResponse}")
 
