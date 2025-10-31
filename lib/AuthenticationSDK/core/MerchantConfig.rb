@@ -117,14 +117,7 @@ public
         responseMlePrivateKeyValue = cybsPropertyObj['responseMlePrivateKey']
       end
 
-      if !responseMlePrivateKeyValue.nil?
-        case responseMlePrivateKeyValue
-        when OpenSSL::PKey::RSA
-          responseMlePrivateKeyValue = JOSE::JWK.from_pem(responseMlePrivateKeyValue.to_pem)
-        else
-          responseMlePrivateKeyValue = JOSE::JWK.from_key(responseMlePrivateKeyValue)
-        end
-      end
+      responseMlePrivateKeyValue = CertificateUtility.convert_key_to_JWK(responseMlePrivateKeyValue)
 
       @responseMlePrivateKey = responseMlePrivateKeyValue
 

@@ -133,7 +133,7 @@ public
         key = pkcs12.key
         raise "No private key found in the P12 file" if key.nil?
 
-        jwk_private_key = JOSE::JWK.from_pem(key.to_pem)
+        jwk_private_key = self.convert_key_to_JWK(key)
         return jwk_private_key
       rescue OpenSSL::PKCS12::PKCS12Error => e
         raise "Could not recover key from P12: #{e.message}"
@@ -151,7 +151,7 @@ public
         # - "BEGIN PRIVATE KEY" (PKCS#8 unencrypted)
         # - "BEGIN ENCRYPTED PRIVATE KEY" (PKCS#8 encrypted)
         rsa_key = OpenSSL::PKey.read(pem_data, password)
-        jwk_private_key = JOSE::JWK.from_key(rsa_key)
+        jwk_private_key = self.convert_key_to_JWK(rsa_key)
         return jwk_private_key
       rescue OpenSSL::PKey::PKeyError => e
         # Missing password for an encrypted PEM
@@ -169,6 +169,17 @@ public
         raise ArgumentError, "Unsupported PEM object or invalid key: #{e.message}"
       rescue Errno::ENOENT
         raise ArgumentError, "PEM file not found: #{key_file_path}"
+      end
+    end
+
+    def self.convert_key_to_JWK(keyValue)
+      if !keyValue.nil?
+        case keyValue
+        when OpenSSL::PKey::RSA
+          keyValue = JOSE::JWK.from_pem(keyValue.to_pem)
+        else
+          keyValue = JOSE::JWK.from_key(keyValue)
+        end
       end
     end
   end
