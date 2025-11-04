@@ -172,9 +172,56 @@ public
       end
     end
 
-    def self.convert_key_to_JWK(keyValue)
+    def self.convert_key_to_JWK(keyValue, password=nil)
       if !keyValue.nil?
         case keyValue
+        when String
+          begin
+            if keyValue.encoding == Encoding::UTF_8
+              # This is for PEM formatted string
+              encrypted = keyValue.include?('BEGIN ENCRYPTED PRIVATE KEY')
+              pkey = nil
+
+              key = begin
+                if encrypted
+                  if password.nil? || password.empty?
+                    raise ArgumentError, "Encrypted PEM detected, but no password was provided."
+                  end
+                  pkey = OpenSSL::PKey.read(keyValue, password)
+                else
+                  # Try without password first
+                  pkey = OpenSSL::PKey.read(keyValue)
+                end
+              rescue OpenSSL::PKey::PKeyError
+                # If initial attempt failed and a password was provided, retry with password
+                if !password.nil? && !password.empty?
+                  begin
+                    pkey = OpenSSL::PKey.read(keyValue, password)
+                  rescue OpenSSL::PKey::PKeyError => e
+                    raise "Failed to load PEM private key. Incorrect password or corrupted/unsupported format. OpenSSL: #{e.message}"
+                  end
+                else
+                  raise "Failed to load PEM private key. Invalid key format or password required."
+                end
+              end
+              keyValue = JOSE::JWK.from_key(pkey)
+            else
+              # This is for P12 formatted string
+              begin
+                if !password.nil? && !password.empty?
+                  pkey = OpenSSL::PKCS12.new(keyValue, password)
+                else
+                  pkey = OpenSSL::PKCS12.new(keyValue)
+                end
+              rescue OpenSSL::PKCS12::PKCS12Error => e
+                raise "Could not recover key from P12 data: #{e.message}"
+              end
+
+              key = pkey.key
+              raise "No private key found in the P12 data" if key.nil?
+              keyValue = JOSE::JWK.from_key(key)
+            end
+          end
         when OpenSSL::PKey::RSA
           keyValue = JOSE::JWK.from_pem(keyValue.to_pem)
         else

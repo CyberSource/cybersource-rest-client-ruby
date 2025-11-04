@@ -7,7 +7,7 @@ require_relative '../util/CertificateUtility.rb'
 public
 # This fuction has all the merchantConfig properties getters and setters methods
   class Merchantconfig
-    def initialize(cybsPropertyObj, responseMlePrivateKeyValue = nil)
+    def initialize(cybsPropertyObj, responseMlePrivateKeyValue = nil, responseMlePrivateKeyPasswordValue = nil)
       # Common Parameters
       @merchantId = cybsPropertyObj['merchantID']
       @runEnvironment = cybsPropertyObj['runEnvironment']
@@ -113,11 +113,21 @@ public
         end
       end
 
+      if responseMlePrivateKeyPasswordValue.nil?
+        responseMlePrivateKeyPasswordValue = cybsPropertyObj['responseMlePrivateKeyPassword']
+      end
+
+      responseMlePrivateKeyPassword = responseMlePrivateKeyPasswordValue
+
+      if !responseMlePrivateKeyValue.nil? && !cybsPropertyObj['responseMlePrivateKey'].nil?
+        raise StandardError.new(Constants::ERROR_PREFIX + "The value for `responseMlePrivateKey` is provided in both the configuration object and the constructor for MerchantConfig. Please provide only one of them for response mle private key.")
+      end
+
       if responseMlePrivateKeyValue.nil?
         responseMlePrivateKeyValue = cybsPropertyObj['responseMlePrivateKey']
       end
 
-      responseMlePrivateKeyValue = CertificateUtility.convert_key_to_JWK(responseMlePrivateKeyValue)
+      responseMlePrivateKeyValue = CertificateUtility.convert_key_to_JWK(responseMlePrivateKeyValue, responseMlePrivateKeyPassword)
 
       @responseMlePrivateKey = responseMlePrivateKeyValue
 
@@ -644,6 +654,7 @@ public
     attr_accessor :responseMlePrivateKeyFilePath
     attr_accessor :responseMlePrivateKeyFilePassword
     attr_accessor :responseMlePrivateKey
+    attr_accessor :responseMlePrivateKeyPassword
     attr_accessor :internalMapToControlRequestMLEonAPI
     attr_accessor :internalMapToControlResponseMLEonAPI
   end
