@@ -647,6 +647,7 @@ public
     attr_accessor :disableRequestMLEForMandatoryApisGlobally
     attr_accessor :mleForRequestPublicCertPath
     attr_accessor :mapToControlMLEonAPI
+    attr_accessor :mleKeyAlias
     attr_accessor :requestMleKeyAlias
     attr_accessor :p12KeyFilePath
     attr_accessor :enableResponseMleGlobally
