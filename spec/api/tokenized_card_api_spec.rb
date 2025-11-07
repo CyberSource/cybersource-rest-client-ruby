@@ -46,26 +46,12 @@ describe 'TokenizedCardApi' do
 
   # unit tests for get_tokenized_card
   # Retrieve a Tokenized Card
-  # |  |  |  | | --- | --- | --- | |**Tokenized Cards**&lt;br&gt;A Tokenized Card represents a network token. Network tokens perform better than regular card numbers and they are not necessarily invalidated when a cardholder loses their card, or it expires.  
+  # |  |  |  | | --- | --- | --- | |**Tokenized Cards**&lt;br&gt;A Tokenized Card represents a network token. Network tokens perform better than regular card numbers and they are not necessarily invalidated when a cardholder loses their card, or it expires. 
   # @param tokenized_card_id The Id of a tokenized card.
   # @param [Hash] opts the optional parameters
   # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
   # @return [TokenizedcardRequest]
   describe 'get_tokenized_card test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for post_issuer_life_cycle_simulation
-  # Simulate Issuer Life Cycle Management Events
-  # **Lifecycle Management Events**&lt;br&gt;Simulates an issuer life cycle manegement event for updates on the tokenized card. The events that can be simulated are: - Token status changes (e.g. active, suspended, deleted) - Updates to the underlying card, including card art changes, expiration date changes, and card number suffix. **Note:** This is only available in CAS environment. 
-  # @param profile_id The Id of a profile containing user specific TMS configuration.
-  # @param tokenized_card_id The Id of a tokenized card.
-  # @param post_issuer_life_cycle_simulation_request 
-  # @param [Hash] opts the optional parameters
-  # @return [nil]
-  describe 'post_issuer_life_cycle_simulation test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

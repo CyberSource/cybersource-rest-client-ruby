@@ -14,21 +14,33 @@ require 'date'
 module CyberSource
   # Issuer associated with the tokenized card. 
   class Tmsv2TokenizedCardMetadataIssuer
-    # issuer name. 
+    # Issuer name. 
     attr_accessor :name
 
-    # issuer short description. 
+    # Short description of the card. 
     attr_accessor :short_description
 
-    # issuer long  description. 
+    # Long description of the card. 
     attr_accessor :long_description
+
+    # Issuer customer service email address.
+    attr_accessor :email
+
+    # Issuer customer service phone number.
+    attr_accessor :phone_number
+
+    # Issuer customer service url.
+    attr_accessor :url
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'name' => :'name',
         :'short_description' => :'shortDescription',
-        :'long_description' => :'longDescription'
+        :'long_description' => :'longDescription',
+        :'email' => :'email',
+        :'phone_number' => :'phoneNumber',
+        :'url' => :'url'
       }
     end
 
@@ -37,7 +49,10 @@ module CyberSource
       {
         :'name' => :'name',
         :'short_description' => :'short_description',
-        :'long_description' => :'long_description'
+        :'long_description' => :'long_description',
+        :'email' => :'email',
+        :'phone_number' => :'phone_number',
+        :'url' => :'url'
       }
     end
 
@@ -46,7 +61,10 @@ module CyberSource
       {
         :'name' => :'String',
         :'short_description' => :'String',
-        :'long_description' => :'String'
+        :'long_description' => :'String',
+        :'email' => :'String',
+        :'phone_number' => :'String',
+        :'url' => :'String'
       }
     end
 
@@ -68,6 +86,18 @@ module CyberSource
 
       if attributes.has_key?(:'longDescription')
         self.long_description = attributes[:'longDescription']
+      end
+
+      if attributes.has_key?(:'email')
+        self.email = attributes[:'email']
+      end
+
+      if attributes.has_key?(:'phoneNumber')
+        self.phone_number = attributes[:'phoneNumber']
+      end
+
+      if attributes.has_key?(:'url')
+        self.url = attributes[:'url']
       end
     end
 
@@ -91,7 +121,10 @@ module CyberSource
       self.class == o.class &&
           name == o.name &&
           short_description == o.short_description &&
-          long_description == o.long_description
+          long_description == o.long_description &&
+          email == o.email &&
+          phone_number == o.phone_number &&
+          url == o.url
     end
 
     # @see the `==` method
@@ -103,7 +136,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name, short_description, long_description].hash
+      [name, short_description, long_description, email, phone_number, url].hash
     end
 
     # Builds the object from hash

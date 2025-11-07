@@ -16,5 +16,6 @@ Name | Type | Description | Notes
 **loan_options** | [**Ptsv2paymentsProcessingInformationLoanOptions**](Ptsv2paymentsProcessingInformationLoanOptions.md) |  | [optional] 
 **pay_by_points_indicator** | **BOOLEAN** | Flag that indicates if the transaction is pay by points transaction true: Transaction uses loyalty points false: Transaction does not use loyalty points Default: false  | [optional] 
 **action_list** | **Array&lt;String&gt;** | Array of actions (one or more) to be included in the capture to invoke bundled services along with capture.  Possible values :   - &#x60;AP_CAPTURE&#x60;: Use this when Alternative Payment Capture service is requested.  | [optional] 
+**japan_payment_options** | [**Ptsv2paymentsidcapturesProcessingInformationJapanPaymentOptions**](Ptsv2paymentsidcapturesProcessingInformationJapanPaymentOptions.md) |  | [optional] 
 
 

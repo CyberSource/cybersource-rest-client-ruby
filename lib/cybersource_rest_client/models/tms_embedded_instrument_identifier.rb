@@ -27,9 +27,14 @@ module CyberSource
     # The type of Instrument Identifier. Possible Values: - enrollable card - enrollable token 
     attr_accessor :type
 
+    # Source of the card details. Possible Values: - CONTACTLESS_TAP 
+    attr_accessor :source
+
     attr_accessor :token_provisioning_information
 
     attr_accessor :card
+
+    attr_accessor :point_of_sale_information
 
     attr_accessor :bank_account
 
@@ -53,8 +58,10 @@ module CyberSource
         :'object' => :'object',
         :'state' => :'state',
         :'type' => :'type',
+        :'source' => :'source',
         :'token_provisioning_information' => :'tokenProvisioningInformation',
         :'card' => :'card',
+        :'point_of_sale_information' => :'pointOfSaleInformation',
         :'bank_account' => :'bankAccount',
         :'tokenized_card' => :'tokenizedCard',
         :'issuer' => :'issuer',
@@ -73,8 +80,10 @@ module CyberSource
         :'object' => :'object',
         :'state' => :'state',
         :'type' => :'type',
+        :'source' => :'source',
         :'token_provisioning_information' => :'token_provisioning_information',
         :'card' => :'card',
+        :'point_of_sale_information' => :'point_of_sale_information',
         :'bank_account' => :'bank_account',
         :'tokenized_card' => :'tokenized_card',
         :'issuer' => :'issuer',
@@ -93,8 +102,10 @@ module CyberSource
         :'object' => :'String',
         :'state' => :'String',
         :'type' => :'String',
+        :'source' => :'String',
         :'token_provisioning_information' => :'Ptsv2paymentsTokenInformationTokenProvisioningInformation',
         :'card' => :'TmsEmbeddedInstrumentIdentifierCard',
+        :'point_of_sale_information' => :'TmsEmbeddedInstrumentIdentifierPointOfSaleInformation',
         :'bank_account' => :'TmsEmbeddedInstrumentIdentifierBankAccount',
         :'tokenized_card' => :'Tmsv2TokenizedCard',
         :'issuer' => :'TmsEmbeddedInstrumentIdentifierIssuer',
@@ -133,12 +144,20 @@ module CyberSource
         self.type = attributes[:'type']
       end
 
+      if attributes.has_key?(:'source')
+        self.source = attributes[:'source']
+      end
+
       if attributes.has_key?(:'tokenProvisioningInformation')
         self.token_provisioning_information = attributes[:'tokenProvisioningInformation']
       end
 
       if attributes.has_key?(:'card')
         self.card = attributes[:'card']
+      end
+
+      if attributes.has_key?(:'pointOfSaleInformation')
+        self.point_of_sale_information = attributes[:'pointOfSaleInformation']
       end
 
       if attributes.has_key?(:'bankAccount')
@@ -193,8 +212,10 @@ module CyberSource
           object == o.object &&
           state == o.state &&
           type == o.type &&
+          source == o.source &&
           token_provisioning_information == o.token_provisioning_information &&
           card == o.card &&
+          point_of_sale_information == o.point_of_sale_information &&
           bank_account == o.bank_account &&
           tokenized_card == o.tokenized_card &&
           issuer == o.issuer &&
@@ -213,7 +234,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, object, state, type, token_provisioning_information, card, bank_account, tokenized_card, issuer, processing_information, bill_to, metadata, _embedded].hash
+      [_links, id, object, state, type, source, token_provisioning_information, card, point_of_sale_information, bank_account, tokenized_card, issuer, processing_information, bill_to, metadata, _embedded].hash
     end
 
     # Builds the object from hash

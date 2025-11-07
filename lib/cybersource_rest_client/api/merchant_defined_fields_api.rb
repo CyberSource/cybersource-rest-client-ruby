@@ -100,6 +100,88 @@ module CyberSource
       end
       return data, status_code, headers
     end
+    # Delete a MerchantDefinedField by ID
+    #
+    # @param reference_type 
+    # @param id 
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    #
+    def delete_merchant_defined_fields_definitions(reference_type, id, opts = {})
+      data, status_code, headers = delete_merchant_defined_fields_definitions_with_http_info(reference_type, id, opts)
+      return data, status_code, headers
+    end
+
+    # Delete a MerchantDefinedField by ID
+    # @param reference_type 
+    # @param id 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
+    def delete_merchant_defined_fields_definitions_with_http_info(reference_type, id, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: MerchantDefinedFieldsApi.delete_merchant_defined_fields_definitions ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'reference_type' is set
+      if @api_client.config.client_side_validation && reference_type.nil?
+        fail ArgumentError, "Missing the required parameter 'reference_type' when calling MerchantDefinedFieldsApi.delete_merchant_defined_fields_definitions"
+      end
+      # verify enum value
+      if @api_client.config.client_side_validation && !['Invoice', 'Purchase', 'Donation'].include?(reference_type)
+        fail ArgumentError, "invalid value for 'reference_type', must be one of Invoice, Purchase, Donation"
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling MerchantDefinedFieldsApi.delete_merchant_defined_fields_definitions"
+      end
+      # resource path
+      local_var_path = 'invoicing/v2/{referenceType}/merchantDefinedFields/{id}'.sub('{' + 'referenceType' + '}', reference_type.to_s).sub('{' + 'id' + '}', id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      if 'DELETE' == 'POST'
+        post_body = '{}'
+      else
+        post_body = nil
+      end
+      inbound_mle_status = "false"      
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["delete_merchant_defined_fields_definitions","delete_merchant_defined_fields_definitions_with_http_info"])
+        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+      end
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:DELETE, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names)
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: MerchantDefinedFieldsApi#delete_merchant_defined_fields_definitions\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
     # Get all merchant defined fields for a given reference type
     #
     # @param reference_type The reference type for which merchant defined fields are to be fetched. Available values are Invoice, Purchase, Donation
@@ -177,88 +259,6 @@ module CyberSource
       end
       return data, status_code, headers
     end
-    # Delete a MerchantDefinedField by ID
-    #
-    # @param reference_type 
-    # @param id 
-    # @param [Hash] opts the optional parameters
-    # @return [nil]
-    #
-    def invoicing_v2_reference_type_merchant_defined_fields_id_delete(reference_type, id, opts = {})
-      data, status_code, headers = invoicing_v2_reference_type_merchant_defined_fields_id_delete_with_http_info(reference_type, id, opts)
-      return data, status_code, headers
-    end
-
-    # Delete a MerchantDefinedField by ID
-    # @param reference_type 
-    # @param id 
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
-    def invoicing_v2_reference_type_merchant_defined_fields_id_delete_with_http_info(reference_type, id, opts = {})
-
-      if @api_client.config.debugging
-          begin
-            raise
-                @api_client.config.logger.debug 'Calling API: MerchantDefinedFieldsApi.invoicing_v2_reference_type_merchant_defined_fields_id_delete ...'
-            rescue
-                puts 'Cannot write to log'
-            end
-      end
-      # verify the required parameter 'reference_type' is set
-      if @api_client.config.client_side_validation && reference_type.nil?
-        fail ArgumentError, "Missing the required parameter 'reference_type' when calling MerchantDefinedFieldsApi.invoicing_v2_reference_type_merchant_defined_fields_id_delete"
-      end
-      # verify enum value
-      if @api_client.config.client_side_validation && !['Invoice', 'Purchase', 'Donation'].include?(reference_type)
-        fail ArgumentError, "invalid value for 'reference_type', must be one of Invoice, Purchase, Donation"
-      end
-      # verify the required parameter 'id' is set
-      if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling MerchantDefinedFieldsApi.invoicing_v2_reference_type_merchant_defined_fields_id_delete"
-      end
-      # resource path
-      local_var_path = 'invoicing/v2/{referenceType}/merchantDefinedFields/{id}'.sub('{' + 'referenceType' + '}', reference_type.to_s).sub('{' + 'id' + '}', id.to_s)
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
-
-      # form parameters
-      form_params = {}
-
-      # http body (model)
-      if 'DELETE' == 'POST'
-        post_body = '{}'
-      else
-        post_body = nil
-      end
-      inbound_mle_status = "false"      
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["invoicing_v2_reference_type_merchant_defined_fields_id_delete","invoicing_v2_reference_type_merchant_defined_fields_id_delete_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
-      end
-      auth_names = []
-      data, status_code, headers = @api_client.call_api(:DELETE, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names)
-      if @api_client.config.debugging
-        begin
-        raise
-            @api_client.config.logger.debug "API called: MerchantDefinedFieldsApi#invoicing_v2_reference_type_merchant_defined_fields_id_delete\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-        rescue
-            puts 'Cannot write to log'
-        end
-      end
-      return data, status_code, headers
-    end
     # Update a MerchantDefinedField by ID
     #
     # @param reference_type 
@@ -267,8 +267,8 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @return [Array<InlineResponse2002>]
     #
-    def invoicing_v2_reference_type_merchant_defined_fields_id_put(reference_type, id, merchant_defined_field_core, opts = {})
-      data, status_code, headers = invoicing_v2_reference_type_merchant_defined_fields_id_put_with_http_info(reference_type, id, merchant_defined_field_core, opts)
+    def put_merchant_defined_fields_definitions(reference_type, id, merchant_defined_field_core, opts = {})
+      data, status_code, headers = put_merchant_defined_fields_definitions_with_http_info(reference_type, id, merchant_defined_field_core, opts)
       return data, status_code, headers
     end
 
@@ -278,19 +278,19 @@ module CyberSource
     # @param merchant_defined_field_core 
     # @param [Hash] opts the optional parameters
     # @return [Array<(Array<InlineResponse2002>, Fixnum, Hash)>] Array<InlineResponse2002> data, response status code and response headers
-    def invoicing_v2_reference_type_merchant_defined_fields_id_put_with_http_info(reference_type, id, merchant_defined_field_core, opts = {})
+    def put_merchant_defined_fields_definitions_with_http_info(reference_type, id, merchant_defined_field_core, opts = {})
 
       if @api_client.config.debugging
           begin
             raise
-                @api_client.config.logger.debug 'Calling API: MerchantDefinedFieldsApi.invoicing_v2_reference_type_merchant_defined_fields_id_put ...'
+                @api_client.config.logger.debug 'Calling API: MerchantDefinedFieldsApi.put_merchant_defined_fields_definitions ...'
             rescue
                 puts 'Cannot write to log'
             end
       end
       # verify the required parameter 'reference_type' is set
       if @api_client.config.client_side_validation && reference_type.nil?
-        fail ArgumentError, "Missing the required parameter 'reference_type' when calling MerchantDefinedFieldsApi.invoicing_v2_reference_type_merchant_defined_fields_id_put"
+        fail ArgumentError, "Missing the required parameter 'reference_type' when calling MerchantDefinedFieldsApi.put_merchant_defined_fields_definitions"
       end
       # verify enum value
       if @api_client.config.client_side_validation && !['Invoice', 'Purchase', 'Donation'].include?(reference_type)
@@ -298,11 +298,11 @@ module CyberSource
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling MerchantDefinedFieldsApi.invoicing_v2_reference_type_merchant_defined_fields_id_put"
+        fail ArgumentError, "Missing the required parameter 'id' when calling MerchantDefinedFieldsApi.put_merchant_defined_fields_definitions"
       end
       # verify the required parameter 'merchant_defined_field_core' is set
       if @api_client.config.client_side_validation && merchant_defined_field_core.nil?
-        fail ArgumentError, "Missing the required parameter 'merchant_defined_field_core' when calling MerchantDefinedFieldsApi.invoicing_v2_reference_type_merchant_defined_fields_id_put"
+        fail ArgumentError, "Missing the required parameter 'merchant_defined_field_core' when calling MerchantDefinedFieldsApi.put_merchant_defined_fields_definitions"
       end
       # resource path
       local_var_path = 'invoicing/v2/{referenceType}/merchantDefinedFields/{id}'.sub('{' + 'referenceType' + '}', reference_type.to_s).sub('{' + 'id' + '}', id.to_s)
@@ -325,7 +325,7 @@ module CyberSource
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'MerchantDefinedFieldCore', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "false"      
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["invoicing_v2_reference_type_merchant_defined_fields_id_put","invoicing_v2_reference_type_merchant_defined_fields_id_put_with_http_info"])
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["put_merchant_defined_fields_definitions","put_merchant_defined_fields_definitions_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
       auth_names = []
@@ -339,7 +339,7 @@ module CyberSource
       if @api_client.config.debugging
         begin
         raise
-            @api_client.config.logger.debug "API called: MerchantDefinedFieldsApi#invoicing_v2_reference_type_merchant_defined_fields_id_put\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+            @api_client.config.logger.debug "API called: MerchantDefinedFieldsApi#put_merchant_defined_fields_definitions\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
         rescue
             puts 'Cannot write to log'
         end
