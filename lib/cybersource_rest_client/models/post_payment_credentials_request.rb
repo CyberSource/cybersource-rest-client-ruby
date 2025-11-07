@@ -19,11 +19,27 @@ module CyberSource
     # Specifies the type of transaction for which the network token credentials are required. Possible Values:   - ECOM: Ecommerce transaction. If transactionType is not provided, ECOM is set as the default.   - AFT: Account Funding Transaction. This is only supported for VISA and paymentCredentialType of CRYPTOGRAM. 
     attr_accessor :transaction_type
 
+    # Used to correlate authentication and payment credential requests. 
+    attr_accessor :client_correlation_id
+
+    attr_accessor :order_information
+
+    attr_accessor :merchant_information
+
+    attr_accessor :device_information
+
+    attr_accessor :authenticated_identities
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'payment_credential_type' => :'paymentCredentialType',
-        :'transaction_type' => :'transactionType'
+        :'transaction_type' => :'transactionType',
+        :'client_correlation_id' => :'clientCorrelationId',
+        :'order_information' => :'orderInformation',
+        :'merchant_information' => :'merchantInformation',
+        :'device_information' => :'deviceInformation',
+        :'authenticated_identities' => :'authenticatedIdentities'
       }
     end
 
@@ -31,7 +47,12 @@ module CyberSource
     def self.json_map
       {
         :'payment_credential_type' => :'payment_credential_type',
-        :'transaction_type' => :'transaction_type'
+        :'transaction_type' => :'transaction_type',
+        :'client_correlation_id' => :'client_correlation_id',
+        :'order_information' => :'order_information',
+        :'merchant_information' => :'merchant_information',
+        :'device_information' => :'device_information',
+        :'authenticated_identities' => :'authenticated_identities'
       }
     end
 
@@ -39,7 +60,12 @@ module CyberSource
     def self.swagger_types
       {
         :'payment_credential_type' => :'String',
-        :'transaction_type' => :'String'
+        :'transaction_type' => :'String',
+        :'client_correlation_id' => :'String',
+        :'order_information' => :'Tmsv2tokenstokenIdpaymentcredentialsOrderInformation',
+        :'merchant_information' => :'Tmsv2tokenstokenIdpaymentcredentialsMerchantInformation',
+        :'device_information' => :'Tmsv2tokenstokenIdpaymentcredentialsDeviceInformation',
+        :'authenticated_identities' => :'Array<Tmsv2tokenstokenIdpaymentcredentialsAuthenticatedIdentities>'
       }
     end
 
@@ -58,19 +84,56 @@ module CyberSource
       if attributes.has_key?(:'transactionType')
         self.transaction_type = attributes[:'transactionType']
       end
+
+      if attributes.has_key?(:'clientCorrelationId')
+        self.client_correlation_id = attributes[:'clientCorrelationId']
+      end
+
+      if attributes.has_key?(:'orderInformation')
+        self.order_information = attributes[:'orderInformation']
+      end
+
+      if attributes.has_key?(:'merchantInformation')
+        self.merchant_information = attributes[:'merchantInformation']
+      end
+
+      if attributes.has_key?(:'deviceInformation')
+        self.device_information = attributes[:'deviceInformation']
+      end
+
+      if attributes.has_key?(:'authenticatedIdentities')
+        if (value = attributes[:'authenticatedIdentities']).is_a?(Array)
+          self.authenticated_identities = value
+        end
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      #if !@client_correlation_id.nil? && @client_correlation_id !~ Regexp.new(/[A-Za-z0-9]+/)
+        #invalid_properties.push('invalid value for "client_correlation_id", must conform to the pattern /[A-Za-z0-9]+/.')
+      #end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      #return false if !@client_correlation_id.nil? && @client_correlation_id !~ Regexp.new(/[A-Za-z0-9]+/)
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] client_correlation_id Value to be assigned
+    def client_correlation_id=(client_correlation_id)
+      #if !client_correlation_id.nil? && client_correlation_id !~ Regexp.new(/[A-Za-z0-9]+/)
+        #fail ArgumentError, 'invalid value for "client_correlation_id", must conform to the pattern /[A-Za-z0-9]+/.'
+      #end
+
+      @client_correlation_id = client_correlation_id
     end
 
     # Checks equality by comparing each attribute.
@@ -79,7 +142,12 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           payment_credential_type == o.payment_credential_type &&
-          transaction_type == o.transaction_type
+          transaction_type == o.transaction_type &&
+          client_correlation_id == o.client_correlation_id &&
+          order_information == o.order_information &&
+          merchant_information == o.merchant_information &&
+          device_information == o.device_information &&
+          authenticated_identities == o.authenticated_identities
     end
 
     # @see the `==` method
@@ -91,7 +159,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [payment_credential_type, transaction_type].hash
+      [payment_credential_type, transaction_type, client_correlation_id, order_information, merchant_information, device_information, authenticated_identities].hash
     end
 
     # Builds the object from hash

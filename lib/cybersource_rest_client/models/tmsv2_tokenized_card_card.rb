@@ -29,6 +29,20 @@ module CyberSource
     # The customer's latest payment card number suffix. 
     attr_accessor :suffix
 
+    # Card issuance date. XML date format: YYYY-MM-DD.
+    attr_accessor :issue_date
+
+    # Card activation date. XML date format: YYYY-MM-DD
+    attr_accessor :activation_date
+
+    # Indicates if the expiration date is printed on the card.
+    attr_accessor :expiration_printed
+
+    # Indicates if the Card Verification Number is printed on the card.
+    attr_accessor :security_code_printed
+
+    attr_accessor :terms_and_conditions
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -36,7 +50,12 @@ module CyberSource
         :'expiration_month' => :'expirationMonth',
         :'expiration_year' => :'expirationYear',
         :'type' => :'type',
-        :'suffix' => :'suffix'
+        :'suffix' => :'suffix',
+        :'issue_date' => :'issueDate',
+        :'activation_date' => :'activationDate',
+        :'expiration_printed' => :'expirationPrinted',
+        :'security_code_printed' => :'securityCodePrinted',
+        :'terms_and_conditions' => :'termsAndConditions'
       }
     end
 
@@ -47,7 +66,12 @@ module CyberSource
         :'expiration_month' => :'expiration_month',
         :'expiration_year' => :'expiration_year',
         :'type' => :'type',
-        :'suffix' => :'suffix'
+        :'suffix' => :'suffix',
+        :'issue_date' => :'issue_date',
+        :'activation_date' => :'activation_date',
+        :'expiration_printed' => :'expiration_printed',
+        :'security_code_printed' => :'security_code_printed',
+        :'terms_and_conditions' => :'terms_and_conditions'
       }
     end
 
@@ -58,7 +82,12 @@ module CyberSource
         :'expiration_month' => :'String',
         :'expiration_year' => :'String',
         :'type' => :'String',
-        :'suffix' => :'String'
+        :'suffix' => :'String',
+        :'issue_date' => :'Date',
+        :'activation_date' => :'Date',
+        :'expiration_printed' => :'BOOLEAN',
+        :'security_code_printed' => :'BOOLEAN',
+        :'terms_and_conditions' => :'Tmsv2TokenizedCardCardTermsAndConditions'
       }
     end
 
@@ -88,6 +117,26 @@ module CyberSource
 
       if attributes.has_key?(:'suffix')
         self.suffix = attributes[:'suffix']
+      end
+
+      if attributes.has_key?(:'issueDate')
+        self.issue_date = attributes[:'issueDate']
+      end
+
+      if attributes.has_key?(:'activationDate')
+        self.activation_date = attributes[:'activationDate']
+      end
+
+      if attributes.has_key?(:'expirationPrinted')
+        self.expiration_printed = attributes[:'expirationPrinted']
+      end
+
+      if attributes.has_key?(:'securityCodePrinted')
+        self.security_code_printed = attributes[:'securityCodePrinted']
+      end
+
+      if attributes.has_key?(:'termsAndConditions')
+        self.terms_and_conditions = attributes[:'termsAndConditions']
       end
     end
 
@@ -131,7 +180,12 @@ module CyberSource
           expiration_month == o.expiration_month &&
           expiration_year == o.expiration_year &&
           type == o.type &&
-          suffix == o.suffix
+          suffix == o.suffix &&
+          issue_date == o.issue_date &&
+          activation_date == o.activation_date &&
+          expiration_printed == o.expiration_printed &&
+          security_code_printed == o.security_code_printed &&
+          terms_and_conditions == o.terms_and_conditions
     end
 
     # @see the `==` method
@@ -143,7 +197,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [number, expiration_month, expiration_year, type, suffix].hash
+      [number, expiration_month, expiration_year, type, suffix, issue_date, activation_date, expiration_printed, security_code_printed, terms_and_conditions].hash
     end
 
     # Builds the object from hash

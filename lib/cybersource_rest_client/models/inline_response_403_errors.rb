@@ -13,7 +13,7 @@ require 'date'
 
 module CyberSource
   class InlineResponse403Errors
-    # The type of error.  Possible Values:   - forbidden 
+    # The type of error.  Possible Values:   - forbidden   - declined 
     attr_accessor :type
 
     # The detailed message related to the type.

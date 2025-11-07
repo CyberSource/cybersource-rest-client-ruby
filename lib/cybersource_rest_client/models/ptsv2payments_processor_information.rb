@@ -23,13 +23,17 @@ module CyberSource
 
     attr_accessor :network
 
+    # Field contains the response source code that identifies the source. 
+    attr_accessor :response_source_code
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'pre_approval_token' => :'preApprovalToken',
         :'authorization_options' => :'authorizationOptions',
         :'reversal' => :'reversal',
-        :'network' => :'network'
+        :'network' => :'network',
+        :'response_source_code' => :'responseSourceCode'
       }
     end
 
@@ -39,7 +43,8 @@ module CyberSource
         :'pre_approval_token' => :'pre_approval_token',
         :'authorization_options' => :'authorization_options',
         :'reversal' => :'reversal',
-        :'network' => :'network'
+        :'network' => :'network',
+        :'response_source_code' => :'response_source_code'
       }
     end
 
@@ -49,7 +54,8 @@ module CyberSource
         :'pre_approval_token' => :'String',
         :'authorization_options' => :'Ptsv2paymentsProcessorInformationAuthorizationOptions',
         :'reversal' => :'Ptsv2paymentsProcessorInformationReversal',
-        :'network' => :'Ptsv2paymentsProcessorInformationReversalNetwork'
+        :'network' => :'Ptsv2paymentsProcessorInformationReversalNetwork',
+        :'response_source_code' => :'String'
       }
     end
 
@@ -76,6 +82,10 @@ module CyberSource
       if attributes.has_key?(:'network')
         self.network = attributes[:'network']
       end
+
+      if attributes.has_key?(:'responseSourceCode')
+        self.response_source_code = attributes[:'responseSourceCode']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -97,6 +107,12 @@ module CyberSource
       @pre_approval_token = pre_approval_token
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] response_source_code Value to be assigned
+    def response_source_code=(response_source_code)
+      @response_source_code = response_source_code
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -105,7 +121,8 @@ module CyberSource
           pre_approval_token == o.pre_approval_token &&
           authorization_options == o.authorization_options &&
           reversal == o.reversal &&
-          network == o.network
+          network == o.network &&
+          response_source_code == o.response_source_code
     end
 
     # @see the `==` method
@@ -117,7 +134,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [pre_approval_token, authorization_options, reversal, network].hash
+      [pre_approval_token, authorization_options, reversal, network, response_source_code].hash
     end
 
     # Builds the object from hash

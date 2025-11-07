@@ -103,7 +103,7 @@ module CyberSource
         :'installment_information' => :'Ptsv2paymentsidcapturesInstallmentInformation',
         :'travel_information' => :'Ptsv2paymentsTravelInformation',
         :'promotion_information' => :'Ptsv2paymentsPromotionInformation',
-        :'processor_information' => :'Ptsv2reversalsProcessorInformation'
+        :'processor_information' => :'Ptsv2paymentsidcapturesProcessorInformation'
       }
     end
 

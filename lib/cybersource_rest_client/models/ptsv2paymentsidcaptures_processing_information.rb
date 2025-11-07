@@ -48,6 +48,8 @@ module CyberSource
     # Array of actions (one or more) to be included in the capture to invoke bundled services along with capture.  Possible values :   - `AP_CAPTURE`: Use this when Alternative Payment Capture service is requested. 
     attr_accessor :action_list
 
+    attr_accessor :japan_payment_options
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -63,7 +65,8 @@ module CyberSource
         :'capture_options' => :'captureOptions',
         :'loan_options' => :'loanOptions',
         :'pay_by_points_indicator' => :'payByPointsIndicator',
-        :'action_list' => :'actionList'
+        :'action_list' => :'actionList',
+        :'japan_payment_options' => :'japanPaymentOptions'
       }
     end
 
@@ -82,7 +85,8 @@ module CyberSource
         :'capture_options' => :'capture_options',
         :'loan_options' => :'loan_options',
         :'pay_by_points_indicator' => :'pay_by_points_indicator',
-        :'action_list' => :'action_list'
+        :'action_list' => :'action_list',
+        :'japan_payment_options' => :'japan_payment_options'
       }
     end
 
@@ -101,7 +105,8 @@ module CyberSource
         :'capture_options' => :'Ptsv2paymentsidcapturesProcessingInformationCaptureOptions',
         :'loan_options' => :'Ptsv2paymentsProcessingInformationLoanOptions',
         :'pay_by_points_indicator' => :'BOOLEAN',
-        :'action_list' => :'Array<String>'
+        :'action_list' => :'Array<String>',
+        :'japan_payment_options' => :'Ptsv2paymentsidcapturesProcessingInformationJapanPaymentOptions'
       }
     end
 
@@ -165,6 +170,10 @@ module CyberSource
         if (value = attributes[:'actionList']).is_a?(Array)
           self.action_list = value
         end
+      end
+
+      if attributes.has_key?(:'japanPaymentOptions')
+        self.japan_payment_options = attributes[:'japanPaymentOptions']
       end
     end
 
@@ -240,7 +249,8 @@ module CyberSource
           capture_options == o.capture_options &&
           loan_options == o.loan_options &&
           pay_by_points_indicator == o.pay_by_points_indicator &&
-          action_list == o.action_list
+          action_list == o.action_list &&
+          japan_payment_options == o.japan_payment_options
     end
 
     # @see the `==` method
@@ -252,7 +262,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [payment_solution, reconciliation_id, link_id, report_group, visa_checkout_id, purchase_level, industry_data_type, issuer, authorization_options, capture_options, loan_options, pay_by_points_indicator, action_list].hash
+      [payment_solution, reconciliation_id, link_id, report_group, visa_checkout_id, purchase_level, industry_data_type, issuer, authorization_options, capture_options, loan_options, pay_by_points_indicator, action_list, japan_payment_options].hash
     end
 
     # Builds the object from hash

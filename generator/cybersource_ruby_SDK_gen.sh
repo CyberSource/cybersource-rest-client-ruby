@@ -50,6 +50,9 @@ sed -i "s|cybersource_rest_client/models/tmsv2tokenizedcardstokenized_card_idiss
 mv ../lib/cybersource_rest_client/models/underwriting_configuration_organization_information_business_information_business_details_product_services_subscription.rb ../lib/cybersource_rest_client/models/underwriting_configuration_business_details_product_services_subscription.rb
 sed -i "s|cybersource_rest_client/models/underwriting_configuration_organization_information_business_information_business_details_product_services_subscription|cybersource_rest_client/models/underwriting_configuration_business_details_product_services_subscription|g" ../lib/cybersource_rest_client.rb
 
+mv ../lib/cybersource_rest_client/models/upv1capturecontexts_data_processing_information_authorization_options_initiator_merchant_initiated_transaction.rb ../lib/cybersource_rest_client/models/upv1capturecontexts_data_processing_info_mit.rb
+sed -i "s|cybersource_rest_client/models/upv1capturecontexts_data_processing_information_authorization_options_initiator_merchant_initiated_transaction|cybersource_rest_client/models/upv1capturecontexts_data_processing_info_mit|g" ../lib/cybersource_rest_client.rb
+
 sed -i 's/$/\r/' ../lib/cybersource_rest_client.rb
 
 #set +v vecho off
