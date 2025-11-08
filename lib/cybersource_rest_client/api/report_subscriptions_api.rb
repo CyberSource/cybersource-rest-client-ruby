@@ -77,17 +77,21 @@ module CyberSource
       post_body = @api_client.object_to_http_body(predefined_subscription_request_bean)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PredefinedSubscriptionRequestBean', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      inbound_mle_status = "false"      
+      inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["create_standard_or_classic_subscription","create_standard_or_classic_subscription_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["create_standard_or_classic_subscription","create_standard_or_classic_subscription_with_http_info"])
+
       auth_names = []
       data, status_code, headers = @api_client.call_api(:PUT, local_var_path,
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
         :body => post_body,
-        :auth_names => auth_names)
+        :auth_names => auth_names,
+        :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
         raise
@@ -156,17 +160,21 @@ module CyberSource
       post_body = @api_client.object_to_http_body(create_report_subscription_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CreateReportSubscriptionRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      inbound_mle_status = "false"      
+      inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["create_subscription","create_subscription_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["create_subscription","create_subscription_with_http_info"])
+
       auth_names = []
       data, status_code, headers = @api_client.call_api(:PUT, local_var_path,
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
         :body => post_body,
-        :auth_names => auth_names)
+        :auth_names => auth_names,
+        :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
         raise
@@ -241,17 +249,21 @@ module CyberSource
       else
         post_body = nil
       end
-      inbound_mle_status = "false"      
+      inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["delete_subscription","delete_subscription_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["delete_subscription","delete_subscription_with_http_info"])
+
       auth_names = []
       data, status_code, headers = @api_client.call_api(:DELETE, local_var_path,
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
         :body => post_body,
-        :auth_names => auth_names)
+        :auth_names => auth_names,
+        :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
         raise
@@ -316,10 +328,13 @@ module CyberSource
       else
         post_body = nil
       end
-      inbound_mle_status = "false"      
+      inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_all_subscriptions","get_all_subscriptions_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["get_all_subscriptions","get_all_subscriptions_with_http_info"])
+
       auth_names = []
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,
         :header_params => header_params,
@@ -327,7 +342,8 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'ReportingV3ReportSubscriptionsGet200Response')
+        :return_type => 'ReportingV3ReportSubscriptionsGet200Response',
+        :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
         raise
@@ -402,10 +418,13 @@ module CyberSource
       else
         post_body = nil
       end
-      inbound_mle_status = "false"      
+      inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_subscription","get_subscription_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["get_subscription","get_subscription_with_http_info"])
+
       auth_names = []
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,
         :header_params => header_params,
@@ -413,7 +432,8 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'ReportingV3ReportSubscriptionsGet200ResponseSubscriptions')
+        :return_type => 'ReportingV3ReportSubscriptionsGet200ResponseSubscriptions',
+        :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
         raise

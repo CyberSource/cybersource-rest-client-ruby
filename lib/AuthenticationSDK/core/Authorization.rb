@@ -8,7 +8,7 @@ public
 # This function calls for the generation of Signature message depending on the authentication type.
     class Authorization
         @log_obj
-        def getToken(merchantconfig_obj, gmtdatetime)
+        def getToken(merchantconfig_obj, gmtdatetime, isResponseMLEForApi)
             @log_obj = Log.new merchantconfig_obj.log_config, "Authorization"
 
             authenticationType = merchantconfig_obj.authenticationType.upcase
@@ -21,7 +21,7 @@ public
             if authenticationType == Constants::AUTH_TYPE_HTTP
                 token = GenerateHttpSignature.new.getToken(merchantconfig_obj, gmtdatetime)
             elsif authenticationType == Constants::AUTH_TYPE_JWT
-                token = GenerateJwtToken.new.getToken(merchantconfig_obj, gmtdatetime)
+                token = GenerateJwtToken.new.getToken(merchantconfig_obj, gmtdatetime, isResponseMLEForApi)
             elsif authenticationType == Constants::AUTH_TYPE_OAUTH
                 token = GenerateOAuthToken.new.getToken(merchantconfig_obj, gmtdatetime)
             else

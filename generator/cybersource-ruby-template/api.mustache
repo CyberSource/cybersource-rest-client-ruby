@@ -180,10 +180,13 @@ module {{moduleName}}
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, '{{dataType}}', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       {{/bodyParam}}
-      inbound_mle_status = "{{#vendorExtensions.x-devcenter-metaData.mleForRequest}}{{vendorExtensions.x-devcenter-metaData.mleForRequest}}{{/vendorExtensions.x-devcenter-metaData.mleForRequest}}{{^vendorExtensions.x-devcenter-metaData.mleForRequest}}false{{/vendorExtensions.x-devcenter-metaData.mleForRequest}}"      
+      inbound_mle_status = "{{#vendorExtensions.x-devcenter-metaData.mleForRequest}}{{vendorExtensions.x-devcenter-metaData.mleForRequest}}{{/vendorExtensions.x-devcenter-metaData.mleForRequest}}{{^vendorExtensions.x-devcenter-metaData.mleForRequest}}false{{/vendorExtensions.x-devcenter-metaData.mleForRequest}}"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["{{operationId}}","{{operationId}}_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["{{operationId}}","{{operationId}}_with_http_info"])
+
       auth_names = [{{#authMethods}}'{{name}}'{{#hasMore}}, {{/hasMore}}{{/authMethods}}]
       data, status_code, headers = @api_client.call_api(:{{httpMethod}}, local_var_path,
         :header_params => header_params,
@@ -191,7 +194,8 @@ module {{moduleName}}
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names{{#returnType}},
-        :return_type => '{{{returnType}}}'{{/returnType}})
+        :return_type => '{{{returnType}}}'{{/returnType}},
+        :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
         raise

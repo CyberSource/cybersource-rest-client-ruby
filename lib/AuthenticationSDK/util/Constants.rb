@@ -175,4 +175,6 @@
       MLE_CACHE_IDENTIFIER_FOR_P12_CERT = "mleCertFromP12"
 
       DEFAULT_KEY_FILE_PATH = File.join(Dir.pwd, "resources")
+
+      MLE_CACHE_KEY_IDENTIFIER_FOR_RESPONSE_PRIVATE_KEY = "mleResponsePrivateKeyFromFile"
   end

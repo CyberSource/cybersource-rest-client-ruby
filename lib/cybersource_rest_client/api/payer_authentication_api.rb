@@ -70,10 +70,13 @@ module CyberSource
       post_body = @api_client.object_to_http_body(check_payer_auth_enrollment_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CheckPayerAuthEnrollmentRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      inbound_mle_status = "optional"      
+      inbound_mle_status = "optional"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["check_payer_auth_enrollment","check_payer_auth_enrollment_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["check_payer_auth_enrollment","check_payer_auth_enrollment_with_http_info"])
+
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -81,7 +84,8 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'RiskV1AuthenticationsPost201Response')
+        :return_type => 'RiskV1AuthenticationsPost201Response',
+        :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
         raise
@@ -143,10 +147,13 @@ module CyberSource
       post_body = @api_client.object_to_http_body(payer_auth_setup_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PayerAuthSetupRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      inbound_mle_status = "optional"      
+      inbound_mle_status = "optional"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["payer_auth_setup","payer_auth_setup_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["payer_auth_setup","payer_auth_setup_with_http_info"])
+
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -154,7 +161,8 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'RiskV1AuthenticationSetupsPost201Response')
+        :return_type => 'RiskV1AuthenticationSetupsPost201Response',
+        :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
         raise
@@ -216,10 +224,13 @@ module CyberSource
       post_body = @api_client.object_to_http_body(validate_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'ValidateRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      inbound_mle_status = "optional"      
+      inbound_mle_status = "optional"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["validate_authentication_results","validate_authentication_results_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["validate_authentication_results","validate_authentication_results_with_http_info"])
+
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -227,7 +238,8 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'RiskV1AuthenticationResultsPost201Response')
+        :return_type => 'RiskV1AuthenticationResultsPost201Response',
+        :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
         raise

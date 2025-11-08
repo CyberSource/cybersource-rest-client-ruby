@@ -70,10 +70,13 @@ module CyberSource
       post_body = @api_client.object_to_http_body(create_invoice_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CreateInvoiceRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      inbound_mle_status = "false"      
+      inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["create_invoice","create_invoice_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["create_invoice","create_invoice_with_http_info"])
+
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -81,7 +84,8 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InvoicingV2InvoicesPost201Response')
+        :return_type => 'InvoicingV2InvoicesPost201Response',
+        :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
         raise
@@ -156,10 +160,13 @@ module CyberSource
       else
         post_body = nil
       end
-      inbound_mle_status = "false"      
+      inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_all_invoices","get_all_invoices_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["get_all_invoices","get_all_invoices_with_http_info"])
+
       auth_names = []
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,
         :header_params => header_params,
@@ -167,7 +174,8 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InvoicingV2InvoicesAllGet200Response')
+        :return_type => 'InvoicingV2InvoicesAllGet200Response',
+        :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
         raise
@@ -231,10 +239,13 @@ module CyberSource
       else
         post_body = nil
       end
-      inbound_mle_status = "false"      
+      inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_invoice","get_invoice_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["get_invoice","get_invoice_with_http_info"])
+
       auth_names = []
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,
         :header_params => header_params,
@@ -242,7 +253,8 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InvoicingV2InvoicesGet200Response')
+        :return_type => 'InvoicingV2InvoicesGet200Response',
+        :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
         raise
@@ -306,10 +318,13 @@ module CyberSource
       else
         post_body = nil
       end
-      inbound_mle_status = "false"      
+      inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["perform_cancel_action","perform_cancel_action_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["perform_cancel_action","perform_cancel_action_with_http_info"])
+
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -317,7 +332,8 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InvoicingV2InvoicesCancel200Response')
+        :return_type => 'InvoicingV2InvoicesCancel200Response',
+        :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
         raise
@@ -381,10 +397,13 @@ module CyberSource
       else
         post_body = nil
       end
-      inbound_mle_status = "false"      
+      inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["perform_publish_action","perform_publish_action_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["perform_publish_action","perform_publish_action_with_http_info"])
+
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -392,7 +411,8 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InvoicingV2InvoicesPublish200Response')
+        :return_type => 'InvoicingV2InvoicesPublish200Response',
+        :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
         raise
@@ -456,10 +476,13 @@ module CyberSource
       else
         post_body = nil
       end
-      inbound_mle_status = "false"      
+      inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["perform_send_action","perform_send_action_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["perform_send_action","perform_send_action_with_http_info"])
+
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -467,7 +490,8 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InvoicingV2InvoicesSend200Response')
+        :return_type => 'InvoicingV2InvoicesSend200Response',
+        :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
         raise
@@ -535,10 +559,13 @@ module CyberSource
       post_body = @api_client.object_to_http_body(update_invoice_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'UpdateInvoiceRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      inbound_mle_status = "false"      
+      inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["update_invoice","update_invoice_with_http_info"])
         post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
       end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["update_invoice","update_invoice_with_http_info"])
+
       auth_names = []
       data, status_code, headers = @api_client.call_api(:PUT, local_var_path,
         :header_params => header_params,
@@ -546,7 +573,8 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InvoicingV2InvoicesPut200Response')
+        :return_type => 'InvoicingV2InvoicesPut200Response',
+        :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
         raise
