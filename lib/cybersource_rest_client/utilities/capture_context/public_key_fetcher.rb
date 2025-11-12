@@ -11,25 +11,12 @@ module CyberSource
       # PublicKeyFetcher Class
       #
       # Fetches public keys from CyberSource Flex V2 API for the given key ID (kid)
-      # and run environment. Supports caching to minimize redundant API calls.
+      # and run environment.
       #
       # @category Class
       # @package  CyberSource::Authentication::Util::CaptureContext
       # @author   CyberSource
       class PublicKeyFetcher
-        # Error messages constants
-        ERROR_MESSAGES = {
-          kid_required: 'kid parameter is required',
-          run_environment_required: 'runEnvironment parameter is required',
-          empty_response: 'Empty response received from public key endpoint',
-          invalid_public_key: 'Invalid public key received from JWK',
-          parse_error: 'Failed to parse JWK response: %s',
-          http_error: 'HTTP %s: %s - Failed to fetch public key for kid: %s',
-          no_response: 'No response received - Failed to fetch public key for kid: %s',
-          request_error: 'Request setup error: %s',
-          network_error: 'Network error occurred: %s'
-        }.freeze
-
         # Default timeout for HTTP requests (in seconds)
         DEFAULT_TIMEOUT = 30
 
@@ -46,37 +33,16 @@ module CyberSource
           #
           # @param kid [String] The key ID for which to fetch the public key
           # @param run_environment [String] The environment domain (e.g., 'apitest.cybersource.com')
-          # @param cache_instance [Cache, nil] Optional cache instance for caching public keys
           #
-          # @return [Hash] The RSA public key as a JWK hash
+          # @return [Hash] The raw JWK hash from the API response
           # @raise [ArgumentError] If required parameters are missing
-          # @raise [CyberSource::Authentication::Util::JWT::InvalidJwkException] If JWK is invalid
           # @raise [StandardError] For HTTP and network errors
           #
-          # @example Fetch without caching
-          #   public_key = PublicKeyFetcher.fetch_public_key('test-kid-123', 'apitest.cybersource.com')
-          #
-          # @example Fetch with caching
-          #   cache = Cache.new
-          #   public_key = PublicKeyFetcher.fetch_public_key('test-kid-123', 'apitest.cybersource.com', cache)
-          def fetch_public_key(kid, run_environment, cache_instance = nil)
+          # @example Fetch public key
+          #   jwk_hash = PublicKeyFetcher.fetch_public_key('test-kid-123', 'apitest.cybersource.com')
+          def fetch_public_key(kid, run_environment)
             validate_parameters(kid, run_environment)
-
-            # Check cache first if cache instance is provided
-            if cache_instance
-              cached_key = cache_instance.getPublicKeyFromCache(run_environment, kid)
-              return cached_key if cached_key
-            end
-
-            # Fetch from API
-            public_key = fetch_from_api(kid, run_environment)
-
-            # Store in cache if cache instance is provided
-            if cache_instance && public_key
-              cache_instance.addPublicKeyToCache(run_environment, kid, public_key)
-            end
-
-            public_key
+            fetch_from_api(kid, run_environment)
           end
 
           private
@@ -88,11 +54,11 @@ module CyberSource
           # @raise [ArgumentError] If parameters are invalid
           def validate_parameters(kid, run_environment)
             if kid.nil? || kid.to_s.strip.empty?
-              raise ArgumentError, ERROR_MESSAGES[:kid_required]
+              raise ArgumentError, 'kid parameter is required'
             end
 
             if run_environment.nil? || run_environment.to_s.strip.empty?
-              raise ArgumentError, ERROR_MESSAGES[:run_environment_required]
+              raise ArgumentError, 'runEnvironment parameter is required'
             end
           end
 
@@ -100,7 +66,7 @@ module CyberSource
           #
           # @param kid [String] The key ID
           # @param run_environment [String] The environment domain
-          # @return [Hash] The RSA public key as a JWK hash
+          # @return [Hash] The raw JWK hash from the API response
           # @raise [StandardError] For HTTP and parsing errors
           def fetch_from_api(kid, run_environment)
             url = build_url(run_environment, kid)
@@ -137,53 +103,26 @@ module CyberSource
             return if response.success?
 
             error_message = if response.code.zero?
-                             format(ERROR_MESSAGES[:no_response], kid)
+                             format('No response received - Failed to fetch public key for kid: %s', kid)
                            else
-                             format(ERROR_MESSAGES[:http_error], response.code, response.status_message, kid)
+                             format('HTTP %s: %s - Failed to fetch public key for kid: %s', response.code, response.status_message, kid)
                            end
             raise StandardError, error_message
           end
 
-          # Parses the response and converts JWK to RSA public key
+          # Parses the response and returns the raw JWK hash
           #
           # @param response [Typhoeus::Response] The HTTP response
           # @param kid [String] The key ID (for error messages)
-          # @return [Hash] The RSA public key as a JWK hash
+          # @return [Hash] The raw JWK hash from the API response
           # @raise [StandardError] For parsing errors
-          # @raise [CyberSource::Authentication::Util::JWT::InvalidJwkException] For invalid JWK
           def parse_and_convert_response(response, kid)
             body = response.body
-            raise StandardError, ERROR_MESSAGES[:empty_response] if body.nil? || body.strip.empty?
+            raise StandardError, 'Empty response received from public key endpoint' if body.nil? || body.strip.empty?
 
-            jwk_data = parse_json_body(body)
-            public_key = convert_jwk_to_public_key(jwk_data)
-            
-            raise StandardError, ERROR_MESSAGES[:invalid_public_key] unless public_key
-            
-            public_key
-          end
-
-          # Parses JSON response body
-          #
-          # @param body [String] The response body
-          # @return [Hash] Parsed JSON data
-          # @raise [StandardError] For JSON parsing errors
-          def parse_json_body(body)
             JSON.parse(body)
           rescue JSON::ParserError => e
-            raise StandardError, format(ERROR_MESSAGES[:parse_error], e.message)
-          end
-
-          # Converts JWK to RSA public key
-          #
-          # @param jwk_data [Hash] The JWK data
-          # @return [Hash, nil] The RSA public key or nil
-          # @raise [CyberSource::Authentication::Util::JWT::InvalidJwkException] For invalid JWK
-          def convert_jwk_to_public_key(jwk_data)
-            CyberSource::Authentication::Util::JWT::JWTUtility.get_rsa_public_key_from_jwk(jwk_data)
-          rescue StandardError => e
-            raise unless e.is_a?(CyberSource::Authentication::Util::JWT::InvalidJwkException)
-            raise
+            raise StandardError, format('Failed to parse JWK response: %s', e.message)
           end
         end
       end
