@@ -16,17 +16,6 @@ module CyberSource
       # @package  CyberSource::Authentication::Util::CaptureContext
       # @author   CyberSource
       class CaptureContextParser
-        # Error messages constants
-        ERROR_MESSAGES = {
-          jwt_null: 'JWT value is null or undefined',
-          merchant_config_required: 'merchantConfig is required',
-          kid_missing: 'JWT header missing key ID (kid) field',
-          run_environment_missing: 'Run environment not found in merchant config',
-          jwt_validation_failed: 'JWT validation failed',
-          invalid_runtime_url: 'Invalid Runtime URL in Merchant Config',
-          network_error: 'Error while trying to retrieve public key from server'
-        }.freeze
-
         class << self
           # Parses a capture context JWT response and optionally verifies its signature
           #
