@@ -35,7 +35,7 @@ module CyberSource
               end
 
               if token_parts.any?(&:empty?)
-                raise InvalidJwtException.new('Invalid JWT token: one or more parts are empty')
+                raise InvalidJwtException.new('Malformed JWT : JWT provided does not conform to the proper structure for JWT')
               end
 
               begin

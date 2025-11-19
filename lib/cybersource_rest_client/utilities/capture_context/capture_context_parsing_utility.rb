@@ -36,7 +36,7 @@ module CyberSource
           #   payload = CaptureContextParser.parse_capture_context_response(jwt_token, config)
           def parse_capture_context_response(jwt_value, merchant_config, verify_jwt = true)
             # Always validate JWT value first
-            if jwt_value.nil? || jwt_value.empty?
+            if jwt_value.nil? || jwt_value.strip.empty?
               raise CyberSource::Authentication::Util::JWT::InvalidJwtException.new('JWT value is null or undefined')
             end
             
@@ -45,7 +45,7 @@ module CyberSource
               raise ArgumentError, 'merchantConfig is required' unless merchant_config
               
               run_environment = merchant_config.runEnvironment
-              raise ArgumentError, 'Run environment not found in merchant config' unless run_environment
+              raise ArgumentError, 'Run environment not found in merchant config' if run_environment.nil? || run_environment.strip.empty?
             end
             
             # Parse JWT (actual operation)
@@ -56,9 +56,9 @@ module CyberSource
             
             # Validate kid exists in parsed JWT
             kid = parsed_jwt[:header]['kid']
-            unless kid
+            if kid.nil? || kid.strip.empty?
               raise CyberSource::Authentication::Util::JWT::JwtSignatureValidationException.new(
-                'JWT header missing key ID (kid) field'
+                'JWT header missing or empty key ID (kid) field'
               )
             end
             
