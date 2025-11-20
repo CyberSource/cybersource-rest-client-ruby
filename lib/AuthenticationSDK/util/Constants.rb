@@ -175,4 +175,6 @@
       MLE_CACHE_IDENTIFIER_FOR_P12_CERT = "mleCertFromP12"
 
       DEFAULT_KEY_FILE_PATH = File.join(Dir.pwd, "resources")
+
+      PUBLIC_KEY_CACHE_IDENTIFIER = "FlexV2PublicKeys"
   end

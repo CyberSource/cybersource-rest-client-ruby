@@ -409,4 +409,5 @@ public
     attr_accessor :mapToControlMLEonAPI
     attr_accessor :mleKeyAlias
     attr_accessor :p12KeyFilePath
+    attr_reader   :runEnvironment
   end

@@ -1696,6 +1696,7 @@ require 'cybersource_rest_client/api/void_api'
 require 'cybersource_rest_client/utilities/flex/token_verification'
 require 'cybersource_rest_client/utilities/jwe_utility'
 require 'cybersource_rest_client/utilities/tracking/sdk_tracker'
+require 'cybersource_rest_client/utilities/capture_context/capture_context_parsing_utility'
 
 
 module CyberSource
