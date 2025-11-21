@@ -16,24 +16,66 @@ module CyberSource
     # The name of the merchant
     attr_accessor :name
 
+    # The alternate name of the merchant
+    attr_accessor :alternate_name
+
+    # The locality of the merchant
+    attr_accessor :locality
+
+    # The phone number of the merchant
+    attr_accessor :phone
+
+    # The country code of the merchant
+    attr_accessor :country
+
+    # The postal code of the merchant
+    attr_accessor :postal_code
+
+    # The administrative area of the merchant
+    attr_accessor :administrative_area
+
+    # The first line of the merchant's address
+    attr_accessor :address1
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'name' => :'name'
+        :'name' => :'name',
+        :'alternate_name' => :'alternateName',
+        :'locality' => :'locality',
+        :'phone' => :'phone',
+        :'country' => :'country',
+        :'postal_code' => :'postalCode',
+        :'administrative_area' => :'administrativeArea',
+        :'address1' => :'address1'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'name' => :'name'
+        :'name' => :'name',
+        :'alternate_name' => :'alternate_name',
+        :'locality' => :'locality',
+        :'phone' => :'phone',
+        :'country' => :'country',
+        :'postal_code' => :'postal_code',
+        :'administrative_area' => :'administrative_area',
+        :'address1' => :'address1'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'name' => :'String'
+        :'name' => :'String',
+        :'alternate_name' => :'String',
+        :'locality' => :'String',
+        :'phone' => :'String',
+        :'country' => :'String',
+        :'postal_code' => :'String',
+        :'administrative_area' => :'String',
+        :'address1' => :'String'
       }
     end
 
@@ -47,6 +89,34 @@ module CyberSource
 
       if attributes.has_key?(:'name')
         self.name = attributes[:'name']
+      end
+
+      if attributes.has_key?(:'alternateName')
+        self.alternate_name = attributes[:'alternateName']
+      end
+
+      if attributes.has_key?(:'locality')
+        self.locality = attributes[:'locality']
+      end
+
+      if attributes.has_key?(:'phone')
+        self.phone = attributes[:'phone']
+      end
+
+      if attributes.has_key?(:'country')
+        self.country = attributes[:'country']
+      end
+
+      if attributes.has_key?(:'postalCode')
+        self.postal_code = attributes[:'postalCode']
+      end
+
+      if attributes.has_key?(:'administrativeArea')
+        self.administrative_area = attributes[:'administrativeArea']
+      end
+
+      if attributes.has_key?(:'address1')
+        self.address1 = attributes[:'address1']
       end
     end
 
@@ -69,12 +139,61 @@ module CyberSource
       @name = name
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] alternate_name Value to be assigned
+    def alternate_name=(alternate_name)
+      @alternate_name = alternate_name
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] locality Value to be assigned
+    def locality=(locality)
+      @locality = locality
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] phone Value to be assigned
+    def phone=(phone)
+      @phone = phone
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] country Value to be assigned
+    def country=(country)
+      @country = country
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] postal_code Value to be assigned
+    def postal_code=(postal_code)
+      @postal_code = postal_code
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] administrative_area Value to be assigned
+    def administrative_area=(administrative_area)
+      @administrative_area = administrative_area
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] address1 Value to be assigned
+    def address1=(address1)
+      @address1 = address1
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          name == o.name
+          name == o.name &&
+          alternate_name == o.alternate_name &&
+          locality == o.locality &&
+          phone == o.phone &&
+          country == o.country &&
+          postal_code == o.postal_code &&
+          administrative_area == o.administrative_area &&
+          address1 == o.address1
     end
 
     # @see the `==` method
@@ -86,7 +205,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name].hash
+      [name, alternate_name, locality, phone, country, postal_code, administrative_area, address1].hash
     end
 
     # Builds the object from hash

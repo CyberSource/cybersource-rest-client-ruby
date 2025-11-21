@@ -13,6 +13,7 @@ require 'date'
 
 module CyberSource
   class Upv1capturecontextsDataProcessingInformationAuthorizationOptionsInitiator
+    # Store the credential on file
     attr_accessor :credential_stored_on_file
 
     attr_accessor :merchant_initiated_transaction

@@ -33,6 +33,8 @@ module CyberSource
     # This field defines the tax amount applicable to the order. 
     attr_accessor :tax_amount
 
+    attr_accessor :tax_details
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -42,7 +44,8 @@ module CyberSource
         :'discount_amount' => :'discountAmount',
         :'sub_total_amount' => :'subTotalAmount',
         :'service_fee_amount' => :'serviceFeeAmount',
-        :'tax_amount' => :'taxAmount'
+        :'tax_amount' => :'taxAmount',
+        :'tax_details' => :'taxDetails'
       }
     end
 
@@ -55,7 +58,8 @@ module CyberSource
         :'discount_amount' => :'discount_amount',
         :'sub_total_amount' => :'sub_total_amount',
         :'service_fee_amount' => :'service_fee_amount',
-        :'tax_amount' => :'tax_amount'
+        :'tax_amount' => :'tax_amount',
+        :'tax_details' => :'tax_details'
       }
     end
 
@@ -68,7 +72,8 @@ module CyberSource
         :'discount_amount' => :'String',
         :'sub_total_amount' => :'String',
         :'service_fee_amount' => :'String',
-        :'tax_amount' => :'String'
+        :'tax_amount' => :'String',
+        :'tax_details' => :'Upv1capturecontextsDataOrderInformationAmountDetailsTaxDetails'
       }
     end
 
@@ -107,6 +112,10 @@ module CyberSource
       if attributes.has_key?(:'taxAmount')
         self.tax_amount = attributes[:'taxAmount']
       end
+
+      if attributes.has_key?(:'taxDetails')
+        self.tax_details = attributes[:'taxDetails']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -133,7 +142,8 @@ module CyberSource
           discount_amount == o.discount_amount &&
           sub_total_amount == o.sub_total_amount &&
           service_fee_amount == o.service_fee_amount &&
-          tax_amount == o.tax_amount
+          tax_amount == o.tax_amount &&
+          tax_details == o.tax_details
     end
 
     # @see the `==` method
@@ -145,7 +155,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [total_amount, currency, surcharge, discount_amount, sub_total_amount, service_fee_amount, tax_amount].hash
+      [total_amount, currency, surcharge, discount_amount, sub_total_amount, service_fee_amount, tax_amount, tax_details].hash
     end
 
     # Builds the object from hash

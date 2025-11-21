@@ -26,7 +26,7 @@ module CyberSource
     # @param token_provider The token provider.
     # @param asset_type The type of asset.
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse200]
+    # @return [InlineResponse2001]
     #
     def get_card_art_asset(instrument_identifier_id, token_provider, asset_type, opts = {})
       data, status_code, headers = get_card_art_asset_with_http_info(instrument_identifier_id, token_provider, asset_type, opts)
@@ -39,7 +39,7 @@ module CyberSource
     # @param token_provider The token provider.
     # @param asset_type The type of asset.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse200, Fixnum, Hash)>] InlineResponse200 data, response status code and response headers
+    # @return [Array<(InlineResponse2001, Fixnum, Hash)>] InlineResponse2001 data, response status code and response headers
     def get_card_art_asset_with_http_info(instrument_identifier_id, token_provider, asset_type, opts = {})
 
       if @api_client.config.debugging
@@ -94,7 +94,11 @@ module CyberSource
       end
       inbound_mle_status = "false"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_card_art_asset","get_card_art_asset_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,
@@ -103,7 +107,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse200')
+        :return_type => 'InlineResponse2001')
       if @api_client.config.debugging
         begin
         raise
@@ -174,9 +178,13 @@ module CyberSource
       post_body = @api_client.object_to_http_body(post_payment_credentials_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PostPaymentCredentialsRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      inbound_mle_status = "false"      
+      inbound_mle_status = "optional"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["post_token_payment_credentials","post_token_payment_credentials_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,

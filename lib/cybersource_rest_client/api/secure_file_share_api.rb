@@ -81,7 +81,11 @@ module CyberSource
       end
       inbound_mle_status = "false"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_file","get_file_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,
@@ -177,7 +181,11 @@ module CyberSource
       end
       inbound_mle_status = "false"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_file_detail","get_file_detail_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,

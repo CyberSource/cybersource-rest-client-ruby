@@ -13,76 +13,76 @@ require 'date'
 
 module CyberSource
   class InlineResponse20012
-    attr_accessor :version
-
-    # ISO-8601 format: yyyy-MM-ddTHH:mm:ssZ
-    attr_accessor :report_created_date
+    attr_accessor :_links
 
     # Unique identification number assigned to the submitted request.
     attr_accessor :batch_id
 
-    # Valid Values:   * SCHEDULER   * TOKEN_API   * CREDIT_CARD_FILE_UPLOAD   * AMEX_REGSITRY   * AMEX_REGISTRY_API   * AMEX_MAINTENANCE 
-    attr_accessor :batch_source
-
-    attr_accessor :batch_ca_endpoints
-
     # ISO-8601 format: yyyy-MM-ddTHH:mm:ssZ
     attr_accessor :batch_created_date
 
+    # Valid Values:   * SCHEDULER   * TOKEN_API   * CREDIT_CARD_FILE_UPLOAD   * AMEX_REGSITRY   * AMEX_REGISTRY_API   * AMEX_MAINTENANCE 
+    attr_accessor :batch_source
+
     # Reference used by merchant to identify batch.
     attr_accessor :merchant_reference
+
+    attr_accessor :batch_ca_endpoints
+
+    # Valid Values:   * REJECTED   * RECEIVED   * VALIDATED   * DECLINED   * PROCESSING   * COMPLETED 
+    attr_accessor :status
 
     attr_accessor :totals
 
     attr_accessor :billing
 
-    attr_accessor :records
+    attr_accessor :description
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'version' => :'version',
-        :'report_created_date' => :'reportCreatedDate',
+        :'_links' => :'_links',
         :'batch_id' => :'batchId',
-        :'batch_source' => :'batchSource',
-        :'batch_ca_endpoints' => :'batchCaEndpoints',
         :'batch_created_date' => :'batchCreatedDate',
+        :'batch_source' => :'batchSource',
         :'merchant_reference' => :'merchantReference',
+        :'batch_ca_endpoints' => :'batchCaEndpoints',
+        :'status' => :'status',
         :'totals' => :'totals',
         :'billing' => :'billing',
-        :'records' => :'records'
+        :'description' => :'description'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'version' => :'version',
-        :'report_created_date' => :'report_created_date',
+        :'_links' => :'_links',
         :'batch_id' => :'batch_id',
-        :'batch_source' => :'batch_source',
-        :'batch_ca_endpoints' => :'batch_ca_endpoints',
         :'batch_created_date' => :'batch_created_date',
+        :'batch_source' => :'batch_source',
         :'merchant_reference' => :'merchant_reference',
+        :'batch_ca_endpoints' => :'batch_ca_endpoints',
+        :'status' => :'status',
         :'totals' => :'totals',
         :'billing' => :'billing',
-        :'records' => :'records'
+        :'description' => :'description'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'version' => :'String',
-        :'report_created_date' => :'String',
+        :'_links' => :'InlineResponse20012Links',
         :'batch_id' => :'String',
-        :'batch_source' => :'String',
-        :'batch_ca_endpoints' => :'String',
         :'batch_created_date' => :'String',
+        :'batch_source' => :'String',
         :'merchant_reference' => :'String',
-        :'totals' => :'InlineResponse20010EmbeddedTotals',
-        :'billing' => :'InlineResponse20011Billing',
-        :'records' => :'Array<InlineResponse20012Records>'
+        :'batch_ca_endpoints' => :'String',
+        :'status' => :'String',
+        :'totals' => :'InlineResponse20011EmbeddedTotals',
+        :'billing' => :'InlineResponse20012Billing',
+        :'description' => :'String'
       }
     end
 
@@ -94,32 +94,32 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'version')
-        self.version = attributes[:'version']
-      end
-
-      if attributes.has_key?(:'reportCreatedDate')
-        self.report_created_date = attributes[:'reportCreatedDate']
+      if attributes.has_key?(:'_links')
+        self._links = attributes[:'_links']
       end
 
       if attributes.has_key?(:'batchId')
         self.batch_id = attributes[:'batchId']
       end
 
+      if attributes.has_key?(:'batchCreatedDate')
+        self.batch_created_date = attributes[:'batchCreatedDate']
+      end
+
       if attributes.has_key?(:'batchSource')
         self.batch_source = attributes[:'batchSource']
+      end
+
+      if attributes.has_key?(:'merchantReference')
+        self.merchant_reference = attributes[:'merchantReference']
       end
 
       if attributes.has_key?(:'batchCaEndpoints')
         self.batch_ca_endpoints = attributes[:'batchCaEndpoints']
       end
 
-      if attributes.has_key?(:'batchCreatedDate')
-        self.batch_created_date = attributes[:'batchCreatedDate']
-      end
-
-      if attributes.has_key?(:'merchantReference')
-        self.merchant_reference = attributes[:'merchantReference']
+      if attributes.has_key?(:'status')
+        self.status = attributes[:'status']
       end
 
       if attributes.has_key?(:'totals')
@@ -130,10 +130,8 @@ module CyberSource
         self.billing = attributes[:'billing']
       end
 
-      if attributes.has_key?(:'records')
-        if (value = attributes[:'records']).is_a?(Array)
-          self.records = value
-        end
+      if attributes.has_key?(:'description')
+        self.description = attributes[:'description']
       end
     end
 
@@ -161,16 +159,16 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          version == o.version &&
-          report_created_date == o.report_created_date &&
+          _links == o._links &&
           batch_id == o.batch_id &&
-          batch_source == o.batch_source &&
-          batch_ca_endpoints == o.batch_ca_endpoints &&
           batch_created_date == o.batch_created_date &&
+          batch_source == o.batch_source &&
           merchant_reference == o.merchant_reference &&
+          batch_ca_endpoints == o.batch_ca_endpoints &&
+          status == o.status &&
           totals == o.totals &&
           billing == o.billing &&
-          records == o.records
+          description == o.description
     end
 
     # @see the `==` method
@@ -182,7 +180,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [version, report_created_date, batch_id, batch_source, batch_ca_endpoints, batch_created_date, merchant_reference, totals, billing, records].hash
+      [_links, batch_id, batch_created_date, batch_source, merchant_reference, batch_ca_endpoints, status, totals, billing, description].hash
     end
 
     # Builds the object from hash

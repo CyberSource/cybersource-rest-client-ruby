@@ -31,6 +31,12 @@ module CyberSource
     # The account type of the recipient
     attr_accessor :account_type
 
+    # The date of birth of the recipient
+    attr_accessor :date_of_birth
+
+    # The postal code of the recipient
+    attr_accessor :postal_code
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -40,7 +46,9 @@ module CyberSource
         :'country' => :'country',
         :'account_id' => :'accountId',
         :'administrative_area' => :'administrativeArea',
-        :'account_type' => :'accountType'
+        :'account_type' => :'accountType',
+        :'date_of_birth' => :'dateOfBirth',
+        :'postal_code' => :'postalCode'
       }
     end
 
@@ -53,7 +61,9 @@ module CyberSource
         :'country' => :'country',
         :'account_id' => :'account_id',
         :'administrative_area' => :'administrative_area',
-        :'account_type' => :'account_type'
+        :'account_type' => :'account_type',
+        :'date_of_birth' => :'date_of_birth',
+        :'postal_code' => :'postal_code'
       }
     end
 
@@ -66,7 +76,9 @@ module CyberSource
         :'country' => :'String',
         :'account_id' => :'String',
         :'administrative_area' => :'String',
-        :'account_type' => :'String'
+        :'account_type' => :'String',
+        :'date_of_birth' => :'String',
+        :'postal_code' => :'String'
       }
     end
 
@@ -104,6 +116,14 @@ module CyberSource
 
       if attributes.has_key?(:'accountType')
         self.account_type = attributes[:'accountType']
+      end
+
+      if attributes.has_key?(:'dateOfBirth')
+        self.date_of_birth = attributes[:'dateOfBirth']
+      end
+
+      if attributes.has_key?(:'postalCode')
+        self.postal_code = attributes[:'postalCode']
       end
     end
 
@@ -162,6 +182,18 @@ module CyberSource
       @account_type = account_type
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] date_of_birth Value to be assigned
+    def date_of_birth=(date_of_birth)
+      @date_of_birth = date_of_birth
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] postal_code Value to be assigned
+    def postal_code=(postal_code)
+      @postal_code = postal_code
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -173,7 +205,9 @@ module CyberSource
           country == o.country &&
           account_id == o.account_id &&
           administrative_area == o.administrative_area &&
-          account_type == o.account_type
+          account_type == o.account_type &&
+          date_of_birth == o.date_of_birth &&
+          postal_code == o.postal_code
     end
 
     # @see the `==` method
@@ -185,7 +219,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [first_name, middle_name, last_name, country, account_id, administrative_area, account_type].hash
+      [first_name, middle_name, last_name, country, account_id, administrative_area, account_type, date_of_birth, postal_code].hash
     end
 
     # Builds the object from hash

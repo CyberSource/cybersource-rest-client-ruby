@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **create_merchant_defined_field_definition**
-> Array&lt;InlineResponse2002&gt; create_merchant_defined_field_definition(reference_type, merchant_defined_field_definition_request)
+> Array&lt;InlineResponse2003&gt; create_merchant_defined_field_definition(reference_type, merchant_defined_field_definition_request)
 
 Create merchant defined field for a given reference type
 
@@ -45,7 +45,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Array&lt;InlineResponse2002&gt;**](InlineResponse2002.md)
+[**Array&lt;InlineResponse2003&gt;**](InlineResponse2003.md)
 
 ### Authorization
 
@@ -106,7 +106,7 @@ No authorization required
 
 
 # **get_merchant_defined_fields_definitions**
-> Array&lt;InlineResponse2002&gt; get_merchant_defined_fields_definitions(reference_type)
+> Array&lt;InlineResponse2003&gt; get_merchant_defined_fields_definitions(reference_type)
 
 Get all merchant defined fields for a given reference type
 
@@ -137,7 +137,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Array&lt;InlineResponse2002&gt;**](InlineResponse2002.md)
+[**Array&lt;InlineResponse2003&gt;**](InlineResponse2003.md)
 
 ### Authorization
 
@@ -151,7 +151,7 @@ No authorization required
 
 
 # **put_merchant_defined_fields_definitions**
-> Array&lt;InlineResponse2002&gt; put_merchant_defined_fields_definitions(reference_type, id, merchant_defined_field_core)
+> Array&lt;InlineResponse2003&gt; put_merchant_defined_fields_definitions(reference_type, id, merchant_defined_field_core)
 
 Update a MerchantDefinedField by ID
 
@@ -188,7 +188,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Array&lt;InlineResponse2002&gt;**](InlineResponse2002.md)
+[**Array&lt;InlineResponse2003&gt;**](InlineResponse2003.md)
 
 ### Authorization
 

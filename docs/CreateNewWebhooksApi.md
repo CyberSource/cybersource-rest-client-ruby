@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **find_products_to_subscribe**
-> Array&lt;InlineResponse2004&gt; find_products_to_subscribe(organization_id)
+> Array&lt;InlineResponse2005&gt; find_products_to_subscribe(organization_id)
 
 Find Products You Can Subscribe To
 
@@ -43,7 +43,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Array&lt;InlineResponse2004&gt;**](InlineResponse2004.md)
+[**Array&lt;InlineResponse2005&gt;**](InlineResponse2005.md)
 
 ### Authorization
 

@@ -53,7 +53,7 @@ module CyberSource
         :'id' => :'String',
         :'bank_account' => :'GetSubscriptionResponse1PaymentInstrumentBankAccount',
         :'card' => :'GetSubscriptionResponse1PaymentInstrumentCard',
-        :'bill_to' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentBillTo',
+        :'bill_to' => :'Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentBillTo',
         :'buyer_information' => :'GetSubscriptionResponse1PaymentInstrumentBuyerInformation'
       }
     end

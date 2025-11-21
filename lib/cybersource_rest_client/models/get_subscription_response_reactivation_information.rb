@@ -14,32 +14,32 @@ require 'date'
 module CyberSource
   class GetSubscriptionResponseReactivationInformation
     # Number of payments that should have occurred while the subscription was in a suspended status. 
-    attr_accessor :skipped_payments_count
+    attr_accessor :missed_payments_count
 
-    # Total amount that will be charged upon reactivation if `processSkippedPayments` is set to `true`. 
-    attr_accessor :skipped_payments_total_amount
+    # Total amount that will be charged upon reactivation if `processMissedPayments` is set to `true`. 
+    attr_accessor :missed_payments_total_amount
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'skipped_payments_count' => :'skippedPaymentsCount',
-        :'skipped_payments_total_amount' => :'skippedPaymentsTotalAmount'
+        :'missed_payments_count' => :'missedPaymentsCount',
+        :'missed_payments_total_amount' => :'missedPaymentsTotalAmount'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'skipped_payments_count' => :'skipped_payments_count',
-        :'skipped_payments_total_amount' => :'skipped_payments_total_amount'
+        :'missed_payments_count' => :'missed_payments_count',
+        :'missed_payments_total_amount' => :'missed_payments_total_amount'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'skipped_payments_count' => :'String',
-        :'skipped_payments_total_amount' => :'String'
+        :'missed_payments_count' => :'String',
+        :'missed_payments_total_amount' => :'String'
       }
     end
 
@@ -51,12 +51,12 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'skippedPaymentsCount')
-        self.skipped_payments_count = attributes[:'skippedPaymentsCount']
+      if attributes.has_key?(:'missedPaymentsCount')
+        self.missed_payments_count = attributes[:'missedPaymentsCount']
       end
 
-      if attributes.has_key?(:'skippedPaymentsTotalAmount')
-        self.skipped_payments_total_amount = attributes[:'skippedPaymentsTotalAmount']
+      if attributes.has_key?(:'missedPaymentsTotalAmount')
+        self.missed_payments_total_amount = attributes[:'missedPaymentsTotalAmount']
       end
     end
 
@@ -74,15 +74,15 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] skipped_payments_count Value to be assigned
-    def skipped_payments_count=(skipped_payments_count)
-      @skipped_payments_count = skipped_payments_count
+    # @param [Object] missed_payments_count Value to be assigned
+    def missed_payments_count=(missed_payments_count)
+      @missed_payments_count = missed_payments_count
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] skipped_payments_total_amount Value to be assigned
-    def skipped_payments_total_amount=(skipped_payments_total_amount)
-      @skipped_payments_total_amount = skipped_payments_total_amount
+    # @param [Object] missed_payments_total_amount Value to be assigned
+    def missed_payments_total_amount=(missed_payments_total_amount)
+      @missed_payments_total_amount = missed_payments_total_amount
     end
 
     # Checks equality by comparing each attribute.
@@ -90,8 +90,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          skipped_payments_count == o.skipped_payments_count &&
-          skipped_payments_total_amount == o.skipped_payments_total_amount
+          missed_payments_count == o.missed_payments_count &&
+          missed_payments_total_amount == o.missed_payments_total_amount
     end
 
     # @see the `==` method
@@ -103,7 +103,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [skipped_payments_count, skipped_payments_total_amount].hash
+      [missed_payments_count, missed_payments_total_amount].hash
     end
 
     # Builds the object from hash

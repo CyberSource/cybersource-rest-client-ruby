@@ -24,7 +24,7 @@ module CyberSource
     #
     # @param registration_id Identifies the boarding registration to be updated
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2003]
+    # @return [InlineResponse2004]
     #
     def get_registration(registration_id, opts = {})
       data, status_code, headers = get_registration_with_http_info(registration_id, opts)
@@ -35,7 +35,7 @@ module CyberSource
     # This end point will get all information of a boarding registration 
     # @param registration_id Identifies the boarding registration to be updated
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2003, Fixnum, Hash)>] InlineResponse2003 data, response status code and response headers
+    # @return [Array<(InlineResponse2004, Fixnum, Hash)>] InlineResponse2004 data, response status code and response headers
     def get_registration_with_http_info(registration_id, opts = {})
 
       if @api_client.config.debugging
@@ -74,7 +74,11 @@ module CyberSource
       end
       inbound_mle_status = "false"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_registration","get_registration_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,
@@ -83,7 +87,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2003')
+        :return_type => 'InlineResponse2004')
       if @api_client.config.debugging
         begin
         raise
@@ -150,7 +154,11 @@ module CyberSource
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PostRegistrationBody', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "false"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["post_registration","post_registration_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,

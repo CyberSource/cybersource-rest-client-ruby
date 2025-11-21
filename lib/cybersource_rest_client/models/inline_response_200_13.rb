@@ -13,43 +13,76 @@ require 'date'
 
 module CyberSource
   class InlineResponse20013
-    attr_accessor :client_reference_information
+    attr_accessor :version
 
-    # Request Id sent as part of the request.
-    attr_accessor :request_id
+    # ISO-8601 format: yyyy-MM-ddTHH:mm:ssZ
+    attr_accessor :report_created_date
 
-    # Time of request in UTC.  Format: `YYYY-MM-DDThhmmssZ`, where: - `T`:  Separates the date and the time - `Z`:  Indicates Coordinated Universal Time (UTC), also known as Greenwich Mean Time (GMT)  Example:  `2020-01-11T224757Z` equals January 11, 2020, at 22:47:57 (10:47:57 p.m.) 
-    attr_accessor :submit_time_utc
+    # Unique identification number assigned to the submitted request.
+    attr_accessor :batch_id
 
-    attr_accessor :bank_account_validation
+    # Valid Values:   * SCHEDULER   * TOKEN_API   * CREDIT_CARD_FILE_UPLOAD   * AMEX_REGSITRY   * AMEX_REGISTRY_API   * AMEX_MAINTENANCE 
+    attr_accessor :batch_source
+
+    attr_accessor :batch_ca_endpoints
+
+    # ISO-8601 format: yyyy-MM-ddTHH:mm:ssZ
+    attr_accessor :batch_created_date
+
+    # Reference used by merchant to identify batch.
+    attr_accessor :merchant_reference
+
+    attr_accessor :totals
+
+    attr_accessor :billing
+
+    attr_accessor :records
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'client_reference_information' => :'clientReferenceInformation',
-        :'request_id' => :'requestId',
-        :'submit_time_utc' => :'submitTimeUtc',
-        :'bank_account_validation' => :'bankAccountValidation'
+        :'version' => :'version',
+        :'report_created_date' => :'reportCreatedDate',
+        :'batch_id' => :'batchId',
+        :'batch_source' => :'batchSource',
+        :'batch_ca_endpoints' => :'batchCaEndpoints',
+        :'batch_created_date' => :'batchCreatedDate',
+        :'merchant_reference' => :'merchantReference',
+        :'totals' => :'totals',
+        :'billing' => :'billing',
+        :'records' => :'records'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'client_reference_information' => :'client_reference_information',
-        :'request_id' => :'request_id',
-        :'submit_time_utc' => :'submit_time_utc',
-        :'bank_account_validation' => :'bank_account_validation'
+        :'version' => :'version',
+        :'report_created_date' => :'report_created_date',
+        :'batch_id' => :'batch_id',
+        :'batch_source' => :'batch_source',
+        :'batch_ca_endpoints' => :'batch_ca_endpoints',
+        :'batch_created_date' => :'batch_created_date',
+        :'merchant_reference' => :'merchant_reference',
+        :'totals' => :'totals',
+        :'billing' => :'billing',
+        :'records' => :'records'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'client_reference_information' => :'Bavsv1accountvalidationsClientReferenceInformation',
-        :'request_id' => :'String',
-        :'submit_time_utc' => :'String',
-        :'bank_account_validation' => :'TssV2TransactionsGet200ResponseBankAccountValidation'
+        :'version' => :'String',
+        :'report_created_date' => :'String',
+        :'batch_id' => :'String',
+        :'batch_source' => :'String',
+        :'batch_ca_endpoints' => :'String',
+        :'batch_created_date' => :'String',
+        :'merchant_reference' => :'String',
+        :'totals' => :'InlineResponse20011EmbeddedTotals',
+        :'billing' => :'InlineResponse20012Billing',
+        :'records' => :'Array<InlineResponse20013Records>'
       }
     end
 
@@ -61,20 +94,46 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'clientReferenceInformation')
-        self.client_reference_information = attributes[:'clientReferenceInformation']
+      if attributes.has_key?(:'version')
+        self.version = attributes[:'version']
       end
 
-      if attributes.has_key?(:'requestId')
-        self.request_id = attributes[:'requestId']
+      if attributes.has_key?(:'reportCreatedDate')
+        self.report_created_date = attributes[:'reportCreatedDate']
       end
 
-      if attributes.has_key?(:'submitTimeUtc')
-        self.submit_time_utc = attributes[:'submitTimeUtc']
+      if attributes.has_key?(:'batchId')
+        self.batch_id = attributes[:'batchId']
       end
 
-      if attributes.has_key?(:'bankAccountValidation')
-        self.bank_account_validation = attributes[:'bankAccountValidation']
+      if attributes.has_key?(:'batchSource')
+        self.batch_source = attributes[:'batchSource']
+      end
+
+      if attributes.has_key?(:'batchCaEndpoints')
+        self.batch_ca_endpoints = attributes[:'batchCaEndpoints']
+      end
+
+      if attributes.has_key?(:'batchCreatedDate')
+        self.batch_created_date = attributes[:'batchCreatedDate']
+      end
+
+      if attributes.has_key?(:'merchantReference')
+        self.merchant_reference = attributes[:'merchantReference']
+      end
+
+      if attributes.has_key?(:'totals')
+        self.totals = attributes[:'totals']
+      end
+
+      if attributes.has_key?(:'billing')
+        self.billing = attributes[:'billing']
+      end
+
+      if attributes.has_key?(:'records')
+        if (value = attributes[:'records']).is_a?(Array)
+          self.records = value
+        end
       end
     end
 
@@ -91,15 +150,27 @@ module CyberSource
       true
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] merchant_reference Value to be assigned
+    def merchant_reference=(merchant_reference)
+      @merchant_reference = merchant_reference
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          client_reference_information == o.client_reference_information &&
-          request_id == o.request_id &&
-          submit_time_utc == o.submit_time_utc &&
-          bank_account_validation == o.bank_account_validation
+          version == o.version &&
+          report_created_date == o.report_created_date &&
+          batch_id == o.batch_id &&
+          batch_source == o.batch_source &&
+          batch_ca_endpoints == o.batch_ca_endpoints &&
+          batch_created_date == o.batch_created_date &&
+          merchant_reference == o.merchant_reference &&
+          totals == o.totals &&
+          billing == o.billing &&
+          records == o.records
     end
 
     # @see the `==` method
@@ -111,7 +182,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_reference_information, request_id, submit_time_utc, bank_account_validation].hash
+      [version, report_created_date, batch_id, batch_source, batch_ca_endpoints, batch_created_date, merchant_reference, totals, billing, records].hash
     end
 
     # Builds the object from hash

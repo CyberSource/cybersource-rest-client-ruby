@@ -3,17 +3,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **Integer** |  | [optional] 
-**field_type** | **String** |  | [optional] 
-**label** | **String** |  | [optional] 
-**customer_visible** | **BOOLEAN** |  | [optional] 
-**text_min_length** | **Integer** |  | [optional] 
-**text_max_length** | **Integer** |  | [optional] 
-**possible_values** | **String** |  | [optional] 
-**text_default_value** | **String** |  | [optional] 
-**merchant_id** | **String** |  | [optional] 
-**reference_type** | **String** |  | [optional] 
-**read_only** | **BOOLEAN** |  | [optional] 
-**merchant_defined_data_index** | **Integer** |  | [optional] 
+**id** | **String** | UUID uniquely generated for this comments.  | [optional] 
+**submit_time_utc** | **String** | Time of request in UTC. Format: &#x60;YYYY-MM-DDThh:mm:ssZ&#x60; **Example** &#x60;2016-08-11T22:47:57Z&#x60; equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The &#x60;T&#x60; separates the date and the time. The &#x60;Z&#x60; indicates UTC.  Returned by Cybersource for all services.  | [optional] 
+**status** | **String** | The status of the submitted transaction. Possible values are: - &#x60;ACCEPTED&#x60; - &#x60;REJECTED&#x60;  | [optional] 
+**_embedded** | [**InlineResponse2002Embedded**](InlineResponse2002Embedded.md) |  | [optional] 
 
 

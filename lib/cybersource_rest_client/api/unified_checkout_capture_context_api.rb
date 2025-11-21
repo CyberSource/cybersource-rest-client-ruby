@@ -72,7 +72,11 @@ module CyberSource
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'GenerateUnifiedCheckoutCaptureContextRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "false"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["generate_unified_checkout_capture_context","generate_unified_checkout_capture_context_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,

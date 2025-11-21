@@ -36,7 +36,7 @@ describe 'MerchantDefinedFieldsApi' do
   # @param reference_type The reference type for which merchant defined fields are to be fetched. Available values are Invoice, Purchase, Donation
   # @param merchant_defined_field_definition_request 
   # @param [Hash] opts the optional parameters
-  # @return [Array<InlineResponse2002>]
+  # @return [Array<InlineResponse2003>]
   describe 'create_merchant_defined_field_definition test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -59,7 +59,7 @@ describe 'MerchantDefinedFieldsApi' do
   # Get all merchant defined fields for a given reference type
   # @param reference_type The reference type for which merchant defined fields are to be fetched. Available values are Invoice, Purchase, Donation
   # @param [Hash] opts the optional parameters
-  # @return [Array<InlineResponse2002>]
+  # @return [Array<InlineResponse2003>]
   describe 'get_merchant_defined_fields_definitions test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -72,7 +72,7 @@ describe 'MerchantDefinedFieldsApi' do
   # @param id 
   # @param merchant_defined_field_core 
   # @param [Hash] opts the optional parameters
-  # @return [Array<InlineResponse2002>]
+  # @return [Array<InlineResponse2003>]
   describe 'put_merchant_defined_fields_definitions test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

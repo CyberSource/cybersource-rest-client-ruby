@@ -71,7 +71,7 @@ No authorization required
 
 
 # **get_offer**
-> InlineResponse20014 get_offer(content_type, x_requestid, v_c_merchant_id, v_c_correlation_id, v_c_organization_id, id)
+> InlineResponse20015 get_offer(content_type, x_requestid, v_c_merchant_id, v_c_correlation_id, v_c_organization_id, id)
 
 Retrieve an Offer
 
@@ -119,7 +119,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20014**](InlineResponse20014.md)
+[**InlineResponse20015**](InlineResponse20015.md)
 
 ### Authorization
 

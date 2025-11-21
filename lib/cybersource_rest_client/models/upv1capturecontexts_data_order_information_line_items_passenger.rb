@@ -13,20 +13,28 @@ require 'date'
 
 module CyberSource
   class Upv1capturecontextsDataOrderInformationLineItemsPassenger
+    # Passenger type
     attr_accessor :type
 
+    # Passenger status
     attr_accessor :status
 
+    # Passenger phone number
     attr_accessor :phone
 
+    # Passenger first name
     attr_accessor :first_name
 
+    # Passenger last name
     attr_accessor :last_name
 
+    # Passenger ID
     attr_accessor :id
 
+    # Passenger email
     attr_accessor :email
 
+    # Passenger nationality
     attr_accessor :nationality
 
     # Attribute mapping from ruby-style variable name to JSON key.

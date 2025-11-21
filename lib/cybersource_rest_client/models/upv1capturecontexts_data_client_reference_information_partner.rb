@@ -21,7 +21,7 @@ module CyberSource
     def self.attribute_map
       {
         :'developer_id' => :'developerId',
-        :'solution_id' => :'SolutionId'
+        :'solution_id' => :'solutionId'
       }
     end
 
@@ -53,8 +53,8 @@ module CyberSource
         self.developer_id = attributes[:'developerId']
       end
 
-      if attributes.has_key?(:'SolutionId')
-        self.solution_id = attributes[:'SolutionId']
+      if attributes.has_key?(:'solutionId')
+        self.solution_id = attributes[:'solutionId']
       end
     end
 

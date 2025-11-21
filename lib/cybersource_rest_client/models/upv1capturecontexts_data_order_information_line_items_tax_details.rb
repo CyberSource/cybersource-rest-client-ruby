@@ -13,18 +13,25 @@ require 'date'
 
 module CyberSource
   class Upv1capturecontextsDataOrderInformationLineItemsTaxDetails
+    # Type of tax
     attr_accessor :type
 
+    # Tax amount
     attr_accessor :amount
 
+    # Tax rate
     attr_accessor :rate
 
+    # Tax code
     attr_accessor :code
 
+    # Tax Identifier
     attr_accessor :tax_id
 
+    # Indicates if tax applied
     attr_accessor :applied
 
+    # Tax exemption code
     attr_accessor :exemption_code
 
     # Attribute mapping from ruby-style variable name to JSON key.

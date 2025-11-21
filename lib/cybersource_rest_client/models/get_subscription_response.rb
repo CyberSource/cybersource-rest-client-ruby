@@ -29,6 +29,8 @@ module CyberSource
 
     attr_accessor :order_information
 
+    attr_accessor :client_reference_information
+
     attr_accessor :reactivation_information
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -41,6 +43,7 @@ module CyberSource
         :'subscription_information' => :'subscriptionInformation',
         :'payment_information' => :'paymentInformation',
         :'order_information' => :'orderInformation',
+        :'client_reference_information' => :'clientReferenceInformation',
         :'reactivation_information' => :'reactivationInformation'
       }
     end
@@ -55,6 +58,7 @@ module CyberSource
         :'subscription_information' => :'subscription_information',
         :'payment_information' => :'payment_information',
         :'order_information' => :'order_information',
+        :'client_reference_information' => :'client_reference_information',
         :'reactivation_information' => :'reactivation_information'
       }
     end
@@ -69,6 +73,7 @@ module CyberSource
         :'subscription_information' => :'GetAllSubscriptionsResponseSubscriptionInformation',
         :'payment_information' => :'GetAllSubscriptionsResponsePaymentInformation',
         :'order_information' => :'GetAllSubscriptionsResponseOrderInformation',
+        :'client_reference_information' => :'GetAllSubscriptionsResponseClientReferenceInformation',
         :'reactivation_information' => :'GetSubscriptionResponseReactivationInformation'
       }
     end
@@ -109,6 +114,10 @@ module CyberSource
         self.order_information = attributes[:'orderInformation']
       end
 
+      if attributes.has_key?(:'clientReferenceInformation')
+        self.client_reference_information = attributes[:'clientReferenceInformation']
+      end
+
       if attributes.has_key?(:'reactivationInformation')
         self.reactivation_information = attributes[:'reactivationInformation']
       end
@@ -145,6 +154,7 @@ module CyberSource
           subscription_information == o.subscription_information &&
           payment_information == o.payment_information &&
           order_information == o.order_information &&
+          client_reference_information == o.client_reference_information &&
           reactivation_information == o.reactivation_information
     end
 
@@ -157,7 +167,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, submit_time_utc, plan_information, subscription_information, payment_information, order_information, reactivation_information].hash
+      [_links, id, submit_time_utc, plan_information, subscription_information, payment_information, order_information, client_reference_information, reactivation_information].hash
     end
 
     # Builds the object from hash

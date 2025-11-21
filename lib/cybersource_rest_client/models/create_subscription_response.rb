@@ -26,6 +26,8 @@ module CyberSource
 
     attr_accessor :subscription_information
 
+    attr_accessor :client_reference_information
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -33,7 +35,8 @@ module CyberSource
         :'id' => :'id',
         :'submit_time_utc' => :'submitTimeUtc',
         :'status' => :'status',
-        :'subscription_information' => :'subscriptionInformation'
+        :'subscription_information' => :'subscriptionInformation',
+        :'client_reference_information' => :'clientReferenceInformation'
       }
     end
 
@@ -44,7 +47,8 @@ module CyberSource
         :'id' => :'id',
         :'submit_time_utc' => :'submit_time_utc',
         :'status' => :'status',
-        :'subscription_information' => :'subscription_information'
+        :'subscription_information' => :'subscription_information',
+        :'client_reference_information' => :'client_reference_information'
       }
     end
 
@@ -55,7 +59,8 @@ module CyberSource
         :'id' => :'String',
         :'submit_time_utc' => :'String',
         :'status' => :'String',
-        :'subscription_information' => :'CreateSubscriptionResponseSubscriptionInformation'
+        :'subscription_information' => :'CreateSubscriptionResponseSubscriptionInformation',
+        :'client_reference_information' => :'GetAllSubscriptionsResponseClientReferenceInformation'
       }
     end
 
@@ -85,6 +90,10 @@ module CyberSource
 
       if attributes.has_key?(:'subscriptionInformation')
         self.subscription_information = attributes[:'subscriptionInformation']
+      end
+
+      if attributes.has_key?(:'clientReferenceInformation')
+        self.client_reference_information = attributes[:'clientReferenceInformation']
       end
     end
 
@@ -116,7 +125,8 @@ module CyberSource
           id == o.id &&
           submit_time_utc == o.submit_time_utc &&
           status == o.status &&
-          subscription_information == o.subscription_information
+          subscription_information == o.subscription_information &&
+          client_reference_information == o.client_reference_information
     end
 
     # @see the `==` method
@@ -128,7 +138,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, submit_time_utc, status, subscription_information].hash
+      [_links, id, submit_time_utc, status, subscription_information, client_reference_information].hash
     end
 
     # Builds the object from hash

@@ -13,18 +13,40 @@ require 'date'
 
 module CyberSource
   class Upv1capturecontextsDataProcessingInformationAuthorizationOptions
+    # The AFT indicator
     attr_accessor :aft_indicator
+
+    # The authorization indicator
+    attr_accessor :auth_indicator
+
+    # Ignore the CV result
+    attr_accessor :ignore_cv_result
+
+    # Ignore the AVS result
+    attr_accessor :ignore_avs_result
 
     attr_accessor :initiator
 
+    # The business application Id
     attr_accessor :business_application_id
+
+    # The commerce indicator
+    attr_accessor :commerce_indicator
+
+    # The processing instruction
+    attr_accessor :processing_instruction
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'aft_indicator' => :'aftIndicator',
+        :'auth_indicator' => :'authIndicator',
+        :'ignore_cv_result' => :'ignoreCvResult',
+        :'ignore_avs_result' => :'ignoreAvsResult',
         :'initiator' => :'initiator',
-        :'business_application_id' => :'businessApplicationId'
+        :'business_application_id' => :'businessApplicationId',
+        :'commerce_indicator' => :'commerceIndicator',
+        :'processing_instruction' => :'processingInstruction'
       }
     end
 
@@ -32,8 +54,13 @@ module CyberSource
     def self.json_map
       {
         :'aft_indicator' => :'aft_indicator',
+        :'auth_indicator' => :'auth_indicator',
+        :'ignore_cv_result' => :'ignore_cv_result',
+        :'ignore_avs_result' => :'ignore_avs_result',
         :'initiator' => :'initiator',
-        :'business_application_id' => :'business_application_id'
+        :'business_application_id' => :'business_application_id',
+        :'commerce_indicator' => :'commerce_indicator',
+        :'processing_instruction' => :'processing_instruction'
       }
     end
 
@@ -41,8 +68,13 @@ module CyberSource
     def self.swagger_types
       {
         :'aft_indicator' => :'BOOLEAN',
+        :'auth_indicator' => :'String',
+        :'ignore_cv_result' => :'BOOLEAN',
+        :'ignore_avs_result' => :'BOOLEAN',
         :'initiator' => :'Upv1capturecontextsDataProcessingInformationAuthorizationOptionsInitiator',
-        :'business_application_id' => :'String'
+        :'business_application_id' => :'String',
+        :'commerce_indicator' => :'String',
+        :'processing_instruction' => :'String'
       }
     end
 
@@ -58,12 +90,32 @@ module CyberSource
         self.aft_indicator = attributes[:'aftIndicator']
       end
 
+      if attributes.has_key?(:'authIndicator')
+        self.auth_indicator = attributes[:'authIndicator']
+      end
+
+      if attributes.has_key?(:'ignoreCvResult')
+        self.ignore_cv_result = attributes[:'ignoreCvResult']
+      end
+
+      if attributes.has_key?(:'ignoreAvsResult')
+        self.ignore_avs_result = attributes[:'ignoreAvsResult']
+      end
+
       if attributes.has_key?(:'initiator')
         self.initiator = attributes[:'initiator']
       end
 
       if attributes.has_key?(:'businessApplicationId')
         self.business_application_id = attributes[:'businessApplicationId']
+      end
+
+      if attributes.has_key?(:'commerceIndicator')
+        self.commerce_indicator = attributes[:'commerceIndicator']
+      end
+
+      if attributes.has_key?(:'processingInstruction')
+        self.processing_instruction = attributes[:'processingInstruction']
       end
     end
 
@@ -86,14 +138,31 @@ module CyberSource
       @business_application_id = business_application_id
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] commerce_indicator Value to be assigned
+    def commerce_indicator=(commerce_indicator)
+      @commerce_indicator = commerce_indicator
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] processing_instruction Value to be assigned
+    def processing_instruction=(processing_instruction)
+      @processing_instruction = processing_instruction
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           aft_indicator == o.aft_indicator &&
+          auth_indicator == o.auth_indicator &&
+          ignore_cv_result == o.ignore_cv_result &&
+          ignore_avs_result == o.ignore_avs_result &&
           initiator == o.initiator &&
-          business_application_id == o.business_application_id
+          business_application_id == o.business_application_id &&
+          commerce_indicator == o.commerce_indicator &&
+          processing_instruction == o.processing_instruction
     end
 
     # @see the `==` method
@@ -105,7 +174,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [aft_indicator, initiator, business_application_id].hash
+      [aft_indicator, auth_indicator, ignore_cv_result, ignore_avs_result, initiator, business_application_id, commerce_indicator, processing_instruction].hash
     end
 
     # Builds the object from hash

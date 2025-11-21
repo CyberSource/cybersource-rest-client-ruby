@@ -13,32 +13,15 @@ require 'date'
 
 module CyberSource
   class InlineResponse2009
-    # Total number of results.
-    attr_accessor :total_count
+    # Possible values: - OK
+    attr_accessor :status
 
-    # Controls the starting point within the collection of results, which defaults to 0. The first item in the collection is retrieved by setting a zero offset.  For example, if you have a collection of 15 items to be retrieved from a resource and you specify limit=5, you can retrieve the entire set of results in 3 successive requests by varying the offset value like this:  `offset=0` `offset=5` `offset=10`  **Note:** If an offset larger than the number of results is provided, this will result in no embedded object being returned. 
-    attr_accessor :offset
-
-    # Controls the maximum number of items that may be returned for a single request. The default is 20, the maximum is 2500. 
-    attr_accessor :limit
-
-    # A comma separated list of the following form:  `terminalCreationDate:desc or serialNumber or terminalUpdationDate` 
-    attr_accessor :sort
-
-    # Results for this page, this could be below the limit.
-    attr_accessor :count
-
-    # A collection of devices
     attr_accessor :devices
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'total_count' => :'totalCount',
-        :'offset' => :'offset',
-        :'limit' => :'limit',
-        :'sort' => :'sort',
-        :'count' => :'count',
+        :'status' => :'status',
         :'devices' => :'devices'
       }
     end
@@ -46,11 +29,7 @@ module CyberSource
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'total_count' => :'total_count',
-        :'offset' => :'offset',
-        :'limit' => :'limit',
-        :'sort' => :'sort',
-        :'count' => :'count',
+        :'status' => :'status',
         :'devices' => :'devices'
       }
     end
@@ -58,12 +37,8 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'total_count' => :'Integer',
-        :'offset' => :'Integer',
-        :'limit' => :'Integer',
-        :'sort' => :'String',
-        :'count' => :'Integer',
-        :'devices' => :'Array<InlineResponse2009Devices>'
+        :'status' => :'String',
+        :'devices' => :'Array<Dmsv3devicesdeassociateDevices>'
       }
     end
 
@@ -75,24 +50,8 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'totalCount')
-        self.total_count = attributes[:'totalCount']
-      end
-
-      if attributes.has_key?(:'offset')
-        self.offset = attributes[:'offset']
-      end
-
-      if attributes.has_key?(:'limit')
-        self.limit = attributes[:'limit']
-      end
-
-      if attributes.has_key?(:'sort')
-        self.sort = attributes[:'sort']
-      end
-
-      if attributes.has_key?(:'count')
-        self.count = attributes[:'count']
+      if attributes.has_key?(:'status')
+        self.status = attributes[:'status']
       end
 
       if attributes.has_key?(:'devices')
@@ -120,11 +79,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          total_count == o.total_count &&
-          offset == o.offset &&
-          limit == o.limit &&
-          sort == o.sort &&
-          count == o.count &&
+          status == o.status &&
           devices == o.devices
     end
 
@@ -137,7 +92,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [total_count, offset, limit, sort, count, devices].hash
+      [status, devices].hash
     end
 
     # Builds the object from hash

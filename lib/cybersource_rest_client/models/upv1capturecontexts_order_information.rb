@@ -12,6 +12,7 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
+  # If you need to include any fields within the data object, you must use the orderInformation object that is nested inside the data object. This ensures proper structure and compliance with the Unified Checkout schema. This top-level orderInformation field is not intended for use when working with the data object.
   class Upv1capturecontextsOrderInformation
     attr_accessor :amount_details
 

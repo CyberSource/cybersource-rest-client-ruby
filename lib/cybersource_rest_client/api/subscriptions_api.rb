@@ -19,12 +19,12 @@ module CyberSource
       @api_client = api_client
       @api_client.set_configuration(config)
     end
-    # Activate a Subscription
-    # Activate a `SUSPENDED` Subscription 
+    # Reactivating a Suspended Subscription
+    # # Reactivating a Suspended Subscription  You can reactivate a suspended subscription for the next billing cycle. You cannot reactivate a canceled or completed subscription.  You can specify whether you want to process missed payments for the period during which the subscription was suspended using the `processMissedPayments` query parameter by setting it to true or false.  If no value is specified, the system will default to `true`.  **Important:** The \"processMissedPayments\" query parameter is only effective when the Ask each time before reactivating option is selected in the reactivation settings. If any other option is chosen, the value provided in the request will be ignored by the system. For more information, see the [Recurring Billing User Guide](https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/user/all/rest/recurring-billing-user/recurring-billing-user-about-guide.html).  You can check how many payments were missed and the total amount by retrieving the subscription details, where you will find the `reactivationInformation` object. See: [Retrieving a Subscription](https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing-dev/recur-bill-subscriptions/recur-bill-getting-a-subscription.html). 
     #
     # @param id Subscription Id
     # @param [Hash] opts the optional parameters
-    # @option opts [BOOLEAN] :process_skipped_payments Indicates if skipped payments should be processed from the period when the subscription was suspended. By default, this is set to true. (default to true)
+    # @option opts [BOOLEAN] :process_missed_payments Indicates if missed payments should be processed from the period when the subscription was suspended. By default, this is set to true. When any option other than \&quot;Ask each time before reactivating\&quot; is selected in the reactivation settings, the value that you enter will be ignored.  (default to true)
     # @return [ActivateSubscriptionResponse]
     #
     def activate_subscription(id, opts = {})
@@ -32,11 +32,11 @@ module CyberSource
       return data, status_code, headers
     end
 
-    # Activate a Subscription
-    # Activate a &#x60;SUSPENDED&#x60; Subscription 
+    # Reactivating a Suspended Subscription
+    # # Reactivating a Suspended Subscription  You can reactivate a suspended subscription for the next billing cycle. You cannot reactivate a canceled or completed subscription.  You can specify whether you want to process missed payments for the period during which the subscription was suspended using the &#x60;processMissedPayments&#x60; query parameter by setting it to true or false.  If no value is specified, the system will default to &#x60;true&#x60;.  **Important:** The \&quot;processMissedPayments\&quot; query parameter is only effective when the Ask each time before reactivating option is selected in the reactivation settings. If any other option is chosen, the value provided in the request will be ignored by the system. For more information, see the [Recurring Billing User Guide](https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/user/all/rest/recurring-billing-user/recurring-billing-user-about-guide.html).  You can check how many payments were missed and the total amount by retrieving the subscription details, where you will find the &#x60;reactivationInformation&#x60; object. See: [Retrieving a Subscription](https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing-dev/recur-bill-subscriptions/recur-bill-getting-a-subscription.html). 
     # @param id Subscription Id
     # @param [Hash] opts the optional parameters
-    # @option opts [BOOLEAN] :process_skipped_payments Indicates if skipped payments should be processed from the period when the subscription was suspended. By default, this is set to true.
+    # @option opts [BOOLEAN] :process_missed_payments Indicates if missed payments should be processed from the period when the subscription was suspended. By default, this is set to true. When any option other than \&quot;Ask each time before reactivating\&quot; is selected in the reactivation settings, the value that you enter will be ignored. 
     # @return [Array<(ActivateSubscriptionResponse, Fixnum, Hash)>] ActivateSubscriptionResponse data, response status code and response headers
     def activate_subscription_with_http_info(id, opts = {})
 
@@ -57,7 +57,7 @@ module CyberSource
 
       # query parameters
       query_params = {}
-      query_params[:'processSkippedPayments'] = opts[:'process_skipped_payments'] if !opts[:'process_skipped_payments'].nil?
+      query_params[:'processMissedPayments'] = opts[:'process_missed_payments'] if !opts[:'process_missed_payments'].nil?
 
       # header parameters
       header_params = {}
@@ -77,7 +77,11 @@ module CyberSource
       end
       inbound_mle_status = "false"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["activate_subscription","activate_subscription_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
@@ -152,7 +156,11 @@ module CyberSource
       end
       inbound_mle_status = "false"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["cancel_subscription","cancel_subscription_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
@@ -225,7 +233,11 @@ module CyberSource
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CreateSubscriptionRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "false"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["create_subscription","create_subscription_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
@@ -306,7 +318,11 @@ module CyberSource
       end
       inbound_mle_status = "false"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_all_subscriptions","get_all_subscriptions_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,
@@ -381,7 +397,11 @@ module CyberSource
       end
       inbound_mle_status = "false"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_subscription","get_subscription_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,
@@ -450,7 +470,11 @@ module CyberSource
       end
       inbound_mle_status = "false"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_subscription_code","get_subscription_code_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,
@@ -471,7 +495,7 @@ module CyberSource
       return data, status_code, headers
     end
     # Suspend a Subscription
-    # Suspend a Subscription
+    # Suspend a Subscription 
     #
     # @param id Subscription Id
     # @param [Hash] opts the optional parameters
@@ -483,7 +507,7 @@ module CyberSource
     end
 
     # Suspend a Subscription
-    # Suspend a Subscription
+    # Suspend a Subscription 
     # @param id Subscription Id
     # @param [Hash] opts the optional parameters
     # @return [Array<(SuspendSubscriptionResponse, Fixnum, Hash)>] SuspendSubscriptionResponse data, response status code and response headers
@@ -525,7 +549,11 @@ module CyberSource
       end
       inbound_mle_status = "false"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["suspend_subscription","suspend_subscription_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
@@ -604,7 +632,11 @@ module CyberSource
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'UpdateSubscription', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "false"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["update_subscription","update_subscription_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:PATCH, local_var_path,

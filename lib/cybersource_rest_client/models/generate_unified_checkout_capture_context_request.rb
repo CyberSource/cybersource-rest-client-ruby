@@ -22,7 +22,7 @@ module CyberSource
     # The list of card networks you want to use for this Unified Checkout transaction.  Unified Checkout currently supports the following card networks:     - VISA     - MASTERCARD     - AMEX     - CARNET     - CARTESBANCAIRES     - CUP     - DINERSCLUB     - DISCOVER     - EFTPOS     - ELO     - JAYWAN     - JCB     - JCREW     - KCP     - MADA     - MAESTRO     - MEEZA     - PAYPAK     - UATP 
     attr_accessor :allowed_card_networks
 
-    # The payment types that are allowed for the merchant.    Possible values when launching Unified Checkout:   - APPLEPAY   - CHECK   - CLICKTOPAY   - GOOGLEPAY   - PANENTRY                 - PAZE <br><br>  Unified Checkout supports the following Buy Now, Pay Later (BNPL) payment methods:   - AFTERPAY<br><br>  Unified Checkout supports the following Online Bank Transfer payment methods:   - Bancontact (BE)   - DragonPay (PH)   - iDEAL (NL)   - Multibanco (PT)   - MyBank (IT, BE, PT, ES)   - Przelewy24|P24 (PL)   - Tink Pay By Bank (GB)  Possible values when launching Click To Pay Drop-In UI: - CLICKTOPAY <br><br>  **Important:**    - CLICKTOPAY only available for Visa, Mastercard and AMEX for saved cards.   - Visa and Mastercard will look to tokenize using network tokenization for all Click to Pay requests.  Click to Pay uses Click to Pay token requester IDs and not the merchant's existing token requester.   - Apple Pay, Google Pay, Check, and Paze can be used independently without requiring PAN entry in the allowedPaymentTypes field.<br><br>  **Managing Google Pay Authentication Types** When you enable Google Pay on Unified Checkout you can specify optional parameters that define the types of card authentication you receive from Google Pay.<br><br>  **Managing Google Pay Authentication Types** Where Click to Pay is the payment type selected by the customer and the customer manually enters their card, the option to enroll their card in Click to Pay will be auto-checked if this field is set to \"true\".   This is only available where the merchant and cardholder are based in the following countries and the billing type is set to \"FULL\" or \"PARTIAL\".   - UAE   - Argentina   - Brazil   - Chile   - Colombia   - Kuwait   - Mexico   - Peru   - Qatar   - Saudi Arabia   - Ukraine   - South Africa<br><br>  If false, this is not present or not supported in the market.  Enrollment in Click to Pay is not checked for the customer when completing manual card entry. 
+    # The payment types that are allowed for the merchant.    Possible values when launching Unified Checkout:   - APPLEPAY   - CHECK   - CLICKTOPAY   - GOOGLEPAY   - PANENTRY                 - PAZE <br><br>  Unified Checkout supports the following Buy Now, Pay Later (BNPL) payment methods:   - AFTERPAY<br><br>  Unified Checkout supports the following Online Bank Transfer payment methods:   - Bancontact (BE)   - DragonPay (PH)   - iDEAL (NL)   - Multibanco (PT)   - MyBank (IT, BE, PT, ES)   - Przelewy24|P24 (PL)   - Tink Pay By Bank (GB)<br><br>    Unified Checkout supports the following Post-Pay Reference payment methods:   - Konbini (JP)<br><br>  Possible values when launching Click To Pay Drop-In UI: - CLICKTOPAY <br><br>  **Important:**    - CLICKTOPAY only available for Visa, Mastercard and AMEX for saved cards.   - Visa and Mastercard will look to tokenize using network tokenization for all Click to Pay requests.  Click to Pay uses Click to Pay token requester IDs and not the merchant's existing token requester.   - Apple Pay, Google Pay, Check, and Paze can be used independently without requiring PAN entry in the allowedPaymentTypes field.<br><br>  **Managing Google Pay Authentication Types** When you enable Google Pay on Unified Checkout you can specify optional parameters that define the types of card authentication you receive from Google Pay.<br><br>  **Managing Google Pay Authentication Types** Where Click to Pay is the payment type selected by the customer and the customer manually enters their card, the option to enroll their card in Click to Pay will be auto-checked if this field is set to \"true\".   This is only available where the merchant and cardholder are based in the following countries and the billing type is set to \"FULL\" or \"PARTIAL\".   - UAE   - Argentina   - Brazil   - Chile   - Colombia   - Kuwait   - Mexico   - Peru   - Qatar   - Saudi Arabia   - Ukraine   - South Africa<br><br>  If false, this is not present or not supported in the market.  Enrollment in Click to Pay is not checked for the customer when completing manual card entry. 
     attr_accessor :allowed_payment_types
 
     # Country the purchase is originating from (e.g. country of the merchant).  Use the two-character ISO Standard 
@@ -30,6 +30,9 @@ module CyberSource
 
     # Localization of the User experience conforming to the ISO 639-1 language standards and two-character ISO Standard Country Code.  Please refer to list of [supported locales through Unified Checkout](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-appendix-languages.html) 
     attr_accessor :locale
+
+    # Changes the label on the payment button within Unified Checkout .<br><br>  Possible values: - ADD_CARD - CARD_PAYMENT - CHECKOUT - CHECKOUT_AND_CONTINUE - DEBIT_CREDIT - DONATE - PAY - PAY_WITH_CARD - SAVE_CARD - SUBSCRIBE_WITH_CARD<br><br>  This is an optional field, 
+    attr_accessor :button_type
 
     attr_accessor :capture_mandate
 
@@ -50,6 +53,7 @@ module CyberSource
         :'allowed_payment_types' => :'allowedPaymentTypes',
         :'country' => :'country',
         :'locale' => :'locale',
+        :'button_type' => :'buttonType',
         :'capture_mandate' => :'captureMandate',
         :'complete_mandate' => :'completeMandate',
         :'transient_token_response_options' => :'transientTokenResponseOptions',
@@ -67,6 +71,7 @@ module CyberSource
         :'allowed_payment_types' => :'allowed_payment_types',
         :'country' => :'country',
         :'locale' => :'locale',
+        :'button_type' => :'button_type',
         :'capture_mandate' => :'capture_mandate',
         :'complete_mandate' => :'complete_mandate',
         :'transient_token_response_options' => :'transient_token_response_options',
@@ -84,6 +89,7 @@ module CyberSource
         :'allowed_payment_types' => :'Array<String>',
         :'country' => :'String',
         :'locale' => :'String',
+        :'button_type' => :'String',
         :'capture_mandate' => :'Upv1capturecontextsCaptureMandate',
         :'complete_mandate' => :'Upv1capturecontextsCompleteMandate',
         :'transient_token_response_options' => :'Microformv2sessionsTransientTokenResponseOptions',
@@ -128,6 +134,10 @@ module CyberSource
 
       if attributes.has_key?(:'locale')
         self.locale = attributes[:'locale']
+      end
+
+      if attributes.has_key?(:'buttonType')
+        self.button_type = attributes[:'buttonType']
       end
 
       if attributes.has_key?(:'captureMandate')
@@ -187,6 +197,7 @@ module CyberSource
           allowed_payment_types == o.allowed_payment_types &&
           country == o.country &&
           locale == o.locale &&
+          button_type == o.button_type &&
           capture_mandate == o.capture_mandate &&
           complete_mandate == o.complete_mandate &&
           transient_token_response_options == o.transient_token_response_options &&
@@ -203,7 +214,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_version, target_origins, allowed_card_networks, allowed_payment_types, country, locale, capture_mandate, complete_mandate, transient_token_response_options, data, order_information].hash
+      [client_version, target_origins, allowed_card_networks, allowed_payment_types, country, locale, button_type, capture_mandate, complete_mandate, transient_token_response_options, data, order_information].hash
     end
 
     # Builds the object from hash

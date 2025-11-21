@@ -36,7 +36,7 @@ describe 'BankAccountValidationApi' do
   # The Visa Bank Account Validation Service is a new standalone product designed to validate customer&#39;s routing and bank account number combination for ACH transactions. Merchant&#39;s can use this standalone product to validate their customer&#39;s account prior to processing an ACH transaction against the customer&#39;s account to comply with Nacha&#39;s account validation mandate for Web-debit transactions. 
   # @param account_validations_request 
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse20013]
+  # @return [InlineResponse20014]
   describe 'bank_account_validation_request test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

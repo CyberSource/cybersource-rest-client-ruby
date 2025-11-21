@@ -48,7 +48,7 @@ describe 'DeviceDeAssociationApi' do
   # A device will be de-associated from its current organization and moved up in the hierarchy. The device&#39;s new position will be determined by a specified destination, either an account or a portfolio. If no destination is provided, the device will default to the currently logged-in user. 
   # @param device_de_associate_v3_request deviceId that has to be de-associated to the destination organizationId.
   # @param [Hash] opts the optional parameters
-  # @return [Array<InlineResponse2008>]
+  # @return [Array<InlineResponse2009>]
   describe 'post_de_associate_v3_terminal test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

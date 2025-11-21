@@ -36,7 +36,7 @@ describe 'CreateNewWebhooksApi' do
   # Retrieve a list of products and event types that your account is eligible for. These products and events are the ones that you may subscribe to in the next step of creating webhooks.
   # @param organization_id The Organization Identifier.
   # @param [Hash] opts the optional parameters
-  # @return [Array<InlineResponse2004>]
+  # @return [Array<InlineResponse2005>]
   describe 'find_products_to_subscribe test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

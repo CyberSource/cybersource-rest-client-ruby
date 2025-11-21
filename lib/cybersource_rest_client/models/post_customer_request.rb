@@ -70,16 +70,16 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'_links' => :'Tmsv2customersLinks',
+        :'_links' => :'Tmsv2tokenizeTokenInformationCustomerLinks',
         :'id' => :'String',
-        :'object_information' => :'Tmsv2customersObjectInformation',
-        :'buyer_information' => :'Tmsv2customersBuyerInformation',
-        :'client_reference_information' => :'Tmsv2customersClientReferenceInformation',
-        :'merchant_defined_information' => :'Array<Tmsv2customersMerchantDefinedInformation>',
-        :'default_payment_instrument' => :'Tmsv2customersDefaultPaymentInstrument',
-        :'default_shipping_address' => :'Tmsv2customersDefaultShippingAddress',
-        :'metadata' => :'Tmsv2customersMetadata',
-        :'_embedded' => :'Tmsv2customersEmbedded'
+        :'object_information' => :'Tmsv2tokenizeTokenInformationCustomerObjectInformation',
+        :'buyer_information' => :'Tmsv2tokenizeTokenInformationCustomerBuyerInformation',
+        :'client_reference_information' => :'Tmsv2tokenizeTokenInformationCustomerClientReferenceInformation',
+        :'merchant_defined_information' => :'Array<Tmsv2tokenizeTokenInformationCustomerMerchantDefinedInformation>',
+        :'default_payment_instrument' => :'Tmsv2tokenizeTokenInformationCustomerDefaultPaymentInstrument',
+        :'default_shipping_address' => :'Tmsv2tokenizeTokenInformationCustomerDefaultShippingAddress',
+        :'metadata' => :'Tmsv2tokenizeTokenInformationCustomerMetadata',
+        :'_embedded' => :'Tmsv2tokenizeTokenInformationCustomerEmbedded'
       }
     end
 

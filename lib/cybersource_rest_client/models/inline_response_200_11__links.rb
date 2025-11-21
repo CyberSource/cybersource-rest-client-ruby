@@ -13,31 +13,32 @@ require 'date'
 
 module CyberSource
   class InlineResponse20011Links
-    attr_accessor :_self
+    # Valid Values:   * self   * first   * last   * prev   * next 
+    attr_accessor :rel
 
-    attr_accessor :report
+    attr_accessor :href
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'_self' => :'self',
-        :'report' => :'report'
+        :'rel' => :'rel',
+        :'href' => :'href'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'_self' => :'_self',
-        :'report' => :'report'
+        :'rel' => :'rel',
+        :'href' => :'href'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'_self' => :'InlineResponse202LinksStatus',
-        :'report' => :'Array<InlineResponse20011LinksReport>'
+        :'rel' => :'String',
+        :'href' => :'String'
       }
     end
 
@@ -49,14 +50,12 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'self')
-        self._self = attributes[:'self']
+      if attributes.has_key?(:'rel')
+        self.rel = attributes[:'rel']
       end
 
-      if attributes.has_key?(:'report')
-        if (value = attributes[:'report']).is_a?(Array)
-          self.report = value
-        end
+      if attributes.has_key?(:'href')
+        self.href = attributes[:'href']
       end
     end
 
@@ -78,8 +77,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          _self == o._self &&
-          report == o.report
+          rel == o.rel &&
+          href == o.href
     end
 
     # @see the `==` method
@@ -91,7 +90,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_self, report].hash
+      [rel, href].hash
     end
 
     # Builds the object from hash
