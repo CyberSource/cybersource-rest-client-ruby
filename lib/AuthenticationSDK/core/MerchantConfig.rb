@@ -428,10 +428,15 @@ public
             raise err
         end
 
+        isP12 = false
         # If private key file path is provided, validate the file exists
         if !@responseMlePrivateKeyFilePath.nil? && !@responseMlePrivateKeyFilePath.to_s.strip.empty?
           begin
             CertificateUtility.validatePathAndFile(@responseMlePrivateKeyFilePath, "responseMlePrivateKeyFilePath", @log_config)
+            ext = File.extname(@responseMlePrivateKeyFilePath).downcase
+            if ext == '.p12' || ext == '.pfx'
+              isP12 = true
+            end
           rescue => err
             error = StandardError.new(Constants::ERROR_PREFIX + "Invalid responseMlePrivateKeyFilePath : #{err.message}")
             @log_obj.logger.error(ExceptionHandler.new.new_api_exception error)
@@ -440,8 +445,8 @@ public
         end
 
         # Validate responseMleKID is provided when response MLE is enabled
-        if @responseMleKID.nil? || @responseMleKID.to_s.strip.empty?
-          err = StandardError.new(Constants::ERROR_PREFIX + "Response MLE is enabled but responseMleKID is not provided.")
+        if !isP12 && (@responseMleKID.nil? || @responseMleKID.to_s.strip.empty?)
+          err = StandardError.new(Constants::ERROR_PREFIX + "responseMleKID is required when response MLE is enabled for non-P12/PFX files.")
           @log_obj.logger.error(ExceptionHandler.new.new_api_exception err)
           raise err
         end

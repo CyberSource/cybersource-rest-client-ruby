@@ -50,10 +50,6 @@ public
 
       begin
         serial_number = self.extract_serial_number_from_certificate(mleCertificate)
-        if serial_number.nil?
-          @log_obj.logger.error('Serial number not found in certificate for MLE')
-          raise StandardError.new('Serial number not found in MLE certificate')
-        end
 
         jwk = JOSE::JWK.from_key(mleCertificate.public_key)
         if jwk.nil?
@@ -80,11 +76,12 @@ public
     end
 
     def self.extract_serial_number_from_certificate(certificate)
-      return nil if certificate.subject.to_s.empty? && certificate.issuer.to_s.empty?
+      raise StandardError.new('Certificate cannot be nil') if certificate.nil?
+      raise StandardError.new('Certificate subject and issuer cannot both be empty') if certificate.subject.to_s.empty? && certificate.issuer.to_s.empty?
       certificate.subject.to_a.each do |attribute|
         return attribute[1] if attribute[0].include?('serialNumber')
       end
-      certificate.serial.nil? ? nil : certificate.serial.to_s
+      raise StandardError.new('Serial number not found in certificate subject')
     end
 
     def self.create_request_payload(compact_jwe)
@@ -184,4 +181,65 @@ public
     end
 
     private_class_method :get_mle_response_private_key
+
+    def self.validate_and_auto_extract_response_mle_kid(merchant_config)
+      @log_obj ||= Log.new(merchant_config.log_config, 'MLEUtility')
+
+      if !merchant_config.responseMlePrivateKey.nil? && !merchant_config.responseMlePrivateKey.to_s.strip.empty?
+        @log_obj.logger.debug('responseMlePrivateKey is provided directly, using configured responseMleKID')
+        return merchant_config.responseMleKID
+      end
+
+      @log_obj.logger.debug('Validating responseMleKID for JWT token generation')
+      cybs_kid = nil
+      p12_file = false
+
+      # File path validity
+      begin
+        CertificateUtility.validatePathAndFile(merchant_config.responseMlePrivateKeyFilePath, 'responseMlePrivateKeyFilePath', merchant_config.log_config)
+        extension = File.extname(merchant_config.responseMlePrivateKeyFilePath).delete_prefix('.').downcase
+        if extension == 'p12' || extension == 'pfx'
+          p12_file = true
+        end
+      rescue IOError => e
+        @log_obj.logger.debug('No valid private key file path provided, skipping auto-extraction')
+      end
+
+      if p12_file
+        @log_obj.logger.debug('P12/PFX file detected, checking if it is a CyberSource certificate')
+        cached_data = Cache.new.get_mle_kid_data_from_cache(merchant_config)
+        if !cached_data.nil?
+          if !cached_data.kid.nil?
+            # KID present means it's a CyberSource P12, use it
+            cybs_kid = cached_data.kid
+          else
+            # KID is null means either non-CyberSource P12 or extraction failed
+            @log_obj.logger.debug('Private key file is not a CyberSource generated P12/PFX file, skipping auto-extraction')
+          end
+        end
+      else
+        @log_obj.logger.debug('Private key file is not a P12/PFX file, skipping auto-extraction')
+      end
+
+      if !cybs_kid.nil?
+        @log_obj.logger.debug('Successfully auto-extracted responseMleKID from CyberSource P12 certificate')
+      end
+
+      configured_kid = merchant_config.responseMleKID
+      if cybs_kid.nil? && configured_kid.nil?
+        raise StandardError.new('responseMleKID is required when response MLE is enabled. ' +
+                        'Could not auto-extract from certificate and no manual configuration provided. ' +
+                        'Please provide responseMleKID explicitly in your configuration.'
+        )
+      elsif cybs_kid.nil?
+        @log_obj.logger.debug('Using manually configured responseMleKID')
+        return configured_kid
+      elsif configured_kid.nil?
+        @log_obj.logger.debug('Using auto-extracted responseMleKID from CyberSource certificate')
+        return cybs_kid
+      elsif cybs_kid != configured_kid
+        @log_obj.logger.warn('Auto-extracted responseMleKID does not match manually configured responseMleKID. Using configured value as preference')
+      end
+      return configured_kid
+    end
   end

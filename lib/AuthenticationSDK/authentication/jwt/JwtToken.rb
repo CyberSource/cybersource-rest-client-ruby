@@ -8,6 +8,7 @@ require_relative '../../core/ITokenGeneration.rb'
 require_relative '../../util/Constants.rb'
 require_relative '../../util/ExceptionHandler.rb'
 require_relative '../../util/Cache.rb'
+require_relative '../../util/MLEUtility.rb'
 require_relative '../../authentication/payloadDigest/digest.rb'
 require_relative '../../logging/log_factory.rb'
 
@@ -67,7 +68,8 @@ public
       end
 
       if isResponseMLEForApi
-        jwtBody = jwtBody + ", \"v-c-response-mle-kid\":\"" + merchantconfig_obj.responseMleKID + "\""
+        mleKid = MLEUtility.validate_and_auto_extract_response_mle_kid(merchantconfig_obj)
+        jwtBody = jwtBody + ", \"v-c-response-mle-kid\":\"" + mleKid + "\""
       end
 
       jwtBody = jwtBody + "\n}"
