@@ -7,34 +7,6 @@ public
   class CertificateUtility
     @@logger
 
-    def self.getCertificateCollectionAndPrivateKeyFromP12(certificateFilePath, merchantConfig)
-      if !CertificateUtility.class_variable_defined?(:@@logger) || @@logger.nil?
-        @@logger = Log.new merchantConfig.log_config, "CertificateUtility"
-      end
-      logger = @@logger.logger
-
-      p12File = File.binread(certificateFilePath)
-      p12Object = OpenSSL::PKCS12.new(p12File, merchantConfig.keyPass)
-
-      privateKey = OpenSSL::PKey::RSA.new(p12Object.key)
-
-      primaryX5Certificate = p12Object.certificate
-      additionalX5Certificates = p12Object.ca_certs
-
-      certificateList = [primaryX5Certificate]
-      certificateList.concat(additionalX5Certificates) if additionalX5Certificates
-
-      return [privateKey, certificateList]
-    end
-
-    def self.getCertificateBasedOnKeyAlias(certificateList, keyAlias)
-      return nil if certificateList.nil?
-
-      certificateList.find do |cert|
-        cert.subject.to_a.any? { |_, value, _| value.include?(keyAlias) }
-      end
-    end
-
     def self.getCertificatesFromPemFile(certificateFilePath)
       pem_data = File.read(certificateFilePath)
       certificateList = []
