@@ -21,20 +21,16 @@ module CyberSource
           #
           # @param jwt_value [String] The JWT token to parse
           # @param merchant_config [Object] The merchant configuration object
-          # @param verify_jwt [Boolean] Whether to verify the JWT signature (default: true)
-          #
           # @return [Hash] The parsed JWT payload
           # @raise [CyberSource::Authentication::Util::JWT::InvalidJwtException] If JWT is invalid
           # @raise [CyberSource::Authentication::Util::JWT::JwtSignatureValidationException] If signature verification fails
           # @raise [ArgumentError] If required parameters are missing
           # @raise [StandardError] For other errors during processing
           #
-          # @example Parse without verification
-          #   payload = CaptureContextParser.parse_capture_context_response(jwt_token, config, false)
-          #
-          # @example Parse with verification (default)
+          # @example Parse with verification
           #   payload = CaptureContextParser.parse_capture_context_response(jwt_token, config)
-          def parse_capture_context_response(jwt_value, merchant_config, verify_jwt = true)
+          def parse_capture_context_response(jwt_value, merchant_config)
+            verify_jwt = true
             # Always validate JWT value first
             if jwt_value.nil? || jwt_value.strip.empty?
               raise CyberSource::Authentication::Util::JWT::InvalidJwtException.new('JWT value is null or undefined')
