@@ -21,13 +21,16 @@ module CyberSource
 
     attr_accessor :line_items
 
+    attr_accessor :invoice_details
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'amount_details' => :'amountDetails',
         :'bill_to' => :'billTo',
         :'ship_to' => :'shipTo',
-        :'line_items' => :'lineItems'
+        :'line_items' => :'lineItems',
+        :'invoice_details' => :'invoiceDetails'
       }
     end
 
@@ -37,7 +40,8 @@ module CyberSource
         :'amount_details' => :'amount_details',
         :'bill_to' => :'bill_to',
         :'ship_to' => :'ship_to',
-        :'line_items' => :'line_items'
+        :'line_items' => :'line_items',
+        :'invoice_details' => :'invoice_details'
       }
     end
 
@@ -47,7 +51,8 @@ module CyberSource
         :'amount_details' => :'Upv1capturecontextsDataOrderInformationAmountDetails',
         :'bill_to' => :'Upv1capturecontextsDataOrderInformationBillTo',
         :'ship_to' => :'Upv1capturecontextsDataOrderInformationShipTo',
-        :'line_items' => :'Upv1capturecontextsDataOrderInformationLineItems'
+        :'line_items' => :'Upv1capturecontextsDataOrderInformationLineItems',
+        :'invoice_details' => :'Upv1capturecontextsDataOrderInformationInvoiceDetails'
       }
     end
 
@@ -74,6 +79,10 @@ module CyberSource
       if attributes.has_key?(:'lineItems')
         self.line_items = attributes[:'lineItems']
       end
+
+      if attributes.has_key?(:'invoiceDetails')
+        self.invoice_details = attributes[:'invoiceDetails']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -97,7 +106,8 @@ module CyberSource
           amount_details == o.amount_details &&
           bill_to == o.bill_to &&
           ship_to == o.ship_to &&
-          line_items == o.line_items
+          line_items == o.line_items &&
+          invoice_details == o.invoice_details
     end
 
     # @see the `==` method
@@ -109,7 +119,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [amount_details, bill_to, ship_to, line_items].hash
+      [amount_details, bill_to, ship_to, line_items, invoice_details].hash
     end
 
     # Builds the object from hash

@@ -13,8 +13,6 @@ require 'date'
 
 module CyberSource
   class CreatePlanRequest
-    attr_accessor :client_reference_information
-
     attr_accessor :plan_information
 
     attr_accessor :order_information
@@ -22,7 +20,6 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'client_reference_information' => :'clientReferenceInformation',
         :'plan_information' => :'planInformation',
         :'order_information' => :'orderInformation'
       }
@@ -31,7 +28,6 @@ module CyberSource
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'client_reference_information' => :'client_reference_information',
         :'plan_information' => :'plan_information',
         :'order_information' => :'order_information'
       }
@@ -40,7 +36,6 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'client_reference_information' => :'Rbsv1plansClientReferenceInformation',
         :'plan_information' => :'Rbsv1plansPlanInformation',
         :'order_information' => :'Rbsv1plansOrderInformation'
       }
@@ -53,10 +48,6 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
-
-      if attributes.has_key?(:'clientReferenceInformation')
-        self.client_reference_information = attributes[:'clientReferenceInformation']
-      end
 
       if attributes.has_key?(:'planInformation')
         self.plan_information = attributes[:'planInformation']
@@ -85,7 +76,6 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          client_reference_information == o.client_reference_information &&
           plan_information == o.plan_information &&
           order_information == o.order_information
     end
@@ -99,7 +89,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_reference_information, plan_information, order_information].hash
+      [plan_information, order_information].hash
     end
 
     # Builds the object from hash

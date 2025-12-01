@@ -67,6 +67,12 @@ describe 'GenerateUnifiedCheckoutCaptureContextRequest' do
     end
   end
 
+  describe 'test attribute "button_type"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "capture_mandate"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

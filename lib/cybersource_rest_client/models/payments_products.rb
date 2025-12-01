@@ -53,6 +53,8 @@ module CyberSource
 
     attr_accessor :service_fee
 
+    attr_accessor :batch_upload
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -75,7 +77,8 @@ module CyberSource
         :'pay_by_link' => :'payByLink',
         :'unified_checkout' => :'unifiedCheckout',
         :'receivables_manager' => :'receivablesManager',
-        :'service_fee' => :'serviceFee'
+        :'service_fee' => :'serviceFee',
+        :'batch_upload' => :'batchUpload'
       }
     end
 
@@ -101,7 +104,8 @@ module CyberSource
         :'pay_by_link' => :'pay_by_link',
         :'unified_checkout' => :'unified_checkout',
         :'receivables_manager' => :'receivables_manager',
-        :'service_fee' => :'service_fee'
+        :'service_fee' => :'service_fee',
+        :'batch_upload' => :'batch_upload'
       }
     end
 
@@ -127,7 +131,8 @@ module CyberSource
         :'pay_by_link' => :'PaymentsProductsTax',
         :'unified_checkout' => :'PaymentsProductsUnifiedCheckout',
         :'receivables_manager' => :'PaymentsProductsTax',
-        :'service_fee' => :'PaymentsProductsServiceFee'
+        :'service_fee' => :'PaymentsProductsServiceFee',
+        :'batch_upload' => :'PaymentsProductsTax'
       }
     end
 
@@ -218,6 +223,10 @@ module CyberSource
       if attributes.has_key?(:'serviceFee')
         self.service_fee = attributes[:'serviceFee']
       end
+
+      if attributes.has_key?(:'batchUpload')
+        self.batch_upload = attributes[:'batchUpload']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -257,7 +266,8 @@ module CyberSource
           pay_by_link == o.pay_by_link &&
           unified_checkout == o.unified_checkout &&
           receivables_manager == o.receivables_manager &&
-          service_fee == o.service_fee
+          service_fee == o.service_fee &&
+          batch_upload == o.batch_upload
     end
 
     # @see the `==` method
@@ -269,7 +279,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card_processing, alternative_payment_methods, card_present_connect, cybs_ready_terminal, e_check, payer_authentication, digital_payments, secure_acceptance, virtual_terminal, currency_conversion, tax, customer_invoicing, recurring_billing, payment_orchestration, payouts, differential_fee, pay_by_link, unified_checkout, receivables_manager, service_fee].hash
+      [card_processing, alternative_payment_methods, card_present_connect, cybs_ready_terminal, e_check, payer_authentication, digital_payments, secure_acceptance, virtual_terminal, currency_conversion, tax, customer_invoicing, recurring_billing, payment_orchestration, payouts, differential_fee, pay_by_link, unified_checkout, receivables_manager, service_fee, batch_upload].hash
     end
 
     # Builds the object from hash

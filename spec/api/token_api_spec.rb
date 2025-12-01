@@ -38,7 +38,7 @@ describe 'TokenApi' do
   # @param token_provider The token provider.
   # @param asset_type The type of asset.
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse200]
+  # @return [InlineResponse2001]
   describe 'get_card_art_asset test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

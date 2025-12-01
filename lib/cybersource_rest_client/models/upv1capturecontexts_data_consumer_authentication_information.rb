@@ -13,15 +13,21 @@ require 'date'
 
 module CyberSource
   class Upv1capturecontextsDataConsumerAuthenticationInformation
+    # The challenge code 
     attr_accessor :challenge_code
 
+    # The message category 
     attr_accessor :message_category
+
+    # The acs window size 
+    attr_accessor :acs_window_size
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'challenge_code' => :'challengeCode',
-        :'message_category' => :'messageCategory'
+        :'message_category' => :'messageCategory',
+        :'acs_window_size' => :'acsWindowSize'
       }
     end
 
@@ -29,7 +35,8 @@ module CyberSource
     def self.json_map
       {
         :'challenge_code' => :'challenge_code',
-        :'message_category' => :'message_category'
+        :'message_category' => :'message_category',
+        :'acs_window_size' => :'acs_window_size'
       }
     end
 
@@ -37,7 +44,8 @@ module CyberSource
     def self.swagger_types
       {
         :'challenge_code' => :'String',
-        :'message_category' => :'String'
+        :'message_category' => :'String',
+        :'acs_window_size' => :'String'
       }
     end
 
@@ -55,6 +63,10 @@ module CyberSource
 
       if attributes.has_key?(:'messageCategory')
         self.message_category = attributes[:'messageCategory']
+      end
+
+      if attributes.has_key?(:'acsWindowSize')
+        self.acs_window_size = attributes[:'acsWindowSize']
       end
     end
 
@@ -83,13 +95,20 @@ module CyberSource
       @message_category = message_category
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] acs_window_size Value to be assigned
+    def acs_window_size=(acs_window_size)
+      @acs_window_size = acs_window_size
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           challenge_code == o.challenge_code &&
-          message_category == o.message_category
+          message_category == o.message_category &&
+          acs_window_size == o.acs_window_size
     end
 
     # @see the `==` method
@@ -101,7 +120,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [challenge_code, message_category].hash
+      [challenge_code, message_category, acs_window_size].hash
     end
 
     # Builds the object from hash

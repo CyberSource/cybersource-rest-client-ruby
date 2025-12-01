@@ -24,7 +24,7 @@ module CyberSource
     #
     # @param post_device_search_request 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2007]
+    # @return [InlineResponse2008]
     #
     def post_search_query(post_device_search_request, opts = {})
       data, status_code, headers = post_search_query_with_http_info(post_device_search_request, opts)
@@ -35,7 +35,7 @@ module CyberSource
     # Retrieves list of terminals in paginated format.
     # @param post_device_search_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2007, Fixnum, Hash)>] InlineResponse2007 data, response status code and response headers
+    # @return [Array<(InlineResponse2008, Fixnum, Hash)>] InlineResponse2008 data, response status code and response headers
     def post_search_query_with_http_info(post_device_search_request, opts = {})
 
       if @api_client.config.debugging
@@ -72,7 +72,11 @@ module CyberSource
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PostDeviceSearchRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "false"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["post_search_query","post_search_query_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
@@ -81,7 +85,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2007')
+        :return_type => 'InlineResponse2008')
       if @api_client.config.debugging
         begin
         raise
@@ -97,7 +101,7 @@ module CyberSource
     #
     # @param post_device_search_request_v3 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2009]
+    # @return [InlineResponse20010]
     #
     def post_search_query_v3(post_device_search_request_v3, opts = {})
       data, status_code, headers = post_search_query_v3_with_http_info(post_device_search_request_v3, opts)
@@ -108,7 +112,7 @@ module CyberSource
     # Search for devices matching a given search query.  The search query supports serialNumber, readerId, terminalId, status, statusChangeReason or organizationId  Matching results are paginated. 
     # @param post_device_search_request_v3 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2009, Fixnum, Hash)>] InlineResponse2009 data, response status code and response headers
+    # @return [Array<(InlineResponse20010, Fixnum, Hash)>] InlineResponse20010 data, response status code and response headers
     def post_search_query_v3_with_http_info(post_device_search_request_v3, opts = {})
 
       if @api_client.config.debugging
@@ -145,7 +149,11 @@ module CyberSource
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PostDeviceSearchRequestV3', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "false"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["post_search_query_v3","post_search_query_v3_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
@@ -154,7 +162,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2009')
+        :return_type => 'InlineResponse20010')
       if @api_client.config.debugging
         begin
         raise

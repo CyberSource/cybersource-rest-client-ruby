@@ -24,7 +24,7 @@ module CyberSource
     # @param reference_type The reference type for which merchant defined fields are to be fetched. Available values are Invoice, Purchase, Donation
     # @param merchant_defined_field_definition_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<InlineResponse2002>]
+    # @return [Array<InlineResponse2003>]
     #
     def create_merchant_defined_field_definition(reference_type, merchant_defined_field_definition_request, opts = {})
       data, status_code, headers = create_merchant_defined_field_definition_with_http_info(reference_type, merchant_defined_field_definition_request, opts)
@@ -35,7 +35,7 @@ module CyberSource
     # @param reference_type The reference type for which merchant defined fields are to be fetched. Available values are Invoice, Purchase, Donation
     # @param merchant_defined_field_definition_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Array<InlineResponse2002>, Fixnum, Hash)>] Array<InlineResponse2002> data, response status code and response headers
+    # @return [Array<(Array<InlineResponse2003>, Fixnum, Hash)>] Array<InlineResponse2003> data, response status code and response headers
     def create_merchant_defined_field_definition_with_http_info(reference_type, merchant_defined_field_definition_request, opts = {})
 
       if @api_client.config.debugging
@@ -80,7 +80,11 @@ module CyberSource
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'MerchantDefinedFieldDefinitionRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "false"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["create_merchant_defined_field_definition","create_merchant_defined_field_definition_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
@@ -89,7 +93,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Array<InlineResponse2002>')
+        :return_type => 'Array<InlineResponse2003>')
       if @api_client.config.debugging
         begin
         raise
@@ -163,7 +167,11 @@ module CyberSource
       end
       inbound_mle_status = "false"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["delete_merchant_defined_fields_definitions","delete_merchant_defined_fields_definitions_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:DELETE, local_var_path,
@@ -186,7 +194,7 @@ module CyberSource
     #
     # @param reference_type The reference type for which merchant defined fields are to be fetched. Available values are Invoice, Purchase, Donation
     # @param [Hash] opts the optional parameters
-    # @return [Array<InlineResponse2002>]
+    # @return [Array<InlineResponse2003>]
     #
     def get_merchant_defined_fields_definitions(reference_type, opts = {})
       data, status_code, headers = get_merchant_defined_fields_definitions_with_http_info(reference_type, opts)
@@ -196,7 +204,7 @@ module CyberSource
     # Get all merchant defined fields for a given reference type
     # @param reference_type The reference type for which merchant defined fields are to be fetched. Available values are Invoice, Purchase, Donation
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Array<InlineResponse2002>, Fixnum, Hash)>] Array<InlineResponse2002> data, response status code and response headers
+    # @return [Array<(Array<InlineResponse2003>, Fixnum, Hash)>] Array<InlineResponse2003> data, response status code and response headers
     def get_merchant_defined_fields_definitions_with_http_info(reference_type, opts = {})
 
       if @api_client.config.debugging
@@ -239,7 +247,11 @@ module CyberSource
       end
       inbound_mle_status = "false"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_merchant_defined_fields_definitions","get_merchant_defined_fields_definitions_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,
@@ -248,7 +260,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Array<InlineResponse2002>')
+        :return_type => 'Array<InlineResponse2003>')
       if @api_client.config.debugging
         begin
         raise
@@ -265,7 +277,7 @@ module CyberSource
     # @param id 
     # @param merchant_defined_field_core 
     # @param [Hash] opts the optional parameters
-    # @return [Array<InlineResponse2002>]
+    # @return [Array<InlineResponse2003>]
     #
     def put_merchant_defined_fields_definitions(reference_type, id, merchant_defined_field_core, opts = {})
       data, status_code, headers = put_merchant_defined_fields_definitions_with_http_info(reference_type, id, merchant_defined_field_core, opts)
@@ -277,7 +289,7 @@ module CyberSource
     # @param id 
     # @param merchant_defined_field_core 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Array<InlineResponse2002>, Fixnum, Hash)>] Array<InlineResponse2002> data, response status code and response headers
+    # @return [Array<(Array<InlineResponse2003>, Fixnum, Hash)>] Array<InlineResponse2003> data, response status code and response headers
     def put_merchant_defined_fields_definitions_with_http_info(reference_type, id, merchant_defined_field_core, opts = {})
 
       if @api_client.config.debugging
@@ -326,7 +338,11 @@ module CyberSource
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'MerchantDefinedFieldCore', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "false"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["put_merchant_defined_fields_definitions","put_merchant_defined_fields_definitions_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:PUT, local_var_path,
@@ -335,7 +351,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Array<InlineResponse2002>')
+        :return_type => 'Array<InlineResponse2003>')
       if @api_client.config.debugging
         begin
         raise

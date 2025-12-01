@@ -145,4 +145,10 @@ describe 'InlineResponse2013SetupsPayments' do
     end
   end
 
+  describe 'test attribute "batch_upload"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

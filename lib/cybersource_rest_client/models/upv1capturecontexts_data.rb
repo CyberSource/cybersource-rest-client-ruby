@@ -29,6 +29,10 @@ module CyberSource
 
     attr_accessor :merchant_defined_information
 
+    attr_accessor :device_information
+
+    attr_accessor :payment_information
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -39,7 +43,9 @@ module CyberSource
         :'merchant_information' => :'merchantInformation',
         :'processing_information' => :'processingInformation',
         :'recipient_information' => :'recipientInformation',
-        :'merchant_defined_information' => :'merchantDefinedInformation'
+        :'merchant_defined_information' => :'merchantDefinedInformation',
+        :'device_information' => :'deviceInformation',
+        :'payment_information' => :'paymentInformation'
       }
     end
 
@@ -53,7 +59,9 @@ module CyberSource
         :'merchant_information' => :'merchant_information',
         :'processing_information' => :'processing_information',
         :'recipient_information' => :'recipient_information',
-        :'merchant_defined_information' => :'merchant_defined_information'
+        :'merchant_defined_information' => :'merchant_defined_information',
+        :'device_information' => :'device_information',
+        :'payment_information' => :'payment_information'
       }
     end
 
@@ -67,7 +75,9 @@ module CyberSource
         :'merchant_information' => :'Upv1capturecontextsDataMerchantInformation',
         :'processing_information' => :'Upv1capturecontextsDataProcessingInformation',
         :'recipient_information' => :'Upv1capturecontextsDataRecipientInformation',
-        :'merchant_defined_information' => :'Upv1capturecontextsDataMerchantDefinedInformation'
+        :'merchant_defined_information' => :'Upv1capturecontextsDataMerchantDefinedInformation',
+        :'device_information' => :'Upv1capturecontextsDataDeviceInformation',
+        :'payment_information' => :'Upv1capturecontextsDataPaymentInformation'
       }
     end
 
@@ -110,6 +120,14 @@ module CyberSource
       if attributes.has_key?(:'merchantDefinedInformation')
         self.merchant_defined_information = attributes[:'merchantDefinedInformation']
       end
+
+      if attributes.has_key?(:'deviceInformation')
+        self.device_information = attributes[:'deviceInformation']
+      end
+
+      if attributes.has_key?(:'paymentInformation')
+        self.payment_information = attributes[:'paymentInformation']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -137,7 +155,9 @@ module CyberSource
           merchant_information == o.merchant_information &&
           processing_information == o.processing_information &&
           recipient_information == o.recipient_information &&
-          merchant_defined_information == o.merchant_defined_information
+          merchant_defined_information == o.merchant_defined_information &&
+          device_information == o.device_information &&
+          payment_information == o.payment_information
     end
 
     # @see the `==` method
@@ -149,7 +169,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [order_information, buyer_information, client_reference_information, consumer_authentication_information, merchant_information, processing_information, recipient_information, merchant_defined_information].hash
+      [order_information, buyer_information, client_reference_information, consumer_authentication_information, merchant_information, processing_information, recipient_information, merchant_defined_information, device_information, payment_information].hash
     end
 
     # Builds the object from hash

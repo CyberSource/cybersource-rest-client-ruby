@@ -93,20 +93,20 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'_links' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentLinks',
+        :'_links' => :'Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentLinks',
         :'id' => :'String',
         :'object' => :'String',
         :'default' => :'BOOLEAN',
         :'state' => :'String',
         :'type' => :'String',
-        :'bank_account' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentBankAccount',
-        :'card' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentCard',
-        :'buyer_information' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentBuyerInformation',
-        :'bill_to' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentBillTo',
+        :'bank_account' => :'Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentBankAccount',
+        :'card' => :'Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentCard',
+        :'buyer_information' => :'Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentBuyerInformation',
+        :'bill_to' => :'Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentBillTo',
         :'processing_information' => :'TmsPaymentInstrumentProcessingInfo',
-        :'merchant_information' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentMerchantInformation',
-        :'instrument_identifier' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentInstrumentIdentifier',
-        :'metadata' => :'Tmsv2customersEmbeddedDefaultPaymentInstrumentMetadata',
+        :'merchant_information' => :'TmsMerchantInformation',
+        :'instrument_identifier' => :'Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentInstrumentIdentifier',
+        :'metadata' => :'Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentMetadata',
         :'_embedded' => :'PaymentInstrumentList1EmbeddedEmbedded'
       }
     end

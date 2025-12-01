@@ -15,16 +15,26 @@ module CyberSource
   class Upv1capturecontextsDataBuyerInformation
     attr_accessor :personal_identification
 
+    # The Merchant Customer ID 
     attr_accessor :merchant_customer_id
 
+    # The Company Tax ID 
     attr_accessor :company_tax_id
+
+    # The date of birth 
+    attr_accessor :date_of_birth
+
+    # The preferred language 
+    attr_accessor :language
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'personal_identification' => :'personalIdentification',
         :'merchant_customer_id' => :'merchantCustomerId',
-        :'company_tax_id' => :'companyTaxId'
+        :'company_tax_id' => :'companyTaxId',
+        :'date_of_birth' => :'dateOfBirth',
+        :'language' => :'language'
       }
     end
 
@@ -33,7 +43,9 @@ module CyberSource
       {
         :'personal_identification' => :'personal_identification',
         :'merchant_customer_id' => :'merchant_customer_id',
-        :'company_tax_id' => :'company_tax_id'
+        :'company_tax_id' => :'company_tax_id',
+        :'date_of_birth' => :'date_of_birth',
+        :'language' => :'language'
       }
     end
 
@@ -42,7 +54,9 @@ module CyberSource
       {
         :'personal_identification' => :'Upv1capturecontextsDataBuyerInformationPersonalIdentification',
         :'merchant_customer_id' => :'String',
-        :'company_tax_id' => :'String'
+        :'company_tax_id' => :'String',
+        :'date_of_birth' => :'String',
+        :'language' => :'String'
       }
     end
 
@@ -64,6 +78,14 @@ module CyberSource
 
       if attributes.has_key?(:'companyTaxId')
         self.company_tax_id = attributes[:'companyTaxId']
+      end
+
+      if attributes.has_key?(:'dateOfBirth')
+        self.date_of_birth = attributes[:'dateOfBirth']
+      end
+
+      if attributes.has_key?(:'language')
+        self.language = attributes[:'language']
       end
     end
 
@@ -92,6 +114,18 @@ module CyberSource
       @company_tax_id = company_tax_id
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] date_of_birth Value to be assigned
+    def date_of_birth=(date_of_birth)
+      @date_of_birth = date_of_birth
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] language Value to be assigned
+    def language=(language)
+      @language = language
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -99,7 +133,9 @@ module CyberSource
       self.class == o.class &&
           personal_identification == o.personal_identification &&
           merchant_customer_id == o.merchant_customer_id &&
-          company_tax_id == o.company_tax_id
+          company_tax_id == o.company_tax_id &&
+          date_of_birth == o.date_of_birth &&
+          language == o.language
     end
 
     # @see the `==` method
@@ -111,7 +147,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [personal_identification, merchant_customer_id, company_tax_id].hash
+      [personal_identification, merchant_customer_id, company_tax_id, date_of_birth, language].hash
     end
 
     # Builds the object from hash

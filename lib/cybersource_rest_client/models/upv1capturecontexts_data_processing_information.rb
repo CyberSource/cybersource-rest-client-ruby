@@ -13,6 +13,7 @@ require 'date'
 
 module CyberSource
   class Upv1capturecontextsDataProcessingInformation
+    # The reconciliation ID
     attr_accessor :reconciliation_id
 
     attr_accessor :authorization_options

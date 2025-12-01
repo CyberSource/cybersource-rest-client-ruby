@@ -31,13 +31,13 @@ describe 'InlineResponse20011Links' do
       expect(@instance).to be_instance_of(CyberSource::InlineResponse20011Links)
     end
   end
-  describe 'test attribute "_self"' do
+  describe 'test attribute "rel"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "report"' do
+  describe 'test attribute "href"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

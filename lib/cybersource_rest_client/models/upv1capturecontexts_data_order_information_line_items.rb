@@ -13,66 +13,96 @@ require 'date'
 
 module CyberSource
   class Upv1capturecontextsDataOrderInformationLineItems
+    # Code identifying the product.
     attr_accessor :product_code
 
+    # Name of the product.
     attr_accessor :product_name
 
+    # Stock Keeping Unit identifier
     attr_accessor :product_sku
 
+    # Quantity of the product
     attr_accessor :quantity
 
+    # Price per unit
     attr_accessor :unit_price
 
+    # Unit of measure (e.g. EA, KG, LB)
     attr_accessor :unit_of_measure
 
+    # Total amount for the line item
     attr_accessor :total_amount
 
+    # Tax amount applied
     attr_accessor :tax_amount
 
+    # Tax rate applied
     attr_accessor :tax_rate
 
+    # Indicates if tax applied after discount
     attr_accessor :tax_applied_after_discount
 
+    # Tax status indicator
     attr_accessor :tax_status_indicator
 
+    # Tax type code
     attr_accessor :tax_type_code
 
+    # Indicates if amount includes tax
     attr_accessor :amount_includes_tax
 
+    # Type of supply
     attr_accessor :type_of_supply
 
+    # Commodity code
     attr_accessor :commodity_code
 
+    # Discount amount applied
     attr_accessor :discount_amount
 
+    # Indicates if discount applied
     attr_accessor :discount_applied
 
+    # Discount rate applied
     attr_accessor :discount_rate
 
+    # Invoice number for the line item
     attr_accessor :invoice_number
 
     attr_accessor :tax_details
 
+    # Fulfillment type
     attr_accessor :fulfillment_type
 
+    # Weight of the product
     attr_accessor :weight
 
+    # Weight identifier
     attr_accessor :weight_identifier
 
+    # Unit of weight of the product
     attr_accessor :weight_unit
 
+    # Reference data code
     attr_accessor :reference_data_code
 
+    # Reference data number
     attr_accessor :reference_data_number
 
+    # Unit tax amount
     attr_accessor :unit_tax_amount
 
+    # Description of the product
     attr_accessor :product_description
 
+    # Gift card currency
     attr_accessor :gift_card_currency
 
+    # Shipping destination types
     attr_accessor :shipping_destination_types
 
+    # Indicates if item is a gift
     attr_accessor :gift
 
     attr_accessor :passenger

@@ -150,4 +150,18 @@ public
         return @@cache_obj.read('privateKeyFromPEMFile')
       end
     end
+
+    def addPublicKeyToCache(runEnvironment, keyId, publicKey)
+      cacheKey = "#{Constants::PUBLIC_KEY_CACHE_IDENTIFIER}_#{runEnvironment}_#{keyId}"
+      @@mutex.synchronize do
+        @@cache_obj.write(cacheKey, publicKey)
+      end
+    end
+
+    def getPublicKeyFromCache(runEnvironment, keyId)
+      cacheKey = "#{Constants::PUBLIC_KEY_CACHE_IDENTIFIER}_#{runEnvironment}_#{keyId}"
+      @@mutex.synchronize do
+        return @@cache_obj.read(cacheKey)
+      end
+    end
   end

@@ -74,7 +74,11 @@ module CyberSource
       end
       inbound_mle_status = "false"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["delete_webhook_subscription","delete_webhook_subscription_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:DELETE, local_var_path,
@@ -148,7 +152,11 @@ module CyberSource
       end
       inbound_mle_status = "false"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_webhook_subscription_by_id","get_webhook_subscription_by_id_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,
@@ -175,7 +183,7 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @option opts [String] :product_id The Product Identifier.
     # @option opts [String] :event_type The Event Type.
-    # @return [Array<InlineResponse2005>]
+    # @return [Array<InlineResponse2006>]
     #
     def get_webhook_subscriptions_by_org(organization_id, opts = {})
       data, status_code, headers = get_webhook_subscriptions_by_org_with_http_info(organization_id, opts)
@@ -188,7 +196,7 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @option opts [String] :product_id The Product Identifier.
     # @option opts [String] :event_type The Event Type.
-    # @return [Array<(Array<InlineResponse2005>, Fixnum, Hash)>] Array<InlineResponse2005> data, response status code and response headers
+    # @return [Array<(Array<InlineResponse2006>, Fixnum, Hash)>] Array<InlineResponse2006> data, response status code and response headers
     def get_webhook_subscriptions_by_org_with_http_info(organization_id, opts = {})
 
       if @api_client.config.debugging
@@ -230,7 +238,11 @@ module CyberSource
       end
       inbound_mle_status = "false"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_webhook_subscriptions_by_org","get_webhook_subscriptions_by_org_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,
@@ -239,7 +251,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Array<InlineResponse2005>')
+        :return_type => 'Array<InlineResponse2006>')
       if @api_client.config.debugging
         begin
         raise
@@ -305,7 +317,11 @@ module CyberSource
       end
       inbound_mle_status = "false"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["notification_subscriptions_v1_webhooks_webhook_id_post","notification_subscriptions_v1_webhooks_webhook_id_post_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
@@ -331,7 +347,7 @@ module CyberSource
     # @param webhook_id The Webhook Identifier.
     # @param [Hash] opts the optional parameters
     # @option opts [UpdateWebhook] :update_webhook The webhook payload or changes to apply.
-    # @return [InlineResponse2006]
+    # @return [InlineResponse2007]
     #
     def notification_subscriptions_v2_webhooks_webhook_id_patch(webhook_id, opts = {})
       data, status_code, headers = notification_subscriptions_v2_webhooks_webhook_id_patch_with_http_info(webhook_id, opts)
@@ -343,7 +359,7 @@ module CyberSource
     # @param webhook_id The Webhook Identifier.
     # @param [Hash] opts the optional parameters
     # @option opts [UpdateWebhook] :update_webhook The webhook payload or changes to apply.
-    # @return [Array<(InlineResponse2006, Fixnum, Hash)>] InlineResponse2006 data, response status code and response headers
+    # @return [Array<(InlineResponse2007, Fixnum, Hash)>] InlineResponse2007 data, response status code and response headers
     def notification_subscriptions_v2_webhooks_webhook_id_patch_with_http_info(webhook_id, opts = {})
 
       if @api_client.config.debugging
@@ -380,7 +396,11 @@ module CyberSource
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'UpdateWebhook', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "false"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["notification_subscriptions_v2_webhooks_webhook_id_patch","notification_subscriptions_v2_webhooks_webhook_id_patch_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:PATCH, local_var_path,
@@ -389,7 +409,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2006')
+        :return_type => 'InlineResponse2007')
       if @api_client.config.debugging
         begin
         raise
@@ -455,7 +475,11 @@ module CyberSource
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'UpdateStatus', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "false"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["notification_subscriptions_v2_webhooks_webhook_id_status_put","notification_subscriptions_v2_webhooks_webhook_id_status_put_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:PUT, local_var_path,
@@ -552,7 +576,11 @@ module CyberSource
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'SaveAsymEgressKey', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "false"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["save_asym_egress_key","save_asym_egress_key_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,

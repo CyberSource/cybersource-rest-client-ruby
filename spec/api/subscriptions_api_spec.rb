@@ -32,11 +32,11 @@ describe 'SubscriptionsApi' do
   end
 
   # unit tests for activate_subscription
-  # Activate a Subscription
-  # Activate a &#x60;SUSPENDED&#x60; Subscription 
+  # Reactivating a Suspended Subscription
+  # # Reactivating a Suspended Subscription  You can reactivate a suspended subscription for the next billing cycle. You cannot reactivate a canceled or completed subscription.  You can specify whether you want to process missed payments for the period during which the subscription was suspended using the &#x60;processMissedPayments&#x60; query parameter by setting it to true or false.  If no value is specified, the system will default to &#x60;true&#x60;.  **Important:** The \&quot;processMissedPayments\&quot; query parameter is only effective when the Ask each time before reactivating option is selected in the reactivation settings. If any other option is chosen, the value provided in the request will be ignored by the system. For more information, see the [Recurring Billing User Guide](https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/user/all/rest/recurring-billing-user/recurring-billing-user-about-guide.html).  You can check how many payments were missed and the total amount by retrieving the subscription details, where you will find the &#x60;reactivationInformation&#x60; object. See: [Retrieving a Subscription](https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing-dev/recur-bill-subscriptions/recur-bill-getting-a-subscription.html). 
   # @param id Subscription Id
   # @param [Hash] opts the optional parameters
-  # @option opts [BOOLEAN] :process_skipped_payments Indicates if skipped payments should be processed from the period when the subscription was suspended. By default, this is set to true.
+  # @option opts [BOOLEAN] :process_missed_payments Indicates if missed payments should be processed from the period when the subscription was suspended. By default, this is set to true. When any option other than \&quot;Ask each time before reactivating\&quot; is selected in the reactivation settings, the value that you enter will be ignored. 
   # @return [ActivateSubscriptionResponse]
   describe 'activate_subscription test' do
     it 'should work' do
@@ -108,7 +108,7 @@ describe 'SubscriptionsApi' do
 
   # unit tests for suspend_subscription
   # Suspend a Subscription
-  # Suspend a Subscription
+  # Suspend a Subscription 
   # @param id Subscription Id
   # @param [Hash] opts the optional parameters
   # @return [SuspendSubscriptionResponse]

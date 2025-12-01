@@ -23,6 +23,8 @@ module CyberSource
 
     attr_accessor :subscription_information
 
+    attr_accessor :client_reference_information
+
     attr_accessor :payment_information
 
     attr_accessor :order_information
@@ -34,6 +36,7 @@ module CyberSource
         :'id' => :'id',
         :'plan_information' => :'planInformation',
         :'subscription_information' => :'subscriptionInformation',
+        :'client_reference_information' => :'clientReferenceInformation',
         :'payment_information' => :'paymentInformation',
         :'order_information' => :'orderInformation'
       }
@@ -46,6 +49,7 @@ module CyberSource
         :'id' => :'id',
         :'plan_information' => :'plan_information',
         :'subscription_information' => :'subscription_information',
+        :'client_reference_information' => :'client_reference_information',
         :'payment_information' => :'payment_information',
         :'order_information' => :'order_information'
       }
@@ -58,6 +62,7 @@ module CyberSource
         :'id' => :'String',
         :'plan_information' => :'GetAllSubscriptionsResponsePlanInformation',
         :'subscription_information' => :'GetAllSubscriptionsResponseSubscriptionInformation',
+        :'client_reference_information' => :'GetAllSubscriptionsResponseClientReferenceInformation',
         :'payment_information' => :'GetAllSubscriptionsResponsePaymentInformation',
         :'order_information' => :'GetAllSubscriptionsResponseOrderInformation'
       }
@@ -85,6 +90,10 @@ module CyberSource
 
       if attributes.has_key?(:'subscriptionInformation')
         self.subscription_information = attributes[:'subscriptionInformation']
+      end
+
+      if attributes.has_key?(:'clientReferenceInformation')
+        self.client_reference_information = attributes[:'clientReferenceInformation']
       end
 
       if attributes.has_key?(:'paymentInformation')
@@ -124,6 +133,7 @@ module CyberSource
           id == o.id &&
           plan_information == o.plan_information &&
           subscription_information == o.subscription_information &&
+          client_reference_information == o.client_reference_information &&
           payment_information == o.payment_information &&
           order_information == o.order_information
     end
@@ -137,7 +147,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, plan_information, subscription_information, payment_information, order_information].hash
+      [_links, id, plan_information, subscription_information, client_reference_information, payment_information, order_information].hash
     end
 
     # Builds the object from hash

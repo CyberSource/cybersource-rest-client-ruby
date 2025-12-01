@@ -13,6 +13,7 @@ require 'date'
 
 module CyberSource
   class Upv1capturecontextsDataBuyerInformationPersonalIdentification
+    # CPF Number (Brazil).  Must be 11 digits in length. 
     attr_accessor :cpf
 
     # Attribute mapping from ruby-style variable name to JSON key.

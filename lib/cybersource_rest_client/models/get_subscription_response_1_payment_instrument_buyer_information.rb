@@ -50,7 +50,7 @@ module CyberSource
         :'company_tax_id' => :'String',
         :'currency' => :'String',
         :'date_of_birth' => :'Date',
-        :'personal_identification' => :'Array<Tmsv2customersEmbeddedDefaultPaymentInstrumentBuyerInformationPersonalIdentification>'
+        :'personal_identification' => :'Array<Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentBuyerInformationPersonalIdentification>'
       }
     end
 

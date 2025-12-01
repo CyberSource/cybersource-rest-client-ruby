@@ -36,6 +36,9 @@ module CyberSource
     # Acquirer country.
     attr_accessor :country
 
+    # Contains transfer service provider name.
+    attr_accessor :service_providername
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -46,7 +49,8 @@ module CyberSource
         :'city' => :'city',
         :'state' => :'state',
         :'postal_code' => :'postalCode',
-        :'country' => :'country'
+        :'country' => :'country',
+        :'service_providername' => :'serviceProvidername'
       }
     end
 
@@ -60,7 +64,8 @@ module CyberSource
         :'city' => :'city',
         :'state' => :'state',
         :'postal_code' => :'postal_code',
-        :'country' => :'country'
+        :'country' => :'country',
+        :'service_providername' => :'service_providername'
       }
     end
 
@@ -74,7 +79,8 @@ module CyberSource
         :'city' => :'String',
         :'state' => :'String',
         :'postal_code' => :'String',
-        :'country' => :'String'
+        :'country' => :'String',
+        :'service_providername' => :'String'
       }
     end
 
@@ -116,6 +122,10 @@ module CyberSource
 
       if attributes.has_key?(:'country')
         self.country = attributes[:'country']
+      end
+
+      if attributes.has_key?(:'serviceProvidername')
+        self.service_providername = attributes[:'serviceProvidername']
       end
     end
 
@@ -174,6 +184,12 @@ module CyberSource
       @country = country
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] service_providername Value to be assigned
+    def service_providername=(service_providername)
+      @service_providername = service_providername
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -186,7 +202,8 @@ module CyberSource
           city == o.city &&
           state == o.state &&
           postal_code == o.postal_code &&
-          country == o.country
+          country == o.country &&
+          service_providername == o.service_providername
     end
 
     # @see the `==` method
@@ -198,7 +215,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [aggregator_id, name, sub_merchant, street_address, city, state, postal_code, country].hash
+      [aggregator_id, name, sub_merchant, street_address, city, state, postal_code, country, service_providername].hash
     end
 
     # Builds the object from hash

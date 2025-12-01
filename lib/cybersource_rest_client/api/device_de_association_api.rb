@@ -72,7 +72,11 @@ module CyberSource
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'DeAssociationRequestBody', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "false"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["delete_terminal_association","delete_terminal_association_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:PATCH, local_var_path,
@@ -96,7 +100,7 @@ module CyberSource
     #
     # @param device_de_associate_v3_request deviceId that has to be de-associated to the destination organizationId.
     # @param [Hash] opts the optional parameters
-    # @return [Array<InlineResponse2008>]
+    # @return [Array<InlineResponse2009>]
     #
     def post_de_associate_v3_terminal(device_de_associate_v3_request, opts = {})
       data, status_code, headers = post_de_associate_v3_terminal_with_http_info(device_de_associate_v3_request, opts)
@@ -107,7 +111,7 @@ module CyberSource
     # A device will be de-associated from its current organization and moved up in the hierarchy. The device&#39;s new position will be determined by a specified destination, either an account or a portfolio. If no destination is provided, the device will default to the currently logged-in user. 
     # @param device_de_associate_v3_request deviceId that has to be de-associated to the destination organizationId.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Array<InlineResponse2008>, Fixnum, Hash)>] Array<InlineResponse2008> data, response status code and response headers
+    # @return [Array<(Array<InlineResponse2009>, Fixnum, Hash)>] Array<InlineResponse2009> data, response status code and response headers
     def post_de_associate_v3_terminal_with_http_info(device_de_associate_v3_request, opts = {})
 
       if @api_client.config.debugging
@@ -144,7 +148,11 @@ module CyberSource
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'Array&lt;DeviceDeAssociateV3Request&gt;', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "false"      
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["post_de_associate_v3_terminal","post_de_associate_v3_terminal_with_http_info"])
-        post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
       end
       auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
@@ -153,7 +161,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Array<InlineResponse2008>')
+        :return_type => 'Array<InlineResponse2009>')
       if @api_client.config.debugging
         begin
         raise
