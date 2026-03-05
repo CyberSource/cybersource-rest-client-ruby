@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'typhoeus', '~> 1.4', '>= 1.4.0'
   s.add_runtime_dependency 'json', '~> 2.7', '>= 2.7.0'
-  s.add_runtime_dependency 'activesupport', '>= 6.0.3.2', '< 8.0'
+  s.add_runtime_dependency 'activesupport', '>= 6.0.3.2', '< 9.0'
   s.add_runtime_dependency 'interface','~> 1.0', '>= 1.0.5'
   s.add_runtime_dependency 'jwt', '2.7.0'
   s.add_runtime_dependency 'addressable', '~> 2.8', '>= 2.8.0'
