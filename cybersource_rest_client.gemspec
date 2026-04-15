@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'typhoeus', '~> 1.5','>=1.5.0'
   s.add_runtime_dependency 'json', '~>2.18', '>= 2.18.1'
-  s.add_runtime_dependency 'activesupport', '~> 7.1', '>= 7.1.6'
+  s.add_runtime_dependency 'activesupport', '>= 7.1.6'
   s.add_runtime_dependency 'interface','~> 1.0', '>= 1.0.5'
   s.add_runtime_dependency 'jwt', '~> 3.1', '>= 3.1.2'
   s.add_runtime_dependency 'addressable', '~> 2.8', '>= 2.8.8'
@@ -44,6 +44,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'autotest-rails-pure', '~> 4.1', '>= 4.1.2'
   s.add_development_dependency 'autotest-growl', '~> 0.2', '>= 0.2.16'
   s.add_development_dependency 'autotest-fsevent', '~> 0.3.1', '>= 0.3.1'
-  
   s.require_paths = ["lib"]
 end
