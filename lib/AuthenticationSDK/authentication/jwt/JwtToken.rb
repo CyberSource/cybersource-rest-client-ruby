@@ -105,10 +105,10 @@ public
 
     def extractResourcePath(request_target)
       return '' if request_target.nil? || request_target.empty?
-      
-      # Split the string to remove the query params
-      parts = request_target.split('?', 2)
-      return parts[0]
+
+      # Visa UAPI requires the full path including query string in request-resource-path.
+      # The signed path must exactly match the actual request URL or the server rejects with UNAUTHORIZED_USER.
+      request_target
     end
 
     implements TokenInterface
