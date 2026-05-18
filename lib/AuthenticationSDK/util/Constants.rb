@@ -66,6 +66,12 @@
 
       AUTH_TYPE_JWT = 'JWT' unless const_defined?(:AUTH_TYPE_JWT)
 
+      JWT_KEY_TYPE_P12 = 'P12' unless const_defined?(:JWT_KEY_TYPE_P12)
+
+      JWT_KEY_TYPE_SHARED_SECRET = 'SHARED_SECRET' unless const_defined?(:JWT_KEY_TYPE_SHARED_SECRET)
+
+      INVALID_JWT_KEY_TYPE = "Invalid jwtKeyType. Must be 'P12' or 'SHARED_SECRET'." unless const_defined?(:INVALID_JWT_KEY_TYPE)
+
       OLD_RUN_ENVIRONMENT_CONSTANTS = ['CYBERSOURCE.ENVIRONMENT.SANDBOX', 'CYBERSOURCE.ENVIRONMENT.PRODUCTION', 'CYBERSOURCE.IN.ENVIRONMENT.SANDBOX', 'CYBERSOURCE.IN.ENVIRONMENT.PRODUCTION', 'BANKOFAMERICA.ENVIRONMENT.SANDBOX', 'BANKOFAMERICA.ENVIRONMENT.PRODUCTION']
 
       # constants for fall back logic
@@ -146,6 +152,8 @@
 
       INCORRECT_KEY_ALIAS = 'The Entered KeyAlias is Incorrect. Assigining merchantID value' unless const_defined?(:INCORRECT_KEY_ALIAS)
 
+      INCORRECT_KEY_ALIAS_USE_METAKEY = 'The Entered KeyAlias is Incorrect with useMetaKey set to true. Assigining portfolioID value' unless const_defined?(:INCORRECT_KEY_ALIAS_USE_METAKEY)
+
       ENABLE_CLIENT_CERT_EMPTY = 'Enable Clientcert is Empty/Null.' unless const_defined?(:ENABLE_CLIENT_CERT_EMPTY)
 
       CLIENT_CERT_DIR_EMPTY = 'Client Cert Directory is Empty/Null' unless const_defined?(:CLIENT_CERT_DIR_EMPTY)
@@ -165,4 +173,20 @@
       REFRESH_TOKEN_EMPTY = 'RefreshToken is Empty/Null' unless const_defined?(:REFRESH_TOKEN_REQ)
 
       DEPRECATED_ENVIRONMENT = 'The value provided for this field `RunEnvironment` has been deprecated and will not be used anymore.\n\nPlease refer to the README file [ https://github.com/CyberSource/cybersource-rest-samples-node/blob/master/README.md ] for information about the new values that are accepted.'
+
+      DEFAULT_ALIAS_FOR_MLE_CERT = 'CyberSource_SJC_US' unless const_defined?(:DEFAULT_ALIAS_FOR_MLE_CERT)
+
+      CERTIFICATE_EXPIRY_DATE_WARNING_DAYS = 90 unless const_defined?(:CERTIFICATE_EXPIRY_DATE_WARNING_DAYS)
+
+      MLE_CACHE_IDENTIFIER_FOR_CONFIG_CERT = "mleCertFromMerchantConfig"
+
+      MLE_CACHE_IDENTIFIER_FOR_P12_CERT = "mleCertFromP12"
+
+      DEFAULT_KEY_FILE_PATH = File.join(Dir.pwd, "resources")
+
+      MLE_CACHE_KEY_IDENTIFIER_FOR_RESPONSE_PRIVATE_KEY = "mleResponsePrivateKeyFromFile"
+
+      PUBLIC_KEY_CACHE_IDENTIFIER = "FlexV2PublicKeys"
+      
+      RESPONSE_MLE_P12_PFX_CACHE_IDENTIFIER = "_responseMleP12Pfx"
   end

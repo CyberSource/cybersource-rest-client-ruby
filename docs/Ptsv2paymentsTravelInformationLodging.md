@@ -45,5 +45,9 @@ Name | Type | Description | Notes
 **non_room_tax_amount** | **String** | Tax on non-room purchases.  | [optional] 
 **early_check_out_cost** | **String** | Service fee for early departure.  | [optional] 
 **internet_access_cost** | **String** | Cost of Internet access.  | [optional] 
+**name** | **String** | Name of the hotel for which the reservation is for. Mandatory in case the merchant&#39;s business type is Hotel.  | [optional] 
+**hotel_name** | **String** | The name of the hotel for which the reservation was made.  | [optional] 
+**check_in_date_time** | **String** | The date of the check-in in GMT+8 offset.  | [optional] 
+**check_out_date_time** | **String** | The date of the check-out in GMT+8 offset.  | [optional] 
 
 

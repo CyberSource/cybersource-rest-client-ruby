@@ -22,7 +22,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::ReversalApi.new
 
-id = "id_example" # String | The payment ID returned from a previous payment request.
+id = 'id_example' # String | The payment ID returned from a previous payment request.
 
 auth_reversal_request = CyberSource::AuthReversalRequest.new # AuthReversalRequest | 
 

@@ -22,10 +22,10 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::SecureFileShareApi.new
 
-file_id = "file_id_example" # String | Unique identifier for each file
+file_id = 'file_id_example' # String | Unique identifier for each file
 
 opts = { 
-  organization_id: "organization_id_example" # String | Valid Cybersource Organization Id
+  organization_id: 'organization_id_example' # String | Valid Cybersource Organization Id
 }
 
 begin
@@ -72,13 +72,13 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::SecureFileShareApi.new
 
-start_date = Date.parse("2013-10-20") # Date | Valid start date in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)   **Example date format:**   - yyyy-MM-dd 
+start_date = Date.parse('2013-10-20') # Date | Valid start date in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)   **Example date format:**   - yyyy-MM-dd 
 
-end_date = Date.parse("2013-10-20") # Date | Valid end date in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)   **Example date format:**   - yyyy-MM-dd 
+end_date = Date.parse('2013-10-20') # Date | Valid end date in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)   **Example date format:**   - yyyy-MM-dd 
 
 opts = { 
-  organization_id: "organization_id_example", # String | Valid Cybersource Organization Id
-  name: "name_example" # String | **Tailored to searches for specific files with in given Date range** example : MyTransactionDetailreport.xml 
+  organization_id: 'organization_id_example', # String | Valid Cybersource Organization Id
+  name: 'name_example' # String | **Tailored to searches for specific files with in given Date range** example : MyTransactionDetailreport.xml 
 }
 
 begin

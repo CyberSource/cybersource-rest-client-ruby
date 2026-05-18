@@ -3,6 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**issuer_information** | [**PtsV2PaymentsPost201ResponseConsumerAuthenticationInformationStrongAuthenticationIssuerInformation**](PtsV2PaymentsPost201ResponseConsumerAuthenticationInformationStrongAuthenticationIssuerInformation.md) |  | [optional] 
+**issuer_information** | [**PaymentsStrongAuthIssuerInformation**](PaymentsStrongAuthIssuerInformation.md) |  | [optional] 
+**outage_exemption_indicator** | **String** | This field will contain the outage exemption indicator with one of the following values: Possible values: - &#x60;0&#x60;  (Outage Authentication exemption does not apply to the transaction) - &#x60;1&#x60; (Outage exempt from SCA as authentication could not be done due to outage)  | [optional] 
 
 

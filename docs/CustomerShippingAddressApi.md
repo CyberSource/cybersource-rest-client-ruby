@@ -25,12 +25,12 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::CustomerShippingAddressApi.new
 
-customer_id = "customer_id_example" # String | The Id of a Customer.
+customer_id = 'customer_id_example' # String | The Id of a Customer.
 
-shipping_address_id = "shipping_address_id_example" # String | The Id of a shipping address.
+shipping_address_id = 'shipping_address_id_example' # String | The Id of a shipping address.
 
 opts = { 
-  profile_id: "profile_id_example" # String | The Id of a profile containing user specific TMS configuration.
+  profile_id: 'profile_id_example' # String | The Id of a profile containing user specific TMS configuration.
 }
 
 begin
@@ -65,7 +65,7 @@ No authorization required
 
 
 # **get_customer_shipping_address**
-> Tmsv2customersEmbeddedDefaultShippingAddress get_customer_shipping_address(customer_id, shipping_address_id, opts)
+> PostCustomerShippingAddressRequest get_customer_shipping_address(customer_id, shipping_address_id, opts)
 
 Retrieve a Customer Shipping Address
 
@@ -78,12 +78,12 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::CustomerShippingAddressApi.new
 
-customer_id = "customer_id_example" # String | The Id of a Customer.
+customer_id = 'customer_id_example' # String | The Id of a Customer.
 
-shipping_address_id = "shipping_address_id_example" # String | The Id of a shipping address.
+shipping_address_id = 'shipping_address_id_example' # String | The Id of a shipping address.
 
 opts = { 
-  profile_id: "profile_id_example" # String | The Id of a profile containing user specific TMS configuration.
+  profile_id: 'profile_id_example' # String | The Id of a profile containing user specific TMS configuration.
 }
 
 begin
@@ -105,7 +105,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Tmsv2customersEmbeddedDefaultShippingAddress**](Tmsv2customersEmbeddedDefaultShippingAddress.md)
+[**PostCustomerShippingAddressRequest**](PostCustomerShippingAddressRequest.md)
 
 ### Authorization
 
@@ -132,10 +132,10 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::CustomerShippingAddressApi.new
 
-customer_id = "customer_id_example" # String | The Id of a Customer.
+customer_id = 'customer_id_example' # String | The Id of a Customer.
 
 opts = { 
-  profile_id: "profile_id_example", # String | The Id of a profile containing user specific TMS configuration.
+  profile_id: 'profile_id_example', # String | The Id of a profile containing user specific TMS configuration.
   offset: 0, # Integer | Starting record in zero-based dataset that should be returned as the first object in the array. Default is 0.
   limit: 20 # Integer | The maximum number that can be returned in the array starting from the offset record in zero-based dataset. Default is 20, maximum is 100.
 }
@@ -174,7 +174,7 @@ No authorization required
 
 
 # **patch_customers_shipping_address**
-> Tmsv2customersEmbeddedDefaultShippingAddress patch_customers_shipping_address(customer_id, shipping_address_id, patch_customer_shipping_address_request, opts)
+> PatchCustomerShippingAddressRequest patch_customers_shipping_address(customer_id, shipping_address_id, patch_customer_shipping_address_request, opts)
 
 Update a Customer Shipping Address
 
@@ -187,15 +187,15 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::CustomerShippingAddressApi.new
 
-customer_id = "customer_id_example" # String | The Id of a Customer.
+customer_id = 'customer_id_example' # String | The Id of a Customer.
 
-shipping_address_id = "shipping_address_id_example" # String | The Id of a shipping address.
+shipping_address_id = 'shipping_address_id_example' # String | The Id of a shipping address.
 
 patch_customer_shipping_address_request = CyberSource::PatchCustomerShippingAddressRequest.new # PatchCustomerShippingAddressRequest | 
 
 opts = { 
-  profile_id: "profile_id_example", # String | The Id of a profile containing user specific TMS configuration.
-  if_match: "if_match_example" # String | Contains an ETag value from a GET request to make the request conditional.
+  profile_id: 'profile_id_example', # String | The Id of a profile containing user specific TMS configuration.
+  if_match: 'if_match_example' # String | Contains an ETag value from a GET request to make the request conditional.
 }
 
 begin
@@ -219,7 +219,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Tmsv2customersEmbeddedDefaultShippingAddress**](Tmsv2customersEmbeddedDefaultShippingAddress.md)
+[**PatchCustomerShippingAddressRequest**](PatchCustomerShippingAddressRequest.md)
 
 ### Authorization
 
@@ -233,7 +233,7 @@ No authorization required
 
 
 # **post_customer_shipping_address**
-> Tmsv2customersEmbeddedDefaultShippingAddress post_customer_shipping_address(customer_id, post_customer_shipping_address_request, opts)
+> PostCustomerShippingAddressRequest post_customer_shipping_address(customer_id, post_customer_shipping_address_request, opts)
 
 Create a Customer Shipping Address
 
@@ -246,12 +246,12 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::CustomerShippingAddressApi.new
 
-customer_id = "customer_id_example" # String | The Id of a Customer.
+customer_id = 'customer_id_example' # String | The Id of a Customer.
 
 post_customer_shipping_address_request = CyberSource::PostCustomerShippingAddressRequest.new # PostCustomerShippingAddressRequest | 
 
 opts = { 
-  profile_id: "profile_id_example" # String | The Id of a profile containing user specific TMS configuration.
+  profile_id: 'profile_id_example' # String | The Id of a profile containing user specific TMS configuration.
 }
 
 begin
@@ -273,7 +273,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Tmsv2customersEmbeddedDefaultShippingAddress**](Tmsv2customersEmbeddedDefaultShippingAddress.md)
+[**PostCustomerShippingAddressRequest**](PostCustomerShippingAddressRequest.md)
 
 ### Authorization
 

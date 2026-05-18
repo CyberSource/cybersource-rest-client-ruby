@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**amount_details** | [**GetAllPlansResponseOrderInformationAmountDetails**](GetAllPlansResponseOrderInformationAmountDetails.md) |  | [optional] 
+**amount_details** | [**GetAllSubscriptionsResponseOrderInformationAmountDetails**](GetAllSubscriptionsResponseOrderInformationAmountDetails.md) |  | [optional] 
 **bill_to** | [**GetAllSubscriptionsResponseOrderInformationBillTo**](GetAllSubscriptionsResponseOrderInformationBillTo.md) |  | [optional] 
 
 

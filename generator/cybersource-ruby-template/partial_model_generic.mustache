@@ -157,9 +157,9 @@
     # @param [Object] {{{name}}} Value to be assigned
     def {{{name}}}=({{{name}}})
       {{#required}}
-      if {{{name}}}.nil?
-        fail ArgumentError, '{{{name}}} cannot be nil'
-      end
+      #if {{{name}}}.nil?
+        #fail ArgumentError, '{{{name}}} cannot be nil'
+      #end
 
       {{/required}}
       {{#pattern}}

@@ -21,7 +21,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::DownloadDTDApi.new
 
-report_definition_name_version = "report_definition_name_version_example" # String | Name and version of DTD file to download. Some DTDs only have one version. In that case version name is not needed. Some example values are ctdr-1.0, tdr, pbdr-1.1
+report_definition_name_version = 'report_definition_name_version_example' # String | Name and version of DTD file to download. Some DTDs only have one version. In that case version name is not needed. Some example values are ctdr-1.0, tdr, pbdr-1.1
 
 
 begin

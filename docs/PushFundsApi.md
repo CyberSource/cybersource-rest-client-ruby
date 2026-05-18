@@ -23,17 +23,17 @@ api_instance = CyberSource::PushFundsApi.new
 
 push_funds_request = CyberSource::PushFundsRequest.new # PushFundsRequest | 
 
-content_type = "content_type_example" # String | 
+content_type = 'content_type_example' # String | 
 
-x_requestid = "x_requestid_example" # String | 
+x_requestid = 'x_requestid_example' # String | 
 
-v_c_merchant_id = "v_c_merchant_id_example" # String | 
+v_c_merchant_id = 'v_c_merchant_id_example' # String | 
 
-v_c_permissions = "v_c_permissions_example" # String | 
+v_c_permissions = 'v_c_permissions_example' # String | 
 
-v_c_correlation_id = "v_c_correlation_id_example" # String | 
+v_c_correlation_id = 'v_c_correlation_id_example' # String | 
 
-v_c_organization_id = "v_c_organization_id_example" # String | 
+v_c_organization_id = 'v_c_organization_id_example' # String | 
 
 
 begin

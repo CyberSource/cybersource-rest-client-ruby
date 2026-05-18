@@ -24,10 +24,10 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::PaymentInstrumentApi.new
 
-payment_instrument_id = "payment_instrument_id_example" # String | The Id of a payment instrument.
+payment_instrument_id = 'payment_instrument_id_example' # String | The Id of a payment instrument.
 
 opts = { 
-  profile_id: "profile_id_example" # String | The Id of a profile containing user specific TMS configuration.
+  profile_id: 'profile_id_example' # String | The Id of a profile containing user specific TMS configuration.
 }
 
 begin
@@ -61,7 +61,7 @@ No authorization required
 
 
 # **get_payment_instrument**
-> Tmsv2customersEmbeddedDefaultPaymentInstrument get_payment_instrument(payment_instrument_id, opts)
+> PostPaymentInstrumentRequest get_payment_instrument(payment_instrument_id, opts)
 
 Retrieve a Payment Instrument
 
@@ -74,10 +74,11 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::PaymentInstrumentApi.new
 
-payment_instrument_id = "payment_instrument_id_example" # String | The Id of a payment instrument.
+payment_instrument_id = 'payment_instrument_id_example' # String | The Id of a payment instrument.
 
 opts = { 
-  profile_id: "profile_id_example" # String | The Id of a profile containing user specific TMS configuration.
+  profile_id: 'profile_id_example', # String | The Id of a profile containing user specific TMS configuration.
+  retrieve_bin_details: true # BOOLEAN | Retrieve the Bin Details of PAN or network token
 }
 
 begin
@@ -95,10 +96,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **payment_instrument_id** | **String**| The Id of a payment instrument. | 
  **profile_id** | **String**| The Id of a profile containing user specific TMS configuration. | [optional] 
+ **retrieve_bin_details** | **BOOLEAN**| Retrieve the Bin Details of PAN or network token | [optional] 
 
 ### Return type
 
-[**Tmsv2customersEmbeddedDefaultPaymentInstrument**](Tmsv2customersEmbeddedDefaultPaymentInstrument.md)
+[**PostPaymentInstrumentRequest**](PostPaymentInstrumentRequest.md)
 
 ### Authorization
 
@@ -112,7 +114,7 @@ No authorization required
 
 
 # **patch_payment_instrument**
-> Tmsv2customersEmbeddedDefaultPaymentInstrument patch_payment_instrument(payment_instrument_id, patch_payment_instrument_request, opts)
+> PatchPaymentInstrumentRequest patch_payment_instrument(payment_instrument_id, patch_payment_instrument_request, opts)
 
 Update a Payment Instrument
 
@@ -125,13 +127,14 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::PaymentInstrumentApi.new
 
-payment_instrument_id = "payment_instrument_id_example" # String | The Id of a payment instrument.
+payment_instrument_id = 'payment_instrument_id_example' # String | The Id of a payment instrument.
 
 patch_payment_instrument_request = CyberSource::PatchPaymentInstrumentRequest.new # PatchPaymentInstrumentRequest | 
 
 opts = { 
-  profile_id: "profile_id_example", # String | The Id of a profile containing user specific TMS configuration.
-  if_match: "if_match_example" # String | Contains an ETag value from a GET request to make the request conditional.
+  profile_id: 'profile_id_example', # String | The Id of a profile containing user specific TMS configuration.
+  retrieve_bin_details: true, # BOOLEAN | Retrieve the Bin Details of PAN or network token
+  if_match: 'if_match_example' # String | Contains an ETag value from a GET request to make the request conditional.
 }
 
 begin
@@ -150,11 +153,12 @@ Name | Type | Description  | Notes
  **payment_instrument_id** | **String**| The Id of a payment instrument. | 
  **patch_payment_instrument_request** | [**PatchPaymentInstrumentRequest**](PatchPaymentInstrumentRequest.md)|  | 
  **profile_id** | **String**| The Id of a profile containing user specific TMS configuration. | [optional] 
+ **retrieve_bin_details** | **BOOLEAN**| Retrieve the Bin Details of PAN or network token | [optional] 
  **if_match** | **String**| Contains an ETag value from a GET request to make the request conditional. | [optional] 
 
 ### Return type
 
-[**Tmsv2customersEmbeddedDefaultPaymentInstrument**](Tmsv2customersEmbeddedDefaultPaymentInstrument.md)
+[**PatchPaymentInstrumentRequest**](PatchPaymentInstrumentRequest.md)
 
 ### Authorization
 
@@ -168,7 +172,7 @@ No authorization required
 
 
 # **post_payment_instrument**
-> Tmsv2customersEmbeddedDefaultPaymentInstrument post_payment_instrument(post_payment_instrument_request, opts)
+> PostPaymentInstrumentRequest post_payment_instrument(post_payment_instrument_request, opts)
 
 Create a Payment Instrument
 
@@ -184,7 +188,8 @@ api_instance = CyberSource::PaymentInstrumentApi.new
 post_payment_instrument_request = CyberSource::PostPaymentInstrumentRequest.new # PostPaymentInstrumentRequest | 
 
 opts = { 
-  profile_id: "profile_id_example" # String | The Id of a profile containing user specific TMS configuration.
+  profile_id: 'profile_id_example', # String | The Id of a profile containing user specific TMS configuration.
+  retrieve_bin_details: true # BOOLEAN | Retrieve the Bin Details of PAN or network token
 }
 
 begin
@@ -202,10 +207,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **post_payment_instrument_request** | [**PostPaymentInstrumentRequest**](PostPaymentInstrumentRequest.md)|  | 
  **profile_id** | **String**| The Id of a profile containing user specific TMS configuration. | [optional] 
+ **retrieve_bin_details** | **BOOLEAN**| Retrieve the Bin Details of PAN or network token | [optional] 
 
 ### Return type
 
-[**Tmsv2customersEmbeddedDefaultPaymentInstrument**](Tmsv2customersEmbeddedDefaultPaymentInstrument.md)
+[**PostPaymentInstrumentRequest**](PostPaymentInstrumentRequest.md)
 
 ### Authorization
 

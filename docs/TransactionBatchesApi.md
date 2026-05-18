@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**get_transaction_batch_details**](TransactionBatchesApi.md#get_transaction_batch_details) | **GET** /pts/v1/transaction-batch-details/{id} | Get Transaction Details for a given Batch Id
 [**get_transaction_batch_id**](TransactionBatchesApi.md#get_transaction_batch_id) | **GET** /pts/v1/transaction-batches/{id} | Get Individual Batch File
 [**get_transaction_batches**](TransactionBatchesApi.md#get_transaction_batches) | **GET** /pts/v1/transaction-batches | Get a List of Batch Files
+[**upload_transaction_batch**](TransactionBatchesApi.md#upload_transaction_batch) | **POST** /pts/v1/transaction-batch-upload | Upload a Batch File
 
 
 # **get_transaction_batch_details**
@@ -23,11 +24,11 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::TransactionBatchesApi.new
 
-id = "id_example" # String | The batch id assigned for the template.
+id = 'id_example' # String | The batch id assigned for the template.
 
 opts = { 
-  upload_date: Date.parse("2013-10-20"), # Date | Date in which the original batch file was uploaded. Date must be in ISO-8601 format. Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) **Example date format:**  - yyyy-MM-dd 
-  status: "status_example" # String | Allows you to filter by rejected response.  Valid values: - Rejected 
+  upload_date: Date.parse('2013-10-20'), # Date | Date in which the original batch file was uploaded. Date must be in ISO-8601 format. Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14) **Example date format:**  - yyyy-MM-dd 
+  status: 'status_example' # String | Allows you to filter by rejected response.  Valid values: - Rejected 
 }
 
 begin
@@ -66,7 +67,7 @@ No authorization required
 
 Get Individual Batch File
 
-Provide the search range
+This API provides details like upload date, completion date, transaction count and accepted and rejected transaction count of the individual batch file using the batch id
 
 ### Example
 ```ruby
@@ -75,7 +76,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::TransactionBatchesApi.new
 
-id = "id_example" # String | The batch id assigned for the template.
+id = 'id_example' # String | The batch id assigned for the template.
 
 
 begin
@@ -113,7 +114,7 @@ No authorization required
 
 Get a List of Batch Files
 
-Provide the search range
+Provide the date and time search range to get a list of Batch Files ready for settlement
 
 ### Example
 ```ruby
@@ -122,9 +123,9 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::TransactionBatchesApi.new
 
-start_time = DateTime.parse("2013-10-20T19:20:30+01:00") # DateTime | Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)   **Example date format:**   - yyyy-MM-dd'T'HH:mm:ss.SSSZZ 
+start_time = DateTime.parse('2013-10-20T19:20:30+01:00') # DateTime | Valid report Start Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)   **Example date format:**   - yyyy-MM-dd'T'HH:mm:ss.SSSZZ 
 
-end_time = DateTime.parse("2013-10-20T19:20:30+01:00") # DateTime | Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)   **Example date format:**   - yyyy-MM-dd'T'HH:mm:ss.SSSZZ 
+end_time = DateTime.parse('2013-10-20T19:20:30+01:00') # DateTime | Valid report End Time in **ISO 8601 format** Please refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)   **Example date format:**   - yyyy-MM-dd'T'HH:mm:ss.SSSZZ 
 
 
 begin
@@ -155,6 +156,52 @@ No authorization required
 
  - **Content-Type**: application/json;charset=utf-8
  - **Accept**: application/hal+json
+
+
+
+# **upload_transaction_batch**
+> upload_transaction_batch(file)
+
+Upload a Batch File
+
+This endpoint enables the upload of a batch file containing transactions for processing.
+
+### Example
+```ruby
+# load the gem
+require 'cybersource_rest_client'
+
+api_instance = CyberSource::TransactionBatchesApi.new
+
+file = File.new('/path/to/file.txt') # File | The file to upload.
+
+
+begin
+  #Upload a Batch File
+  api_instance.upload_transaction_batch(file)
+rescue CyberSource::ApiError => e
+  puts "Exception when calling TransactionBatchesApi->upload_transaction_batch: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **file** | **File**| The file to upload. | 
+
+### Return type
+
+nil (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
 
 
 

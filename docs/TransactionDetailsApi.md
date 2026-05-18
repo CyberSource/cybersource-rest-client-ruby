@@ -21,7 +21,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::TransactionDetailsApi.new
 
-id = "id_example" # String | Request ID. 
+id = 'id_example' # String | Request ID. 
 
 
 begin

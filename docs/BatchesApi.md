@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **get_batch_report**
-> InlineResponse2004 get_batch_report(batch_id)
+> InlineResponse20014 get_batch_report(batch_id)
 
 Retrieve a Batch Report
 
@@ -24,7 +24,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::BatchesApi.new
 
-batch_id = "batch_id_example" # String | Unique identification number assigned to the submitted request.
+batch_id = 'batch_id_example' # String | Unique identification number assigned to the submitted request.
 
 
 begin
@@ -44,7 +44,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2004**](InlineResponse2004.md)
+[**InlineResponse20014**](InlineResponse20014.md)
 
 ### Authorization
 
@@ -58,7 +58,7 @@ No authorization required
 
 
 # **get_batch_status**
-> InlineResponse2003 get_batch_status(batch_id)
+> InlineResponse20013 get_batch_status(batch_id)
 
 Retrieve a Batch Status
 
@@ -71,7 +71,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::BatchesApi.new
 
-batch_id = "batch_id_example" # String | Unique identification number assigned to the submitted request.
+batch_id = 'batch_id_example' # String | Unique identification number assigned to the submitted request.
 
 
 begin
@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2003**](InlineResponse2003.md)
+[**InlineResponse20013**](InlineResponse20013.md)
 
 ### Authorization
 
@@ -105,7 +105,7 @@ No authorization required
 
 
 # **get_batches_list**
-> InlineResponse2002 get_batches_list(opts)
+> InlineResponse20012 get_batches_list(opts)
 
 List Batches
 
@@ -121,8 +121,8 @@ api_instance = CyberSource::BatchesApi.new
 opts = { 
   offset: 0, # Integer | Starting record in zero-based dataset that should be returned as the first object in the array.
   limit: 20, # Integer | The maximum number that can be returned in the array starting from the offset record in zero-based dataset.
-  from_date: "from_date_example", # String | ISO-8601 format: yyyyMMddTHHmmssZ
-  to_date: "to_date_example" # String | ISO-8601 format: yyyyMMddTHHmmssZ
+  from_date: 'from_date_example', # String | ISO-8601 format: yyyyMMddTHHmmssZ
+  to_date: 'to_date_example' # String | ISO-8601 format: yyyyMMddTHHmmssZ
 }
 
 begin
@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2002**](InlineResponse2002.md)
+[**InlineResponse20012**](InlineResponse20012.md)
 
 ### Authorization
 
@@ -154,7 +154,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/json;charset=utf-8
+ - **Accept**: application/json, application/json;charset=utf-8
 
 
 
@@ -163,7 +163,7 @@ No authorization required
 
 Create a Batch
 
-**Create a Batch**<br>This resource accepts TMS tokens ids of a Customer, Payment Instrument or Instrument Identifier. <br> The card numbers for the supplied tokens ids are then sent to the relevant card associations to check for updates.<br>The following type of batches can be submitted: -  **oneOff** batch containing tokens id for Visa or MasterCard card numbers. - **amexRegistration** batch containing tokens id for Amex card numbers.  A batch id will be returned on a successful response which can be used to get the batch status and the batch report. 
+**Create a Batch**<br>This resource accepts TMS tokens ids of a Customer, Payment Instrument or Instrument Identifier. <br> The card numbers for the supplied tokens ids are then sent to the relevant card associations to check for updates.<br>The following type of batches can be submitted: -  **oneOff** batch containing tokens id for Visa or MasterCard card numbers. - **amexRegistration** batch containing tokens id for Amex card numbers.  A batch id will be returned on a successful response which can be used to get the batch status and the batch report. The availability of API features for a merchant may depend on the portfolio configuration and may need to be enabled at the portfolio level before they can be added to merchant accounts. 
 
 ### Example
 ```ruby

@@ -9,11 +9,11 @@ Method | HTTP request | Description
 
 
 # **get_invoice_settings**
-> InvoicingV2InvoiceSettingsGet200Response get_invoice_settings
+> InvoicingV2InvoiceSettingsGet200Response get_invoice_settings(opts)
 
 Get Invoice Settings
 
-Get the invoice settings for the invoice payment page.
+Allows you to retrieve the invoice settings for the payment page.
 
 ### Example
 ```ruby
@@ -22,9 +22,13 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::InvoiceSettingsApi.new
 
+opts = { 
+  product_type: 'product_type_example' # String | Allows you to choose which product type settings you want to update.
+}
+
 begin
   #Get Invoice Settings
-  result = api_instance.get_invoice_settings
+  result = api_instance.get_invoice_settings(opts)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling InvoiceSettingsApi->get_invoice_settings: #{e}"
@@ -32,7 +36,10 @@ end
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **product_type** | **String**| Allows you to choose which product type settings you want to update. | [optional] 
 
 ### Return type
 
@@ -50,11 +57,11 @@ No authorization required
 
 
 # **update_invoice_settings**
-> InvoicingV2InvoiceSettingsGet200Response update_invoice_settings(invoice_settings_request)
+> InvoicingV2InvoiceSettingsGet200Response update_invoice_settings(invoice_settings_request, opts)
 
 Update Invoice Settings
 
-Update invoice settings for the invoice payment page.
+Allows you to customize the payment page, the checkout experience, email communication and payer authentication. You can customize the invoice to match your brand with your business name, logo and brand colors, and a VAT Tax number. You can choose to capture the payers shipping details, phone number and email during the checkout process. You can add a custom message to all invoice emails and enable or disable payer authentication for invoice payments.
 
 ### Example
 ```ruby
@@ -65,10 +72,13 @@ api_instance = CyberSource::InvoiceSettingsApi.new
 
 invoice_settings_request = CyberSource::InvoiceSettingsRequest.new # InvoiceSettingsRequest | 
 
+opts = { 
+  product_type: 'product_type_example' # String | Allows you to choose which product type settings you want to update.
+}
 
 begin
   #Update Invoice Settings
-  result = api_instance.update_invoice_settings(invoice_settings_request)
+  result = api_instance.update_invoice_settings(invoice_settings_request, opts)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling InvoiceSettingsApi->update_invoice_settings: #{e}"
@@ -80,6 +90,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **invoice_settings_request** | [**InvoiceSettingsRequest**](InvoiceSettingsRequest.md)|  | 
+ **product_type** | **String**| Allows you to choose which product type settings you want to update. | [optional] 
 
 ### Return type
 

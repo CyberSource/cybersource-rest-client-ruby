@@ -8,5 +8,6 @@ Name | Type | Description | Notes
 **auto_rental** | [**Ptsv2paymentsTravelInformationAutoRental**](Ptsv2paymentsTravelInformationAutoRental.md) |  | [optional] 
 **lodging** | [**Ptsv2paymentsTravelInformationLodging**](Ptsv2paymentsTravelInformationLodging.md) |  | [optional] 
 **transit** | [**Ptsv2paymentsTravelInformationTransit**](Ptsv2paymentsTravelInformationTransit.md) |  | [optional] 
+**vehicle_data** | [**Ptsv2paymentsTravelInformationVehicleData**](Ptsv2paymentsTravelInformationVehicleData.md) |  | [optional] 
 
 

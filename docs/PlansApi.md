@@ -28,7 +28,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::PlansApi.new
 
-id = "id_example" # String | Plan Id
+id = 'id_example' # String | Plan Id
 
 
 begin
@@ -66,7 +66,7 @@ No authorization required
 
 Create a Plan
 
-The recurring billing service enables you to manage payment plans and subscriptions for recurring payment schedules. It securely stores your customer's payment information and personal data within secure Visa data centers, reducing storage risks and PCI DSS scope through the use of *Token Management* (*TMS*).  The three key elements of *Cybersource* Recurring Billing are:  -  **Token**: stores customer billing, shipping, and payment details.  -  **Plan**: stores the billing schedule.  -  **Subscription**: combines the token and plan, and defines the subscription start date, name, and description.  The APIs in this section demonstrate the management of the Plans and Subscriptions. For Tokens please refer to [Token Management](#token-management) 
+The recurring billing service enables you to manage payment plans and subscriptions for recurring payment schedules. It securely stores your customer's payment information and personal data within secure Visa data centers, reducing storage risks and PCI DSS scope through the use of *Token Management* (*TMS*).  The three key elements of *Cybersource* Recurring Billing are:  -  **Token**: stores customer billing, shipping, and payment details.  -  **Plan**: stores the billing schedule.  -  **Subscription**: combines the token and plan, and defines the subscription start date, name, and description.  The APIs in this section demonstrate the management of the Plans and Subscriptions. For Tokens please refer to [Token Management](#token-management) The availability of API features for a merchant can depend on the portfolio configuration and may need to be enabled at the portfolio level before they can be added to merchant accounts. 
 
 ### Example
 ```ruby
@@ -122,7 +122,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::PlansApi.new
 
-id = "id_example" # String | Plan Id
+id = 'id_example' # String | Plan Id
 
 
 begin
@@ -169,7 +169,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::PlansApi.new
 
-id = "id_example" # String | Plan Id
+id = 'id_example' # String | Plan Id
 
 
 begin
@@ -216,7 +216,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::PlansApi.new
 
-id = "id_example" # String | Plan Id
+id = 'id_example' # String | Plan Id
 
 
 begin
@@ -307,9 +307,9 @@ api_instance = CyberSource::PlansApi.new
 opts = { 
   offset: 56, # Integer | Page offset number.
   limit: 56, # Integer | Number of items to be returned. Default - `20`, Max - `100` 
-  code: "code_example", # String | Filter by Plan Code
-  status: "status_example", # String | Filter by Plan Status
-  name: "name_example" # String | Filter by Plan Name. (First sub string or full string) **[Not Recommended]** 
+  code: 'code_example', # String | Filter by Plan Code
+  status: 'status_example', # String | Filter by Plan Status
+  name: 'name_example' # String | Filter by Plan Name. (First sub string or full string) **[Not Recommended]** 
 }
 
 begin
@@ -360,7 +360,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::PlansApi.new
 
-id = "id_example" # String | Plan Id
+id = 'id_example' # String | Plan Id
 
 update_plan_request = CyberSource::UpdatePlanRequest.new # UpdatePlanRequest | 
 

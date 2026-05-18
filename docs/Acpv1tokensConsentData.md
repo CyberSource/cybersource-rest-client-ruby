@@ -1,0 +1,12 @@
+# CyberSource::Acpv1tokensConsentData
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**id** | **String** | Unique identifier for the consent. | 
+**type** | **String** | Type of the consent.   Possible value:     - &#x60;PERSONALIZATION&#x60;  | 
+**source** | **String** | Source of the consent. | 
+**accepted_time** | **String** | Date and time when the consent was accepted by the consumer. UTC time in Unix epoch format. | 
+**effective_until** | **String** | Date and time until which the consent remains effective. UTC time in Unix epoch format. | 
+
+

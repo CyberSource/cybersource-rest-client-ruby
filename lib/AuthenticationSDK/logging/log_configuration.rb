@@ -54,7 +54,8 @@ public
                 if @maxLogFiles.nil? || @maxLogFiles.to_s.empty?
                     @maxLogFiles = Constants::DEFAULT_MAX_LOG_FILES
                     log_message += Constants::WARNING_PREFIX + Constants::INVALID_MAX_LOG_FILES + @maxLogFiles
-                elsif !@maxLogFiles.instance_of? Integer
+                end
+                if !@maxLogFiles.instance_of? Integer
                     @maxLogFiles = @maxLogFiles.to_i
                 end
                 if @enableMasking == "true"
@@ -62,7 +63,7 @@ public
                 elsif @enableMasking == true
                     @enableMasking = true
                 else
-                    @enableMasking = false
+                    @enableMasking = true
                 end
             end
             return log_message

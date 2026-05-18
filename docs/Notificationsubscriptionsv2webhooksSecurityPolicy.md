@@ -1,0 +1,9 @@
+# CyberSource::Notificationsubscriptionsv2webhooksSecurityPolicy
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**security_type** | **String** | Security Policy of the client server.  Possible values: - key - oAuth - oAuth_JWT | [optional] 
+**config** | [**Notificationsubscriptionsv2webhooksSecurityPolicyConfig**](Notificationsubscriptionsv2webhooksSecurityPolicyConfig.md) |  | [optional] 
+
+

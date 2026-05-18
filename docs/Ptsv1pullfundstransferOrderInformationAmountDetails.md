@@ -1,0 +1,12 @@
+# CyberSource::Ptsv1pullfundstransferOrderInformationAmountDetails
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**total_amount** | **String** | The total amount of the funds transfer including all fees.  This value cannot be negative.   You can include a decimal point (.), but no other special characters.  | 
+**currency** | **String** | Use a 3-character alpha currency code for currency of the sender.  ISO standard currencies: [http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)    Currency must be supported by the processor.  | 
+**service_fee** | **String** | When present, this field contains the sender&#39;s surcharge as assessed by the originator. Values in this field must be in the same currency and format as defined in the amount field.  | [optional] 
+**foreign_exchange_fee** | **String** | When present, this field contains the sender&#39;s foreign exchange markup fee (markup above the wholesale or VisaNet exchange rate as assessed by the originator). Values in this field must be in the same currency and format as defined in the amount field.  | [optional] 
+**surcharge** | [**Ptsv2paymentsOrderInformationAmountDetailsOctsurcharge**](Ptsv2paymentsOrderInformationAmountDetailsOctsurcharge.md) |  | [optional] 
+
+

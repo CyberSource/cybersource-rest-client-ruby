@@ -13,8 +13,13 @@ Name | Type | Description | Notes
 **aggregator_information** | [**Ptsv2paymentsidcapturesAggregatorInformation**](Ptsv2paymentsidcapturesAggregatorInformation.md) |  | [optional] 
 **point_of_sale_information** | [**Ptsv2paymentsPointOfSaleInformation**](Ptsv2paymentsPointOfSaleInformation.md) |  | [optional] 
 **merchant_defined_information** | [**Array&lt;Ptsv2paymentsMerchantDefinedInformation&gt;**](Ptsv2paymentsMerchantDefinedInformation.md) | The object containing the custom data that the merchant defines.  | [optional] 
+**merchant_defined_secure_information** | [**Ptsv2paymentsMerchantDefinedSecureInformation**](Ptsv2paymentsMerchantDefinedSecureInformation.md) |  | [optional] 
 **installment_information** | [**Ptsv2creditsInstallmentInformation**](Ptsv2creditsInstallmentInformation.md) |  | [optional] 
 **travel_information** | [**Ptsv2paymentsTravelInformation**](Ptsv2paymentsTravelInformation.md) |  | [optional] 
+**recipient_information** | [**Ptsv2creditsRecipientInformation**](Ptsv2creditsRecipientInformation.md) |  | [optional] 
+**sender_information** | [**Ptsv2creditsSenderInformation**](Ptsv2creditsSenderInformation.md) |  | [optional] 
 **promotion_information** | [**Ptsv2paymentsPromotionInformation**](Ptsv2paymentsPromotionInformation.md) |  | [optional] 
+**processor_information** | [**Ptsv2reversalsProcessorInformation**](Ptsv2reversalsProcessorInformation.md) |  | [optional] 
+**token_information** | [**Ptsv2creditsTokenInformation**](Ptsv2creditsTokenInformation.md) |  | [optional] 
 
 

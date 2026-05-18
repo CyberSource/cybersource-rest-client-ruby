@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **ship_to** | [**Ptsv2paymentsidcapturesOrderInformationShipTo**](Ptsv2paymentsidcapturesOrderInformationShipTo.md) |  | [optional] 
 **line_items** | [**Array&lt;Ptsv2paymentsidrefundsOrderInformationLineItems&gt;**](Ptsv2paymentsidrefundsOrderInformationLineItems.md) |  | [optional] 
 **invoice_details** | [**Ptsv2paymentsidcapturesOrderInformationInvoiceDetails**](Ptsv2paymentsidcapturesOrderInformationInvoiceDetails.md) |  | [optional] 
-**shipping_details** | [**Ptsv2paymentsidcapturesOrderInformationShippingDetails**](Ptsv2paymentsidcapturesOrderInformationShippingDetails.md) |  | [optional] 
+**shipping_details** | [**Ptsv2paymentsidrefundsOrderInformationShippingDetails**](Ptsv2paymentsidrefundsOrderInformationShippingDetails.md) |  | [optional] 
+**digital_currency** | [**Ptsv2paymentsOrderInformationDigitalCurrency**](Ptsv2paymentsOrderInformationDigitalCurrency.md) |  | [optional] 
 
 

@@ -22,10 +22,10 @@ require 'cybersource_rest_client'
 api_instance = CyberSource::UserManagementApi.new
 
 opts = { 
-  organization_id: "organization_id_example", # String | This is the orgId of the organization which the user belongs to.
-  user_name: "user_name_example", # String | User ID of the user you want to get details on.
-  permission_id: "permission_id_example", # String | permission that you are trying to search user on.
-  role_id: "role_id_example" # String | role of the user you are trying to search on.
+  organization_id: 'organization_id_example', # String | This is the orgId of the organization which the user belongs to.
+  user_name: 'user_name_example', # String | User ID of the user you want to get details on.
+  permission_id: 'permission_id_example', # String | permission that you are trying to search user on.
+  role_id: 'role_id_example' # String | role of the user you are trying to search on.
 }
 
 begin

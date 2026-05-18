@@ -8,5 +8,7 @@ Name | Type | Description | Notes
 **consumer_authentication** | [**PtsV2PaymentsPost201ResponseEmbeddedActionsCONSUMERAUTHENTICATION**](PtsV2PaymentsPost201ResponseEmbeddedActionsCONSUMERAUTHENTICATION.md) |  | [optional] 
 **validate_consumer_authentication** | [**PtsV2PaymentsPost201ResponseEmbeddedActionsCONSUMERAUTHENTICATION**](PtsV2PaymentsPost201ResponseEmbeddedActionsCONSUMERAUTHENTICATION.md) |  | [optional] 
 **watchlist_screening** | [**PtsV2PaymentsPost201ResponseEmbeddedActionsWATCHLISTSCREENING**](PtsV2PaymentsPost201ResponseEmbeddedActionsWATCHLISTSCREENING.md) |  | [optional] 
+**token_create** | [**PtsV2PaymentsPost201ResponseEmbeddedActionsTOKENCREATE**](PtsV2PaymentsPost201ResponseEmbeddedActionsTOKENCREATE.md) |  | [optional] 
+**token_update** | [**PtsV2PaymentsPost201ResponseEmbeddedActionsTOKENUPDATE**](PtsV2PaymentsPost201ResponseEmbeddedActionsTOKENUPDATE.md) |  | [optional] 
 
 

@@ -21,7 +21,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::DownloadXSDApi.new
 
-report_definition_name_version = "report_definition_name_version_example" # String | Name and version of XSD file to download. Some XSDs only have one version. In that case version name is not needed. Some example values are DecisionManagerDetailReport, DecisionManagerTypes
+report_definition_name_version = 'report_definition_name_version_example' # String | Name and version of XSD file to download. Some XSDs only have one version. In that case version name is not needed. Some example values are DecisionManagerDetailReport, DecisionManagerTypes
 
 
 begin

@@ -3,12 +3,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**_links** | [**Array&lt;InlineResponse2002Links&gt;**](InlineResponse2002Links.md) |  | [optional] 
-**object** | **String** |  | [optional] 
-**offset** | **Integer** |  | [optional] 
-**limit** | **Integer** |  | [optional] 
-**count** | **Integer** |  | [optional] 
-**total** | **Integer** |  | [optional] 
-**_embedded** | [**InlineResponse2002Embedded**](InlineResponse2002Embedded.md) |  | [optional] 
+**id** | **String** | Unique identifier for the Card Art Asset.  | [optional] 
+**type** | **String** | The type of Card Art Asset.  | [optional] 
+**provider** | **String** | The provider of the Card Art Asset.  | [optional] 
+**content** | [**Array&lt;InlineResponse2002Content&gt;**](InlineResponse2002Content.md) | Array of content objects representing the Card Art Asset.  | [optional] 
 
 

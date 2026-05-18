@@ -3,7 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**client_reference_information** | [**Ptsv2paymentsClientReferenceInformation**](Ptsv2paymentsClientReferenceInformation.md) |  | [optional] 
+**agreement_information** | [**Ptsv2billingagreementsAgreementInformation**](Ptsv2billingagreementsAgreementInformation.md) |  | [optional] 
+**client_reference_information** | [**Ptsv2billingagreementsClientReferenceInformation**](Ptsv2billingagreementsClientReferenceInformation.md) |  | [optional] 
 **aggregator_information** | [**Ptsv2billingagreementsAggregatorInformation**](Ptsv2billingagreementsAggregatorInformation.md) |  | [optional] 
 **consumer_authentication_information** | [**Ptsv2billingagreementsConsumerAuthenticationInformation**](Ptsv2billingagreementsConsumerAuthenticationInformation.md) |  | [optional] 
 **device_information** | [**Ptsv2billingagreementsDeviceInformation**](Ptsv2billingagreementsDeviceInformation.md) |  | [optional] 
@@ -12,5 +13,6 @@ Name | Type | Description | Notes
 **order_information** | [**Ptsv2billingagreementsOrderInformation**](Ptsv2billingagreementsOrderInformation.md) |  | [optional] 
 **payment_information** | [**Ptsv2billingagreementsPaymentInformation**](Ptsv2billingagreementsPaymentInformation.md) |  | [optional] 
 **processing_information** | [**Ptsv2billingagreementsProcessingInformation**](Ptsv2billingagreementsProcessingInformation.md) |  | [optional] 
+**buyer_information** | [**Ptsv2billingagreementsBuyerInformation**](Ptsv2billingagreementsBuyerInformation.md) |  | [optional] 
 
 
