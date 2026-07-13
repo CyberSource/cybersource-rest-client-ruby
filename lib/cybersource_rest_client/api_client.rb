@@ -83,7 +83,8 @@ module CyberSource
       if MLEUtility.check_is_mle_encrypted_response(response.body)
         begin
           body = MLEUtility.decrypt_mle_response_payload(@merchantconfig, response.body)
-          response = Typhoeus::Response.new(:code => response.code, :headers => response.headers.to_hash, :body => body)
+          response = Typhoeus::Response.new(:code => response.code, :return_code => response.return_code,
+                                            :headers => response.headers.to_hash, :body => body)
         rescue => e
           raise ApiError.new(:message => "MLE Encrypted Response Decryption Error Occurred. Error: #{e.message}",
                             :code => response.code,
