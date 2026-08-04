@@ -59,8 +59,8 @@ module CyberSource
         :'id' => :'String',
         :'submit_time_utc' => :'String',
         :'status' => :'String',
-        :'error_information' => :'InlineResponse2019ErrorInformation',
-        :'order_information' => :'InlineResponse2019OrderInformation'
+        :'error_information' => :'InlineResponse20112ErrorInformation',
+        :'order_information' => :'InlineResponse20112OrderInformation'
       }
     end
 

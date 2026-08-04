@@ -346,7 +346,7 @@ tokenized_card_id = 'tokenized_card_id_example' # String | The Id of a tokenized
 
 opts = { 
   profile_id: 'profile_id_example', # String | The Id of a profile containing user specific TMS configuration.
-  post_tokenized_card_delete_request: CyberSource::TmsTokenizedCardDeleteRequest.new # TmsTokenizedCardDeleteRequest | 
+  post_tokenized_card_delete_request: CyberSource::PostTokenizedCardDeleteRequest.new # PostTokenizedCardDeleteRequest | 
 }
 
 begin
@@ -363,7 +363,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tokenized_card_id** | **String**| The Id of a tokenized card. | 
  **profile_id** | **String**| The Id of a profile containing user specific TMS configuration. | [optional] 
- **post_tokenized_card_delete_request** | [**TmsTokenizedCardDeleteRequest**](TmsTokenizedCardDeleteRequest.md)|  | [optional] 
+ **post_tokenized_card_delete_request** | [**PostTokenizedCardDeleteRequest**](PostTokenizedCardDeleteRequest.md)|  | [optional] 
 
 ### Return type
 

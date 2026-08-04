@@ -69,6 +69,8 @@ module CyberSource
 
     attr_accessor :authorization_options
 
+    attr_accessor :card_verification
+
     attr_accessor :capture_options
 
     attr_accessor :recurring_options
@@ -170,6 +172,7 @@ module CyberSource
         :'visa_checkout_id' => :'visaCheckoutId',
         :'industry_data_type' => :'industryDataType',
         :'authorization_options' => :'authorizationOptions',
+        :'card_verification' => :'cardVerification',
         :'capture_options' => :'captureOptions',
         :'recurring_options' => :'recurringOptions',
         :'bank_transfer_options' => :'bankTransferOptions',
@@ -224,6 +227,7 @@ module CyberSource
         :'visa_checkout_id' => :'visa_checkout_id',
         :'industry_data_type' => :'industry_data_type',
         :'authorization_options' => :'authorization_options',
+        :'card_verification' => :'card_verification',
         :'capture_options' => :'capture_options',
         :'recurring_options' => :'recurring_options',
         :'bank_transfer_options' => :'bank_transfer_options',
@@ -278,6 +282,7 @@ module CyberSource
         :'visa_checkout_id' => :'String',
         :'industry_data_type' => :'String',
         :'authorization_options' => :'ProcessingInfoAuthorizationOptions',
+        :'card_verification' => :'Ptsv2paymentsProcessingInformationCardVerification',
         :'capture_options' => :'Ptsv2paymentsProcessingInformationCaptureOptions',
         :'recurring_options' => :'Ptsv2paymentsProcessingInformationRecurringOptions',
         :'bank_transfer_options' => :'Ptsv2paymentsProcessingInformationBankTransferOptions',
@@ -398,6 +403,10 @@ module CyberSource
 
       if attributes.has_key?(:'authorizationOptions')
         self.authorization_options = attributes[:'authorizationOptions']
+      end
+
+      if attributes.has_key?(:'cardVerification')
+        self.card_verification = attributes[:'cardVerification']
       end
 
       if attributes.has_key?(:'captureOptions')
@@ -722,6 +731,7 @@ module CyberSource
           visa_checkout_id == o.visa_checkout_id &&
           industry_data_type == o.industry_data_type &&
           authorization_options == o.authorization_options &&
+          card_verification == o.card_verification &&
           capture_options == o.capture_options &&
           recurring_options == o.recurring_options &&
           bank_transfer_options == o.bank_transfer_options &&
@@ -762,7 +772,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [action_list, enable_escrow_option, action_token_types, bin_source, capture, processor_id, business_application_id, commerce_indicator, commerce_indicator_label, payment_solution, reconciliation_id, link_id, purchase_level, transaction_timeout, intents_id, report_group, visa_checkout_id, industry_data_type, authorization_options, capture_options, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, wallet_type, national_net_domestic_data, merchant_verification_value, japan_payment_options, mobile_remote_payment_type, extended_credit_total_count, network_routing_order, pay_by_points_indicator, timeout, is_return_auth_record_enabled, network_partner_id, payment_type, enabler_id, processing_instruction, transaction_type_indicator, purpose_of_payment, language_code, original_payment_id, amex_indirect_model_type, wallet_transaction_intent, destination_type, program_indicators, inquiry_type].hash
+      [action_list, enable_escrow_option, action_token_types, bin_source, capture, processor_id, business_application_id, commerce_indicator, commerce_indicator_label, payment_solution, reconciliation_id, link_id, purchase_level, transaction_timeout, intents_id, report_group, visa_checkout_id, industry_data_type, authorization_options, card_verification, capture_options, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, wallet_type, national_net_domestic_data, merchant_verification_value, japan_payment_options, mobile_remote_payment_type, extended_credit_total_count, network_routing_order, pay_by_points_indicator, timeout, is_return_auth_record_enabled, network_partner_id, payment_type, enabler_id, processing_instruction, transaction_type_indicator, purpose_of_payment, language_code, original_payment_id, amex_indirect_model_type, wallet_transaction_intent, destination_type, program_indicators, inquiry_type].hash
     end
 
     # Builds the object from hash

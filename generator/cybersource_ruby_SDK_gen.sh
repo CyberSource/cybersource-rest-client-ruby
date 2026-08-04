@@ -1,7 +1,7 @@
 #!/bin/bash
 echo $0
 set -xe
-python replaceFieldNameFromRequestBody.py -i cybersource-rest-spec.json > replaceFieldLogs.log
+python3 replaceFieldNameFromRequestBody.py -i cybersource-rest-spec.json > replaceFieldLogs.log
 set +xe
 rm replaceFieldLogs.log
 
@@ -16,7 +16,7 @@ rm ../lib/cybersource_rest_client.rb
 
 # Command to generate SDK
 
-java -jar swagger-codegen-cli-2.4.38.jar generate -t cybersource-ruby-template -i cybersource-rest-spec-ruby.json -l ruby -o ../ -c cybersource-ruby-config.json
+$JAVA_17_BIN -jar swagger-codegen-cli-2.4.38.jar generate -t cybersource-ruby-template -i cybersource-rest-spec-ruby.json -l ruby -o ../ -c cybersource-ruby-config.json
 
 sed -i "s|select_header_content_type(\["\'"application\/json;charset=utf-8|select_header_content_type(\["\'"\*\/\*|g" ../lib/cybersource_rest_client/api/secure_file_share_api.rb
 #sed -i 's/$/\r/' ../lib/cybersource_rest_client/api/secure_file_share_api.rb
@@ -104,8 +104,11 @@ done
 
 cd ../../../
 
+rm -f .rubocop.yml
+
 git checkout README.md
 git checkout cybersource_rest_client.gemspec
+git checkout .gitignore
 
 git checkout lib/cybersource_rest_client/api/o_auth_api.rb
 git checkout lib/cybersource_rest_client/models/access_token_response.rb

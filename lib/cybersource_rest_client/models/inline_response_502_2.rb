@@ -13,45 +13,51 @@ require 'date'
 
 module CyberSource
   class InlineResponse5022
-    # Time verification was requested  Format: `YYYY-MM-DDThhmmssZ`, where: - `T`:  Separates the date and the time - `Z`:  Indicates Coordinated Universal Time (UTC), also known as Greenwich Mean Time (GMT)  Example:  `2020-01-11T224757Z` equals January 11, 2020, at 22:47:57 (10:47:57 p.m.) 
-    attr_accessor :submit_time_utc
+    # A unique identification number to identify the submitted request. It is also appended to the endpoint of the resource. 
+    attr_accessor :id
 
-    # The status of the submitted transaction. Possible values:   - `SERVER_ERROR` 
+    # Time of request in UTC. Format: `YYYY-MM-DD'T'HH:mm:ssZ`  Example: `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the time. The Z indicates UTC. 
+    attr_accessor :submit_time_stamp_utc
+
+    # Possible values: - SERVER_ERROR 
     attr_accessor :status
 
-    # The detail message related to the status and reason
-    attr_accessor :message
-
-    # The reason of the status.  Possible values:   - `SYSTEM_ERROR`   - `SERVER_TIMEOUT`   - `SERVICE_TIMEOUT` 
+    # The reason of the status.  Possible values: - SYSTEM_ERROR 
     attr_accessor :reason
+
+    # The detail message related to the status and reason listed above. 
+    attr_accessor :message
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'submit_time_utc' => :'submitTimeUtc',
+        :'id' => :'id',
+        :'submit_time_stamp_utc' => :'submitTimeStampUtc',
         :'status' => :'status',
-        :'message' => :'message',
-        :'reason' => :'reason'
+        :'reason' => :'reason',
+        :'message' => :'message'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'submit_time_utc' => :'submit_time_utc',
+        :'id' => :'id',
+        :'submit_time_stamp_utc' => :'submit_time_stamp_utc',
         :'status' => :'status',
-        :'message' => :'message',
-        :'reason' => :'reason'
+        :'reason' => :'reason',
+        :'message' => :'message'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'submit_time_utc' => :'String',
+        :'id' => :'String',
+        :'submit_time_stamp_utc' => :'String',
         :'status' => :'String',
-        :'message' => :'String',
-        :'reason' => :'String'
+        :'reason' => :'String',
+        :'message' => :'String'
       }
     end
 
@@ -63,20 +69,24 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'submitTimeUtc')
-        self.submit_time_utc = attributes[:'submitTimeUtc']
+      if attributes.has_key?(:'id')
+        self.id = attributes[:'id']
+      end
+
+      if attributes.has_key?(:'submitTimeStampUtc')
+        self.submit_time_stamp_utc = attributes[:'submitTimeStampUtc']
       end
 
       if attributes.has_key?(:'status')
         self.status = attributes[:'status']
       end
 
-      if attributes.has_key?(:'message')
-        self.message = attributes[:'message']
-      end
-
       if attributes.has_key?(:'reason')
         self.reason = attributes[:'reason']
+      end
+
+      if attributes.has_key?(:'message')
+        self.message = attributes[:'message']
       end
     end
 
@@ -93,15 +103,34 @@ module CyberSource
       true
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] id Value to be assigned
+    def id=(id)
+      @id = id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] submit_time_stamp_utc Value to be assigned
+    def submit_time_stamp_utc=(submit_time_stamp_utc)
+      @submit_time_stamp_utc = submit_time_stamp_utc
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] message Value to be assigned
+    def message=(message)
+      @message = message
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          submit_time_utc == o.submit_time_utc &&
+          id == o.id &&
+          submit_time_stamp_utc == o.submit_time_stamp_utc &&
           status == o.status &&
-          message == o.message &&
-          reason == o.reason
+          reason == o.reason &&
+          message == o.message
     end
 
     # @see the `==` method
@@ -113,7 +142,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [submit_time_utc, status, message, reason].hash
+      [id, submit_time_stamp_utc, status, reason, message].hash
     end
 
     # Builds the object from hash

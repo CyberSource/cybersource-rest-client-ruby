@@ -13,16 +13,16 @@ require 'date'
 
 module CyberSource
   class InlineResponse4009
-    # Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the time. The Z indicates UTC. 
+    # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC.  Returned by Cybersource for all services. 
     attr_accessor :submit_time_utc
 
-    # The http status description of the submitted request.
+    # The status of the submitted transaction.  Possible values:  - INVALID_REQUEST 
     attr_accessor :status
 
-    # Documented reason codes. Client should be able to use the key for generating their own error message Possible Values:   - 'INVALID_DATA'   - 'SYSTEM_ERROR'   - 'RESOURCE_NOT_FOUND' 
+    # The reason of the status.  Possible values:  - MISSING_FIELD  - INVALID_DATA  - INVALID_MERCHANT_CONFIGURATION 
     attr_accessor :reason
 
-    # Descriptive message for the error.
+    # The detail message related to the status and reason listed above.
     attr_accessor :message
 
     attr_accessor :details
@@ -52,11 +52,11 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'submit_time_utc' => :'DateTime',
+        :'submit_time_utc' => :'String',
         :'status' => :'String',
         :'reason' => :'String',
         :'message' => :'String',
-        :'details' => :'Array<InlineResponse4009Details>'
+        :'details' => :'Array<PtsV2PaymentsPost201ResponseErrorInformationDetails>'
       }
     end
 

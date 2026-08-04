@@ -30,6 +30,8 @@ module CyberSource
 
     attr_accessor :order_information
 
+    attr_accessor :merchant_defined_field_values_with_definition
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -39,7 +41,8 @@ module CyberSource
         :'status' => :'status',
         :'processing_information' => :'processingInformation',
         :'purchase_information' => :'purchaseInformation',
-        :'order_information' => :'orderInformation'
+        :'order_information' => :'orderInformation',
+        :'merchant_defined_field_values_with_definition' => :'merchantDefinedFieldValuesWithDefinition'
       }
     end
 
@@ -52,7 +55,8 @@ module CyberSource
         :'status' => :'status',
         :'processing_information' => :'processing_information',
         :'purchase_information' => :'purchase_information',
-        :'order_information' => :'order_information'
+        :'order_information' => :'order_information',
+        :'merchant_defined_field_values_with_definition' => :'merchant_defined_field_values_with_definition'
       }
     end
 
@@ -65,7 +69,8 @@ module CyberSource
         :'status' => :'String',
         :'processing_information' => :'Iplv2paymentlinksProcessingInformation',
         :'purchase_information' => :'PblPaymentLinksPost201ResponsePurchaseInformation',
-        :'order_information' => :'PblPaymentLinksPost201ResponseOrderInformation'
+        :'order_information' => :'PblPaymentLinksPost201ResponseOrderInformation',
+        :'merchant_defined_field_values_with_definition' => :'Array<InvoicingV2InvoicesPost201ResponseMerchantDefinedFieldValuesWithDefinition>'
       }
     end
 
@@ -104,6 +109,12 @@ module CyberSource
       if attributes.has_key?(:'orderInformation')
         self.order_information = attributes[:'orderInformation']
       end
+
+      if attributes.has_key?(:'merchantDefinedFieldValuesWithDefinition')
+        if (value = attributes[:'merchantDefinedFieldValuesWithDefinition']).is_a?(Array)
+          self.merchant_defined_field_values_with_definition = value
+        end
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -136,7 +147,8 @@ module CyberSource
           status == o.status &&
           processing_information == o.processing_information &&
           purchase_information == o.purchase_information &&
-          order_information == o.order_information
+          order_information == o.order_information &&
+          merchant_defined_field_values_with_definition == o.merchant_defined_field_values_with_definition
     end
 
     # @see the `==` method
@@ -148,7 +160,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, submit_time_utc, status, processing_information, purchase_information, order_information].hash
+      [_links, id, submit_time_utc, status, processing_information, purchase_information, order_information, merchant_defined_field_values_with_definition].hash
     end
 
     # Builds the object from hash

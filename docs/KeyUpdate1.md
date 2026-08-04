@@ -1,0 +1,12 @@
+# CyberSource::KeyUpdate1
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**key_name** | **String** | Unique name for the key | [optional] 
+**encryption_key** | **String** | Base64-encoded public key (JWE key wrap public key) | [optional] 
+**algorithm** | **String** | JWE key wrap algorithm  Possible values: - RSA-OAEP - RSA-OAEP-256 - RSA-OAEP-384 - RSA-OAEP-512 | [optional] 
+**encryption_type** | **String** | JWE content encryption algorithm  Possible values: - A256GCM - A128GCM - C20P - A256CBC-HS512 - A128CBC-HS256 - A256CCM - A128CCM | [optional] 
+**expiration_date** | **DateTime** | Key expiration date in UTC | [optional] 
+
+

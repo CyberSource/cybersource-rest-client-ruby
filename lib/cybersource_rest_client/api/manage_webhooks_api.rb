@@ -106,7 +106,7 @@ module CyberSource
     #
     # @param webhook_id The webhook Identifier
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2016]
+    # @return [InlineResponse2019]
     #
     def get_webhook_subscription_by_id(webhook_id, opts = {})
       data, status_code, headers = get_webhook_subscription_by_id_with_http_info(webhook_id, opts)
@@ -117,7 +117,7 @@ module CyberSource
     # Retrieve the details of a specific webhook by supplying the webhook ID in the path.
     # @param webhook_id The webhook Identifier
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2016, Fixnum, Hash)>] InlineResponse2016 data, response status code and response headers
+    # @return [Array<(InlineResponse2019, Fixnum, Hash)>] InlineResponse2019 data, response status code and response headers
     def get_webhook_subscription_by_id_with_http_info(webhook_id, opts = {})
 
       if @api_client.config.debugging
@@ -172,7 +172,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2016',
+        :return_type => 'InlineResponse2019',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -279,7 +279,7 @@ module CyberSource
     #
     # @param webhook_id The Webhook Identifier.
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2017]
+    # @return [InlineResponse20110]
     #
     def notification_subscriptions_v1_webhooks_webhook_id_post(webhook_id, opts = {})
       data, status_code, headers = notification_subscriptions_v1_webhooks_webhook_id_post_with_http_info(webhook_id, opts)
@@ -290,7 +290,7 @@ module CyberSource
     # Test the webhook configuration by sending a sample webhook. Calling this endpoint sends a sample webhook to the endpoint identified in the user&#39;s subscription.   It will contain sample values for the product &amp; eventType based on values present in your subscription along with a sample message in the payload.   Based on the webhook response users can make any necessary modifications or rest assured knowing their setup is configured correctly. 
     # @param webhook_id The Webhook Identifier.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2017, Fixnum, Hash)>] InlineResponse2017 data, response status code and response headers
+    # @return [Array<(InlineResponse20110, Fixnum, Hash)>] InlineResponse20110 data, response status code and response headers
     def notification_subscriptions_v1_webhooks_webhook_id_post_with_http_info(webhook_id, opts = {})
 
       if @api_client.config.debugging
@@ -345,7 +345,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2017',
+        :return_type => 'InlineResponse20110',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -530,7 +530,7 @@ module CyberSource
     # @option opts [String] :v_c_correlation_id A globally unique id associated with your request
     # @option opts [String] :v_c_sender_organization_id Sender organization id
     # @option opts [String] :v_c_permissions Encoded user permissions returned by the CGK, for the entity user who initiated the boarding
-    # @return [InlineResponse2018]
+    # @return [InlineResponse20111]
     #
     def save_asym_egress_key(save_asym_egress_key, opts = {})
       data, status_code, headers = save_asym_egress_key_with_http_info(save_asym_egress_key, opts)
@@ -544,7 +544,7 @@ module CyberSource
     # @option opts [String] :v_c_correlation_id A globally unique id associated with your request
     # @option opts [String] :v_c_sender_organization_id Sender organization id
     # @option opts [String] :v_c_permissions Encoded user permissions returned by the CGK, for the entity user who initiated the boarding
-    # @return [Array<(InlineResponse2018, Fixnum, Hash)>] InlineResponse2018 data, response status code and response headers
+    # @return [Array<(InlineResponse20111, Fixnum, Hash)>] InlineResponse20111 data, response status code and response headers
     def save_asym_egress_key_with_http_info(save_asym_egress_key, opts = {})
 
       if @api_client.config.debugging
@@ -608,7 +608,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2018',
+        :return_type => 'InlineResponse20111',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin

@@ -31,7 +31,13 @@ describe 'InlineResponse5022' do
       expect(@instance).to be_instance_of(CyberSource::InlineResponse5022)
     end
   end
-  describe 'test attribute "submit_time_utc"' do
+  describe 'test attribute "id"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "submit_time_stamp_utc"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -43,13 +49,13 @@ describe 'InlineResponse5022' do
     end
   end
 
-  describe 'test attribute "message"' do
+  describe 'test attribute "reason"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "reason"' do
+  describe 'test attribute "message"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

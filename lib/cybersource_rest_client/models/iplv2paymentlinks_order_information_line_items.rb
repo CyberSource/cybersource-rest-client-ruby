@@ -29,17 +29,20 @@ module CyberSource
     # Brief description of item.
     attr_accessor :product_description
 
-    # Discount amount applied to the item. Maximum of 2 decimal places. You may provide either discountAmount or discountPercent (not both). If both are present, their values must be consistent. Otherwise, a validation error will be returned. 
+    # Discount amount applied to the item. Maximum of 2 decimal places. You may provide either discountAmount or discountPercent (not both). Example: 0.60 
     attr_accessor :discount_amount
 
-    # Discount rate applied to the item. Maximum of 3 decimal places. You may provide either discountAmount or discountPercent (not both). If both are present, their values must be consistent; otherwise, a validation error will be returned. Example: 5.25 (=5.25%) 
+    # Discount rate applied to the item. Maximum of 3 decimal places. You may provide either discountAmount or discountPercent (not both). If you add discountPercent, a discountAmount will be calculated automatically. Example: 5.00 (=5.00%) 
     attr_accessor :discount_percent
 
-    # Tax amount applied to the item. This value cannot be negative. Maximum of 2 decimal places. The tax amount and the offer amount must be in the same currency. The tax amount field is additive. If taxAmount is provided but taxRate is not, the taxRate will be calculated. 
+    # Tax amount applied to the item. This value cannot be negative. Maximum of 2 decimal places. The tax amount and the offer amount must be in the same currency. The tax amount field is additive. If taxAmount is provided but taxRate is not, the taxRate will be calculated. Example: 2.86 
     attr_accessor :tax_amount
 
-    # Tax rate applied to the item. Valid range: 1.001% to 99.999%. Maximum of 3 decimal places. If a taxRate is provided but taxAmount is missing or incorrect, the taxAmount based on the given taxRate will be overwritten. Example: 21.00 (=21.00%) 
+    # Tax rate applied to the item. Valid range: 1.001% to 99.999%. Maximum of 3 decimal places. If a taxRate is provided but taxAmount is missing or incorrect, the taxAmount based on the given taxRate will be overwritten. Example: 25.00 (=25.00%) 
     attr_accessor :tax_rate
+
+    # Total amount for the line item after discount and tax, calculated per single unit. Formula: (unitPrice - discountAmount) + taxAmount. This field is calculated automatically and does not need to be provided in the request. Example: 14.31 
+    attr_accessor :total_amount
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -52,7 +55,8 @@ module CyberSource
         :'discount_amount' => :'discountAmount',
         :'discount_percent' => :'discountPercent',
         :'tax_amount' => :'taxAmount',
-        :'tax_rate' => :'taxRate'
+        :'tax_rate' => :'taxRate',
+        :'total_amount' => :'totalAmount'
       }
     end
 
@@ -67,7 +71,8 @@ module CyberSource
         :'discount_amount' => :'discount_amount',
         :'discount_percent' => :'discount_percent',
         :'tax_amount' => :'tax_amount',
-        :'tax_rate' => :'tax_rate'
+        :'tax_rate' => :'tax_rate',
+        :'total_amount' => :'total_amount'
       }
     end
 
@@ -82,7 +87,8 @@ module CyberSource
         :'discount_amount' => :'String',
         :'discount_percent' => :'String',
         :'tax_amount' => :'String',
-        :'tax_rate' => :'String'
+        :'tax_rate' => :'String',
+        :'total_amount' => :'String'
       }
     end
 
@@ -128,6 +134,10 @@ module CyberSource
 
       if attributes.has_key?(:'taxRate')
         self.tax_rate = attributes[:'taxRate']
+      end
+
+      if attributes.has_key?(:'totalAmount')
+        self.total_amount = attributes[:'totalAmount']
       end
     end
 
@@ -207,6 +217,12 @@ module CyberSource
       @tax_rate = tax_rate
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] total_amount Value to be assigned
+    def total_amount=(total_amount)
+      @total_amount = total_amount
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -220,7 +236,8 @@ module CyberSource
           discount_amount == o.discount_amount &&
           discount_percent == o.discount_percent &&
           tax_amount == o.tax_amount &&
-          tax_rate == o.tax_rate
+          tax_rate == o.tax_rate &&
+          total_amount == o.total_amount
     end
 
     # @see the `==` method
@@ -232,7 +249,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [product_sku, product_name, quantity, unit_price, product_description, discount_amount, discount_percent, tax_amount, tax_rate].hash
+      [product_sku, product_name, quantity, unit_price, product_description, discount_amount, discount_percent, tax_amount, tax_rate, total_amount].hash
     end
 
     # Builds the object from hash

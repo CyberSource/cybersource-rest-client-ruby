@@ -31,6 +31,51 @@ describe 'AgentCapabilitiesApi' do
     end
   end
 
+  # unit tests for activate_agent_key
+  # Activate a key
+  # Activate a deactivated key. Raises 404 if agent or key not found, 403 if agent is deactivated.
+  # @param agent_id Unique agent identifier
+  # @param key_id Unique key identifier
+  # @param [Hash] opts the optional parameters
+  # @return [AddAgentKeyResponse201]
+  describe 'activate_agent_key test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for add_agent_key
+  # Add a key to an agent
+  # [category 1 — Agent_Capabilities] Upload a Base64-encoded public key for an agent.
+  # @param agent_id Unique agent identifier
+  # @param key_request Key creation request
+  # @param [Hash] opts the optional parameters
+  # @return [AddAgentKeyResponse201]
+  describe 'add_agent_key test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for cancel_checkout
+  # Cancel Checkout ACP
+  # Cancels an active ACP checkout session. No charge is made to the buyer.  This call is safe to make multiple times — cancelling an already-cancelled session returns a successful response without error.  Sessions also expire automatically after 30 minutes of inactivity, so explicit cancellation is optional but recommended to release any reserved inventory immediately. 
+  # @param session_id The unique identifier of the ACP checkout session to cancel. Obtained from the &#x60;id&#x60; field in the Create Session response. 
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :idempotency_key Client-generated unique key to ensure this request is processed exactly once. If a request with the same key was already processed, the original response is returned. 
+  # @option opts [String] :accept_language Preferred language for the response (e.g. &#x60;en-US&#x60;, &#x60;fr-FR&#x60;). Passed to the merchant backend for localized content. 
+  # @option opts [String] :user_agent Client user agent string identifying the AI agent platform and version. 
+  # @option opts [String] :request_id Unique request identifier for distributed tracing and debugging. Echoed back in the response headers. 
+  # @option opts [String] :signature Request signature for payload integrity verification. 
+  # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
+  # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
+  # @return [InlineResponse20018]
+  describe 'cancel_checkout test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for cancel_purchase_intent
   # Cancel a purchase intent
   # Cancel an existing purchase intent (instruction) identified by its instructionId. The agent calls this endpoint when the consumer decides to abandon the purchase before payment credentials have been used. Requires device information and assurance data for identity verification. Returns status CANCELLED (HTTP 200) on success, or PENDING (HTTP 202) with pendingEvents if cardholder authentication is required before cancellation can proceed.
@@ -39,6 +84,26 @@ describe 'AgentCapabilitiesApi' do
   # @param [Hash] opts the optional parameters
   # @return [AgenticCreatePurchaseIntentResponse200]
   describe 'cancel_purchase_intent test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for complete_checkout
+  # Complete Checkout ACP
+  # **Final step of the ACP checkout flow.**  Submits payment and buyer information to place the order with the merchant. On success, the session transitions to &#x60;completed&#x60; and an &#x60;order_id&#x60; is returned confirming the merchant accepted the order.  Once completed, the session is immutable — it cannot be updated or cancelled.  **Payment token:** The &#x60;payment.token&#x60; must be a valid token from the payment provider configured for the merchant (e.g. a tokenized card from Stripe or Braintree). ACG forwards the token to the merchant&#39;s payment processor — it is never stored. 
+  # @param session_id The unique identifier of the ACP checkout session to complete.
+  # @param acp_complete_checkout_request Final buyer and payment details needed to place the order. Both &#x60;buyer&#x60; and &#x60;payment&#x60; may have been provided in earlier Create/Update calls; if so, they can be omitted here. At least a valid payment token is required to process the transaction. 
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :idempotency_key Client-generated unique key to ensure this request is processed exactly once. If a request with the same key was already processed, the original response is returned. 
+  # @option opts [String] :accept_language Preferred language for the response (e.g. &#x60;en-US&#x60;, &#x60;fr-FR&#x60;). Passed to the merchant backend for localized content. 
+  # @option opts [String] :user_agent Client user agent string identifying the AI agent platform and version. 
+  # @option opts [String] :request_id Unique request identifier for distributed tracing and debugging. Echoed back in the response headers. 
+  # @option opts [String] :signature Request signature for payload integrity verification. 
+  # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
+  # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
+  # @return [InlineResponse20017]
+  describe 'complete_checkout test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -57,6 +122,38 @@ describe 'AgentCapabilitiesApi' do
     end
   end
 
+  # unit tests for create_checkout_session
+  # Create Checkout Session ACP
+  # **Step 1 of the ACP checkout flow.**  Initiates a new ACP checkout session with the buyer&#39;s cart. ACG validates item availability against the merchant&#39;s catalog, calculates initial pricing and tax, and returns a session object with a unique &#x60;id&#x60;.  **Store the &#x60;id&#x60;** — every subsequent call in this checkout flow (update, complete, cancel) requires it.  The session remains active for 30 minutes. A new session must be created after expiry.  **Idempotency:** Supply an &#x60;Idempotency-Key&#x60; header to safely retry this call without creating duplicate sessions. 
+  # @param acp_create_checkout_session_request The cart contents and buyer context for this checkout session. &#x60;items&#x60; is required. &#x60;buyer&#x60; and &#x60;fulfillment_address&#x60; are optional on creation and can be provided via Update Session before completing checkout. 
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :idempotency_key Client-generated unique key to ensure this request is processed exactly once. If a request with the same key was already processed, the original response is returned. 
+  # @option opts [String] :accept_language Preferred language for the response (e.g. &#x60;en-US&#x60;, &#x60;fr-FR&#x60;). Passed to the merchant backend for localized content. 
+  # @option opts [String] :user_agent Client user agent string identifying the AI agent platform and version. 
+  # @option opts [String] :request_id Unique request identifier for distributed tracing and debugging. Echoed back in the response headers. 
+  # @option opts [String] :signature Request signature for payload integrity verification. 
+  # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
+  # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
+  # @return [InlineResponse20113]
+  describe 'create_checkout_session test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for deactivate_agent_key
+  # Deactivate a key
+  # Deactivate a key (soft delete). Raises 404 if key not found.
+  # @param agent_id Unique agent identifier
+  # @param key_id Unique key identifier
+  # @param [Hash] opts the optional parameters
+  # @return [nil]
+  describe 'deactivate_agent_key test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for enroll_card
   # Enroll a card
   # Enroll a payment card for agentic or e-commerce transactions. This is typically the first step in the Intelligent Commerce payment lifecycle — the agent calls this endpoint to register a consumer&#39;s card, creating a tokenized reference that can be used in subsequent purchase instructions and payment credential retrieval. Requires device information, consumer identity, billing details, and payment instrument references. Returns a status of ACTIVE (HTTP 200) if enrollment completes immediately, or PENDING (HTTP 202) with pendingEvents if cardholder authentication is required. Call this endpoint when a consumer wants to add a new payment card or when setting up a card for agentic payment flows.
@@ -64,6 +161,51 @@ describe 'AgentCapabilitiesApi' do
   # @param [Hash] opts the optional parameters
   # @return [AgenticCardEnrollmentResponse200]
   describe 'enroll_card test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for get_agent
+  # Get an agent
+  # [category 1 — Agent_Capabilities] Get agent by ID with all keys. Raises 404 if agent not found.
+  # @param agent_id Unique agent identifier
+  # @param [Hash] opts the optional parameters
+  # @return [AgentRegistrationResponse201]
+  describe 'get_agent test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for get_agent_key
+  # Get a key by agent and key ID
+  # Get a specific key by agent ID and key ID. Raises 404 if key not found.
+  # @param agent_id Unique agent identifier
+  # @param key_id Unique key identifier
+  # @param [Hash] opts the optional parameters
+  # @return [AddAgentKeyResponse201]
+  describe 'get_agent_key test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for get_checkout_session
+  # Get Checkout Session ACP
+  # Retrieves the current state of an ACP checkout session, including line items, buyer information,  and current totals.  Use this to: - Verify session status before presenting a checkout summary to the buyer - Resume an interrupted checkout flow - Poll for status after an async operation - Confirm a session has not expired before submitting payment 
+  # @param session_id The unique identifier of the ACP checkout session to retrieve. Obtained from the &#x60;id&#x60; field in the Create Session response. 
+  # @param acp_get_checkout_session_request Empty request body.
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :idempotency_key Client-generated unique key to ensure this request is processed exactly once. If a request with the same key was already processed, the original response is returned. 
+  # @option opts [String] :accept_language Preferred language for the response (e.g. &#x60;en-US&#x60;, &#x60;fr-FR&#x60;). Passed to the merchant backend for localized content. 
+  # @option opts [String] :user_agent Client user agent string identifying the AI agent platform and version. 
+  # @option opts [String] :request_id Unique request identifier for distributed tracing and debugging. Echoed back in the response headers. 
+  # @option opts [String] :signature Request signature for payload integrity verification. 
+  # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
+  # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
+  # @return [InlineResponse20113]
+  describe 'get_checkout_session test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -81,6 +223,32 @@ describe 'AgentCapabilitiesApi' do
     end
   end
 
+  # unit tests for list_agent_keys
+  # List keys for an agent
+  # [category 1 — Agent_Capabilities] List all keys for a specific agent with pagination.
+  # @param agent_id Unique agent identifier
+  # @param [Hash] opts the optional parameters
+  # @option opts [Integer] :page Page number (1-indexed)
+  # @option opts [Integer] :page_size Items per page (max 100)
+  # @return [ListAgentKeysResponse200]
+  describe 'list_agent_keys test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for register_agent
+  # Register an agent
+  # Register a new AI agent in the VARS. Once registered, the agent can upload public keys that merchants and Visa services use to verify request signatures. Raises 409 if domain, contactEmail, or tokenRequestorId already exists.
+  # @param agent_request Agent registration request
+  # @param [Hash] opts the optional parameters
+  # @return [AgentRegistrationResponse201]
+  describe 'register_agent test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for retrieve_payment_credentials
   # Retrieve payment credentials
   # Retrieve tokenized payment credentials for a purchase intent to complete the transaction at a merchant. The agent calls this endpoint after a purchase intent has been created and approved, providing transaction-level details including order information, merchant details, payment options, and production information. Returns COMPLETED (HTTP 200) with a signed payload containing encrypted payment credentials (authorization token and JWS-signed payload), or PENDING (HTTP 202) with pendingEvents if additional cardholder authentication is required. The signed payload is used by the merchant&#39;s payment processor to complete the transaction.
@@ -89,6 +257,119 @@ describe 'AgentCapabilitiesApi' do
   # @param [Hash] opts the optional parameters
   # @return [AgenticRetrievePaymentCredentialsResponse200]
   describe 'retrieve_payment_credentials test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for ucp_cancel_checkout
+  # Cancel Checkout UCP
+  # Cancels an active UCP checkout session. No charge is made.  This operation is idempotent — cancelling an already-cancelled session returns a successful response. Sessions also expire automatically after 30 minutes of inactivity. 
+  # @param session_id The unique identifier of the UCP checkout session to cancel.
+  # @param [Hash] opts the optional parameters
+  # @return [InlineResponse20114]
+  describe 'ucp_cancel_checkout test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for ucp_complete_checkout
+  # Complete Checkout UCP
+  # **Final step of the UCP checkout flow.**  Finalizes the session and places the order with the merchant. ACG translates the UCP completion request to the merchant&#39;s checkout API.  On success, the session transitions to &#x60;completed&#x60;. An &#x60;order_id&#x60; is not returned in the UCP response — use the ACP Complete endpoint if you need order confirmation details.  **Always use an &#x60;idempotency-key&#x60;** to prevent duplicate orders on network retries. 
+  # @param session_id The unique identifier of the UCP checkout session to complete.
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :idempotency_key **Strongly recommended.** A unique key that ensures this order is placed exactly once on retries. Lowercase per UCP spec. 
+  # @option opts [UcpCompleteCheckoutRequest] :ucp_complete_checkout_request UCP completion payload containing payment instrument and optional risk signals. If payment context was already provided in the Create or Update call, the body can be omitted. Risk signals are logged for fraud analysis and are not forwarded to the merchant. 
+  # @return [InlineResponse20114]
+  describe 'ucp_complete_checkout test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for ucp_create_checkout_session
+  # Create Checkout Session UCP
+  # **Step 1 of the UCP checkout flow.**  Creates a new UCP checkout session using Google&#39;s Universal Commerce Protocol format. ACG translates the UCP request into the internal ACP format, applies merchant pricing, and returns a UCP-format session response with a session &#x60;id&#x60;.  UCP uses &#x60;line_items&#x60; (instead of &#x60;items&#x60;) and lowercase header names (&#x60;idempotency-key&#x60;) per the UCP specification.  **Store the &#x60;id&#x60;** from the response — it is required for all subsequent UCP calls. 
+  # @param ucp_create_checkout_session_request UCP checkout session creation payload containing line items, buyer details, currency, and optional payment, fulfillment, and discount information. 
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :idempotency_key Client-generated unique key (UUID recommended) to ensure this request is processed exactly once. Lowercase per UCP specification. 
+  # @return [InlineResponse20114]
+  describe 'ucp_create_checkout_session test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for ucp_get_checkout_session
+  # Get Checkout Session UCP
+  # Retrieves the current state of a UCP checkout session.  Use this to verify session status, retrieve updated totals after a fulfillment change, or resume a session after an interruption. 
+  # @param session_id The unique identifier of the UCP checkout session to retrieve. Obtained from the &#x60;id&#x60; field in the Create Session response. 
+  # @param ucp_get_checkout_session_request Empty request body.
+  # @param [Hash] opts the optional parameters
+  # @return [InlineResponse20114]
+  describe 'ucp_get_checkout_session test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for ucp_update_checkout_session
+  # Update Checkout Session UCP
+  # Modifies an active UCP checkout session and returns the updated session state.  Use this to change line item quantities, update fulfillment address or method, or apply discount codes. Totals are recalculated and returned in the response.  Only the fields you include in the request body are updated. 
+  # @param session_id The unique identifier of the UCP checkout session to update.
+  # @param ucp_update_checkout_session_request UCP session update payload. All fields are optional — only fields you include will be applied. 
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :idempotency_key Client-generated unique key for idempotency. Lowercase per UCP spec.
+  # @return [InlineResponse20114]
+  describe 'ucp_update_checkout_session test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for update_agent
+  # Update an agent
+  # [category 1 — Agent_Capabilities] Update agent information. Updatable fields are name, domain, description, contactEmail, and agentMetadata. Extra fields (e.g. tokenRequestorId, keys) will return 422 Validation Error. Raises 404 if agent not found, 403 if agent is deactivated, 409 if new domain or contactEmail already exists.
+  # @param agent_id Unique agent identifier
+  # @param agent_update Agent update request
+  # @param [Hash] opts the optional parameters
+  # @return [AgentRegistrationResponse201]
+  describe 'update_agent test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for update_agent_key
+  # Update a key
+  # Update key information. Updatable fields are keyName, publicKey, algorithm, and expirationDate. Raises 404 if agent or key not found, 403 if agent or key is deactivated, 409 if new keyName already exists.
+  # @param agent_id Unique agent identifier
+  # @param key_id Unique key identifier
+  # @param key_update Key update request
+  # @param [Hash] opts the optional parameters
+  # @return [AddAgentKeyResponse201]
+  describe 'update_agent_key test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for update_checkout_session
+  # Update Checkout Session ACP
+  # Modifies an active ACP checkout session and returns the updated session state with recalculated totals.  Use this to: - Add, remove, or change quantities of cart items - Apply or remove discount codes - Update the buyer&#39;s shipping address or contact details - Trigger re-calculation of shipping costs and tax  Only fields included in the request body are updated — omitted fields retain their current values.  **Idempotency:** Supply an &#x60;Idempotency-Key&#x60; to safely retry updates without applying them twice. 
+  # @param session_id The unique identifier of the ACP checkout session to update. Obtained from the &#x60;id&#x60; field in the Create Session response. 
+  # @param acp_update_checkout_session_request Fields to update. All fields are optional — only included fields are changed. To replace the cart entirely, provide the full &#x60;items&#x60; array. 
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :idempotency_key Client-generated unique key to ensure this request is processed exactly once. If a request with the same key was already processed, the original response is returned. 
+  # @option opts [String] :accept_language Preferred language for the response (e.g. &#x60;en-US&#x60;, &#x60;fr-FR&#x60;). Passed to the merchant backend for localized content. 
+  # @option opts [String] :user_agent Client user agent string identifying the AI agent platform and version. 
+  # @option opts [String] :request_id Unique request identifier for distributed tracing and debugging. Echoed back in the response headers. 
+  # @option opts [String] :signature Request signature for payload integrity verification. 
+  # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
+  # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
+  # @return [InlineResponse20113]
+  describe 'update_checkout_session test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

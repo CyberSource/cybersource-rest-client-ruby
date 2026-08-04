@@ -3,14 +3,14 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**event_date** | **String** | Date that the webhook was delivered | [optional] 
-**event_type** | **String** | The event name the webhook was delivered for | [optional] 
-**organization_id** | **String** | The Organization Identifier. | [optional] 
-**payloads** | [**InlineResponse2017Payloads**](InlineResponse2017Payloads.md) |  | [optional] 
-**product_id** | **String** | The product the webhook was delivered for | [optional] 
-**request_type** | **String** | Identifies the the type of request | [optional] 
-**retry_number** | **Integer** | The number of retry attempts for a given webhook | [optional] 
-**transaction_trace_id** | **String** | The identifier for the webhook | [optional] 
-**webhook_id** | **String** | The identifier of the subscription | [optional] 
+**id** | **String** |  | [optional] 
+**submit_time_utc** | **DateTime** | Time of request in UTC. &#x60;Format: YYYY-MM-DDThh:mm:ssZ&#x60;  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the time. The Z indicates UTC.  | [optional] 
+**status** | **String** | The status of Registration request Possible Values:   - &#39;INITIALIZED&#39;   - &#39;RECEIVED&#39;   - &#39;PROCESSING&#39;   - &#39;SUCCESS&#39;   - &#39;FAILURE&#39;   - &#39;PARTIAL&#39;  | [optional] 
+**registration_information** | [**InlineResponse2017RegistrationInformation**](InlineResponse2017RegistrationInformation.md) |  | [optional] 
+**integration_information** | [**InlineResponse2017IntegrationInformation**](InlineResponse2017IntegrationInformation.md) |  | [optional] 
+**organization_information** | [**InlineResponse2017OrganizationInformation**](InlineResponse2017OrganizationInformation.md) |  | [optional] 
+**product_information_setups** | [**Array&lt;InlineResponse2017ProductInformationSetups&gt;**](InlineResponse2017ProductInformationSetups.md) |  | [optional] 
+**message** | **String** |  | [optional] 
+**details** | **Hash&lt;String, Array&lt;Object&gt;&gt;** |  | [optional] 
 
 

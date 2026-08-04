@@ -13,16 +13,19 @@ require 'date'
 
 module CyberSource
   class InlineResponse4004
-    # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC.  Returned by Cybersource for all services. 
-    attr_accessor :submit_time_utc
+    # A unique identification number to identify the submitted request. It is also appended to the endpoint of the resource. 
+    attr_accessor :id
 
-    # The status of the submitted transaction.  Possible values:  - INVALID_REQUEST 
+    # Time of request in UTC. Format: `YYYY-MM-DD'T'HH:mm:ssZ`  Example: `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the time. The Z indicates UTC. 
+    attr_accessor :submit_time_stamp_utc
+
+    # Possible values: - INVALID_REQUEST 
     attr_accessor :status
 
-    # The reason of the status.  Possible values:  - MISSING_FIELD  - INVALID_DATA  - DUPLICATE_REQUEST  - INVALID_CARD  - CARD_TYPE_NOT_ACCEPTED  - INVALID_MERCHANT_CONFIGURATION  - PROCESSOR_UNAVAILABLE  - INVALID_CARD_TYPE 
+    # The reason of the status.  Possible values: - INVALID_DATA - MISSING_FIELD 
     attr_accessor :reason
 
-    # The detail message related to the status and reason listed above.
+    # The detail message related to the status and reason listed above. 
     attr_accessor :message
 
     attr_accessor :details
@@ -30,7 +33,8 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'submit_time_utc' => :'submitTimeUtc',
+        :'id' => :'id',
+        :'submit_time_stamp_utc' => :'submitTimeStampUtc',
         :'status' => :'status',
         :'reason' => :'reason',
         :'message' => :'message',
@@ -41,7 +45,8 @@ module CyberSource
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'submit_time_utc' => :'submit_time_utc',
+        :'id' => :'id',
+        :'submit_time_stamp_utc' => :'submit_time_stamp_utc',
         :'status' => :'status',
         :'reason' => :'reason',
         :'message' => :'message',
@@ -52,11 +57,12 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'submit_time_utc' => :'String',
+        :'id' => :'String',
+        :'submit_time_stamp_utc' => :'String',
         :'status' => :'String',
         :'reason' => :'String',
         :'message' => :'String',
-        :'details' => :'Array<PtsV2PaymentsPost201ResponseErrorInformationDetails>'
+        :'details' => :'Array<InlineResponse2014ErrorInformationDetails>'
       }
     end
 
@@ -68,8 +74,12 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'submitTimeUtc')
-        self.submit_time_utc = attributes[:'submitTimeUtc']
+      if attributes.has_key?(:'id')
+        self.id = attributes[:'id']
+      end
+
+      if attributes.has_key?(:'submitTimeStampUtc')
+        self.submit_time_stamp_utc = attributes[:'submitTimeStampUtc']
       end
 
       if attributes.has_key?(:'status')
@@ -95,13 +105,36 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @status.nil?
+        invalid_properties.push('invalid value for "status", status cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @status.nil?
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] id Value to be assigned
+    def id=(id)
+      @id = id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] submit_time_stamp_utc Value to be assigned
+    def submit_time_stamp_utc=(submit_time_stamp_utc)
+      @submit_time_stamp_utc = submit_time_stamp_utc
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] message Value to be assigned
+    def message=(message)
+      @message = message
     end
 
     # Checks equality by comparing each attribute.
@@ -109,7 +142,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          submit_time_utc == o.submit_time_utc &&
+          id == o.id &&
+          submit_time_stamp_utc == o.submit_time_stamp_utc &&
           status == o.status &&
           reason == o.reason &&
           message == o.message &&
@@ -125,7 +159,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [submit_time_utc, status, reason, message, details].hash
+      [id, submit_time_stamp_utc, status, reason, message, details].hash
     end
 
     # Builds the object from hash

@@ -13,38 +13,33 @@ require 'date'
 
 module CyberSource
   class InlineResponse2014
+    # A unique identification number to identify the submitted request. It is also appended to the endpoint of the resource. 
     attr_accessor :id
 
-    # Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the time. The Z indicates UTC. 
-    attr_accessor :submit_time_utc
-
-    # The status of Registration request Possible Values:   - 'INITIALIZED'   - 'RECEIVED'   - 'PROCESSING'   - 'SUCCESS'   - 'FAILURE'   - 'PARTIAL' 
+    # The status of the submitted transaction.  Possible values: - `COMPLETED` - `INVALID_REQUEST` - `SERVER_ERROR` 
     attr_accessor :status
 
-    attr_accessor :registration_information
+    # Time of request in UTC. Format: `YYYY-MM-DD'T'HH:mm:ssZ`  Example: `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the time. The Z indicates UTC. 
+    attr_accessor :submit_time_stamp_utc
 
-    attr_accessor :integration_information
+    attr_accessor :order_information
 
-    attr_accessor :organization_information
+    attr_accessor :error_information
 
-    attr_accessor :product_information_setups
+    attr_accessor :processor_information
 
-    attr_accessor :message
-
-    attr_accessor :details
+    attr_accessor :processing_information
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'id' => :'id',
-        :'submit_time_utc' => :'submitTimeUtc',
         :'status' => :'status',
-        :'registration_information' => :'registrationInformation',
-        :'integration_information' => :'integrationInformation',
-        :'organization_information' => :'organizationInformation',
-        :'product_information_setups' => :'productInformationSetups',
-        :'message' => :'message',
-        :'details' => :'details'
+        :'submit_time_stamp_utc' => :'submitTimeStampUtc',
+        :'order_information' => :'orderInformation',
+        :'error_information' => :'errorInformation',
+        :'processor_information' => :'processorInformation',
+        :'processing_information' => :'processingInformation'
       }
     end
 
@@ -52,14 +47,12 @@ module CyberSource
     def self.json_map
       {
         :'id' => :'id',
-        :'submit_time_utc' => :'submit_time_utc',
         :'status' => :'status',
-        :'registration_information' => :'registration_information',
-        :'integration_information' => :'integration_information',
-        :'organization_information' => :'organization_information',
-        :'product_information_setups' => :'product_information_setups',
-        :'message' => :'message',
-        :'details' => :'details'
+        :'submit_time_stamp_utc' => :'submit_time_stamp_utc',
+        :'order_information' => :'order_information',
+        :'error_information' => :'error_information',
+        :'processor_information' => :'processor_information',
+        :'processing_information' => :'processing_information'
       }
     end
 
@@ -67,14 +60,12 @@ module CyberSource
     def self.swagger_types
       {
         :'id' => :'String',
-        :'submit_time_utc' => :'DateTime',
         :'status' => :'String',
-        :'registration_information' => :'InlineResponse2014RegistrationInformation',
-        :'integration_information' => :'InlineResponse2014IntegrationInformation',
-        :'organization_information' => :'InlineResponse2014OrganizationInformation',
-        :'product_information_setups' => :'Array<InlineResponse2014ProductInformationSetups>',
-        :'message' => :'String',
-        :'details' => :'Hash<String, Array<Object>>'
+        :'submit_time_stamp_utc' => :'String',
+        :'order_information' => :'InlineResponse2014OrderInformation',
+        :'error_information' => :'InlineResponse2014ErrorInformation',
+        :'processor_information' => :'InlineResponse2014ProcessorInformation',
+        :'processing_information' => :'InlineResponse2014ProcessingInformation'
       }
     end
 
@@ -90,40 +81,28 @@ module CyberSource
         self.id = attributes[:'id']
       end
 
-      if attributes.has_key?(:'submitTimeUtc')
-        self.submit_time_utc = attributes[:'submitTimeUtc']
-      end
-
       if attributes.has_key?(:'status')
         self.status = attributes[:'status']
       end
 
-      if attributes.has_key?(:'registrationInformation')
-        self.registration_information = attributes[:'registrationInformation']
+      if attributes.has_key?(:'submitTimeStampUtc')
+        self.submit_time_stamp_utc = attributes[:'submitTimeStampUtc']
       end
 
-      if attributes.has_key?(:'integrationInformation')
-        self.integration_information = attributes[:'integrationInformation']
+      if attributes.has_key?(:'orderInformation')
+        self.order_information = attributes[:'orderInformation']
       end
 
-      if attributes.has_key?(:'organizationInformation')
-        self.organization_information = attributes[:'organizationInformation']
+      if attributes.has_key?(:'errorInformation')
+        self.error_information = attributes[:'errorInformation']
       end
 
-      if attributes.has_key?(:'productInformationSetups')
-        if (value = attributes[:'productInformationSetups']).is_a?(Array)
-          self.product_information_setups = value
-        end
+      if attributes.has_key?(:'processorInformation')
+        self.processor_information = attributes[:'processorInformation']
       end
 
-      if attributes.has_key?(:'message')
-        self.message = attributes[:'message']
-      end
-
-      if attributes.has_key?(:'details')
-        if (value = attributes[:'details']).is_a?(Hash)
-          self.details = value
-        end
+      if attributes.has_key?(:'processingInformation')
+        self.processing_information = attributes[:'processingInformation']
       end
     end
 
@@ -146,20 +125,30 @@ module CyberSource
       @id = id
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] status Value to be assigned
+    def status=(status)
+      @status = status
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] submit_time_stamp_utc Value to be assigned
+    def submit_time_stamp_utc=(submit_time_stamp_utc)
+      @submit_time_stamp_utc = submit_time_stamp_utc
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           id == o.id &&
-          submit_time_utc == o.submit_time_utc &&
           status == o.status &&
-          registration_information == o.registration_information &&
-          integration_information == o.integration_information &&
-          organization_information == o.organization_information &&
-          product_information_setups == o.product_information_setups &&
-          message == o.message &&
-          details == o.details
+          submit_time_stamp_utc == o.submit_time_stamp_utc &&
+          order_information == o.order_information &&
+          error_information == o.error_information &&
+          processor_information == o.processor_information &&
+          processing_information == o.processing_information
     end
 
     # @see the `==` method
@@ -171,7 +160,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, submit_time_utc, status, registration_information, integration_information, organization_information, product_information_setups, message, details].hash
+      [id, status, submit_time_stamp_utc, order_information, error_information, processor_information, processing_information].hash
     end
 
     # Builds the object from hash

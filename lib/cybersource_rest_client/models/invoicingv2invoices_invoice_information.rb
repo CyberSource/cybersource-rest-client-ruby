@@ -17,13 +17,16 @@ module CyberSource
     # Invoice Number.
     attr_accessor :invoice_number
 
+    # The transaction reference number (TRN) is a identifier assigned to each payment transaction that allows merchants, customers, and payment processors to track and reference specific transactions throughout their lifecycle.  When provided, this value is passed to the payment processor as the reconciliation ID for the payment. For invoices this is typically the invoice number, and for purchase or donation links it is typically the link identifier.  Only letters and numbers are allowed; spaces and other special characters are not permitted. 
+    attr_accessor :transaction_reference_number
+
     # The description included in the invoice.
     attr_accessor :description
 
-    # The invoice due date. This field is required for creating an invoice. Format: `YYYY-MM-DD`, where `YYYY` = year, `MM` = month, and `DD` = day 
+    # The invoice due date. This field is required for creating an invoice. Format: `YYYY-MM-DD`, where `YYYY` = year, `MM` = month, and `DD` = day.  The invoice link automatically expires 12 months after the due date. 
     attr_accessor :due_date
 
-    # Define an expiration date for the link.  Format: `YYYY-MM-DD`, where `YYYY` = year, `MM` = month, and `DD` = day 
+    # Define an expiration date for the link.  The date must be today or in the future.  Format: `YYYY-MM-DD`, where `YYYY` = year, `MM` = month, and `DD` = day.  The invoice link automatically expires 12 months after the due date. 
     attr_accessor :expiration_date
 
     # If set to `true`, we send the invoice immediately. If set to `false`, the invoice remains in draft mode.
@@ -39,6 +42,7 @@ module CyberSource
     def self.attribute_map
       {
         :'invoice_number' => :'invoiceNumber',
+        :'transaction_reference_number' => :'transactionReferenceNumber',
         :'description' => :'description',
         :'due_date' => :'dueDate',
         :'expiration_date' => :'expirationDate',
@@ -52,6 +56,7 @@ module CyberSource
     def self.json_map
       {
         :'invoice_number' => :'invoice_number',
+        :'transaction_reference_number' => :'transaction_reference_number',
         :'description' => :'description',
         :'due_date' => :'due_date',
         :'expiration_date' => :'expiration_date',
@@ -65,6 +70,7 @@ module CyberSource
     def self.swagger_types
       {
         :'invoice_number' => :'String',
+        :'transaction_reference_number' => :'String',
         :'description' => :'String',
         :'due_date' => :'Date',
         :'expiration_date' => :'Date',
@@ -84,6 +90,10 @@ module CyberSource
 
       if attributes.has_key?(:'invoiceNumber')
         self.invoice_number = attributes[:'invoiceNumber']
+      end
+
+      if attributes.has_key?(:'transactionReferenceNumber')
+        self.transaction_reference_number = attributes[:'transactionReferenceNumber']
       end
 
       if attributes.has_key?(:'description')
@@ -139,6 +149,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] transaction_reference_number Value to be assigned
+    def transaction_reference_number=(transaction_reference_number)
+      @transaction_reference_number = transaction_reference_number
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] description Value to be assigned
     def description=(description)
       #if description.nil?
@@ -154,6 +170,7 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           invoice_number == o.invoice_number &&
+          transaction_reference_number == o.transaction_reference_number &&
           description == o.description &&
           due_date == o.due_date &&
           expiration_date == o.expiration_date &&
@@ -171,7 +188,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [invoice_number, description, due_date, expiration_date, send_immediately, allow_partial_payments, delivery_mode].hash
+      [invoice_number, transaction_reference_number, description, due_date, expiration_date, send_immediately, allow_partial_payments, delivery_mode].hash
     end
 
     # Builds the object from hash

@@ -25,6 +25,9 @@ module CyberSource
     # This API field will indicate whether a card verification check is being performed during the transaction  Possible values:   - `true`   - `false` (default value) 
     attr_accessor :card_verification_indicator
 
+    # Indicates whether the transaction is an Account Funding Transaction (AFT).  This field is mandatory for Account Funding Transactions (AFT).   Possible values:   - `true` (This is an AFT transaction)   - `false` (default value) (This is not an AFT transaction) 
+    attr_accessor :aft_indicator
+
     attr_accessor :initiator
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -34,6 +37,7 @@ module CyberSource
         :'auth_indicator' => :'authIndicator',
         :'extend_auth_indicator' => :'extendAuthIndicator',
         :'card_verification_indicator' => :'cardVerificationIndicator',
+        :'aft_indicator' => :'aftIndicator',
         :'initiator' => :'initiator'
       }
     end
@@ -45,6 +49,7 @@ module CyberSource
         :'auth_indicator' => :'auth_indicator',
         :'extend_auth_indicator' => :'extend_auth_indicator',
         :'card_verification_indicator' => :'card_verification_indicator',
+        :'aft_indicator' => :'aft_indicator',
         :'initiator' => :'initiator'
       }
     end
@@ -56,6 +61,7 @@ module CyberSource
         :'auth_indicator' => :'String',
         :'extend_auth_indicator' => :'String',
         :'card_verification_indicator' => :'BOOLEAN',
+        :'aft_indicator' => :'BOOLEAN',
         :'initiator' => :'TssV2TransactionsGet200ResponseProcessingInformationAuthorizationOptionsInitiator'
       }
     end
@@ -82,6 +88,10 @@ module CyberSource
 
       if attributes.has_key?(:'cardVerificationIndicator')
         self.card_verification_indicator = attributes[:'cardVerificationIndicator']
+      end
+
+      if attributes.has_key?(:'aftIndicator')
+        self.aft_indicator = attributes[:'aftIndicator']
       end
 
       if attributes.has_key?(:'initiator')
@@ -129,6 +139,7 @@ module CyberSource
           auth_indicator == o.auth_indicator &&
           extend_auth_indicator == o.extend_auth_indicator &&
           card_verification_indicator == o.card_verification_indicator &&
+          aft_indicator == o.aft_indicator &&
           initiator == o.initiator
     end
 
@@ -141,7 +152,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [auth_type, auth_indicator, extend_auth_indicator, card_verification_indicator, initiator].hash
+      [auth_type, auth_indicator, extend_auth_indicator, card_verification_indicator, aft_indicator, initiator].hash
     end
 
     # Builds the object from hash

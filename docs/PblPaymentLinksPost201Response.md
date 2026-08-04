@@ -10,5 +10,6 @@ Name | Type | Description | Notes
 **processing_information** | [**Iplv2paymentlinksProcessingInformation**](Iplv2paymentlinksProcessingInformation.md) |  | [optional] 
 **purchase_information** | [**PblPaymentLinksPost201ResponsePurchaseInformation**](PblPaymentLinksPost201ResponsePurchaseInformation.md) |  | [optional] 
 **order_information** | [**PblPaymentLinksPost201ResponseOrderInformation**](PblPaymentLinksPost201ResponseOrderInformation.md) |  | [optional] 
+**merchant_defined_field_values_with_definition** | [**Array&lt;InvoicingV2InvoicesPost201ResponseMerchantDefinedFieldValuesWithDefinition&gt;**](InvoicingV2InvoicesPost201ResponseMerchantDefinedFieldValuesWithDefinition.md) |  | [optional] 
 
 

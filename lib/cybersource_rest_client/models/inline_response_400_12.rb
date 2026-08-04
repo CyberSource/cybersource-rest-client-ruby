@@ -13,50 +13,51 @@ require 'date'
 
 module CyberSource
   class InlineResponse40012
-    # Time verification was requested  Format: `YYYY-MM-DDThhmmssZ`, where: - `T`:  Separates the date and the time - `Z`:  Indicates Coordinated Universal Time (UTC), also known as Greenwich Mean Time (GMT)  Example:  `2020-01-11T224757Z` equals January 11, 2020, at 22:47:57 (10:47:57 p.m.) 
-    attr_accessor :submit_time_utc
-
-    # Possible values:   - `INVALID_REQUEST` 
+    # The status of the submitted request.  Possible values: - BAD_REQUEST
     attr_accessor :status
 
-    # The detail message related to the status and reason
+    # The detail message related to the status and reason listed above.
     attr_accessor :message
 
-    # The reason of the status.  Possible values:   - `INVALID_REQUEST` 
-    attr_accessor :reason
+    # An optional short string which identifies the exact error.
+    attr_accessor :code
 
+    # An optional array which provides more details of the error.
     attr_accessor :details
+
+    # Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the time. The Z indicates UTC. 
+    attr_accessor :submit_time_utc
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'submit_time_utc' => :'submitTimeUtc',
         :'status' => :'status',
         :'message' => :'message',
-        :'reason' => :'reason',
-        :'details' => :'details'
+        :'code' => :'code',
+        :'details' => :'details',
+        :'submit_time_utc' => :'submitTimeUtc'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'submit_time_utc' => :'submit_time_utc',
         :'status' => :'status',
         :'message' => :'message',
-        :'reason' => :'reason',
-        :'details' => :'details'
+        :'code' => :'code',
+        :'details' => :'details',
+        :'submit_time_utc' => :'submit_time_utc'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'submit_time_utc' => :'String',
         :'status' => :'String',
         :'message' => :'String',
-        :'reason' => :'String',
-        :'details' => :'Array<InlineResponse40012Details>'
+        :'code' => :'String',
+        :'details' => :'Array<InlineResponse40012Details>',
+        :'submit_time_utc' => :'String'
       }
     end
 
@@ -68,10 +69,6 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'submitTimeUtc')
-        self.submit_time_utc = attributes[:'submitTimeUtc']
-      end
-
       if attributes.has_key?(:'status')
         self.status = attributes[:'status']
       end
@@ -80,14 +77,18 @@ module CyberSource
         self.message = attributes[:'message']
       end
 
-      if attributes.has_key?(:'reason')
-        self.reason = attributes[:'reason']
+      if attributes.has_key?(:'code')
+        self.code = attributes[:'code']
       end
 
       if attributes.has_key?(:'details')
         if (value = attributes[:'details']).is_a?(Array)
           self.details = value
         end
+      end
+
+      if attributes.has_key?(:'submitTimeUtc')
+        self.submit_time_utc = attributes[:'submitTimeUtc']
       end
     end
 
@@ -109,11 +110,11 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          submit_time_utc == o.submit_time_utc &&
           status == o.status &&
           message == o.message &&
-          reason == o.reason &&
-          details == o.details
+          code == o.code &&
+          details == o.details &&
+          submit_time_utc == o.submit_time_utc
     end
 
     # @see the `==` method
@@ -125,7 +126,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [submit_time_utc, status, message, reason, details].hash
+      [status, message, code, details, submit_time_utc].hash
     end
 
     # Builds the object from hash

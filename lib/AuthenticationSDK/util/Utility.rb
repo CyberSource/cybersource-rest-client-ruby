@@ -38,7 +38,19 @@ public
       return nil if certificateList.nil?
 
       certificateList.find do |cert|
-        cert.subject.to_a.any? { |_, value, _| value.include?(keyAlias) }
+        # Ensure cert is an OpenSSL::X509::Certificate, even if it's a PEM string
+        parsed = if cert.is_a?(String)
+          begin
+            OpenSSL::X509::Certificate.new(cert)
+          rescue OpenSSL::X509::CertificateError
+            next  # Skip invalid entries safely
+          end
+        else
+          cert
+        end
+
+        # Search all subject attributes for the keyAlias
+        parsed.subject.to_a.any? { |_, value, _| value.include?(keyAlias) }
       end
     end
 
@@ -46,14 +58,13 @@ public
       p12File = File.binread(certificateFilePath)
       p12Object = OpenSSL::PKCS12.new(p12File, keyPass)
 
-      privateKey = OpenSSL::PKey::RSA.new(p12Object.key)
+      privateKey = (OpenSSL::PKey::RSA.new(p12Object.key)).to_pem
 
-      primaryX5Certificate = p12Object.certificate
+      primaryX5Certificate = (p12Object.certificate).to_pem
       additionalX5Certificates = p12Object.ca_certs
 
       certificateList = [primaryX5Certificate]
-      certificateList.concat(additionalX5Certificates) if additionalX5Certificates
-
+      certificateList.concat(additionalX5Certificates.map(&:to_pem)) if additionalX5Certificates
       return [privateKey, certificateList]
     end
 

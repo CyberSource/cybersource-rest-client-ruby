@@ -24,6 +24,8 @@ module CyberSource
 
     attr_accessor :order_information
 
+    attr_accessor :merchant_defined_field_values
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -31,7 +33,8 @@ module CyberSource
         :'client_reference_information' => :'clientReferenceInformation',
         :'processing_information' => :'processingInformation',
         :'purchase_information' => :'purchaseInformation',
-        :'order_information' => :'orderInformation'
+        :'order_information' => :'orderInformation',
+        :'merchant_defined_field_values' => :'merchantDefinedFieldValues'
       }
     end
 
@@ -42,7 +45,8 @@ module CyberSource
         :'client_reference_information' => :'client_reference_information',
         :'processing_information' => :'processing_information',
         :'purchase_information' => :'purchase_information',
-        :'order_information' => :'order_information'
+        :'order_information' => :'order_information',
+        :'merchant_defined_field_values' => :'merchant_defined_field_values'
       }
     end
 
@@ -53,7 +57,8 @@ module CyberSource
         :'client_reference_information' => :'Invoicingv2invoicesClientReferenceInformation',
         :'processing_information' => :'Iplv2paymentlinksidProcessingInformation',
         :'purchase_information' => :'Iplv2paymentlinksidPurchaseInformation',
-        :'order_information' => :'Iplv2paymentlinksidOrderInformation'
+        :'order_information' => :'Iplv2paymentlinksidOrderInformation',
+        :'merchant_defined_field_values' => :'Array<Invoicingv2invoicesMerchantDefinedFieldValues>'
       }
     end
 
@@ -84,6 +89,12 @@ module CyberSource
       if attributes.has_key?(:'orderInformation')
         self.order_information = attributes[:'orderInformation']
       end
+
+      if attributes.has_key?(:'merchantDefinedFieldValues')
+        if (value = attributes[:'merchantDefinedFieldValues']).is_a?(Array)
+          self.merchant_defined_field_values = value
+        end
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -108,7 +119,8 @@ module CyberSource
           client_reference_information == o.client_reference_information &&
           processing_information == o.processing_information &&
           purchase_information == o.purchase_information &&
-          order_information == o.order_information
+          order_information == o.order_information &&
+          merchant_defined_field_values == o.merchant_defined_field_values
     end
 
     # @see the `==` method
@@ -120,7 +132,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [status, client_reference_information, processing_information, purchase_information, order_information].hash
+      [status, client_reference_information, processing_information, purchase_information, order_information, merchant_defined_field_values].hash
     end
 
     # Builds the object from hash

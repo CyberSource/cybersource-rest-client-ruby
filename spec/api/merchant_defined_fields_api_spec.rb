@@ -43,6 +43,19 @@ describe 'MerchantDefinedFieldsApi' do
     end
   end
 
+  # unit tests for create_pbl_merchant_defined_field_definition
+  # Create a PayByLink merchant defined field for a given reference type
+  # Creates a merchant defined field for the given reference type (&#x60;Purchase&#x60; or &#x60;Donation&#x60;). The field type is independent of the reference type: both &#x60;Purchase&#x60; and &#x60;Donation&#x60; support both &#x60;Text&#x60; and &#x60;Select&#x60; fields. Set &#x60;fieldType&#x60; to &#x60;Text&#x60; or &#x60;Select&#x60; accordingly. 
+  # @param reference_type The reference type for which the merchant defined field is to be created. Available values are Purchase and Donation
+  # @param merchant_defined_field_definition_request 
+  # @param [Hash] opts the optional parameters
+  # @return [Array<InlineResponse2004>]
+  describe 'create_pbl_merchant_defined_field_definition test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for delete_merchant_defined_fields_definitions
   # Delete a MerchantDefinedField by ID
   # @param reference_type 
@@ -50,6 +63,18 @@ describe 'MerchantDefinedFieldsApi' do
   # @param [Hash] opts the optional parameters
   # @return [nil]
   describe 'delete_merchant_defined_fields_definitions test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for delete_pbl_merchant_defined_fields_definitions
+  # Delete a PayByLink MerchantDefinedField by ID
+  # @param reference_type 
+  # @param id 
+  # @param [Hash] opts the optional parameters
+  # @return [nil]
+  describe 'delete_pbl_merchant_defined_fields_definitions test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -66,6 +91,17 @@ describe 'MerchantDefinedFieldsApi' do
     end
   end
 
+  # unit tests for get_pbl_merchant_defined_fields_definitions
+  # Get all PayByLink merchant defined fields for a given reference type
+  # @param reference_type The reference type for which merchant defined fields are to be fetched. Available values are Purchase, Donation and PayByLink. PayByLink returns the merchant defined fields for both Purchase and Donation combined.
+  # @param [Hash] opts the optional parameters
+  # @return [Array<InlineResponse2004>]
+  describe 'get_pbl_merchant_defined_fields_definitions test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for put_merchant_defined_fields_definitions
   # Update a MerchantDefinedField by ID
   # @param reference_type 
@@ -74,6 +110,19 @@ describe 'MerchantDefinedFieldsApi' do
   # @param [Hash] opts the optional parameters
   # @return [Array<InlineResponse2004>]
   describe 'put_merchant_defined_fields_definitions test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for put_pbl_merchant_defined_fields_definitions
+  # Update a PayByLink MerchantDefinedField by ID
+  # @param reference_type 
+  # @param id 
+  # @param merchant_defined_field_core 
+  # @param [Hash] opts the optional parameters
+  # @return [Array<InlineResponse2004>]
+  describe 'put_pbl_merchant_defined_fields_definitions test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

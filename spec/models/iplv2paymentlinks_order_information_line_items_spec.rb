@@ -85,4 +85,10 @@ describe 'Iplv2paymentlinksOrderInformationLineItems' do
     end
   end
 
+  describe 'test attribute "total_amount"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

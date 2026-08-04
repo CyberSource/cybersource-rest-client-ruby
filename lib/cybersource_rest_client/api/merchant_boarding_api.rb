@@ -102,13 +102,103 @@ module CyberSource
       end
       return data, status_code, headers
     end
+    # Updates the information on a boarding registration
+    # This end point will partially update a boarding registration 
+    #
+    # @param registration_id Identifies the boarding registration to be updated
+    # @param patch_registration_body Boarding registration data to be patched
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :v_c_idempotency_id defines idempotency of the request
+    # @return [InlineResponse2005]
+    #
+    def patch_registration(registration_id, patch_registration_body, opts = {})
+      data, status_code, headers = patch_registration_with_http_info(registration_id, patch_registration_body, opts)
+      return data, status_code, headers
+    end
+
+    # Updates the information on a boarding registration
+    # This end point will partially update a boarding registration 
+    # @param registration_id Identifies the boarding registration to be updated
+    # @param patch_registration_body Boarding registration data to be patched
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :v_c_idempotency_id defines idempotency of the request
+    # @return [Array<(InlineResponse2005, Fixnum, Hash)>] InlineResponse2005 data, response status code and response headers
+    def patch_registration_with_http_info(registration_id, patch_registration_body, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: MerchantBoardingApi.patch_registration ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'registration_id' is set
+      if @api_client.config.client_side_validation && registration_id.nil?
+        fail ArgumentError, "Missing the required parameter 'registration_id' when calling MerchantBoardingApi.patch_registration"
+      end
+      # verify the required parameter 'patch_registration_body' is set
+      if @api_client.config.client_side_validation && patch_registration_body.nil?
+        fail ArgumentError, "Missing the required parameter 'patch_registration_body' when calling MerchantBoardingApi.patch_registration"
+      end
+      # resource path
+      local_var_path = 'boarding/v1/registrations/{registrationId}'.sub('{' + 'registrationId' + '}', registration_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+      header_params[:'v-c-idempotency-id'] = opts[:'v_c_idempotency_id'] if !opts[:'v_c_idempotency_id'].nil?
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(patch_registration_body)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PatchRegistrationBody', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      inbound_mle_status = "optional"
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["patch_registration","patch_registration_with_http_info"])
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
+      end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["patch_registration","patch_registration_with_http_info"])
+
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:PATCH, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'InlineResponse2005',
+        :isResponseMLEForApi => is_response_mle_for_api)
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: MerchantBoardingApi#patch_registration\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
     # Create a boarding registration
     # Boarding Product is specifically for resellers who onboard merchants to resell their services to merchants and help integrate REST API into their systems.  The Boarding API is designed to simplify and streamline the onboarding process of merchants by enabling administrators and developers to: 1. Enable and Configure Products: The API helps in adding new products to an existing organization and configuring them to suit specific needs. 2. Update Merchant Information: The API allows for updating an organization's information efficiently. 3. Manage Payment Integration: It provides templates for secure payment integration and management. 
     #
     # @param post_registration_body Boarding registration data
     # @param [Hash] opts the optional parameters
     # @option opts [String] :v_c_idempotency_id defines idempotency of the request
-    # @return [InlineResponse2014]
+    # @return [InlineResponse2017]
     #
     def post_registration(post_registration_body, opts = {})
       data, status_code, headers = post_registration_with_http_info(post_registration_body, opts)
@@ -120,7 +210,7 @@ module CyberSource
     # @param post_registration_body Boarding registration data
     # @param [Hash] opts the optional parameters
     # @option opts [String] :v_c_idempotency_id defines idempotency of the request
-    # @return [Array<(InlineResponse2014, Fixnum, Hash)>] InlineResponse2014 data, response status code and response headers
+    # @return [Array<(InlineResponse2017, Fixnum, Hash)>] InlineResponse2017 data, response status code and response headers
     def post_registration_with_http_info(post_registration_body, opts = {})
 
       if @api_client.config.debugging
@@ -156,7 +246,7 @@ module CyberSource
       post_body = @api_client.object_to_http_body(post_registration_body)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PostRegistrationBody', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      inbound_mle_status = "mandatory"
+      inbound_mle_status = "optional"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["post_registration","post_registration_with_http_info"])
         begin
           post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
@@ -174,7 +264,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2014',
+        :return_type => 'InlineResponse2017',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
