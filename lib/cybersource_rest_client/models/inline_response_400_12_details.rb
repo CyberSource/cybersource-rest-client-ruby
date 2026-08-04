@@ -13,17 +13,21 @@ require 'date'
 
 module CyberSource
   class InlineResponse40012Details
-    # This is the flattened JSON object field name/path that is either missing or invalid. 
+    # This is the flattened JSON object field name/path that is either missing or invalid.
     attr_accessor :field
 
-    # Possible reasons for the error.  Possible values:   - `MISSING_FIELD`   - `INVALID_DATA` 
+    # Possible reasons for the error. 
     attr_accessor :reason
+
+    # An optional short string which identifies the exact field error.
+    attr_accessor :code
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'field' => :'field',
-        :'reason' => :'reason'
+        :'reason' => :'reason',
+        :'code' => :'code'
       }
     end
 
@@ -31,7 +35,8 @@ module CyberSource
     def self.json_map
       {
         :'field' => :'field',
-        :'reason' => :'reason'
+        :'reason' => :'reason',
+        :'code' => :'code'
       }
     end
 
@@ -39,7 +44,8 @@ module CyberSource
     def self.swagger_types
       {
         :'field' => :'String',
-        :'reason' => :'String'
+        :'reason' => :'String',
+        :'code' => :'String'
       }
     end
 
@@ -57,6 +63,10 @@ module CyberSource
 
       if attributes.has_key?(:'reason')
         self.reason = attributes[:'reason']
+      end
+
+      if attributes.has_key?(:'code')
+        self.code = attributes[:'code']
       end
     end
 
@@ -79,7 +89,8 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           field == o.field &&
-          reason == o.reason
+          reason == o.reason &&
+          code == o.code
     end
 
     # @see the `==` method
@@ -91,7 +102,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [field, reason].hash
+      [field, reason, code].hash
     end
 
     # Builds the object from hash

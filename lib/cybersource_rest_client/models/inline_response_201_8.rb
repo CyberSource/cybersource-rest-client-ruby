@@ -12,7 +12,7 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # Egress Asymmetric Key Information Response. 
+  # Egress Key Information Response 
   class InlineResponse2018
     # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` Example `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC. 
     attr_accessor :submit_time_utc
@@ -20,11 +20,17 @@ module CyberSource
     # The status of the submitted transaction. Possible values:  - ACCEPTED 
     attr_accessor :status
 
+    attr_accessor :client_reference_information
+
+    attr_accessor :key_information
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'submit_time_utc' => :'submitTimeUtc',
-        :'status' => :'status'
+        :'status' => :'status',
+        :'client_reference_information' => :'clientReferenceInformation',
+        :'key_information' => :'keyInformation'
       }
     end
 
@@ -32,7 +38,9 @@ module CyberSource
     def self.json_map
       {
         :'submit_time_utc' => :'submit_time_utc',
-        :'status' => :'status'
+        :'status' => :'status',
+        :'client_reference_information' => :'client_reference_information',
+        :'key_information' => :'key_information'
       }
     end
 
@@ -40,7 +48,9 @@ module CyberSource
     def self.swagger_types
       {
         :'submit_time_utc' => :'String',
-        :'status' => :'String'
+        :'status' => :'String',
+        :'client_reference_information' => :'Kmsegressv2keyssymClientReferenceInformation',
+        :'key_information' => :'InlineResponse2018KeyInformation'
       }
     end
 
@@ -58,6 +68,14 @@ module CyberSource
 
       if attributes.has_key?(:'status')
         self.status = attributes[:'status']
+      end
+
+      if attributes.has_key?(:'clientReferenceInformation')
+        self.client_reference_information = attributes[:'clientReferenceInformation']
+      end
+
+      if attributes.has_key?(:'keyInformation')
+        self.key_information = attributes[:'keyInformation']
       end
     end
 
@@ -80,7 +98,9 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           submit_time_utc == o.submit_time_utc &&
-          status == o.status
+          status == o.status &&
+          client_reference_information == o.client_reference_information &&
+          key_information == o.key_information
     end
 
     # @see the `==` method
@@ -92,7 +112,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [submit_time_utc, status].hash
+      [submit_time_utc, status, client_reference_information, key_information].hash
     end
 
     # Builds the object from hash

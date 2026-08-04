@@ -60,7 +60,7 @@ No authorization required
 
 
 # **get_webhook_subscription_by_id**
-> InlineResponse2016 get_webhook_subscription_by_id(webhook_id)
+> InlineResponse2019 get_webhook_subscription_by_id(webhook_id)
 
 Get Details On a Single Webhook
 
@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2016**](InlineResponse2016.md)
+[**InlineResponse2019**](InlineResponse2019.md)
 
 ### Authorization
 
@@ -160,7 +160,7 @@ No authorization required
 
 
 # **notification_subscriptions_v1_webhooks_webhook_id_post**
-> InlineResponse2017 notification_subscriptions_v1_webhooks_webhook_id_post(webhook_id)
+> InlineResponse20110 notification_subscriptions_v1_webhooks_webhook_id_post(webhook_id)
 
 Test a Webhook Configuration
 
@@ -193,7 +193,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2017**](InlineResponse2017.md)
+[**InlineResponse20110**](InlineResponse20110.md)
 
 ### Authorization
 
@@ -308,7 +308,7 @@ No authorization required
 
 
 # **save_asym_egress_key**
-> InlineResponse2018 save_asym_egress_key(save_asym_egress_key, opts)
+> InlineResponse20111 save_asym_egress_key(save_asym_egress_key, opts)
 
 Message Level Encryption
 
@@ -349,7 +349,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2018**](InlineResponse2018.md)
+[**InlineResponse20111**](InlineResponse20111.md)
 
 ### Authorization
 

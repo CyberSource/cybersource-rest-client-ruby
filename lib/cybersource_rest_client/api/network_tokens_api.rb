@@ -272,7 +272,7 @@ module CyberSource
       post_body = @api_client.object_to_http_body(post_issuer_life_cycle_simulation_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PostIssuerLifeCycleSimulationRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      inbound_mle_status = "false"
+      inbound_mle_status = "optional"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["post_issuer_life_cycle_simulation","post_issuer_life_cycle_simulation_with_http_info"])
         begin
           post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
@@ -571,7 +571,7 @@ module CyberSource
     # @param tokenized_card_id The Id of a tokenized card.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
-    # @option opts [TmsTokenizedCardDeleteRequest] :post_tokenized_card_delete_request 
+    # @option opts [PostTokenizedCardDeleteRequest] :post_tokenized_card_delete_request 
     # @return [nil]
     #
     def post_tokenized_card_delete(tokenized_card_id, opts = {})
@@ -584,7 +584,7 @@ module CyberSource
     # @param tokenized_card_id The Id of a tokenized card.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
-    # @option opts [TmsTokenizedCardDeleteRequest] :post_tokenized_card_delete_request 
+    # @option opts [PostTokenizedCardDeleteRequest] :post_tokenized_card_delete_request 
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
     def post_tokenized_card_delete_with_http_info(tokenized_card_id, opts = {})
 
@@ -620,7 +620,7 @@ module CyberSource
       # http body (model)
       post_body = @api_client.object_to_http_body(opts[:'post_tokenized_card_delete_request'])
       sdk_tracker = SdkTracker.new
-      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'TmsTokenizedCardDeleteRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PostTokenizedCardDeleteRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "optional"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["post_tokenized_card_delete","post_tokenized_card_delete_with_http_info"])
         begin

@@ -17,24 +17,48 @@ module CyberSource
     # The purchase number
     attr_accessor :purchase_number
 
+    # The transaction reference number (TRN) is a identifier assigned to each payment transaction that allows merchants, customers, and payment processors to track and reference specific transactions throughout their lifecycle.  When provided, this value is passed to the payment processor as the reconciliation ID for the payment. For invoices this is typically the invoice number, and for purchase or donation links it is typically the link identifier.  Only letters and numbers are allowed; spaces and other special characters are not permitted. 
+    attr_accessor :transaction_reference_number
+
+    # Define an expiration date for the link.  The date must be today or in the future.  Format: `YYYY-MM-DD`, where `YYYY` = year, `MM` = month, and `DD` = day.  The invoice link automatically expires 12 months after the due date. 
+    attr_accessor :expiration_date
+
+    # Define an expiry amount for the link.  Must be null or greater than 0.  If the total price of all transactions for this link exceeds the expiry amount, the link will expire. 
+    attr_accessor :expiration_amount
+
+    # Define an expiration quantity for the link.  Must be null or greater than 0.  If the total quantity of items sold exceeds the expiration quantity, the link is expired. 
+    attr_accessor :expiration_quantity
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'purchase_number' => :'purchaseNumber'
+        :'purchase_number' => :'purchaseNumber',
+        :'transaction_reference_number' => :'transactionReferenceNumber',
+        :'expiration_date' => :'expirationDate',
+        :'expiration_amount' => :'expirationAmount',
+        :'expiration_quantity' => :'expirationQuantity'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'purchase_number' => :'purchase_number'
+        :'purchase_number' => :'purchase_number',
+        :'transaction_reference_number' => :'transaction_reference_number',
+        :'expiration_date' => :'expiration_date',
+        :'expiration_amount' => :'expiration_amount',
+        :'expiration_quantity' => :'expiration_quantity'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'purchase_number' => :'String'
+        :'purchase_number' => :'String',
+        :'transaction_reference_number' => :'String',
+        :'expiration_date' => :'Date',
+        :'expiration_amount' => :'String',
+        :'expiration_quantity' => :'String'
       }
     end
 
@@ -49,18 +73,44 @@ module CyberSource
       if attributes.has_key?(:'purchaseNumber')
         self.purchase_number = attributes[:'purchaseNumber']
       end
+
+      if attributes.has_key?(:'transactionReferenceNumber')
+        self.transaction_reference_number = attributes[:'transactionReferenceNumber']
+      end
+
+      if attributes.has_key?(:'expirationDate')
+        self.expiration_date = attributes[:'expirationDate']
+      end
+
+      if attributes.has_key?(:'expirationAmount')
+        self.expiration_amount = attributes[:'expirationAmount']
+      end
+
+      if attributes.has_key?(:'expirationQuantity')
+        self.expiration_quantity = attributes[:'expirationQuantity']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      #if !@expiration_amount.nil? && @expiration_amount !~ Regexp.new(/^[0-9]+(\\.[0-9]+)?$/)
+        #invalid_properties.push('invalid value for "expiration_amount", must conform to the pattern /^[0-9]+(\\.[0-9]+)?$/.')
+      #end
+
+      #if !@expiration_quantity.nil? && @expiration_quantity !~ Regexp.new(/^[0-9]+$/)
+        #invalid_properties.push('invalid value for "expiration_quantity", must conform to the pattern /^[0-9]+$/.')
+      #end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      #return false if !@expiration_amount.nil? && @expiration_amount !~ Regexp.new(/^[0-9]+(\\.[0-9]+)?$/)
+      #return false if !@expiration_quantity.nil? && @expiration_quantity !~ Regexp.new(/^[0-9]+$/)
       true
     end
 
@@ -70,12 +120,42 @@ module CyberSource
       @purchase_number = purchase_number
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] transaction_reference_number Value to be assigned
+    def transaction_reference_number=(transaction_reference_number)
+      @transaction_reference_number = transaction_reference_number
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] expiration_amount Value to be assigned
+    def expiration_amount=(expiration_amount)
+      #if !expiration_amount.nil? && expiration_amount !~ Regexp.new(/^[0-9]+(\\.[0-9]+)?$/)
+        #fail ArgumentError, 'invalid value for "expiration_amount", must conform to the pattern /^[0-9]+(\\.[0-9]+)?$/.'
+      #end
+
+      @expiration_amount = expiration_amount
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] expiration_quantity Value to be assigned
+    def expiration_quantity=(expiration_quantity)
+      #if !expiration_quantity.nil? && expiration_quantity !~ Regexp.new(/^[0-9]+$/)
+        #fail ArgumentError, 'invalid value for "expiration_quantity", must conform to the pattern /^[0-9]+$/.'
+      #end
+
+      @expiration_quantity = expiration_quantity
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          purchase_number == o.purchase_number
+          purchase_number == o.purchase_number &&
+          transaction_reference_number == o.transaction_reference_number &&
+          expiration_date == o.expiration_date &&
+          expiration_amount == o.expiration_amount &&
+          expiration_quantity == o.expiration_quantity
     end
 
     # @see the `==` method
@@ -87,7 +167,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [purchase_number].hash
+      [purchase_number, transaction_reference_number, expiration_date, expiration_amount, expiration_quantity].hash
     end
 
     # Builds the object from hash

@@ -19,6 +19,286 @@ module CyberSource
       @api_client = api_client
       @api_client.set_configuration(config)
     end
+    # Activate a key
+    # Activate a deactivated key. Raises 404 if agent or key not found, 403 if agent is deactivated.
+    #
+    # @param agent_id Unique agent identifier
+    # @param key_id Unique key identifier
+    # @param [Hash] opts the optional parameters
+    # @return [AddAgentKeyResponse201]
+    #
+    def activate_agent_key(agent_id, key_id, opts = {})
+      data, status_code, headers = activate_agent_key_with_http_info(agent_id, key_id, opts)
+      return data, status_code, headers
+    end
+
+    # Activate a key
+    # Activate a deactivated key. Raises 404 if agent or key not found, 403 if agent is deactivated.
+    # @param agent_id Unique agent identifier
+    # @param key_id Unique key identifier
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(AddAgentKeyResponse201, Fixnum, Hash)>] AddAgentKeyResponse201 data, response status code and response headers
+    def activate_agent_key_with_http_info(agent_id, key_id, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: AgentCapabilitiesApi.activate_agent_key ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'agent_id' is set
+      if @api_client.config.client_side_validation && agent_id.nil?
+        fail ArgumentError, "Missing the required parameter 'agent_id' when calling AgentCapabilitiesApi.activate_agent_key"
+      end
+      # verify the required parameter 'key_id' is set
+      if @api_client.config.client_side_validation && key_id.nil?
+        fail ArgumentError, "Missing the required parameter 'key_id' when calling AgentCapabilitiesApi.activate_agent_key"
+      end
+      # resource path
+      local_var_path = 'icc/v1/agents/{agentId}/keys/{keyId}/activate'.sub('{' + 'agentId' + '}', agent_id.to_s).sub('{' + 'keyId' + '}', key_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      if 'POST' == 'POST'
+        post_body = '{}'
+      else
+        post_body = nil
+      end
+      inbound_mle_status = "mandatory"
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["activate_agent_key","activate_agent_key_with_http_info"])
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
+      end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["activate_agent_key","activate_agent_key_with_http_info"])
+
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'AddAgentKeyResponse201',
+        :isResponseMLEForApi => is_response_mle_for_api)
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: AgentCapabilitiesApi#activate_agent_key\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
+    # Add a key to an agent
+    # [category 1 — Agent_Capabilities] Upload a Base64-encoded public key for an agent.
+    #
+    # @param agent_id Unique agent identifier
+    # @param key_request Key creation request
+    # @param [Hash] opts the optional parameters
+    # @return [AddAgentKeyResponse201]
+    #
+    def add_agent_key(agent_id, key_request, opts = {})
+      data, status_code, headers = add_agent_key_with_http_info(agent_id, key_request, opts)
+      return data, status_code, headers
+    end
+
+    # Add a key to an agent
+    # [category 1 — Agent_Capabilities] Upload a Base64-encoded public key for an agent.
+    # @param agent_id Unique agent identifier
+    # @param key_request Key creation request
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(AddAgentKeyResponse201, Fixnum, Hash)>] AddAgentKeyResponse201 data, response status code and response headers
+    def add_agent_key_with_http_info(agent_id, key_request, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: AgentCapabilitiesApi.add_agent_key ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'agent_id' is set
+      if @api_client.config.client_side_validation && agent_id.nil?
+        fail ArgumentError, "Missing the required parameter 'agent_id' when calling AgentCapabilitiesApi.add_agent_key"
+      end
+      # verify the required parameter 'key_request' is set
+      if @api_client.config.client_side_validation && key_request.nil?
+        fail ArgumentError, "Missing the required parameter 'key_request' when calling AgentCapabilitiesApi.add_agent_key"
+      end
+      # resource path
+      local_var_path = 'icc/v1/agents/{agentId}/keys'.sub('{' + 'agentId' + '}', agent_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(key_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'KeyRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      inbound_mle_status = "mandatory"
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["add_agent_key","add_agent_key_with_http_info"])
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
+      end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["add_agent_key","add_agent_key_with_http_info"])
+
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'AddAgentKeyResponse201',
+        :isResponseMLEForApi => is_response_mle_for_api)
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: AgentCapabilitiesApi#add_agent_key\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
+    # Cancel Checkout ACP
+    # Cancels an active ACP checkout session. No charge is made to the buyer.  This call is safe to make multiple times — cancelling an already-cancelled session returns a successful response without error.  Sessions also expire automatically after 30 minutes of inactivity, so explicit cancellation is optional but recommended to release any reserved inventory immediately. 
+    #
+    # @param session_id The unique identifier of the ACP checkout session to cancel. Obtained from the &#x60;id&#x60; field in the Create Session response. 
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :idempotency_key Client-generated unique key to ensure this request is processed exactly once. If a request with the same key was already processed, the original response is returned. 
+    # @option opts [String] :accept_language Preferred language for the response (e.g. &#x60;en-US&#x60;, &#x60;fr-FR&#x60;). Passed to the merchant backend for localized content. 
+    # @option opts [String] :user_agent Client user agent string identifying the AI agent platform and version. 
+    # @option opts [String] :request_id Unique request identifier for distributed tracing and debugging. Echoed back in the response headers. 
+    # @option opts [String] :signature Request signature for payload integrity verification. 
+    # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
+    # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
+    # @return [InlineResponse20018]
+    #
+    def cancel_checkout(session_id, opts = {})
+      data, status_code, headers = cancel_checkout_with_http_info(session_id, opts)
+      return data, status_code, headers
+    end
+
+    # Cancel Checkout ACP
+    # Cancels an active ACP checkout session. No charge is made to the buyer.  This call is safe to make multiple times — cancelling an already-cancelled session returns a successful response without error.  Sessions also expire automatically after 30 minutes of inactivity, so explicit cancellation is optional but recommended to release any reserved inventory immediately. 
+    # @param session_id The unique identifier of the ACP checkout session to cancel. Obtained from the &#x60;id&#x60; field in the Create Session response. 
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :idempotency_key Client-generated unique key to ensure this request is processed exactly once. If a request with the same key was already processed, the original response is returned. 
+    # @option opts [String] :accept_language Preferred language for the response (e.g. &#x60;en-US&#x60;, &#x60;fr-FR&#x60;). Passed to the merchant backend for localized content. 
+    # @option opts [String] :user_agent Client user agent string identifying the AI agent platform and version. 
+    # @option opts [String] :request_id Unique request identifier for distributed tracing and debugging. Echoed back in the response headers. 
+    # @option opts [String] :signature Request signature for payload integrity verification. 
+    # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
+    # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
+    # @return [Array<(InlineResponse20018, Fixnum, Hash)>] InlineResponse20018 data, response status code and response headers
+    def cancel_checkout_with_http_info(session_id, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: AgentCapabilitiesApi.cancel_checkout ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'session_id' is set
+      if @api_client.config.client_side_validation && session_id.nil?
+        fail ArgumentError, "Missing the required parameter 'session_id' when calling AgentCapabilitiesApi.cancel_checkout"
+      end
+      # resource path
+      local_var_path = 'icc/v1/checkout_sessions/{session_id}/cancel'.sub('{' + 'session_id' + '}', session_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params[:'Idempotency-Key'] = opts[:'idempotency_key'] if !opts[:'idempotency_key'].nil?
+      header_params[:'Accept-Language'] = opts[:'accept_language'] if !opts[:'accept_language'].nil?
+      header_params[:'User-Agent'] = opts[:'user_agent'] if !opts[:'user_agent'].nil?
+      header_params[:'Request-Id'] = opts[:'request_id'] if !opts[:'request_id'].nil?
+      header_params[:'Signature'] = opts[:'signature'] if !opts[:'signature'].nil?
+      header_params[:'Timestamp'] = opts[:'timestamp'] if !opts[:'timestamp'].nil?
+      header_params[:'API-Version'] = opts[:'api_version'] if !opts[:'api_version'].nil?
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      if 'POST' == 'POST'
+        post_body = '{}'
+      else
+        post_body = nil
+      end
+      inbound_mle_status = "mandatory"
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["cancel_checkout","cancel_checkout_with_http_info"])
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
+      end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["cancel_checkout","cancel_checkout_with_http_info"])
+
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'InlineResponse20018',
+        :isResponseMLEForApi => is_response_mle_for_api)
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: AgentCapabilitiesApi#cancel_checkout\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
     # Cancel a purchase intent
     # Cancel an existing purchase intent (instruction) identified by its instructionId. The agent calls this endpoint when the consumer decides to abandon the purchase before payment credentials have been used. Requires device information and assurance data for identity verification. Returns status CANCELLED (HTTP 200) on success, or PENDING (HTTP 202) with pendingEvents if cardholder authentication is required before cancellation can proceed.
     #
@@ -100,6 +380,114 @@ module CyberSource
         begin
         raise
             @api_client.config.logger.debug "API called: AgentCapabilitiesApi#cancel_purchase_intent\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
+    # Complete Checkout ACP
+    # **Final step of the ACP checkout flow.**  Submits payment and buyer information to place the order with the merchant. On success, the session transitions to `completed` and an `order_id` is returned confirming the merchant accepted the order.  Once completed, the session is immutable — it cannot be updated or cancelled.  **Payment token:** The `payment.token` must be a valid token from the payment provider configured for the merchant (e.g. a tokenized card from Stripe or Braintree). ACG forwards the token to the merchant's payment processor — it is never stored. 
+    #
+    # @param session_id The unique identifier of the ACP checkout session to complete.
+    # @param acp_complete_checkout_request Final buyer and payment details needed to place the order. Both &#x60;buyer&#x60; and &#x60;payment&#x60; may have been provided in earlier Create/Update calls; if so, they can be omitted here. At least a valid payment token is required to process the transaction. 
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :idempotency_key Client-generated unique key to ensure this request is processed exactly once. If a request with the same key was already processed, the original response is returned. 
+    # @option opts [String] :accept_language Preferred language for the response (e.g. &#x60;en-US&#x60;, &#x60;fr-FR&#x60;). Passed to the merchant backend for localized content. 
+    # @option opts [String] :user_agent Client user agent string identifying the AI agent platform and version. 
+    # @option opts [String] :request_id Unique request identifier for distributed tracing and debugging. Echoed back in the response headers. 
+    # @option opts [String] :signature Request signature for payload integrity verification. 
+    # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
+    # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
+    # @return [InlineResponse20017]
+    #
+    def complete_checkout(session_id, acp_complete_checkout_request, opts = {})
+      data, status_code, headers = complete_checkout_with_http_info(session_id, acp_complete_checkout_request, opts)
+      return data, status_code, headers
+    end
+
+    # Complete Checkout ACP
+    # **Final step of the ACP checkout flow.**  Submits payment and buyer information to place the order with the merchant. On success, the session transitions to &#x60;completed&#x60; and an &#x60;order_id&#x60; is returned confirming the merchant accepted the order.  Once completed, the session is immutable — it cannot be updated or cancelled.  **Payment token:** The &#x60;payment.token&#x60; must be a valid token from the payment provider configured for the merchant (e.g. a tokenized card from Stripe or Braintree). ACG forwards the token to the merchant&#39;s payment processor — it is never stored. 
+    # @param session_id The unique identifier of the ACP checkout session to complete.
+    # @param acp_complete_checkout_request Final buyer and payment details needed to place the order. Both &#x60;buyer&#x60; and &#x60;payment&#x60; may have been provided in earlier Create/Update calls; if so, they can be omitted here. At least a valid payment token is required to process the transaction. 
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :idempotency_key Client-generated unique key to ensure this request is processed exactly once. If a request with the same key was already processed, the original response is returned. 
+    # @option opts [String] :accept_language Preferred language for the response (e.g. &#x60;en-US&#x60;, &#x60;fr-FR&#x60;). Passed to the merchant backend for localized content. 
+    # @option opts [String] :user_agent Client user agent string identifying the AI agent platform and version. 
+    # @option opts [String] :request_id Unique request identifier for distributed tracing and debugging. Echoed back in the response headers. 
+    # @option opts [String] :signature Request signature for payload integrity verification. 
+    # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
+    # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
+    # @return [Array<(InlineResponse20017, Fixnum, Hash)>] InlineResponse20017 data, response status code and response headers
+    def complete_checkout_with_http_info(session_id, acp_complete_checkout_request, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: AgentCapabilitiesApi.complete_checkout ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'session_id' is set
+      if @api_client.config.client_side_validation && session_id.nil?
+        fail ArgumentError, "Missing the required parameter 'session_id' when calling AgentCapabilitiesApi.complete_checkout"
+      end
+      # verify the required parameter 'acp_complete_checkout_request' is set
+      if @api_client.config.client_side_validation && acp_complete_checkout_request.nil?
+        fail ArgumentError, "Missing the required parameter 'acp_complete_checkout_request' when calling AgentCapabilitiesApi.complete_checkout"
+      end
+      # resource path
+      local_var_path = 'icc/v1/checkout_sessions/{session_id}/complete'.sub('{' + 'session_id' + '}', session_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params[:'Idempotency-Key'] = opts[:'idempotency_key'] if !opts[:'idempotency_key'].nil?
+      header_params[:'Accept-Language'] = opts[:'accept_language'] if !opts[:'accept_language'].nil?
+      header_params[:'User-Agent'] = opts[:'user_agent'] if !opts[:'user_agent'].nil?
+      header_params[:'Request-Id'] = opts[:'request_id'] if !opts[:'request_id'].nil?
+      header_params[:'Signature'] = opts[:'signature'] if !opts[:'signature'].nil?
+      header_params[:'Timestamp'] = opts[:'timestamp'] if !opts[:'timestamp'].nil?
+      header_params[:'API-Version'] = opts[:'api_version'] if !opts[:'api_version'].nil?
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(acp_complete_checkout_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'AcpCompleteCheckoutRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      inbound_mle_status = "mandatory"
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["complete_checkout","complete_checkout_with_http_info"])
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
+      end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["complete_checkout","complete_checkout_with_http_info"])
+
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'InlineResponse20017',
+        :isResponseMLEForApi => is_response_mle_for_api)
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: AgentCapabilitiesApi#complete_checkout\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
         rescue
             puts 'Cannot write to log'
         end
@@ -193,6 +581,196 @@ module CyberSource
       end
       return data, status_code, headers
     end
+    # Create Checkout Session ACP
+    # **Step 1 of the ACP checkout flow.**  Initiates a new ACP checkout session with the buyer's cart. ACG validates item availability against the merchant's catalog, calculates initial pricing and tax, and returns a session object with a unique `id`.  **Store the `id`** — every subsequent call in this checkout flow (update, complete, cancel) requires it.  The session remains active for 30 minutes. A new session must be created after expiry.  **Idempotency:** Supply an `Idempotency-Key` header to safely retry this call without creating duplicate sessions. 
+    #
+    # @param acp_create_checkout_session_request The cart contents and buyer context for this checkout session. &#x60;items&#x60; is required. &#x60;buyer&#x60; and &#x60;fulfillment_address&#x60; are optional on creation and can be provided via Update Session before completing checkout. 
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :idempotency_key Client-generated unique key to ensure this request is processed exactly once. If a request with the same key was already processed, the original response is returned. 
+    # @option opts [String] :accept_language Preferred language for the response (e.g. &#x60;en-US&#x60;, &#x60;fr-FR&#x60;). Passed to the merchant backend for localized content. 
+    # @option opts [String] :user_agent Client user agent string identifying the AI agent platform and version. 
+    # @option opts [String] :request_id Unique request identifier for distributed tracing and debugging. Echoed back in the response headers. 
+    # @option opts [String] :signature Request signature for payload integrity verification. 
+    # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
+    # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
+    # @return [InlineResponse20113]
+    #
+    def create_checkout_session(acp_create_checkout_session_request, opts = {})
+      data, status_code, headers = create_checkout_session_with_http_info(acp_create_checkout_session_request, opts)
+      return data, status_code, headers
+    end
+
+    # Create Checkout Session ACP
+    # **Step 1 of the ACP checkout flow.**  Initiates a new ACP checkout session with the buyer&#39;s cart. ACG validates item availability against the merchant&#39;s catalog, calculates initial pricing and tax, and returns a session object with a unique &#x60;id&#x60;.  **Store the &#x60;id&#x60;** — every subsequent call in this checkout flow (update, complete, cancel) requires it.  The session remains active for 30 minutes. A new session must be created after expiry.  **Idempotency:** Supply an &#x60;Idempotency-Key&#x60; header to safely retry this call without creating duplicate sessions. 
+    # @param acp_create_checkout_session_request The cart contents and buyer context for this checkout session. &#x60;items&#x60; is required. &#x60;buyer&#x60; and &#x60;fulfillment_address&#x60; are optional on creation and can be provided via Update Session before completing checkout. 
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :idempotency_key Client-generated unique key to ensure this request is processed exactly once. If a request with the same key was already processed, the original response is returned. 
+    # @option opts [String] :accept_language Preferred language for the response (e.g. &#x60;en-US&#x60;, &#x60;fr-FR&#x60;). Passed to the merchant backend for localized content. 
+    # @option opts [String] :user_agent Client user agent string identifying the AI agent platform and version. 
+    # @option opts [String] :request_id Unique request identifier for distributed tracing and debugging. Echoed back in the response headers. 
+    # @option opts [String] :signature Request signature for payload integrity verification. 
+    # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
+    # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
+    # @return [Array<(InlineResponse20113, Fixnum, Hash)>] InlineResponse20113 data, response status code and response headers
+    def create_checkout_session_with_http_info(acp_create_checkout_session_request, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: AgentCapabilitiesApi.create_checkout_session ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'acp_create_checkout_session_request' is set
+      if @api_client.config.client_side_validation && acp_create_checkout_session_request.nil?
+        fail ArgumentError, "Missing the required parameter 'acp_create_checkout_session_request' when calling AgentCapabilitiesApi.create_checkout_session"
+      end
+      # resource path
+      local_var_path = 'icc/v1/checkout_sessions'
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params[:'Idempotency-Key'] = opts[:'idempotency_key'] if !opts[:'idempotency_key'].nil?
+      header_params[:'Accept-Language'] = opts[:'accept_language'] if !opts[:'accept_language'].nil?
+      header_params[:'User-Agent'] = opts[:'user_agent'] if !opts[:'user_agent'].nil?
+      header_params[:'Request-Id'] = opts[:'request_id'] if !opts[:'request_id'].nil?
+      header_params[:'Signature'] = opts[:'signature'] if !opts[:'signature'].nil?
+      header_params[:'Timestamp'] = opts[:'timestamp'] if !opts[:'timestamp'].nil?
+      header_params[:'API-Version'] = opts[:'api_version'] if !opts[:'api_version'].nil?
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(acp_create_checkout_session_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'AcpCreateCheckoutSessionRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      inbound_mle_status = "mandatory"
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["create_checkout_session","create_checkout_session_with_http_info"])
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
+      end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["create_checkout_session","create_checkout_session_with_http_info"])
+
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'InlineResponse20113',
+        :isResponseMLEForApi => is_response_mle_for_api)
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: AgentCapabilitiesApi#create_checkout_session\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
+    # Deactivate a key
+    # Deactivate a key (soft delete). Raises 404 if key not found.
+    #
+    # @param agent_id Unique agent identifier
+    # @param key_id Unique key identifier
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    #
+    def deactivate_agent_key(agent_id, key_id, opts = {})
+      data, status_code, headers = deactivate_agent_key_with_http_info(agent_id, key_id, opts)
+      return data, status_code, headers
+    end
+
+    # Deactivate a key
+    # Deactivate a key (soft delete). Raises 404 if key not found.
+    # @param agent_id Unique agent identifier
+    # @param key_id Unique key identifier
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
+    def deactivate_agent_key_with_http_info(agent_id, key_id, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: AgentCapabilitiesApi.deactivate_agent_key ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'agent_id' is set
+      if @api_client.config.client_side_validation && agent_id.nil?
+        fail ArgumentError, "Missing the required parameter 'agent_id' when calling AgentCapabilitiesApi.deactivate_agent_key"
+      end
+      # verify the required parameter 'key_id' is set
+      if @api_client.config.client_side_validation && key_id.nil?
+        fail ArgumentError, "Missing the required parameter 'key_id' when calling AgentCapabilitiesApi.deactivate_agent_key"
+      end
+      # resource path
+      local_var_path = 'icc/v1/agents/{agentId}/keys/{keyId}'.sub('{' + 'agentId' + '}', agent_id.to_s).sub('{' + 'keyId' + '}', key_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      if 'DELETE' == 'POST'
+        post_body = '{}'
+      else
+        post_body = nil
+      end
+      inbound_mle_status = "mandatory"
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["deactivate_agent_key","deactivate_agent_key_with_http_info"])
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
+      end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["deactivate_agent_key","deactivate_agent_key_with_http_info"])
+
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:DELETE, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :isResponseMLEForApi => is_response_mle_for_api)
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: AgentCapabilitiesApi#deactivate_agent_key\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
     # Enroll a card
     # Enroll a payment card for agentic or e-commerce transactions. This is typically the first step in the Intelligent Commerce payment lifecycle — the agent calls this endpoint to register a consumer's card, creating a tokenized reference that can be used in subsequent purchase instructions and payment credential retrieval. Requires device information, consumer identity, billing details, and payment instrument references. Returns a status of ACTIVE (HTTP 200) if enrollment completes immediately, or PENDING (HTTP 202) with pendingEvents if cardholder authentication is required. Call this endpoint when a consumer wants to add a new payment card or when setting up a card for agentic payment flows.
     #
@@ -268,6 +846,286 @@ module CyberSource
         begin
         raise
             @api_client.config.logger.debug "API called: AgentCapabilitiesApi#enroll_card\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
+    # Get an agent
+    # [category 1 — Agent_Capabilities] Get agent by ID with all keys. Raises 404 if agent not found.
+    #
+    # @param agent_id Unique agent identifier
+    # @param [Hash] opts the optional parameters
+    # @return [AgentRegistrationResponse201]
+    #
+    def get_agent(agent_id, opts = {})
+      data, status_code, headers = get_agent_with_http_info(agent_id, opts)
+      return data, status_code, headers
+    end
+
+    # Get an agent
+    # [category 1 — Agent_Capabilities] Get agent by ID with all keys. Raises 404 if agent not found.
+    # @param agent_id Unique agent identifier
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(AgentRegistrationResponse201, Fixnum, Hash)>] AgentRegistrationResponse201 data, response status code and response headers
+    def get_agent_with_http_info(agent_id, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: AgentCapabilitiesApi.get_agent ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'agent_id' is set
+      if @api_client.config.client_side_validation && agent_id.nil?
+        fail ArgumentError, "Missing the required parameter 'agent_id' when calling AgentCapabilitiesApi.get_agent"
+      end
+      # resource path
+      local_var_path = 'icc/v1/agents/{agentId}'.sub('{' + 'agentId' + '}', agent_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      if 'GET' == 'POST'
+        post_body = '{}'
+      else
+        post_body = nil
+      end
+      inbound_mle_status = "false"
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_agent","get_agent_with_http_info"])
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
+      end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["get_agent","get_agent_with_http_info"])
+
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'AgentRegistrationResponse201',
+        :isResponseMLEForApi => is_response_mle_for_api)
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: AgentCapabilitiesApi#get_agent\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
+    # Get a key by agent and key ID
+    # Get a specific key by agent ID and key ID. Raises 404 if key not found.
+    #
+    # @param agent_id Unique agent identifier
+    # @param key_id Unique key identifier
+    # @param [Hash] opts the optional parameters
+    # @return [AddAgentKeyResponse201]
+    #
+    def get_agent_key(agent_id, key_id, opts = {})
+      data, status_code, headers = get_agent_key_with_http_info(agent_id, key_id, opts)
+      return data, status_code, headers
+    end
+
+    # Get a key by agent and key ID
+    # Get a specific key by agent ID and key ID. Raises 404 if key not found.
+    # @param agent_id Unique agent identifier
+    # @param key_id Unique key identifier
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(AddAgentKeyResponse201, Fixnum, Hash)>] AddAgentKeyResponse201 data, response status code and response headers
+    def get_agent_key_with_http_info(agent_id, key_id, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: AgentCapabilitiesApi.get_agent_key ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'agent_id' is set
+      if @api_client.config.client_side_validation && agent_id.nil?
+        fail ArgumentError, "Missing the required parameter 'agent_id' when calling AgentCapabilitiesApi.get_agent_key"
+      end
+      # verify the required parameter 'key_id' is set
+      if @api_client.config.client_side_validation && key_id.nil?
+        fail ArgumentError, "Missing the required parameter 'key_id' when calling AgentCapabilitiesApi.get_agent_key"
+      end
+      # resource path
+      local_var_path = 'icc/v1/agents/{agentId}/keys/{keyId}'.sub('{' + 'agentId' + '}', agent_id.to_s).sub('{' + 'keyId' + '}', key_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      if 'GET' == 'POST'
+        post_body = '{}'
+      else
+        post_body = nil
+      end
+      inbound_mle_status = "false"
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_agent_key","get_agent_key_with_http_info"])
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
+      end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["get_agent_key","get_agent_key_with_http_info"])
+
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'AddAgentKeyResponse201',
+        :isResponseMLEForApi => is_response_mle_for_api)
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: AgentCapabilitiesApi#get_agent_key\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
+    # Get Checkout Session ACP
+    # Retrieves the current state of an ACP checkout session, including line items, buyer information,  and current totals.  Use this to: - Verify session status before presenting a checkout summary to the buyer - Resume an interrupted checkout flow - Poll for status after an async operation - Confirm a session has not expired before submitting payment 
+    #
+    # @param session_id The unique identifier of the ACP checkout session to retrieve. Obtained from the &#x60;id&#x60; field in the Create Session response. 
+    # @param acp_get_checkout_session_request Empty request body.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :idempotency_key Client-generated unique key to ensure this request is processed exactly once. If a request with the same key was already processed, the original response is returned. 
+    # @option opts [String] :accept_language Preferred language for the response (e.g. &#x60;en-US&#x60;, &#x60;fr-FR&#x60;). Passed to the merchant backend for localized content. 
+    # @option opts [String] :user_agent Client user agent string identifying the AI agent platform and version. 
+    # @option opts [String] :request_id Unique request identifier for distributed tracing and debugging. Echoed back in the response headers. 
+    # @option opts [String] :signature Request signature for payload integrity verification. 
+    # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
+    # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
+    # @return [InlineResponse20113]
+    #
+    def get_checkout_session(session_id, acp_get_checkout_session_request, opts = {})
+      data, status_code, headers = get_checkout_session_with_http_info(session_id, acp_get_checkout_session_request, opts)
+      return data, status_code, headers
+    end
+
+    # Get Checkout Session ACP
+    # Retrieves the current state of an ACP checkout session, including line items, buyer information,  and current totals.  Use this to: - Verify session status before presenting a checkout summary to the buyer - Resume an interrupted checkout flow - Poll for status after an async operation - Confirm a session has not expired before submitting payment 
+    # @param session_id The unique identifier of the ACP checkout session to retrieve. Obtained from the &#x60;id&#x60; field in the Create Session response. 
+    # @param acp_get_checkout_session_request Empty request body.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :idempotency_key Client-generated unique key to ensure this request is processed exactly once. If a request with the same key was already processed, the original response is returned. 
+    # @option opts [String] :accept_language Preferred language for the response (e.g. &#x60;en-US&#x60;, &#x60;fr-FR&#x60;). Passed to the merchant backend for localized content. 
+    # @option opts [String] :user_agent Client user agent string identifying the AI agent platform and version. 
+    # @option opts [String] :request_id Unique request identifier for distributed tracing and debugging. Echoed back in the response headers. 
+    # @option opts [String] :signature Request signature for payload integrity verification. 
+    # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
+    # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
+    # @return [Array<(InlineResponse20113, Fixnum, Hash)>] InlineResponse20113 data, response status code and response headers
+    def get_checkout_session_with_http_info(session_id, acp_get_checkout_session_request, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: AgentCapabilitiesApi.get_checkout_session ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'session_id' is set
+      if @api_client.config.client_side_validation && session_id.nil?
+        fail ArgumentError, "Missing the required parameter 'session_id' when calling AgentCapabilitiesApi.get_checkout_session"
+      end
+      # verify the required parameter 'acp_get_checkout_session_request' is set
+      if @api_client.config.client_side_validation && acp_get_checkout_session_request.nil?
+        fail ArgumentError, "Missing the required parameter 'acp_get_checkout_session_request' when calling AgentCapabilitiesApi.get_checkout_session"
+      end
+      # resource path
+      local_var_path = 'icc/v1/checkout_sessions/{session_id}'.sub('{' + 'session_id' + '}', session_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params[:'Idempotency-Key'] = opts[:'idempotency_key'] if !opts[:'idempotency_key'].nil?
+      header_params[:'Accept-Language'] = opts[:'accept_language'] if !opts[:'accept_language'].nil?
+      header_params[:'User-Agent'] = opts[:'user_agent'] if !opts[:'user_agent'].nil?
+      header_params[:'Request-Id'] = opts[:'request_id'] if !opts[:'request_id'].nil?
+      header_params[:'Signature'] = opts[:'signature'] if !opts[:'signature'].nil?
+      header_params[:'Timestamp'] = opts[:'timestamp'] if !opts[:'timestamp'].nil?
+      header_params[:'API-Version'] = opts[:'api_version'] if !opts[:'api_version'].nil?
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(acp_get_checkout_session_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'Object', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      inbound_mle_status = "false"
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_checkout_session","get_checkout_session_with_http_info"])
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
+      end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["get_checkout_session","get_checkout_session_with_http_info"])
+
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'InlineResponse20113',
+        :isResponseMLEForApi => is_response_mle_for_api)
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: AgentCapabilitiesApi#get_checkout_session\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
         rescue
             puts 'Cannot write to log'
         end
@@ -355,6 +1213,176 @@ module CyberSource
       end
       return data, status_code, headers
     end
+    # List keys for an agent
+    # [category 1 — Agent_Capabilities] List all keys for a specific agent with pagination.
+    #
+    # @param agent_id Unique agent identifier
+    # @param [Hash] opts the optional parameters
+    # @option opts [Integer] :page Page number (1-indexed) (default to 1)
+    # @option opts [Integer] :page_size Items per page (max 100) (default to 30)
+    # @return [ListAgentKeysResponse200]
+    #
+    def list_agent_keys(agent_id, opts = {})
+      data, status_code, headers = list_agent_keys_with_http_info(agent_id, opts)
+      return data, status_code, headers
+    end
+
+    # List keys for an agent
+    # [category 1 — Agent_Capabilities] List all keys for a specific agent with pagination.
+    # @param agent_id Unique agent identifier
+    # @param [Hash] opts the optional parameters
+    # @option opts [Integer] :page Page number (1-indexed)
+    # @option opts [Integer] :page_size Items per page (max 100)
+    # @return [Array<(ListAgentKeysResponse200, Fixnum, Hash)>] ListAgentKeysResponse200 data, response status code and response headers
+    def list_agent_keys_with_http_info(agent_id, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: AgentCapabilitiesApi.list_agent_keys ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'agent_id' is set
+      if @api_client.config.client_side_validation && agent_id.nil?
+        fail ArgumentError, "Missing the required parameter 'agent_id' when calling AgentCapabilitiesApi.list_agent_keys"
+      end
+      # resource path
+      local_var_path = 'icc/v1/agents/{agentId}/keys'.sub('{' + 'agentId' + '}', agent_id.to_s)
+
+      # query parameters
+      query_params = {}
+      query_params[:'page'] = opts[:'page'] if !opts[:'page'].nil?
+      query_params[:'pageSize'] = opts[:'page_size'] if !opts[:'page_size'].nil?
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      if 'GET' == 'POST'
+        post_body = '{}'
+      else
+        post_body = nil
+      end
+      inbound_mle_status = "false"
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["list_agent_keys","list_agent_keys_with_http_info"])
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
+      end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["list_agent_keys","list_agent_keys_with_http_info"])
+
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'ListAgentKeysResponse200',
+        :isResponseMLEForApi => is_response_mle_for_api)
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: AgentCapabilitiesApi#list_agent_keys\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
+    # Register an agent
+    # Register a new AI agent in the VARS. Once registered, the agent can upload public keys that merchants and Visa services use to verify request signatures. Raises 409 if domain, contactEmail, or tokenRequestorId already exists.
+    #
+    # @param agent_request Agent registration request
+    # @param [Hash] opts the optional parameters
+    # @return [AgentRegistrationResponse201]
+    #
+    def register_agent(agent_request, opts = {})
+      data, status_code, headers = register_agent_with_http_info(agent_request, opts)
+      return data, status_code, headers
+    end
+
+    # Register an agent
+    # Register a new AI agent in the VARS. Once registered, the agent can upload public keys that merchants and Visa services use to verify request signatures. Raises 409 if domain, contactEmail, or tokenRequestorId already exists.
+    # @param agent_request Agent registration request
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(AgentRegistrationResponse201, Fixnum, Hash)>] AgentRegistrationResponse201 data, response status code and response headers
+    def register_agent_with_http_info(agent_request, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: AgentCapabilitiesApi.register_agent ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'agent_request' is set
+      if @api_client.config.client_side_validation && agent_request.nil?
+        fail ArgumentError, "Missing the required parameter 'agent_request' when calling AgentCapabilitiesApi.register_agent"
+      end
+      # resource path
+      local_var_path = 'icc/v1/agents'
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(agent_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'AgentRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      inbound_mle_status = "mandatory"
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["register_agent","register_agent_with_http_info"])
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
+      end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["register_agent","register_agent_with_http_info"])
+
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'AgentRegistrationResponse201',
+        :isResponseMLEForApi => is_response_mle_for_api)
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: AgentCapabilitiesApi#register_agent\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
     # Retrieve payment credentials
     # Retrieve tokenized payment credentials for a purchase intent to complete the transaction at a merchant. The agent calls this endpoint after a purchase intent has been created and approved, providing transaction-level details including order information, merchant details, payment options, and production information. Returns COMPLETED (HTTP 200) with a signed payload containing encrypted payment credentials (authorization token and JWS-signed payload), or PENDING (HTTP 202) with pendingEvents if additional cardholder authentication is required. The signed payload is used by the merchant's payment processor to complete the transaction.
     #
@@ -436,6 +1464,724 @@ module CyberSource
         begin
         raise
             @api_client.config.logger.debug "API called: AgentCapabilitiesApi#retrieve_payment_credentials\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
+    # Cancel Checkout UCP
+    # Cancels an active UCP checkout session. No charge is made.  This operation is idempotent — cancelling an already-cancelled session returns a successful response. Sessions also expire automatically after 30 minutes of inactivity. 
+    #
+    # @param session_id The unique identifier of the UCP checkout session to cancel.
+    # @param [Hash] opts the optional parameters
+    # @return [InlineResponse20114]
+    #
+    def ucp_cancel_checkout(session_id, opts = {})
+      data, status_code, headers = ucp_cancel_checkout_with_http_info(session_id, opts)
+      return data, status_code, headers
+    end
+
+    # Cancel Checkout UCP
+    # Cancels an active UCP checkout session. No charge is made.  This operation is idempotent — cancelling an already-cancelled session returns a successful response. Sessions also expire automatically after 30 minutes of inactivity. 
+    # @param session_id The unique identifier of the UCP checkout session to cancel.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(InlineResponse20114, Fixnum, Hash)>] InlineResponse20114 data, response status code and response headers
+    def ucp_cancel_checkout_with_http_info(session_id, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: AgentCapabilitiesApi.ucp_cancel_checkout ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'session_id' is set
+      if @api_client.config.client_side_validation && session_id.nil?
+        fail ArgumentError, "Missing the required parameter 'session_id' when calling AgentCapabilitiesApi.ucp_cancel_checkout"
+      end
+      # resource path
+      local_var_path = 'icc/v1/checkout-sessions/{session_id}/cancel'.sub('{' + 'session_id' + '}', session_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      if 'POST' == 'POST'
+        post_body = '{}'
+      else
+        post_body = nil
+      end
+      inbound_mle_status = "mandatory"
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["ucp_cancel_checkout","ucp_cancel_checkout_with_http_info"])
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
+      end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["ucp_cancel_checkout","ucp_cancel_checkout_with_http_info"])
+
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'InlineResponse20114',
+        :isResponseMLEForApi => is_response_mle_for_api)
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: AgentCapabilitiesApi#ucp_cancel_checkout\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
+    # Complete Checkout UCP
+    # **Final step of the UCP checkout flow.**  Finalizes the session and places the order with the merchant. ACG translates the UCP completion request to the merchant's checkout API.  On success, the session transitions to `completed`. An `order_id` is not returned in the UCP response — use the ACP Complete endpoint if you need order confirmation details.  **Always use an `idempotency-key`** to prevent duplicate orders on network retries. 
+    #
+    # @param session_id The unique identifier of the UCP checkout session to complete.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :idempotency_key **Strongly recommended.** A unique key that ensures this order is placed exactly once on retries. Lowercase per UCP spec. 
+    # @option opts [UcpCompleteCheckoutRequest] :ucp_complete_checkout_request UCP completion payload containing payment instrument and optional risk signals. If payment context was already provided in the Create or Update call, the body can be omitted. Risk signals are logged for fraud analysis and are not forwarded to the merchant. 
+    # @return [InlineResponse20114]
+    #
+    def ucp_complete_checkout(session_id, opts = {})
+      data, status_code, headers = ucp_complete_checkout_with_http_info(session_id, opts)
+      return data, status_code, headers
+    end
+
+    # Complete Checkout UCP
+    # **Final step of the UCP checkout flow.**  Finalizes the session and places the order with the merchant. ACG translates the UCP completion request to the merchant&#39;s checkout API.  On success, the session transitions to &#x60;completed&#x60;. An &#x60;order_id&#x60; is not returned in the UCP response — use the ACP Complete endpoint if you need order confirmation details.  **Always use an &#x60;idempotency-key&#x60;** to prevent duplicate orders on network retries. 
+    # @param session_id The unique identifier of the UCP checkout session to complete.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :idempotency_key **Strongly recommended.** A unique key that ensures this order is placed exactly once on retries. Lowercase per UCP spec. 
+    # @option opts [UcpCompleteCheckoutRequest] :ucp_complete_checkout_request UCP completion payload containing payment instrument and optional risk signals. If payment context was already provided in the Create or Update call, the body can be omitted. Risk signals are logged for fraud analysis and are not forwarded to the merchant. 
+    # @return [Array<(InlineResponse20114, Fixnum, Hash)>] InlineResponse20114 data, response status code and response headers
+    def ucp_complete_checkout_with_http_info(session_id, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: AgentCapabilitiesApi.ucp_complete_checkout ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'session_id' is set
+      if @api_client.config.client_side_validation && session_id.nil?
+        fail ArgumentError, "Missing the required parameter 'session_id' when calling AgentCapabilitiesApi.ucp_complete_checkout"
+      end
+      # resource path
+      local_var_path = 'icc/v1/checkout-sessions/{session_id}/complete'.sub('{' + 'session_id' + '}', session_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params[:'idempotency-key'] = opts[:'idempotency_key'] if !opts[:'idempotency_key'].nil?
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(opts[:'ucp_complete_checkout_request'])
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'UcpCompleteCheckoutRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      inbound_mle_status = "mandatory"
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["ucp_complete_checkout","ucp_complete_checkout_with_http_info"])
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
+      end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["ucp_complete_checkout","ucp_complete_checkout_with_http_info"])
+
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'InlineResponse20114',
+        :isResponseMLEForApi => is_response_mle_for_api)
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: AgentCapabilitiesApi#ucp_complete_checkout\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
+    # Create Checkout Session UCP
+    # **Step 1 of the UCP checkout flow.**  Creates a new UCP checkout session using Google's Universal Commerce Protocol format. ACG translates the UCP request into the internal ACP format, applies merchant pricing, and returns a UCP-format session response with a session `id`.  UCP uses `line_items` (instead of `items`) and lowercase header names (`idempotency-key`) per the UCP specification.  **Store the `id`** from the response — it is required for all subsequent UCP calls. 
+    #
+    # @param ucp_create_checkout_session_request UCP checkout session creation payload containing line items, buyer details, currency, and optional payment, fulfillment, and discount information. 
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :idempotency_key Client-generated unique key (UUID recommended) to ensure this request is processed exactly once. Lowercase per UCP specification. 
+    # @return [InlineResponse20114]
+    #
+    def ucp_create_checkout_session(ucp_create_checkout_session_request, opts = {})
+      data, status_code, headers = ucp_create_checkout_session_with_http_info(ucp_create_checkout_session_request, opts)
+      return data, status_code, headers
+    end
+
+    # Create Checkout Session UCP
+    # **Step 1 of the UCP checkout flow.**  Creates a new UCP checkout session using Google&#39;s Universal Commerce Protocol format. ACG translates the UCP request into the internal ACP format, applies merchant pricing, and returns a UCP-format session response with a session &#x60;id&#x60;.  UCP uses &#x60;line_items&#x60; (instead of &#x60;items&#x60;) and lowercase header names (&#x60;idempotency-key&#x60;) per the UCP specification.  **Store the &#x60;id&#x60;** from the response — it is required for all subsequent UCP calls. 
+    # @param ucp_create_checkout_session_request UCP checkout session creation payload containing line items, buyer details, currency, and optional payment, fulfillment, and discount information. 
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :idempotency_key Client-generated unique key (UUID recommended) to ensure this request is processed exactly once. Lowercase per UCP specification. 
+    # @return [Array<(InlineResponse20114, Fixnum, Hash)>] InlineResponse20114 data, response status code and response headers
+    def ucp_create_checkout_session_with_http_info(ucp_create_checkout_session_request, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: AgentCapabilitiesApi.ucp_create_checkout_session ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'ucp_create_checkout_session_request' is set
+      if @api_client.config.client_side_validation && ucp_create_checkout_session_request.nil?
+        fail ArgumentError, "Missing the required parameter 'ucp_create_checkout_session_request' when calling AgentCapabilitiesApi.ucp_create_checkout_session"
+      end
+      # resource path
+      local_var_path = 'icc/v1/checkout-sessions'
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params[:'idempotency-key'] = opts[:'idempotency_key'] if !opts[:'idempotency_key'].nil?
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(ucp_create_checkout_session_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'UcpCreateCheckoutSessionRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      inbound_mle_status = "mandatory"
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["ucp_create_checkout_session","ucp_create_checkout_session_with_http_info"])
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
+      end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["ucp_create_checkout_session","ucp_create_checkout_session_with_http_info"])
+
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'InlineResponse20114',
+        :isResponseMLEForApi => is_response_mle_for_api)
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: AgentCapabilitiesApi#ucp_create_checkout_session\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
+    # Get Checkout Session UCP
+    # Retrieves the current state of a UCP checkout session.  Use this to verify session status, retrieve updated totals after a fulfillment change, or resume a session after an interruption. 
+    #
+    # @param session_id The unique identifier of the UCP checkout session to retrieve. Obtained from the &#x60;id&#x60; field in the Create Session response. 
+    # @param ucp_get_checkout_session_request Empty request body.
+    # @param [Hash] opts the optional parameters
+    # @return [InlineResponse20114]
+    #
+    def ucp_get_checkout_session(session_id, ucp_get_checkout_session_request, opts = {})
+      data, status_code, headers = ucp_get_checkout_session_with_http_info(session_id, ucp_get_checkout_session_request, opts)
+      return data, status_code, headers
+    end
+
+    # Get Checkout Session UCP
+    # Retrieves the current state of a UCP checkout session.  Use this to verify session status, retrieve updated totals after a fulfillment change, or resume a session after an interruption. 
+    # @param session_id The unique identifier of the UCP checkout session to retrieve. Obtained from the &#x60;id&#x60; field in the Create Session response. 
+    # @param ucp_get_checkout_session_request Empty request body.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(InlineResponse20114, Fixnum, Hash)>] InlineResponse20114 data, response status code and response headers
+    def ucp_get_checkout_session_with_http_info(session_id, ucp_get_checkout_session_request, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: AgentCapabilitiesApi.ucp_get_checkout_session ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'session_id' is set
+      if @api_client.config.client_side_validation && session_id.nil?
+        fail ArgumentError, "Missing the required parameter 'session_id' when calling AgentCapabilitiesApi.ucp_get_checkout_session"
+      end
+      # verify the required parameter 'ucp_get_checkout_session_request' is set
+      if @api_client.config.client_side_validation && ucp_get_checkout_session_request.nil?
+        fail ArgumentError, "Missing the required parameter 'ucp_get_checkout_session_request' when calling AgentCapabilitiesApi.ucp_get_checkout_session"
+      end
+      # resource path
+      local_var_path = 'icc/v1/checkout-sessions/{session_id}'.sub('{' + 'session_id' + '}', session_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(ucp_get_checkout_session_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'Object', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      inbound_mle_status = "false"
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["ucp_get_checkout_session","ucp_get_checkout_session_with_http_info"])
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
+      end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["ucp_get_checkout_session","ucp_get_checkout_session_with_http_info"])
+
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'InlineResponse20114',
+        :isResponseMLEForApi => is_response_mle_for_api)
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: AgentCapabilitiesApi#ucp_get_checkout_session\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
+    # Update Checkout Session UCP
+    # Modifies an active UCP checkout session and returns the updated session state.  Use this to change line item quantities, update fulfillment address or method, or apply discount codes. Totals are recalculated and returned in the response.  Only the fields you include in the request body are updated. 
+    #
+    # @param session_id The unique identifier of the UCP checkout session to update.
+    # @param ucp_update_checkout_session_request UCP session update payload. All fields are optional — only fields you include will be applied. 
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :idempotency_key Client-generated unique key for idempotency. Lowercase per UCP spec.
+    # @return [InlineResponse20114]
+    #
+    def ucp_update_checkout_session(session_id, ucp_update_checkout_session_request, opts = {})
+      data, status_code, headers = ucp_update_checkout_session_with_http_info(session_id, ucp_update_checkout_session_request, opts)
+      return data, status_code, headers
+    end
+
+    # Update Checkout Session UCP
+    # Modifies an active UCP checkout session and returns the updated session state.  Use this to change line item quantities, update fulfillment address or method, or apply discount codes. Totals are recalculated and returned in the response.  Only the fields you include in the request body are updated. 
+    # @param session_id The unique identifier of the UCP checkout session to update.
+    # @param ucp_update_checkout_session_request UCP session update payload. All fields are optional — only fields you include will be applied. 
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :idempotency_key Client-generated unique key for idempotency. Lowercase per UCP spec.
+    # @return [Array<(InlineResponse20114, Fixnum, Hash)>] InlineResponse20114 data, response status code and response headers
+    def ucp_update_checkout_session_with_http_info(session_id, ucp_update_checkout_session_request, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: AgentCapabilitiesApi.ucp_update_checkout_session ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'session_id' is set
+      if @api_client.config.client_side_validation && session_id.nil?
+        fail ArgumentError, "Missing the required parameter 'session_id' when calling AgentCapabilitiesApi.ucp_update_checkout_session"
+      end
+      # verify the required parameter 'ucp_update_checkout_session_request' is set
+      if @api_client.config.client_side_validation && ucp_update_checkout_session_request.nil?
+        fail ArgumentError, "Missing the required parameter 'ucp_update_checkout_session_request' when calling AgentCapabilitiesApi.ucp_update_checkout_session"
+      end
+      # resource path
+      local_var_path = 'icc/v1/checkout-sessions/{session_id}'.sub('{' + 'session_id' + '}', session_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params[:'idempotency-key'] = opts[:'idempotency_key'] if !opts[:'idempotency_key'].nil?
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(ucp_update_checkout_session_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'UcpUpdateCheckoutSessionRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      inbound_mle_status = "mandatory"
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["ucp_update_checkout_session","ucp_update_checkout_session_with_http_info"])
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
+      end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["ucp_update_checkout_session","ucp_update_checkout_session_with_http_info"])
+
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:PUT, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'InlineResponse20114',
+        :isResponseMLEForApi => is_response_mle_for_api)
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: AgentCapabilitiesApi#ucp_update_checkout_session\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
+    # Update an agent
+    # [category 1 — Agent_Capabilities] Update agent information. Updatable fields are name, domain, description, contactEmail, and agentMetadata. Extra fields (e.g. tokenRequestorId, keys) will return 422 Validation Error. Raises 404 if agent not found, 403 if agent is deactivated, 409 if new domain or contactEmail already exists.
+    #
+    # @param agent_id Unique agent identifier
+    # @param agent_update Agent update request
+    # @param [Hash] opts the optional parameters
+    # @return [AgentRegistrationResponse201]
+    #
+    def update_agent(agent_id, agent_update, opts = {})
+      data, status_code, headers = update_agent_with_http_info(agent_id, agent_update, opts)
+      return data, status_code, headers
+    end
+
+    # Update an agent
+    # [category 1 — Agent_Capabilities] Update agent information. Updatable fields are name, domain, description, contactEmail, and agentMetadata. Extra fields (e.g. tokenRequestorId, keys) will return 422 Validation Error. Raises 404 if agent not found, 403 if agent is deactivated, 409 if new domain or contactEmail already exists.
+    # @param agent_id Unique agent identifier
+    # @param agent_update Agent update request
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(AgentRegistrationResponse201, Fixnum, Hash)>] AgentRegistrationResponse201 data, response status code and response headers
+    def update_agent_with_http_info(agent_id, agent_update, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: AgentCapabilitiesApi.update_agent ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'agent_id' is set
+      if @api_client.config.client_side_validation && agent_id.nil?
+        fail ArgumentError, "Missing the required parameter 'agent_id' when calling AgentCapabilitiesApi.update_agent"
+      end
+      # verify the required parameter 'agent_update' is set
+      if @api_client.config.client_side_validation && agent_update.nil?
+        fail ArgumentError, "Missing the required parameter 'agent_update' when calling AgentCapabilitiesApi.update_agent"
+      end
+      # resource path
+      local_var_path = 'icc/v1/agents/{agentId}'.sub('{' + 'agentId' + '}', agent_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(agent_update)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'AgentUpdate', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      inbound_mle_status = "mandatory"
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["update_agent","update_agent_with_http_info"])
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
+      end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["update_agent","update_agent_with_http_info"])
+
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:PUT, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'AgentRegistrationResponse201',
+        :isResponseMLEForApi => is_response_mle_for_api)
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: AgentCapabilitiesApi#update_agent\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
+    # Update a key
+    # Update key information. Updatable fields are keyName, publicKey, algorithm, and expirationDate. Raises 404 if agent or key not found, 403 if agent or key is deactivated, 409 if new keyName already exists.
+    #
+    # @param agent_id Unique agent identifier
+    # @param key_id Unique key identifier
+    # @param key_update Key update request
+    # @param [Hash] opts the optional parameters
+    # @return [AddAgentKeyResponse201]
+    #
+    def update_agent_key(agent_id, key_id, key_update, opts = {})
+      data, status_code, headers = update_agent_key_with_http_info(agent_id, key_id, key_update, opts)
+      return data, status_code, headers
+    end
+
+    # Update a key
+    # Update key information. Updatable fields are keyName, publicKey, algorithm, and expirationDate. Raises 404 if agent or key not found, 403 if agent or key is deactivated, 409 if new keyName already exists.
+    # @param agent_id Unique agent identifier
+    # @param key_id Unique key identifier
+    # @param key_update Key update request
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(AddAgentKeyResponse201, Fixnum, Hash)>] AddAgentKeyResponse201 data, response status code and response headers
+    def update_agent_key_with_http_info(agent_id, key_id, key_update, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: AgentCapabilitiesApi.update_agent_key ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'agent_id' is set
+      if @api_client.config.client_side_validation && agent_id.nil?
+        fail ArgumentError, "Missing the required parameter 'agent_id' when calling AgentCapabilitiesApi.update_agent_key"
+      end
+      # verify the required parameter 'key_id' is set
+      if @api_client.config.client_side_validation && key_id.nil?
+        fail ArgumentError, "Missing the required parameter 'key_id' when calling AgentCapabilitiesApi.update_agent_key"
+      end
+      # verify the required parameter 'key_update' is set
+      if @api_client.config.client_side_validation && key_update.nil?
+        fail ArgumentError, "Missing the required parameter 'key_update' when calling AgentCapabilitiesApi.update_agent_key"
+      end
+      # resource path
+      local_var_path = 'icc/v1/agents/{agentId}/keys/{keyId}'.sub('{' + 'agentId' + '}', agent_id.to_s).sub('{' + 'keyId' + '}', key_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(key_update)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'KeyUpdate', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      inbound_mle_status = "mandatory"
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["update_agent_key","update_agent_key_with_http_info"])
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
+      end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["update_agent_key","update_agent_key_with_http_info"])
+
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:PUT, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'AddAgentKeyResponse201',
+        :isResponseMLEForApi => is_response_mle_for_api)
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: AgentCapabilitiesApi#update_agent_key\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
+    # Update Checkout Session ACP
+    # Modifies an active ACP checkout session and returns the updated session state with recalculated totals.  Use this to: - Add, remove, or change quantities of cart items - Apply or remove discount codes - Update the buyer's shipping address or contact details - Trigger re-calculation of shipping costs and tax  Only fields included in the request body are updated — omitted fields retain their current values.  **Idempotency:** Supply an `Idempotency-Key` to safely retry updates without applying them twice. 
+    #
+    # @param session_id The unique identifier of the ACP checkout session to update. Obtained from the &#x60;id&#x60; field in the Create Session response. 
+    # @param acp_update_checkout_session_request Fields to update. All fields are optional — only included fields are changed. To replace the cart entirely, provide the full &#x60;items&#x60; array. 
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :idempotency_key Client-generated unique key to ensure this request is processed exactly once. If a request with the same key was already processed, the original response is returned. 
+    # @option opts [String] :accept_language Preferred language for the response (e.g. &#x60;en-US&#x60;, &#x60;fr-FR&#x60;). Passed to the merchant backend for localized content. 
+    # @option opts [String] :user_agent Client user agent string identifying the AI agent platform and version. 
+    # @option opts [String] :request_id Unique request identifier for distributed tracing and debugging. Echoed back in the response headers. 
+    # @option opts [String] :signature Request signature for payload integrity verification. 
+    # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
+    # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
+    # @return [InlineResponse20113]
+    #
+    def update_checkout_session(session_id, acp_update_checkout_session_request, opts = {})
+      data, status_code, headers = update_checkout_session_with_http_info(session_id, acp_update_checkout_session_request, opts)
+      return data, status_code, headers
+    end
+
+    # Update Checkout Session ACP
+    # Modifies an active ACP checkout session and returns the updated session state with recalculated totals.  Use this to: - Add, remove, or change quantities of cart items - Apply or remove discount codes - Update the buyer&#39;s shipping address or contact details - Trigger re-calculation of shipping costs and tax  Only fields included in the request body are updated — omitted fields retain their current values.  **Idempotency:** Supply an &#x60;Idempotency-Key&#x60; to safely retry updates without applying them twice. 
+    # @param session_id The unique identifier of the ACP checkout session to update. Obtained from the &#x60;id&#x60; field in the Create Session response. 
+    # @param acp_update_checkout_session_request Fields to update. All fields are optional — only included fields are changed. To replace the cart entirely, provide the full &#x60;items&#x60; array. 
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :idempotency_key Client-generated unique key to ensure this request is processed exactly once. If a request with the same key was already processed, the original response is returned. 
+    # @option opts [String] :accept_language Preferred language for the response (e.g. &#x60;en-US&#x60;, &#x60;fr-FR&#x60;). Passed to the merchant backend for localized content. 
+    # @option opts [String] :user_agent Client user agent string identifying the AI agent platform and version. 
+    # @option opts [String] :request_id Unique request identifier for distributed tracing and debugging. Echoed back in the response headers. 
+    # @option opts [String] :signature Request signature for payload integrity verification. 
+    # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
+    # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
+    # @return [Array<(InlineResponse20113, Fixnum, Hash)>] InlineResponse20113 data, response status code and response headers
+    def update_checkout_session_with_http_info(session_id, acp_update_checkout_session_request, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: AgentCapabilitiesApi.update_checkout_session ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'session_id' is set
+      if @api_client.config.client_side_validation && session_id.nil?
+        fail ArgumentError, "Missing the required parameter 'session_id' when calling AgentCapabilitiesApi.update_checkout_session"
+      end
+      # verify the required parameter 'acp_update_checkout_session_request' is set
+      if @api_client.config.client_side_validation && acp_update_checkout_session_request.nil?
+        fail ArgumentError, "Missing the required parameter 'acp_update_checkout_session_request' when calling AgentCapabilitiesApi.update_checkout_session"
+      end
+      # resource path
+      local_var_path = 'icc/v1/checkout_sessions/{session_id}'.sub('{' + 'session_id' + '}', session_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params[:'Idempotency-Key'] = opts[:'idempotency_key'] if !opts[:'idempotency_key'].nil?
+      header_params[:'Accept-Language'] = opts[:'accept_language'] if !opts[:'accept_language'].nil?
+      header_params[:'User-Agent'] = opts[:'user_agent'] if !opts[:'user_agent'].nil?
+      header_params[:'Request-Id'] = opts[:'request_id'] if !opts[:'request_id'].nil?
+      header_params[:'Signature'] = opts[:'signature'] if !opts[:'signature'].nil?
+      header_params[:'Timestamp'] = opts[:'timestamp'] if !opts[:'timestamp'].nil?
+      header_params[:'API-Version'] = opts[:'api_version'] if !opts[:'api_version'].nil?
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(acp_update_checkout_session_request)
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'AcpUpdateCheckoutSessionRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      inbound_mle_status = "mandatory"
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["update_checkout_session","update_checkout_session_with_http_info"])
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+        rescue
+          raise
+        end
+      end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["update_checkout_session","update_checkout_session_with_http_info"])
+
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'InlineResponse20113',
+        :isResponseMLEForApi => is_response_mle_for_api)
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: AgentCapabilitiesApi#update_checkout_session\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
         rescue
             puts 'Cannot write to log'
         end

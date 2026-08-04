@@ -8,5 +8,6 @@ Name | Type | Description | Notes
 **processing_information** | [**Iplv2paymentlinksidProcessingInformation**](Iplv2paymentlinksidProcessingInformation.md) |  | [optional] 
 **purchase_information** | [**Iplv2paymentlinksidPurchaseInformation**](Iplv2paymentlinksidPurchaseInformation.md) |  | [optional] 
 **order_information** | [**Iplv2paymentlinksidOrderInformation**](Iplv2paymentlinksidOrderInformation.md) |  | [optional] 
+**merchant_defined_field_values** | [**Array&lt;Invoicingv2invoicesMerchantDefinedFieldValues&gt;**](Invoicingv2invoicesMerchantDefinedFieldValues.md) |  | [optional] 
 
 

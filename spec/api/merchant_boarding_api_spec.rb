@@ -43,13 +43,27 @@ describe 'MerchantBoardingApi' do
     end
   end
 
+  # unit tests for patch_registration
+  # Updates the information on a boarding registration
+  # This end point will partially update a boarding registration 
+  # @param registration_id Identifies the boarding registration to be updated
+  # @param patch_registration_body Boarding registration data to be patched
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :v_c_idempotency_id defines idempotency of the request
+  # @return [InlineResponse2005]
+  describe 'patch_registration test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for post_registration
   # Create a boarding registration
   # Boarding Product is specifically for resellers who onboard merchants to resell their services to merchants and help integrate REST API into their systems.  The Boarding API is designed to simplify and streamline the onboarding process of merchants by enabling administrators and developers to: 1. Enable and Configure Products: The API helps in adding new products to an existing organization and configuring them to suit specific needs. 2. Update Merchant Information: The API allows for updating an organization&#39;s information efficiently. 3. Manage Payment Integration: It provides templates for secure payment integration and management. 
   # @param post_registration_body Boarding registration data
   # @param [Hash] opts the optional parameters
   # @option opts [String] :v_c_idempotency_id defines idempotency of the request
-  # @return [InlineResponse2014]
+  # @return [InlineResponse2017]
   describe 'post_registration test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

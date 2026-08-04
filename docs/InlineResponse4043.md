@@ -7,6 +7,6 @@ Name | Type | Description | Notes
 **status** | **String** | The http status description of the submitted request. | [optional] 
 **reason** | **String** | Documented reason codes. Client should be able to use the key for generating their own error message Possible Values:   - &#39;RESOURCE_NOT_FOUND&#39;  | [optional] 
 **message** | **String** | Descriptive message for the error. | [optional] 
-**details** | [**Array&lt;InlineResponse4009Details&gt;**](InlineResponse4009Details.md) |  | [optional] 
+**details** | [**Array&lt;InlineResponse40011Details&gt;**](InlineResponse40011Details.md) |  | [optional] 
 
 

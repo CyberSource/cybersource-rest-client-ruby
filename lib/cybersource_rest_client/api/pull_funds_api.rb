@@ -118,7 +118,7 @@ module CyberSource
       post_body = @api_client.object_to_http_body(pull_funds_refund_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PullFundsRefundRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      inbound_mle_status = "false"
+      inbound_mle_status = "optional"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["create_pull_funds_refund","create_pull_funds_refund_with_http_info"])
         begin
           post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
@@ -247,7 +247,7 @@ module CyberSource
       post_body = @api_client.object_to_http_body(pull_funds_reversal_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PullFundsReversalRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      inbound_mle_status = "false"
+      inbound_mle_status = "optional"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["create_pull_funds_reversal","create_pull_funds_reversal_with_http_info"])
         begin
           post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
@@ -370,7 +370,7 @@ module CyberSource
       post_body = @api_client.object_to_http_body(pull_funds_request)
       sdk_tracker = SdkTracker.new
       post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PullFundsRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      inbound_mle_status = "false"
+      inbound_mle_status = "optional"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["create_pull_funds_transfer","create_pull_funds_transfer_with_http_info"])
         begin
           post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)

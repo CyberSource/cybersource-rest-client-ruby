@@ -63,7 +63,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::EMVTagDetailsApi.new
 
-body = CyberSource::Body.new # Body | 
+body = CyberSource::Body2.new # Body2 | 
 
 
 begin
@@ -79,7 +79,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Body**](Body.md)|  | 
+ **body** | [**Body2**](Body2.md)|  | 
 
 ### Return type
 

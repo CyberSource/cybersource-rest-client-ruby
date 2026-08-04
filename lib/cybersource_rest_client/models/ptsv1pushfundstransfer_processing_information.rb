@@ -13,7 +13,7 @@ require 'date'
 
 module CyberSource
   class Ptsv1pushfundstransferProcessingInformation
-    # Money Transfer (MT) - `AA`: Account to Account - `BI`: Bank-Initiated Money Transfer - `CD`: Cash Deposit - `FT`: Funds Transfer - `TU`: Prepaid Card Loan - `WT`: Wallet Transfer-Staged Digital Wallet (SDW) Transfer - `PP`: P2P Money Transfer  Funds Disbursement (FD) - `BB`: Business-to-business Supplier Payments - `BP`: Non-Card Bill Pay  - `CP`: Credit Card Bill Pay - `FD`: General Funds Disbursements - `GD`: Government Disbursements and Government Initiated Tax Refunds - `GP`: Gambling/Gaming Payouts (other than online gaming) - `LO`: Loyalty Payments - `MD`: Merchant Settlement - `MI`: Faster Refunds - `OG`: Online Gambling Payouts - `PD`: Payroll and Pension Disbursements - `RP`: Request-to-Pay Service 
+    # Payouts transaction type.  Money Transfer (MT) - `AA`: Account to Account - `BI`: Bank-Initiated Money Transfer - `CD`: Cash Deposit - `FT`: Funds Transfer - `LA`: Liquid Assets - `PP`: P2P Money Transfer - `WT`: Wallet Transfer-Staged Digital Wallet (SDW) Transfer  Funds Disbursement (FD) - `BB`: Business-to-business Supplier Payments - `BP`: Non-Card Bill Pay - `CP`: Credit Card Bill Pay - `FD`: General Funds Disbursements - `GD`: Government Disbursements and Government Initiated Tax Refunds - `GP`: Gambling/Gaming Payouts (other than online gaming) - `LO`: Loyalty Payments - `MD`: Merchant Settlement - `MI`: Faster Refunds - `OG`: Online Gambling Payouts - `PD`: Payroll and Pension Disbursements - `RP`: Request-to-Pay Service - `TU`: Prepaid Card Load  Supported BAIs vary by payment gateway and configuration. Clients are responsible for confirming gateway specific BAI availability. Conditional - If not provided in payload, the value is picked from Merchant Configuration. 
     attr_accessor :business_application_id
 
     attr_accessor :payouts_options
@@ -21,8 +21,14 @@ module CyberSource
     # Fee Program Indicator. This field identifies the interchange fee program applicable to each financial transaction. Fee program indicator (FPI) values correspond to the fee descriptor and rate for each existing fee program. 
     attr_accessor :fee_program_id
 
-    # Merchant payment gateway ID that is assigned by Mastercard and is provided by the acquirer when a registered merchant payment gateway service provider is involved in the transaction.  This field is supported for Visa Platform Connect, Chase Paymentech Salem. 
+    # Merchant payment gateway ID that is assigned by Mastercard and is provided by the acquirer when a registered merchant payment gateway service provider is involved in the transaction. 
     attr_accessor :network_partner_id
+
+    # Transaction Type Identifier for Mastercard Send. 3-character code that identifies the transaction type on the Mastercard network. When provided, this value takes priority over businessApplicationId for determining the payment type. 
+    attr_accessor :transaction_type_indicator
+
+    # The IRD used for clearing the transaction on the Mastercard network. Details - Alphanumeric, length 2 characters.  This field is supported for Visa Platform Connect, Chase Paymentech Salem. 
+    attr_accessor :interchange_rate_designator
 
     # This field contains coding that identifies (1) the customer transaction type and (2) the customer account types affected by the transaction.  Default: 5402 (Original Credit Transaction)  Contains codes that combined with some other fields such as the BAI (Business Application Id) identify some unique use cases. For Sales Tax rebates this field should be populated with the value 5120 (Value-added tax/Sales Tax) along with the businessApplicationId field set to the value 'FD' which indicates this push funds transfer is being conducted in order to facilitate a sales tax refund. 
     attr_accessor :processing_code
@@ -46,6 +52,8 @@ module CyberSource
         :'payouts_options' => :'payoutsOptions',
         :'fee_program_id' => :'feeProgramId',
         :'network_partner_id' => :'networkPartnerId',
+        :'transaction_type_indicator' => :'transactionTypeIndicator',
+        :'interchange_rate_designator' => :'interchangeRateDesignator',
         :'processing_code' => :'processingCode',
         :'sharing_group_code' => :'sharingGroupCode',
         :'purpose_of_payment' => :'purposeOfPayment',
@@ -61,6 +69,8 @@ module CyberSource
         :'payouts_options' => :'payouts_options',
         :'fee_program_id' => :'fee_program_id',
         :'network_partner_id' => :'network_partner_id',
+        :'transaction_type_indicator' => :'transaction_type_indicator',
+        :'interchange_rate_designator' => :'interchange_rate_designator',
         :'processing_code' => :'processing_code',
         :'sharing_group_code' => :'sharing_group_code',
         :'purpose_of_payment' => :'purpose_of_payment',
@@ -76,6 +86,8 @@ module CyberSource
         :'payouts_options' => :'Ptsv1pushfundstransferProcessingInformationPayoutsOptions',
         :'fee_program_id' => :'String',
         :'network_partner_id' => :'String',
+        :'transaction_type_indicator' => :'String',
+        :'interchange_rate_designator' => :'String',
         :'processing_code' => :'String',
         :'sharing_group_code' => :'String',
         :'purpose_of_payment' => :'String',
@@ -106,6 +118,14 @@ module CyberSource
 
       if attributes.has_key?(:'networkPartnerId')
         self.network_partner_id = attributes[:'networkPartnerId']
+      end
+
+      if attributes.has_key?(:'transactionTypeIndicator')
+        self.transaction_type_indicator = attributes[:'transactionTypeIndicator']
+      end
+
+      if attributes.has_key?(:'interchangeRateDesignator')
+        self.interchange_rate_designator = attributes[:'interchangeRateDesignator']
       end
 
       if attributes.has_key?(:'processingCode')
@@ -186,6 +206,18 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] transaction_type_indicator Value to be assigned
+    def transaction_type_indicator=(transaction_type_indicator)
+      @transaction_type_indicator = transaction_type_indicator
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] interchange_rate_designator Value to be assigned
+    def interchange_rate_designator=(interchange_rate_designator)
+      @interchange_rate_designator = interchange_rate_designator
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] processing_code Value to be assigned
     def processing_code=(processing_code)
       #if !processing_code.nil? && processing_code !~ Regexp.new(/^(\\s{0,4}|\\d{4})$/)
@@ -222,6 +254,8 @@ module CyberSource
           payouts_options == o.payouts_options &&
           fee_program_id == o.fee_program_id &&
           network_partner_id == o.network_partner_id &&
+          transaction_type_indicator == o.transaction_type_indicator &&
+          interchange_rate_designator == o.interchange_rate_designator &&
           processing_code == o.processing_code &&
           sharing_group_code == o.sharing_group_code &&
           purpose_of_payment == o.purpose_of_payment &&
@@ -238,7 +272,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [business_application_id, payouts_options, fee_program_id, network_partner_id, processing_code, sharing_group_code, purpose_of_payment, reconciliation_id, account_verification_code].hash
+      [business_application_id, payouts_options, fee_program_id, network_partner_id, transaction_type_indicator, interchange_rate_designator, processing_code, sharing_group_code, purpose_of_payment, reconciliation_id, account_verification_code].hash
     end
 
     # Builds the object from hash

@@ -1,6 +1,5 @@
 require 'openssl'
 require 'base64'
-require 'active_support'
 require 'thread'
 require_relative 'CacheValue'
 require_relative 'CachedMLEKId'
@@ -9,6 +8,7 @@ require_relative 'Utility'
 require_relative '../util/Constants.rb'
 require_relative '../logging/log_factory.rb'
 require_relative '../logging/log_configuration.rb'
+require 'active_support'
 
 public
 # P12 file certificate Cache
@@ -31,6 +31,9 @@ public
           setupCache(cacheKey, certificateFilePath, merchantConfig)
           cachedCertificateInfo = @@cache_obj.read(cacheKey)
         end
+
+        cachedCertificateInfo.private_key = OpenSSL::PKey::RSA.new(Base64.strict_decode64(cachedCertificateInfo.private_key))
+        cachedCertificateInfo.cert = OpenSSL::X509::Certificate.new(Base64.strict_decode64(cachedCertificateInfo.cert))
 
         return cachedCertificateInfo
       end
@@ -60,7 +63,7 @@ public
             raise err
           end
 
-          cacheValue = CacheValue.new(mlePrivateKey, nil, fileModifiedTime)
+          cacheValue = CacheValue.new(Base64.strict_encode64(mlePrivateKey.to_pem), nil, fileModifiedTime)
 
           @@cache_obj.write(cacheKey, cacheValue)
         rescue StandardError => e
@@ -75,7 +78,7 @@ public
         privateKey, certificateList = Utility.getCertificateCollectionAndPrivateKeyFromP12(certificateFilePath, merchantConfig.keyPass)
         jwtCertificate = Utility.getCertificateBasedOnKeyAlias(certificateList, merchantConfig.keyAlias)
 
-        cacheValue = CacheValue.new(privateKey, jwtCertificate, fileModifiedTime)
+        cacheValue = CacheValue.new(Base64.strict_encode64(privateKey), Base64.strict_encode64(jwtCertificate), fileModifiedTime)
 
         @@cache_obj.write(cacheKey, cacheValue)
         return
@@ -105,7 +108,7 @@ public
           raise ArgumentError, "No certificate found for the specified mle_key_alias '#{merchantConfig.requestMleKeyAlias}' in file #{fileName}."
         end
 
-        cacheValue = CacheValue.new(privateKey, mleCertificate, fileModifiedTime)
+        cacheValue = CacheValue.new(Base64.strict_encode64(privateKey), Base64.strict_encode64(mleCertificate), fileModifiedTime)
 
         @@cache_obj.write(cacheKey, cacheValue)
         return
@@ -156,7 +159,7 @@ public
         end
       end
 
-      cachedCertificateInfo ? cachedCertificateInfo.cert : nil
+      cachedCertificateInfo ? OpenSSL::X509::Certificate.new(Base64.strict_decode64(cachedCertificateInfo.cert)) : nil
     end
 
     def getMLEResponsePrivateKeyFromFilePath(merchantConfig)
@@ -175,7 +178,7 @@ public
         end
       end
 
-      cachedCertificateInfo ? cachedCertificateInfo.private_key : nil
+      cachedCertificateInfo ? JOSE::JWK.from_pem(Base64.strict_decode64(cachedCertificateInfo.private_key)) : nil
     end
 
     def get_mle_kid_data_from_cache(merchant_config)

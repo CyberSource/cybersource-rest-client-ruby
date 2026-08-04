@@ -56,7 +56,7 @@ module CyberSource
         :'tenant_configuration_id' => :'String',
         :'status' => :'String',
         :'submit_time_utc' => :'DateTime',
-        :'tenant_information' => :'Boardingv1registrationsIntegrationInformationTenantInformation'
+        :'tenant_information' => :'TenantInformation'
       }
     end
 

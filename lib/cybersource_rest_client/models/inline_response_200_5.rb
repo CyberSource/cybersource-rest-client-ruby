@@ -60,7 +60,7 @@ module CyberSource
         :'integration_information' => :'InlineResponse2005IntegrationInformation',
         :'organization_information' => :'Boardingv1registrationsOrganizationInformation',
         :'product_information' => :'Boardingv1registrationsProductInformation',
-        :'product_information_setups' => :'Array<InlineResponse2014ProductInformationSetups>',
+        :'product_information_setups' => :'Array<InlineResponse2017ProductInformationSetups>',
         :'document_information' => :'Boardingv1registrationsDocumentInformation',
         :'details' => :'Hash<String, Array<Object>>'
       }

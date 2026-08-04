@@ -119,7 +119,7 @@ describe 'NetworkTokensApi' do
   # @param tokenized_card_id The Id of a tokenized card.
   # @param [Hash] opts the optional parameters
   # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
-  # @option opts [TmsTokenizedCardDeleteRequest] :post_tokenized_card_delete_request 
+  # @option opts [PostTokenizedCardDeleteRequest] :post_tokenized_card_delete_request 
   # @return [nil]
   describe 'post_tokenized_card_delete test' do
     it 'should work' do

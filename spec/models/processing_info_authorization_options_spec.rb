@@ -91,6 +91,12 @@ describe 'ProcessingInfoAuthorizationOptions' do
     end
   end
 
+  describe 'test attribute "decline_ani_flags"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "ignore_cv_result"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

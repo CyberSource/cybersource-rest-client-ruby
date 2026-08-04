@@ -13,74 +13,68 @@ require 'date'
 
 module CyberSource
   class InlineResponse2017
-    # Date that the webhook was delivered
-    attr_accessor :event_date
+    attr_accessor :id
 
-    # The event name the webhook was delivered for
-    attr_accessor :event_type
+    # Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the time. The Z indicates UTC. 
+    attr_accessor :submit_time_utc
 
-    # The Organization Identifier.
-    attr_accessor :organization_id
+    # The status of Registration request Possible Values:   - 'INITIALIZED'   - 'RECEIVED'   - 'PROCESSING'   - 'SUCCESS'   - 'FAILURE'   - 'PARTIAL' 
+    attr_accessor :status
 
-    attr_accessor :payloads
+    attr_accessor :registration_information
 
-    # The product the webhook was delivered for
-    attr_accessor :product_id
+    attr_accessor :integration_information
 
-    # Identifies the the type of request
-    attr_accessor :request_type
+    attr_accessor :organization_information
 
-    # The number of retry attempts for a given webhook
-    attr_accessor :retry_number
+    attr_accessor :product_information_setups
 
-    # The identifier for the webhook
-    attr_accessor :transaction_trace_id
+    attr_accessor :message
 
-    # The identifier of the subscription
-    attr_accessor :webhook_id
+    attr_accessor :details
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'event_date' => :'eventDate',
-        :'event_type' => :'eventType',
-        :'organization_id' => :'organizationId',
-        :'payloads' => :'payloads',
-        :'product_id' => :'productId',
-        :'request_type' => :'requestType',
-        :'retry_number' => :'retryNumber',
-        :'transaction_trace_id' => :'transactionTraceId',
-        :'webhook_id' => :'webhookId'
+        :'id' => :'id',
+        :'submit_time_utc' => :'submitTimeUtc',
+        :'status' => :'status',
+        :'registration_information' => :'registrationInformation',
+        :'integration_information' => :'integrationInformation',
+        :'organization_information' => :'organizationInformation',
+        :'product_information_setups' => :'productInformationSetups',
+        :'message' => :'message',
+        :'details' => :'details'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'event_date' => :'event_date',
-        :'event_type' => :'event_type',
-        :'organization_id' => :'organization_id',
-        :'payloads' => :'payloads',
-        :'product_id' => :'product_id',
-        :'request_type' => :'request_type',
-        :'retry_number' => :'retry_number',
-        :'transaction_trace_id' => :'transaction_trace_id',
-        :'webhook_id' => :'webhook_id'
+        :'id' => :'id',
+        :'submit_time_utc' => :'submit_time_utc',
+        :'status' => :'status',
+        :'registration_information' => :'registration_information',
+        :'integration_information' => :'integration_information',
+        :'organization_information' => :'organization_information',
+        :'product_information_setups' => :'product_information_setups',
+        :'message' => :'message',
+        :'details' => :'details'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'event_date' => :'String',
-        :'event_type' => :'String',
-        :'organization_id' => :'String',
-        :'payloads' => :'InlineResponse2017Payloads',
-        :'product_id' => :'String',
-        :'request_type' => :'String',
-        :'retry_number' => :'Integer',
-        :'transaction_trace_id' => :'String',
-        :'webhook_id' => :'String'
+        :'id' => :'String',
+        :'submit_time_utc' => :'DateTime',
+        :'status' => :'String',
+        :'registration_information' => :'InlineResponse2017RegistrationInformation',
+        :'integration_information' => :'InlineResponse2017IntegrationInformation',
+        :'organization_information' => :'InlineResponse2017OrganizationInformation',
+        :'product_information_setups' => :'Array<InlineResponse2017ProductInformationSetups>',
+        :'message' => :'String',
+        :'details' => :'Hash<String, Array<Object>>'
       }
     end
 
@@ -92,40 +86,44 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'eventDate')
-        self.event_date = attributes[:'eventDate']
+      if attributes.has_key?(:'id')
+        self.id = attributes[:'id']
       end
 
-      if attributes.has_key?(:'eventType')
-        self.event_type = attributes[:'eventType']
+      if attributes.has_key?(:'submitTimeUtc')
+        self.submit_time_utc = attributes[:'submitTimeUtc']
       end
 
-      if attributes.has_key?(:'organizationId')
-        self.organization_id = attributes[:'organizationId']
+      if attributes.has_key?(:'status')
+        self.status = attributes[:'status']
       end
 
-      if attributes.has_key?(:'payloads')
-        self.payloads = attributes[:'payloads']
+      if attributes.has_key?(:'registrationInformation')
+        self.registration_information = attributes[:'registrationInformation']
       end
 
-      if attributes.has_key?(:'productId')
-        self.product_id = attributes[:'productId']
+      if attributes.has_key?(:'integrationInformation')
+        self.integration_information = attributes[:'integrationInformation']
       end
 
-      if attributes.has_key?(:'requestType')
-        self.request_type = attributes[:'requestType']
+      if attributes.has_key?(:'organizationInformation')
+        self.organization_information = attributes[:'organizationInformation']
       end
 
-      if attributes.has_key?(:'retryNumber')
-        self.retry_number = attributes[:'retryNumber']
+      if attributes.has_key?(:'productInformationSetups')
+        if (value = attributes[:'productInformationSetups']).is_a?(Array)
+          self.product_information_setups = value
+        end
       end
 
-      if attributes.has_key?(:'transactionTraceId')
-        self.transaction_trace_id = attributes[:'transactionTraceId']
+      if attributes.has_key?(:'message')
+        self.message = attributes[:'message']
       end
 
-      if attributes.has_key?(:'webhookId')
-        self.webhook_id = attributes[:'webhookId']
+      if attributes.has_key?(:'details')
+        if (value = attributes[:'details']).is_a?(Hash)
+          self.details = value
+        end
       end
     end
 
@@ -142,20 +140,26 @@ module CyberSource
       true
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] id Value to be assigned
+    def id=(id)
+      @id = id
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          event_date == o.event_date &&
-          event_type == o.event_type &&
-          organization_id == o.organization_id &&
-          payloads == o.payloads &&
-          product_id == o.product_id &&
-          request_type == o.request_type &&
-          retry_number == o.retry_number &&
-          transaction_trace_id == o.transaction_trace_id &&
-          webhook_id == o.webhook_id
+          id == o.id &&
+          submit_time_utc == o.submit_time_utc &&
+          status == o.status &&
+          registration_information == o.registration_information &&
+          integration_information == o.integration_information &&
+          organization_information == o.organization_information &&
+          product_information_setups == o.product_information_setups &&
+          message == o.message &&
+          details == o.details
     end
 
     # @see the `==` method
@@ -167,7 +171,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [event_date, event_type, organization_id, payloads, product_id, request_type, retry_number, transaction_trace_id, webhook_id].hash
+      [id, submit_time_utc, status, registration_information, integration_information, organization_information, product_information_setups, message, details].hash
     end
 
     # Builds the object from hash

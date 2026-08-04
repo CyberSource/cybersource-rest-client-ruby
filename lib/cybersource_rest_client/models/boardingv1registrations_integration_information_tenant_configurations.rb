@@ -38,7 +38,7 @@ module CyberSource
     def self.swagger_types
       {
         :'solution_id' => :'String',
-        :'tenant_information' => :'Boardingv1registrationsIntegrationInformationTenantInformation'
+        :'tenant_information' => :'TenantInformation'
       }
     end
 
