@@ -3,7 +3,8 @@
 
 ## Description
 
-> N.B This is a fork of the official gem to allow for a more lax `jwt` version constraint
+> N.B This is a fork of the official gem to allow for more lax `jwt` and `activesupport` version
+> constraints
 
 The CyberSource Ruby client provides convenient access to the [CyberSource REST API](https://developer.cybersource.com/api/reference/api-reference.html) from your Ruby application.
 
@@ -18,7 +19,7 @@ The CyberSource Ruby client provides convenient access to the [CyberSource REST 
 
 ## Installation
 
-### Bundler
+### Bundler .
 
 Be sure to always use HTTPS rubygems source in your gemfile and include the cybersource_rest_client.
 
