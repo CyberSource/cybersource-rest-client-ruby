@@ -25,13 +25,17 @@ module CyberSource
     # Specifies the product code, which designates the type of transaction.<br><br>  Specify one of the following values for this field:  - AIR: Airline purchase  Important Required for American Express SafeKey (U.S.).  - ACC: Accommodation Rental  - ACF: Account funding  - CHA: Check acceptance  - DIG: Digital Goods  - DSP: Cash Dispensing  - GAS: Fuel  - GEN: General Retail  - LUX: Luxury Retail  - PAL: Prepaid activation and load  - PHY: Goods or services purchase  - QCT: Quasi-cash transaction  - REN: Car Rental  - RES: Restaurant  - SVC: Services  - TBD: Other  - TRA: Travel<br>  **Important** Required for Visa Secure transactions in Brazil. Do not use this request field for any other types of transactions. 
     attr_accessor :product_code
 
+    # Preferred language to be used for cardholder authentication and challenge experiences (subject to issuer/ACS support). 
+    attr_accessor :language_preference
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'challenge_code' => :'challengeCode',
         :'message_category' => :'messageCategory',
         :'acs_window_size' => :'acsWindowSize',
-        :'product_code' => :'productCode'
+        :'product_code' => :'productCode',
+        :'language_preference' => :'languagePreference'
       }
     end
 
@@ -41,7 +45,8 @@ module CyberSource
         :'challenge_code' => :'challenge_code',
         :'message_category' => :'message_category',
         :'acs_window_size' => :'acs_window_size',
-        :'product_code' => :'product_code'
+        :'product_code' => :'product_code',
+        :'language_preference' => :'language_preference'
       }
     end
 
@@ -51,7 +56,8 @@ module CyberSource
         :'challenge_code' => :'String',
         :'message_category' => :'String',
         :'acs_window_size' => :'String',
-        :'product_code' => :'String'
+        :'product_code' => :'String',
+        :'language_preference' => :'String'
       }
     end
 
@@ -77,6 +83,10 @@ module CyberSource
 
       if attributes.has_key?(:'productCode')
         self.product_code = attributes[:'productCode']
+      end
+
+      if attributes.has_key?(:'languagePreference')
+        self.language_preference = attributes[:'languagePreference']
       end
     end
 
@@ -125,7 +135,8 @@ module CyberSource
           challenge_code == o.challenge_code &&
           message_category == o.message_category &&
           acs_window_size == o.acs_window_size &&
-          product_code == o.product_code
+          product_code == o.product_code &&
+          language_preference == o.language_preference
     end
 
     # @see the `==` method
@@ -137,7 +148,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [challenge_code, message_category, acs_window_size, product_code].hash
+      [challenge_code, message_category, acs_window_size, product_code, language_preference].hash
     end
 
     # Builds the object from hash

@@ -12,23 +12,23 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # Item detail within an ACP line item response.
+  # Product details for this line item.
   class InlineResponse20113Item
-    # Product identifier.
+    # The merchant's product ID or SKU.
     attr_accessor :id
 
-    # Product display name.
-    attr_accessor :name
+    # Human-readable product name.
+    attr_accessor :title
 
-    # Number of units.
-    attr_accessor :quantity
+    # Unit price in cents. Example: 2999 = $29.99 USD.
+    attr_accessor :price
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'id' => :'id',
-        :'name' => :'name',
-        :'quantity' => :'quantity'
+        :'title' => :'title',
+        :'price' => :'price'
       }
     end
 
@@ -36,8 +36,8 @@ module CyberSource
     def self.json_map
       {
         :'id' => :'id',
-        :'name' => :'name',
-        :'quantity' => :'quantity'
+        :'title' => :'title',
+        :'price' => :'price'
       }
     end
 
@@ -45,8 +45,8 @@ module CyberSource
     def self.swagger_types
       {
         :'id' => :'String',
-        :'name' => :'String',
-        :'quantity' => :'Integer'
+        :'title' => :'String',
+        :'price' => :'Integer'
       }
     end
 
@@ -62,12 +62,12 @@ module CyberSource
         self.id = attributes[:'id']
       end
 
-      if attributes.has_key?(:'name')
-        self.name = attributes[:'name']
+      if attributes.has_key?(:'title')
+        self.title = attributes[:'title']
       end
 
-      if attributes.has_key?(:'quantity')
-        self.quantity = attributes[:'quantity']
+      if attributes.has_key?(:'price')
+        self.price = attributes[:'price']
       end
     end
 
@@ -90,8 +90,8 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           id == o.id &&
-          name == o.name &&
-          quantity == o.quantity
+          title == o.title &&
+          price == o.price
     end
 
     # @see the `==` method
@@ -103,7 +103,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, name, quantity].hash
+      [id, title, price].hash
     end
 
     # Builds the object from hash

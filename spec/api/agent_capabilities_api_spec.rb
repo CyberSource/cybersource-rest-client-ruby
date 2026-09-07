@@ -134,7 +134,7 @@ describe 'AgentCapabilitiesApi' do
   # @option opts [String] :signature Request signature for payload integrity verification. 
   # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
   # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
-  # @return [InlineResponse20113]
+  # @return [InlineResponse20112]
   describe 'create_checkout_session test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -204,7 +204,7 @@ describe 'AgentCapabilitiesApi' do
   # @option opts [String] :signature Request signature for payload integrity verification. 
   # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
   # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
-  # @return [InlineResponse20113]
+  # @return [InlineResponse20112]
   describe 'get_checkout_session test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -267,7 +267,7 @@ describe 'AgentCapabilitiesApi' do
   # Cancels an active UCP checkout session. No charge is made.  This operation is idempotent — cancelling an already-cancelled session returns a successful response. Sessions also expire automatically after 30 minutes of inactivity. 
   # @param session_id The unique identifier of the UCP checkout session to cancel.
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse20114]
+  # @return [InlineResponse20113]
   describe 'ucp_cancel_checkout test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -281,7 +281,7 @@ describe 'AgentCapabilitiesApi' do
   # @param [Hash] opts the optional parameters
   # @option opts [String] :idempotency_key **Strongly recommended.** A unique key that ensures this order is placed exactly once on retries. Lowercase per UCP spec. 
   # @option opts [UcpCompleteCheckoutRequest] :ucp_complete_checkout_request UCP completion payload containing payment instrument and optional risk signals. If payment context was already provided in the Create or Update call, the body can be omitted. Risk signals are logged for fraud analysis and are not forwarded to the merchant. 
-  # @return [InlineResponse20114]
+  # @return [InlineResponse20113]
   describe 'ucp_complete_checkout test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -294,7 +294,7 @@ describe 'AgentCapabilitiesApi' do
   # @param ucp_create_checkout_session_request UCP checkout session creation payload containing line items, buyer details, currency, and optional payment, fulfillment, and discount information. 
   # @param [Hash] opts the optional parameters
   # @option opts [String] :idempotency_key Client-generated unique key (UUID recommended) to ensure this request is processed exactly once. Lowercase per UCP specification. 
-  # @return [InlineResponse20114]
+  # @return [InlineResponse20113]
   describe 'ucp_create_checkout_session test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -307,7 +307,7 @@ describe 'AgentCapabilitiesApi' do
   # @param session_id The unique identifier of the UCP checkout session to retrieve. Obtained from the &#x60;id&#x60; field in the Create Session response. 
   # @param ucp_get_checkout_session_request Empty request body.
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse20114]
+  # @return [InlineResponse20113]
   describe 'ucp_get_checkout_session test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -321,7 +321,7 @@ describe 'AgentCapabilitiesApi' do
   # @param ucp_update_checkout_session_request UCP session update payload. All fields are optional — only fields you include will be applied. 
   # @param [Hash] opts the optional parameters
   # @option opts [String] :idempotency_key Client-generated unique key for idempotency. Lowercase per UCP spec.
-  # @return [InlineResponse20114]
+  # @return [InlineResponse20113]
   describe 'ucp_update_checkout_session test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -368,7 +368,7 @@ describe 'AgentCapabilitiesApi' do
   # @option opts [String] :signature Request signature for payload integrity verification. 
   # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
   # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
-  # @return [InlineResponse20113]
+  # @return [InlineResponse20112]
   describe 'update_checkout_session test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

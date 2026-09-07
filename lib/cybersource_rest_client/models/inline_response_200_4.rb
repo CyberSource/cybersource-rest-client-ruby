@@ -76,7 +76,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'id' => :'Integer',
+        :'id' => :'String',
         :'field_type' => :'String',
         :'label' => :'String',
         :'customer_visible' => :'BOOLEAN',

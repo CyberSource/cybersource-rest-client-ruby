@@ -31,6 +31,12 @@ describe 'InvoicingV2InvoicesPost201ResponseMerchantDefinedFieldValuesWithDefini
       expect(@instance).to be_instance_of(CyberSource::InvoicingV2InvoicesPost201ResponseMerchantDefinedFieldValuesWithDefinition)
     end
   end
+  describe 'test attribute "mdf_value_id"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "reference_type"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

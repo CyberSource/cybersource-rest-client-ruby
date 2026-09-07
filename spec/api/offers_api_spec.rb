@@ -41,7 +41,7 @@ describe 'OffersApi' do
   # @param v_c_organization_id 
   # @param offer_request 
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse20112]
+  # @return [InlineResponse20111]
   describe 'create_offer test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

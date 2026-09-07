@@ -42,7 +42,7 @@ describe 'ForeignExchangeRatesApi' do
   # @param v_c_correlation_id 
   # @param v_c_organization_id 
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2014]
+  # @return [InlineResponse2013]
   describe 'create_fx_rates test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

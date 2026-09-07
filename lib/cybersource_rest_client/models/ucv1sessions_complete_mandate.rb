@@ -25,13 +25,17 @@ module CyberSource
     # Configure Unified Checkout to determine whether Consumer Authentication is invoked during service orchestration.  Possible values:   - PASSKEY  - 3DS  - NONE<br><br>  Setting this value to PASSKEY performs Payer Authentication with an existing Visa Payment Passkey or create a new Passkey (Post a traditional 3DS Authentication) attempt to perform authentication using the Payer Authentication Service.<br> Setting this value to 3DS will attempt to perform authentication using the Payer Authentication Service.<br> Setting this value to NONE indicates that you do not wish to perform authentication using the Payer Authentication Service.<br><br>  Optional field: This field can be configured through the Merchant Experience screens in the Business Center. The configured value may be overridden on a per‑transaction basis in the uc/v1/sessions API request. 
     attr_accessor :consumer_authentication
 
+    # Controls whether the Complete Mandate experience or related processing is suppressed. 
+    attr_accessor :suppress
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'type' => :'type',
         :'tms' => :'tms',
         :'decision_manager' => :'decisionManager',
-        :'consumer_authentication' => :'consumerAuthentication'
+        :'consumer_authentication' => :'consumerAuthentication',
+        :'suppress' => :'suppress'
       }
     end
 
@@ -41,7 +45,8 @@ module CyberSource
         :'type' => :'type',
         :'tms' => :'tms',
         :'decision_manager' => :'decision_manager',
-        :'consumer_authentication' => :'consumer_authentication'
+        :'consumer_authentication' => :'consumer_authentication',
+        :'suppress' => :'suppress'
       }
     end
 
@@ -51,7 +56,8 @@ module CyberSource
         :'type' => :'String',
         :'tms' => :'Ucv1sessionsCompleteMandateTms',
         :'decision_manager' => :'BOOLEAN',
-        :'consumer_authentication' => :'String'
+        :'consumer_authentication' => :'String',
+        :'suppress' => :'BOOLEAN'
       }
     end
 
@@ -77,6 +83,10 @@ module CyberSource
 
       if attributes.has_key?(:'consumerAuthentication')
         self.consumer_authentication = attributes[:'consumerAuthentication']
+      end
+
+      if attributes.has_key?(:'suppress')
+        self.suppress = attributes[:'suppress']
       end
     end
 
@@ -107,7 +117,8 @@ module CyberSource
           type == o.type &&
           tms == o.tms &&
           decision_manager == o.decision_manager &&
-          consumer_authentication == o.consumer_authentication
+          consumer_authentication == o.consumer_authentication &&
+          suppress == o.suppress
     end
 
     # @see the `==` method
@@ -119,7 +130,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [type, tms, decision_manager, consumer_authentication].hash
+      [type, tms, decision_manager, consumer_authentication, suppress].hash
     end
 
     # Builds the object from hash

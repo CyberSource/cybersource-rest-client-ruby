@@ -18,7 +18,7 @@ module CyberSource
     # The detail message related to the status and reason listed above. 
     attr_accessor :message
 
-    # The reason of the status.  Possible values: - `INVALID_DATA` - `INVALID_MERCHANT_CONFIGURATION` - `SYSTEM_ERROR` 
+    # Possible reasons for the error.  Possible values: - `INVALID_DATA` - `SYSTEM_ERROR` - `NOT_FOUND` - `UNAUTHORIZED` - `SYSTEM_TIMEOUT` - `PROCESSOR_ERROR` 
     attr_accessor :reason
 
     # Attribute mapping from ruby-style variable name to JSON key.

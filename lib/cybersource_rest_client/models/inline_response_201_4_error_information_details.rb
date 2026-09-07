@@ -16,7 +16,7 @@ module CyberSource
     # This is the flattened JSON object field name/path that is either missing or invalid. 
     attr_accessor :field
 
-    # Possible reasons for the error.  Possible values: - `MISSING_FIELD` - `INVALID_DATA` 
+    # Possible reasons for the error.  Possible values: - `INVALID_DATA` - `SYSTEM_ERROR` - `NOT_FOUND` - `UNAUTHORIZED` - `SYSTEM_TIMEOUT` - `PROCESSOR_ERROR` 
     attr_accessor :reason
 
     # Attribute mapping from ruby-style variable name to JSON key.

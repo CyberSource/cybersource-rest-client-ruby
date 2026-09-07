@@ -13,26 +13,44 @@ require 'date'
 
 module CyberSource
   class InlineResponse2014ProcessingInformation
-    attr_accessor :routing
+    # Payouts transaction type.  Possible Values: - `AA` - Account to account - `AB` - Business to Business - `PP` - Person to person - `TU` - Top-up for enhanced prepaid loads - `WT` - Wallet transfer - `BI` - Bank Initiated - `FT` - Funds Transfer - `FD` - Funds Disbursement - `GD` - Government Disbursement - `PD` - Payroll Disbursement - `LA` - Liquid Assets - `CP` - Card Bill Payment - `MP` - Non-card Bill Payment - `CD` - Cash Deposit - `CI` - Cash in - `CO` - Cash out - `GP` - Gambling Payment - `LO` - Loyalty and Offers - `MD` - Merchant Disbursement - `MI` - Merchant Initiated OCT for Faster Refund - `OG` - Online Gambling - `OT` - Own Account Transfer - `PS` - Payment for goods and services - `RP` - Request-To-Pay Service 
+    attr_accessor :business_application_id
+
+    # Type of transaction. 
+    attr_accessor :commerce_indicator
+
+    attr_accessor :payouts_options
+
+    # CyberSource or merchant generated transaction reference number. This is sent to the processor and is echoed back in the response to the merchant. This is This value is used for reconciliation purposes. 
+    attr_accessor :reconciliation_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'routing' => :'routing'
+        :'business_application_id' => :'businessApplicationId',
+        :'commerce_indicator' => :'commerceIndicator',
+        :'payouts_options' => :'payoutsOptions',
+        :'reconciliation_id' => :'reconciliationId'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'routing' => :'routing'
+        :'business_application_id' => :'business_application_id',
+        :'commerce_indicator' => :'commerce_indicator',
+        :'payouts_options' => :'payouts_options',
+        :'reconciliation_id' => :'reconciliation_id'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'routing' => :'InlineResponse2014ProcessingInformationRouting'
+        :'business_application_id' => :'String',
+        :'commerce_indicator' => :'String',
+        :'payouts_options' => :'InlineResponse2014ProcessingInformationPayoutsOptions',
+        :'reconciliation_id' => :'String'
       }
     end
 
@@ -44,8 +62,20 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'routing')
-        self.routing = attributes[:'routing']
+      if attributes.has_key?(:'businessApplicationId')
+        self.business_application_id = attributes[:'businessApplicationId']
+      end
+
+      if attributes.has_key?(:'commerceIndicator')
+        self.commerce_indicator = attributes[:'commerceIndicator']
+      end
+
+      if attributes.has_key?(:'payoutsOptions')
+        self.payouts_options = attributes[:'payoutsOptions']
+      end
+
+      if attributes.has_key?(:'reconciliationId')
+        self.reconciliation_id = attributes[:'reconciliationId']
       end
     end
 
@@ -62,12 +92,33 @@ module CyberSource
       true
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] business_application_id Value to be assigned
+    def business_application_id=(business_application_id)
+      @business_application_id = business_application_id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] commerce_indicator Value to be assigned
+    def commerce_indicator=(commerce_indicator)
+      @commerce_indicator = commerce_indicator
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] reconciliation_id Value to be assigned
+    def reconciliation_id=(reconciliation_id)
+      @reconciliation_id = reconciliation_id
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          routing == o.routing
+          business_application_id == o.business_application_id &&
+          commerce_indicator == o.commerce_indicator &&
+          payouts_options == o.payouts_options &&
+          reconciliation_id == o.reconciliation_id
     end
 
     # @see the `==` method
@@ -79,7 +130,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [routing].hash
+      [business_application_id, commerce_indicator, payouts_options, reconciliation_id].hash
     end
 
     # Builds the object from hash

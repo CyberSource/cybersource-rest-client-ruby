@@ -12,40 +12,60 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # Successful label submission response envelope returned for HTTP 201
   class InlineResponse2013
-    # Echoes the unique request identifier submitted in the original label request, enabling end-to-end correlation between request and response.
-    attr_accessor :request_id
+    # A unique identification number to identify the submitted request. It is also appended to the endpoint of the resource. 
+    attr_accessor :id
 
-    # UTC timestamp indicating when the label submission request was received and processed.
-    attr_accessor :submit_time_utc
+    # The status of the submitted transaction.  Possible values: - `COMPLETED` - `INVALID_REQUEST` - `SERVER_ERROR` 
+    attr_accessor :status
 
-    attr_accessor :results
+    # Time of request in UTC. Format: `YYYY-MM-DD'T'HH:mm:ssZ`  Example: `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the time. The Z indicates UTC. 
+    attr_accessor :submit_time_stamp_utc
+
+    attr_accessor :order_information
+
+    attr_accessor :error_information
+
+    attr_accessor :processor_information
+
+    attr_accessor :processing_information
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'request_id' => :'requestId',
-        :'submit_time_utc' => :'submitTimeUtc',
-        :'results' => :'results'
+        :'id' => :'id',
+        :'status' => :'status',
+        :'submit_time_stamp_utc' => :'submitTimeStampUtc',
+        :'order_information' => :'orderInformation',
+        :'error_information' => :'errorInformation',
+        :'processor_information' => :'processorInformation',
+        :'processing_information' => :'processingInformation'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'request_id' => :'request_id',
-        :'submit_time_utc' => :'submit_time_utc',
-        :'results' => :'results'
+        :'id' => :'id',
+        :'status' => :'status',
+        :'submit_time_stamp_utc' => :'submit_time_stamp_utc',
+        :'order_information' => :'order_information',
+        :'error_information' => :'error_information',
+        :'processor_information' => :'processor_information',
+        :'processing_information' => :'processing_information'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'request_id' => :'String',
-        :'submit_time_utc' => :'DateTime',
-        :'results' => :'InlineResponse2013Results'
+        :'id' => :'String',
+        :'status' => :'String',
+        :'submit_time_stamp_utc' => :'String',
+        :'order_information' => :'InlineResponse2013OrderInformation',
+        :'error_information' => :'InlineResponse2013ErrorInformation',
+        :'processor_information' => :'InlineResponse2013ProcessorInformation',
+        :'processing_information' => :'InlineResponse2013ProcessingInformation'
       }
     end
 
@@ -57,16 +77,32 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'requestId')
-        self.request_id = attributes[:'requestId']
+      if attributes.has_key?(:'id')
+        self.id = attributes[:'id']
       end
 
-      if attributes.has_key?(:'submitTimeUtc')
-        self.submit_time_utc = attributes[:'submitTimeUtc']
+      if attributes.has_key?(:'status')
+        self.status = attributes[:'status']
       end
 
-      if attributes.has_key?(:'results')
-        self.results = attributes[:'results']
+      if attributes.has_key?(:'submitTimeStampUtc')
+        self.submit_time_stamp_utc = attributes[:'submitTimeStampUtc']
+      end
+
+      if attributes.has_key?(:'orderInformation')
+        self.order_information = attributes[:'orderInformation']
+      end
+
+      if attributes.has_key?(:'errorInformation')
+        self.error_information = attributes[:'errorInformation']
+      end
+
+      if attributes.has_key?(:'processorInformation')
+        self.processor_information = attributes[:'processorInformation']
+      end
+
+      if attributes.has_key?(:'processingInformation')
+        self.processing_information = attributes[:'processingInformation']
       end
     end
 
@@ -74,28 +110,31 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @request_id.nil?
-        invalid_properties.push('invalid value for "request_id", request_id cannot be nil.')
-      end
-
-      if @submit_time_utc.nil?
-        invalid_properties.push('invalid value for "submit_time_utc", submit_time_utc cannot be nil.')
-      end
-
-      if @results.nil?
-        invalid_properties.push('invalid value for "results", results cannot be nil.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @request_id.nil?
-      return false if @submit_time_utc.nil?
-      return false if @results.nil?
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] id Value to be assigned
+    def id=(id)
+      @id = id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] status Value to be assigned
+    def status=(status)
+      @status = status
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] submit_time_stamp_utc Value to be assigned
+    def submit_time_stamp_utc=(submit_time_stamp_utc)
+      @submit_time_stamp_utc = submit_time_stamp_utc
     end
 
     # Checks equality by comparing each attribute.
@@ -103,9 +142,13 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          request_id == o.request_id &&
-          submit_time_utc == o.submit_time_utc &&
-          results == o.results
+          id == o.id &&
+          status == o.status &&
+          submit_time_stamp_utc == o.submit_time_stamp_utc &&
+          order_information == o.order_information &&
+          error_information == o.error_information &&
+          processor_information == o.processor_information &&
+          processing_information == o.processing_information
     end
 
     # @see the `==` method
@@ -117,7 +160,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [request_id, submit_time_utc, results].hash
+      [id, status, submit_time_stamp_utc, order_information, error_information, processor_information, processing_information].hash
     end
 
     # Builds the object from hash
