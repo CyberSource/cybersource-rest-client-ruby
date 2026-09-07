@@ -8,14 +8,22 @@ public
     @@logger
 
     def self.getCertificatesFromPemFile(certificateFilePath)
-      pem_data = File.read(certificateFilePath)
-      certificateList = []
+      begin
+        pem_data = File.read(certificateFilePath)
+        certificateList = []
 
-      pem_data.scan(/-----BEGIN CERTIFICATE-----.*?-----END CERTIFICATE-----/m) do |certBlock|
-        certificateList << OpenSSL::X509::Certificate.new(certBlock)
+        pem_data.scan(/-----BEGIN CERTIFICATE-----.*?-----END CERTIFICATE-----/m) do |certBlock|
+          certificateList << OpenSSL::X509::Certificate.new(certBlock)
+        end
+
+        certificateList
+      rescue Errno::ENOENT
+        raise IOError, "PEM certificate file not found: #{certificateFilePath}"
+      rescue OpenSSL::X509::CertificateError => e
+        raise ArgumentError, "Invalid certificate in PEM file #{certificateFilePath}: #{e.message}"
+      rescue StandardError => e
+        raise IOError, "Failed to read certificates from PEM file #{certificateFilePath}: #{e.message}"
       end
-
-      certificateList
     end
 
     def self.validateCertificateExpiry(certificate, keyAlias, certificateIdentifier, logConfig)

@@ -12,29 +12,186 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # Transaction reference identifying which previously assessed transaction this label applies to
+  # Financial transaction metadata including amounts, status, type, channel, and recurring payment details
   class UnifiedriskTransaction
-    # The transaction identifier correlating this label to the original risk assessment request
+    # Unique identifier for the transaction being assessed
     attr_accessor :transaction_id
+
+    # Transaction status: NEW, APPROVED, DECLINED, REVERSED, FRAUD
+    attr_accessor :status
+
+    # Reason code for the transaction status
+    attr_accessor :status_reason
+
+    # Message type: AUTHORIZATION, INQUIRY, ADVICE, REVERSAL
+    attr_accessor :message_type
+
+    # The type of transaction being processed
+    attr_accessor :type
+
+    # Transaction attribute: AGGREGATION, CARDLESS_ATM, etc
+    attr_accessor :attribute
+
+    # Who initiated transaction: MERCHANT, CUSTOMER
+    attr_accessor :initiator
+
+    # Channel used: ONLINE, MOBILE, ATM, BRANCH, etc
+    attr_accessor :channel
+
+    # Local transaction timestamp without timezone
+    attr_accessor :timestamp
+
+    # Cutoff date/time for event or journey
+    attr_accessor :cutoff_date_time
+
+    # Indicates if this is a recurring transaction
+    attr_accessor :is_recurring
+
+    # Indicates if this is a pre-order
+    attr_accessor :pre_order
+
+    # Expected availability date for pre-order
+    attr_accessor :pre_order_date
+
+    # Indicates if customer is reordering
+    attr_accessor :reordered
+
+    # Destination country for funds
+    attr_accessor :destination_country
+
+    # Phase where transaction was declined
+    attr_accessor :decline_phase
+
+    # Indicates if merchant is on trusted list
+    attr_accessor :trusted_merchant
+
+    attr_accessor :additional_fees
+
+    attr_accessor :amount
+
+    attr_accessor :recurring_details
+
+    # Direction of the transaction flow relative to the customer's account (e.g., CREDIT for incoming funds, DEBIT for outgoing funds). Determines risk model orientation and velocity tracking
+    attr_accessor :direction
+
+    # Indicates whether this transaction represents a chargeback or dispute reversal. True signals a disputed transaction requiring fraud investigation and issuer liability assessment
+    attr_accessor :is_chargeback
+
+    # Indicates which party bears fraud liability for this transaction (e.g., ISSUER, MERCHANT, ACQUIRER). Liability shifts apply in 3DS-authenticated or EMV chip transactions
+    attr_accessor :fraud_liability
+
+    # Indicates whether the transaction is an on-us transaction where the issuing and acquiring institutions are the same entity. On-us transactions may follow different risk rules and processing paths
+    attr_accessor :on_us_flag
+
+    # Total count of transactions associated with this batch, order, or session. Used for velocity-based risk rules and aggregated fraud monitoring
+    attr_accessor :number_of_transactions
+
+    attr_accessor :batch_details
+
+    attr_accessor :check_details
+
+    # Business purpose or reason code for this transaction (e.g., PURCH for purchase, SALA for salary, REFND for refund). Used for transaction classification and AML monitoring
+    attr_accessor :purpose
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'transaction_id' => :'transactionId'
+        :'transaction_id' => :'transactionId',
+        :'status' => :'status',
+        :'status_reason' => :'statusReason',
+        :'message_type' => :'messageType',
+        :'type' => :'type',
+        :'attribute' => :'attribute',
+        :'initiator' => :'initiator',
+        :'channel' => :'channel',
+        :'timestamp' => :'timestamp',
+        :'cutoff_date_time' => :'cutoffDateTime',
+        :'is_recurring' => :'isRecurring',
+        :'pre_order' => :'preOrder',
+        :'pre_order_date' => :'preOrderDate',
+        :'reordered' => :'reordered',
+        :'destination_country' => :'destinationCountry',
+        :'decline_phase' => :'declinePhase',
+        :'trusted_merchant' => :'trustedMerchant',
+        :'additional_fees' => :'additionalFees',
+        :'amount' => :'amount',
+        :'recurring_details' => :'recurringDetails',
+        :'direction' => :'direction',
+        :'is_chargeback' => :'isChargeback',
+        :'fraud_liability' => :'fraudLiability',
+        :'on_us_flag' => :'onUsFlag',
+        :'number_of_transactions' => :'numberOfTransactions',
+        :'batch_details' => :'batchDetails',
+        :'check_details' => :'checkDetails',
+        :'purpose' => :'purpose'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'transaction_id' => :'transaction_id'
+        :'transaction_id' => :'transaction_id',
+        :'status' => :'status',
+        :'status_reason' => :'status_reason',
+        :'message_type' => :'message_type',
+        :'type' => :'type',
+        :'attribute' => :'attribute',
+        :'initiator' => :'initiator',
+        :'channel' => :'channel',
+        :'timestamp' => :'timestamp',
+        :'cutoff_date_time' => :'cutoff_date_time',
+        :'is_recurring' => :'is_recurring',
+        :'pre_order' => :'pre_order',
+        :'pre_order_date' => :'pre_order_date',
+        :'reordered' => :'reordered',
+        :'destination_country' => :'destination_country',
+        :'decline_phase' => :'decline_phase',
+        :'trusted_merchant' => :'trusted_merchant',
+        :'additional_fees' => :'additional_fees',
+        :'amount' => :'amount',
+        :'recurring_details' => :'recurring_details',
+        :'direction' => :'direction',
+        :'is_chargeback' => :'is_chargeback',
+        :'fraud_liability' => :'fraud_liability',
+        :'on_us_flag' => :'on_us_flag',
+        :'number_of_transactions' => :'number_of_transactions',
+        :'batch_details' => :'batch_details',
+        :'check_details' => :'check_details',
+        :'purpose' => :'purpose'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'transaction_id' => :'String'
+        :'transaction_id' => :'String',
+        :'status' => :'String',
+        :'status_reason' => :'String',
+        :'message_type' => :'String',
+        :'type' => :'String',
+        :'attribute' => :'String',
+        :'initiator' => :'String',
+        :'channel' => :'String',
+        :'timestamp' => :'DateTime',
+        :'cutoff_date_time' => :'DateTime',
+        :'is_recurring' => :'BOOLEAN',
+        :'pre_order' => :'BOOLEAN',
+        :'pre_order_date' => :'Date',
+        :'reordered' => :'BOOLEAN',
+        :'destination_country' => :'String',
+        :'decline_phase' => :'String',
+        :'trusted_merchant' => :'BOOLEAN',
+        :'additional_fees' => :'UnifiedriskTransactionAdditionalFees',
+        :'amount' => :'UnifiedriskTransactionAmount',
+        :'recurring_details' => :'UnifiedriskTransactionRecurringDetails',
+        :'direction' => :'String',
+        :'is_chargeback' => :'BOOLEAN',
+        :'fraud_liability' => :'String',
+        :'on_us_flag' => :'BOOLEAN',
+        :'number_of_transactions' => :'Integer',
+        :'batch_details' => :'UnifiedriskTransactionBatchDetails',
+        :'check_details' => :'UnifiedriskTransactionCheckDetails',
+        :'purpose' => :'String'
       }
     end
 
@@ -49,24 +206,133 @@ module CyberSource
       if attributes.has_key?(:'transactionId')
         self.transaction_id = attributes[:'transactionId']
       end
+
+      if attributes.has_key?(:'status')
+        self.status = attributes[:'status']
+      end
+
+      if attributes.has_key?(:'statusReason')
+        self.status_reason = attributes[:'statusReason']
+      end
+
+      if attributes.has_key?(:'messageType')
+        self.message_type = attributes[:'messageType']
+      end
+
+      if attributes.has_key?(:'type')
+        self.type = attributes[:'type']
+      end
+
+      if attributes.has_key?(:'attribute')
+        self.attribute = attributes[:'attribute']
+      end
+
+      if attributes.has_key?(:'initiator')
+        self.initiator = attributes[:'initiator']
+      end
+
+      if attributes.has_key?(:'channel')
+        self.channel = attributes[:'channel']
+      end
+
+      if attributes.has_key?(:'timestamp')
+        self.timestamp = attributes[:'timestamp']
+      end
+
+      if attributes.has_key?(:'cutoffDateTime')
+        self.cutoff_date_time = attributes[:'cutoffDateTime']
+      end
+
+      if attributes.has_key?(:'isRecurring')
+        self.is_recurring = attributes[:'isRecurring']
+      end
+
+      if attributes.has_key?(:'preOrder')
+        self.pre_order = attributes[:'preOrder']
+      end
+
+      if attributes.has_key?(:'preOrderDate')
+        self.pre_order_date = attributes[:'preOrderDate']
+      end
+
+      if attributes.has_key?(:'reordered')
+        self.reordered = attributes[:'reordered']
+      end
+
+      if attributes.has_key?(:'destinationCountry')
+        self.destination_country = attributes[:'destinationCountry']
+      end
+
+      if attributes.has_key?(:'declinePhase')
+        self.decline_phase = attributes[:'declinePhase']
+      end
+
+      if attributes.has_key?(:'trustedMerchant')
+        self.trusted_merchant = attributes[:'trustedMerchant']
+      end
+
+      if attributes.has_key?(:'additionalFees')
+        self.additional_fees = attributes[:'additionalFees']
+      end
+
+      if attributes.has_key?(:'amount')
+        self.amount = attributes[:'amount']
+      end
+
+      if attributes.has_key?(:'recurringDetails')
+        self.recurring_details = attributes[:'recurringDetails']
+      end
+
+      if attributes.has_key?(:'direction')
+        self.direction = attributes[:'direction']
+      end
+
+      if attributes.has_key?(:'isChargeback')
+        self.is_chargeback = attributes[:'isChargeback']
+      end
+
+      if attributes.has_key?(:'fraudLiability')
+        self.fraud_liability = attributes[:'fraudLiability']
+      end
+
+      if attributes.has_key?(:'onUsFlag')
+        self.on_us_flag = attributes[:'onUsFlag']
+      end
+
+      if attributes.has_key?(:'numberOfTransactions')
+        self.number_of_transactions = attributes[:'numberOfTransactions']
+      end
+
+      if attributes.has_key?(:'batchDetails')
+        self.batch_details = attributes[:'batchDetails']
+      end
+
+      if attributes.has_key?(:'checkDetails')
+        self.check_details = attributes[:'checkDetails']
+      end
+
+      if attributes.has_key?(:'purpose')
+        self.purpose = attributes[:'purpose']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @transaction_id.nil?
-        invalid_properties.push('invalid value for "transaction_id", transaction_id cannot be nil.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @transaction_id.nil?
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] destination_country Value to be assigned
+    def destination_country=(destination_country)
+      @destination_country = destination_country
     end
 
     # Checks equality by comparing each attribute.
@@ -74,7 +340,34 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          transaction_id == o.transaction_id
+          transaction_id == o.transaction_id &&
+          status == o.status &&
+          status_reason == o.status_reason &&
+          message_type == o.message_type &&
+          type == o.type &&
+          attribute == o.attribute &&
+          initiator == o.initiator &&
+          channel == o.channel &&
+          timestamp == o.timestamp &&
+          cutoff_date_time == o.cutoff_date_time &&
+          is_recurring == o.is_recurring &&
+          pre_order == o.pre_order &&
+          pre_order_date == o.pre_order_date &&
+          reordered == o.reordered &&
+          destination_country == o.destination_country &&
+          decline_phase == o.decline_phase &&
+          trusted_merchant == o.trusted_merchant &&
+          additional_fees == o.additional_fees &&
+          amount == o.amount &&
+          recurring_details == o.recurring_details &&
+          direction == o.direction &&
+          is_chargeback == o.is_chargeback &&
+          fraud_liability == o.fraud_liability &&
+          on_us_flag == o.on_us_flag &&
+          number_of_transactions == o.number_of_transactions &&
+          batch_details == o.batch_details &&
+          check_details == o.check_details &&
+          purpose == o.purpose
     end
 
     # @see the `==` method
@@ -86,7 +379,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [transaction_id].hash
+      [transaction_id, status, status_reason, message_type, type, attribute, initiator, channel, timestamp, cutoff_date_time, is_recurring, pre_order, pre_order_date, reordered, destination_country, decline_phase, trusted_merchant, additional_fees, amount, recurring_details, direction, is_chargeback, fraud_liability, on_us_flag, number_of_transactions, batch_details, check_details, purpose].hash
     end
 
     # Builds the object from hash

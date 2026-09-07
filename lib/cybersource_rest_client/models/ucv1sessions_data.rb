@@ -15,6 +15,8 @@ module CyberSource
   class Ucv1sessionsData
     attr_accessor :aggregator_information
 
+    attr_accessor :acquirer_information
+
     attr_accessor :order_information
 
     attr_accessor :buyer_information
@@ -43,6 +45,7 @@ module CyberSource
     def self.attribute_map
       {
         :'aggregator_information' => :'aggregatorInformation',
+        :'acquirer_information' => :'acquirerInformation',
         :'order_information' => :'orderInformation',
         :'buyer_information' => :'buyerInformation',
         :'client_reference_information' => :'clientReferenceInformation',
@@ -62,6 +65,7 @@ module CyberSource
     def self.json_map
       {
         :'aggregator_information' => :'aggregator_information',
+        :'acquirer_information' => :'acquirer_information',
         :'order_information' => :'order_information',
         :'buyer_information' => :'buyer_information',
         :'client_reference_information' => :'client_reference_information',
@@ -81,6 +85,7 @@ module CyberSource
     def self.swagger_types
       {
         :'aggregator_information' => :'Ucv1sessionsDataAggregatorInformation',
+        :'acquirer_information' => :'Ucv1sessionsDataAcquirerInformation',
         :'order_information' => :'Ucv1sessionsDataOrderInformation',
         :'buyer_information' => :'Ucv1sessionsDataBuyerInformation',
         :'client_reference_information' => :'Ucv1sessionsDataClientReferenceInformation',
@@ -106,6 +111,10 @@ module CyberSource
 
       if attributes.has_key?(:'aggregatorInformation')
         self.aggregator_information = attributes[:'aggregatorInformation']
+      end
+
+      if attributes.has_key?(:'acquirerInformation')
+        self.acquirer_information = attributes[:'acquirerInformation']
       end
 
       if attributes.has_key?(:'orderInformation')
@@ -178,6 +187,7 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           aggregator_information == o.aggregator_information &&
+          acquirer_information == o.acquirer_information &&
           order_information == o.order_information &&
           buyer_information == o.buyer_information &&
           client_reference_information == o.client_reference_information &&
@@ -201,7 +211,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [aggregator_information, order_information, buyer_information, client_reference_information, consumer_authentication_information, merchant_information, processing_information, recipient_information, sender_information, device_information, payment_information, installment_information, merchant_defined_information].hash
+      [aggregator_information, acquirer_information, order_information, buyer_information, client_reference_information, consumer_authentication_information, merchant_information, processing_information, recipient_information, sender_information, device_information, payment_information, installment_information, merchant_defined_information].hash
     end
 
     # Builds the object from hash

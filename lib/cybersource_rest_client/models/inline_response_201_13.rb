@@ -12,54 +12,52 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
+  # UCP checkout session state. Total amounts are expressed in cents (not micros).
   class InlineResponse20113
-    # Unique identifier for this checkout session. Required for all subsequent calls (update, complete, cancel). 
+    attr_accessor :ucp
+
+    # Unique UCP session identifier. Required for all subsequent UCP calls (update, complete, cancel). 
     attr_accessor :id
 
-    # Current lifecycle state of the session per ACP spec: - `not_ready_for_payment` — session is open but not yet ready - `ready_for_payment` — session is ready to be completed - `completed` — order has been placed; session is immutable - `canceled` — session was abandoned; no charge was made   Possible values: - not_ready_for_payment - ready_for_payment - completed - canceled
+    # Current lifecycle state of the session. - `active` — open and modifiable - `completed` — order placed, immutable - `cancelled` — abandoned, no charge made   Possible values: - active - completed - cancelled
     attr_accessor :status
 
-    # ISO 4217 lowercase currency code for this session.
+    # ISO 4217 currency code for this session (e.g. `USD`, `EUR`).
     attr_accessor :currency
-
-    # Line items with merchant-confirmed pricing.
-    attr_accessor :line_items
-
-    attr_accessor :fulfillment_address
-
-    # Available fulfillment methods with pricing.
-    attr_accessor :fulfillment_options
-
-    # ID of the currently selected fulfillment option.
-    attr_accessor :fulfillment_option_id
-
-    # Order cost breakdown as an array of typed total lines. All amounts in minor units (cents).
-    attr_accessor :totals
 
     attr_accessor :buyer
 
-    attr_accessor :payment_provider
+    # Cart line items with merchant-confirmed pricing.
+    attr_accessor :line_items
 
-    # Informational or error messages from the merchant backend.
-    attr_accessor :messages
+    # Order cost breakdown. Each entry represents one total type (subtotal, tax, shipping, discount, or grand total). Amounts are in **cents** (not micros). 
+    attr_accessor :totals
 
-    # Related resource links from the merchant (e.g. terms of use, privacy policy, seller shop policies). 
+    attr_accessor :fulfillment
+
+    attr_accessor :payment
+
+    attr_accessor :discounts
+
+    attr_accessor :order
+
+    # Related resource links (e.g. terms of use, privacy policy).
     attr_accessor :links
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'ucp' => :'ucp',
         :'id' => :'id',
         :'status' => :'status',
         :'currency' => :'currency',
-        :'line_items' => :'line_items',
-        :'fulfillment_address' => :'fulfillment_address',
-        :'fulfillment_options' => :'fulfillment_options',
-        :'fulfillment_option_id' => :'fulfillment_option_id',
-        :'totals' => :'totals',
         :'buyer' => :'buyer',
-        :'payment_provider' => :'payment_provider',
-        :'messages' => :'messages',
+        :'line_items' => :'line_items',
+        :'totals' => :'totals',
+        :'fulfillment' => :'fulfillment',
+        :'payment' => :'payment',
+        :'discounts' => :'discounts',
+        :'order' => :'order',
         :'links' => :'links'
       }
     end
@@ -67,17 +65,17 @@ module CyberSource
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
+        :'ucp' => :'ucp',
         :'id' => :'id',
         :'status' => :'status',
         :'currency' => :'currency',
-        :'line_items' => :'line_items',
-        :'fulfillment_address' => :'fulfillment_address',
-        :'fulfillment_options' => :'fulfillment_options',
-        :'fulfillment_option_id' => :'fulfillment_option_id',
-        :'totals' => :'totals',
         :'buyer' => :'buyer',
-        :'payment_provider' => :'payment_provider',
-        :'messages' => :'messages',
+        :'line_items' => :'line_items',
+        :'totals' => :'totals',
+        :'fulfillment' => :'fulfillment',
+        :'payment' => :'payment',
+        :'discounts' => :'discounts',
+        :'order' => :'order',
         :'links' => :'links'
       }
     end
@@ -85,18 +83,18 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'ucp' => :'InlineResponse20113Ucp',
         :'id' => :'String',
         :'status' => :'String',
         :'currency' => :'String',
+        :'buyer' => :'UcpCheckoutSessionResponseBuyer',
         :'line_items' => :'Array<InlineResponse20113LineItems>',
-        :'fulfillment_address' => :'InlineResponse20113FulfillmentAddress',
-        :'fulfillment_options' => :'Array<InlineResponse20113FulfillmentOptions>',
-        :'fulfillment_option_id' => :'String',
-        :'totals' => :'Array<InlineResponse20113Totals>',
-        :'buyer' => :'AcpCheckoutSessionResponseBuyer',
-        :'payment_provider' => :'InlineResponse20113PaymentProvider',
-        :'messages' => :'Array<InlineResponse20113Messages>',
-        :'links' => :'Array<InlineResponse20113Links>'
+        :'totals' => :'Array<Iccv1checkoutsessionsFulfillmentTotals>',
+        :'fulfillment' => :'InlineResponse20113Fulfillment',
+        :'payment' => :'InlineResponse20113Payment',
+        :'discounts' => :'InlineResponse20113Discounts',
+        :'order' => :'InlineResponse20113Order',
+        :'links' => :'Array<InlineResponse20112Links>'
       }
     end
 
@@ -107,6 +105,10 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'ucp')
+        self.ucp = attributes[:'ucp']
+      end
 
       if attributes.has_key?(:'id')
         self.id = attributes[:'id']
@@ -120,24 +122,14 @@ module CyberSource
         self.currency = attributes[:'currency']
       end
 
+      if attributes.has_key?(:'buyer')
+        self.buyer = attributes[:'buyer']
+      end
+
       if attributes.has_key?(:'line_items')
         if (value = attributes[:'line_items']).is_a?(Array)
           self.line_items = value
         end
-      end
-
-      if attributes.has_key?(:'fulfillment_address')
-        self.fulfillment_address = attributes[:'fulfillment_address']
-      end
-
-      if attributes.has_key?(:'fulfillment_options')
-        if (value = attributes[:'fulfillment_options']).is_a?(Array)
-          self.fulfillment_options = value
-        end
-      end
-
-      if attributes.has_key?(:'fulfillment_option_id')
-        self.fulfillment_option_id = attributes[:'fulfillment_option_id']
       end
 
       if attributes.has_key?(:'totals')
@@ -146,18 +138,20 @@ module CyberSource
         end
       end
 
-      if attributes.has_key?(:'buyer')
-        self.buyer = attributes[:'buyer']
+      if attributes.has_key?(:'fulfillment')
+        self.fulfillment = attributes[:'fulfillment']
       end
 
-      if attributes.has_key?(:'payment_provider')
-        self.payment_provider = attributes[:'payment_provider']
+      if attributes.has_key?(:'payment')
+        self.payment = attributes[:'payment']
       end
 
-      if attributes.has_key?(:'messages')
-        if (value = attributes[:'messages']).is_a?(Array)
-          self.messages = value
-        end
+      if attributes.has_key?(:'discounts')
+        self.discounts = attributes[:'discounts']
+      end
+
+      if attributes.has_key?(:'order')
+        self.order = attributes[:'order']
       end
 
       if attributes.has_key?(:'links')
@@ -185,17 +179,17 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          ucp == o.ucp &&
           id == o.id &&
           status == o.status &&
           currency == o.currency &&
-          line_items == o.line_items &&
-          fulfillment_address == o.fulfillment_address &&
-          fulfillment_options == o.fulfillment_options &&
-          fulfillment_option_id == o.fulfillment_option_id &&
-          totals == o.totals &&
           buyer == o.buyer &&
-          payment_provider == o.payment_provider &&
-          messages == o.messages &&
+          line_items == o.line_items &&
+          totals == o.totals &&
+          fulfillment == o.fulfillment &&
+          payment == o.payment &&
+          discounts == o.discounts &&
+          order == o.order &&
           links == o.links
     end
 
@@ -208,7 +202,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, status, currency, line_items, fulfillment_address, fulfillment_options, fulfillment_option_id, totals, buyer, payment_provider, messages, links].hash
+      [ucp, id, status, currency, buyer, line_items, totals, fulfillment, payment, discounts, order, links].hash
     end
 
     # Builds the object from hash

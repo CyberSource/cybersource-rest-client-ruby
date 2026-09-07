@@ -13,6 +13,8 @@ require 'date'
 
 module CyberSource
   class InvoicingV2InvoicesPost201ResponseMerchantDefinedFieldValuesWithDefinition
+    attr_accessor :mdf_value_id
+
     attr_accessor :reference_type
 
     attr_accessor :label
@@ -42,6 +44,7 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'mdf_value_id' => :'mdfValueId',
         :'reference_type' => :'referenceType',
         :'label' => :'label',
         :'field_type' => :'fieldType',
@@ -61,6 +64,7 @@ module CyberSource
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
+        :'mdf_value_id' => :'mdf_value_id',
         :'reference_type' => :'reference_type',
         :'label' => :'label',
         :'field_type' => :'field_type',
@@ -80,6 +84,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'mdf_value_id' => :'String',
         :'reference_type' => :'String',
         :'label' => :'String',
         :'field_type' => :'String',
@@ -103,6 +108,10 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'mdfValueId')
+        self.mdf_value_id = attributes[:'mdfValueId']
+      end
 
       if attributes.has_key?(:'referenceType')
         self.reference_type = attributes[:'referenceType']
@@ -175,6 +184,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          mdf_value_id == o.mdf_value_id &&
           reference_type == o.reference_type &&
           label == o.label &&
           field_type == o.field_type &&
@@ -199,7 +209,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [reference_type, label, field_type, customer_visible, read_only, text_min_length, text_max_length, text_default_value, possible_values, value, position, definition_id, merchant_defined_data_index].hash
+      [mdf_value_id, reference_type, label, field_type, customer_visible, read_only, text_min_length, text_max_length, text_default_value, possible_values, value, position, definition_id, merchant_defined_data_index].hash
     end
 
     # Builds the object from hash

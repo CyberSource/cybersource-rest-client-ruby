@@ -85,13 +85,13 @@ module CyberSource
         :'status' => :'String',
         :'currency' => :'String',
         :'buyer' => :'AcpCheckoutSessionResponseBuyer',
-        :'line_items' => :'Array<InlineResponse20113LineItems>',
+        :'line_items' => :'Array<InlineResponse20112LineItems>',
         :'fulfillment_address' => :'InlineResponse20017FulfillmentAddress',
-        :'fulfillment_options' => :'Array<InlineResponse20113FulfillmentOptions>',
+        :'fulfillment_options' => :'Array<InlineResponse20112FulfillmentOptions>',
         :'fulfillment_option_id' => :'String',
-        :'totals' => :'Array<InlineResponse20113Totals>',
-        :'messages' => :'Array<InlineResponse20113Messages>',
-        :'links' => :'Array<InlineResponse20113Links>'
+        :'totals' => :'Array<InlineResponse20112Totals>',
+        :'messages' => :'Array<InlineResponse20112Messages>',
+        :'links' => :'Array<InlineResponse20112Links>'
       }
     end
 

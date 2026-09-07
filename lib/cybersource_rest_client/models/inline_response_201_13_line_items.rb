@@ -12,38 +12,26 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # A single line item in an ACP session response. All amounts in minor units (cents).
+  # A single product line item in a UCP session response.
   class InlineResponse20113LineItems
     # ACG-assigned line item identifier.
     attr_accessor :id
 
     attr_accessor :item
 
-    # Unit price × quantity before discounts, in minor units.
-    attr_accessor :base_amount
+    # Number of units in this line item. Minimum 1.
+    attr_accessor :quantity
 
-    # Discount amount for this line item, in minor units.
-    attr_accessor :discount
-
-    # base_amount minus discount, in minor units.
-    attr_accessor :subtotal
-
-    # Tax on this line item, in minor units.
-    attr_accessor :tax
-
-    # subtotal plus tax, in minor units.
-    attr_accessor :total
+    # Per-line-item cost breakdown (subtotal, tax, etc.). Amounts in cents.
+    attr_accessor :totals
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'id' => :'id',
         :'item' => :'item',
-        :'base_amount' => :'base_amount',
-        :'discount' => :'discount',
-        :'subtotal' => :'subtotal',
-        :'tax' => :'tax',
-        :'total' => :'total'
+        :'quantity' => :'quantity',
+        :'totals' => :'totals'
       }
     end
 
@@ -52,11 +40,8 @@ module CyberSource
       {
         :'id' => :'id',
         :'item' => :'item',
-        :'base_amount' => :'base_amount',
-        :'discount' => :'discount',
-        :'subtotal' => :'subtotal',
-        :'tax' => :'tax',
-        :'total' => :'total'
+        :'quantity' => :'quantity',
+        :'totals' => :'totals'
       }
     end
 
@@ -65,11 +50,8 @@ module CyberSource
       {
         :'id' => :'String',
         :'item' => :'InlineResponse20113Item',
-        :'base_amount' => :'Integer',
-        :'discount' => :'Integer',
-        :'subtotal' => :'Integer',
-        :'tax' => :'Integer',
-        :'total' => :'Integer'
+        :'quantity' => :'Integer',
+        :'totals' => :'Array<Iccv1checkoutsessionsFulfillmentTotals>'
       }
     end
 
@@ -89,24 +71,14 @@ module CyberSource
         self.item = attributes[:'item']
       end
 
-      if attributes.has_key?(:'base_amount')
-        self.base_amount = attributes[:'base_amount']
+      if attributes.has_key?(:'quantity')
+        self.quantity = attributes[:'quantity']
       end
 
-      if attributes.has_key?(:'discount')
-        self.discount = attributes[:'discount']
-      end
-
-      if attributes.has_key?(:'subtotal')
-        self.subtotal = attributes[:'subtotal']
-      end
-
-      if attributes.has_key?(:'tax')
-        self.tax = attributes[:'tax']
-      end
-
-      if attributes.has_key?(:'total')
-        self.total = attributes[:'total']
+      if attributes.has_key?(:'totals')
+        if (value = attributes[:'totals']).is_a?(Array)
+          self.totals = value
+        end
       end
     end
 
@@ -130,11 +102,8 @@ module CyberSource
       self.class == o.class &&
           id == o.id &&
           item == o.item &&
-          base_amount == o.base_amount &&
-          discount == o.discount &&
-          subtotal == o.subtotal &&
-          tax == o.tax &&
-          total == o.total
+          quantity == o.quantity &&
+          totals == o.totals
     end
 
     # @see the `==` method
@@ -146,7 +115,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, item, base_amount, discount, subtotal, tax, total].hash
+      [id, item, quantity, totals].hash
     end
 
     # Builds the object from hash

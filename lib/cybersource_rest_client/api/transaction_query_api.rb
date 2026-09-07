@@ -33,7 +33,7 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :limit The maximum number of options to be retrieved from the processor and displayed to the consumer. 
     # @option opts [Integer] :offset Offset from the first item in the list of options received from the processor. If you want to display the options in multiple lists, this number represents the first option displayed in each list. 
-    # @return [InlineResponse2015]
+    # @return [InlineResponse2014]
     #
     def create_query_api(id, body, content_type, x_requestid, v_c_merchant_id, v_c_permissions, v_c_correlation_id, v_c_organization_id, opts = {})
       data, status_code, headers = create_query_api_with_http_info(id, body, content_type, x_requestid, v_c_merchant_id, v_c_permissions, v_c_correlation_id, v_c_organization_id, opts)
@@ -53,7 +53,7 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :limit The maximum number of options to be retrieved from the processor and displayed to the consumer. 
     # @option opts [Integer] :offset Offset from the first item in the list of options received from the processor. If you want to display the options in multiple lists, this number represents the first option displayed in each list. 
-    # @return [Array<(InlineResponse2015, Fixnum, Hash)>] InlineResponse2015 data, response status code and response headers
+    # @return [Array<(InlineResponse2014, Fixnum, Hash)>] InlineResponse2014 data, response status code and response headers
     def create_query_api_with_http_info(id, body, content_type, x_requestid, v_c_merchant_id, v_c_permissions, v_c_correlation_id, v_c_organization_id, opts = {})
 
       if @api_client.config.debugging
@@ -142,7 +142,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2015',
+        :return_type => 'InlineResponse2014',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin

@@ -45,7 +45,7 @@ describe 'TransactionQueryApi' do
   # @param [Hash] opts the optional parameters
   # @option opts [Integer] :limit The maximum number of options to be retrieved from the processor and displayed to the consumer. 
   # @option opts [Integer] :offset Offset from the first item in the list of options received from the processor. If you want to display the options in multiple lists, this number represents the first option displayed in each list. 
-  # @return [InlineResponse2015]
+  # @return [InlineResponse2014]
   describe 'create_query_api test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

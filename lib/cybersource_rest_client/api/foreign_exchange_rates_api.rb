@@ -30,7 +30,7 @@ module CyberSource
     # @param v_c_correlation_id 
     # @param v_c_organization_id 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2014]
+    # @return [InlineResponse2013]
     #
     def create_fx_rates(body, content_type, x_requestid, v_c_merchant_id, v_c_permissions, v_c_correlation_id, v_c_organization_id, opts = {})
       data, status_code, headers = create_fx_rates_with_http_info(body, content_type, x_requestid, v_c_merchant_id, v_c_permissions, v_c_correlation_id, v_c_organization_id, opts)
@@ -47,7 +47,7 @@ module CyberSource
     # @param v_c_correlation_id 
     # @param v_c_organization_id 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2014, Fixnum, Hash)>] InlineResponse2014 data, response status code and response headers
+    # @return [Array<(InlineResponse2013, Fixnum, Hash)>] InlineResponse2013 data, response status code and response headers
     def create_fx_rates_with_http_info(body, content_type, x_requestid, v_c_merchant_id, v_c_permissions, v_c_correlation_id, v_c_organization_id, opts = {})
 
       if @api_client.config.debugging
@@ -130,7 +130,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2014',
+        :return_type => 'InlineResponse2013',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin

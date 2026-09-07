@@ -33,7 +33,7 @@ module CyberSource
     # Acquirer postal code.
     attr_accessor :postal_code
 
-    # Acquirer country.
+    # Acquirer country used for Payment Facilitator scenarios.
     attr_accessor :country
 
     # Contains transfer service provider name.

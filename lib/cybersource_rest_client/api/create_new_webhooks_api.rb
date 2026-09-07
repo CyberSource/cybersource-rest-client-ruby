@@ -107,7 +107,7 @@ module CyberSource
     #
     # @param [Hash] opts the optional parameters
     # @option opts [CreateWebhook] :create_webhook The webhook payload
-    # @return [InlineResponse2019]
+    # @return [InlineResponse2018]
     #
     def notification_subscriptions_v2_webhooks_post(opts = {})
       data, status_code, headers = notification_subscriptions_v2_webhooks_post_with_http_info(opts)
@@ -118,7 +118,7 @@ module CyberSource
     # Create a new webhook subscription. Before creating a webhook, ensure that a signature key has been created.  For the example \&quot;Create Webhook using oAuth with Client Credentials\&quot; - for clients who have more than one oAuth Provider and have different client secrets that they would like to config for a given webhook, they may do so by overriding the keyId inside security config of webhook subscription. See the Developer Center examples section titled \&quot;Webhook Security - Create or Store Egress Symmetric Key - Store oAuth Credentials For Symmetric Key\&quot; to store these oAuth credentials that CYBS will need for oAuth.  For JWT authentication, attach your oAuth details to the webhook subscription. See the example \&quot;Create Webhook using oAuth with JWT\&quot; 
     # @param [Hash] opts the optional parameters
     # @option opts [CreateWebhook] :create_webhook The webhook payload
-    # @return [Array<(InlineResponse2019, Fixnum, Hash)>] InlineResponse2019 data, response status code and response headers
+    # @return [Array<(InlineResponse2018, Fixnum, Hash)>] InlineResponse2018 data, response status code and response headers
     def notification_subscriptions_v2_webhooks_post_with_http_info(opts = {})
 
       if @api_client.config.debugging
@@ -167,7 +167,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2019',
+        :return_type => 'InlineResponse2018',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -187,7 +187,7 @@ module CyberSource
     # @option opts [String] :v_c_sender_organization_id Sender organization id
     # @option opts [String] :v_c_permissions Encoded user permissions returned by the CGK, for the entity user who initiated the boarding
     # @option opts [SaveSymEgressKey] :save_sym_egress_key Provide egress Symmetric key information to save (create or store or refresh)
-    # @return [InlineResponse2018]
+    # @return [InlineResponse2017]
     #
     def save_sym_egress_key(opts = {})
       data, status_code, headers = save_sym_egress_key_with_http_info(opts)
@@ -201,7 +201,7 @@ module CyberSource
     # @option opts [String] :v_c_sender_organization_id Sender organization id
     # @option opts [String] :v_c_permissions Encoded user permissions returned by the CGK, for the entity user who initiated the boarding
     # @option opts [SaveSymEgressKey] :save_sym_egress_key Provide egress Symmetric key information to save (create or store or refresh)
-    # @return [Array<(InlineResponse2018, Fixnum, Hash)>] InlineResponse2018 data, response status code and response headers
+    # @return [Array<(InlineResponse2017, Fixnum, Hash)>] InlineResponse2017 data, response status code and response headers
     def save_sym_egress_key_with_http_info(opts = {})
 
       if @api_client.config.debugging
@@ -261,7 +261,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2018',
+        :return_type => 'InlineResponse2017',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin

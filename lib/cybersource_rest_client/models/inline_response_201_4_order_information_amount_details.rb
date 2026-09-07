@@ -13,69 +13,51 @@ require 'date'
 
 module CyberSource
   class InlineResponse2014OrderInformationAmountDetails
-    # The markup between the offer exchange rate and wholesale rates, i.e. the mark up. Expressed as a percentage of 100, e.g. 3.75.  If the markup value is not supplied in the API, and the Acquiring BIN is provided, the markup configured during onboarding will be picked up and applied to the transaction. To override any markup defaults set up on the account, always send a markup value of 0.00 to indicate 0% markup.   Supported by Visa Direct. 
-    attr_accessor :markup_rate
+    # Amount that was authorized. 
+    attr_accessor :authorized_amount
 
-    # Exchange rate returned by the card network.
+    # Currency used for the order. Use the three-character ISO Standard Currency Codes. 
+    attr_accessor :currency
+
+    # The rate of conversion of the currency given in the request. 
     attr_accessor :exchange_rate
 
-    # Amount in your original local pricing currency.  This value cannot be negative. You can include a decimal point (.) in this field to denote the currency exponent, but you cannot include any other special characters.  If needed, CyberSource truncates the amount to the correct number of decimal places. 
-    attr_accessor :original_amount
+    # Grand total for the order. This value cannot be negative. You can include a decimal point (.), but no other special characters. CyberSource truncates the amount to the correct number of decimal places. 
+    attr_accessor :total_amount
 
-    # Amount in your destination's local pricing currency.  This value cannot be negative. You can include a decimal point (.) in this field to denote the currency exponent, but you cannot include any other special characters.  If needed, CyberSource truncates the amount to the correct number of decimal places. 
-    attr_accessor :destination_amount
-
-    # Original Transaction Amount excluding markup in source currency. This field will be returned in a source-to-destination inquiry response when markup is applicable.  Supported by Visa Direct 
-    attr_accessor :original_amount_without_markup
-
-    # The transaction amount in settlement currency.
+    # This is a multicurrency field. It contains the transaction amount, converted to the currency used to bill the cardholder's account. 
     attr_accessor :settlement_amount
-
-    # The currency in which Visa or Mastercard settles with the acquirer/acquirer.  Use [ISO 4217 3-Alpha Currency Codes](https://developer.cybersource.com/content/dam/docs/cybs/en-us/currency-codes/reference/all/na/currency-codes.pdf). 
-    attr_accessor :settlement_currency
-
-    # Exchange rate returned by the card network for settlement.
-    attr_accessor :settlement_exchange_rate
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'markup_rate' => :'markupRate',
+        :'authorized_amount' => :'authorizedAmount',
+        :'currency' => :'currency',
         :'exchange_rate' => :'exchangeRate',
-        :'original_amount' => :'originalAmount',
-        :'destination_amount' => :'destinationAmount',
-        :'original_amount_without_markup' => :'originalAmountWithoutMarkup',
-        :'settlement_amount' => :'settlementAmount',
-        :'settlement_currency' => :'settlementCurrency',
-        :'settlement_exchange_rate' => :'settlementExchangeRate'
+        :'total_amount' => :'totalAmount',
+        :'settlement_amount' => :'settlementAmount'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'markup_rate' => :'markup_rate',
+        :'authorized_amount' => :'authorized_amount',
+        :'currency' => :'currency',
         :'exchange_rate' => :'exchange_rate',
-        :'original_amount' => :'original_amount',
-        :'destination_amount' => :'destination_amount',
-        :'original_amount_without_markup' => :'original_amount_without_markup',
-        :'settlement_amount' => :'settlement_amount',
-        :'settlement_currency' => :'settlement_currency',
-        :'settlement_exchange_rate' => :'settlement_exchange_rate'
+        :'total_amount' => :'total_amount',
+        :'settlement_amount' => :'settlement_amount'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'markup_rate' => :'String',
+        :'authorized_amount' => :'String',
+        :'currency' => :'String',
         :'exchange_rate' => :'String',
-        :'original_amount' => :'String',
-        :'destination_amount' => :'String',
-        :'original_amount_without_markup' => :'String',
-        :'settlement_amount' => :'String',
-        :'settlement_currency' => :'String',
-        :'settlement_exchange_rate' => :'String'
+        :'total_amount' => :'String',
+        :'settlement_amount' => :'String'
       }
     end
 
@@ -87,36 +69,24 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'markupRate')
-        self.markup_rate = attributes[:'markupRate']
+      if attributes.has_key?(:'authorizedAmount')
+        self.authorized_amount = attributes[:'authorizedAmount']
+      end
+
+      if attributes.has_key?(:'currency')
+        self.currency = attributes[:'currency']
       end
 
       if attributes.has_key?(:'exchangeRate')
         self.exchange_rate = attributes[:'exchangeRate']
       end
 
-      if attributes.has_key?(:'originalAmount')
-        self.original_amount = attributes[:'originalAmount']
-      end
-
-      if attributes.has_key?(:'destinationAmount')
-        self.destination_amount = attributes[:'destinationAmount']
-      end
-
-      if attributes.has_key?(:'originalAmountWithoutMarkup')
-        self.original_amount_without_markup = attributes[:'originalAmountWithoutMarkup']
+      if attributes.has_key?(:'totalAmount')
+        self.total_amount = attributes[:'totalAmount']
       end
 
       if attributes.has_key?(:'settlementAmount')
         self.settlement_amount = attributes[:'settlementAmount']
-      end
-
-      if attributes.has_key?(:'settlementCurrency')
-        self.settlement_currency = attributes[:'settlementCurrency']
-      end
-
-      if attributes.has_key?(:'settlementExchangeRate')
-        self.settlement_exchange_rate = attributes[:'settlementExchangeRate']
       end
     end
 
@@ -134,9 +104,15 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] markup_rate Value to be assigned
-    def markup_rate=(markup_rate)
-      @markup_rate = markup_rate
+    # @param [Object] authorized_amount Value to be assigned
+    def authorized_amount=(authorized_amount)
+      @authorized_amount = authorized_amount
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] currency Value to be assigned
+    def currency=(currency)
+      @currency = currency
     end
 
     # Custom attribute writer method with validation
@@ -146,21 +122,9 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] original_amount Value to be assigned
-    def original_amount=(original_amount)
-      @original_amount = original_amount
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] destination_amount Value to be assigned
-    def destination_amount=(destination_amount)
-      @destination_amount = destination_amount
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] original_amount_without_markup Value to be assigned
-    def original_amount_without_markup=(original_amount_without_markup)
-      @original_amount_without_markup = original_amount_without_markup
+    # @param [Object] total_amount Value to be assigned
+    def total_amount=(total_amount)
+      @total_amount = total_amount
     end
 
     # Custom attribute writer method with validation
@@ -169,31 +133,16 @@ module CyberSource
       @settlement_amount = settlement_amount
     end
 
-    # Custom attribute writer method with validation
-    # @param [Object] settlement_currency Value to be assigned
-    def settlement_currency=(settlement_currency)
-      @settlement_currency = settlement_currency
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] settlement_exchange_rate Value to be assigned
-    def settlement_exchange_rate=(settlement_exchange_rate)
-      @settlement_exchange_rate = settlement_exchange_rate
-    end
-
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          markup_rate == o.markup_rate &&
+          authorized_amount == o.authorized_amount &&
+          currency == o.currency &&
           exchange_rate == o.exchange_rate &&
-          original_amount == o.original_amount &&
-          destination_amount == o.destination_amount &&
-          original_amount_without_markup == o.original_amount_without_markup &&
-          settlement_amount == o.settlement_amount &&
-          settlement_currency == o.settlement_currency &&
-          settlement_exchange_rate == o.settlement_exchange_rate
+          total_amount == o.total_amount &&
+          settlement_amount == o.settlement_amount
     end
 
     # @see the `==` method
@@ -205,7 +154,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [markup_rate, exchange_rate, original_amount, destination_amount, original_amount_without_markup, settlement_amount, settlement_currency, settlement_exchange_rate].hash
+      [authorized_amount, currency, exchange_rate, total_amount, settlement_amount].hash
     end
 
     # Builds the object from hash

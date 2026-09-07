@@ -62,7 +62,7 @@ module CyberSource
         :'status' => :'String',
         :'reason' => :'String',
         :'message' => :'String',
-        :'details' => :'Array<InlineResponse2014ErrorInformationDetails>'
+        :'details' => :'Array<InlineResponse2013ErrorInformationDetails>'
       }
     end
 
