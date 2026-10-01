@@ -60,7 +60,7 @@ module CyberSource
         :'reversal_information' => :'Ptsv2paymentsidreversalsReversalInformation',
         :'processing_information' => :'Ptsv2paymentsidreversalsProcessingInformation',
         :'order_information' => :'Ptsv2paymentsidreversalsOrderInformation',
-        :'point_of_sale_information' => :'Ptsv2paymentsidreversalsPointOfSaleInformation',
+        :'point_of_sale_information' => :'Ptsv2paymentsPointOfSaleInformation',
         :'device_information' => :'Ptsv2paymentsidreversalsDeviceInformation',
         :'processor_information' => :'Ptsv2reversalsProcessorInformation'
       }

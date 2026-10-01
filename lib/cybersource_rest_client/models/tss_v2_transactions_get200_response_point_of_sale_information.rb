@@ -56,7 +56,7 @@ module CyberSource
         :'entry_mode' => :'String',
         :'terminal_capability' => :'Integer',
         :'cardholder_verification_method_used' => :'Integer',
-        :'emv' => :'Ptsv2paymentsidreversalsPointOfSaleInformationEmv'
+        :'emv' => :'PtsV2PaymentsReversalsPost201ResponsePointOfSaleInformationEmv'
       }
     end
 

@@ -145,6 +145,9 @@ module CyberSource
     # Merchant Commercial Enhanced Data Program (CEDP) verified indicator received in authorization response messages for U.S. domestic transactions containing a credential for the commercial credit products.  This field flows in ISO field 34, DSID 02 tag DA, in AN, EBCDIC format.  Possible values: - `Y`: Merchant CEDP verified  This field is for internal processing only (TC33A usage) and is not sent back to the merchant.  #### Used by **Authorization Response** Response field only. 
     attr_accessor :cedp_verified_indicator
 
+    # Transaction Link Identifier (TLID). Links all messages within a transaction lifecycle for Mastercard transactions. Received from Mastercard in the authorization response and automatically replayed for lifecycle transactions (reversals, follow-on credits, authorization refresh).  #### PIN Debit Also returned for PIN Debit purchase, credit, and reversal transactions. For PIN Debit (Visa Gateway) flows, this value is mapped to Visa Field 111 (DSI 07, Tag C0). 
+    attr_accessor :transaction_link_identifier
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -195,7 +198,8 @@ module CyberSource
         :'order_status' => :'orderStatus',
         :'merchant_risk_prediction' => :'merchantRiskPrediction',
         :'network' => :'network',
-        :'cedp_verified_indicator' => :'cedpVerifiedIndicator'
+        :'cedp_verified_indicator' => :'cedpVerifiedIndicator',
+        :'transaction_link_identifier' => :'transactionLinkIdentifier'
       }
     end
 
@@ -249,7 +253,8 @@ module CyberSource
         :'order_status' => :'order_status',
         :'merchant_risk_prediction' => :'merchant_risk_prediction',
         :'network' => :'network',
-        :'cedp_verified_indicator' => :'cedp_verified_indicator'
+        :'cedp_verified_indicator' => :'cedp_verified_indicator',
+        :'transaction_link_identifier' => :'transaction_link_identifier'
       }
     end
 
@@ -303,7 +308,8 @@ module CyberSource
         :'order_status' => :'String',
         :'merchant_risk_prediction' => :'String',
         :'network' => :'Ptsv2paymentsProcessorInformationReversalNetwork',
-        :'cedp_verified_indicator' => :'String'
+        :'cedp_verified_indicator' => :'String',
+        :'transaction_link_identifier' => :'String'
       }
     end
 
@@ -506,6 +512,10 @@ module CyberSource
       if attributes.has_key?(:'cedpVerifiedIndicator')
         self.cedp_verified_indicator = attributes[:'cedpVerifiedIndicator']
       end
+
+      if attributes.has_key?(:'transactionLinkIdentifier')
+        self.transaction_link_identifier = attributes[:'transactionLinkIdentifier']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -701,6 +711,12 @@ module CyberSource
       @cedp_verified_indicator = cedp_verified_indicator
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] transaction_link_identifier Value to be assigned
+    def transaction_link_identifier=(transaction_link_identifier)
+      @transaction_link_identifier = transaction_link_identifier
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -753,7 +769,8 @@ module CyberSource
           order_status == o.order_status &&
           merchant_risk_prediction == o.merchant_risk_prediction &&
           network == o.network &&
-          cedp_verified_indicator == o.cedp_verified_indicator
+          cedp_verified_indicator == o.cedp_verified_indicator &&
+          transaction_link_identifier == o.transaction_link_identifier
     end
 
     # @see the `==` method
@@ -765,7 +782,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [auth_indicator, approval_code, card_reference_data, transaction_id, network_transaction_id, response_code, response_code_source, response_details, response_category_code, response_source_code, forwarded_acquirer_code, settlement_date, sequence_number, avs, card_verification, merchant_advice, electronic_verification_results, ach_verification, customer, consumer_authentication_response, system_trace_audit_number, payment_account_reference_number, transaction_integrity_code, amex_verbal_auth_reference_number, master_card_service_code, master_card_service_reply_code, master_card_authentication_type, name, routing, merchant_number, retrieval_reference_number, payment_url, complete_url, signature, public_key, seller_protection, transaction_expiry_date, custom_url, scheme_assigned_id, device_url, disbursement_mode, update_time_utc, expiration_time_utc, order_id, order_status, merchant_risk_prediction, network, cedp_verified_indicator].hash
+      [auth_indicator, approval_code, card_reference_data, transaction_id, network_transaction_id, response_code, response_code_source, response_details, response_category_code, response_source_code, forwarded_acquirer_code, settlement_date, sequence_number, avs, card_verification, merchant_advice, electronic_verification_results, ach_verification, customer, consumer_authentication_response, system_trace_audit_number, payment_account_reference_number, transaction_integrity_code, amex_verbal_auth_reference_number, master_card_service_code, master_card_service_reply_code, master_card_authentication_type, name, routing, merchant_number, retrieval_reference_number, payment_url, complete_url, signature, public_key, seller_protection, transaction_expiry_date, custom_url, scheme_assigned_id, device_url, disbursement_mode, update_time_utc, expiration_time_utc, order_id, order_status, merchant_risk_prediction, network, cedp_verified_indicator, transaction_link_identifier].hash
     end
 
     # Builds the object from hash

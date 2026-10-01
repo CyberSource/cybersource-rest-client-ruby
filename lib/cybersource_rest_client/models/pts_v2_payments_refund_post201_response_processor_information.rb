@@ -46,6 +46,9 @@ module CyberSource
 
     attr_accessor :merchant_advice
 
+    # Transaction Link Identifier (TLID). Links all messages within a transaction lifecycle for Mastercard transactions. Received from Mastercard in the authorization response and automatically replayed for lifecycle transactions (reversals, follow-on credits, authorization refresh).  #### PIN Debit Also returned for PIN Debit purchase, credit, and reversal transactions. For PIN Debit (Visa Gateway) flows, this value is mapped to Visa Field 111 (DSI 07, Tag C0). 
+    attr_accessor :transaction_link_identifier
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -60,7 +63,8 @@ module CyberSource
         :'settlement_date' => :'settlementDate',
         :'update_time_utc' => :'updateTimeUtc',
         :'network' => :'network',
-        :'merchant_advice' => :'merchantAdvice'
+        :'merchant_advice' => :'merchantAdvice',
+        :'transaction_link_identifier' => :'transactionLinkIdentifier'
       }
     end
 
@@ -78,7 +82,8 @@ module CyberSource
         :'settlement_date' => :'settlement_date',
         :'update_time_utc' => :'update_time_utc',
         :'network' => :'network',
-        :'merchant_advice' => :'merchant_advice'
+        :'merchant_advice' => :'merchant_advice',
+        :'transaction_link_identifier' => :'transaction_link_identifier'
       }
     end
 
@@ -96,7 +101,8 @@ module CyberSource
         :'settlement_date' => :'String',
         :'update_time_utc' => :'String',
         :'network' => :'Ptsv2paymentsProcessorInformationReversalNetwork',
-        :'merchant_advice' => :'PtsV2PaymentsRefundPost201ResponseProcessorInformationMerchantAdvice'
+        :'merchant_advice' => :'PtsV2PaymentsRefundPost201ResponseProcessorInformationMerchantAdvice',
+        :'transaction_link_identifier' => :'String'
       }
     end
 
@@ -155,6 +161,10 @@ module CyberSource
       if attributes.has_key?(:'merchantAdvice')
         self.merchant_advice = attributes[:'merchantAdvice']
       end
+
+      if attributes.has_key?(:'transactionLinkIdentifier')
+        self.transaction_link_identifier = attributes[:'transactionLinkIdentifier']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -212,6 +222,12 @@ module CyberSource
       @settlement_date = settlement_date
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] transaction_link_identifier Value to be assigned
+    def transaction_link_identifier=(transaction_link_identifier)
+      @transaction_link_identifier = transaction_link_identifier
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -228,7 +244,8 @@ module CyberSource
           settlement_date == o.settlement_date &&
           update_time_utc == o.update_time_utc &&
           network == o.network &&
-          merchant_advice == o.merchant_advice
+          merchant_advice == o.merchant_advice &&
+          transaction_link_identifier == o.transaction_link_identifier
     end
 
     # @see the `==` method
@@ -240,7 +257,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [approval_code, transaction_id, forwarded_acquirer_code, merchant_number, response_code, response_source_code, ach_verification, network_transaction_id, settlement_date, update_time_utc, network, merchant_advice].hash
+      [approval_code, transaction_id, forwarded_acquirer_code, merchant_number, response_code, response_source_code, ach_verification, network_transaction_id, settlement_date, update_time_utc, network, merchant_advice, transaction_link_identifier].hash
     end
 
     # Builds the object from hash

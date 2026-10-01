@@ -21,6 +21,9 @@ module CyberSource
 
     attr_accessor :order_information
 
+    # Array of the buyer's previous orders. 
+    attr_accessor :order_history
+
     attr_accessor :buyer_information
 
     attr_accessor :device_information
@@ -43,6 +46,7 @@ module CyberSource
         :'processing_information' => :'processingInformation',
         :'payment_information' => :'paymentInformation',
         :'order_information' => :'orderInformation',
+        :'order_history' => :'orderHistory',
         :'buyer_information' => :'buyerInformation',
         :'device_information' => :'deviceInformation',
         :'merchant_information' => :'merchantInformation',
@@ -60,6 +64,7 @@ module CyberSource
         :'processing_information' => :'processing_information',
         :'payment_information' => :'payment_information',
         :'order_information' => :'order_information',
+        :'order_history' => :'order_history',
         :'buyer_information' => :'buyer_information',
         :'device_information' => :'device_information',
         :'merchant_information' => :'merchant_information',
@@ -77,6 +82,7 @@ module CyberSource
         :'processing_information' => :'Ptsv2paymentreferencesProcessingInformation',
         :'payment_information' => :'Ptsv2paymentreferencesPaymentInformation',
         :'order_information' => :'Ptsv2paymentreferencesOrderInformation',
+        :'order_history' => :'Array<Ptsv2paymentsOrderHistory>',
         :'buyer_information' => :'Ptsv2paymentreferencesBuyerInformation',
         :'device_information' => :'Ptsv2paymentreferencesDeviceInformation',
         :'merchant_information' => :'Ptsv2paymentreferencesMerchantInformation',
@@ -109,6 +115,12 @@ module CyberSource
 
       if attributes.has_key?(:'orderInformation')
         self.order_information = attributes[:'orderInformation']
+      end
+
+      if attributes.has_key?(:'orderHistory')
+        if (value = attributes[:'orderHistory']).is_a?(Array)
+          self.order_history = value
+        end
       end
 
       if attributes.has_key?(:'buyerInformation')
@@ -164,6 +176,7 @@ module CyberSource
           processing_information == o.processing_information &&
           payment_information == o.payment_information &&
           order_information == o.order_information &&
+          order_history == o.order_history &&
           buyer_information == o.buyer_information &&
           device_information == o.device_information &&
           merchant_information == o.merchant_information &&
@@ -182,7 +195,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_reference_information, processing_information, payment_information, order_information, buyer_information, device_information, merchant_information, user_interface, merchant_defined_information, agreement_information, travel_information].hash
+      [client_reference_information, processing_information, payment_information, order_information, order_history, buyer_information, device_information, merchant_information, user_interface, merchant_defined_information, agreement_information, travel_information].hash
     end
 
     # Builds the object from hash

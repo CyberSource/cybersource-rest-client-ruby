@@ -3,6 +3,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**merchant_descriptor** | [**PtsV2PayoutsPost201ResponseMerchantInformationMerchantDescriptor**](PtsV2PayoutsPost201ResponseMerchantInformationMerchantDescriptor.md) |  | [optional] 
+**merchant_descriptor** | [**PtsV2PaymentsPost201Response1OrderInformationMerchantDescriptor**](PtsV2PaymentsPost201Response1OrderInformationMerchantDescriptor.md) |  | [optional] 
 
 

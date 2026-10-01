@@ -32,7 +32,7 @@ module CyberSource
     # JWE key wrap algorithm  Possible values: - RSA-OAEP - RSA-OAEP-256 - RSA-OAEP-384 - RSA-OAEP-512
     attr_accessor :algorithm
 
-    # JWE content encryption algorithm  Possible values: - A256GCM - A128GCM - C20P - A256CBC-HS512 - A128CBC-HS256 - A256CCM - A128CCM
+    # JWE content encryption algorithm  Possible values: - A256GCM - A128GCM - C20P - A256CBC_HS512 - A128CBC_HS256 - A256CCM - A128CCM
     attr_accessor :encryption_type
 
     # Key expiration date in UTC

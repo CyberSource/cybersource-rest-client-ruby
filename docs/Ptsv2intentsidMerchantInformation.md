@@ -3,6 +3,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**merchant_descriptor** | [**Ptsv2intentsMerchantInformationMerchantDescriptor**](Ptsv2intentsMerchantInformationMerchantDescriptor.md) |  | [optional] 
+**merchant_descriptor** | [**Ptsv2intentsidMerchantInformationMerchantDescriptor**](Ptsv2intentsidMerchantInformationMerchantDescriptor.md) |  | [optional] 
 
 

@@ -61,4 +61,10 @@ describe 'InlineResponse2016SetupsValueAddedServices' do
     end
   end
 
+  describe 'test attribute "smarter_retry"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

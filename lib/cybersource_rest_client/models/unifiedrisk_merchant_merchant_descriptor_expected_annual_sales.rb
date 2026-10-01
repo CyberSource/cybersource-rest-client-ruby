@@ -71,11 +71,11 @@ module CyberSource
       {
         :'expected_annual_sales' => :'Object',
         :'base_currency' => :'String',
-        :'base_value' => :'Integer',
+        :'base_value' => :'String',
         :'currency' => :'String',
         :'merchant_currency' => :'String',
-        :'merchant_value' => :'Integer',
-        :'value' => :'Integer',
+        :'merchant_value' => :'String',
+        :'value' => :'String',
         :'expected_annual_volume' => :'Integer'
       }
     end

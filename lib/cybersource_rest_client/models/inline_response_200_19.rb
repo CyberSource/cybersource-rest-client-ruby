@@ -12,88 +12,46 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # Result of a product feed ingestion request.
+  # Processing and syndication status of a product feed job.
   class InlineResponse20019
-    # Overall ingestion result: - `success` — all products were validated and saved - `partial_success` — some products failed validation; `errors` lists the failures - `failed` — no products were saved; check `errors` for details   Possible values: - success - partial_success - failed
+    # Unique identifier of the feed submission job.
+    attr_accessor :job_id
+
+    # Overall status of the feed job.  Possible values: - PENDING - PROCESSING - COMPLETED - FAILED
     attr_accessor :status
 
-    # Unique identifier for this feed ingestion job. Use this with the Syndication Status endpoint to monitor the asynchronous protocol sync progress (e.g. to Google Merchant Center). 
-    attr_accessor :feed_id
+    attr_accessor :processing
 
-    # Total number of product records in the submitted feed.
-    attr_accessor :total_submitted
-
-    # Number of products that passed validation and were saved to the catalog.
-    attr_accessor :success_count
-
-    # Number of products that failed validation and were not saved.
-    attr_accessor :failed_count
-
-    # Per-product validation errors for products that failed ingestion. Each entry identifies the product, the specific field that failed, and the reason. `null` when `failed_count` is zero. 
-    attr_accessor :errors
-
-    # ISO 8601 timestamp when the ingestion completed.
-    attr_accessor :ingested_at
-
-    # Indicates whether the ingested products were scheduled for syndication to the configured AI agent endpoint. Set to `true` when at least one product was successfully saved. Note: syndication is asynchronous — this field confirms the dispatch was initiated, not that the agent received the data. 
-    attr_accessor :forwarded_to_agent
-
-    # The AI agent endpoint URL that the products were forwarded to. Present when `forwarded_to_agent` is `true`. 
-    attr_accessor :agent_endpoint
-
-    # Indicates whether the ingested products were scheduled for syndication to the UCP (Unified Commerce Platform) agent. Set to `true` when UCP syndication is enabled and at least one product was successfully saved. 
-    attr_accessor :forwarded_to_ucp_agent
-
-    attr_accessor :google_merchant
+    # Per-protocol syndication status, keyed by lowercase protocol name (e.g. `acp`, `ucp`). 
+    attr_accessor :syndication
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'job_id' => :'jobId',
         :'status' => :'status',
-        :'feed_id' => :'feed_id',
-        :'total_submitted' => :'total_submitted',
-        :'success_count' => :'success_count',
-        :'failed_count' => :'failed_count',
-        :'errors' => :'errors',
-        :'ingested_at' => :'ingested_at',
-        :'forwarded_to_agent' => :'forwarded_to_agent',
-        :'agent_endpoint' => :'agent_endpoint',
-        :'forwarded_to_ucp_agent' => :'forwarded_to_ucp_agent',
-        :'google_merchant' => :'google_merchant'
+        :'processing' => :'processing',
+        :'syndication' => :'syndication'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
+        :'job_id' => :'job_id',
         :'status' => :'status',
-        :'feed_id' => :'feed_id',
-        :'total_submitted' => :'total_submitted',
-        :'success_count' => :'success_count',
-        :'failed_count' => :'failed_count',
-        :'errors' => :'errors',
-        :'ingested_at' => :'ingested_at',
-        :'forwarded_to_agent' => :'forwarded_to_agent',
-        :'agent_endpoint' => :'agent_endpoint',
-        :'forwarded_to_ucp_agent' => :'forwarded_to_ucp_agent',
-        :'google_merchant' => :'google_merchant'
+        :'processing' => :'processing',
+        :'syndication' => :'syndication'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'job_id' => :'String',
         :'status' => :'String',
-        :'feed_id' => :'String',
-        :'total_submitted' => :'Integer',
-        :'success_count' => :'Integer',
-        :'failed_count' => :'Integer',
-        :'errors' => :'Array<InlineResponse20019Errors>',
-        :'ingested_at' => :'DateTime',
-        :'forwarded_to_agent' => :'BOOLEAN',
-        :'agent_endpoint' => :'String',
-        :'forwarded_to_ucp_agent' => :'BOOLEAN',
-        :'google_merchant' => :'InlineResponse20019GoogleMerchant'
+        :'processing' => :'InlineResponse20019Processing',
+        :'syndication' => :'Hash<String, InlineResponse20019Syndication>'
       }
     end
 
@@ -105,50 +63,22 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
+      if attributes.has_key?(:'jobId')
+        self.job_id = attributes[:'jobId']
+      end
+
       if attributes.has_key?(:'status')
         self.status = attributes[:'status']
       end
 
-      if attributes.has_key?(:'feed_id')
-        self.feed_id = attributes[:'feed_id']
+      if attributes.has_key?(:'processing')
+        self.processing = attributes[:'processing']
       end
 
-      if attributes.has_key?(:'total_submitted')
-        self.total_submitted = attributes[:'total_submitted']
-      end
-
-      if attributes.has_key?(:'success_count')
-        self.success_count = attributes[:'success_count']
-      end
-
-      if attributes.has_key?(:'failed_count')
-        self.failed_count = attributes[:'failed_count']
-      end
-
-      if attributes.has_key?(:'errors')
-        if (value = attributes[:'errors']).is_a?(Array)
-          self.errors = value
+      if attributes.has_key?(:'syndication')
+        if (value = attributes[:'syndication']).is_a?(Hash)
+          self.syndication = value
         end
-      end
-
-      if attributes.has_key?(:'ingested_at')
-        self.ingested_at = attributes[:'ingested_at']
-      end
-
-      if attributes.has_key?(:'forwarded_to_agent')
-        self.forwarded_to_agent = attributes[:'forwarded_to_agent']
-      end
-
-      if attributes.has_key?(:'agent_endpoint')
-        self.agent_endpoint = attributes[:'agent_endpoint']
-      end
-
-      if attributes.has_key?(:'forwarded_to_ucp_agent')
-        self.forwarded_to_ucp_agent = attributes[:'forwarded_to_ucp_agent']
-      end
-
-      if attributes.has_key?(:'google_merchant')
-        self.google_merchant = attributes[:'google_merchant']
       end
     end
 
@@ -170,17 +100,10 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          job_id == o.job_id &&
           status == o.status &&
-          feed_id == o.feed_id &&
-          total_submitted == o.total_submitted &&
-          success_count == o.success_count &&
-          failed_count == o.failed_count &&
-          errors == o.errors &&
-          ingested_at == o.ingested_at &&
-          forwarded_to_agent == o.forwarded_to_agent &&
-          agent_endpoint == o.agent_endpoint &&
-          forwarded_to_ucp_agent == o.forwarded_to_ucp_agent &&
-          google_merchant == o.google_merchant
+          processing == o.processing &&
+          syndication == o.syndication
     end
 
     # @see the `==` method
@@ -192,7 +115,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [status, feed_id, total_submitted, success_count, failed_count, errors, ingested_at, forwarded_to_agent, agent_endpoint, forwarded_to_ucp_agent, google_merchant].hash
+      [job_id, status, processing, syndication].hash
     end
 
     # Builds the object from hash

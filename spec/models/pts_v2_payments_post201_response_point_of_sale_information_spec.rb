@@ -49,4 +49,10 @@ describe 'PtsV2PaymentsPost201ResponsePointOfSaleInformation' do
     end
   end
 
+  describe 'test attribute "free_text"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

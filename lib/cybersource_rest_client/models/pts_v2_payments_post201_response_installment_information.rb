@@ -91,6 +91,24 @@ module CyberSource
     # Date of the first installment payment. Format: YYMMDD. When you do not include this field, CyberSource sends a string of six zeros (000000) to the processor.  This field is supported only for Crediario installment payments in Brazil on CyberSource through VisaNet.  The value for this field corresponds to the following data in the TC 33 capture file: - Record: CP01 TCR9 - Position: 42-47 - Field: Date of First Installment 
     attr_accessor :first_installment_date
 
+    # Grace period requested by the customer before the first installment payment is due.  When you include this field in a request, you must also include the grace period duration type field.  The value for this field corresponds to the following data in the TC 33 capture file3: Record: CP01 TCR5, Position: 100-101, Field: Mastercard Grace Period Details.  This field is supported only for Mastercard installment payments in Brazil and Greece. 
+    attr_accessor :grace_period_duration
+
+    # Payment plan for the installments. This field is supported only for installment payments on Visa Platform Connect, RuPay and SPG-KSA seamless flow.  Possible values for a standing-instruction (SI) merchant-initiated transaction (MIT) with Diners Club or Mastercard in India or with an India-issued card: - 1: SI with a fixed amount. - 2: SI with a maximum amount. - 3: Other kind of SI.  Possible values for a type of Installment transaction for on-soil transaction in Kingdom of Saudi Arabia - 1: Registration or first transaction. - 2: Subsequent transaction.  Possible values for other kinds of installment payments: - 0 (default): Regular installment. This value is not allowed for airline transactions. - 1: Installment payment with down payment. - 2: Installment payment without down payment. This value is supported only for airline transactions. - 3: Installment payment; down payment and boarding fee will follow. This value is supported only for airline transactions. - 4: Down payment only; regular installment payment will follow. - 5: Boarding fee only. This value is supported only for airline transactions. - 6: SI de-registration on RuPay for the payer authentication seamless flow. 
+    attr_accessor :payment_type
+
+    # Valid Values from Issuer - Percentage = 999v99 Example P123.12 - Amount = 9(10)v99 Example A123.12 
+    attr_accessor :amount_type
+
+    # Valid Values from Issuer 
+    attr_accessor :percentage_discount
+
+    # Indicates if the installment plan has interest.  Possible values: -Y - with interest -N - without interest -NULL - Do not send the field if no information available 
+    attr_accessor :interest_indicator
+
+    # Valid Values from Issuer 
+    attr_accessor :financing_currency
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -119,7 +137,13 @@ module CyberSource
         :'minimum_total_count' => :'minimumTotalCount',
         :'maximum_total_count' => :'maximumTotalCount',
         :'first_installment_amount' => :'firstInstallmentAmount',
-        :'first_installment_date' => :'firstInstallmentDate'
+        :'first_installment_date' => :'firstInstallmentDate',
+        :'grace_period_duration' => :'gracePeriodDuration',
+        :'payment_type' => :'paymentType',
+        :'amount_type' => :'amountType',
+        :'percentage_discount' => :'percentageDiscount',
+        :'interest_indicator' => :'interestIndicator',
+        :'financing_currency' => :'financingCurrency'
       }
     end
 
@@ -151,7 +175,13 @@ module CyberSource
         :'minimum_total_count' => :'minimum_total_count',
         :'maximum_total_count' => :'maximum_total_count',
         :'first_installment_amount' => :'first_installment_amount',
-        :'first_installment_date' => :'first_installment_date'
+        :'first_installment_date' => :'first_installment_date',
+        :'grace_period_duration' => :'grace_period_duration',
+        :'payment_type' => :'payment_type',
+        :'amount_type' => :'amount_type',
+        :'percentage_discount' => :'percentage_discount',
+        :'interest_indicator' => :'interest_indicator',
+        :'financing_currency' => :'financing_currency'
       }
     end
 
@@ -183,7 +213,13 @@ module CyberSource
         :'minimum_total_count' => :'String',
         :'maximum_total_count' => :'String',
         :'first_installment_amount' => :'String',
-        :'first_installment_date' => :'String'
+        :'first_installment_date' => :'String',
+        :'grace_period_duration' => :'String',
+        :'payment_type' => :'String',
+        :'amount_type' => :'String',
+        :'percentage_discount' => :'String',
+        :'interest_indicator' => :'String',
+        :'financing_currency' => :'String'
       }
     end
 
@@ -297,6 +333,30 @@ module CyberSource
 
       if attributes.has_key?(:'firstInstallmentDate')
         self.first_installment_date = attributes[:'firstInstallmentDate']
+      end
+
+      if attributes.has_key?(:'gracePeriodDuration')
+        self.grace_period_duration = attributes[:'gracePeriodDuration']
+      end
+
+      if attributes.has_key?(:'paymentType')
+        self.payment_type = attributes[:'paymentType']
+      end
+
+      if attributes.has_key?(:'amountType')
+        self.amount_type = attributes[:'amountType']
+      end
+
+      if attributes.has_key?(:'percentageDiscount')
+        self.percentage_discount = attributes[:'percentageDiscount']
+      end
+
+      if attributes.has_key?(:'interestIndicator')
+        self.interest_indicator = attributes[:'interestIndicator']
+      end
+
+      if attributes.has_key?(:'financingCurrency')
+        self.financing_currency = attributes[:'financingCurrency']
       end
     end
 
@@ -457,6 +517,36 @@ module CyberSource
       @first_installment_date = first_installment_date
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] payment_type Value to be assigned
+    def payment_type=(payment_type)
+      @payment_type = payment_type
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] amount_type Value to be assigned
+    def amount_type=(amount_type)
+      @amount_type = amount_type
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] percentage_discount Value to be assigned
+    def percentage_discount=(percentage_discount)
+      @percentage_discount = percentage_discount
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] interest_indicator Value to be assigned
+    def interest_indicator=(interest_indicator)
+      @interest_indicator = interest_indicator
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] financing_currency Value to be assigned
+    def financing_currency=(financing_currency)
+      @financing_currency = financing_currency
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -487,7 +577,13 @@ module CyberSource
           minimum_total_count == o.minimum_total_count &&
           maximum_total_count == o.maximum_total_count &&
           first_installment_amount == o.first_installment_amount &&
-          first_installment_date == o.first_installment_date
+          first_installment_date == o.first_installment_date &&
+          grace_period_duration == o.grace_period_duration &&
+          payment_type == o.payment_type &&
+          amount_type == o.amount_type &&
+          percentage_discount == o.percentage_discount &&
+          interest_indicator == o.interest_indicator &&
+          financing_currency == o.financing_currency
     end
 
     # @see the `==` method
@@ -499,7 +595,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [additional_costs, additional_costs_percentage, amount, amount_funded, amount_requested_percentage, annual_financing_cost, annual_interest_rate, expenses, expenses_percentage, fees, fees_percentage, frequency, insurance, insurance_percentage, invoice_data, monthly_interest_rate, plan_type, sequence, taxes, taxes_percentage, total_amount, total_count, minimum_total_count, maximum_total_count, first_installment_amount, first_installment_date].hash
+      [additional_costs, additional_costs_percentage, amount, amount_funded, amount_requested_percentage, annual_financing_cost, annual_interest_rate, expenses, expenses_percentage, fees, fees_percentage, frequency, insurance, insurance_percentage, invoice_data, monthly_interest_rate, plan_type, sequence, taxes, taxes_percentage, total_amount, total_count, minimum_total_count, maximum_total_count, first_installment_amount, first_installment_date, grace_period_duration, payment_type, amount_type, percentage_discount, interest_indicator, financing_currency].hash
     end
 
     # Builds the object from hash

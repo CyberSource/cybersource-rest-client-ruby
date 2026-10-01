@@ -170,12 +170,67 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @id.nil?
+        invalid_properties.push('invalid value for "id", id cannot be nil.')
+      end
+
+      if @status.nil?
+        invalid_properties.push('invalid value for "status", status cannot be nil.')
+      end
+
+      if @currency.nil?
+        invalid_properties.push('invalid value for "currency", currency cannot be nil.')
+      end
+
+      if @buyer.nil?
+        invalid_properties.push('invalid value for "buyer", buyer cannot be nil.')
+      end
+
+      if @line_items.nil?
+        invalid_properties.push('invalid value for "line_items", line_items cannot be nil.')
+      end
+
+      if @fulfillment_options.nil?
+        invalid_properties.push('invalid value for "fulfillment_options", fulfillment_options cannot be nil.')
+      end
+
+      if @fulfillment_option_id.nil?
+        invalid_properties.push('invalid value for "fulfillment_option_id", fulfillment_option_id cannot be nil.')
+      end
+
+      if @totals.nil?
+        invalid_properties.push('invalid value for "totals", totals cannot be nil.')
+      end
+
+      if @order.nil?
+        invalid_properties.push('invalid value for "order", order cannot be nil.')
+      end
+
+      if @messages.nil?
+        invalid_properties.push('invalid value for "messages", messages cannot be nil.')
+      end
+
+      if @links.nil?
+        invalid_properties.push('invalid value for "links", links cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @id.nil?
+      return false if @status.nil?
+      return false if @currency.nil?
+      return false if @buyer.nil?
+      return false if @line_items.nil?
+      return false if @fulfillment_options.nil?
+      return false if @fulfillment_option_id.nil?
+      return false if @totals.nil?
+      return false if @order.nil?
+      return false if @messages.nil?
+      return false if @links.nil?
       true
     end
 

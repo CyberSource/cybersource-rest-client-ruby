@@ -53,6 +53,8 @@ module CyberSource
 
     attr_accessor :batch_upload
 
+    attr_accessor :payment_events
+
     attr_accessor :transact_guard
 
     attr_accessor :microform
@@ -80,6 +82,7 @@ module CyberSource
         :'receivables_manager' => :'receivablesManager',
         :'service_fee' => :'serviceFee',
         :'batch_upload' => :'batchUpload',
+        :'payment_events' => :'paymentEvents',
         :'transact_guard' => :'transactGuard',
         :'microform' => :'microform'
       }
@@ -108,6 +111,7 @@ module CyberSource
         :'receivables_manager' => :'receivables_manager',
         :'service_fee' => :'service_fee',
         :'batch_upload' => :'batch_upload',
+        :'payment_events' => :'payment_events',
         :'transact_guard' => :'transact_guard',
         :'microform' => :'microform'
       }
@@ -136,6 +140,7 @@ module CyberSource
         :'receivables_manager' => :'PaymentsConfigurationSetupDigitalPayments',
         :'service_fee' => :'PaymentsConfigurationSetupCardProcessing',
         :'batch_upload' => :'PaymentsConfigurationSetupDigitalPayments',
+        :'payment_events' => :'PaymentsConfigurationSetupDigitalPayments',
         :'transact_guard' => :'PaymentsConfigurationSetupDigitalPayments',
         :'microform' => :'PaymentsConfigurationSetupCardProcessing'
       }
@@ -229,6 +234,10 @@ module CyberSource
         self.batch_upload = attributes[:'batchUpload']
       end
 
+      if attributes.has_key?(:'paymentEvents')
+        self.payment_events = attributes[:'paymentEvents']
+      end
+
       if attributes.has_key?(:'transactGuard')
         self.transact_guard = attributes[:'transactGuard']
       end
@@ -276,6 +285,7 @@ module CyberSource
           receivables_manager == o.receivables_manager &&
           service_fee == o.service_fee &&
           batch_upload == o.batch_upload &&
+          payment_events == o.payment_events &&
           transact_guard == o.transact_guard &&
           microform == o.microform
     end
@@ -289,7 +299,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card_processing, alternative_payment_methods, card_present_connect, e_check, payer_authentication, digital_payments, secure_acceptance, virtual_terminal, currency_conversion, tax, customer_invoicing, recurring_billing, cybs_ready_terminal, payment_orchestration, payouts, pay_by_link, unified_checkout, receivables_manager, service_fee, batch_upload, transact_guard, microform].hash
+      [card_processing, alternative_payment_methods, card_present_connect, e_check, payer_authentication, digital_payments, secure_acceptance, virtual_terminal, currency_conversion, tax, customer_invoicing, recurring_billing, cybs_ready_terminal, payment_orchestration, payouts, pay_by_link, unified_checkout, receivables_manager, service_fee, batch_upload, payment_events, transact_guard, microform].hash
     end
 
     # Builds the object from hash

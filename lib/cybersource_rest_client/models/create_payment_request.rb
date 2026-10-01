@@ -23,6 +23,9 @@ module CyberSource
 
     attr_accessor :order_information
 
+    # Array of the buyer's previous orders. 
+    attr_accessor :order_history
+
     attr_accessor :buyer_information
 
     attr_accessor :sender_information
@@ -80,6 +83,7 @@ module CyberSource
         :'issuer_information' => :'issuerInformation',
         :'payment_information' => :'paymentInformation',
         :'order_information' => :'orderInformation',
+        :'order_history' => :'orderHistory',
         :'buyer_information' => :'buyerInformation',
         :'sender_information' => :'senderInformation',
         :'recipient_information' => :'recipientInformation',
@@ -115,6 +119,7 @@ module CyberSource
         :'issuer_information' => :'issuer_information',
         :'payment_information' => :'payment_information',
         :'order_information' => :'order_information',
+        :'order_history' => :'order_history',
         :'buyer_information' => :'buyer_information',
         :'sender_information' => :'sender_information',
         :'recipient_information' => :'recipient_information',
@@ -150,6 +155,7 @@ module CyberSource
         :'issuer_information' => :'Ptsv2paymentsIssuerInformation',
         :'payment_information' => :'Ptsv2paymentsPaymentInformation',
         :'order_information' => :'Ptsv2paymentsOrderInformation',
+        :'order_history' => :'Array<Ptsv2paymentsOrderHistory>',
         :'buyer_information' => :'Ptsv2paymentsBuyerInformation',
         :'sender_information' => :'Ptsv2paymentsSenderInformation',
         :'recipient_information' => :'Ptsv2paymentsRecipientInformation',
@@ -203,6 +209,12 @@ module CyberSource
 
       if attributes.has_key?(:'orderInformation')
         self.order_information = attributes[:'orderInformation']
+      end
+
+      if attributes.has_key?(:'orderHistory')
+        if (value = attributes[:'orderHistory']).is_a?(Array)
+          self.order_history = value
+        end
       end
 
       if attributes.has_key?(:'buyerInformation')
@@ -327,6 +339,7 @@ module CyberSource
           issuer_information == o.issuer_information &&
           payment_information == o.payment_information &&
           order_information == o.order_information &&
+          order_history == o.order_history &&
           buyer_information == o.buyer_information &&
           sender_information == o.sender_information &&
           recipient_information == o.recipient_information &&
@@ -362,7 +375,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_reference_information, processing_information, issuer_information, payment_information, order_information, buyer_information, sender_information, recipient_information, device_information, merchant_information, aggregator_information, consumer_authentication_information, point_of_sale_information, merchant_defined_information, merchant_defined_secure_information, installment_information, travel_information, health_care_information, promotion_information, token_information, invoice_details, processor_information, agreement_information, risk_information, acquirer_information, recurring_payment_information, unscheduled_payment_information, hosted_payment_information, watchlist_screening_information].hash
+      [client_reference_information, processing_information, issuer_information, payment_information, order_information, order_history, buyer_information, sender_information, recipient_information, device_information, merchant_information, aggregator_information, consumer_authentication_information, point_of_sale_information, merchant_defined_information, merchant_defined_secure_information, installment_information, travel_information, health_care_information, promotion_information, token_information, invoice_details, processor_information, agreement_information, risk_information, acquirer_information, recurring_payment_information, unscheduled_payment_information, hosted_payment_information, watchlist_screening_information].hash
     end
 
     # Builds the object from hash

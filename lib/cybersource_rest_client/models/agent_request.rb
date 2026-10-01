@@ -14,25 +14,25 @@ require 'date'
 module CyberSource
   # Request object for registering a new AI agent in the VARS.
   class AgentRequest
-    # Agent name
+    # Display name for the agent
     attr_accessor :name
 
-    # Agent domain URL
+    # Fully-qualified HTTPS URL of the agent's home domain. Must be unique — registration raises 409 if it already exists.
     attr_accessor :domain
 
-    # Agent description
+    # Description of the agent's purpose or capabilities
     attr_accessor :description
 
-    # Contact email
+    # Contact email for the team or individual responsible for this agent
     attr_accessor :contact_email
 
-    # Unique token requestor identifier
+    # Token Requestor ID (TRID) assigned by Visa
     attr_accessor :token_requestor_id
 
-    # Optional metadata (e.g., framework, version)
+    # Free-form metadata object for agent context (e.g., AI framework, language, runtime). Max 10KB.
     attr_accessor :agent_metadata
 
-    # Optional list of keys to create with the agent
+    # Optional array of public keys to register alongside the agent. Keys are created in ***deactivated*** state and must be activated separately via POST /agents/{agentId}/keys/{keyId}/activate. 
     attr_accessor :keys
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -69,7 +69,7 @@ module CyberSource
         :'description' => :'String',
         :'contact_email' => :'String',
         :'token_requestor_id' => :'String',
-        :'agent_metadata' => :'Hash<String, String>',
+        :'agent_metadata' => :'Object',
         :'keys' => :'Array<Iccv1agentsKeys>'
       }
     end
@@ -103,9 +103,7 @@ module CyberSource
       end
 
       if attributes.has_key?(:'agentMetadata')
-        if (value = attributes[:'agentMetadata']).is_a?(Hash)
-          self.agent_metadata = value
-        end
+        self.agent_metadata = attributes[:'agentMetadata']
       end
 
       if attributes.has_key?(:'keys')

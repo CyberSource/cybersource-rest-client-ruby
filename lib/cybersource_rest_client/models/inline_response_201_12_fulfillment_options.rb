@@ -145,12 +145,42 @@ module CyberSource
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @id.nil?
+        invalid_properties.push('invalid value for "id", id cannot be nil.')
+      end
+
+      if @type.nil?
+        invalid_properties.push('invalid value for "type", type cannot be nil.')
+      end
+
+      if @title.nil?
+        invalid_properties.push('invalid value for "title", title cannot be nil.')
+      end
+
+      if @subtotal.nil?
+        invalid_properties.push('invalid value for "subtotal", subtotal cannot be nil.')
+      end
+
+      if @tax.nil?
+        invalid_properties.push('invalid value for "tax", tax cannot be nil.')
+      end
+
+      if @total.nil?
+        invalid_properties.push('invalid value for "total", total cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @id.nil?
+      return false if @type.nil?
+      return false if @title.nil?
+      return false if @subtotal.nil?
+      return false if @tax.nil?
+      return false if @total.nil?
       true
     end
 

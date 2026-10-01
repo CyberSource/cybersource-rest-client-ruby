@@ -12,7 +12,7 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # Web-based integration configuration for a merchant checkout flow.
+  # Web-based checkout integration configuration for browser or app-based agent interactions.
   class Iccv1merchantsWebIntegrations
     # URL for integration specification
     attr_accessor :integration_spec
@@ -46,7 +46,7 @@ module CyberSource
       {
         :'integration_spec' => :'String',
         :'url' => :'String',
-        :'metadata' => :'Hash<String, String>'
+        :'metadata' => :'Hash<String, Object>'
       }
     end
 

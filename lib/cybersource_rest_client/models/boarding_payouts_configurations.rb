@@ -37,7 +37,7 @@ module CyberSource
     def self.swagger_types
       {
         :'common' => :'BoardingPayoutsConfigurationsCommon',
-        :'processors' => :'Hash<String, Object>'
+        :'processors' => :'Hash<String, BoardingPayoutsConfigurationsProcessors>'
       }
     end
 

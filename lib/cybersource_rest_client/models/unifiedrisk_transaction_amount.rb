@@ -58,12 +58,12 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'value' => :'Float',
+        :'value' => :'String',
         :'currency' => :'String',
         :'base_currency' => :'String',
-        :'base_value' => :'Float',
+        :'base_value' => :'String',
         :'merchant_currency' => :'String',
-        :'merchant_value' => :'Float'
+        :'merchant_value' => :'String'
       }
     end
 

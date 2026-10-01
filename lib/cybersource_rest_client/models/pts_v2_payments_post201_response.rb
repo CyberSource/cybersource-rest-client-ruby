@@ -24,6 +24,9 @@ module CyberSource
     # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC.  Returned by Cybersource for all services. 
     attr_accessor :submit_time_utc
 
+    # Time when the authorization was created, in UTC. 
+    attr_accessor :create_time_utc
+
     # The status of the submitted transaction.  Possible values:  - AUTHORIZED  - PARTIAL_AUTHORIZED  - AUTHORIZED_PENDING_REVIEW  - AUTHORIZED_RISK_DECLINED  - PENDING_AUTHENTICATION  - PENDING_REVIEW  - DECLINED  - INVALID_REQUEST 
     attr_accessor :status
 
@@ -75,6 +78,7 @@ module CyberSource
         :'id' => :'id',
         :'message' => :'message',
         :'submit_time_utc' => :'submitTimeUtc',
+        :'create_time_utc' => :'createTimeUtc',
         :'status' => :'status',
         :'reconciliation_id' => :'reconciliationId',
         :'error_information' => :'errorInformation',
@@ -106,6 +110,7 @@ module CyberSource
         :'id' => :'id',
         :'message' => :'message',
         :'submit_time_utc' => :'submit_time_utc',
+        :'create_time_utc' => :'create_time_utc',
         :'status' => :'status',
         :'reconciliation_id' => :'reconciliation_id',
         :'error_information' => :'error_information',
@@ -137,6 +142,7 @@ module CyberSource
         :'id' => :'String',
         :'message' => :'String',
         :'submit_time_utc' => :'String',
+        :'create_time_utc' => :'String',
         :'status' => :'String',
         :'reconciliation_id' => :'String',
         :'error_information' => :'PtsV2PaymentsPost201ResponseErrorInformation',
@@ -183,6 +189,10 @@ module CyberSource
 
       if attributes.has_key?(:'submitTimeUtc')
         self.submit_time_utc = attributes[:'submitTimeUtc']
+      end
+
+      if attributes.has_key?(:'createTimeUtc')
+        self.create_time_utc = attributes[:'createTimeUtc']
       end
 
       if attributes.has_key?(:'status')
@@ -304,6 +314,7 @@ module CyberSource
           id == o.id &&
           message == o.message &&
           submit_time_utc == o.submit_time_utc &&
+          create_time_utc == o.create_time_utc &&
           status == o.status &&
           reconciliation_id == o.reconciliation_id &&
           error_information == o.error_information &&
@@ -336,7 +347,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [_links, id, message, submit_time_utc, status, reconciliation_id, error_information, client_reference_information, processing_information, processor_information, issuer_information, payment_account_information, payment_information, payment_insights_information, order_information, point_of_sale_information, installment_information, token_information, buyer_information, risk_information, consumer_authentication_information, merchant_information, clearing_information, embedded_actions, watchlist_screening_information].hash
+      [_links, id, message, submit_time_utc, create_time_utc, status, reconciliation_id, error_information, client_reference_information, processing_information, processor_information, issuer_information, payment_account_information, payment_information, payment_insights_information, order_information, point_of_sale_information, installment_information, token_information, buyer_information, risk_information, consumer_authentication_information, merchant_information, clearing_information, embedded_actions, watchlist_screening_information].hash
     end
 
     # Builds the object from hash

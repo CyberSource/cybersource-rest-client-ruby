@@ -52,7 +52,7 @@ module CyberSource
         :'protocol' => :'String',
         :'url' => :'String',
         :'documentation_url' => :'String',
-        :'metadata' => :'Hash<String, String>'
+        :'metadata' => :'Hash<String, Object>'
       }
     end
 

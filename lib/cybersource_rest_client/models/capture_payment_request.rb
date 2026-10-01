@@ -97,7 +97,7 @@ module CyberSource
         :'device_information' => :'Ptsv2paymentsidcapturesDeviceInformation',
         :'merchant_information' => :'Ptsv2paymentsidcapturesMerchantInformation',
         :'aggregator_information' => :'Ptsv2paymentsidcapturesAggregatorInformation',
-        :'point_of_sale_information' => :'Ptsv2paymentsidcapturesPointOfSaleInformation',
+        :'point_of_sale_information' => :'Ptsv2paymentsPointOfSaleInformation',
         :'merchant_defined_information' => :'Array<Ptsv2paymentsMerchantDefinedInformation>',
         :'merchant_defined_secure_information' => :'Ptsv2paymentsMerchantDefinedSecureInformation',
         :'installment_information' => :'Ptsv2paymentsidcapturesInstallmentInformation',

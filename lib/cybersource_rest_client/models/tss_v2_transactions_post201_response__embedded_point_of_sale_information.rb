@@ -55,7 +55,7 @@ module CyberSource
         :'terminal_serial_number' => :'String',
         :'device_id' => :'String',
         :'partner' => :'TssV2TransactionsPost201ResponseEmbeddedPointOfSaleInformationPartner',
-        :'emv' => :'Ptsv2paymentsidreversalsPointOfSaleInformationEmv'
+        :'emv' => :'PtsV2PaymentsReversalsPost201ResponsePointOfSaleInformationEmv'
       }
     end
 

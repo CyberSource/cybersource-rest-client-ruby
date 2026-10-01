@@ -17,27 +17,27 @@ module CyberSource
     # Doing business as (DBA) name
     attr_accessor :merchant_name
 
-    # Base merchant URL (must use HTTPS)
+    # Base URL of the merchant's domain. Must use HTTPS and be unique across all registrations.
     attr_accessor :merchant_url
 
-    # Visa Merchant ID — unique identifier
+    # Visa Merchant ID (VMID). Must be unique — raises 409 if already in use.
     attr_accessor :vmid
 
-    # Transaction processing type  Possible values: - TAP - ACG - BOTH
+    # Transaction processing indicator:  - ***TAP*** — Trusted Agent Protocol  - ***ACG*** — Agentic Checkout Gateway  - ***BOTH*** — supports both TAP and ACG   Possible values: - TAP - ACG - BOTH
     attr_accessor :indicator
 
-    # Authentication cryptogram type (defaults to DAVV)  Possible values: - TAVV - DAVV
+    # Authentication cryptogram type used for payment credential generation. Defaults to ***DAVV*** if not provided.  Possible values: - TAVV - DAVV
     attr_accessor :cryptogram_type
 
-    # Credential delivery format (defaults to UNENCRYPTED)  Possible values: - ENCRYPTED - UNENCRYPTED
+    # Credential delivery format. Set to ***ENCRYPTED*** to enable JWE-encrypted payload delivery — requires an `encryptionKey`. Defaults to ***UNENCRYPTED***.  Possible values: - ENCRYPTED - UNENCRYPTED
     attr_accessor :payment_payload_type
 
     attr_accessor :encryption_key
 
-    # List of acceptance network relationships
+    # List of payment network acceptance relationships (e.g., \"Visa\").
     attr_accessor :acceptance_relationships
 
-    # List of protocol configurations (ucp, acp, x402) with HTTPS URLs
+    # List of protocol interaction configurations defining the merchant's endpoint for each supported protocol (ucp, acp, x402).
     attr_accessor :protocol_interactions
 
     attr_accessor :web_integrations
