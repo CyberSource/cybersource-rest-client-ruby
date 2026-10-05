@@ -17,10 +17,10 @@ module CyberSource
     # Agent identifier (64-char SHA-256 hash)
     attr_accessor :agent_id
 
-    # Agent name
+    # Display name of the agent
     attr_accessor :agent_name
 
-    # List of keys (without agentId/agentName/agentType since they are at parent level)
+    # Paginated list of public keys belonging to this agent (agentId/agentName/agentType omitted — available at the parent level)
     attr_accessor :keys
 
     attr_accessor :pagination

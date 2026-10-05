@@ -16,6 +16,9 @@ module CyberSource
     # Your merchant name.  **Note** For Paymentech processor using Cybersource Payouts, the maximum data length is 22.  #### PIN debit Your business name. This name is displayed on the cardholder's statement. When you include more than one consecutive space, extra spaces are removed.  When you do not include this value in your PIN debit request, the merchant name from your account is used. **Important** This value must consist of English characters.  Optional field for PIN debit credit or PIN debit purchase requests.  #### Airline processing Your merchant name. This name is displayed on the cardholder's statement. When you include more than one consecutive space, extra spaces are removed.  **Note** Some airline fee programs may require the original ticket number (ticket identifier) or the ancillary service description in positions 13 through 23 of this field.  **Important** This value must consist of English characters.  Required for captures and credits. 
     attr_accessor :name
 
+    # Value of the merchant descriptor shown to the buyer for this order. 
+    attr_accessor :value
+
     # Email address of the merchant.
     attr_accessor :email
 
@@ -23,6 +26,7 @@ module CyberSource
     def self.attribute_map
       {
         :'name' => :'name',
+        :'value' => :'value',
         :'email' => :'email'
       }
     end
@@ -31,6 +35,7 @@ module CyberSource
     def self.json_map
       {
         :'name' => :'name',
+        :'value' => :'value',
         :'email' => :'email'
       }
     end
@@ -39,6 +44,7 @@ module CyberSource
     def self.swagger_types
       {
         :'name' => :'String',
+        :'value' => :'String',
         :'email' => :'String'
       }
     end
@@ -53,6 +59,10 @@ module CyberSource
 
       if attributes.has_key?(:'name')
         self.name = attributes[:'name']
+      end
+
+      if attributes.has_key?(:'value')
+        self.value = attributes[:'value']
       end
 
       if attributes.has_key?(:'email')
@@ -74,6 +84,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] value Value to be assigned
+    def value=(value)
+      @value = value
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] email Value to be assigned
     def email=(email)
       @email = email
@@ -85,6 +101,7 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           name == o.name &&
+          value == o.value &&
           email == o.email
     end
 
@@ -97,7 +114,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name, email].hash
+      [name, value, email].hash
     end
 
     # Builds the object from hash

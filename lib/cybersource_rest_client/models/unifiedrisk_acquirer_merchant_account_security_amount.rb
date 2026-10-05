@@ -60,11 +60,11 @@ module CyberSource
     def self.swagger_types
       {
         :'base_currency' => :'String',
-        :'base_value' => :'Integer',
+        :'base_value' => :'String',
         :'currency' => :'String',
         :'merchant_currency' => :'String',
-        :'merchant_value' => :'Integer',
-        :'value' => :'Integer'
+        :'merchant_value' => :'String',
+        :'value' => :'String'
       }
     end
 

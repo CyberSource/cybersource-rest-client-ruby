@@ -12,13 +12,16 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # Full product record as stored in the ACG catalog. Contains all ingest fields plus server-assigned metadata timestamps. 
+  # Product record as stored in the ACG catalog. Only the fields listed here are persisted — the full ingest payload (`ProductInput`) contains additional fields that are validated and forwarded to protocol backends but are not retained in the catalog store. 
   class InlineResponse20020Products
-    # The merchant SKU / `item_id` as stored in the ACG catalog. Equivalent to the `item_id` field submitted during feed ingestion. 
-    attr_accessor :id
-
     # Unique product identifier / SKU.
     attr_accessor :item_id
+
+    # When `true`, product appears in AI agent discovery results.
+    attr_accessor :is_eligible_search
+
+    # When `true`, product can be added to a checkout session.
+    attr_accessor :is_eligible_checkout
 
     # Product display name.
     attr_accessor :title
@@ -32,29 +35,11 @@ module CyberSource
     # URL to the primary product image.
     attr_accessor :image_url
 
-    # Additional product image URLs.
-    attr_accessor :additional_image_urls
-
-    # URL to a product video.
-    attr_accessor :video_url
-
-    # URL to a 3D model asset.
-    attr_accessor :model_3d_url
-
     # Product category hierarchy (e.g. `Electronics > Audio > Headphones`).
     attr_accessor :product_category
 
     # Product brand or manufacturer.
     attr_accessor :brand
-
-    # Global Trade Item Number.
-    attr_accessor :gtin
-
-    # Manufacturer Part Number.
-    attr_accessor :mpn
-
-    # Product condition (e.g. new, used, refurbished).
-    attr_accessor :condition
 
     # Primary material (relevant for apparel, furniture, etc.).
     attr_accessor :material
@@ -62,38 +47,26 @@ module CyberSource
     # Product weight including unit.
     attr_accessor :weight
 
-    # Combined dimension string (e.g. \"10x5x3 cm\").
-    attr_accessor :dimensions
+    # Product price as a decimal number.
+    attr_accessor :price
 
-    # Product length. Pair with `dimensions_unit` for unit context.
-    attr_accessor :length
+    # ISO 4217 currency code.
+    attr_accessor :currency
 
-    # Product width. Pair with `dimensions_unit` for unit context.
-    attr_accessor :width
+    # Current stock status.  Possible values: - in_stock - out_of_stock - preorder - pre_order - backorder - unknown
+    attr_accessor :availability
 
-    # Product height. Pair with `dimensions_unit` for unit context.
-    attr_accessor :height
+    # Primary product color.
+    attr_accessor :color
 
-    # Unit for dimension values (e.g. \"cm\", \"in\", \"mm\").
-    attr_accessor :dimensions_unit
-
-    # Unit for weight value (e.g. \"kg\", \"lb\", \"oz\").
-    attr_accessor :item_weight_unit
+    # Target gender (e.g. \"male\", \"female\", \"unisex\").
+    attr_accessor :gender
 
     # Target age group (e.g. \"adult\", \"kids\", \"infant\").
     attr_accessor :age_group
 
-    # Primary product color. Used for variant filtering.
-    attr_accessor :color
-
-    # Product size (e.g. \"M\", \"42\", \"XL\"). Used for variant filtering.
-    attr_accessor :size
-
-    # Size standard used (e.g. \"US\", \"EU\", \"UK\").
-    attr_accessor :size_system
-
-    # Target gender (e.g. \"male\", \"female\", \"unisex\").
-    attr_accessor :gender
+    # Shipping cost string as provided by the merchant.
+    attr_accessor :shipping_price
 
     # Product variant group identifier.
     attr_accessor :group_id
@@ -101,123 +74,20 @@ module CyberSource
     # Whether this listing has product variations (e.g. different sizes or colors).
     attr_accessor :listing_has_variations
 
-    # Display title for the variant group.
-    attr_accessor :item_group_title
-
-    # Merchant-assigned offer identifier.
-    attr_accessor :offer_id
-
-    attr_accessor :variant_dict
-
-    attr_accessor :custom_variant1_category
-
-    attr_accessor :custom_variant1_option
-
-    attr_accessor :custom_variant2_category
-
-    attr_accessor :custom_variant2_option
-
-    attr_accessor :custom_variant3_category
-
-    attr_accessor :custom_variant3_option
-
-    # Product price as a decimal number.
-    attr_accessor :price
-
-    # ISO 4217 currency code.
-    attr_accessor :currency
-
-    attr_accessor :sale_price
-
-    attr_accessor :sale_price_start_date
-
-    attr_accessor :sale_price_end_date
-
-    attr_accessor :unit_pricing_measure
-
-    attr_accessor :base_measure
-
-    attr_accessor :pricing_trend
-
-    attr_accessor :geo_price
-
-    attr_accessor :geo_availability
-
-    # Current stock status.  Possible values: - in_stock - out_of_stock - preorder - backorder
-    attr_accessor :availability
-
-    attr_accessor :availability_date
-
-    attr_accessor :expiration_date
-
-    # Merchant or seller display name. Max 70 characters. 
+    # Merchant or seller display name.
     attr_accessor :seller_name
 
+    # URL to the seller's storefront.
     attr_accessor :seller_url
 
-    attr_accessor :marketplace_seller
-
-    attr_accessor :seller_privacy_policy
-
-    attr_accessor :seller_tos
-
-    attr_accessor :shipping_price
-
-    attr_accessor :delivery_estimate
-
-    attr_accessor :pickup_method
-
-    attr_accessor :pickup_sla
-
-    attr_accessor :is_digital
-
+    # Merchant return policy text.
     attr_accessor :return_policy
-
-    attr_accessor :accepts_returns
-
-    attr_accessor :return_deadline_in_days
-
-    attr_accessor :accepts_exchanges
-
-    # When `true`, product appears in AI agent discovery results.
-    attr_accessor :is_eligible_search
-
-    # When `true`, product can be added to a checkout session.
-    attr_accessor :is_eligible_checkout
-
-    attr_accessor :popularity_score
-
-    attr_accessor :return_rate
-
-    attr_accessor :warning
-
-    attr_accessor :warning_url
-
-    attr_accessor :age_restriction
-
-    attr_accessor :review_count
-
-    attr_accessor :star_rating
-
-    attr_accessor :store_review_count
-
-    attr_accessor :store_star_rating
-
-    attr_accessor :related_product_id
-
-    attr_accessor :relationship_type
 
     # Country codes where this product is available.
     attr_accessor :target_countries
 
     # ISO 3166-1 alpha-2 country code of the merchant's store.
     attr_accessor :store_country
-
-    attr_accessor :q_and_a
-
-    attr_accessor :qand_a
-
-    attr_accessor :reviews
 
     # ISO 8601 timestamp when this product was first ingested.
     attr_accessor :created_at
@@ -228,180 +98,64 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id',
         :'item_id' => :'item_id',
+        :'is_eligible_search' => :'is_eligible_search',
+        :'is_eligible_checkout' => :'is_eligible_checkout',
         :'title' => :'title',
         :'description' => :'description',
         :'url' => :'url',
         :'image_url' => :'image_url',
-        :'additional_image_urls' => :'additional_image_urls',
-        :'video_url' => :'video_url',
-        :'model_3d_url' => :'model_3d_url',
         :'product_category' => :'product_category',
         :'brand' => :'brand',
-        :'gtin' => :'gtin',
-        :'mpn' => :'mpn',
-        :'condition' => :'condition',
         :'material' => :'material',
         :'weight' => :'weight',
-        :'dimensions' => :'dimensions',
-        :'length' => :'length',
-        :'width' => :'width',
-        :'height' => :'height',
-        :'dimensions_unit' => :'dimensions_unit',
-        :'item_weight_unit' => :'item_weight_unit',
-        :'age_group' => :'age_group',
-        :'color' => :'color',
-        :'size' => :'size',
-        :'size_system' => :'size_system',
-        :'gender' => :'gender',
-        :'group_id' => :'group_id',
-        :'listing_has_variations' => :'listing_has_variations',
-        :'item_group_title' => :'item_group_title',
-        :'offer_id' => :'offer_id',
-        :'variant_dict' => :'variant_dict',
-        :'custom_variant1_category' => :'custom_variant1_category',
-        :'custom_variant1_option' => :'custom_variant1_option',
-        :'custom_variant2_category' => :'custom_variant2_category',
-        :'custom_variant2_option' => :'custom_variant2_option',
-        :'custom_variant3_category' => :'custom_variant3_category',
-        :'custom_variant3_option' => :'custom_variant3_option',
         :'price' => :'price',
         :'currency' => :'currency',
-        :'sale_price' => :'sale_price',
-        :'sale_price_start_date' => :'sale_price_start_date',
-        :'sale_price_end_date' => :'sale_price_end_date',
-        :'unit_pricing_measure' => :'unit_pricing_measure',
-        :'base_measure' => :'base_measure',
-        :'pricing_trend' => :'pricing_trend',
-        :'geo_price' => :'geo_price',
-        :'geo_availability' => :'geo_availability',
         :'availability' => :'availability',
-        :'availability_date' => :'availability_date',
-        :'expiration_date' => :'expiration_date',
-        :'seller_name' => :'seller_name',
-        :'seller_url' => :'seller_url',
-        :'marketplace_seller' => :'marketplace_seller',
-        :'seller_privacy_policy' => :'seller_privacy_policy',
-        :'seller_tos' => :'seller_tos',
+        :'color' => :'color',
+        :'gender' => :'gender',
+        :'age_group' => :'age_group',
         :'shipping_price' => :'shipping_price',
-        :'delivery_estimate' => :'delivery_estimate',
-        :'pickup_method' => :'pickup_method',
-        :'pickup_sla' => :'pickup_sla',
-        :'is_digital' => :'is_digital',
+        :'group_id' => :'group_id',
+        :'listing_has_variations' => :'listing_has_variations',
+        :'seller_name' => :'sellerName',
+        :'seller_url' => :'seller_url',
         :'return_policy' => :'return_policy',
-        :'accepts_returns' => :'accepts_returns',
-        :'return_deadline_in_days' => :'return_deadline_in_days',
-        :'accepts_exchanges' => :'accepts_exchanges',
-        :'is_eligible_search' => :'is_eligible_search',
-        :'is_eligible_checkout' => :'is_eligible_checkout',
-        :'popularity_score' => :'popularity_score',
-        :'return_rate' => :'return_rate',
-        :'warning' => :'warning',
-        :'warning_url' => :'warning_url',
-        :'age_restriction' => :'age_restriction',
-        :'review_count' => :'review_count',
-        :'star_rating' => :'star_rating',
-        :'store_review_count' => :'store_review_count',
-        :'store_star_rating' => :'store_star_rating',
-        :'related_product_id' => :'related_product_id',
-        :'relationship_type' => :'relationship_type',
         :'target_countries' => :'target_countries',
         :'store_country' => :'store_country',
-        :'q_and_a' => :'q_and_a',
-        :'qand_a' => :'qandA',
-        :'reviews' => :'reviews',
-        :'created_at' => :'created_at',
-        :'updated_at' => :'updated_at'
+        :'created_at' => :'createdAt',
+        :'updated_at' => :'updatedAt'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'id' => :'id',
         :'item_id' => :'item_id',
+        :'is_eligible_search' => :'is_eligible_search',
+        :'is_eligible_checkout' => :'is_eligible_checkout',
         :'title' => :'title',
         :'description' => :'description',
         :'url' => :'url',
         :'image_url' => :'image_url',
-        :'additional_image_urls' => :'additional_image_urls',
-        :'video_url' => :'video_url',
-        :'model_3d_url' => :'model_3d_url',
         :'product_category' => :'product_category',
         :'brand' => :'brand',
-        :'gtin' => :'gtin',
-        :'mpn' => :'mpn',
-        :'condition' => :'condition',
         :'material' => :'material',
         :'weight' => :'weight',
-        :'dimensions' => :'dimensions',
-        :'length' => :'length',
-        :'width' => :'width',
-        :'height' => :'height',
-        :'dimensions_unit' => :'dimensions_unit',
-        :'item_weight_unit' => :'item_weight_unit',
-        :'age_group' => :'age_group',
-        :'color' => :'color',
-        :'size' => :'size',
-        :'size_system' => :'size_system',
-        :'gender' => :'gender',
-        :'group_id' => :'group_id',
-        :'listing_has_variations' => :'listing_has_variations',
-        :'item_group_title' => :'item_group_title',
-        :'offer_id' => :'offer_id',
-        :'variant_dict' => :'variant_dict',
-        :'custom_variant1_category' => :'custom_variant1_category',
-        :'custom_variant1_option' => :'custom_variant1_option',
-        :'custom_variant2_category' => :'custom_variant2_category',
-        :'custom_variant2_option' => :'custom_variant2_option',
-        :'custom_variant3_category' => :'custom_variant3_category',
-        :'custom_variant3_option' => :'custom_variant3_option',
         :'price' => :'price',
         :'currency' => :'currency',
-        :'sale_price' => :'sale_price',
-        :'sale_price_start_date' => :'sale_price_start_date',
-        :'sale_price_end_date' => :'sale_price_end_date',
-        :'unit_pricing_measure' => :'unit_pricing_measure',
-        :'base_measure' => :'base_measure',
-        :'pricing_trend' => :'pricing_trend',
-        :'geo_price' => :'geo_price',
-        :'geo_availability' => :'geo_availability',
         :'availability' => :'availability',
-        :'availability_date' => :'availability_date',
-        :'expiration_date' => :'expiration_date',
+        :'color' => :'color',
+        :'gender' => :'gender',
+        :'age_group' => :'age_group',
+        :'shipping_price' => :'shipping_price',
+        :'group_id' => :'group_id',
+        :'listing_has_variations' => :'listing_has_variations',
         :'seller_name' => :'seller_name',
         :'seller_url' => :'seller_url',
-        :'marketplace_seller' => :'marketplace_seller',
-        :'seller_privacy_policy' => :'seller_privacy_policy',
-        :'seller_tos' => :'seller_tos',
-        :'shipping_price' => :'shipping_price',
-        :'delivery_estimate' => :'delivery_estimate',
-        :'pickup_method' => :'pickup_method',
-        :'pickup_sla' => :'pickup_sla',
-        :'is_digital' => :'is_digital',
         :'return_policy' => :'return_policy',
-        :'accepts_returns' => :'accepts_returns',
-        :'return_deadline_in_days' => :'return_deadline_in_days',
-        :'accepts_exchanges' => :'accepts_exchanges',
-        :'is_eligible_search' => :'is_eligible_search',
-        :'is_eligible_checkout' => :'is_eligible_checkout',
-        :'popularity_score' => :'popularity_score',
-        :'return_rate' => :'return_rate',
-        :'warning' => :'warning',
-        :'warning_url' => :'warning_url',
-        :'age_restriction' => :'age_restriction',
-        :'review_count' => :'review_count',
-        :'star_rating' => :'star_rating',
-        :'store_review_count' => :'store_review_count',
-        :'store_star_rating' => :'store_star_rating',
-        :'related_product_id' => :'related_product_id',
-        :'relationship_type' => :'relationship_type',
         :'target_countries' => :'target_countries',
         :'store_country' => :'store_country',
-        :'q_and_a' => :'q_and_a',
-        :'qand_a' => :'qand_a',
-        :'reviews' => :'reviews',
         :'created_at' => :'created_at',
         :'updated_at' => :'updated_at'
       }
@@ -410,89 +164,31 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'id' => :'String',
         :'item_id' => :'String',
+        :'is_eligible_search' => :'BOOLEAN',
+        :'is_eligible_checkout' => :'BOOLEAN',
         :'title' => :'String',
         :'description' => :'String',
         :'url' => :'String',
         :'image_url' => :'String',
-        :'additional_image_urls' => :'String',
-        :'video_url' => :'String',
-        :'model_3d_url' => :'String',
         :'product_category' => :'String',
         :'brand' => :'String',
-        :'gtin' => :'String',
-        :'mpn' => :'String',
-        :'condition' => :'String',
         :'material' => :'String',
         :'weight' => :'String',
-        :'dimensions' => :'String',
-        :'length' => :'String',
-        :'width' => :'String',
-        :'height' => :'String',
-        :'dimensions_unit' => :'String',
-        :'item_weight_unit' => :'String',
-        :'age_group' => :'String',
-        :'color' => :'String',
-        :'size' => :'String',
-        :'size_system' => :'String',
-        :'gender' => :'String',
-        :'group_id' => :'String',
-        :'listing_has_variations' => :'BOOLEAN',
-        :'item_group_title' => :'String',
-        :'offer_id' => :'String',
-        :'variant_dict' => :'Hash<String, String>',
-        :'custom_variant1_category' => :'String',
-        :'custom_variant1_option' => :'String',
-        :'custom_variant2_category' => :'String',
-        :'custom_variant2_option' => :'String',
-        :'custom_variant3_category' => :'String',
-        :'custom_variant3_option' => :'String',
         :'price' => :'Float',
         :'currency' => :'String',
-        :'sale_price' => :'Float',
-        :'sale_price_start_date' => :'Date',
-        :'sale_price_end_date' => :'Date',
-        :'unit_pricing_measure' => :'String',
-        :'base_measure' => :'String',
-        :'pricing_trend' => :'String',
-        :'geo_price' => :'String',
-        :'geo_availability' => :'String',
         :'availability' => :'String',
-        :'availability_date' => :'Date',
-        :'expiration_date' => :'Date',
+        :'color' => :'String',
+        :'gender' => :'String',
+        :'age_group' => :'String',
+        :'shipping_price' => :'String',
+        :'group_id' => :'String',
+        :'listing_has_variations' => :'BOOLEAN',
         :'seller_name' => :'String',
         :'seller_url' => :'String',
-        :'marketplace_seller' => :'String',
-        :'seller_privacy_policy' => :'String',
-        :'seller_tos' => :'String',
-        :'shipping_price' => :'String',
-        :'delivery_estimate' => :'Date',
-        :'pickup_method' => :'String',
-        :'pickup_sla' => :'String',
-        :'is_digital' => :'BOOLEAN',
         :'return_policy' => :'String',
-        :'accepts_returns' => :'BOOLEAN',
-        :'return_deadline_in_days' => :'Integer',
-        :'accepts_exchanges' => :'BOOLEAN',
-        :'is_eligible_search' => :'BOOLEAN',
-        :'is_eligible_checkout' => :'BOOLEAN',
-        :'popularity_score' => :'Float',
-        :'return_rate' => :'String',
-        :'warning' => :'String',
-        :'warning_url' => :'String',
-        :'age_restriction' => :'Integer',
-        :'review_count' => :'Integer',
-        :'star_rating' => :'String',
-        :'store_review_count' => :'Integer',
-        :'store_star_rating' => :'String',
-        :'related_product_id' => :'String',
-        :'relationship_type' => :'String',
         :'target_countries' => :'Array<String>',
         :'store_country' => :'String',
-        :'q_and_a' => :'Array<Hash<String, Object>>',
-        :'qand_a' => :'Array<Hash<String, Object>>',
-        :'reviews' => :'Array<Hash<String, Object>>',
         :'created_at' => :'DateTime',
         :'updated_at' => :'DateTime'
       }
@@ -506,12 +202,16 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'id')
-        self.id = attributes[:'id']
-      end
-
       if attributes.has_key?(:'item_id')
         self.item_id = attributes[:'item_id']
+      end
+
+      if attributes.has_key?(:'is_eligible_search')
+        self.is_eligible_search = attributes[:'is_eligible_search']
+      end
+
+      if attributes.has_key?(:'is_eligible_checkout')
+        self.is_eligible_checkout = attributes[:'is_eligible_checkout']
       end
 
       if attributes.has_key?(:'title')
@@ -530,36 +230,12 @@ module CyberSource
         self.image_url = attributes[:'image_url']
       end
 
-      if attributes.has_key?(:'additional_image_urls')
-        self.additional_image_urls = attributes[:'additional_image_urls']
-      end
-
-      if attributes.has_key?(:'video_url')
-        self.video_url = attributes[:'video_url']
-      end
-
-      if attributes.has_key?(:'model_3d_url')
-        self.model_3d_url = attributes[:'model_3d_url']
-      end
-
       if attributes.has_key?(:'product_category')
         self.product_category = attributes[:'product_category']
       end
 
       if attributes.has_key?(:'brand')
         self.brand = attributes[:'brand']
-      end
-
-      if attributes.has_key?(:'gtin')
-        self.gtin = attributes[:'gtin']
-      end
-
-      if attributes.has_key?(:'mpn')
-        self.mpn = attributes[:'mpn']
-      end
-
-      if attributes.has_key?(:'condition')
-        self.condition = attributes[:'condition']
       end
 
       if attributes.has_key?(:'material')
@@ -570,48 +246,32 @@ module CyberSource
         self.weight = attributes[:'weight']
       end
 
-      if attributes.has_key?(:'dimensions')
-        self.dimensions = attributes[:'dimensions']
+      if attributes.has_key?(:'price')
+        self.price = attributes[:'price']
       end
 
-      if attributes.has_key?(:'length')
-        self.length = attributes[:'length']
+      if attributes.has_key?(:'currency')
+        self.currency = attributes[:'currency']
       end
 
-      if attributes.has_key?(:'width')
-        self.width = attributes[:'width']
-      end
-
-      if attributes.has_key?(:'height')
-        self.height = attributes[:'height']
-      end
-
-      if attributes.has_key?(:'dimensions_unit')
-        self.dimensions_unit = attributes[:'dimensions_unit']
-      end
-
-      if attributes.has_key?(:'item_weight_unit')
-        self.item_weight_unit = attributes[:'item_weight_unit']
-      end
-
-      if attributes.has_key?(:'age_group')
-        self.age_group = attributes[:'age_group']
+      if attributes.has_key?(:'availability')
+        self.availability = attributes[:'availability']
       end
 
       if attributes.has_key?(:'color')
         self.color = attributes[:'color']
       end
 
-      if attributes.has_key?(:'size')
-        self.size = attributes[:'size']
-      end
-
-      if attributes.has_key?(:'size_system')
-        self.size_system = attributes[:'size_system']
-      end
-
       if attributes.has_key?(:'gender')
         self.gender = attributes[:'gender']
+      end
+
+      if attributes.has_key?(:'age_group')
+        self.age_group = attributes[:'age_group']
+      end
+
+      if attributes.has_key?(:'shipping_price')
+        self.shipping_price = attributes[:'shipping_price']
       end
 
       if attributes.has_key?(:'group_id')
@@ -622,202 +282,16 @@ module CyberSource
         self.listing_has_variations = attributes[:'listing_has_variations']
       end
 
-      if attributes.has_key?(:'item_group_title')
-        self.item_group_title = attributes[:'item_group_title']
-      end
-
-      if attributes.has_key?(:'offer_id')
-        self.offer_id = attributes[:'offer_id']
-      end
-
-      if attributes.has_key?(:'variant_dict')
-        if (value = attributes[:'variant_dict']).is_a?(Hash)
-          self.variant_dict = value
-        end
-      end
-
-      if attributes.has_key?(:'custom_variant1_category')
-        self.custom_variant1_category = attributes[:'custom_variant1_category']
-      end
-
-      if attributes.has_key?(:'custom_variant1_option')
-        self.custom_variant1_option = attributes[:'custom_variant1_option']
-      end
-
-      if attributes.has_key?(:'custom_variant2_category')
-        self.custom_variant2_category = attributes[:'custom_variant2_category']
-      end
-
-      if attributes.has_key?(:'custom_variant2_option')
-        self.custom_variant2_option = attributes[:'custom_variant2_option']
-      end
-
-      if attributes.has_key?(:'custom_variant3_category')
-        self.custom_variant3_category = attributes[:'custom_variant3_category']
-      end
-
-      if attributes.has_key?(:'custom_variant3_option')
-        self.custom_variant3_option = attributes[:'custom_variant3_option']
-      end
-
-      if attributes.has_key?(:'price')
-        self.price = attributes[:'price']
-      end
-
-      if attributes.has_key?(:'currency')
-        self.currency = attributes[:'currency']
-      end
-
-      if attributes.has_key?(:'sale_price')
-        self.sale_price = attributes[:'sale_price']
-      end
-
-      if attributes.has_key?(:'sale_price_start_date')
-        self.sale_price_start_date = attributes[:'sale_price_start_date']
-      end
-
-      if attributes.has_key?(:'sale_price_end_date')
-        self.sale_price_end_date = attributes[:'sale_price_end_date']
-      end
-
-      if attributes.has_key?(:'unit_pricing_measure')
-        self.unit_pricing_measure = attributes[:'unit_pricing_measure']
-      end
-
-      if attributes.has_key?(:'base_measure')
-        self.base_measure = attributes[:'base_measure']
-      end
-
-      if attributes.has_key?(:'pricing_trend')
-        self.pricing_trend = attributes[:'pricing_trend']
-      end
-
-      if attributes.has_key?(:'geo_price')
-        self.geo_price = attributes[:'geo_price']
-      end
-
-      if attributes.has_key?(:'geo_availability')
-        self.geo_availability = attributes[:'geo_availability']
-      end
-
-      if attributes.has_key?(:'availability')
-        self.availability = attributes[:'availability']
-      end
-
-      if attributes.has_key?(:'availability_date')
-        self.availability_date = attributes[:'availability_date']
-      end
-
-      if attributes.has_key?(:'expiration_date')
-        self.expiration_date = attributes[:'expiration_date']
-      end
-
-      if attributes.has_key?(:'seller_name')
-        self.seller_name = attributes[:'seller_name']
+      if attributes.has_key?(:'sellerName')
+        self.seller_name = attributes[:'sellerName']
       end
 
       if attributes.has_key?(:'seller_url')
         self.seller_url = attributes[:'seller_url']
       end
 
-      if attributes.has_key?(:'marketplace_seller')
-        self.marketplace_seller = attributes[:'marketplace_seller']
-      end
-
-      if attributes.has_key?(:'seller_privacy_policy')
-        self.seller_privacy_policy = attributes[:'seller_privacy_policy']
-      end
-
-      if attributes.has_key?(:'seller_tos')
-        self.seller_tos = attributes[:'seller_tos']
-      end
-
-      if attributes.has_key?(:'shipping_price')
-        self.shipping_price = attributes[:'shipping_price']
-      end
-
-      if attributes.has_key?(:'delivery_estimate')
-        self.delivery_estimate = attributes[:'delivery_estimate']
-      end
-
-      if attributes.has_key?(:'pickup_method')
-        self.pickup_method = attributes[:'pickup_method']
-      end
-
-      if attributes.has_key?(:'pickup_sla')
-        self.pickup_sla = attributes[:'pickup_sla']
-      end
-
-      if attributes.has_key?(:'is_digital')
-        self.is_digital = attributes[:'is_digital']
-      end
-
       if attributes.has_key?(:'return_policy')
         self.return_policy = attributes[:'return_policy']
-      end
-
-      if attributes.has_key?(:'accepts_returns')
-        self.accepts_returns = attributes[:'accepts_returns']
-      end
-
-      if attributes.has_key?(:'return_deadline_in_days')
-        self.return_deadline_in_days = attributes[:'return_deadline_in_days']
-      end
-
-      if attributes.has_key?(:'accepts_exchanges')
-        self.accepts_exchanges = attributes[:'accepts_exchanges']
-      end
-
-      if attributes.has_key?(:'is_eligible_search')
-        self.is_eligible_search = attributes[:'is_eligible_search']
-      end
-
-      if attributes.has_key?(:'is_eligible_checkout')
-        self.is_eligible_checkout = attributes[:'is_eligible_checkout']
-      end
-
-      if attributes.has_key?(:'popularity_score')
-        self.popularity_score = attributes[:'popularity_score']
-      end
-
-      if attributes.has_key?(:'return_rate')
-        self.return_rate = attributes[:'return_rate']
-      end
-
-      if attributes.has_key?(:'warning')
-        self.warning = attributes[:'warning']
-      end
-
-      if attributes.has_key?(:'warning_url')
-        self.warning_url = attributes[:'warning_url']
-      end
-
-      if attributes.has_key?(:'age_restriction')
-        self.age_restriction = attributes[:'age_restriction']
-      end
-
-      if attributes.has_key?(:'review_count')
-        self.review_count = attributes[:'review_count']
-      end
-
-      if attributes.has_key?(:'star_rating')
-        self.star_rating = attributes[:'star_rating']
-      end
-
-      if attributes.has_key?(:'store_review_count')
-        self.store_review_count = attributes[:'store_review_count']
-      end
-
-      if attributes.has_key?(:'store_star_rating')
-        self.store_star_rating = attributes[:'store_star_rating']
-      end
-
-      if attributes.has_key?(:'related_product_id')
-        self.related_product_id = attributes[:'related_product_id']
-      end
-
-      if attributes.has_key?(:'relationship_type')
-        self.relationship_type = attributes[:'relationship_type']
       end
 
       if attributes.has_key?(:'target_countries')
@@ -830,30 +304,12 @@ module CyberSource
         self.store_country = attributes[:'store_country']
       end
 
-      if attributes.has_key?(:'q_and_a')
-        if (value = attributes[:'q_and_a']).is_a?(Array)
-          self.q_and_a = value
-        end
+      if attributes.has_key?(:'createdAt')
+        self.created_at = attributes[:'createdAt']
       end
 
-      if attributes.has_key?(:'qandA')
-        if (value = attributes[:'qandA']).is_a?(Array)
-          self.qand_a = value
-        end
-      end
-
-      if attributes.has_key?(:'reviews')
-        if (value = attributes[:'reviews']).is_a?(Array)
-          self.reviews = value
-        end
-      end
-
-      if attributes.has_key?(:'created_at')
-        self.created_at = attributes[:'created_at']
-      end
-
-      if attributes.has_key?(:'updated_at')
-        self.updated_at = attributes[:'updated_at']
+      if attributes.has_key?(:'updatedAt')
+        self.updated_at = attributes[:'updatedAt']
       end
     end
 
@@ -875,89 +331,31 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id == o.id &&
           item_id == o.item_id &&
+          is_eligible_search == o.is_eligible_search &&
+          is_eligible_checkout == o.is_eligible_checkout &&
           title == o.title &&
           description == o.description &&
           url == o.url &&
           image_url == o.image_url &&
-          additional_image_urls == o.additional_image_urls &&
-          video_url == o.video_url &&
-          model_3d_url == o.model_3d_url &&
           product_category == o.product_category &&
           brand == o.brand &&
-          gtin == o.gtin &&
-          mpn == o.mpn &&
-          condition == o.condition &&
           material == o.material &&
           weight == o.weight &&
-          dimensions == o.dimensions &&
-          length == o.length &&
-          width == o.width &&
-          height == o.height &&
-          dimensions_unit == o.dimensions_unit &&
-          item_weight_unit == o.item_weight_unit &&
-          age_group == o.age_group &&
-          color == o.color &&
-          size == o.size &&
-          size_system == o.size_system &&
-          gender == o.gender &&
-          group_id == o.group_id &&
-          listing_has_variations == o.listing_has_variations &&
-          item_group_title == o.item_group_title &&
-          offer_id == o.offer_id &&
-          variant_dict == o.variant_dict &&
-          custom_variant1_category == o.custom_variant1_category &&
-          custom_variant1_option == o.custom_variant1_option &&
-          custom_variant2_category == o.custom_variant2_category &&
-          custom_variant2_option == o.custom_variant2_option &&
-          custom_variant3_category == o.custom_variant3_category &&
-          custom_variant3_option == o.custom_variant3_option &&
           price == o.price &&
           currency == o.currency &&
-          sale_price == o.sale_price &&
-          sale_price_start_date == o.sale_price_start_date &&
-          sale_price_end_date == o.sale_price_end_date &&
-          unit_pricing_measure == o.unit_pricing_measure &&
-          base_measure == o.base_measure &&
-          pricing_trend == o.pricing_trend &&
-          geo_price == o.geo_price &&
-          geo_availability == o.geo_availability &&
           availability == o.availability &&
-          availability_date == o.availability_date &&
-          expiration_date == o.expiration_date &&
+          color == o.color &&
+          gender == o.gender &&
+          age_group == o.age_group &&
+          shipping_price == o.shipping_price &&
+          group_id == o.group_id &&
+          listing_has_variations == o.listing_has_variations &&
           seller_name == o.seller_name &&
           seller_url == o.seller_url &&
-          marketplace_seller == o.marketplace_seller &&
-          seller_privacy_policy == o.seller_privacy_policy &&
-          seller_tos == o.seller_tos &&
-          shipping_price == o.shipping_price &&
-          delivery_estimate == o.delivery_estimate &&
-          pickup_method == o.pickup_method &&
-          pickup_sla == o.pickup_sla &&
-          is_digital == o.is_digital &&
           return_policy == o.return_policy &&
-          accepts_returns == o.accepts_returns &&
-          return_deadline_in_days == o.return_deadline_in_days &&
-          accepts_exchanges == o.accepts_exchanges &&
-          is_eligible_search == o.is_eligible_search &&
-          is_eligible_checkout == o.is_eligible_checkout &&
-          popularity_score == o.popularity_score &&
-          return_rate == o.return_rate &&
-          warning == o.warning &&
-          warning_url == o.warning_url &&
-          age_restriction == o.age_restriction &&
-          review_count == o.review_count &&
-          star_rating == o.star_rating &&
-          store_review_count == o.store_review_count &&
-          store_star_rating == o.store_star_rating &&
-          related_product_id == o.related_product_id &&
-          relationship_type == o.relationship_type &&
           target_countries == o.target_countries &&
           store_country == o.store_country &&
-          q_and_a == o.q_and_a &&
-          qand_a == o.qand_a &&
-          reviews == o.reviews &&
           created_at == o.created_at &&
           updated_at == o.updated_at
     end
@@ -971,7 +369,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, item_id, title, description, url, image_url, additional_image_urls, video_url, model_3d_url, product_category, brand, gtin, mpn, condition, material, weight, dimensions, length, width, height, dimensions_unit, item_weight_unit, age_group, color, size, size_system, gender, group_id, listing_has_variations, item_group_title, offer_id, variant_dict, custom_variant1_category, custom_variant1_option, custom_variant2_category, custom_variant2_option, custom_variant3_category, custom_variant3_option, price, currency, sale_price, sale_price_start_date, sale_price_end_date, unit_pricing_measure, base_measure, pricing_trend, geo_price, geo_availability, availability, availability_date, expiration_date, seller_name, seller_url, marketplace_seller, seller_privacy_policy, seller_tos, shipping_price, delivery_estimate, pickup_method, pickup_sla, is_digital, return_policy, accepts_returns, return_deadline_in_days, accepts_exchanges, is_eligible_search, is_eligible_checkout, popularity_score, return_rate, warning, warning_url, age_restriction, review_count, star_rating, store_review_count, store_star_rating, related_product_id, relationship_type, target_countries, store_country, q_and_a, qand_a, reviews, created_at, updated_at].hash
+      [item_id, is_eligible_search, is_eligible_checkout, title, description, url, image_url, product_category, brand, material, weight, price, currency, availability, color, gender, age_group, shipping_price, group_id, listing_has_variations, seller_name, seller_url, return_policy, target_countries, store_country, created_at, updated_at].hash
     end
 
     # Builds the object from hash

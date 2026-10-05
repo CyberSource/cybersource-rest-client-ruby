@@ -17,37 +17,37 @@ module CyberSource
     # Unique agent identifier (64-char SHA-256 hash of domain + email + tokenRequestorId)
     attr_accessor :id
 
-    # Agent name
+    # Display name for the agent
     attr_accessor :name
 
-    # Agent domain URL
+    # Fully-qualified HTTPS URL of the agent's home domain
     attr_accessor :domain
 
-    # Agent description
+    # Description of the agent's purpose or capabilities
     attr_accessor :description
 
-    # Contact email
+    # Contact email for the team or individual responsible for this agent
     attr_accessor :contact_email
 
-    # Unique token requestor identifier
+    # Token Requestor ID (TRID) assigned by Visa, shared with the parent trusted agent for OSAs
     attr_accessor :token_requestor_id
 
-    # Agent classification: 'trusted' (commercially onboarded) or 'known' (open-source/unverified)  Possible values: - trusted - known
+    # Agent classification: 'trusted' (commercially onboarded via Visa) or 'known' (open-source/community agent, unverified)  Possible values: - trusted - known
     attr_accessor :agent_type
 
-    # Additional agent metadata
+    # Free-form metadata object for agent context (e.g., AI framework, language, runtime). Max 10KB.
     attr_accessor :agent_metadata
 
-    # Whether the agent is active
+    # Whether the agent is currently active. Deactivated agents cannot add or activate keys.
     attr_accessor :is_active
 
-    # Creation timestamp
+    # ISO 8601 UTC timestamp when the agent was registered
     attr_accessor :created_at
 
-    # Last update timestamp
+    # ISO 8601 UTC timestamp when the agent was last updated
     attr_accessor :updated_at
 
-    # List of keys associated with the agent
+    # List of public keys associated with the agent (both active and deactivated)
     attr_accessor :keys
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -96,7 +96,7 @@ module CyberSource
         :'contact_email' => :'String',
         :'token_requestor_id' => :'String',
         :'agent_type' => :'String',
-        :'agent_metadata' => :'Hash<String, String>',
+        :'agent_metadata' => :'Object',
         :'is_active' => :'BOOLEAN',
         :'created_at' => :'DateTime',
         :'updated_at' => :'DateTime',
@@ -141,9 +141,7 @@ module CyberSource
       end
 
       if attributes.has_key?(:'agentMetadata')
-        if (value = attributes[:'agentMetadata']).is_a?(Hash)
-          self.agent_metadata = value
-        end
+        self.agent_metadata = attributes[:'agentMetadata']
       end
 
       if attributes.has_key?(:'isActive')

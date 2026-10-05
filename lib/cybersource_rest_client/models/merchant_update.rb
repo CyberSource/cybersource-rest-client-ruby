@@ -17,19 +17,19 @@ module CyberSource
     # Doing business as (DBA) name
     attr_accessor :merchant_name
 
-    # Base merchant URL (must use HTTPS)
+    # Base URL of the merchant's domain. Must use HTTPS and be unique — raises 409 if already registered.
     attr_accessor :merchant_url
 
-    # Authentication cryptogram type  Possible values: - TAVV - DAVV
+    # Authentication cryptogram type used for payment credential generation.  Possible values: - TAVV - DAVV
     attr_accessor :cryptogram_type
 
-    # Credential delivery format  Possible values: - ENCRYPTED - UNENCRYPTED
+    # Credential delivery format. Set to ***ENCRYPTED*** to enable JWE-encrypted payload delivery — requires an active encryption key. Returns 400 if no active key exists.  Possible values: - ENCRYPTED - UNENCRYPTED
     attr_accessor :payment_payload_type
 
-    # List of acceptance network relationships
+    # List of payment network acceptance relationships (e.g., \"Visa\").
     attr_accessor :acceptance_relationships
 
-    # List of protocol configurations
+    # List of protocol interaction configurations defining the merchant's endpoint for each supported protocol (ucp, acp, x402).
     attr_accessor :protocol_interactions
 
     attr_accessor :web_integrations
@@ -73,8 +73,8 @@ module CyberSource
         :'payment_payload_type' => :'String',
         :'acceptance_relationships' => :'Array<String>',
         :'protocol_interactions' => :'Array<Iccv1merchantsProtocolInteractions>',
-        :'web_integrations' => :'Iccv1merchantsWebIntegrations',
-        :'api_integrations' => :'Iccv1merchantsApiIntegrations'
+        :'web_integrations' => :'MerchantRegistrationResponse201WebIntegrations',
+        :'api_integrations' => :'MerchantRegistrationResponse201ApiIntegrations'
       }
     end
 

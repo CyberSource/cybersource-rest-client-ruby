@@ -13,6 +13,17 @@ require 'date'
 
 module CyberSource
   class PtsV2PaymentsPost201Response1OrderInformation
+    # Merchant-generated order reference or tracking number for the payment. 
+    attr_accessor :reference_id
+
+    # Description of the order, as provided by the merchant in the original request. 
+    attr_accessor :description
+
+    # Merchant-defined custom identifier for the order. 
+    attr_accessor :custom_id
+
+    attr_accessor :merchant_descriptor
+
     attr_accessor :bill_to
 
     attr_accessor :ship_to
@@ -22,6 +33,10 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'reference_id' => :'referenceId',
+        :'description' => :'description',
+        :'custom_id' => :'customId',
+        :'merchant_descriptor' => :'merchantDescriptor',
         :'bill_to' => :'billTo',
         :'ship_to' => :'shipTo',
         :'amount_details' => :'amountDetails'
@@ -31,6 +46,10 @@ module CyberSource
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
+        :'reference_id' => :'reference_id',
+        :'description' => :'description',
+        :'custom_id' => :'custom_id',
+        :'merchant_descriptor' => :'merchant_descriptor',
         :'bill_to' => :'bill_to',
         :'ship_to' => :'ship_to',
         :'amount_details' => :'amount_details'
@@ -40,6 +59,10 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'reference_id' => :'String',
+        :'description' => :'String',
+        :'custom_id' => :'String',
+        :'merchant_descriptor' => :'PtsV2PaymentsPost201Response1OrderInformationMerchantDescriptor',
         :'bill_to' => :'PtsV2PaymentsPost201Response1OrderInformationBillTo',
         :'ship_to' => :'PtsV2PaymentsPost201Response1OrderInformationShipTo',
         :'amount_details' => :'PtsV2PaymentsPost201Response1OrderInformationAmountDetails'
@@ -53,6 +76,22 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'referenceId')
+        self.reference_id = attributes[:'referenceId']
+      end
+
+      if attributes.has_key?(:'description')
+        self.description = attributes[:'description']
+      end
+
+      if attributes.has_key?(:'customId')
+        self.custom_id = attributes[:'customId']
+      end
+
+      if attributes.has_key?(:'merchantDescriptor')
+        self.merchant_descriptor = attributes[:'merchantDescriptor']
+      end
 
       if attributes.has_key?(:'billTo')
         self.bill_to = attributes[:'billTo']
@@ -85,6 +124,10 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          reference_id == o.reference_id &&
+          description == o.description &&
+          custom_id == o.custom_id &&
+          merchant_descriptor == o.merchant_descriptor &&
           bill_to == o.bill_to &&
           ship_to == o.ship_to &&
           amount_details == o.amount_details
@@ -99,7 +142,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [bill_to, ship_to, amount_details].hash
+      [reference_id, description, custom_id, merchant_descriptor, bill_to, ship_to, amount_details].hash
     end
 
     # Builds the object from hash

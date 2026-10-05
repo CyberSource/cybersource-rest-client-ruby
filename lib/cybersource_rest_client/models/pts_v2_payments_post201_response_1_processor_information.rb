@@ -33,6 +33,9 @@ module CyberSource
 
     attr_accessor :seller_protection
 
+    # Direct the customer to this URL to complete the payment.
+    attr_accessor :payment_url
+
     attr_accessor :avs
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -45,6 +48,7 @@ module CyberSource
         :'response_details' => :'responseDetails',
         :'response_code' => :'responseCode',
         :'seller_protection' => :'sellerProtection',
+        :'payment_url' => :'paymentUrl',
         :'avs' => :'avs'
       }
     end
@@ -59,6 +63,7 @@ module CyberSource
         :'response_details' => :'response_details',
         :'response_code' => :'response_code',
         :'seller_protection' => :'seller_protection',
+        :'payment_url' => :'payment_url',
         :'avs' => :'avs'
       }
     end
@@ -73,6 +78,7 @@ module CyberSource
         :'response_details' => :'String',
         :'response_code' => :'String',
         :'seller_protection' => :'ProcessorInformationSellerProtection',
+        :'payment_url' => :'String',
         :'avs' => :'PtsV2PaymentsPost201Response1ProcessorInformationAvs'
       }
     end
@@ -111,6 +117,10 @@ module CyberSource
 
       if attributes.has_key?(:'sellerProtection')
         self.seller_protection = attributes[:'sellerProtection']
+      end
+
+      if attributes.has_key?(:'paymentUrl')
+        self.payment_url = attributes[:'paymentUrl']
       end
 
       if attributes.has_key?(:'avs')
@@ -155,6 +165,12 @@ module CyberSource
       @response_details = response_details
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] payment_url Value to be assigned
+    def payment_url=(payment_url)
+      @payment_url = payment_url
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -167,6 +183,7 @@ module CyberSource
           response_details == o.response_details &&
           response_code == o.response_code &&
           seller_protection == o.seller_protection &&
+          payment_url == o.payment_url &&
           avs == o.avs
     end
 
@@ -179,7 +196,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [transaction_id, trade_number, raw_response, raw_response_local, response_details, response_code, seller_protection, avs].hash
+      [transaction_id, trade_number, raw_response, raw_response_local, response_details, response_code, seller_protection, payment_url, avs].hash
     end
 
     # Builds the object from hash

@@ -12,21 +12,21 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
-  # Request object for adding a new encryption key for a merchant.
+  # Public encryption key used to wrap payment credentials when `paymentPayloadType` is ***ENCRYPTED***. Not required for UNENCRYPTED delivery.
   class Iccv1merchantsEncryptionKey
-    # Unique name for the key
+    # Unique  name for this encryption key within the merchant.
     attr_accessor :key_name
 
-    # Base64-encoded public key (JWE key wrap public key)
+    # Base64-encoded public key used for JWE key wrapping. Supported formats are PEM (PKCS#8 or PKCS#1) and JWK.
     attr_accessor :encryption_key
 
-    # JWE key wrap algorithm  Possible values: - RSA-OAEP - RSA-OAEP-256 - RSA-OAEP-384 - RSA-OAEP-512
+    # JWE key wrap algorithm used to encrypt the content encryption key:  - ***RSA-OAEP*** — RSA-OAEP with SHA-1  - ***RSA-OAEP-256*** — RSA-OAEP with SHA-256  - ***RSA-OAEP-384*** — RSA-OAEP with SHA-384  - ***RSA-OAEP-512*** — RSA-OAEP with SHA-512   Possible values: - RSA-OAEP - RSA-OAEP-256 - RSA-OAEP-384 - RSA-OAEP-512
     attr_accessor :algorithm
 
-    # JWE content encryption algorithm (defaults to A256GCM)  Possible values: - A256GCM - A128GCM - C20P - A256CBC-HS512 - A128CBC-HS256 - A256CCM - A128CCM
+    # JWE content encryption algorithm used to encrypt the payment payload. Defaults to ***A256GCM*** if not provided.  Possible values: - A256GCM - A128GCM - C20P - A256CBC_HS512 - A128CBC_HS256 - A256CCM - A128CCM
     attr_accessor :encryption_type
 
-    # Key expiration date in UTC (defaults to 14 days from now if not provided)
+    # Key expiration date-time in UTC. Defaults to 14 days from registration if omitted.
     attr_accessor :expiration_date
 
     # Attribute mapping from ruby-style variable name to JSON key.

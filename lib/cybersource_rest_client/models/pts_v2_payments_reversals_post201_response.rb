@@ -86,7 +86,7 @@ module CyberSource
         :'processor_information' => :'PtsV2PaymentsReversalsPost201ResponseProcessorInformation',
         :'issuer_information' => :'PtsV2PaymentsReversalsPost201ResponseIssuerInformation',
         :'authorization_information' => :'PtsV2PaymentsReversalsPost201ResponseAuthorizationInformation',
-        :'point_of_sale_information' => :'Ptsv2paymentsidreversalsPointOfSaleInformation'
+        :'point_of_sale_information' => :'PtsV2PaymentsReversalsPost201ResponsePointOfSaleInformation'
       }
     end
 

@@ -23,6 +23,8 @@ module CyberSource
 
     attr_accessor :order_information
 
+    attr_accessor :buyer_information
+
     attr_accessor :sender_information
 
     attr_accessor :event_information
@@ -39,6 +41,7 @@ module CyberSource
         :'merchant_information' => :'merchantInformation',
         :'payment_information' => :'paymentInformation',
         :'order_information' => :'orderInformation',
+        :'buyer_information' => :'buyerInformation',
         :'sender_information' => :'senderInformation',
         :'event_information' => :'eventInformation',
         :'travel_information' => :'travelInformation',
@@ -54,6 +57,7 @@ module CyberSource
         :'merchant_information' => :'merchant_information',
         :'payment_information' => :'payment_information',
         :'order_information' => :'order_information',
+        :'buyer_information' => :'buyer_information',
         :'sender_information' => :'sender_information',
         :'event_information' => :'event_information',
         :'travel_information' => :'travel_information',
@@ -69,6 +73,7 @@ module CyberSource
         :'merchant_information' => :'Ptsv2intentsMerchantInformation',
         :'payment_information' => :'Ptsv2intentsPaymentInformation',
         :'order_information' => :'Ptsv2intentsOrderInformation',
+        :'buyer_information' => :'Ptsv2intentsBuyerInformation',
         :'sender_information' => :'Ptsv2intentsSenderInformation',
         :'event_information' => :'Ptsv2intentsEventInformation',
         :'travel_information' => :'Ptsv2intentsTravelInformation',
@@ -102,6 +107,10 @@ module CyberSource
 
       if attributes.has_key?(:'orderInformation')
         self.order_information = attributes[:'orderInformation']
+      end
+
+      if attributes.has_key?(:'buyerInformation')
+        self.buyer_information = attributes[:'buyerInformation']
       end
 
       if attributes.has_key?(:'senderInformation')
@@ -144,6 +153,7 @@ module CyberSource
           merchant_information == o.merchant_information &&
           payment_information == o.payment_information &&
           order_information == o.order_information &&
+          buyer_information == o.buyer_information &&
           sender_information == o.sender_information &&
           event_information == o.event_information &&
           travel_information == o.travel_information &&
@@ -159,7 +169,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_reference_information, processing_information, merchant_information, payment_information, order_information, sender_information, event_information, travel_information, recipient_information].hash
+      [client_reference_information, processing_information, merchant_information, payment_information, order_information, buyer_information, sender_information, event_information, travel_information, recipient_information].hash
     end
 
     # Builds the object from hash

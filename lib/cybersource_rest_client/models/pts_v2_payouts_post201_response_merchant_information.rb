@@ -32,7 +32,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'merchant_descriptor' => :'PtsV2PayoutsPost201ResponseMerchantInformationMerchantDescriptor'
+        :'merchant_descriptor' => :'PtsV2PaymentsPost201Response1OrderInformationMerchantDescriptor'
       }
     end
 

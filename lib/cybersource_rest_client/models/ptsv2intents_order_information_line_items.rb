@@ -37,6 +37,9 @@ module CyberSource
     # Total tax to apply to the product. This value cannot be negative. The tax amount and the offer amount must be in the same currency. The tax amount field is additive.  The following example uses a two-exponent currency such as USD:   1. You include each line item in your request.  ..- 1st line item has amount=10.00, quantity=1, and taxAmount=0.80  ..- 2nd line item has amount=20.00, quantity=1, and taxAmount=1.60  2. The total amount authorized will be 32.40, not 30.00 with 2.40 of tax included.  Optional field.  #### Airlines processing Tax portion of the order amount. This value cannot exceed 99999999999999 (fourteen 9s). Format: English characters only. Optional request field for a line item.  #### Tax Calculation Optional field for U.S., Canadian, international tax, and value added taxes.  Note if you send this field in your tax request, the value in the field will override the tax engine 
     attr_accessor :tax_amount
 
+    # Controls shipping behavior during checkout. Use `NO_SHIPPING` for digital goods, `SET_PROVIDED_ADDRESS` when `orderInformation.shipTo` is provided, and `GET_FROM_FILE` to use the buyer's saved address.   Possible values: - NO_SHIPPING - SET_PROVIDED_ADDRESS - GET_FROM_FILE
+    attr_accessor :shipping_preference
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -47,7 +50,8 @@ module CyberSource
         :'type_of_supply' => :'typeOfSupply',
         :'unit_price' => :'unitPrice',
         :'total_amount' => :'totalAmount',
-        :'tax_amount' => :'taxAmount'
+        :'tax_amount' => :'taxAmount',
+        :'shipping_preference' => :'shippingPreference'
       }
     end
 
@@ -61,7 +65,8 @@ module CyberSource
         :'type_of_supply' => :'type_of_supply',
         :'unit_price' => :'unit_price',
         :'total_amount' => :'total_amount',
-        :'tax_amount' => :'tax_amount'
+        :'tax_amount' => :'tax_amount',
+        :'shipping_preference' => :'shipping_preference'
       }
     end
 
@@ -75,7 +80,8 @@ module CyberSource
         :'type_of_supply' => :'String',
         :'unit_price' => :'String',
         :'total_amount' => :'String',
-        :'tax_amount' => :'String'
+        :'tax_amount' => :'String',
+        :'shipping_preference' => :'String'
       }
     end
 
@@ -117,6 +123,10 @@ module CyberSource
 
       if attributes.has_key?(:'taxAmount')
         self.tax_amount = attributes[:'taxAmount']
+      end
+
+      if attributes.has_key?(:'shippingPreference')
+        self.shipping_preference = attributes[:'shippingPreference']
       end
     end
 
@@ -187,7 +197,8 @@ module CyberSource
           type_of_supply == o.type_of_supply &&
           unit_price == o.unit_price &&
           total_amount == o.total_amount &&
-          tax_amount == o.tax_amount
+          tax_amount == o.tax_amount &&
+          shipping_preference == o.shipping_preference
     end
 
     # @see the `==` method
@@ -199,7 +210,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [product_name, product_description, product_sku, quantity, type_of_supply, unit_price, total_amount, tax_amount].hash
+      [product_name, product_description, product_sku, quantity, type_of_supply, unit_price, total_amount, tax_amount, shipping_preference].hash
     end
 
     # Builds the object from hash

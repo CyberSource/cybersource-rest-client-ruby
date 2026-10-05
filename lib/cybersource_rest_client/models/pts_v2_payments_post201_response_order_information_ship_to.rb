@@ -37,6 +37,9 @@ module CyberSource
     # Country of shipping address. This is a two-character ISO Standard Country Codes. 
     attr_accessor :country
 
+    # Email address of the shipping recipient. 
+    attr_accessor :email
+
     # Phone number of the recipient. 
     attr_accessor :phone_number
 
@@ -51,6 +54,7 @@ module CyberSource
         :'administrative_area' => :'administrativeArea',
         :'postal_code' => :'postalCode',
         :'country' => :'country',
+        :'email' => :'email',
         :'phone_number' => :'phoneNumber'
       }
     end
@@ -66,6 +70,7 @@ module CyberSource
         :'administrative_area' => :'administrative_area',
         :'postal_code' => :'postal_code',
         :'country' => :'country',
+        :'email' => :'email',
         :'phone_number' => :'phone_number'
       }
     end
@@ -81,6 +86,7 @@ module CyberSource
         :'administrative_area' => :'String',
         :'postal_code' => :'String',
         :'country' => :'String',
+        :'email' => :'String',
         :'phone_number' => :'String'
       }
     end
@@ -123,6 +129,10 @@ module CyberSource
 
       if attributes.has_key?(:'country')
         self.country = attributes[:'country']
+      end
+
+      if attributes.has_key?(:'email')
+        self.email = attributes[:'email']
       end
 
       if attributes.has_key?(:'phoneNumber')
@@ -210,6 +220,7 @@ module CyberSource
           administrative_area == o.administrative_area &&
           postal_code == o.postal_code &&
           country == o.country &&
+          email == o.email &&
           phone_number == o.phone_number
     end
 
@@ -222,7 +233,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [firstname, lastname, address1, address2, locality, administrative_area, postal_code, country, phone_number].hash
+      [firstname, lastname, address1, address2, locality, administrative_area, postal_code, country, email, phone_number].hash
     end
 
     # Builds the object from hash

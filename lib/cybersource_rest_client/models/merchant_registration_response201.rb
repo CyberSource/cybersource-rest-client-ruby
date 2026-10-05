@@ -20,28 +20,28 @@ module CyberSource
     # Doing business as (DBA) name
     attr_accessor :merchant_name
 
-    # Base merchant URL
+    # Fully-qualified HTTPS URL of the merchant's domain
     attr_accessor :merchant_url
 
-    # Visa Merchant ID
+    # Visa Merchant ID (VMID) — unique identifier assigned by Visa
     attr_accessor :vmid
 
-    # Authentication cryptogram type  Possible values: - TAVV - DAVV
+    # Authentication cryptogram type used for payment credential generation: 'TAVV' (Token Authentication Verification Value) or 'DAVV' (Device Authentication Verification Value)  Possible values: - TAVV - DAVV
     attr_accessor :cryptogram_type
 
-    # Credential delivery format  Possible values: - ENCRYPTED - UNENCRYPTED
+    # Credential delivery format: 'ENCRYPTED' (JWE-wrapped, requires an active encryption key) or 'UNENCRYPTED'  Possible values: - ENCRYPTED - UNENCRYPTED
     attr_accessor :payment_payload_type
 
-    # Transaction processing type  Possible values: - TAP - ACG - BOTH
+    # Transaction processing indicator: 'TAP' (Trusted Agent Protocol), 'ACG' (Agentic Checkout Gateway), or 'BOTH'  Possible values: - TAP - ACG - BOTH
     attr_accessor :indicator
 
-    # Additional merchant metadata
+    # Free-form metadata object for additional merchant context
     attr_accessor :merchant_metadata
 
-    # List of acceptance network relationships
+    # List of payment network acceptance relationships (e.g., \"Visa\")
     attr_accessor :acceptance_relationships
 
-    # List of protocol interaction configurations (ucp, acp, x402)
+    # List of protocol endpoint configurations defining how agents interact with this merchant (ucp, acp, x402)
     attr_accessor :protocol_interactions
 
     attr_accessor :web_integrations
@@ -117,8 +117,8 @@ module CyberSource
         :'merchant_metadata' => :'Object',
         :'acceptance_relationships' => :'Array<String>',
         :'protocol_interactions' => :'Array<Iccv1merchantsProtocolInteractions>',
-        :'web_integrations' => :'Iccv1merchantsWebIntegrations',
-        :'api_integrations' => :'Iccv1merchantsApiIntegrations',
+        :'web_integrations' => :'MerchantRegistrationResponse201WebIntegrations',
+        :'api_integrations' => :'MerchantRegistrationResponse201ApiIntegrations',
         :'is_active' => :'BOOLEAN',
         :'created_at' => :'DateTime',
         :'updated_at' => :'DateTime',

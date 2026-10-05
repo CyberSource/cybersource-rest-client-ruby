@@ -37,7 +37,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'emv' => :'Ptsv2paymentsidcapturesPointOfSaleInformationEmv',
+        :'emv' => :'Ptsv2paymentsidrefundsPointOfSaleInformationEmv',
         :'terminal_category' => :'String'
       }
     end

@@ -21,12 +21,16 @@ module CyberSource
     # Identifier for the terminal at your retail location. You can define this value yourself, but consult the processor for requirements.  #### CyberSource through VisaNet A list of all possible values is stored in your CyberSource account. If terminal ID validation is enabled for your CyberSource account, the value you send for this field is validated against the list each time you include the field in a request. To enable or disable terminal ID validation, contact CyberSource Customer Support.  When you do not include this field in a request, CyberSource uses the default value that is defined in your CyberSource account.  #### FDC Nashville Global To have your account configured to support this field, contact CyberSource Customer Support. This value must be a value that FDC Nashville Global issued to you.  #### For Payouts This field is applicable for CyberSource through VisaNet.  #### GPX Identifier for the terminal at your retail location. A list of all possible values is stored in your account. If terminal ID validation is enabled for your account, the value you send for this field is validated against the list each time you include the field in a request. To enable or disable terminal ID validation, contact customer support.  When you do not include this field in a request, the default value that is defined in your account is used.  Optional for authorizations.  #### Used by **Authorization** Optional for the following processors. When you do not include this field in a request, the default value that is defined in your account is used.   - American Express Direct   - Credit Mutuel-CIC   - FDC Nashville Global   - SIX - Chase Paymentech Solutions: Optional field. If you include this field in your request, you must also include `pointOfSaleInformation.catLevel`. - FDMS Nashville: The default value that is defined in your account is used. - GPX - OmniPay Direct: Optional field.  For the following processors, this field is not used. - GPN - JCN Gateway - RBS WorldPay Atlanta - TSYS Acquiring Solutions - Worldpay VAP  #### Card Present reply Terminal identifier assigned by the acquirer. This value must be printed on the receipt. 
     attr_accessor :terminal_id
 
+    # The issuers must use DE 123 (Receipt Free Text) to respond with free-text messages, if the transaction requires this message to be displayed on the POS device. The issuer must request their Customer Implementation Service agent to enable DE 123 for this use, as it is not enabled as a default feature. When enabled, consider the test case on DE 123 for this use (Issuer Mastercard and Debit Mastercard - MSR Product and Services - Receipt Free Text (Peru) - Authorization Requests). 
+    attr_accessor :free_text
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'emv' => :'emv',
         :'amex_capn_data' => :'amexCapnData',
-        :'terminal_id' => :'terminalId'
+        :'terminal_id' => :'terminalId',
+        :'free_text' => :'freeText'
       }
     end
 
@@ -35,7 +39,8 @@ module CyberSource
       {
         :'emv' => :'emv',
         :'amex_capn_data' => :'amex_capn_data',
-        :'terminal_id' => :'terminal_id'
+        :'terminal_id' => :'terminal_id',
+        :'free_text' => :'free_text'
       }
     end
 
@@ -44,7 +49,8 @@ module CyberSource
       {
         :'emv' => :'PtsV2PaymentsPost201ResponsePointOfSaleInformationEmv',
         :'amex_capn_data' => :'String',
-        :'terminal_id' => :'String'
+        :'terminal_id' => :'String',
+        :'free_text' => :'String'
       }
     end
 
@@ -66,6 +72,10 @@ module CyberSource
 
       if attributes.has_key?(:'terminalId')
         self.terminal_id = attributes[:'terminalId']
+      end
+
+      if attributes.has_key?(:'freeText')
+        self.free_text = attributes[:'freeText']
       end
     end
 
@@ -94,6 +104,12 @@ module CyberSource
       @terminal_id = terminal_id
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] free_text Value to be assigned
+    def free_text=(free_text)
+      @free_text = free_text
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -101,7 +117,8 @@ module CyberSource
       self.class == o.class &&
           emv == o.emv &&
           amex_capn_data == o.amex_capn_data &&
-          terminal_id == o.terminal_id
+          terminal_id == o.terminal_id &&
+          free_text == o.free_text
     end
 
     # @see the `==` method
@@ -113,7 +130,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [emv, amex_capn_data, terminal_id].hash
+      [emv, amex_capn_data, terminal_id, free_text].hash
     end
 
     # Builds the object from hash

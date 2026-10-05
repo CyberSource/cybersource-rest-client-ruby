@@ -42,6 +42,9 @@ module CyberSource
 
     attr_accessor :network
 
+    # Transaction Link Identifier (TLID). Links all messages within a transaction lifecycle for Mastercard transactions. Received from Mastercard in the authorization response and automatically replayed for lifecycle transactions (reversals, follow-on credits, authorization refresh).  #### PIN Debit Also returned for PIN Debit purchase, credit, and reversal transactions. For PIN Debit (Visa Gateway) flows, this value is mapped to Visa Field 111 (DSI 07, Tag C0). 
+    attr_accessor :transaction_link_identifier
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -54,7 +57,8 @@ module CyberSource
         :'master_card_service_reply_code' => :'masterCardServiceReplyCode',
         :'response_details' => :'responseDetails',
         :'provider_response' => :'providerResponse',
-        :'network' => :'network'
+        :'network' => :'network',
+        :'transaction_link_identifier' => :'transactionLinkIdentifier'
       }
     end
 
@@ -70,7 +74,8 @@ module CyberSource
         :'master_card_service_reply_code' => :'master_card_service_reply_code',
         :'response_details' => :'response_details',
         :'provider_response' => :'provider_response',
-        :'network' => :'network'
+        :'network' => :'network',
+        :'transaction_link_identifier' => :'transaction_link_identifier'
       }
     end
 
@@ -86,7 +91,8 @@ module CyberSource
         :'master_card_service_reply_code' => :'String',
         :'response_details' => :'String',
         :'provider_response' => :'String',
-        :'network' => :'Ptsv2paymentsProcessorInformationReversalNetwork'
+        :'network' => :'Ptsv2paymentsProcessorInformationReversalNetwork',
+        :'transaction_link_identifier' => :'String'
       }
     end
 
@@ -136,6 +142,10 @@ module CyberSource
 
       if attributes.has_key?(:'network')
         self.network = attributes[:'network']
+      end
+
+      if attributes.has_key?(:'transactionLinkIdentifier')
+        self.transaction_link_identifier = attributes[:'transactionLinkIdentifier']
       end
     end
 
@@ -194,6 +204,12 @@ module CyberSource
       @response_details = response_details
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] transaction_link_identifier Value to be assigned
+    def transaction_link_identifier=(transaction_link_identifier)
+      @transaction_link_identifier = transaction_link_identifier
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -208,7 +224,8 @@ module CyberSource
           master_card_service_reply_code == o.master_card_service_reply_code &&
           response_details == o.response_details &&
           provider_response == o.provider_response &&
-          network == o.network
+          network == o.network &&
+          transaction_link_identifier == o.transaction_link_identifier
     end
 
     # @see the `==` method
@@ -220,7 +237,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [transaction_id, response_code, network_transaction_id, response_category_code, forwarded_acquirer_code, master_card_service_code, master_card_service_reply_code, response_details, provider_response, network].hash
+      [transaction_id, response_code, network_transaction_id, response_category_code, forwarded_acquirer_code, master_card_service_code, master_card_service_reply_code, response_details, provider_response, network, transaction_link_identifier].hash
     end
 
     # Builds the object from hash

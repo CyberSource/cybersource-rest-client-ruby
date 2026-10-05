@@ -31,67 +31,25 @@ describe 'InlineResponse20019' do
       expect(@instance).to be_instance_of(CyberSource::InlineResponse20019)
     end
   end
+  describe 'test attribute "job_id"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "status"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "feed_id"' do
+  describe 'test attribute "processing"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "total_submitted"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe 'test attribute "success_count"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe 'test attribute "failed_count"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe 'test attribute "errors"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe 'test attribute "ingested_at"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe 'test attribute "forwarded_to_agent"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe 'test attribute "agent_endpoint"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe 'test attribute "forwarded_to_ucp_agent"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe 'test attribute "google_merchant"' do
+  describe 'test attribute "syndication"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

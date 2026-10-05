@@ -23,6 +23,8 @@ module CyberSource
 
     attr_accessor :webhooks
 
+    attr_accessor :smarter_retry
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -30,7 +32,8 @@ module CyberSource
         :'transaction_search' => :'transactionSearch',
         :'bank_account_validation' => :'bankAccountValidation',
         :'flexapi' => :'flexapi',
-        :'webhooks' => :'webhooks'
+        :'webhooks' => :'webhooks',
+        :'smarter_retry' => :'smarterRetry'
       }
     end
 
@@ -41,7 +44,8 @@ module CyberSource
         :'transaction_search' => :'transaction_search',
         :'bank_account_validation' => :'bank_account_validation',
         :'flexapi' => :'flexapi',
-        :'webhooks' => :'webhooks'
+        :'webhooks' => :'webhooks',
+        :'smarter_retry' => :'smarter_retry'
       }
     end
 
@@ -52,7 +56,8 @@ module CyberSource
         :'transaction_search' => :'PaymentsConfigurationSetupDigitalPayments',
         :'bank_account_validation' => :'PaymentsConfigurationSetupDigitalPayments',
         :'flexapi' => :'PaymentsConfigurationSetupDigitalPayments',
-        :'webhooks' => :'PaymentsConfigurationSetupDigitalPayments'
+        :'webhooks' => :'PaymentsConfigurationSetupDigitalPayments',
+        :'smarter_retry' => :'PaymentsConfigurationSetupDigitalPayments'
       }
     end
 
@@ -83,6 +88,10 @@ module CyberSource
       if attributes.has_key?(:'webhooks')
         self.webhooks = attributes[:'webhooks']
       end
+
+      if attributes.has_key?(:'smarterRetry')
+        self.smarter_retry = attributes[:'smarterRetry']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -107,7 +116,8 @@ module CyberSource
           transaction_search == o.transaction_search &&
           bank_account_validation == o.bank_account_validation &&
           flexapi == o.flexapi &&
-          webhooks == o.webhooks
+          webhooks == o.webhooks &&
+          smarter_retry == o.smarter_retry
     end
 
     # @see the `==` method
@@ -119,7 +129,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [reporting, transaction_search, bank_account_validation, flexapi, webhooks].hash
+      [reporting, transaction_search, bank_account_validation, flexapi, webhooks, smarter_retry].hash
     end
 
     # Builds the object from hash

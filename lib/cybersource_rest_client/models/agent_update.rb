@@ -14,19 +14,19 @@ require 'date'
 module CyberSource
   # Schema for updating an agent. Only name, domain, description, contactEmail, and agentMetadata can be updated. Extra fields (keys, tokenRequestorId, etc.) will cause a 422 Validation Error.
   class AgentUpdate
-    # Agent name
+    # Display name for the agent
     attr_accessor :name
 
-    # Agent domain URL
+    # Fully-qualified HTTPS URL of the agent's home domain. Must be unique — raises 409 if already registered.
     attr_accessor :domain
 
-    # Agent description
+    # Description of the agent's purpose or capabilities
     attr_accessor :description
 
-    # Contact email
+    # Contact email for the team or individual responsible for this agent
     attr_accessor :contact_email
 
-    # Optional metadata (e.g., framework, version)
+    # Free-form metadata object for agent context (e.g., AI framework, language, runtime). Max 10KB.
     attr_accessor :agent_metadata
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -58,7 +58,7 @@ module CyberSource
         :'domain' => :'String',
         :'description' => :'String',
         :'contact_email' => :'String',
-        :'agent_metadata' => :'Hash<String, String>'
+        :'agent_metadata' => :'Object'
       }
     end
 
@@ -87,9 +87,7 @@ module CyberSource
       end
 
       if attributes.has_key?(:'agentMetadata')
-        if (value = attributes[:'agentMetadata']).is_a?(Hash)
-          self.agent_metadata = value
-        end
+        self.agent_metadata = attributes[:'agentMetadata']
       end
     end
 
