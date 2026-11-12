@@ -64,9 +64,9 @@ module CyberSource
         :'line_items' => :'Array<Iccv1checkoutsessionsLineItems>',
         :'buyer' => :'UcpUpdateCheckoutSessionBuyer',
         :'currency' => :'String',
-        :'payment' => :'Iccv1checkoutsessionssessionIdPayment',
-        :'fulfillment' => :'Iccv1checkoutsessionssessionIdFulfillment',
-        :'discounts' => :'Iccv1checkoutsessionssessionIdDiscounts'
+        :'payment' => :'Iccv1UpdateCheckoutsessionsPayment',
+        :'fulfillment' => :'Iccv1UpdateCheckoutSessionsFulfillment',
+        :'discounts' => :'Iccv1UpdateCheckoutSessionsDiscounts'
       }
     end
 

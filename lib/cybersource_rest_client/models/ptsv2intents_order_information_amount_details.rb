@@ -34,7 +34,7 @@ module CyberSource
     # Amount being charged for the insurance fee.  
     attr_accessor :insurance_amount
 
-    # Amount being charged as duty amount.             
+    # Amount being charged as duty amount. 
     attr_accessor :duty_amount
 
     # Attribute mapping from ruby-style variable name to JSON key.

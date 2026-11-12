@@ -107,7 +107,7 @@ module CyberSource
         :'merchant_information' => :'TmsMerchantInformation',
         :'instrument_identifier' => :'DefaultPaymentInstrumentInstrumentIdentifier',
         :'metadata' => :'DefaultPaymentInstrumentMetadata',
-        :'_embedded' => :'Tmsv1paymentinstrumentsEmbedded'
+        :'_embedded' => :'PaymentInstrumentEmbedded2'
       }
     end
 

@@ -36,7 +36,7 @@ describe 'MerchantBoardingApi' do
   # This end point will get all information of a boarding registration 
   # @param registration_id Identifies the boarding registration to be updated
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2005]
+  # @return [BoardingRegistrationGetResponse]
   describe 'get_registration test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -50,7 +50,7 @@ describe 'MerchantBoardingApi' do
   # @param patch_registration_body Boarding registration data to be patched
   # @param [Hash] opts the optional parameters
   # @option opts [String] :v_c_idempotency_id defines idempotency of the request
-  # @return [InlineResponse2005]
+  # @return [BoardingRegistrationGetResponse]
   describe 'patch_registration test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -63,7 +63,7 @@ describe 'MerchantBoardingApi' do
   # @param post_registration_body Boarding registration data
   # @param [Hash] opts the optional parameters
   # @option opts [String] :v_c_idempotency_id defines idempotency of the request
-  # @return [InlineResponse2016]
+  # @return [BoardingRegistrationCreateResponse]
   describe 'post_registration test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

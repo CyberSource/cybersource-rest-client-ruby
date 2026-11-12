@@ -22,7 +22,7 @@ module CyberSource
     # Retrieve Foreign Exchange Rates
     # Retrieve current foreign exchange rates for cross-border payouts. 
     #
-    # @param body 
+    # @param create_fx_rates_request 
     # @param content_type 
     # @param x_requestid 
     # @param v_c_merchant_id 
@@ -30,16 +30,16 @@ module CyberSource
     # @param v_c_correlation_id 
     # @param v_c_organization_id 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2013]
+    # @return [CreateFxRatesResponse]
     #
-    def create_fx_rates(body, content_type, x_requestid, v_c_merchant_id, v_c_permissions, v_c_correlation_id, v_c_organization_id, opts = {})
-      data, status_code, headers = create_fx_rates_with_http_info(body, content_type, x_requestid, v_c_merchant_id, v_c_permissions, v_c_correlation_id, v_c_organization_id, opts)
+    def create_fx_rates(create_fx_rates_request, content_type, x_requestid, v_c_merchant_id, v_c_permissions, v_c_correlation_id, v_c_organization_id, opts = {})
+      data, status_code, headers = create_fx_rates_with_http_info(create_fx_rates_request, content_type, x_requestid, v_c_merchant_id, v_c_permissions, v_c_correlation_id, v_c_organization_id, opts)
       return data, status_code, headers
     end
 
     # Retrieve Foreign Exchange Rates
     # Retrieve current foreign exchange rates for cross-border payouts. 
-    # @param body 
+    # @param create_fx_rates_request 
     # @param content_type 
     # @param x_requestid 
     # @param v_c_merchant_id 
@@ -47,8 +47,8 @@ module CyberSource
     # @param v_c_correlation_id 
     # @param v_c_organization_id 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2013, Fixnum, Hash)>] InlineResponse2013 data, response status code and response headers
-    def create_fx_rates_with_http_info(body, content_type, x_requestid, v_c_merchant_id, v_c_permissions, v_c_correlation_id, v_c_organization_id, opts = {})
+    # @return [Array<(CreateFxRatesResponse, Fixnum, Hash)>] CreateFxRatesResponse data, response status code and response headers
+    def create_fx_rates_with_http_info(create_fx_rates_request, content_type, x_requestid, v_c_merchant_id, v_c_permissions, v_c_correlation_id, v_c_organization_id, opts = {})
 
       if @api_client.config.debugging
           begin
@@ -58,9 +58,9 @@ module CyberSource
                 puts 'Cannot write to log'
             end
       end
-      # verify the required parameter 'body' is set
-      if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling ForeignExchangeRatesApi.create_fx_rates"
+      # verify the required parameter 'create_fx_rates_request' is set
+      if @api_client.config.client_side_validation && create_fx_rates_request.nil?
+        fail ArgumentError, "Missing the required parameter 'create_fx_rates_request' when calling ForeignExchangeRatesApi.create_fx_rates"
       end
       # verify the required parameter 'content_type' is set
       if @api_client.config.client_side_validation && content_type.nil?
@@ -96,8 +96,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
       header_params[:'Content-Type'] = content_type
       header_params[:'x-requestid'] = x_requestid
       header_params[:'v-c-merchant-id'] = v_c_merchant_id
@@ -109,13 +111,13 @@ module CyberSource
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(body)
+      post_body = @api_client.object_to_http_body(create_fx_rates_request)
       sdk_tracker = SdkTracker.new
-      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'Body', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CreateFxRatesRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "mandatory"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["create_fx_rates","create_fx_rates_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -130,7 +132,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2013',
+        :return_type => 'CreateFxRatesResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin

@@ -24,7 +24,7 @@ module CyberSource
     #
     # @param create_bin_lookup_request 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2015]
+    # @return [GetAccountInfoResponse]
     #
     # DISCLAIMER : Cybersource may allow Customer to access, use, and/or test a Cybersource product or service that may still be in development or has not been market-tested ("Beta Product") solely for the purpose of evaluating the functionality or marketability of the Beta Product (a "Beta Evaluation"). Notwithstanding any language to the contrary, the following terms shall apply with respect to Customer's participation in any Beta Evaluation (and the Beta Product(s)) accessed thereunder): The Parties will enter into a separate form agreement detailing the scope of the Beta Evaluation, requirements, pricing, the length of the beta evaluation period ("Beta Product Form"). Beta Products are not, and may not become, Transaction Services and have not yet been publicly released and are offered for the sole purpose of internal testing and non-commercial evaluation. Customer's use of the Beta Product shall be solely for the purpose of conducting the Beta Evaluation. Customer accepts all risks arising out of the access and use of the Beta Products. Cybersource may, in its sole discretion, at any time, terminate or discontinue the Beta Evaluation. Customer acknowledges and agrees that any Beta Product may still be in development and that Beta Product is provided "AS IS" and may not perform at the level of a commercially available service, may not operate as expected and may be modified prior to release. CYBERSOURCE SHALL NOT BE RESPONSIBLE OR LIABLE UNDER ANY CONTRACT, TORT (INCLUDING NEGLIGENCE), OR OTHERWISE RELATING TO A BETA PRODUCT OR THE BETA EVALUATION (A) FOR LOSS OR INACCURACY OF DATA OR COST OF PROCUREMENT OF SUBSTITUTE GOODS, SERVICES OR TECHNOLOGY, (B) ANY CLAIM, LOSSES, DAMAGES, OR CAUSE OF ACTION ARISING IN CONNECTION WITH THE BETA PRODUCT; OR (C) FOR ANY INDIRECT, INCIDENTAL OR CONSEQUENTIAL DAMAGES INCLUDING, BUT NOT LIMITED TO, LOSS OF REVENUES AND LOSS OF PROFITS.
     def get_account_info(create_bin_lookup_request, opts = {})
@@ -36,7 +36,7 @@ module CyberSource
     # The BIN Lookup Service is a versatile business tool that provides card network agnostic solution designed to ensure frictionless transaction experience by utilizing up-to-date Bank Identification Number (BIN) attributes sourced from multiple global and regional data sources. This service helps to improve authorization rates by helping to route transactions to the best-suited card network, minimizes fraud through card detail verification and aids in regulatory compliance by identifying card properties. The service is flexible and provides businesses with a flexible choice of inputs such as primary account number (PAN), network token from major networks (such as Visa, American Express, Discover and several regional networks) which includes device PAN (DPAN), and all types of tokens generated via CyberSource Token Management Service (TMS). Currently, the range of available credentials is contingent on the networks enabled for the business entity. Therefore, the network information specified in this documentation is illustrative and subject to personalized offerings for each reseller or merchant. 
     # @param create_bin_lookup_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2015, Fixnum, Hash)>] InlineResponse2015 data, response status code and response headers
+    # @return [Array<(GetAccountInfoResponse, Fixnum, Hash)>] GetAccountInfoResponse data, response status code and response headers
     def get_account_info_with_http_info(create_bin_lookup_request, opts = {})
 
       if @api_client.config.debugging
@@ -61,8 +61,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -74,7 +76,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_account_info","get_account_info_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -89,7 +91,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2015',
+        :return_type => 'GetAccountInfoResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin

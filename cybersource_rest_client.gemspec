@@ -17,7 +17,7 @@ require "cybersource_rest_client/version"
 
 Gem::Specification.new do |s|
   s.name        = "cybersource_rest_client"
-  s.version     = "0.0.88"
+  s.version     = "0.0.89"
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["CyberSource"]
   s.email       = ["cybersourcedev@gmail.com"]
@@ -26,11 +26,11 @@ Gem::Specification.new do |s|
   s.description = "Simple REST API for the CyberSource Global Payments Platform"
   s.license     = "CyberSource"
   s.files       = Dir.glob("{lib}/{cybersource_rest_client}/**/*") + Dir.glob("{lib}/{AuthenticationSDK}/authentication/**/*") + Dir.glob("{lib}/{AuthenticationSDK}/core/**/*") + Dir.glob("{lib}/{AuthenticationSDK}/util/**/*") + Dir.glob("{lib}/{AuthenticationSDK}/logging/**/*") + Dir.glob("{lib}/cybersource_rest_client.rb")
-  s.required_ruby_version = ">= 3.1"
+  s.required_ruby_version = ">= 3.2.0"
 
   s.add_runtime_dependency 'typhoeus', '~> 1.5','>=1.5.0'
   s.add_runtime_dependency 'json', '~>2.18', '>= 2.18.1'
-  s.add_runtime_dependency 'activesupport', '~> 7.2', '>= 7.2.3.1'
+  s.add_runtime_dependency 'activesupport', '~> 8.0', '>= 8.0.0'
   s.add_runtime_dependency 'interface','~> 1.0', '>= 1.0.5'
   s.add_runtime_dependency 'jwt', '~> 3.1', '>= 3.1.2'
   s.add_runtime_dependency 'addressable', '~> 2.8', '>= 2.8.8'

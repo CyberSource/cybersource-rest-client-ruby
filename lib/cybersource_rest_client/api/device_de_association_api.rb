@@ -60,8 +60,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=UTF-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=UTF-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -73,7 +75,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["delete_terminal_association","delete_terminal_association_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -104,7 +106,7 @@ module CyberSource
     #
     # @param device_de_associate_v3_request deviceId that has to be de-associated to the destination organizationId.
     # @param [Hash] opts the optional parameters
-    # @return [Array<InlineResponse20010>]
+    # @return [Array<DeviceDeAssociateV3Response>]
     #
     def post_de_associate_v3_terminal(device_de_associate_v3_request, opts = {})
       data, status_code, headers = post_de_associate_v3_terminal_with_http_info(device_de_associate_v3_request, opts)
@@ -115,7 +117,7 @@ module CyberSource
     # A device will be de-associated from its current organization and moved up in the hierarchy. The device&#39;s new position will be determined by a specified destination, either an account or a portfolio. If no destination is provided, the device will default to the currently logged-in user. 
     # @param device_de_associate_v3_request deviceId that has to be de-associated to the destination organizationId.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Array<InlineResponse20010>, Fixnum, Hash)>] Array<InlineResponse20010> data, response status code and response headers
+    # @return [Array<(Array<DeviceDeAssociateV3Response>, Fixnum, Hash)>] Array<DeviceDeAssociateV3Response> data, response status code and response headers
     def post_de_associate_v3_terminal_with_http_info(device_de_associate_v3_request, opts = {})
 
       if @api_client.config.debugging
@@ -140,8 +142,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=UTF-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=UTF-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=UTF-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -153,7 +157,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["post_de_associate_v3_terminal","post_de_associate_v3_terminal_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -168,7 +172,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Array<InlineResponse20010>',
+        :return_type => 'Array<DeviceDeAssociateV3Response>',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin

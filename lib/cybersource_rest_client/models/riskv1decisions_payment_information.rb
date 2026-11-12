@@ -25,6 +25,10 @@ module CyberSource
     # Method of payment used for the order. This field can contain one of the following values:   - `consumer` (default): Customer credit card   - `corporate`: Corporate credit card   - `debit`: Debit card, such as a Maestro (UK Domestic) card   - `cod`: Collect on delivery   - `check`: Electronic check   - `p2p`: Person-to-person payment   - `private1`: Private label credit card   - `other`: Other payment method 
     attr_accessor :method
 
+    attr_accessor :payment_type
+
+    attr_accessor :payment_account_reference
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -32,7 +36,9 @@ module CyberSource
         :'tokenized_card' => :'tokenizedCard',
         :'customer' => :'customer',
         :'bank' => :'bank',
-        :'method' => :'method'
+        :'method' => :'method',
+        :'payment_type' => :'paymentType',
+        :'payment_account_reference' => :'paymentAccountReference'
       }
     end
 
@@ -43,7 +49,9 @@ module CyberSource
         :'tokenized_card' => :'tokenized_card',
         :'customer' => :'customer',
         :'bank' => :'bank',
-        :'method' => :'method'
+        :'method' => :'method',
+        :'payment_type' => :'payment_type',
+        :'payment_account_reference' => :'payment_account_reference'
       }
     end
 
@@ -54,7 +62,9 @@ module CyberSource
         :'tokenized_card' => :'Riskv1decisionsPaymentInformationTokenizedCard',
         :'customer' => :'Ptsv2paymentsPaymentInformationCustomer',
         :'bank' => :'Ptsv2paymentsPaymentInformationBank',
-        :'method' => :'String'
+        :'method' => :'String',
+        :'payment_type' => :'Ptsv2refreshpaymentstatusidPaymentInformationPaymentType',
+        :'payment_account_reference' => :'Riskv1decisionsPaymentInformationPaymentAccountReference'
       }
     end
 
@@ -84,6 +94,14 @@ module CyberSource
 
       if attributes.has_key?(:'method')
         self.method = attributes[:'method']
+      end
+
+      if attributes.has_key?(:'paymentType')
+        self.payment_type = attributes[:'paymentType']
+      end
+
+      if attributes.has_key?(:'paymentAccountReference')
+        self.payment_account_reference = attributes[:'paymentAccountReference']
       end
     end
 
@@ -115,7 +133,9 @@ module CyberSource
           tokenized_card == o.tokenized_card &&
           customer == o.customer &&
           bank == o.bank &&
-          method == o.method
+          method == o.method &&
+          payment_type == o.payment_type &&
+          payment_account_reference == o.payment_account_reference
     end
 
     # @see the `==` method
@@ -127,7 +147,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [card, tokenized_card, customer, bank, method].hash
+      [card, tokenized_card, customer, bank, method, payment_type, payment_account_reference].hash
     end
 
     # Builds the object from hash

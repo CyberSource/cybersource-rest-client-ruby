@@ -13,19 +13,18 @@ require 'date'
 
 module CyberSource
   class InlineResponse4042
-    # The time the response was submitted
+    # Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the time. The Z indicates UTC. 
     attr_accessor :submit_time_utc
 
-    # The status code of the response
+    # The http status description of the submitted request.
     attr_accessor :status
 
-    # The reason for the response
+    # Documented reason codes. Client should be able to use the key for generating their own error message Possible Values:   - 'RESOURCE_NOT_FOUND' 
     attr_accessor :reason
 
-    # The message of the response
+    # Descriptive message for the error.
     attr_accessor :message
 
-    # The details of the validation error
     attr_accessor :details
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -53,11 +52,11 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'submit_time_utc' => :'String',
-        :'status' => :'Integer',
+        :'submit_time_utc' => :'DateTime',
+        :'status' => :'String',
         :'reason' => :'String',
         :'message' => :'String',
-        :'details' => :'Array<InlineResponse4042Details>'
+        :'details' => :'Array<InlineResponse4002Details>'
       }
     end
 

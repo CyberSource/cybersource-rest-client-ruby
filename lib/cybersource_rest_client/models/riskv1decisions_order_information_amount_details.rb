@@ -17,6 +17,9 @@ module CyberSource
     # Currency used for the order. Use the three-character [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)  #### Used by **Authorization** Required field.  **Authorization Reversal** For an authorization reversal (`reversalInformation`) or a capture (`processingOptions.capture` is set to `true`), you must use the same currency that you used in your payment authorization request.  #### PIN Debit Currency for the amount you requested for the PIN debit purchase. This value is returned for partial authorizations. The issuing bank can approve a partial amount if the balance on the debit card is less than the requested transaction amount. For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf). Returned by PIN debit purchase.  For PIN debit reversal requests, you must use the same currency that was used for the PIN debit purchase or PIN debit credit that you are reversing. For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).  Required field for PIN Debit purchase and PIN Debit credit requests. Optional field for PIN Debit reversal requests.  #### GPX This field is optional for reversing an authorization or credit.  #### DCC for First Data Your local currency.  #### Tax Calculation Required for international tax and value added tax only. Optional for U.S. and Canadian taxes. Your local currency. 
     attr_accessor :currency
 
+    # Total discount amount applied to the order 
+    attr_accessor :discount_amount
+
     # Grand total for the order. You can include a decimal point (.), but no other special characters. CyberSource truncates the amount to the correct number of decimal places.  **Note** For CTV, FDCCompass, Paymentech processors, the maximum length for this field is 12.  **Important** Some processors have specific requirements and limitations, such as maximum amounts and maximum field lengths.  If your processor supports zero amount authorizations, you can set this field to 0 for the authorization to check if the card is lost or stolen.   #### Card Present Required to include either this field or `orderInformation.lineItems[].unitPrice` for the order.  #### Invoicing Required for creating a new invoice.  #### PIN Debit Amount you requested for the PIN debit purchase. This value is returned for partial authorizations. The issuing bank can approve a partial amount if the balance on the debit card is less than the requested transaction amount.  Required field for PIN Debit purchase and PIN Debit credit requests. Optional field for PIN Debit reversal requests.  #### GPX This field is optional for reversing an authorization or credit; however, for all other processors, these fields are required.  #### DCC with a Third-Party Provider Set this field to the converted amount that was returned by the DCC provider. You must include either this field or the 1st line item in the order and the specific line-order amount in your request. For details, see `grand_total_amount` field description in [Dynamic Currency Conversion For First Data Using the SCMP API](http://apps.cybersource.com/library/documentation/dev_guides/DCC_FirstData_SCMP/DCC_FirstData_SCMP_API.pdf).  #### FDMS South If you accept IDR or CLP currencies, see the entry for FDMS South in \"Authorization Information for Specific Processors\" of the [REST API Fields Guide](https://developer.cybersource.com/docs/cybs/en-us/api-fields/reference/all/rest/api-fields/order-info-aa/order-info-amount-details-total-amount.html)  #### DCC for First Data Not used. For details, see [REST API Field Guide](https://developer.cybersource.com/docs/cybs/en-us/api-fields/reference/all/rest/api-fields/order-info-aa/order-info-amount-details-total-amount.html) 
     attr_accessor :total_amount
 
@@ -24,6 +27,7 @@ module CyberSource
     def self.attribute_map
       {
         :'currency' => :'currency',
+        :'discount_amount' => :'discountAmount',
         :'total_amount' => :'totalAmount'
       }
     end
@@ -32,6 +36,7 @@ module CyberSource
     def self.json_map
       {
         :'currency' => :'currency',
+        :'discount_amount' => :'discount_amount',
         :'total_amount' => :'total_amount'
       }
     end
@@ -40,6 +45,7 @@ module CyberSource
     def self.swagger_types
       {
         :'currency' => :'String',
+        :'discount_amount' => :'String',
         :'total_amount' => :'String'
       }
     end
@@ -54,6 +60,10 @@ module CyberSource
 
       if attributes.has_key?(:'currency')
         self.currency = attributes[:'currency']
+      end
+
+      if attributes.has_key?(:'discountAmount')
+        self.discount_amount = attributes[:'discountAmount']
       end
 
       if attributes.has_key?(:'totalAmount')
@@ -90,6 +100,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] discount_amount Value to be assigned
+    def discount_amount=(discount_amount)
+      @discount_amount = discount_amount
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] total_amount Value to be assigned
     def total_amount=(total_amount)
       @total_amount = total_amount
@@ -101,6 +117,7 @@ module CyberSource
       return true if self.equal?(o)
       self.class == o.class &&
           currency == o.currency &&
+          discount_amount == o.discount_amount &&
           total_amount == o.total_amount
     end
 
@@ -113,7 +130,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [currency, total_amount].hash
+      [currency, discount_amount, total_amount].hash
     end
 
     # Builds the object from hash

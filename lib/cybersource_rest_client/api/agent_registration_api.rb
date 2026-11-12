@@ -66,8 +66,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -81,7 +83,7 @@ module CyberSource
       inbound_mle_status = "mandatory"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["activate_agent_key","activate_agent_key_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -112,22 +114,22 @@ module CyberSource
     # **Add a Key to an Agent**<br>Uploads a new public key for the specified agent. The key is created in ***deactivated*** state and must be explicitly activated via `POST /agents/{agentId}/keys/{keyId}/activate` before it can be used.<br><br> Returns **404** if the agent is not found, **403** if the agent is deactivated. 
     #
     # @param agent_id Unique agent identifier
-    # @param key_request Key creation request
+    # @param add_agent_key_request Key creation request
     # @param [Hash] opts the optional parameters
     # @return [AddAgentKeyResponse201]
     #
-    def add_agent_key(agent_id, key_request, opts = {})
-      data, status_code, headers = add_agent_key_with_http_info(agent_id, key_request, opts)
+    def add_agent_key(agent_id, add_agent_key_request, opts = {})
+      data, status_code, headers = add_agent_key_with_http_info(agent_id, add_agent_key_request, opts)
       return data, status_code, headers
     end
 
     # Add a key to an agent
     # **Add a Key to an Agent**&lt;br&gt;Uploads a new public key for the specified agent. The key is created in ***deactivated*** state and must be explicitly activated via &#x60;POST /agents/{agentId}/keys/{keyId}/activate&#x60; before it can be used.&lt;br&gt;&lt;br&gt; Returns **404** if the agent is not found, **403** if the agent is deactivated. 
     # @param agent_id Unique agent identifier
-    # @param key_request Key creation request
+    # @param add_agent_key_request Key creation request
     # @param [Hash] opts the optional parameters
     # @return [Array<(AddAgentKeyResponse201, Fixnum, Hash)>] AddAgentKeyResponse201 data, response status code and response headers
-    def add_agent_key_with_http_info(agent_id, key_request, opts = {})
+    def add_agent_key_with_http_info(agent_id, add_agent_key_request, opts = {})
 
       if @api_client.config.debugging
           begin
@@ -141,9 +143,9 @@ module CyberSource
       if @api_client.config.client_side_validation && agent_id.nil?
         fail ArgumentError, "Missing the required parameter 'agent_id' when calling AgentRegistrationApi.add_agent_key"
       end
-      # verify the required parameter 'key_request' is set
-      if @api_client.config.client_side_validation && key_request.nil?
-        fail ArgumentError, "Missing the required parameter 'key_request' when calling AgentRegistrationApi.add_agent_key"
+      # verify the required parameter 'add_agent_key_request' is set
+      if @api_client.config.client_side_validation && add_agent_key_request.nil?
+        fail ArgumentError, "Missing the required parameter 'add_agent_key_request' when calling AgentRegistrationApi.add_agent_key"
       end
       # resource path
       local_var_path = 'icc/v1/agents/{agentId}/keys'.sub('{' + 'agentId' + '}', agent_id.to_s)
@@ -155,20 +157,22 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(key_request)
+      post_body = @api_client.object_to_http_body(add_agent_key_request)
       sdk_tracker = SdkTracker.new
-      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'KeyRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'AddAgentKeyRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "mandatory"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["add_agent_key","add_agent_key_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -236,8 +240,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -251,7 +257,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_agent","get_agent_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -325,8 +331,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -340,7 +348,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_agent_key","get_agent_key_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -414,8 +422,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -429,7 +439,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["list_agent_keys","list_agent_keys_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -497,8 +507,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -510,7 +522,7 @@ module CyberSource
       inbound_mle_status = "mandatory"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["register_agent","register_agent_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -584,8 +596,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -597,7 +611,7 @@ module CyberSource
       inbound_mle_status = "mandatory"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["update_agent","update_agent_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -629,12 +643,12 @@ module CyberSource
     #
     # @param agent_id Unique agent identifier
     # @param key_id Unique key identifier
-    # @param key_update Key update request
+    # @param update_agent_key_request Key update request
     # @param [Hash] opts the optional parameters
     # @return [AddAgentKeyResponse201]
     #
-    def update_agent_key(agent_id, key_id, key_update, opts = {})
-      data, status_code, headers = update_agent_key_with_http_info(agent_id, key_id, key_update, opts)
+    def update_agent_key(agent_id, key_id, update_agent_key_request, opts = {})
+      data, status_code, headers = update_agent_key_with_http_info(agent_id, key_id, update_agent_key_request, opts)
       return data, status_code, headers
     end
 
@@ -642,10 +656,10 @@ module CyberSource
     # **Update a Key**&lt;br&gt;Updates key information. The following fields can be modified: &#x60;keyName&#x60;, &#x60;publicKey&#x60;, &#x60;algorithm&#x60;, and &#x60;expirationDate&#x60;.&lt;br&gt;&lt;br&gt; **Note:** &#x60;publicKey&#x60; and &#x60;algorithm&#x60; must always be updated together.&lt;br&gt; Returns **404** if the agent or key is not found, **403** if the agent or key is deactivated, **409** if the new &#x60;keyName&#x60; already exists. 
     # @param agent_id Unique agent identifier
     # @param key_id Unique key identifier
-    # @param key_update Key update request
+    # @param update_agent_key_request Key update request
     # @param [Hash] opts the optional parameters
     # @return [Array<(AddAgentKeyResponse201, Fixnum, Hash)>] AddAgentKeyResponse201 data, response status code and response headers
-    def update_agent_key_with_http_info(agent_id, key_id, key_update, opts = {})
+    def update_agent_key_with_http_info(agent_id, key_id, update_agent_key_request, opts = {})
 
       if @api_client.config.debugging
           begin
@@ -663,9 +677,9 @@ module CyberSource
       if @api_client.config.client_side_validation && key_id.nil?
         fail ArgumentError, "Missing the required parameter 'key_id' when calling AgentRegistrationApi.update_agent_key"
       end
-      # verify the required parameter 'key_update' is set
-      if @api_client.config.client_side_validation && key_update.nil?
-        fail ArgumentError, "Missing the required parameter 'key_update' when calling AgentRegistrationApi.update_agent_key"
+      # verify the required parameter 'update_agent_key_request' is set
+      if @api_client.config.client_side_validation && update_agent_key_request.nil?
+        fail ArgumentError, "Missing the required parameter 'update_agent_key_request' when calling AgentRegistrationApi.update_agent_key"
       end
       # resource path
       local_var_path = 'icc/v1/agents/{agentId}/keys/{keyId}'.sub('{' + 'agentId' + '}', agent_id.to_s).sub('{' + 'keyId' + '}', key_id.to_s)
@@ -677,20 +691,22 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(key_update)
+      post_body = @api_client.object_to_http_body(update_agent_key_request)
       sdk_tracker = SdkTracker.new
-      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'KeyUpdate', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'UpdateAgentKeyRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "mandatory"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["update_agent_key","update_agent_key_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end

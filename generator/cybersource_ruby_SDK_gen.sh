@@ -26,8 +26,6 @@ sed -i "s|select_header_content_type(\["\'"application\/json;charset=utf-8|selec
 sed -i "s|cybersource_rest_client/models/error__links|cybersource_rest_client/models/error_links|g" ../lib/cybersource_rest_client.rb
 
 
-sed -i 's/$/\r/' ../lib/cybersource_rest_client.rb
-
 # to rename long file name
 mv ../lib/cybersource_rest_client/models/ptsv2payments_processing_information_authorization_options_initiator_merchant_initiated_transaction.rb ../lib/cybersource_rest_client/models/ptsv2payments_merchant_initiated_transaction.rb
 mv ../spec/models/ptsv2payments_processing_information_authorization_options_initiator_merchant_initiated_transaction_spec.rb ../spec/models/ptsv2payments_merchant_initiated_transaction_spec.rb
@@ -74,8 +72,8 @@ sed -i "s|cybersource_rest_client/models/payments_products_unified_checkout_subs
 mv ../lib/cybersource_rest_client/models/ptsv1pullfundstransfer_processing_information_funding_options_initiator_originator_initiated_transaction.rb ../lib/cybersource_rest_client/models/ptsv1pullfundstransfer_processing_info_funding_options_initiator_origin_ini_transaction.rb
 sed -i "s|cybersource_rest_client/models/ptsv1pullfundstransfer_processing_information_funding_options_initiator_originator_initiated_transaction|cybersource_rest_client/models/ptsv1pullfundstransfer_processing_info_funding_options_initiator_origin_ini_transaction|g" ../lib/cybersource_rest_client.rb
 
-mv ../lib/cybersource_rest_client/models/unified_risk_post201_response_results_risk_insights_packages_transaction_insights_insights_warnings.rb ../lib/cybersource_rest_client/models/unified_risk_post201_response_transaction_insights_insights_warnings.rb
-sed -i "s|cybersource_rest_client/models/unified_risk_post201_response_results_risk_insights_packages_transaction_insights_insights_warnings|cybersource_rest_client/models/unified_risk_post201_response_transaction_insights_insights_warnings|g" ../lib/cybersource_rest_client.rb
+mv ../lib/cybersource_rest_client/models/unified_risk_post201_response_results_riskinsights_packages_transaction_insights_insights_warnings.rb ../lib/cybersource_rest_client/models/unified_risk_post201_response_transaction_insights_insights_warnings.rb
+sed -i "s|cybersource_rest_client/models/unified_risk_post201_response_results_riskinsights_packages_transaction_insights_insights_warnings|cybersource_rest_client/models/unified_risk_post201_response_transaction_insights_insights_warnings|g" ../lib/cybersource_rest_client.rb
 
 sed -i 's/$/\r/' ../lib/cybersource_rest_client.rb
 
@@ -135,6 +133,8 @@ git checkout spec/models/resource_not_found_error_spec.rb
 git checkout spec/models/unauthorized_client_error_spec.rb
 git checkout spec/sensitive_logging_spec.rb
 git checkout spec/auth_jwe_utility_spec.rb
+git checkout spec/jwt_response_mle_claim_spec.rb
+git checkout spec/mle_request_encryption_spec.rb
 
 # replace hashValue fieldName to hash for supporting hash field name in request body
 cd ./lib/cybersource_rest_client/models

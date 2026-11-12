@@ -156,5 +156,7 @@ git checkout spec\models\resource_not_found_error_spec.rb
 git checkout spec\models\unauthorized_client_error_spec.rb
 git checkout spec/sensitive_logging_spec.rb
 git checkout spec/auth_jwe_utility_spec.rb
+git checkout spec\jwt_response_mle_claim_spec.rb
+git checkout spec\mle_request_encryption_spec.rb
 
 pause

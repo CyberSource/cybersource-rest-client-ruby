@@ -128,16 +128,18 @@ module {{moduleName}}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept([{{#produces}}'{{{mediaType}}}'{{#hasMore}}, {{/hasMore}}{{/produces}}])
       {{/hasProduces}}
+      local_header_content_type = nil
       {{#hasConsumes}}
       {{#formParams}}
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['multipart/form-data; boundary=' + delimiter])
+      local_header_content_type = @api_client.select_header_content_type(['multipart/form-data; boundary=' + delimiter])
       {{/formParams}}
       {{^formParams}}
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type([{{#consumes}}'{{{mediaType}}}'{{#hasMore}}, {{/hasMore}}{{/consumes}}])
+      local_header_content_type = @api_client.select_header_content_type([{{#consumes}}'{{{mediaType}}}'{{#hasMore}}, {{/hasMore}}{{/consumes}}])
       {{/formParams}}
       {{/hasConsumes}}
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
       {{#headerParams}}
       {{#required}}
       header_params[:'{{{baseName}}}'] = {{#collectionFormat}}@api_client.build_collection_param({{{paramName}}}, :{{{collectionFormat}}}){{/collectionFormat}}{{^collectionFormat}}{{{paramName}}}{{/collectionFormat}}
@@ -183,7 +185,7 @@ module {{moduleName}}
       inbound_mle_status = "{{#vendorExtensions.x-devcenter-metaData.mleForRequest}}{{vendorExtensions.x-devcenter-metaData.mleForRequest}}{{/vendorExtensions.x-devcenter-metaData.mleForRequest}}{{^vendorExtensions.x-devcenter-metaData.mleForRequest}}false{{/vendorExtensions.x-devcenter-metaData.mleForRequest}}"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["{{operationId}}","{{operationId}}_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end

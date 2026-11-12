@@ -79,7 +79,7 @@ module CyberSource
         :'default_payment_instrument' => :'Tmsv2tokenizeTokenInformationCustomerDefaultPaymentInstrument',
         :'default_shipping_address' => :'Tmsv2tokenizeTokenInformationCustomerDefaultShippingAddress',
         :'metadata' => :'Tmsv2tokenizeTokenInformationCustomerMetadata',
-        :'_embedded' => :'Tmsv2customersEmbedded'
+        :'_embedded' => :'Tmsv2tokenizeTokenInformationCustomerEmbedded1'
       }
     end
 

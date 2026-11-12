@@ -13,17 +13,17 @@ require 'date'
 
 module CyberSource
   class InlineResponse4005
-    # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC.  Returned by Cybersource for all services. 
+    # Time verification was requested  Format: `YYYY-MM-DDThhmmssZ`, where: - `T`:  Separates the date and the time - `Z`:  Indicates Coordinated Universal Time (UTC), also known as Greenwich Mean Time (GMT)  Example:  `2020-01-11T224757Z` equals January 11, 2020, at 22:47:57 (10:47:57 p.m.) 
     attr_accessor :submit_time_utc
 
-    # The status of the submitted transaction.  Possible values:  - INVALID_REQUEST 
+    # Possible values:   - `INVALID_REQUEST` 
     attr_accessor :status
 
-    # The reason of the status.  Possible values:  - MISSING_FIELD  - INVALID_DATA  - DUPLICATE_REQUEST  - INVALID_MERCHANT_CONFIGURATION 
-    attr_accessor :reason
-
-    # The detail message related to the status and reason listed above.
+    # The detail message related to the status and reason
     attr_accessor :message
+
+    # The reason of the status.  Possible values:   - `INVALID_REQUEST` 
+    attr_accessor :reason
 
     attr_accessor :details
 
@@ -32,8 +32,8 @@ module CyberSource
       {
         :'submit_time_utc' => :'submitTimeUtc',
         :'status' => :'status',
-        :'reason' => :'reason',
         :'message' => :'message',
+        :'reason' => :'reason',
         :'details' => :'details'
       }
     end
@@ -43,8 +43,8 @@ module CyberSource
       {
         :'submit_time_utc' => :'submit_time_utc',
         :'status' => :'status',
-        :'reason' => :'reason',
         :'message' => :'message',
+        :'reason' => :'reason',
         :'details' => :'details'
       }
     end
@@ -54,9 +54,9 @@ module CyberSource
       {
         :'submit_time_utc' => :'String',
         :'status' => :'String',
-        :'reason' => :'String',
         :'message' => :'String',
-        :'details' => :'Array<PtsV2PaymentsPost201ResponseErrorInformationDetails>'
+        :'reason' => :'String',
+        :'details' => :'Array<InlineResponse4005Details>'
       }
     end
 
@@ -76,12 +76,12 @@ module CyberSource
         self.status = attributes[:'status']
       end
 
-      if attributes.has_key?(:'reason')
-        self.reason = attributes[:'reason']
-      end
-
       if attributes.has_key?(:'message')
         self.message = attributes[:'message']
+      end
+
+      if attributes.has_key?(:'reason')
+        self.reason = attributes[:'reason']
       end
 
       if attributes.has_key?(:'details')
@@ -111,8 +111,8 @@ module CyberSource
       self.class == o.class &&
           submit_time_utc == o.submit_time_utc &&
           status == o.status &&
-          reason == o.reason &&
           message == o.message &&
+          reason == o.reason &&
           details == o.details
     end
 
@@ -125,7 +125,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [submit_time_utc, status, reason, message, details].hash
+      [submit_time_utc, status, message, reason, details].hash
     end
 
     # Builds the object from hash

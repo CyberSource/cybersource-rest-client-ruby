@@ -23,22 +23,22 @@ module CyberSource
     # Create a new Subscription based on the Request Id of an existing successful Transaction.
     #
     # @param request_id Request Id of an existing successful Transaction
-    # @param create_subscription_request 
+    # @param create_follow_on_subscription_request 
     # @param [Hash] opts the optional parameters
     # @return [CreateSubscriptionResponse]
     #
-    def create_follow_on_subscription(request_id, create_subscription_request, opts = {})
-      data, status_code, headers = create_follow_on_subscription_with_http_info(request_id, create_subscription_request, opts)
+    def create_follow_on_subscription(request_id, create_follow_on_subscription_request, opts = {})
+      data, status_code, headers = create_follow_on_subscription_with_http_info(request_id, create_follow_on_subscription_request, opts)
       return data, status_code, headers
     end
 
     # Create a Follow-On Subscription
     # Create a new Subscription based on the Request Id of an existing successful Transaction.
     # @param request_id Request Id of an existing successful Transaction
-    # @param create_subscription_request 
+    # @param create_follow_on_subscription_request 
     # @param [Hash] opts the optional parameters
     # @return [Array<(CreateSubscriptionResponse, Fixnum, Hash)>] CreateSubscriptionResponse data, response status code and response headers
-    def create_follow_on_subscription_with_http_info(request_id, create_subscription_request, opts = {})
+    def create_follow_on_subscription_with_http_info(request_id, create_follow_on_subscription_request, opts = {})
 
       if @api_client.config.debugging
           begin
@@ -52,9 +52,9 @@ module CyberSource
       if @api_client.config.client_side_validation && request_id.nil?
         fail ArgumentError, "Missing the required parameter 'request_id' when calling SubscriptionsFollowOnsApi.create_follow_on_subscription"
       end
-      # verify the required parameter 'create_subscription_request' is set
-      if @api_client.config.client_side_validation && create_subscription_request.nil?
-        fail ArgumentError, "Missing the required parameter 'create_subscription_request' when calling SubscriptionsFollowOnsApi.create_follow_on_subscription"
+      # verify the required parameter 'create_follow_on_subscription_request' is set
+      if @api_client.config.client_side_validation && create_follow_on_subscription_request.nil?
+        fail ArgumentError, "Missing the required parameter 'create_follow_on_subscription_request' when calling SubscriptionsFollowOnsApi.create_follow_on_subscription"
       end
       # resource path
       local_var_path = 'rbs/v1/subscriptions/follow-ons/{requestId}'.sub('{' + 'requestId' + '}', request_id.to_s)
@@ -66,20 +66,22 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json', 'application/hal+json', 'application/json;charset=utf-8', 'application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(create_subscription_request)
+      post_body = @api_client.object_to_http_body(create_follow_on_subscription_request)
       sdk_tracker = SdkTracker.new
-      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CreateSubscriptionRequest1', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CreateFollowOnSubscriptionRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "optional"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["create_follow_on_subscription","create_follow_on_subscription_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -111,7 +113,7 @@ module CyberSource
     #
     # @param request_id Request Id of an existing successful Transaction
     # @param [Hash] opts the optional parameters
-    # @return [GetSubscriptionResponse1]
+    # @return [GetFollowOnSubscriptionResponse]
     #
     def get_follow_on_subscription(request_id, opts = {})
       data, status_code, headers = get_follow_on_subscription_with_http_info(request_id, opts)
@@ -122,7 +124,7 @@ module CyberSource
     # Get details of the Subscription being created based on the Request Id of an existing successful Transaction. 
     # @param request_id Request Id of an existing successful Transaction
     # @param [Hash] opts the optional parameters
-    # @return [Array<(GetSubscriptionResponse1, Fixnum, Hash)>] GetSubscriptionResponse1 data, response status code and response headers
+    # @return [Array<(GetFollowOnSubscriptionResponse, Fixnum, Hash)>] GetFollowOnSubscriptionResponse data, response status code and response headers
     def get_follow_on_subscription_with_http_info(request_id, opts = {})
 
       if @api_client.config.debugging
@@ -147,8 +149,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json', 'application/hal+json', 'application/json;charset=utf-8', 'application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -162,7 +166,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_follow_on_subscription","get_follow_on_subscription_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -177,7 +181,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'GetSubscriptionResponse1',
+        :return_type => 'GetFollowOnSubscriptionResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin

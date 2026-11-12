@@ -24,7 +24,7 @@ module CyberSource
     #
     # @param registration_id Identifies the boarding registration to be updated
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2005]
+    # @return [BoardingRegistrationGetResponse]
     #
     def get_registration(registration_id, opts = {})
       data, status_code, headers = get_registration_with_http_info(registration_id, opts)
@@ -35,7 +35,7 @@ module CyberSource
     # This end point will get all information of a boarding registration 
     # @param registration_id Identifies the boarding registration to be updated
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2005, Fixnum, Hash)>] InlineResponse2005 data, response status code and response headers
+    # @return [Array<(BoardingRegistrationGetResponse, Fixnum, Hash)>] BoardingRegistrationGetResponse data, response status code and response headers
     def get_registration_with_http_info(registration_id, opts = {})
 
       if @api_client.config.debugging
@@ -60,8 +60,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -75,7 +77,7 @@ module CyberSource
       inbound_mle_status = "mandatory"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_registration","get_registration_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -90,7 +92,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2005',
+        :return_type => 'BoardingRegistrationGetResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -109,7 +111,7 @@ module CyberSource
     # @param patch_registration_body Boarding registration data to be patched
     # @param [Hash] opts the optional parameters
     # @option opts [String] :v_c_idempotency_id defines idempotency of the request
-    # @return [InlineResponse2005]
+    # @return [BoardingRegistrationGetResponse]
     #
     def patch_registration(registration_id, patch_registration_body, opts = {})
       data, status_code, headers = patch_registration_with_http_info(registration_id, patch_registration_body, opts)
@@ -122,7 +124,7 @@ module CyberSource
     # @param patch_registration_body Boarding registration data to be patched
     # @param [Hash] opts the optional parameters
     # @option opts [String] :v_c_idempotency_id defines idempotency of the request
-    # @return [Array<(InlineResponse2005, Fixnum, Hash)>] InlineResponse2005 data, response status code and response headers
+    # @return [Array<(BoardingRegistrationGetResponse, Fixnum, Hash)>] BoardingRegistrationGetResponse data, response status code and response headers
     def patch_registration_with_http_info(registration_id, patch_registration_body, opts = {})
 
       if @api_client.config.debugging
@@ -151,8 +153,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
       header_params[:'v-c-idempotency-id'] = opts[:'v_c_idempotency_id'] if !opts[:'v_c_idempotency_id'].nil?
 
       # form parameters
@@ -165,7 +169,7 @@ module CyberSource
       inbound_mle_status = "optional"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["patch_registration","patch_registration_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -180,7 +184,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2005',
+        :return_type => 'BoardingRegistrationGetResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -198,7 +202,7 @@ module CyberSource
     # @param post_registration_body Boarding registration data
     # @param [Hash] opts the optional parameters
     # @option opts [String] :v_c_idempotency_id defines idempotency of the request
-    # @return [InlineResponse2016]
+    # @return [BoardingRegistrationCreateResponse]
     #
     def post_registration(post_registration_body, opts = {})
       data, status_code, headers = post_registration_with_http_info(post_registration_body, opts)
@@ -210,7 +214,7 @@ module CyberSource
     # @param post_registration_body Boarding registration data
     # @param [Hash] opts the optional parameters
     # @option opts [String] :v_c_idempotency_id defines idempotency of the request
-    # @return [Array<(InlineResponse2016, Fixnum, Hash)>] InlineResponse2016 data, response status code and response headers
+    # @return [Array<(BoardingRegistrationCreateResponse, Fixnum, Hash)>] BoardingRegistrationCreateResponse data, response status code and response headers
     def post_registration_with_http_info(post_registration_body, opts = {})
 
       if @api_client.config.debugging
@@ -235,8 +239,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
       header_params[:'v-c-idempotency-id'] = opts[:'v_c_idempotency_id'] if !opts[:'v_c_idempotency_id'].nil?
 
       # form parameters
@@ -249,7 +255,7 @@ module CyberSource
       inbound_mle_status = "optional"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["post_registration","post_registration_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -264,7 +270,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2016',
+        :return_type => 'BoardingRegistrationCreateResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin

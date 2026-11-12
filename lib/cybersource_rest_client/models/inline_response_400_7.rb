@@ -12,51 +12,53 @@ Swagger Codegen version: 2.4.38
 require 'date'
 
 module CyberSource
+  # Standard error response returned for all 4xx and 5xx status codes.
   class InlineResponse4007
-    # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC.  Returned by Cybersource for all services. 
-    attr_accessor :submit_time_utc
+    # Machine-readable error code (e.g. `BAD_REQUEST`, `NOT_FOUND`, `INTERNAL_ERROR`).
+    attr_accessor :error
 
-    # The status of the submitted transaction.  Possible values:  - INVALID_REQUEST 
-    attr_accessor :status
-
-    # The reason of the status.  Possible values:  - MISSING_FIELD  - INVALID_DATA  - DUPLICATE_REQUEST  - INVALID_MERCHANT_CONFIGURATION  - PROCESSOR_UNAVAILABLE  - INVALID_FOLLOW_ON_TRANSACTION_STATUS 
-    attr_accessor :reason
-
-    # The detail message related to the status and reason listed above.
+    # Human-readable description of what went wrong and how to fix it.
     attr_accessor :message
 
-    attr_accessor :details
+    # HTTP status code.
+    attr_accessor :status
+
+    # ISO 8601 timestamp when the error occurred.
+    attr_accessor :timestamp
+
+    # The request path that produced this error.
+    attr_accessor :path
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'submit_time_utc' => :'submitTimeUtc',
-        :'status' => :'status',
-        :'reason' => :'reason',
+        :'error' => :'error',
         :'message' => :'message',
-        :'details' => :'details'
+        :'status' => :'status',
+        :'timestamp' => :'timestamp',
+        :'path' => :'path'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'submit_time_utc' => :'submit_time_utc',
-        :'status' => :'status',
-        :'reason' => :'reason',
+        :'error' => :'error',
         :'message' => :'message',
-        :'details' => :'details'
+        :'status' => :'status',
+        :'timestamp' => :'timestamp',
+        :'path' => :'path'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'submit_time_utc' => :'String',
-        :'status' => :'String',
-        :'reason' => :'String',
+        :'error' => :'String',
         :'message' => :'String',
-        :'details' => :'Array<PtsV2PaymentsPost201ResponseErrorInformationDetails>'
+        :'status' => :'Integer',
+        :'timestamp' => :'DateTime',
+        :'path' => :'String'
       }
     end
 
@@ -68,26 +70,24 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'submitTimeUtc')
-        self.submit_time_utc = attributes[:'submitTimeUtc']
-      end
-
-      if attributes.has_key?(:'status')
-        self.status = attributes[:'status']
-      end
-
-      if attributes.has_key?(:'reason')
-        self.reason = attributes[:'reason']
+      if attributes.has_key?(:'error')
+        self.error = attributes[:'error']
       end
 
       if attributes.has_key?(:'message')
         self.message = attributes[:'message']
       end
 
-      if attributes.has_key?(:'details')
-        if (value = attributes[:'details']).is_a?(Array)
-          self.details = value
-        end
+      if attributes.has_key?(:'status')
+        self.status = attributes[:'status']
+      end
+
+      if attributes.has_key?(:'timestamp')
+        self.timestamp = attributes[:'timestamp']
+      end
+
+      if attributes.has_key?(:'path')
+        self.path = attributes[:'path']
       end
     end
 
@@ -109,11 +109,11 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          submit_time_utc == o.submit_time_utc &&
-          status == o.status &&
-          reason == o.reason &&
+          error == o.error &&
           message == o.message &&
-          details == o.details
+          status == o.status &&
+          timestamp == o.timestamp &&
+          path == o.path
     end
 
     # @see the `==` method
@@ -125,7 +125,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [submit_time_utc, status, reason, message, details].hash
+      [error, message, status, timestamp, path].hash
     end
 
     # Builds the object from hash

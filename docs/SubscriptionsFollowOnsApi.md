@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **create_follow_on_subscription**
-> CreateSubscriptionResponse create_follow_on_subscription(request_id, create_subscription_request)
+> CreateSubscriptionResponse create_follow_on_subscription(request_id, create_follow_on_subscription_request)
 
 Create a Follow-On Subscription
 
@@ -24,12 +24,12 @@ api_instance = CyberSource::SubscriptionsFollowOnsApi.new
 
 request_id = 'request_id_example' # String | Request Id of an existing successful Transaction
 
-create_subscription_request = CyberSource::CreateSubscriptionRequest1.new # CreateSubscriptionRequest1 | 
+create_follow_on_subscription_request = CyberSource::CreateFollowOnSubscriptionRequest.new # CreateFollowOnSubscriptionRequest | 
 
 
 begin
   #Create a Follow-On Subscription
-  result = api_instance.create_follow_on_subscription(request_id, create_subscription_request)
+  result = api_instance.create_follow_on_subscription(request_id, create_follow_on_subscription_request)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling SubscriptionsFollowOnsApi->create_follow_on_subscription: #{e}"
@@ -41,7 +41,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **request_id** | **String**| Request Id of an existing successful Transaction | 
- **create_subscription_request** | [**CreateSubscriptionRequest1**](CreateSubscriptionRequest1.md)|  | 
+ **create_follow_on_subscription_request** | [**CreateFollowOnSubscriptionRequest**](CreateFollowOnSubscriptionRequest.md)|  | 
 
 ### Return type
 
@@ -59,7 +59,7 @@ No authorization required
 
 
 # **get_follow_on_subscription**
-> GetSubscriptionResponse1 get_follow_on_subscription(request_id)
+> GetFollowOnSubscriptionResponse get_follow_on_subscription(request_id)
 
 Get a Follow-On Subscription
 
@@ -92,7 +92,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetSubscriptionResponse1**](GetSubscriptionResponse1.md)
+[**GetFollowOnSubscriptionResponse**](GetFollowOnSubscriptionResponse.md)
 
 ### Authorization
 

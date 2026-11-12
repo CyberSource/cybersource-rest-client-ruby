@@ -32,7 +32,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'buyer_history' => :'Ptsv2paymentsRiskInformationBuyerHistory'
+        :'buyer_history' => :'Riskv1decisionsRiskInformationBuyerHistory'
       }
     end
 

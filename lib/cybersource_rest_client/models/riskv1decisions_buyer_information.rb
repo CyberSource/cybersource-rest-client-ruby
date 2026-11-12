@@ -28,6 +28,8 @@ module CyberSource
 
     attr_accessor :personal_identification
 
+    attr_accessor :loyalty
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -35,7 +37,8 @@ module CyberSource
         :'username' => :'username',
         :'hashed_password' => :'hashedPassword',
         :'date_of_birth' => :'dateOfBirth',
-        :'personal_identification' => :'personalIdentification'
+        :'personal_identification' => :'personalIdentification',
+        :'loyalty' => :'loyalty'
       }
     end
 
@@ -46,7 +49,8 @@ module CyberSource
         :'username' => :'username',
         :'hashed_password' => :'hashed_password',
         :'date_of_birth' => :'date_of_birth',
-        :'personal_identification' => :'personal_identification'
+        :'personal_identification' => :'personal_identification',
+        :'loyalty' => :'loyalty'
       }
     end
 
@@ -57,7 +61,8 @@ module CyberSource
         :'username' => :'String',
         :'hashed_password' => :'String',
         :'date_of_birth' => :'String',
-        :'personal_identification' => :'Array<Ptsv2paymentsBuyerInformationPersonalIdentification>'
+        :'personal_identification' => :'Array<Ptsv2paymentsBuyerInformationPersonalIdentification>',
+        :'loyalty' => :'Riskv1decisionsBuyerInformationLoyalty'
       }
     end
 
@@ -89,6 +94,10 @@ module CyberSource
         if (value = attributes[:'personalIdentification']).is_a?(Array)
           self.personal_identification = value
         end
+      end
+
+      if attributes.has_key?(:'loyalty')
+        self.loyalty = attributes[:'loyalty']
       end
     end
 
@@ -138,7 +147,8 @@ module CyberSource
           username == o.username &&
           hashed_password == o.hashed_password &&
           date_of_birth == o.date_of_birth &&
-          personal_identification == o.personal_identification
+          personal_identification == o.personal_identification &&
+          loyalty == o.loyalty
     end
 
     # @see the `==` method
@@ -150,7 +160,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [merchant_customer_id, username, hashed_password, date_of_birth, personal_identification].hash
+      [merchant_customer_id, username, hashed_password, date_of_birth, personal_identification, loyalty].hash
     end
 
     # Builds the object from hash

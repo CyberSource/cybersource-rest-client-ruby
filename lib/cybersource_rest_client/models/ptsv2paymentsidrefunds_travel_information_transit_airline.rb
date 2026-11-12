@@ -288,7 +288,7 @@ module CyberSource
         :'reservation_type' => :'String',
         :'boarding_fee_amount' => :'String',
         :'legs' => :'Array<Ptsv2paymentsTravelInformationTransitAirlineLegs>',
-        :'ancillary_information' => :'Ptsv2paymentsidrefundsTravelInformationTransitAirlineAncillaryInformation',
+        :'ancillary_information' => :'Ptsv2paymentsTravelInformationTransitAirlineAncillaryInformation',
         :'flight_type' => :'String',
         :'insurance_amount' => :'String',
         :'frequent_flyer_number' => :'String',

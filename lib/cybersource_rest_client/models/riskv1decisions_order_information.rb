@@ -40,6 +40,9 @@ module CyberSource
 
     attr_accessor :bill_to
 
+    # Array of voucher/coupon information used in the order
+    attr_accessor :vouchers
+
     # Total number of articles/items in the order as a numeric decimal count. Possible values: 00 - 99 
     attr_accessor :total_offers_count
 
@@ -56,6 +59,7 @@ module CyberSource
         :'returns_accepted' => :'returnsAccepted',
         :'line_items' => :'lineItems',
         :'bill_to' => :'billTo',
+        :'vouchers' => :'vouchers',
         :'total_offers_count' => :'totalOffersCount'
       }
     end
@@ -73,6 +77,7 @@ module CyberSource
         :'returns_accepted' => :'returns_accepted',
         :'line_items' => :'line_items',
         :'bill_to' => :'bill_to',
+        :'vouchers' => :'vouchers',
         :'total_offers_count' => :'total_offers_count'
       }
     end
@@ -86,10 +91,11 @@ module CyberSource
         :'cutoff_date_time' => :'String',
         :'reordered' => :'BOOLEAN',
         :'shipping_details' => :'Riskv1decisionsOrderInformationShippingDetails',
-        :'ship_to' => :'Riskv1decisionsOrderInformationShipTo',
+        :'ship_to' => :'Riskv1decisionsBundledOrderInformationShipTo',
         :'returns_accepted' => :'BOOLEAN',
         :'line_items' => :'Array<Riskv1decisionsOrderInformationLineItems>',
         :'bill_to' => :'Riskv1decisionsOrderInformationBillTo',
+        :'vouchers' => :'Array<Riskv1decisionsOrderInformationVouchers>',
         :'total_offers_count' => :'String'
       }
     end
@@ -144,6 +150,12 @@ module CyberSource
         self.bill_to = attributes[:'billTo']
       end
 
+      if attributes.has_key?(:'vouchers')
+        if (value = attributes[:'vouchers']).is_a?(Array)
+          self.vouchers = value
+        end
+      end
+
       if attributes.has_key?(:'totalOffersCount')
         self.total_offers_count = attributes[:'totalOffersCount']
       end
@@ -189,6 +201,7 @@ module CyberSource
           returns_accepted == o.returns_accepted &&
           line_items == o.line_items &&
           bill_to == o.bill_to &&
+          vouchers == o.vouchers &&
           total_offers_count == o.total_offers_count
     end
 
@@ -201,7 +214,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [amount_details, pre_order, pre_order_date, cutoff_date_time, reordered, shipping_details, ship_to, returns_accepted, line_items, bill_to, total_offers_count].hash
+      [amount_details, pre_order, pre_order_date, cutoff_date_time, reordered, shipping_details, ship_to, returns_accepted, line_items, bill_to, vouchers, total_offers_count].hash
     end
 
     # Builds the object from hash

@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 
 # **create_merchant_defined_field_definition**
-> Array&lt;InlineResponse2004&gt; create_merchant_defined_field_definition(reference_type, merchant_defined_field_definition_request)
+> Array&lt;MerchantDefinedFieldWithIdResponse&gt; create_merchant_defined_field_definition(reference_type, merchant_defined_field_definition_request)
 
 Create merchant defined field for a given reference type
 
@@ -49,7 +49,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Array&lt;InlineResponse2004&gt;**](InlineResponse2004.md)
+[**Array&lt;MerchantDefinedFieldWithIdResponse&gt;**](MerchantDefinedFieldWithIdResponse.md)
 
 ### Authorization
 
@@ -63,7 +63,7 @@ No authorization required
 
 
 # **create_pbl_merchant_defined_field_definition**
-> Array&lt;InlineResponse2004&gt; create_pbl_merchant_defined_field_definition(reference_type, merchant_defined_field_definition_request)
+> Array&lt;MerchantDefinedFieldWithIdResponse&gt; create_pbl_merchant_defined_field_definition(reference_type, pbl_merchant_defined_field_definition_request)
 
 Create a PayByLink merchant defined field for a given reference type
 
@@ -78,12 +78,12 @@ api_instance = CyberSource::MerchantDefinedFieldsApi.new
 
 reference_type = 'reference_type_example' # String | The reference type for which the merchant defined field is to be created. Available values are Purchase and Donation
 
-merchant_defined_field_definition_request = CyberSource::MerchantDefinedFieldDefinitionRequest1.new # MerchantDefinedFieldDefinitionRequest1 | 
+pbl_merchant_defined_field_definition_request = CyberSource::PblMerchantDefinedFieldDefinitionRequest.new # PblMerchantDefinedFieldDefinitionRequest | 
 
 
 begin
   #Create a PayByLink merchant defined field for a given reference type
-  result = api_instance.create_pbl_merchant_defined_field_definition(reference_type, merchant_defined_field_definition_request)
+  result = api_instance.create_pbl_merchant_defined_field_definition(reference_type, pbl_merchant_defined_field_definition_request)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling MerchantDefinedFieldsApi->create_pbl_merchant_defined_field_definition: #{e}"
@@ -95,11 +95,11 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **reference_type** | **String**| The reference type for which the merchant defined field is to be created. Available values are Purchase and Donation | 
- **merchant_defined_field_definition_request** | [**MerchantDefinedFieldDefinitionRequest1**](MerchantDefinedFieldDefinitionRequest1.md)|  | 
+ **pbl_merchant_defined_field_definition_request** | [**PblMerchantDefinedFieldDefinitionRequest**](PblMerchantDefinedFieldDefinitionRequest.md)|  | 
 
 ### Return type
 
-[**Array&lt;InlineResponse2004&gt;**](InlineResponse2004.md)
+[**Array&lt;MerchantDefinedFieldWithIdResponse&gt;**](MerchantDefinedFieldWithIdResponse.md)
 
 ### Authorization
 
@@ -207,7 +207,7 @@ No authorization required
 
 
 # **get_merchant_defined_fields_definitions**
-> Array&lt;InlineResponse2004&gt; get_merchant_defined_fields_definitions(reference_type)
+> Array&lt;MerchantDefinedFieldWithIdResponse&gt; get_merchant_defined_fields_definitions(reference_type)
 
 Get all merchant defined fields for a given reference type
 
@@ -238,7 +238,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Array&lt;InlineResponse2004&gt;**](InlineResponse2004.md)
+[**Array&lt;MerchantDefinedFieldWithIdResponse&gt;**](MerchantDefinedFieldWithIdResponse.md)
 
 ### Authorization
 
@@ -252,7 +252,7 @@ No authorization required
 
 
 # **get_pbl_merchant_defined_fields_definitions**
-> Array&lt;InlineResponse2004&gt; get_pbl_merchant_defined_fields_definitions(reference_type)
+> Array&lt;MerchantDefinedFieldWithIdResponse&gt; get_pbl_merchant_defined_fields_definitions(reference_type)
 
 Get all PayByLink merchant defined fields for a given reference type
 
@@ -283,7 +283,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Array&lt;InlineResponse2004&gt;**](InlineResponse2004.md)
+[**Array&lt;MerchantDefinedFieldWithIdResponse&gt;**](MerchantDefinedFieldWithIdResponse.md)
 
 ### Authorization
 
@@ -297,7 +297,7 @@ No authorization required
 
 
 # **put_merchant_defined_fields_definitions**
-> Array&lt;InlineResponse2004&gt; put_merchant_defined_fields_definitions(reference_type, id, merchant_defined_field_core)
+> Array&lt;MerchantDefinedFieldWithIdResponse&gt; put_merchant_defined_fields_definitions(reference_type, id, update_merchant_defined_field_core_by_id_request)
 
 Update a MerchantDefinedField by ID
 
@@ -312,12 +312,12 @@ reference_type = 'reference_type_example' # String |
 
 id = 789 # Integer | 
 
-merchant_defined_field_core = CyberSource::MerchantDefinedFieldCore.new # MerchantDefinedFieldCore | 
+update_merchant_defined_field_core_by_id_request = CyberSource::UpdateMerchantDefinedFieldCoreByIdRequest.new # UpdateMerchantDefinedFieldCoreByIdRequest | 
 
 
 begin
   #Update a MerchantDefinedField by ID
-  result = api_instance.put_merchant_defined_fields_definitions(reference_type, id, merchant_defined_field_core)
+  result = api_instance.put_merchant_defined_fields_definitions(reference_type, id, update_merchant_defined_field_core_by_id_request)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling MerchantDefinedFieldsApi->put_merchant_defined_fields_definitions: #{e}"
@@ -330,11 +330,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **reference_type** | **String**|  | 
  **id** | **Integer**|  | 
- **merchant_defined_field_core** | [**MerchantDefinedFieldCore**](MerchantDefinedFieldCore.md)|  | 
+ **update_merchant_defined_field_core_by_id_request** | [**UpdateMerchantDefinedFieldCoreByIdRequest**](UpdateMerchantDefinedFieldCoreByIdRequest.md)|  | 
 
 ### Return type
 
-[**Array&lt;InlineResponse2004&gt;**](InlineResponse2004.md)
+[**Array&lt;MerchantDefinedFieldWithIdResponse&gt;**](MerchantDefinedFieldWithIdResponse.md)
 
 ### Authorization
 
@@ -348,7 +348,7 @@ No authorization required
 
 
 # **put_pbl_merchant_defined_fields_definitions**
-> Array&lt;InlineResponse2004&gt; put_pbl_merchant_defined_fields_definitions(reference_type, id, merchant_defined_field_core)
+> Array&lt;MerchantDefinedFieldWithIdResponse&gt; put_pbl_merchant_defined_fields_definitions(reference_type, id, update_pbl_merchant_defined_field_core_by_id_request)
 
 Update a PayByLink MerchantDefinedField by ID
 
@@ -363,12 +363,12 @@ reference_type = 'reference_type_example' # String |
 
 id = 789 # Integer | 
 
-merchant_defined_field_core = CyberSource::MerchantDefinedFieldCore1.new # MerchantDefinedFieldCore1 | 
+update_pbl_merchant_defined_field_core_by_id_request = CyberSource::UpdatePblMerchantDefinedFieldCoreByIdRequest.new # UpdatePblMerchantDefinedFieldCoreByIdRequest | 
 
 
 begin
   #Update a PayByLink MerchantDefinedField by ID
-  result = api_instance.put_pbl_merchant_defined_fields_definitions(reference_type, id, merchant_defined_field_core)
+  result = api_instance.put_pbl_merchant_defined_fields_definitions(reference_type, id, update_pbl_merchant_defined_field_core_by_id_request)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling MerchantDefinedFieldsApi->put_pbl_merchant_defined_fields_definitions: #{e}"
@@ -381,11 +381,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **reference_type** | **String**|  | 
  **id** | **Integer**|  | 
- **merchant_defined_field_core** | [**MerchantDefinedFieldCore1**](MerchantDefinedFieldCore1.md)|  | 
+ **update_pbl_merchant_defined_field_core_by_id_request** | [**UpdatePblMerchantDefinedFieldCoreByIdRequest**](UpdatePblMerchantDefinedFieldCoreByIdRequest.md)|  | 
 
 ### Return type
 
-[**Array&lt;InlineResponse2004&gt;**](InlineResponse2004.md)
+[**Array&lt;MerchantDefinedFieldWithIdResponse&gt;**](MerchantDefinedFieldWithIdResponse.md)
 
 ### Authorization
 

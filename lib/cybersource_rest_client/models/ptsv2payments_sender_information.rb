@@ -48,6 +48,9 @@ module CyberSource
     # CPF or CNPJ of the cash-in recipient. \"Cadastro de Pessoas Físicas\", which translates to the \"Natural Persons Register.\" It is the individual taxpayer registry identification number in Brazil, similar to a Social Security Number (SSN) in the United States or a National Insurance Number in the UK. 
     attr_accessor :tax_id_number
 
+    # Sender's email address, including the full domain name. 
+    attr_accessor :email
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -62,7 +65,8 @@ module CyberSource
         :'reference_number' => :'referenceNumber',
         :'account' => :'account',
         :'postal_code' => :'postalCode',
-        :'tax_id_number' => :'taxIdNumber'
+        :'tax_id_number' => :'taxIdNumber',
+        :'email' => :'email'
       }
     end
 
@@ -80,7 +84,8 @@ module CyberSource
         :'reference_number' => :'reference_number',
         :'account' => :'account',
         :'postal_code' => :'postal_code',
-        :'tax_id_number' => :'tax_id_number'
+        :'tax_id_number' => :'tax_id_number',
+        :'email' => :'email'
       }
     end
 
@@ -98,7 +103,8 @@ module CyberSource
         :'reference_number' => :'String',
         :'account' => :'Ptsv2paymentsSenderInformationAccount',
         :'postal_code' => :'String',
-        :'tax_id_number' => :'Float'
+        :'tax_id_number' => :'Float',
+        :'email' => :'String'
       }
     end
 
@@ -156,6 +162,10 @@ module CyberSource
 
       if attributes.has_key?(:'taxIdNumber')
         self.tax_id_number = attributes[:'taxIdNumber']
+      end
+
+      if attributes.has_key?(:'email')
+        self.email = attributes[:'email']
       end
     end
 
@@ -232,6 +242,12 @@ module CyberSource
       @postal_code = postal_code
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] email Value to be assigned
+    def email=(email)
+      @email = email
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -248,7 +264,8 @@ module CyberSource
           reference_number == o.reference_number &&
           account == o.account &&
           postal_code == o.postal_code &&
-          tax_id_number == o.tax_id_number
+          tax_id_number == o.tax_id_number &&
+          email == o.email
     end
 
     # @see the `==` method
@@ -260,7 +277,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [first_name, middle_name, last_name, address1, locality, administrative_area, country_code, alias_name, reference_number, account, postal_code, tax_id_number].hash
+      [first_name, middle_name, last_name, address1, locality, administrative_area, country_code, alias_name, reference_number, account, postal_code, tax_id_number, email].hash
     end
 
     # Builds the object from hash

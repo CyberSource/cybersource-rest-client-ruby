@@ -99,7 +99,7 @@ module CyberSource
         :'allow_multiple_bills' => :'BOOLEAN',
         :'enable_transaction_reference_number' => :'BOOLEAN',
         :'payment_types' => :'Hash<String, CardProcessingConfigCommonPaymentTypes>',
-        :'currencies' => :'Hash<String, CardProcessingConfigCommonCurrencies>'
+        :'currencies' => :'Hash<String, CurrencyConfiguration>'
       }
     end
 

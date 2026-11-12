@@ -13,6 +13,9 @@ require 'date'
 
 module CyberSource
   class Riskv1decisionsMerchantInformation
+    # MCC code of the merchant or transaction
+    attr_accessor :category_code
+
     attr_accessor :merchant_descriptor
 
     # Your company's name as you want it to appear to the customer in the issuing bank's authentication form. This value overrides the value specified by your merchant bank. 
@@ -21,6 +24,7 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'category_code' => :'categoryCode',
         :'merchant_descriptor' => :'merchantDescriptor',
         :'merchant_name' => :'merchantName'
       }
@@ -29,6 +33,7 @@ module CyberSource
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
+        :'category_code' => :'category_code',
         :'merchant_descriptor' => :'merchant_descriptor',
         :'merchant_name' => :'merchant_name'
       }
@@ -37,6 +42,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'category_code' => :'String',
         :'merchant_descriptor' => :'Riskv1decisionsMerchantInformationMerchantDescriptor',
         :'merchant_name' => :'String'
       }
@@ -49,6 +55,10 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+
+      if attributes.has_key?(:'categoryCode')
+        self.category_code = attributes[:'categoryCode']
+      end
 
       if attributes.has_key?(:'merchantDescriptor')
         self.merchant_descriptor = attributes[:'merchantDescriptor']
@@ -73,6 +83,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] category_code Value to be assigned
+    def category_code=(category_code)
+      @category_code = category_code
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] merchant_name Value to be assigned
     def merchant_name=(merchant_name)
       @merchant_name = merchant_name
@@ -83,6 +99,7 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          category_code == o.category_code &&
           merchant_descriptor == o.merchant_descriptor &&
           merchant_name == o.merchant_name
     end
@@ -96,7 +113,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [merchant_descriptor, merchant_name].hash
+      [category_code, merchant_descriptor, merchant_name].hash
     end
 
     # Builds the object from hash

@@ -45,7 +45,7 @@ describe 'EMVTagDetailsApi' do
   # unit tests for parse_emv_tags
   # Parse an EMV String
   # Pass an EMV Tag-Length-Value (TLV) string for parsing.
-  # @param body 
+  # @param parse_emv_tags_request 
   # @param [Hash] opts the optional parameters
   # @return [TssV2PostEmvTags200Response]
   describe 'parse_emv_tags test' do

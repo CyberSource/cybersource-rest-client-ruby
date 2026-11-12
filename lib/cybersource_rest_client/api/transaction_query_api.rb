@@ -23,7 +23,7 @@ module CyberSource
     # Query the status and details of payouts transactions including Pull Funds, Push Funds, and Pull Funds Reversals 
     #
     # @param id This is the CyberSource Request ID generated for successfully processed AFT/OCT that needs to be queried. 
-    # @param body 
+    # @param create_query_api_request 
     # @param content_type 
     # @param x_requestid 
     # @param v_c_merchant_id 
@@ -33,17 +33,17 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :limit The maximum number of options to be retrieved from the processor and displayed to the consumer. 
     # @option opts [Integer] :offset Offset from the first item in the list of options received from the processor. If you want to display the options in multiple lists, this number represents the first option displayed in each list. 
-    # @return [InlineResponse2014]
+    # @return [CreateQueryApiResponse]
     #
-    def create_query_api(id, body, content_type, x_requestid, v_c_merchant_id, v_c_permissions, v_c_correlation_id, v_c_organization_id, opts = {})
-      data, status_code, headers = create_query_api_with_http_info(id, body, content_type, x_requestid, v_c_merchant_id, v_c_permissions, v_c_correlation_id, v_c_organization_id, opts)
+    def create_query_api(id, create_query_api_request, content_type, x_requestid, v_c_merchant_id, v_c_permissions, v_c_correlation_id, v_c_organization_id, opts = {})
+      data, status_code, headers = create_query_api_with_http_info(id, create_query_api_request, content_type, x_requestid, v_c_merchant_id, v_c_permissions, v_c_correlation_id, v_c_organization_id, opts)
       return data, status_code, headers
     end
 
     # Query Transaction Details
     # Query the status and details of payouts transactions including Pull Funds, Push Funds, and Pull Funds Reversals 
     # @param id This is the CyberSource Request ID generated for successfully processed AFT/OCT that needs to be queried. 
-    # @param body 
+    # @param create_query_api_request 
     # @param content_type 
     # @param x_requestid 
     # @param v_c_merchant_id 
@@ -53,8 +53,8 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :limit The maximum number of options to be retrieved from the processor and displayed to the consumer. 
     # @option opts [Integer] :offset Offset from the first item in the list of options received from the processor. If you want to display the options in multiple lists, this number represents the first option displayed in each list. 
-    # @return [Array<(InlineResponse2014, Fixnum, Hash)>] InlineResponse2014 data, response status code and response headers
-    def create_query_api_with_http_info(id, body, content_type, x_requestid, v_c_merchant_id, v_c_permissions, v_c_correlation_id, v_c_organization_id, opts = {})
+    # @return [Array<(CreateQueryApiResponse, Fixnum, Hash)>] CreateQueryApiResponse data, response status code and response headers
+    def create_query_api_with_http_info(id, create_query_api_request, content_type, x_requestid, v_c_merchant_id, v_c_permissions, v_c_correlation_id, v_c_organization_id, opts = {})
 
       if @api_client.config.debugging
           begin
@@ -68,9 +68,9 @@ module CyberSource
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling TransactionQueryApi.create_query_api"
       end
-      # verify the required parameter 'body' is set
-      if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling TransactionQueryApi.create_query_api"
+      # verify the required parameter 'create_query_api_request' is set
+      if @api_client.config.client_side_validation && create_query_api_request.nil?
+        fail ArgumentError, "Missing the required parameter 'create_query_api_request' when calling TransactionQueryApi.create_query_api"
       end
       # verify the required parameter 'content_type' is set
       if @api_client.config.client_side_validation && content_type.nil?
@@ -108,8 +108,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
       header_params[:'Content-Type'] = content_type
       header_params[:'x-requestid'] = x_requestid
       header_params[:'v-c-merchant-id'] = v_c_merchant_id
@@ -121,13 +123,13 @@ module CyberSource
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(body)
+      post_body = @api_client.object_to_http_body(create_query_api_request)
       sdk_tracker = SdkTracker.new
-      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'Body1', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CreateQueryApiRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "mandatory"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["create_query_api","create_query_api_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -142,7 +144,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2014',
+        :return_type => 'CreateQueryApiResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin

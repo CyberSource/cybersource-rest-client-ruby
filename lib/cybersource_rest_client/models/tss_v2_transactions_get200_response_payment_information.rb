@@ -90,7 +90,7 @@ module CyberSource
     def self.swagger_types
       {
         :'payment_type' => :'TssV2TransactionsGet200ResponsePaymentInformationPaymentType',
-        :'e_wallet' => :'PtsV2PaymentsPost201Response1PaymentInformationEWallet',
+        :'e_wallet' => :'RefreshPaymentStatusResponsePaymentInformationEWallet',
         :'customer' => :'TssV2TransactionsGet200ResponsePaymentInformationCustomer',
         :'card' => :'TssV2TransactionsGet200ResponsePaymentInformationCard',
         :'brands' => :'Array<TssV2TransactionsGet200ResponsePaymentInformationBrands>',

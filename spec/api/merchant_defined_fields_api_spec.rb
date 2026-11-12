@@ -36,7 +36,7 @@ describe 'MerchantDefinedFieldsApi' do
   # @param reference_type The reference type for which merchant defined fields are to be fetched. Available values are Invoice, Purchase, Donation
   # @param merchant_defined_field_definition_request 
   # @param [Hash] opts the optional parameters
-  # @return [Array<InlineResponse2004>]
+  # @return [Array<MerchantDefinedFieldWithIdResponse>]
   describe 'create_merchant_defined_field_definition test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -47,9 +47,9 @@ describe 'MerchantDefinedFieldsApi' do
   # Create a PayByLink merchant defined field for a given reference type
   # Creates a merchant defined field for the given reference type (&#x60;Purchase&#x60; or &#x60;Donation&#x60;). The field type is independent of the reference type: both &#x60;Purchase&#x60; and &#x60;Donation&#x60; support both &#x60;Text&#x60; and &#x60;Select&#x60; fields. Set &#x60;fieldType&#x60; to &#x60;Text&#x60; or &#x60;Select&#x60; accordingly. 
   # @param reference_type The reference type for which the merchant defined field is to be created. Available values are Purchase and Donation
-  # @param merchant_defined_field_definition_request 
+  # @param pbl_merchant_defined_field_definition_request 
   # @param [Hash] opts the optional parameters
-  # @return [Array<InlineResponse2004>]
+  # @return [Array<MerchantDefinedFieldWithIdResponse>]
   describe 'create_pbl_merchant_defined_field_definition test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -84,7 +84,7 @@ describe 'MerchantDefinedFieldsApi' do
   # Get all merchant defined fields for a given reference type
   # @param reference_type The reference type for which merchant defined fields are to be fetched. Available values are Invoice, Purchase, Donation
   # @param [Hash] opts the optional parameters
-  # @return [Array<InlineResponse2004>]
+  # @return [Array<MerchantDefinedFieldWithIdResponse>]
   describe 'get_merchant_defined_fields_definitions test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -95,7 +95,7 @@ describe 'MerchantDefinedFieldsApi' do
   # Get all PayByLink merchant defined fields for a given reference type
   # @param reference_type The reference type for which merchant defined fields are to be fetched. Available values are Purchase, Donation and PayByLink. PayByLink returns the merchant defined fields for both Purchase and Donation combined.
   # @param [Hash] opts the optional parameters
-  # @return [Array<InlineResponse2004>]
+  # @return [Array<MerchantDefinedFieldWithIdResponse>]
   describe 'get_pbl_merchant_defined_fields_definitions test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -106,9 +106,9 @@ describe 'MerchantDefinedFieldsApi' do
   # Update a MerchantDefinedField by ID
   # @param reference_type 
   # @param id 
-  # @param merchant_defined_field_core 
+  # @param update_merchant_defined_field_core_by_id_request 
   # @param [Hash] opts the optional parameters
-  # @return [Array<InlineResponse2004>]
+  # @return [Array<MerchantDefinedFieldWithIdResponse>]
   describe 'put_merchant_defined_fields_definitions test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -119,9 +119,9 @@ describe 'MerchantDefinedFieldsApi' do
   # Update a PayByLink MerchantDefinedField by ID
   # @param reference_type 
   # @param id 
-  # @param merchant_defined_field_core 
+  # @param update_pbl_merchant_defined_field_core_by_id_request 
   # @param [Hash] opts the optional parameters
-  # @return [Array<InlineResponse2004>]
+  # @return [Array<MerchantDefinedFieldWithIdResponse>]
   describe 'put_pbl_merchant_defined_fields_definitions test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

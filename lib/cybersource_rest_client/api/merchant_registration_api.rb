@@ -66,8 +66,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -81,7 +83,7 @@ module CyberSource
       inbound_mle_status = "mandatory"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["activate_merchant_key","activate_merchant_key_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -112,22 +114,22 @@ module CyberSource
     # **Add a Key to a Merchant**<br>Adds a new encryption key for the specified merchant. The new key is created as ***active*** immediately.<br><br> **Note:** Adding a new key automatically deactivates all previously active keys for this merchant (single-active key invariant).<br> Returns **403** if the merchant is deactivated, **404** if the merchant is not found. 
     #
     # @param merchant_id Unique merchant identifier (UUID)
-    # @param key_request Key creation request
+    # @param add_merchant_key_request Key creation request
     # @param [Hash] opts the optional parameters
     # @return [ActivateMerchantKeyResponse200]
     #
-    def add_merchant_key(merchant_id, key_request, opts = {})
-      data, status_code, headers = add_merchant_key_with_http_info(merchant_id, key_request, opts)
+    def add_merchant_key(merchant_id, add_merchant_key_request, opts = {})
+      data, status_code, headers = add_merchant_key_with_http_info(merchant_id, add_merchant_key_request, opts)
       return data, status_code, headers
     end
 
     # Add a key to a merchant
     # **Add a Key to a Merchant**&lt;br&gt;Adds a new encryption key for the specified merchant. The new key is created as ***active*** immediately.&lt;br&gt;&lt;br&gt; **Note:** Adding a new key automatically deactivates all previously active keys for this merchant (single-active key invariant).&lt;br&gt; Returns **403** if the merchant is deactivated, **404** if the merchant is not found. 
     # @param merchant_id Unique merchant identifier (UUID)
-    # @param key_request Key creation request
+    # @param add_merchant_key_request Key creation request
     # @param [Hash] opts the optional parameters
     # @return [Array<(ActivateMerchantKeyResponse200, Fixnum, Hash)>] ActivateMerchantKeyResponse200 data, response status code and response headers
-    def add_merchant_key_with_http_info(merchant_id, key_request, opts = {})
+    def add_merchant_key_with_http_info(merchant_id, add_merchant_key_request, opts = {})
 
       if @api_client.config.debugging
           begin
@@ -141,9 +143,9 @@ module CyberSource
       if @api_client.config.client_side_validation && merchant_id.nil?
         fail ArgumentError, "Missing the required parameter 'merchant_id' when calling MerchantRegistrationApi.add_merchant_key"
       end
-      # verify the required parameter 'key_request' is set
-      if @api_client.config.client_side_validation && key_request.nil?
-        fail ArgumentError, "Missing the required parameter 'key_request' when calling MerchantRegistrationApi.add_merchant_key"
+      # verify the required parameter 'add_merchant_key_request' is set
+      if @api_client.config.client_side_validation && add_merchant_key_request.nil?
+        fail ArgumentError, "Missing the required parameter 'add_merchant_key_request' when calling MerchantRegistrationApi.add_merchant_key"
       end
       # resource path
       local_var_path = 'icc/v1/merchants/{merchantId}/keys'.sub('{' + 'merchantId' + '}', merchant_id.to_s)
@@ -155,20 +157,22 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(key_request)
+      post_body = @api_client.object_to_http_body(add_merchant_key_request)
       sdk_tracker = SdkTracker.new
-      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'KeyRequest1', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'AddMerchantKeyRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "mandatory"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["add_merchant_key","add_merchant_key_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -236,8 +240,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -251,7 +257,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_merchant","get_merchant_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -325,8 +331,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -340,7 +348,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_merchant_key","get_merchant_key_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -414,8 +422,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -429,7 +439,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["list_merchant_keys","list_merchant_keys_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -497,8 +507,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -510,7 +522,7 @@ module CyberSource
       inbound_mle_status = "mandatory"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["register_merchant","register_merchant_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -584,8 +596,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -597,7 +611,7 @@ module CyberSource
       inbound_mle_status = "mandatory"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["update_merchant","update_merchant_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -629,12 +643,12 @@ module CyberSource
     #
     # @param merchant_id Unique merchant identifier (UUID)
     # @param key_id Unique key identifier (UUID)
-    # @param key_update Key update request
+    # @param update_merchant_key_request Key update request
     # @param [Hash] opts the optional parameters
     # @return [ActivateMerchantKeyResponse200]
     #
-    def update_merchant_key(merchant_id, key_id, key_update, opts = {})
-      data, status_code, headers = update_merchant_key_with_http_info(merchant_id, key_id, key_update, opts)
+    def update_merchant_key(merchant_id, key_id, update_merchant_key_request, opts = {})
+      data, status_code, headers = update_merchant_key_with_http_info(merchant_id, key_id, update_merchant_key_request, opts)
       return data, status_code, headers
     end
 
@@ -642,10 +656,10 @@ module CyberSource
     # **Update a Merchant Key**&lt;br&gt;Updates encryption key information. The following fields can be modified: &#x60;keyName&#x60;, &#x60;encryptionKey&#x60;, &#x60;algorithm&#x60;, &#x60;encryptionType&#x60;, and &#x60;expirationDate&#x60;.&lt;br&gt;&lt;br&gt; Returns **403** if the merchant is deactivated, key is deactivated, or key is expired, **404** if the merchant or key is not found, **409** if the new &#x60;keyName&#x60; already exists. 
     # @param merchant_id Unique merchant identifier (UUID)
     # @param key_id Unique key identifier (UUID)
-    # @param key_update Key update request
+    # @param update_merchant_key_request Key update request
     # @param [Hash] opts the optional parameters
     # @return [Array<(ActivateMerchantKeyResponse200, Fixnum, Hash)>] ActivateMerchantKeyResponse200 data, response status code and response headers
-    def update_merchant_key_with_http_info(merchant_id, key_id, key_update, opts = {})
+    def update_merchant_key_with_http_info(merchant_id, key_id, update_merchant_key_request, opts = {})
 
       if @api_client.config.debugging
           begin
@@ -663,9 +677,9 @@ module CyberSource
       if @api_client.config.client_side_validation && key_id.nil?
         fail ArgumentError, "Missing the required parameter 'key_id' when calling MerchantRegistrationApi.update_merchant_key"
       end
-      # verify the required parameter 'key_update' is set
-      if @api_client.config.client_side_validation && key_update.nil?
-        fail ArgumentError, "Missing the required parameter 'key_update' when calling MerchantRegistrationApi.update_merchant_key"
+      # verify the required parameter 'update_merchant_key_request' is set
+      if @api_client.config.client_side_validation && update_merchant_key_request.nil?
+        fail ArgumentError, "Missing the required parameter 'update_merchant_key_request' when calling MerchantRegistrationApi.update_merchant_key"
       end
       # resource path
       local_var_path = 'icc/v1/merchants/{merchantId}/keys/{keyId}'.sub('{' + 'merchantId' + '}', merchant_id.to_s).sub('{' + 'keyId' + '}', key_id.to_s)
@@ -677,20 +691,22 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(key_update)
+      post_body = @api_client.object_to_http_body(update_merchant_key_request)
       sdk_tracker = SdkTracker.new
-      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'KeyUpdate1', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'UpdateMerchantKeyRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "mandatory"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["update_merchant_key","update_merchant_key_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end

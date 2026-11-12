@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **tokenize**
-> InlineResponse200 tokenize(post_tokenize_request, opts)
+> PostTokenizeResponse tokenize(post_tokenize_request, opts)
 
 Tokenize
 
@@ -45,7 +45,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**PostTokenizeResponse**](PostTokenizeResponse.md)
 
 ### Authorization
 

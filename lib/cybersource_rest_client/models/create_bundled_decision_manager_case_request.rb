@@ -31,6 +31,12 @@ module CyberSource
 
     attr_accessor :travel_information
 
+    attr_accessor :recipient_information
+
+    attr_accessor :sender_information
+
+    attr_accessor :aggregator_information
+
     attr_accessor :merchant_defined_information
 
     attr_accessor :merchant_information
@@ -57,6 +63,9 @@ module CyberSource
         :'device_information' => :'deviceInformation',
         :'risk_information' => :'riskInformation',
         :'travel_information' => :'travelInformation',
+        :'recipient_information' => :'recipientInformation',
+        :'sender_information' => :'senderInformation',
+        :'aggregator_information' => :'aggregatorInformation',
         :'merchant_defined_information' => :'merchantDefinedInformation',
         :'merchant_information' => :'merchantInformation',
         :'acquirer_information' => :'acquirerInformation',
@@ -79,6 +88,9 @@ module CyberSource
         :'device_information' => :'device_information',
         :'risk_information' => :'risk_information',
         :'travel_information' => :'travel_information',
+        :'recipient_information' => :'recipient_information',
+        :'sender_information' => :'sender_information',
+        :'aggregator_information' => :'aggregator_information',
         :'merchant_defined_information' => :'merchant_defined_information',
         :'merchant_information' => :'merchant_information',
         :'acquirer_information' => :'acquirer_information',
@@ -101,11 +113,14 @@ module CyberSource
         :'device_information' => :'Riskv1decisionsDeviceInformation',
         :'risk_information' => :'Riskv1decisionsRiskInformation',
         :'travel_information' => :'Riskv1decisionsTravelInformation',
+        :'recipient_information' => :'Riskv1decisionsRecipientInformation',
+        :'sender_information' => :'Riskv1decisionsSenderInformation',
+        :'aggregator_information' => :'Riskv1decisionsAggregatorInformation',
         :'merchant_defined_information' => :'Array<Riskv1decisionsMerchantDefinedInformation>',
         :'merchant_information' => :'Riskv1decisionsMerchantInformation',
         :'acquirer_information' => :'Riskv1decisionsAcquirerInformation',
         :'recurring_payment_information' => :'Ptsv2paymentsRecurringPaymentInformation',
-        :'consumer_authentication_information' => :'Riskv1decisionsConsumerAuthenticationInformation',
+        :'consumer_authentication_information' => :'Riskv1decisionsBundledConsumerAuthenticationInformation',
         :'watchlist_screening_information' => :'Ptsv2paymentsWatchlistScreeningInformation',
         :'token_information' => :'Riskv1decisionsTokenInformation'
       }
@@ -153,6 +168,18 @@ module CyberSource
 
       if attributes.has_key?(:'travelInformation')
         self.travel_information = attributes[:'travelInformation']
+      end
+
+      if attributes.has_key?(:'recipientInformation')
+        self.recipient_information = attributes[:'recipientInformation']
+      end
+
+      if attributes.has_key?(:'senderInformation')
+        self.sender_information = attributes[:'senderInformation']
+      end
+
+      if attributes.has_key?(:'aggregatorInformation')
+        self.aggregator_information = attributes[:'aggregatorInformation']
       end
 
       if attributes.has_key?(:'merchantDefinedInformation')
@@ -218,6 +245,9 @@ module CyberSource
           device_information == o.device_information &&
           risk_information == o.risk_information &&
           travel_information == o.travel_information &&
+          recipient_information == o.recipient_information &&
+          sender_information == o.sender_information &&
+          aggregator_information == o.aggregator_information &&
           merchant_defined_information == o.merchant_defined_information &&
           merchant_information == o.merchant_information &&
           acquirer_information == o.acquirer_information &&
@@ -236,7 +266,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_reference_information, processor_information, processing_information, payment_information, order_information, buyer_information, device_information, risk_information, travel_information, merchant_defined_information, merchant_information, acquirer_information, recurring_payment_information, consumer_authentication_information, watchlist_screening_information, token_information].hash
+      [client_reference_information, processor_information, processing_information, payment_information, order_information, buyer_information, device_information, risk_information, travel_information, recipient_information, sender_information, aggregator_information, merchant_defined_information, merchant_information, acquirer_information, recurring_payment_information, consumer_authentication_information, watchlist_screening_information, token_information].hash
     end
 
     # Builds the object from hash

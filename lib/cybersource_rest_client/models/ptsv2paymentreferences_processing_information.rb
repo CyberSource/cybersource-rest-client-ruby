@@ -19,7 +19,7 @@ module CyberSource
     # Whether merchant wants to pass the flow Inline or want to invoke Klarna Hosted Page 
     attr_accessor :payment_flow_mode
 
-    # Possible values are one or more of follows:   - `AP_SESSIONS`: Use this when Alternative Payment Sessions service is requested. 
+    # Possible values are one or more of follows:  - `AP_SESSIONS`: Use this when Alternative Payment Sessions service is requested. 
     attr_accessor :action_list
 
     # Attribute mapping from ruby-style variable name to JSON key.

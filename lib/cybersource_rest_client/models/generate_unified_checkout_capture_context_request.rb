@@ -13,16 +13,13 @@ require 'date'
 
 module CyberSource
   class GenerateUnifiedCheckoutCaptureContextRequest
-    # Specify the version of Unified Checkout that you want to use.
-    attr_accessor :client_version
-
     # The [target origin](https://developer.mozilla.org/en-US/docs/Glossary/Origin) of the website on which you will be launching Unified Checkout is defined by the scheme (protocol), hostname (domain) and port number (if used).    You must use https://hostname (unless you use http://localhost) Wildcards are NOT supported.  Ensure that subdomains are included. Any valid top-level domain is supported (e.g. .com, .co.uk, .gov.br etc)  Examples:   - https://example.com   - https://subdomain.example.com   - https://example.com:8080<br><br>  If you are embedding within multiple nested iframes you need to specify the origins of all the browser contexts used, for example:    targetOrigins: [     \"https://example.com\",     \"https://basket.example.com\",     \"https://ecom.example.com\"   ] 
     attr_accessor :target_origins
 
     # The list of card networks you want to use for this Unified Checkout transaction.  Unified Checkout currently supports the following card networks:     - VISA     - MASTERCARD     - AMEX     - CARNET     - CARTESBANCAIRES     - CUP     - DINERSCLUB     - DISCOVER     - EFTPOS     - ELO     - JAYWAN     - JCB     - JCREW     - KCP     - MADA     - MAESTRO     - MEEZA     - PAYPAK     - UATP 
     attr_accessor :allowed_card_networks
 
-    # The payment types that are allowed for the merchant.    Possible values when launching Unified Checkout:   - APPLEPAY   - CHECK   - CLICKTOPAY   - GOOGLEPAY   - PANENTRY                 - PAZE <br><br>  Unified Checkout supports the following Buy Now, Pay Later (BNPL) payment methods:   - AFTERPAY<br><br>  Unified Checkout supports the following Online Bank Transfer payment methods:   - Bancontact (BE)   - DragonPay (PH)   - iDEAL (NL)   - Multibanco (PT)   - MyBank (IT, BE, PT, ES)   - Przelewy24|P24 (PL)   - Tink Pay By Bank (GB)<br><br>    Unified Checkout supports the following Post-Pay Reference payment methods:   - Konbini (JP)<br><br>  Possible values when launching Click To Pay Drop-In UI: - CLICKTOPAY <br><br>  **Important:**    - CLICKTOPAY only available for Visa, Mastercard and AMEX for saved cards.   - Visa and Mastercard will look to tokenize using network tokenization for all Click to Pay requests.  Click to Pay uses Click to Pay token requester IDs and not the merchant's existing token requester.   - Apple Pay, Google Pay, Check, and Paze can be used independently without requiring PAN entry in the allowedPaymentTypes field.<br><br>  **Managing Google Pay Authentication Types** When you enable Google Pay on Unified Checkout you can specify optional parameters that define the types of card authentication you receive from Google Pay.<br><br>  **Managing Google Pay Authentication Types** Where Click to Pay is the payment type selected by the customer and the customer manually enters their card, the option to enroll their card in Click to Pay will be auto-checked if this field is set to \"true\".   This is only available where the merchant and cardholder are based in the following countries and the billing type is set to \"FULL\" or \"PARTIAL\".   - UAE   - Argentina   - Brazil   - Chile   - Colombia   - Kuwait   - Mexico   - Peru   - Qatar   - Saudi Arabia   - Ukraine   - South Africa<br><br>  If false, this is not present or not supported in the market.  Enrollment in Click to Pay is not checked for the customer when completing manual card entry. 
+    # The payment types that are allowed for the merchant.    Possible values when launching Unified Checkout:   - APPLEPAY   - CHECK   - CLICKTOPAY   - GOOGLEPAY   - PANENTRY                 - PAZE <br><br>  Unified Checkout supports the following Buy Now, Pay Later (BNPL) payment methods:   - AFTERPAY<br><br>  Unified Checkout supports the following Online Bank Transfer payment methods:   - Bancontact (BE)   - DragonPay (PH)   - iDEAL (NL)   - Multibanco (PT)   - MyBank (IT, BE, PT, ES)   - Przelewy24|P24 (PL)   - Tink Pay By Bank (GB)<br><br>  Possible values when launching Click To Pay Drop-In UI: - CLICKTOPAY <br><br>  **Important:**    - CLICKTOPAY only available for Visa, Mastercard and AMEX for saved cards.   - Visa and Mastercard will look to tokenize using network tokenization for all Click to Pay requests.  Click to Pay uses Click to Pay token requester IDs and not the merchant's existing token requester.   - Apple Pay, Google Pay, Check, and Paze can be used independently without requiring PAN entry in the allowedPaymentTypes field.<br><br>  **Managing Google Pay Authentication Types** When you enable Google Pay on Unified Checkout you can specify optional parameters that define the types of card authentication you receive from Google Pay.<br><br>  **Managing Google Pay Authentication Types** Where Click to Pay is the payment type selected by the customer and the customer manually enters their card, the option to enroll their card in Click to Pay will be auto-checked if this field is set to \"true\".   This is only available where the merchant and cardholder are based in the following countries and the billing type is set to \"FULL\" or \"PARTIAL\".   - UAE   - Argentina   - Brazil   - Chile   - Colombia   - Kuwait   - Mexico   - Peru   - Qatar   - Saudi Arabia   - Ukraine   - South Africa<br><br>  If false, this is not present or not supported in the market.  Enrollment in Click to Pay is not checked for the customer when completing manual card entry.<br><br>  **Managing Click to Pay Card Networks** allowedCardNetworks (optional): Specifies the card networks eligible for Click to Pay. When provided, only the listed networks invoke Click to Pay; when omitted, all Click to Pay–supported networks in the top-level allowedCardNetworks configuration are eligible. 
     attr_accessor :allowed_payment_types
 
     # Country the purchase is originating from (e.g. country of the merchant).  Use the two-character ISO Standard 
@@ -47,7 +44,6 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'client_version' => :'clientVersion',
         :'target_origins' => :'targetOrigins',
         :'allowed_card_networks' => :'allowedCardNetworks',
         :'allowed_payment_types' => :'allowedPaymentTypes',
@@ -65,7 +61,6 @@ module CyberSource
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'client_version' => :'client_version',
         :'target_origins' => :'target_origins',
         :'allowed_card_networks' => :'allowed_card_networks',
         :'allowed_payment_types' => :'allowed_payment_types',
@@ -83,7 +78,6 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'client_version' => :'String',
         :'target_origins' => :'Array<String>',
         :'allowed_card_networks' => :'Array<String>',
         :'allowed_payment_types' => :'Array<String>',
@@ -105,10 +99,6 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
-
-      if attributes.has_key?(:'clientVersion')
-        self.client_version = attributes[:'clientVersion']
-      end
 
       if attributes.has_key?(:'targetOrigins')
         if (value = attributes[:'targetOrigins']).is_a?(Array)
@@ -175,12 +165,6 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] client_version Value to be assigned
-    def client_version=(client_version)
-      @client_version = client_version
-    end
-
-    # Custom attribute writer method with validation
     # @param [Object] country Value to be assigned
     def country=(country)
       @country = country
@@ -191,7 +175,6 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          client_version == o.client_version &&
           target_origins == o.target_origins &&
           allowed_card_networks == o.allowed_card_networks &&
           allowed_payment_types == o.allowed_payment_types &&
@@ -214,7 +197,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_version, target_origins, allowed_card_networks, allowed_payment_types, country, locale, button_type, capture_mandate, complete_mandate, transient_token_response_options, data, order_information].hash
+      [target_origins, allowed_card_networks, allowed_payment_types, country, locale, button_type, capture_mandate, complete_mandate, transient_token_response_options, data, order_information].hash
     end
 
     # Builds the object from hash

@@ -34,9 +34,9 @@ describe 'PaymentTokensApi' do
   # unit tests for retrieve_or_delete_payment_token
   # Retrieve or Delete Payment Token
   # This API can be used in two flavours - for retrieval or deletion of vault id. 
-  # @param request 
+  # @param payment_token_request 
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse201]
+  # @return [RetrieveOrDeletePaymentTokenResponse]
   describe 'retrieve_or_delete_payment_token test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

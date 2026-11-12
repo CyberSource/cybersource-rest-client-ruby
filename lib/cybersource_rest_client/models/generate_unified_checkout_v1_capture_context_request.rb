@@ -13,16 +13,13 @@ require 'date'
 
 module CyberSource
   class GenerateUnifiedCheckoutV1CaptureContextRequest
-    # This field is used to specify the Unified Checkout API version your integration should use.  The recommended approach is to omit this field from the uc/v1/sessions API request.  When omitted, Unified Checkout automatically uses the latest available version, ensuring access to the most recent enhancements and updates without requiring integration changes. If included, the value must be provided in Major.Minor format (for example, 1.1 or 1.2).<br><br>  Optional field: This field cannot be configured through the Merchant Experience screens in the Business Center but can be provided in the uc/v1/sessions API request. 
-    attr_accessor :client_version
-
     # The [target origin](https://developer.mozilla.org/en-US/docs/Glossary/Origin) of the website on which you will be launching Unified Checkout is defined by the scheme (protocol), hostname (domain) and port number (if used).    You must use https://hostname.  The following is NOT supported: http://localhost Wildcards are NOT supported.  Ensure that subdomains are included. Any valid top-level domain is supported (e.g. .com, .co.uk, .gov.br etc)  Examples:   - https://example.com   - https://subdomain.example.com   - https://example.com:8080<br><br>  If you are embedding within multiple nested iframes you need to specify the origins of all the browser contexts used, for example:    targetOrigins: [     \"https://example.com\",     \"https://basket.example.com\",     \"https://ecom.example.com\"   ]<br><br>  You can supply up to seven origins within the targetOrigins field for nested iframes. If the list of origins exceeds five ensure that you:   - Compare the list of origins in the v1/sessions targetOrigins field against the location.ancestorOrigins of the browser.    - Ensure that the count of origins and their content matches in both.  If any origins are absent or mismatched, the system will prevent Unified Checkout from loading and display a client-side error message.<br><br>  Required field: This field cannot be configured through the Merchant Experience Screens in the Business Center and must be provided on a per transaction basis via the uc/v1/sessions API request. 
     attr_accessor :target_origins
 
     # The list of card networks you want to use for this Unified Checkout transaction.  Unified Checkout currently supports the following card networks:     - VISA     - MASTERCARD     - AMEX     - CARNET     - CARTESBANCAIRES     - CUP     - DINERSCLUB     - DISCOVER     - EFTPOS     - ELO     - JAYWAN     - JCB     - JCREW     - KCP     - MADA     - MAESTRO     - MEEZA     - PAYPAK     - UATP<br><br>  Optional field:   This field can be configured through the Merchant Experience Screens in the Business Center.  The configured value may be overridden on a per transaction basis in the uc/v1/sessions API request. 
     attr_accessor :allowed_card_networks
 
-    # The payment types that are allowed for the merchant.    Possible values when launching Unified Checkout:   - APPLEPAY   - CHECK   - CLICKTOPAY   - GOOGLEPAY   - PANENTRY                 - PAZE    - TMS_TOKEN<br><br>  Unified Checkout supports the following wallet based payment methods:   - PayPal v2: PAYPAL   - Venmo: VENMO <br><br>  Unified Checkout supports the following Buy Now, Pay Later (BNPL) payment methods:   - Affirm (US): AFFIRM   - Cash App Afterpay (US): AFTERPAY   - Clearpay (GB): AFTERPAY   - Afterpay (CA, AU, NZ): AFTERPAY<br><br>  Unified Checkout supports the following Online Bank Transfer payment methods:   - Bancontact (BE): BANCONTACT   - DragonPay (PH): DRAGONPAY   - iDEAL (NL): IDEAL   - Multibanco (PT): MULTIBANCO   - MyBank (IT, BE, PT, ES): MYBANK    - Przelewy24|P24 (PL): PRZELEWY24   - Tink Pay By Bank (DE, ES, FR, GB, IE, NL): TINKPAYBYBANK<br><br>  Unified Checkout supports the following Post-Pay Reference payment methods:   - Konbini (JP): KONBINI<br><br>  Possible values when launching Click To Pay Drop-In UI: - CLICKTOPAY  - PANENTRY <br><br>  **Important:**    - CLICKTOPAY only available for Visa, Mastercard and AMEX for saved cards.   - Visa and Mastercard will look to tokenize using network tokenization for all Click to Pay requests.  Click to Pay uses Click to Pay token requester IDs and not the merchant's existing token requester.   - Apple Pay, Google Pay, Check, and Paze can be used independently without requiring PAN entry in the allowedPaymentTypes field.<br><br>  Optional field:   This field can be configured through the Merchant Experience Screens in the Business Center.  The configured value may be overridden on a per transaction basis in the uc/v1/sessions API request. 
+    # The payment types that are allowed for the merchant.    Possible values when launching Unified Checkout:   - APPLEPAY   - CHECK   - CLICKTOPAY   - GOOGLEPAY   - PANENTRY                 - PAZE    - TMS_TOKEN<br><br>  Unified Checkout supports the following wallet based payment methods:   - PayPal v2: PAYPAL   - Venmo: VENMO <br><br>  Unified Checkout supports the following Buy Now, Pay Later (BNPL) payment methods:   - Affirm (US): AFFIRM   - Cash App Afterpay (US): AFTERPAY   - Clearpay (GB): AFTERPAY   - Afterpay (CA, AU, NZ): AFTERPAY<br><br>  Unified Checkout supports the following Online Bank Transfer payment methods:   - Bancontact (BE): BANCONTACT   - DragonPay (PH): DRAGONPAY   - iDEAL (NL): IDEAL   - Multibanco (PT): MULTIBANCO   - MyBank (IT, BE, PT, ES): MYBANK    - Przelewy24|P24 (PL): PRZELEWY24   - Tink Pay By Bank (DE, ES, FR, GB, IE, NL): TINKPAYBYBANK<br><br>  Possible values when launching Click To Pay Drop-In UI: - CLICKTOPAY  - PANENTRY <br><br>  **Important:**    - CLICKTOPAY only available for Visa, Mastercard and AMEX for saved cards.   - Visa and Mastercard will look to tokenize using network tokenization for all Click to Pay requests.  Click to Pay uses Click to Pay token requester IDs and not the merchant's existing token requester.   - Apple Pay, Google Pay, Check, and Paze can be used independently without requiring PAN entry in the allowedPaymentTypes field.<br><br>  Optional field:   This field can be configured through the Merchant Experience Screens in the Business Center.  The configured value may be overridden on a per transaction basis in the uc/v1/sessions API request. 
     attr_accessor :allowed_payment_types
 
     attr_accessor :payment_configurations
@@ -49,7 +46,6 @@ module CyberSource
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'client_version' => :'clientVersion',
         :'target_origins' => :'targetOrigins',
         :'allowed_card_networks' => :'allowedCardNetworks',
         :'allowed_payment_types' => :'allowedPaymentTypes',
@@ -68,7 +64,6 @@ module CyberSource
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'client_version' => :'client_version',
         :'target_origins' => :'target_origins',
         :'allowed_card_networks' => :'allowed_card_networks',
         :'allowed_payment_types' => :'allowed_payment_types',
@@ -87,7 +82,6 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'client_version' => :'String',
         :'target_origins' => :'Array<String>',
         :'allowed_card_networks' => :'Array<String>',
         :'allowed_payment_types' => :'Array<String>',
@@ -110,10 +104,6 @@ module CyberSource
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
-
-      if attributes.has_key?(:'clientVersion')
-        self.client_version = attributes[:'clientVersion']
-      end
 
       if attributes.has_key?(:'targetOrigins')
         if (value = attributes[:'targetOrigins']).is_a?(Array)
@@ -184,12 +174,6 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] client_version Value to be assigned
-    def client_version=(client_version)
-      @client_version = client_version
-    end
-
-    # Custom attribute writer method with validation
     # @param [Object] country Value to be assigned
     def country=(country)
       @country = country
@@ -200,7 +184,6 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          client_version == o.client_version &&
           target_origins == o.target_origins &&
           allowed_card_networks == o.allowed_card_networks &&
           allowed_payment_types == o.allowed_payment_types &&
@@ -224,7 +207,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [client_version, target_origins, allowed_card_networks, allowed_payment_types, payment_configurations, appearance, country, locale, button_type, capture_mandate, complete_mandate, transient_token_response_options, data].hash
+      [target_origins, allowed_card_networks, allowed_payment_types, payment_configurations, appearance, country, locale, button_type, capture_mandate, complete_mandate, transient_token_response_options, data].hash
     end
 
     # Builds the object from hash

@@ -70,7 +70,7 @@ module CyberSource
         :'contact_email' => :'String',
         :'token_requestor_id' => :'String',
         :'agent_metadata' => :'Object',
-        :'keys' => :'Array<Iccv1agentsKeys>'
+        :'keys' => :'Array<AddAgentKeyRequest>'
       }
     end
 

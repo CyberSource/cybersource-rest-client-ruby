@@ -73,8 +73,8 @@ module CyberSource
         :'payment_payload_type' => :'String',
         :'acceptance_relationships' => :'Array<String>',
         :'protocol_interactions' => :'Array<Iccv1merchantsProtocolInteractions>',
-        :'web_integrations' => :'MerchantRegistrationResponse201WebIntegrations',
-        :'api_integrations' => :'MerchantRegistrationResponse201ApiIntegrations'
+        :'web_integrations' => :'Iccv1merchantsWebIntegrations',
+        :'api_integrations' => :'Iccv1merchantsApiIntegrations'
       }
     end
 

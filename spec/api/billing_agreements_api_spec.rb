@@ -50,7 +50,7 @@ describe 'BillingAgreementsApi' do
   # @param intimate_billing_agreement 
   # @param id ID for intimation of Billing Agreement
   # @param [Hash] opts the optional parameters
-  # @return [PtsV2CreditsPost201Response1]
+  # @return [IntimateBillingAgreementResponse]
   describe 'billing_agreements_intimation test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

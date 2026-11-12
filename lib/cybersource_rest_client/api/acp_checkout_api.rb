@@ -31,7 +31,7 @@ module CyberSource
     # @option opts [String] :signature Request signature for payload integrity verification. 
     # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
     # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
-    # @return [InlineResponse20018]
+    # @return [CancelCheckoutResponse]
     #
     def cancel_checkout(session_id, opts = {})
       data, status_code, headers = cancel_checkout_with_http_info(session_id, opts)
@@ -49,7 +49,7 @@ module CyberSource
     # @option opts [String] :signature Request signature for payload integrity verification. 
     # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
     # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
-    # @return [Array<(InlineResponse20018, Fixnum, Hash)>] InlineResponse20018 data, response status code and response headers
+    # @return [Array<(CancelCheckoutResponse, Fixnum, Hash)>] CancelCheckoutResponse data, response status code and response headers
     def cancel_checkout_with_http_info(session_id, opts = {})
 
       if @api_client.config.debugging
@@ -74,8 +74,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
       header_params[:'Idempotency-Key'] = opts[:'idempotency_key'] if !opts[:'idempotency_key'].nil?
       header_params[:'Accept-Language'] = opts[:'accept_language'] if !opts[:'accept_language'].nil?
       header_params[:'User-Agent'] = opts[:'user_agent'] if !opts[:'user_agent'].nil?
@@ -96,7 +98,7 @@ module CyberSource
       inbound_mle_status = "mandatory"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["cancel_checkout","cancel_checkout_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -111,7 +113,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20018',
+        :return_type => 'CancelCheckoutResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -136,7 +138,7 @@ module CyberSource
     # @option opts [String] :signature Request signature for payload integrity verification. 
     # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
     # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
-    # @return [InlineResponse20017]
+    # @return [CompleteCheckoutResponse]
     #
     def complete_checkout(session_id, acp_complete_checkout_request, opts = {})
       data, status_code, headers = complete_checkout_with_http_info(session_id, acp_complete_checkout_request, opts)
@@ -155,7 +157,7 @@ module CyberSource
     # @option opts [String] :signature Request signature for payload integrity verification. 
     # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
     # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
-    # @return [Array<(InlineResponse20017, Fixnum, Hash)>] InlineResponse20017 data, response status code and response headers
+    # @return [Array<(CompleteCheckoutResponse, Fixnum, Hash)>] CompleteCheckoutResponse data, response status code and response headers
     def complete_checkout_with_http_info(session_id, acp_complete_checkout_request, opts = {})
 
       if @api_client.config.debugging
@@ -184,8 +186,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
       header_params[:'Idempotency-Key'] = opts[:'idempotency_key'] if !opts[:'idempotency_key'].nil?
       header_params[:'Accept-Language'] = opts[:'accept_language'] if !opts[:'accept_language'].nil?
       header_params[:'User-Agent'] = opts[:'user_agent'] if !opts[:'user_agent'].nil?
@@ -204,7 +208,7 @@ module CyberSource
       inbound_mle_status = "mandatory"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["complete_checkout","complete_checkout_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -219,7 +223,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20017',
+        :return_type => 'CompleteCheckoutResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -243,7 +247,7 @@ module CyberSource
     # @option opts [String] :signature Request signature for payload integrity verification. 
     # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
     # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
-    # @return [InlineResponse20112]
+    # @return [CheckoutSessionResponse]
     #
     def create_checkout_session(acp_create_checkout_session_request, opts = {})
       data, status_code, headers = create_checkout_session_with_http_info(acp_create_checkout_session_request, opts)
@@ -261,7 +265,7 @@ module CyberSource
     # @option opts [String] :signature Request signature for payload integrity verification. 
     # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
     # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
-    # @return [Array<(InlineResponse20112, Fixnum, Hash)>] InlineResponse20112 data, response status code and response headers
+    # @return [Array<(CheckoutSessionResponse, Fixnum, Hash)>] CheckoutSessionResponse data, response status code and response headers
     def create_checkout_session_with_http_info(acp_create_checkout_session_request, opts = {})
 
       if @api_client.config.debugging
@@ -286,8 +290,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
       header_params[:'Idempotency-Key'] = opts[:'idempotency_key'] if !opts[:'idempotency_key'].nil?
       header_params[:'Accept-Language'] = opts[:'accept_language'] if !opts[:'accept_language'].nil?
       header_params[:'User-Agent'] = opts[:'user_agent'] if !opts[:'user_agent'].nil?
@@ -306,7 +312,7 @@ module CyberSource
       inbound_mle_status = "mandatory"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["create_checkout_session","create_checkout_session_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -321,7 +327,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20112',
+        :return_type => 'CheckoutSessionResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -346,7 +352,7 @@ module CyberSource
     # @option opts [String] :signature Request signature for payload integrity verification. 
     # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
     # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
-    # @return [InlineResponse20112]
+    # @return [CheckoutSessionResponse]
     #
     def get_checkout_session(session_id, acp_get_checkout_session_request, opts = {})
       data, status_code, headers = get_checkout_session_with_http_info(session_id, acp_get_checkout_session_request, opts)
@@ -365,7 +371,7 @@ module CyberSource
     # @option opts [String] :signature Request signature for payload integrity verification. 
     # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
     # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
-    # @return [Array<(InlineResponse20112, Fixnum, Hash)>] InlineResponse20112 data, response status code and response headers
+    # @return [Array<(CheckoutSessionResponse, Fixnum, Hash)>] CheckoutSessionResponse data, response status code and response headers
     def get_checkout_session_with_http_info(session_id, acp_get_checkout_session_request, opts = {})
 
       if @api_client.config.debugging
@@ -394,8 +400,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
       header_params[:'Idempotency-Key'] = opts[:'idempotency_key'] if !opts[:'idempotency_key'].nil?
       header_params[:'Accept-Language'] = opts[:'accept_language'] if !opts[:'accept_language'].nil?
       header_params[:'User-Agent'] = opts[:'user_agent'] if !opts[:'user_agent'].nil?
@@ -414,7 +422,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_checkout_session","get_checkout_session_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -429,7 +437,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20112',
+        :return_type => 'CheckoutSessionResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -454,7 +462,7 @@ module CyberSource
     # @option opts [String] :signature Request signature for payload integrity verification. 
     # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
     # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
-    # @return [InlineResponse20112]
+    # @return [CheckoutSessionResponse]
     #
     def update_checkout_session(session_id, acp_update_checkout_session_request, opts = {})
       data, status_code, headers = update_checkout_session_with_http_info(session_id, acp_update_checkout_session_request, opts)
@@ -473,7 +481,7 @@ module CyberSource
     # @option opts [String] :signature Request signature for payload integrity verification. 
     # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
     # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
-    # @return [Array<(InlineResponse20112, Fixnum, Hash)>] InlineResponse20112 data, response status code and response headers
+    # @return [Array<(CheckoutSessionResponse, Fixnum, Hash)>] CheckoutSessionResponse data, response status code and response headers
     def update_checkout_session_with_http_info(session_id, acp_update_checkout_session_request, opts = {})
 
       if @api_client.config.debugging
@@ -502,8 +510,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
       header_params[:'Idempotency-Key'] = opts[:'idempotency_key'] if !opts[:'idempotency_key'].nil?
       header_params[:'Accept-Language'] = opts[:'accept_language'] if !opts[:'accept_language'].nil?
       header_params[:'User-Agent'] = opts[:'user_agent'] if !opts[:'user_agent'].nil?
@@ -522,7 +532,7 @@ module CyberSource
       inbound_mle_status = "mandatory"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["update_checkout_session","update_checkout_session_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -537,7 +547,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20112',
+        :return_type => 'CheckoutSessionResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin

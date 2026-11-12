@@ -91,7 +91,7 @@ module CyberSource
         :'token_information' => :'Riskv1authenticationsetupsTokenInformation',
         :'buyer_information' => :'Riskv1authenticationsBuyerInformation',
         :'device_information' => :'Riskv1authenticationsDeviceInformation',
-        :'merchant_information' => :'Riskv1decisionsMerchantInformation',
+        :'merchant_information' => :'Riskv1authenticationsMerchantInformation',
         :'acquirer_information' => :'Riskv1decisionsAcquirerInformation',
         :'recurring_payment_information' => :'Ptsv2paymentsRecurringPaymentInformation',
         :'consumer_authentication_information' => :'Riskv1decisionsConsumerAuthenticationInformation',

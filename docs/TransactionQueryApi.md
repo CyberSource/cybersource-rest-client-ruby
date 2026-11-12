@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **create_query_api**
-> InlineResponse2014 create_query_api(id, body, content_type, x_requestid, v_c_merchant_id, v_c_permissions, v_c_correlation_id, v_c_organization_id, opts)
+> CreateQueryApiResponse create_query_api(id, create_query_api_request, content_type, x_requestid, v_c_merchant_id, v_c_permissions, v_c_correlation_id, v_c_organization_id, opts)
 
 Query Transaction Details
 
@@ -23,7 +23,7 @@ api_instance = CyberSource::TransactionQueryApi.new
 
 id = 'id_example' # String | This is the CyberSource Request ID generated for successfully processed AFT/OCT that needs to be queried. 
 
-body = CyberSource::Body1.new # Body1 | 
+create_query_api_request = CyberSource::CreateQueryApiRequest.new # CreateQueryApiRequest | 
 
 content_type = 'content_type_example' # String | 
 
@@ -44,7 +44,7 @@ opts = {
 
 begin
   #Query Transaction Details
-  result = api_instance.create_query_api(id, body, content_type, x_requestid, v_c_merchant_id, v_c_permissions, v_c_correlation_id, v_c_organization_id, opts)
+  result = api_instance.create_query_api(id, create_query_api_request, content_type, x_requestid, v_c_merchant_id, v_c_permissions, v_c_correlation_id, v_c_organization_id, opts)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling TransactionQueryApi->create_query_api: #{e}"
@@ -56,7 +56,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| This is the CyberSource Request ID generated for successfully processed AFT/OCT that needs to be queried.  | 
- **body** | [**Body1**](Body1.md)|  | 
+ **create_query_api_request** | [**CreateQueryApiRequest**](CreateQueryApiRequest.md)|  | 
  **content_type** | **String**|  | 
  **x_requestid** | **String**|  | 
  **v_c_merchant_id** | **String**|  | 
@@ -68,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2014**](InlineResponse2014.md)
+[**CreateQueryApiResponse**](CreateQueryApiResponse.md)
 
 ### Authorization
 

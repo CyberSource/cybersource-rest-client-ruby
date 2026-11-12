@@ -85,4 +85,10 @@ describe 'Ptsv2paymentsRiskInformationBuyerHistory' do
     end
   end
 
+  describe 'test attribute "failed_payment_attempts_count"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

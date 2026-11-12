@@ -93,7 +93,7 @@ public
           mleCertificate = certificateList[0]
         end
 
-        cacheValue = CacheValue.new(nil, mleCertificate, fileModifiedTime)
+        cacheValue = CacheValue.new(nil, Base64.strict_encode64(mleCertificate.to_der), fileModifiedTime)
 
         @@cache_obj.write(cacheKey, cacheValue)
         return

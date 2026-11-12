@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **retrieve_or_delete_payment_token**
-> InlineResponse201 retrieve_or_delete_payment_token(request)
+> RetrieveOrDeletePaymentTokenResponse retrieve_or_delete_payment_token(payment_token_request)
 
 Retrieve or Delete Payment Token
 
@@ -21,12 +21,12 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::PaymentTokensApi.new
 
-request = CyberSource::Request.new # Request | 
+payment_token_request = CyberSource::PaymentTokenRequest.new # PaymentTokenRequest | 
 
 
 begin
   #Retrieve or Delete Payment Token
-  result = api_instance.retrieve_or_delete_payment_token(request)
+  result = api_instance.retrieve_or_delete_payment_token(payment_token_request)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling PaymentTokensApi->retrieve_or_delete_payment_token: #{e}"
@@ -37,11 +37,11 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request** | [**Request**](Request.md)|  | 
+ **payment_token_request** | [**PaymentTokenRequest**](PaymentTokenRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse201**](InlineResponse201.md)
+[**RetrieveOrDeletePaymentTokenResponse**](RetrieveOrDeletePaymentTokenResponse.md)
 
 ### Authorization
 

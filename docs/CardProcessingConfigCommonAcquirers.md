@@ -14,6 +14,6 @@ Name | Type | Description | Notes
 **allow_multiple_bills** | **BOOLEAN** | Allows multiple captures for a single authorization transaction.  | [optional] 
 **enable_transaction_reference_number** | **BOOLEAN** | To enable merchant to send in transaction reference number (unique reconciliation ID). | [optional] 
 **payment_types** | [**Hash&lt;String, CardProcessingConfigCommonPaymentTypes&gt;**](CardProcessingConfigCommonPaymentTypes.md) | Valid values are: * VISA * MASTERCARD * AMERICAN_EXPRESS * CUP * EFTPOS * DINERS_CLUB * DISCOVER * JCB  | [optional] 
-**currencies** | [**Hash&lt;String, CardProcessingConfigCommonCurrencies&gt;**](CardProcessingConfigCommonCurrencies.md) | Three-character [ISO 4217 ALPHA-3 Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf) | [optional] 
+**currencies** | [**Hash&lt;String, CurrencyConfiguration&gt;**](CurrencyConfiguration.md) | Three-character [ISO 4217 ALPHA-3 Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf) | [optional] 
 
 

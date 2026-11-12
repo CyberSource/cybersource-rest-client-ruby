@@ -25,7 +25,7 @@ module CyberSource
     # @param post_tokenize_request 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
-    # @return [InlineResponse200]
+    # @return [PostTokenizeResponse]
     #
     def tokenize(post_tokenize_request, opts = {})
       data, status_code, headers = tokenize_with_http_info(post_tokenize_request, opts)
@@ -37,7 +37,7 @@ module CyberSource
     # @param post_tokenize_request 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
-    # @return [Array<(InlineResponse200, Fixnum, Hash)>] InlineResponse200 data, response status code and response headers
+    # @return [Array<(PostTokenizeResponse, Fixnum, Hash)>] PostTokenizeResponse data, response status code and response headers
     def tokenize_with_http_info(post_tokenize_request, opts = {})
 
       if @api_client.config.debugging
@@ -62,8 +62,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
       header_params[:'profile-id'] = opts[:'profile_id'] if !opts[:'profile_id'].nil?
 
       # form parameters
@@ -76,7 +78,7 @@ module CyberSource
       inbound_mle_status = "mandatory"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["tokenize","tokenize_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -91,7 +93,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse200',
+        :return_type => 'PostTokenizeResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin

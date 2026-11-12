@@ -25,7 +25,7 @@ module CyberSource
     # Configure Unified Checkout to determine whether Consumer Authentication is invoked during service orchestration.  Possible values:   - PASSKEY  - 3DS  - NONE<br><br>  Setting this value to PASSKEY performs Payer Authentication with an existing Visa Payment Passkey or create a new Passkey (Post a traditional 3DS Authentication) attempt to perform authentication using the Payer Authentication Service.<br> Setting this value to 3DS will attempt to perform authentication using the Payer Authentication Service.<br> Setting this value to NONE indicates that you do not wish to perform authentication using the Payer Authentication Service.<br><br>  Optional field: This field can be configured through the Merchant Experience screens in the Business Center. The configured value may be overridden on a per‑transaction basis in the uc/v1/sessions API request. 
     attr_accessor :consumer_authentication
 
-    # Controls whether the Complete Mandate experience or related processing is suppressed. 
+    # Controls whether the Complete Mandate experience or related processing is suppressed.  Possible values:  - True  - False<br><br>  Optional field: This field can be configured through the Merchant Experience screens in the Business Center. The configured value may be overridden on a per‑transaction basis in the uc/v1/sessions API request. 
     attr_accessor :suppress
 
     # Attribute mapping from ruby-style variable name to JSON key.

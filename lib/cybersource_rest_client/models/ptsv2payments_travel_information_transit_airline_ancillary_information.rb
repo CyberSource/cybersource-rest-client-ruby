@@ -27,9 +27,6 @@ module CyberSource
 
     attr_accessor :service
 
-    # This field contains the fee description for the airline ancillary service provided. Format: Alphanumeric, 100 characters maximum. Optional field for ancillary services. 
-    attr_accessor :fee_description
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -37,8 +34,7 @@ module CyberSource
         :'passenger_name' => :'passengerName',
         :'connected_ticket_number' => :'connectedTicketNumber',
         :'credit_reason_indicator' => :'creditReasonIndicator',
-        :'service' => :'service',
-        :'fee_description' => :'feeDescription'
+        :'service' => :'service'
       }
     end
 
@@ -49,8 +45,7 @@ module CyberSource
         :'passenger_name' => :'passenger_name',
         :'connected_ticket_number' => :'connected_ticket_number',
         :'credit_reason_indicator' => :'credit_reason_indicator',
-        :'service' => :'service',
-        :'fee_description' => :'fee_description'
+        :'service' => :'service'
       }
     end
 
@@ -61,8 +56,7 @@ module CyberSource
         :'passenger_name' => :'String',
         :'connected_ticket_number' => :'String',
         :'credit_reason_indicator' => :'String',
-        :'service' => :'Array<Ptsv2paymentsTravelInformationTransitAirlineAncillaryInformationService>',
-        :'fee_description' => :'String'
+        :'service' => :'Array<CommonAncillaryInformationServiceItem>'
       }
     end
 
@@ -94,10 +88,6 @@ module CyberSource
         if (value = attributes[:'service']).is_a?(Array)
           self.service = value
         end
-      end
-
-      if attributes.has_key?(:'feeDescription')
-        self.fee_description = attributes[:'feeDescription']
       end
     end
 
@@ -138,12 +128,6 @@ module CyberSource
       @credit_reason_indicator = credit_reason_indicator
     end
 
-    # Custom attribute writer method with validation
-    # @param [Object] fee_description Value to be assigned
-    def fee_description=(fee_description)
-      @fee_description = fee_description
-    end
-
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -153,8 +137,7 @@ module CyberSource
           passenger_name == o.passenger_name &&
           connected_ticket_number == o.connected_ticket_number &&
           credit_reason_indicator == o.credit_reason_indicator &&
-          service == o.service &&
-          fee_description == o.fee_description
+          service == o.service
     end
 
     # @see the `==` method
@@ -166,7 +149,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [ticket_number, passenger_name, connected_ticket_number, credit_reason_indicator, service, fee_description].hash
+      [ticket_number, passenger_name, connected_ticket_number, credit_reason_indicator, service].hash
     end
 
     # Builds the object from hash

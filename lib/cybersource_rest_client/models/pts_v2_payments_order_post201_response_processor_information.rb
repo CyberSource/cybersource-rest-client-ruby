@@ -47,7 +47,7 @@ module CyberSource
     def self.swagger_types
       {
         :'seller_protection' => :'PtsV2PaymentsOrderPost201ResponseProcessorInformationSellerProtection',
-        :'avs' => :'PtsV2PaymentsPost201Response1ProcessorInformationAvs',
+        :'avs' => :'RefreshPaymentStatusResponseProcessorInformationAvs',
         :'transaction_id' => :'String',
         :'response_details' => :'String'
       }

@@ -66,8 +66,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/json; charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json', 'application/json; charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -79,7 +81,7 @@ module CyberSource
       inbound_mle_status = "optional"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["create_order_request","create_order_request_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -147,8 +149,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/json; charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json', 'application/json; charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -160,7 +164,7 @@ module CyberSource
       inbound_mle_status = "optional"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["create_payment","create_payment_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -192,7 +196,7 @@ module CyberSource
     #
     # @param create_session_req 
     # @param [Hash] opts the optional parameters
-    # @return [PtsV2PaymentsPost201Response2]
+    # @return [CreateSessionResponse]
     #
     def create_session_request(create_session_req, opts = {})
       data, status_code, headers = create_session_request_with_http_info(create_session_req, opts)
@@ -203,7 +207,7 @@ module CyberSource
     # Create Alternative Payments Sessions Request
     # @param create_session_req 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(PtsV2PaymentsPost201Response2, Fixnum, Hash)>] PtsV2PaymentsPost201Response2 data, response status code and response headers
+    # @return [Array<(CreateSessionResponse, Fixnum, Hash)>] CreateSessionResponse data, response status code and response headers
     def create_session_request_with_http_info(create_session_req, opts = {})
 
       if @api_client.config.debugging
@@ -228,8 +232,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/json; charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json', 'application/json; charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -241,7 +247,7 @@ module CyberSource
       inbound_mle_status = "optional"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["create_session_request","create_session_request_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -256,7 +262,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'PtsV2PaymentsPost201Response2',
+        :return_type => 'CreateSessionResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -315,8 +321,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/json; charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json', 'application/json; charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -328,7 +336,7 @@ module CyberSource
       inbound_mle_status = "optional"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["increment_auth","increment_auth_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -361,7 +369,7 @@ module CyberSource
     # @param id The payment id whose status needs to be checked and updated.
     # @param refresh_payment_status_request 
     # @param [Hash] opts the optional parameters
-    # @return [PtsV2PaymentsPost201Response1]
+    # @return [RefreshPaymentStatusResponse]
     #
     def refresh_payment_status(id, refresh_payment_status_request, opts = {})
       data, status_code, headers = refresh_payment_status_with_http_info(id, refresh_payment_status_request, opts)
@@ -373,7 +381,7 @@ module CyberSource
     # @param id The payment id whose status needs to be checked and updated.
     # @param refresh_payment_status_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(PtsV2PaymentsPost201Response1, Fixnum, Hash)>] PtsV2PaymentsPost201Response1 data, response status code and response headers
+    # @return [Array<(RefreshPaymentStatusResponse, Fixnum, Hash)>] RefreshPaymentStatusResponse data, response status code and response headers
     def refresh_payment_status_with_http_info(id, refresh_payment_status_request, opts = {})
 
       if @api_client.config.debugging
@@ -402,8 +410,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/json; charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json', 'application/json; charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -415,7 +425,7 @@ module CyberSource
       inbound_mle_status = "optional"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["refresh_payment_status","refresh_payment_status_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -430,7 +440,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'PtsV2PaymentsPost201Response1',
+        :return_type => 'RefreshPaymentStatusResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -448,7 +458,7 @@ module CyberSource
     # @param create_session_request 
     # @param id The payment ID. This ID is returned from a previous payment request.
     # @param [Hash] opts the optional parameters
-    # @return [PtsV2PaymentsPost201Response2]
+    # @return [CreateSessionResponse]
     #
     def update_session_request(create_session_request, id, opts = {})
       data, status_code, headers = update_session_request_with_http_info(create_session_request, id, opts)
@@ -460,7 +470,7 @@ module CyberSource
     # @param create_session_request 
     # @param id The payment ID. This ID is returned from a previous payment request.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(PtsV2PaymentsPost201Response2, Fixnum, Hash)>] PtsV2PaymentsPost201Response2 data, response status code and response headers
+    # @return [Array<(CreateSessionResponse, Fixnum, Hash)>] CreateSessionResponse data, response status code and response headers
     def update_session_request_with_http_info(create_session_request, id, opts = {})
 
       if @api_client.config.debugging
@@ -489,8 +499,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/json; charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json', 'application/json; charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -502,7 +514,7 @@ module CyberSource
       inbound_mle_status = "optional"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["update_session_request","update_session_request_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -517,7 +529,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'PtsV2PaymentsPost201Response2',
+        :return_type => 'CreateSessionResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin

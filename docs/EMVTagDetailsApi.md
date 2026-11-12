@@ -50,7 +50,7 @@ No authorization required
 
 
 # **parse_emv_tags**
-> TssV2PostEmvTags200Response parse_emv_tags(body)
+> TssV2PostEmvTags200Response parse_emv_tags(parse_emv_tags_request)
 
 Parse an EMV String
 
@@ -63,12 +63,12 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::EMVTagDetailsApi.new
 
-body = CyberSource::Body2.new # Body2 | 
+parse_emv_tags_request = CyberSource::ParseEmvTagsRequest.new # ParseEmvTagsRequest | 
 
 
 begin
   #Parse an EMV String
-  result = api_instance.parse_emv_tags(body)
+  result = api_instance.parse_emv_tags(parse_emv_tags_request)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling EMVTagDetailsApi->parse_emv_tags: #{e}"
@@ -79,7 +79,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Body2**](Body2.md)|  | 
+ **parse_emv_tags_request** | [**ParseEmvTagsRequest**](ParseEmvTagsRequest.md)|  | 
 
 ### Return type
 

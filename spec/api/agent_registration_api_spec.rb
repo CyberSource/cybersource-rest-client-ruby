@@ -48,7 +48,7 @@ describe 'AgentRegistrationApi' do
   # Add a key to an agent
   # **Add a Key to an Agent**&lt;br&gt;Uploads a new public key for the specified agent. The key is created in ***deactivated*** state and must be explicitly activated via &#x60;POST /agents/{agentId}/keys/{keyId}/activate&#x60; before it can be used.&lt;br&gt;&lt;br&gt; Returns **404** if the agent is not found, **403** if the agent is deactivated. 
   # @param agent_id Unique agent identifier
-  # @param key_request Key creation request
+  # @param add_agent_key_request Key creation request
   # @param [Hash] opts the optional parameters
   # @return [AddAgentKeyResponse201]
   describe 'add_agent_key test' do
@@ -126,7 +126,7 @@ describe 'AgentRegistrationApi' do
   # **Update a Key**&lt;br&gt;Updates key information. The following fields can be modified: &#x60;keyName&#x60;, &#x60;publicKey&#x60;, &#x60;algorithm&#x60;, and &#x60;expirationDate&#x60;.&lt;br&gt;&lt;br&gt; **Note:** &#x60;publicKey&#x60; and &#x60;algorithm&#x60; must always be updated together.&lt;br&gt; Returns **404** if the agent or key is not found, **403** if the agent or key is deactivated, **409** if the new &#x60;keyName&#x60; already exists. 
   # @param agent_id Unique agent identifier
   # @param key_id Unique key identifier
-  # @param key_update Key update request
+  # @param update_agent_key_request Key update request
   # @param [Hash] opts the optional parameters
   # @return [AddAgentKeyResponse201]
   describe 'update_agent_key test' do

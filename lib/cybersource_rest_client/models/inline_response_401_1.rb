@@ -13,24 +13,31 @@ require 'date'
 
 module CyberSource
   class InlineResponse4011
-    # A unique identification number to identify the submitted request. It is also appended to the endpoint of the resource. 
-    attr_accessor :id
+    attr_accessor :_links
 
-    # Time of request in UTC. Format: `YYYY-MM-DD'T'HH:mm:ssZ`  Example: `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the time. The Z indicates UTC. 
-    attr_accessor :submit_time_stamp_utc
+    # Valid Values:   * FORBIDDEN_RESPONSE   * VALIDATION_ERROR   * UNSUPPORTED_MEDIA_TYPE   * MALFORMED_PAYLOAD_ERROR   * SERVER_ERROR 
+    attr_accessor :code
 
-    # The reason of the status.  Possible values: - UNAUTHORIZED 
-    attr_accessor :reason
+    attr_accessor :correlation_id
 
-    # The detail message related to the status and reason listed above. 
+    attr_accessor :detail
+
+    attr_accessor :fields
+
+    # Valid Values:   * cybsapi.forbidden.response   * cybsapi.validation.error   * cybsapi.media.notsupported 
+    attr_accessor :localization_key
+
     attr_accessor :message
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id',
-        :'submit_time_stamp_utc' => :'submitTimeStampUtc',
-        :'reason' => :'reason',
+        :'_links' => :'_links',
+        :'code' => :'code',
+        :'correlation_id' => :'correlationId',
+        :'detail' => :'detail',
+        :'fields' => :'fields',
+        :'localization_key' => :'localizationKey',
         :'message' => :'message'
       }
     end
@@ -38,9 +45,12 @@ module CyberSource
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'id' => :'id',
-        :'submit_time_stamp_utc' => :'submit_time_stamp_utc',
-        :'reason' => :'reason',
+        :'_links' => :'_links',
+        :'code' => :'code',
+        :'correlation_id' => :'correlation_id',
+        :'detail' => :'detail',
+        :'fields' => :'fields',
+        :'localization_key' => :'localization_key',
         :'message' => :'message'
       }
     end
@@ -48,9 +58,12 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'id' => :'String',
-        :'submit_time_stamp_utc' => :'String',
-        :'reason' => :'String',
+        :'_links' => :'InlineResponse4011Links',
+        :'code' => :'String',
+        :'correlation_id' => :'String',
+        :'detail' => :'String',
+        :'fields' => :'Array<InlineResponse4011Fields>',
+        :'localization_key' => :'String',
         :'message' => :'String'
       }
     end
@@ -63,16 +76,30 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'id')
-        self.id = attributes[:'id']
+      if attributes.has_key?(:'_links')
+        self._links = attributes[:'_links']
       end
 
-      if attributes.has_key?(:'submitTimeStampUtc')
-        self.submit_time_stamp_utc = attributes[:'submitTimeStampUtc']
+      if attributes.has_key?(:'code')
+        self.code = attributes[:'code']
       end
 
-      if attributes.has_key?(:'reason')
-        self.reason = attributes[:'reason']
+      if attributes.has_key?(:'correlationId')
+        self.correlation_id = attributes[:'correlationId']
+      end
+
+      if attributes.has_key?(:'detail')
+        self.detail = attributes[:'detail']
+      end
+
+      if attributes.has_key?(:'fields')
+        if (value = attributes[:'fields']).is_a?(Array)
+          self.fields = value
+        end
+      end
+
+      if attributes.has_key?(:'localizationKey')
+        self.localization_key = attributes[:'localizationKey']
       end
 
       if attributes.has_key?(:'message')
@@ -93,32 +120,17 @@ module CyberSource
       true
     end
 
-    # Custom attribute writer method with validation
-    # @param [Object] id Value to be assigned
-    def id=(id)
-      @id = id
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] submit_time_stamp_utc Value to be assigned
-    def submit_time_stamp_utc=(submit_time_stamp_utc)
-      @submit_time_stamp_utc = submit_time_stamp_utc
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] message Value to be assigned
-    def message=(message)
-      @message = message
-    end
-
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id == o.id &&
-          submit_time_stamp_utc == o.submit_time_stamp_utc &&
-          reason == o.reason &&
+          _links == o._links &&
+          code == o.code &&
+          correlation_id == o.correlation_id &&
+          detail == o.detail &&
+          fields == o.fields &&
+          localization_key == o.localization_key &&
           message == o.message
     end
 
@@ -131,7 +143,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, submit_time_stamp_utc, reason, message].hash
+      [_links, code, correlation_id, detail, fields, localization_key, message].hash
     end
 
     # Builds the object from hash

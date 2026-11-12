@@ -110,7 +110,7 @@ No authorization required
 
 
 # **create_session_request**
-> PtsV2PaymentsPost201Response2 create_session_request(create_session_req)
+> CreateSessionResponse create_session_request(create_session_req)
 
 Create Alternative Payments Sessions Request
 
@@ -143,7 +143,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PtsV2PaymentsPost201Response2**](PtsV2PaymentsPost201Response2.md)
+[**CreateSessionResponse**](CreateSessionResponse.md)
 
 ### Authorization
 
@@ -207,7 +207,7 @@ No authorization required
 
 
 # **refresh_payment_status**
-> PtsV2PaymentsPost201Response1 refresh_payment_status(id, refresh_payment_status_request)
+> RefreshPaymentStatusResponse refresh_payment_status(id, refresh_payment_status_request)
 
 Check a Payment Status
 
@@ -243,7 +243,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PtsV2PaymentsPost201Response1**](PtsV2PaymentsPost201Response1.md)
+[**RefreshPaymentStatusResponse**](RefreshPaymentStatusResponse.md)
 
 ### Authorization
 
@@ -257,7 +257,7 @@ No authorization required
 
 
 # **update_session_request**
-> PtsV2PaymentsPost201Response2 update_session_request(create_session_request, id)
+> CreateSessionResponse update_session_request(create_session_request, id)
 
 Update Alternative Payments Sessions Request
 
@@ -293,7 +293,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PtsV2PaymentsPost201Response2**](PtsV2PaymentsPost201Response2.md)
+[**CreateSessionResponse**](CreateSessionResponse.md)
 
 ### Authorization
 

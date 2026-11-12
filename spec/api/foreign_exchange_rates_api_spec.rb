@@ -34,7 +34,7 @@ describe 'ForeignExchangeRatesApi' do
   # unit tests for create_fx_rates
   # Retrieve Foreign Exchange Rates
   # Retrieve current foreign exchange rates for cross-border payouts. 
-  # @param body 
+  # @param create_fx_rates_request 
   # @param content_type 
   # @param x_requestid 
   # @param v_c_merchant_id 
@@ -42,7 +42,7 @@ describe 'ForeignExchangeRatesApi' do
   # @param v_c_correlation_id 
   # @param v_c_organization_id 
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2013]
+  # @return [CreateFxRatesResponse]
   describe 'create_fx_rates test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

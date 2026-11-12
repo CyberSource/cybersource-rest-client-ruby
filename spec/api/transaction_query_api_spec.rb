@@ -35,7 +35,7 @@ describe 'TransactionQueryApi' do
   # Query Transaction Details
   # Query the status and details of payouts transactions including Pull Funds, Push Funds, and Pull Funds Reversals 
   # @param id This is the CyberSource Request ID generated for successfully processed AFT/OCT that needs to be queried. 
-  # @param body 
+  # @param create_query_api_request 
   # @param content_type 
   # @param x_requestid 
   # @param v_c_merchant_id 
@@ -45,7 +45,7 @@ describe 'TransactionQueryApi' do
   # @param [Hash] opts the optional parameters
   # @option opts [Integer] :limit The maximum number of options to be retrieved from the processor and displayed to the consumer. 
   # @option opts [Integer] :offset Offset from the first item in the list of options received from the processor. If you want to display the options in multiple lists, this number represents the first option displayed in each list. 
-  # @return [InlineResponse2014]
+  # @return [CreateQueryApiResponse]
   describe 'create_query_api test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
