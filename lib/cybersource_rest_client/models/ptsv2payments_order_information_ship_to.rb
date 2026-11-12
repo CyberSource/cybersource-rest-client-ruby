@@ -70,6 +70,9 @@ module CyberSource
     # Shipping method for the product. Possible values: - lowcost: Lowest-cost service - sameday: Courier or same-day service - oneday: Next-day or overnight service - twoday: Two-day service - threeday: Three-day service - pickup: Store pick-up - other: Other shipping method - none: No shipping method because product is a service or subscription Required for American Express SafeKey (U.S.). 
     attr_accessor :method
 
+    # Name of carrier (UPS, FedEx, USPS, etc.) 
+    attr_accessor :carrier_name
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -91,7 +94,8 @@ module CyberSource
         :'company' => :'company',
         :'destination_types' => :'destinationTypes',
         :'destination_code' => :'destinationCode',
-        :'method' => :'method'
+        :'method' => :'method',
+        :'carrier_name' => :'carrierName'
       }
     end
 
@@ -116,7 +120,8 @@ module CyberSource
         :'company' => :'company',
         :'destination_types' => :'destination_types',
         :'destination_code' => :'destination_code',
-        :'method' => :'method'
+        :'method' => :'method',
+        :'carrier_name' => :'carrier_name'
       }
     end
 
@@ -141,7 +146,8 @@ module CyberSource
         :'company' => :'String',
         :'destination_types' => :'String',
         :'destination_code' => :'Integer',
-        :'method' => :'String'
+        :'method' => :'String',
+        :'carrier_name' => :'String'
       }
     end
 
@@ -227,6 +233,10 @@ module CyberSource
 
       if attributes.has_key?(:'method')
         self.method = attributes[:'method']
+      end
+
+      if attributes.has_key?(:'carrierName')
+        self.carrier_name = attributes[:'carrierName']
       end
     end
 
@@ -351,6 +361,12 @@ module CyberSource
       @method = method
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] carrier_name Value to be assigned
+    def carrier_name=(carrier_name)
+      @carrier_name = carrier_name
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -374,7 +390,8 @@ module CyberSource
           company == o.company &&
           destination_types == o.destination_types &&
           destination_code == o.destination_code &&
-          method == o.method
+          method == o.method &&
+          carrier_name == o.carrier_name
     end
 
     # @see the `==` method
@@ -386,7 +403,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [title, first_name, middle_name, last_name, address1, address2, locality, administrative_area, postal_code, county, country, district, building_number, phone_number, email, company, destination_types, destination_code, method].hash
+      [title, first_name, middle_name, last_name, address1, address2, locality, administrative_area, postal_code, county, country, district, building_number, phone_number, email, company, destination_types, destination_code, method, carrier_name].hash
     end
 
     # Builds the object from hash

@@ -129,7 +129,7 @@ describe 'SubscriptionsApi' do
   # @param id Subscription Id
   # @param update_payments Modify payments of a subscription
   # @param [Hash] opts the optional parameters
-  # @return [GetSubscriptionsPaymentsResponse1]
+  # @return [UpdateSubscriptionsPaymentsResponse]
   describe 'subscriptions_id_payments_put test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

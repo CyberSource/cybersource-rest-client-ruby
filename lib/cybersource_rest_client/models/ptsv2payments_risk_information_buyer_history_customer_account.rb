@@ -31,6 +31,22 @@ module CyberSource
     # Date the cardholder last changed or reset password on account. Recommended for Discover ProtectBuy. This only applies for PASSWORD_CHANGED_PAST in passwordHistory. 
     attr_accessor :password_change_date
 
+    attr_accessor :previous_login
+
+    attr_accessor :previous_order
+
+    # Number of Payment methods (all types) created on customer account
+    attr_accessor :payment_methods_count
+
+    # Number of total orders made by this customer account
+    attr_accessor :total_orders_count
+
+    # True if the customer provided a proof of any id
+    attr_accessor :proof_of_id_received
+
+    # Date of last email change. Format: 'YYYYMMDD' 
+    attr_accessor :last_email_change_date
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -39,7 +55,13 @@ module CyberSource
         :'modification_history' => :'modificationHistory',
         :'password_history' => :'passwordHistory',
         :'create_date' => :'createDate',
-        :'password_change_date' => :'passwordChangeDate'
+        :'password_change_date' => :'passwordChangeDate',
+        :'previous_login' => :'previousLogin',
+        :'previous_order' => :'previousOrder',
+        :'payment_methods_count' => :'paymentMethodsCount',
+        :'total_orders_count' => :'totalOrdersCount',
+        :'proof_of_id_received' => :'proofOfIdReceived',
+        :'last_email_change_date' => :'lastEmailChangeDate'
       }
     end
 
@@ -51,7 +73,13 @@ module CyberSource
         :'modification_history' => :'modification_history',
         :'password_history' => :'password_history',
         :'create_date' => :'create_date',
-        :'password_change_date' => :'password_change_date'
+        :'password_change_date' => :'password_change_date',
+        :'previous_login' => :'previous_login',
+        :'previous_order' => :'previous_order',
+        :'payment_methods_count' => :'payment_methods_count',
+        :'total_orders_count' => :'total_orders_count',
+        :'proof_of_id_received' => :'proof_of_id_received',
+        :'last_email_change_date' => :'last_email_change_date'
       }
     end
 
@@ -63,7 +91,13 @@ module CyberSource
         :'modification_history' => :'String',
         :'password_history' => :'String',
         :'create_date' => :'String',
-        :'password_change_date' => :'String'
+        :'password_change_date' => :'String',
+        :'previous_login' => :'Ptsv2paymentsRiskInformationBuyerHistoryCustomerAccountPreviousLogin',
+        :'previous_order' => :'Ptsv2paymentsRiskInformationBuyerHistoryCustomerAccountPreviousOrder',
+        :'payment_methods_count' => :'Float',
+        :'total_orders_count' => :'Float',
+        :'proof_of_id_received' => :'BOOLEAN',
+        :'last_email_change_date' => :'String'
       }
     end
 
@@ -98,6 +132,30 @@ module CyberSource
       if attributes.has_key?(:'passwordChangeDate')
         self.password_change_date = attributes[:'passwordChangeDate']
       end
+
+      if attributes.has_key?(:'previousLogin')
+        self.previous_login = attributes[:'previousLogin']
+      end
+
+      if attributes.has_key?(:'previousOrder')
+        self.previous_order = attributes[:'previousOrder']
+      end
+
+      if attributes.has_key?(:'paymentMethodsCount')
+        self.payment_methods_count = attributes[:'paymentMethodsCount']
+      end
+
+      if attributes.has_key?(:'totalOrdersCount')
+        self.total_orders_count = attributes[:'totalOrdersCount']
+      end
+
+      if attributes.has_key?(:'proofOfIdReceived')
+        self.proof_of_id_received = attributes[:'proofOfIdReceived']
+      end
+
+      if attributes.has_key?(:'lastEmailChangeDate')
+        self.last_email_change_date = attributes[:'lastEmailChangeDate']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -131,6 +189,12 @@ module CyberSource
       @password_change_date = password_change_date
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] last_email_change_date Value to be assigned
+    def last_email_change_date=(last_email_change_date)
+      @last_email_change_date = last_email_change_date
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -141,7 +205,13 @@ module CyberSource
           modification_history == o.modification_history &&
           password_history == o.password_history &&
           create_date == o.create_date &&
-          password_change_date == o.password_change_date
+          password_change_date == o.password_change_date &&
+          previous_login == o.previous_login &&
+          previous_order == o.previous_order &&
+          payment_methods_count == o.payment_methods_count &&
+          total_orders_count == o.total_orders_count &&
+          proof_of_id_received == o.proof_of_id_received &&
+          last_email_change_date == o.last_email_change_date
     end
 
     # @see the `==` method
@@ -153,7 +223,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [last_change_date, creation_history, modification_history, password_history, create_date, password_change_date].hash
+      [last_change_date, creation_history, modification_history, password_history, create_date, password_change_date, previous_login, previous_order, payment_methods_count, total_orders_count, proof_of_id_received, last_email_change_date].hash
     end
 
     # Builds the object from hash

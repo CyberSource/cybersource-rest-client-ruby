@@ -67,6 +67,12 @@ describe 'Ptsv2paymentsOrderInformation' do
     end
   end
 
+  describe 'test attribute "vouchers"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "shipping_details"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

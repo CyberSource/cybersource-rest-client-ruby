@@ -54,8 +54,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -69,7 +71,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_emv_tags","get_emv_tags_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -99,21 +101,21 @@ module CyberSource
     # Parse an EMV String
     # Pass an EMV Tag-Length-Value (TLV) string for parsing.
     #
-    # @param body 
+    # @param parse_emv_tags_request 
     # @param [Hash] opts the optional parameters
     # @return [TssV2PostEmvTags200Response]
     #
-    def parse_emv_tags(body, opts = {})
-      data, status_code, headers = parse_emv_tags_with_http_info(body, opts)
+    def parse_emv_tags(parse_emv_tags_request, opts = {})
+      data, status_code, headers = parse_emv_tags_with_http_info(parse_emv_tags_request, opts)
       return data, status_code, headers
     end
 
     # Parse an EMV String
     # Pass an EMV Tag-Length-Value (TLV) string for parsing.
-    # @param body 
+    # @param parse_emv_tags_request 
     # @param [Hash] opts the optional parameters
     # @return [Array<(TssV2PostEmvTags200Response, Fixnum, Hash)>] TssV2PostEmvTags200Response data, response status code and response headers
-    def parse_emv_tags_with_http_info(body, opts = {})
+    def parse_emv_tags_with_http_info(parse_emv_tags_request, opts = {})
 
       if @api_client.config.debugging
           begin
@@ -123,9 +125,9 @@ module CyberSource
                 puts 'Cannot write to log'
             end
       end
-      # verify the required parameter 'body' is set
-      if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling EMVTagDetailsApi.parse_emv_tags"
+      # verify the required parameter 'parse_emv_tags_request' is set
+      if @api_client.config.client_side_validation && parse_emv_tags_request.nil?
+        fail ArgumentError, "Missing the required parameter 'parse_emv_tags_request' when calling EMVTagDetailsApi.parse_emv_tags"
       end
       # resource path
       local_var_path = 'tss/v2/transactions/emvTagDetails'
@@ -137,20 +139,22 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(body)
+      post_body = @api_client.object_to_http_body(parse_emv_tags_request)
       sdk_tracker = SdkTracker.new
-      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'Body2', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'ParseEmvTagsRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["parse_emv_tags","parse_emv_tags_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end

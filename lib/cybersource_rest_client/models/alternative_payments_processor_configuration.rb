@@ -34,7 +34,7 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'payment_methods' => :'Hash<String, PaymentsProductsAlternativePaymentMethodsConfigurationInformationConfigurationsPaymentMethods>'
+        :'payment_methods' => :'Hash<String, AlternativePaymentsPaymentMethodConfiguration>'
       }
     end
 

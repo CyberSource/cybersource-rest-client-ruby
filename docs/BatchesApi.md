@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **get_batch_report**
-> InlineResponse20014 get_batch_report(batch_id)
+> BatchReportResponse get_batch_report(batch_id)
 
 Retrieve a Batch Report
 
@@ -44,7 +44,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20014**](InlineResponse20014.md)
+[**BatchReportResponse**](BatchReportResponse.md)
 
 ### Authorization
 
@@ -58,7 +58,7 @@ No authorization required
 
 
 # **get_batch_status**
-> InlineResponse20013 get_batch_status(batch_id)
+> BatchStatusResponse get_batch_status(batch_id)
 
 Retrieve a Batch Status
 
@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20013**](InlineResponse20013.md)
+[**BatchStatusResponse**](BatchStatusResponse.md)
 
 ### Authorization
 
@@ -105,7 +105,7 @@ No authorization required
 
 
 # **get_batches_list**
-> InlineResponse20012 get_batches_list(opts)
+> BatchesListResponse get_batches_list(opts)
 
 List Batches
 
@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20012**](InlineResponse20012.md)
+[**BatchesListResponse**](BatchesListResponse.md)
 
 ### Authorization
 
@@ -159,7 +159,7 @@ No authorization required
 
 
 # **post_batch**
-> InlineResponse202 post_batch(body)
+> BatchCreateResponse post_batch(post_batch_request)
 
 Create a Batch
 
@@ -172,12 +172,12 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::BatchesApi.new
 
-body = CyberSource::Body.new # Body | 
+post_batch_request = CyberSource::PostBatchRequest.new # PostBatchRequest | 
 
 
 begin
   #Create a Batch
-  result = api_instance.post_batch(body)
+  result = api_instance.post_batch(post_batch_request)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling BatchesApi->post_batch: #{e}"
@@ -188,11 +188,11 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Body**](Body.md)|  | 
+ **post_batch_request** | [**PostBatchRequest**](PostBatchRequest.md)|  | 
 
 ### Return type
 
-[**InlineResponse202**](InlineResponse202.md)
+[**BatchCreateResponse**](BatchCreateResponse.md)
 
 ### Authorization
 

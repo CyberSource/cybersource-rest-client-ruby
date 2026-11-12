@@ -66,8 +66,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/json; charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json', 'application/json; charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -79,7 +81,7 @@ module CyberSource
       inbound_mle_status = "optional"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["billing_agreements_de_registration","billing_agreements_de_registration_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -112,7 +114,7 @@ module CyberSource
     # @param intimate_billing_agreement 
     # @param id ID for intimation of Billing Agreement
     # @param [Hash] opts the optional parameters
-    # @return [PtsV2CreditsPost201Response1]
+    # @return [IntimateBillingAgreementResponse]
     #
     def billing_agreements_intimation(intimate_billing_agreement, id, opts = {})
       data, status_code, headers = billing_agreements_intimation_with_http_info(intimate_billing_agreement, id, opts)
@@ -124,7 +126,7 @@ module CyberSource
     # @param intimate_billing_agreement 
     # @param id ID for intimation of Billing Agreement
     # @param [Hash] opts the optional parameters
-    # @return [Array<(PtsV2CreditsPost201Response1, Fixnum, Hash)>] PtsV2CreditsPost201Response1 data, response status code and response headers
+    # @return [Array<(IntimateBillingAgreementResponse, Fixnum, Hash)>] IntimateBillingAgreementResponse data, response status code and response headers
     def billing_agreements_intimation_with_http_info(intimate_billing_agreement, id, opts = {})
 
       if @api_client.config.debugging
@@ -153,8 +155,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/json; charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json', 'application/json; charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -166,7 +170,7 @@ module CyberSource
       inbound_mle_status = "optional"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["billing_agreements_intimation","billing_agreements_intimation_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -181,7 +185,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'PtsV2CreditsPost201Response1',
+        :return_type => 'IntimateBillingAgreementResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -234,8 +238,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/json; charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json', 'application/json; charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -247,7 +253,7 @@ module CyberSource
       inbound_mle_status = "optional"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["billing_agreements_registration","billing_agreements_registration_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end

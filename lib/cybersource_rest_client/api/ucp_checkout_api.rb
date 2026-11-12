@@ -24,7 +24,7 @@ module CyberSource
     #
     # @param session_id The unique identifier of the UCP checkout session to cancel.
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse20113]
+    # @return [UcpCheckoutSessionResponse]
     #
     def ucp_cancel_checkout(session_id, opts = {})
       data, status_code, headers = ucp_cancel_checkout_with_http_info(session_id, opts)
@@ -35,7 +35,7 @@ module CyberSource
     # Cancels an active UCP checkout session. No charge is made.  This operation is idempotent — cancelling an already-cancelled session returns a successful response. Sessions also expire automatically after 30 minutes of inactivity. 
     # @param session_id The unique identifier of the UCP checkout session to cancel.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse20113, Fixnum, Hash)>] InlineResponse20113 data, response status code and response headers
+    # @return [Array<(UcpCheckoutSessionResponse, Fixnum, Hash)>] UcpCheckoutSessionResponse data, response status code and response headers
     def ucp_cancel_checkout_with_http_info(session_id, opts = {})
 
       if @api_client.config.debugging
@@ -60,8 +60,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -75,7 +77,7 @@ module CyberSource
       inbound_mle_status = "mandatory"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["ucp_cancel_checkout","ucp_cancel_checkout_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -90,7 +92,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20113',
+        :return_type => 'UcpCheckoutSessionResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -109,7 +111,7 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @option opts [String] :idempotency_key **Strongly recommended.** A unique key that ensures this order is placed exactly once on retries. Lowercase per UCP spec. 
     # @option opts [UcpCompleteCheckoutRequest] :ucp_complete_checkout_request UCP completion payload containing payment instrument and optional risk signals. If payment context was already provided in the Create or Update call, the body can be omitted. Risk signals are logged for fraud analysis and are not forwarded to the merchant. 
-    # @return [InlineResponse20113]
+    # @return [UcpCheckoutSessionResponse]
     #
     def ucp_complete_checkout(session_id, opts = {})
       data, status_code, headers = ucp_complete_checkout_with_http_info(session_id, opts)
@@ -122,7 +124,7 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @option opts [String] :idempotency_key **Strongly recommended.** A unique key that ensures this order is placed exactly once on retries. Lowercase per UCP spec. 
     # @option opts [UcpCompleteCheckoutRequest] :ucp_complete_checkout_request UCP completion payload containing payment instrument and optional risk signals. If payment context was already provided in the Create or Update call, the body can be omitted. Risk signals are logged for fraud analysis and are not forwarded to the merchant. 
-    # @return [Array<(InlineResponse20113, Fixnum, Hash)>] InlineResponse20113 data, response status code and response headers
+    # @return [Array<(UcpCheckoutSessionResponse, Fixnum, Hash)>] UcpCheckoutSessionResponse data, response status code and response headers
     def ucp_complete_checkout_with_http_info(session_id, opts = {})
 
       if @api_client.config.debugging
@@ -147,8 +149,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
       header_params[:'idempotency-key'] = opts[:'idempotency_key'] if !opts[:'idempotency_key'].nil?
 
       # form parameters
@@ -161,7 +165,7 @@ module CyberSource
       inbound_mle_status = "mandatory"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["ucp_complete_checkout","ucp_complete_checkout_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -176,7 +180,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20113',
+        :return_type => 'UcpCheckoutSessionResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -194,7 +198,7 @@ module CyberSource
     # @param ucp_create_checkout_session_request UCP checkout session creation payload containing line items, buyer details, currency, and optional payment, fulfillment, and discount information. 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :idempotency_key Client-generated unique key (UUID recommended) to ensure this request is processed exactly once. Lowercase per UCP specification. 
-    # @return [InlineResponse20113]
+    # @return [UcpCheckoutSessionResponse]
     #
     def ucp_create_checkout_session(ucp_create_checkout_session_request, opts = {})
       data, status_code, headers = ucp_create_checkout_session_with_http_info(ucp_create_checkout_session_request, opts)
@@ -206,7 +210,7 @@ module CyberSource
     # @param ucp_create_checkout_session_request UCP checkout session creation payload containing line items, buyer details, currency, and optional payment, fulfillment, and discount information. 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :idempotency_key Client-generated unique key (UUID recommended) to ensure this request is processed exactly once. Lowercase per UCP specification. 
-    # @return [Array<(InlineResponse20113, Fixnum, Hash)>] InlineResponse20113 data, response status code and response headers
+    # @return [Array<(UcpCheckoutSessionResponse, Fixnum, Hash)>] UcpCheckoutSessionResponse data, response status code and response headers
     def ucp_create_checkout_session_with_http_info(ucp_create_checkout_session_request, opts = {})
 
       if @api_client.config.debugging
@@ -231,8 +235,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
       header_params[:'idempotency-key'] = opts[:'idempotency_key'] if !opts[:'idempotency_key'].nil?
 
       # form parameters
@@ -245,7 +251,7 @@ module CyberSource
       inbound_mle_status = "mandatory"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["ucp_create_checkout_session","ucp_create_checkout_session_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -260,7 +266,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20113',
+        :return_type => 'UcpCheckoutSessionResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -278,7 +284,7 @@ module CyberSource
     # @param session_id The unique identifier of the UCP checkout session to retrieve. Obtained from the &#x60;id&#x60; field in the Create Session response. 
     # @param ucp_get_checkout_session_request Empty request body.
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse20113]
+    # @return [UcpCheckoutSessionResponse]
     #
     def ucp_get_checkout_session(session_id, ucp_get_checkout_session_request, opts = {})
       data, status_code, headers = ucp_get_checkout_session_with_http_info(session_id, ucp_get_checkout_session_request, opts)
@@ -290,7 +296,7 @@ module CyberSource
     # @param session_id The unique identifier of the UCP checkout session to retrieve. Obtained from the &#x60;id&#x60; field in the Create Session response. 
     # @param ucp_get_checkout_session_request Empty request body.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse20113, Fixnum, Hash)>] InlineResponse20113 data, response status code and response headers
+    # @return [Array<(UcpCheckoutSessionResponse, Fixnum, Hash)>] UcpCheckoutSessionResponse data, response status code and response headers
     def ucp_get_checkout_session_with_http_info(session_id, ucp_get_checkout_session_request, opts = {})
 
       if @api_client.config.debugging
@@ -319,8 +325,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -332,7 +340,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["ucp_get_checkout_session","ucp_get_checkout_session_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -347,7 +355,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20113',
+        :return_type => 'UcpCheckoutSessionResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -366,7 +374,7 @@ module CyberSource
     # @param ucp_update_checkout_session_request UCP session update payload. All fields are optional — only fields you include will be applied. 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :idempotency_key Client-generated unique key for idempotency. Lowercase per UCP spec.
-    # @return [InlineResponse20113]
+    # @return [UcpCheckoutSessionResponse]
     #
     def ucp_update_checkout_session(session_id, ucp_update_checkout_session_request, opts = {})
       data, status_code, headers = ucp_update_checkout_session_with_http_info(session_id, ucp_update_checkout_session_request, opts)
@@ -379,7 +387,7 @@ module CyberSource
     # @param ucp_update_checkout_session_request UCP session update payload. All fields are optional — only fields you include will be applied. 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :idempotency_key Client-generated unique key for idempotency. Lowercase per UCP spec.
-    # @return [Array<(InlineResponse20113, Fixnum, Hash)>] InlineResponse20113 data, response status code and response headers
+    # @return [Array<(UcpCheckoutSessionResponse, Fixnum, Hash)>] UcpCheckoutSessionResponse data, response status code and response headers
     def ucp_update_checkout_session_with_http_info(session_id, ucp_update_checkout_session_request, opts = {})
 
       if @api_client.config.debugging
@@ -408,8 +416,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
       header_params[:'idempotency-key'] = opts[:'idempotency_key'] if !opts[:'idempotency_key'].nil?
 
       # form parameters
@@ -422,7 +432,7 @@ module CyberSource
       inbound_mle_status = "mandatory"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["ucp_update_checkout_session","ucp_update_checkout_session_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -437,7 +447,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20113',
+        :return_type => 'UcpCheckoutSessionResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin

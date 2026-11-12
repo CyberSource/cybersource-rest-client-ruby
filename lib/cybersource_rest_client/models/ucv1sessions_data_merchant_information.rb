@@ -15,7 +15,7 @@ module CyberSource
   class Ucv1sessionsDataMerchantInformation
     attr_accessor :merchant_descriptor
 
-    # Your government-assigned tax identification number.  #### Tax Calculation Required field for value added tax only. Not applicable to U.S. and Canadian taxes.  #### CyberSource through VisaNet For CtV processors, the maximum length is 20. 
+    # Your government-assigned tax identification number.  #### Tax Calculation Required field for value added tax only. Not applicable to U.S. and Canadian taxes. 
     attr_accessor :vat_registration_number
 
     # Attribute mapping from ruby-style variable name to JSON key.

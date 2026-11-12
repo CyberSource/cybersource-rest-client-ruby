@@ -17,24 +17,53 @@ module CyberSource
     # - Use `CONSUMER_AUTHENTICATION` to use Payer Authentication along with Decision Manager. For any other value, only Decision Manager will run. - Use `WATCHLIST_SCREENING`  when you want to call Watchlist Screening service. 
     attr_accessor :action_list
 
+    # Required for AFT and OCT transactions.  Given below is a list of all the BAI values available. However, the processors may support only few specific BAI values.  - AA : Account-to-account  - BB : Supplier Payments - BI : Bank-Initiated P2P Money Transfer - BP : Non-Card Bill Pay/Bill Pay - CD : Cash Deposit - CP : Credit card Bill Payment - FD : Funds disbursement  - FT : Funds transfer - GD : Government Disbursement - GP : Gambling payout (non-online gambling) - LO : Loyalty credits and rebates - MD : Merchant Settlement - OG : Online Gambling Payout - PD : Payroll and pension disbursement - PP : Person-to-Person or Peer-to-Peer - TU : Top up, prepaid load - WT : Digital wallet  
+    attr_accessor :business_application_id
+
+    # This field is applicable for AFT and OCT transactions. For list of supported values, please refer to Developer Guide. 
+    attr_accessor :purpose_of_payment
+
+    # Outcome of a pre-authorization process. Used when processing payment outside of CyberSource and sent to Decision Manager post-authorisation. Possible values: Approved, Rejected, Hold. 
+    attr_accessor :pre_auth_status
+
+    # Alphanumeric code returned by the issuer or payment gateway during the pre-authorization stage of a transaction. 
+    attr_accessor :pre_auth_response_code
+
+    attr_accessor :authorization_options
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'action_list' => :'actionList'
+        :'action_list' => :'actionList',
+        :'business_application_id' => :'businessApplicationId',
+        :'purpose_of_payment' => :'purposeOfPayment',
+        :'pre_auth_status' => :'preAuthStatus',
+        :'pre_auth_response_code' => :'preAuthResponseCode',
+        :'authorization_options' => :'authorizationOptions'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'action_list' => :'action_list'
+        :'action_list' => :'action_list',
+        :'business_application_id' => :'business_application_id',
+        :'purpose_of_payment' => :'purpose_of_payment',
+        :'pre_auth_status' => :'pre_auth_status',
+        :'pre_auth_response_code' => :'pre_auth_response_code',
+        :'authorization_options' => :'authorization_options'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'action_list' => :'Array<String>'
+        :'action_list' => :'Array<String>',
+        :'business_application_id' => :'String',
+        :'purpose_of_payment' => :'String',
+        :'pre_auth_status' => :'String',
+        :'pre_auth_response_code' => :'String',
+        :'authorization_options' => :'Riskv1decisionsProcessingInformationAuthorizationOptions'
       }
     end
 
@@ -51,6 +80,26 @@ module CyberSource
           self.action_list = value
         end
       end
+
+      if attributes.has_key?(:'businessApplicationId')
+        self.business_application_id = attributes[:'businessApplicationId']
+      end
+
+      if attributes.has_key?(:'purposeOfPayment')
+        self.purpose_of_payment = attributes[:'purposeOfPayment']
+      end
+
+      if attributes.has_key?(:'preAuthStatus')
+        self.pre_auth_status = attributes[:'preAuthStatus']
+      end
+
+      if attributes.has_key?(:'preAuthResponseCode')
+        self.pre_auth_response_code = attributes[:'preAuthResponseCode']
+      end
+
+      if attributes.has_key?(:'authorizationOptions')
+        self.authorization_options = attributes[:'authorizationOptions']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -66,12 +115,35 @@ module CyberSource
       true
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] purpose_of_payment Value to be assigned
+    def purpose_of_payment=(purpose_of_payment)
+      @purpose_of_payment = purpose_of_payment
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] pre_auth_status Value to be assigned
+    def pre_auth_status=(pre_auth_status)
+      @pre_auth_status = pre_auth_status
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] pre_auth_response_code Value to be assigned
+    def pre_auth_response_code=(pre_auth_response_code)
+      @pre_auth_response_code = pre_auth_response_code
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          action_list == o.action_list
+          action_list == o.action_list &&
+          business_application_id == o.business_application_id &&
+          purpose_of_payment == o.purpose_of_payment &&
+          pre_auth_status == o.pre_auth_status &&
+          pre_auth_response_code == o.pre_auth_response_code &&
+          authorization_options == o.authorization_options
     end
 
     # @see the `==` method
@@ -83,7 +155,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [action_list].hash
+      [action_list, business_application_id, purpose_of_payment, pre_auth_status, pre_auth_response_code, authorization_options].hash
     end
 
     # Builds the object from hash

@@ -56,12 +56,12 @@ module CyberSource
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'_links' => :'PaymentInstrumentListLinks',
+        :'_links' => :'InstrumentIdentifierPaymentInstrumentListLinks',
         :'offset' => :'Integer',
         :'limit' => :'Integer',
         :'count' => :'Integer',
         :'total' => :'Integer',
-        :'_embedded' => :'PaymentInstrumentList1Embedded'
+        :'_embedded' => :'InstrumentIdentifierPaymentInstrumentListEmbedded1'
       }
     end
 

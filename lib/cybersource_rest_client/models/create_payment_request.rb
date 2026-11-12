@@ -167,7 +167,7 @@ module CyberSource
         :'merchant_defined_information' => :'Array<Ptsv2paymentsMerchantDefinedInformation>',
         :'merchant_defined_secure_information' => :'Ptsv2paymentsMerchantDefinedSecureInformation',
         :'installment_information' => :'Ptsv2paymentsInstallmentInformation',
-        :'travel_information' => :'Ptsv2paymentsTravelInformation',
+        :'travel_information' => :'Ptsv2paymentsTravelInformationExtended',
         :'health_care_information' => :'Ptsv2paymentsHealthCareInformation',
         :'promotion_information' => :'Ptsv2paymentsPromotionInformation',
         :'token_information' => :'Ptsv2paymentsTokenInformation',

@@ -17,6 +17,6 @@ Name | Type | Description | Notes
 **merchant_information** | [**TmsMerchantInformation**](TmsMerchantInformation.md) |  | [optional] 
 **instrument_identifier** | [**DefaultPaymentInstrumentInstrumentIdentifier**](DefaultPaymentInstrumentInstrumentIdentifier.md) |  | [optional] 
 **metadata** | [**DefaultPaymentInstrumentMetadata**](DefaultPaymentInstrumentMetadata.md) |  | [optional] 
-**_embedded** | [**DefaultPaymentInstrumentEmbedded**](DefaultPaymentInstrumentEmbedded.md) |  | [optional] 
+**_embedded** | [**PaymentInstrumentEmbedded**](PaymentInstrumentEmbedded.md) |  | [optional] 
 
 

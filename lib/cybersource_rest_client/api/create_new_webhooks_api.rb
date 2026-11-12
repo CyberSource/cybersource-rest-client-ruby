@@ -19,12 +19,91 @@ module CyberSource
       @api_client = api_client
       @api_client.set_configuration(config)
     end
+    # Create a New Webhook Subscription
+    # Create a new webhook subscription. Before creating a webhook, ensure that a signature key has been created.  For the example \"Create Webhook using oAuth with Client Credentials\" - for clients who have more than one oAuth Provider and have different client secrets that they would like to config for a given webhook, they may do so by overriding the keyId inside security config of webhook subscription. See the Developer Center examples section titled \"Webhook Security - Create or Store Egress Symmetric Key - Store oAuth Credentials For Symmetric Key\" to store these oAuth credentials that CYBS will need for oAuth.  For JWT authentication, attach your oAuth details to the webhook subscription. See the example \"Create Webhook using oAuth with JWT\" 
+    #
+    # @param [Hash] opts the optional parameters
+    # @option opts [CreateWebhook] :create_webhook The webhook payload
+    # @return [CreateWebhookSubscriptionResponse]
+    #
+    def create_webhook_subscription(opts = {})
+      data, status_code, headers = create_webhook_subscription_with_http_info(opts)
+      return data, status_code, headers
+    end
+
+    # Create a New Webhook Subscription
+    # Create a new webhook subscription. Before creating a webhook, ensure that a signature key has been created.  For the example \&quot;Create Webhook using oAuth with Client Credentials\&quot; - for clients who have more than one oAuth Provider and have different client secrets that they would like to config for a given webhook, they may do so by overriding the keyId inside security config of webhook subscription. See the Developer Center examples section titled \&quot;Webhook Security - Create or Store Egress Symmetric Key - Store oAuth Credentials For Symmetric Key\&quot; to store these oAuth credentials that CYBS will need for oAuth.  For JWT authentication, attach your oAuth details to the webhook subscription. See the example \&quot;Create Webhook using oAuth with JWT\&quot; 
+    # @param [Hash] opts the optional parameters
+    # @option opts [CreateWebhook] :create_webhook The webhook payload
+    # @return [Array<(CreateWebhookSubscriptionResponse, Fixnum, Hash)>] CreateWebhookSubscriptionResponse data, response status code and response headers
+    def create_webhook_subscription_with_http_info(opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: CreateNewWebhooksApi.create_webhook_subscription ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # resource path
+      local_var_path = 'notification-subscriptions/v2/webhooks'
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
+      local_header_content_type = nil
+      # HTTP header 'Content-Type'
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(opts[:'create_webhook'])
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CreateWebhook', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      inbound_mle_status = "false"
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["create_webhook_subscription","create_webhook_subscription_with_http_info"])
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
+        rescue
+          raise
+        end
+      end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["create_webhook_subscription","create_webhook_subscription_with_http_info"])
+
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'CreateWebhookSubscriptionResponse',
+        :isResponseMLEForApi => is_response_mle_for_api)
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: CreateNewWebhooksApi#create_webhook_subscription\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
     # Find Products You Can Subscribe To
     # Retrieve a list of products and event types that your account is eligible for. These products and events are the ones that you may subscribe to in the next step of creating webhooks.
     #
     # @param organization_id The Organization Identifier.
     # @param [Hash] opts the optional parameters
-    # @return [Array<InlineResponse2006>]
+    # @return [Array<ProductCatalogProduct>]
     #
     def find_products_to_subscribe(organization_id, opts = {})
       data, status_code, headers = find_products_to_subscribe_with_http_info(organization_id, opts)
@@ -35,7 +114,7 @@ module CyberSource
     # Retrieve a list of products and event types that your account is eligible for. These products and events are the ones that you may subscribe to in the next step of creating webhooks.
     # @param organization_id The Organization Identifier.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Array<InlineResponse2006>, Fixnum, Hash)>] Array<InlineResponse2006> data, response status code and response headers
+    # @return [Array<(Array<ProductCatalogProduct>, Fixnum, Hash)>] Array<ProductCatalogProduct> data, response status code and response headers
     def find_products_to_subscribe_with_http_info(organization_id, opts = {})
 
       if @api_client.config.debugging
@@ -60,8 +139,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -75,7 +156,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["find_products_to_subscribe","find_products_to_subscribe_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -90,89 +171,12 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Array<InlineResponse2006>',
+        :return_type => 'Array<ProductCatalogProduct>',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
         raise
             @api_client.config.logger.debug "API called: CreateNewWebhooksApi#find_products_to_subscribe\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-        rescue
-            puts 'Cannot write to log'
-        end
-      end
-      return data, status_code, headers
-    end
-    # Create a New Webhook Subscription
-    # Create a new webhook subscription. Before creating a webhook, ensure that a signature key has been created.  For the example \"Create Webhook using oAuth with Client Credentials\" - for clients who have more than one oAuth Provider and have different client secrets that they would like to config for a given webhook, they may do so by overriding the keyId inside security config of webhook subscription. See the Developer Center examples section titled \"Webhook Security - Create or Store Egress Symmetric Key - Store oAuth Credentials For Symmetric Key\" to store these oAuth credentials that CYBS will need for oAuth.  For JWT authentication, attach your oAuth details to the webhook subscription. See the example \"Create Webhook using oAuth with JWT\" 
-    #
-    # @param [Hash] opts the optional parameters
-    # @option opts [CreateWebhook] :create_webhook The webhook payload
-    # @return [InlineResponse2018]
-    #
-    def notification_subscriptions_v2_webhooks_post(opts = {})
-      data, status_code, headers = notification_subscriptions_v2_webhooks_post_with_http_info(opts)
-      return data, status_code, headers
-    end
-
-    # Create a New Webhook Subscription
-    # Create a new webhook subscription. Before creating a webhook, ensure that a signature key has been created.  For the example \&quot;Create Webhook using oAuth with Client Credentials\&quot; - for clients who have more than one oAuth Provider and have different client secrets that they would like to config for a given webhook, they may do so by overriding the keyId inside security config of webhook subscription. See the Developer Center examples section titled \&quot;Webhook Security - Create or Store Egress Symmetric Key - Store oAuth Credentials For Symmetric Key\&quot; to store these oAuth credentials that CYBS will need for oAuth.  For JWT authentication, attach your oAuth details to the webhook subscription. See the example \&quot;Create Webhook using oAuth with JWT\&quot; 
-    # @param [Hash] opts the optional parameters
-    # @option opts [CreateWebhook] :create_webhook The webhook payload
-    # @return [Array<(InlineResponse2018, Fixnum, Hash)>] InlineResponse2018 data, response status code and response headers
-    def notification_subscriptions_v2_webhooks_post_with_http_info(opts = {})
-
-      if @api_client.config.debugging
-          begin
-            raise
-                @api_client.config.logger.debug 'Calling API: CreateNewWebhooksApi.notification_subscriptions_v2_webhooks_post ...'
-            rescue
-                puts 'Cannot write to log'
-            end
-      end
-      # resource path
-      local_var_path = 'notification-subscriptions/v2/webhooks'
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
-
-      # form parameters
-      form_params = {}
-
-      # http body (model)
-      post_body = @api_client.object_to_http_body(opts[:'create_webhook'])
-      sdk_tracker = SdkTracker.new
-      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'CreateWebhook', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      inbound_mle_status = "false"
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["notification_subscriptions_v2_webhooks_post","notification_subscriptions_v2_webhooks_post_with_http_info"])
-        begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
-        rescue
-          raise
-        end
-      end
-
-      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["notification_subscriptions_v2_webhooks_post","notification_subscriptions_v2_webhooks_post_with_http_info"])
-
-      auth_names = []
-      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'InlineResponse2018',
-        :isResponseMLEForApi => is_response_mle_for_api)
-      if @api_client.config.debugging
-        begin
-        raise
-            @api_client.config.logger.debug "API called: CreateNewWebhooksApi#notification_subscriptions_v2_webhooks_post\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
         rescue
             puts 'Cannot write to log'
         end
@@ -187,7 +191,7 @@ module CyberSource
     # @option opts [String] :v_c_sender_organization_id Sender organization id
     # @option opts [String] :v_c_permissions Encoded user permissions returned by the CGK, for the entity user who initiated the boarding
     # @option opts [SaveSymEgressKey] :save_sym_egress_key Provide egress Symmetric key information to save (create or store or refresh)
-    # @return [InlineResponse2017]
+    # @return [SaveSymEgressKeyResponse]
     #
     def save_sym_egress_key(opts = {})
       data, status_code, headers = save_sym_egress_key_with_http_info(opts)
@@ -201,7 +205,7 @@ module CyberSource
     # @option opts [String] :v_c_sender_organization_id Sender organization id
     # @option opts [String] :v_c_permissions Encoded user permissions returned by the CGK, for the entity user who initiated the boarding
     # @option opts [SaveSymEgressKey] :save_sym_egress_key Provide egress Symmetric key information to save (create or store or refresh)
-    # @return [Array<(InlineResponse2017, Fixnum, Hash)>] InlineResponse2017 data, response status code and response headers
+    # @return [Array<(SaveSymEgressKeyResponse, Fixnum, Hash)>] SaveSymEgressKeyResponse data, response status code and response headers
     def save_sym_egress_key_with_http_info(opts = {})
 
       if @api_client.config.debugging
@@ -230,8 +234,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
       header_params[:'v-c-correlation-id'] = opts[:'v_c_correlation_id'] if !opts[:'v_c_correlation_id'].nil?
       header_params[:'v-c-sender-organization-id'] = opts[:'v_c_sender_organization_id'] if !opts[:'v_c_sender_organization_id'].nil?
       header_params[:'v-c-permissions'] = opts[:'v_c_permissions'] if !opts[:'v_c_permissions'].nil?
@@ -246,7 +252,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["save_sym_egress_key","save_sym_egress_key_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -261,7 +267,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2017',
+        :return_type => 'SaveSymEgressKeyResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin

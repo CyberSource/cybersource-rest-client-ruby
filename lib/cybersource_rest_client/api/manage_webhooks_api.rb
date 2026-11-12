@@ -60,8 +60,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -75,7 +77,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["delete_webhook_subscription","delete_webhook_subscription_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -106,7 +108,7 @@ module CyberSource
     #
     # @param webhook_id The webhook Identifier
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2018]
+    # @return [CreateWebhookSubscriptionResponse]
     #
     def get_webhook_subscription_by_id(webhook_id, opts = {})
       data, status_code, headers = get_webhook_subscription_by_id_with_http_info(webhook_id, opts)
@@ -117,7 +119,7 @@ module CyberSource
     # Retrieve the details of a specific webhook by supplying the webhook ID in the path.
     # @param webhook_id The webhook Identifier
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2018, Fixnum, Hash)>] InlineResponse2018 data, response status code and response headers
+    # @return [Array<(CreateWebhookSubscriptionResponse, Fixnum, Hash)>] CreateWebhookSubscriptionResponse data, response status code and response headers
     def get_webhook_subscription_by_id_with_http_info(webhook_id, opts = {})
 
       if @api_client.config.debugging
@@ -142,8 +144,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -157,7 +161,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_webhook_subscription_by_id","get_webhook_subscription_by_id_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -172,7 +176,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2018',
+        :return_type => 'CreateWebhookSubscriptionResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -191,7 +195,7 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @option opts [String] :product_id The Product Identifier.
     # @option opts [String] :event_type The Event Type.
-    # @return [Array<InlineResponse2007>]
+    # @return [Array<WebhookSubscription>]
     #
     def get_webhook_subscriptions_by_org(organization_id, opts = {})
       data, status_code, headers = get_webhook_subscriptions_by_org_with_http_info(organization_id, opts)
@@ -204,7 +208,7 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @option opts [String] :product_id The Product Identifier.
     # @option opts [String] :event_type The Event Type.
-    # @return [Array<(Array<InlineResponse2007>, Fixnum, Hash)>] Array<InlineResponse2007> data, response status code and response headers
+    # @return [Array<(Array<WebhookSubscription>, Fixnum, Hash)>] Array<WebhookSubscription> data, response status code and response headers
     def get_webhook_subscriptions_by_org_with_http_info(organization_id, opts = {})
 
       if @api_client.config.debugging
@@ -232,8 +236,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -247,7 +253,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_webhook_subscriptions_by_org","get_webhook_subscriptions_by_org_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -262,178 +268,12 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Array<InlineResponse2007>',
+        :return_type => 'Array<WebhookSubscription>',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
         raise
             @api_client.config.logger.debug "API called: ManageWebhooksApi#get_webhook_subscriptions_by_org\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-        rescue
-            puts 'Cannot write to log'
-        end
-      end
-      return data, status_code, headers
-    end
-    # Test a Webhook Configuration
-    # Test the webhook configuration by sending a sample webhook. Calling this endpoint sends a sample webhook to the endpoint identified in the user's subscription.   It will contain sample values for the product & eventType based on values present in your subscription along with a sample message in the payload.   Based on the webhook response users can make any necessary modifications or rest assured knowing their setup is configured correctly. 
-    #
-    # @param webhook_id The Webhook Identifier.
-    # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2019]
-    #
-    def notification_subscriptions_v1_webhooks_webhook_id_post(webhook_id, opts = {})
-      data, status_code, headers = notification_subscriptions_v1_webhooks_webhook_id_post_with_http_info(webhook_id, opts)
-      return data, status_code, headers
-    end
-
-    # Test a Webhook Configuration
-    # Test the webhook configuration by sending a sample webhook. Calling this endpoint sends a sample webhook to the endpoint identified in the user&#39;s subscription.   It will contain sample values for the product &amp; eventType based on values present in your subscription along with a sample message in the payload.   Based on the webhook response users can make any necessary modifications or rest assured knowing their setup is configured correctly. 
-    # @param webhook_id The Webhook Identifier.
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2019, Fixnum, Hash)>] InlineResponse2019 data, response status code and response headers
-    def notification_subscriptions_v1_webhooks_webhook_id_post_with_http_info(webhook_id, opts = {})
-
-      if @api_client.config.debugging
-          begin
-            raise
-                @api_client.config.logger.debug 'Calling API: ManageWebhooksApi.notification_subscriptions_v1_webhooks_webhook_id_post ...'
-            rescue
-                puts 'Cannot write to log'
-            end
-      end
-      # verify the required parameter 'webhook_id' is set
-      if @api_client.config.client_side_validation && webhook_id.nil?
-        fail ArgumentError, "Missing the required parameter 'webhook_id' when calling ManageWebhooksApi.notification_subscriptions_v1_webhooks_webhook_id_post"
-      end
-      # resource path
-      local_var_path = 'notification-subscriptions/v1/webhooks/{webhookId}'.sub('{' + 'webhookId' + '}', webhook_id.to_s)
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
-
-      # form parameters
-      form_params = {}
-
-      # http body (model)
-      if 'POST' == 'POST'
-        post_body = '{}'
-      else
-        post_body = nil
-      end
-      inbound_mle_status = "false"
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["notification_subscriptions_v1_webhooks_webhook_id_post","notification_subscriptions_v1_webhooks_webhook_id_post_with_http_info"])
-        begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
-        rescue
-          raise
-        end
-      end
-
-      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["notification_subscriptions_v1_webhooks_webhook_id_post","notification_subscriptions_v1_webhooks_webhook_id_post_with_http_info"])
-
-      auth_names = []
-      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'InlineResponse2019',
-        :isResponseMLEForApi => is_response_mle_for_api)
-      if @api_client.config.debugging
-        begin
-        raise
-            @api_client.config.logger.debug "API called: ManageWebhooksApi#notification_subscriptions_v1_webhooks_webhook_id_post\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-        rescue
-            puts 'Cannot write to log'
-        end
-      end
-      return data, status_code, headers
-    end
-    # Update a Webhook Subscription
-    # Update a Webhook Subscription.
-    #
-    # @param webhook_id The Webhook Identifier.
-    # @param [Hash] opts the optional parameters
-    # @option opts [UpdateWebhook] :update_webhook The webhook payload or changes to apply.
-    # @return [InlineResponse2008]
-    #
-    def notification_subscriptions_v2_webhooks_webhook_id_patch(webhook_id, opts = {})
-      data, status_code, headers = notification_subscriptions_v2_webhooks_webhook_id_patch_with_http_info(webhook_id, opts)
-      return data, status_code, headers
-    end
-
-    # Update a Webhook Subscription
-    # Update a Webhook Subscription.
-    # @param webhook_id The Webhook Identifier.
-    # @param [Hash] opts the optional parameters
-    # @option opts [UpdateWebhook] :update_webhook The webhook payload or changes to apply.
-    # @return [Array<(InlineResponse2008, Fixnum, Hash)>] InlineResponse2008 data, response status code and response headers
-    def notification_subscriptions_v2_webhooks_webhook_id_patch_with_http_info(webhook_id, opts = {})
-
-      if @api_client.config.debugging
-          begin
-            raise
-                @api_client.config.logger.debug 'Calling API: ManageWebhooksApi.notification_subscriptions_v2_webhooks_webhook_id_patch ...'
-            rescue
-                puts 'Cannot write to log'
-            end
-      end
-      # verify the required parameter 'webhook_id' is set
-      if @api_client.config.client_side_validation && webhook_id.nil?
-        fail ArgumentError, "Missing the required parameter 'webhook_id' when calling ManageWebhooksApi.notification_subscriptions_v2_webhooks_webhook_id_patch"
-      end
-      # resource path
-      local_var_path = 'notification-subscriptions/v2/webhooks/{webhookId}'.sub('{' + 'webhookId' + '}', webhook_id.to_s)
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
-
-      # form parameters
-      form_params = {}
-
-      # http body (model)
-      post_body = @api_client.object_to_http_body(opts[:'update_webhook'])
-      sdk_tracker = SdkTracker.new
-      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'UpdateWebhook', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
-      inbound_mle_status = "false"
-      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["notification_subscriptions_v2_webhooks_webhook_id_patch","notification_subscriptions_v2_webhooks_webhook_id_patch_with_http_info"])
-        begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
-        rescue
-          raise
-        end
-      end
-
-      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["notification_subscriptions_v2_webhooks_webhook_id_patch","notification_subscriptions_v2_webhooks_webhook_id_patch_with_http_info"])
-
-      auth_names = []
-      data, status_code, headers = @api_client.call_api(:PATCH, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'InlineResponse2008',
-        :isResponseMLEForApi => is_response_mle_for_api)
-      if @api_client.config.debugging
-        begin
-        raise
-            @api_client.config.logger.debug "API called: ManageWebhooksApi#notification_subscriptions_v2_webhooks_webhook_id_patch\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
         rescue
             puts 'Cannot write to log'
         end
@@ -483,8 +323,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -496,7 +338,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["notification_subscriptions_v2_webhooks_webhook_id_status_put","notification_subscriptions_v2_webhooks_webhook_id_status_put_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -530,7 +372,7 @@ module CyberSource
     # @option opts [String] :v_c_correlation_id A globally unique id associated with your request
     # @option opts [String] :v_c_sender_organization_id Sender organization id
     # @option opts [String] :v_c_permissions Encoded user permissions returned by the CGK, for the entity user who initiated the boarding
-    # @return [InlineResponse20110]
+    # @return [SaveAsymEgressKeyResponse]
     #
     def save_asym_egress_key(save_asym_egress_key, opts = {})
       data, status_code, headers = save_asym_egress_key_with_http_info(save_asym_egress_key, opts)
@@ -544,7 +386,7 @@ module CyberSource
     # @option opts [String] :v_c_correlation_id A globally unique id associated with your request
     # @option opts [String] :v_c_sender_organization_id Sender organization id
     # @option opts [String] :v_c_permissions Encoded user permissions returned by the CGK, for the entity user who initiated the boarding
-    # @return [Array<(InlineResponse20110, Fixnum, Hash)>] InlineResponse20110 data, response status code and response headers
+    # @return [Array<(SaveAsymEgressKeyResponse, Fixnum, Hash)>] SaveAsymEgressKeyResponse data, response status code and response headers
     def save_asym_egress_key_with_http_info(save_asym_egress_key, opts = {})
 
       if @api_client.config.debugging
@@ -577,8 +419,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
       header_params[:'v-c-correlation-id'] = opts[:'v_c_correlation_id'] if !opts[:'v_c_correlation_id'].nil?
       header_params[:'v-c-sender-organization-id'] = opts[:'v_c_sender_organization_id'] if !opts[:'v_c_sender_organization_id'].nil?
       header_params[:'v-c-permissions'] = opts[:'v_c_permissions'] if !opts[:'v_c_permissions'].nil?
@@ -593,7 +437,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["save_asym_egress_key","save_asym_egress_key_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -608,12 +452,182 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20110',
+        :return_type => 'SaveAsymEgressKeyResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
         raise
             @api_client.config.logger.debug "API called: ManageWebhooksApi#save_asym_egress_key\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
+    # Test a Webhook Configuration
+    # Test the webhook configuration by sending a sample webhook. Calling this endpoint sends a sample webhook to the endpoint identified in the user's subscription.   It will contain sample values for the product & eventType based on values present in your subscription along with a sample message in the payload.   Based on the webhook response users can make any necessary modifications or rest assured knowing their setup is configured correctly. 
+    #
+    # @param webhook_id The Webhook Identifier.
+    # @param [Hash] opts the optional parameters
+    # @return [TestWebhookSubscriptionResponse]
+    #
+    def test_webhook_subscription(webhook_id, opts = {})
+      data, status_code, headers = test_webhook_subscription_with_http_info(webhook_id, opts)
+      return data, status_code, headers
+    end
+
+    # Test a Webhook Configuration
+    # Test the webhook configuration by sending a sample webhook. Calling this endpoint sends a sample webhook to the endpoint identified in the user&#39;s subscription.   It will contain sample values for the product &amp; eventType based on values present in your subscription along with a sample message in the payload.   Based on the webhook response users can make any necessary modifications or rest assured knowing their setup is configured correctly. 
+    # @param webhook_id The Webhook Identifier.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(TestWebhookSubscriptionResponse, Fixnum, Hash)>] TestWebhookSubscriptionResponse data, response status code and response headers
+    def test_webhook_subscription_with_http_info(webhook_id, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: ManageWebhooksApi.test_webhook_subscription ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'webhook_id' is set
+      if @api_client.config.client_side_validation && webhook_id.nil?
+        fail ArgumentError, "Missing the required parameter 'webhook_id' when calling ManageWebhooksApi.test_webhook_subscription"
+      end
+      # resource path
+      local_var_path = 'notification-subscriptions/v1/webhooks/{webhookId}'.sub('{' + 'webhookId' + '}', webhook_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
+      local_header_content_type = nil
+      # HTTP header 'Content-Type'
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      if 'POST' == 'POST'
+        post_body = '{}'
+      else
+        post_body = nil
+      end
+      inbound_mle_status = "false"
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["test_webhook_subscription","test_webhook_subscription_with_http_info"])
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
+        rescue
+          raise
+        end
+      end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["test_webhook_subscription","test_webhook_subscription_with_http_info"])
+
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'TestWebhookSubscriptionResponse',
+        :isResponseMLEForApi => is_response_mle_for_api)
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: ManageWebhooksApi#test_webhook_subscription\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        rescue
+            puts 'Cannot write to log'
+        end
+      end
+      return data, status_code, headers
+    end
+    # Update a Webhook Subscription
+    # Update a Webhook Subscription.
+    #
+    # @param webhook_id The Webhook Identifier.
+    # @param [Hash] opts the optional parameters
+    # @option opts [UpdateWebhook] :update_webhook The webhook payload or changes to apply.
+    # @return [UpdateWebhookSubscriptionResponse]
+    #
+    def update_webhook_subscription(webhook_id, opts = {})
+      data, status_code, headers = update_webhook_subscription_with_http_info(webhook_id, opts)
+      return data, status_code, headers
+    end
+
+    # Update a Webhook Subscription
+    # Update a Webhook Subscription.
+    # @param webhook_id The Webhook Identifier.
+    # @param [Hash] opts the optional parameters
+    # @option opts [UpdateWebhook] :update_webhook The webhook payload or changes to apply.
+    # @return [Array<(UpdateWebhookSubscriptionResponse, Fixnum, Hash)>] UpdateWebhookSubscriptionResponse data, response status code and response headers
+    def update_webhook_subscription_with_http_info(webhook_id, opts = {})
+
+      if @api_client.config.debugging
+          begin
+            raise
+                @api_client.config.logger.debug 'Calling API: ManageWebhooksApi.update_webhook_subscription ...'
+            rescue
+                puts 'Cannot write to log'
+            end
+      end
+      # verify the required parameter 'webhook_id' is set
+      if @api_client.config.client_side_validation && webhook_id.nil?
+        fail ArgumentError, "Missing the required parameter 'webhook_id' when calling ManageWebhooksApi.update_webhook_subscription"
+      end
+      # resource path
+      local_var_path = 'notification-subscriptions/v2/webhooks/{webhookId}'.sub('{' + 'webhookId' + '}', webhook_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
+      local_header_content_type = nil
+      # HTTP header 'Content-Type'
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(opts[:'update_webhook'])
+      sdk_tracker = SdkTracker.new
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'UpdateWebhook', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      inbound_mle_status = "false"
+      if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["update_webhook_subscription","update_webhook_subscription_with_http_info"])
+        begin
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
+        rescue
+          raise
+        end
+      end
+
+      is_response_mle_for_api = MLEUtility.check_is_response_mle_for_api(@api_client.merchantconfig, ["update_webhook_subscription","update_webhook_subscription_with_http_info"])
+
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:PATCH, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'UpdateWebhookSubscriptionResponse',
+        :isResponseMLEForApi => is_response_mle_for_api)
+      if @api_client.config.debugging
+        begin
+        raise
+            @api_client.config.logger.debug "API called: ManageWebhooksApi#update_webhook_subscription\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
         rescue
             puts 'Cannot write to log'
         end

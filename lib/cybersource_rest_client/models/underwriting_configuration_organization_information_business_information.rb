@@ -163,7 +163,7 @@ module CyberSource
         :'trading_address' => :'UnderwritingConfigurationOrganizationInformationBusinessInformationTradingAddress',
         :'business_contact' => :'UnderwritingConfigurationOrganizationInformationBusinessInformationBusinessContact',
         :'business_details' => :'UnderwritingConfigurationBusinessDetails',
-        :'owner_information' => :'Array<UnderwritingConfigurationOrganizationInformationBusinessInformationOwnerInformation>',
+        :'owner_information' => :'Array<UnderwritingConfigurationOwnerInformation>',
         :'director_information' => :'Array<UnderwritingConfigurationOrganizationInformationBusinessInformationDirectorInformation>'
       }
     end

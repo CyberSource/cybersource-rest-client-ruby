@@ -22,13 +22,27 @@ module CyberSource
 
     attr_accessor :auxiliary_data
 
+    attr_accessor :store
+
+    # • 01 = Static Passcode • 02 = SMS OTP • 03 = Key fob or EMV card reader OTP • 04 = App OTP • 05 = OTP Other • 07 = OOB Biometrics • 08 = OOB Login • 09 = OOB Other • 10 = Other • 11 = Push Confirmation • 12 = Decoupled • 13 = WebAuthn • 14 = SPC • 15 = Behavioural biometrics 
+    attr_accessor :authentication_type
+
+    # Number of days between transaction date and rental pickup date 
+    attr_accessor :pickup_days
+
+    attr_accessor :external_score
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'profile' => :'profile',
         :'event_type' => :'eventType',
         :'buyer_history' => :'buyerHistory',
-        :'auxiliary_data' => :'auxiliaryData'
+        :'auxiliary_data' => :'auxiliaryData',
+        :'store' => :'store',
+        :'authentication_type' => :'authenticationType',
+        :'pickup_days' => :'pickupDays',
+        :'external_score' => :'externalScore'
       }
     end
 
@@ -38,7 +52,11 @@ module CyberSource
         :'profile' => :'profile',
         :'event_type' => :'event_type',
         :'buyer_history' => :'buyer_history',
-        :'auxiliary_data' => :'auxiliary_data'
+        :'auxiliary_data' => :'auxiliary_data',
+        :'store' => :'store',
+        :'authentication_type' => :'authentication_type',
+        :'pickup_days' => :'pickup_days',
+        :'external_score' => :'external_score'
       }
     end
 
@@ -48,7 +66,11 @@ module CyberSource
         :'profile' => :'Ptsv2paymentsRiskInformationProfile',
         :'event_type' => :'String',
         :'buyer_history' => :'Ptsv2paymentsRiskInformationBuyerHistory',
-        :'auxiliary_data' => :'Array<Ptsv2paymentsRiskInformationAuxiliaryData>'
+        :'auxiliary_data' => :'Array<Ptsv2paymentsRiskInformationAuxiliaryData>',
+        :'store' => :'Ptsv2paymentsRiskInformationStore',
+        :'authentication_type' => :'String',
+        :'pickup_days' => :'Float',
+        :'external_score' => :'Ptsv2paymentsRiskInformationExternalScore'
       }
     end
 
@@ -77,6 +99,22 @@ module CyberSource
           self.auxiliary_data = value
         end
       end
+
+      if attributes.has_key?(:'store')
+        self.store = attributes[:'store']
+      end
+
+      if attributes.has_key?(:'authenticationType')
+        self.authentication_type = attributes[:'authenticationType']
+      end
+
+      if attributes.has_key?(:'pickupDays')
+        self.pickup_days = attributes[:'pickupDays']
+      end
+
+      if attributes.has_key?(:'externalScore')
+        self.external_score = attributes[:'externalScore']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -98,6 +136,12 @@ module CyberSource
       @event_type = event_type
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] authentication_type Value to be assigned
+    def authentication_type=(authentication_type)
+      @authentication_type = authentication_type
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -106,7 +150,11 @@ module CyberSource
           profile == o.profile &&
           event_type == o.event_type &&
           buyer_history == o.buyer_history &&
-          auxiliary_data == o.auxiliary_data
+          auxiliary_data == o.auxiliary_data &&
+          store == o.store &&
+          authentication_type == o.authentication_type &&
+          pickup_days == o.pickup_days &&
+          external_score == o.external_score
     end
 
     # @see the `==` method
@@ -118,7 +166,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [profile, event_type, buyer_history, auxiliary_data].hash
+      [profile, event_type, buyer_history, auxiliary_data, store, authentication_type, pickup_days, external_score].hash
     end
 
     # Builds the object from hash

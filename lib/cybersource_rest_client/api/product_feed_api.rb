@@ -26,7 +26,7 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :page Page number to retrieve (0-based). Defaults to 0. (default to 0)
     # @option opts [Integer] :size Number of products per page. Defaults to 300. Server enforces a maximum of 1000; values above 1000 are capped.  (default to 300)
-    # @return [InlineResponse20020]
+    # @return [ProductCatalogResponse]
     #
     def get_all_products(get_all_products_request, opts = {})
       data, status_code, headers = get_all_products_with_http_info(get_all_products_request, opts)
@@ -39,7 +39,7 @@ module CyberSource
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :page Page number to retrieve (0-based). Defaults to 0.
     # @option opts [Integer] :size Number of products per page. Defaults to 300. Server enforces a maximum of 1000; values above 1000 are capped. 
-    # @return [Array<(InlineResponse20020, Fixnum, Hash)>] InlineResponse20020 data, response status code and response headers
+    # @return [Array<(ProductCatalogResponse, Fixnum, Hash)>] ProductCatalogResponse data, response status code and response headers
     def get_all_products_with_http_info(get_all_products_request, opts = {})
 
       if @api_client.config.debugging
@@ -66,8 +66,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -79,7 +81,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_all_products","get_all_products_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -94,7 +96,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20020',
+        :return_type => 'ProductCatalogResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -112,7 +114,7 @@ module CyberSource
     # @param job_id Unique identifier of the feed submission job, returned by the Ingest Product Feed endpoint. 
     # @param get_feed_job_status_request Empty request body.
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse20019]
+    # @return [FeedJobStatusResponse]
     #
     def get_feed_job_status(job_id, get_feed_job_status_request, opts = {})
       data, status_code, headers = get_feed_job_status_with_http_info(job_id, get_feed_job_status_request, opts)
@@ -124,7 +126,7 @@ module CyberSource
     # @param job_id Unique identifier of the feed submission job, returned by the Ingest Product Feed endpoint. 
     # @param get_feed_job_status_request Empty request body.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse20019, Fixnum, Hash)>] InlineResponse20019 data, response status code and response headers
+    # @return [Array<(FeedJobStatusResponse, Fixnum, Hash)>] FeedJobStatusResponse data, response status code and response headers
     def get_feed_job_status_with_http_info(job_id, get_feed_job_status_request, opts = {})
 
       if @api_client.config.debugging
@@ -153,8 +155,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -166,7 +170,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_feed_job_status","get_feed_job_status_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -181,7 +185,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20019',
+        :return_type => 'FeedJobStatusResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -199,7 +203,7 @@ module CyberSource
     # @param product_id The unique product identifier (SKU) assigned by the merchant and provided during feed ingestion. Example: &#x60;SKU-1001&#x60;. 
     # @param get_product_request Empty request body.
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse20021]
+    # @return [ProductDetailResponse]
     #
     def get_product(product_id, get_product_request, opts = {})
       data, status_code, headers = get_product_with_http_info(product_id, get_product_request, opts)
@@ -211,7 +215,7 @@ module CyberSource
     # @param product_id The unique product identifier (SKU) assigned by the merchant and provided during feed ingestion. Example: &#x60;SKU-1001&#x60;. 
     # @param get_product_request Empty request body.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse20021, Fixnum, Hash)>] InlineResponse20021 data, response status code and response headers
+    # @return [Array<(ProductDetailResponse, Fixnum, Hash)>] ProductDetailResponse data, response status code and response headers
     def get_product_with_http_info(product_id, get_product_request, opts = {})
 
       if @api_client.config.debugging
@@ -240,8 +244,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -253,7 +259,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_product","get_product_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -268,7 +274,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20021',
+        :return_type => 'ProductDetailResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -285,7 +291,7 @@ module CyberSource
     #
     # @param product_feed_request Product feed payload. The &#x60;products&#x60; array is required and must contain at least one product. See &#x60;ProductInput&#x60; for the full list of required fields. 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2021]
+    # @return [ProductAcceptedFeedResponse]
     #
     def submit_product_feed_json(product_feed_request, opts = {})
       data, status_code, headers = submit_product_feed_json_with_http_info(product_feed_request, opts)
@@ -296,7 +302,7 @@ module CyberSource
     # Submits a merchant product catalog to ACG for asynchronous processing and syndication to all configured protocol backends (e.g. Google Merchant Center).  **Processing pipeline:** 1. The request is accepted immediately and a &#x60;jobId&#x60; is returned — validation, ingestion,    and syndication all happen asynchronously in the background. 2. Each product is validated against UCP/ACP schema requirements (required fields, format rules) 3. Valid products are saved to the ACG catalog 4. An async syndication job is triggered to push the catalog to configured backends  **Supported content types:** &#x60;application/json&#x60; (this endpoint). CSV and JSONL uploads are also supported via file upload endpoints.  **Note:** This endpoint no longer returns per-product validation results or syndication outcomes synchronously — only the &#x60;jobId&#x60; acknowledgement shown below. Use that &#x60;jobId&#x60; to track processing and syndication status. 
     # @param product_feed_request Product feed payload. The &#x60;products&#x60; array is required and must contain at least one product. See &#x60;ProductInput&#x60; for the full list of required fields. 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2021, Fixnum, Hash)>] InlineResponse2021 data, response status code and response headers
+    # @return [Array<(ProductAcceptedFeedResponse, Fixnum, Hash)>] ProductAcceptedFeedResponse data, response status code and response headers
     def submit_product_feed_json_with_http_info(product_feed_request, opts = {})
 
       if @api_client.config.debugging
@@ -321,8 +327,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -334,7 +342,7 @@ module CyberSource
       inbound_mle_status = "mandatory"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["submit_product_feed_json","submit_product_feed_json_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -349,7 +357,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2021',
+        :return_type => 'ProductAcceptedFeedResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin

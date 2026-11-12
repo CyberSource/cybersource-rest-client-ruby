@@ -74,7 +74,7 @@ module CyberSource
         :'name' => :'String',
         :'description' => :'String',
         :'organization_id' => :'String',
-        :'products' => :'Array<Notificationsubscriptionsv2webhooksProducts1>',
+        :'products' => :'Array<CreateWebhookRequestProductItem>',
         :'webhook_url' => :'String',
         :'health_check_url' => :'String',
         :'retry_policy' => :'Notificationsubscriptionsv2webhooksRetryPolicy',

@@ -16,24 +16,30 @@ module CyberSource
     # Where Click to Pay is the payment type selected by the customer and the customer manually enters their card, the option to enroll their card in Click to Pay will be auto-checked if this field is set to \"true\". <br><br>  This is only available where the merchant and cardholder are based in the following countries and the billing type is set to \"FULL\" or \"PARTIAL\".   - UAE   - Argentina   - Brazil   - Chile   - Colombia   - Kuwait   - Mexico   - Peru   - Qatar   - Saudi Arabia   - Ukraine   - South Africa<br><br>  If false, this is not present or not supported in the market.  Enrollment in Click to Pay is not checked for the customer when completing manual card entry.<br><br> Optional field: This field can be configured through the Merchant Experience Screens in the Business Center.  The configured value may be overridden on a per transaction basis in the uc/v1/sessions API request. 
     attr_accessor :auto_check_enrollment
 
+    # allowedCardNetworks (optional): Specifies the card networks eligible for Click to Pay. When provided, only the listed networks invoke Click to Pay; when omitted, all Click to Pay–supported networks in the top-level allowedCardNetworks configuration are eligible.<br><br>  Optional field: This field can be configured through the Merchant Experience Screens in the Business Center.  The configured value may be overridden on a per transaction basis in the uc/v1/sessions API request. 
+    attr_accessor :allowed_card_networks
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'auto_check_enrollment' => :'autoCheckEnrollment'
+        :'auto_check_enrollment' => :'autoCheckEnrollment',
+        :'allowed_card_networks' => :'allowedCardNetworks'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'auto_check_enrollment' => :'auto_check_enrollment'
+        :'auto_check_enrollment' => :'auto_check_enrollment',
+        :'allowed_card_networks' => :'allowed_card_networks'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'auto_check_enrollment' => :'BOOLEAN'
+        :'auto_check_enrollment' => :'BOOLEAN',
+        :'allowed_card_networks' => :'Array<String>'
       }
     end
 
@@ -47,6 +53,12 @@ module CyberSource
 
       if attributes.has_key?(:'autoCheckEnrollment')
         self.auto_check_enrollment = attributes[:'autoCheckEnrollment']
+      end
+
+      if attributes.has_key?(:'allowedCardNetworks')
+        if (value = attributes[:'allowedCardNetworks']).is_a?(Array)
+          self.allowed_card_networks = value
+        end
       end
     end
 
@@ -68,7 +80,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          auto_check_enrollment == o.auto_check_enrollment
+          auto_check_enrollment == o.auto_check_enrollment &&
+          allowed_card_networks == o.allowed_card_networks
     end
 
     # @see the `==` method
@@ -80,7 +93,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [auto_check_enrollment].hash
+      [auto_check_enrollment, allowed_card_networks].hash
     end
 
     # Builds the object from hash

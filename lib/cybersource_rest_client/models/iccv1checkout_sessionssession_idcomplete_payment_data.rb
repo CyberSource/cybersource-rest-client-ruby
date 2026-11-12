@@ -45,7 +45,7 @@ module CyberSource
       {
         :'token' => :'String',
         :'provider' => :'String',
-        :'billing_address' => :'Iccv1checkoutSessionssessionIdcompletePaymentDataBillingAddress'
+        :'billing_address' => :'Iccv1checkoutSessionsPaymentDataBillingAddress'
       }
     end
 

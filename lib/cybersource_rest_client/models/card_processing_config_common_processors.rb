@@ -296,7 +296,7 @@ module CyberSource
         :'merchant_id' => :'String',
         :'terminal_id' => :'String',
         :'payment_types' => :'Hash<String, CardProcessingConfigCommonPaymentTypes>',
-        :'currencies' => :'Hash<String, CardProcessingConfigCommonCurrencies1>',
+        :'currencies' => :'Hash<String, CurrencyUpdatedConfiguration>',
         :'visa_aggregator_id' => :'String',
         :'amex_aggregator_id' => :'String',
         :'master_card_aggregator_id' => :'String',

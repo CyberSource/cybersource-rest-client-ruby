@@ -48,7 +48,7 @@ module CyberSource
         :'_links' => :'GetAllPlansResponseLinks',
         :'submit_time_utc' => :'String',
         :'total_links' => :'Integer',
-        :'links' => :'Array<PblPaymentLinksAllGet200ResponseLinks>'
+        :'links' => :'Array<PblPaymentLinksAllGet200ResponseSdkLinks>'
       }
     end
 

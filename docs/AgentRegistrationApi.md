@@ -65,7 +65,7 @@ No authorization required
 
 
 # **add_agent_key**
-> AddAgentKeyResponse201 add_agent_key(agent_id, key_request)
+> AddAgentKeyResponse201 add_agent_key(agent_id, add_agent_key_request)
 
 Add a key to an agent
 
@@ -80,12 +80,12 @@ api_instance = CyberSource::AgentRegistrationApi.new
 
 agent_id = 'agent_id_example' # String | Unique agent identifier
 
-key_request = CyberSource::KeyRequest.new # KeyRequest | Key creation request
+add_agent_key_request = CyberSource::AddAgentKeyRequest.new # AddAgentKeyRequest | Key creation request
 
 
 begin
   #Add a key to an agent
-  result = api_instance.add_agent_key(agent_id, key_request)
+  result = api_instance.add_agent_key(agent_id, add_agent_key_request)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling AgentRegistrationApi->add_agent_key: #{e}"
@@ -97,7 +97,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **agent_id** | **String**| Unique agent identifier | 
- **key_request** | [**KeyRequest**](KeyRequest.md)| Key creation request | 
+ **add_agent_key_request** | [**AddAgentKeyRequest**](AddAgentKeyRequest.md)| Key creation request | 
 
 ### Return type
 
@@ -362,7 +362,7 @@ No authorization required
 
 
 # **update_agent_key**
-> AddAgentKeyResponse201 update_agent_key(agent_id, key_id, key_update)
+> AddAgentKeyResponse201 update_agent_key(agent_id, key_id, update_agent_key_request)
 
 Update a key
 
@@ -379,12 +379,12 @@ agent_id = 'agent_id_example' # String | Unique agent identifier
 
 key_id = 'key_id_example' # String | Unique key identifier
 
-key_update = CyberSource::KeyUpdate.new # KeyUpdate | Key update request
+update_agent_key_request = CyberSource::UpdateAgentKeyRequest.new # UpdateAgentKeyRequest | Key update request
 
 
 begin
   #Update a key
-  result = api_instance.update_agent_key(agent_id, key_id, key_update)
+  result = api_instance.update_agent_key(agent_id, key_id, update_agent_key_request)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling AgentRegistrationApi->update_agent_key: #{e}"
@@ -397,7 +397,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **agent_id** | **String**| Unique agent identifier | 
  **key_id** | **String**| Unique key identifier | 
- **key_update** | [**KeyUpdate**](KeyUpdate.md)| Key update request | 
+ **update_agent_key_request** | [**UpdateAgentKeyRequest**](UpdateAgentKeyRequest.md)| Key update request | 
 
 ### Return type
 

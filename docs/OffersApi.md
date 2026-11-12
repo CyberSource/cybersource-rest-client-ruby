@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **create_offer**
-> InlineResponse20111 create_offer(content_type, x_requestid, v_c_merchant_id, v_c_correlation_id, v_c_organization_id, offer_request)
+> CreateOfferResponse create_offer(content_type, x_requestid, v_c_merchant_id, v_c_correlation_id, v_c_organization_id, offer_request)
 
 Create an Offer
 
@@ -57,7 +57,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20111**](InlineResponse20111.md)
+[**CreateOfferResponse**](CreateOfferResponse.md)
 
 ### Authorization
 
@@ -71,7 +71,7 @@ No authorization required
 
 
 # **get_offer**
-> InlineResponse20016 get_offer(content_type, x_requestid, v_c_merchant_id, v_c_correlation_id, v_c_organization_id, id)
+> GetOfferResponse get_offer(content_type, x_requestid, v_c_merchant_id, v_c_correlation_id, v_c_organization_id, id)
 
 Retrieve an Offer
 
@@ -119,7 +119,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20016**](InlineResponse20016.md)
+[**GetOfferResponse**](GetOfferResponse.md)
 
 ### Authorization
 

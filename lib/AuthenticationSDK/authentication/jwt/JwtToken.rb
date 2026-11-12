@@ -107,6 +107,7 @@ public
       if isResponseMLEForApi
         mle_kid = MLEUtility.validate_and_auto_extract_response_mle_kid(merchantconfig_obj)
         jwt_payload['v-c-response-mle-kid'] = mle_kid
+        jwt_payload['v-c-response-mle-algo'] = 'RSA-OAEP-256'
       end
 
       return jwt_payload

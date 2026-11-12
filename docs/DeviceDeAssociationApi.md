@@ -55,7 +55,7 @@ No authorization required
 
 
 # **post_de_associate_v3_terminal**
-> Array&lt;InlineResponse20010&gt; post_de_associate_v3_terminal(device_de_associate_v3_request)
+> Array&lt;DeviceDeAssociateV3Response&gt; post_de_associate_v3_terminal(device_de_associate_v3_request)
 
 De-associate a device from merchant to account or reseller and from account to reseller
 
@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Array&lt;InlineResponse20010&gt;**](InlineResponse20010.md)
+[**Array&lt;DeviceDeAssociateV3Response&gt;**](DeviceDeAssociateV3Response.md)
 
 ### Authorization
 

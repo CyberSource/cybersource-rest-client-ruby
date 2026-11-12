@@ -13,27 +13,33 @@ require 'date'
 
 module CyberSource
   class TmsMerchantInformationMerchantDescriptor
-    # Alternate contact information for your business,such as an email address or URL. This value might be displayed on the cardholder's statement. When you do not include this value in your capture or credit request, the merchant URL from your CyberSource account is used. Important This value must consist of English characters 
-    attr_accessor :alternate_name
+    # Merchant's name
+    attr_accessor :name
+
+    # Address of company's website provided by merchant
+    attr_accessor :url
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'alternate_name' => :'alternateName'
+        :'name' => :'name',
+        :'url' => :'url'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'alternate_name' => :'alternate_name'
+        :'name' => :'name',
+        :'url' => :'url'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'alternate_name' => :'String'
+        :'name' => :'String',
+        :'url' => :'String'
       }
     end
 
@@ -45,8 +51,12 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'alternateName')
-        self.alternate_name = attributes[:'alternateName']
+      if attributes.has_key?(:'name')
+        self.name = attributes[:'name']
+      end
+
+      if attributes.has_key?(:'url')
+        self.url = attributes[:'url']
       end
     end
 
@@ -63,18 +73,13 @@ module CyberSource
       true
     end
 
-    # Custom attribute writer method with validation
-    # @param [Object] alternate_name Value to be assigned
-    def alternate_name=(alternate_name)
-      @alternate_name = alternate_name
-    end
-
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          alternate_name == o.alternate_name
+          name == o.name &&
+          url == o.url
     end
 
     # @see the `==` method
@@ -86,7 +91,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [alternate_name].hash
+      [name, url].hash
     end
 
     # Builds the object from hash

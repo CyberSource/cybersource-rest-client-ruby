@@ -12,5 +12,6 @@ Name | Type | Description | Notes
 **payment_account_date** | **Integer** | Date applicable only for PAYMENT_ACCOUNT_EXISTS in paymentAccountHistory  | [optional] 
 **transaction_count_day** | **Integer** | Number of transaction (successful or abandoned) for this cardholder account within the last 24 hours. Recommended for Discover ProtectBuy.  | [optional] 
 **transaction_count_year** | **Integer** | Number of transaction (successful or abandoned) for this cardholder account within the last year. Recommended for Discover ProtectBuy.  | [optional] 
+**failed_payment_attempts_count** | **Float** | Number of failed payment attempts linked to order | [optional] 
 
 

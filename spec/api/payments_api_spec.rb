@@ -61,7 +61,7 @@ describe 'PaymentsApi' do
   # Create Alternative Payments Sessions Request
   # @param create_session_req 
   # @param [Hash] opts the optional parameters
-  # @return [PtsV2PaymentsPost201Response2]
+  # @return [CreateSessionResponse]
   describe 'create_session_request test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -87,7 +87,7 @@ describe 'PaymentsApi' do
   # @param id The payment id whose status needs to be checked and updated.
   # @param refresh_payment_status_request 
   # @param [Hash] opts the optional parameters
-  # @return [PtsV2PaymentsPost201Response1]
+  # @return [RefreshPaymentStatusResponse]
   describe 'refresh_payment_status test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -100,7 +100,7 @@ describe 'PaymentsApi' do
   # @param create_session_request 
   # @param id The payment ID. This ID is returned from a previous payment request.
   # @param [Hash] opts the optional parameters
-  # @return [PtsV2PaymentsPost201Response2]
+  # @return [CreateSessionResponse]
   describe 'update_session_request test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

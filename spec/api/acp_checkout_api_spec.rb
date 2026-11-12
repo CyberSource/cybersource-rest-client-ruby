@@ -43,7 +43,7 @@ describe 'ACPCheckoutApi' do
   # @option opts [String] :signature Request signature for payload integrity verification. 
   # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
   # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
-  # @return [InlineResponse20018]
+  # @return [CancelCheckoutResponse]
   describe 'cancel_checkout test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -63,7 +63,7 @@ describe 'ACPCheckoutApi' do
   # @option opts [String] :signature Request signature for payload integrity verification. 
   # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
   # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
-  # @return [InlineResponse20017]
+  # @return [CompleteCheckoutResponse]
   describe 'complete_checkout test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -82,7 +82,7 @@ describe 'ACPCheckoutApi' do
   # @option opts [String] :signature Request signature for payload integrity verification. 
   # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
   # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
-  # @return [InlineResponse20112]
+  # @return [CheckoutSessionResponse]
   describe 'create_checkout_session test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -102,7 +102,7 @@ describe 'ACPCheckoutApi' do
   # @option opts [String] :signature Request signature for payload integrity verification. 
   # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
   # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
-  # @return [InlineResponse20112]
+  # @return [CheckoutSessionResponse]
   describe 'get_checkout_session test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -122,7 +122,7 @@ describe 'ACPCheckoutApi' do
   # @option opts [String] :signature Request signature for payload integrity verification. 
   # @option opts [String] :timestamp ISO 8601 timestamp of when the request was generated. Used in conjunction with Signature for replay protection. 
   # @option opts [String] :api_version ACP specification version the client is targeting (e.g. &#x60;2024-01-01&#x60;). When omitted, the latest supported version is assumed. 
-  # @return [InlineResponse20112]
+  # @return [CheckoutSessionResponse]
   describe 'update_checkout_session test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

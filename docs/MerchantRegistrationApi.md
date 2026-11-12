@@ -65,7 +65,7 @@ No authorization required
 
 
 # **add_merchant_key**
-> ActivateMerchantKeyResponse200 add_merchant_key(merchant_id, key_request)
+> ActivateMerchantKeyResponse200 add_merchant_key(merchant_id, add_merchant_key_request)
 
 Add a key to a merchant
 
@@ -80,12 +80,12 @@ api_instance = CyberSource::MerchantRegistrationApi.new
 
 merchant_id = 'merchant_id_example' # String | Unique merchant identifier (UUID)
 
-key_request = CyberSource::KeyRequest1.new # KeyRequest1 | Key creation request
+add_merchant_key_request = CyberSource::AddMerchantKeyRequest.new # AddMerchantKeyRequest | Key creation request
 
 
 begin
   #Add a key to a merchant
-  result = api_instance.add_merchant_key(merchant_id, key_request)
+  result = api_instance.add_merchant_key(merchant_id, add_merchant_key_request)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling MerchantRegistrationApi->add_merchant_key: #{e}"
@@ -97,7 +97,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **merchant_id** | **String**| Unique merchant identifier (UUID) | 
- **key_request** | [**KeyRequest1**](KeyRequest1.md)| Key creation request | 
+ **add_merchant_key_request** | [**AddMerchantKeyRequest**](AddMerchantKeyRequest.md)| Key creation request | 
 
 ### Return type
 
@@ -360,7 +360,7 @@ No authorization required
 
 
 # **update_merchant_key**
-> ActivateMerchantKeyResponse200 update_merchant_key(merchant_id, key_id, key_update)
+> ActivateMerchantKeyResponse200 update_merchant_key(merchant_id, key_id, update_merchant_key_request)
 
 Update a merchant key
 
@@ -377,12 +377,12 @@ merchant_id = 'merchant_id_example' # String | Unique merchant identifier (UUID)
 
 key_id = 'key_id_example' # String | Unique key identifier (UUID)
 
-key_update = CyberSource::KeyUpdate1.new # KeyUpdate1 | Key update request
+update_merchant_key_request = CyberSource::UpdateMerchantKeyRequest.new # UpdateMerchantKeyRequest | Key update request
 
 
 begin
   #Update a merchant key
-  result = api_instance.update_merchant_key(merchant_id, key_id, key_update)
+  result = api_instance.update_merchant_key(merchant_id, key_id, update_merchant_key_request)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling MerchantRegistrationApi->update_merchant_key: #{e}"
@@ -395,7 +395,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **merchant_id** | **String**| Unique merchant identifier (UUID) | 
  **key_id** | **String**| Unique key identifier (UUID) | 
- **key_update** | [**KeyUpdate1**](KeyUpdate1.md)| Key update request | 
+ **update_merchant_key_request** | [**UpdateMerchantKeyRequest**](UpdateMerchantKeyRequest.md)| Key update request | 
 
 ### Return type
 

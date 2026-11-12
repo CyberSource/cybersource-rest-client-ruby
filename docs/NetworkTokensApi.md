@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 
 # **get_card_art_asset**
-> InlineResponse2002 get_card_art_asset(instrument_identifier_id, token_provider, asset_type)
+> CardArtAssetResponse get_card_art_asset(instrument_identifier_id, token_provider, asset_type)
 
 Retrieve Card Art
 
@@ -53,7 +53,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2002**](InlineResponse2002.md)
+[**CardArtAssetResponse**](CardArtAssetResponse.md)
 
 ### Authorization
 
@@ -67,7 +67,7 @@ No authorization required
 
 
 # **get_tokenized_card**
-> InlineResponse2001 get_tokenized_card(tokenized_card_id, opts)
+> GetTokenizedCardResponse get_tokenized_card(tokenized_card_id, opts)
 
 Retrieve a Tokenized Card
 
@@ -104,7 +104,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2001**](InlineResponse2001.md)
+[**GetTokenizedCardResponse**](GetTokenizedCardResponse.md)
 
 ### Authorization
 
@@ -185,7 +185,7 @@ api_instance = CyberSource::NetworkTokensApi.new
 
 token_id = 'token_id_example' # String | The Id of a token representing a Customer, Payment Instrument or Instrument Identifier.
 
-post_payment_credentials_request = CyberSource::PostPaymentCredentialsRequest1.new # PostPaymentCredentialsRequest1 | 
+post_payment_credentials_request = CyberSource::PostPaymentCredentialsRequest.new # PostPaymentCredentialsRequest | 
 
 opts = { 
   profile_id: 'profile_id_example' # String | The Id of a profile containing user specific TMS configuration.
@@ -205,7 +205,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token_id** | **String**| The Id of a token representing a Customer, Payment Instrument or Instrument Identifier. | 
- **post_payment_credentials_request** | [**PostPaymentCredentialsRequest1**](PostPaymentCredentialsRequest1.md)|  | 
+ **post_payment_credentials_request** | [**PostPaymentCredentialsRequest**](PostPaymentCredentialsRequest.md)|  | 
  **profile_id** | **String**| The Id of a profile containing user specific TMS configuration. | [optional] 
 
 ### Return type
@@ -224,7 +224,7 @@ No authorization required
 
 
 # **post_token_payment_credentials_v3**
-> InlineResponse2011 post_token_payment_credentials_v3(token_id, post_payment_credentials_request, opts)
+> PostPaymentCredentialsResponse post_token_payment_credentials_v3(token_id, post_payment_credentials_v3_request, opts)
 
 Generate Payment Credentials Latest Version v3
 
@@ -239,7 +239,7 @@ api_instance = CyberSource::NetworkTokensApi.new
 
 token_id = 'token_id_example' # String | The Id of a token representing a Customer, Payment Instrument or Instrument Identifier.
 
-post_payment_credentials_request = CyberSource::PostPaymentCredentialsRequest.new # PostPaymentCredentialsRequest | 
+post_payment_credentials_v3_request = CyberSource::PostPaymentCredentialsV3Request.new # PostPaymentCredentialsV3Request | 
 
 opts = { 
   profile_id: 'profile_id_example' # String | The Id of a profile containing user specific TMS configuration.
@@ -247,7 +247,7 @@ opts = {
 
 begin
   #Generate Payment Credentials Latest Version v3
-  result = api_instance.post_token_payment_credentials_v3(token_id, post_payment_credentials_request, opts)
+  result = api_instance.post_token_payment_credentials_v3(token_id, post_payment_credentials_v3_request, opts)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling NetworkTokensApi->post_token_payment_credentials_v3: #{e}"
@@ -259,12 +259,12 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **token_id** | **String**| The Id of a token representing a Customer, Payment Instrument or Instrument Identifier. | 
- **post_payment_credentials_request** | [**PostPaymentCredentialsRequest**](PostPaymentCredentialsRequest.md)|  | 
+ **post_payment_credentials_v3_request** | [**PostPaymentCredentialsV3Request**](PostPaymentCredentialsV3Request.md)|  | 
  **profile_id** | **String**| The Id of a profile containing user specific TMS configuration. | [optional] 
 
 ### Return type
 
-[**InlineResponse2011**](InlineResponse2011.md)
+[**PostPaymentCredentialsResponse**](PostPaymentCredentialsResponse.md)
 
 ### Authorization
 
@@ -278,7 +278,7 @@ No authorization required
 
 
 # **post_tokenized_card**
-> InlineResponse2001 post_tokenized_card(post_tokenized_card_request, opts)
+> GetTokenizedCardResponse post_tokenized_card(post_tokenized_card_request, opts)
 
 Create a Tokenized Card
 
@@ -315,7 +315,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2001**](InlineResponse2001.md)
+[**GetTokenizedCardResponse**](GetTokenizedCardResponse.md)
 
 ### Authorization
 

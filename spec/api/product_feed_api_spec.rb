@@ -38,7 +38,7 @@ describe 'ProductFeedApi' do
   # @param [Hash] opts the optional parameters
   # @option opts [Integer] :page Page number to retrieve (0-based). Defaults to 0.
   # @option opts [Integer] :size Number of products per page. Defaults to 300. Server enforces a maximum of 1000; values above 1000 are capped. 
-  # @return [InlineResponse20020]
+  # @return [ProductCatalogResponse]
   describe 'get_all_products test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -51,7 +51,7 @@ describe 'ProductFeedApi' do
   # @param job_id Unique identifier of the feed submission job, returned by the Ingest Product Feed endpoint. 
   # @param get_feed_job_status_request Empty request body.
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse20019]
+  # @return [FeedJobStatusResponse]
   describe 'get_feed_job_status test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -64,7 +64,7 @@ describe 'ProductFeedApi' do
   # @param product_id The unique product identifier (SKU) assigned by the merchant and provided during feed ingestion. Example: &#x60;SKU-1001&#x60;. 
   # @param get_product_request Empty request body.
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse20021]
+  # @return [ProductDetailResponse]
   describe 'get_product test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -76,7 +76,7 @@ describe 'ProductFeedApi' do
   # Submits a merchant product catalog to ACG for asynchronous processing and syndication to all configured protocol backends (e.g. Google Merchant Center).  **Processing pipeline:** 1. The request is accepted immediately and a &#x60;jobId&#x60; is returned — validation, ingestion,    and syndication all happen asynchronously in the background. 2. Each product is validated against UCP/ACP schema requirements (required fields, format rules) 3. Valid products are saved to the ACG catalog 4. An async syndication job is triggered to push the catalog to configured backends  **Supported content types:** &#x60;application/json&#x60; (this endpoint). CSV and JSONL uploads are also supported via file upload endpoints.  **Note:** This endpoint no longer returns per-product validation results or syndication outcomes synchronously — only the &#x60;jobId&#x60; acknowledgement shown below. Use that &#x60;jobId&#x60; to track processing and syndication status. 
   # @param product_feed_request Product feed payload. The &#x60;products&#x60; array is required and must contain at least one product. See &#x60;ProductInput&#x60; for the full list of required fields. 
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2021]
+  # @return [ProductAcceptedFeedResponse]
   describe 'submit_product_feed_json test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

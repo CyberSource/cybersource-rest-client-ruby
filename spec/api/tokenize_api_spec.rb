@@ -37,7 +37,7 @@ describe 'TokenizeApi' do
   # @param post_tokenize_request 
   # @param [Hash] opts the optional parameters
   # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
-  # @return [InlineResponse200]
+  # @return [PostTokenizeResponse]
   describe 'tokenize test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

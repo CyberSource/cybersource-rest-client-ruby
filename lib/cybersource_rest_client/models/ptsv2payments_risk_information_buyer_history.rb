@@ -38,6 +38,9 @@ module CyberSource
     # Number of transaction (successful or abandoned) for this cardholder account within the last year. Recommended for Discover ProtectBuy. 
     attr_accessor :transaction_count_year
 
+    # Number of failed payment attempts linked to order
+    attr_accessor :failed_payment_attempts_count
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -49,7 +52,8 @@ module CyberSource
         :'payment_account_history' => :'paymentAccountHistory',
         :'payment_account_date' => :'paymentAccountDate',
         :'transaction_count_day' => :'transactionCountDay',
-        :'transaction_count_year' => :'transactionCountYear'
+        :'transaction_count_year' => :'transactionCountYear',
+        :'failed_payment_attempts_count' => :'failedPaymentAttemptsCount'
       }
     end
 
@@ -64,7 +68,8 @@ module CyberSource
         :'payment_account_history' => :'payment_account_history',
         :'payment_account_date' => :'payment_account_date',
         :'transaction_count_day' => :'transaction_count_day',
-        :'transaction_count_year' => :'transaction_count_year'
+        :'transaction_count_year' => :'transaction_count_year',
+        :'failed_payment_attempts_count' => :'failed_payment_attempts_count'
       }
     end
 
@@ -79,7 +84,8 @@ module CyberSource
         :'payment_account_history' => :'String',
         :'payment_account_date' => :'Integer',
         :'transaction_count_day' => :'Integer',
-        :'transaction_count_year' => :'Integer'
+        :'transaction_count_year' => :'Integer',
+        :'failed_payment_attempts_count' => :'Float'
       }
     end
 
@@ -126,6 +132,10 @@ module CyberSource
       if attributes.has_key?(:'transactionCountYear')
         self.transaction_count_year = attributes[:'transactionCountYear']
       end
+
+      if attributes.has_key?(:'failedPaymentAttemptsCount')
+        self.failed_payment_attempts_count = attributes[:'failedPaymentAttemptsCount']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -154,7 +164,8 @@ module CyberSource
           payment_account_history == o.payment_account_history &&
           payment_account_date == o.payment_account_date &&
           transaction_count_day == o.transaction_count_day &&
-          transaction_count_year == o.transaction_count_year
+          transaction_count_year == o.transaction_count_year &&
+          failed_payment_attempts_count == o.failed_payment_attempts_count
     end
 
     # @see the `==` method
@@ -166,7 +177,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [customer_account, account_history, account_purchases, add_card_attempts, prior_suspicious_activity, payment_account_history, payment_account_date, transaction_count_day, transaction_count_year].hash
+      [customer_account, account_history, account_purchases, add_card_attempts, prior_suspicious_activity, payment_account_history, payment_account_date, transaction_count_day, transaction_count_year, failed_payment_attempts_count].hash
     end
 
     # Builds the object from hash

@@ -48,7 +48,7 @@ describe 'MerchantRegistrationApi' do
   # Add a key to a merchant
   # **Add a Key to a Merchant**&lt;br&gt;Adds a new encryption key for the specified merchant. The new key is created as ***active*** immediately.&lt;br&gt;&lt;br&gt; **Note:** Adding a new key automatically deactivates all previously active keys for this merchant (single-active key invariant).&lt;br&gt; Returns **403** if the merchant is deactivated, **404** if the merchant is not found. 
   # @param merchant_id Unique merchant identifier (UUID)
-  # @param key_request Key creation request
+  # @param add_merchant_key_request Key creation request
   # @param [Hash] opts the optional parameters
   # @return [ActivateMerchantKeyResponse200]
   describe 'add_merchant_key test' do
@@ -125,7 +125,7 @@ describe 'MerchantRegistrationApi' do
   # **Update a Merchant Key**&lt;br&gt;Updates encryption key information. The following fields can be modified: &#x60;keyName&#x60;, &#x60;encryptionKey&#x60;, &#x60;algorithm&#x60;, &#x60;encryptionType&#x60;, and &#x60;expirationDate&#x60;.&lt;br&gt;&lt;br&gt; Returns **403** if the merchant is deactivated, key is deactivated, or key is expired, **404** if the merchant or key is not found, **409** if the new &#x60;keyName&#x60; already exists. 
   # @param merchant_id Unique merchant identifier (UUID)
   # @param key_id Unique key identifier (UUID)
-  # @param key_update Key update request
+  # @param update_merchant_key_request Key update request
   # @param [Hash] opts the optional parameters
   # @return [ActivateMerchantKeyResponse200]
   describe 'update_merchant_key test' do

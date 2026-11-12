@@ -66,7 +66,7 @@ module CyberSource
     # Customer's phone number. 
     attr_accessor :phone_number
 
-    # Customer's phone number type.  #### For Payouts: This field may be sent only for FDC Compass.  Possible Values: * day * home * night * work 
+    # Customer's phone number type.  Possible Values: * day * home * night * work 
     attr_accessor :phone_type
 
     # Attribute mapping from ruby-style variable name to JSON key.

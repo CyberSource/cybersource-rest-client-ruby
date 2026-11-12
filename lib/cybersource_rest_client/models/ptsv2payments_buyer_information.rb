@@ -45,6 +45,8 @@ module CyberSource
     # The one-time identification code of the Alipay wallet user.  It is scanned from the barcode that is shown by the mobile application. 
     attr_accessor :wallet_id
 
+    attr_accessor :loyalty
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -58,7 +60,8 @@ module CyberSource
         :'language' => :'language',
         :'note_to_seller' => :'noteToSeller',
         :'mobile_phone' => :'mobilePhone',
-        :'wallet_id' => :'walletId'
+        :'wallet_id' => :'walletId',
+        :'loyalty' => :'loyalty'
       }
     end
 
@@ -75,7 +78,8 @@ module CyberSource
         :'language' => :'language',
         :'note_to_seller' => :'note_to_seller',
         :'mobile_phone' => :'mobile_phone',
-        :'wallet_id' => :'wallet_id'
+        :'wallet_id' => :'wallet_id',
+        :'loyalty' => :'loyalty'
       }
     end
 
@@ -92,7 +96,8 @@ module CyberSource
         :'language' => :'String',
         :'note_to_seller' => :'String',
         :'mobile_phone' => :'Integer',
-        :'wallet_id' => :'String'
+        :'wallet_id' => :'String',
+        :'loyalty' => :'Ptsv2paymentsBuyerInformationLoyalty'
       }
     end
 
@@ -148,6 +153,10 @@ module CyberSource
 
       if attributes.has_key?(:'walletId')
         self.wallet_id = attributes[:'walletId']
+      end
+
+      if attributes.has_key?(:'loyalty')
+        self.loyalty = attributes[:'loyalty']
       end
     end
 
@@ -233,7 +242,8 @@ module CyberSource
           language == o.language &&
           note_to_seller == o.note_to_seller &&
           mobile_phone == o.mobile_phone &&
-          wallet_id == o.wallet_id
+          wallet_id == o.wallet_id &&
+          loyalty == o.loyalty
     end
 
     # @see the `==` method
@@ -245,7 +255,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [merchant_customer_id, date_of_birth, vat_registration_number, company_tax_id, personal_identification, hashed_password, gender, language, note_to_seller, mobile_phone, wallet_id].hash
+      [merchant_customer_id, date_of_birth, vat_registration_number, company_tax_id, personal_identification, hashed_password, gender, language, note_to_seller, mobile_phone, wallet_id, loyalty].hash
     end
 
     # Builds the object from hash

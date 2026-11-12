@@ -49,7 +49,7 @@ module CyberSource
       {
         :'items' => :'Array<Iccv1checkoutSessionsItems>',
         :'buyer' => :'AcpUpdateCheckoutSessionBuyer',
-        :'fulfillment_address' => :'Iccv1checkoutSessionssessionIdFulfillmentAddress',
+        :'fulfillment_address' => :'Iccv1UpdateCheckoutSessionsFulfillmentAddress',
         :'fulfillment_option_id' => :'String'
       }
     end

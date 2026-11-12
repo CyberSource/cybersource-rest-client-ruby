@@ -150,6 +150,12 @@ module CyberSource
     # Type of inquiry for Zero dollar transactions. Mastercard is introducing Mastercard One Credential, a single, digitally connected credential that offers cardholders the ability to access multiple payment methods.   This field is used for Product Status Inquiry (PSI), Account Status Inquiry with Product Status Inquiry (ASI with PSI), and Account Status Inquiry with Product Status Inquiry and Probability Indicator.  This field is supported for Zero dollar transactions only.  Possible values: - `01`: Product status inquiry - `02`: Account status inquiry with product status inquiry - `03`: Account status Inquiry with Product Status Inquiry and Probability Indicator  #### Used by **Authorization (Zero dollar transactions)** Optional field. 
     attr_accessor :inquiry_type
 
+    # Outcome of a pre-authorization process. Used when processing payment outside of CyberSource and sent to Decision Manager post-authorisation.  Possible values: Approved, Rejected, Hold. 
+    attr_accessor :pre_auth_status
+
+    # Alphanumeric code returned by the issuer or payment gateway during the pre-authorization stage of a transaction. 
+    attr_accessor :pre_auth_response_code
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -201,7 +207,9 @@ module CyberSource
         :'wallet_transaction_intent' => :'walletTransactionIntent',
         :'destination_type' => :'destinationType',
         :'program_indicators' => :'programIndicators',
-        :'inquiry_type' => :'inquiryType'
+        :'inquiry_type' => :'inquiryType',
+        :'pre_auth_status' => :'preAuthStatus',
+        :'pre_auth_response_code' => :'preAuthResponseCode'
       }
     end
 
@@ -256,7 +264,9 @@ module CyberSource
         :'wallet_transaction_intent' => :'wallet_transaction_intent',
         :'destination_type' => :'destination_type',
         :'program_indicators' => :'program_indicators',
-        :'inquiry_type' => :'inquiry_type'
+        :'inquiry_type' => :'inquiry_type',
+        :'pre_auth_status' => :'pre_auth_status',
+        :'pre_auth_response_code' => :'pre_auth_response_code'
       }
     end
 
@@ -311,7 +321,9 @@ module CyberSource
         :'wallet_transaction_intent' => :'Float',
         :'destination_type' => :'Float',
         :'program_indicators' => :'Ptsv2paymentsProcessingInformationProgramIndicators',
-        :'inquiry_type' => :'String'
+        :'inquiry_type' => :'String',
+        :'pre_auth_status' => :'String',
+        :'pre_auth_response_code' => :'String'
       }
     end
 
@@ -524,6 +536,14 @@ module CyberSource
       if attributes.has_key?(:'inquiryType')
         self.inquiry_type = attributes[:'inquiryType']
       end
+
+      if attributes.has_key?(:'preAuthStatus')
+        self.pre_auth_status = attributes[:'preAuthStatus']
+      end
+
+      if attributes.has_key?(:'preAuthResponseCode')
+        self.pre_auth_response_code = attributes[:'preAuthResponseCode']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -707,6 +727,18 @@ module CyberSource
       @inquiry_type = inquiry_type
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] pre_auth_status Value to be assigned
+    def pre_auth_status=(pre_auth_status)
+      @pre_auth_status = pre_auth_status
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] pre_auth_response_code Value to be assigned
+    def pre_auth_response_code=(pre_auth_response_code)
+      @pre_auth_response_code = pre_auth_response_code
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -760,7 +792,9 @@ module CyberSource
           wallet_transaction_intent == o.wallet_transaction_intent &&
           destination_type == o.destination_type &&
           program_indicators == o.program_indicators &&
-          inquiry_type == o.inquiry_type
+          inquiry_type == o.inquiry_type &&
+          pre_auth_status == o.pre_auth_status &&
+          pre_auth_response_code == o.pre_auth_response_code
     end
 
     # @see the `==` method
@@ -772,7 +806,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [action_list, enable_escrow_option, action_token_types, bin_source, capture, processor_id, business_application_id, commerce_indicator, commerce_indicator_label, payment_solution, reconciliation_id, link_id, purchase_level, transaction_timeout, intents_id, report_group, visa_checkout_id, industry_data_type, authorization_options, card_verification, capture_options, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, wallet_type, national_net_domestic_data, merchant_verification_value, japan_payment_options, mobile_remote_payment_type, extended_credit_total_count, network_routing_order, pay_by_points_indicator, timeout, is_return_auth_record_enabled, network_partner_id, payment_type, enabler_id, processing_instruction, transaction_type_indicator, purpose_of_payment, language_code, original_payment_id, amex_indirect_model_type, wallet_transaction_intent, destination_type, program_indicators, inquiry_type].hash
+      [action_list, enable_escrow_option, action_token_types, bin_source, capture, processor_id, business_application_id, commerce_indicator, commerce_indicator_label, payment_solution, reconciliation_id, link_id, purchase_level, transaction_timeout, intents_id, report_group, visa_checkout_id, industry_data_type, authorization_options, card_verification, capture_options, recurring_options, bank_transfer_options, purchase_options, electronic_benefits_transfer, loan_options, wallet_type, national_net_domestic_data, merchant_verification_value, japan_payment_options, mobile_remote_payment_type, extended_credit_total_count, network_routing_order, pay_by_points_indicator, timeout, is_return_auth_record_enabled, network_partner_id, payment_type, enabler_id, processing_instruction, transaction_type_indicator, purpose_of_payment, language_code, original_payment_id, amex_indirect_model_type, wallet_transaction_intent, destination_type, program_indicators, inquiry_type, pre_auth_status, pre_auth_response_code].hash
     end
 
     # Builds the object from hash

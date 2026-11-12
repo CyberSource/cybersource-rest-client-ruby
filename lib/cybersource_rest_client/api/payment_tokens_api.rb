@@ -22,21 +22,21 @@ module CyberSource
     # Retrieve or Delete Payment Token
     # This API can be used in two flavours - for retrieval or deletion of vault id. 
     #
-    # @param request 
+    # @param payment_token_request 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse201]
+    # @return [RetrieveOrDeletePaymentTokenResponse]
     #
-    def retrieve_or_delete_payment_token(request, opts = {})
-      data, status_code, headers = retrieve_or_delete_payment_token_with_http_info(request, opts)
+    def retrieve_or_delete_payment_token(payment_token_request, opts = {})
+      data, status_code, headers = retrieve_or_delete_payment_token_with_http_info(payment_token_request, opts)
       return data, status_code, headers
     end
 
     # Retrieve or Delete Payment Token
     # This API can be used in two flavours - for retrieval or deletion of vault id. 
-    # @param request 
+    # @param payment_token_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse201, Fixnum, Hash)>] InlineResponse201 data, response status code and response headers
-    def retrieve_or_delete_payment_token_with_http_info(request, opts = {})
+    # @return [Array<(RetrieveOrDeletePaymentTokenResponse, Fixnum, Hash)>] RetrieveOrDeletePaymentTokenResponse data, response status code and response headers
+    def retrieve_or_delete_payment_token_with_http_info(payment_token_request, opts = {})
 
       if @api_client.config.debugging
           begin
@@ -46,9 +46,9 @@ module CyberSource
                 puts 'Cannot write to log'
             end
       end
-      # verify the required parameter 'request' is set
-      if @api_client.config.client_side_validation && request.nil?
-        fail ArgumentError, "Missing the required parameter 'request' when calling PaymentTokensApi.retrieve_or_delete_payment_token"
+      # verify the required parameter 'payment_token_request' is set
+      if @api_client.config.client_side_validation && payment_token_request.nil?
+        fail ArgumentError, "Missing the required parameter 'payment_token_request' when calling PaymentTokensApi.retrieve_or_delete_payment_token"
       end
       # resource path
       local_var_path = 'pts/v2/payment-tokens'
@@ -60,20 +60,22 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/json; charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json', 'application/json; charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(request)
+      post_body = @api_client.object_to_http_body(payment_token_request)
       sdk_tracker = SdkTracker.new
-      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'Request', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PaymentTokenRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "optional"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["retrieve_or_delete_payment_token","retrieve_or_delete_payment_token_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -88,7 +90,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse201',
+        :return_type => 'RetrieveOrDeletePaymentTokenResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin

@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **cancel_checkout**
-> InlineResponse20018 cancel_checkout(session_id, opts)
+> CancelCheckoutResponse cancel_checkout(session_id, opts)
 
 Cancel Checkout ACP
 
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20018**](InlineResponse20018.md)
+[**CancelCheckoutResponse**](CancelCheckoutResponse.md)
 
 ### Authorization
 
@@ -75,7 +75,7 @@ No authorization required
 
 
 # **complete_checkout**
-> InlineResponse20017 complete_checkout(session_id, acp_complete_checkout_request, opts)
+> CompleteCheckoutResponse complete_checkout(session_id, acp_complete_checkout_request, opts)
 
 Complete Checkout ACP
 
@@ -127,7 +127,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20017**](InlineResponse20017.md)
+[**CompleteCheckoutResponse**](CompleteCheckoutResponse.md)
 
 ### Authorization
 
@@ -141,7 +141,7 @@ No authorization required
 
 
 # **create_checkout_session**
-> InlineResponse20112 create_checkout_session(acp_create_checkout_session_request, opts)
+> CheckoutSessionResponse create_checkout_session(acp_create_checkout_session_request, opts)
 
 Create Checkout Session ACP
 
@@ -190,7 +190,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20112**](InlineResponse20112.md)
+[**CheckoutSessionResponse**](CheckoutSessionResponse.md)
 
 ### Authorization
 
@@ -204,7 +204,7 @@ No authorization required
 
 
 # **get_checkout_session**
-> InlineResponse20112 get_checkout_session(session_id, acp_get_checkout_session_request, opts)
+> CheckoutSessionResponse get_checkout_session(session_id, acp_get_checkout_session_request, opts)
 
 Get Checkout Session ACP
 
@@ -256,7 +256,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20112**](InlineResponse20112.md)
+[**CheckoutSessionResponse**](CheckoutSessionResponse.md)
 
 ### Authorization
 
@@ -270,7 +270,7 @@ No authorization required
 
 
 # **update_checkout_session**
-> InlineResponse20112 update_checkout_session(session_id, acp_update_checkout_session_request, opts)
+> CheckoutSessionResponse update_checkout_session(session_id, acp_update_checkout_session_request, opts)
 
 Update Checkout Session ACP
 
@@ -322,7 +322,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20112**](InlineResponse20112.md)
+[**CheckoutSessionResponse**](CheckoutSessionResponse.md)
 
 ### Authorization
 

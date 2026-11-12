@@ -24,7 +24,7 @@ module CyberSource
     # @param reference_type The reference type for which merchant defined fields are to be fetched. Available values are Invoice, Purchase, Donation
     # @param merchant_defined_field_definition_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<InlineResponse2004>]
+    # @return [Array<MerchantDefinedFieldWithIdResponse>]
     #
     def create_merchant_defined_field_definition(reference_type, merchant_defined_field_definition_request, opts = {})
       data, status_code, headers = create_merchant_defined_field_definition_with_http_info(reference_type, merchant_defined_field_definition_request, opts)
@@ -35,7 +35,7 @@ module CyberSource
     # @param reference_type The reference type for which merchant defined fields are to be fetched. Available values are Invoice, Purchase, Donation
     # @param merchant_defined_field_definition_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Array<InlineResponse2004>, Fixnum, Hash)>] Array<InlineResponse2004> data, response status code and response headers
+    # @return [Array<(Array<MerchantDefinedFieldWithIdResponse>, Fixnum, Hash)>] Array<MerchantDefinedFieldWithIdResponse> data, response status code and response headers
     def create_merchant_defined_field_definition_with_http_info(reference_type, merchant_defined_field_definition_request, opts = {})
 
       if @api_client.config.debugging
@@ -68,8 +68,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -81,7 +83,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["create_merchant_defined_field_definition","create_merchant_defined_field_definition_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -96,7 +98,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Array<InlineResponse2004>',
+        :return_type => 'Array<MerchantDefinedFieldWithIdResponse>',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -112,22 +114,22 @@ module CyberSource
     # Creates a merchant defined field for the given reference type (`Purchase` or `Donation`). The field type is independent of the reference type: both `Purchase` and `Donation` support both `Text` and `Select` fields. Set `fieldType` to `Text` or `Select` accordingly. 
     #
     # @param reference_type The reference type for which the merchant defined field is to be created. Available values are Purchase and Donation
-    # @param merchant_defined_field_definition_request 
+    # @param pbl_merchant_defined_field_definition_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<InlineResponse2004>]
+    # @return [Array<MerchantDefinedFieldWithIdResponse>]
     #
-    def create_pbl_merchant_defined_field_definition(reference_type, merchant_defined_field_definition_request, opts = {})
-      data, status_code, headers = create_pbl_merchant_defined_field_definition_with_http_info(reference_type, merchant_defined_field_definition_request, opts)
+    def create_pbl_merchant_defined_field_definition(reference_type, pbl_merchant_defined_field_definition_request, opts = {})
+      data, status_code, headers = create_pbl_merchant_defined_field_definition_with_http_info(reference_type, pbl_merchant_defined_field_definition_request, opts)
       return data, status_code, headers
     end
 
     # Create a PayByLink merchant defined field for a given reference type
     # Creates a merchant defined field for the given reference type (&#x60;Purchase&#x60; or &#x60;Donation&#x60;). The field type is independent of the reference type: both &#x60;Purchase&#x60; and &#x60;Donation&#x60; support both &#x60;Text&#x60; and &#x60;Select&#x60; fields. Set &#x60;fieldType&#x60; to &#x60;Text&#x60; or &#x60;Select&#x60; accordingly. 
     # @param reference_type The reference type for which the merchant defined field is to be created. Available values are Purchase and Donation
-    # @param merchant_defined_field_definition_request 
+    # @param pbl_merchant_defined_field_definition_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Array<InlineResponse2004>, Fixnum, Hash)>] Array<InlineResponse2004> data, response status code and response headers
-    def create_pbl_merchant_defined_field_definition_with_http_info(reference_type, merchant_defined_field_definition_request, opts = {})
+    # @return [Array<(Array<MerchantDefinedFieldWithIdResponse>, Fixnum, Hash)>] Array<MerchantDefinedFieldWithIdResponse> data, response status code and response headers
+    def create_pbl_merchant_defined_field_definition_with_http_info(reference_type, pbl_merchant_defined_field_definition_request, opts = {})
 
       if @api_client.config.debugging
           begin
@@ -145,9 +147,9 @@ module CyberSource
       if @api_client.config.client_side_validation && !['Purchase', 'Donation'].include?(reference_type)
         fail ArgumentError, "invalid value for 'reference_type', must be one of Purchase, Donation"
       end
-      # verify the required parameter 'merchant_defined_field_definition_request' is set
-      if @api_client.config.client_side_validation && merchant_defined_field_definition_request.nil?
-        fail ArgumentError, "Missing the required parameter 'merchant_defined_field_definition_request' when calling MerchantDefinedFieldsApi.create_pbl_merchant_defined_field_definition"
+      # verify the required parameter 'pbl_merchant_defined_field_definition_request' is set
+      if @api_client.config.client_side_validation && pbl_merchant_defined_field_definition_request.nil?
+        fail ArgumentError, "Missing the required parameter 'pbl_merchant_defined_field_definition_request' when calling MerchantDefinedFieldsApi.create_pbl_merchant_defined_field_definition"
       end
       # resource path
       local_var_path = 'ipl/v2/{referenceType}/merchantDefinedFields'.sub('{' + 'referenceType' + '}', reference_type.to_s)
@@ -159,20 +161,22 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(merchant_defined_field_definition_request)
+      post_body = @api_client.object_to_http_body(pbl_merchant_defined_field_definition_request)
       sdk_tracker = SdkTracker.new
-      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'MerchantDefinedFieldDefinitionRequest1', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PblMerchantDefinedFieldDefinitionRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["create_pbl_merchant_defined_field_definition","create_pbl_merchant_defined_field_definition_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -187,7 +191,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Array<InlineResponse2004>',
+        :return_type => 'Array<MerchantDefinedFieldWithIdResponse>',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -248,8 +252,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -263,7 +269,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["delete_merchant_defined_fields_definitions","delete_merchant_defined_fields_definitions_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -338,8 +344,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -353,7 +361,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["delete_pbl_merchant_defined_fields_definitions","delete_pbl_merchant_defined_fields_definitions_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -383,7 +391,7 @@ module CyberSource
     #
     # @param reference_type The reference type for which merchant defined fields are to be fetched. Available values are Invoice, Purchase, Donation
     # @param [Hash] opts the optional parameters
-    # @return [Array<InlineResponse2004>]
+    # @return [Array<MerchantDefinedFieldWithIdResponse>]
     #
     def get_merchant_defined_fields_definitions(reference_type, opts = {})
       data, status_code, headers = get_merchant_defined_fields_definitions_with_http_info(reference_type, opts)
@@ -393,7 +401,7 @@ module CyberSource
     # Get all merchant defined fields for a given reference type
     # @param reference_type The reference type for which merchant defined fields are to be fetched. Available values are Invoice, Purchase, Donation
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Array<InlineResponse2004>, Fixnum, Hash)>] Array<InlineResponse2004> data, response status code and response headers
+    # @return [Array<(Array<MerchantDefinedFieldWithIdResponse>, Fixnum, Hash)>] Array<MerchantDefinedFieldWithIdResponse> data, response status code and response headers
     def get_merchant_defined_fields_definitions_with_http_info(reference_type, opts = {})
 
       if @api_client.config.debugging
@@ -422,8 +430,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -437,7 +447,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_merchant_defined_fields_definitions","get_merchant_defined_fields_definitions_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -452,7 +462,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Array<InlineResponse2004>',
+        :return_type => 'Array<MerchantDefinedFieldWithIdResponse>',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -468,7 +478,7 @@ module CyberSource
     #
     # @param reference_type The reference type for which merchant defined fields are to be fetched. Available values are Purchase, Donation and PayByLink. PayByLink returns the merchant defined fields for both Purchase and Donation combined.
     # @param [Hash] opts the optional parameters
-    # @return [Array<InlineResponse2004>]
+    # @return [Array<MerchantDefinedFieldWithIdResponse>]
     #
     def get_pbl_merchant_defined_fields_definitions(reference_type, opts = {})
       data, status_code, headers = get_pbl_merchant_defined_fields_definitions_with_http_info(reference_type, opts)
@@ -478,7 +488,7 @@ module CyberSource
     # Get all PayByLink merchant defined fields for a given reference type
     # @param reference_type The reference type for which merchant defined fields are to be fetched. Available values are Purchase, Donation and PayByLink. PayByLink returns the merchant defined fields for both Purchase and Donation combined.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Array<InlineResponse2004>, Fixnum, Hash)>] Array<InlineResponse2004> data, response status code and response headers
+    # @return [Array<(Array<MerchantDefinedFieldWithIdResponse>, Fixnum, Hash)>] Array<MerchantDefinedFieldWithIdResponse> data, response status code and response headers
     def get_pbl_merchant_defined_fields_definitions_with_http_info(reference_type, opts = {})
 
       if @api_client.config.debugging
@@ -507,8 +517,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -522,7 +534,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_pbl_merchant_defined_fields_definitions","get_pbl_merchant_defined_fields_definitions_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -537,7 +549,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Array<InlineResponse2004>',
+        :return_type => 'Array<MerchantDefinedFieldWithIdResponse>',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -553,22 +565,22 @@ module CyberSource
     #
     # @param reference_type 
     # @param id 
-    # @param merchant_defined_field_core 
+    # @param update_merchant_defined_field_core_by_id_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<InlineResponse2004>]
+    # @return [Array<MerchantDefinedFieldWithIdResponse>]
     #
-    def put_merchant_defined_fields_definitions(reference_type, id, merchant_defined_field_core, opts = {})
-      data, status_code, headers = put_merchant_defined_fields_definitions_with_http_info(reference_type, id, merchant_defined_field_core, opts)
+    def put_merchant_defined_fields_definitions(reference_type, id, update_merchant_defined_field_core_by_id_request, opts = {})
+      data, status_code, headers = put_merchant_defined_fields_definitions_with_http_info(reference_type, id, update_merchant_defined_field_core_by_id_request, opts)
       return data, status_code, headers
     end
 
     # Update a MerchantDefinedField by ID
     # @param reference_type 
     # @param id 
-    # @param merchant_defined_field_core 
+    # @param update_merchant_defined_field_core_by_id_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Array<InlineResponse2004>, Fixnum, Hash)>] Array<InlineResponse2004> data, response status code and response headers
-    def put_merchant_defined_fields_definitions_with_http_info(reference_type, id, merchant_defined_field_core, opts = {})
+    # @return [Array<(Array<MerchantDefinedFieldWithIdResponse>, Fixnum, Hash)>] Array<MerchantDefinedFieldWithIdResponse> data, response status code and response headers
+    def put_merchant_defined_fields_definitions_with_http_info(reference_type, id, update_merchant_defined_field_core_by_id_request, opts = {})
 
       if @api_client.config.debugging
           begin
@@ -590,9 +602,9 @@ module CyberSource
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling MerchantDefinedFieldsApi.put_merchant_defined_fields_definitions"
       end
-      # verify the required parameter 'merchant_defined_field_core' is set
-      if @api_client.config.client_side_validation && merchant_defined_field_core.nil?
-        fail ArgumentError, "Missing the required parameter 'merchant_defined_field_core' when calling MerchantDefinedFieldsApi.put_merchant_defined_fields_definitions"
+      # verify the required parameter 'update_merchant_defined_field_core_by_id_request' is set
+      if @api_client.config.client_side_validation && update_merchant_defined_field_core_by_id_request.nil?
+        fail ArgumentError, "Missing the required parameter 'update_merchant_defined_field_core_by_id_request' when calling MerchantDefinedFieldsApi.put_merchant_defined_fields_definitions"
       end
       # resource path
       local_var_path = 'invoicing/v2/{referenceType}/merchantDefinedFields/{id}'.sub('{' + 'referenceType' + '}', reference_type.to_s).sub('{' + 'id' + '}', id.to_s)
@@ -604,20 +616,22 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(merchant_defined_field_core)
+      post_body = @api_client.object_to_http_body(update_merchant_defined_field_core_by_id_request)
       sdk_tracker = SdkTracker.new
-      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'MerchantDefinedFieldCore', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'UpdateMerchantDefinedFieldCoreByIdRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["put_merchant_defined_fields_definitions","put_merchant_defined_fields_definitions_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -632,7 +646,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Array<InlineResponse2004>',
+        :return_type => 'Array<MerchantDefinedFieldWithIdResponse>',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -648,22 +662,22 @@ module CyberSource
     #
     # @param reference_type 
     # @param id 
-    # @param merchant_defined_field_core 
+    # @param update_pbl_merchant_defined_field_core_by_id_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<InlineResponse2004>]
+    # @return [Array<MerchantDefinedFieldWithIdResponse>]
     #
-    def put_pbl_merchant_defined_fields_definitions(reference_type, id, merchant_defined_field_core, opts = {})
-      data, status_code, headers = put_pbl_merchant_defined_fields_definitions_with_http_info(reference_type, id, merchant_defined_field_core, opts)
+    def put_pbl_merchant_defined_fields_definitions(reference_type, id, update_pbl_merchant_defined_field_core_by_id_request, opts = {})
+      data, status_code, headers = put_pbl_merchant_defined_fields_definitions_with_http_info(reference_type, id, update_pbl_merchant_defined_field_core_by_id_request, opts)
       return data, status_code, headers
     end
 
     # Update a PayByLink MerchantDefinedField by ID
     # @param reference_type 
     # @param id 
-    # @param merchant_defined_field_core 
+    # @param update_pbl_merchant_defined_field_core_by_id_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Array<InlineResponse2004>, Fixnum, Hash)>] Array<InlineResponse2004> data, response status code and response headers
-    def put_pbl_merchant_defined_fields_definitions_with_http_info(reference_type, id, merchant_defined_field_core, opts = {})
+    # @return [Array<(Array<MerchantDefinedFieldWithIdResponse>, Fixnum, Hash)>] Array<MerchantDefinedFieldWithIdResponse> data, response status code and response headers
+    def put_pbl_merchant_defined_fields_definitions_with_http_info(reference_type, id, update_pbl_merchant_defined_field_core_by_id_request, opts = {})
 
       if @api_client.config.debugging
           begin
@@ -685,9 +699,9 @@ module CyberSource
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling MerchantDefinedFieldsApi.put_pbl_merchant_defined_fields_definitions"
       end
-      # verify the required parameter 'merchant_defined_field_core' is set
-      if @api_client.config.client_side_validation && merchant_defined_field_core.nil?
-        fail ArgumentError, "Missing the required parameter 'merchant_defined_field_core' when calling MerchantDefinedFieldsApi.put_pbl_merchant_defined_fields_definitions"
+      # verify the required parameter 'update_pbl_merchant_defined_field_core_by_id_request' is set
+      if @api_client.config.client_side_validation && update_pbl_merchant_defined_field_core_by_id_request.nil?
+        fail ArgumentError, "Missing the required parameter 'update_pbl_merchant_defined_field_core_by_id_request' when calling MerchantDefinedFieldsApi.put_pbl_merchant_defined_fields_definitions"
       end
       # resource path
       local_var_path = 'ipl/v2/{referenceType}/merchantDefinedFields/{id}'.sub('{' + 'referenceType' + '}', reference_type.to_s).sub('{' + 'id' + '}', id.to_s)
@@ -699,20 +713,22 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/hal+json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(merchant_defined_field_core)
+      post_body = @api_client.object_to_http_body(update_pbl_merchant_defined_field_core_by_id_request)
       sdk_tracker = SdkTracker.new
-      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'MerchantDefinedFieldCore1', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'UpdatePblMerchantDefinedFieldCoreByIdRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["put_pbl_merchant_defined_fields_definitions","put_pbl_merchant_defined_fields_definitions_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -727,7 +743,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Array<InlineResponse2004>',
+        :return_type => 'Array<MerchantDefinedFieldWithIdResponse>',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin

@@ -54,9 +54,8 @@ public
       is_mle_for_api
     end
 
-    def self.encrypt_request_payload(merchantConfig, requestBody)
+    def self.encrypt_request_payload(merchantConfig, requestBody, contentType = nil)
       return nil if requestBody.nil?
-      return requestBody if requestBody == '{}'
 
       @log_obj ||= Log.new(merchantConfig.log_config, 'MLEUtility')
 
@@ -91,10 +90,10 @@ public
         headers = {
           'alg' => 'RSA-OAEP-256',
           'enc'  => 'A256GCM',
-          'typ' => 'JWT',
           'kid' => serial_number,
           'iat' => Time.now.to_i
         }
+        headers['cty'] = contentType if contentType && !contentType.to_s.strip.empty?
         jwe = JOSE::JWE.block_encrypt(jwk, requestBody, headers)
 
         compact_jwe = jwe.compact

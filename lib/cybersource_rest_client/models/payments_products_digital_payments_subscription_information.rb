@@ -44,7 +44,7 @@ module CyberSource
       {
         :'enabled' => :'BOOLEAN',
         :'self_serviceability' => :'String',
-        :'features' => :'Hash<String, PaymentsProductsDigitalPaymentsSubscriptionInformationFeatures>'
+        :'features' => :'Hash<String, DigitalPaymentsFeatureSubscriptionItem>'
       }
     end
 

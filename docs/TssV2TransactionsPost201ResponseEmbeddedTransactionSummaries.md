@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **processor_information** | [**TssV2TransactionsPost201ResponseEmbeddedProcessorInformation**](TssV2TransactionsPost201ResponseEmbeddedProcessorInformation.md) |  | [optional] 
 **point_of_sale_information** | [**TssV2TransactionsPost201ResponseEmbeddedPointOfSaleInformation**](TssV2TransactionsPost201ResponseEmbeddedPointOfSaleInformation.md) |  | [optional] 
 **risk_information** | [**TssV2TransactionsPost201ResponseEmbeddedRiskInformation**](TssV2TransactionsPost201ResponseEmbeddedRiskInformation.md) |  | [optional] 
+**travel_information** | [**TssV2TransactionsGet200ResponseTravelInformation**](TssV2TransactionsGet200ResponseTravelInformation.md) |  | [optional] 
 **_links** | [**TssV2TransactionsPost201ResponseEmbeddedLinks**](TssV2TransactionsPost201ResponseEmbeddedLinks.md) |  | [optional] 
 
 

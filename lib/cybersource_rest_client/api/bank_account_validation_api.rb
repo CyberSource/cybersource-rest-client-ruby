@@ -24,7 +24,7 @@ module CyberSource
     #
     # @param account_validations_request 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse20015]
+    # @return [BankAccountValidationResponse]
     #
     def bank_account_validation_request(account_validations_request, opts = {})
       data, status_code, headers = bank_account_validation_request_with_http_info(account_validations_request, opts)
@@ -35,7 +35,7 @@ module CyberSource
     # The Visa Bank Account Validation Service is a new standalone product designed to validate customer&#39;s routing and bank account number combination for ACH transactions. Merchant&#39;s can use this standalone product to validate their customer&#39;s account prior to processing an ACH transaction against the customer&#39;s account to comply with Nacha&#39;s account validation mandate for Web-debit transactions. 
     # @param account_validations_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse20015, Fixnum, Hash)>] InlineResponse20015 data, response status code and response headers
+    # @return [Array<(BankAccountValidationResponse, Fixnum, Hash)>] BankAccountValidationResponse data, response status code and response headers
     def bank_account_validation_request_with_http_info(account_validations_request, opts = {})
 
       if @api_client.config.debugging
@@ -60,8 +60,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -73,7 +75,7 @@ module CyberSource
       inbound_mle_status = "mandatory"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["bank_account_validation_request","bank_account_validation_request_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -88,7 +90,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20015',
+        :return_type => 'BankAccountValidationResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin

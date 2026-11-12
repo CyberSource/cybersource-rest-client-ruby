@@ -13,26 +13,33 @@ require 'date'
 
 module CyberSource
   class InlineResponse404
-    attr_accessor :errors
+    # Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ` **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The `T` separates the date and the time. The `Z` indicates UTC.  Returned by Cybersource for all services. 
+    attr_accessor :submit_time_utc
+
+    # The status of the submitted transaction.  Possible values:  - NOT_FOUND 
+    attr_accessor :status
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'errors' => :'errors'
+        :'submit_time_utc' => :'submitTimeUtc',
+        :'status' => :'status'
       }
     end
 
     # Attribute mapping from JSON key to ruby-style variable name.
     def self.json_map
       {
-        :'errors' => :'errors'
+        :'submit_time_utc' => :'submit_time_utc',
+        :'status' => :'status'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'errors' => :'Array<InlineResponse404Errors>'
+        :'submit_time_utc' => :'String',
+        :'status' => :'String'
       }
     end
 
@@ -44,10 +51,12 @@ module CyberSource
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'errors')
-        if (value = attributes[:'errors']).is_a?(Array)
-          self.errors = value
-        end
+      if attributes.has_key?(:'submitTimeUtc')
+        self.submit_time_utc = attributes[:'submitTimeUtc']
+      end
+
+      if attributes.has_key?(:'status')
+        self.status = attributes[:'status']
       end
     end
 
@@ -69,7 +78,8 @@ module CyberSource
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          errors == o.errors
+          submit_time_utc == o.submit_time_utc &&
+          status == o.status
     end
 
     # @see the `==` method
@@ -81,7 +91,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [errors].hash
+      [submit_time_utc, status].hash
     end
 
     # Builds the object from hash

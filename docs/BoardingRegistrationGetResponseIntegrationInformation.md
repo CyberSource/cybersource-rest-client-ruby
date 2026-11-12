@@ -1,0 +1,10 @@
+# CyberSource::BoardingRegistrationGetResponseIntegrationInformation
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**oauth2** | [**Array&lt;Boardingv1registrationsIntegrationInformationOauth2&gt;**](Boardingv1registrationsIntegrationInformationOauth2.md) |  | [optional] 
+**tenant_configurations** | [**Array&lt;BoardingRegistrationGetResponseIntegrationInformationTenantConfigurations&gt;**](BoardingRegistrationGetResponseIntegrationInformationTenantConfigurations.md) | tenantConfigurations is an array of objects that includes the tenant information this merchant is associated with. | [optional] 
+**msd** | [**Boardingv1registrationsIntegrationInformationMsd**](Boardingv1registrationsIntegrationInformationMsd.md) |  | [optional] 
+
+

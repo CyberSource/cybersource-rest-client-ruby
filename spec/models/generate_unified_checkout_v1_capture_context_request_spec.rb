@@ -31,12 +31,6 @@ describe 'GenerateUnifiedCheckoutV1CaptureContextRequest' do
       expect(@instance).to be_instance_of(CyberSource::GenerateUnifiedCheckoutV1CaptureContextRequest)
     end
   end
-  describe 'test attribute "client_version"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   describe 'test attribute "target_origins"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

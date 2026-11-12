@@ -46,6 +46,9 @@ module CyberSource
     # Product's identifier code. This field is inserted into the outgoing message without being parsed or formatted. This field is included as Distributor product SKU (Offer) in the list of API fields with which you can create custom rules. 
     attr_accessor :distributor_product_sku
 
+    # Type of product (e.g., Prepaid, Postpaid, Electronic Devices, Flight, Hotel).
+    attr_accessor :product_type
+
     attr_accessor :passenger
 
     # Destination to where the item will be shipped. Example: Commercial, Residential, Store 
@@ -72,6 +75,7 @@ module CyberSource
         :'product_code' => :'productCode',
         :'gift' => :'gift',
         :'distributor_product_sku' => :'distributorProductSku',
+        :'product_type' => :'productType',
         :'passenger' => :'passenger',
         :'shipping_destination_types' => :'shippingDestinationTypes',
         :'tax_amount' => :'taxAmount',
@@ -94,6 +98,7 @@ module CyberSource
         :'product_code' => :'product_code',
         :'gift' => :'gift',
         :'distributor_product_sku' => :'distributor_product_sku',
+        :'product_type' => :'product_type',
         :'passenger' => :'passenger',
         :'shipping_destination_types' => :'shipping_destination_types',
         :'tax_amount' => :'tax_amount',
@@ -116,6 +121,7 @@ module CyberSource
         :'product_code' => :'String',
         :'gift' => :'BOOLEAN',
         :'distributor_product_sku' => :'String',
+        :'product_type' => :'String',
         :'passenger' => :'Ptsv2paymentsOrderInformationPassenger',
         :'shipping_destination_types' => :'String',
         :'tax_amount' => :'String',
@@ -174,6 +180,10 @@ module CyberSource
 
       if attributes.has_key?(:'distributorProductSku')
         self.distributor_product_sku = attributes[:'distributorProductSku']
+      end
+
+      if attributes.has_key?(:'productType')
+        self.product_type = attributes[:'productType']
       end
 
       if attributes.has_key?(:'passenger')
@@ -263,6 +273,12 @@ module CyberSource
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] product_type Value to be assigned
+    def product_type=(product_type)
+      @product_type = product_type
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] shipping_destination_types Value to be assigned
     def shipping_destination_types=(shipping_destination_types)
       @shipping_destination_types = shipping_destination_types
@@ -290,6 +306,7 @@ module CyberSource
           product_code == o.product_code &&
           gift == o.gift &&
           distributor_product_sku == o.distributor_product_sku &&
+          product_type == o.product_type &&
           passenger == o.passenger &&
           shipping_destination_types == o.shipping_destination_types &&
           tax_amount == o.tax_amount &&
@@ -306,7 +323,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [total_amount, unit_price, quantity, gift_card_currency, product_sku, product_risk, product_description, product_name, product_code, gift, distributor_product_sku, passenger, shipping_destination_types, tax_amount, allowed_export_countries, restricted_export_countries].hash
+      [total_amount, unit_price, quantity, gift_card_currency, product_sku, product_risk, product_description, product_name, product_code, gift, distributor_product_sku, product_type, passenger, shipping_destination_types, tax_amount, allowed_export_countries, restricted_export_countries].hash
     end
 
     # Builds the object from hash

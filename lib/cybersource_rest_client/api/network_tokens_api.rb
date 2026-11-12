@@ -26,7 +26,7 @@ module CyberSource
     # @param token_provider The token provider.
     # @param asset_type The type of asset.
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse2002]
+    # @return [CardArtAssetResponse]
     #
     def get_card_art_asset(instrument_identifier_id, token_provider, asset_type, opts = {})
       data, status_code, headers = get_card_art_asset_with_http_info(instrument_identifier_id, token_provider, asset_type, opts)
@@ -39,7 +39,7 @@ module CyberSource
     # @param token_provider The token provider.
     # @param asset_type The type of asset.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse2002, Fixnum, Hash)>] InlineResponse2002 data, response status code and response headers
+    # @return [Array<(CardArtAssetResponse, Fixnum, Hash)>] CardArtAssetResponse data, response status code and response headers
     def get_card_art_asset_with_http_info(instrument_identifier_id, token_provider, asset_type, opts = {})
 
       if @api_client.config.debugging
@@ -80,8 +80,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -95,7 +97,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_card_art_asset","get_card_art_asset_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -110,7 +112,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2002',
+        :return_type => 'CardArtAssetResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -128,7 +130,7 @@ module CyberSource
     # @param tokenized_card_id The Id of a tokenized card.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
-    # @return [InlineResponse2001]
+    # @return [GetTokenizedCardResponse]
     #
     def get_tokenized_card(tokenized_card_id, opts = {})
       data, status_code, headers = get_tokenized_card_with_http_info(tokenized_card_id, opts)
@@ -140,7 +142,7 @@ module CyberSource
     # @param tokenized_card_id The Id of a tokenized card.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
-    # @return [Array<(InlineResponse2001, Fixnum, Hash)>] InlineResponse2001 data, response status code and response headers
+    # @return [Array<(GetTokenizedCardResponse, Fixnum, Hash)>] GetTokenizedCardResponse data, response status code and response headers
     def get_tokenized_card_with_http_info(tokenized_card_id, opts = {})
 
       if @api_client.config.debugging
@@ -165,8 +167,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
       header_params[:'profile-id'] = opts[:'profile_id'] if !opts[:'profile_id'].nil?
 
       # form parameters
@@ -181,7 +185,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_tokenized_card","get_tokenized_card_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -196,7 +200,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2001',
+        :return_type => 'GetTokenizedCardResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -261,8 +265,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
       header_params[:'profile-id'] = profile_id
 
       # form parameters
@@ -275,7 +281,7 @@ module CyberSource
       inbound_mle_status = "optional"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["post_issuer_life_cycle_simulation","post_issuer_life_cycle_simulation_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -350,8 +356,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/jose;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
       header_params[:'profile-id'] = opts[:'profile_id'] if !opts[:'profile_id'].nil?
 
       # form parameters
@@ -360,11 +368,11 @@ module CyberSource
       # http body (model)
       post_body = @api_client.object_to_http_body(post_payment_credentials_request)
       sdk_tracker = SdkTracker.new
-      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PostPaymentCredentialsRequest1', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PostPaymentCredentialsRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "optional"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["post_token_payment_credentials","post_token_payment_credentials_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -395,24 +403,24 @@ module CyberSource
     # **Payment Credentials**<br>Contains payment information such as the network token, generated TAVV cryptogram for Visa & MasterCard, dynamic CVV for Amex, or DTVV cryptogram for VISA. This latest version (v3) returns the Primary Account Number details, if the network token is not present. The response is provided in JSON Web Encryption (JWE) format. <br>Your system can use this API to retrieve the Payment Credentials for an existing Customer, Payment Instrument, Instrument Identifier or Tokenized Card.<br>Optionally, **authenticated identities** information from Passkey authentication can be provided to potentially achieve liability shift, which may result in the return of an e-commerce indicator of 5 if successful. 
     #
     # @param token_id The Id of a token representing a Customer, Payment Instrument or Instrument Identifier.
-    # @param post_payment_credentials_request 
+    # @param post_payment_credentials_v3_request 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
-    # @return [InlineResponse2011]
+    # @return [PostPaymentCredentialsResponse]
     #
-    def post_token_payment_credentials_v3(token_id, post_payment_credentials_request, opts = {})
-      data, status_code, headers = post_token_payment_credentials_v3_with_http_info(token_id, post_payment_credentials_request, opts)
+    def post_token_payment_credentials_v3(token_id, post_payment_credentials_v3_request, opts = {})
+      data, status_code, headers = post_token_payment_credentials_v3_with_http_info(token_id, post_payment_credentials_v3_request, opts)
       return data, status_code, headers
     end
 
     # Generate Payment Credentials Latest Version v3
     # **Payment Credentials**&lt;br&gt;Contains payment information such as the network token, generated TAVV cryptogram for Visa &amp; MasterCard, dynamic CVV for Amex, or DTVV cryptogram for VISA. This latest version (v3) returns the Primary Account Number details, if the network token is not present. The response is provided in JSON Web Encryption (JWE) format. &lt;br&gt;Your system can use this API to retrieve the Payment Credentials for an existing Customer, Payment Instrument, Instrument Identifier or Tokenized Card.&lt;br&gt;Optionally, **authenticated identities** information from Passkey authentication can be provided to potentially achieve liability shift, which may result in the return of an e-commerce indicator of 5 if successful. 
     # @param token_id The Id of a token representing a Customer, Payment Instrument or Instrument Identifier.
-    # @param post_payment_credentials_request 
+    # @param post_payment_credentials_v3_request 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
-    # @return [Array<(InlineResponse2011, Fixnum, Hash)>] InlineResponse2011 data, response status code and response headers
-    def post_token_payment_credentials_v3_with_http_info(token_id, post_payment_credentials_request, opts = {})
+    # @return [Array<(PostPaymentCredentialsResponse, Fixnum, Hash)>] PostPaymentCredentialsResponse data, response status code and response headers
+    def post_token_payment_credentials_v3_with_http_info(token_id, post_payment_credentials_v3_request, opts = {})
 
       if @api_client.config.debugging
           begin
@@ -426,9 +434,9 @@ module CyberSource
       if @api_client.config.client_side_validation && token_id.nil?
         fail ArgumentError, "Missing the required parameter 'token_id' when calling NetworkTokensApi.post_token_payment_credentials_v3"
       end
-      # verify the required parameter 'post_payment_credentials_request' is set
-      if @api_client.config.client_side_validation && post_payment_credentials_request.nil?
-        fail ArgumentError, "Missing the required parameter 'post_payment_credentials_request' when calling NetworkTokensApi.post_token_payment_credentials_v3"
+      # verify the required parameter 'post_payment_credentials_v3_request' is set
+      if @api_client.config.client_side_validation && post_payment_credentials_v3_request.nil?
+        fail ArgumentError, "Missing the required parameter 'post_payment_credentials_v3_request' when calling NetworkTokensApi.post_token_payment_credentials_v3"
       end
       # resource path
       local_var_path = 'tms/v3/tokens/{tokenId}/payment-credentials'.sub('{' + 'tokenId' + '}', token_id.to_s)
@@ -440,21 +448,23 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/jose;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
       header_params[:'profile-id'] = opts[:'profile_id'] if !opts[:'profile_id'].nil?
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(post_payment_credentials_request)
+      post_body = @api_client.object_to_http_body(post_payment_credentials_v3_request)
       sdk_tracker = SdkTracker.new
-      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PostPaymentCredentialsRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PostPaymentCredentialsV3Request', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "optional"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["post_token_payment_credentials_v3","post_token_payment_credentials_v3_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -469,7 +479,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2011',
+        :return_type => 'PostPaymentCredentialsResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -487,7 +497,7 @@ module CyberSource
     # @param post_tokenized_card_request 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
-    # @return [InlineResponse2001]
+    # @return [GetTokenizedCardResponse]
     #
     def post_tokenized_card(post_tokenized_card_request, opts = {})
       data, status_code, headers = post_tokenized_card_with_http_info(post_tokenized_card_request, opts)
@@ -499,7 +509,7 @@ module CyberSource
     # @param post_tokenized_card_request 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
-    # @return [Array<(InlineResponse2001, Fixnum, Hash)>] InlineResponse2001 data, response status code and response headers
+    # @return [Array<(GetTokenizedCardResponse, Fixnum, Hash)>] GetTokenizedCardResponse data, response status code and response headers
     def post_tokenized_card_with_http_info(post_tokenized_card_request, opts = {})
 
       if @api_client.config.debugging
@@ -524,8 +534,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
       header_params[:'profile-id'] = opts[:'profile_id'] if !opts[:'profile_id'].nil?
 
       # form parameters
@@ -538,7 +550,7 @@ module CyberSource
       inbound_mle_status = "optional"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["post_tokenized_card","post_tokenized_card_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -553,7 +565,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse2001',
+        :return_type => 'GetTokenizedCardResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -610,8 +622,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
       header_params[:'profile-id'] = opts[:'profile_id'] if !opts[:'profile_id'].nil?
 
       # form parameters
@@ -624,7 +638,7 @@ module CyberSource
       inbound_mle_status = "optional"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["post_tokenized_card_delete","post_tokenized_card_delete_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end

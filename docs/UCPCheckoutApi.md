@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **ucp_cancel_checkout**
-> InlineResponse20113 ucp_cancel_checkout(session_id)
+> UcpCheckoutSessionResponse ucp_cancel_checkout(session_id)
 
 Cancel Checkout UCP
 
@@ -45,7 +45,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20113**](InlineResponse20113.md)
+[**UcpCheckoutSessionResponse**](UcpCheckoutSessionResponse.md)
 
 ### Authorization
 
@@ -59,7 +59,7 @@ No authorization required
 
 
 # **ucp_complete_checkout**
-> InlineResponse20113 ucp_complete_checkout(session_id, opts)
+> UcpCheckoutSessionResponse ucp_complete_checkout(session_id, opts)
 
 Complete Checkout UCP
 
@@ -98,7 +98,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20113**](InlineResponse20113.md)
+[**UcpCheckoutSessionResponse**](UcpCheckoutSessionResponse.md)
 
 ### Authorization
 
@@ -112,7 +112,7 @@ No authorization required
 
 
 # **ucp_create_checkout_session**
-> InlineResponse20113 ucp_create_checkout_session(ucp_create_checkout_session_request, opts)
+> UcpCheckoutSessionResponse ucp_create_checkout_session(ucp_create_checkout_session_request, opts)
 
 Create Checkout Session UCP
 
@@ -149,7 +149,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20113**](InlineResponse20113.md)
+[**UcpCheckoutSessionResponse**](UcpCheckoutSessionResponse.md)
 
 ### Authorization
 
@@ -163,7 +163,7 @@ No authorization required
 
 
 # **ucp_get_checkout_session**
-> InlineResponse20113 ucp_get_checkout_session(session_id, ucp_get_checkout_session_request)
+> UcpCheckoutSessionResponse ucp_get_checkout_session(session_id, ucp_get_checkout_session_request)
 
 Get Checkout Session UCP
 
@@ -199,7 +199,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20113**](InlineResponse20113.md)
+[**UcpCheckoutSessionResponse**](UcpCheckoutSessionResponse.md)
 
 ### Authorization
 
@@ -213,7 +213,7 @@ No authorization required
 
 
 # **ucp_update_checkout_session**
-> InlineResponse20113 ucp_update_checkout_session(session_id, ucp_update_checkout_session_request, opts)
+> UcpCheckoutSessionResponse ucp_update_checkout_session(session_id, ucp_update_checkout_session_request, opts)
 
 Update Checkout Session UCP
 
@@ -253,7 +253,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20113**](InlineResponse20113.md)
+[**UcpCheckoutSessionResponse**](UcpCheckoutSessionResponse.md)
 
 ### Authorization
 

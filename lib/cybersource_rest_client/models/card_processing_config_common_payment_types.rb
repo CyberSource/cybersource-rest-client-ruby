@@ -38,7 +38,7 @@ module CyberSource
     def self.swagger_types
       {
         :'enabled' => :'BOOLEAN',
-        :'currencies' => :'Hash<String, CardProcessingConfigCommonCurrencies>'
+        :'currencies' => :'Hash<String, CurrencyConfiguration>'
       }
     end
 

@@ -103,4 +103,10 @@ describe 'Ptsv2paymentsSenderInformation' do
     end
   end
 
+  describe 'test attribute "email"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

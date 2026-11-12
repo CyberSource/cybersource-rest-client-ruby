@@ -26,6 +26,8 @@ module CyberSource
 
     attr_accessor :invoice_details
 
+    attr_accessor :vouchers
+
     attr_accessor :shipping_details
 
     attr_accessor :digital_currency
@@ -60,6 +62,7 @@ module CyberSource
         :'ship_to' => :'shipTo',
         :'line_items' => :'lineItems',
         :'invoice_details' => :'invoiceDetails',
+        :'vouchers' => :'vouchers',
         :'shipping_details' => :'shippingDetails',
         :'digital_currency' => :'digitalCurrency',
         :'returns_accepted' => :'returnsAccepted',
@@ -81,6 +84,7 @@ module CyberSource
         :'ship_to' => :'ship_to',
         :'line_items' => :'line_items',
         :'invoice_details' => :'invoice_details',
+        :'vouchers' => :'vouchers',
         :'shipping_details' => :'shipping_details',
         :'digital_currency' => :'digital_currency',
         :'returns_accepted' => :'returns_accepted',
@@ -100,8 +104,9 @@ module CyberSource
         :'amount_details' => :'Ptsv2paymentsOrderInformationAmountDetails',
         :'bill_to' => :'Ptsv2paymentsOrderInformationBillTo',
         :'ship_to' => :'Ptsv2paymentsOrderInformationShipTo',
-        :'line_items' => :'Array<Ptsv2paymentsOrderInformationLineItems>',
+        :'line_items' => :'Array<Ptsv2paymentsOrderInformationLineItemsExtended>',
         :'invoice_details' => :'Ptsv2paymentsOrderInformationInvoiceDetails',
+        :'vouchers' => :'Array<Ptsv2paymentsOrderInformationVouchers>',
         :'shipping_details' => :'Ptsv2paymentsOrderInformationShippingDetails',
         :'digital_currency' => :'Ptsv2paymentsOrderInformationDigitalCurrency',
         :'returns_accepted' => :'BOOLEAN',
@@ -146,6 +151,12 @@ module CyberSource
 
       if attributes.has_key?(:'invoiceDetails')
         self.invoice_details = attributes[:'invoiceDetails']
+      end
+
+      if attributes.has_key?(:'vouchers')
+        if (value = attributes[:'vouchers']).is_a?(Array)
+          self.vouchers = value
+        end
       end
 
       if attributes.has_key?(:'shippingDetails')
@@ -227,6 +238,7 @@ module CyberSource
           ship_to == o.ship_to &&
           line_items == o.line_items &&
           invoice_details == o.invoice_details &&
+          vouchers == o.vouchers &&
           shipping_details == o.shipping_details &&
           digital_currency == o.digital_currency &&
           returns_accepted == o.returns_accepted &&
@@ -247,7 +259,7 @@ module CyberSource
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [extension_days, amount_details, bill_to, ship_to, line_items, invoice_details, shipping_details, digital_currency, returns_accepted, is_cryptocurrency_purchase, cutoff_date_time, pre_order, pre_order_date, reordered, total_offers_count].hash
+      [extension_days, amount_details, bill_to, ship_to, line_items, invoice_details, vouchers, shipping_details, digital_currency, returns_accepted, is_cryptocurrency_purchase, cutoff_date_time, pre_order, pre_order_date, reordered, total_offers_count].hash
     end
 
     # Builds the object from hash

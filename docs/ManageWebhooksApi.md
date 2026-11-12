@@ -7,10 +7,10 @@ Method | HTTP request | Description
 [**delete_webhook_subscription**](ManageWebhooksApi.md#delete_webhook_subscription) | **DELETE** /notification-subscriptions/v2/webhooks/{webhookId} | Delete a Webhook Subscription
 [**get_webhook_subscription_by_id**](ManageWebhooksApi.md#get_webhook_subscription_by_id) | **GET** /notification-subscriptions/v2/webhooks/{webhookId} | Get Details On a Single Webhook
 [**get_webhook_subscriptions_by_org**](ManageWebhooksApi.md#get_webhook_subscriptions_by_org) | **GET** /notification-subscriptions/v2/webhooks | Get Details On All Created Webhooks
-[**notification_subscriptions_v1_webhooks_webhook_id_post**](ManageWebhooksApi.md#notification_subscriptions_v1_webhooks_webhook_id_post) | **POST** /notification-subscriptions/v1/webhooks/{webhookId} | Test a Webhook Configuration
-[**notification_subscriptions_v2_webhooks_webhook_id_patch**](ManageWebhooksApi.md#notification_subscriptions_v2_webhooks_webhook_id_patch) | **PATCH** /notification-subscriptions/v2/webhooks/{webhookId} | Update a Webhook Subscription
 [**notification_subscriptions_v2_webhooks_webhook_id_status_put**](ManageWebhooksApi.md#notification_subscriptions_v2_webhooks_webhook_id_status_put) | **PUT** /notification-subscriptions/v2/webhooks/{webhookId}/status | Update a Webhook Status
 [**save_asym_egress_key**](ManageWebhooksApi.md#save_asym_egress_key) | **POST** /kms/egress/v2/keys-asym | Message Level Encryption
+[**test_webhook_subscription**](ManageWebhooksApi.md#test_webhook_subscription) | **POST** /notification-subscriptions/v1/webhooks/{webhookId} | Test a Webhook Configuration
+[**update_webhook_subscription**](ManageWebhooksApi.md#update_webhook_subscription) | **PATCH** /notification-subscriptions/v2/webhooks/{webhookId} | Update a Webhook Subscription
 
 
 # **delete_webhook_subscription**
@@ -60,7 +60,7 @@ No authorization required
 
 
 # **get_webhook_subscription_by_id**
-> InlineResponse2018 get_webhook_subscription_by_id(webhook_id)
+> CreateWebhookSubscriptionResponse get_webhook_subscription_by_id(webhook_id)
 
 Get Details On a Single Webhook
 
@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2018**](InlineResponse2018.md)
+[**CreateWebhookSubscriptionResponse**](CreateWebhookSubscriptionResponse.md)
 
 ### Authorization
 
@@ -107,7 +107,7 @@ No authorization required
 
 
 # **get_webhook_subscriptions_by_org**
-> Array&lt;InlineResponse2007&gt; get_webhook_subscriptions_by_org(organization_id, opts)
+> Array&lt;WebhookSubscription&gt; get_webhook_subscriptions_by_org(organization_id, opts)
 
 Get Details On All Created Webhooks
 
@@ -146,105 +146,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Array&lt;InlineResponse2007&gt;**](InlineResponse2007.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/json;charset=utf-8
-
-
-
-# **notification_subscriptions_v1_webhooks_webhook_id_post**
-> InlineResponse2019 notification_subscriptions_v1_webhooks_webhook_id_post(webhook_id)
-
-Test a Webhook Configuration
-
-Test the webhook configuration by sending a sample webhook. Calling this endpoint sends a sample webhook to the endpoint identified in the user's subscription.   It will contain sample values for the product & eventType based on values present in your subscription along with a sample message in the payload.   Based on the webhook response users can make any necessary modifications or rest assured knowing their setup is configured correctly. 
-
-### Example
-```ruby
-# load the gem
-require 'cybersource_rest_client'
-
-api_instance = CyberSource::ManageWebhooksApi.new
-
-webhook_id = 'webhook_id_example' # String | The Webhook Identifier.
-
-
-begin
-  #Test a Webhook Configuration
-  result = api_instance.notification_subscriptions_v1_webhooks_webhook_id_post(webhook_id)
-  p result
-rescue CyberSource::ApiError => e
-  puts "Exception when calling ManageWebhooksApi->notification_subscriptions_v1_webhooks_webhook_id_post: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **webhook_id** | **String**| The Webhook Identifier. | 
-
-### Return type
-
-[**InlineResponse2019**](InlineResponse2019.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/json;charset=utf-8
-
-
-
-# **notification_subscriptions_v2_webhooks_webhook_id_patch**
-> InlineResponse2008 notification_subscriptions_v2_webhooks_webhook_id_patch(webhook_id, opts)
-
-Update a Webhook Subscription
-
-Update a Webhook Subscription.
-
-### Example
-```ruby
-# load the gem
-require 'cybersource_rest_client'
-
-api_instance = CyberSource::ManageWebhooksApi.new
-
-webhook_id = 'webhook_id_example' # String | The Webhook Identifier.
-
-opts = { 
-  update_webhook: CyberSource::UpdateWebhook.new # UpdateWebhook | The webhook payload or changes to apply.
-}
-
-begin
-  #Update a Webhook Subscription
-  result = api_instance.notification_subscriptions_v2_webhooks_webhook_id_patch(webhook_id, opts)
-  p result
-rescue CyberSource::ApiError => e
-  puts "Exception when calling ManageWebhooksApi->notification_subscriptions_v2_webhooks_webhook_id_patch: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **webhook_id** | **String**| The Webhook Identifier. | 
- **update_webhook** | [**UpdateWebhook**](UpdateWebhook.md)| The webhook payload or changes to apply. | [optional] 
-
-### Return type
-
-[**InlineResponse2008**](InlineResponse2008.md)
+[**Array&lt;WebhookSubscription&gt;**](WebhookSubscription.md)
 
 ### Authorization
 
@@ -308,7 +210,7 @@ No authorization required
 
 
 # **save_asym_egress_key**
-> InlineResponse20110 save_asym_egress_key(save_asym_egress_key, opts)
+> SaveAsymEgressKeyResponse save_asym_egress_key(save_asym_egress_key, opts)
 
 Message Level Encryption
 
@@ -349,7 +251,105 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20110**](InlineResponse20110.md)
+[**SaveAsymEgressKeyResponse**](SaveAsymEgressKeyResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
+
+
+
+# **test_webhook_subscription**
+> TestWebhookSubscriptionResponse test_webhook_subscription(webhook_id)
+
+Test a Webhook Configuration
+
+Test the webhook configuration by sending a sample webhook. Calling this endpoint sends a sample webhook to the endpoint identified in the user's subscription.   It will contain sample values for the product & eventType based on values present in your subscription along with a sample message in the payload.   Based on the webhook response users can make any necessary modifications or rest assured knowing their setup is configured correctly. 
+
+### Example
+```ruby
+# load the gem
+require 'cybersource_rest_client'
+
+api_instance = CyberSource::ManageWebhooksApi.new
+
+webhook_id = 'webhook_id_example' # String | The Webhook Identifier.
+
+
+begin
+  #Test a Webhook Configuration
+  result = api_instance.test_webhook_subscription(webhook_id)
+  p result
+rescue CyberSource::ApiError => e
+  puts "Exception when calling ManageWebhooksApi->test_webhook_subscription: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **webhook_id** | **String**| The Webhook Identifier. | 
+
+### Return type
+
+[**TestWebhookSubscriptionResponse**](TestWebhookSubscriptionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
+
+
+
+# **update_webhook_subscription**
+> UpdateWebhookSubscriptionResponse update_webhook_subscription(webhook_id, opts)
+
+Update a Webhook Subscription
+
+Update a Webhook Subscription.
+
+### Example
+```ruby
+# load the gem
+require 'cybersource_rest_client'
+
+api_instance = CyberSource::ManageWebhooksApi.new
+
+webhook_id = 'webhook_id_example' # String | The Webhook Identifier.
+
+opts = { 
+  update_webhook: CyberSource::UpdateWebhook.new # UpdateWebhook | The webhook payload or changes to apply.
+}
+
+begin
+  #Update a Webhook Subscription
+  result = api_instance.update_webhook_subscription(webhook_id, opts)
+  p result
+rescue CyberSource::ApiError => e
+  puts "Exception when calling ManageWebhooksApi->update_webhook_subscription: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **webhook_id** | **String**| The Webhook Identifier. | 
+ **update_webhook** | [**UpdateWebhook**](UpdateWebhook.md)| The webhook payload or changes to apply. | [optional] 
+
+### Return type
+
+[**UpdateWebhookSubscriptionResponse**](UpdateWebhookSubscriptionResponse.md)
 
 ### Authorization
 

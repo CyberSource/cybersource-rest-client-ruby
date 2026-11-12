@@ -24,7 +24,7 @@ module CyberSource
     #
     # @param batch_id Unique identification number assigned to the submitted request.
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse20014]
+    # @return [BatchReportResponse]
     #
     def get_batch_report(batch_id, opts = {})
       data, status_code, headers = get_batch_report_with_http_info(batch_id, opts)
@@ -35,7 +35,7 @@ module CyberSource
     # **Get Batch Report**&lt;br&gt;This resource accepts a batch id and returns: - The batch status. - The total number of accepted, rejected, updated records. - The total number of card association responses. - The billable quantities of:   - New Account Numbers (NAN)   - New Expiry Dates (NED)   - Account Closures (ACL)   - Contact Card Holders (CCH) - Source record information including token ids, masked card number, expiration dates &amp; card type. - Response record information including response code, reason, token ids, masked card number, expiration dates &amp; card type. 
     # @param batch_id Unique identification number assigned to the submitted request.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse20014, Fixnum, Hash)>] InlineResponse20014 data, response status code and response headers
+    # @return [Array<(BatchReportResponse, Fixnum, Hash)>] BatchReportResponse data, response status code and response headers
     def get_batch_report_with_http_info(batch_id, opts = {})
 
       if @api_client.config.debugging
@@ -64,8 +64,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -79,7 +81,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_batch_report","get_batch_report_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -94,7 +96,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20014',
+        :return_type => 'BatchReportResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -111,7 +113,7 @@ module CyberSource
     #
     # @param batch_id Unique identification number assigned to the submitted request.
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse20013]
+    # @return [BatchStatusResponse]
     #
     def get_batch_status(batch_id, opts = {})
       data, status_code, headers = get_batch_status_with_http_info(batch_id, opts)
@@ -122,7 +124,7 @@ module CyberSource
     # **Get Batch Status**&lt;br&gt;This resource accepts a batch id and returns: - The batch status. - The total number of accepted, rejected, updated records. - The total number of card association responses. - The billable quantities of:   - New Account Numbers (NAN)   - New Expiry Dates (NED)   - Account Closures (ACL)   - Contact Card Holders (CCH) 
     # @param batch_id Unique identification number assigned to the submitted request.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse20013, Fixnum, Hash)>] InlineResponse20013 data, response status code and response headers
+    # @return [Array<(BatchStatusResponse, Fixnum, Hash)>] BatchStatusResponse data, response status code and response headers
     def get_batch_status_with_http_info(batch_id, opts = {})
 
       if @api_client.config.debugging
@@ -151,8 +153,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -166,7 +170,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_batch_status","get_batch_status_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -181,7 +185,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20013',
+        :return_type => 'BatchStatusResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -201,7 +205,7 @@ module CyberSource
     # @option opts [Integer] :limit The maximum number that can be returned in the array starting from the offset record in zero-based dataset. (default to 20)
     # @option opts [String] :from_date ISO-8601 format: yyyyMMddTHHmmssZ
     # @option opts [String] :to_date ISO-8601 format: yyyyMMddTHHmmssZ
-    # @return [InlineResponse20012]
+    # @return [BatchesListResponse]
     #
     def get_batches_list(opts = {})
       data, status_code, headers = get_batches_list_with_http_info(opts)
@@ -215,7 +219,7 @@ module CyberSource
     # @option opts [Integer] :limit The maximum number that can be returned in the array starting from the offset record in zero-based dataset.
     # @option opts [String] :from_date ISO-8601 format: yyyyMMddTHHmmssZ
     # @option opts [String] :to_date ISO-8601 format: yyyyMMddTHHmmssZ
-    # @return [Array<(InlineResponse20012, Fixnum, Hash)>] InlineResponse20012 data, response status code and response headers
+    # @return [Array<(BatchesListResponse, Fixnum, Hash)>] BatchesListResponse data, response status code and response headers
     def get_batches_list_with_http_info(opts = {})
 
       if @api_client.config.debugging
@@ -240,8 +244,10 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json', 'application/json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
@@ -255,7 +261,7 @@ module CyberSource
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["get_batches_list","get_batches_list_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -270,7 +276,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse20012',
+        :return_type => 'BatchesListResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin
@@ -285,21 +291,21 @@ module CyberSource
     # Create a Batch
     # **Create a Batch**<br>This resource accepts TMS tokens ids of a Customer, Payment Instrument or Instrument Identifier. <br> The card numbers for the supplied tokens ids are then sent to the relevant card associations to check for updates.<br>The following type of batches can be submitted: -  **oneOff** batch containing tokens id for Visa or MasterCard card numbers. - **amexRegistration** batch containing tokens id for Amex card numbers.  A batch id will be returned on a successful response which can be used to get the batch status and the batch report. The availability of API features for a merchant may depend on the portfolio configuration and may need to be enabled at the portfolio level before they can be added to merchant accounts. 
     #
-    # @param body 
+    # @param post_batch_request 
     # @param [Hash] opts the optional parameters
-    # @return [InlineResponse202]
+    # @return [BatchCreateResponse]
     #
-    def post_batch(body, opts = {})
-      data, status_code, headers = post_batch_with_http_info(body, opts)
+    def post_batch(post_batch_request, opts = {})
+      data, status_code, headers = post_batch_with_http_info(post_batch_request, opts)
       return data, status_code, headers
     end
 
     # Create a Batch
     # **Create a Batch**&lt;br&gt;This resource accepts TMS tokens ids of a Customer, Payment Instrument or Instrument Identifier. &lt;br&gt; The card numbers for the supplied tokens ids are then sent to the relevant card associations to check for updates.&lt;br&gt;The following type of batches can be submitted: -  **oneOff** batch containing tokens id for Visa or MasterCard card numbers. - **amexRegistration** batch containing tokens id for Amex card numbers.  A batch id will be returned on a successful response which can be used to get the batch status and the batch report. The availability of API features for a merchant may depend on the portfolio configuration and may need to be enabled at the portfolio level before they can be added to merchant accounts. 
-    # @param body 
+    # @param post_batch_request 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(InlineResponse202, Fixnum, Hash)>] InlineResponse202 data, response status code and response headers
-    def post_batch_with_http_info(body, opts = {})
+    # @return [Array<(BatchCreateResponse, Fixnum, Hash)>] BatchCreateResponse data, response status code and response headers
+    def post_batch_with_http_info(post_batch_request, opts = {})
 
       if @api_client.config.debugging
           begin
@@ -309,9 +315,9 @@ module CyberSource
                 puts 'Cannot write to log'
             end
       end
-      # verify the required parameter 'body' is set
-      if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling BatchesApi.post_batch"
+      # verify the required parameter 'post_batch_request' is set
+      if @api_client.config.client_side_validation && post_batch_request.nil?
+        fail ArgumentError, "Missing the required parameter 'post_batch_request' when calling BatchesApi.post_batch"
       end
       # resource path
       local_var_path = 'accountupdater/v1/batches'
@@ -323,20 +329,22 @@ module CyberSource
       header_params = {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json;charset=utf-8'])
+      local_header_content_type = nil
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      local_header_content_type = @api_client.select_header_content_type(['application/json;charset=utf-8'])
+      header_params['Content-Type'] = local_header_content_type if local_header_content_type
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(body)
+      post_body = @api_client.object_to_http_body(post_batch_request)
       sdk_tracker = SdkTracker.new
-      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'Body', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
+      post_body = sdk_tracker.insert_developer_id_tracker(post_body, 'PostBatchRequest', @api_client.config.host, @api_client.merchantconfig.defaultDeveloperId)
       inbound_mle_status = "false"
       if MLEUtility.check_is_mle_for_API(@api_client.merchantconfig, inbound_mle_status, ["post_batch","post_batch_with_http_info"])
         begin
-          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body)
+          post_body = MLEUtility.encrypt_request_payload(@api_client.merchantconfig, post_body, local_header_content_type)
         rescue
           raise
         end
@@ -351,7 +359,7 @@ module CyberSource
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse202',
+        :return_type => 'BatchCreateResponse',
         :isResponseMLEForApi => is_response_mle_for_api)
       if @api_client.config.debugging
         begin

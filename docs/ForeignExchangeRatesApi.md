@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **create_fx_rates**
-> InlineResponse2013 create_fx_rates(body, content_type, x_requestid, v_c_merchant_id, v_c_permissions, v_c_correlation_id, v_c_organization_id)
+> CreateFxRatesResponse create_fx_rates(create_fx_rates_request, content_type, x_requestid, v_c_merchant_id, v_c_permissions, v_c_correlation_id, v_c_organization_id)
 
 Retrieve Foreign Exchange Rates
 
@@ -21,7 +21,7 @@ require 'cybersource_rest_client'
 
 api_instance = CyberSource::ForeignExchangeRatesApi.new
 
-body = CyberSource::Body.new # Body | 
+create_fx_rates_request = CyberSource::CreateFxRatesRequest.new # CreateFxRatesRequest | 
 
 content_type = 'content_type_example' # String | 
 
@@ -38,7 +38,7 @@ v_c_organization_id = 'v_c_organization_id_example' # String |
 
 begin
   #Retrieve Foreign Exchange Rates
-  result = api_instance.create_fx_rates(body, content_type, x_requestid, v_c_merchant_id, v_c_permissions, v_c_correlation_id, v_c_organization_id)
+  result = api_instance.create_fx_rates(create_fx_rates_request, content_type, x_requestid, v_c_merchant_id, v_c_permissions, v_c_correlation_id, v_c_organization_id)
   p result
 rescue CyberSource::ApiError => e
   puts "Exception when calling ForeignExchangeRatesApi->create_fx_rates: #{e}"
@@ -49,7 +49,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Body**](Body.md)|  | 
+ **create_fx_rates_request** | [**CreateFxRatesRequest**](CreateFxRatesRequest.md)|  | 
  **content_type** | **String**|  | 
  **x_requestid** | **String**|  | 
  **v_c_merchant_id** | **String**|  | 
@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2013**](InlineResponse2013.md)
+[**CreateFxRatesResponse**](CreateFxRatesResponse.md)
 
 ### Authorization
 

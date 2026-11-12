@@ -38,7 +38,7 @@ describe 'NetworkTokensApi' do
   # @param token_provider The token provider.
   # @param asset_type The type of asset.
   # @param [Hash] opts the optional parameters
-  # @return [InlineResponse2002]
+  # @return [CardArtAssetResponse]
   describe 'get_card_art_asset test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -51,7 +51,7 @@ describe 'NetworkTokensApi' do
   # @param tokenized_card_id The Id of a tokenized card.
   # @param [Hash] opts the optional parameters
   # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
-  # @return [InlineResponse2001]
+  # @return [GetTokenizedCardResponse]
   describe 'get_tokenized_card test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -90,10 +90,10 @@ describe 'NetworkTokensApi' do
   # Generate Payment Credentials Latest Version v3
   # **Payment Credentials**&lt;br&gt;Contains payment information such as the network token, generated TAVV cryptogram for Visa &amp; MasterCard, dynamic CVV for Amex, or DTVV cryptogram for VISA. This latest version (v3) returns the Primary Account Number details, if the network token is not present. The response is provided in JSON Web Encryption (JWE) format. &lt;br&gt;Your system can use this API to retrieve the Payment Credentials for an existing Customer, Payment Instrument, Instrument Identifier or Tokenized Card.&lt;br&gt;Optionally, **authenticated identities** information from Passkey authentication can be provided to potentially achieve liability shift, which may result in the return of an e-commerce indicator of 5 if successful. 
   # @param token_id The Id of a token representing a Customer, Payment Instrument or Instrument Identifier.
-  # @param post_payment_credentials_request 
+  # @param post_payment_credentials_v3_request 
   # @param [Hash] opts the optional parameters
   # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
-  # @return [InlineResponse2011]
+  # @return [PostPaymentCredentialsResponse]
   describe 'post_token_payment_credentials_v3 test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -106,7 +106,7 @@ describe 'NetworkTokensApi' do
   # @param post_tokenized_card_request 
   # @param [Hash] opts the optional parameters
   # @option opts [String] :profile_id The Id of a profile containing user specific TMS configuration.
-  # @return [InlineResponse2001]
+  # @return [GetTokenizedCardResponse]
   describe 'post_tokenized_card test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

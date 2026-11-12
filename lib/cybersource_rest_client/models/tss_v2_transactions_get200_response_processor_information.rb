@@ -138,7 +138,7 @@ module CyberSource
         :'card_verification' => :'Riskv1decisionsProcessorInformationCardVerification',
         :'ach_verification' => :'PtsV2PaymentsPost201ResponseProcessorInformationAchVerification',
         :'electronic_verification_results' => :'TssV2TransactionsGet200ResponseProcessorInformationElectronicVerificationResults',
-        :'issuer_information' => :'PtsV2PaymentsPost201Response1IssuerInformation',
+        :'issuer_information' => :'RefreshPaymentStatusResponseIssuerInformation',
         :'event_status' => :'String',
         :'system_trace_audit_number' => :'String',
         :'response_code_source' => :'String',

@@ -31,6 +31,12 @@ describe 'Riskv1decisionsMerchantInformation' do
       expect(@instance).to be_instance_of(CyberSource::Riskv1decisionsMerchantInformation)
     end
   end
+  describe 'test attribute "category_code"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "merchant_descriptor"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

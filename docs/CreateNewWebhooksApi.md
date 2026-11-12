@@ -4,13 +4,61 @@ All URIs are relative to *https://apitest.cybersource.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**create_webhook_subscription**](CreateNewWebhooksApi.md#create_webhook_subscription) | **POST** /notification-subscriptions/v2/webhooks | Create a New Webhook Subscription
 [**find_products_to_subscribe**](CreateNewWebhooksApi.md#find_products_to_subscribe) | **GET** /notification-subscriptions/v2/products/{organizationId} | Find Products You Can Subscribe To
-[**notification_subscriptions_v2_webhooks_post**](CreateNewWebhooksApi.md#notification_subscriptions_v2_webhooks_post) | **POST** /notification-subscriptions/v2/webhooks | Create a New Webhook Subscription
 [**save_sym_egress_key**](CreateNewWebhooksApi.md#save_sym_egress_key) | **POST** /kms/egress/v2/keys-sym | Create Webhook Security Keys
 
 
+# **create_webhook_subscription**
+> CreateWebhookSubscriptionResponse create_webhook_subscription(opts)
+
+Create a New Webhook Subscription
+
+Create a new webhook subscription. Before creating a webhook, ensure that a signature key has been created.  For the example \"Create Webhook using oAuth with Client Credentials\" - for clients who have more than one oAuth Provider and have different client secrets that they would like to config for a given webhook, they may do so by overriding the keyId inside security config of webhook subscription. See the Developer Center examples section titled \"Webhook Security - Create or Store Egress Symmetric Key - Store oAuth Credentials For Symmetric Key\" to store these oAuth credentials that CYBS will need for oAuth.  For JWT authentication, attach your oAuth details to the webhook subscription. See the example \"Create Webhook using oAuth with JWT\" 
+
+### Example
+```ruby
+# load the gem
+require 'cybersource_rest_client'
+
+api_instance = CyberSource::CreateNewWebhooksApi.new
+
+opts = { 
+  create_webhook: CyberSource::CreateWebhook.new # CreateWebhook | The webhook payload
+}
+
+begin
+  #Create a New Webhook Subscription
+  result = api_instance.create_webhook_subscription(opts)
+  p result
+rescue CyberSource::ApiError => e
+  puts "Exception when calling CreateNewWebhooksApi->create_webhook_subscription: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **create_webhook** | [**CreateWebhook**](CreateWebhook.md)| The webhook payload | [optional] 
+
+### Return type
+
+[**CreateWebhookSubscriptionResponse**](CreateWebhookSubscriptionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json;charset=utf-8
+ - **Accept**: application/json;charset=utf-8
+
+
+
 # **find_products_to_subscribe**
-> Array&lt;InlineResponse2006&gt; find_products_to_subscribe(organization_id)
+> Array&lt;ProductCatalogProduct&gt; find_products_to_subscribe(organization_id)
 
 Find Products You Can Subscribe To
 
@@ -43,7 +91,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Array&lt;InlineResponse2006&gt;**](InlineResponse2006.md)
+[**Array&lt;ProductCatalogProduct&gt;**](ProductCatalogProduct.md)
 
 ### Authorization
 
@@ -56,56 +104,8 @@ No authorization required
 
 
 
-# **notification_subscriptions_v2_webhooks_post**
-> InlineResponse2018 notification_subscriptions_v2_webhooks_post(opts)
-
-Create a New Webhook Subscription
-
-Create a new webhook subscription. Before creating a webhook, ensure that a signature key has been created.  For the example \"Create Webhook using oAuth with Client Credentials\" - for clients who have more than one oAuth Provider and have different client secrets that they would like to config for a given webhook, they may do so by overriding the keyId inside security config of webhook subscription. See the Developer Center examples section titled \"Webhook Security - Create or Store Egress Symmetric Key - Store oAuth Credentials For Symmetric Key\" to store these oAuth credentials that CYBS will need for oAuth.  For JWT authentication, attach your oAuth details to the webhook subscription. See the example \"Create Webhook using oAuth with JWT\" 
-
-### Example
-```ruby
-# load the gem
-require 'cybersource_rest_client'
-
-api_instance = CyberSource::CreateNewWebhooksApi.new
-
-opts = { 
-  create_webhook: CyberSource::CreateWebhook.new # CreateWebhook | The webhook payload
-}
-
-begin
-  #Create a New Webhook Subscription
-  result = api_instance.notification_subscriptions_v2_webhooks_post(opts)
-  p result
-rescue CyberSource::ApiError => e
-  puts "Exception when calling CreateNewWebhooksApi->notification_subscriptions_v2_webhooks_post: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **create_webhook** | [**CreateWebhook**](CreateWebhook.md)| The webhook payload | [optional] 
-
-### Return type
-
-[**InlineResponse2018**](InlineResponse2018.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json;charset=utf-8
- - **Accept**: application/json;charset=utf-8
-
-
-
 # **save_sym_egress_key**
-> InlineResponse2017 save_sym_egress_key(opts)
+> SaveSymEgressKeyResponse save_sym_egress_key(opts)
 
 Create Webhook Security Keys
 
@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2017**](InlineResponse2017.md)
+[**SaveSymEgressKeyResponse**](SaveSymEgressKeyResponse.md)
 
 ### Authorization
 

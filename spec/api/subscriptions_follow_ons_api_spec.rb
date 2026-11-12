@@ -35,7 +35,7 @@ describe 'SubscriptionsFollowOnsApi' do
   # Create a Follow-On Subscription
   # Create a new Subscription based on the Request Id of an existing successful Transaction.
   # @param request_id Request Id of an existing successful Transaction
-  # @param create_subscription_request 
+  # @param create_follow_on_subscription_request 
   # @param [Hash] opts the optional parameters
   # @return [CreateSubscriptionResponse]
   describe 'create_follow_on_subscription test' do
@@ -49,7 +49,7 @@ describe 'SubscriptionsFollowOnsApi' do
   # Get details of the Subscription being created based on the Request Id of an existing successful Transaction. 
   # @param request_id Request Id of an existing successful Transaction
   # @param [Hash] opts the optional parameters
-  # @return [GetSubscriptionResponse1]
+  # @return [GetFollowOnSubscriptionResponse]
   describe 'get_follow_on_subscription test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
